@@ -9,9 +9,9 @@ BASEURL   = https://github.com/$(REPO)/releases/download
 PACKAGE   = io/github/measurement_kit
 SRCDIR    = app/src/main
 TAG       =
-VERSION   = v0.1.0-alpha.5
+VERSION   = v0.1.0-beta.2
 
-INPUT     = measurement_kit-jni-libs-$(VERSION)$(TAG).tar.bz2
+INPUT     = measurement_kit-android-$(VERSION)$(TAG).tar.bz2
 
 help:
 	@printf "Targets:\n"

@@ -22,15 +22,18 @@ public class SyncRunnerService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         String testName = intent.getAction();
         Log.v(TAG, "onHandleIntent " + testName + "...");
-        String path = getFilesDir() + "/hosts.txt";
+        String inputPath = getFilesDir() + "/hosts.txt";
+        String outputPath = getFilesDir() + "/last-report.yml";
+        String logPath = getFilesDir() + "/last-logs.txt";
 
         Log.v(TAG, "running test...");
         if (testName.compareTo(OONITests.DNS_INJECTION) == 0) {
-            OoniSyncApi.dnsInjection("8.8.8.1", path, true, "");
+            OoniSyncApi.dnsInjection("8.8.8.1", inputPath, outputPath, logPath, true);
         } else if (testName.compareTo(OONITests.HTTP_INVALID_REQUEST_LINE) == 0) {
-            OoniSyncApi.httpInvalidRequestLine("http://213.138.109.232/", true, "");
+            OoniSyncApi.httpInvalidRequestLine("http://213.138.109.232/",
+                    outputPath, logPath, true);
         } else if (testName.compareTo(OONITests.TCP_CONNECT) == 0) {
-            OoniSyncApi.tcpConnect("80", path, true, "");
+            OoniSyncApi.tcpConnect("80", inputPath,  outputPath, logPath, true);
         } else if (testName.compareTo(PortolanTests.CHECK_PORT) == 0) {
             PortolanSyncApi.checkPort(true, "130.192.91.211", "81", 4.0, true);
         } else if (testName.compareTo(PortolanTests.TRACEROUTE) == 0) {
