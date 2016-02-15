@@ -2,17 +2,26 @@
 
 This application requires Android Studio. In any case, before opening the
 project with Android Studio, make sure you download the dependencies using
-the project `Makefile`. To do this, type:
+the project `Makefile`. Before you can do this, you should install the
+GPG key with which binaries are signed. Binaries are digitally signed by
+Simone Basso using a PGP key with ID `7733D95B` and fingerprint
+(`7388 77AA 6C82 9F26 A431 C5F4 80B6 9127 7733 D95B`). You can fetch this
+key using gpg using the following command:
+
+```bash
+gpg --recv-keys 7733D95B
+```
+
+After this step, you can proceed with automatically downloading binaries
+and verifying their digital signatures using this command:
 
 ```
 make unpack
 ```
 
-This command will download Measurement Kit jniLibs from GitHub and verify
-their digital signature. If the signature is correct, it will install inside
-this repository MeasurementKit jniLibs and Java files.
-
-Specifically, the following paths are affected by that command:
+If the signature is correct, the above command will install the JNI
+libaries inside the `src/main/` folder. Specifically, the following paths
+are affected by that command:
 
 - app/src/main/jniLibs: added with Measurement Kit jniLibs compiled for
   several Android architectures inside it
