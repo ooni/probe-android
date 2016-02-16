@@ -15,6 +15,9 @@ import android.util.Log;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 import io.github.measurement_kit.jni.DnsApi;
 import io.github.measurement_kit.jni.LoggerApi;
@@ -31,20 +34,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Button button;
 
-        // XXX Since Android does not have /etc/resolv.conf, libevent does
-        // not know which resolver to use. For now, just set the Google DNS
-        // resolvers, but this can be done much better, considering:
-        //
-        // 1) that settings a DNS at the beginning may not be wise since
-        // mobile devices move around (by their definition)
-        //
-        // 2) that getting the DNS server address on Android is not simple
-        // because different devices require different methods
-        Log.v(TAG, "Adding default nameservers...");
+
+        // The app now tries to get DNS from the device. Upon fail, it uses
+        // Google DNS resolvers
+
+
+        Log.v(TAG, "Adding nameservers...");
         DnsApi.clearNameServers();
-        DnsApi.addNameServer("8.8.8.8");
-        DnsApi.addNameServer("8.8.4.4");
-        Log.v(TAG, "Adding default nameservers... done");
+        ArrayList<String> nameservers = getDNS();
+        if (!nameservers.isEmpty()) {
+            for (String s : getDNS()) {
+                Log.v(TAG, "Adding nameserver: " + s);
+                DnsApi.addNameServer(s);
+            }
+        } else {
+            Log.v(TAG, "Could not get DNS from device, using defaults");
+            DnsApi.addNameServer("8.8.8.8");
+            DnsApi.addNameServer("8.8.4.4");
+        }
+        Log.v(TAG, "Adding nameservers... done");
 
         Log.v(TAG, "create test-complete receiver...");
         TestCompleteReceiver receiver = new TestCompleteReceiver();
@@ -151,6 +159,32 @@ public class MainActivity extends AppCompatActivity {
             Log.e(TAG, "copyResources: error: " + err);
         }
         Log.v(TAG, "copyResources... done");
+    }
+
+    private ArrayList<String> getDNS() {
+        ArrayList<String> servers = new ArrayList<String>();
+        try {
+            Class<?> SystemProperties = Class.forName("android.os.SystemProperties");
+            Method method = SystemProperties.getMethod("get", String.class);
+
+            for (String name : new String[]{"net.dns1", "net.dns2", "net.dns3", "net.dns4",}) {
+                String value = (String) method.invoke(null, name);
+                if (value != null && !value.equals("") && !servers.contains(value)) {
+                    servers.add(value);
+                }
+            }
+        // Using 4 branches to show which errors may occur
+        // We can just catch Exception
+        } catch (ClassNotFoundException e) {
+            Log.e(TAG, "getDNS: error: " + e);
+        } catch (NoSuchMethodException e) {
+            Log.e(TAG, "getDNS: error: " + e);
+        } catch (InvocationTargetException e) {
+            Log.e(TAG, "getDNS: error: " + e);
+        } catch (IllegalAccessException e) {
+            Log.e(TAG, "getDNS: error: " + e);
+        }
+        return servers;
     }
 
     private static final String TAG = "main-activity";
