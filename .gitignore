@@ -8,5 +8,5 @@
 app/src/main/java/io/github/measurement_kit/jni/
 measurement_kit-jni-libs-v*.tar.bz2.asc
 measurement_kit-jni-libs-v*.tar.bz2
-measurement_kit-android-*.tar
-measurement_kit-android-*.tar.asc
+measurement_kit-android-*.tar.bz2
+measurement_kit-android-*.tar.bz2.asc
