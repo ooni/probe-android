@@ -6,7 +6,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
-    <TextView android:text="Hello World!" android:layout_width="wrap_content"
+    <TextView android:text="RUN TEST"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView" />
 
@@ -18,7 +19,7 @@
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="40dp" />
+        android:layout_marginTop="10dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -27,15 +28,14 @@
         android:id="@+id/dns_injection_button"
         android:layout_below="@+id/tcp_connect_button"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="47dp"/>
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="run http-invalid-request-line test"
         android:id="@+id/http_invalid_request_line_button"
-        android:layout_below="@+id/tcp_connect_button"
+        android:layout_below="@+id/dns_injection_button"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
 
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:text="run check-port test"
         android:id="@+id/check_port_button"
-        android:layout_below="@+id/dns_injection_button"
+        android:layout_below="@+id/http_invalid_request_line_button"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -54,6 +54,15 @@
         android:text="run traceroute test"
         android:id="@+id/traceroute_button"
         android:layout_below="@+id/check_port_button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="show last log"
+        android:id="@+id/log_button"
+        android:layout_below="@+id/traceroute_button"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 </RelativeLayout>
