@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Typeface;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import android.view.LayoutInflater;
 import android.widget.Button;
 import android.view.View;
 import android.util.Log;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -37,9 +39,11 @@ import java.util.ArrayList;
 import io.github.measurement_kit.jni.DnsApi;
 import io.github.measurement_kit.jni.LoggerApi;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Button.OnClickListener {
 
     ProgressDialog progress;
+    Button buttons[] = new Button[5];
+    int selected;
 
     static {
         System.loadLibrary("measurement_kit_jni");
@@ -49,11 +53,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Button button;
+        //TODO use Calligraphy https://github.com/chrisjenx/Calligraphy
+        TextView tv = (TextView)findViewById(R.id.textView);
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Inconsolata.otf");
+        tv.setTypeface(font);
 
         // The app now tries to get DNS from the device. Upon fail, it uses
         // Google DNS resolvers
-
 
         Log.v(TAG, "Adding nameservers...");
         DnsApi.clearNameServers();
@@ -90,83 +98,50 @@ public class MainActivity extends AppCompatActivity {
         LoggerApi.useAndroidLogger();
         Log.v(TAG, "set log verbose... done");
 
+
+        Log.v(TAG, "bind tcp-connect button...");
+        button = (Button) findViewById(R.id.tcp_connect_button);
+        button.setTypeface(font);
+        button.setOnClickListener(this);
+        buttons[0] = button;
+        Log.v(TAG, "bind tcp-connect button... done");
+
         Log.v(TAG, "bind dns-injection button...");
         button = (Button) findViewById(R.id.dns_injection_button);
-        button.setOnClickListener(
-                new Button.OnClickListener() {
-                    public void onClick(View v) {
-                        Log.v(TAG, "clicked-dns-injection");
-                        progress = ProgressDialog.show(MainActivity.this, "Testing", "running dns-injection test", false);
-                        Intent intent = new Intent(MainActivity.this, SyncRunnerService.class);
-                        intent.setAction(OONITests.DNS_INJECTION);
-                        MainActivity.this.startService(intent);
-                    }
-                }
-        );
+        button.setTypeface(font);
+        button.setOnClickListener(this);
+        buttons[1] = button;
         Log.v(TAG, "bind dns-injection button... done");
 
         Log.v(TAG, "bind http-invalid-request-line button...");
         button = (Button) findViewById(R.id.http_invalid_request_line_button);
-        button.setOnClickListener(
-                new Button.OnClickListener() {
-                    public void onClick(View v) {
-                        Log.v(TAG, "clicked-http-invalid-request-line");
-                        progress = ProgressDialog.show(MainActivity.this, "Testing", "running http-invalid-request-line test", false);
-                        Intent intent = new Intent(MainActivity.this, SyncRunnerService.class);
-                        intent.setAction(OONITests.HTTP_INVALID_REQUEST_LINE);
-                        MainActivity.this.startService(intent);
-                    }
-                }
-        );
+        button.setTypeface(font);
+        button.setOnClickListener(this);
+        buttons[2] = button;
         Log.v(TAG, "bind http-invalid-request-line button... done");
-
-        Log.v(TAG, "bind tcp-connect button...");
-        button = (Button) findViewById(R.id.tcp_connect_button);
-        button.setOnClickListener(
-                new Button.OnClickListener() {
-                    public void onClick(View v) {
-                        Log.v(TAG, "clicked-tcp-connect");
-                        progress = ProgressDialog.show(MainActivity.this, "Testing", "running tcp-connect test", false);
-                        Intent intent = new Intent(MainActivity.this, SyncRunnerService.class);
-                        intent.setAction(OONITests.TCP_CONNECT);
-                        MainActivity.this.startService(intent);
-                    }
-                }
-        );
-        Log.v(TAG, "bind tcp-connect button... done");
 
         Log.v(TAG, "bind check-port button...");
         button = (Button) findViewById(R.id.check_port_button);
-        button.setOnClickListener(
-                new Button.OnClickListener() {
-                    public void onClick(View v) {
-                        Log.v(TAG, "clicked-check-port");
-                        progress = ProgressDialog.show(MainActivity.this, "Testing", "running check-port test", false);
-                        Intent intent = new Intent(MainActivity.this, SyncRunnerService.class);
-                        intent.setAction(PortolanTests.CHECK_PORT);
-                        MainActivity.this.startService(intent);
-                    }
-                }
-        );
+        button.setTypeface(font);
+        button.setOnClickListener(this);
+        buttons[3] = button;
         Log.v(TAG, "bind check-port button... done");
 
         Log.v(TAG, "bind traceroute button...");
         button = (Button) findViewById(R.id.traceroute_button);
-        button.setOnClickListener(
-                new Button.OnClickListener() {
-                    public void onClick(View v) {
-                        Log.v(TAG, "clicked-traceroute");
-                        progress = ProgressDialog.show(MainActivity.this, "Testing", "running traceroute test", false);
-                        Intent intent = new Intent(MainActivity.this, SyncRunnerService.class);
-                        intent.setAction(PortolanTests.TRACEROUTE);
-                        MainActivity.this.startService(intent);
-                    }
-                }
-        );
+        button.setTypeface(font);
+        button.setOnClickListener(this);
+        buttons[4] = button;
         Log.v(TAG, "bind traceroute button... done");
+
+        Log.v(TAG, "bind run button...");
+        ImageButton run_button = (ImageButton) findViewById(R.id.run_test_button);
+        run_button.setOnClickListener(this);
+        Log.v(TAG, "bind run button... done");
 
         Log.v(TAG, "bind log button...");
         button = (Button) findViewById(R.id.log_button);
+        button.setTypeface(font);
         button.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
@@ -176,6 +151,71 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
         Log.v(TAG, "bind log button... done");
+    }
+
+    @Override
+    public void onClick(View v) {
+        deselectButtons();
+        switch (v.getId()) {
+            case R.id.run_test_button:
+                if (selected != -1){
+                    executeTest(selected);
+                }
+                break;
+            default:
+                Button b = (Button) findViewById(v.getId());
+                b.setCompoundDrawablesWithIntrinsicBounds(R.drawable.selected, 0, 0, 0);
+                break;
+        }
+        selected = v.getId();
+    }
+
+    private void executeTest(int test){
+        Intent intent;
+        switch (test) {
+            case R.id.tcp_connect_button:
+                Log.v(TAG, "clicked-tcp-connect");
+                progress = ProgressDialog.show(MainActivity.this, "Testing", "running tcp-connect test", false);
+                intent = new Intent(MainActivity.this, SyncRunnerService.class);
+                intent.setAction(OONITests.TCP_CONNECT);
+                MainActivity.this.startService(intent);
+                break;
+            case R.id.dns_injection_button:
+                Log.v(TAG, "clicked-dns-injection");
+                progress = ProgressDialog.show(MainActivity.this, "Testing", "running dns-injection test", false);
+                intent = new Intent(MainActivity.this, SyncRunnerService.class);
+                intent.setAction(OONITests.DNS_INJECTION);
+                MainActivity.this.startService(intent);
+                break;
+            case R.id.http_invalid_request_line_button:
+                Log.v(TAG, "clicked-http-invalid-request-line");
+                progress = ProgressDialog.show(MainActivity.this, "Testing", "running http-invalid-request-line test", false);
+                intent = new Intent(MainActivity.this, SyncRunnerService.class);
+                intent.setAction(OONITests.HTTP_INVALID_REQUEST_LINE);
+                MainActivity.this.startService(intent);
+                break;
+            case R.id.check_port_button:
+                Log.v(TAG, "clicked-check-port");
+                progress = ProgressDialog.show(MainActivity.this, "Testing", "running check-port test", false);
+                intent = new Intent(MainActivity.this, SyncRunnerService.class);
+                intent.setAction(PortolanTests.CHECK_PORT);
+                MainActivity.this.startService(intent);
+                break;
+            case R.id.traceroute_button:
+                Log.v(TAG, "clicked-traceroute");
+                progress = ProgressDialog.show(MainActivity.this, "Testing", "running traceroute test", false);
+                intent = new Intent(MainActivity.this, SyncRunnerService.class);
+                intent.setAction(PortolanTests.TRACEROUTE);
+                MainActivity.this.startService(intent);
+                break;
+
+        }
+    }
+
+    private void deselectButtons(){
+        for( Button b : buttons ) {
+            b.setCompoundDrawablesWithIntrinsicBounds(R.drawable.not_selected, 0, 0, 0);
+        }
     }
 
     private void copyResources() {
