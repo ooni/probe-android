@@ -42,7 +42,7 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
     public void onBindViewHolder(TestsListAdapter.ViewHolder holder, int position) {
 
         Integer i = values.get(position);
-        NetworkMeasurement e = TestData.getInstance().mNetworkMeasurementsMap.get(i);
+        //NetworkMeasurement e = TestData.getInstance().mNetworkMeasurementsMap.get(i);
         /*
         if (e != null){
             holder.txtCompany.setText(e.company);

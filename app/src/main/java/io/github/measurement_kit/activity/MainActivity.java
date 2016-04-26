@@ -313,22 +313,8 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     public void alertWebView(String htmlfile) {
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View myScrollView = inflater.inflate(R.layout.alert_webview, null, false);
-
         WebView wv = (WebView) myScrollView.findViewById(R.id.webview);
         wv.loadUrl("file:///android_asset/html/" + htmlfile + ".html");
-
-        //wv.loadDataWithBaseURL(null, "<html>...</html>", "text/html", "utf-8", null);
-    /*
-        wv.loadUrl("http://www.google.com");
-        wv.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-
-                return true;
-            }
-        });
-*/
         new AlertDialog.Builder(MainActivity.this).setView(myScrollView)
                 .setTitle("Log View")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {

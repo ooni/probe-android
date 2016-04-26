@@ -29,9 +29,9 @@ import io.github.measurement_kit.model.UnknownTest;
 public class TestData extends Observable {
     private static final String TAG = "TestData";
 
-    public ArrayList<NetworkMeasurement> mNetworkMeasurementsRunning = new ArrayList<>();
-    public ArrayList<NetworkMeasurement> mNetworkMeasurementsFinished = new ArrayList<>();
-    public ArrayList<NetworkMeasurement> mNetworkMeasurements = new ArrayList<>();
+    public static ArrayList<NetworkMeasurement> mNetworkMeasurementsRunning = new ArrayList<>();
+    public static ArrayList<NetworkMeasurement> mNetworkMeasurementsFinished = new ArrayList<>();
+    public static ArrayList<NetworkMeasurement> mNetworkMeasurements = new ArrayList<>();
 
     private static TestData instance;
 
@@ -42,7 +42,7 @@ public class TestData extends Observable {
         return instance;
     }
 
-    public void doNetworkMeasurements(final MainActivity activity, final String testName) {
+    public static void doNetworkMeasurements(final MainActivity activity, final String testName) {
         final NetworkMeasurement currentTest = new NetworkMeasurement();
         currentTest.testName = testName;
         currentTest.finished = false;
