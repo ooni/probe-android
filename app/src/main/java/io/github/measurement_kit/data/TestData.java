@@ -47,6 +47,8 @@ public class TestData extends Observable {
         currentTest.testName = testName;
         currentTest.finished = false;
         mNetworkMeasurementsRunning.add(currentTest);
+        TestData.getInstance().notifyObservers();
+
         Log.v(TAG, "doNetworkMeasurements " + testName + "...");
         final String inputPath = activity.getFilesDir() + "/hosts.txt";
         final String outputPath = activity.getFilesDir() + "/last-report.yml";

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="50dp"
     android:background="@color/backgroundColor"
     android:padding="10dp"
     >
@@ -14,7 +14,9 @@
         android:textSize="18sp"
         android:text="TCP CONNECT"
         android:gravity="center"
-        android:textColor="@color/textColor" />
+        android:textColor="@color/textColor"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true" />
 
 <!-- Removed to have the text perfectly centered : android:layout_toLeftOf="@+id/log_button"-->
 

@@ -15,6 +15,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.webkit.WebView;
 import android.widget.ArrayAdapter;
@@ -33,20 +34,27 @@ import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
+import io.github.measurement_kit.adapter.TestsListAdapter;
 import io.github.measurement_kit.data.TestData;
+import io.github.measurement_kit.model.NetworkMeasurement;
 import io.github.measurement_kit.model.OONITests;
 import io.github.measurement_kit.model.PortolanTests;
 import io.github.measurement_kit.app.R;
 import io.github.measurement_kit.service.SyncRunnerService;
 import io.github.measurement_kit.jni.DnsApi;
 import io.github.measurement_kit.jni.LoggerApi;
+import io.github.measurement_kit.utils.Alert;
 import io.github.measurement_kit.view.NotScrollableListView;
 
-public class MainActivity extends AppCompatActivity implements Button.OnClickListener {
+public class MainActivity extends AppCompatActivity implements Button.OnClickListener, Observer {
 
     Button buttons[] = new Button[5];
     int selected;
+    private NotScrollableListView mTestsListView;
+    private TestsListAdapter mTestsListAdapter;
 
     static {
         System.loadLibrary("measurement_kit_jni");
@@ -57,15 +65,12 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        NotScrollableListView lv = (NotScrollableListView) findViewById(R.id.listView);
+        mTestsListView = (NotScrollableListView) findViewById(R.id.listView);
+        mTestsListAdapter = new TestsListAdapter(this,  new ArrayList<NetworkMeasurement>());
+        mTestsListView.setAdapter(mTestsListAdapter);
+        mTestsListView.setLayoutManager(new LinearLayoutManager(this));
 
-        String[] nameproducts = new String[] { "Product1", "Product2", "Product3" , "Product4" , "Product5" , "Product6" };
-        final ArrayList<String> listp = new ArrayList<String>();
-        for (int i = 0; i < nameproducts.length; ++i) {
-            listp.add(nameproducts[i]);
-        }
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String> (this,android.R.layout.simple_list_item_1, listp);
-        lv.setAdapter(adapter);
+        TestData.getInstance().addObserver(this);
 
         Button button;
         //TODO use Calligraphy https://github.com/chrisjenx/Calligraphy
@@ -136,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         info_button.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
-                        alertWebView("ts-008-tcpconnect");
+                        Alert.alertWebView(MainActivity.this, "ts-008-tcpconnect");
                     }
                 }
         );
@@ -145,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         info_button.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
-                        alertWebView("ts-012-dns-injection");
+                        Alert.alertWebView(MainActivity.this, "ts-012-dns-injection");
                     }
                 }
         );
@@ -154,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         info_button.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
-                        alertWebView("ts-007-http-invalid-request-line");
+                        Alert.alertWebView(MainActivity.this, "ts-007-http-invalid-request-line");
                     }
                 }
         );
@@ -168,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         button.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
-                        alertScrollView();
+                        Alert.alertScrollView(MainActivity.this);
                     }
                 }
         );
@@ -240,6 +245,14 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         }
     }
 
+    @Override
+    public void update(Observable observable, Object data) {
+        if (mTestsListAdapter != null) {
+            mTestsListAdapter.setData(TestData.getInstance().mNetworkMeasurementsRunning);
+            mTestsListAdapter.addData(TestData.getInstance().mNetworkMeasurementsFinished);
+        }
+    }
+
     private void deselectButtons(){
         for( Button b : buttons ) {
             b.setCompoundDrawablesWithIntrinsicBounds(R.drawable.not_selected, 0, 0, 0);
@@ -286,63 +299,6 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
             Log.e(TAG, "getDNS: error: " + e);
         }
         return servers;
-    }
-
-
-    public void alertScrollView() {
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View myScrollView = inflater.inflate(R.layout.scroll_text, null, false);
-
-        TextView tv = (TextView) myScrollView
-                .findViewById(R.id.textViewWithScroll);
-
-        tv.setText("");
-        tv.append(readLogFile());
-
-        new AlertDialog.Builder(MainActivity.this).setView(myScrollView)
-                .setTitle("Log View")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @TargetApi(11)
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-
-                }).show();
-    }
-
-    public void alertWebView(String htmlfile) {
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View myScrollView = inflater.inflate(R.layout.alert_webview, null, false);
-        WebView wv = (WebView) myScrollView.findViewById(R.id.webview);
-        wv.loadUrl("file:///android_asset/html/" + htmlfile + ".html");
-        new AlertDialog.Builder(MainActivity.this).setView(myScrollView)
-                .setTitle("Log View")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @TargetApi(11)
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-
-                }).show();
-    }
-
-    public String readLogFile() {
-        String logPath = getFilesDir() + "/last-logs.txt";
-        File file = new File(getFilesDir(),"/last-logs.txt");
-        StringBuilder text = new StringBuilder();
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line;
-            while ((line = br.readLine()) != null) {
-                text.append(line);
-                text.append('\n');
-            }
-            br.close();
-        }
-        catch (IOException e) {
-            //Need to add proper error handling here
-        }
-        return text.toString();
     }
 
     private static final String TAG = "main-activity";
