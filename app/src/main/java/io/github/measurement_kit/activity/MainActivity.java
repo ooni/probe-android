@@ -2,10 +2,9 @@
 // Measurement-kit is free software. See AUTHORS and LICENSE for more
 // information on the copying conditions.
 
-package io.github.measurement_kit.app;
+package io.github.measurement_kit.activity;
 
 import android.annotation.TargetApi;
-import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -35,13 +34,17 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
+import io.github.measurement_kit.data.TestData;
+import io.github.measurement_kit.model.OONITests;
+import io.github.measurement_kit.model.PortolanTests;
+import io.github.measurement_kit.app.R;
+import io.github.measurement_kit.service.SyncRunnerService;
 import io.github.measurement_kit.jni.DnsApi;
 import io.github.measurement_kit.jni.LoggerApi;
 import io.github.measurement_kit.view.NotScrollableListView;
 
 public class MainActivity extends AppCompatActivity implements Button.OnClickListener {
 
-    ProgressDialog progress;
     Button buttons[] = new Button[5];
     int selected;
 
@@ -86,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
             DnsApi.addNameServer("8.8.4.4");
         }
 
+        /*
         InsideCompleteReceiver receiver = new InsideCompleteReceiver();
         LocalBroadcastManager.getInstance(this).registerReceiver(
                 receiver, new IntentFilter(OONITests.DNS_INJECTION)
@@ -96,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         LocalBroadcastManager.getInstance(this).registerReceiver(
                 receiver, new IntentFilter(OONITests.TCP_CONNECT)
         );
-
+    */
         copyResources();
 
         //LoggerApi.setVerbose(1);
@@ -132,10 +136,29 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         info_button.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
-                        alertWebView();
+                        alertWebView("ts-008-tcpconnect");
                     }
                 }
         );
+
+        info_button = (ImageButton) findViewById(R.id.dns_injection_info_button);
+        info_button.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        alertWebView("ts-012-dns-injection");
+                    }
+                }
+        );
+
+        info_button = (ImageButton) findViewById(R.id.http_invalid_request_line_info_button);
+        info_button.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        alertWebView("ts-007-http-invalid-request-line");
+                    }
+                }
+        );
+
 
         ImageButton run_button = (ImageButton) findViewById(R.id.run_test_button);
         run_button.setOnClickListener(this);
@@ -172,34 +195,47 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         Intent intent;
         switch (test) {
             case R.id.tcp_connect_button:
+                TestData.doNetworkMeasurements(MainActivity.this, OONITests.TCP_CONNECT);
+                /*
                 progress = ProgressDialog.show(MainActivity.this, "Testing", "running tcp-connect test", false);
                 intent = new Intent(MainActivity.this, SyncRunnerService.class);
                 intent.setAction(OONITests.TCP_CONNECT);
                 MainActivity.this.startService(intent);
+                */
                 break;
             case R.id.dns_injection_button:
+                TestData.doNetworkMeasurements(MainActivity.this, OONITests.DNS_INJECTION);
+                /*
                 progress = ProgressDialog.show(MainActivity.this, "Testing", "running dns-injection test", false);
                 intent = new Intent(MainActivity.this, SyncRunnerService.class);
                 intent.setAction(OONITests.DNS_INJECTION);
                 MainActivity.this.startService(intent);
+                */
                 break;
             case R.id.http_invalid_request_line_button:
+                TestData.doNetworkMeasurements(MainActivity.this, OONITests.HTTP_INVALID_REQUEST_LINE);
+                /*
                 progress = ProgressDialog.show(MainActivity.this, "Testing", "running http-invalid-request-line test", false);
                 intent = new Intent(MainActivity.this, SyncRunnerService.class);
                 intent.setAction(OONITests.HTTP_INVALID_REQUEST_LINE);
                 MainActivity.this.startService(intent);
+                */
                 break;
             case R.id.check_port_button:
-                progress = ProgressDialog.show(MainActivity.this, "Testing", "running check-port test", false);
+                TestData.doNetworkMeasurements(MainActivity.this, PortolanTests.CHECK_PORT);
+                /*
                 intent = new Intent(MainActivity.this, SyncRunnerService.class);
                 intent.setAction(PortolanTests.CHECK_PORT);
                 MainActivity.this.startService(intent);
+                */
                 break;
             case R.id.traceroute_button:
-                progress = ProgressDialog.show(MainActivity.this, "Testing", "running traceroute test", false);
+                TestData.doNetworkMeasurements(MainActivity.this, PortolanTests.TRACEROUTE);
+                /*
                 intent = new Intent(MainActivity.this, SyncRunnerService.class);
                 intent.setAction(PortolanTests.TRACEROUTE);
                 MainActivity.this.startService(intent);
+                */
                 break;
         }
     }
@@ -274,12 +310,12 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                 }).show();
     }
 
-    public void alertWebView() {
+    public void alertWebView(String htmlfile) {
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View myScrollView = inflater.inflate(R.layout.alert_webview, null, false);
 
         WebView wv = (WebView) myScrollView.findViewById(R.id.webview);
-        wv.loadUrl("file:///android_asset/html/ts-008-tcpconnect.html");
+        wv.loadUrl("file:///android_asset/html/" + htmlfile + ".html");
 
         //wv.loadDataWithBaseURL(null, "<html>...</html>", "text/html", "utf-8", null);
     /*
@@ -325,6 +361,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
     private static final String TAG = "main-activity";
 
+    /*
     public class InsideCompleteReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -343,5 +380,6 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
         private static final String TAG = "test-complete-receiver";
     }
+    */
 }
 

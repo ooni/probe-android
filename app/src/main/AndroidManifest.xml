@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name=".MainActivity" >
+        <activity android:name="io.github.measurement_kit.activity.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <service
-            android:name=".SyncRunnerService"
+            android:name="io.github.measurement_kit.service.SyncRunnerService"
             android:exported="false"/>
     </application>
 

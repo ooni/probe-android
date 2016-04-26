@@ -2,7 +2,7 @@
 // Measurement-kit is free software. See AUTHORS and LICENSE for more
 // information on the copying conditions.
 
-package io.github.measurement_kit.app;
+package io.github.measurement_kit.service;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

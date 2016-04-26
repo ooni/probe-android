@@ -3,14 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:descendantFocusability="blocksDescendants"
+    android:scrollbars="vertical"
+    android:scrollbarAlwaysDrawVerticalTrack="true"
+    android:fadeScrollbars="false"
     android:background="@color/backgroundColor"
-    tools:context=".MainActivity">
+    tools:context="io.github.measurement_kit.activity.MainActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:descendantFocusability="blocksDescendants">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -23,7 +26,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/run_test"
                 android:textColor="@color/textColor"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textAllCaps="true" />
 
             <Button
                 android:id="@+id/tcp_connect_button"
@@ -113,7 +117,7 @@
                 android:drawablePadding="10sp"
                 android:text="@string/check_port"
                 android:textColor="@color/textColor" />
-
+<!--
             <ImageButton
                 android:id="@+id/check_port_info_button"
                 android:layout_width="wrap_content"
@@ -124,7 +128,7 @@
                 android:layout_alignTop="@+id/check_port_button"
                 android:background="@android:color/transparent"
                 android:src="@drawable/icon_info" />
-
+-->
 
             <Button
                 android:id="@+id/traceroute_button"
@@ -139,7 +143,7 @@
                 android:drawablePadding="10sp"
                 android:text="@string/traceroute"
                 android:textColor="@color/textColor" />
-
+<!--
             <ImageButton
                 android:id="@+id/traceroute_info_button"
                 android:layout_width="wrap_content"
@@ -150,7 +154,7 @@
                 android:layout_alignTop="@+id/traceroute_button"
                 android:background="@android:color/transparent"
                 android:src="@drawable/icon_info" />
-
+-->
             <ImageButton
                 android:id="@+id/run_test_button"
                 android:layout_width="wrap_content"
@@ -177,9 +181,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:divider="@android:color/transparent"
-            android:dividerHeight="0dp"
-            android:focusable="false"
-            android:focusableInTouchMode="false" />
+            android:dividerHeight="0dp" />
 
     </LinearLayout>
 </ScrollView>

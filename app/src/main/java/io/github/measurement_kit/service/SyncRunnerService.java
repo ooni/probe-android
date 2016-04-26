@@ -2,7 +2,7 @@
 // Measurement-kit is free software. See AUTHORS and LICENSE for more
 // information on the copying conditions.
 
-package io.github.measurement_kit.app;
+package io.github.measurement_kit.service;
 
 import android.app.IntentService;
 import android.content.Intent;
@@ -11,6 +11,9 @@ import android.util.Log;
 
 import io.github.measurement_kit.jni.sync.OoniSyncApi;
 import io.github.measurement_kit.jni.sync.PortolanSyncApi;
+import io.github.measurement_kit.model.OONITests;
+import io.github.measurement_kit.model.PortolanTests;
+import io.github.measurement_kit.model.UnknownTest;
 
 public class SyncRunnerService extends IntentService {
 

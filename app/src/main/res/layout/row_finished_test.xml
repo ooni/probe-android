@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    android:padding="10dp"
+    >
+
+    <TextView
+        android:id="@+id/test_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="TCP CONNECT"
+        android:gravity="center"
+        android:textColor="@color/textColor" />
+
+<!-- Removed to have the text perfectly centered : android:layout_toLeftOf="@+id/log_button"-->
+
+    <ImageButton
+        android:id="@+id/log_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/test_title"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/test_title"
+        android:background="@android:color/transparent"
+        android:src="@drawable/log_icon" />
+</RelativeLayout>
