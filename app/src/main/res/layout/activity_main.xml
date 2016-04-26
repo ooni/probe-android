@@ -1,162 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants"
     android:background="@color/backgroundColor"
     tools:context=".MainActivity">
 
-    <TextView android:text="@string/run_test"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/textColor"
-        android:textSize="18sp"
-        android:id="@+id/textView" />
+        android:orientation="vertical">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/not_selected"
-        android:background="@android:color/transparent"
-        android:drawablePadding="10sp"
-        android:text="@string/tcp_connect"
-        android:textColor="@color/textColor"
-        android:id="@+id/tcp_connect_button"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/icon_info"
-        android:id="@+id/tcp_connect_info_button"
-        android:background="@android:color/transparent"
-        android:layout_alignRight="@+id/tcp_connect_button"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/tcp_connect_button"
-        android:layout_alignBottom="@+id/tcp_connect_button" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/run_test"
+                android:textColor="@color/textColor"
+                android:textSize="18sp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/not_selected"
-        android:background="@android:color/transparent"
-        android:drawablePadding="10sp"
-        android:text="@string/dns_injection"
-        android:textColor="@color/textColor"
-        android:id="@+id/dns_injection_button"
-        android:layout_below="@+id/tcp_connect_button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp" />
+            <Button
+                android:id="@+id/tcp_connect_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textView"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/not_selected"
+                android:drawablePadding="10sp"
+                android:text="@string/tcp_connect"
+                android:textColor="@color/textColor" />
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/icon_info"
-        android:id="@+id/dns_injection_info_button"
-        android:background="@android:color/transparent"
-        android:layout_alignRight="@+id/dns_injection_button"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/dns_injection_button"
-        android:layout_alignBottom="@+id/dns_injection_button" />
+            <ImageButton
+                android:id="@+id/tcp_connect_info_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/tcp_connect_button"
+                android:layout_alignParentRight="true"
+                android:layout_alignRight="@+id/tcp_connect_button"
+                android:layout_alignTop="@+id/tcp_connect_button"
+                android:background="@android:color/transparent"
+                android:src="@drawable/icon_info" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/not_selected"
-        android:background="@android:color/transparent"
-        android:drawablePadding="10sp"
-        android:text="@string/http_invalid_request_line"
-        android:textColor="@color/textColor"
-        android:id="@+id/http_invalid_request_line_button"
-        android:layout_below="@+id/dns_injection_button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp" />
+            <Button
+                android:id="@+id/dns_injection_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/tcp_connect_button"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/not_selected"
+                android:drawablePadding="10sp"
+                android:text="@string/dns_injection"
+                android:textColor="@color/textColor" />
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/icon_info"
-        android:id="@+id/http_invalid_request_line_info_button"
-        android:background="@android:color/transparent"
-        android:layout_alignRight="@+id/http_invalid_request_line_button"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/http_invalid_request_line_button"
-        android:layout_alignBottom="@+id/http_invalid_request_line_button" />
+            <ImageButton
+                android:id="@+id/dns_injection_info_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/dns_injection_button"
+                android:layout_alignParentRight="true"
+                android:layout_alignRight="@+id/dns_injection_button"
+                android:layout_alignTop="@+id/dns_injection_button"
+                android:background="@android:color/transparent"
+                android:src="@drawable/icon_info" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/not_selected"
-        android:background="@android:color/transparent"
-        android:drawablePadding="10sp"
-        android:text="@string/check_port"
-        android:textColor="@color/textColor"
-        android:id="@+id/check_port_button"
-        android:layout_below="@+id/http_invalid_request_line_button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp" />
+            <Button
+                android:id="@+id/http_invalid_request_line_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/dns_injection_button"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/not_selected"
+                android:drawablePadding="10sp"
+                android:text="@string/http_invalid_request_line"
+                android:textColor="@color/textColor" />
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/icon_info"
-        android:id="@+id/check_port_info_button"
-        android:background="@android:color/transparent"
-        android:layout_alignRight="@+id/check_port_button"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/check_port_button"
-        android:layout_alignBottom="@+id/check_port_button" />
+            <ImageButton
+                android:id="@+id/http_invalid_request_line_info_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/http_invalid_request_line_button"
+                android:layout_alignParentRight="true"
+                android:layout_alignRight="@+id/http_invalid_request_line_button"
+                android:layout_alignTop="@+id/http_invalid_request_line_button"
+                android:background="@android:color/transparent"
+                android:src="@drawable/icon_info" />
+
+            <Button
+                android:id="@+id/check_port_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/http_invalid_request_line_button"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/not_selected"
+                android:drawablePadding="10sp"
+                android:text="@string/check_port"
+                android:textColor="@color/textColor" />
+
+            <ImageButton
+                android:id="@+id/check_port_info_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/check_port_button"
+                android:layout_alignParentRight="true"
+                android:layout_alignRight="@+id/check_port_button"
+                android:layout_alignTop="@+id/check_port_button"
+                android:background="@android:color/transparent"
+                android:src="@drawable/icon_info" />
 
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/not_selected"
-        android:background="@android:color/transparent"
-        android:drawablePadding="10sp"
-        android:text="@string/traceroute"
-        android:textColor="@color/textColor"
-        android:id="@+id/traceroute_button"
-        android:layout_below="@+id/check_port_button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp" />
+            <Button
+                android:id="@+id/traceroute_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/check_port_button"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/not_selected"
+                android:drawablePadding="10sp"
+                android:text="@string/traceroute"
+                android:textColor="@color/textColor" />
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/icon_info"
-        android:id="@+id/traceroute_info_button"
-        android:background="@android:color/transparent"
-        android:layout_alignRight="@+id/traceroute_button"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/traceroute_button"
-        android:layout_alignBottom="@+id/traceroute_button" />
+            <ImageButton
+                android:id="@+id/traceroute_info_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/traceroute_button"
+                android:layout_alignParentRight="true"
+                android:layout_alignRight="@+id/traceroute_button"
+                android:layout_alignTop="@+id/traceroute_button"
+                android:background="@android:color/transparent"
+                android:src="@drawable/icon_info" />
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/run_test"
-        android:id="@+id/run_test_button"
-        android:background="@android:color/transparent"
-        android:layout_below="@+id/traceroute_button"
-        android:layout_marginTop="10dp" />
+            <ImageButton
+                android:id="@+id/run_test_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/traceroute_button"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/run_test" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="show last log"
-        android:id="@+id/log_button"
-        android:layout_below="@+id/run_test_button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp"/>
-</RelativeLayout>
+            <Button
+                android:id="@+id/log_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/run_test_button"
+                android:layout_marginTop="10dp"
+                android:text="show last log" />
+
+        </RelativeLayout>
+
+        <io.github.measurement_kit.view.NotScrollableListView
+            android:id="@+id/listView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+
+    </LinearLayout>
+</ScrollView>

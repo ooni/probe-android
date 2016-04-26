@@ -17,6 +17,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.webkit.WebView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.view.View;
 import android.util.Log;
@@ -25,19 +27,17 @@ import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 import io.github.measurement_kit.jni.DnsApi;
 import io.github.measurement_kit.jni.LoggerApi;
+import io.github.measurement_kit.view.NotScrollableListView;
 
 public class MainActivity extends AppCompatActivity implements Button.OnClickListener {
 
@@ -54,6 +54,16 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        NotScrollableListView lv = (NotScrollableListView) findViewById(R.id.listView);
+
+        String[] nameproducts = new String[] { "Product1", "Product2", "Product3" , "Product4" , "Product5" , "Product6" };
+        final ArrayList<String> listp = new ArrayList<String>();
+        for (int i = 0; i < nameproducts.length; ++i) {
+            listp.add(nameproducts[i]);
+        }
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String> (this,android.R.layout.simple_list_item_1, listp);
+        lv.setAdapter(adapter);
+
         Button button;
         //TODO use Calligraphy https://github.com/chrisjenx/Calligraphy
         TextView tv = (TextView)findViewById(R.id.textView);
@@ -63,7 +73,6 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         // The app now tries to get DNS from the device. Upon fail, it uses
         // Google DNS resolvers
 
-        Log.v(TAG, "Adding nameservers...");
         DnsApi.clearNameServers();
         ArrayList<String> nameservers = getDNS();
         if (!nameservers.isEmpty()) {
@@ -76,9 +85,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
             DnsApi.addNameServer("8.8.8.8");
             DnsApi.addNameServer("8.8.4.4");
         }
-        Log.v(TAG, "Adding nameservers... done");
 
-        Log.v(TAG, "create test-complete receiver...");
         InsideCompleteReceiver receiver = new InsideCompleteReceiver();
         LocalBroadcastManager.getInstance(this).registerReceiver(
                 receiver, new IntentFilter(OONITests.DNS_INJECTION)
@@ -89,68 +96,59 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         LocalBroadcastManager.getInstance(this).registerReceiver(
                 receiver, new IntentFilter(OONITests.TCP_CONNECT)
         );
-        Log.v(TAG, "create test-complete receiver... done");
 
         copyResources();
 
-        Log.v(TAG, "set log verbose...");
         //LoggerApi.setVerbose(1);
         LoggerApi.useAndroidLogger();
-        Log.v(TAG, "set log verbose... done");
 
-
-        Log.v(TAG, "bind tcp-connect button...");
         button = (Button) findViewById(R.id.tcp_connect_button);
         button.setTypeface(font);
         button.setOnClickListener(this);
         buttons[0] = button;
-        Log.v(TAG, "bind tcp-connect button... done");
 
-        Log.v(TAG, "bind dns-injection button...");
         button = (Button) findViewById(R.id.dns_injection_button);
         button.setTypeface(font);
         button.setOnClickListener(this);
         buttons[1] = button;
-        Log.v(TAG, "bind dns-injection button... done");
 
-        Log.v(TAG, "bind http-invalid-request-line button...");
         button = (Button) findViewById(R.id.http_invalid_request_line_button);
         button.setTypeface(font);
         button.setOnClickListener(this);
         buttons[2] = button;
-        Log.v(TAG, "bind http-invalid-request-line button... done");
 
-        Log.v(TAG, "bind check-port button...");
         button = (Button) findViewById(R.id.check_port_button);
         button.setTypeface(font);
         button.setOnClickListener(this);
         buttons[3] = button;
-        Log.v(TAG, "bind check-port button... done");
 
-        Log.v(TAG, "bind traceroute button...");
         button = (Button) findViewById(R.id.traceroute_button);
         button.setTypeface(font);
         button.setOnClickListener(this);
         buttons[4] = button;
-        Log.v(TAG, "bind traceroute button... done");
 
-        Log.v(TAG, "bind run button...");
+        ImageButton info_button;
+        info_button = (ImageButton) findViewById(R.id.tcp_connect_info_button);
+        info_button.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        alertWebView();
+                    }
+                }
+        );
+
         ImageButton run_button = (ImageButton) findViewById(R.id.run_test_button);
         run_button.setOnClickListener(this);
-        Log.v(TAG, "bind run button... done");
 
-        Log.v(TAG, "bind log button...");
         button = (Button) findViewById(R.id.log_button);
         button.setTypeface(font);
         button.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
-                        Log.v(TAG, "clicked-log");
                         alertScrollView();
                     }
                 }
         );
-        Log.v(TAG, "bind log button... done");
     }
 
     @Override
@@ -174,41 +172,35 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         Intent intent;
         switch (test) {
             case R.id.tcp_connect_button:
-                Log.v(TAG, "clicked-tcp-connect");
                 progress = ProgressDialog.show(MainActivity.this, "Testing", "running tcp-connect test", false);
                 intent = new Intent(MainActivity.this, SyncRunnerService.class);
                 intent.setAction(OONITests.TCP_CONNECT);
                 MainActivity.this.startService(intent);
                 break;
             case R.id.dns_injection_button:
-                Log.v(TAG, "clicked-dns-injection");
                 progress = ProgressDialog.show(MainActivity.this, "Testing", "running dns-injection test", false);
                 intent = new Intent(MainActivity.this, SyncRunnerService.class);
                 intent.setAction(OONITests.DNS_INJECTION);
                 MainActivity.this.startService(intent);
                 break;
             case R.id.http_invalid_request_line_button:
-                Log.v(TAG, "clicked-http-invalid-request-line");
                 progress = ProgressDialog.show(MainActivity.this, "Testing", "running http-invalid-request-line test", false);
                 intent = new Intent(MainActivity.this, SyncRunnerService.class);
                 intent.setAction(OONITests.HTTP_INVALID_REQUEST_LINE);
                 MainActivity.this.startService(intent);
                 break;
             case R.id.check_port_button:
-                Log.v(TAG, "clicked-check-port");
                 progress = ProgressDialog.show(MainActivity.this, "Testing", "running check-port test", false);
                 intent = new Intent(MainActivity.this, SyncRunnerService.class);
                 intent.setAction(PortolanTests.CHECK_PORT);
                 MainActivity.this.startService(intent);
                 break;
             case R.id.traceroute_button:
-                Log.v(TAG, "clicked-traceroute");
                 progress = ProgressDialog.show(MainActivity.this, "Testing", "running traceroute test", false);
                 intent = new Intent(MainActivity.this, SyncRunnerService.class);
                 intent.setAction(PortolanTests.TRACEROUTE);
                 MainActivity.this.startService(intent);
                 break;
-
         }
     }
 
@@ -271,6 +263,36 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         tv.setText("");
         tv.append(readLogFile());
 
+        new AlertDialog.Builder(MainActivity.this).setView(myScrollView)
+                .setTitle("Log View")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @TargetApi(11)
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+
+                }).show();
+    }
+
+    public void alertWebView() {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View myScrollView = inflater.inflate(R.layout.alert_webview, null, false);
+
+        WebView wv = (WebView) myScrollView.findViewById(R.id.webview);
+        wv.loadUrl("file:///android_asset/html/ts-008-tcpconnect.html");
+
+        //wv.loadDataWithBaseURL(null, "<html>...</html>", "text/html", "utf-8", null);
+    /*
+        wv.loadUrl("http://www.google.com");
+        wv.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+
+                return true;
+            }
+        });
+*/
         new AlertDialog.Builder(MainActivity.this).setView(myScrollView)
                 .setTitle("Log View")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
