@@ -81,7 +81,7 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
 
     @Override
     public void onBindViewHolder(TestsListAdapter.ViewHolder holder, int position) {
-        NetworkMeasurement i = values.get(position);
+        final NetworkMeasurement i = values.get(position);
         Typeface font = Typeface.createFromAsset(mActivity.getAssets(), "fonts/Inconsolata.otf");
         holder.txtTitle.setTypeface(font);
         holder.txtTitle.setText(i.testName);
@@ -89,7 +89,7 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
             holder.logButton.setOnClickListener(
                     new ImageButton.OnClickListener() {
                         public void onClick(View v) {
-                            Alert.alertScrollView(mActivity);
+                            Alert.alertScrollView(mActivity, i.fileName);
                         }
                     }
             );

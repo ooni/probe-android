@@ -31,7 +31,6 @@ public class TestData extends Observable {
 
     public static ArrayList<NetworkMeasurement> mNetworkMeasurementsRunning = new ArrayList<>();
     public static ArrayList<NetworkMeasurement> mNetworkMeasurementsFinished = new ArrayList<>();
-    public static ArrayList<NetworkMeasurement> mNetworkMeasurements = new ArrayList<>();
 
     private static TestData instance;
 
@@ -43,16 +42,18 @@ public class TestData extends Observable {
     }
 
     public static void doNetworkMeasurements(final MainActivity activity, final String testName) {
-        final NetworkMeasurement currentTest = new NetworkMeasurement();
-        currentTest.testName = testName;
-        currentTest.finished = false;
+        final String inputPath = activity.getFilesDir() + "/hosts.txt";
+        final String outputPath = activity.getFilesDir() + "/last-report.yml";
+        Long tsLong = System.currentTimeMillis()/1000;
+        String ts = tsLong.toString();
+        final String filename = "/last-logs-"+ ts +".txt";
+        final String logPath = activity.getFilesDir() + filename;
+        final NetworkMeasurement currentTest = new NetworkMeasurement(testName, filename);
+        
         mNetworkMeasurementsRunning.add(currentTest);
         TestData.getInstance().notifyObservers();
 
         Log.v(TAG, "doNetworkMeasurements " + testName + "...");
-        final String inputPath = activity.getFilesDir() + "/hosts.txt";
-        final String outputPath = activity.getFilesDir() + "/last-report.yml";
-        final String logPath = activity.getFilesDir() + "/last-logs.txt";
 
         new AsyncTask<String, String, Boolean>(){
             @Override

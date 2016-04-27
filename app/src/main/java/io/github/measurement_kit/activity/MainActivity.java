@@ -168,6 +168,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         ImageButton run_button = (ImageButton) findViewById(R.id.run_test_button);
         run_button.setOnClickListener(this);
 
+        /*
         button = (Button) findViewById(R.id.log_button);
         button.setTypeface(font);
         button.setOnClickListener(
@@ -177,6 +178,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                     }
                 }
         );
+        */
     }
 
     @Override

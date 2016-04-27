@@ -163,7 +163,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/run_test" />
-
+<!--
             <Button
                 android:id="@+id/log_button"
                 android:layout_width="wrap_content"
@@ -173,7 +173,7 @@
                 android:layout_below="@+id/run_test_button"
                 android:layout_marginTop="10dp"
                 android:text="show last log" />
-
+-->
         </RelativeLayout>
 
         <io.github.measurement_kit.view.NotScrollableListView

@@ -16,7 +16,7 @@ import io.github.measurement_kit.app.R;
  */
 public class Alert {
 
-    public static void alertScrollView(Context c) {
+    public static void alertScrollView(Context c, String filename) {
         LayoutInflater inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View myScrollView = inflater.inflate(R.layout.scroll_text, null, false);
 
@@ -24,7 +24,7 @@ public class Alert {
                 .findViewById(R.id.textViewWithScroll);
 
         tv.setText("");
-        tv.append(LogUtils.readLogFile(c));
+        tv.append(LogUtils.readLogFile(c, filename));
 
         new AlertDialog.Builder(c).setView(myScrollView)
                 .setTitle("Log View")

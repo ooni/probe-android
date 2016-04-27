@@ -10,9 +10,10 @@ import android.content.Context;
  * Created by lorenzo on 27/04/16.
  */
 public class LogUtils {
-    public static String readLogFile(Context c) {
-        String logPath = c.getFilesDir() + "/last-logs.txt";
-        File file = new File(c.getFilesDir(),"/last-logs.txt");
+    public static String readLogFile(Context c, String filename) {
+        String logPath = c.getFilesDir() + filename;
+        File file = new File(c.getFilesDir(), filename);
+
         StringBuilder text = new StringBuilder();
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
