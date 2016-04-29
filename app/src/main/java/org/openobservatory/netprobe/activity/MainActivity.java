@@ -74,18 +74,6 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
             DnsApi.addNameServer("8.8.4.4");
         }
 
-        /*
-        InsideCompleteReceiver receiver = new InsideCompleteReceiver();
-        LocalBroadcastManager.getInstance(this).registerReceiver(
-                receiver, new IntentFilter(OONITests.DNS_INJECTION)
-        );
-        LocalBroadcastManager.getInstance(this).registerReceiver(
-                receiver, new IntentFilter(OONITests.HTTP_INVALID_REQUEST_LINE)
-        );
-        LocalBroadcastManager.getInstance(this).registerReceiver(
-                receiver, new IntentFilter(OONITests.TCP_CONNECT)
-        );
-    */
         copyResources();
 
         //LoggerApi.setVerbose(1);
@@ -143,17 +131,6 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         ImageButton run_button = (ImageButton) findViewById(R.id.run_test_button);
         run_button.setOnClickListener(this);
 
-        /*
-        button = (Button) findViewById(R.id.log_button);
-        button.setTypeface(font);
-        button.setOnClickListener(
-                new Button.OnClickListener() {
-                    public void onClick(View v) {
-                        Alert.alertScrollView(MainActivity.this);
-                    }
-                }
-        );
-        */
     }
 
     @Override
@@ -183,46 +160,18 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         switch (test) {
             case R.id.tcp_connect_button:
                 TestData.doNetworkMeasurements(MainActivity.this, OONITests.TCP_CONNECT);
-                /*
-                progress = ProgressDialog.show(MainActivity.this, "Testing", "running tcp-connect test", false);
-                intent = new Intent(MainActivity.this, SyncRunnerService.class);
-                intent.setAction(OONITests.TCP_CONNECT);
-                MainActivity.this.startService(intent);
-                */
                 break;
             case R.id.dns_injection_button:
                 TestData.doNetworkMeasurements(MainActivity.this, OONITests.DNS_INJECTION);
-                /*
-                progress = ProgressDialog.show(MainActivity.this, "Testing", "running dns-injection test", false);
-                intent = new Intent(MainActivity.this, SyncRunnerService.class);
-                intent.setAction(OONITests.DNS_INJECTION);
-                MainActivity.this.startService(intent);
-                */
                 break;
             case R.id.http_invalid_request_line_button:
                 TestData.doNetworkMeasurements(MainActivity.this, OONITests.HTTP_INVALID_REQUEST_LINE);
-                /*
-                progress = ProgressDialog.show(MainActivity.this, "Testing", "running http-invalid-request-line test", false);
-                intent = new Intent(MainActivity.this, SyncRunnerService.class);
-                intent.setAction(OONITests.HTTP_INVALID_REQUEST_LINE);
-                MainActivity.this.startService(intent);
-                */
                 break;
             case R.id.check_port_button:
                 TestData.doNetworkMeasurements(MainActivity.this, PortolanTests.CHECK_PORT);
-                /*
-                intent = new Intent(MainActivity.this, SyncRunnerService.class);
-                intent.setAction(PortolanTests.CHECK_PORT);
-                MainActivity.this.startService(intent);
-                */
                 break;
             case R.id.traceroute_button:
                 TestData.doNetworkMeasurements(MainActivity.this, PortolanTests.TRACEROUTE);
-                /*
-                intent = new Intent(MainActivity.this, SyncRunnerService.class);
-                intent.setAction(PortolanTests.TRACEROUTE);
-                MainActivity.this.startService(intent);
-                */
                 break;
         }
     }
@@ -284,26 +233,5 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     }
 
     private static final String TAG = "main-activity";
-
-    /*
-    public class InsideCompleteReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String testName = intent.getAction();
-            Log.v(TAG, "received complete: " + testName);
-            // TODO: it's not clear to me how to proceed from here; specifically whether it's
-            // safe to call the activity from here, or whether we should cache what we have and
-            // wait for the activity to poll us.
-            runOnUiThread(new Runnable() {
-                public void run() {
-                    progress.dismiss();
-                    alertScrollView();
-                }
-            });
-        }
-
-        private static final String TAG = "test-complete-receiver";
-    }
-    */
 }
 

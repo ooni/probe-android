@@ -21,19 +21,6 @@ import java.util.ArrayList;
  */
 public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.ViewHolder> {
 
-    /*
-    class ViewHolderFinished extends RecyclerView.ViewHolder {
-        public ViewHolderFinished(View itemView) {
-            super(itemView);
-        }
-    }
-
-    class ViewHolderRunning extends RecyclerView.ViewHolder {
-        public ViewHolderRunning(View itemView) {
-            super(itemView);
-        }
-    }
-    */
 
     private static final String TAG = TestsListAdapter.class.toString();
 
@@ -47,7 +34,6 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
         this.values = values;
     }
 
-    //http://stackoverflow.com/questions/26245139/how-to-create-recyclerview-with-multiple-view-type
     @Override
     public TestsListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v;
@@ -64,12 +50,6 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
         }
         ViewHolder vh = new ViewHolder(v);
         return vh;
-
-        /*
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_finished_test, parent, false);
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
-        */
     }
 
     @Override
