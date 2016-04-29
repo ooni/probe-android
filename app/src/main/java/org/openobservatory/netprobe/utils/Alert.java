@@ -1,4 +1,4 @@
-package io.github.measurement_kit.utils;
+package org.openobservatory.netprobe.utils;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -9,7 +9,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.TextView;
 
-import io.github.measurement_kit.app.R;
+import org.openobservatory.netprobe.R;
 
 /**
  * Created by lorenzo on 27/04/16.

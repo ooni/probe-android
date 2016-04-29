@@ -26,7 +26,8 @@ are affected by that command:
 - app/src/main/jniLibs: added with Measurement Kit jniLibs compiled for
   several Android architectures inside it
 
-- app/src/main/java/io/github/measurement_kit/jni/: added with Java files
+- app/src/main/java/org/openobservatory/measurement_kit/jni/: added with Java files
   corresponding to the jniLibs
+
 
 All the added files should be recognized by Android Studio.

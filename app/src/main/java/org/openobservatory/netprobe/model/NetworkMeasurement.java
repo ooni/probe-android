@@ -1,4 +1,4 @@
-package io.github.measurement_kit.model;
+package org.openobservatory.netprobe.model;
 
 /**
  * Created by lorenzo on 26/04/16.

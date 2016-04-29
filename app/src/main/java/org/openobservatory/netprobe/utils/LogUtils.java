@@ -1,4 +1,4 @@
-package io.github.measurement_kit.utils;
+package org.openobservatory.netprobe.utils;
 
 import java.io.BufferedReader;
 import java.io.File;

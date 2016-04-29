@@ -2,11 +2,11 @@
 // Measurement-kit is free software. See AUTHORS and LICENSE for more
 // information on the copying conditions.
 
-package io.github.measurement_kit.model;
+package org.openobservatory.netprobe.model;
 
 import android.util.Log;
 
-import io.github.measurement_kit.jni.sync.PortolanSyncApi;
+import org.openobservatory.measurement_kit.jni.sync.PortolanSyncApi;
 
 public class PortolanTests {
     public static final String CHECK_PORT = "portolan/check-port";

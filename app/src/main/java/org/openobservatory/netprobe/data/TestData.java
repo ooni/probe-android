@@ -1,27 +1,18 @@
-package io.github.measurement_kit.data;
+package org.openobservatory.netprobe.data;
 
-import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-import junit.framework.Test;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Observable;
 
-import io.github.measurement_kit.activity.MainActivity;
-import io.github.measurement_kit.jni.sync.OoniSyncApi;
-import io.github.measurement_kit.jni.sync.PortolanSyncApi;
-import io.github.measurement_kit.model.NetworkMeasurement;
-import io.github.measurement_kit.model.OONITests;
-import io.github.measurement_kit.model.PortolanTests;
-import io.github.measurement_kit.model.UnknownTest;
+import org.openobservatory.netprobe.activity.MainActivity;
+import org.openobservatory.measurement_kit.jni.sync.OoniSyncApi;
+import org.openobservatory.measurement_kit.jni.sync.PortolanSyncApi;
+import org.openobservatory.netprobe.model.NetworkMeasurement;
+import org.openobservatory.netprobe.model.OONITests;
+import org.openobservatory.netprobe.model.PortolanTests;
+import org.openobservatory.netprobe.model.UnknownTest;
 
 /**
  * Created by lorenzo on 26/04/16.
@@ -49,7 +40,7 @@ public class TestData extends Observable {
         final String filename = "/last-logs-"+ ts +".txt";
         final String logPath = activity.getFilesDir() + filename;
         final NetworkMeasurement currentTest = new NetworkMeasurement(testName, filename);
-        
+
         mNetworkMeasurementsRunning.add(currentTest);
         TestData.getInstance().notifyObservers();
 

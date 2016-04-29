@@ -1,4 +1,4 @@
-package io.github.measurement_kit.adapter;
+package org.openobservatory.netprobe.adapter;
 
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
@@ -8,11 +8,11 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.support.v7.widget.RecyclerView;
-import io.github.measurement_kit.activity.MainActivity;
-import io.github.measurement_kit.app.R;
-import io.github.measurement_kit.data.TestData;
-import io.github.measurement_kit.model.NetworkMeasurement;
-import io.github.measurement_kit.utils.Alert;
+import org.openobservatory.netprobe.activity.MainActivity;
+import org.openobservatory.netprobe.R;
+import org.openobservatory.netprobe.data.TestData;
+import org.openobservatory.netprobe.model.NetworkMeasurement;
+import org.openobservatory.netprobe.utils.Alert;
 
 import java.util.ArrayList;
 

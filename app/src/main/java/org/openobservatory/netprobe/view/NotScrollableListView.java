@@ -1,10 +1,9 @@
-package io.github.measurement_kit.view;
+package org.openobservatory.netprobe.view;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 /**
  * Created by kubla on 11/04/16.

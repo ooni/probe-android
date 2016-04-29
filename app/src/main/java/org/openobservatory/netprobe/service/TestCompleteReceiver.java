@@ -2,7 +2,7 @@
 // Measurement-kit is free software. See AUTHORS and LICENSE for more
 // information on the copying conditions.
 
-package io.github.measurement_kit.service;
+package org.openobservatory.netprobe.service;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

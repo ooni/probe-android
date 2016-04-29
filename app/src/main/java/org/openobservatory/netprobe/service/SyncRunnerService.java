@@ -2,18 +2,18 @@
 // Measurement-kit is free software. See AUTHORS and LICENSE for more
 // information on the copying conditions.
 
-package io.github.measurement_kit.service;
+package org.openobservatory.netprobe.service;
 
 import android.app.IntentService;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-import io.github.measurement_kit.jni.sync.OoniSyncApi;
-import io.github.measurement_kit.jni.sync.PortolanSyncApi;
-import io.github.measurement_kit.model.OONITests;
-import io.github.measurement_kit.model.PortolanTests;
-import io.github.measurement_kit.model.UnknownTest;
+import org.openobservatory.measurement_kit.jni.sync.OoniSyncApi;
+import org.openobservatory.measurement_kit.jni.sync.PortolanSyncApi;
+import org.openobservatory.netprobe.model.OONITests;
+import org.openobservatory.netprobe.model.PortolanTests;
+import org.openobservatory.netprobe.model.UnknownTest;
 
 public class SyncRunnerService extends IntentService {
 

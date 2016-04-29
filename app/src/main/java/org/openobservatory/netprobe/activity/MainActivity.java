@@ -2,34 +2,19 @@
 // Measurement-kit is free software. See AUTHORS and LICENSE for more
 // information on the copying conditions.
 
-package io.github.measurement_kit.activity;
+package org.openobservatory.netprobe.activity;
 
-import android.annotation.TargetApi;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.graphics.Typeface;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.view.LayoutInflater;
-import android.webkit.WebView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.view.View;
 import android.util.Log;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -37,17 +22,17 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import io.github.measurement_kit.adapter.TestsListAdapter;
-import io.github.measurement_kit.data.TestData;
-import io.github.measurement_kit.model.NetworkMeasurement;
-import io.github.measurement_kit.model.OONITests;
-import io.github.measurement_kit.model.PortolanTests;
-import io.github.measurement_kit.app.R;
-import io.github.measurement_kit.service.SyncRunnerService;
-import io.github.measurement_kit.jni.DnsApi;
-import io.github.measurement_kit.jni.LoggerApi;
-import io.github.measurement_kit.utils.Alert;
-import io.github.measurement_kit.view.NotScrollableListView;
+import org.openobservatory.netprobe.adapter.TestsListAdapter;
+import org.openobservatory.netprobe.data.TestData;
+import org.openobservatory.netprobe.model.NetworkMeasurement;
+import org.openobservatory.netprobe.model.OONITests;
+import org.openobservatory.netprobe.model.PortolanTests;
+import org.openobservatory.measurement_kit.jni.DnsApi;
+import org.openobservatory.measurement_kit.jni.LoggerApi;
+import org.openobservatory.netprobe.utils.Alert;
+import org.openobservatory.netprobe.view.NotScrollableListView;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import org.openobservatory.netprobe.R;
 
 public class MainActivity extends AppCompatActivity implements Button.OnClickListener, Observer {
 
@@ -73,14 +58,9 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         TestData.getInstance().addObserver(this);
 
         Button button;
-        //TODO use Calligraphy https://github.com/chrisjenx/Calligraphy
-        TextView tv = (TextView)findViewById(R.id.textView);
-        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Inconsolata.otf");
-        tv.setTypeface(font);
 
         // The app now tries to get DNS from the device. Upon fail, it uses
         // Google DNS resolvers
-
         DnsApi.clearNameServers();
         ArrayList<String> nameservers = getDNS();
         if (!nameservers.isEmpty()) {
@@ -112,27 +92,22 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         LoggerApi.useAndroidLogger();
 
         button = (Button) findViewById(R.id.tcp_connect_button);
-        button.setTypeface(font);
         button.setOnClickListener(this);
         buttons[0] = button;
 
         button = (Button) findViewById(R.id.dns_injection_button);
-        button.setTypeface(font);
         button.setOnClickListener(this);
         buttons[1] = button;
 
         button = (Button) findViewById(R.id.http_invalid_request_line_button);
-        button.setTypeface(font);
         button.setOnClickListener(this);
         buttons[2] = button;
 
         button = (Button) findViewById(R.id.check_port_button);
-        button.setTypeface(font);
         button.setOnClickListener(this);
         buttons[3] = button;
 
         button = (Button) findViewById(R.id.traceroute_button);
-        button.setTypeface(font);
         button.setOnClickListener(this);
         buttons[4] = button;
 
@@ -179,6 +154,11 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                 }
         );
         */
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     @Override
