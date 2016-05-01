@@ -46,6 +46,10 @@ public class TestData extends Observable {
 
         Log.v(TAG, "doNetworkMeasurements " + testName + "...");
 
+        /*
+        Using AsyncTask  may not be the optimal solution since OONI tests could take a long time to complete
+        For more info read : http://developer.android.com/reference/android/os/AsyncTask.html
+        */
         new AsyncTask<String, String, Boolean>(){
             @Override
             protected Boolean doInBackground(String... params)
