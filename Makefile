@@ -6,10 +6,10 @@ WGET      = wget
 
 REPO      = measurement-kit/measurement-kit-jni-libs
 BASEURL   = https://github.com/$(REPO)/releases/download
-PACKAGE   = io/github/measurement_kit
+PACKAGE   = org/openobservatory/measurement_kit
 SRCDIR    = app/src/main
 TAG       =
-VERSION   = v0.1.2
+VERSION   = v0.1.2.2
 
 INPUT     = measurement_kit-android-$(VERSION)$(TAG).tar.bz2
 

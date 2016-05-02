@@ -1,0 +1,173 @@
+
+<html>
+<head>
+    <link rel="stylesheet" href="css/pure-min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<div class="content">
+<h1></h1>
+<h1>HTTP Requests Test</h1>
+<h1></h1>
+<h1>Test description</h1>
+<p>For every URL given as input we perform a HTTP GET request over the probes<br />
+network and one over the Tor network.</p>
+<p>By default the HTTP User Agent is chosen at random and is different between the<br />
+control request and the experiment request.</p>
+<p>Since version 0.2.3 the User Agent is chosen at random, but is the same between<br />
+the control request and the experiment request.</p>
+<p>The user agent is chosen amongst this set of possible user agents:</p>
+<pre><code>"Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7",
+"Mozilla/5.0 (iPhone; U; CPU iPhone OS 3 1 2 like Mac OS X; en-us) AppleWebKit/528.18 (KHTML, like Gecko) Mobile/7D11",
+"Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6",
+"Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6",
+"Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6",
+"Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.2) Gecko/20100115 Firefox/3.6",
+"Mozilla/5.0 (Windows; U; Windows NT 6.1; de; rv:1.9.2) Gecko/20100115 Firefox/3.6",
+"Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.2) Gecko/20100115 Firefox/3.6",
+"Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7",
+"Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7 (.NET CLR 3.5.30729)"
+</code></pre>
+<p>These user agents are taken from the "How Unique Is Your Web Browser?"<br />
+(https://panopticlick.eff.org/browser-uniqueness.pdf) paper as the browser user<br />
+agents with largest anonymity set.</p>
+<p>We compare the HTTP response body and HTTP response headers to of the request<br />
+made over Tor and that made over the probes network for consistency.</p>
+<p>The response body is considered to match if the proportion between the body of<br />
+the response over Tor and the response over the probes network is greater than<br />
+a certain factor (by default 0.8).</p>
+<h1>Expected output</h1>
+<h2>Parent data format</h2>
+<p>df-001-httpt-000</p>
+<h2>Required output data</h2>
+<ul>
+<li>
+<p>The requests that have been made.</p>
+</li>
+<li>
+<p>The received responses.</p>
+</li>
+<li>
+<p>If factor between the two response bodies</p>
+</li>
+<li>
+<p>If the response bodies appear to match</p>
+</li>
+</ul>
+<p>Present only in test version &gt;= 0.2:</p>
+<ul>
+<li>
+<p>The difference between the two response headers</p>
+</li>
+<li>
+<p>If the two response headers match</p>
+</li>
+</ul>
+<p>Present only in test version &gt;= 0.2.2:</p>
+<ul>
+<li>If the control responses or experiment requests have failed their error<br />
+  message.</li>
+</ul>
+<h2>Semantics</h2>
+<pre><code>body_length_match:
+  true|false
+
+body_proportion:
+  `float` the proportion between the two response bodies
+
+factor:
+  `float` the body proportion factor used to assert length equality
+</code></pre>
+<p>Only in test version &gt;= 0.2:</p>
+<pre><code>headers_diff:
+  `set` the keys of the headers that are different between the two responses
+
+headers_match:
+  true|false
+</code></pre>
+<p>Only in test version &gt;= 0.2.2:</p>
+<pre><code>control_failure:
+  null or `string` containing the HTTP request error string (for a list of
+  possible error string see df-000-base section "Error strings")
+
+experiment_failure:
+  null or `string` containing the HTTP request error string (for a list of
+  possible error string see df-000-base section "Error strings")
+</code></pre>
+<h2>Possible conclusions</h2>
+<p>If the website in question is reachable from the probes network.</p>
+<h2>Example output sample</h2>
+<pre><code>agent: agent
+body_length_match: true
+body_proportion: 1.0
+control_failure: null
+experiment_failure: null
+factor: 0.8
+headers_diff: !!set {}
+headers_match: true
+requests:
+- request:
+    body: null
+    headers:
+    - - User-Agent
+      - ['Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.2) Gecko/20100115
+          Firefox/3.6']
+    method: GET
+    url: http://google.com
+  response:
+    body: ''
+    code: 301
+    headers:
+    - - Content-Length
+      - ['219']
+    - - X-XSS-Protection
+      - [1; mode=block]
+    - - Expires
+      - ['Sun, 10 Mar 2013 21:42:35 GMT']
+    - - Server
+      - [gws]
+    - - Connection
+      - [close]
+    - - Location
+      - ['http://www.google.com/']
+    - - Cache-Control
+      - ['public, max-age=2592000']
+    - - Date
+      - ['Fri, 08 Feb 2013 21:42:35 GMT']
+    - - X-Frame-Options
+      - [SAMEORIGIN]
+    - - Content-Type
+      - [text/html; charset=UTF-8]
+- request:
+    body: null
+    headers:
+    - - User-Agent
+      - ['Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.2) Gecko/20100115
+          Firefox/3.6']
+    method: GET
+    url: shttp://google.com
+  response:
+    body: ''
+    code: 301
+    headers:
+    - - Content-Length
+      - ['219']
+    - - X-XSS-Protection
+      - [1; mode=block]
+    - - Expires
+      - ['Sun, 10 Mar 2013 21:42:40 GMT']
+    - - Server
+      - [gws]
+    - - Connection
+      - [close]
+    - - Location
+      - ['http://www.google.com/']
+    - - Cache-Control
+      - ['public, max-age=2592000']
+    - - Date
+      - ['Fri, 08 Feb 2013 21:42:40 GMT']
+    - - X-Frame-Options
+      - [SAMEORIGIN]
+    - - Content-Type
+      - [text/html; charset=UTF-8]
+socksproxy: null
+</code></pre></div></html>

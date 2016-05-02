@@ -1,0 +1,186 @@
+
+<html>
+<head>
+    <link rel="stylesheet" href="css/pure-min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<div class="content">
+<h1></h1>
+<h1>HTTP Host test</h1>
+<h1></h1>
+<h1>Test description</h1>
+<p>For every given hostname we perform the following series of tests. Once every<br />
+test is completed we always perform a fixed set of operations to infer the<br />
+presence of a transparent HTTP proxy and/or censorship.</p>
+<p>We take the response from our request and check to see if it starts with the<br />
+character '{', if it does not we consider that a transparent HTTP proxy is<br />
+present.</p>
+<p>If not we attempt to parse the response as a JSON string, if it does not parse<br />
+we consider a that a transparent HTTP proxy is present.</p>
+<p>If the JSON string does parse we look for the following dict keys:</p>
+<ul>
+<li>
+<p>'request_headers'</p>
+</li>
+<li>
+<p>'request_line'</p>
+</li>
+<li>
+<p>'headers_dict'</p>
+</li>
+</ul>
+<p>If all of them are present we consider that no transparent HTTP proxy is<br />
+present.</p>
+<p>If a transparent HTTP proxy is present and the user has specified the content<br />
+of the censorship blockpage we compare the response with the known blockpage<br />
+and check if they match. If they do match then the hostname is maked as<br />
+censored.</p>
+<p>These operations are done once for every one of the following tests:</p>
+<h2>test_send_host_header</h2>
+<p>We connect to the backend test helper on port 80 and perform a HTTP GET request<br />
+with the Host header field set to the target hostname.</p>
+<h2>test_filtering_via_fuzzy_matching</h2>
+<p>The Host header field contains the hostname prefixed by 10 random characters<br />
+and postfixed by 10 random characters.</p>
+<p>The purpose of this is to determine if censorship is being triggerred by fuzzy<br />
+matching.</p>
+<h2>test_filtering_of_subdomain</h2>
+<p>The Host header field contains a random 10 character subdomain of the target<br />
+hostname (<code>ninechars1.example.com</code>).</p>
+<p>The purpose of this is to determine if also subdomains are being censored.</p>
+<h2>test_filtering_add_tab_to_host</h2>
+<p>The Host header field contains the subdomain postfixed by the tab character<br />
+<code>\t</code>.</p>
+<p>The purpose of this is to determine if by appending a tab character the filter<br />
+is being bypassed.</p>
+<h2>test_filtering_prepend_newline_to_method</h2>
+<p>The HTTP Request Line is prefixed with a newline character <code>\n</code>.</p>
+<p>The purpose of this is to determine if this is a valid filter bypassing<br />
+strategy.</p>
+<p>XXX move this to a separate test as it does not have much to do with the HTTP<br />
+Host field.</p>
+<h1>Expected output</h1>
+<h2>Parent data format</h2>
+<p>df-001-httpt</p>
+<h2>Semantics</h2>
+<p>'filtering_via_fuzzy_matching': true|false|null<br />
+'filtering_prepend_newline_to_method': true|false|null<br />
+'filtering_add_tab_to_host': true|false|null<br />
+'filtering_of_subdomain': true|false|null</p>
+<p>If the site supplied as input can be reached by using the evasion technique<br />
+  this is set to false.</p>
+<p>If the content of the blockpage is specified we make an evaluation of<br />
+  censorship or not based on the response matching it or not.</p>
+<p>If the response contains the expect JSON dict returned from the oonib test<br />
+  helper then we consider censorship to not be happening ('censorship': False).</p>
+<p>In all other cases 'censorship' is set to null.</p>
+<p>'transparent_http_proxy': true|false</p>
+<p>if we have detected the presence of a transparent HTTP proxy or not.</p>
+<h2>Possible conclusions</h2>
+<p>We can say that a certain site is blocked or not and looking at the result we<br />
+can understand which censorship bypassing strategies have worked and therefore<br />
+understand which censorship device the one being analyzed may be.</p>
+<h2>Example output sample</h2>
+<pre><code>###########################################
+# OONI Probe Report for http_host (0.2.4)
+# Fri Jan 10 14:27:41 2014
+###########################################
+---
+input_hashes: [82c5cebe7a7cced3aad75e304b6e84b8ec97f808db835b7d641f7612216624f9]
+options: [-f, example_inputs/alexa-head.txt]
+probe_asn: AS3269
+probe_cc: IT
+probe_city: Formia
+probe_ip: 127.0.0.1
+software_name: ooniprobe
+software_version: 1.0.0-rc5
+start_time: 1389360461.066207
+test_name: http_host
+test_version: 0.2.4
+...
+---
+agent: agent
+filtering_add_tab_to_host: false
+filtering_of_subdomain: false
+filtering_prepend_newline_to_method: false
+filtering_via_fuzzy_matching: false
+input: google.com
+requests:
+- request:
+    body: null
+    headers:
+    - - Host
+      - [MQEEayVEc3google.comVjAZPi29bT]
+    method: GET
+    tor: false
+    url: http://93.95.227.200
+  response:
+    body: '{&quot;headers_dict&quot;: {&quot;Connection&quot;: [&quot;close&quot;], &quot;Host&quot;: [&quot;MQEEayVEc3google.comVjAZPi29bT&quot;]},
+      &quot;request_line&quot;: &quot;GET / HTTP/1.1&quot;, &quot;request_headers&quot;: [[&quot;Connection&quot;, &quot;close&quot;],
+      [&quot;Host&quot;, &quot;MQEEayVEc3google.comVjAZPi29bT&quot;]]}'
+    code: 200
+    headers: []
+- request:
+    body: null
+    headers:
+    - - Host
+      - [&quot;google.com\t&quot;]
+    method: GET
+    tor: false
+    url: http://93.95.227.200
+  response:
+    body: '{&quot;headers_dict&quot;: {&quot;Connection&quot;: [&quot;close&quot;], &quot;Host&quot;: [&quot;google.com&quot;]}, &quot;request_line&quot;:
+      &quot;GET / HTTP/1.1&quot;, &quot;request_headers&quot;: [[&quot;Connection&quot;, &quot;close&quot;], [&quot;Host&quot;, &quot;google.com&quot;]]}'
+    code: 200
+    headers: []
+- request:
+    body: null
+    headers:
+    - - Host
+      - [google.com]
+    method: '
+
+      GET'
+    tor: false
+    url: http://93.95.227.200
+  response:
+    body: '{&quot;headers_dict&quot;: {&quot;Connection&quot;: [&quot;close&quot;], &quot;Host&quot;: [&quot;google.com&quot;]}, &quot;request_line&quot;:
+      &quot;\nGET / HTTP/1.1&quot;, &quot;request_headers&quot;: [[&quot;Connection&quot;, &quot;close&quot;], [&quot;Host&quot;, &quot;google.com&quot;]]}'
+    code: 200
+    headers: []
+- request:
+    body: null
+    headers:
+    - - Host
+      - [google.com]
+    method: GET
+    tor: false
+    url: http://93.95.227.200
+  response:
+    body: '{&quot;headers_dict&quot;: {&quot;Connection&quot;: [&quot;close&quot;], &quot;Host&quot;: [&quot;google.com&quot;]}, &quot;request_line&quot;:
+      &quot;GET / HTTP/1.1&quot;, &quot;request_headers&quot;: [[&quot;Connection&quot;, &quot;close&quot;], [&quot;Host&quot;, &quot;google.com&quot;]]}'
+    code: 200
+    headers: []
+- request:
+    body: null
+    headers:
+    - - Host
+      - [36YQ5NpXV6.google.com]
+    method: GET
+    tor: false
+    url: http://93.95.227.200
+  response:
+    body: '{&quot;headers_dict&quot;: {&quot;Connection&quot;: [&quot;close&quot;], &quot;Host&quot;: [&quot;36YQ5NpXV6.google.com&quot;]},
+      &quot;request_line&quot;: &quot;GET / HTTP/1.1&quot;, &quot;request_headers&quot;: [[&quot;Connection&quot;, &quot;close&quot;],
+      [&quot;Host&quot;, &quot;36YQ5NpXV6.google.com&quot;]]}'
+    code: 200
+    headers: []
+send_host_header: false
+socksproxy: null
+transparent_http_proxy: false
+...
+</code></pre>
+
+<h1>Privacy considerations</h1>
+<p>If the user is behind a transparent HTTP proxy that sets the X-Forwarded-For<br />
+header their IP address will end up being part of the final report.</p></div></html>

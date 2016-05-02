@@ -1,0 +1,47 @@
+body {
+  font-size: 1.25em;
+  font-family: sans-serif;
+  font-weight: 100;
+  letter-spacing: 0.01em;
+}
+
+h1, h2, h3, h4, h5 {
+  color: rgb(75, 75, 75);
+}
+
+.header,
+.content {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.header {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 1em;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+  letter-spacing: 0.05em;      
+}
+
+.header h1 {
+    font-weight: 100;
+}
+
+.header h2 {
+  font-weight: 100;
+  line-height: 1.5;
+  margin: 0;
+  color: #666;
+  letter-spacing: -0.02em;
+}
+
+.content {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1em;
+  padding-right: 1em;
+  max-width: 768px;
+}

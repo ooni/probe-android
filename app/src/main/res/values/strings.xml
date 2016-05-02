@@ -1,3 +1,23 @@
 <resources>
-    <string name="app_name">App</string>
+    <string name="app_name">NetProbe</string>
+    <string name="testing_history">Testing history</string>
+    <string name="pending_tests">Tests</string>
+    <string name="run_test">Run test</string>
+    <string name="dns_injection">DNS Injection</string>
+    <string name="tcp_connect">TCP Connect</string>
+    <string name="http_invalid_request_line">HTTP Invalid request line</string>
+    <string name="http_header_field_manipulation">HTTP Header field manipulation</string>
+    <string name="check_port">Check port</string>
+    <string name="traceroute">Traceroute</string>
+    <string name="running_tests">Running tests</string>
+    <string name="finished_tests">Finished tests</string>
+    <string name="settings">Settings</string>
+    <string name="include_ip">Include IP</string>
+    <string name="include_asn">include asn</string>
+    <string name="gps_position">GPS position</string>
+    <string name="advanced_settings">Advanced settings</string>
+    <string name="collector_address">Collector Address</string>
+    <string name="bouncer_address">Bouncer Address</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
 </resources>
