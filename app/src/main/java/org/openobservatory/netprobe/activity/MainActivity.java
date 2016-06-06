@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         info_button.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
-                        Alert.alertWebView(MainActivity.this, "ts-008-tcpconnect");
+                        Alert.alertWebView(MainActivity.this, "tcp-connect");
                     }
                 }
         );
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         info_button.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
-                        Alert.alertWebView(MainActivity.this, "ts-012-dns-injection");
+                        Alert.alertWebView(MainActivity.this, "dns-injection");
                     }
                 }
         );
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         info_button.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
-                        Alert.alertWebView(MainActivity.this, "ts-007-http-invalid-request-line");
+                        Alert.alertWebView(MainActivity.this, "http-invalid-request-line");
                     }
                 }
         );
