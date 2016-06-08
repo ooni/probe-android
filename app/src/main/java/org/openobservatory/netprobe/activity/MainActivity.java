@@ -29,7 +29,6 @@ import org.openobservatory.netprobe.data.TestData;
 import org.openobservatory.netprobe.model.NetworkMeasurement;
 import org.openobservatory.netprobe.model.OONITests;
 import org.openobservatory.netprobe.model.PortolanTests;
-import org.openobservatory.measurement_kit.jni.DnsApi;
 import org.openobservatory.measurement_kit.jni.LoggerApi;
 import org.openobservatory.netprobe.utils.Alert;
 import org.openobservatory.netprobe.view.NotScrollableListView;
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     private TestsListAdapter mTestsListAdapter;
 
     static {
-        System.loadLibrary("measurement_kit_jni");
+        System.loadLibrary("measurement_kit-android");
     }
 
     @Override
@@ -61,6 +60,9 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
         Button button;
 
+        // XXX: Code commented out; now this must be performed before each test and
+        // the DNS server should be supplied to the test itself
+        /*
         // The app now tries to get DNS from the device. Upon fail, it uses
         // Google DNS resolvers
         DnsApi.clearNameServers();
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
             DnsApi.addNameServer("8.8.8.8");
             DnsApi.addNameServer("8.8.4.4");
         }
+        */
 
         copyResources();
 

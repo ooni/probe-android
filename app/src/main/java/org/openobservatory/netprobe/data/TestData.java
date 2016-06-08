@@ -58,13 +58,17 @@ public class TestData extends Observable {
                 {
                     //progress = ProgressDialog.show(activity, "Testing", "running tcp-connect test", false);
                     Log.v(TAG, "running test...");
+                    // TODO: query the device for its name server and use it rather than using
+                    // google's public name server for the same purpose
                     if (testName.compareTo(OONITests.DNS_INJECTION) == 0) {
-                        OoniSyncApi.dnsInjection("8.8.8.1", inputPath, outputPath, logPath, true);
+                        OoniSyncApi.dnsInjection("8.8.8.1", inputPath, outputPath, logPath, true,
+                                "8.8.8.8:53");
                     } else if (testName.compareTo(OONITests.HTTP_INVALID_REQUEST_LINE) == 0) {
                         OoniSyncApi.httpInvalidRequestLine("http://213.138.109.232/",
-                                outputPath, logPath, true);
+                                outputPath, logPath, true, "8.8.8.8:53");
                     } else if (testName.compareTo(OONITests.TCP_CONNECT) == 0) {
-                        OoniSyncApi.tcpConnect("80", inputPath,  outputPath, logPath, true);
+                        OoniSyncApi.tcpConnect("80", inputPath,  outputPath, logPath, true,
+                                "8.8.8.8:53");
                     } else if (testName.compareTo(PortolanTests.CHECK_PORT) == 0) {
                         PortolanSyncApi.checkPort(true, "130.192.91.211", "81", 4.0, true);
                     } else if (testName.compareTo(PortolanTests.TRACEROUTE) == 0) {
