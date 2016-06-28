@@ -5,11 +5,18 @@ package org.openobservatory.netprobe.model;
  */
 public class NetworkMeasurement {
     public final String testName;
-    public boolean finished = false;
-    public final String fileName;
+    public boolean completed = false;
+    public final long test_id;
 
-    public NetworkMeasurement(String name, String file){
+    public final String json_file;
+    public final String log_file;
+    //public final String status;
+
+    public NetworkMeasurement(String name){
         this.testName = name;
-        this.fileName = file;
+        this.test_id = System.currentTimeMillis();
+        this.log_file = "/test-"+ test_id +".txt";
+        this.json_file = "/test-"+ test_id +".json";
+
     }
 }

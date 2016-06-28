@@ -26,6 +26,7 @@ import java.util.Observer;
 
 import org.openobservatory.netprobe.adapter.TestsListAdapter;
 import org.openobservatory.netprobe.data.TestData;
+import org.openobservatory.netprobe.data.TestStorage;
 import org.openobservatory.netprobe.model.NetworkMeasurement;
 import org.openobservatory.netprobe.model.OONITests;
 import org.openobservatory.netprobe.model.PortolanTests;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     int selected;
     private NotScrollableListView mTestsListView;
     private TestsListAdapter mTestsListAdapter;
+    private static TestStorage ts;
 
     static {
         System.loadLibrary("measurement_kit-android");
@@ -50,11 +52,13 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ts = new TestStorage();
 
         mTestsListView = (NotScrollableListView) findViewById(R.id.listView);
         mTestsListAdapter = new TestsListAdapter(this,  new ArrayList<NetworkMeasurement>());
         mTestsListView.setAdapter(mTestsListAdapter);
         mTestsListView.setLayoutManager(new LinearLayoutManager(this));
+        mTestsListAdapter.setData(ts.loadTests(this));
 
         TestData.getInstance().addObserver(this);
 
@@ -201,8 +205,10 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     @Override
     public void update(Observable observable, Object data) {
         if (mTestsListAdapter != null) {
-            mTestsListAdapter.setData(TestData.getInstance().mNetworkMeasurementsRunning);
-            mTestsListAdapter.addData(TestData.getInstance().mNetworkMeasurementsFinished);
+            //mTestsListAdapter.setData(TestData.getInstance().mNetworkMeasurementsRunning);
+            //mTestsListAdapter.addData(TestData.getInstance().mNetworkMeasurementsFinished);
+            mTestsListAdapter.setData(ts.loadTests(this));
+            //mTestsListAdapter.addData(ts.loadTests(this));
         }
     }
 

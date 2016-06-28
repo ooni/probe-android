@@ -1,5 +1,6 @@
 package org.openobservatory.netprobe.data;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -20,28 +21,33 @@ import org.openobservatory.netprobe.model.UnknownTest;
 public class TestData extends Observable {
     private static final String TAG = "TestData";
 
-    public static ArrayList<NetworkMeasurement> mNetworkMeasurementsRunning = new ArrayList<>();
-    public static ArrayList<NetworkMeasurement> mNetworkMeasurementsFinished = new ArrayList<>();
+    //public static ArrayList<NetworkMeasurement> mNetworkMeasurementsRunning = new ArrayList<>();
+    //public static ArrayList<NetworkMeasurement> mNetworkMeasurementsFinished = new ArrayList<>();
 
     private static TestData instance;
+    private static TestStorage ts;
 
     public static TestData getInstance() {
         if (instance == null) {
             instance = new TestData();
+            ts = new TestStorage();
         }
         return instance;
     }
 
     public static void doNetworkMeasurements(final MainActivity activity, final String testName) {
         final String inputPath = activity.getFilesDir() + "/hosts.txt";
-        final String outputPath = activity.getFilesDir() + "/last-report.yml";
-        Long tsLong = System.currentTimeMillis()/1000;
-        String ts = tsLong.toString();
-        final String filename = "/last-logs-"+ ts +".txt";
-        final String logPath = activity.getFilesDir() + filename;
-        final NetworkMeasurement currentTest = new NetworkMeasurement(testName, filename);
+//        String ts = tsLong.toString();
+//        final String filename = "/text-"+ ts +".txt";
+//        final String logPath = activity.getFilesDir() + filename;
+//        final String outputPath = activity.getFilesDir() + "/test-"+ ts +".json";
 
-        mNetworkMeasurementsRunning.add(currentTest);
+        final NetworkMeasurement currentTest = new NetworkMeasurement(testName);
+        final String outputPath = activity.getFilesDir() + "/"  + currentTest.json_file;
+        final String logPath = activity.getFilesDir() + "/"  + currentTest.log_file;
+
+        //mNetworkMeasurementsRunning.add(currentTest);
+        ts.addTest(activity, currentTest);
         TestData.getInstance().notifyObservers();
 
         Log.v(TAG, "doNetworkMeasurements " + testName + "...");
@@ -89,10 +95,10 @@ public class TestData extends Observable {
             }
 
             protected void onPostExecute(Boolean success) {
+                //mNetworkMeasurementsRunning.remove(currentTest);
+                ts.setCompleted(activity, currentTest);
+                //mNetworkMeasurementsFinished.add(currentTest);
                 TestData.getInstance().notifyObservers();
-                mNetworkMeasurementsRunning.remove(currentTest);
-                currentTest.finished = true;
-                mNetworkMeasurementsFinished.add(currentTest);
                 Log.v(TAG, "doNetworkMeasurements " + testName + "... done");
             }
         }.execute();
