@@ -83,14 +83,14 @@ public class TestStorage {
             storeTests(context, tests);
         }
     }
-/*
-    public void removeTest(Context context, NetworkMeasurement test) {
+
+    //NOT USED
+    public void removeTestObject(Context context, NetworkMeasurement test) {
         ArrayList tests = loadTests(context);
         if (tests != null) {
             tests.remove(test);
             storeTests(context, tests);
         }
     }
-    */
 }
 

@@ -37,16 +37,11 @@ public class TestData extends Observable {
 
     public static void doNetworkMeasurements(final MainActivity activity, final String testName) {
         final String inputPath = activity.getFilesDir() + "/hosts.txt";
-//        String ts = tsLong.toString();
-//        final String filename = "/text-"+ ts +".txt";
-//        final String logPath = activity.getFilesDir() + filename;
-//        final String outputPath = activity.getFilesDir() + "/test-"+ ts +".json";
 
         final NetworkMeasurement currentTest = new NetworkMeasurement(testName);
         final String outputPath = activity.getFilesDir() + "/"  + currentTest.json_file;
         final String logPath = activity.getFilesDir() + "/"  + currentTest.log_file;
 
-        //mNetworkMeasurementsRunning.add(currentTest);
         ts.addTest(activity, currentTest);
         TestData.getInstance().notifyObservers();
 
@@ -62,7 +57,6 @@ public class TestData extends Observable {
             {
                 try
                 {
-                    //progress = ProgressDialog.show(activity, "Testing", "running tcp-connect test", false);
                     Log.v(TAG, "running test...");
                     // TODO: query the device for its name server and use it rather than using
                     // google's public name server for the same purpose
@@ -95,9 +89,7 @@ public class TestData extends Observable {
             }
 
             protected void onPostExecute(Boolean success) {
-                //mNetworkMeasurementsRunning.remove(currentTest);
                 ts.setCompleted(activity, currentTest);
-                //mNetworkMeasurementsFinished.add(currentTest);
                 TestData.getInstance().notifyObservers();
                 Log.v(TAG, "doNetworkMeasurements " + testName + "... done");
             }

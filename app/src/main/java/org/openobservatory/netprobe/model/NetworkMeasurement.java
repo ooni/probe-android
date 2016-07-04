@@ -15,7 +15,7 @@ public class NetworkMeasurement {
     public NetworkMeasurement(String name){
         this.testName = name;
         this.test_id = System.currentTimeMillis();
-        this.log_file = "/test-"+ test_id +".txt";
+        this.log_file = "/test-"+ test_id +".log";
         this.json_file = "/test-"+ test_id +".json";
 
     }

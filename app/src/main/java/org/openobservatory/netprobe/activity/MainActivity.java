@@ -205,10 +205,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     @Override
     public void update(Observable observable, Object data) {
         if (mTestsListAdapter != null) {
-            //mTestsListAdapter.setData(TestData.getInstance().mNetworkMeasurementsRunning);
-            //mTestsListAdapter.addData(TestData.getInstance().mNetworkMeasurementsFinished);
             mTestsListAdapter.setData(ts.loadTests(this));
-            //mTestsListAdapter.addData(ts.loadTests(this));
         }
     }
 
