@@ -89,7 +89,7 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
             holder.logButton.setOnClickListener(
                     new ImageButton.OnClickListener() {
                         public void onClick(View v) {
-                            Alert.alertScrollView(mActivity, i.json_file);
+                            Alert.resultWebView(mActivity, i.json_file);
                         }
                     }
             );

@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.widget.TextView;
 
@@ -42,6 +43,26 @@ public class Alert {
         View myScrollView = inflater.inflate(R.layout.alert_webview, null, false);
         WebView wv = (WebView) myScrollView.findViewById(R.id.webview);
         wv.loadUrl("file:///android_asset/html/" + htmlfile + ".html");
+        new AlertDialog.Builder(c).setView(myScrollView)
+                .setTitle("Log View")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @TargetApi(11)
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+
+                }).show();
+    }
+
+    public static void resultWebView(Context c, String jsonfile) {
+        LayoutInflater inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View myScrollView = inflater.inflate(R.layout.alert_webview, null, false);
+
+        WebView wv = (WebView) myScrollView.findViewById(R.id.webview);
+        wv.getSettings().setJavaScriptEnabled(true);
+        String jsonContent = LogUtils.readLogFile(c, jsonfile);
+        wv.addJavascriptInterface(new InjectedJSON(jsonContent), "MeasurementJSON");
+        wv.loadUrl("file:///android_asset/html/webui/index.html");
         new AlertDialog.Builder(c).setView(myScrollView)
                 .setTitle("Log View")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -104,5 +125,18 @@ public class Alert {
         }
 
         return json.toString();
+    }
+
+    public static class InjectedJSON {
+        private String jsonData;
+
+        public InjectedJSON(String json) {
+            jsonData = json;
+        }
+
+        @JavascriptInterface
+        public String get() {
+            return jsonData;
+        }
     }
 }
