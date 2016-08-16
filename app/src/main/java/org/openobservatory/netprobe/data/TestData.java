@@ -20,10 +20,6 @@ import org.openobservatory.netprobe.model.UnknownTest;
  */
 public class TestData extends Observable {
     private static final String TAG = "TestData";
-
-    //public static ArrayList<NetworkMeasurement> mNetworkMeasurementsRunning = new ArrayList<>();
-    //public static ArrayList<NetworkMeasurement> mNetworkMeasurementsFinished = new ArrayList<>();
-
     private static TestData instance;
     private static TestStorage ts;
 

@@ -38,14 +38,14 @@ public class TestStorage {
         SharedPreferences settings;
         List tests;
         settings = context.getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
-        if (settings.contains(TESTS)) {
-            String jsonTests = settings.getString(TESTS, null);
-            Gson gson = new Gson();
-            NetworkMeasurement[] favoriteItems = gson.fromJson(jsonTests,NetworkMeasurement[].class);
-            tests = Arrays.asList(favoriteItems);
-            tests = new ArrayList(tests);
-        } else
+        if (!settings.contains(TESTS)) {
             return new ArrayList();
+        }
+        String jsonTests = settings.getString(TESTS, null);
+        Gson gson = new Gson();
+        NetworkMeasurement[] favoriteItems = gson.fromJson(jsonTests,NetworkMeasurement[].class);
+        tests = Arrays.asList(favoriteItems);
+        tests = new ArrayList(tests);
         return (ArrayList) tests;
     }
 
@@ -57,6 +57,7 @@ public class TestStorage {
                 if (n.test_id == test.test_id) {
                     n.completed = true;
                     tests.set(i, n);
+                    break;
                 }
             }
             storeTests(context, tests);
@@ -78,6 +79,7 @@ public class TestStorage {
                 NetworkMeasurement n = (NetworkMeasurement)tests.get(i);
                 if (n.test_id == test.test_id) {
                     tests.remove(i);
+                    break;
                 }
             }
             storeTests(context, tests);
