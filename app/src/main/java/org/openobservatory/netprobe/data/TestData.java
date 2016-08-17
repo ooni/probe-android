@@ -45,16 +45,16 @@ public class TestData extends Observable {
 
         // The app now tries to get DNS from the device. Upon fail, it uses
         // Google DNS resolvers
-        String nameserver = "8.8.8.8";
+        String nameserver_ = "8.8.8.8";
         ArrayList<String> nameservers = getDNS();
         if (!nameservers.isEmpty()) {
             for (String s : getDNS()) {
-                nameserver = s;
+                nameserver_ = s;
                 Log.v(TAG, "Adding nameserver: " + s);
                 break;
             }
         }
-
+        final String nameserver = nameserver_;
 
         Log.v(TAG, "doNetworkMeasurements " + testName + "...");
 
@@ -73,13 +73,13 @@ public class TestData extends Observable {
                     // google's public name server for the same purpose
                     if (testName.compareTo(OONITests.DNS_INJECTION) == 0) {
                         OoniSyncApi.dnsInjection("8.8.8.1", inputPath, outputPath, logPath, true,
-                                "8.8.8.8:53");
+                                nameserver);
                     } else if (testName.compareTo(OONITests.HTTP_INVALID_REQUEST_LINE) == 0) {
                         OoniSyncApi.httpInvalidRequestLine("http://213.138.109.232/",
-                                outputPath, logPath, true, "8.8.8.8:53");
+                                outputPath, logPath, true, nameserver);
                     } else if (testName.compareTo(OONITests.TCP_CONNECT) == 0) {
                         OoniSyncApi.tcpConnect("80", inputPath,  outputPath, logPath, true,
-                                "8.8.8.8:53");
+                                nameserver);
                     } else if (testName.compareTo(PortolanTests.CHECK_PORT) == 0) {
                         PortolanSyncApi.checkPort(true, "130.192.91.211", "81", 4.0, true);
                     } else if (testName.compareTo(PortolanTests.TRACEROUTE) == 0) {
