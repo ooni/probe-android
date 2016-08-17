@@ -54,7 +54,7 @@ public class TestData extends Observable {
                 break;
             }
         }
-        final String nameserver = nameserver_;
+        final String nameserver = nameserver_+":53";
 
         Log.v(TAG, "doNetworkMeasurements " + testName + "...");
 
