@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -40,6 +42,19 @@ public class TestData extends Observable {
 
         ts.addTest(activity, currentTest);
         TestData.getInstance().notifyObservers();
+
+        // The app now tries to get DNS from the device. Upon fail, it uses
+        // Google DNS resolvers
+        String nameserver = "8.8.8.8";
+        ArrayList<String> nameservers = getDNS();
+        if (!nameservers.isEmpty()) {
+            for (String s : getDNS()) {
+                nameserver = s;
+                Log.v(TAG, "Adding nameserver: " + s);
+                break;
+            }
+        }
+
 
         Log.v(TAG, "doNetworkMeasurements " + testName + "...");
 
@@ -96,5 +111,31 @@ public class TestData extends Observable {
     public void notifyObservers(Object type) {
         setChanged(); // Set the changed flag to true, otherwise observers won't be notified.
         super.notifyObservers(type);
+    }
+
+    private static ArrayList<String> getDNS() {
+        ArrayList<String> servers = new ArrayList<String>();
+        try {
+            Class<?> SystemProperties = Class.forName("android.os.SystemProperties");
+            Method method = SystemProperties.getMethod("get", String.class);
+
+            for (String name : new String[]{"net.dns1", "net.dns2", "net.dns3", "net.dns4",}) {
+                String value = (String) method.invoke(null, name);
+                if (value != null && !value.equals("") && !servers.contains(value)) {
+                    servers.add(value);
+                }
+            }
+            // Using 4 branches to show which errors may occur
+            // We can just catch Exception
+        } catch (ClassNotFoundException e) {
+            Log.e(TAG, "getDNS: error: " + e);
+        } catch (NoSuchMethodException e) {
+            Log.e(TAG, "getDNS: error: " + e);
+        } catch (InvocationTargetException e) {
+            Log.e(TAG, "getDNS: error: " + e);
+        } catch (IllegalAccessException e) {
+            Log.e(TAG, "getDNS: error: " + e);
+        }
+        return servers;
     }
 }

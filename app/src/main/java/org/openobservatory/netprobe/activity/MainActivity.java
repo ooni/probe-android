@@ -18,8 +18,6 @@ import android.widget.ImageButton;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -63,26 +61,6 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         TestData.getInstance().addObserver(this);
 
         Button button;
-
-        // XXX: Code commented out; now this must be performed before each test and
-        // the DNS server should be supplied to the test itself
-        /*
-        // The app now tries to get DNS from the device. Upon fail, it uses
-        // Google DNS resolvers
-        DnsApi.clearNameServers();
-        ArrayList<String> nameservers = getDNS();
-        if (!nameservers.isEmpty()) {
-            for (String s : getDNS()) {
-                Log.v(TAG, "Adding nameserver: " + s);
-                DnsApi.addNameServer(s);
-            }
-        } else {
-            Log.v(TAG, "Could not get DNS from device, using defaults");
-            DnsApi.addNameServer("8.8.8.8");
-            DnsApi.addNameServer("8.8.4.4");
-        }
-        */
-
         copyResources();
 
         //LoggerApi.setVerbose(1);
@@ -231,31 +209,6 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         Log.v(TAG, "copyResources... done");
     }
 
-    private ArrayList<String> getDNS() {
-        ArrayList<String> servers = new ArrayList<String>();
-        try {
-            Class<?> SystemProperties = Class.forName("android.os.SystemProperties");
-            Method method = SystemProperties.getMethod("get", String.class);
-
-            for (String name : new String[]{"net.dns1", "net.dns2", "net.dns3", "net.dns4",}) {
-                String value = (String) method.invoke(null, name);
-                if (value != null && !value.equals("") && !servers.contains(value)) {
-                    servers.add(value);
-                }
-            }
-        // Using 4 branches to show which errors may occur
-        // We can just catch Exception
-        } catch (ClassNotFoundException e) {
-            Log.e(TAG, "getDNS: error: " + e);
-        } catch (NoSuchMethodException e) {
-            Log.e(TAG, "getDNS: error: " + e);
-        } catch (InvocationTargetException e) {
-            Log.e(TAG, "getDNS: error: " + e);
-        } catch (IllegalAccessException e) {
-            Log.e(TAG, "getDNS: error: " + e);
-        }
-        return servers;
-    }
 
     private static final String TAG = "main-activity";
 }
