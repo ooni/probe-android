@@ -2,6 +2,7 @@ package org.openobservatory.netprobe.adapter;
 
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -11,8 +12,11 @@ import android.support.v7.widget.RecyclerView;
 import org.openobservatory.netprobe.activity.MainActivity;
 import org.openobservatory.netprobe.R;
 import org.openobservatory.netprobe.data.TestData;
+import org.openobservatory.netprobe.data.TestStorage;
 import org.openobservatory.netprobe.model.NetworkMeasurement;
 import org.openobservatory.netprobe.utils.Alert;
+import android.support.v7.widget.PopupMenu;
+import org.openobservatory.netprobe.view.ListImageButton;
 
 import java.util.ArrayList;
 
@@ -55,7 +59,7 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
     @Override
     public int getItemViewType(int position) {
         NetworkMeasurement i = values.get(position);
-        if (i.finished) return 1;
+        if (i.completed) return 1;
         else return 0;
     }
 
@@ -65,11 +69,27 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
         Typeface font = Typeface.createFromAsset(mActivity.getAssets(), "fonts/Inconsolata.otf");
         holder.txtTitle.setTypeface(font);
         holder.txtTitle.setText(i.testName);
-        if (i.finished){
+        if (i.completed){
+            // Set the item as the button's tag so it can be retrieved later
+            holder.popupButton.setTag(values.get(position));
+            // Set the fragment instance as the OnClickListener
+            holder.popupButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View v) {
+                    // TODO Auto-generated method stub
+                    v.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            showPopupMenu(v);
+                        }
+
+                    });
+                }
+            });
             holder.logButton.setOnClickListener(
                     new ImageButton.OnClickListener() {
                         public void onClick(View v) {
-                            Alert.alertScrollView(mActivity, i.fileName);
+                            Alert.alertScrollView(mActivity, i.json_file);
                         }
                     }
             );
@@ -97,6 +117,7 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
         public TextView txtTitle;
         public ProgressBar progressBar;
         public ImageButton logButton;
+        public ListImageButton popupButton;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -104,6 +125,7 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
             txtTitle = (TextView) itemView.findViewById(R.id.test_title);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar);
             logButton = (ImageButton) itemView.findViewById(R.id.log_button);
+            popupButton = (ListImageButton) itemView.findViewById(R.id.test_popupmenu);
         }
 
         @Override
@@ -122,6 +144,32 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
 
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
+    }
+
+    private void showPopupMenu(View view) {
+        // Retrieve the clicked item from view's tag
+        final NetworkMeasurement item = (NetworkMeasurement)view.getTag();
+        // Create a PopupMenu, giving it the clicked view for an anchor
+        PopupMenu popup = new PopupMenu(mActivity, view);
+        // Inflate our menu resource into the PopupMenu's Menu
+        popup.getMenuInflater().inflate(R.menu.popup_test, popup.getMenu());
+        // Set a listener so we are notified if a menu item is clicked
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.menu_remove:
+                        // Remove the item from the adapter
+                        TestStorage ts = new TestStorage();;
+                        ts.removeTest(mActivity, item);
+                        TestData.getInstance().notifyObservers();
+                        return true;
+                }
+                return false;
+            }
+        });
+        // Finally show the PopupMenu
+        popup.show();
     }
 }
 

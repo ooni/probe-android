@@ -25,8 +25,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/test_title"
-        android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/test_title"
+        android:layout_alignParentLeft="true"
         android:background="@android:color/transparent"
         android:src="@drawable/log_icon" />
+
+    <org.openobservatory.netprobe.view.ListImageButton
+        android:id="@+id/test_popupmenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_alignParentRight="true"
+        android:background="@null"
+        android:padding="10dp"
+        android:src="@drawable/ic_action_overflow" />
 </RelativeLayout>

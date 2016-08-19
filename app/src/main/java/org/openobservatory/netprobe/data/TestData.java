@@ -1,8 +1,11 @@
 package org.openobservatory.netprobe.data;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -19,30 +22,39 @@ import org.openobservatory.netprobe.model.UnknownTest;
  */
 public class TestData extends Observable {
     private static final String TAG = "TestData";
-
-    public static ArrayList<NetworkMeasurement> mNetworkMeasurementsRunning = new ArrayList<>();
-    public static ArrayList<NetworkMeasurement> mNetworkMeasurementsFinished = new ArrayList<>();
-
     private static TestData instance;
+    private static TestStorage ts;
 
     public static TestData getInstance() {
         if (instance == null) {
             instance = new TestData();
+            ts = new TestStorage();
         }
         return instance;
     }
 
     public static void doNetworkMeasurements(final MainActivity activity, final String testName) {
         final String inputPath = activity.getFilesDir() + "/hosts.txt";
-        final String outputPath = activity.getFilesDir() + "/last-report.yml";
-        Long tsLong = System.currentTimeMillis()/1000;
-        String ts = tsLong.toString();
-        final String filename = "/last-logs-"+ ts +".txt";
-        final String logPath = activity.getFilesDir() + filename;
-        final NetworkMeasurement currentTest = new NetworkMeasurement(testName, filename);
 
-        mNetworkMeasurementsRunning.add(currentTest);
+        final NetworkMeasurement currentTest = new NetworkMeasurement(testName);
+        final String outputPath = activity.getFilesDir() + "/"  + currentTest.json_file;
+        final String logPath = activity.getFilesDir() + "/"  + currentTest.log_file;
+
+        ts.addTest(activity, currentTest);
         TestData.getInstance().notifyObservers();
+
+        // The app now tries to get DNS from the device. Upon fail, it uses
+        // Google DNS resolvers
+        String nameserver_ = "8.8.8.8";
+        ArrayList<String> nameservers = getDNS();
+        if (!nameservers.isEmpty()) {
+            for (String s : getDNS()) {
+                nameserver_ = s;
+                Log.v(TAG, "Adding nameserver: " + s);
+                break;
+            }
+        }
+        final String nameserver = nameserver_+":53";
 
         Log.v(TAG, "doNetworkMeasurements " + testName + "...");
 
@@ -56,15 +68,18 @@ public class TestData extends Observable {
             {
                 try
                 {
-                    //progress = ProgressDialog.show(activity, "Testing", "running tcp-connect test", false);
                     Log.v(TAG, "running test...");
+                    // TODO: query the device for its name server and use it rather than using
+                    // google's public name server for the same purpose
                     if (testName.compareTo(OONITests.DNS_INJECTION) == 0) {
-                        OoniSyncApi.dnsInjection("8.8.8.1", inputPath, outputPath, logPath, true);
+                        OoniSyncApi.dnsInjection("8.8.8.1", inputPath, outputPath, logPath, true,
+                                nameserver);
                     } else if (testName.compareTo(OONITests.HTTP_INVALID_REQUEST_LINE) == 0) {
                         OoniSyncApi.httpInvalidRequestLine("http://213.138.109.232/",
-                                outputPath, logPath, true);
+                                outputPath, logPath, true, nameserver);
                     } else if (testName.compareTo(OONITests.TCP_CONNECT) == 0) {
-                        OoniSyncApi.tcpConnect("80", inputPath,  outputPath, logPath, true);
+                        OoniSyncApi.tcpConnect("80", inputPath,  outputPath, logPath, true,
+                                nameserver);
                     } else if (testName.compareTo(PortolanTests.CHECK_PORT) == 0) {
                         PortolanSyncApi.checkPort(true, "130.192.91.211", "81", 4.0, true);
                     } else if (testName.compareTo(PortolanTests.TRACEROUTE) == 0) {
@@ -85,10 +100,8 @@ public class TestData extends Observable {
             }
 
             protected void onPostExecute(Boolean success) {
+                ts.setCompleted(activity, currentTest);
                 TestData.getInstance().notifyObservers();
-                mNetworkMeasurementsRunning.remove(currentTest);
-                currentTest.finished = true;
-                mNetworkMeasurementsFinished.add(currentTest);
                 Log.v(TAG, "doNetworkMeasurements " + testName + "... done");
             }
         }.execute();
@@ -98,5 +111,31 @@ public class TestData extends Observable {
     public void notifyObservers(Object type) {
         setChanged(); // Set the changed flag to true, otherwise observers won't be notified.
         super.notifyObservers(type);
+    }
+
+    private static ArrayList<String> getDNS() {
+        ArrayList<String> servers = new ArrayList<String>();
+        try {
+            Class<?> SystemProperties = Class.forName("android.os.SystemProperties");
+            Method method = SystemProperties.getMethod("get", String.class);
+
+            for (String name : new String[]{"net.dns1", "net.dns2", "net.dns3", "net.dns4",}) {
+                String value = (String) method.invoke(null, name);
+                if (value != null && !value.equals("") && !servers.contains(value)) {
+                    servers.add(value);
+                }
+            }
+            // Using 4 branches to show which errors may occur
+            // We can just catch Exception
+        } catch (ClassNotFoundException e) {
+            Log.e(TAG, "getDNS: error: " + e);
+        } catch (NoSuchMethodException e) {
+            Log.e(TAG, "getDNS: error: " + e);
+        } catch (InvocationTargetException e) {
+            Log.e(TAG, "getDNS: error: " + e);
+        } catch (IllegalAccessException e) {
+            Log.e(TAG, "getDNS: error: " + e);
+        }
+        return servers;
     }
 }

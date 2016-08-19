@@ -4,12 +4,12 @@ PHONIES += check download-and-verify help unpack unpack-clean
 GPG2      = gpg2
 WGET      = wget
 
-REPO      = measurement-kit/measurement-kit-jni-libs
+REPO      = measurement-kit/measurement-kit
 BASEURL   = https://github.com/$(REPO)/releases/download
 PACKAGE   = org/openobservatory/measurement_kit
 SRCDIR    = app/src/main
-TAG       =
-VERSION   = v0.1.2.2
+TAG       = -1
+VERSION   = v0.2.8
 
 INPUT     = measurement_kit-android-$(VERSION)$(TAG).tar.bz2
 
