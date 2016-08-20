@@ -9,6 +9,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import org.openobservatory.measurement_kit.jni.OoniTestWrapper;
 import org.openobservatory.netprobe.activity.MainActivity;
 import org.openobservatory.measurement_kit.jni.sync.OoniSyncApi;
 import org.openobservatory.measurement_kit.jni.sync.PortolanSyncApi;
@@ -78,8 +79,17 @@ public class TestData extends Observable {
                         OoniSyncApi.httpInvalidRequestLine("http://213.138.109.232/",
                                 outputPath, logPath, true, nameserver);
                     } else if (testName.compareTo(OONITests.TCP_CONNECT) == 0) {
-                        OoniSyncApi.tcpConnect("80", inputPath,  outputPath, logPath, true,
-                                nameserver);
+                        // TODO: basically we can pass the test name to the constructor
+                        // and then work onto the returned generic object once we are ready
+                        Log.v(TAG, "running new style tcp-connect test...");
+                        OoniTestWrapper w = new OoniTestWrapper("tcp_connect");
+                        w.set_options("port", "80");
+                        w.set_input_filepath(inputPath);
+                        w.set_output_filepath(outputPath);
+                        w.set_error_filepath(logPath);
+                        w.increase_verbosity();
+                        w.set_options("dns/nameserver", nameserver);
+                        w.run();
                     } else if (testName.compareTo(PortolanTests.CHECK_PORT) == 0) {
                         PortolanSyncApi.checkPort(true, "130.192.91.211", "81", 4.0, true);
                     } else if (testName.compareTo(PortolanTests.TRACEROUTE) == 0) {
