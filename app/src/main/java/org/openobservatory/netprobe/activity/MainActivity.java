@@ -61,7 +61,10 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         TestData.getInstance().addObserver(this);
 
         Button button;
-        copyResources();
+        copyResources(R.raw.hosts, "hosts.txt");
+        copyResources(R.raw.geoip, "GeoIPASNum.dat");
+        copyResources(R.raw.geoipasnum, "GeoIP.dat");
+        copyResources(R.raw.cacert, "cacert.pem");
 
         //LoggerApi.setVerbose(1);
         LoggerApi.useAndroidLogger();
@@ -193,11 +196,11 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         }
     }
 
-    private void copyResources() {
+    private void copyResources(int id, String filename) {
         Log.v(TAG, "copyResources...");
         try {
-            InputStream in = getResources().openRawResource(R.raw.hosts);
-            FileOutputStream out = openFileOutput("hosts.txt", 0);
+            InputStream in = getResources().openRawResource(id);
+            FileOutputStream out = openFileOutput(filename, 0);
             byte[] buff = new byte[1024];
             int read;
             while ((read = in.read(buff)) > 0) out.write(buff, 0, read);

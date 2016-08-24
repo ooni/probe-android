@@ -41,17 +41,9 @@ public class TestData extends Observable {
         final String outputPath = activity.getFilesDir() + "/"  + currentTest.json_file;
         final String logPath = activity.getFilesDir() + "/"  + currentTest.log_file;
 
-        // To load the files in res/raw folder
-        final String geoip_asn = activity.getFilesDir() + "/geoipasnum.dat";
-        final String geoip_country = activity.getFilesDir() + "/geoip.dat";
+        final String geoip_asn = activity.getFilesDir() + "/GeoIPASNum.dat";
+        final String geoip_country = activity.getFilesDir() + "/GeoIP.dat";
         final String ca_cert = activity.getFilesDir() + "/cacert.pem";
-
-        /*
-        // To load the files in assets folder
-        final String geoip_asn = Uri.parse("file:///android_asset/GeoIPASNum.dat").toString();
-        final String geoip_country = Uri.parse("file:///android_asset/GeoIP.dat").toString();
-        final String ca_cert = Uri.parse("file:///android_asset/cacert.pem").toString();
-        */
 
         ts.addTest(activity, currentTest);
         TestData.getInstance().notifyObservers();
