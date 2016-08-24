@@ -41,6 +41,18 @@ public class TestData extends Observable {
         final String outputPath = activity.getFilesDir() + "/"  + currentTest.json_file;
         final String logPath = activity.getFilesDir() + "/"  + currentTest.log_file;
 
+        // To load the files in res/raw folder
+        final String geoip_asn = activity.getFilesDir() + "/geoipasnum.dat";
+        final String geoip_country = activity.getFilesDir() + "/geoip.dat";
+        final String ca_cert = activity.getFilesDir() + "/cacert.pem";
+
+        /*
+        // To load the files in assets folder
+        final String geoip_asn = Uri.parse("file:///android_asset/GeoIPASNum.dat").toString();
+        final String geoip_country = Uri.parse("file:///android_asset/GeoIP.dat").toString();
+        final String ca_cert = Uri.parse("file:///android_asset/cacert.pem").toString();
+        */
+
         ts.addTest(activity, currentTest);
         TestData.getInstance().notifyObservers();
 
@@ -88,7 +100,10 @@ public class TestData extends Observable {
                         w.set_output_filepath(outputPath);
                         w.set_error_filepath(logPath);
                         w.increase_verbosity();
-                        w.set_options("dns/nameserver", nameserver);
+                        w.set_options("net/ca_bundle_path", ca_cert);
+                        w.set_options("geoip_country_path", geoip_country);
+                        w.set_options("geoip_asn_path", geoip_asn);
+                        w.set_options("dns/nameserver", "8.8.8.8");
                         w.run();
                     } else if (testName.compareTo(PortolanTests.CHECK_PORT) == 0) {
                         PortolanSyncApi.checkPort(true, "130.192.91.211", "81", 4.0, true);
