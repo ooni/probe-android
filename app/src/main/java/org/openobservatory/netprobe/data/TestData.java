@@ -104,8 +104,8 @@ public class TestData extends Observable {
                         w.set_options("net/ca_bundle_path", ca_cert);
                         w.set_options("geoip_country_path", geoip_country);
                         w.set_options("geoip_asn_path", geoip_asn);
-                        w.set_options("save_real_probe_ip", include_ip.toString());
-                        w.set_options("save_real_probe_asn", include_asn.toString());
+                        w.set_options("save_real_probe_ip", boolToString(include_ip));
+                        w.set_options("save_real_probe_asn", boolToString(include_asn));
                         w.set_options("collector_base_url", collector_address);
                         w.set_options("dns/nameserver", "8.8.8.8");
                         w.run();
@@ -166,5 +166,9 @@ public class TestData extends Observable {
             Log.e(TAG, "getDNS: error: " + e);
         }
         return servers;
+    }
+
+    public static String boolToString(Boolean b) {
+        return b ? "1" : "0";
     }
 }
