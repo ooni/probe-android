@@ -1,6 +1,7 @@
 package org.openobservatory.netprobe.data;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -44,6 +45,12 @@ public class TestData extends Observable {
         final String geoip_asn = activity.getFilesDir() + "/GeoIPASNum.dat";
         final String geoip_country = activity.getFilesDir() + "/GeoIP.dat";
         final String ca_cert = activity.getFilesDir() + "/cacert.pem";
+
+        final SharedPreferences preferences = activity.getSharedPreferences("NetProbe", Context.MODE_PRIVATE);
+
+        final Boolean include_ip = preferences.getBoolean("include_ip", false);
+        final Boolean include_asn = preferences.getBoolean("include_asn", false);
+        final String collector_address = preferences.getString("collector_address", "https://a.collector.test.ooni.io");
 
         ts.addTest(activity, currentTest);
         TestData.getInstance().notifyObservers();
@@ -97,6 +104,9 @@ public class TestData extends Observable {
                         w.set_options("net/ca_bundle_path", ca_cert);
                         w.set_options("geoip_country_path", geoip_country);
                         w.set_options("geoip_asn_path", geoip_asn);
+                        w.set_options("save_real_probe_ip", include_ip.toString());
+                        w.set_options("save_real_probe_asn", include_asn.toString());
+                        w.set_options("collector_base_url", collector_address);
                         w.set_options("dns/nameserver", "8.8.8.8");
                         w.run();
                     } else if (testName.compareTo(PortolanTests.CHECK_PORT) == 0) {
