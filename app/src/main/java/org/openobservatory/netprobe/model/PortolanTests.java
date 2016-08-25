@@ -6,7 +6,7 @@ package org.openobservatory.netprobe.model;
 
 import android.util.Log;
 
-import org.openobservatory.measurement_kit.jni.sync.PortolanSyncApi;
+import org.openobservatory.measurement_kit.sync.PortolanSyncApi;
 
 public class PortolanTests {
     public static final String CHECK_PORT = "portolan/check-port";

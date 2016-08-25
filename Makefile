@@ -8,10 +8,10 @@ REPO      = measurement-kit/measurement-kit
 BASEURL   = https://github.com/$(REPO)/releases/download
 PACKAGE   = org/openobservatory/measurement_kit
 SRCDIR    = app/src/main
-TAG       = -1-swig-1
-VERSION   = v0.2.8
+TAG       = -2
+VERSION   = v0.3.0-alpha.1
 
-INPUT     = measurement_kit-android-$(VERSION)$(TAG).tar.bz2
+INPUT     = measurement_kit_android-$(VERSION)$(TAG).tar.bz2
 
 help:
 	@printf "Targets:\n"
@@ -34,10 +34,10 @@ download-and-verify: check $(INPUT) $(INPUT).asc
 	$(GPG2) --verify $(INPUT).asc
 
 $(INPUT):
-	$(WGET) -q $(BASEURL)/$(VERSION)/$(INPUT)
+	$(WGET) $(BASEURL)/$(VERSION)/$(INPUT)
 
 $(INPUT).asc:
-	$(WGET) -q $(BASEURL)/$(VERSION)/$(INPUT).asc
+	$(WGET) $(BASEURL)/$(VERSION)/$(INPUT).asc
 
 check:
 	@if [ -z "$$(which $(GPG2))" ]; then                                   \

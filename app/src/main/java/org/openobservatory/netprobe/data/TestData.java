@@ -10,10 +10,10 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Observable;
 
-import org.openobservatory.measurement_kit.jni.OoniTestWrapper;
+import org.openobservatory.measurement_kit.OoniTestWrapper;
 import org.openobservatory.netprobe.activity.MainActivity;
-import org.openobservatory.measurement_kit.jni.sync.OoniSyncApi;
-import org.openobservatory.measurement_kit.jni.sync.PortolanSyncApi;
+import org.openobservatory.measurement_kit.sync.OoniSyncApi;
+import org.openobservatory.measurement_kit.sync.PortolanSyncApi;
 import org.openobservatory.netprobe.model.NetworkMeasurement;
 import org.openobservatory.netprobe.model.OONITests;
 import org.openobservatory.netprobe.model.PortolanTests;

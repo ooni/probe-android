@@ -28,7 +28,7 @@ import org.openobservatory.netprobe.data.TestStorage;
 import org.openobservatory.netprobe.model.NetworkMeasurement;
 import org.openobservatory.netprobe.model.OONITests;
 import org.openobservatory.netprobe.model.PortolanTests;
-import org.openobservatory.measurement_kit.jni.LoggerApi;
+import org.openobservatory.measurement_kit.LoggerApi;
 import org.openobservatory.netprobe.utils.Alert;
 import org.openobservatory.netprobe.view.NotScrollableListView;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
