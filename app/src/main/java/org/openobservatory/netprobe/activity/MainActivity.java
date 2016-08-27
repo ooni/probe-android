@@ -18,8 +18,6 @@ import android.widget.ImageButton;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -30,7 +28,7 @@ import org.openobservatory.netprobe.data.TestStorage;
 import org.openobservatory.netprobe.model.NetworkMeasurement;
 import org.openobservatory.netprobe.model.OONITests;
 import org.openobservatory.netprobe.model.PortolanTests;
-import org.openobservatory.measurement_kit.jni.LoggerApi;
+import org.openobservatory.measurement_kit.LoggerApi;
 import org.openobservatory.netprobe.utils.Alert;
 import org.openobservatory.netprobe.view.NotScrollableListView;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -63,27 +61,10 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         TestData.getInstance().addObserver(this);
 
         Button button;
-
-        // XXX: Code commented out; now this must be performed before each test and
-        // the DNS server should be supplied to the test itself
-        /*
-        // The app now tries to get DNS from the device. Upon fail, it uses
-        // Google DNS resolvers
-        DnsApi.clearNameServers();
-        ArrayList<String> nameservers = getDNS();
-        if (!nameservers.isEmpty()) {
-            for (String s : getDNS()) {
-                Log.v(TAG, "Adding nameserver: " + s);
-                DnsApi.addNameServer(s);
-            }
-        } else {
-            Log.v(TAG, "Could not get DNS from device, using defaults");
-            DnsApi.addNameServer("8.8.8.8");
-            DnsApi.addNameServer("8.8.4.4");
-        }
-        */
-
-        copyResources();
+        copyResources(R.raw.hosts, "hosts.txt");
+        copyResources(R.raw.geoip, "GeoIPASNum.dat");
+        copyResources(R.raw.geoipasnum, "GeoIP.dat");
+        copyResources(R.raw.cacert, "cacert.pem");
 
         //LoggerApi.setVerbose(1);
         LoggerApi.useAndroidLogger();
@@ -215,11 +196,11 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         }
     }
 
-    private void copyResources() {
+    private void copyResources(int id, String filename) {
         Log.v(TAG, "copyResources...");
         try {
-            InputStream in = getResources().openRawResource(R.raw.hosts);
-            FileOutputStream out = openFileOutput("hosts.txt", 0);
+            InputStream in = getResources().openRawResource(id);
+            FileOutputStream out = openFileOutput(filename, 0);
             byte[] buff = new byte[1024];
             int read;
             while ((read = in.read(buff)) > 0) out.write(buff, 0, read);
@@ -231,31 +212,6 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         Log.v(TAG, "copyResources... done");
     }
 
-    private ArrayList<String> getDNS() {
-        ArrayList<String> servers = new ArrayList<String>();
-        try {
-            Class<?> SystemProperties = Class.forName("android.os.SystemProperties");
-            Method method = SystemProperties.getMethod("get", String.class);
-
-            for (String name : new String[]{"net.dns1", "net.dns2", "net.dns3", "net.dns4",}) {
-                String value = (String) method.invoke(null, name);
-                if (value != null && !value.equals("") && !servers.contains(value)) {
-                    servers.add(value);
-                }
-            }
-        // Using 4 branches to show which errors may occur
-        // We can just catch Exception
-        } catch (ClassNotFoundException e) {
-            Log.e(TAG, "getDNS: error: " + e);
-        } catch (NoSuchMethodException e) {
-            Log.e(TAG, "getDNS: error: " + e);
-        } catch (InvocationTargetException e) {
-            Log.e(TAG, "getDNS: error: " + e);
-        } catch (IllegalAccessException e) {
-            Log.e(TAG, "getDNS: error: " + e);
-        }
-        return servers;
-    }
 
     private static final String TAG = "main-activity";
 }
