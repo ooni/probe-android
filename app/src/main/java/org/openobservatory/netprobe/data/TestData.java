@@ -3,6 +3,7 @@ package org.openobservatory.netprobe.data;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import java.lang.reflect.InvocationTargetException;
@@ -46,7 +47,7 @@ public class TestData extends Observable {
         final String geoip_country = activity.getFilesDir() + "/GeoIP.dat";
         final String ca_cert = activity.getFilesDir() + "/cacert.pem";
 
-        final SharedPreferences preferences = activity.getSharedPreferences("NetProbe", Context.MODE_PRIVATE);
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
 
         final Boolean include_ip = preferences.getBoolean("include_ip", false);
         final Boolean include_asn = preferences.getBoolean("include_asn", false);

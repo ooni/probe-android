@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
@@ -30,7 +31,7 @@ public class SettingsActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        preferences = getSharedPreferences("NetProbe", Context.MODE_PRIVATE);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         ToggleButton include_ipButton = (ToggleButton) findViewById(R.id.include_ipBtn);
         include_ipButton.setChecked(preferences.getBoolean("include_ip", false));
