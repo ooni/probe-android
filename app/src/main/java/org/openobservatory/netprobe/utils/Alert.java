@@ -6,10 +6,17 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.openobservatory.netprobe.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by lorenzo on 27/04/16.
@@ -51,6 +58,62 @@ public class Alert {
                     }
 
                 }).show();
+    }
+
+    public static void resultWebView(final Context c, final String jsonfile) {
+            resultWebView(c, jsonfile, 0);
+        }
+
+    public static void resultWebView(final Context c, final String jsonfile, int idx) {
+        LayoutInflater inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View myScrollView = inflater.inflate(R.layout.alert_webview, null, false);
+
+        WebView wv = (WebView) myScrollView.findViewById(R.id.webview);
+        wv.getSettings().setJavaScriptEnabled(true);
+        final String jsonContent = LogUtils.readLogFile(c, jsonfile);
+        final String[] parts = jsonContent.split("\n");
+        wv.addJavascriptInterface(new InjectedJSON(parts[idx]), "MeasurementJSON");
+        wv.loadUrl("file:///android_asset/html/webui/index.html");
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(c);
+        alert.setView(myScrollView);
+        alert.setTitle(R.string.test_result);
+        alert.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @TargetApi(11)
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        if (parts.length > 1)
+            alert.setNeutralButton(R.string.change, new DialogInterface.OnClickListener() {
+                @TargetApi(11)
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.cancel();
+                    List<String> listItems = new ArrayList<String>();
+                    try {
+                        for(String str:parts) {
+                            JSONObject jsonObj = new JSONObject(str);
+                            listItems.add("input " + jsonObj.getString("input"));
+                        }
+                    } catch (JSONException e) {
+                        listItems.clear();
+                        for(int i = 0; i < parts.length; i++)  {
+                            listItems.add("Test " + i);
+                        }
+                    }
+                    final CharSequence[] buttons = listItems.toArray(new CharSequence[listItems.size()]);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(c);
+                    builder.setTitle(R.string.change);
+                    builder.setItems(buttons,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Alert.resultWebView(c, jsonfile, which);
+                                }
+                            });
+                    builder.create().show();
+                }
+            });
+        alert.show();
     }
 
     public static String formatString(String text){
@@ -104,5 +167,18 @@ public class Alert {
         }
 
         return json.toString();
+    }
+
+    public static class InjectedJSON {
+        private String jsonData;
+
+        public InjectedJSON(String json) {
+            jsonData = json;
+        }
+
+        @JavascriptInterface
+        public String get() {
+            return jsonData;
+        }
     }
 }

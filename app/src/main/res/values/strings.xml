@@ -21,4 +21,6 @@
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
     <string name="delete">Delete</string>
+    <string name="test_result">Test result</string>
+    <string name="change">Change</string>
 </resources>
