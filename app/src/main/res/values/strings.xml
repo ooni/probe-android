@@ -1,12 +1,13 @@
 <resources>
     <string name="app_name">NetProbe</string>
-    <string name="testing_history">Testing history</string>
-    <string name="pending_tests">Tests</string>
+    <string name="testing_history">Tests</string>
     <string name="run_test">Run test</string>
     <string name="dns_injection">DNS Injection</string>
     <string name="tcp_connect">TCP Connect</string>
     <string name="http_invalid_request_line">HTTP Invalid request line</string>
     <string name="http_header_field_manipulation">HTTP Header field manipulation</string>
+    <string name="web_connectivity">Web Connectivity</string>
+    <string name="ndt_test">Ndt Test</string>
     <string name="check_port">Check port</string>
     <string name="traceroute">Traceroute</string>
     <string name="running_tests">Running tests</string>
