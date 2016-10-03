@@ -6,6 +6,8 @@ package org.openobservatory.netprobe.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         ts = new TestStorage();
 
         mTestsListView = (NotScrollableListView) findViewById(R.id.listView);
@@ -121,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         ImageButton run_button = (ImageButton) findViewById(R.id.run_test_button);
         run_button.setOnClickListener(this);
 
+        checkInformedConsent();
     }
 
     @Override
@@ -212,6 +216,19 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         Log.v(TAG, "copyResources... done");
     }
 
+
+    public void checkInformedConsent() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (preferences.getBoolean("first_run", true)) {
+            startInformedConsentActivity();
+        }
+    }
+
+
+    public void startInformedConsentActivity() {
+        Intent InformedConsentIntent = new Intent(MainActivity.this, InformedConsentActivity.class);
+        startActivity(InformedConsentIntent);
+    }
 
     private static final String TAG = "main-activity";
 }

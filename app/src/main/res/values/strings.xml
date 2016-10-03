@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">NetProbe</string>
     <string name="testing_history">Tests</string>
+    <string name="select_test">Select test</string>
     <string name="run_test">Run test</string>
     <string name="dns_injection">DNS Injection</string>
     <string name="tcp_connect">TCP Connect</string>
