@@ -16,9 +16,8 @@
     <string name="running_tests">Running tests</string>
     <string name="finished_tests">Finished tests</string>
     <string name="settings">Settings</string>
-    <string name="include_ip">Include IP</string>
-    <string name="include_asn">Include asn</string>
-    <string name="gps_position">GPS position</string>
+    <!--<string name="include_ip">Include IP</string> -->
+    <!--<string name="include_asn">Include asn</string> -->
     <string name="advanced_settings">Advanced settings</string>
     <string name="collector_address">Collector Address</string>
     <string name="bouncer_address">Bouncer Address</string>
@@ -46,8 +45,8 @@
     <string name="answer_2_1">My measurements will not by default get published on OONI Explorer</string>
     <string name="answer_2_2">My measurements will by default get published on OONI Explorer and might include personally-identifiable information.</string>
     <string name="answer_2_3">My measurements will by default get published to OONI Explorer and will never include any personally-identifiable information</string>
-    <string name="should_we_include_your_ip_address_in_results">Should we include your IP address in results?</string>
-    <string name="should_we_include_your_network_information_in_the_reports_note_disabling_this_will_make_it_much_hard">Should we include your network information in the reports (note: disabling this will make it much harder for us to draw conclusions from the measurements)?</string>
-    <string name="should_we_include_your_country_name_in_the_reports_note_disabling_this_will_make_it_much_harder_for_">Should we include your country name in the reports (note: disabling this will make it much harder for us to draw conclusions from the measurements)?</string>
-    <string name="should_we_upload_your_results_to_the_default_ooni_collector">Should we upload your results to the default ooni collector?</string>
+    <string name="include_ip">Should we include your IP address in results?</string>
+    <string name="include_asn">Should we include your network information in the reports (note: disabling this will make it much harder for us to draw conclusions from the measurements)?</string>
+    <string name="include_country">Should we include your country name in the reports (note: disabling this will make it much harder for us to draw conclusions from the measurements)?</string>
+    <string name="upload_results">Should we upload your results to the default ooni collector?</string>
 </resources>
