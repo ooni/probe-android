@@ -51,7 +51,7 @@ public class TestData extends Observable {
 
         final Boolean include_ip = preferences.getBoolean("include_ip", false);
         final Boolean include_asn = preferences.getBoolean("include_asn", false);
-        final String collector_address = preferences.getString("collector_address", "https://a.collector.test.ooni.io");
+        final String collector_address = preferences.getString("collector_address", "https://measurement-kit-collector.herokuapp.com");
 
         ts.addTest(activity, currentTest);
         TestData.getInstance().notifyObservers();
