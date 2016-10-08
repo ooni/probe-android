@@ -1,0 +1,104 @@
+package org.openobservatory.netprobe.fragment;
+
+import android.app.Activity;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.RadioGroup;
+
+import org.openobservatory.netprobe.R;
+import org.openobservatory.netprobe.activity.InformedConsentActivity;
+
+public class IConsentPage4Fragment extends Fragment {
+
+
+    private InformedConsentActivity mActivity;
+    private CheckBox mCkIncludeIP;
+    private CheckBox mCkIncludeAsn;
+    private CheckBox mCkIncludeCountry;
+    private CheckBox mCkUploadResults;
+
+    public static IConsentPage4Fragment create() {
+        IConsentPage4Fragment atf = new IConsentPage4Fragment();
+        Bundle args = new Bundle();
+        atf.setArguments(args);
+        return atf;
+    }
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mActivity = (InformedConsentActivity) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement onViewSelected");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mActivity = null;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        View v = inflater.inflate(R.layout.fragment_ic_page_4, container, false);
+        //WebView webview = (WebView) v.findViewById(R.id.wv);
+        //webview.getSettings().setJavaScriptEnabled(true);
+        //webview.loadDataWithBaseURL("", getString(R.string.configuration_text), "text/html", "UTF-8", "");
+
+        mCkIncludeIP = (CheckBox) v.findViewById(R.id.ck_include_ip);
+        mCkIncludeAsn = (CheckBox) v.findViewById(R.id.ck_include_asn);
+        mCkIncludeCountry = (CheckBox) v.findViewById(R.id.ck_include_country);
+        mCkUploadResults = (CheckBox) v.findViewById(R.id.ck_upload_results);
+        return v;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_informed_consent, menu);
+        menu.findItem(R.id.menu_next).setTitle(R.string.configure);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                mActivity.getWizard().navigatePrevious();
+                break;
+            case R.id.menu_next:
+                SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(mActivity).edit();
+                editor.putBoolean("include_ip", mCkIncludeIP.isChecked());
+                editor.putBoolean("include_asn", mCkIncludeAsn.isChecked());
+                editor.putBoolean("include_country", mCkIncludeCountry.isChecked());
+                editor.putBoolean("upload_results", mCkUploadResults.isChecked());
+                editor.apply();
+                mActivity.getWizard().navigateNext();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+}

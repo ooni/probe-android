@@ -227,7 +227,20 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
     public void startInformedConsentActivity() {
         Intent InformedConsentIntent = new Intent(MainActivity.this, InformedConsentActivity.class);
-        startActivity(InformedConsentIntent);
+        startActivityForResult(InformedConsentIntent, InformedConsentActivity.REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == InformedConsentActivity.REQUEST_CODE){
+            if (resultCode != InformedConsentActivity.RESULT_CODE_COMPLETED)
+                finish();
+            else {
+                PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("first_run", false).apply();
+            }
+        }
     }
 
     private static final String TAG = "main-activity";

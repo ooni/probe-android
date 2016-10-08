@@ -5,6 +5,9 @@
     <color name="colorAccent">#FF4081</color>
     <color name="textColor">#A29B82</color>
     <color name="backgroundColor">#292323</color>
-
+    <color name="successTextColor">#3C763D</color>
+    <color name="successBgColor">#DFF0D8</color>
+    <color name="errorTextColor">#A94442</color>
+    <color name="errorBgColor">#F2DEDE</color>
 
 </resources>
