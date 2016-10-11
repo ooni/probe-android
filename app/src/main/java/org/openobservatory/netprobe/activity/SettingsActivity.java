@@ -26,6 +26,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  */
 public class SettingsActivity extends AppCompatActivity  {
     SharedPreferences preferences;
+    RelativeLayout collector_addressLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,16 +62,51 @@ public class SettingsActivity extends AppCompatActivity  {
             }
         });
 
+        ToggleButton include_ccButton = (ToggleButton) findViewById(R.id.include_ccBtn);
+        include_ccButton.setChecked(preferences.getBoolean("include_cc", true));
+        include_ccButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences.Editor editor = preferences.edit();
+                if (isChecked) {
+                    editor.putBoolean("include_cc", true);
+                } else {
+                    editor.putBoolean("include_cc", false);
+                }
+                editor.commit();
+            }
+        });
+
         TextView collector_address = (TextView) findViewById(R.id.collector_address_subText);
         collector_address.setText(preferences.getString("collector_address", "https://a.collector.test.ooni.io"));
 
-        RelativeLayout collector_addressLayout = (RelativeLayout) findViewById(R.id.collector_addressLayout);
+        collector_addressLayout = (RelativeLayout) findViewById(R.id.collector_addressLayout);
         collector_addressLayout.setOnClickListener(new RelativeLayout.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showPopup();
             }
         });
+        if (preferences.getBoolean("upload_results", true))
+            collector_addressLayout.setVisibility(View.VISIBLE);
+        else
+            collector_addressLayout.setVisibility(View.GONE);
+
+        ToggleButton upload_resultsButton = (ToggleButton) findViewById(R.id.upload_resultsBtn);
+        upload_resultsButton.setChecked(preferences.getBoolean("upload_results", true));
+        upload_resultsButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences.Editor editor = preferences.edit();
+                if (isChecked) {
+                    collector_addressLayout.setVisibility(View.VISIBLE);
+                    editor.putBoolean("upload_results", true);
+                } else {
+                    collector_addressLayout.setVisibility(View.GONE);
+                    editor.putBoolean("upload_results", false);
+                }
+                editor.commit();
+            }
+        });
+
     }
 
     private void showPopup(){
