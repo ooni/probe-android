@@ -50,7 +50,9 @@ public class TestData extends Observable {
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
 
         final Boolean include_ip = preferences.getBoolean("include_ip", false);
-        final Boolean include_asn = preferences.getBoolean("include_asn", false);
+        final Boolean include_asn = preferences.getBoolean("include_asn", true);
+        final Boolean include_cc = preferences.getBoolean("include_cc", true);
+        final Boolean upload_results = preferences.getBoolean("upload_results", true);
         final String collector_address = preferences.getString("collector_address", "https://a.collector.test.ooni.io");
 
         ts.addTest(activity, currentTest);
@@ -98,6 +100,8 @@ public class TestData extends Observable {
                         w.set_options("geoip_asn_path", geoip_asn);
                         w.set_options("save_real_probe_ip", boolToString(include_ip));
                         w.set_options("save_real_probe_asn", boolToString(include_asn));
+                        w.set_options("save_real_probe_cc", boolToString(include_cc));
+                        w.set_options("no_collector", boolToString(!upload_results));
                         w.set_options("collector_base_url", collector_address);
                         w.set_options("dns/nameserver", nameserver);
                         w.run();
@@ -114,6 +118,8 @@ public class TestData extends Observable {
                         w.set_options("geoip_asn_path", geoip_asn);
                         w.set_options("save_real_probe_ip", boolToString(include_ip));
                         w.set_options("save_real_probe_asn", boolToString(include_asn));
+                        w.set_options("save_real_probe_cc", boolToString(include_cc));
+                        w.set_options("no_collector", boolToString(!upload_results));
                         w.set_options("collector_base_url", collector_address);
                         w.set_options("dns/nameserver", nameserver);
                         w.run();
@@ -134,6 +140,8 @@ public class TestData extends Observable {
                         w.set_options("geoip_asn_path", geoip_asn);
                         w.set_options("save_real_probe_ip", boolToString(include_ip));
                         w.set_options("save_real_probe_asn", boolToString(include_asn));
+                        w.set_options("save_real_probe_cc", boolToString(include_cc));
+                        w.set_options("no_collector", boolToString(!upload_results));
                         w.set_options("collector_base_url", collector_address);
                         w.set_options("dns/nameserver", nameserver);
                         w.run();
