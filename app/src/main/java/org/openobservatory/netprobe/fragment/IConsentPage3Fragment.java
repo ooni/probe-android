@@ -59,10 +59,6 @@ public class IConsentPage3Fragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_ic_page_3, container, false);
-        //WebView webview = (WebView)v.findViewById(R.id.wv);
-        //webview.getSettings().setJavaScriptEnabled(true);
-        //webview.loadDataWithBaseURL("", getString(R.string.quiz_text), "text/html", "UTF-8", "");
-
         mRadio1 = (RadioGroup) v.findViewById(R.id.radio_1);
         mRadio2 = (RadioGroup) v.findViewById(R.id.radio_2);
 
