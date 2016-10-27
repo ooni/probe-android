@@ -38,14 +38,14 @@ import org.openobservatory.netprobe.R;
 
 public class MainActivity extends AppCompatActivity implements Button.OnClickListener, Observer {
 
-    Button buttons[] = new Button[5];
+    Button buttons[] = new Button[7];
     int selected;
     private NotScrollableListView mTestsListView;
     private TestsListAdapter mTestsListAdapter;
     private static TestStorage ts;
 
     static {
-        System.loadLibrary("measurement_kit-android");
+        System.loadLibrary("measurement_kit");
     }
 
     @Override
