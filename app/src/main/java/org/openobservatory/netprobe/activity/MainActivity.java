@@ -84,13 +84,21 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         button.setOnClickListener(this);
         buttons[2] = button;
 
-        button = (Button) findViewById(R.id.check_port_button);
+        button = (Button) findViewById(R.id.web_connectivity_button);
         button.setOnClickListener(this);
         buttons[3] = button;
 
-        button = (Button) findViewById(R.id.traceroute_button);
+        button = (Button) findViewById(R.id.ndt_test_button);
         button.setOnClickListener(this);
         buttons[4] = button;
+
+        button = (Button) findViewById(R.id.check_port_button);
+        button.setOnClickListener(this);
+        buttons[5] = button;
+
+        button = (Button) findViewById(R.id.traceroute_button);
+        button.setOnClickListener(this);
+        buttons[6] = button;
 
         ImageButton info_button;
         info_button = (ImageButton) findViewById(R.id.tcp_connect_info_button);
@@ -120,6 +128,14 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                 }
         );
 
+        info_button = (ImageButton) findViewById(R.id.web_connectivity_info_button);
+        info_button.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        Alert.alertWebView(MainActivity.this, "web-connectivity");
+                    }
+                }
+        );
 
         ImageButton run_button = (ImageButton) findViewById(R.id.run_test_button);
         run_button.setOnClickListener(this);
@@ -177,6 +193,12 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                 break;
             case R.id.http_invalid_request_line_button:
                 TestData.doNetworkMeasurements(MainActivity.this, OONITests.HTTP_INVALID_REQUEST_LINE);
+                break;
+            case R.id.web_connectivity_button:
+                TestData.doNetworkMeasurements(MainActivity.this, OONITests.WEB_CONNECTIVITY);
+                break;
+            case R.id.ndt_test_button:
+                TestData.doNetworkMeasurements(MainActivity.this, OONITests.NDT_TEST);
                 break;
             case R.id.check_port_button:
                 TestData.doNetworkMeasurements(MainActivity.this, PortolanTests.CHECK_PORT);

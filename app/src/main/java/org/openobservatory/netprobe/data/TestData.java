@@ -60,6 +60,7 @@ public class TestData extends Observable {
 
         // The app now tries to get DNS from the device. Upon fail, it uses
         // Google DNS resolvers
+        /*
         String nameserver_ = "8.8.8.8";
         ArrayList<String> nameservers = getDNS();
         if (!nameservers.isEmpty()) {
@@ -70,7 +71,7 @@ public class TestData extends Observable {
             }
         }
         final String nameserver = nameserver_+":53";
-
+        */
         Log.v(TAG, "doNetworkMeasurements " + testName + "...");
 
         /*
@@ -95,6 +96,7 @@ public class TestData extends Observable {
                         w.set_output_filepath(outputPath);
                         w.set_error_filepath(logPath);
                         w.set_verbosity(7);
+                        //w.set_options("dns/nameserver", nameserver);
                         w.set_options("net/ca_bundle_path", ca_cert);
                         w.set_options("geoip_country_path", geoip_country);
                         w.set_options("geoip_asn_path", geoip_asn);
@@ -103,7 +105,6 @@ public class TestData extends Observable {
                         w.set_options("save_real_probe_cc", boolToString(include_cc));
                         w.set_options("no_collector", boolToString(!upload_results));
                         w.set_options("collector_base_url", collector_address);
-                        w.set_options("dns/nameserver", nameserver);
                         w.run();
                     } else if (testName.compareTo(OONITests.HTTP_INVALID_REQUEST_LINE) == 0) {
                         OoniTestWrapper w = new OoniTestWrapper("http_invalid_request_line");
@@ -113,6 +114,7 @@ public class TestData extends Observable {
                         w.set_output_filepath(outputPath);
                         w.set_error_filepath(logPath);
                         w.set_verbosity(7);
+                        //w.set_options("dns/nameserver", nameserver);
                         w.set_options("net/ca_bundle_path", ca_cert);
                         w.set_options("geoip_country_path", geoip_country);
                         w.set_options("geoip_asn_path", geoip_asn);
@@ -121,7 +123,6 @@ public class TestData extends Observable {
                         w.set_options("save_real_probe_cc", boolToString(include_cc));
                         w.set_options("no_collector", boolToString(!upload_results));
                         w.set_options("collector_base_url", collector_address);
-                        w.set_options("dns/nameserver", nameserver);
                         w.run();
                     } else if (testName.compareTo(OONITests.TCP_CONNECT) == 0) {
                         // TODO: basically we can pass the test name to the constructor
@@ -135,6 +136,7 @@ public class TestData extends Observable {
                         w.set_output_filepath(outputPath);
                         w.set_error_filepath(logPath);
                         w.set_verbosity(7);
+                        //w.set_options("dns/nameserver", nameserver);
                         w.set_options("net/ca_bundle_path", ca_cert);
                         w.set_options("geoip_country_path", geoip_country);
                         w.set_options("geoip_asn_path", geoip_asn);
@@ -143,9 +145,51 @@ public class TestData extends Observable {
                         w.set_options("save_real_probe_cc", boolToString(include_cc));
                         w.set_options("no_collector", boolToString(!upload_results));
                         w.set_options("collector_base_url", collector_address);
-                        w.set_options("dns/nameserver", nameserver);
                         w.run();
-                    } else if (testName.compareTo(PortolanTests.CHECK_PORT) == 0) {
+                    }
+                    else if (testName.compareTo(OONITests.WEB_CONNECTIVITY) == 0) {
+                        Log.v(TAG, "running new style web-connectivity test...");
+                        Log.v(TAG, "xx " + ca_cert);
+                        OoniTestWrapper w = new OoniTestWrapper("web_connectivity");
+                        w.use_logcat();
+                        w.set_options("port", "80");
+                        w.set_input_filepath(inputPath);
+                        w.set_output_filepath(outputPath);
+                        w.set_error_filepath(logPath);
+                        w.set_verbosity(7);
+                        w.set_options("backend", "https://a.web-connectivity.th.ooni.io:4442");
+                        //w.set_options("dns/nameserver", nameserver);
+                        w.set_options("net/ca_bundle_path", ca_cert);
+                        w.set_options("geoip_country_path", geoip_country);
+                        w.set_options("geoip_asn_path", geoip_asn);
+                        w.set_options("save_real_probe_ip", boolToString(include_ip));
+                        w.set_options("save_real_probe_asn", boolToString(include_asn));
+                        w.set_options("save_real_probe_cc", boolToString(include_cc));
+                        w.set_options("no_collector", boolToString(!upload_results));
+                        w.set_options("collector_base_url", collector_address);
+                        w.run();
+                    }
+                    else if (testName.compareTo(OONITests.NDT_TEST) == 0) {
+                        Log.v(TAG, "running new style ndt test...");
+                        Log.v(TAG, "xx " + ca_cert);
+                        OoniTestWrapper w = new OoniTestWrapper("ndt");
+                        w.use_logcat();
+                        w.set_input_filepath(inputPath);
+                        w.set_output_filepath(outputPath);
+                        w.set_error_filepath(logPath);
+                        w.set_verbosity(7);
+                        //w.set_options("dns/nameserver", nameserver);
+                        w.set_options("net/ca_bundle_path", ca_cert);
+                        w.set_options("geoip_country_path", geoip_country);
+                        w.set_options("geoip_asn_path", geoip_asn);
+                        w.set_options("save_real_probe_ip", boolToString(include_ip));
+                        w.set_options("save_real_probe_asn", boolToString(include_asn));
+                        w.set_options("save_real_probe_cc", boolToString(include_cc));
+                        w.set_options("no_collector", boolToString(!upload_results));
+                        w.set_options("collector_base_url", collector_address);
+                        w.run();
+                    }
+                    else if (testName.compareTo(PortolanTests.CHECK_PORT) == 0) {
                         PortolanSyncApi.checkPort(true, "130.192.91.211", "81", 4.0, true);
                     } else if (testName.compareTo(PortolanTests.TRACEROUTE) == 0) {
                         PortolanTests.runTraceroute();
@@ -178,6 +222,7 @@ public class TestData extends Observable {
         super.notifyObservers(type);
     }
 
+    //DEPRECATED
     private static ArrayList<String> getDNS() {
         ArrayList<String> servers = new ArrayList<String>();
         try {

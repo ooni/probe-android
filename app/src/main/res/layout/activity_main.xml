@@ -94,6 +94,45 @@
                 android:textColor="@color/textColor" />
 
             <ImageButton
+                android:id="@+id/web_connectivity_info_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/web_connectivity_button"
+                android:layout_alignParentRight="true"
+                android:layout_alignRight="@+id/web_connectivity_button"
+                android:layout_alignTop="@+id/web_connectivity_button"
+                android:background="@android:color/transparent"
+                android:src="@drawable/icon_info" />
+
+            <Button
+                android:id="@+id/web_connectivity_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/http_invalid_request_line_button"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/not_selected"
+                android:drawablePadding="10sp"
+                android:text="@string/web_connectivity"
+                android:textColor="@color/textColor" />
+
+            <Button
+                android:id="@+id/ndt_test_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/web_connectivity_button"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/not_selected"
+                android:drawablePadding="10sp"
+                android:text="@string/ndt_test"
+                android:textColor="@color/textColor" />
+
+            <ImageButton
                 android:id="@+id/http_invalid_request_line_info_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -110,25 +149,13 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/http_invalid_request_line_button"
+                android:layout_below="@+id/ndt_test_button"
                 android:layout_marginTop="10dp"
                 android:background="@android:color/transparent"
                 android:drawableLeft="@drawable/not_selected"
                 android:drawablePadding="10sp"
                 android:text="@string/check_port"
                 android:textColor="@color/textColor" />
-<!--
-            <ImageButton
-                android:id="@+id/check_port_info_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/check_port_button"
-                android:layout_alignParentRight="true"
-                android:layout_alignRight="@+id/check_port_button"
-                android:layout_alignTop="@+id/check_port_button"
-                android:background="@android:color/transparent"
-                android:src="@drawable/icon_info" />
--->
 
             <Button
                 android:id="@+id/traceroute_button"
@@ -143,18 +170,7 @@
                 android:drawablePadding="10sp"
                 android:text="@string/traceroute"
                 android:textColor="@color/textColor" />
-<!--
-            <ImageButton
-                android:id="@+id/traceroute_info_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/traceroute_button"
-                android:layout_alignParentRight="true"
-                android:layout_alignRight="@+id/traceroute_button"
-                android:layout_alignTop="@+id/traceroute_button"
-                android:background="@android:color/transparent"
-                android:src="@drawable/icon_info" />
--->
+
             <ImageButton
                 android:id="@+id/run_test_button"
                 android:layout_width="wrap_content"
@@ -163,17 +179,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/run_test" />
-<!--
-            <Button
-                android:id="@+id/log_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/run_test_button"
-                android:layout_marginTop="10dp"
-                android:text="show last log" />
--->
+
         </RelativeLayout>
 
         <org.openobservatory.netprobe.view.NotScrollableListView
