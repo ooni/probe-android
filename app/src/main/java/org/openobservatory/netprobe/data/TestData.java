@@ -11,9 +11,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Observable;
 
-import org.openobservatory.measurement_kit.OoniTestWrapper;
+import org.openobservatory.measurement_kit.swig.OoniTestWrapper;
 import org.openobservatory.netprobe.activity.MainActivity;
-import org.openobservatory.measurement_kit.sync.OoniSyncApi;
 import org.openobservatory.measurement_kit.sync.PortolanSyncApi;
 import org.openobservatory.netprobe.model.NetworkMeasurement;
 import org.openobservatory.netprobe.model.OONITests;
@@ -60,7 +59,6 @@ public class TestData extends Observable {
 
         // The app now tries to get DNS from the device. Upon fail, it uses
         // Google DNS resolvers
-        /*
         String nameserver_ = "8.8.8.8";
         ArrayList<String> nameservers = getDNS();
         if (!nameservers.isEmpty()) {
@@ -71,7 +69,7 @@ public class TestData extends Observable {
             }
         }
         final String nameserver = nameserver_+":53";
-        */
+
         Log.v(TAG, "doNetworkMeasurements " + testName + "...");
 
         /*
@@ -96,7 +94,7 @@ public class TestData extends Observable {
                         w.set_output_filepath(outputPath);
                         w.set_error_filepath(logPath);
                         w.set_verbosity(7);
-                        //w.set_options("dns/nameserver", nameserver);
+                        w.set_options("dns/nameserver", nameserver);
                         w.set_options("net/ca_bundle_path", ca_cert);
                         w.set_options("geoip_country_path", geoip_country);
                         w.set_options("geoip_asn_path", geoip_asn);
@@ -114,7 +112,7 @@ public class TestData extends Observable {
                         w.set_output_filepath(outputPath);
                         w.set_error_filepath(logPath);
                         w.set_verbosity(7);
-                        //w.set_options("dns/nameserver", nameserver);
+                        w.set_options("dns/nameserver", nameserver);
                         w.set_options("net/ca_bundle_path", ca_cert);
                         w.set_options("geoip_country_path", geoip_country);
                         w.set_options("geoip_asn_path", geoip_asn);
@@ -136,7 +134,7 @@ public class TestData extends Observable {
                         w.set_output_filepath(outputPath);
                         w.set_error_filepath(logPath);
                         w.set_verbosity(7);
-                        //w.set_options("dns/nameserver", nameserver);
+                        w.set_options("dns/nameserver", nameserver);
                         w.set_options("net/ca_bundle_path", ca_cert);
                         w.set_options("geoip_country_path", geoip_country);
                         w.set_options("geoip_asn_path", geoip_asn);
@@ -158,7 +156,7 @@ public class TestData extends Observable {
                         w.set_error_filepath(logPath);
                         w.set_verbosity(7);
                         w.set_options("backend", "https://a.web-connectivity.th.ooni.io:4442");
-                        //w.set_options("dns/nameserver", nameserver);
+                        w.set_options("dns/nameserver", nameserver);
                         w.set_options("net/ca_bundle_path", ca_cert);
                         w.set_options("geoip_country_path", geoip_country);
                         w.set_options("geoip_asn_path", geoip_asn);
@@ -178,7 +176,7 @@ public class TestData extends Observable {
                         w.set_output_filepath(outputPath);
                         w.set_error_filepath(logPath);
                         w.set_verbosity(7);
-                        //w.set_options("dns/nameserver", nameserver);
+                        w.set_options("dns/nameserver", nameserver);
                         w.set_options("net/ca_bundle_path", ca_cert);
                         w.set_options("geoip_country_path", geoip_country);
                         w.set_options("geoip_asn_path", geoip_asn);
