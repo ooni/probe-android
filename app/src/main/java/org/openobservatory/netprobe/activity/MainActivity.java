@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         copyResources(R.raw.geoip, "GeoIPASNum.dat");
         copyResources(R.raw.geoipasnum, "GeoIP.dat");
         copyResources(R.raw.cacert, "cacert.pem");
+        copyResources(R.raw.urls, "urls.txt");
 
         //LoggerApi.setVerbose(1);
         LoggerApi.useAndroidLogger();

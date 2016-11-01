@@ -37,6 +37,7 @@ public class TestData extends Observable {
 
     public static void doNetworkMeasurements(final MainActivity activity, final String testName) {
         final String inputPath = activity.getFilesDir() + "/hosts.txt";
+        final String inputUrlsPath = activity.getFilesDir() + "/urls.txt";
 
         final NetworkMeasurement currentTest = new NetworkMeasurement(testName);
         final String outputPath = activity.getFilesDir() + "/"  + currentTest.json_file;
@@ -151,12 +152,13 @@ public class TestData extends Observable {
                         OoniTestWrapper w = new OoniTestWrapper("web_connectivity");
                         w.use_logcat();
                         w.set_options("port", "80");
-                        w.set_input_filepath(inputPath);
+                        w.set_input_filepath(inputUrlsPath);
                         w.set_output_filepath(outputPath);
                         w.set_error_filepath(logPath);
                         w.set_verbosity(7);
                         w.set_options("backend", "https://a.web-connectivity.th.ooni.io:4442");
                         w.set_options("dns/nameserver", nameserver);
+                        w.set_options("nameserver", nameserver);
                         w.set_options("net/ca_bundle_path", ca_cert);
                         w.set_options("geoip_country_path", geoip_country);
                         w.set_options("geoip_asn_path", geoip_asn);
