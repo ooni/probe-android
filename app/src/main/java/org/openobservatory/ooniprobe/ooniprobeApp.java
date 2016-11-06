@@ -1,4 +1,4 @@
-package org.openobservatory.netprobe;
+package org.openobservatory.ooniprobe;
 
 import android.app.Application;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -6,7 +6,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 /**
  * Created by lorenzo on 27/04/16.
  */
-public class NetProbeApp extends Application {
+public class ooniprobeApp extends Application {
 
     @Override
     public void onCreate() {

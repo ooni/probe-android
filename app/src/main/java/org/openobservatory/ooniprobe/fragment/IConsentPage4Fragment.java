@@ -1,25 +1,20 @@
-package org.openobservatory.netprobe.fragment;
+package org.openobservatory.ooniprobe.fragment;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.RadioGroup;
 
-import org.openobservatory.netprobe.R;
-import org.openobservatory.netprobe.activity.InformedConsentActivity;
+import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.InformedConsentActivity;
 
 public class IConsentPage4Fragment extends Fragment {
 

@@ -1,4 +1,4 @@
-package org.openobservatory.netprobe.activity;
+package org.openobservatory.ooniprobe.activity;
 
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -8,11 +8,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.openobservatory.netprobe.R;
-import org.openobservatory.netprobe.fragment.IConsentPage1Fragment;
-import org.openobservatory.netprobe.fragment.IConsentPage2Fragment;
-import org.openobservatory.netprobe.fragment.IConsentPage3Fragment;
-import org.openobservatory.netprobe.fragment.IConsentPage4Fragment;
+import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.fragment.IConsentPage1Fragment;
+import org.openobservatory.ooniprobe.fragment.IConsentPage2Fragment;
+import org.openobservatory.ooniprobe.fragment.IConsentPage3Fragment;
+import org.openobservatory.ooniprobe.fragment.IConsentPage4Fragment;
 
 import me.panavtec.wizard.Wizard;
 import me.panavtec.wizard.WizardListener;

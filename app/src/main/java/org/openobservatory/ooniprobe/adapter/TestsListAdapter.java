@@ -1,4 +1,4 @@
-package org.openobservatory.netprobe.adapter;
+package org.openobservatory.ooniprobe.adapter;
 
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
@@ -9,14 +9,14 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.support.v7.widget.RecyclerView;
-import org.openobservatory.netprobe.activity.MainActivity;
-import org.openobservatory.netprobe.R;
-import org.openobservatory.netprobe.data.TestData;
-import org.openobservatory.netprobe.data.TestStorage;
-import org.openobservatory.netprobe.model.NetworkMeasurement;
-import org.openobservatory.netprobe.utils.Alert;
+import org.openobservatory.ooniprobe.activity.MainActivity;
+import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.data.TestData;
+import org.openobservatory.ooniprobe.data.TestStorage;
+import org.openobservatory.ooniprobe.model.NetworkMeasurement;
+import org.openobservatory.ooniprobe.utils.Alert;
 import android.support.v7.widget.PopupMenu;
-import org.openobservatory.netprobe.view.ListImageButton;
+import org.openobservatory.ooniprobe.view.ListImageButton;
 
 import java.util.ArrayList;
 

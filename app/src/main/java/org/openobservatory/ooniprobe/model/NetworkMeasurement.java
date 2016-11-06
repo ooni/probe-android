@@ -1,4 +1,4 @@
-package org.openobservatory.netprobe.model;
+package org.openobservatory.ooniprobe.model;
 
 /**
  * Created by lorenzo on 26/04/16.

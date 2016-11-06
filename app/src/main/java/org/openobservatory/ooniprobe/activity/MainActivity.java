@@ -2,7 +2,7 @@
 // Measurement-kit is free software. See AUTHORS and LICENSE for more
 // information on the copying conditions.
 
-package org.openobservatory.netprobe.activity;
+package org.openobservatory.ooniprobe.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -24,17 +24,17 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import org.openobservatory.netprobe.adapter.TestsListAdapter;
-import org.openobservatory.netprobe.data.TestData;
-import org.openobservatory.netprobe.data.TestStorage;
-import org.openobservatory.netprobe.model.NetworkMeasurement;
-import org.openobservatory.netprobe.model.OONITests;
-import org.openobservatory.netprobe.model.PortolanTests;
+import org.openobservatory.ooniprobe.adapter.TestsListAdapter;
+import org.openobservatory.ooniprobe.data.TestData;
+import org.openobservatory.ooniprobe.data.TestStorage;
+import org.openobservatory.ooniprobe.model.NetworkMeasurement;
+import org.openobservatory.ooniprobe.model.OONITests;
+import org.openobservatory.ooniprobe.model.PortolanTests;
 import org.openobservatory.measurement_kit.LoggerApi;
-import org.openobservatory.netprobe.utils.Alert;
-import org.openobservatory.netprobe.view.NotScrollableListView;
+import org.openobservatory.ooniprobe.utils.Alert;
+import org.openobservatory.ooniprobe.view.NotScrollableListView;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
-import org.openobservatory.netprobe.R;
+import org.openobservatory.ooniprobe.R;
 
 public class MainActivity extends AppCompatActivity implements Button.OnClickListener, Observer {
 

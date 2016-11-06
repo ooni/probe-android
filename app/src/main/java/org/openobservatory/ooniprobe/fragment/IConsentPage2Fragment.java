@@ -1,8 +1,6 @@
-package org.openobservatory.netprobe.fragment;
+package org.openobservatory.ooniprobe.fragment;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,21 +10,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
-import android.widget.EditText;
-import android.widget.RadioGroup;
 
-import org.openobservatory.netprobe.R;
-import org.openobservatory.netprobe.activity.InformedConsentActivity;
+import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.InformedConsentActivity;
 
-public class IConsentPage3Fragment extends Fragment {
+public class IConsentPage2Fragment extends Fragment {
 
 
     private InformedConsentActivity mActivity;
-    private RadioGroup mRadio1;
-    private RadioGroup mRadio2;
 
-    public static IConsentPage3Fragment create() {
-        IConsentPage3Fragment atf = new IConsentPage3Fragment();
+    public static IConsentPage2Fragment create() {
+        IConsentPage2Fragment atf = new IConsentPage2Fragment();
         Bundle args = new Bundle();
         atf.setArguments(args);
         return atf;
@@ -58,9 +52,11 @@ public class IConsentPage3Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_ic_page_3, container, false);
-        mRadio1 = (RadioGroup) v.findViewById(R.id.radio_1);
-        mRadio2 = (RadioGroup) v.findViewById(R.id.radio_2);
+        View v = inflater.inflate(R.layout.fragment_ic_page_2, container, false);
+        WebView webview = (WebView)v.findViewById(R.id.wv);
+        webview.getSettings().setJavaScriptEnabled(true);
+        webview.loadDataWithBaseURL("", getString(R.string.risks_text), "text/html", "UTF-8", "");
+
 
         return v;
     }
@@ -78,13 +74,7 @@ public class IConsentPage3Fragment extends Fragment {
                 mActivity.getWizard().navigatePrevious();
                 break;
             case R.id.menu_next:
-                if (mRadio1.getCheckedRadioButtonId() == R.id.answer_1_1 && mRadio2.getCheckedRadioButtonId() == R.id.answer_2_2) {
-                    mActivity.showToast(R.string.correct, true);
-                    mActivity.getWizard().navigateNext();
-
-                } else {
-                    mActivity.showToast(R.string.wrong, false);
-                }
+                mActivity.getWizard().navigateNext();
                 break;
         }
         return super.onOptionsItemSelected(item);

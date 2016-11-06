@@ -1,6 +1,5 @@
-package org.openobservatory.netprobe.data;
+package org.openobservatory.ooniprobe.data;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
@@ -12,12 +11,12 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 import org.openobservatory.measurement_kit.swig.OoniTestWrapper;
-import org.openobservatory.netprobe.activity.MainActivity;
+import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.measurement_kit.sync.PortolanSyncApi;
-import org.openobservatory.netprobe.model.NetworkMeasurement;
-import org.openobservatory.netprobe.model.OONITests;
-import org.openobservatory.netprobe.model.PortolanTests;
-import org.openobservatory.netprobe.model.UnknownTest;
+import org.openobservatory.ooniprobe.model.NetworkMeasurement;
+import org.openobservatory.ooniprobe.model.OONITests;
+import org.openobservatory.ooniprobe.model.PortolanTests;
+import org.openobservatory.ooniprobe.model.UnknownTest;
 
 /**
  * Created by lorenzo on 26/04/16.

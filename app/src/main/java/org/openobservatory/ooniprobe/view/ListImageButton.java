@@ -1,4 +1,4 @@
-package org.openobservatory.netprobe.view;
+package org.openobservatory.ooniprobe.view;
 
 /**
  * Created by lorenzo on 27/06/16.

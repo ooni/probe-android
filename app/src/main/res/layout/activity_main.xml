@@ -7,7 +7,7 @@
     android:scrollbarAlwaysDrawVerticalTrack="true"
     android:fadeScrollbars="false"
     android:background="@color/backgroundColor"
-    tools:context="org.openobservatory.netprobe.activity.MainActivity">
+    tools:context="org.openobservatory.ooniprobe.activity.MainActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -182,7 +182,7 @@
 
         </RelativeLayout>
 
-        <org.openobservatory.netprobe.view.NotScrollableListView
+        <org.openobservatory.ooniprobe.view.NotScrollableListView
             android:id="@+id/listView"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

@@ -1,4 +1,4 @@
-package org.openobservatory.netprobe.activity;
+package org.openobservatory.ooniprobe.activity;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -8,7 +8,6 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
@@ -17,7 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import org.openobservatory.netprobe.R;
+import org.openobservatory.ooniprobe.R;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 

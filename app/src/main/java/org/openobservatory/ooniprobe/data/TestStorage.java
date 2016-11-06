@@ -1,11 +1,11 @@
-package org.openobservatory.netprobe.data;
+package org.openobservatory.ooniprobe.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import com.google.gson.Gson;
 
-import org.openobservatory.netprobe.model.NetworkMeasurement;
+import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 
 import java.util.ArrayList;
 import java.util.Arrays;

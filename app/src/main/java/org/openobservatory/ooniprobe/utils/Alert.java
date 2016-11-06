@@ -1,4 +1,4 @@
-package org.openobservatory.netprobe.utils;
+package org.openobservatory.ooniprobe.utils;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -9,11 +9,10 @@ import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.openobservatory.netprobe.R;
+import org.openobservatory.ooniprobe.R;
 
 import java.util.ArrayList;
 import java.util.List;
