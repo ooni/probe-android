@@ -47,10 +47,6 @@ public class IConsentPage1Fragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_ic_page_1, container, false);
-        WebView webview = (WebView)v.findViewById(R.id.wv);
-        webview.getSettings().setJavaScriptEnabled(true);
-        webview.loadDataWithBaseURL("", getString(R.string.intro_text), "text/html", "UTF-8", "");
-
         return v;
     }
 

@@ -9,5 +9,6 @@
     <color name="successBgColor">#DFF0D8</color>
     <color name="errorTextColor">#A94442</color>
     <color name="errorBgColor">#F2DEDE</color>
+    <color name="lightBlack">#333333</color>
 
 </resources>

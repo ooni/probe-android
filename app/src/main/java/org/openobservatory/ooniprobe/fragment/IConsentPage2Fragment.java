@@ -55,9 +55,9 @@ public class IConsentPage2Fragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_ic_page_2, container, false);
         WebView webview = (WebView)v.findViewById(R.id.wv);
         webview.getSettings().setJavaScriptEnabled(true);
-        webview.loadDataWithBaseURL("", getString(R.string.risks_text), "text/html", "UTF-8", "");
-
-
+        webview.loadUrl("file:///android_asset/html/step2.html");
+        //webView.loadDataWithBaseURL("file:///android_asset/", htmlData, "text/html", "UTF-8", null);
+        //webview.loadDataWithBaseURL("", getString(R.string.risks_text), "text/html", "UTF-8", "");
         return v;
     }
 
