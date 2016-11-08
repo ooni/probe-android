@@ -12,7 +12,7 @@ import android.content.Context;
 public class LogUtils {
     public static String readLogFile(Context c, String filename) {
         String logPath = c.getFilesDir() + filename;
-        File file = new File(c.getFilesDir(), filename);
+        File file = new File(logPath);
 
         StringBuilder text = new StringBuilder();
         try {
