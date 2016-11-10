@@ -7,104 +7,144 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-<LinearLayout
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/backgroundColor" >
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
-        <TextView
-            android:id="@+id/include_ipText"
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundColor" >
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/include_ip"
-            android:textColor="@color/textColor"
-            android:textSize="18sp"
-            android:gravity="center_vertical"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignBottom="@+id/include_ipBtn"
-            android:layout_alignParentTop="true" />
-        <ToggleButton
-            android:id="@+id/include_ipBtn"
-            android:layout_alignParentRight="true"
-            android:layout_alignRight="@+id/include_ipText"
-            android:layout_width="wrap_content"
+            android:padding="10dp">
+            <TextView
+                android:id="@+id/include_ipText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/include_ip"
+                android:textColor="@color/textColor"
+                android:textSize="17sp"
+                android:gravity="center_vertical"
+                android:layout_toLeftOf="@+id/include_ipBtn"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true" />
+
+            <ToggleButton
+                android:id="@+id/include_ipBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checked="false"
-            android:gravity="center" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
-        <TextView
-            android:id="@+id/include_asnText"
-            android:layout_width="wrap_content"
+            android:padding="10dp">
+            <TextView
+                android:id="@+id/include_asnText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/include_asn"
+                android:textColor="@color/textColor"
+                android:textSize="17sp"
+                android:gravity="center_vertical"
+                android:layout_toLeftOf="@+id/include_asnBtn"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true" />
+
+            <ToggleButton
+                android:id="@+id/include_asnBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/include_asn"
-            android:textColor="@color/textColor"
-            android:textSize="18sp"
-            android:gravity="center_vertical"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignBottom="@+id/include_asnBtn"
-            android:layout_alignParentTop="true" />
-        <ToggleButton
-            android:id="@+id/include_asnBtn"
-            android:layout_alignParentRight="true"
-            android:layout_alignRight="@+id/include_asnText"
-            android:layout_width="wrap_content"
+            android:padding="10dp">
+            <TextView
+                android:id="@+id/include_ccText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/include_cc"
+                android:textColor="@color/textColor"
+                android:textSize="17sp"
+                android:gravity="center_vertical"
+                android:layout_toLeftOf="@+id/include_ccBtn"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true" />
+
+            <ToggleButton
+                android:id="@+id/include_ccBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checked="true"
-            android:gravity="center" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
-        <TextView
-            android:id="@+id/advanced_settingsText"
-            android:layout_width="wrap_content"
+            android:padding="10dp">
+            <TextView
+                android:id="@+id/upload_resultsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/upload_results"
+                android:textColor="@color/textColor"
+                android:textSize="17sp"
+                android:gravity="center_vertical"
+                android:layout_toLeftOf="@+id/upload_resultsBtn"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true" />
+
+            <ToggleButton
+                android:id="@+id/upload_resultsBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/advanced_settings"
-            android:textColor="@color/textColor"
-            android:textSize="18sp"
-            android:gravity="center_vertical"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/collector_addressLayout"
-        android:clickable="true"
-        android:padding="10dp">
-        <TextView
-            android:id="@+id/collector_addressText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/collector_address"
-            android:textColor="@color/textColor"
-            android:textSize="18sp"
-            android:gravity="center_vertical"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true" />
-        <TextView
-            android:id="@+id/collector_address_subText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/collector_address"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:gravity="center_vertical"
-            android:layout_below="@+id/collector_addressText"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-    </RelativeLayout>
-</LinearLayout>
+            android:id="@+id/collector_addressLayout"
+            android:clickable="true"
+            android:padding="10dp">
+            <TextView
+                android:id="@+id/collector_addressText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/collector_address"
+                android:textColor="@color/textColor"
+                android:textSize="17sp"
+                android:gravity="center_vertical"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true" />
+            <TextView
+                android:id="@+id/collector_address_subText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/collector_address"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:gravity="center_vertical"
+                android:layout_below="@+id/collector_addressText"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+    </LinearLayout>
 </ScrollView>

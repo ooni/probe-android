@@ -30,7 +30,7 @@
         android:background="@android:color/transparent"
         android:src="@drawable/log_icon" />
 
-    <org.openobservatory.netprobe.view.ListImageButton
+    <org.openobservatory.ooniprobe.view.ListImageButton
         android:id="@+id/test_popupmenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

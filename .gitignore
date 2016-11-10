@@ -8,3 +8,5 @@
 /local.properties
 /measurement_kit_android-*.tar.bz2
 /measurement_kit_android-*.tar.bz2.asc
+/.idea/vcs.xml
+/.idea/encodings.xml

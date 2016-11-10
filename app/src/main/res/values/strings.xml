@@ -1,26 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Loco xml export: Android string resources
+ Project: Localizable.strings conversion
+ Release: Working copy
+ Locale: en, English
+ Exported by: Unregistered user
+ Exported at: Tue, 08 Nov 2016 11:50:35 +0000
+-->
 <resources>
-    <string name="app_name">NetProbe</string>
-    <string name="testing_history">Testing history</string>
-    <string name="pending_tests">Tests</string>
+    <!-- information on the copying conditions. -->
+    <string name="app_name">ooniprobe</string>
+    <string name="testing_history">Tests</string>
+    <string name="select_test">Select test</string>
     <string name="run_test">Run test</string>
     <string name="dns_injection">DNS Injection</string>
     <string name="tcp_connect">TCP Connect</string>
     <string name="http_invalid_request_line">HTTP Invalid request line</string>
     <string name="http_header_field_manipulation">HTTP Header field manipulation</string>
+    <string name="web_connectivity">Web Connectivity</string>
+    <string name="ndt_test">Ndt Test</string>
     <string name="check_port">Check port</string>
     <string name="traceroute">Traceroute</string>
     <string name="running_tests">Running tests</string>
     <string name="finished_tests">Finished tests</string>
     <string name="settings">Settings</string>
-    <string name="include_ip">Include IP</string>
-    <string name="include_asn">Include asn</string>
-    <string name="gps_position">GPS position</string>
-    <string name="advanced_settings">Advanced settings</string>
     <string name="collector_address">Collector Address</string>
-    <string name="bouncer_address">Bouncer Address</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
     <string name="delete">Delete</string>
     <string name="test_result">Test result</string>
     <string name="change">Change</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="wrong">Your answers to one or more of the quiz questions is wrong. Please read the Risks documentation and try again.</string>
+    <string name="correct">You answered to the quiz correctly. Carry on.</string>
+    <string name="configure">Configure</string>
+    <string name="ooniprobe_configured">Successfully configured ooniprobe. You are all set to go!</string>
+    <string name="introduction">Introduction</string>
+    <string name="risks">Risks</string>
+    <string name="quiz">Quiz</string>
+    <string name="configuration">Configuration</string>
+    <string name="greetings">Greetings!</string>
+    <string name="intro_text_1">This setup wizard will help you get started with ooniprobe. It should take about 5 minutes.</string>
+    <string name="intro_text_2">The Open Observatory of Network Interference (OONI) works to fight network censorship and surveillance.</string>
+    <string name="intro_text_3">By running this software, you may be putting yourself at risk.</string>
+    <string name="intro_text_4">The next two steps of this wizard will walk you through some of the potential dangers. Please bear with us, as this is important!</string>
+    <string name="quiz_text">Please answer the following questions to ensure you have understood what ooniprobe does and that you are aware of risks associated with running the software.</string>
+    <string name="header_1">In regards to how detectable ooniprobe is, which of the following statements is true?</string>
+    <string name="answer_1_1">Anyone monitoring my internet activity (e.g. ISP, government or employer) might be able to see that I am running ooniprobe, even though OONI takes precautions to make this hard</string>
+    <string name="answer_1_2">Anyone monitoring my internet activity (e.g. ISP, government or employer) will not be able to see that I am running ooniprobe</string>
+    <string name="answer_1_3">ooniprobe is designed to protect my privacy and therefore my use of ooniprobe cannot be detected</string>
+    <string name="header_2">In regards to the publication of measurements, which of the following statements is true?</string>
+    <string name="answer_2_1">My measurements will not by default get published on OONI Explorer</string>
+    <string name="answer_2_2">My measurements will by default get published on OONI Explorer and might include personally-identifiable information.</string>
+    <string name="answer_2_3">My measurements will by default get published to OONI Explorer and will never include any personally-identifiable information</string>
+    <string name="configuration_text">Certain aspects of how ooniprobe operates can be customized. Usually the default values are the best option, so only change these if you really have to.</string>
+    <string name="include_ip">Should we include your IP address in results?</string>
+    <string name="include_asn">Should we include your network information in the reports (note: disabling this will make it much harder for us to draw conclusions from the measurements)?</string>
+    <string name="include_cc">Should we include your country name in the reports (note: disabling this will make it much harder for us to draw conclusions from the measurements)?</string>
+    <string name="upload_results">Should we upload your results to the default ooni collector?</string>
 </resources>
