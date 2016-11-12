@@ -66,7 +66,7 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
     @Override
     public void onBindViewHolder(TestsListAdapter.ViewHolder holder, int position) {
         final NetworkMeasurement i = values.get(position);
-        Typeface font = Typeface.createFromAsset(mActivity.getAssets(), "fonts/Inconsolata.otf");
+        Typeface font = Typeface.createFromAsset(mActivity.getAssets(), "fonts/HelveticaNeue-Roman.otf");
         holder.txtTitle.setTypeface(font);
         holder.txtTitle.setText(i.testName);
         if (i.completed){

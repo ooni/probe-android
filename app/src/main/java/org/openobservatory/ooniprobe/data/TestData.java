@@ -59,7 +59,8 @@ public class TestData extends Observable {
 
         // The app now tries to get DNS from the device. Upon fail, it uses
         // Google DNS resolvers
-        String nameserver_ = "8.8.8.8";
+        String nameserver_ = "8.8.4.4:53";
+
         ArrayList<String> nameservers = getDNS();
         if (!nameservers.isEmpty()) {
             for (String s : getDNS()) {
@@ -68,7 +69,8 @@ public class TestData extends Observable {
                 break;
             }
         }
-        final String nameserver = nameserver_+":53";
+        final String nameserver = nameserver_;
+        Log.v(TAG, "Final nameserver: " + nameserver);
 
         Log.v(TAG, "doNetworkMeasurements " + testName + "...");
 
@@ -129,11 +131,11 @@ public class TestData extends Observable {
                         Log.v(TAG, "xx " + ca_cert);
                         OoniTestWrapper w = new OoniTestWrapper("tcp_connect");
                         w.use_logcat();
-                        w.set_options("port", "80");
                         w.set_input_filepath(inputPath);
                         w.set_output_filepath(outputPath);
                         w.set_error_filepath(logPath);
                         w.set_verbosity(7);
+                        w.set_options("port", "80");
                         w.set_options("dns/nameserver", nameserver);
                         w.set_options("net/ca_bundle_path", ca_cert);
                         w.set_options("geoip_country_path", geoip_country);
@@ -150,12 +152,12 @@ public class TestData extends Observable {
                         Log.v(TAG, "xx " + ca_cert);
                         OoniTestWrapper w = new OoniTestWrapper("web_connectivity");
                         w.use_logcat();
-                        w.set_options("port", "80");
                         w.set_input_filepath(inputUrlsPath);
                         w.set_output_filepath(outputPath);
                         w.set_error_filepath(logPath);
                         w.set_verbosity(7);
                         w.set_options("backend", "https://a.web-connectivity.th.ooni.io:4442");
+                        w.set_options("port", "80");
                         w.set_options("dns/nameserver", nameserver);
                         w.set_options("nameserver", nameserver);
                         w.set_options("net/ca_bundle_path", ca_cert);

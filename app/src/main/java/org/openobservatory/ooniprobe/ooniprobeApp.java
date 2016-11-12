@@ -12,7 +12,7 @@ public class ooniprobeApp extends Application {
     public void onCreate() {
         super.onCreate();
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/Inconsolata.otf")
+                .setDefaultFontPath("fonts/HelveticaNeue-Roman.otf")
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );
