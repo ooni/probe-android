@@ -80,6 +80,7 @@ public class IConsentPage3Fragment extends Fragment {
 
                 } else {
                     mActivity.showToast(R.string.wrong, false);
+                    mActivity.getWizard().navigatePrevious();
                 }
                 break;
         }

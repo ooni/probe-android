@@ -11,12 +11,15 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.view.View;
 import android.util.Log;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -177,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                 break;
             default:
                 Button b = (Button) findViewById(v.getId());
-                b.setCompoundDrawablesWithIntrinsicBounds(R.drawable.selected, 0, 0, 0);
+                b.setCompoundDrawablesWithIntrinsicBounds(R.drawable.radio_button_on, 0, 0, 0);
                 break;
         }
         selected = v.getId();
@@ -219,7 +222,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
     private void deselectButtons(){
         for( Button b : buttons ) {
-            b.setCompoundDrawablesWithIntrinsicBounds(R.drawable.not_selected, 0, 0, 0);
+            b.setCompoundDrawablesWithIntrinsicBounds(R.drawable.radio_button_off, 0, 0, 0);
         }
     }
 
@@ -258,12 +261,25 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == InformedConsentActivity.REQUEST_CODE){
-            if (resultCode != InformedConsentActivity.RESULT_CODE_COMPLETED)
+            if (resultCode != InformedConsentActivity.RESULT_CODE_COMPLETED) {
                 finish();
+            }
             else {
                 PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("first_run", false).apply();
+                showToast(R.string.ooniprobe_configured, true);
             }
         }
+    }
+
+    public void showToast(int string, boolean success){
+        Toast toast = Toast.makeText(this, string, Toast.LENGTH_LONG);
+        View view = toast.getView();
+        view.setBackgroundResource(success ? R.drawable.success_toast_bg : R.drawable.error_toast_bg);
+        TextView text = (TextView) view.findViewById(android.R.id.message);
+        text.setGravity(Gravity.CENTER);;
+        text.setTextColor(getResources().getColor(success ? R.color.successTextColor : R.color.errorTextColor));
+        /*here you can do anything with text*/
+        toast.show();
     }
 
     private static final String TAG = "main-activity";

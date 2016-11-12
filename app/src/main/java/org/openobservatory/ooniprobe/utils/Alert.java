@@ -72,7 +72,7 @@ public class Alert {
         final String jsonContent = LogUtils.readLogFile(c, jsonfile);
         final String[] parts = jsonContent.split("\n");
         wv.addJavascriptInterface(new InjectedJSON(parts[idx]), "MeasurementJSON");
-        wv.loadUrl("file:///android_asset/html/webui/index.html");
+        wv.loadUrl("file:///android_asset/webui/index.html");
 
         AlertDialog.Builder alert = new AlertDialog.Builder(c);
         alert.setView(myScrollView);
