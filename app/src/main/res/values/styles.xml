@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="textColorPrimaryDisableOnly">@color/lightBlack</item>
+
     </style>
 
     <style name="ooniActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
