@@ -1,12 +1,43 @@
+#mk files
+measurement_kit_android-*.tar.bz2
+measurement_kit_android-*.tar.bz2.asc
+app/src/main/java/org/openobservatory/measurement_kit/
+
+# Built application files
+/*/build/
+build/
+
+# Crashlytics configuations
+com_crashlytics_export_strings.xml
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Gradle generated files
+.gradle/
+
+# Signing files
+.signing/
+
+# User-specific configurations
+.idea/libraries/
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/.name
+.idea/compiler.xml
+.idea/copyright/profiles_settings.xml
+.idea/encodings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/scopes/scope_settings.xml
+.idea/vcs.xml
+*.iml
+
+# OS-specific files
 .DS_Store
-.gradle
-/.idea/libraries
-/.idea/workspace.xml
-/app/src/main/java/org/openobservatory/measurement_kit/
-/build
-/captures
-/local.properties
-/measurement_kit_android-*.tar.bz2
-/measurement_kit_android-*.tar.bz2.asc
-/.idea/vcs.xml
-/.idea/encodings.xml
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
