@@ -25,11 +25,13 @@ public class TestData extends Observable {
     private static final String TAG = "TestData";
     private static TestData instance;
     private static TestStorage ts;
+    public static ArrayList<String> runningTests;
 
     public static TestData getInstance() {
         if (instance == null) {
             instance = new TestData();
             ts = new TestStorage();
+            runningTests = new ArrayList<String>();
         }
         return instance;
     }
@@ -55,6 +57,7 @@ public class TestData extends Observable {
         final String collector_address = preferences.getString("collector_address", "https://measurement-kit-collector.herokuapp.com");
 
         ts.addTest(activity, currentTest);
+        runningTests.add(currentTest.testName);
         TestData.getInstance().notifyObservers();
 
         // The app now tries to get DNS from the device. Upon fail, it uses
@@ -211,6 +214,7 @@ public class TestData extends Observable {
 
             protected void onPostExecute(Boolean success) {
                 ts.setCompleted(activity, currentTest);
+                runningTests.remove(currentTest.testName);
                 TestData.getInstance().notifyObservers();
                 Log.v(TAG, "doNetworkMeasurements " + testName + "... done");
             }

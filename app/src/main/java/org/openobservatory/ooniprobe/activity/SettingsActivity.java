@@ -33,7 +33,7 @@ public class SettingsActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_settings);
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        SwitchCompat include_ipButton = (SwitchCompat) findViewById(R.id.include_ipBtn);
+        SwitchCompat include_ipButton = (SwitchCompat) findViewById(R.id.ck_include_ip);
         include_ipButton.setChecked(preferences.getBoolean("include_ip", false));
         include_ipButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -47,7 +47,7 @@ public class SettingsActivity extends AppCompatActivity  {
             }
         });
 
-        SwitchCompat include_asnButton = (SwitchCompat) findViewById(R.id.include_asnBtn);
+        SwitchCompat include_asnButton = (SwitchCompat) findViewById(R.id.ck_include_asn);
         include_asnButton.setChecked(preferences.getBoolean("include_asn", true));
         include_asnButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -61,7 +61,7 @@ public class SettingsActivity extends AppCompatActivity  {
             }
         });
 
-        SwitchCompat include_ccButton = (SwitchCompat) findViewById(R.id.include_ccBtn);
+        SwitchCompat include_ccButton = (SwitchCompat) findViewById(R.id.ck_include_country);
         include_ccButton.setChecked(preferences.getBoolean("include_cc", true));
         include_ccButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -90,7 +90,7 @@ public class SettingsActivity extends AppCompatActivity  {
         else
             collector_addressLayout.setVisibility(View.GONE);
 
-        SwitchCompat upload_resultsButton = (SwitchCompat) findViewById(R.id.upload_resultsBtn);
+        SwitchCompat upload_resultsButton = (SwitchCompat) findViewById(R.id.ck_upload_results);
         upload_resultsButton.setChecked(preferences.getBoolean("upload_results", true));
         upload_resultsButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

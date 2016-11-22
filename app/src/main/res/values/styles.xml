@@ -1,16 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:actionBarStyle" tools:targetApi="11">@style/ooniActionBar</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="textColorPrimaryDisableOnly">@color/lightBlack</item>
-
+        <item name="colorPrimary">@color/color_dark_blue</item>
+        <item name="colorPrimaryDark">@color/color_dark_blue</item>
+        <item name="colorAccent">@color/color_ooni_blue</item>
     </style>
 
-    <style name="ooniActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:background">@color/color_dark_blue</item>
-    </style>
 </resources>

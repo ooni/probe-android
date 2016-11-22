@@ -9,8 +9,8 @@ import android.util.Log;
 import org.openobservatory.measurement_kit.sync.PortolanSyncApi;
 
 public class PortolanTests {
-    public static final String CHECK_PORT = "portolan/check-port";
-    public static final String TRACEROUTE = "portolan/traceroute";
+    public static final String CHECK_PORT = "check_port";
+    public static final String TRACEROUTE = "traceroute";
 
     public static void runTraceroute() {
         Log.v(TAG, "runTraceroute...");

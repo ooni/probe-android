@@ -17,6 +17,7 @@
             android:id="@+id/ck_include_ip"
             android:text="@string/include_ip"
             android:checked="false"
+            android:padding="10dp"
             android:textColor="@color/lightBlack" />
 
         <android.support.v7.widget.SwitchCompat
@@ -25,6 +26,7 @@
             android:id="@+id/ck_include_asn"
             android:text="@string/include_asn"
             android:checked="true"
+            android:padding="10dp"
             android:textColor="@color/lightBlack" />
 
         <android.support.v7.widget.SwitchCompat
@@ -33,6 +35,7 @@
             android:id="@+id/ck_include_country"
             android:text="@string/include_cc"
             android:checked="true"
+            android:padding="10dp"
             android:textColor="@color/lightBlack" />
 
         <android.support.v7.widget.SwitchCompat
@@ -41,6 +44,7 @@
             android:id="@+id/ck_upload_results"
             android:text="@string/upload_results"
             android:checked="true"
+            android:padding="10dp"
             android:textColor="@color/lightBlack" />
 
         <RelativeLayout
@@ -48,7 +52,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/collector_addressLayout"
             android:clickable="true"
-            android:paddingTop="3dp" >
+            android:padding="10dp">
             <TextView
                 android:id="@+id/collector_addressText"
                 android:layout_width="wrap_content"

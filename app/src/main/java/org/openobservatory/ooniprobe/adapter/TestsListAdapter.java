@@ -1,6 +1,8 @@
 package org.openobservatory.ooniprobe.adapter;
 
+import android.content.Context;
 import android.graphics.Typeface;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +21,8 @@ import android.support.v7.widget.PopupMenu;
 import org.openobservatory.ooniprobe.view.ListImageButton;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * Created by lorenzo on 26/04/16.
@@ -68,7 +72,11 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
         final NetworkMeasurement i = values.get(position);
         Typeface font = Typeface.createFromAsset(mActivity.getAssets(), "fonts/HelveticaNeue-Roman.otf");
         holder.txtTitle.setTypeface(font);
-        holder.txtTitle.setText(i.testName);
+        holder.txtTitle.setText(mActivity.getString(getStringIdentifier(mActivity, i.testName)));
+        if (i.completed) {
+            holder.txtTimestamp.setTypeface(font);
+            holder.txtTimestamp.setText(getDate(i.test_id));
+        }
         if (i.completed){
             // Set the item as the button's tag so it can be retrieved later
             holder.popupButton.setTag(values.get(position));
@@ -115,6 +123,7 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView txtTitle;
+        public TextView txtTimestamp;
         public ProgressBar progressBar;
         public ImageButton logButton;
         public ListImageButton popupButton;
@@ -123,6 +132,7 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
             super(itemView);
             itemView.setOnClickListener(this);
             txtTitle = (TextView) itemView.findViewById(R.id.test_title);
+            txtTimestamp = (TextView) itemView.findViewById(R.id.test_timestamp);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar);
             logButton = (ImageButton) itemView.findViewById(R.id.log_button);
             popupButton = (ListImageButton) itemView.findViewById(R.id.test_popupmenu);
@@ -170,6 +180,18 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
         });
         // Finally show the PopupMenu
         popup.show();
+    }
+
+    private String getDate(long time) {
+        Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+        cal.setTimeInMillis(time);
+        String date = DateFormat.format("yyyy-MM-dd HH:mm:ss", cal).toString();
+        return date;
+    }
+
+    public static int getStringIdentifier(Context context, String name) {
+        //TODO could cause a crash if a test name is not translated or not present in string file
+        return context.getResources().getIdentifier(name, "string", context.getPackageName());
     }
 }
 

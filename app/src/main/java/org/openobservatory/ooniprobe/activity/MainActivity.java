@@ -21,6 +21,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import junit.framework.Test;
+
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -62,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         mTestsListAdapter = new TestsListAdapter(this,  new ArrayList<NetworkMeasurement>());
         mTestsListView.setAdapter(mTestsListAdapter);
         mTestsListView.setLayoutManager(new LinearLayoutManager(this));
-        mTestsListAdapter.setData(ts.loadTests(this));
+        mTestsListAdapter.setData(ts.loadTestsReverse(this));
 
         TestData.getInstance().addObserver(this);
 
@@ -216,8 +218,9 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     @Override
     public void update(Observable observable, Object data) {
         if (mTestsListAdapter != null) {
-            mTestsListAdapter.setData(ts.loadTests(this));
+            mTestsListAdapter.setData(ts.loadTestsReverse(this));
         }
+        System.out.println("runningTests "+ TestData.getInstance().runningTests);
     }
 
     private void deselectButtons(){
@@ -278,7 +281,6 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         TextView text = (TextView) view.findViewById(android.R.id.message);
         text.setGravity(Gravity.CENTER);;
         text.setTextColor(getResources().getColor(success ? R.color.successTextColor : R.color.errorTextColor));
-        /*here you can do anything with text*/
         toast.show();
     }
 

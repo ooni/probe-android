@@ -5,10 +5,10 @@
 package org.openobservatory.ooniprobe.model;
 
 public class OONITests {
-    public static final String DNS_INJECTION = "ooni/dns-injection";
-    public static final String HTTP_INVALID_REQUEST_LINE = "ooni/http-invalid-request-line";
-    public static final String TCP_CONNECT = "ooni/tcp-connect";
-    public static final String WEB_CONNECTIVITY = "ooni/web-connectivity";
-    public static final String NDT_TEST = "ooni/ndt-test";
+    public static final String DNS_INJECTION = "dns_injection";
+    public static final String HTTP_INVALID_REQUEST_LINE = "http_invalid_request_line";
+    public static final String TCP_CONNECT = "tcp_connect";
+    public static final String WEB_CONNECTIVITY = "web_connectivity";
+    public static final String NDT_TEST = "ndt_test";
 
 }

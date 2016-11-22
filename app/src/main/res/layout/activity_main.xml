@@ -6,7 +6,7 @@
     android:scrollbars="vertical"
     android:scrollbarAlwaysDrawVerticalTrack="true"
     android:fadeScrollbars="false"
-    android:background="@color/backgroundColor"
+    android:background="@color/color_white"
     tools:context="org.openobservatory.ooniprobe.activity.MainActivity">
 
     <LinearLayout
@@ -25,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/run_test"
-                android:textColor="@color/textColor"
+                android:textColor="@color/lightBlack"
                 android:textSize="18sp"
                 android:textAllCaps="true" />
 
@@ -41,7 +41,7 @@
                 android:drawableLeft="@drawable/radio_button_off"
                 android:drawablePadding="10sp"
                 android:text="@string/tcp_connect"
-                android:textColor="@color/textColor" />
+                android:textColor="@color/lightBlack" />
 
             <ImageButton
                 android:id="@+id/tcp_connect_info_button"
@@ -66,7 +66,7 @@
                 android:drawableLeft="@drawable/radio_button_off"
                 android:drawablePadding="10sp"
                 android:text="@string/dns_injection"
-                android:textColor="@color/textColor" />
+                android:textColor="@color/lightBlack" />
 
             <ImageButton
                 android:id="@+id/dns_injection_info_button"
@@ -91,7 +91,7 @@
                 android:drawableLeft="@drawable/radio_button_off"
                 android:drawablePadding="10sp"
                 android:text="@string/http_invalid_request_line"
-                android:textColor="@color/textColor" />
+                android:textColor="@color/lightBlack" />
 
             <ImageButton
                 android:id="@+id/web_connectivity_info_button"
@@ -116,7 +116,7 @@
                 android:drawableLeft="@drawable/radio_button_off"
                 android:drawablePadding="10sp"
                 android:text="@string/web_connectivity"
-                android:textColor="@color/textColor" />
+                android:textColor="@color/lightBlack" />
 
             <Button
                 android:id="@+id/ndt_test_button"
@@ -130,7 +130,7 @@
                 android:drawableLeft="@drawable/radio_button_off"
                 android:drawablePadding="10sp"
                 android:text="@string/ndt_test"
-                android:textColor="@color/textColor" />
+                android:textColor="@color/lightBlack" />
 
             <ImageButton
                 android:id="@+id/http_invalid_request_line_info_button"
@@ -155,7 +155,7 @@
                 android:drawableLeft="@drawable/radio_button_off"
                 android:drawablePadding="10sp"
                 android:text="@string/check_port"
-                android:textColor="@color/textColor" />
+                android:textColor="@color/lightBlack" />
 
             <Button
                 android:id="@+id/traceroute_button"
@@ -169,7 +169,7 @@
                 android:drawableLeft="@drawable/radio_button_off"
                 android:drawablePadding="10sp"
                 android:text="@string/traceroute"
-                android:textColor="@color/textColor" />
+                android:textColor="@color/lightBlack" />
 
             <ImageButton
                 android:id="@+id/run_test_button"
