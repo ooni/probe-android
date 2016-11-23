@@ -29,4 +29,11 @@ public class LogUtils {
         }
         return text.toString();
     }
+
+    public static String[] getLogParts(Context c, String jsonfile){
+        final String jsonContent = LogUtils.readLogFile(c, jsonfile);
+        final String[] parts = jsonContent.split("\n");
+        return parts;
+    }
+
 }

@@ -1,9 +1,11 @@
 package org.openobservatory.ooniprobe.data;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.webkit.JavascriptInterface;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -17,6 +19,7 @@ import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 import org.openobservatory.ooniprobe.model.OONITests;
 import org.openobservatory.ooniprobe.model.PortolanTests;
 import org.openobservatory.ooniprobe.model.UnknownTest;
+import org.openobservatory.ooniprobe.utils.LogUtils;
 
 /**
  * Created by lorenzo on 26/04/16.

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.data.TestData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,7 +71,7 @@ public class Alert {
         WebView wv = (WebView) myScrollView.findViewById(R.id.webview);
         wv.getSettings().setJavaScriptEnabled(true);
         final String jsonContent = LogUtils.readLogFile(c, jsonfile);
-        final String[] parts = jsonContent.split("\n");
+        final String[] parts = LogUtils.getLogParts(c, jsonfile);
         wv.addJavascriptInterface(new InjectedJSON(parts[idx]), "MeasurementJSON");
         wv.loadUrl("file:///android_asset/webui/index.html");
 
@@ -167,6 +168,7 @@ public class Alert {
 
         return json.toString();
     }
+
 
     public static class InjectedJSON {
         private String jsonData;

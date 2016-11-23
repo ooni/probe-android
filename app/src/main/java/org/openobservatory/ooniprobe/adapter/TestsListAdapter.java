@@ -18,6 +18,8 @@ import org.openobservatory.ooniprobe.data.TestStorage;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 import org.openobservatory.ooniprobe.utils.Alert;
 import android.support.v7.widget.PopupMenu;
+
+import org.openobservatory.ooniprobe.utils.LogUtils;
 import org.openobservatory.ooniprobe.view.ListImageButton;
 
 import java.util.ArrayList;
@@ -73,11 +75,17 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
         Typeface font = Typeface.createFromAsset(mActivity.getAssets(), "fonts/HelveticaNeue-Roman.otf");
         holder.txtTitle.setTypeface(font);
         holder.txtTitle.setText(mActivity.getString(getStringIdentifier(mActivity, i.testName)));
-        if (i.completed) {
+        if (i.completed){
             holder.txtTimestamp.setTypeface(font);
             holder.txtTimestamp.setText(getDate(i.test_id));
-        }
-        if (i.completed){
+            final String[] parts = LogUtils.getLogParts(mActivity, i.json_file);
+            if (parts.length > 1)
+                holder.statusButton.setImageResource(R.drawable.test_multi);
+            else if (parts.length == 0)
+                holder.statusButton.setImageResource(R.drawable.test_aborted);
+            else
+                holder.statusButton.setImageResource(android.R.color.transparent);
+
             // Set the item as the button's tag so it can be retrieved later
             holder.popupButton.setTag(values.get(position));
             // Set the fragment instance as the OnClickListener
@@ -94,7 +102,7 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
                     });
                 }
             });
-            holder.logButton.setOnClickListener(
+            holder.itemView.setOnClickListener(
                     new ImageButton.OnClickListener() {
                         public void onClick(View v) {
                             Alert.resultWebView(mActivity, i.json_file);
@@ -125,7 +133,7 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
         public TextView txtTitle;
         public TextView txtTimestamp;
         public ProgressBar progressBar;
-        public ImageButton logButton;
+        public ImageButton statusButton;
         public ListImageButton popupButton;
 
         public ViewHolder(View itemView) {
@@ -134,7 +142,7 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
             txtTitle = (TextView) itemView.findViewById(R.id.test_title);
             txtTimestamp = (TextView) itemView.findViewById(R.id.test_timestamp);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar);
-            logButton = (ImageButton) itemView.findViewById(R.id.log_button);
+            statusButton = (ImageButton) itemView.findViewById(R.id.status_button);
             popupButton = (ListImageButton) itemView.findViewById(R.id.test_popupmenu);
         }
 
