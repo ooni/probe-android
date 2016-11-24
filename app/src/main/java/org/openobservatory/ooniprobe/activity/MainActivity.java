@@ -45,9 +45,13 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
     Button buttons[] = new Button[7];
     int selected;
-    private NotScrollableListView mTestsListView;
-    private TestsListAdapter mTestsListAdapter;
+    private NotScrollableListView mRunningTestsListView;
+    private NotScrollableListView mFinishedTestsListView;
+    private TestsListAdapter mRunningTestsListAdapter;
+    private TestsListAdapter mFinishedTestsListAdapter;
     private static TestStorage ts;
+    private ArrayList runningTests;
+    private ArrayList finishedTests;
 
     static {
         System.loadLibrary("measurement_kit");
@@ -60,11 +64,19 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
         ts = new TestStorage();
 
-        mTestsListView = (NotScrollableListView) findViewById(R.id.listView);
-        mTestsListAdapter = new TestsListAdapter(this,  new ArrayList<NetworkMeasurement>());
-        mTestsListView.setAdapter(mTestsListAdapter);
-        mTestsListView.setLayoutManager(new LinearLayoutManager(this));
-        mTestsListAdapter.setData(ts.loadTestsReverse(this));
+        finishedTests = ts.loadTestsReverse(this);
+
+        mFinishedTestsListView = (NotScrollableListView) findViewById(R.id.finishedTests);
+        mFinishedTestsListAdapter = new TestsListAdapter(this, new ArrayList<NetworkMeasurement>());
+        mFinishedTestsListView.setAdapter(mFinishedTestsListAdapter);
+        mFinishedTestsListView.setLayoutManager(new LinearLayoutManager(this));
+        mFinishedTestsListAdapter.setData(finishedTests);
+
+        mRunningTestsListView = (NotScrollableListView) findViewById(R.id.runningTests);
+        mRunningTestsListAdapter = new TestsListAdapter(this, new ArrayList<NetworkMeasurement>());
+        mRunningTestsListView.setAdapter(mRunningTestsListAdapter);
+        mRunningTestsListView.setLayoutManager(new LinearLayoutManager(this));
+        mRunningTestsListAdapter.setData(runningTests);
 
         TestData.getInstance().addObserver(this);
 
@@ -217,9 +229,10 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
     @Override
     public void update(Observable observable, Object data) {
-        if (mTestsListAdapter != null) {
-            mTestsListAdapter.setData(ts.loadTestsReverse(this));
+        if (mFinishedTestsListAdapter != null) {
+            mFinishedTestsListAdapter.setData(ts.loadTestsReverse(this));
         }
+        //TODO come prendere l'oggetto test.
         System.out.println("runningTests "+ TestData.getInstance().runningTests);
     }
 

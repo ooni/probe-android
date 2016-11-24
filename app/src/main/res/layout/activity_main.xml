@@ -183,7 +183,14 @@
         </RelativeLayout>
 
         <org.openobservatory.ooniprobe.view.NotScrollableListView
-            android:id="@+id/listView"
+            android:id="@+id/runningTests"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp" />
+
+        <org.openobservatory.ooniprobe.view.NotScrollableListView
+            android:id="@+id/finishedTests"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:divider="@android:color/transparent"

@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ProgressBar;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v7.widget.RecyclerView;
 import org.openobservatory.ooniprobe.activity.MainActivity;
@@ -48,26 +48,22 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
     public TestsListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v;
         switch (viewType) {
-            case 0:
-                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_pending_test, parent, false);
-                break;
-            case 1:
-                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_finished_test, parent, false);
-                break;
             default:
-                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_pending_test, parent, false);
+                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_finished_test, parent, false);
                 break;
         }
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
 
+    /*
     @Override
     public int getItemViewType(int position) {
         NetworkMeasurement i = values.get(position);
         if (i.completed) return 1;
         else return 0;
     }
+*/
 
     @Override
     public void onBindViewHolder(TestsListAdapter.ViewHolder holder, int position) {
@@ -80,11 +76,11 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
             holder.txtTimestamp.setText(getDate(i.test_id));
             final String[] parts = LogUtils.getLogParts(mActivity, i.json_file);
             if (parts.length > 1)
-                holder.statusButton.setImageResource(R.drawable.test_multi);
+                holder.statusImage.setImageResource(R.drawable.test_multi);
             else if (parts.length == 0)
-                holder.statusButton.setImageResource(R.drawable.test_aborted);
+                holder.statusImage.setImageResource(R.drawable.test_aborted);
             else
-                holder.statusButton.setImageResource(android.R.color.transparent);
+                holder.statusImage.setImageResource(android.R.color.transparent);
 
             // Set the item as the button's tag so it can be retrieved later
             holder.popupButton.setTag(values.get(position));
@@ -129,11 +125,15 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
         notifyDataSetChanged();
     }
 
+    public void addTest(NetworkMeasurement test) {
+        values.add(test);
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView txtTitle;
         public TextView txtTimestamp;
-        public ProgressBar progressBar;
-        public ImageButton statusButton;
+        public ImageView statusImage;
         public ListImageButton popupButton;
 
         public ViewHolder(View itemView) {
@@ -141,8 +141,7 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
             itemView.setOnClickListener(this);
             txtTitle = (TextView) itemView.findViewById(R.id.test_title);
             txtTimestamp = (TextView) itemView.findViewById(R.id.test_timestamp);
-            progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar);
-            statusButton = (ImageButton) itemView.findViewById(R.id.status_button);
+            statusImage = (ImageView) itemView.findViewById(R.id.status_image);
             popupButton = (ListImageButton) itemView.findViewById(R.id.test_popupmenu);
         }
 
