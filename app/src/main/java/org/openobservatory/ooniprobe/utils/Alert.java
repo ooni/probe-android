@@ -18,6 +18,8 @@ import org.openobservatory.ooniprobe.data.TestData;
 import java.util.ArrayList;
 import java.util.List;
 
+import us.feras.mdv.MarkdownView;
+
 /**
  * Created by lorenzo on 27/04/16.
  */
@@ -51,6 +53,21 @@ public class Alert {
         wv.loadUrl("file:///android_asset/html/" + htmlfile + ".html");
         new AlertDialog.Builder(c).setView(myScrollView)
                 .setTitle("Log View")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @TargetApi(11)
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+
+                }).show();
+    }
+
+    public static void alertMdWebView(Context c, String htmlfile) {
+        LayoutInflater inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View myScrollView = inflater.inflate(R.layout.alert_md_webview, null, false);
+        MarkdownView markdownView = (MarkdownView) myScrollView.findViewById(R.id.markdownView);
+        markdownView.loadMarkdownFile("file:///android_asset/md/" + htmlfile + ".md","file:///android_asset/html/setup-mobile.css");
+        new AlertDialog.Builder(c).setView(myScrollView)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @TargetApi(11)
                     public void onClick(DialogInterface dialog, int id) {

@@ -27,4 +27,5 @@ dependencies {
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
     compile 'com.google.code.gson:gson:2.4'
     compile 'me.panavtec:wizard:1.2'
+    compile 'us.feras.mdv:markdownview:1.1.0'
 }

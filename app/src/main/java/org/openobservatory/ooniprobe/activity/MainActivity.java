@@ -27,9 +27,11 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.Observable;
 import java.util.Observer;
 
+import org.openobservatory.ooniprobe.adapter.TestsAvailableListAdapter;
 import org.openobservatory.ooniprobe.adapter.TestsListAdapter;
 import org.openobservatory.ooniprobe.adapter.TestsRunningListAdapter;
 import org.openobservatory.ooniprobe.data.TestData;
@@ -43,12 +45,12 @@ import org.openobservatory.ooniprobe.view.NotScrollableListView;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import org.openobservatory.ooniprobe.R;
 
-public class MainActivity extends AppCompatActivity implements Button.OnClickListener, Observer {
+public class MainActivity extends AppCompatActivity implements Observer {
 
-    Button buttons[] = new Button[7];
-    int selected;
+    private NotScrollableListView mAvailableTestsListView;
     private NotScrollableListView mRunningTestsListView;
     private NotScrollableListView mFinishedTestsListView;
+    private TestsAvailableListAdapter mAvailableTestsListAdapter;
     private TestsRunningListAdapter mRunningTestsListAdapter;
     private TestsListAdapter mFinishedTestsListAdapter;
     private static TestStorage ts;
@@ -63,12 +65,19 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         setContentView(R.layout.activity_main);
 
         ts = new TestStorage();
+        TestData.getInstance(this).addObserver(this);
+
+        mAvailableTestsListView = (NotScrollableListView) findViewById(R.id.availableTests);
+        mAvailableTestsListAdapter = new TestsAvailableListAdapter(this, TestData.getInstance(this).availableTests);
+        mAvailableTestsListView.setAdapter(mAvailableTestsListAdapter);
+        mAvailableTestsListView.setLayoutManager(new LinearLayoutManager(this));
+        mAvailableTestsListAdapter.setData(TestData.getInstance(this).availableTests);
 
         mRunningTestsListView = (NotScrollableListView) findViewById(R.id.runningTests);
         mRunningTestsListAdapter = new TestsRunningListAdapter(this, new ArrayList<NetworkMeasurement>());
         mRunningTestsListView.setAdapter(mRunningTestsListAdapter);
         mRunningTestsListView.setLayoutManager(new LinearLayoutManager(this));
-        mRunningTestsListAdapter.setData(new ArrayList());
+        //mRunningTestsListAdapter.setData(new ArrayList());
 
         mFinishedTestsListView = (NotScrollableListView) findViewById(R.id.finishedTests);
         mFinishedTestsListAdapter = new TestsListAdapter(this, new ArrayList<NetworkMeasurement>());
@@ -76,9 +85,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         mFinishedTestsListView.setLayoutManager(new LinearLayoutManager(this));
         mFinishedTestsListAdapter.setData(ts.loadTestsReverse(this));
 
-        TestData.getInstance(this).addObserver(this);
 
-        Button button;
         copyResources(R.raw.hosts, "hosts.txt");
         copyResources(R.raw.geoip, "GeoIPASNum.dat");
         copyResources(R.raw.geoipasnum, "GeoIP.dat");
@@ -87,74 +94,6 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
         //LoggerApi.setVerbose(1);
         LoggerApi.useAndroidLogger();
-
-        button = (Button) findViewById(R.id.tcp_connect_button);
-        button.setOnClickListener(this);
-        buttons[0] = button;
-
-        button = (Button) findViewById(R.id.dns_injection_button);
-        button.setOnClickListener(this);
-        buttons[1] = button;
-
-        button = (Button) findViewById(R.id.http_invalid_request_line_button);
-        button.setOnClickListener(this);
-        buttons[2] = button;
-
-        button = (Button) findViewById(R.id.web_connectivity_button);
-        button.setOnClickListener(this);
-        buttons[3] = button;
-
-        button = (Button) findViewById(R.id.ndt_test_button);
-        button.setOnClickListener(this);
-        buttons[4] = button;
-
-        button = (Button) findViewById(R.id.check_port_button);
-        button.setOnClickListener(this);
-        buttons[5] = button;
-
-        button = (Button) findViewById(R.id.traceroute_button);
-        button.setOnClickListener(this);
-        buttons[6] = button;
-
-        ImageButton info_button;
-        info_button = (ImageButton) findViewById(R.id.tcp_connect_info_button);
-        info_button.setOnClickListener(
-                new Button.OnClickListener() {
-                    public void onClick(View v) {
-                        Alert.alertWebView(MainActivity.this, "tcp-connect");
-                    }
-                }
-        );
-
-        info_button = (ImageButton) findViewById(R.id.dns_injection_info_button);
-        info_button.setOnClickListener(
-                new Button.OnClickListener() {
-                    public void onClick(View v) {
-                        Alert.alertWebView(MainActivity.this, "dns-injection");
-                    }
-                }
-        );
-
-        info_button = (ImageButton) findViewById(R.id.http_invalid_request_line_info_button);
-        info_button.setOnClickListener(
-                new Button.OnClickListener() {
-                    public void onClick(View v) {
-                        Alert.alertWebView(MainActivity.this, "http-invalid-request-line");
-                    }
-                }
-        );
-
-        info_button = (ImageButton) findViewById(R.id.web_connectivity_info_button);
-        info_button.setOnClickListener(
-                new Button.OnClickListener() {
-                    public void onClick(View v) {
-                        Alert.alertWebView(MainActivity.this, "web-connectivity");
-                    }
-                }
-        );
-
-        ImageButton run_button = (ImageButton) findViewById(R.id.run_test_button);
-        run_button.setOnClickListener(this);
 
         checkInformedConsent();
     }
@@ -182,50 +121,6 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     }
 
     @Override
-    public void onClick(View v) {
-        deselectButtons();
-        switch (v.getId()) {
-            case R.id.run_test_button:
-                if (selected != -1){
-                    executeTest(selected);
-                }
-                break;
-            default:
-                Button b = (Button) findViewById(v.getId());
-                b.setCompoundDrawablesWithIntrinsicBounds(R.drawable.radio_button_on, 0, 0, 0);
-                break;
-        }
-        selected = v.getId();
-    }
-
-    private void executeTest(int test){
-        Intent intent;
-        switch (test) {
-            case R.id.tcp_connect_button:
-                TestData.doNetworkMeasurements(MainActivity.this, OONITests.TCP_CONNECT);
-                break;
-            case R.id.dns_injection_button:
-                TestData.doNetworkMeasurements(MainActivity.this, OONITests.DNS_INJECTION);
-                break;
-            case R.id.http_invalid_request_line_button:
-                TestData.doNetworkMeasurements(MainActivity.this, OONITests.HTTP_INVALID_REQUEST_LINE);
-                break;
-            case R.id.web_connectivity_button:
-                TestData.doNetworkMeasurements(MainActivity.this, OONITests.WEB_CONNECTIVITY);
-                break;
-            case R.id.ndt_test_button:
-                TestData.doNetworkMeasurements(MainActivity.this, OONITests.NDT_TEST);
-                break;
-            case R.id.check_port_button:
-                TestData.doNetworkMeasurements(MainActivity.this, PortolanTests.CHECK_PORT);
-                break;
-            case R.id.traceroute_button:
-                TestData.doNetworkMeasurements(MainActivity.this, PortolanTests.TRACEROUTE);
-                break;
-        }
-    }
-
-    @Override
     public void update(Observable observable, Object data) {
         if (mFinishedTestsListAdapter != null) {
             ArrayList finishedTests = TestData.getInstance(this).finishedTests;
@@ -235,13 +130,10 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         if (mRunningTestsListAdapter != null) {
             mRunningTestsListAdapter.setData(TestData.getInstance(this).runningTests);
         }
-        System.out.println("update "+ observable);
-    }
-
-    private void deselectButtons(){
-        for( Button b : buttons ) {
-            b.setCompoundDrawablesWithIntrinsicBounds(R.drawable.radio_button_off, 0, 0, 0);
+        if (mAvailableTestsListAdapter != null) {
+            mAvailableTestsListAdapter.setData(TestData.getInstance(this).availableTests);
         }
+        System.out.println("update "+ observable);
     }
 
     private void copyResources(int id, String filename) {

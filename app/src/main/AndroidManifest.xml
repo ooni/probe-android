@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.openobservatory.ooniprobe">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-sdk tools:overrideLibrary="us.feras.mdv"/>
     <application
         android:name="org.openobservatory.ooniprobe.ooniprobeApp"
         android:allowBackup="true"
