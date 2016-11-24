@@ -179,7 +179,7 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
                         // Remove the item from the adapter
                         TestStorage ts = new TestStorage();;
                         ts.removeTest(mActivity, item);
-                        TestData.getInstance().notifyObservers();
+                        TestData.getInstance(mActivity).notifyObservers();
                         return true;
                 }
                 return false;

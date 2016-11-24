@@ -26,10 +26,12 @@ import junit.framework.Test;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Observable;
 import java.util.Observer;
 
 import org.openobservatory.ooniprobe.adapter.TestsListAdapter;
+import org.openobservatory.ooniprobe.adapter.TestsRunningListAdapter;
 import org.openobservatory.ooniprobe.data.TestData;
 import org.openobservatory.ooniprobe.data.TestStorage;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
@@ -47,11 +49,9 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     int selected;
     private NotScrollableListView mRunningTestsListView;
     private NotScrollableListView mFinishedTestsListView;
-    private TestsListAdapter mRunningTestsListAdapter;
+    private TestsRunningListAdapter mRunningTestsListAdapter;
     private TestsListAdapter mFinishedTestsListAdapter;
     private static TestStorage ts;
-    private ArrayList runningTests;
-    private ArrayList finishedTests;
 
     static {
         System.loadLibrary("measurement_kit");
@@ -64,21 +64,19 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
         ts = new TestStorage();
 
-        finishedTests = ts.loadTestsReverse(this);
+        mRunningTestsListView = (NotScrollableListView) findViewById(R.id.runningTests);
+        mRunningTestsListAdapter = new TestsRunningListAdapter(this, new ArrayList<NetworkMeasurement>());
+        mRunningTestsListView.setAdapter(mRunningTestsListAdapter);
+        mRunningTestsListView.setLayoutManager(new LinearLayoutManager(this));
+        mRunningTestsListAdapter.setData(new ArrayList());
 
         mFinishedTestsListView = (NotScrollableListView) findViewById(R.id.finishedTests);
         mFinishedTestsListAdapter = new TestsListAdapter(this, new ArrayList<NetworkMeasurement>());
         mFinishedTestsListView.setAdapter(mFinishedTestsListAdapter);
         mFinishedTestsListView.setLayoutManager(new LinearLayoutManager(this));
-        mFinishedTestsListAdapter.setData(finishedTests);
+        mFinishedTestsListAdapter.setData(ts.loadTestsReverse(this));
 
-        mRunningTestsListView = (NotScrollableListView) findViewById(R.id.runningTests);
-        mRunningTestsListAdapter = new TestsListAdapter(this, new ArrayList<NetworkMeasurement>());
-        mRunningTestsListView.setAdapter(mRunningTestsListAdapter);
-        mRunningTestsListView.setLayoutManager(new LinearLayoutManager(this));
-        mRunningTestsListAdapter.setData(runningTests);
-
-        TestData.getInstance().addObserver(this);
+        TestData.getInstance(this).addObserver(this);
 
         Button button;
         copyResources(R.raw.hosts, "hosts.txt");
@@ -230,10 +228,14 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     @Override
     public void update(Observable observable, Object data) {
         if (mFinishedTestsListAdapter != null) {
-            mFinishedTestsListAdapter.setData(ts.loadTestsReverse(this));
+            ArrayList finishedTests = TestData.getInstance(this).finishedTests;
+            Collections.reverse(finishedTests);
+            mFinishedTestsListAdapter.setData(finishedTests);
         }
-        //TODO come prendere l'oggetto test.
-        System.out.println("runningTests "+ TestData.getInstance().runningTests);
+        if (mRunningTestsListAdapter != null) {
+            mRunningTestsListAdapter.setData(TestData.getInstance(this).runningTests);
+        }
+        System.out.println("update "+ observable);
     }
 
     private void deselectButtons(){

@@ -28,13 +28,15 @@ public class TestData extends Observable {
     private static final String TAG = "TestData";
     private static TestData instance;
     private static TestStorage ts;
-    public static ArrayList<String> runningTests;
+    public static ArrayList<NetworkMeasurement> runningTests;
+    public static ArrayList<NetworkMeasurement> finishedTests;
 
-    public static TestData getInstance() {
+    public static TestData getInstance(final MainActivity activity) {
         if (instance == null) {
             instance = new TestData();
             ts = new TestStorage();
-            runningTests = new ArrayList<String>();
+            runningTests = new ArrayList<NetworkMeasurement>();
+            finishedTests = ts.loadTests(activity);
         }
         return instance;
     }
@@ -60,8 +62,8 @@ public class TestData extends Observable {
         final String collector_address = preferences.getString("collector_address", "https://measurement-kit-collector.herokuapp.com");
 
         ts.addTest(activity, currentTest);
-        runningTests.add(currentTest.testName);
-        TestData.getInstance().notifyObservers();
+        runningTests.add(currentTest);
+        TestData.getInstance(activity).notifyObservers();
 
         // The app now tries to get DNS from the device. Upon fail, it uses
         // Google DNS resolvers
@@ -217,8 +219,9 @@ public class TestData extends Observable {
 
             protected void onPostExecute(Boolean success) {
                 ts.setCompleted(activity, currentTest);
-                runningTests.remove(currentTest.testName);
-                TestData.getInstance().notifyObservers();
+                runningTests.remove(currentTest);
+                finishedTests.add(currentTest);
+                TestData.getInstance(activity).notifyObservers();
                 Log.v(TAG, "doNetworkMeasurements " + testName + "... done");
             }
         }.execute();
