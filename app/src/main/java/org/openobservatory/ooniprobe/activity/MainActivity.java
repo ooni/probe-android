@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        checkResources();
 
         ts = new TestStorage();
         TestData.getInstance(this).addObserver(this);
@@ -84,13 +85,6 @@ public class MainActivity extends AppCompatActivity implements Observer {
         mFinishedTestsListView.setAdapter(mFinishedTestsListAdapter);
         mFinishedTestsListView.setLayoutManager(new LinearLayoutManager(this));
         mFinishedTestsListAdapter.setData(ts.loadTestsReverse(this));
-
-
-        copyResources(R.raw.hosts, "hosts.txt");
-        copyResources(R.raw.geoip, "GeoIPASNum.dat");
-        copyResources(R.raw.geoipasnum, "GeoIP.dat");
-        copyResources(R.raw.cacert, "cacert.pem");
-        copyResources(R.raw.urls, "urls.txt");
 
         //LoggerApi.setVerbose(1);
         LoggerApi.useAndroidLogger();
@@ -134,6 +128,18 @@ public class MainActivity extends AppCompatActivity implements Observer {
             mAvailableTestsListAdapter.setData(TestData.getInstance(this).availableTests);
         }
         System.out.println("update "+ observable);
+    }
+
+    public void checkResources() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (preferences.getBoolean("resources_copied", false)) {
+            copyResources(R.raw.hosts, "hosts.txt");
+            copyResources(R.raw.geoip, "GeoIPASNum.dat");
+            copyResources(R.raw.geoipasnum, "GeoIP.dat");
+            copyResources(R.raw.cacert, "cacert.pem");
+            copyResources(R.raw.urls, "urls.txt");
+            PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("resources_copied", true).apply();
+        }
     }
 
     private void copyResources(int id, String filename) {
