@@ -12,9 +12,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by lorenzo on 27/06/16.
- */
 public class TestStorage {
     public static final String PREFS_NAME = "OONIPROBE_APP";
     public static final String TESTS = "Test";

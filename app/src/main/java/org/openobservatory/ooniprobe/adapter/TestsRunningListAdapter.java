@@ -26,9 +26,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-/**
- * Created by lorenzo on 26/04/16.
- */
 public class TestsRunningListAdapter extends RecyclerView.Adapter<TestsRunningListAdapter.ViewHolder> {
 
 
@@ -65,8 +62,10 @@ public class TestsRunningListAdapter extends RecyclerView.Adapter<TestsRunningLi
     }
 
     public void setData(ArrayList<NetworkMeasurement> data) {
-        values.clear();
-        this.addData(data);
+        //values.clear();
+        //this.addData(data);
+        values = data;
+        notifyDataSetChanged();
     }
 
     public void addData(ArrayList<NetworkMeasurement> data) {

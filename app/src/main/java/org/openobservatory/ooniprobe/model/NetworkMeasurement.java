@@ -1,8 +1,5 @@
 package org.openobservatory.ooniprobe.model;
 
-/**
- * Created by lorenzo on 26/04/16.
- */
 public class NetworkMeasurement {
     public final String testName;
     public boolean completed = false;

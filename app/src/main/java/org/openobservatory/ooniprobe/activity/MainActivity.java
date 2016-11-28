@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
     @Override
     public void update(Observable observable, Object data) {
         if (mFinishedTestsListAdapter != null) {
-            ArrayList finishedTests = TestData.getInstance(this).finishedTests;
+            ArrayList<NetworkMeasurement> finishedTests = new ArrayList<NetworkMeasurement>(TestData.getInstance(this).finishedTests);
             Collections.reverse(finishedTests);
             mFinishedTestsListAdapter.setData(finishedTests);
         }

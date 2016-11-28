@@ -20,10 +20,20 @@ import java.util.List;
 
 import us.feras.mdv.MarkdownView;
 
-/**
- * Created by lorenzo on 27/04/16.
- */
 public class Alert {
+
+    public static void alertDialog(Context c, String title, String text) {
+        new AlertDialog.Builder(c)
+                .setTitle(title)
+                .setMessage(text)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @TargetApi(11)
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+
+                }).show();
+    }
 
     public static void alertScrollView(Context c, String filename) {
         LayoutInflater inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

@@ -20,9 +20,6 @@ import org.openobservatory.ooniprobe.R;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-/**
- * Created by lorenzo on 17/05/16.
- */
 public class SettingsActivity extends AppCompatActivity  {
     SharedPreferences preferences;
     RelativeLayout collector_addressLayout;

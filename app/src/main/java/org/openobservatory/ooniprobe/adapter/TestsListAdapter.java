@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import android.support.v7.widget.RecyclerView;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.ResultActivity;
 import org.openobservatory.ooniprobe.data.TestData;
 import org.openobservatory.ooniprobe.data.TestStorage;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
@@ -26,9 +28,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-/**
- * Created by lorenzo on 26/04/16.
- */
 public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.ViewHolder> {
 
 
@@ -71,41 +70,52 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
         Typeface font = Typeface.createFromAsset(mActivity.getAssets(), "fonts/HelveticaNeue-Roman.otf");
         holder.txtTitle.setTypeface(font);
         holder.txtTitle.setText(mActivity.getString(getStringIdentifier(mActivity, i.testName)));
-        if (i.completed){
-            holder.txtTimestamp.setTypeface(font);
-            holder.txtTimestamp.setText(getDate(i.test_id));
-            final String[] parts = LogUtils.getLogParts(mActivity, i.json_file);
-            if (parts.length > 1)
-                holder.statusImage.setImageResource(R.drawable.test_multi);
-            else if (parts.length == 0)
-                holder.statusImage.setImageResource(R.drawable.test_aborted);
-            else
-                holder.statusImage.setImageResource(android.R.color.transparent);
 
-            // Set the item as the button's tag so it can be retrieved later
-            holder.popupButton.setTag(values.get(position));
-            // Set the fragment instance as the OnClickListener
-            holder.popupButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(final View v) {
-                    // TODO Auto-generated method stub
-                    v.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            showPopupMenu(v);
-                        }
-
-                    });
-                }
-            });
-            holder.itemView.setOnClickListener(
-                    new ImageButton.OnClickListener() {
-                        public void onClick(View v) {
-                            Alert.resultWebView(mActivity, i.json_file);
-                        }
+        // Set the item as the button's tag so it can be retrieved later
+        holder.popupButton.setTag(values.get(position));
+        // Set the fragment instance as the OnClickListener
+        holder.popupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                v.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        showPopupMenu(v);
                     }
-            );
+
+                });
+            }
+        });
+        holder.txtTimestamp.setTypeface(font);
+        if (i.completed) {
+            holder.txtTimestamp.setText(getDate(i.test_id));
         }
+        else {
+            holder.txtTimestamp.setText("");
+        }
+        final String[] parts = LogUtils.getLogParts(mActivity, i.json_file);
+        if (parts.length > 1)
+            holder.statusImage.setImageResource(R.drawable.test_multi);
+        else if (parts.length == 0)
+            holder.statusImage.setImageResource(R.drawable.test_aborted);
+        else
+            holder.statusImage.setImageResource(android.R.color.transparent);
+        holder.itemView.setOnClickListener(
+                new ImageButton.OnClickListener() {
+                    public void onClick(View v) {
+                        if (parts.length > 0){
+                            Intent intent = new Intent(v.getContext(), ResultActivity.class);
+                            intent.putExtra("json_file", i.json_file);
+                            v.getContext().startActivity(intent);
+                        }
+                        else {
+                            Alert.alertDialog(mActivity, mActivity.getString(R.string.no_result), mActivity.getString(R.string.no_result_msg));
+                        }
+                        //Alert.resultWebView(mActivity, i.json_file);
+                    }
+                }
+        );
+
     }
 
     @Override
@@ -114,8 +124,10 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
     }
 
     public void setData(ArrayList<NetworkMeasurement> data) {
-        values.clear();
-        this.addData(data);
+        //values.clear();
+        //this.addData(data);
+        values = data;
+        notifyDataSetChanged();
     }
 
     public void addData(ArrayList<NetworkMeasurement> data) {

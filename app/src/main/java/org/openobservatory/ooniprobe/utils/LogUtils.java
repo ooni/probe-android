@@ -6,9 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import android.content.Context;
 
-/**
- * Created by lorenzo on 27/04/16.
- */
 public class LogUtils {
     public static String readLogFile(Context c, String filename) {
         String logPath = c.getFilesDir() + filename;

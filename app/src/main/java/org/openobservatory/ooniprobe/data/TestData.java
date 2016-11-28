@@ -19,9 +19,6 @@ import org.openobservatory.ooniprobe.model.OONITests;
 import org.openobservatory.ooniprobe.model.PortolanTests;
 import org.openobservatory.ooniprobe.model.UnknownTest;
 
-/**
- * Created by lorenzo on 26/04/16.
- */
 public class TestData extends Observable {
     private static final String TAG = "TestData";
     private static TestData instance;
@@ -223,6 +220,7 @@ public class TestData extends Observable {
 
             protected void onPostExecute(Boolean success) {
                 ts.setCompleted(activity, currentTest);
+                currentTest.completed = true;
                 runningTests.remove(currentTest);
                 finishedTests.add(currentTest);
                 availableTests.put(testName, true);

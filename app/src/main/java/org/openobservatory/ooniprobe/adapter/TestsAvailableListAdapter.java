@@ -31,9 +31,6 @@ import java.util.Locale;
 
 import static org.openobservatory.ooniprobe.R.id.progressBar;
 
-/**
- * Created by lorenzo on 26/04/16.
- */
 public class TestsAvailableListAdapter extends RecyclerView.Adapter<TestsAvailableListAdapter.ViewHolder> {
 
 
