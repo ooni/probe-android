@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.data;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
@@ -9,6 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Observable;
 
 import org.openobservatory.measurement_kit.swig.OoniTestWrapper;
@@ -236,6 +238,17 @@ public class TestData extends Observable {
         super.notifyObservers(type);
     }
 
+    public void removeTest(NetworkMeasurement test) {
+        if (finishedTests != null){
+            for(int i = 0; i < finishedTests.size(); i++) {
+                NetworkMeasurement n = finishedTests.get(i);
+                if (n.test_id == test.test_id) {
+                    finishedTests.remove(i);
+                    break;
+                }
+            }
+        }
+    }
     //DEPRECATED
     private static ArrayList<String> getDNS() {
         ArrayList<String> servers = new ArrayList<String>();

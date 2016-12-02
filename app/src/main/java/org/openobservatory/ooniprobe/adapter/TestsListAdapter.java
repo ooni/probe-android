@@ -189,8 +189,9 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
                 switch (menuItem.getItemId()) {
                     case R.id.menu_remove:
                         // Remove the item from the adapter
-                        TestStorage ts = new TestStorage();;
+                        TestStorage ts = new TestStorage();
                         ts.removeTest(mActivity, item);
+                        TestData.getInstance(mActivity).removeTest(item);
                         TestData.getInstance(mActivity).notifyObservers();
                         return true;
                 }
