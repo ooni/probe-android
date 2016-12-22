@@ -23,6 +23,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class SettingsActivity extends AppCompatActivity  {
     SharedPreferences preferences;
     RelativeLayout collector_addressLayout;
+    public static final String DEFAULT_COLLECTOR = "https://a.collector.test.ooni.io";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +74,7 @@ public class SettingsActivity extends AppCompatActivity  {
         });
 
         TextView collector_address = (TextView) findViewById(R.id.collector_address_subText);
-        collector_address.setText(preferences.getString("collector_address", "https://a.collector.test.ooni.io"));
+        collector_address.setText(preferences.getString("collector_address", DEFAULT_COLLECTOR));
 
         collector_addressLayout = (RelativeLayout) findViewById(R.id.collector_addressLayout);
         collector_addressLayout.setOnClickListener(new RelativeLayout.OnClickListener() {
@@ -112,8 +113,8 @@ public class SettingsActivity extends AppCompatActivity  {
         final EditText input = new EditText(this);
 
         input.setInputType(InputType.TYPE_CLASS_TEXT);
+        input.setText(preferences.getString("collector_address", DEFAULT_COLLECTOR));
         builder.setView(input);
-
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
