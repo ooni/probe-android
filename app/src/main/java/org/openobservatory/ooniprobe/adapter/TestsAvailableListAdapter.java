@@ -99,7 +99,6 @@ public class TestsAvailableListAdapter extends RecyclerView.Adapter<TestsAvailab
     }
 
     public void setData(LinkedHashMap<String,Boolean> data) {
-        //values.clear();
         values = data;
         keys = data.keySet().toArray(new String[values.size()]);
         notifyDataSetChanged();

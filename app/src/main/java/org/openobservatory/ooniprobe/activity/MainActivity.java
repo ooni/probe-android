@@ -14,20 +14,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.view.View;
 import android.util.Log;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import junit.framework.Test;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -37,10 +32,7 @@ import org.openobservatory.ooniprobe.adapter.TestsRunningListAdapter;
 import org.openobservatory.ooniprobe.data.TestData;
 import org.openobservatory.ooniprobe.data.TestStorage;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
-import org.openobservatory.ooniprobe.model.OONITests;
-import org.openobservatory.ooniprobe.model.PortolanTests;
 import org.openobservatory.measurement_kit.LoggerApi;
-import org.openobservatory.ooniprobe.utils.Alert;
 import org.openobservatory.ooniprobe.view.NotScrollableListView;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import org.openobservatory.ooniprobe.R;
@@ -78,7 +70,6 @@ public class MainActivity extends AppCompatActivity implements Observer {
         mRunningTestsListAdapter = new TestsRunningListAdapter(this, new ArrayList<NetworkMeasurement>());
         mRunningTestsListView.setAdapter(mRunningTestsListAdapter);
         mRunningTestsListView.setLayoutManager(new LinearLayoutManager(this));
-        //mRunningTestsListAdapter.setData(new ArrayList());
 
         mFinishedTestsListView = (NotScrollableListView) findViewById(R.id.finishedTests);
         mFinishedTestsListAdapter = new TestsListAdapter(this, new ArrayList<NetworkMeasurement>());
