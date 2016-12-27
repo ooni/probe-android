@@ -111,7 +111,6 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
                         else {
                             Alert.alertDialog(mActivity, mActivity.getString(R.string.no_result), mActivity.getString(R.string.no_result_msg));
                         }
-                        //Alert.resultWebView(mActivity, i.json_file);
                     }
                 }
         );
@@ -124,8 +123,6 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
     }
 
     public void setData(ArrayList<NetworkMeasurement> data) {
-        //values.clear();
-        //this.addData(data);
         values = data;
         notifyDataSetChanged();
     }

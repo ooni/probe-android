@@ -62,8 +62,6 @@ public class TestsRunningListAdapter extends RecyclerView.Adapter<TestsRunningLi
     }
 
     public void setData(ArrayList<NetworkMeasurement> data) {
-        //values.clear();
-        //this.addData(data);
         values = data;
         notifyDataSetChanged();
     }
