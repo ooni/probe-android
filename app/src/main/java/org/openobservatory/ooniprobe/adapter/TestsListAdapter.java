@@ -69,7 +69,7 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
         final NetworkMeasurement i = values.get(position);
         Typeface font = Typeface.createFromAsset(mActivity.getAssets(), "fonts/HelveticaNeue-Roman.otf");
         holder.txtTitle.setTypeface(font);
-        holder.txtTitle.setText(mActivity.getString(getStringIdentifier(mActivity, i.testName)));
+        holder.txtTitle.setText(NetworkMeasurement.getTestName(mActivity, i.testName));
 
         // Set the item as the button's tag so it can be retrieved later
         holder.popupButton.setTag(values.get(position));
@@ -204,11 +204,6 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
         cal.setTimeInMillis(time);
         String date = DateFormat.format("yyyy-MM-dd HH:mm:ss", cal).toString();
         return date;
-    }
-
-    public static int getStringIdentifier(Context context, String name) {
-        //TODO could cause a crash if a test name is not translated or not present in string file
-        return context.getResources().getIdentifier(name, "string", context.getPackageName());
     }
 }
 

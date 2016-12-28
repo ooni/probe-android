@@ -61,9 +61,9 @@ public class TestsAvailableListAdapter extends RecyclerView.Adapter<TestsAvailab
         Boolean available = getItem(position);
         Typeface font = Typeface.createFromAsset(mActivity.getAssets(), "fonts/HelveticaNeue-Roman.otf");
         holder.txtTitle.setTypeface(font);
-        holder.txtTitle.setText(mActivity.getString(getStringIdentifier(mActivity, key)));
+        holder.txtTitle.setText(NetworkMeasurement.getTestName(mActivity, key));
         holder.txtDesc.setTypeface(font);
-        holder.txtDesc.setText(mActivity.getString(getStringIdentifier(mActivity, key+"_desc")));
+        holder.txtDesc.setText(NetworkMeasurement.getTestDescr(mActivity, key));
         if (available) {
             holder.progressBar.setVisibility(View.GONE);
             holder.runTest.setVisibility(View.VISIBLE);
@@ -134,11 +134,5 @@ public class TestsAvailableListAdapter extends RecyclerView.Adapter<TestsAvailab
         void onItemClick(View view, int position);
     }
 
-
-
-    public static int getStringIdentifier(Context context, String name) {
-        //TODO could cause a crash if a test name is not translated or not present in string file
-        return context.getResources().getIdentifier(name, "string", context.getPackageName());
-    }
 }
 

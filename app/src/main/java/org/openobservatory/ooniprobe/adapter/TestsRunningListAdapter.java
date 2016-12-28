@@ -16,6 +16,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.data.TestData;
 import org.openobservatory.ooniprobe.data.TestStorage;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
+import org.openobservatory.ooniprobe.model.OONITests;
 import org.openobservatory.ooniprobe.utils.Alert;
 import android.support.v7.widget.PopupMenu;
 
@@ -53,7 +54,7 @@ public class TestsRunningListAdapter extends RecyclerView.Adapter<TestsRunningLi
         final NetworkMeasurement i = values.get(position);
         Typeface font = Typeface.createFromAsset(mActivity.getAssets(), "fonts/HelveticaNeue-Roman.otf");
         holder.txtTitle.setTypeface(font);
-        holder.txtTitle.setText(mActivity.getString(getStringIdentifier(mActivity, i.testName)));
+        holder.txtTitle.setText(NetworkMeasurement.getTestName(mActivity, i.testName));
     }
 
     @Override
@@ -105,9 +106,5 @@ public class TestsRunningListAdapter extends RecyclerView.Adapter<TestsRunningLi
         void onItemClick(View view, int position);
     }
 
-    public static int getStringIdentifier(Context context, String name) {
-        //TODO could cause a crash if a test name is not translated or not present in string file
-        return context.getResources().getIdentifier(name, "string", context.getPackageName());
-    }
 }
 
