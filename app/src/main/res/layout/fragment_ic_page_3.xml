@@ -15,7 +15,7 @@
         android:text="@string/quiz"
         android:textStyle="bold"
         android:textSize="28sp"
-        android:textColor="@android:color/black"/>
+        android:textColor="@color/lightBlack"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,14 +23,14 @@
         android:layout_marginBottom="10dp"
         android:textSize="15sp"
         android:text="@string/quiz_text"
-        android:textColor="@android:color/black"/>
+        android:textColor="@color/lightBlack"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="@string/header_1"
-        android:textColor="@android:color/black"/>
+        android:textColor="@color/lightBlack"/>
 
     <RadioGroup
         android:layout_width="match_parent"
@@ -42,28 +42,34 @@
             android:drawablePadding="8dp"
             android:button="@null"
             android:drawableLeft="@drawable/checkbox_selector"
+            android:drawableStart="@drawable/checkbox_selector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/answer_1_1"
-            android:text="@string/answer_1_1" />
+            android:text="@string/answer_1_1"
+            android:textColor="@color/lightBlack" />
 
         <RadioButton
             android:drawablePadding="8dp"
             android:button="@null"
             android:drawableLeft="@drawable/checkbox_selector"
+            android:drawableStart="@drawable/checkbox_selector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/answer_1_2"
-            android:text="@string/answer_1_2" />
+            android:text="@string/answer_1_2"
+            android:textColor="@color/lightBlack" />
 
         <RadioButton
             android:drawablePadding="8dp"
             android:button="@null"
             android:drawableLeft="@drawable/checkbox_selector"
+            android:drawableStart="@drawable/checkbox_selector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/answer_1_3"
-            android:text="@string/answer_1_3" />
+            android:text="@string/answer_1_3"
+            android:textColor="@color/lightBlack" />
 
     </RadioGroup>
 
@@ -73,7 +79,7 @@
         android:layout_marginBottom="10dp"
         android:id="@+id/text"
         android:text="@string/header_2"
-        android:textColor="@android:color/black"/>
+        android:textColor="@color/lightBlack"/>
 
     <RadioGroup
         android:layout_width="match_parent"
@@ -85,28 +91,34 @@
             android:button="@null"
             android:drawablePadding="8dp"
             android:drawableLeft="@drawable/checkbox_selector"
+            android:drawableStart="@drawable/checkbox_selector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/answer_2_1"
-            android:text="@string/answer_2_1" />
+            android:text="@string/answer_2_1"
+            android:textColor="@color/lightBlack" />
 
         <RadioButton
             android:button="@null"
             android:drawablePadding="8dp"
             android:drawableLeft="@drawable/checkbox_selector"
+            android:drawableStart="@drawable/checkbox_selector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/answer_2_2"
-            android:text="@string/answer_2_2" />
+            android:text="@string/answer_2_2"
+            android:textColor="@color/lightBlack" />
 
         <RadioButton
             android:button="@null"
             android:drawablePadding="8dp"
             android:drawableLeft="@drawable/checkbox_selector"
+            android:drawableStart="@drawable/checkbox_selector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/answer_2_3"
-            android:text="@string/answer_2_3" />
+            android:text="@string/answer_2_3"
+            android:textColor="@color/lightBlack" />
 
     </RadioGroup>
 </LinearLayout>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@color/color_white"
+    android:padding="10dp" >
+
+    <ImageView
+        android:id="@+id/test_logo"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_vertical"
+        android:background="@android:color/transparent"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/ooni_icon" />
+
+    <LinearLayout
+        android:id="@+id/titleLayout"
+        android:orientation="vertical"
+        android:layout_width="220dp"
+        android:layout_height="match_parent"
+        android:background="@color/color_white"
+        android:layout_toRightOf="@+id/test_logo"
+        android:padding="10dp" >
+        <TextView
+            android:id="@+id/test_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="TCP CONNECT"
+            android:gravity="center"
+            android:textColor="@color/lightBlack" />
+        <TextView
+            android:id="@+id/test_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="TCP CONNECT"
+            android:gravity="center"
+            android:textColor="@color/color_grey_light" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/run_test_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/run_test"
+        android:layout_toRightOf="@+id/titleLayout"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:indeterminate="true"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/titleLayout"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>

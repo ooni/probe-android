@@ -13,14 +13,27 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.data.TestData;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by lorenzo on 27/04/16.
- */
+import us.feras.mdv.MarkdownView;
+
 public class Alert {
+
+    public static void alertDialog(Context c, String title, String text) {
+        new AlertDialog.Builder(c)
+                .setTitle(title)
+                .setMessage(text)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @TargetApi(11)
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+
+                }).show();
+    }
 
     public static void alertScrollView(Context c, String filename) {
         LayoutInflater inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -59,6 +72,21 @@ public class Alert {
                 }).show();
     }
 
+    public static void alertMdWebView(Context c, String htmlfile) {
+        LayoutInflater inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View myScrollView = inflater.inflate(R.layout.alert_md_webview, null, false);
+        MarkdownView markdownView = (MarkdownView) myScrollView.findViewById(R.id.markdownView);
+        markdownView.loadMarkdownFile("file:///android_asset/md/" + htmlfile + ".md","file:///android_asset/html/setup-mobile.css");
+        new AlertDialog.Builder(c).setView(myScrollView)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @TargetApi(11)
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+
+                }).show();
+    }
+
     public static void resultWebView(final Context c, final String jsonfile) {
             resultWebView(c, jsonfile, 0);
         }
@@ -70,9 +98,9 @@ public class Alert {
         WebView wv = (WebView) myScrollView.findViewById(R.id.webview);
         wv.getSettings().setJavaScriptEnabled(true);
         final String jsonContent = LogUtils.readLogFile(c, jsonfile);
-        final String[] parts = jsonContent.split("\n");
+        final String[] parts = LogUtils.getLogParts(c, jsonfile);
         wv.addJavascriptInterface(new InjectedJSON(parts[idx]), "MeasurementJSON");
-        wv.loadUrl("file:///android_asset/html/webui/index.html");
+        wv.loadUrl("file:///android_asset/webui/index.html");
 
         AlertDialog.Builder alert = new AlertDialog.Builder(c);
         alert.setView(myScrollView);
@@ -167,6 +195,7 @@ public class Alert {
 
         return json.toString();
     }
+
 
     public static class InjectedJSON {
         private String jsonData;

@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.data;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
@@ -8,6 +9,8 @@ import android.util.Log;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Observable;
 
 import org.openobservatory.measurement_kit.swig.OoniTestWrapper;
@@ -18,18 +21,24 @@ import org.openobservatory.ooniprobe.model.OONITests;
 import org.openobservatory.ooniprobe.model.PortolanTests;
 import org.openobservatory.ooniprobe.model.UnknownTest;
 
-/**
- * Created by lorenzo on 26/04/16.
- */
 public class TestData extends Observable {
     private static final String TAG = "TestData";
     private static TestData instance;
     private static TestStorage ts;
+    public static ArrayList<NetworkMeasurement> runningTests;
+    public static ArrayList<NetworkMeasurement> finishedTests;
+    public static LinkedHashMap<String, Boolean> availableTests;
 
-    public static TestData getInstance() {
+    public static TestData getInstance(final MainActivity activity) {
         if (instance == null) {
             instance = new TestData();
             ts = new TestStorage();
+            runningTests = new ArrayList<NetworkMeasurement>();
+            finishedTests = ts.loadTests(activity);
+            availableTests = new LinkedHashMap<String, Boolean>();
+            availableTests.put(OONITests.WEB_CONNECTIVITY, true);
+            availableTests.put(OONITests.HTTP_INVALID_REQUEST_LINE, true);
+            availableTests.put(OONITests.NDT_TEST, true);
         }
         return instance;
     }
@@ -55,7 +64,9 @@ public class TestData extends Observable {
         final String collector_address = preferences.getString("collector_address", "https://measurement-kit-collector.herokuapp.com");
 
         ts.addTest(activity, currentTest);
-        TestData.getInstance().notifyObservers();
+        runningTests.add(currentTest);
+        availableTests.put(testName, false);
+        TestData.getInstance(activity).notifyObservers();
 
         // The app now tries to get DNS from the device. Upon fail, it uses
         // Google DNS resolvers
@@ -211,7 +222,11 @@ public class TestData extends Observable {
 
             protected void onPostExecute(Boolean success) {
                 ts.setCompleted(activity, currentTest);
-                TestData.getInstance().notifyObservers();
+                currentTest.completed = true;
+                runningTests.remove(currentTest);
+                finishedTests.add(currentTest);
+                availableTests.put(testName, true);
+                TestData.getInstance(activity).notifyObservers();
                 Log.v(TAG, "doNetworkMeasurements " + testName + "... done");
             }
         }.execute();
@@ -223,6 +238,17 @@ public class TestData extends Observable {
         super.notifyObservers(type);
     }
 
+    public void removeTest(NetworkMeasurement test) {
+        if (finishedTests != null){
+            for(int i = 0; i < finishedTests.size(); i++) {
+                NetworkMeasurement n = finishedTests.get(i);
+                if (n.test_id == test.test_id) {
+                    finishedTests.remove(i);
+                    break;
+                }
+            }
+        }
+    }
     //DEPRECATED
     private static ArrayList<String> getDNS() {
         ArrayList<String> servers = new ArrayList<String>();

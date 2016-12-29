@@ -15,7 +15,7 @@
             android:text="@string/configuration"
             android:textStyle="bold"
             android:textSize="28sp"
-            android:textColor="@android:color/black"/>
+            android:textColor="@color/lightBlack"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -23,52 +23,38 @@
             android:layout_marginBottom="10dp"
             android:textSize="15sp"
             android:text="@string/configuration_text"
-            android:textColor="@android:color/black"/>
+            android:textColor="@color/lightBlack"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="@string/header_1"
-            android:textColor="@android:color/black"/>
-        <CheckBox
-            android:drawablePadding="8dp"
-            android:button="@null"
-            android:drawableLeft="@drawable/checkbox_selector"
-            android:layout_width="wrap_content"
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/ck_include_ip"
-            android:text="@string/include_ip"
-            android:checked="false"/>
+            android:text="@string/include_ip_ic"
+            android:checked="false"
+            android:textColor="@color/lightBlack" />
 
-        <CheckBox
-            android:drawablePadding="8dp"
-            android:button="@null"
-            android:drawableLeft="@drawable/checkbox_selector"
-            android:layout_width="wrap_content"
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/ck_include_asn"
-            android:text="@string/include_asn"
-            android:checked="true"/>
+            android:text="@string/include_asn_ic"
+            android:checked="true"
+            android:textColor="@color/lightBlack" />
 
-        <CheckBox
-            android:drawablePadding="8dp"
-            android:button="@null"
-            android:drawableLeft="@drawable/checkbox_selector"
-            android:layout_width="wrap_content"
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/ck_include_country"
-            android:text="@string/include_cc"
-            android:checked="true"/>
+            android:text="@string/include_cc_ic"
+            android:checked="true"
+            android:textColor="@color/lightBlack" />
 
-        <CheckBox
-            android:drawablePadding="8dp"
-            android:button="@null"
-            android:drawableLeft="@drawable/checkbox_selector"
-            android:layout_width="wrap_content"
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/ck_upload_results"
-            android:text="@string/upload_results"
-            android:checked="true"/>
+            android:text="@string/upload_results_ic"
+            android:checked="true"
+            android:textColor="@color/lightBlack" />
         </LinearLayout>
     </ScrollView>

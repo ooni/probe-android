@@ -1,24 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  Loco xml export: Android string resources
  Project: Localizable.strings conversion
  Release: Working copy
  Locale: en, English
  Exported by: Unregistered user
- Exported at: Tue, 08 Nov 2016 11:50:35 +0000
+ Exported at: Sat, 12 Nov 2016 20:16:30 +0000
 -->
 <resources>
     <!-- information on the copying conditions. -->
     <string name="app_name">ooniprobe</string>
-    <string name="testing_history">Tests</string>
-    <string name="select_test">Select test</string>
-    <string name="run_test">Run test</string>
+    <!-- "select_test" = "Select test"; -->
+    <string name="run_test">Run</string>
     <string name="dns_injection">DNS Injection</string>
     <string name="tcp_connect">TCP Connect</string>
     <string name="http_invalid_request_line">HTTP Invalid request line</string>
     <string name="http_header_field_manipulation">HTTP Header field manipulation</string>
     <string name="web_connectivity">Web Connectivity</string>
     <string name="ndt_test">Ndt Test</string>
+    <string name="http_invalid_request_line_desc">Find proxy technologies in your network</string>
+    <string name="web_connectivity_desc">Check whether and how websites are blocked</string>
+    <string name="ndt_test_desc">Measure the speed and performance of your network</string>
     <string name="check_port">Check port</string>
     <string name="traceroute">Traceroute</string>
     <string name="running_tests">Running tests</string>
@@ -55,8 +56,14 @@
     <string name="answer_2_2">My measurements will by default get published on OONI Explorer and might include personally-identifiable information.</string>
     <string name="answer_2_3">My measurements will by default get published to OONI Explorer and will never include any personally-identifiable information</string>
     <string name="configuration_text">Certain aspects of how ooniprobe operates can be customized. Usually the default values are the best option, so only change these if you really have to.</string>
-    <string name="include_ip">Should we include your IP address in results?</string>
-    <string name="include_asn">Should we include your network information in the reports (note: disabling this will make it much harder for us to draw conclusions from the measurements)?</string>
-    <string name="include_cc">Should we include your country name in the reports (note: disabling this will make it much harder for us to draw conclusions from the measurements)?</string>
-    <string name="upload_results">Should we upload your results to the default ooni collector?</string>
+    <string name="include_ip">Include IP address in results</string>
+    <string name="include_asn">Include your network information in the reports</string>
+    <string name="include_cc">Include your country name in the reports</string>
+    <string name="upload_results">Upload results to the default ooni collector</string>
+    <string name="include_ip_ic">Should we include your IP address in results?</string>
+    <string name="include_asn_ic">Should we include your network information in the reports (note: disabling this will make it much harder for us to draw conclusions from the measurements)?</string>
+    <string name="include_cc_ic">Should we include your country name in the reports (note: disabling this will make it much harder for us to draw conclusions from the measurements)?</string>
+    <string name="upload_results_ic">Should we upload your results to the default ooni collector?</string>
+    <string name="no_result">No results</string>
+    <string name="no_result_msg">The test has no results or it was aborted</string>
 </resources>

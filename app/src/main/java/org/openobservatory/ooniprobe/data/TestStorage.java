@@ -9,11 +9,9 @@ import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by lorenzo on 27/06/16.
- */
 public class TestStorage {
     public static final String PREFS_NAME = "OONIPROBE_APP";
     public static final String TESTS = "Test";
@@ -33,6 +31,13 @@ public class TestStorage {
         editor.putString(TESTS, jsonTests);
         editor.commit();
     }
+
+    public ArrayList loadTestsReverse(Context context) {
+        ArrayList tests = loadTests(context);
+        Collections.reverse(tests);
+        return tests;
+    }
+
     public ArrayList loadTests(Context context) {
     // used for retrieving arraylist from json formatted string
         SharedPreferences settings;
@@ -45,8 +50,7 @@ public class TestStorage {
         Gson gson = new Gson();
         NetworkMeasurement[] favoriteItems = gson.fromJson(jsonTests,NetworkMeasurement[].class);
         tests = Arrays.asList(favoriteItems);
-        tests = new ArrayList(tests);
-        return (ArrayList) tests;
+        return new ArrayList(tests);
     }
 
     public void setCompleted(Context context, NetworkMeasurement test) {

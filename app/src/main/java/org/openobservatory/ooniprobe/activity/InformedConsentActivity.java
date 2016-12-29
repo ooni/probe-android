@@ -64,7 +64,7 @@ public class InformedConsentActivity extends AppCompatActivity implements Wizard
         TextView text = (TextView) view.findViewById(android.R.id.message);
         text.setGravity(Gravity.CENTER);;
         text.setTextColor(getResources().getColor(success ? R.color.successTextColor : R.color.errorTextColor));
-/*here you can do anything with text*/
+        /*here you can do anything with text*/
         toast.show();
     }
 

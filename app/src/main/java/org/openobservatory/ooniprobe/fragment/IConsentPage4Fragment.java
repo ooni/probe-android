@@ -11,7 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
+import android.support.v7.widget.SwitchCompat;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.InformedConsentActivity;
@@ -20,10 +20,10 @@ public class IConsentPage4Fragment extends Fragment {
 
 
     private InformedConsentActivity mActivity;
-    private CheckBox mCkIncludeIP;
-    private CheckBox mCkIncludeAsn;
-    private CheckBox mCkIncludeCountry;
-    private CheckBox mCkUploadResults;
+    private SwitchCompat mCkIncludeIP;
+    private SwitchCompat mCkIncludeAsn;
+    private SwitchCompat mCkIncludeCountry;
+    private SwitchCompat mCkUploadResults;
 
     public static IConsentPage4Fragment create() {
         IConsentPage4Fragment atf = new IConsentPage4Fragment();
@@ -57,16 +57,11 @@ public class IConsentPage4Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View v = inflater.inflate(R.layout.fragment_ic_page_4, container, false);
-        //WebView webview = (WebView) v.findViewById(R.id.wv);
-        //webview.getSettings().setJavaScriptEnabled(true);
-        //webview.loadDataWithBaseURL("", getString(R.string.configuration_text), "text/html", "UTF-8", "");
-
-        mCkIncludeIP = (CheckBox) v.findViewById(R.id.ck_include_ip);
-        mCkIncludeAsn = (CheckBox) v.findViewById(R.id.ck_include_asn);
-        mCkIncludeCountry = (CheckBox) v.findViewById(R.id.ck_include_country);
-        mCkUploadResults = (CheckBox) v.findViewById(R.id.ck_upload_results);
+        mCkIncludeIP = (SwitchCompat) v.findViewById(R.id.ck_include_ip);
+        mCkIncludeAsn = (SwitchCompat) v.findViewById(R.id.ck_include_asn);
+        mCkIncludeCountry = (SwitchCompat) v.findViewById(R.id.ck_include_country);
+        mCkUploadResults = (SwitchCompat) v.findViewById(R.id.ck_upload_results);
         return v;
     }
 

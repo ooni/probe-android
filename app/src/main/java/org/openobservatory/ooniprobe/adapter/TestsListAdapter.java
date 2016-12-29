@@ -1,28 +1,33 @@
 package org.openobservatory.ooniprobe.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ProgressBar;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v7.widget.RecyclerView;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.ResultActivity;
 import org.openobservatory.ooniprobe.data.TestData;
 import org.openobservatory.ooniprobe.data.TestStorage;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 import org.openobservatory.ooniprobe.utils.Alert;
 import android.support.v7.widget.PopupMenu;
+
+import org.openobservatory.ooniprobe.utils.LogUtils;
 import org.openobservatory.ooniprobe.view.ListImageButton;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
-/**
- * Created by lorenzo on 26/04/16.
- */
 public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.ViewHolder> {
 
 
@@ -42,58 +47,74 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
     public TestsListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v;
         switch (viewType) {
-            case 0:
-                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_pending_test, parent, false);
-                break;
-            case 1:
-                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_finished_test, parent, false);
-                break;
             default:
-                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_pending_test, parent, false);
+                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_finished_test, parent, false);
                 break;
         }
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
 
+    /*
     @Override
     public int getItemViewType(int position) {
         NetworkMeasurement i = values.get(position);
         if (i.completed) return 1;
         else return 0;
     }
+*/
 
     @Override
     public void onBindViewHolder(TestsListAdapter.ViewHolder holder, int position) {
         final NetworkMeasurement i = values.get(position);
         Typeface font = Typeface.createFromAsset(mActivity.getAssets(), "fonts/HelveticaNeue-Roman.otf");
         holder.txtTitle.setTypeface(font);
-        holder.txtTitle.setText(i.testName);
-        if (i.completed){
-            // Set the item as the button's tag so it can be retrieved later
-            holder.popupButton.setTag(values.get(position));
-            // Set the fragment instance as the OnClickListener
-            holder.popupButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(final View v) {
-                    // TODO Auto-generated method stub
-                    v.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            showPopupMenu(v);
-                        }
+        holder.txtTitle.setText(NetworkMeasurement.getTestName(mActivity, i.testName));
 
-                    });
-                }
-            });
-            holder.logButton.setOnClickListener(
-                    new ImageButton.OnClickListener() {
-                        public void onClick(View v) {
-                            Alert.resultWebView(mActivity, i.json_file);
+        // Set the item as the button's tag so it can be retrieved later
+        holder.popupButton.setTag(values.get(position));
+        // Set the fragment instance as the OnClickListener
+        holder.popupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                v.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        showPopupMenu(v);
+                    }
+
+                });
+            }
+        });
+        holder.txtTimestamp.setTypeface(font);
+        if (i.completed) {
+            holder.txtTimestamp.setText(getDate(i.test_id));
+        }
+        else {
+            holder.txtTimestamp.setText("");
+        }
+        final String[] parts = LogUtils.getLogParts(mActivity, i.json_file);
+        if (parts.length > 1)
+            holder.statusImage.setImageResource(R.drawable.test_multi);
+        else if (parts.length == 0)
+            holder.statusImage.setImageResource(R.drawable.test_aborted);
+        else
+            holder.statusImage.setImageResource(android.R.color.transparent);
+        holder.itemView.setOnClickListener(
+                new ImageButton.OnClickListener() {
+                    public void onClick(View v) {
+                        if (parts.length > 0){
+                            Intent intent = new Intent(v.getContext(), ResultActivity.class);
+                            intent.putExtra("json_file", i.json_file);
+                            v.getContext().startActivity(intent);
+                        }
+                        else {
+                            Alert.alertDialog(mActivity, mActivity.getString(R.string.no_result), mActivity.getString(R.string.no_result_msg));
                         }
                     }
-            );
-        }
+                }
+        );
+
     }
 
     @Override
@@ -102,8 +123,8 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
     }
 
     public void setData(ArrayList<NetworkMeasurement> data) {
-        values.clear();
-        this.addData(data);
+        values = data;
+        notifyDataSetChanged();
     }
 
     public void addData(ArrayList<NetworkMeasurement> data) {
@@ -113,18 +134,23 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
         notifyDataSetChanged();
     }
 
+    public void addTest(NetworkMeasurement test) {
+        values.add(test);
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView txtTitle;
-        public ProgressBar progressBar;
-        public ImageButton logButton;
+        public TextView txtTimestamp;
+        public ImageView statusImage;
         public ListImageButton popupButton;
 
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             txtTitle = (TextView) itemView.findViewById(R.id.test_title);
-            progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar);
-            logButton = (ImageButton) itemView.findViewById(R.id.log_button);
+            txtTimestamp = (TextView) itemView.findViewById(R.id.test_timestamp);
+            statusImage = (ImageView) itemView.findViewById(R.id.status_image);
             popupButton = (ListImageButton) itemView.findViewById(R.id.test_popupmenu);
         }
 
@@ -160,9 +186,10 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
                 switch (menuItem.getItemId()) {
                     case R.id.menu_remove:
                         // Remove the item from the adapter
-                        TestStorage ts = new TestStorage();;
+                        TestStorage ts = new TestStorage();
                         ts.removeTest(mActivity, item);
-                        TestData.getInstance().notifyObservers();
+                        TestData.getInstance(mActivity).removeTest(item);
+                        TestData.getInstance(mActivity).notifyObservers();
                         return true;
                 }
                 return false;
@@ -170,6 +197,13 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
         });
         // Finally show the PopupMenu
         popup.show();
+    }
+
+    private String getDate(long time) {
+        Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+        cal.setTimeInMillis(time);
+        String date = DateFormat.format("yyyy-MM-dd HH:mm:ss", cal).toString();
+        return date;
     }
 }
 

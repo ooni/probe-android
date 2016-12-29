@@ -14,18 +14,16 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.ToggleButton;
+import android.support.v7.widget.SwitchCompat;
 
 import org.openobservatory.ooniprobe.R;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-/**
- * Created by lorenzo on 17/05/16.
- */
 public class SettingsActivity extends AppCompatActivity  {
     SharedPreferences preferences;
     RelativeLayout collector_addressLayout;
+    public static final String DEFAULT_COLLECTOR = "https://a.collector.test.ooni.io";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +31,7 @@ public class SettingsActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_settings);
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        ToggleButton include_ipButton = (ToggleButton) findViewById(R.id.include_ipBtn);
+        SwitchCompat include_ipButton = (SwitchCompat) findViewById(R.id.ck_include_ip);
         include_ipButton.setChecked(preferences.getBoolean("include_ip", false));
         include_ipButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -47,7 +45,7 @@ public class SettingsActivity extends AppCompatActivity  {
             }
         });
 
-        ToggleButton include_asnButton = (ToggleButton) findViewById(R.id.include_asnBtn);
+        SwitchCompat include_asnButton = (SwitchCompat) findViewById(R.id.ck_include_asn);
         include_asnButton.setChecked(preferences.getBoolean("include_asn", true));
         include_asnButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -61,7 +59,7 @@ public class SettingsActivity extends AppCompatActivity  {
             }
         });
 
-        ToggleButton include_ccButton = (ToggleButton) findViewById(R.id.include_ccBtn);
+        SwitchCompat include_ccButton = (SwitchCompat) findViewById(R.id.ck_include_country);
         include_ccButton.setChecked(preferences.getBoolean("include_cc", true));
         include_ccButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -76,7 +74,7 @@ public class SettingsActivity extends AppCompatActivity  {
         });
 
         TextView collector_address = (TextView) findViewById(R.id.collector_address_subText);
-        collector_address.setText(preferences.getString("collector_address", "https://a.collector.test.ooni.io"));
+        collector_address.setText(preferences.getString("collector_address", DEFAULT_COLLECTOR));
 
         collector_addressLayout = (RelativeLayout) findViewById(R.id.collector_addressLayout);
         collector_addressLayout.setOnClickListener(new RelativeLayout.OnClickListener() {
@@ -90,7 +88,7 @@ public class SettingsActivity extends AppCompatActivity  {
         else
             collector_addressLayout.setVisibility(View.GONE);
 
-        ToggleButton upload_resultsButton = (ToggleButton) findViewById(R.id.upload_resultsBtn);
+        SwitchCompat upload_resultsButton = (SwitchCompat) findViewById(R.id.ck_upload_results);
         upload_resultsButton.setChecked(preferences.getBoolean("upload_results", true));
         upload_resultsButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -115,8 +113,8 @@ public class SettingsActivity extends AppCompatActivity  {
         final EditText input = new EditText(this);
 
         input.setInputType(InputType.TYPE_CLASS_TEXT);
+        input.setText(preferences.getString("collector_address", DEFAULT_COLLECTOR));
         builder.setView(input);
-
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
