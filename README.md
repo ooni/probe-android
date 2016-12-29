@@ -1,4 +1,4 @@
-# Measurement Kit Android app
+# ooniprobe for Android
 
 This application requires Android Studio. In any case, before opening the
 project with Android Studio, make sure you download the dependencies using
