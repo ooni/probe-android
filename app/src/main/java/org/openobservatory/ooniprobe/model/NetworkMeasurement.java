@@ -8,6 +8,7 @@ public class NetworkMeasurement {
     public final String testName;
     public boolean completed = false;
     public final long test_id;
+    public int progress = 0;
 
     public final String json_file;
     public final String log_file;

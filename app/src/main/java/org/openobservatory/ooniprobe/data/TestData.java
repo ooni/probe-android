@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.data;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
@@ -13,6 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Observable;
 
+import org.openobservatory.measurement_kit.nettests.*;
 import org.openobservatory.measurement_kit.swig.OoniTestWrapper;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.measurement_kit.sync.PortolanSyncApi;
@@ -179,6 +181,15 @@ public class TestData extends Observable {
                         w.set_options("save_real_probe_cc", boolToString(include_cc));
                         w.set_options("no_collector", boolToString(!upload_results));
                         w.set_options("collector_base_url", collector_address);
+                        w.on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
+                            @Override
+                            public void callback(double percent, String msg) {
+                                System.out.println("test progress "+ percent);
+                                currentTest.progress = (int)percent*100;
+                                //TODO crases here maybe we need to implement the LocalBroadcastManager?
+                                //TestData.getInstance(activity).notifyObservers();
+                            }
+                        });
                         w.run();
                     }
                     else if (testName.compareTo(OONITests.NDT_TEST) == 0) {
@@ -199,6 +210,18 @@ public class TestData extends Observable {
                         w.set_options("save_real_probe_cc", boolToString(include_cc));
                         w.set_options("no_collector", boolToString(!upload_results));
                         w.set_options("collector_base_url", collector_address);
+                        w.on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
+                            @Override
+                            public void callback(double percent, String msg) {
+                                /*Intent intent = new Intent();
+                                intent.setAction(event_id);
+                                intent.putExtra("type", "on_progress");
+                                intent.putExtra("percent", percent);
+                                intent.putExtra("message", msg);
+                                manager.sendBroadcast(intent);
+                                */
+                            }
+                        });
                         w.run();
                     }
                     else if (testName.compareTo(PortolanTests.CHECK_PORT) == 0) {
