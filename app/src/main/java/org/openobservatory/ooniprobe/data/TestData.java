@@ -136,6 +136,18 @@ public class TestData extends Observable {
                         w.set_options("save_real_probe_cc", boolToString(include_cc));
                         w.set_options("no_collector", boolToString(!upload_results));
                         w.set_options("collector_base_url", collector_address);
+                        w.on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
+                            @Override
+                            public void callback(double percent, String msg) {
+                                currentTest.progress = (int)(percent*100);
+                                activity.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        TestData.getInstance(activity).notifyObservers();
+                                    }
+                                });
+                            }
+                        });
                         w.run();
                     } else if (testName.compareTo(OONITests.TCP_CONNECT) == 0) {
                         // TODO: basically we can pass the test name to the constructor
@@ -184,10 +196,13 @@ public class TestData extends Observable {
                         w.on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
                             @Override
                             public void callback(double percent, String msg) {
-                                System.out.println("test progress "+ percent);
-                                currentTest.progress = (int)percent*100;
-                                //TODO crases here maybe we need to implement the LocalBroadcastManager?
-                                //TestData.getInstance(activity).notifyObservers();
+                                currentTest.progress = (int)(percent*100);
+                                activity.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        TestData.getInstance(activity).notifyObservers();
+                                    }
+                                });
                             }
                         });
                         w.run();
@@ -213,13 +228,13 @@ public class TestData extends Observable {
                         w.on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
                             @Override
                             public void callback(double percent, String msg) {
-                                /*Intent intent = new Intent();
-                                intent.setAction(event_id);
-                                intent.putExtra("type", "on_progress");
-                                intent.putExtra("percent", percent);
-                                intent.putExtra("message", msg);
-                                manager.sendBroadcast(intent);
-                                */
+                                currentTest.progress = (int)(percent*100);
+                                activity.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        TestData.getInstance(activity).notifyObservers();
+                                    }
+                                });
                             }
                         });
                         w.run();
