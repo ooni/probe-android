@@ -9,7 +9,7 @@ BASEURL   = https://github.com/$(REPO)/releases/download
 PACKAGE   = org/openobservatory/measurement_kit
 SRCDIR    = app/src/main
 TAG       = -1
-VERSION   = v0.3.9
+VERSION   = v0.4.0-alpha.3
 
 INPUT     = measurement_kit_android-$(VERSION)$(TAG).tar.bz2
 
