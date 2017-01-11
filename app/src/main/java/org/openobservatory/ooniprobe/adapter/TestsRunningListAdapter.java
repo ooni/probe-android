@@ -55,6 +55,7 @@ public class TestsRunningListAdapter extends RecyclerView.Adapter<TestsRunningLi
         Typeface font = Typeface.createFromAsset(mActivity.getAssets(), "fonts/HelveticaNeue-Roman.otf");
         holder.txtTitle.setTypeface(font);
         holder.txtTitle.setText(NetworkMeasurement.getTestName(mActivity, i.testName));
+        holder.progressBar.setProgress(i.progress);
     }
 
     @Override

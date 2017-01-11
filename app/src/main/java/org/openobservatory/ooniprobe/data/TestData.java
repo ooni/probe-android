@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.data;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
@@ -13,6 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Observable;
 
+import org.openobservatory.measurement_kit.nettests.*;
 import org.openobservatory.measurement_kit.swig.OoniTestWrapper;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.measurement_kit.sync.PortolanSyncApi;
@@ -135,6 +137,18 @@ public class TestData extends Observable {
                         w.set_options("save_real_probe_cc", boolToString(include_cc));
                         w.set_options("no_collector", boolToString(!upload_results));
                         w.set_options("collector_base_url", collector_address);
+                        w.on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
+                            @Override
+                            public void callback(double percent, String msg) {
+                                currentTest.progress = (int)(percent*100);
+                                activity.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        TestData.getInstance(activity).notifyObservers();
+                                    }
+                                });
+                            }
+                        });
                         w.run();
                     } else if (testName.compareTo(OONITests.TCP_CONNECT) == 0) {
                         // TODO: basically we can pass the test name to the constructor
@@ -180,7 +194,18 @@ public class TestData extends Observable {
                         w.set_options("save_real_probe_cc", boolToString(include_cc));
                         w.set_options("no_collector", boolToString(!upload_results));
                         w.set_options("collector_base_url", collector_address);
-                        w.set_options("max_runtime", max_runtime);
+                        w.on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
+                            @Override
+                            public void callback(double percent, String msg) {
+                                currentTest.progress = (int)(percent*100);
+                                activity.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        TestData.getInstance(activity).notifyObservers();
+                                    }
+                                });
+                            }
+                        });
                         w.run();
                     }
                     else if (testName.compareTo(OONITests.NDT_TEST) == 0) {
@@ -201,6 +226,18 @@ public class TestData extends Observable {
                         w.set_options("save_real_probe_cc", boolToString(include_cc));
                         w.set_options("no_collector", boolToString(!upload_results));
                         w.set_options("collector_base_url", collector_address);
+                        w.on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
+                            @Override
+                            public void callback(double percent, String msg) {
+                                currentTest.progress = (int)(percent*100);
+                                activity.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        TestData.getInstance(activity).notifyObservers();
+                                    }
+                                });
+                            }
+                        });
                         w.run();
                     }
                     else if (testName.compareTo(PortolanTests.CHECK_PORT) == 0) {
