@@ -194,6 +194,7 @@ public class TestData extends Observable {
                         w.set_options("save_real_probe_cc", boolToString(include_cc));
                         w.set_options("no_collector", boolToString(!upload_results));
                         w.set_options("collector_base_url", collector_address);
+                        w.set_options("max_runtime", max_runtime);
                         w.on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
                             @Override
                             public void callback(double percent, String msg) {

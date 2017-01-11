@@ -66,4 +66,5 @@
     <string name="upload_results_ic">Should we upload your results to the default ooni collector?</string>
     <string name="no_result">No results</string>
     <string name="no_result_msg">The test has no results or it was aborted</string>
+    <string name="max_runtime">Max run time (in seconds)</string>
 </resources>

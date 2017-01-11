@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
@@ -100,6 +102,27 @@ public class SettingsActivity extends AppCompatActivity  {
                     collector_addressLayout.setVisibility(View.GONE);
                     editor.putBoolean("upload_results", false);
                 }
+                editor.commit();
+            }
+        });
+
+        TextView max_runtime = (TextView) findViewById(R.id.max_runtimeEditText);
+        max_runtime.setText(preferences.getString("max_runtime", "90"));
+        max_runtime.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("max_runtime", s.toString());
                 editor.commit();
             }
         });
