@@ -45,7 +45,7 @@ public class TestData extends Observable {
 
     public static void doNetworkMeasurements(final MainActivity activity, final String testName) {
         final String inputPath = activity.getFilesDir() + "/hosts.txt";
-        final String inputUrlsPath = activity.getFilesDir() + "/urls.txt";
+        final String inputUrlsPath = activity.getFilesDir() + "/global.txt";
 
         final NetworkMeasurement currentTest = new NetworkMeasurement(testName);
         final String outputPath = activity.getFilesDir() + "/"  + currentTest.json_file;
@@ -62,6 +62,7 @@ public class TestData extends Observable {
         final Boolean include_cc = preferences.getBoolean("include_cc", true);
         final Boolean upload_results = preferences.getBoolean("upload_results", true);
         final String collector_address = preferences.getString("collector_address", "https://measurement-kit-collector.herokuapp.com");
+        final String max_runtime = preferences.getString("max_runtime", "90");
 
         ts.addTest(activity, currentTest);
         runningTests.add(currentTest);
@@ -179,6 +180,7 @@ public class TestData extends Observable {
                         w.set_options("save_real_probe_cc", boolToString(include_cc));
                         w.set_options("no_collector", boolToString(!upload_results));
                         w.set_options("collector_base_url", collector_address);
+                        w.set_options("max_runtime", max_runtime);
                         w.run();
                     }
                     else if (testName.compareTo(OONITests.NDT_TEST) == 0) {
