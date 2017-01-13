@@ -63,7 +63,7 @@ public class TestData extends Observable {
         final Boolean include_asn = preferences.getBoolean("include_asn", false);
         final Boolean include_cc = preferences.getBoolean("include_cc", true);
         final Boolean upload_results = preferences.getBoolean("upload_results", true);
-        final String collector_address = preferences.getString("collector_address", "https://measurement-kit-collector.herokuapp.com");
+        final String collector_address = preferences.getString("collector_address", "https://b.collector.ooni.io");
         final String max_runtime = preferences.getString("max_runtime", "90");
 
         ts.addTest(activity, currentTest);
@@ -182,7 +182,7 @@ public class TestData extends Observable {
                         w.set_output_filepath(outputPath);
                         w.set_error_filepath(logPath);
                         w.set_verbosity(7);
-                        w.set_options("backend", "https://a.web-connectivity.th.ooni.io:4442");
+                        w.set_options("backend", "https://b.web-connectivity.th.ooni.io");
                         w.set_options("port", "80");
                         w.set_options("dns/nameserver", nameserver);
                         w.set_options("nameserver", nameserver);
