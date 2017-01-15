@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
             copyResources(R.raw.geoip, "GeoIPASNum.dat");
             copyResources(R.raw.geoipasnum, "GeoIP.dat");
             copyResources(R.raw.cacert, "cacert.pem");
-            copyResources(R.raw.urls, "urls.txt");
+            copyResources(R.raw.global, "global.txt");
             PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("resources_copied", true).apply();
         }
     }

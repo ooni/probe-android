@@ -66,5 +66,12 @@
     <string name="upload_results_ic">Should we upload your results to the default ooni collector?</string>
     <string name="no_result">No results</string>
     <string name="no_result_msg">The test has no results or it was aborted</string>
+    <string name="local_notifications">Run test reminder</string>
+    <string name="local_notifications_time">Time</string>
+    <string name="local_notifications_text">Time to run tests</string>
+    <string name="collector_settings">No results</string>
+    <string name="notifications">Collector settings</string>
     <string name="max_runtime">Max run time (in seconds)</string>
+    <string name="test_limits">Test limits</string>
+    <string name="finished_running">finished running</string>
 </resources>

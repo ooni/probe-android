@@ -36,6 +36,8 @@
             android:name=".activity.ResultActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
+        <receiver android:name=".utils.AlarmReceiver">
+        </receiver>
     </application>
 
 </manifest>

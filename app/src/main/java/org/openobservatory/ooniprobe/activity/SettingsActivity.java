@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.activity;
 
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -12,19 +13,25 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.support.v7.widget.SwitchCompat;
+import android.widget.TimePicker;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.utils.Notifications;
+
+import java.util.Calendar;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class SettingsActivity extends AppCompatActivity  {
     SharedPreferences preferences;
     RelativeLayout collector_addressLayout;
+    RelativeLayout local_notifications_timeLayout;
     public static final String DEFAULT_COLLECTOR = "https://a.collector.test.ooni.io";
 
     @Override
@@ -127,6 +134,62 @@ public class SettingsActivity extends AppCompatActivity  {
             }
         });
 
+        final EditText local_notifications_timeEditText = (EditText) findViewById(R.id.local_notifications_timeEditText);
+        local_notifications_timeEditText.setText(preferences.getString("local_notifications_time", "18:00"));
+        InputMethodManager im = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        im.hideSoftInputFromWindow(local_notifications_timeEditText.getWindowToken(), 0);
+
+        local_notifications_timeLayout = (RelativeLayout) findViewById(R.id.local_notifications_timeLayout);
+        local_notifications_timeLayout.setOnClickListener(new RelativeLayout.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopup();
+            }
+        });
+        if (preferences.getBoolean("local_notifications", false))
+            local_notifications_timeLayout.setVisibility(View.VISIBLE);
+        else
+            local_notifications_timeLayout.setVisibility(View.GONE);
+
+        SwitchCompat local_notificationsButton = (SwitchCompat) findViewById(R.id.local_notifications);
+        local_notificationsButton.setChecked(preferences.getBoolean("local_notifications", false));
+        local_notificationsButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences.Editor editor = preferences.edit();
+                if (isChecked) {
+                    local_notifications_timeLayout.setVisibility(View.VISIBLE);
+                    editor.putBoolean("local_notifications", true);
+                    Notifications.setRecurringAlarm(getApplicationContext());
+                } else {
+                    local_notifications_timeLayout.setVisibility(View.GONE);
+                    editor.putBoolean("local_notifications", false);
+                    Notifications.cancelRecurringAlarm(getApplicationContext());
+                }
+                editor.commit();
+            }
+        });
+
+        local_notifications_timeEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(SettingsActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        String time = String.format("%02d", selectedHour) + ":" + String.format("%02d", selectedMinute);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("local_notifications_time", time);
+                        editor.commit();
+                        local_notifications_timeEditText.setText(time);
+                        Notifications.setRecurringAlarm(getApplicationContext());
+                    }
+                }, hour, minute, true);
+                mTimePicker.show();
+            }
+        });
     }
 
     private void showPopup(){

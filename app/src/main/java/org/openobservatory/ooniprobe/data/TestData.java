@@ -22,6 +22,7 @@ import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 import org.openobservatory.ooniprobe.model.OONITests;
 import org.openobservatory.ooniprobe.model.PortolanTests;
 import org.openobservatory.ooniprobe.model.UnknownTest;
+import org.openobservatory.ooniprobe.utils.Notifications;
 
 public class TestData extends Observable {
     private static final String TAG = "TestData";
@@ -267,6 +268,7 @@ public class TestData extends Observable {
                 finishedTests.add(currentTest);
                 availableTests.put(testName, true);
                 TestData.getInstance(activity).notifyObservers();
+                Notifications.notifyTestEnded(activity, testName);
                 Log.v(TAG, "doNetworkMeasurements " + testName + "... done");
             }
         }.execute();
