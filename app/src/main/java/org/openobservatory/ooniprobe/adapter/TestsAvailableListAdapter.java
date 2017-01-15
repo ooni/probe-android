@@ -75,7 +75,7 @@ public class TestsAvailableListAdapter extends RecyclerView.Adapter<TestsAvailab
         holder.runTest.setOnClickListener(
                 new ImageButton.OnClickListener() {
                     public void onClick(View v) {
-                        TestData.doNetworkMeasurements(mActivity, key, mActivity);
+                        TestData.doNetworkMeasurements(mActivity, key);
                     }
                 }
         );

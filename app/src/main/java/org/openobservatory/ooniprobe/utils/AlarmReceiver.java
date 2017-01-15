@@ -17,10 +17,9 @@ public class AlarmReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Notifications.sendNotification(context, context.getString(R.string.local_notifications_text));
         MainActivity currentActivity = ((ooniprobeApp)context.getApplicationContext()).getCurrentActivity();
-        TestData.doNetworkMeasurements(context, "web_connectivity", currentActivity);
-        TestData.doNetworkMeasurements(context, "http_invalid_request_line", currentActivity);
-        TestData.doNetworkMeasurements(context, "ndt_test", currentActivity);
-
+        TestData.doNetworkMeasurements(context, "web_connectivity");
+        TestData.doNetworkMeasurements(context, "http_invalid_request_line");
+        TestData.doNetworkMeasurements(context, "ndt_test");
     }
 
 }

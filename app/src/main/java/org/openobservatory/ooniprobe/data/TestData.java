@@ -31,9 +31,11 @@ public class TestData extends Observable {
     public static ArrayList<NetworkMeasurement> runningTests;
     public static ArrayList<NetworkMeasurement> finishedTests;
     public static LinkedHashMap<String, Boolean> availableTests;
+    public static MainActivity activity;
 
-    public static TestData getInstance(final MainActivity activity) {
+    public static TestData getInstance(final MainActivity a) {
         if (instance == null) {
+            activity = a;
             instance = new TestData();
             ts = new TestStorage();
             runningTests = new ArrayList<NetworkMeasurement>();
@@ -46,7 +48,7 @@ public class TestData extends Observable {
         return instance;
     }
 
-    public static void doNetworkMeasurements(final Context ctx, final String testName, final MainActivity activity) {
+    public static void doNetworkMeasurements(final Context ctx, final String testName) {
         final String inputPath = ctx.getFilesDir() + "/hosts.txt";
         final String inputUrlsPath = ctx.getFilesDir() + "/global.txt";
 

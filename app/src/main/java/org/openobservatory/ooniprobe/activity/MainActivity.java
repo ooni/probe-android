@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity implements Observer {
     private TestsRunningListAdapter mRunningTestsListAdapter;
     private TestsListAdapter mFinishedTestsListAdapter;
     private static TestStorage ts;
-    protected ooniprobeApp ooniprobeApp;
 
     static {
         System.loadLibrary("measurement_kit");
@@ -58,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements Observer {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         checkResources();
-        ooniprobeApp = (ooniprobeApp)this.getApplicationContext();
 
         ts = new TestStorage();
         TestData.getInstance(this).addObserver(this);
@@ -189,25 +187,6 @@ public class MainActivity extends AppCompatActivity implements Observer {
         text.setGravity(Gravity.CENTER);;
         text.setTextColor(getResources().getColor(success ? R.color.successTextColor : R.color.errorTextColor));
         toast.show();
-    }
-
-    protected void onResume() {
-        super.onResume();
-        ooniprobeApp.setCurrentActivity(this);
-    }
-    protected void onPause() {
-        clearReferences();
-        super.onPause();
-    }
-    protected void onDestroy() {
-        clearReferences();
-        super.onDestroy();
-    }
-
-    private void clearReferences(){
-        MainActivity currActivity = ooniprobeApp.getCurrentActivity();
-        if (this.equals(currActivity))
-            ooniprobeApp.setCurrentActivity(null);
     }
 
     private static final String TAG = "main-activity";
