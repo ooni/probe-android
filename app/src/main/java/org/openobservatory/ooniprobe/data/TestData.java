@@ -112,7 +112,7 @@ public class TestData extends Observable {
                         w.set_input_filepath(inputPath);
                         w.set_output_filepath(outputPath);
                         w.set_error_filepath(logPath);
-                        w.set_verbosity(7);
+                        w.set_verbosity(1);
                         w.set_options("dns/nameserver", nameserver);
                         w.set_options("net/ca_bundle_path", ca_cert);
                         w.set_options("geoip_country_path", geoip_country);
@@ -130,7 +130,7 @@ public class TestData extends Observable {
                         w.set_options("backend", "http://213.138.109.232/");
                         w.set_output_filepath(outputPath);
                         w.set_error_filepath(logPath);
-                        w.set_verbosity(7);
+                        w.set_verbosity(1);
                         w.set_options("dns/nameserver", nameserver);
                         w.set_options("net/ca_bundle_path", ca_cert);
                         w.set_options("geoip_country_path", geoip_country);
@@ -165,7 +165,7 @@ public class TestData extends Observable {
                         w.set_input_filepath(inputPath);
                         w.set_output_filepath(outputPath);
                         w.set_error_filepath(logPath);
-                        w.set_verbosity(7);
+                        w.set_verbosity(1);
                         w.set_options("port", "80");
                         w.set_options("dns/nameserver", nameserver);
                         w.set_options("net/ca_bundle_path", ca_cert);
@@ -186,7 +186,7 @@ public class TestData extends Observable {
                         w.set_input_filepath(inputUrlsPath);
                         w.set_output_filepath(outputPath);
                         w.set_error_filepath(logPath);
-                        w.set_verbosity(7);
+                        w.set_verbosity(1);
                         w.set_options("backend", "https://b.web-connectivity.th.ooni.io");
                         w.set_options("port", "80");
                         w.set_options("dns/nameserver", nameserver);
@@ -224,7 +224,7 @@ public class TestData extends Observable {
                         w.set_input_filepath(inputPath);
                         w.set_output_filepath(outputPath);
                         w.set_error_filepath(logPath);
-                        w.set_verbosity(7);
+                        w.set_verbosity(1);
                         w.set_options("dns/nameserver", nameserver);
                         w.set_options("net/ca_bundle_path", ca_cert);
                         w.set_options("geoip_country_path", geoip_country);
