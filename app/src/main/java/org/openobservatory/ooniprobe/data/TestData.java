@@ -46,19 +46,19 @@ public class TestData extends Observable {
         return instance;
     }
 
-    public static void doNetworkMeasurements(final MainActivity activity, final String testName) {
-        final String inputPath = activity.getFilesDir() + "/hosts.txt";
-        final String inputUrlsPath = activity.getFilesDir() + "/global.txt";
+    public static void doNetworkMeasurements(final Context ctx, final String testName, final MainActivity activity) {
+        final String inputPath = ctx.getFilesDir() + "/hosts.txt";
+        final String inputUrlsPath = ctx.getFilesDir() + "/global.txt";
 
         final NetworkMeasurement currentTest = new NetworkMeasurement(testName);
-        final String outputPath = activity.getFilesDir() + "/"  + currentTest.json_file;
-        final String logPath = activity.getFilesDir() + "/"  + currentTest.log_file;
+        final String outputPath = ctx.getFilesDir() + "/"  + currentTest.json_file;
+        final String logPath = ctx.getFilesDir() + "/"  + currentTest.log_file;
 
-        final String geoip_asn = activity.getFilesDir() + "/GeoIPASNum.dat";
-        final String geoip_country = activity.getFilesDir() + "/GeoIP.dat";
-        final String ca_cert = activity.getFilesDir() + "/cacert.pem";
+        final String geoip_asn = ctx.getFilesDir() + "/GeoIPASNum.dat";
+        final String geoip_country = ctx.getFilesDir() + "/GeoIP.dat";
+        final String ca_cert = ctx.getFilesDir() + "/cacert.pem";
 
-        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
 
         final Boolean include_ip = preferences.getBoolean("include_ip", false);
         final Boolean include_asn = preferences.getBoolean("include_asn", false);
@@ -67,10 +67,10 @@ public class TestData extends Observable {
         final String collector_address = preferences.getString("collector_address", "https://b.collector.ooni.io");
         final String max_runtime = preferences.getString("max_runtime", "90");
 
-        ts.addTest(activity, currentTest);
+        ts.addTest(ctx, currentTest);
         runningTests.add(currentTest);
         availableTests.put(testName, false);
-        TestData.getInstance(activity).notifyObservers();
+        if (activity != null) TestData.getInstance(activity).notifyObservers();
 
         // The app now tries to get DNS from the device. Upon fail, it uses
         // Google DNS resolvers
@@ -142,12 +142,14 @@ public class TestData extends Observable {
                             @Override
                             public void callback(double percent, String msg) {
                                 currentTest.progress = (int)(percent*100);
-                                activity.runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        TestData.getInstance(activity).notifyObservers();
-                                    }
-                                });
+                                if (activity != null){
+                                    activity.runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            TestData.getInstance(activity).notifyObservers();
+                                        }
+                                    });
+                                }
                             }
                         });
                         w.run();
@@ -200,12 +202,14 @@ public class TestData extends Observable {
                             @Override
                             public void callback(double percent, String msg) {
                                 currentTest.progress = (int)(percent*100);
-                                activity.runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        TestData.getInstance(activity).notifyObservers();
-                                    }
-                                });
+                                if (activity != null){
+                                    activity.runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            TestData.getInstance(activity).notifyObservers();
+                                        }
+                                    });
+                                }
                             }
                         });
                         w.run();
@@ -232,12 +236,14 @@ public class TestData extends Observable {
                             @Override
                             public void callback(double percent, String msg) {
                                 currentTest.progress = (int)(percent*100);
-                                activity.runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        TestData.getInstance(activity).notifyObservers();
-                                    }
-                                });
+                                if (activity != null){
+                                    activity.runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            TestData.getInstance(activity).notifyObservers();
+                                        }
+                                    });
+                                }
                             }
                         });
                         w.run();
@@ -262,13 +268,13 @@ public class TestData extends Observable {
             }
 
             protected void onPostExecute(Boolean success) {
-                ts.setCompleted(activity, currentTest);
+                ts.setCompleted(ctx, currentTest);
                 currentTest.completed = true;
                 runningTests.remove(currentTest);
                 finishedTests.add(currentTest);
                 availableTests.put(testName, true);
-                TestData.getInstance(activity).notifyObservers();
-                Notifications.notifyTestEnded(activity, testName);
+                if (activity != null) TestData.getInstance(activity).notifyObservers();
+                Notifications.notifyTestEnded(ctx, testName);
                 Log.v(TAG, "doNetworkMeasurements " + testName + "... done");
             }
         }.execute();

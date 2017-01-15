@@ -3,9 +3,11 @@ package org.openobservatory.ooniprobe.utils;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.MainActivity;
+import org.openobservatory.ooniprobe.data.TestData;
+import org.openobservatory.ooniprobe.ooniprobeApp;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
@@ -14,6 +16,11 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Notifications.sendNotification(context, context.getString(R.string.local_notifications_text));
+        MainActivity currentActivity = ((ooniprobeApp)context.getApplicationContext()).getCurrentActivity();
+        TestData.doNetworkMeasurements(context, "web_connectivity", currentActivity);
+        TestData.doNetworkMeasurements(context, "http_invalid_request_line", currentActivity);
+        TestData.doNetworkMeasurements(context, "ndt_test", currentActivity);
+
     }
 
 }
