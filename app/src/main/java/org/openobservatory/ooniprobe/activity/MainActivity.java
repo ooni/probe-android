@@ -33,6 +33,7 @@ import org.openobservatory.ooniprobe.data.TestData;
 import org.openobservatory.ooniprobe.data.TestStorage;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 import org.openobservatory.measurement_kit.LoggerApi;
+import org.openobservatory.ooniprobe.ooniprobeApp;
 import org.openobservatory.ooniprobe.view.NotScrollableListView;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import org.openobservatory.ooniprobe.R;
@@ -128,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
             copyResources(R.raw.geoip, "GeoIPASNum.dat");
             copyResources(R.raw.geoipasnum, "GeoIP.dat");
             copyResources(R.raw.cacert, "cacert.pem");
-            copyResources(R.raw.urls, "urls.txt");
+            copyResources(R.raw.global, "global.txt");
             PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("resources_copied", true).apply();
         }
     }

@@ -77,6 +77,52 @@
             android:layout_alignParentStart="true" />
     </RelativeLayout>
 
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/local_notifications"
+            android:text="@string/local_notifications"
+            android:checked="true"
+            android:padding="10dp"
+            android:textColor="@color/lightBlack" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/local_notifications_timeLayout"
+            android:clickable="true"
+            android:padding="10dp"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true" >
+
+            <TextView
+                android:id="@+id/local_notifications_timeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/local_notifications_time"
+                android:gravity="center_vertical"
+                android:textColor="@color/lightBlack"
+                android:layout_alignBaseline="@+id/local_notifications_timeEditText"
+                android:layout_alignBottom="@+id/local_notifications_timeEditText"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:id="@+id/local_notifications_timeEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:gravity="center_vertical"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_toRightOf="@+id/local_notifications_timeText"
+                android:layout_toEndOf="@+id/local_notifications_timeText" />
+
+        </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
