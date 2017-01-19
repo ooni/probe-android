@@ -128,7 +128,6 @@ public class MainActivity extends AppCompatActivity implements Observer {
             copyResources(R.raw.hosts, "hosts.txt");
             copyResources(R.raw.geoipasnum, "GeoIPASNum.dat");
             copyResources(R.raw.geoip, "GeoIP.dat");
-            copyResources(R.raw.cacert, "cacert.pem");
             copyResources(R.raw.global, "global.txt");
             PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("resources_copied", true).apply();
         }
@@ -157,7 +156,6 @@ public class MainActivity extends AppCompatActivity implements Observer {
             startInformedConsentActivity();
         }
     }
-
 
     public void startInformedConsentActivity() {
         Intent InformedConsentIntent = new Intent(MainActivity.this, InformedConsentActivity.class);
