@@ -1,7 +1,6 @@
 package org.openobservatory.ooniprobe.data;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
@@ -11,10 +10,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Observable;
 
-import org.openobservatory.measurement_kit.nettests.*;
 import org.openobservatory.measurement_kit.swig.OoniTestWrapper;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.measurement_kit.sync.PortolanSyncApi;
