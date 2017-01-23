@@ -32,3 +32,27 @@ are affected by that command:
 
 
 All the added files should be recognized by Android Studio.
+
+## Building an apk
+
+* Ensure you have Android Studio and gradle installed
+
+On macOS you can do:
+
+```
+brew cask install android-studio
+brew install gradle
+```
+
+Then you should open the project in Android Studio and click on build.
+
+The built apk will end up inside of `app/build/outputs/apk/`.
+
+If you wish to test the apk inside of an emulator this can be done with:
+
+```
+~/Library/Android/sdk/tools/emulator -avd Nexus_5_API_23_marshmallow_6.0
+~/Library/Android/sdk/platform-tools/adb install app/build/outputs/apk/app-debug.apk
+```
+
+The app should then be installed inside of the emulator `Nexus_5_API_23_marshmallow_6.0`.
