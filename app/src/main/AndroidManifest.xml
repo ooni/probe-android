@@ -24,11 +24,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.SettingsActivity"
-            android:label="@string/settings"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activity.InformedConsentActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />

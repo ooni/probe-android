@@ -10,9 +10,9 @@
     <string name="http_invalid_request_line">HTTP Invalid request line</string>
     <string name="http_header_field_manipulation">HTTP Header field manipulation</string>
     <string name="web_connectivity">Web Connectivity</string>
-    <string name="ndt_test">Ndt Test</string>
-    <string name="http_invalid_request_line_desc">Check if websites are blocked</string>
-    <string name="web_connectivity_desc">Find \'middle boxes\'</string>
+    <string name="ndt_test">NDT Speed Test</string>
+    <string name="web_connectivity_desc">Check if websites are blocked</string>
+    <string name="http_invalid_request_line_desc">Find \'middle boxes\'</string>
     <string name="ndt_test_desc">Measurement network speed and performance</string>
     <string name="http_invalid_request_line_longdesc">This test tries to detect the presence of network components (“middle box”) which could be responsible for censorship and/or surveillance.</string>
     <string name="web_connectivity_longdesc">This test examines whether access to websites is blocked through DNS tampering, TCP connection RST/IP blocking, or by a transparent HTTP proxy.</string>
@@ -73,4 +73,6 @@
     <string name="max_runtime">Max runtime (seconds)</string>
     <string name="test_limits">Test limits</string>
     <string name="finished_running">%s finished running</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
 </resources>

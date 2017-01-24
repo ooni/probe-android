@@ -1,46 +1,70 @@
-package org.openobservatory.ooniprobe.activity;
+package org.openobservatory.ooniprobe.fragment;
 
+import android.app.Activity;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SwitchCompat;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.support.v7.widget.SwitchCompat;
 import android.widget.TimePicker;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.utils.Notifications;
 
 import java.util.Calendar;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
-
-public class SettingsActivity extends AppCompatActivity  {
+public class SettingsFragment extends Fragment {
+    private MainActivity mActivity;
     SharedPreferences preferences;
     RelativeLayout collector_addressLayout;
     RelativeLayout local_notifications_timeLayout;
     public static final String DEFAULT_COLLECTOR = "https://a.collector.test.ooni.io";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
-        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mActivity = (MainActivity) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement onViewSelected");
+        }
+    }
 
-        SwitchCompat include_ipButton = (SwitchCompat) findViewById(R.id.ck_include_ip);
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mActivity = null;
+    }
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_settings, container, false);
+        preferences = PreferenceManager.getDefaultSharedPreferences(mActivity);
+        SwitchCompat include_ipButton = (SwitchCompat) v.findViewById(R.id.ck_include_ip);
         include_ipButton.setChecked(preferences.getBoolean("include_ip", false));
         include_ipButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -54,7 +78,7 @@ public class SettingsActivity extends AppCompatActivity  {
             }
         });
 
-        SwitchCompat include_asnButton = (SwitchCompat) findViewById(R.id.ck_include_asn);
+        SwitchCompat include_asnButton = (SwitchCompat) v.findViewById(R.id.ck_include_asn);
         include_asnButton.setChecked(preferences.getBoolean("include_asn", true));
         include_asnButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -68,7 +92,7 @@ public class SettingsActivity extends AppCompatActivity  {
             }
         });
 
-        SwitchCompat include_ccButton = (SwitchCompat) findViewById(R.id.ck_include_country);
+        SwitchCompat include_ccButton = (SwitchCompat) v.findViewById(R.id.ck_include_country);
         include_ccButton.setChecked(preferences.getBoolean("include_cc", true));
         include_ccButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -82,10 +106,10 @@ public class SettingsActivity extends AppCompatActivity  {
             }
         });
 
-        TextView collector_address = (TextView) findViewById(R.id.collector_address_subText);
+        TextView collector_address = (TextView) v.findViewById(R.id.collector_address_subText);
         collector_address.setText(preferences.getString("collector_address", DEFAULT_COLLECTOR));
 
-        collector_addressLayout = (RelativeLayout) findViewById(R.id.collector_addressLayout);
+        collector_addressLayout = (RelativeLayout) v.findViewById(R.id.collector_addressLayout);
         collector_addressLayout.setOnClickListener(new RelativeLayout.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,7 +121,7 @@ public class SettingsActivity extends AppCompatActivity  {
         else
             collector_addressLayout.setVisibility(View.GONE);
 
-        SwitchCompat upload_resultsButton = (SwitchCompat) findViewById(R.id.ck_upload_results);
+        SwitchCompat upload_resultsButton = (SwitchCompat) v.findViewById(R.id.ck_upload_results);
         upload_resultsButton.setChecked(preferences.getBoolean("upload_results", true));
         upload_resultsButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -113,7 +137,7 @@ public class SettingsActivity extends AppCompatActivity  {
             }
         });
 
-        TextView max_runtime = (TextView) findViewById(R.id.max_runtimeEditText);
+        TextView max_runtime = (TextView) v.findViewById(R.id.max_runtimeEditText);
         max_runtime.setText(preferences.getString("max_runtime", "90"));
         max_runtime.addTextChangedListener(new TextWatcher() {
             @Override
@@ -134,12 +158,12 @@ public class SettingsActivity extends AppCompatActivity  {
             }
         });
 
-        final EditText local_notifications_timeEditText = (EditText) findViewById(R.id.local_notifications_timeEditText);
+        final EditText local_notifications_timeEditText = (EditText) v.findViewById(R.id.local_notifications_timeEditText);
         local_notifications_timeEditText.setText(preferences.getString("local_notifications_time", "18:00"));
-        InputMethodManager im = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager im = (InputMethodManager)mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
         im.hideSoftInputFromWindow(local_notifications_timeEditText.getWindowToken(), 0);
 
-        local_notifications_timeLayout = (RelativeLayout) findViewById(R.id.local_notifications_timeLayout);
+        local_notifications_timeLayout = (RelativeLayout) v.findViewById(R.id.local_notifications_timeLayout);
         local_notifications_timeLayout.setOnClickListener(new RelativeLayout.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -151,7 +175,7 @@ public class SettingsActivity extends AppCompatActivity  {
         else
             local_notifications_timeLayout.setVisibility(View.GONE);
 
-        SwitchCompat local_notificationsButton = (SwitchCompat) findViewById(R.id.local_notifications);
+        SwitchCompat local_notificationsButton = (SwitchCompat) v.findViewById(R.id.local_notifications);
         local_notificationsButton.setChecked(preferences.getBoolean("local_notifications", false));
         local_notificationsButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -159,11 +183,11 @@ public class SettingsActivity extends AppCompatActivity  {
                 if (isChecked) {
                     local_notifications_timeLayout.setVisibility(View.VISIBLE);
                     editor.putBoolean("local_notifications", true);
-                    Notifications.setRecurringAlarm(getApplicationContext());
+                    Notifications.setRecurringAlarm(mActivity.getApplicationContext());
                 } else {
                     local_notifications_timeLayout.setVisibility(View.GONE);
                     editor.putBoolean("local_notifications", false);
-                    Notifications.cancelRecurringAlarm(getApplicationContext());
+                    Notifications.cancelRecurringAlarm(mActivity.getApplicationContext());
                 }
                 editor.commit();
             }
@@ -176,7 +200,7 @@ public class SettingsActivity extends AppCompatActivity  {
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
                 int minute = mcurrentTime.get(Calendar.MINUTE);
                 TimePickerDialog mTimePicker;
-                mTimePicker = new TimePickerDialog(SettingsActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                mTimePicker = new TimePickerDialog(mActivity, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         String time = String.format("%02d", selectedHour) + ":" + String.format("%02d", selectedMinute);
@@ -184,20 +208,20 @@ public class SettingsActivity extends AppCompatActivity  {
                         editor.putString("local_notifications_time", time);
                         editor.commit();
                         local_notifications_timeEditText.setText(time);
-                        Notifications.setRecurringAlarm(getApplicationContext());
+                        Notifications.setRecurringAlarm(mActivity.getApplicationContext());
                     }
                 }, hour, minute, true);
                 mTimePicker.show();
             }
         });
+        return v;
     }
 
-
     private void showPopup(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
         builder.setTitle(getString(R.string.collector_address));
 
-        final EditText input = new EditText(this);
+        final EditText input = new EditText(mActivity);
 
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         input.setText(preferences.getString("collector_address", DEFAULT_COLLECTOR));
@@ -209,7 +233,7 @@ public class SettingsActivity extends AppCompatActivity  {
                 editor.putString("collector_address", input.getText().toString());
                 editor.commit();
                 //Workaround to reload settings
-                TextView collector_address = (TextView) findViewById(R.id.collector_address_subText);
+                TextView collector_address = (TextView)mActivity.findViewById(R.id.collector_address_subText);
                 collector_address.setText(input.getText().toString());
             }
         });
@@ -220,10 +244,4 @@ public class SettingsActivity extends AppCompatActivity  {
         d.show();
     }
 
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-    }
-
-    private static final String TAG = "settings-activity";
 }
