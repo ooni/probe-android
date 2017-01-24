@@ -15,7 +15,6 @@ import org.openobservatory.ooniprobe.activity.InformedConsentActivity;
 
 public class IConsentPage1Fragment extends Fragment {
 
-
     private InformedConsentActivity mActivity;
     private AppCompatButton nextButton;
 
@@ -49,7 +48,7 @@ public class IConsentPage1Fragment extends Fragment {
         nextButton = (AppCompatButton) v.findViewById(R.id.nextButton);
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                next();
+                mActivity.getWizard().navigateNext();
             }
         });
         final GestureDetector gesture = new GestureDetector(getActivity(),
@@ -69,11 +68,9 @@ public class IConsentPage1Fragment extends Fragment {
                                 return false;
                             if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
                                     && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                                System.out.println("Right to Left");
-                                next();
+                                mActivity.getWizard().navigateNext();
                             } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
                                     && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                                System.out.println("Left to Right");
                             }
                         } catch (Exception e) {
                             // nothing
@@ -91,7 +88,4 @@ public class IConsentPage1Fragment extends Fragment {
         return v;
     }
 
-    public void next(){
-        mActivity.getWizard().navigateNext();
-    }
 }

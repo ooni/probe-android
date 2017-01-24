@@ -69,17 +69,17 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
             <android.support.v7.widget.AppCompatButton
-                android:id="@+id/run_test_button"
+                android:id="@+id/nextButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:layout_height="60dp"
                 android:textSize="24sp"
+                android:padding="10dp"
                 android:textStyle="bold"
                 android:text="@string/i_understand_the_risks"
+                app:textAllCaps="false"
                 android:textColor="@color/color_white"
-                app:backgroundTint="@color/color_ooni_blue"
+                android:background="@drawable/nextbutton"
                 android:layout_centerHorizontal="true" />
         </RelativeLayout>
 
