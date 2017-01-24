@@ -11,41 +11,50 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
+
         <android.support.v7.widget.SwitchCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ck_include_ip"
-            android:text="@string/include_ip"
-            android:checked="false"
-            android:padding="10dp"
-            android:textColor="@color/lightBlack" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ck_include_ip"
+        android:drawableLeft="@drawable/include_ip"
+        android:drawablePadding="5dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/include_ip"
+        android:checked="false"
+        android:textColor="@color/color_ooni_blue" />
 
         <android.support.v7.widget.SwitchCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/ck_include_asn"
+            android:drawablePadding="5dp"
+            android:layout_marginBottom="10dp"
+            android:drawableLeft="@drawable/include_asn"
             android:text="@string/include_asn"
             android:checked="true"
-            android:padding="10dp"
-            android:textColor="@color/lightBlack" />
+            android:textColor="@color/color_ooni_blue" />
 
         <android.support.v7.widget.SwitchCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/ck_include_country"
+            android:drawableLeft="@drawable/include_cc"
+            android:drawablePadding="5dp"
+            android:layout_marginBottom="10dp"
             android:text="@string/include_cc"
             android:checked="true"
-            android:padding="10dp"
-            android:textColor="@color/lightBlack" />
+            android:textColor="@color/color_ooni_blue" />
 
         <android.support.v7.widget.SwitchCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/ck_upload_results"
+            android:drawableLeft="@drawable/upload_results"
+            android:drawablePadding="5dp"
+            android:layout_marginBottom="10dp"
             android:text="@string/upload_results"
             android:checked="true"
-            android:padding="10dp"
-            android:textColor="@color/lightBlack" />
+            android:textColor="@color/color_ooni_blue" />
 
         <RelativeLayout
         android:layout_width="match_parent"

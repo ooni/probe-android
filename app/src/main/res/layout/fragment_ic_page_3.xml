@@ -82,6 +82,5 @@
                 android:background="@drawable/nextbutton"
                 android:layout_centerHorizontal="true" />
         </RelativeLayout>
-
     </LinearLayout>
 </ScrollView>

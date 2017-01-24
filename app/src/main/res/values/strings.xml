@@ -56,7 +56,7 @@
     <string name="include_cc">Include your country name?</string>
     <string name="upload_results">Share results publicly?</string>
     <string name="settings_text">All measurements are sent by default to OONI\'s measurement collector and automately published through the OONI explorer and OONI\'s list of measurements.</string>
-    <string name="im_all_set">I\'m all \"set\"!</string>
+    <string name="im_all_set">I\'m all set!</string>
     <string name="ooniprobe_configured">Successfully configured ooniprobe. You are all set to go!</string>
     <string name="about_ooni">About OONI</string>
     <string name="about_text_1">The Open Observatory of Network Interference (OONI) is a free software project under The Tor Project that aims to increase transparency of internet censorship around the world.</string>

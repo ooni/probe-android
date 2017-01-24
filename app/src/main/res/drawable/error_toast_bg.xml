@@ -4,7 +4,7 @@
     <solid android:color="@color/errorBgColor" />
     <stroke
         android:width="2dp"
-        android:color="@color/errorTextColor" ></stroke>
+        android:color="@color/color_bad_red" ></stroke>
     <corners android:radius="5dip"/>
     <padding android:left="5dip" android:top="5dip" android:right="5dip" android:bottom="5dip" />
 </shape>
