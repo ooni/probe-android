@@ -91,18 +91,18 @@ public class MainActivityOld extends AppCompatActivity implements Observer {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        //getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        //if (id == R.id.action_settings) {
             //Intent i = new Intent(this, SettingsActivity.class);
             //startActivity(i);
-            return true;
-        }
+        //    return true;
+        //}
         return super.onOptionsItemSelected(item);
     }
 
@@ -183,7 +183,7 @@ public class MainActivityOld extends AppCompatActivity implements Observer {
         view.setBackgroundResource(success ? R.drawable.success_toast_bg : R.drawable.error_toast_bg);
         TextView text = (TextView) view.findViewById(android.R.id.message);
         text.setGravity(Gravity.CENTER);;
-        text.setTextColor(getResources().getColor(success ? R.color.successTextColor : R.color.errorTextColor));
+        //text.setTextColor(getResources().getColor(success ? R.color.color_ok_green : R.color.color_bad_red));
         toast.show();
     }
 

@@ -3,16 +3,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="50dp">
-
-    <ImageView
-        android:id="@+id/status_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="6dp"
-        android:background="@android:color/transparent"
-        android:src="@drawable/censorship_no"
-        android:layout_gravity="center_vertical" />
-
+    
     <TextView
         android:id="@+id/test_title"
         android:layout_width="match_parent"
@@ -20,7 +11,7 @@
         android:textSize="17sp"
         android:text="TCP CONNECT"
         android:gravity="left"
-        android:textColor="@color/lightBlack"
+        android:textColor="@color/color_off_black"
         android:layout_gravity="center_vertical" />
 
 </LinearLayout>

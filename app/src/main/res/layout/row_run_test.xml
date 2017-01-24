@@ -3,47 +3,19 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/color_white"
+    android:background="@color/color_off_white"
     android:padding="10dp" >
-
-    <LinearLayout
-        android:id="@+id/titleLayout"
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/color_white"
-        android:layout_toRightOf="@+id/test_logo"
-        android:layout_toLeftOf="@+id/test_buttons"
-        android:layout_centerVertical="true"
-        android:layout_alignParentBottom="true">
-        <TextView
-            android:id="@+id/test_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="17sp"
-            android:text="TCP CONNECT"
-            android:gravity="center"
-            android:textColor="@color/lightBlack" />
-        <TextView
-            android:id="@+id/test_desc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="13sp"
-            android:text="TCP CONNECT"
-            android:gravity="center"
-            android:textColor="@color/color_grey_light" />
-    </LinearLayout>
 
     <ImageView
         android:id="@+id/test_logo"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="24dp"
         android:layout_gravity="center_vertical"
         android:background="@android:color/transparent"
         android:src="@drawable/ooni_icon"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_height="24dp" />
 
     <RelativeLayout
         android:id="@+id/test_buttons"
@@ -64,7 +36,7 @@
         />
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progressIndicator"
         android:indeterminate="true"
         style="?android:attr/progressBarStyleSmall"
         android:layout_width="wrap_content"
@@ -73,4 +45,53 @@
         android:layout_centerHorizontal="true"
         />
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/titleLayout"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@color/color_off_white"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/test_logo"
+        android:layout_toEndOf="@+id/test_logo"
+        android:layout_toLeftOf="@+id/test_buttons"
+        android:layout_toStartOf="@+id/test_buttons"
+        >
+        <TextView
+            android:id="@+id/test_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:text="TCP CONNECT"
+            android:gravity="center"
+            android:textColor="@color/color_off_black" />
+        <RelativeLayout
+            android:id="@+id/subtitleView"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+>
+            <TextView
+                android:id="@+id/test_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:text="TCP CONNECT"
+                android:gravity="center"
+                android:textColor="@color/color_off_black" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="30"/>
+
+            </RelativeLayout>
+
+    </LinearLayout>
 </RelativeLayout>

@@ -12,13 +12,16 @@ public class NetworkMeasurement {
 
     public final String json_file;
     public final String log_file;
-    //public final String status;
+    public final Boolean running;
+    public final Boolean viewed;
 
     public NetworkMeasurement(String name){
         this.testName = name;
         this.test_id = System.currentTimeMillis();
         this.log_file = "/test-"+ test_id +".log";
         this.json_file = "/test-"+ test_id +".json";
+        this.running = false;
+        this.viewed = false;
     }
 
     public static String getTestName(Context context, String name) {

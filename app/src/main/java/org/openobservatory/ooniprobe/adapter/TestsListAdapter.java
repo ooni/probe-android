@@ -91,12 +91,14 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
             holder.txtTimestamp.setText("");
         }
         final String[] parts = LogUtils.getLogParts(mActivity, i.json_file);
+        /*
         if (parts.length > 1)
             holder.statusImage.setImageResource(R.drawable.test_multi);
         else if (parts.length == 0)
             holder.statusImage.setImageResource(R.drawable.test_aborted);
         else
             holder.statusImage.setImageResource(android.R.color.transparent);
+            */
         holder.itemView.setOnClickListener(
                 new ImageButton.OnClickListener() {
                     public void onClick(View v) {
@@ -139,7 +141,6 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView txtTitle;
         public TextView txtTimestamp;
-        public ImageView statusImage;
         public ListImageButton popupButton;
 
         public ViewHolder(View itemView) {
@@ -147,7 +148,6 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
             itemView.setOnClickListener(this);
             txtTitle = (TextView) itemView.findViewById(R.id.test_title);
             txtTimestamp = (TextView) itemView.findViewById(R.id.test_timestamp);
-            statusImage = (ImageView) itemView.findViewById(R.id.status_image);
             popupButton = (ListImageButton) itemView.findViewById(R.id.test_popupmenu);
         }
 

@@ -62,12 +62,12 @@ public class TestsAvailableListAdapter extends RecyclerView.Adapter<TestsAvailab
         holder.txtTitle.setText(NetworkMeasurement.getTestName(mActivity, key));
         holder.txtDesc.setText(NetworkMeasurement.getTestDescr(mActivity, key));
         if (available) {
-            holder.progressBar.setVisibility(View.GONE);
+            holder.progressIndicator.setVisibility(View.GONE);
             holder.runTest.setVisibility(View.VISIBLE);
         }
         else {
             holder.runTest.setVisibility(View.GONE);
-            holder.progressBar.setVisibility(View.VISIBLE);
+            holder.progressIndicator.setVisibility(View.VISIBLE);
         }
         holder.runTest.setOnClickListener(
                 new ImageButton.OnClickListener() {
@@ -106,6 +106,7 @@ public class TestsAvailableListAdapter extends RecyclerView.Adapter<TestsAvailab
         public TextView txtDesc;
         public Button runTest;
         public ProgressBar progressBar;
+        public ProgressBar progressIndicator;
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
@@ -113,6 +114,7 @@ public class TestsAvailableListAdapter extends RecyclerView.Adapter<TestsAvailab
             txtDesc = (TextView) itemView.findViewById(R.id.test_desc);
             runTest = (Button) itemView.findViewById(R.id.run_test_button);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar);
+            progressIndicator = (ProgressBar) itemView.findViewById(R.id.progressIndicator);
         }
 
         @Override

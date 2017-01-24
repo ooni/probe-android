@@ -1,6 +1,5 @@
 package org.openobservatory.ooniprobe.adapter;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -11,13 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.ResultFragment;
-import org.openobservatory.ooniprobe.fragment.ResultListFragment;
 
 import java.util.ArrayList;
 
@@ -52,6 +49,7 @@ public class TestResultListAdapter extends RecyclerView.Adapter<TestResultListAd
         } catch (JSONException e) {
             holder.txtTitle.setText("input " + position);
         }
+        /*
         try {
             if (!i.getJSONObject("test_keys").getBoolean("blocking"))
                 holder.testStatus.setImageResource(R.drawable.censorship_no);
@@ -60,7 +58,7 @@ public class TestResultListAdapter extends RecyclerView.Adapter<TestResultListAd
         } catch (JSONException e) {
             holder.testStatus.setImageResource(R.drawable.censorship_yes);
         }
-
+*/
         holder.itemView.setOnClickListener(
                 new ImageButton.OnClickListener() {
                     public void onClick(View v) {
@@ -93,12 +91,10 @@ public class TestResultListAdapter extends RecyclerView.Adapter<TestResultListAd
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView txtTitle;
-        public ImageView testStatus;
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             txtTitle = (TextView) itemView.findViewById(R.id.test_title);
-            testStatus = (ImageView) itemView.findViewById(R.id.status_image);
         }
 
         @Override

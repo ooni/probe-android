@@ -8,4 +8,4 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:background="@color/color_ooni_blue"
-    android:textColor="@color/color_white"/>
+    android:textColor="@color/color_off_white"/>

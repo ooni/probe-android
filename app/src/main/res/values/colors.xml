@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="textColor">#A29B82</color>
-    <color name="backgroundColor">#292323</color>
-    <color name="successTextColor">#3C763D</color>
-    <color name="successBgColor">#DFF0D8</color>
-    <color name="errorTextColor">#A94442</color>
-    <color name="errorBgColor">#F2DEDE</color>
-    <color name="lightBlack">#333333</color>
-
     <color name="color_ooni_blue">#0588CB</color>
     <color name="color_off_black">#777777</color>
     <color name="color_off_white">#f2f2f2</color>
@@ -18,14 +7,6 @@
     <color name="color_bad_red">#cc0000</color>
     <color name="color_warning_orange">#ffa500</color>
 
-    <color name="color_dark_blue">#046799</color>
-    <color name="color_white">#fff</color>
-    <color name="color_footer_background_color">#26292c</color>
-    <color name="color_footer_color">#b4b4b4</color>
-    <color name="color_blocked">#B83564</color>
-    <color name="color_grey_light">#d9d9d9</color>
-    <color name="color_grey">#c1c1c1</color>
-
-
+    <color name="color_ooni_blue_dark">#046799</color>
 
 </resources>

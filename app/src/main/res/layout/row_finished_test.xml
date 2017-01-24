@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:background="@color/color_white"
+    android:background="@color/color_off_white"
     android:padding="10dp"
     >
 
@@ -14,7 +14,7 @@
         android:textSize="17sp"
         android:text="TCP CONNECT"
         android:gravity="center"
-        android:textColor="@color/lightBlack"
+        android:textColor="@color/color_off_black"
         android:layout_alignParentTop="true" />
 
     <TextView
@@ -25,18 +25,9 @@
         android:textSize="12sp"
         android:text="timestamp"
         android:gravity="center"
-        android:textColor="@color/color_grey_light"
+        android:textColor="@color/color_off_black"
         android:layout_alignParentBottom="true" />
 
-    <ImageView
-        android:id="@+id/status_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:background="@android:color/transparent"
-        android:src="@drawable/test_aborted" />
 
     <org.openobservatory.ooniprobe.view.ListImageButton
         android:id="@+id/test_popupmenu"

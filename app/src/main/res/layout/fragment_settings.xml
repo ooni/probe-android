@@ -71,14 +71,14 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:textColor="@color/lightBlack" />
+            android:textColor="@color/color_off_black" />
 
         <TextView
             android:id="@+id/collector_address_subText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/collector_address"
-            android:textColor="@color/color_grey_light"
+            android:textColor="@color/color_off_black"
             android:textSize="10sp"
             android:gravity="center_vertical"
             android:layout_below="@+id/collector_addressText"
@@ -93,7 +93,7 @@
             android:text="@string/local_notifications"
             android:checked="true"
             android:padding="10dp"
-            android:textColor="@color/lightBlack" />
+            android:textColor="@color/color_off_black" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -110,7 +110,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/local_notifications_time"
                 android:gravity="center_vertical"
-                android:textColor="@color/lightBlack"
+                android:textColor="@color/color_off_black"
                 android:layout_alignBaseline="@+id/local_notifications_timeEditText"
                 android:layout_alignBottom="@+id/local_notifications_timeEditText"
                 android:layout_alignParentLeft="true"
@@ -147,7 +147,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/max_runtime"
                 android:gravity="center_vertical"
-                android:textColor="@color/lightBlack"
+                android:textColor="@color/color_off_black"
                 android:layout_alignBaseline="@+id/max_runtimeEditText"
                 android:layout_alignBottom="@+id/max_runtimeEditText"
                 android:layout_alignParentLeft="true"

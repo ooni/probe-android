@@ -47,7 +47,7 @@
                 android:textStyle="bold"
                 android:text="@string/learn_more"
                 app:textAllCaps="false"
-                android:textColor="@color/color_white"
+                android:textColor="@color/color_off_white"
                 android:background="@drawable/nextbutton"
                 android:layout_centerHorizontal="true" />
         </RelativeLayout>

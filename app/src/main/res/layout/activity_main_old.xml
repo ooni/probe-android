@@ -6,7 +6,7 @@
     android:scrollbars="vertical"
     android:scrollbarAlwaysDrawVerticalTrack="true"
     android:fadeScrollbars="false"
-    android:background="@color/color_white"
+    android:background="@color/color_off_white"
     tools:context="org.openobservatory.ooniprobe.activity.MainActivity">
 
     <LinearLayout
@@ -33,7 +33,7 @@
             android:id="@+id/finishedTests"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:divider="@color/color_grey_light"
+            android:divider="@android:color/transparent"
             android:dividerHeight="1dp" />
 
     </LinearLayout>
