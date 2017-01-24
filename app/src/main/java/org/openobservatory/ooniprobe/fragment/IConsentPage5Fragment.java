@@ -1,22 +1,32 @@
 package org.openobservatory.ooniprobe.fragment;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.support.v7.widget.SwitchCompat;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.InformedConsentActivity;
 
-public class IConsentPage3Fragment extends Fragment {
+public class IConsentPage5Fragment extends Fragment {
 
 
     private InformedConsentActivity mActivity;
+    private SwitchCompat mCkIncludeIP;
+    private SwitchCompat mCkIncludeAsn;
+    private SwitchCompat mCkIncludeCountry;
+    private SwitchCompat mCkUploadResults;
 
-    public static IConsentPage3Fragment create() {
-        IConsentPage3Fragment atf = new IConsentPage3Fragment();
+    public static IConsentPage5Fragment create() {
+        IConsentPage5Fragment atf = new IConsentPage5Fragment();
         Bundle args = new Bundle();
         atf.setArguments(args);
         return atf;
@@ -47,18 +57,15 @@ public class IConsentPage3Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View v = inflater.inflate(R.layout.fragment_ic_page_3, container, false);
+        View v = inflater.inflate(R.layout.fragment_ic_page_5, container, false);
+        mCkIncludeIP = (SwitchCompat) v.findViewById(R.id.ck_include_ip);
+        mCkIncludeAsn = (SwitchCompat) v.findViewById(R.id.ck_include_asn);
+        mCkIncludeCountry = (SwitchCompat) v.findViewById(R.id.ck_include_country);
+        mCkUploadResults = (SwitchCompat) v.findViewById(R.id.ck_upload_results);
         return v;
     }
 
     /*
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_informed_consent, menu);
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
@@ -66,10 +73,16 @@ public class IConsentPage3Fragment extends Fragment {
                 mActivity.getWizard().navigatePrevious();
                 break;
             case R.id.menu_next:
+                SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(mActivity).edit();
+                editor.putBoolean("include_ip", mCkIncludeIP.isChecked());
+                editor.putBoolean("include_asn", mCkIncludeAsn.isChecked());
+                editor.putBoolean("include_country", mCkIncludeCountry.isChecked());
+                editor.putBoolean("upload_results", mCkUploadResults.isChecked());
+                editor.apply();
                 mActivity.getWizard().navigateNext();
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
-    */
+*/
 }

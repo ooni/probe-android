@@ -3,58 +3,93 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="7dp">
-    <LinearLayout
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/pop_quiz"
+        android:textStyle="bold"
+        android:textSize="28sp"
+        android:textColor="@color/lightBlack"/>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/question_1"
+        android:textColor="@color/lightBlack"/>
+
+    <RadioGroup
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/radio_1" >
 
-        <TextView
+        <RadioButton
+            android:drawablePadding="8dp"
+            android:button="@null"
+            android:drawableLeft="@drawable/checkbox_selector"
+            android:drawableStart="@drawable/checkbox_selector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="@string/configuration"
-            android:textStyle="bold"
-            android:textSize="28sp"
-            android:textColor="@color/lightBlack"/>
+            android:id="@+id/answer_1_1"
+            android:text="@string/_true"
+            android:textColor="@color/lightBlack" />
 
-        <TextView
+        <RadioButton
+            android:drawablePadding="8dp"
+            android:button="@null"
+            android:drawableLeft="@drawable/checkbox_selector"
+            android:drawableStart="@drawable/checkbox_selector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:textSize="15sp"
-            android:text="@string/configuration_text"
-            android:textColor="@color/lightBlack"/>
-
-        <android.support.v7.widget.SwitchCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ck_include_ip"
-            android:text="@string/include_ip_ic"
-            android:checked="false"
+            android:id="@+id/answer_1_2"
+            android:text="@string/_false"
             android:textColor="@color/lightBlack" />
 
-        <android.support.v7.widget.SwitchCompat
-            android:layout_width="match_parent"
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/text"
+        android:text="@string/question_2"
+        android:textColor="@color/lightBlack"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/radio_2" >
+
+        <RadioButton
+            android:button="@null"
+            android:drawablePadding="8dp"
+            android:drawableLeft="@drawable/checkbox_selector"
+            android:drawableStart="@drawable/checkbox_selector"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/ck_include_asn"
-            android:text="@string/include_asn_ic"
-            android:checked="true"
+            android:id="@+id/answer_2_1"
+            android:text="@string/_true"
             android:textColor="@color/lightBlack" />
 
-        <android.support.v7.widget.SwitchCompat
-            android:layout_width="match_parent"
+        <RadioButton
+            android:button="@null"
+            android:drawablePadding="8dp"
+            android:drawableLeft="@drawable/checkbox_selector"
+            android:drawableStart="@drawable/checkbox_selector"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/ck_include_country"
-            android:text="@string/include_cc_ic"
-            android:checked="true"
+            android:id="@+id/answer_2_2"
+            android:text="@string/_false"
             android:textColor="@color/lightBlack" />
 
-        <android.support.v7.widget.SwitchCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ck_upload_results"
-            android:text="@string/upload_results_ic"
-            android:checked="true"
-            android:textColor="@color/lightBlack" />
-        </LinearLayout>
-    </ScrollView>
+    </RadioGroup>
+</LinearLayout>
+</ScrollView>

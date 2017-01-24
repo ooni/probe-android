@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +11,8 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.ResultFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
 import org.openobservatory.ooniprobe.utils.LogUtils;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -47,6 +50,10 @@ public class ResultActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
     /*
         @Override
         public void onBackPressed() {

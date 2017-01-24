@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="7dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/set_up_sharing"
+            android:textStyle="bold"
+            android:textSize="28sp"
+            android:textColor="@color/lightBlack"/>
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ck_include_ip"
+            android:text="@string/include_ip"
+            android:checked="false"
+            android:textColor="@color/lightBlack" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ck_include_asn"
+            android:text="@string/include_asn"
+            android:checked="true"
+            android:textColor="@color/lightBlack" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ck_include_country"
+            android:text="@string/include_cc"
+            android:checked="true"
+            android:textColor="@color/lightBlack" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ck_upload_results"
+            android:text="@string/upload_results"
+            android:checked="true"
+            android:textColor="@color/lightBlack" />
+        </LinearLayout>
+    </ScrollView>

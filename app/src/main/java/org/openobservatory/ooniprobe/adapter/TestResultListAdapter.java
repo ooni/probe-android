@@ -46,8 +46,6 @@ public class TestResultListAdapter extends RecyclerView.Adapter<TestResultListAd
     @Override
     public void onBindViewHolder(TestResultListAdapter.ViewHolder holder, final int position) {
         final JSONObject i = values.get(position);
-        Typeface font = Typeface.createFromAsset(mActivity.getAssets(), "fonts/HelveticaNeue-Roman.otf");
-        holder.txtTitle.setTypeface(font);
         System.out.println(i);
         try {
             holder.txtTitle.setText("input " + i.getString("input"));

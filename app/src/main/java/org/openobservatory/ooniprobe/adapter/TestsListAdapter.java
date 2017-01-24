@@ -67,8 +67,6 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
     @Override
     public void onBindViewHolder(TestsListAdapter.ViewHolder holder, int position) {
         final NetworkMeasurement i = values.get(position);
-        Typeface font = Typeface.createFromAsset(mActivity.getAssets(), "fonts/HelveticaNeue-Roman.otf");
-        holder.txtTitle.setTypeface(font);
         holder.txtTitle.setText(NetworkMeasurement.getTestName(mActivity, i.testName));
 
         // Set the item as the button's tag so it can be retrieved later
@@ -86,7 +84,6 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
                 });
             }
         });
-        holder.txtTimestamp.setTypeface(font);
         if (i.completed) {
             holder.txtTimestamp.setText(getDate(i.test_id));
         }

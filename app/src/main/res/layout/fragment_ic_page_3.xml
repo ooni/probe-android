@@ -1,125 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="7dp">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="@string/quiz"
-        android:textStyle="bold"
-        android:textSize="28sp"
-        android:textColor="@color/lightBlack"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:textSize="15sp"
-        android:text="@string/quiz_text"
-        android:textColor="@color/lightBlack"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="@string/header_1"
-        android:textColor="@color/lightBlack"/>
-
-    <RadioGroup
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/radio_1" >
+        android:orientation="vertical">
 
-        <RadioButton
-            android:drawablePadding="8dp"
-            android:button="@null"
-            android:drawableLeft="@drawable/checkbox_selector"
-            android:drawableStart="@drawable/checkbox_selector"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/potential_risks"
+            android:textStyle="bold"
+            android:textSize="38sp"
+            android:textColor="@color/color_ooni_blue"
+            android:gravity="center"  />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/answer_1_1"
-            android:text="@string/answer_1_1"
-            android:textColor="@color/lightBlack" />
+            android:layout_marginBottom="10dp"
+            android:textSize="15sp"
+            android:text="@string/laws_text_1"
+            android:textColor="@color/color_ooni_blue"/>
 
-        <RadioButton
-            android:drawablePadding="8dp"
-            android:button="@null"
-            android:drawableLeft="@drawable/checkbox_selector"
-            android:drawableStart="@drawable/checkbox_selector"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/answer_1_2"
-            android:text="@string/answer_1_2"
-            android:textColor="@color/lightBlack" />
+            android:layout_marginBottom="10dp"
+            android:textSize="15sp"
+            android:text="@string/laws_text_2"
+            android:textColor="@color/color_off_black"/>
 
-        <RadioButton
-            android:drawablePadding="8dp"
-            android:button="@null"
-            android:drawableLeft="@drawable/checkbox_selector"
-            android:drawableStart="@drawable/checkbox_selector"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/answer_1_3"
-            android:text="@string/answer_1_3"
-            android:textColor="@color/lightBlack" />
+            android:layout_marginBottom="10dp"
+            android:textSize="15sp"
+            android:text="@string/laws_text_3"
+            android:textColor="@color/color_off_black"/>
 
-    </RadioGroup>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/text"
-        android:text="@string/header_2"
-        android:textColor="@color/lightBlack"/>
-
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/radio_2" >
-
-        <RadioButton
-            android:button="@null"
-            android:drawablePadding="8dp"
-            android:drawableLeft="@drawable/checkbox_selector"
-            android:drawableStart="@drawable/checkbox_selector"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/answer_2_1"
-            android:text="@string/answer_2_1"
-            android:textColor="@color/lightBlack" />
+            android:layout_marginBottom="10dp"
+            android:textSize="15sp"
+            android:text="@string/laws_text_4"
+            android:textColor="@color/color_off_black"/>
 
-        <RadioButton
-            android:button="@null"
-            android:drawablePadding="8dp"
-            android:drawableLeft="@drawable/checkbox_selector"
-            android:drawableStart="@drawable/checkbox_selector"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/answer_2_2"
-            android:text="@string/answer_2_2"
-            android:textColor="@color/lightBlack" />
+            android:layout_marginBottom="10dp"
+            android:textSize="15sp"
+            android:text="@string/laws_text_5"
+            android:textColor="@color/color_off_black"/>
 
-        <RadioButton
-            android:button="@null"
-            android:drawablePadding="8dp"
-            android:drawableLeft="@drawable/checkbox_selector"
-            android:drawableStart="@drawable/checkbox_selector"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/answer_2_3"
-            android:text="@string/answer_2_3"
-            android:textColor="@color/lightBlack" />
+            android:layout_marginBottom="10dp"
+            android:textSize="15sp"
+            android:text="@string/laws_text_6"
+            android:textColor="@color/color_off_black"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    </RadioGroup>
-</LinearLayout>
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/run_test_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:text="@string/i_understand_the_risks"
+                android:textColor="@color/color_white"
+                app:backgroundTint="@color/color_ooni_blue"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+
+    </LinearLayout>
 </ScrollView>

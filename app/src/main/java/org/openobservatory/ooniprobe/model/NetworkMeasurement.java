@@ -33,10 +33,6 @@ public class NetworkMeasurement {
                 return context.getString(R.string.tcp_connect);
             case OONITests.WEB_CONNECTIVITY:
                 return context.getString(R.string.web_connectivity);
-            case PortolanTests.CHECK_PORT:
-                return context.getString(R.string.check_port);
-            case PortolanTests.TRACEROUTE:
-                return context.getString(R.string.traceroute);
             default:
                 return "";
         }

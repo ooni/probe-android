@@ -1,51 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="7dp">
-    <LinearLayout
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-    <TextView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="@string/greetings"
+        android:text="@string/welcome_ooniprobe"
         android:textStyle="bold"
-        android:textSize="28sp"
-        android:textColor="@color/lightBlack"/>
+        android:textSize="38sp"
+        android:textColor="@color/color_ooni_blue"
+        android:gravity="center"  />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:textSize="15sp"
-        android:text="@string/intro_text_1"
-        android:textColor="@color/lightBlack"/>
+        <ImageView
+            android:id="@+id/test_logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_ooni_sparkles"
+            android:scaleType="fitEnd"
+            android:adjustViewBounds="true" />
 
-    <TextView
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/nextButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:textSize="15sp"
-        android:text="@string/intro_text_2"
-        android:textColor="@color/lightBlack"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:textSize="15sp"
-        android:text="@string/intro_text_3"
-        android:textColor="@color/lightBlack"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:textSize="15sp"
-        android:text="@string/intro_text_4"
-        android:textColor="@color/lightBlack"/>
-    </LinearLayout>
-</ScrollView>
+        android:layout_height="60dp"
+        android:textSize="24sp"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:text="@string/get_started"
+        app:textAllCaps="false"
+        android:textColor="@color/color_white"
+        android:background="@drawable/nextbutton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

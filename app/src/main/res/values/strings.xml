@@ -1,77 +1,76 @@
-<?xml version="1.0" encoding="utf-8"?><!--
- Loco xml export: Android string resources
- Project: Localizable.strings conversion
- Release: Working copy
- Locale: en, English
- Exported by: Unregistered user
- Exported at: Sat, 12 Nov 2016 20:16:30 +0000
--->
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- information on the copying conditions. -->
     <string name="app_name">ooniprobe</string>
-    <!-- "select_test" = "Select test"; -->
-    <string name="run_test">Run</string>
+    <string name="run_tests">Run Tests</string>
+    <string name="past_tests">Past Tests</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
     <string name="dns_injection">DNS Injection</string>
     <string name="tcp_connect">TCP Connect</string>
     <string name="http_invalid_request_line">HTTP Invalid request line</string>
     <string name="http_header_field_manipulation">HTTP Header field manipulation</string>
     <string name="web_connectivity">Web Connectivity</string>
     <string name="ndt_test">Ndt Test</string>
-    <string name="http_invalid_request_line_desc">Find proxy technologies in your network</string>
-    <string name="web_connectivity_desc">Check whether and how websites are blocked</string>
-    <string name="ndt_test_desc">Measure the speed and performance of your network</string>
-    <string name="check_port">Check port</string>
-    <string name="traceroute">Traceroute</string>
+    <string name="http_invalid_request_line_desc">Check if websites are blocked</string>
+    <string name="web_connectivity_desc">Find \'middle boxes\'</string>
+    <string name="ndt_test_desc">Measurement network speed and performance</string>
+    <string name="http_invalid_request_line_longdesc">This test tries to detect the presence of network components (“middle box”) which could be responsible for censorship and/or surveillance.</string>
+    <string name="web_connectivity_longdesc">This test examines whether access to websites is blocked through DNS tampering, TCP connection RST/IP blocking, or by a transparent HTTP proxy.</string>
+    <string name="ndt_test_longdesc">This test measures the speed and performance of your network.</string>
     <string name="running_tests">Running tests</string>
     <string name="finished_tests">Finished tests</string>
-    <string name="settings">Settings</string>
     <string name="collector_address">Collector Address</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
     <string name="delete">Delete</string>
     <string name="test_result">Test result</string>
     <string name="change">Change</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-    <string name="wrong">Your answers to one or more of the quiz questions is wrong. Please read the Risks documentation and try again.</string>
-    <string name="correct">You answered to the quiz correctly. Carry on.</string>
-    <string name="configure">Configure</string>
+    <string name="welcome_ooniprobe">Welcome to ooniprobe!</string>
+    <string name="get_started">Get Started!</string>
+    <string name="what_is_ooniprobe">What is ooniprobe?</string>
+    <string name="learn_more">Learn more</string>
+    <string name="risks_text_1">Ooniprobe is free and open source software that enables you to examine i\u0020\u0020nternet censorship\u0020\u0020in your network!</string>
+    <string name="risks_text_2">By running this app, you can examine whether and how websites are blocked,\u0020\u0020and whether\u0020\u0020censorship and/or surveillance systems\u0020\u0020are present in your network.</string>
+    <string name="risks_text_3">You can also run this app to measure the speed and performance of your network.</string>
+    <string name="risks_text_4">The data that you can collect through this app can serve as\u0020\u0020e\u0020\u0020vidence of censorship events .</string>
+    <string name="risks_text_5">Since ooniprobe is an i\u0020\u0020nves tigatory tool and as such, may pose some risks.</string>
+    <string name="potential_risks">Potential risks</string>
+    <string name="laws_text_1">Anyone monitoring your internet activity (e.g. ISP, government, employer) can know that you are running ooniprobe (even though OONI tries to make this hard).</string>
+    <string name="laws_text_2">When testing websites for censorship, you will connect to and download data from provocative or objectionable sites (e.g. pornography) that might be illegal in your country.</string>
+    <string name="laws_text_3">OONI’s HTTP invalid request line test might trigger the suspicion of your ISP and could be viewed as a form of “hacking”.</string>
+    <string name="laws_text_4">Unless you configure your settings otherwise, all data collected from your tests will by default be published by OONI and might include some personally- identifiable information (though OONI tries to prevent this from happening).</string>
+    <string name="laws_text_5">The mere use of ooniprobe might be viewed as a form of espionage, regardless of the laws in your country.</string>
+    <string name="laws_text_6">To our knowledge, no ooniprobe user has ever faced consequences from the use of our platform. However, many countries have a lengthy history of targeting and abusing digital rights activists, which could leave ooniprobe users subject to severe civil, criminal, or extra-judicial penalties. Learn more here.</string>
+    <string name="i_understand_the_risks">I understand the risks.</string>
+    <string name="pop_quiz">Pop Quiz!</string>
+    <string name="question_1">Question 1: Anyone monitoring my internet activity (e.g. ISP, government or employer) might be able to see that I am running ooniprobe, even though OONI takes precautions to make this hard</string>
+    <string name="question_2">Question 2: My measurements will by default get published on OONI Explorer and might include personally-identifiable information.</string>
+    <string name="_true">True</string>
+    <string name="_false">False</string>
+    <string name="how_did_i_do">How did I do?</string>
+    <string name="wrong">A little bit more reading is required for you to proceed.</string>
+    <string name="correct">Good job! You have answered the quiz correctly.</string>
+    <string name="set_up_sharing">Set Up Sharing</string>
+    <string name="include_ip">Include your IP?</string>
+    <string name="include_asn">Include your network info?</string>
+    <string name="include_cc">Include your country name?</string>
+    <string name="upload_results">Share results publicly?</string>
+    <string name="settings_text">All measurements are sent by default to OONI\'s measurement collector and automately published through the OONI explorer and OONI\'s list of measurements.</string>
+    <string name="im_all_set">I\'m all \"set\"!</string>
     <string name="ooniprobe_configured">Successfully configured ooniprobe. You are all set to go!</string>
-    <string name="introduction">Introduction</string>
-    <string name="risks">Risks</string>
-    <string name="quiz">Quiz</string>
-    <string name="configuration">Configuration</string>
-    <string name="greetings">Greetings!</string>
-    <string name="intro_text_1">This setup wizard will help you get started with ooniprobe. It should take about 5 minutes.</string>
-    <string name="intro_text_2">The Open Observatory of Network Interference (OONI) works to fight network censorship and surveillance.</string>
-    <string name="intro_text_3">By running this software, you may be putting yourself at risk.</string>
-    <string name="intro_text_4">The next two steps of this wizard will walk you through some of the potential dangers. Please bear with us, as this is important!</string>
-    <string name="quiz_text">Please answer the following questions to ensure you have understood what ooniprobe does and that you are aware of risks associated with running the software.</string>
-    <string name="header_1">In regards to how detectable ooniprobe is, which of the following statements is true?</string>
-    <string name="answer_1_1">Anyone monitoring my internet activity (e.g. ISP, government or employer) might be able to see that I am running ooniprobe, even though OONI takes precautions to make this hard</string>
-    <string name="answer_1_2">Anyone monitoring my internet activity (e.g. ISP, government or employer) will not be able to see that I am running ooniprobe</string>
-    <string name="answer_1_3">ooniprobe is designed to protect my privacy and therefore my use of ooniprobe cannot be detected</string>
-    <string name="header_2">In regards to the publication of measurements, which of the following statements is true?</string>
-    <string name="answer_2_1">My measurements will not by default get published on OONI Explorer</string>
-    <string name="answer_2_2">My measurements will by default get published on OONI Explorer and might include personally-identifiable information.</string>
-    <string name="answer_2_3">My measurements will by default get published to OONI Explorer and will never include any personally-identifiable information</string>
-    <string name="configuration_text">Certain aspects of how ooniprobe operates can be customized. Usually the default values are the best option, so only change these if you really have to.</string>
-    <string name="include_ip">Include IP address in results</string>
-    <string name="include_asn">Include your network information in the reports</string>
-    <string name="include_cc">Include your country name in the reports</string>
-    <string name="upload_results">Upload results to the default ooni collector</string>
-    <string name="include_ip_ic">Should we include your IP address in results?</string>
-    <string name="include_asn_ic">Should we include your network information in the reports (note: disabling this will make it much harder for us to draw conclusions from the measurements)?</string>
-    <string name="include_cc_ic">Should we include your country name in the reports (note: disabling this will make it much harder for us to draw conclusions from the measurements)?</string>
-    <string name="upload_results_ic">Should we upload your results to the default ooni collector?</string>
+    <string name="about_ooni">About OONI</string>
+    <string name="about_text_1">The Open Observatory of Network Interference (OONI) is a free software project under The Tor Project that aims to increase transparency of internet censorship around the world.</string>
+    <string name="about_text_2">Since 2012, OONI has collected millions of network measurements from around the world, shedding light on multiple instances of internet censorship and traffic manipulation.</string>
+    <string name="run">Run</string>
+    <string name="view">View</string>
     <string name="no_result">No results</string>
     <string name="no_result_msg">The test has no results or it was aborted</string>
     <string name="local_notifications">Run test reminder</string>
     <string name="local_notifications_time">Time</string>
     <string name="local_notifications_text">Time to run tests</string>
-    <string name="collector_settings">No results</string>
-    <string name="notifications">Collector settings</string>
-    <string name="max_runtime">Max run time (in seconds)</string>
+    <string name="collector_settings">Collector settings</string>
+    <string name="notifications">Notifications</string>
+    <string name="max_runtime">Max runtime (seconds)</string>
     <string name="test_limits">Test limits</string>
-    <string name="finished_running">finished running</string>
+    <string name="finished_running">%s finished running</string>
 </resources>

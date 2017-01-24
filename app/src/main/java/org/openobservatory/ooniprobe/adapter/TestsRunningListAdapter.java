@@ -52,8 +52,6 @@ public class TestsRunningListAdapter extends RecyclerView.Adapter<TestsRunningLi
     @Override
     public void onBindViewHolder(TestsRunningListAdapter.ViewHolder holder, int position) {
         final NetworkMeasurement i = values.get(position);
-        Typeface font = Typeface.createFromAsset(mActivity.getAssets(), "fonts/HelveticaNeue-Roman.otf");
-        holder.txtTitle.setTypeface(font);
         holder.txtTitle.setText(NetworkMeasurement.getTestName(mActivity, i.testName));
         holder.progressBar.setProgress(i.progress);
     }

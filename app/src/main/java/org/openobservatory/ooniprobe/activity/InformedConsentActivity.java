@@ -1,10 +1,12 @@
 package org.openobservatory.ooniprobe.activity;
 
+import android.content.Context;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,11 +15,13 @@ import org.openobservatory.ooniprobe.fragment.IConsentPage1Fragment;
 import org.openobservatory.ooniprobe.fragment.IConsentPage2Fragment;
 import org.openobservatory.ooniprobe.fragment.IConsentPage3Fragment;
 import org.openobservatory.ooniprobe.fragment.IConsentPage4Fragment;
+import org.openobservatory.ooniprobe.fragment.IConsentPage5Fragment;
 
 import me.panavtec.wizard.Wizard;
 import me.panavtec.wizard.WizardListener;
 import me.panavtec.wizard.WizardPage;
 import me.panavtec.wizard.WizardPageListener;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class InformedConsentActivity extends AppCompatActivity implements WizardPageListener, WizardListener {
 
@@ -29,9 +33,16 @@ public class InformedConsentActivity extends AppCompatActivity implements Wizard
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+        getSupportActionBar().hide();
+        //http://stackoverflow.com/questions/8500283/how-to-hide-action-bar-before-activity-is-created-and-then-show-it-again
         setContentView(R.layout.activity_informed_consent);
-
         switchToWizard(0);
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     public void switchToWizard(int step) {
@@ -39,7 +50,8 @@ public class InformedConsentActivity extends AppCompatActivity implements Wizard
                 new WizardStep1(),
                 new WizardStep2(),
                 new WizardStep3(),
-                new WizardStep4()};
+                new WizardStep4(),
+                new WizardStep5()};
         wizard = new Wizard.Builder(this, wizardPages)
                 .containerId(R.id.container_body)
                 .enterAnimation(R.anim.card_slide_right_in)
@@ -93,57 +105,29 @@ public class InformedConsentActivity extends AppCompatActivity implements Wizard
         @Override public IConsentPage1Fragment createFragment() {
             return new IConsentPage1Fragment();
         }
-
-        @Override public void setupActionBar(ActionBar supportActionBar) {
-            super.setupActionBar(supportActionBar);
-            supportActionBar.setTitle(R.string.introduction);
-            supportActionBar.setDisplayHomeAsUpEnabled(false);
-        }
-
-     /*   @Override public boolean allowsBackNavigation() {
-            return false;
-        } */
     }
 
     class WizardStep2 extends WizardPage<IConsentPage2Fragment> {
         @Override public IConsentPage2Fragment createFragment() {
             return new IConsentPage2Fragment();
         }
-
-        @Override public void setupActionBar(ActionBar supportActionBar) {
-            super.setupActionBar(supportActionBar);
-            supportActionBar.setTitle(R.string.risks);
-            supportActionBar.setDisplayHomeAsUpEnabled(true);
-        }
-
-
     }
 
     class WizardStep3 extends WizardPage<IConsentPage3Fragment> {
         @Override public IConsentPage3Fragment createFragment() {
             return new IConsentPage3Fragment();
         }
-
-        @Override public void setupActionBar(ActionBar supportActionBar) {
-            super.setupActionBar(supportActionBar);
-            supportActionBar.setTitle(R.string.quiz);
-            supportActionBar.setDisplayHomeAsUpEnabled(true);
-        }
-
-
     }
 
     class WizardStep4 extends WizardPage<IConsentPage4Fragment> {
         @Override public IConsentPage4Fragment createFragment() {
             return new IConsentPage4Fragment();
         }
+    }
 
-        @Override public void setupActionBar(ActionBar supportActionBar) {
-            super.setupActionBar(supportActionBar);
-            supportActionBar.setTitle(R.string.configuration);
-            supportActionBar.setDisplayHomeAsUpEnabled(true);
+    class WizardStep5 extends WizardPage<IConsentPage5Fragment> {
+        @Override public IConsentPage5Fragment createFragment() {
+            return new IConsentPage5Fragment();
         }
-
-
     }
 }

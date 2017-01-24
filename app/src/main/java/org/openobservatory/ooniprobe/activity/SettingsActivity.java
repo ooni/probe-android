@@ -192,6 +192,7 @@ public class SettingsActivity extends AppCompatActivity  {
         });
     }
 
+
     private void showPopup(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.collector_address));
