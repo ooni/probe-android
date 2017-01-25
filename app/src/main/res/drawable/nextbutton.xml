@@ -2,19 +2,19 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android" >
     <item android:state_pressed="true" >
         <shape android:shape="rectangle"  >
-            <corners android:radius="3dip" />
+            <corners android:radius="5dip" />
             <gradient android:angle="-90" android:startColor="@color/color_ooni_blue_dark" android:endColor="@color/color_ooni_blue_dark"  />
         </shape>
     </item>
     <item android:state_focused="true">
         <shape android:shape="rectangle"  >
-            <corners android:radius="3dip" />
+            <corners android:radius="5dip" />
             <solid android:color="@color/color_ooni_blue"/>
         </shape>
     </item>
     <item >
         <shape android:shape="rectangle"  >
-            <corners android:radius="3dip" />
+            <corners android:radius="5dip" />
             <gradient android:angle="-90" android:startColor="@color/color_ooni_blue" android:endColor="@color/color_ooni_blue"  />
         </shape>
     </item>

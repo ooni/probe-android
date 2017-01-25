@@ -10,11 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.ResultFragment;
+import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 
 import java.util.ArrayList;
 
@@ -45,20 +47,20 @@ public class TestResultListAdapter extends RecyclerView.Adapter<TestResultListAd
         final JSONObject i = values.get(position);
         System.out.println(i);
         try {
-            holder.txtTitle.setText("input " + i.getString("input"));
+            holder.txtTitle.setText(i.getString("input"));
         } catch (JSONException e) {
-            holder.txtTitle.setText("input " + position);
+            holder.txtTitle.setText(position);
         }
-        /*
+
         try {
             if (!i.getJSONObject("test_keys").getBoolean("blocking"))
-                holder.testStatus.setImageResource(R.drawable.censorship_no);
+                holder.testImage.setImageResource(NetworkMeasurement.getTestImage(i.getString("test_name"), true));
             else
-                holder.testStatus.setImageResource(R.drawable.censorship_yes);
+                holder.testImage.setImageResource(NetworkMeasurement.getTestImage(i.getString("test_name"), false));
         } catch (JSONException e) {
-            holder.testStatus.setImageResource(R.drawable.censorship_yes);
+            holder.testImage.setImageResource(0);
         }
-*/
+
         holder.itemView.setOnClickListener(
                 new ImageButton.OnClickListener() {
                     public void onClick(View v) {
@@ -74,8 +76,6 @@ public class TestResultListAdapter extends RecyclerView.Adapter<TestResultListAd
                     }
                 }
         );
-
-
     }
 
     @Override
@@ -91,10 +91,13 @@ public class TestResultListAdapter extends RecyclerView.Adapter<TestResultListAd
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView txtTitle;
+        public ImageView testImage;
+
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             txtTitle = (TextView) itemView.findViewById(R.id.test_title);
+            testImage = (ImageView) itemView.findViewById(R.id.test_logo);
         }
 
         @Override

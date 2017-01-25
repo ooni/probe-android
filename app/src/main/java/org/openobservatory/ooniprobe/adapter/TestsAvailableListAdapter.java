@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.support.v7.widget.RecyclerView;
@@ -61,6 +62,8 @@ public class TestsAvailableListAdapter extends RecyclerView.Adapter<TestsAvailab
         Boolean available = getItem(position);
         holder.txtTitle.setText(NetworkMeasurement.getTestName(mActivity, key));
         holder.txtDesc.setText(NetworkMeasurement.getTestDescr(mActivity, key));
+        holder.testImage.setImageResource(NetworkMeasurement.getTestImage(NetworkMeasurement.getTestName(mActivity, key), true));
+
         if (available) {
             holder.progressIndicator.setVisibility(View.GONE);
             holder.runTest.setVisibility(View.VISIBLE);
@@ -107,6 +110,8 @@ public class TestsAvailableListAdapter extends RecyclerView.Adapter<TestsAvailab
         public Button runTest;
         public ProgressBar progressBar;
         public ProgressBar progressIndicator;
+        public ImageView testImage;
+
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
@@ -115,6 +120,7 @@ public class TestsAvailableListAdapter extends RecyclerView.Adapter<TestsAvailab
             runTest = (Button) itemView.findViewById(R.id.run_test_button);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar);
             progressIndicator = (ProgressBar) itemView.findViewById(R.id.progressIndicator);
+            testImage = (ImageView) itemView.findViewById(R.id.test_logo);
         }
 
         @Override

@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.model;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 
 import org.openobservatory.ooniprobe.R;
 
@@ -53,4 +54,27 @@ public class NetworkMeasurement {
                 return "";
         }
     }
+
+    public static int getTestImage(String name, Boolean success) {
+        switch (name) {
+            case OONITests.HTTP_INVALID_REQUEST_LINE:
+                if (success)
+                    return R.drawable.http_invalid_request_line;
+                else
+                    return R.drawable.http_invalid_request_line_no;
+            case OONITests.NDT_TEST:
+                if (success)
+                    return R.drawable.ndt_test;
+                else
+                    return R.drawable.ndt_test_no;
+            case OONITests.WEB_CONNECTIVITY:
+                if (success)
+                    return R.drawable.web_connectivity;
+                else
+                    return R.drawable.web_connectivity_no;
+            default:
+                return 0;
+        }
+    }
+
 }
