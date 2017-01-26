@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
-import org.openobservatory.ooniprobe.adapter.TestsListAdapter;
+import org.openobservatory.ooniprobe.adapter.PastTestsListAdapter;
 import org.openobservatory.ooniprobe.data.TestStorage;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 
@@ -19,8 +19,8 @@ import java.util.ArrayList;
 
 public class PastTestsFragment extends Fragment {
     private MainActivity mActivity;
-    private RecyclerView mFinishedTestsListView;
-    private TestsListAdapter mFinishedTestsListAdapter;
+    private RecyclerView mPastTestsListView;
+    private PastTestsListAdapter mPastTestsListAdapter;
     private static TestStorage ts;
 
     @Override
@@ -50,11 +50,11 @@ public class PastTestsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_past_tests, container, false);
         ts = new TestStorage();
-        mFinishedTestsListView = (RecyclerView) v.findViewById(R.id.pastTests);
-        mFinishedTestsListAdapter = new TestsListAdapter(mActivity, new ArrayList<NetworkMeasurement>());
-        mFinishedTestsListView.setAdapter(mFinishedTestsListAdapter);
-        mFinishedTestsListView.setLayoutManager(new LinearLayoutManager(mActivity));
-        mFinishedTestsListAdapter.setData(ts.loadTestsReverse(mActivity));
+        mPastTestsListView = (RecyclerView) v.findViewById(R.id.pastTests);
+        mPastTestsListAdapter = new PastTestsListAdapter(mActivity, new ArrayList<NetworkMeasurement>());
+        mPastTestsListView.setAdapter(mPastTestsListAdapter);
+        mPastTestsListView.setLayoutManager(new LinearLayoutManager(mActivity));
+        mPastTestsListAdapter.setData(ts.loadTestsReverse(mActivity));
 
         return v;
     }

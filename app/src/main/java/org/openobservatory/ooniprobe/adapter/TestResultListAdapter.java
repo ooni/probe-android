@@ -1,14 +1,18 @@
 package org.openobservatory.ooniprobe.adapter;
 
+import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -51,31 +55,43 @@ public class TestResultListAdapter extends RecyclerView.Adapter<TestResultListAd
         } catch (JSONException e) {
             holder.txtTitle.setText(position);
         }
-
         try {
             if (!i.getJSONObject("test_keys").getBoolean("blocking"))
-                holder.testImage.setImageResource(NetworkMeasurement.getTestImage(i.getString("test_name"), true));
+                holder.txtTitle.setTextColor(getColor(mActivity, R.color.color_ok_green));
             else
-                holder.testImage.setImageResource(NetworkMeasurement.getTestImage(i.getString("test_name"), false));
+                holder.txtTitle.setTextColor(getColor(mActivity, R.color.color_bad_red));
         } catch (JSONException e) {
-            holder.testImage.setImageResource(0);
+            holder.txtTitle.setTextColor(getColor(mActivity, R.color.color_bad_red));
         }
 
         holder.itemView.setOnClickListener(
                 new ImageButton.OnClickListener() {
                     public void onClick(View v) {
-                        Fragment fragment = new ResultFragment();
-                        Bundle bundle = new Bundle();
-                        bundle.putInt("position", position);
-                        fragment.setArguments(bundle);
-                        FragmentManager fm = mActivity.getSupportFragmentManager();
-                        FragmentTransaction ft=fm.beginTransaction();
-                        ft.replace(R.id.fragment,fragment);
-                        ft.addToBackStack(null);
-                        ft.commit();
+                        showResult(position);
                     }
                 }
         );
+
+        holder.viewResult.setOnClickListener(
+                new ImageButton.OnClickListener() {
+                    public void onClick(View v) {
+                        showResult(position);
+                    }
+                }
+        );
+
+    }
+
+    private void showResult(int position){
+        Fragment fragment = new ResultFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("position", position);
+        fragment.setArguments(bundle);
+        FragmentManager fm = mActivity.getSupportFragmentManager();
+        FragmentTransaction ft=fm.beginTransaction();
+        ft.replace(R.id.fragment,fragment);
+        ft.addToBackStack(null);
+        ft.commit();
     }
 
     @Override
@@ -91,13 +107,13 @@ public class TestResultListAdapter extends RecyclerView.Adapter<TestResultListAd
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView txtTitle;
-        public ImageView testImage;
+        public Button viewResult;
 
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             txtTitle = (TextView) itemView.findViewById(R.id.test_title);
-            testImage = (ImageView) itemView.findViewById(R.id.test_logo);
+            viewResult = (Button) itemView.findViewById(R.id.view_button);
         }
 
         @Override
@@ -114,6 +130,15 @@ public class TestResultListAdapter extends RecyclerView.Adapter<TestResultListAd
 
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
+    }
+
+    public static final int getColor(Context context, int id) {
+        final int version = Build.VERSION.SDK_INT;
+        if (version >= 23) {
+            return ContextCompat.getColor(context, id);
+        } else {
+            return context.getResources().getColor(id);
+        }
     }
 
 }

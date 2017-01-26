@@ -43,9 +43,4 @@ public class ResultListFragment extends Fragment {
 
         return v;
     }
-
-
-
-
-
 }

@@ -26,7 +26,7 @@ import org.openobservatory.ooniprobe.view.ListImageButton;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
-
+/*
 public class TestsRunningListAdapter extends RecyclerView.Adapter<TestsRunningListAdapter.ViewHolder> {
 
 
@@ -107,3 +107,4 @@ public class TestsRunningListAdapter extends RecyclerView.Adapter<TestsRunningLi
 
 }
 
+*/

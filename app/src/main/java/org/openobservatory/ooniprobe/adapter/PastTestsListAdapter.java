@@ -1,8 +1,6 @@
 package org.openobservatory.ooniprobe.adapter;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -12,6 +10,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v7.widget.RecyclerView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.ResultActivity;
@@ -28,27 +29,27 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.ViewHolder> {
+public class PastTestsListAdapter extends RecyclerView.Adapter<PastTestsListAdapter.ViewHolder> {
 
 
-    private static final String TAG = TestsListAdapter.class.toString();
+    private static final String TAG = PastTestsListAdapter.class.toString();
 
     private MainActivity mActivity;
     private ArrayList<NetworkMeasurement> values;
     private int context;
     OnItemClickListener mItemClickListener;
 
-    public TestsListAdapter(MainActivity context, ArrayList<NetworkMeasurement> values) {
+    public PastTestsListAdapter(MainActivity context, ArrayList<NetworkMeasurement> values) {
         this.mActivity = context;
         this.values = values;
     }
 
     @Override
-    public TestsListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PastTestsListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v;
         switch (viewType) {
             default:
-                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_finished_test, parent, false);
+                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_past_test, parent, false);
                 break;
         }
         ViewHolder vh = new ViewHolder(v);
@@ -65,7 +66,7 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
 */
 
     @Override
-    public void onBindViewHolder(TestsListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(PastTestsListAdapter.ViewHolder holder, int position) {
         final NetworkMeasurement i = values.get(position);
         holder.txtTitle.setText(NetworkMeasurement.getTestName(mActivity, i.testName));
 
@@ -91,14 +92,26 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
             holder.txtTimestamp.setText("");
         }
         final String[] parts = LogUtils.getLogParts(mActivity, i.json_file);
-        /*
         if (parts.length > 1)
-            holder.statusImage.setImageResource(R.drawable.test_multi);
-        else if (parts.length == 0)
-            holder.statusImage.setImageResource(R.drawable.test_aborted);
+                holder.testImage.setImageResource(NetworkMeasurement.getTestImage(NetworkMeasurement.getTestName(mActivity, i.testName), true));
+        else if (parts.length == 1 && parts[0].length() == 0)
+                holder.testImage.setImageResource(NetworkMeasurement.getTestImage(NetworkMeasurement.getTestName(mActivity, i.testName), false));
         else
-            holder.statusImage.setImageResource(android.R.color.transparent);
-            */
+                holder.testImage.setImageResource(NetworkMeasurement.getTestImage(NetworkMeasurement.getTestName(mActivity, i.testName), true));
+
+
+        //final JSONObject i = values.get(position);
+
+    /*
+        try {
+            if (!i.getJSONObject("test_keys").getBoolean("blocking"))
+                holder.testImage.setImageResource(NetworkMeasurement.getTestImage(i.getString("test_name"), true));
+            else
+                holder.testImage.setImageResource(NetworkMeasurement.getTestImage(i.getString("test_name"), false));
+        } catch (JSONException e) {
+            holder.testImage.setImageResource(0);
+        }
+        */
         holder.itemView.setOnClickListener(
                 new ImageButton.OnClickListener() {
                     public void onClick(View v) {
@@ -115,6 +128,22 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
         );
 
     }
+
+    /*
+    public ArrayList getJson(String json_file){
+        String json_file = getActivity().getIntent().getExtras().getString("json_file");
+        final String[] parts = LogUtils.getLogParts(getActivity(), json_file);
+        ArrayList<JSONObject> listItems = new ArrayList<JSONObject>();
+        try {
+            for(String str:parts) {
+                JSONObject jsonObj = new JSONObject(str);
+                listItems.add(jsonObj);
+            }
+        } catch (JSONException e) {
+        }
+        return listItems;
+    }
+    */
 
     @Override
     public int getItemCount() {
@@ -142,6 +171,7 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
         public TextView txtTitle;
         public TextView txtTimestamp;
         public ListImageButton popupButton;
+        public ImageView testImage;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -149,6 +179,7 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.View
             txtTitle = (TextView) itemView.findViewById(R.id.test_title);
             txtTimestamp = (TextView) itemView.findViewById(R.id.test_timestamp);
             popupButton = (ListImageButton) itemView.findViewById(R.id.test_popupmenu);
+            testImage = (ImageView) itemView.findViewById(R.id.test_logo);
         }
 
         @Override

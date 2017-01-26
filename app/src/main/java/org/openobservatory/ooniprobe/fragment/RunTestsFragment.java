@@ -11,14 +11,14 @@ import android.view.ViewGroup;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
-import org.openobservatory.ooniprobe.adapter.TestsAvailableListAdapter;
+import org.openobservatory.ooniprobe.adapter.RunTestListAdapter;
 import org.openobservatory.ooniprobe.data.TestData;
 import org.openobservatory.ooniprobe.data.TestStorage;
 
 public class RunTestsFragment extends Fragment {
     private MainActivity mActivity;
     private RecyclerView mAvailableTestsListView;
-    private TestsAvailableListAdapter mAvailableTestsListAdapter;
+    private RunTestListAdapter mAvailableTestsListAdapter;
     private static TestStorage ts;
 
     @Override
@@ -48,7 +48,7 @@ public class RunTestsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_run_tests, container, false);
         mAvailableTestsListView = (RecyclerView) v.findViewById(R.id.runTests);
-        mAvailableTestsListAdapter = new TestsAvailableListAdapter(mActivity, TestData.getInstance(mActivity).availableTests);
+        mAvailableTestsListAdapter = new RunTestListAdapter(mActivity, TestData.getInstance(mActivity).availableTests);
         mAvailableTestsListView.setAdapter(mAvailableTestsListAdapter);
         mAvailableTestsListView.setLayoutManager(new LinearLayoutManager(mActivity));
         mAvailableTestsListAdapter.setData(TestData.getInstance(mActivity).availableTests);

@@ -24,15 +24,15 @@
         android:background="@color/color_off_white"
         android:layout_toRightOf="@+id/test_logo"
         android:layout_toEndOf="@+id/test_logo"
-        android:layout_toLeftOf="@+id/test_popupmenu"
-        android:layout_toStartOf="@+id/test_popupmenu"
+        android:layout_toLeftOf="@+id/view_button"
+        android:layout_toStartOf="@+id/view_button"
         >
         <TextView
             android:id="@+id/test_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="17sp"
-            android:text="TCP CONNECT"
+            android:text="@string/web_connectivity"
             android:gravity="center"
             android:textColor="@color/color_ooni_blue" />
         <TextView
@@ -45,6 +45,18 @@
             android:textColor="@color/color_off_black" />
     </LinearLayout>
 
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/view_button"
+        android:layout_toLeftOf="@+id/test_popupmenu"
+        android:layout_toStartOf="@+id/test_popupmenu"
+        android:layout_width="60dp"
+        android:layout_height="35dp"
+        android:padding="10dp"
+        android:text="@string/view"
+        app:textAllCaps="false"
+        android:textColor="@color/color_ooni_blue"
+        android:background="@drawable/runbutton" />
+
     <org.openobservatory.ooniprobe.view.ListImageButton
         android:id="@+id/test_popupmenu"
         android:layout_width="wrap_content"
@@ -53,9 +65,7 @@
         android:background="@null"
         android:padding="10dp"
         android:src="@drawable/ic_action_overflow"
-        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
-
 
 </RelativeLayout>

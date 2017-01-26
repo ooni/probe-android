@@ -1,19 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="50dp">
+    android:padding="10dp"
+    android:layout_height="60dp">
     
     <TextView
         android:id="@+id/test_title"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="17sp"
-        android:text="TCP CONNECT"
-        android:gravity="left"
+        android:text="input"
+        android:layout_gravity="left"
+        android:gravity="center"
         android:textColor="@color/color_off_black"
-        android:layout_gravity="center_vertical" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-</LinearLayout>
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/view_button"
+        android:layout_width="60dp"
+        android:layout_height="35dp"
+        android:padding="10dp"
+        android:text="@string/view"
+        app:textAllCaps="false"
+        android:textColor="@color/color_ooni_blue"
+        android:background="@drawable/runbutton"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
 

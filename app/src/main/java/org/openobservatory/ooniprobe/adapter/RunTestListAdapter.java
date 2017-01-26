@@ -32,10 +32,9 @@ import java.util.Locale;
 
 import static org.openobservatory.ooniprobe.R.id.progressBar;
 
-public class TestsAvailableListAdapter extends RecyclerView.Adapter<TestsAvailableListAdapter.ViewHolder> {
+public class RunTestListAdapter extends RecyclerView.Adapter<RunTestListAdapter.ViewHolder> {
 
-
-    private static final String TAG = TestsAvailableListAdapter.class.toString();
+    private static final String TAG = RunTestListAdapter.class.toString();
 
     private MainActivity mActivity;
     private LinkedHashMap<String,Boolean> values;
@@ -43,27 +42,26 @@ public class TestsAvailableListAdapter extends RecyclerView.Adapter<TestsAvailab
     OnItemClickListener mItemClickListener;
     private String[] keys;
 
-    public TestsAvailableListAdapter(MainActivity context, LinkedHashMap<String,Boolean> values) {
+    public RunTestListAdapter(MainActivity context, LinkedHashMap<String,Boolean> values) {
         this.mActivity = context;
         this.values = values;
         this.keys = values.keySet().toArray(new String[values.size()]);
     }
 
     @Override
-    public TestsAvailableListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RunTestListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_run_test, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(TestsAvailableListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(RunTestListAdapter.ViewHolder holder, int position) {
         final String key = keys[position];
         Boolean available = getItem(position);
         holder.txtTitle.setText(NetworkMeasurement.getTestName(mActivity, key));
         holder.txtDesc.setText(NetworkMeasurement.getTestDescr(mActivity, key));
         holder.testImage.setImageResource(NetworkMeasurement.getTestImage(NetworkMeasurement.getTestName(mActivity, key), true));
-
         if (available) {
             holder.progressIndicator.setVisibility(View.GONE);
             holder.runTest.setVisibility(View.VISIBLE);

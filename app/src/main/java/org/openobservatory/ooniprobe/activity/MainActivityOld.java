@@ -10,7 +10,6 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,31 +20,26 @@ import android.widget.Toast;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Observable;
 import java.util.Observer;
 
-import org.openobservatory.ooniprobe.adapter.TestsAvailableListAdapter;
-import org.openobservatory.ooniprobe.adapter.TestsListAdapter;
-import org.openobservatory.ooniprobe.adapter.TestsRunningListAdapter;
-import org.openobservatory.ooniprobe.data.TestData;
+//import org.openobservatory.ooniprobe.adapter.TestsAvailableListAdapter;
+import org.openobservatory.ooniprobe.adapter.PastTestsListAdapter;
+//import org.openobservatory.ooniprobe.adapter.TestsRunningListAdapter;
 import org.openobservatory.ooniprobe.data.TestStorage;
-import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 import org.openobservatory.measurement_kit.LoggerApi;
-import org.openobservatory.ooniprobe.ooniprobeApp;
 import org.openobservatory.ooniprobe.view.NotScrollableListView;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import org.openobservatory.ooniprobe.R;
 
-public class MainActivityOld extends AppCompatActivity implements Observer {
-
+public class MainActivityOld  {
+/*
     private NotScrollableListView mAvailableTestsListView;
     private NotScrollableListView mRunningTestsListView;
     private NotScrollableListView mFinishedTestsListView;
     private TestsAvailableListAdapter mAvailableTestsListAdapter;
     private TestsRunningListAdapter mRunningTestsListAdapter;
-    private TestsListAdapter mFinishedTestsListAdapter;
+    private PastTestsListAdapter mFinishedTestsListAdapter;
     private static TestStorage ts;
 
     static {
@@ -60,7 +54,7 @@ public class MainActivityOld extends AppCompatActivity implements Observer {
 
         ts = new TestStorage();
         //TestData.getInstance(this).addObserver(this);
-        /*
+
         mAvailableTestsListView = (NotScrollableListView) findViewById(R.id.availableTests);
         mAvailableTestsListAdapter = new TestsAvailableListAdapter(this, TestData.getInstance(this).availableTests);
         mAvailableTestsListView.setAdapter(mAvailableTestsListAdapter);
@@ -77,7 +71,7 @@ public class MainActivityOld extends AppCompatActivity implements Observer {
         mFinishedTestsListView.setAdapter(mFinishedTestsListAdapter);
         mFinishedTestsListView.setLayoutManager(new LinearLayoutManager(this));
         mFinishedTestsListAdapter.setData(ts.loadTestsReverse(this));
-    */
+
         //LoggerApi.setVerbose(1);
         LoggerApi.useAndroidLogger();
 
@@ -108,7 +102,7 @@ public class MainActivityOld extends AppCompatActivity implements Observer {
 
     @Override
     public void update(Observable observable, Object data) {
-        /*if (mFinishedTestsListAdapter != null) {
+        if (mFinishedTestsListAdapter != null) {
             ArrayList<NetworkMeasurement> finishedTests = new ArrayList<NetworkMeasurement>(TestData.getInstance(this).finishedTests);
             Collections.reverse(finishedTests);
             mFinishedTestsListAdapter.setData(finishedTests);
@@ -118,7 +112,7 @@ public class MainActivityOld extends AppCompatActivity implements Observer {
         }
         if (mAvailableTestsListAdapter != null) {
             mAvailableTestsListAdapter.setData(TestData.getInstance(this).availableTests);
-        }*/
+        }
         System.out.println("update "+ observable);
     }
 
@@ -186,7 +180,7 @@ public class MainActivityOld extends AppCompatActivity implements Observer {
         //text.setTextColor(getResources().getColor(success ? R.color.color_ok_green : R.color.color_bad_red));
         toast.show();
     }
-
+*/
     private static final String TAG = "main-activity";
 }
 
