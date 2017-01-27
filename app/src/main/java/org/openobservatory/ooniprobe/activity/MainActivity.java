@@ -34,7 +34,6 @@ import org.openobservatory.ooniprobe.fragment.AboutFragment;
 import org.openobservatory.ooniprobe.fragment.PastTestsFragment;
 import org.openobservatory.ooniprobe.fragment.RunTestsFragment;
 import org.openobservatory.ooniprobe.fragment.SettingsFragment;
-import org.openobservatory.measurement_kit.LoggerApi;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import org.openobservatory.ooniprobe.R;
 
@@ -57,6 +56,7 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         setContentView(R.layout.activity_main);
         checkResources();
         TestData.getInstance(this).addObserver(this);
+
 
         mTitle = mDrawerTitle = getTitle();
         mMenuItemsTitles = new String[]{getString(R.string.run_tests), getString(R.string.past_tests), getString(R.string.settings), getString(R.string.about)};

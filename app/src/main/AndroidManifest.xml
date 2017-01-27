@@ -33,6 +33,10 @@
             android:screenOrientation="portrait" />
         <receiver android:name=".utils.AlarmReceiver">
         </receiver>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="529a3ff33bd5359fe86c53f6252035178bdb03a1"
+            />
     </application>
 
 </manifest>

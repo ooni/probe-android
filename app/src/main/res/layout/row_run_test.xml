@@ -58,9 +58,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:indeterminate="false"
-                android:visibility="gone"
+                android:layout_margin="8dp"
                 android:max="100"
-                android:progress="30"
+                android:progress="0"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />

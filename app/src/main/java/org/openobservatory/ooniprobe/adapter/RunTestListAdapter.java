@@ -65,10 +65,17 @@ public class RunTestListAdapter extends RecyclerView.Adapter<RunTestListAdapter.
         if (available) {
             holder.progressIndicator.setVisibility(View.GONE);
             holder.runTest.setVisibility(View.VISIBLE);
+            holder.progressBar.setVisibility(View.GONE);
+            holder.txtDesc.setVisibility(View.VISIBLE);
         }
         else {
             holder.runTest.setVisibility(View.GONE);
             holder.progressIndicator.setVisibility(View.VISIBLE);
+            holder.progressBar.setVisibility(View.VISIBLE);
+            holder.txtDesc.setVisibility(View.GONE);
+            NetworkMeasurement current = TestData.getInstance(mActivity).getTestWithName(key);
+            if (current != null)
+                holder.progressBar.setProgress(current.progress);
         }
         holder.runTest.setOnClickListener(
                 new ImageButton.OnClickListener() {
