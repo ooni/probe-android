@@ -78,7 +78,7 @@ public class Notifications {
                 Context.ALARM_SERVICE);
         alarms.setInexactRepeating(AlarmManager.RTC_WAKEUP,
                 updateTime.getTimeInMillis(),
-                AlarmManager.INTERVAL_FIFTEEN_MINUTES, recurringAlarm);
+                AlarmManager.INTERVAL_DAY, recurringAlarm);
     }
 
     public static void cancelRecurringAlarm(Context context) {
