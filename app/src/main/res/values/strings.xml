@@ -71,7 +71,7 @@
     <string name="notifications">Notifications</string>
     <string name="max_runtime">Max runtime (seconds)</string>
     <string name="advanced_settings">Advanced settings</string>
-    <string name="finished_running">%s finished running</string>
+    <string name="finished_running">finished running</string>
     <string name="view_log">View log</string>
     <string name="copy_to_clipboard">Copy to clipboard</string>
     <string name="copied_clipboard">Copied into clipboard</string>

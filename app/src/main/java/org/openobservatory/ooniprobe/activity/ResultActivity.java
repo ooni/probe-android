@@ -31,21 +31,17 @@ public class ResultActivity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putInt("position", 0);
                 fragment.setArguments(bundle);
-                //ft.remove(fragment);
                 ft.add(R.id.fragment,fragment);
-                //ft.replace(R.id.fragment, fragment);
-                //ft.addToBackStack(null);
                 ft.commit();
+                setTitle(intent.getStringExtra("test_name"));
             }
             else {
                 Fragment fragment = new ResultListFragment();
                 FragmentManager fm= getSupportFragmentManager();
                 FragmentTransaction ft=fm.beginTransaction();
-                //ft.remove(fragment);
                 ft.add(R.id.fragment,fragment);
-                //ft.replace(R.id.fragment, fragment);
-                //ft.addToBackStack(null);
                 ft.commit();
+                setTitle(getString(R.string.web_connectivity));
             }
         }
     }

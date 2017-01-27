@@ -38,6 +38,12 @@ public class RunTestsFragment extends Fragment {
         mActivity = null;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateList();
+    }
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
@@ -51,7 +57,10 @@ public class RunTestsFragment extends Fragment {
         mAvailableTestsListAdapter = new RunTestListAdapter(mActivity, TestData.getInstance(mActivity).availableTests);
         mAvailableTestsListView.setAdapter(mAvailableTestsListAdapter);
         mAvailableTestsListView.setLayoutManager(new LinearLayoutManager(mActivity));
-        mAvailableTestsListAdapter.setData(TestData.getInstance(mActivity).availableTests);
         return v;
+    }
+
+    public void updateList(){
+        mAvailableTestsListAdapter.setData(TestData.getInstance(mActivity).availableTests);
     }
 }

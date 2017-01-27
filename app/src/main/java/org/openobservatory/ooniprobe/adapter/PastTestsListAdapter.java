@@ -1,11 +1,15 @@
 package org.openobservatory.ooniprobe.adapter;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -56,14 +60,6 @@ public class PastTestsListAdapter extends RecyclerView.Adapter<PastTestsListAdap
         return vh;
     }
 
-    /*
-    @Override
-    public int getItemViewType(int position) {
-        NetworkMeasurement i = values.get(position);
-        if (i.completed) return 1;
-        else return 0;
-    }
-*/
 
     @Override
     public void onBindViewHolder(PastTestsListAdapter.ViewHolder holder, int position) {
@@ -88,41 +84,51 @@ public class PastTestsListAdapter extends RecyclerView.Adapter<PastTestsListAdap
         });
 
         final String[] parts = LogUtils.getLogParts(mActivity, i.json_file);
-        if (parts.length > 1)
-                holder.testImage.setImageResource(NetworkMeasurement.getTestImage(i.testName, true));
-        else if (parts.length == 1 && parts[0].length() == 0)
-                holder.testImage.setImageResource(NetworkMeasurement.getTestImage(i.testName, false));
-        else
-                holder.testImage.setImageResource(NetworkMeasurement.getTestImage(i.testName, true));
-
-
-        //final JSONObject i = values.get(position);
-
-    /*
-        try {
-            if (!i.getJSONObject("test_keys").getBoolean("blocking"))
-                holder.testImage.setImageResource(NetworkMeasurement.getTestImage(i.getString("test_name"), true));
-            else
-                holder.testImage.setImageResource(NetworkMeasurement.getTestImage(i.getString("test_name"), false));
-        } catch (JSONException e) {
-            holder.testImage.setImageResource(0);
+        if (parts.length > 1 ||(parts.length == 1 && parts[0].length() > 0)) {
+            if (i.anomaly == 0) {
+                holder.testImage.setImageResource(NetworkMeasurement.getTestImage(i.testName, i.anomaly));
+                holder.txtTitle.setTextColor(getColor(mActivity, R.color.color_ok_green));
+            }
+            else {
+                holder.testImage.setImageResource(NetworkMeasurement.getTestImage(i.testName, i.anomaly));
+                holder.txtTitle.setTextColor(getColor(mActivity, R.color.color_bad_red));
+            }
         }
-        */
-        holder.itemView.setOnClickListener(
+        else {
+            holder.testImage.setImageResource(NetworkMeasurement.getTestImage(i.testName, 1));
+            holder.txtTitle.setTextColor(getColor(mActivity, R.color.color_warning_orange));
+        }
+
+        holder.viewResult.setOnClickListener(
                 new ImageButton.OnClickListener() {
                     public void onClick(View v) {
-                        if (parts.length > 0){
-                            Intent intent = new Intent(v.getContext(), ResultActivity.class);
-                            intent.putExtra("json_file", i.json_file);
-                            v.getContext().startActivity(intent);
-                        }
-                        else {
-                            Alert.alertDialog(mActivity, mActivity.getString(R.string.no_result), mActivity.getString(R.string.no_result_msg));
-                        }
+                        goToResults(i);
                     }
                 }
         );
 
+        holder.itemView.setOnClickListener(
+                new ImageButton.OnClickListener() {
+                    public void onClick(View v) {
+                        goToResults(i);
+                    }
+                }
+        );
+
+    }
+
+    private void goToResults (NetworkMeasurement i){
+        final String[] parts = LogUtils.getLogParts(mActivity, i.json_file);
+        if (!i.viewed) TestStorage.setViewed(mActivity, i.test_id);
+        if (parts.length > 1 ||(parts.length == 1 && parts[0].length() > 0)){
+            Intent intent = new Intent(mActivity, ResultActivity.class);
+            intent.putExtra("json_file", i.json_file);
+            intent.putExtra("test_name", NetworkMeasurement.getTestName(mActivity, i.testName));
+            mActivity.startActivity(intent);
+        }
+        else {
+            Alert.alertDialog(mActivity, mActivity.getString(R.string.no_result), mActivity.getString(R.string.no_result_msg));
+        }
     }
 
     /*
@@ -168,6 +174,7 @@ public class PastTestsListAdapter extends RecyclerView.Adapter<PastTestsListAdap
         public TextView txtTimestamp;
         public ListImageButton popupButton;
         public ImageView testImage;
+        public Button viewResult;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -176,6 +183,7 @@ public class PastTestsListAdapter extends RecyclerView.Adapter<PastTestsListAdap
             txtTimestamp = (TextView) itemView.findViewById(R.id.test_timestamp);
             popupButton = (ListImageButton) itemView.findViewById(R.id.test_popupmenu);
             testImage = (ImageView) itemView.findViewById(R.id.test_logo);
+            viewResult = (Button) itemView.findViewById(R.id.view_button);
         }
 
         @Override
@@ -228,6 +236,15 @@ public class PastTestsListAdapter extends RecyclerView.Adapter<PastTestsListAdap
         cal.setTimeInMillis(time);
         String date = DateFormat.format("yyyy-MM-dd HH:mm:ss", cal).toString();
         return date;
+    }
+
+    public static final int getColor(Context context, int id) {
+        final int version = Build.VERSION.SDK_INT;
+        if (version >= 23) {
+            return ContextCompat.getColor(context, id);
+        } else {
+            return context.getResources().getColor(id);
+        }
     }
 }
 

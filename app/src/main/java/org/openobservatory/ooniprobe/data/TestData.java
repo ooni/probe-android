@@ -10,10 +10,13 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Observable;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.openobservatory.measurement_kit.android.DnsUtils;
 import org.openobservatory.measurement_kit.common.LogSeverity;
 import org.openobservatory.measurement_kit.nettests.*;
 import org.openobservatory.measurement_kit.swig.OoniTestWrapper;
+import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 import org.openobservatory.ooniprobe.model.OONITests;
@@ -122,6 +125,8 @@ public class TestData extends Observable {
                             .set_options("save_real_probe_cc", boolToString(include_cc))
                             .set_options("no_collector", boolToString(!upload_results))
                             .set_options("collector_base_url", collector_address)
+                            .set_options("software_name", "ooniprobe-android")
+                            .set_options("software_version", BuildConfig.VERSION_NAME)
                             .on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
                             @Override
                             public void callback(double percent, String msg) {
@@ -135,7 +140,13 @@ public class TestData extends Observable {
                                     });
                                 }
                                 }
-                        })
+                            })
+                            .on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
+                                @Override
+                                public void callback(String entry) {
+                                    setAnomaly(entry, currentTest);
+                                }
+                            })
                             .run();
                     } else if (testName.compareTo(OONITests.TCP_CONNECT) == 0) {
                         Log.v(TAG, "running tcp-connect test...");
@@ -181,6 +192,8 @@ public class TestData extends Observable {
                             .set_options("no_collector", boolToString(!upload_results))
                             .set_options("collector_base_url", collector_address)
                             .set_options("max_runtime", max_runtime)
+                            .set_options("software_name", "ooniprobe-android")
+                            .set_options("software_version", BuildConfig.VERSION_NAME)
                             .on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
                                 @Override
                                 public void callback(double percent, String msg) {
@@ -193,6 +206,12 @@ public class TestData extends Observable {
                                             }
                                     });
                                     }
+                                }
+                            })
+                            .on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
+                                @Override
+                                public void callback(String entry) {
+                                    setAnomaly(entry, currentTest);
                                 }
                             })
                             .run();
@@ -213,6 +232,8 @@ public class TestData extends Observable {
                             .set_options("save_real_probe_cc", boolToString(include_cc))
                             .set_options("no_collector", boolToString(!upload_results))
                             .set_options("collector_base_url", collector_address)
+                            .set_options("software_name", "ooniprobe-android")
+                            .set_options("software_version", BuildConfig.VERSION_NAME)
                             .on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
                             @Override
                             public void callback(double percent, String msg) {
@@ -226,6 +247,12 @@ public class TestData extends Observable {
                                     });
                                 }
                             }
+                            })
+                            .on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
+                                @Override
+                                public void callback(String entry) {
+                                    setAnomaly(entry, currentTest);
+                                }
                             })
                             .run();
                     } else {
@@ -256,10 +283,36 @@ public class TestData extends Observable {
         }.execute();
     }
 
+    public static void setAnomaly(String entry, NetworkMeasurement test){
+        try {
+            int anomaly = 0;
+            JSONObject jsonObj = new JSONObject(entry);
+            JSONObject blocking = jsonObj.getJSONObject("test_keys");
+            Object object = blocking.get("blocking");
+            if(object instanceof String)
+                anomaly = 2;
+            else if(object instanceof Boolean)
+                anomaly = 0;
+            else
+                anomaly = 1;
+            if (test.anomaly < anomaly)
+                TestStorage.setAnomaly(activity, test.test_id, anomaly);
+        } catch (JSONException e) {
+        }
+    }
+
     @Override
     public void notifyObservers(Object type) {
         setChanged(); // Set the changed flag to true, otherwise observers won't be notified.
         super.notifyObservers(type);
+    }
+
+    public NetworkMeasurement getTestWithName(String name) {
+        for (int j = 0; j < TestData.getInstance(activity).runningTests.size(); j++) {
+            NetworkMeasurement current = TestData.getInstance(activity).runningTests.get(j);
+            if (current.testName.equals(name)) return current;
+        }
+    return null;
     }
 
     public void removeTest(NetworkMeasurement test) {

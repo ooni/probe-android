@@ -27,7 +27,7 @@ public class ResultListFragment extends Fragment {
 
         String json_file = getActivity().getIntent().getExtras().getString("json_file");
         final String[] parts = LogUtils.getLogParts(getActivity(), json_file);
-        ArrayList<JSONObject> listItems = new ArrayList<JSONObject>();
+        ArrayList<JSONObject> listItems = new ArrayList<>();
         try {
             for(String str:parts) {
                 JSONObject jsonObj = new JSONObject(str);

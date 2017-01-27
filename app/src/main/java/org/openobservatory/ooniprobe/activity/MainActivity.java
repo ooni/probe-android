@@ -29,6 +29,7 @@ import java.io.InputStream;
 import java.util.Observable;
 import java.util.Observer;
 
+import org.openobservatory.ooniprobe.data.TestData;
 import org.openobservatory.ooniprobe.fragment.AboutFragment;
 import org.openobservatory.ooniprobe.fragment.PastTestsFragment;
 import org.openobservatory.ooniprobe.fragment.RunTestsFragment;
@@ -46,11 +47,16 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     private CharSequence mTitle;
     private String[] mMenuItemsTitles;
 
+    static {
+        System.loadLibrary("measurement_kit");
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         checkResources();
+        TestData.getInstance(this).addObserver(this);
 
         mTitle = mDrawerTitle = getTitle();
         mMenuItemsTitles = new String[]{getString(R.string.run_tests), getString(R.string.past_tests), getString(R.string.settings), getString(R.string.about)};
@@ -112,16 +118,16 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     private void selectItem(int position) {
         switch (position){
             case 0:
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new RunTestsFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new RunTestsFragment(), "run_tests").commit();
                 break;
             case 1:
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new PastTestsFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new PastTestsFragment(), "past_tests").commit();
                 break;
             case 2:
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new SettingsFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new SettingsFragment(), "settings").commit();
                 break;
             case 3:
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new AboutFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new AboutFragment(), "about").commit();
                 break;
         }
 
@@ -163,6 +169,15 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     @Override
     public void update(Observable observable, Object data) {
         //update the fragments
+        RunTestsFragment runTestsFragment = (RunTestsFragment)getSupportFragmentManager().findFragmentByTag("run_tests");
+        if (runTestsFragment != null && runTestsFragment.isVisible()) {
+            runTestsFragment.updateList();
+        }
+        PastTestsFragment pastTestsFragment = (PastTestsFragment)getSupportFragmentManager().findFragmentByTag("past_tests");
+        if (pastTestsFragment != null && pastTestsFragment.isVisible()) {
+            pastTestsFragment.updateList();
+        }
+
         /*if (mFinishedTestsListAdapter != null) {
             ArrayList<NetworkMeasurement> finishedTests = new ArrayList<NetworkMeasurement>(TestData.getInstance(this).finishedTests);
             Collections.reverse(finishedTests);

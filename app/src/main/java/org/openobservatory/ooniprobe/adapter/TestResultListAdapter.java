@@ -49,19 +49,22 @@ public class TestResultListAdapter extends RecyclerView.Adapter<TestResultListAd
     @Override
     public void onBindViewHolder(TestResultListAdapter.ViewHolder holder, final int position) {
         final JSONObject i = values.get(position);
-        System.out.println(i);
         try {
             holder.txtTitle.setText(i.getString("input"));
         } catch (JSONException e) {
             holder.txtTitle.setText(position);
         }
         try {
-            if (!i.getJSONObject("test_keys").getBoolean("blocking"))
+            JSONObject blocking = i.getJSONObject("test_keys");
+            Object object = blocking.get("blocking");
+            if(object instanceof String)
+                holder.txtTitle.setTextColor(getColor(mActivity, R.color.color_bad_red));
+            else if(object instanceof Boolean)
                 holder.txtTitle.setTextColor(getColor(mActivity, R.color.color_ok_green));
             else
-                holder.txtTitle.setTextColor(getColor(mActivity, R.color.color_bad_red));
+                holder.txtTitle.setTextColor(getColor(mActivity, R.color.color_warning_orange));
         } catch (JSONException e) {
-            holder.txtTitle.setTextColor(getColor(mActivity, R.color.color_bad_red));
+            holder.txtTitle.setTextColor(getColor(mActivity, R.color.color_warning_orange));
         }
 
         holder.itemView.setOnClickListener(
