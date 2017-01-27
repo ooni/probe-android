@@ -4,29 +4,31 @@
     android:layout_width="match_parent"
     android:background="@color/color_off_white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="10dp"
     android:layout_height="60dp">
+
     <ImageView
         android:id="@+id/test_logo"
         android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_gravity="center_vertical"
         android:background="@android:color/transparent"
         android:src="@drawable/http_invalid_request_line_no"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_height="24dp" />
+        />
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_centerVertical="true"
         android:background="@color/color_off_white"
         android:layout_toRightOf="@+id/test_logo"
         android:layout_toEndOf="@+id/test_logo"
         android:layout_toLeftOf="@+id/view_button"
-        android:layout_toStartOf="@+id/view_button"
-        >
+        android:layout_toStartOf="@+id/view_button">
         <TextView
             android:id="@+id/test_title"
             android:layout_width="match_parent"
@@ -47,24 +49,27 @@
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/view_button"
-        android:layout_toLeftOf="@+id/test_popupmenu"
-        android:layout_toStartOf="@+id/test_popupmenu"
         android:layout_width="60dp"
         android:layout_height="35dp"
-        android:padding="10dp"
+        android:layout_gravity="center_vertical"
         android:text="@string/view"
         app:textAllCaps="false"
         android:textColor="@color/color_ooni_blue"
-        android:background="@drawable/runbutton" />
+        android:background="@drawable/runbutton"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/test_popupmenu"
+        android:layout_toStartOf="@+id/test_popupmenu" />
 
     <org.openobservatory.ooniprobe.view.ListImageButton
         android:id="@+id/test_popupmenu"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
         android:background="@null"
-        android:padding="10dp"
+        android:layout_centerVertical="true"
         android:src="@drawable/ic_action_overflow"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 

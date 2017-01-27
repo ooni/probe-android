@@ -4,6 +4,6 @@
         <item name="colorPrimary">@color/color_ooni_blue</item>
         <item name="colorPrimaryDark">@color/color_ooni_blue</item>
         <item name="colorAccent">@color/color_ooni_blue</item>
+        <item name="actionMenuTextColor">@color/color_off_black</item>
     </style>
-
 </resources>

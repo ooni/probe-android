@@ -69,6 +69,7 @@ public class PastTestsListAdapter extends RecyclerView.Adapter<PastTestsListAdap
     public void onBindViewHolder(PastTestsListAdapter.ViewHolder holder, int position) {
         final NetworkMeasurement i = values.get(position);
         holder.txtTitle.setText(NetworkMeasurement.getTestName(mActivity, i.testName));
+        holder.txtTimestamp.setText(getDate(i.test_id));
 
         // Set the item as the button's tag so it can be retrieved later
         holder.popupButton.setTag(values.get(position));
@@ -85,19 +86,14 @@ public class PastTestsListAdapter extends RecyclerView.Adapter<PastTestsListAdap
                 });
             }
         });
-        if (i.completed) {
-            holder.txtTimestamp.setText(getDate(i.test_id));
-        }
-        else {
-            holder.txtTimestamp.setText("");
-        }
+
         final String[] parts = LogUtils.getLogParts(mActivity, i.json_file);
         if (parts.length > 1)
-                holder.testImage.setImageResource(NetworkMeasurement.getTestImage(NetworkMeasurement.getTestName(mActivity, i.testName), true));
+                holder.testImage.setImageResource(NetworkMeasurement.getTestImage(i.testName, true));
         else if (parts.length == 1 && parts[0].length() == 0)
-                holder.testImage.setImageResource(NetworkMeasurement.getTestImage(NetworkMeasurement.getTestName(mActivity, i.testName), false));
+                holder.testImage.setImageResource(NetworkMeasurement.getTestImage(i.testName, false));
         else
-                holder.testImage.setImageResource(NetworkMeasurement.getTestImage(NetworkMeasurement.getTestName(mActivity, i.testName), true));
+                holder.testImage.setImageResource(NetworkMeasurement.getTestImage(i.testName, true));
 
 
         //final JSONObject i = values.get(position);

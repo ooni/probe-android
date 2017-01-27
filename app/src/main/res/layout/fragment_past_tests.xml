@@ -4,5 +4,6 @@
     android:id="@+id/pastTests"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:padding="8dp"
     android:divider="@android:color/transparent"
     android:dividerHeight="0dp" />

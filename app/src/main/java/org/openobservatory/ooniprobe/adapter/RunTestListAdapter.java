@@ -61,7 +61,7 @@ public class RunTestListAdapter extends RecyclerView.Adapter<RunTestListAdapter.
         Boolean available = getItem(position);
         holder.txtTitle.setText(NetworkMeasurement.getTestName(mActivity, key));
         holder.txtDesc.setText(NetworkMeasurement.getTestDescr(mActivity, key));
-        holder.testImage.setImageResource(NetworkMeasurement.getTestImage(NetworkMeasurement.getTestName(mActivity, key), true));
+        holder.testImage.setImageResource(NetworkMeasurement.getTestImage(key, true));
         if (available) {
             holder.progressIndicator.setVisibility(View.GONE);
             holder.runTest.setVisibility(View.VISIBLE);

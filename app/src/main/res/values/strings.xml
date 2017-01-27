@@ -68,11 +68,15 @@
     <string name="local_notifications">Run test reminder</string>
     <string name="local_notifications_time">Time</string>
     <string name="local_notifications_text">Time to run tests</string>
-    <string name="collector_settings">Collector settings</string>
     <string name="notifications">Notifications</string>
     <string name="max_runtime">Max runtime (seconds)</string>
-    <string name="test_limits">Test limits</string>
+    <string name="advanced_settings">Advanced settings</string>
     <string name="finished_running">%s finished running</string>
+    <string name="view_log">View log</string>
+    <string name="copy_to_clipboard">Copy to clipboard</string>
+    <string name="copied_clipboard">Copied into clipboard</string>
+    <string name="send_crash">Send crash reports</string>
+    <string name="privacy">Privacy</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
 </resources>
