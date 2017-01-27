@@ -1,8 +1,13 @@
 package org.openobservatory.ooniprobe;
 
 import android.app.Application;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.core.CrashlyticsCore;
+
 import io.fabric.sdk.android.Fabric;
 
 public class ooniprobeApp extends Application {
@@ -10,7 +15,13 @@ public class ooniprobeApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Fabric.with(this, new Crashlytics());
+        //Fabric.with(this, new Crashlytics());
+        //TODO reload with the setting
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        final Boolean send_crash = preferences.getBoolean("send_crash", false);
+        CrashlyticsCore core = new CrashlyticsCore.Builder().disabled(send_crash).build();
+        Fabric.with(this, new Crashlytics.Builder().core(core).build());
+
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                 .setDefaultFontPath("fonts/FiraSans-Bold.otf")
                 .setFontAttrId(R.attr.fontPath)

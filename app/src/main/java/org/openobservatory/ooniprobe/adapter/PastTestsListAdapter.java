@@ -15,8 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v7.widget.RecyclerView;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.ResultActivity;

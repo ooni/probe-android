@@ -50,47 +50,4 @@ public class ResultActivity extends AppCompatActivity {
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
-    /*
-        @Override
-        public void onBackPressed() {
-            Fragment fragment=new Fragment1();
-            FragmentManager fm= getFragmentManager();
-
-            FragmentTransaction ft=fm.beginTransaction();
-
-            ft.replace(R.id.fragment,fragment);
-
-            ft.commit();
-        }
-    */
-    /*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-
-            Fragment fragment=new ResultListFragment();
-            FragmentManager fm= getSupportFragmentManager();
-            FragmentTransaction ft=fm.beginTransaction();
-            //ft.remove(fragment);
-            ft.add(R.id.fragment,fragment);
-            //ft.replace(R.id.fragment,fragment);
-            ft.addToBackStack(null);
-            ft.commit();
-            return true;
-        }
-        if(id == R.id.action_exit)
-        {
-            android.os.Process.killProcess(android.os.Process.myPid());
-            System.exit(1);
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-    */
 }

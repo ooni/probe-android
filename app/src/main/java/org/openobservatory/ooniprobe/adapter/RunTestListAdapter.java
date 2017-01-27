@@ -1,10 +1,6 @@
 package org.openobservatory.ooniprobe.adapter;
 
-import android.content.Context;
-import android.graphics.Typeface;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -16,19 +12,9 @@ import android.support.v7.widget.RecyclerView;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.data.TestData;
-import org.openobservatory.ooniprobe.data.TestStorage;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
-import org.openobservatory.ooniprobe.model.OONITests;
 import org.openobservatory.ooniprobe.utils.Alert;
-import android.support.v7.widget.PopupMenu;
-
-import org.openobservatory.ooniprobe.utils.LogUtils;
-import org.openobservatory.ooniprobe.view.ListImageButton;
-
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.LinkedHashMap;
-import java.util.Locale;
 
 import static org.openobservatory.ooniprobe.R.id.progressBar;
 

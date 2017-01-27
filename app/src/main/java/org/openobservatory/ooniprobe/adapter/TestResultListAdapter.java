@@ -14,13 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.ResultFragment;
-import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 
 import java.util.ArrayList;
 

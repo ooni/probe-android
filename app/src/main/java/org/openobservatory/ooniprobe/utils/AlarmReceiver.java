@@ -5,9 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.data.TestData;
-import org.openobservatory.ooniprobe.ooniprobeApp;
 
 public class AlarmReceiver extends BroadcastReceiver {
 

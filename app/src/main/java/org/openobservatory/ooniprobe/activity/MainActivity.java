@@ -97,9 +97,6 @@ public class MainActivity extends AppCompatActivity  implements Observer {
             selectItem(0);
         }
 
-        //LoggerApi.setVerbose(1);
-        //LoggerApi.useAndroidLogger();
-
         checkInformedConsent();
     }
 
