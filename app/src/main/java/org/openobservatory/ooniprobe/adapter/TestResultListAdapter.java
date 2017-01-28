@@ -19,6 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.ResultFragment;
+import com.lb.auto_fit_textview.AutoResizeTextView;
 
 import java.util.ArrayList;
 
@@ -107,13 +108,13 @@ public class TestResultListAdapter extends RecyclerView.Adapter<TestResultListAd
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView txtTitle;
+        public AutoResizeTextView txtTitle;
         public Button viewResult;
 
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            txtTitle = (TextView) itemView.findViewById(R.id.test_title);
+            txtTitle = (AutoResizeTextView) itemView.findViewById(R.id.test_title);
             viewResult = (Button) itemView.findViewById(R.id.view_button);
         }
 

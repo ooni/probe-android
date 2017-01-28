@@ -5,7 +5,7 @@
     android:padding="10dp"
     android:layout_height="60dp">
     
-    <TextView
+    <com.lb.auto_fit_textview.AutoResizeTextView
         android:id="@+id/test_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

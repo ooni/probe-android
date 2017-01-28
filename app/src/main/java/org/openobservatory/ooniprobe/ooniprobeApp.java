@@ -15,10 +15,8 @@ public class ooniprobeApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        //Fabric.with(this, new Crashlytics());
-        //TODO reload with the setting
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        final Boolean send_crash = preferences.getBoolean("send_crash", false);
+        final Boolean send_crash = preferences.getBoolean("send_crash", true);
         CrashlyticsCore core = new CrashlyticsCore.Builder().disabled(send_crash).build();
         Fabric.with(this, new Crashlytics.Builder().core(core).build());
 

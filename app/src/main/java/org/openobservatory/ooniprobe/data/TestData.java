@@ -26,7 +26,6 @@ import org.openobservatory.ooniprobe.utils.Notifications;
 public class TestData extends Observable {
     private static final String TAG = "TestData";
     private static TestData instance;
-    private static TestStorage ts;
     public static ArrayList<NetworkMeasurement> runningTests;
     public static ArrayList<NetworkMeasurement> finishedTests;
     public static LinkedHashMap<String, Boolean> availableTests;
@@ -36,9 +35,8 @@ public class TestData extends Observable {
         if (instance == null) {
             activity = a;
             instance = new TestData();
-            ts = new TestStorage();
             runningTests = new ArrayList<>();
-            finishedTests = ts.loadTests(activity);
+            finishedTests = TestStorage.loadTests(activity);
             availableTests = new LinkedHashMap<>();
             availableTests.put(OONITests.WEB_CONNECTIVITY, true);
             availableTests.put(OONITests.HTTP_INVALID_REQUEST_LINE, true);
@@ -67,7 +65,7 @@ public class TestData extends Observable {
         final String collector_address = preferences.getString("collector_address", "https://b.collector.ooni.io");
         final String max_runtime = preferences.getString("max_runtime", "90");
 
-        ts.addTest(ctx, currentTest);
+        TestStorage.addTest(ctx, currentTest);
         runningTests.add(currentTest);
         availableTests.put(testName, false);
         if (activity != null) TestData.getInstance(activity).notifyObservers();
@@ -271,7 +269,7 @@ public class TestData extends Observable {
             }
 
             protected void onPostExecute(Boolean success) {
-                ts.setCompleted(ctx, currentTest);
+                TestStorage.setCompleted(ctx, currentTest);
                 currentTest.completed = true;
                 runningTests.remove(currentTest);
                 finishedTests.add(currentTest);
@@ -295,8 +293,10 @@ public class TestData extends Observable {
                 anomaly = 0;
             else
                 anomaly = 1;
-            if (test.anomaly < anomaly)
+            if (test.anomaly < anomaly) {
+                test.anomaly = anomaly;
                 TestStorage.setAnomaly(activity, test.test_id, anomaly);
+            }
         } catch (JSONException e) {
         }
     }

@@ -23,6 +23,10 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.core.CrashlyticsCore;
+
+import io.fabric.sdk.android.Fabric;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
@@ -35,7 +39,7 @@ public class SettingsFragment extends Fragment {
     SharedPreferences preferences;
     RelativeLayout collector_addressLayout;
     RelativeLayout local_notifications_timeLayout;
-    public static final String DEFAULT_COLLECTOR = "https://a.collector.test.ooni.io";
+    public static final String DEFAULT_COLLECTOR = "https://b.collector.test.ooni.io";
 
     @Override
     public void onAttach(Activity activity) {
@@ -64,7 +68,7 @@ public class SettingsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_settings, container, false);
         preferences = PreferenceManager.getDefaultSharedPreferences(mActivity);
-        SwitchCompat include_ipButton = (SwitchCompat) v.findViewById(R.id.ck_include_ip);
+        final SwitchCompat include_ipButton = (SwitchCompat) v.findViewById(R.id.ck_include_ip);
         include_ipButton.setChecked(preferences.getBoolean("include_ip", false));
         include_ipButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -78,7 +82,7 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-        SwitchCompat include_asnButton = (SwitchCompat) v.findViewById(R.id.ck_include_asn);
+        final SwitchCompat include_asnButton = (SwitchCompat) v.findViewById(R.id.ck_include_asn);
         include_asnButton.setChecked(preferences.getBoolean("include_asn", true));
         include_asnButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -92,7 +96,7 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-        SwitchCompat include_ccButton = (SwitchCompat) v.findViewById(R.id.ck_include_country);
+        final SwitchCompat include_ccButton = (SwitchCompat) v.findViewById(R.id.ck_include_country);
         include_ccButton.setChecked(preferences.getBoolean("include_cc", true));
         include_ccButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -106,6 +110,24 @@ public class SettingsFragment extends Fragment {
             }
         });
 
+        final SwitchCompat send_crashButton = (SwitchCompat) v.findViewById(R.id.send_crash);
+        send_crashButton.setChecked(preferences.getBoolean("send_crash", true));
+        send_crashButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences.Editor editor = preferences.edit();
+                if (isChecked) {
+                    editor.putBoolean("send_crash", true);
+                } else {
+                    editor.putBoolean("send_crash", false);
+                }
+                editor.commit();
+                final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mActivity);
+                final Boolean send_crash = preferences.getBoolean("send_crash", true);
+                CrashlyticsCore core = new CrashlyticsCore.Builder().disabled(send_crash).build();
+                Fabric.with(mActivity, new Crashlytics.Builder().core(core).build());
+            }
+        });
+
         TextView collector_address = (TextView) v.findViewById(R.id.collector_address_subText);
         collector_address.setText(preferences.getString("collector_address", DEFAULT_COLLECTOR));
 
@@ -116,27 +138,6 @@ public class SettingsFragment extends Fragment {
                 showPopup();
             }
         });
-        if (preferences.getBoolean("upload_results", true))
-            collector_addressLayout.setVisibility(View.VISIBLE);
-        else
-            collector_addressLayout.setVisibility(View.GONE);
-
-        SwitchCompat upload_resultsButton = (SwitchCompat) v.findViewById(R.id.ck_upload_results);
-        upload_resultsButton.setChecked(preferences.getBoolean("upload_results", true));
-        upload_resultsButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences.Editor editor = preferences.edit();
-                if (isChecked) {
-                    collector_addressLayout.setVisibility(View.VISIBLE);
-                    editor.putBoolean("upload_results", true);
-                } else {
-                    collector_addressLayout.setVisibility(View.GONE);
-                    editor.putBoolean("upload_results", false);
-                }
-                editor.commit();
-            }
-        });
-
         TextView max_runtime = (TextView) v.findViewById(R.id.max_runtimeEditText);
         max_runtime.setText(preferences.getString("max_runtime", "90"));
         max_runtime.addTextChangedListener(new TextWatcher() {
@@ -170,11 +171,6 @@ public class SettingsFragment extends Fragment {
                 showPopup();
             }
         });
-        if (preferences.getBoolean("local_notifications", false))
-            local_notifications_timeLayout.setVisibility(View.VISIBLE);
-        else
-            local_notifications_timeLayout.setVisibility(View.GONE);
-
         SwitchCompat local_notificationsButton = (SwitchCompat) v.findViewById(R.id.local_notifications);
         local_notificationsButton.setChecked(preferences.getBoolean("local_notifications", false));
         local_notificationsButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -214,6 +210,47 @@ public class SettingsFragment extends Fragment {
                 mTimePicker.show();
             }
         });
+
+        SwitchCompat upload_resultsButton = (SwitchCompat) v.findViewById(R.id.ck_upload_results);
+        upload_resultsButton.setChecked(preferences.getBoolean("upload_results", true));
+        upload_resultsButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences.Editor editor = preferences.edit();
+                if (isChecked) {
+                    collector_addressLayout.setVisibility(View.VISIBLE);
+                    include_asnButton.setVisibility(View.VISIBLE);
+                    include_ccButton.setVisibility(View.VISIBLE);
+                    include_ipButton.setVisibility(View.VISIBLE);
+                    editor.putBoolean("upload_results", true);
+                } else {
+                    collector_addressLayout.setVisibility(View.GONE);
+                    include_asnButton.setVisibility(View.GONE);
+                    include_ccButton.setVisibility(View.GONE);
+                    include_ipButton.setVisibility(View.GONE);
+                    editor.putBoolean("upload_results", false);
+                }
+                editor.commit();
+            }
+        });
+
+        if (preferences.getBoolean("upload_results", true)){
+            collector_addressLayout.setVisibility(View.VISIBLE);
+            include_asnButton.setVisibility(View.VISIBLE);
+            include_ccButton.setVisibility(View.VISIBLE);
+            include_ipButton.setVisibility(View.VISIBLE);
+        }
+        else{
+            collector_addressLayout.setVisibility(View.GONE);
+            include_asnButton.setVisibility(View.GONE);
+            include_ccButton.setVisibility(View.GONE);
+            include_ipButton.setVisibility(View.GONE);
+        }
+
+        if (preferences.getBoolean("local_notifications", false))
+            local_notifications_timeLayout.setVisibility(View.VISIBLE);
+        else
+            local_notifications_timeLayout.setVisibility(View.GONE);
+
         return v;
     }
 
