@@ -12,6 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/notifications"
+            android:textSize="13dp"
+            android:textColor="@color/color_off_black" />
+
         <android.support.v7.widget.SwitchCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,6 +73,13 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
         </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/privacy"
+            android:textSize="13dp"
+            android:textColor="@color/color_off_black" />
 
         <android.support.v7.widget.SwitchCompat
             android:layout_width="match_parent"
@@ -131,6 +145,13 @@
             android:text="@string/send_crash"
             android:checked="true"
             android:textColor="@color/color_ooni_blue" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/advanced_settings"
+            android:textSize="13dp"
+            android:textColor="@color/color_off_black" />
 
         <RelativeLayout
             android:layout_width="match_parent"

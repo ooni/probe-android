@@ -48,6 +48,7 @@ public class TestResultListAdapter extends RecyclerView.Adapter<TestResultListAd
     @Override
     public void onBindViewHolder(TestResultListAdapter.ViewHolder holder, final int position) {
         final JSONObject i = values.get(position);
+        //TODO use only input and blocking not the entire json
         try {
             holder.txtTitle.setText(i.getString("input"));
         } catch (JSONException e) {
