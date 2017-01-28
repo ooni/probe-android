@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.adapter;
 
+import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.data.TestData;
+import org.openobservatory.ooniprobe.fragment.TestInfoFragment;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 import org.openobservatory.ooniprobe.utils.Alert;
 import java.util.LinkedHashMap;
@@ -73,7 +76,14 @@ public class RunTestListAdapter extends RecyclerView.Adapter<RunTestListAdapter.
         holder.itemView.setOnClickListener(
                 new ImageButton.OnClickListener() {
                     public void onClick(View v) {
-                        //Alert.alertMdWebView(mActivity, key);
+                        Bundle data = new Bundle();
+                        data.putString("test_name", key);
+                        FragmentTransaction t = mActivity.getSupportFragmentManager().beginTransaction();
+                        TestInfoFragment mFrag = new TestInfoFragment();
+                        mFrag.setArguments(data);
+                        t.replace(R.id.content_frame, mFrag, "test_info");
+                        t.addToBackStack(null);
+                        t.commit();
                     }
                 }
         );

@@ -24,6 +24,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import junit.framework.Test;
+
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.Observable;
@@ -36,6 +38,7 @@ import org.openobservatory.ooniprobe.fragment.RunTestsFragment;
 import org.openobservatory.ooniprobe.fragment.SettingsFragment;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.fragment.TestInfoFragment;
 
 public class MainActivity extends AppCompatActivity  implements Observer {
     private DrawerLayout mDrawerLayout;
@@ -174,18 +177,10 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         if (pastTestsFragment != null && pastTestsFragment.isVisible()) {
             pastTestsFragment.updateList();
         }
-
-        /*if (mFinishedTestsListAdapter != null) {
-            ArrayList<NetworkMeasurement> finishedTests = new ArrayList<NetworkMeasurement>(TestData.getInstance(this).finishedTests);
-            Collections.reverse(finishedTests);
-            mFinishedTestsListAdapter.setData(finishedTests);
+        TestInfoFragment testInfoFragment = (TestInfoFragment)getSupportFragmentManager().findFragmentByTag("test_info");
+        if (testInfoFragment != null && testInfoFragment.isVisible()) {
+            testInfoFragment.updateButtons();
         }
-        if (mRunningTestsListAdapter != null) {
-            mRunningTestsListAdapter.setData(TestData.getInstance(this).runningTests);
-        }
-        if (mAvailableTestsListAdapter != null) {
-            mAvailableTestsListAdapter.setData(TestData.getInstance(this).availableTests);
-        }*/
         System.out.println("update "+ observable);
     }
 

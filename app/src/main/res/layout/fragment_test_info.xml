@@ -10,30 +10,23 @@
         android:layout_height="wrap_content"
         android:weightSum="1">
 
-        <TextView
+        <ImageView
+            android:id="@+id/test_logo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="@string/about_ooni"
-            android:textStyle="bold"
-            android:textSize="38sp"
-            android:textColor="@color/color_ooni_blue"
-            android:gravity="center"  />
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
+            android:src="@drawable/http_invalid_request_line"
+            android:layout_marginTop="10dp"
+            android:layout_height="30dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/testDesc"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:textSize="15sp"
-            android:text="@string/about_text_1"
-            android:textColor="@color/color_off_black"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:textSize="15sp"
-            android:text="@string/about_text_2"
+            android:text="@string/http_invalid_request_line_longdesc"
             android:textColor="@color/color_off_black"/>
 
         <RelativeLayout
@@ -42,27 +35,38 @@
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/learn_more_button"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/learn_more"
+                app:textAllCaps="false"
+                android:textColor="@color/color_ooni_blue"
+                android:background="@android:color/transparent"
+                android:layout_centerHorizontal="true"
+                />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/run_test_button"
+                android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:textSize="24sp"
                 android:padding="10dp"
                 android:textStyle="bold"
-                android:text="@string/learn_more"
+                android:text="@string/run"
                 app:textAllCaps="false"
                 android:textColor="@color/color_off_white"
                 android:background="@drawable/nextbutton"
+                android:layout_below="@+id/learn_more_button"
                 android:layout_centerHorizontal="true" />
 
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/privacy_policy_button"
+            <ProgressBar
+                android:id="@+id/progressIndicator"
+                android:indeterminate="true"
+                style="?android:attr/progressBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/view_data_policy"
-                app:textAllCaps="false"
-                android:textColor="@color/color_ooni_blue"
-                android:background="@android:color/transparent"
-                android:layout_below="@+id/learn_more_button"
-                android:layout_centerHorizontal="true"
-                 />
+                android:layout_marginTop="23dp"
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/learn_more_button" />
+
         </RelativeLayout>
     </LinearLayout>
 </ScrollView>
