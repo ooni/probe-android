@@ -85,9 +85,13 @@ public class PastTestsListAdapter extends RecyclerView.Adapter<PastTestsListAdap
         if (parts.length > 1 ||(parts.length == 1 && parts[0].length() > 0)) {
             if (i.anomaly == 0) {
                 holder.testImage.setImageResource(NetworkMeasurement.getTestImage(i.testName, i.anomaly));
-                holder.txtTitle.setTextColor(getColor(mActivity, R.color.color_ok_green));
+                holder.txtTitle.setTextColor(getColor(mActivity, R.color.color_ooni_blue));
             }
-            else {
+            else if (i.anomaly == 1) {
+                holder.testImage.setImageResource(NetworkMeasurement.getTestImage(i.testName, i.anomaly));
+                holder.txtTitle.setTextColor(getColor(mActivity, R.color.color_warning_orange));
+            }
+            else if (i.anomaly == 2) {
                 holder.testImage.setImageResource(NetworkMeasurement.getTestImage(i.testName, i.anomaly));
                 holder.txtTitle.setTextColor(getColor(mActivity, R.color.color_bad_red));
             }

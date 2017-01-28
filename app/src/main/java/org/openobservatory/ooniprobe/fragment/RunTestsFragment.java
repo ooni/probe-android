@@ -3,6 +3,7 @@ package org.openobservatory.ooniprobe.fragment;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -56,7 +57,12 @@ public class RunTestsFragment extends Fragment {
         mAvailableTestsListView = (RecyclerView) v.findViewById(R.id.runTests);
         mAvailableTestsListAdapter = new RunTestListAdapter(mActivity, TestData.getInstance(mActivity).availableTests);
         mAvailableTestsListView.setAdapter(mAvailableTestsListAdapter);
-        mAvailableTestsListView.setLayoutManager(new LinearLayoutManager(mActivity));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mActivity);
+        mAvailableTestsListView.setLayoutManager(layoutManager);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mAvailableTestsListView.getContext(),
+                layoutManager.getOrientation());
+        mAvailableTestsListView.addItemDecoration(dividerItemDecoration);
+
         return v;
     }
 

@@ -13,7 +13,6 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.data.TestData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +20,7 @@ import java.util.List;
 import us.feras.mdv.MarkdownView;
 
 public class Alert {
+    //TODO remove unused methods
 
     public static void alertDialog(Context c, String title, String text) {
         new AlertDialog.Builder(c)

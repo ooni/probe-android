@@ -2,6 +2,7 @@ package org.openobservatory.ooniprobe.fragment;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +39,11 @@ public class ResultListFragment extends Fragment {
         testResultList = (RecyclerView) v.findViewById(R.id.resultList);
         mResultTestsListAdapter = new TestResultListAdapter(getActivity(), listItems);
         testResultList.setAdapter(mResultTestsListAdapter);
-        testResultList.setLayoutManager(new LinearLayoutManager(v.getContext()));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(v.getContext());
+        testResultList.setLayoutManager(layoutManager);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(testResultList.getContext(),
+                layoutManager.getOrientation());
+        testResultList.addItemDecoration(dividerItemDecoration);
         mResultTestsListAdapter.setData(listItems);
 
         return v;

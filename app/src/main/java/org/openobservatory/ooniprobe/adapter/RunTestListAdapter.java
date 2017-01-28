@@ -73,7 +73,7 @@ public class RunTestListAdapter extends RecyclerView.Adapter<RunTestListAdapter.
         holder.itemView.setOnClickListener(
                 new ImageButton.OnClickListener() {
                     public void onClick(View v) {
-                        Alert.alertMdWebView(mActivity, key);
+                        //Alert.alertMdWebView(mActivity, key);
                     }
                 }
         );
