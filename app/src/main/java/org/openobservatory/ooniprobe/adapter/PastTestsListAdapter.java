@@ -119,10 +119,10 @@ public class PastTestsListAdapter extends RecyclerView.Adapter<PastTestsListAdap
 
     private void goToResults (NetworkMeasurement i){
         if (!i.viewed) TestStorage.setViewed(mActivity, i.test_id);
-        if (LogUtils.getNumLogParts(mActivity, i.json_file) > 0){
+        if (i.entry){
             Intent intent = new Intent(mActivity, ResultActivity.class);
             intent.putExtra("json_file", i.json_file);
-            intent.putExtra("test_name", NetworkMeasurement.getTestName(mActivity, i.testName));
+            intent.putExtra("test_name", i.testName);
             mActivity.startActivity(intent);
         }
         else {

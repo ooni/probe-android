@@ -10,6 +10,7 @@ import android.os.Bundle;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.ResultFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
+import org.openobservatory.ooniprobe.model.OONITests;
 import org.openobservatory.ooniprobe.utils.LogUtils;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -22,9 +23,16 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_result);
         Intent intent = getIntent();
         if(intent.getExtras() != null) {
-            String json_file = intent.getStringExtra("json_file");
-            int logParts = LogUtils.getNumLogParts(this, json_file);
-            if (logParts == 1){
+            //String json_file = intent.getStringExtra("json_file");
+            //int logParts = LogUtils.getNumLogParts(this, json_file);
+            if (intent.getStringExtra("test_name").equals(OONITests.WEB_CONNECTIVITY)){
+                Fragment fragment = new ResultListFragment();
+                FragmentManager fm= getSupportFragmentManager();
+                FragmentTransaction ft=fm.beginTransaction();
+                ft.add(R.id.fragment,fragment);
+                ft.commit();
+            }
+            else {
                 Fragment fragment = new ResultFragment();
                 FragmentManager fm= getSupportFragmentManager();
                 FragmentTransaction ft=fm.beginTransaction();
@@ -32,13 +40,6 @@ public class ResultActivity extends AppCompatActivity {
                 bundle.putInt("position", 0);
                 bundle.putString("title", intent.getStringExtra("test_name"));
                 fragment.setArguments(bundle);
-                ft.add(R.id.fragment,fragment);
-                ft.commit();
-            }
-            else if (logParts == 2){
-                Fragment fragment = new ResultListFragment();
-                FragmentManager fm= getSupportFragmentManager();
-                FragmentTransaction ft=fm.beginTransaction();
                 ft.add(R.id.fragment,fragment);
                 ft.commit();
             }
