@@ -80,9 +80,7 @@ public class PastTestsListAdapter extends RecyclerView.Adapter<PastTestsListAdap
                 });
             }
         });
-
-        final String[] parts = LogUtils.getLogParts(mActivity, i.json_file);
-        if (parts.length > 1 ||(parts.length == 1 && parts[0].length() > 0)) {
+        if (i.entry) {
             if (i.anomaly == 0) {
                 holder.testImage.setImageResource(NetworkMeasurement.getTestImage(i.testName, i.anomaly));
                 holder.txtTitle.setTextColor(getColor(mActivity, R.color.color_ooni_blue));
@@ -120,9 +118,8 @@ public class PastTestsListAdapter extends RecyclerView.Adapter<PastTestsListAdap
     }
 
     private void goToResults (NetworkMeasurement i){
-        final String[] parts = LogUtils.getLogParts(mActivity, i.json_file);
         if (!i.viewed) TestStorage.setViewed(mActivity, i.test_id);
-        if (parts.length > 1 ||(parts.length == 1 && parts[0].length() > 0)){
+        if (LogUtils.getNumLogParts(mActivity, i.json_file) > 0){
             Intent intent = new Intent(mActivity, ResultActivity.class);
             intent.putExtra("json_file", i.json_file);
             intent.putExtra("test_name", NetworkMeasurement.getTestName(mActivity, i.testName));

@@ -8,7 +8,7 @@ import org.openobservatory.ooniprobe.R;
 
 public class NetworkMeasurement {
     public final String testName;
-    public boolean completed = false;
+    public boolean entry = false;
     public final long test_id;
     public int progress = 0;
 
@@ -85,35 +85,4 @@ public class NetworkMeasurement {
                 return 0;
         }
     }
-    public static int checkAnomaly(JSONObject test_keys) {
-        int anomaly = 0;
-        try {
-            if (test_keys.get("blocking").equals(null))
-                return 1;
-    } catch (JSONException e) {
-        return anomaly;
-    }
-        return anomaly;
-    }
-    /*
-    + (int)checkAnomaly:(NSDictionary*)test_keys{
-    null => anomal = 1,
-     false => anomaly = 0,
-     stringa (dns, tcp-ip, http-failure, http-diff) => anomaly = 2
-
-     Return values:
-     0 == OK,
-     1 == orange,
-     2 == red
-        id element = [test_keys objectForKey:@"blocking"];
-        int anomaly = 0;
-        if ([test_keys objectForKey:@"blocking"] == [NSNull null]) {
-            anomaly = 1;
-        }
-        else if (([element isKindOfClass:[NSString class]])) {
-            anomaly = 2;
-        }
-        return anomaly;
-    }
-*/
 }

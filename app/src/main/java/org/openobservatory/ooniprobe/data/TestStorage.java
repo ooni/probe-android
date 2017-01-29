@@ -74,7 +74,23 @@ public class TestStorage {
             for(int i = 0; i < tests.size(); i++) {
                 NetworkMeasurement n = (NetworkMeasurement)tests.get(i);
                 if (n.test_id == test.test_id) {
-                    n.completed = true;
+                    n.running = false;
+                    n.entry = true;
+                    tests.set(i, n);
+                    break;
+                }
+            }
+            storeTests(context, tests);
+        }
+    }
+
+    public static void setEntry(Context context, NetworkMeasurement test) {
+        List tests = loadTests(context);
+        if (tests != null){
+            for(int i = 0; i < tests.size(); i++) {
+                NetworkMeasurement n = (NetworkMeasurement)tests.get(i);
+                if (n.test_id == test.test_id) {
+                    n.entry = true;
                     tests.set(i, n);
                     break;
                 }

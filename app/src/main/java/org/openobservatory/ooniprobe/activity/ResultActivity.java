@@ -23,8 +23,8 @@ public class ResultActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if(intent.getExtras() != null) {
             String json_file = intent.getStringExtra("json_file");
-            final String[] parts = LogUtils.getLogParts(this, json_file);
-            if (parts.length == 1){
+            int logParts = LogUtils.getNumLogParts(this, json_file);
+            if (logParts == 1){
                 Fragment fragment = new ResultFragment();
                 FragmentManager fm= getSupportFragmentManager();
                 FragmentTransaction ft=fm.beginTransaction();
@@ -35,7 +35,7 @@ public class ResultActivity extends AppCompatActivity {
                 ft.add(R.id.fragment,fragment);
                 ft.commit();
             }
-            else {
+            else if (logParts == 2){
                 Fragment fragment = new ResultListFragment();
                 FragmentManager fm= getSupportFragmentManager();
                 FragmentTransaction ft=fm.beginTransaction();

@@ -270,7 +270,7 @@ public class TestData extends Observable {
 
             protected void onPostExecute(Boolean success) {
                 TestStorage.setCompleted(ctx, currentTest);
-                currentTest.completed = true;
+                currentTest.entry = true;
                 runningTests.remove(currentTest);
                 finishedTests.add(currentTest);
                 availableTests.put(testName, true);
@@ -282,6 +282,10 @@ public class TestData extends Observable {
     }
 
     public static void setAnomaly(String entry, NetworkMeasurement test){
+        if(!test.entry) {
+            TestStorage.setEntry(activity, test);
+            test.entry = true;
+        }
         try {
             int anomaly = 0;
             JSONObject jsonObj = new JSONObject(entry);
