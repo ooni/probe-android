@@ -14,12 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.ResultFragment;
+import org.openobservatory.ooniprobe.model.TestResult;
+
 import com.lb.auto_fit_textview.AutoResizeTextView;
+
+import junit.framework.Test;
 
 import java.util.ArrayList;
 
@@ -29,11 +30,11 @@ public class TestResultListAdapter extends RecyclerView.Adapter<TestResultListAd
     private static final String TAG = TestResultListAdapter.class.toString();
 
     private FragmentActivity mActivity;
-    private ArrayList<JSONObject> values;
+    private ArrayList<TestResult> values;
     private int context;
     TestResultListAdapter.OnItemClickListener mItemClickListener;
 
-    public TestResultListAdapter(FragmentActivity context, ArrayList<JSONObject> values) {
+    public TestResultListAdapter(FragmentActivity context, ArrayList<TestResult> values) {
         this.mActivity = context;
         this.values = values;
     }
@@ -47,25 +48,14 @@ public class TestResultListAdapter extends RecyclerView.Adapter<TestResultListAd
 
     @Override
     public void onBindViewHolder(TestResultListAdapter.ViewHolder holder, final int position) {
-        final JSONObject i = values.get(position);
-        //TODO use only input and blocking not the entire json
-        try {
-            holder.txtTitle.setText(i.getString("input"));
-        } catch (JSONException e) {
-            holder.txtTitle.setText(position);
-        }
-        try {
-            JSONObject blocking = i.getJSONObject("test_keys");
-            Object object = blocking.get("blocking");
-            if(object instanceof String)
-                holder.txtTitle.setTextColor(getColor(mActivity, R.color.color_bad_red));
-            else if(object instanceof Boolean)
-                holder.txtTitle.setTextColor(getColor(mActivity, R.color.color_ok_green));
-            else
-                holder.txtTitle.setTextColor(getColor(mActivity, R.color.color_warning_orange));
-        } catch (JSONException e) {
+        final TestResult i = values.get(position);
+        holder.txtTitle.setText(i.input);
+        if(i.anomaly == 2)
+            holder.txtTitle.setTextColor(getColor(mActivity, R.color.color_bad_red));
+        else if(i.anomaly == 0)
+            holder.txtTitle.setTextColor(getColor(mActivity, R.color.color_ok_green));
+        else
             holder.txtTitle.setTextColor(getColor(mActivity, R.color.color_warning_orange));
-        }
 
         holder.itemView.setOnClickListener(
                 new ImageButton.OnClickListener() {
@@ -88,7 +78,9 @@ public class TestResultListAdapter extends RecyclerView.Adapter<TestResultListAd
     private void showResult(int position){
         Fragment fragment = new ResultFragment();
         Bundle bundle = new Bundle();
+        final TestResult i = values.get(position);
         bundle.putInt("position", position);
+        bundle.putString("title", i.input);
         fragment.setArguments(bundle);
         FragmentManager fm = mActivity.getSupportFragmentManager();
         FragmentTransaction ft=fm.beginTransaction();
@@ -102,7 +94,7 @@ public class TestResultListAdapter extends RecyclerView.Adapter<TestResultListAd
         return values.size();
     }
 
-    public void setData(ArrayList<JSONObject> data) {
+    public void setData(ArrayList<TestResult> data) {
         values = data;
         notifyDataSetChanged();
 

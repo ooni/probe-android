@@ -133,22 +133,6 @@ public class PastTestsListAdapter extends RecyclerView.Adapter<PastTestsListAdap
         }
     }
 
-    /*
-    public ArrayList getJson(String json_file){
-        String json_file = getActivity().getIntent().getExtras().getString("json_file");
-        final String[] parts = LogUtils.getLogParts(getActivity(), json_file);
-        ArrayList<JSONObject> listItems = new ArrayList<JSONObject>();
-        try {
-            for(String str:parts) {
-                JSONObject jsonObj = new JSONObject(str);
-                listItems.add(jsonObj);
-            }
-        } catch (JSONException e) {
-        }
-        return listItems;
-    }
-    */
-
     @Override
     public int getItemCount() {
         return values.size();

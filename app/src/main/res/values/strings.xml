@@ -65,7 +65,7 @@
     <string name="view">View</string>
     <string name="no_result">No results</string>
     <string name="no_result_msg">The test has no results or it was aborted</string>
-    <string name="local_notifications">Run test reminder</string>
+    <string name="local_notifications">Run test automatically</string>
     <string name="local_notifications_time">Time</string>
     <string name="local_notifications_text">Time to run tests</string>
     <string name="notifications">Notifications</string>

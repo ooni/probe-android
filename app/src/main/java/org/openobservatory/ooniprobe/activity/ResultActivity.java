@@ -30,10 +30,10 @@ public class ResultActivity extends AppCompatActivity {
                 FragmentTransaction ft=fm.beginTransaction();
                 Bundle bundle = new Bundle();
                 bundle.putInt("position", 0);
+                bundle.putString("title", intent.getStringExtra("test_name"));
                 fragment.setArguments(bundle);
                 ft.add(R.id.fragment,fragment);
                 ft.commit();
-                setTitle(intent.getStringExtra("test_name"));
             }
             else {
                 Fragment fragment = new ResultListFragment();
@@ -41,7 +41,6 @@ public class ResultActivity extends AppCompatActivity {
                 FragmentTransaction ft=fm.beginTransaction();
                 ft.add(R.id.fragment,fragment);
                 ft.commit();
-                setTitle(getString(R.string.web_connectivity));
             }
         }
     }

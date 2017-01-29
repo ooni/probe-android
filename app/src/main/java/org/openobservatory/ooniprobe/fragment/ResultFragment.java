@@ -43,16 +43,9 @@ public class ResultFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_result, container, false);
 
         int position = this.getArguments().getInt("position");
+        mActivity.setTitle(this.getArguments().getString("title"));
         String json_file = getActivity().getIntent().getExtras().getString("json_file");
         final String[] parts = LogUtils.getLogParts(getActivity(), json_file);
-
-        try {
-            JSONObject jsonObj = new JSONObject(parts[position]);
-            String input = jsonObj.getString("input");
-            if (input.length() > 0)
-                mActivity.setTitle(jsonObj.getString("input"));
-        } catch (JSONException e) {
-        }
 
         WebView wv = (WebView) v.findViewById(R.id.webview);
         wv.getSettings().setJavaScriptEnabled(true);
