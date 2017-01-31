@@ -215,9 +215,9 @@ public class PastTestsListAdapter extends RecyclerView.Adapter<PastTestsListAdap
     }
 
     private String getDate(long time) {
-        Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+        Calendar cal = Calendar.getInstance(Locale.getDefault());
         cal.setTimeInMillis(time);
-        String date = DateFormat.format("yyyy-MM-dd HH:mm:ss", cal).toString();
+        String date = DateFormat.format("yyyy-MM-dd kk:mm:ss", cal).toString();
         return date;
     }
 

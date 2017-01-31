@@ -1,6 +1,8 @@
 package org.openobservatory.ooniprobe.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
@@ -17,6 +19,7 @@ public class IConsentPage3Fragment extends Fragment {
 
     private InformedConsentActivity mActivity;
     private AppCompatButton nextButton;
+    private AppCompatButton learn_moreButton;
 
     public static IConsentPage3Fragment create() {
         IConsentPage3Fragment atf = new IConsentPage3Fragment();
@@ -58,6 +61,14 @@ public class IConsentPage3Fragment extends Fragment {
                 mActivity.getWizard().navigateNext();
             }
         });
+        learn_moreButton = (AppCompatButton) v.findViewById(R.id.learn_more_button);
+        learn_moreButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ooni.torproject.org/about/risks/"));
+                startActivity(browserIntent);
+            }
+        });
+
         final GestureDetector gesture = new GestureDetector(getActivity(),
                 new GestureDetector.SimpleOnGestureListener() {
                     @Override

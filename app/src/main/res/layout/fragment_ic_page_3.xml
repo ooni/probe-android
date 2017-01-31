@@ -67,9 +67,21 @@
             android:textSize="15sp"
             android:text="@string/laws_text_6"
             android:textColor="@color/color_off_black"/>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/learn_more_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/learn_more"
+                app:textAllCaps="false"
+                android:textColor="@color/color_ooni_blue"
+                android:background="@android:color/transparent"
+                android:layout_centerHorizontal="true"
+                />
+
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/nextButton"
                 android:layout_width="wrap_content"
@@ -81,6 +93,7 @@
                 app:textAllCaps="false"
                 android:textColor="@color/color_off_white"
                 android:background="@drawable/nextbutton"
+                android:layout_below="@+id/learn_more_button"
                 android:layout_centerHorizontal="true" />
         </RelativeLayout>
     </LinearLayout>

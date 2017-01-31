@@ -62,10 +62,12 @@
                 android:indeterminate="true"
                 style="?android:attr/progressBarStyleSmall"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="23dp"
-                android:layout_centerInParent="true"
-                android:layout_below="@+id/learn_more_button" />
+                android:layout_height="60dp"
+                android:layout_below="@+id/learn_more_button"
+                android:layout_alignRight="@+id/learn_more_button"
+                android:layout_alignEnd="@+id/learn_more_button"
+                android:layout_alignLeft="@+id/learn_more_button"
+                android:layout_alignStart="@+id/learn_more_button" />
 
         </RelativeLayout>
     </LinearLayout>
