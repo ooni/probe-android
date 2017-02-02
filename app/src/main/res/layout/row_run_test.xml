@@ -28,11 +28,12 @@
         android:layout_toLeftOf="@+id/test_buttons"
         android:layout_toStartOf="@+id/test_buttons"
         >
-        <TextView
+        <com.lb.auto_fit_textview.AutoResizeTextView
             android:id="@+id/test_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="17sp"
+            android:lines="1"
             android:text="@string/web_connectivity"
             android:gravity="center"
             android:textColor="@color/color_ooni_blue" />

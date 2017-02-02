@@ -24,6 +24,8 @@ import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 import org.openobservatory.ooniprobe.utils.Alert;
 import android.support.v7.widget.PopupMenu;
 
+import com.lb.auto_fit_textview.AutoResizeTextView;
+
 import org.openobservatory.ooniprobe.utils.LogUtils;
 import org.openobservatory.ooniprobe.view.ListImageButton;
 
@@ -153,7 +155,7 @@ public class PastTestsListAdapter extends RecyclerView.Adapter<PastTestsListAdap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView txtTitle;
+        public AutoResizeTextView txtTitle;
         public TextView txtTimestamp;
         public ListImageButton popupButton;
         public ImageView testImage;
@@ -162,7 +164,7 @@ public class PastTestsListAdapter extends RecyclerView.Adapter<PastTestsListAdap
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            txtTitle = (TextView) itemView.findViewById(R.id.test_title);
+            txtTitle = (AutoResizeTextView) itemView.findViewById(R.id.test_title);
             txtTimestamp = (TextView) itemView.findViewById(R.id.test_timestamp);
             popupButton = (ListImageButton) itemView.findViewById(R.id.test_popupmenu);
             testImage = (ImageView) itemView.findViewById(R.id.test_logo);

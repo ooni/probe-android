@@ -11,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.support.v7.widget.RecyclerView;
+
+import com.lb.auto_fit_textview.AutoResizeTextView;
+
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.data.TestData;
@@ -105,7 +108,7 @@ public class RunTestListAdapter extends RecyclerView.Adapter<RunTestListAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView txtTitle;
+        public AutoResizeTextView txtTitle;
         public TextView txtDesc;
         public Button runTest;
         public ProgressBar progressBar;
@@ -115,7 +118,7 @@ public class RunTestListAdapter extends RecyclerView.Adapter<RunTestListAdapter.
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            txtTitle = (TextView) itemView.findViewById(R.id.test_title);
+            txtTitle = (AutoResizeTextView) itemView.findViewById(R.id.test_title);
             txtDesc = (TextView) itemView.findViewById(R.id.test_desc);
             runTest = (Button) itemView.findViewById(R.id.run_test_button);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar);

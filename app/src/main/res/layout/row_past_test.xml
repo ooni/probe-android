@@ -24,18 +24,21 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:background="@color/color_off_white"
         android:layout_toRightOf="@+id/test_logo"
         android:layout_toEndOf="@+id/test_logo"
         android:layout_toLeftOf="@+id/view_button"
         android:layout_toStartOf="@+id/view_button">
-        <TextView
+        <com.lb.auto_fit_textview.AutoResizeTextView
             android:id="@+id/test_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="17sp"
             android:text="@string/web_connectivity"
             android:gravity="center"
+            android:lines="1"
             android:textColor="@color/color_ooni_blue" />
         <TextView
             android:id="@+id/test_timestamp"
