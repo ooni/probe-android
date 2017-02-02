@@ -20,6 +20,7 @@ import android.view.View;
 import android.util.Log;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -70,6 +71,11 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         mDrawerList.setAdapter(new ArrayAdapter<String>(this,
                 R.layout.menu_item, mMenuItemsTitles));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+
+
+        ImageView _imgView = new ImageView(this);
+        _imgView.setImageResource(R.drawable.ooni_logo);
+        mDrawerList.addFooterView(_imgView);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);

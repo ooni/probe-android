@@ -21,4 +21,5 @@
         android:divider="@android:color/transparent"
         android:dividerHeight="20dp"
         android:background="@color/color_ooni_blue" />
+
 </android.support.v4.widget.DrawerLayout>
