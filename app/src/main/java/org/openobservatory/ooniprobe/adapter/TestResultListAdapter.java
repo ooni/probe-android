@@ -31,12 +31,15 @@ public class TestResultListAdapter extends RecyclerView.Adapter<TestResultListAd
 
     private FragmentActivity mActivity;
     private ArrayList<TestResult> values;
+    private String title;
     private int context;
     TestResultListAdapter.OnItemClickListener mItemClickListener;
 
-    public TestResultListAdapter(FragmentActivity context, ArrayList<TestResult> values) {
+    public TestResultListAdapter(FragmentActivity context, ArrayList<TestResult> values, String title) {
         this.mActivity = context;
         this.values = values;
+        // XXX maybe there is a better way to do this to get it from mActivity.getArugments()?
+        this.title = title;
     }
 
     @Override
@@ -80,10 +83,10 @@ public class TestResultListAdapter extends RecyclerView.Adapter<TestResultListAd
         Bundle bundle = new Bundle();
         final TestResult i = values.get(position);
         bundle.putInt("position", position);
-        bundle.putString("title", i.input);
+        bundle.putString("title", this.title);
         fragment.setArguments(bundle);
         FragmentManager fm = mActivity.getSupportFragmentManager();
-        FragmentTransaction ft=fm.beginTransaction();
+        FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fragment,fragment);
         ft.addToBackStack(null);
         ft.commit();

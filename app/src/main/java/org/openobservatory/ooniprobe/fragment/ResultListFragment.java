@@ -16,6 +16,7 @@ import org.openobservatory.ooniprobe.adapter.TestResultListAdapter;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 import org.openobservatory.ooniprobe.model.TestResult;
 import org.openobservatory.ooniprobe.utils.LogUtils;
 
@@ -44,12 +45,6 @@ public class ResultListFragment extends Fragment {
     }
 
     @Override
-    public void onResume(){
-        super.onResume();
-        mActivity.setTitle(getString(R.string.web_connectivity));
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v =inflater.inflate(R.layout.fragment_result_list, container, false);
@@ -72,9 +67,12 @@ public class ResultListFragment extends Fragment {
                 listItems.add(result);
             }
         } catch (JSONException e) {
+            // XXX Maybe we want to do something about this?
         }
+        mActivity.setTitle(NetworkMeasurement.getTestName(mActivity, this.getArguments().getString("title")));
         testResultList = (RecyclerView) v.findViewById(R.id.resultList);
-        mResultTestsListAdapter = new TestResultListAdapter(getActivity(), listItems);
+        mResultTestsListAdapter = new TestResultListAdapter(getActivity(), listItems,
+                                                            this.getArguments().getString("title"));
         testResultList.setAdapter(mResultTestsListAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(v.getContext());
         testResultList.setLayoutManager(layoutManager);
