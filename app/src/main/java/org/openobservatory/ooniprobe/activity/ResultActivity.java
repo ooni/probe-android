@@ -5,14 +5,16 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
+
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.ResultFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 import org.openobservatory.ooniprobe.model.OONITests;
-import org.openobservatory.ooniprobe.utils.LogUtils;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -41,9 +43,17 @@ public class ResultActivity extends AppCompatActivity {
                 ft.add(R.id.fragment,fragment);
                 ft.commit();
             }
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setDisplayHomeAsUpEnabled(true);
             setTitle(NetworkMeasurement.getTestName(this, intent.getStringExtra("test_name")));
         }
     }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        this.onBackPressed();
+        return true;
+    }
+
 
     @Override
     protected void attachBaseContext(Context newBase) {
