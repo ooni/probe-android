@@ -10,6 +10,7 @@ import android.os.Bundle;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.ResultFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
+import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 import org.openobservatory.ooniprobe.model.OONITests;
 import org.openobservatory.ooniprobe.utils.LogUtils;
 
@@ -23,8 +24,6 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_result);
         Intent intent = getIntent();
         if(intent.getExtras() != null) {
-            //String json_file = intent.getStringExtra("json_file");
-            //int logParts = LogUtils.getNumLogParts(this, json_file);
             if (intent.getStringExtra("test_name").equals(OONITests.WEB_CONNECTIVITY)){
                 Fragment fragment = new ResultListFragment();
                 FragmentManager fm= getSupportFragmentManager();
@@ -38,11 +37,11 @@ public class ResultActivity extends AppCompatActivity {
                 FragmentTransaction ft=fm.beginTransaction();
                 Bundle bundle = new Bundle();
                 bundle.putInt("position", 0);
-                bundle.putString("title", intent.getStringExtra("test_name"));
                 fragment.setArguments(bundle);
                 ft.add(R.id.fragment,fragment);
                 ft.commit();
             }
+            setTitle(NetworkMeasurement.getTestName(this, intent.getStringExtra("test_name")));
         }
     }
 

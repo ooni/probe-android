@@ -44,7 +44,6 @@ public class ResultFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_result, container, false);
 
         int position = this.getArguments().getInt("position");
-        mActivity.setTitle(NetworkMeasurement.getTestName(mActivity, this.getArguments().getString("title")));
         String json_file = getActivity().getIntent().getExtras().getString("json_file");
         final String parts = LogUtils.getLogParts(getActivity(), json_file, position);
 

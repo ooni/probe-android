@@ -44,12 +44,6 @@ public class ResultListFragment extends Fragment {
     }
 
     @Override
-    public void onResume(){
-        super.onResume();
-        mActivity.setTitle(getString(R.string.web_connectivity));
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v =inflater.inflate(R.layout.fragment_result_list, container, false);

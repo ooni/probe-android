@@ -80,7 +80,6 @@ public class TestResultListAdapter extends RecyclerView.Adapter<TestResultListAd
         Bundle bundle = new Bundle();
         final TestResult i = values.get(position);
         bundle.putInt("position", position);
-        bundle.putString("title", i.input);
         fragment.setArguments(bundle);
         FragmentManager fm = mActivity.getSupportFragmentManager();
         FragmentTransaction ft=fm.beginTransaction();
