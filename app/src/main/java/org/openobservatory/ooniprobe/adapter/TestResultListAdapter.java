@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,9 @@ public class TestResultListAdapter extends RecyclerView.Adapter<TestResultListAd
     @Override
     public void onBindViewHolder(TestResultListAdapter.ViewHolder holder, final int position) {
         final TestResult i = values.get(position);
+        holder.txtTitle.setEllipsize(TextUtils.TruncateAt.END);
+        holder.txtTitle.setLines(1);
+        holder.txtTitle.setHorizontallyScrolling(true);
         holder.txtTitle.setText(i.input);
 
         if(i.anomaly == 2)
