@@ -79,7 +79,7 @@ public class TestInfoFragment extends Fragment {
                 }
         );
         testImage = (ImageView) v.findViewById(R.id.test_logo);
-        testImage.setImageResource(NetworkMeasurement.getTestImage(test_name, 0));
+        testImage.setImageResource(NetworkMeasurement.getTestImageBig(test_name));
 
         testDesc = (TextView) v.findViewById(R.id.testDesc);
         testDesc.setText(getTestDesc(test_name));

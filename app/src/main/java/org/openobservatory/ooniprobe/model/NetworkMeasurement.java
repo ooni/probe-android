@@ -85,4 +85,18 @@ public class NetworkMeasurement {
                 return 0;
         }
     }
+
+    public static int getTestImageBig(String name) {
+        switch (name) {
+            case OONITests.HTTP_INVALID_REQUEST_LINE:
+                return R.drawable.http_invalid_request_line_big;
+            case OONITests.NDT_TEST:
+                return R.drawable.ndt_test_big;
+            case OONITests.WEB_CONNECTIVITY:
+                return R.drawable.web_connectivity_big;
+            default:
+                return 0;
+        }
+    }
+
 }
