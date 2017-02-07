@@ -4,7 +4,7 @@
         <shape android:shape="rectangle"  >
             <corners android:radius="5dip" />
             <stroke
-                android:width="2dp"
+                android:width="1dp"
                 android:color="@color/color_ooni_blue"/>
             <gradient android:angle="-90" android:startColor="@android:color/transparent" android:endColor="@android:color/transparent"  />
         </shape>
@@ -13,7 +13,7 @@
         <shape android:shape="rectangle"  >
             <corners android:radius="5dip" />
             <stroke
-                android:width="2dp"
+                android:width="1dp"
                 android:color="@color/color_ooni_blue"/>
             <solid android:color="@color/color_ooni_blue"/>
         </shape>
@@ -22,7 +22,7 @@
         <shape android:shape="rectangle"  >
             <corners android:radius="5dip" />
             <stroke
-                android:width="2dp"
+                android:width="1dp"
                 android:color="@color/color_ooni_blue"/>
             <gradient android:angle="-90" android:startColor="@android:color/transparent" android:endColor="@android:color/transparent"  />
         </shape>
