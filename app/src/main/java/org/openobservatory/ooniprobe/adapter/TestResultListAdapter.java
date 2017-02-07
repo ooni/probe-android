@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
+
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.ResultFragment;
 import org.openobservatory.ooniprobe.model.TestResult;
@@ -50,6 +52,7 @@ public class TestResultListAdapter extends RecyclerView.Adapter<TestResultListAd
     public void onBindViewHolder(TestResultListAdapter.ViewHolder holder, final int position) {
         final TestResult i = values.get(position);
         holder.txtTitle.setText(i.input);
+
         if(i.anomaly == 2)
             holder.txtTitle.setTextColor(getColor(mActivity, R.color.color_bad_red));
         else if(i.anomaly == 0)
@@ -100,13 +103,13 @@ public class TestResultListAdapter extends RecyclerView.Adapter<TestResultListAd
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public AutoResizeTextView txtTitle;
+        public TextView txtTitle;
         public Button viewResult;
 
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            txtTitle = (AutoResizeTextView) itemView.findViewById(R.id.test_title);
+            txtTitle = (TextView) itemView.findViewById(R.id.test_title);
             viewResult = (Button) itemView.findViewById(R.id.view_button);
         }
 

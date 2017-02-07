@@ -5,15 +5,16 @@
     android:padding="10dp"
     android:layout_height="60dp">
     
-    <com.lb.auto_fit_textview.AutoResizeTextView
+    <TextView
         android:id="@+id/test_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="17sp"
         android:text="input"
+        android:ellipsize="end"
         android:layout_gravity="left"
         android:gravity="center_vertical"
-        android:lines="1"
+        android:maxLines="1"
         android:textColor="@color/color_off_black"
         android:layout_toLeftOf="@+id/view_button"
         android:layout_toStartOf="@+id/view_button"
