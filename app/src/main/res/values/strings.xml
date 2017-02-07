@@ -78,6 +78,7 @@
     <string name="send_crash">Send crash reports</string>
     <string name="privacy">Privacy</string>
     <string name="view_data_policy">Click here to view our data policy</string>
+    <string name="test_name_finished">finished, go to Past Tests to see the results</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
 </resources>

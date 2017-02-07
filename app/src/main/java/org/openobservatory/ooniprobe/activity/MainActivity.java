@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -61,7 +62,6 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         checkResources();
         TestData.getInstance(this).addObserver(this);
 
-
         mTitle = mDrawerTitle = getTitle();
         mMenuItemsTitles = new String[]{getString(R.string.run_tests), getString(R.string.past_tests), getString(R.string.settings), getString(R.string.about)};
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         mDrawerList.setAdapter(new ArrayAdapter<String>(this,
                 R.layout.menu_item, mMenuItemsTitles));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-
 
         ImageView _imgView = new ImageView(this);
         _imgView.setImageResource(R.drawable.ooni_logo);
@@ -246,6 +245,7 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         text.setTextColor(getResources().getColor(R.color.color_off_white));
         toast.show();
     }
+
     private static final String TAG = "main-activity";
 
 }

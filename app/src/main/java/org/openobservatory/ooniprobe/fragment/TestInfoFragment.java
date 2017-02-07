@@ -57,7 +57,7 @@ public class TestInfoFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_test_info, container, false);
         ActionBar actionBar = mActivity.getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         Bundle extras = getArguments();
         test_name = extras.getString("test_name");
@@ -112,7 +112,7 @@ public class TestInfoFragment extends Fragment {
             case OONITests.HTTP_INVALID_REQUEST_LINE:
                 return "https://ooni.torproject.org/nettest/http-invalid-request-line/";
             case OONITests.NDT_TEST:
-                return "https://github.com/TheTorProject/ooni-web/blob/master/content/nettest/ndt.md";
+                return "https://ooni.torproject.org/nettest/ndt/";
             case OONITests.WEB_CONNECTIVITY:
                 return "https://ooni.torproject.org/nettest/web-connectivity/";
             default:
