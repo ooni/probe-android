@@ -65,7 +65,7 @@
         android:layout_alignParentEnd="true" />
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="match_parent"
         android:id="@+id/view_button_layout"
         android:layout_alignParentTop="true"
@@ -91,9 +91,10 @@
             android:layout_gravity="center_vertical"
             android:background="@android:color/transparent"
             android:src="@drawable/green_dot"
-            android:layout_alignTop="@+id/view_button"
-            android:layout_alignRight="@+id/view_button"
-            android:layout_alignEnd="@+id/view_button" />
+            android:padding="4dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 
