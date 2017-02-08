@@ -32,7 +32,11 @@
             android:name=".activity.ResultActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <receiver android:name=".utils.AlarmReceiver">
+        <receiver
+            android:name=".utils.AlarmReceiver"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.INTERNET">
         </receiver>
         <receiver android:name=".utils.OnBootReceiver"
             android:enabled="true"
