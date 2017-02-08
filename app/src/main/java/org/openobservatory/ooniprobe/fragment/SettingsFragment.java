@@ -139,7 +139,7 @@ public class SettingsFragment extends Fragment {
             }
         });
         TextView max_runtime = (TextView) v.findViewById(R.id.max_runtimeEditText);
-        max_runtime.setText(preferences.getString("max_runtime", "90"));
+        max_runtime.setText(preferences.getString("max_runtime", OONITests.MAX_RUNTIME));
         max_runtime.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable s) {

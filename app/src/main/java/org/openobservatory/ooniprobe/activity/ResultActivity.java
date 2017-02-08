@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.ResultFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
+import org.openobservatory.ooniprobe.fragment.TestLogFragment;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 import org.openobservatory.ooniprobe.model.OONITests;
 
@@ -49,11 +50,26 @@ public class ResultActivity extends AppCompatActivity {
         }
     }
 
+
     public boolean onOptionsItemSelected(MenuItem item){
-        this.onBackPressed();
-        return true;
+        switch (item.getItemId()) {
+            case R.id.view_log:
+                showTestLog();
+                return true;
+            default:
+                this.onBackPressed();
+                return super.onOptionsItemSelected(item);
+        }
     }
 
+    private void showTestLog(){
+        Fragment fragment = new TestLogFragment();
+        FragmentManager fm = this.getSupportFragmentManager();
+        FragmentTransaction ft=fm.beginTransaction();
+        ft.replace(R.id.fragment,fragment);
+        ft.addToBackStack(null);
+        ft.commit();
+    }
 
     @Override
     protected void attachBaseContext(Context newBase) {

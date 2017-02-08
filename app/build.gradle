@@ -14,8 +14,8 @@ android {
         applicationId "org.openobservatory.ooniprobe"
         minSdkVersion 9
         targetSdkVersion 25
-        versionCode 2
-        versionName "1.1.0"
+        versionCode 3
+        versionName "1.1.1.dev"
     }
     buildTypes {
         release {

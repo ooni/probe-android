@@ -215,7 +215,7 @@ public class MainActivity extends AppCompatActivity  implements Observer {
 
     public void checkResources() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (preferences.getBoolean("resources_copied", true)) {
+        if (!preferences.getBoolean("resources_copied", false)) {
             copyResources(R.raw.hosts, "hosts.txt");
             copyResources(R.raw.geoipasnum, "GeoIPASNum.dat");
             copyResources(R.raw.geoip, "GeoIP.dat");
