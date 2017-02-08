@@ -30,6 +30,7 @@ import io.fabric.sdk.android.Fabric;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
+import org.openobservatory.ooniprobe.model.OONITests;
 import org.openobservatory.ooniprobe.utils.Notifications;
 
 import java.util.Calendar;
@@ -39,7 +40,6 @@ public class SettingsFragment extends Fragment {
     SharedPreferences preferences;
     RelativeLayout collector_addressLayout;
     RelativeLayout local_notifications_timeLayout;
-    public static final String DEFAULT_COLLECTOR = "https://b.collector.test.ooni.io";
 
     @Override
     public void onAttach(Activity activity) {
@@ -129,7 +129,7 @@ public class SettingsFragment extends Fragment {
         });
 
         TextView collector_address = (TextView) v.findViewById(R.id.collector_address_subText);
-        collector_address.setText(preferences.getString("collector_address", DEFAULT_COLLECTOR));
+        collector_address.setText(preferences.getString("collector_address", OONITests.COLLECTOR_ADDRESS));
 
         collector_addressLayout = (RelativeLayout) v.findViewById(R.id.collector_addressLayout);
         collector_addressLayout.setOnClickListener(new RelativeLayout.OnClickListener() {
@@ -261,7 +261,7 @@ public class SettingsFragment extends Fragment {
         final EditText input = new EditText(mActivity);
 
         input.setInputType(InputType.TYPE_CLASS_TEXT);
-        input.setText(preferences.getString("collector_address", DEFAULT_COLLECTOR));
+        input.setText(preferences.getString("collector_address", OONITests.COLLECTOR_ADDRESS));
         builder.setView(input);
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             @Override
