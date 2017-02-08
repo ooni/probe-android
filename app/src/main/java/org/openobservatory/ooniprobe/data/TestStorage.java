@@ -62,9 +62,9 @@ public class TestStorage {
             NetworkMeasurement current = favoriteItems[i];
             if (!current.running)
                 tests.add(current);
-            else if (TestData.getInstance(activity).getTestWithName(current.testName) == null)
+            else if (TestData.getInstance(activity, activity).getTestWithName(current.testName) == null)
                 tests.add(current);
-            else if (TestData.getInstance(activity).getTestWithName(current.testName).test_id != current.test_id)
+            else if (TestData.getInstance(activity, activity).getTestWithName(current.testName).test_id != current.test_id)
                 tests.add(current);
         }
         Collections.reverse(tests);

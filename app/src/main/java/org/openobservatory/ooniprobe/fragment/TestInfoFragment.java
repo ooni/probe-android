@@ -90,7 +90,7 @@ public class TestInfoFragment extends Fragment {
     }
 
     public void updateButtons(){
-        NetworkMeasurement current = TestData.getInstance(mActivity).getTestWithName(test_name);
+        NetworkMeasurement current = TestData.getInstance(mActivity, mActivity).getTestWithName(test_name);
         if (current != null) {
             if (!current.running) {
                 test_progress.setVisibility(View.GONE);

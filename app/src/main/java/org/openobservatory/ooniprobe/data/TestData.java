@@ -7,6 +7,8 @@ import android.preference.PreferenceManager;
 import android.support.v4.os.AsyncTaskCompat;
 import android.util.Log;
 
+import junit.framework.Test;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Observable;
@@ -31,17 +33,22 @@ public class TestData extends Observable {
     public static ArrayList<NetworkMeasurement> finishedTests;
     public static LinkedHashMap<String, Boolean> availableTests;
     public static MainActivity activity;
+    public static Context context;
 
-    public static TestData getInstance(final MainActivity a) {
+    public static TestData getInstance(final Context c, final MainActivity a) {
         if (instance == null) {
+            context = c;
             activity = a;
             instance = new TestData();
             runningTests = new ArrayList<>();
-            finishedTests = TestStorage.loadTests(activity);
+            finishedTests = TestStorage.loadTests(context);
             availableTests = new LinkedHashMap<>();
             availableTests.put(OONITests.WEB_CONNECTIVITY, true);
             availableTests.put(OONITests.HTTP_INVALID_REQUEST_LINE, true);
             availableTests.put(OONITests.NDT_TEST, true);
+        }
+        else if (activity == null && a != null){
+            activity = a;
         }
         return instance;
     }
@@ -69,7 +76,7 @@ public class TestData extends Observable {
         TestStorage.addTest(ctx, currentTest);
         runningTests.add(currentTest);
         availableTests.put(testName, false);
-        if (activity != null) TestData.getInstance(activity).notifyObservers();
+        if (activity != null) TestData.getInstance(context, activity).notifyObservers();
 
         final String nameserver = DnsUtils.get_device_dns();
         Log.v(TAG, "nameserver: " + nameserver);
@@ -136,7 +143,7 @@ public class TestData extends Observable {
                                                     activity.runOnUiThread(new Runnable() {
                                                         @Override
                                                         public void run() {
-                                                            TestData.getInstance(activity).notifyObservers();
+                                                            TestData.getInstance(context, activity).notifyObservers();
                                                         }
                                                     });
                                                 }
@@ -203,7 +210,7 @@ public class TestData extends Observable {
                                                     activity.runOnUiThread(new Runnable() {
                                                         @Override
                                                         public void run() {
-                                                            TestData.getInstance(activity).notifyObservers();
+                                                            TestData.getInstance(context, activity).notifyObservers();
                                                         }
                                                     });
                                                 }
@@ -243,7 +250,7 @@ public class TestData extends Observable {
                                                     activity.runOnUiThread(new Runnable() {
                                                         @Override
                                                         public void run() {
-                                                            TestData.getInstance(activity).notifyObservers();
+                                                            TestData.getInstance(context, activity).notifyObservers();
                                                         }
                                                     });
                                                 }
@@ -277,7 +284,7 @@ public class TestData extends Observable {
                         runningTests.remove(currentTest);
                         finishedTests.add(currentTest);
                         availableTests.put(testName, true);
-                        if (activity != null) TestData.getInstance(activity).notifyObservers();
+                        if (activity != null) TestData.getInstance(context, activity).notifyObservers();
                         Notifications.notifyTestEnded(ctx, testName);
                         Log.v(TAG, "doNetworkMeasurements " + testName + "... done");
                     }
@@ -287,7 +294,7 @@ public class TestData extends Observable {
 
     public static void setAnomaly(String entry, NetworkMeasurement test){
         if(!test.entry) {
-            TestStorage.setEntry(activity, test);
+            TestStorage.setEntry(context, test);
             test.entry = true;
         }
         try {
@@ -303,7 +310,7 @@ public class TestData extends Observable {
                 anomaly = 1;
             if (test.anomaly < anomaly) {
                 test.anomaly = anomaly;
-                TestStorage.setAnomaly(activity, test.test_id, anomaly);
+                TestStorage.setAnomaly(context, test.test_id, anomaly);
             }
         } catch (JSONException e) {
         }
@@ -316,8 +323,8 @@ public class TestData extends Observable {
     }
 
     public NetworkMeasurement getTestWithName(String name) {
-        for (int j = 0; j < TestData.getInstance(activity).runningTests.size(); j++) {
-            NetworkMeasurement current = TestData.getInstance(activity).runningTests.get(j);
+        for (int j = 0; j < TestData.getInstance(context, activity).runningTests.size(); j++) {
+            NetworkMeasurement current = TestData.getInstance(context, activity).runningTests.get(j);
             if (current.testName.equals(name)) return current;
         }
     return null;

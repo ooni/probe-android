@@ -11,6 +11,9 @@ import com.crashlytics.android.core.CrashlyticsCore;
 import io.fabric.sdk.android.Fabric;
 
 public class ooniprobeApp extends Application {
+    static {
+        System.loadLibrary("measurement_kit");
+    }
     //for further reference http://stackoverflow.com/questions/11411395/how-to-get-current-foreground-activity-context-in-android
     @Override
     public void onCreate() {

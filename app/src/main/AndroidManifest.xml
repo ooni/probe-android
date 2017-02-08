@@ -6,6 +6,7 @@
     <uses-sdk tools:overrideLibrary="us.feras.mdv" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:name=".ooniprobeApp"
@@ -32,6 +33,14 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <receiver android:name=".utils.AlarmReceiver">
+        </receiver>
+        <receiver android:name=".utils.OnBootReceiver"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
         </receiver>
         <meta-data
             android:name="io.fabric.ApiKey"

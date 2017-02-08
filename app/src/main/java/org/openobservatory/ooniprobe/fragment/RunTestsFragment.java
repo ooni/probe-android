@@ -59,7 +59,7 @@ public class RunTestsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_run_tests, container, false);
         mAvailableTestsListView = (RecyclerView) v.findViewById(R.id.runTests);
-        mAvailableTestsListAdapter = new RunTestListAdapter(mActivity, TestData.getInstance(mActivity).availableTests);
+        mAvailableTestsListAdapter = new RunTestListAdapter(mActivity, TestData.getInstance(mActivity, mActivity).availableTests);
         mAvailableTestsListView.setAdapter(mAvailableTestsListAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(mActivity);
         mAvailableTestsListView.setLayoutManager(layoutManager);
@@ -71,6 +71,6 @@ public class RunTestsFragment extends Fragment {
     }
 
     public void updateList(){
-        mAvailableTestsListAdapter.setData(TestData.getInstance(mActivity).availableTests);
+        mAvailableTestsListAdapter.setData(TestData.getInstance(mActivity, mActivity).availableTests);
     }
 }

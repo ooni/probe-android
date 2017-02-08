@@ -50,16 +50,13 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     private CharSequence mTitle;
     private String[] mMenuItemsTitles;
     private LeftMenuListAdapter mleftMenuListAdapter;
-    static {
-        System.loadLibrary("measurement_kit");
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         checkResources();
-        TestData.getInstance(this).addObserver(this);
+        TestData.getInstance(this, this).addObserver(this);
 
         mTitle = mDrawerTitle = getTitle();
         mMenuItemsTitles = new String[]{getString(R.string.run_tests), getString(R.string.past_tests), getString(R.string.settings), getString(R.string.about)};

@@ -212,8 +212,8 @@ public class PastTestsListAdapter extends RecyclerView.Adapter<PastTestsListAdap
                         // Remove the item from the adapter
                         TestStorage ts = new TestStorage();
                         ts.removeTest(mActivity, item);
-                        TestData.getInstance(mActivity).removeTest(item);
-                        TestData.getInstance(mActivity).notifyObservers();
+                        TestData.getInstance(mActivity, mActivity).removeTest(item);
+                        TestData.getInstance(mActivity, mActivity).notifyObservers();
                         return true;
                 }
                 return false;
