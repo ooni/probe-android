@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.preference.PreferenceManager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -20,19 +19,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.util.Log;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import junit.framework.Test;
-
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Observable;
 import java.util.Observer;
 
+import org.openobservatory.ooniprobe.adapter.LeftMenuListAdapter;
 import org.openobservatory.ooniprobe.data.TestData;
 import org.openobservatory.ooniprobe.fragment.AboutFragment;
 import org.openobservatory.ooniprobe.fragment.PastTestsFragment;
@@ -50,7 +49,7 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private String[] mMenuItemsTitles;
-
+    private LeftMenuListAdapter mleftMenuListAdapter;
     static {
         System.loadLibrary("measurement_kit");
     }
@@ -68,8 +67,11 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.menu_item, mMenuItemsTitles));
+        //mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.menu_item, mMenuItemsTitles));
+        ArrayList <String> stringList = new ArrayList<String>(Arrays.asList(mMenuItemsTitles));
+        mleftMenuListAdapter = new LeftMenuListAdapter(this, R.layout.row_left_menu, stringList);
+        mDrawerList.setAdapter(mleftMenuListAdapter);
+
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         ImageView _imgView = new ImageView(this);
@@ -90,16 +92,19 @@ public class MainActivity extends AppCompatActivity  implements Observer {
                 R.string.drawer_close
         ) {
             public void onDrawerClosed(View view) {
-                getSupportActionBar().setTitle(mTitle);
-                invalidateOptionsMenu();
+                mleftMenuListAdapter.notifyDataSetChanged();
+                //getSupportActionBar().setTitle(mTitle);
+                //invalidateOptionsMenu();
             }
 
             public void onDrawerOpened(View drawerView) {
-                getSupportActionBar().setTitle(mDrawerTitle);
-                invalidateOptionsMenu();
+                mleftMenuListAdapter.notifyDataSetChanged();
+                //getSupportActionBar().setTitle(mDrawerTitle);
+                //invalidateOptionsMenu();
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+
 
         if (savedInstanceState == null) {
             selectItem(0);

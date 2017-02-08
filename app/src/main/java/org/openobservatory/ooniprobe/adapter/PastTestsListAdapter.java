@@ -26,7 +26,6 @@ import android.support.v7.widget.PopupMenu;
 
 import com.lb.auto_fit_textview.AutoResizeTextView;
 
-import org.openobservatory.ooniprobe.utils.LogUtils;
 import org.openobservatory.ooniprobe.view.ListImageButton;
 
 import java.util.ArrayList;
@@ -82,6 +81,12 @@ public class PastTestsListAdapter extends RecyclerView.Adapter<PastTestsListAdap
                 });
             }
         });
+
+        if (!i.viewed)
+            holder.green_dot.setVisibility(View.VISIBLE);
+        else
+            holder.green_dot.setVisibility(View.GONE);
+
         if (i.entry) {
             if (i.anomaly == 0) {
                 holder.testImage.setImageResource(NetworkMeasurement.getTestImage(i.testName, i.anomaly));
@@ -160,6 +165,7 @@ public class PastTestsListAdapter extends RecyclerView.Adapter<PastTestsListAdap
         public ListImageButton popupButton;
         public ImageView testImage;
         public Button viewResult;
+        public ImageView green_dot;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -169,6 +175,7 @@ public class PastTestsListAdapter extends RecyclerView.Adapter<PastTestsListAdap
             popupButton = (ListImageButton) itemView.findViewById(R.id.test_popupmenu);
             testImage = (ImageView) itemView.findViewById(R.id.test_logo);
             viewResult = (Button) itemView.findViewById(R.id.view_button);
+            green_dot = (ImageView) itemView.findViewById(R.id.green_dot);
         }
 
         @Override

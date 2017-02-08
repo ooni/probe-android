@@ -29,8 +29,8 @@
         android:background="@color/color_off_white"
         android:layout_toRightOf="@+id/test_logo"
         android:layout_toEndOf="@+id/test_logo"
-        android:layout_toLeftOf="@+id/view_button"
-        android:layout_toStartOf="@+id/view_button">
+        android:layout_toLeftOf="@+id/view_button_layout"
+        android:layout_toStartOf="@+id/view_button_layout">
         <com.lb.auto_fit_textview.AutoResizeTextView
             android:id="@+id/test_title"
             android:layout_width="match_parent"
@@ -50,18 +50,6 @@
             android:textColor="@color/color_off_black" />
     </LinearLayout>
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/view_button"
-        android:layout_width="60dp"
-        android:layout_height="35dp"
-        android:layout_gravity="center_vertical"
-        android:text="@string/view"
-        app:textAllCaps="false"
-        android:textColor="@color/color_ooni_blue"
-        android:background="@drawable/runbutton"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/test_popupmenu"
-        android:layout_toStartOf="@+id/test_popupmenu" />
 
     <org.openobservatory.ooniprobe.view.ListImageButton
         android:id="@+id/test_popupmenu"
@@ -75,5 +63,38 @@
         android:layout_marginStart="8dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/view_button_layout"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/test_popupmenu"
+        android:layout_toStartOf="@+id/test_popupmenu">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/view_button"
+            android:layout_width="60dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_vertical"
+            android:text="@string/view"
+            app:textAllCaps="false"
+            android:textColor="@color/color_ooni_blue"
+            android:background="@drawable/runbutton"
+            android:layout_centerVertical="true"
+            />
+
+        <ImageView
+            android:id="@+id/green_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
+            android:src="@drawable/green_dot"
+            android:layout_alignTop="@+id/view_button"
+            android:layout_alignRight="@+id/view_button"
+            android:layout_alignEnd="@+id/view_button" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -63,6 +63,7 @@ public class PastTestsFragment extends Fragment {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mPastTestsListView.getContext(),
                 layoutManager.getOrientation());
         mPastTestsListView.addItemDecoration(dividerItemDecoration);
+        TestStorage.resetNewTests(mActivity);
         return v;
     }
 
