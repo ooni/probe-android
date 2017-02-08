@@ -8,6 +8,6 @@
         android:id="@+id/resultList"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:divider="@color/color_grey_light"
-        android:dividerHeight="1dp" />
+        android:padding="8dp"
+        android:background="@color/color_off_white" />
 </FrameLayout>

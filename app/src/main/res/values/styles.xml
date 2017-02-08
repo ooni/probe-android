@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/color_dark_blue</item>
-        <item name="colorPrimaryDark">@color/color_dark_blue</item>
+        <item name="colorPrimary">@color/color_ooni_blue</item>
+        <item name="colorPrimaryDark">@color/color_ooni_blue</item>
         <item name="colorAccent">@color/color_ooni_blue</item>
+        <item name="actionMenuTextColor">@color/color_off_black</item>
     </style>
-
 </resources>

@@ -33,4 +33,20 @@ public class LogUtils {
         return parts;
     }
 
+    public static String getLogParts(Context c, String jsonfile, int position){
+        final String jsonContent = LogUtils.readLogFile(c, jsonfile);
+        final String[] parts = jsonContent.split("\n");
+        return parts[position];
+    }
+
+    public static int getNumLogParts(Context c, String jsonfile){
+        final String jsonContent = LogUtils.readLogFile(c, jsonfile);
+        final String[] parts = jsonContent.split("\n");
+        if (parts.length > 1)
+            return 2;
+        else if (parts.length == 1 && parts[0].length() > 0)
+            return 1;
+        return 0;
+    }
+
 }

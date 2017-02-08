@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_off_white"
+    android:padding="7dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/set_up_sharing"
+            android:textStyle="bold"
+            android:textSize="38sp"
+            android:textColor="@color/color_ooni_blue"
+            android:gravity="center"  />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="15sp"
+            android:text="@string/settings_text"
+            android:textColor="@color/color_off_black"/>
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ck_include_ip"
+            android:drawableLeft="@drawable/include_ip"
+            android:drawablePadding="5dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/include_ip"
+            android:checked="false"
+            android:textColor="@color/color_ooni_blue" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ck_include_asn"
+            android:drawablePadding="5dp"
+            android:layout_marginBottom="10dp"
+            android:drawableLeft="@drawable/include_asn"
+            android:text="@string/include_asn"
+            android:checked="true"
+            android:textColor="@color/color_ooni_blue" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ck_include_country"
+            android:drawableLeft="@drawable/include_cc"
+            android:drawablePadding="5dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/include_cc"
+            android:checked="true"
+            android:textColor="@color/color_ooni_blue" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ck_upload_results"
+            android:drawableLeft="@drawable/upload_results"
+            android:drawablePadding="5dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/upload_results"
+            android:checked="true"
+            android:textColor="@color/color_ooni_blue" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/nextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:textSize="24sp"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:text="@string/im_all_set"
+                app:textAllCaps="false"
+                android:textColor="@color/color_off_white"
+                android:background="@drawable/nextbutton"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>

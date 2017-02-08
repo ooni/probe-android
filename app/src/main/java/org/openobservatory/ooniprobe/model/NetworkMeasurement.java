@@ -2,23 +2,30 @@ package org.openobservatory.ooniprobe.model;
 
 import android.content.Context;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.openobservatory.ooniprobe.R;
 
 public class NetworkMeasurement {
     public final String testName;
-    public boolean completed = false;
+    public boolean entry = false;
     public final long test_id;
     public int progress = 0;
 
     public final String json_file;
     public final String log_file;
-    //public final String status;
+    public Boolean running;
+    public Boolean viewed;
+    public int anomaly;
 
     public NetworkMeasurement(String name){
         this.testName = name;
         this.test_id = System.currentTimeMillis();
         this.log_file = "/test-"+ test_id +".log";
         this.json_file = "/test-"+ test_id +".json";
+        this.running = true;
+        this.viewed = false;
+        this.anomaly = 0;
     }
 
     public static String getTestName(Context context, String name) {
@@ -33,10 +40,6 @@ public class NetworkMeasurement {
                 return context.getString(R.string.tcp_connect);
             case OONITests.WEB_CONNECTIVITY:
                 return context.getString(R.string.web_connectivity);
-            case PortolanTests.CHECK_PORT:
-                return context.getString(R.string.check_port);
-            case PortolanTests.TRACEROUTE:
-                return context.getString(R.string.traceroute);
             default:
                 return "";
         }
@@ -54,4 +57,46 @@ public class NetworkMeasurement {
                 return "";
         }
     }
+
+    public static int getTestImage(String name, int anomaly) {
+        switch (name) {
+            case OONITests.HTTP_INVALID_REQUEST_LINE:
+                if (anomaly == 0)
+                    return R.drawable.http_invalid_request_line;
+                else if (anomaly == 1)
+                    return R.drawable.http_invalid_request_line_warning;
+                else
+                    return R.drawable.http_invalid_request_line_no;
+            case OONITests.NDT_TEST:
+                if (anomaly == 0)
+                    return R.drawable.ndt_test;
+                else if (anomaly == 1)
+                    return R.drawable.ndt_test_warning;
+                else
+                    return R.drawable.ndt_test_no;
+            case OONITests.WEB_CONNECTIVITY:
+                if (anomaly == 0)
+                    return R.drawable.web_connectivity;
+                else if (anomaly == 1)
+                    return R.drawable.web_connectivity_warning;
+                else
+                    return R.drawable.web_connectivity_no;
+            default:
+                return 0;
+        }
+    }
+
+    public static int getTestImageBig(String name) {
+        switch (name) {
+            case OONITests.HTTP_INVALID_REQUEST_LINE:
+                return R.drawable.http_invalid_request_line_big;
+            case OONITests.NDT_TEST:
+                return R.drawable.ndt_test_big;
+            case OONITests.WEB_CONNECTIVITY:
+                return R.drawable.web_connectivity_big;
+            default:
+                return 0;
+        }
+    }
+
 }

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/color_off_white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="60dp">
+
+    <ImageView
+        android:id="@+id/test_logo"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center_vertical"
+        android:background="@android:color/transparent"
+        android:src="@drawable/http_invalid_request_line_no"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@color/color_off_white"
+        android:layout_toRightOf="@+id/test_logo"
+        android:layout_toEndOf="@+id/test_logo"
+        android:layout_toLeftOf="@+id/view_button_layout"
+        android:layout_toStartOf="@+id/view_button_layout">
+        <com.lb.auto_fit_textview.AutoResizeTextView
+            android:id="@+id/test_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:text="@string/web_connectivity"
+            android:gravity="center"
+            android:lines="1"
+            android:textColor="@color/color_ooni_blue" />
+        <TextView
+            android:id="@+id/test_timestamp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="timestamp"
+            android:gravity="center"
+            android:textColor="@color/color_off_black" />
+    </LinearLayout>
+
+
+    <org.openobservatory.ooniprobe.view.ListImageButton
+        android:id="@+id/test_popupmenu"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:background="@null"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_action_overflow"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <RelativeLayout
+        android:layout_width="70dp"
+        android:layout_height="match_parent"
+        android:id="@+id/view_button_layout"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/test_popupmenu"
+        android:layout_toStartOf="@+id/test_popupmenu">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/view_button"
+            android:layout_width="60dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_vertical"
+            android:text="@string/view"
+            app:textAllCaps="false"
+            android:textColor="@color/color_ooni_blue"
+            android:background="@drawable/runbutton"
+            android:layout_centerVertical="true"
+            />
+
+        <ImageView
+            android:id="@+id/green_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
+            android:src="@drawable/green_dot"
+            android:padding="4dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

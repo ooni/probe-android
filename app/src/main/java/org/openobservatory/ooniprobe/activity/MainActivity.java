@@ -7,81 +7,171 @@ package org.openobservatory.ooniprobe.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.Gravity;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.util.Log;
+import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.Observable;
 import java.util.Observer;
 
-import org.openobservatory.ooniprobe.adapter.TestsAvailableListAdapter;
-import org.openobservatory.ooniprobe.adapter.TestsListAdapter;
-import org.openobservatory.ooniprobe.adapter.TestsRunningListAdapter;
+import org.openobservatory.ooniprobe.adapter.LeftMenuListAdapter;
 import org.openobservatory.ooniprobe.data.TestData;
 import org.openobservatory.ooniprobe.data.TestStorage;
-import org.openobservatory.ooniprobe.model.NetworkMeasurement;
-import org.openobservatory.measurement_kit.LoggerApi;
-import org.openobservatory.ooniprobe.ooniprobeApp;
-import org.openobservatory.ooniprobe.view.NotScrollableListView;
+import org.openobservatory.ooniprobe.fragment.AboutFragment;
+import org.openobservatory.ooniprobe.fragment.PastTestsFragment;
+import org.openobservatory.ooniprobe.fragment.RunTestsFragment;
+import org.openobservatory.ooniprobe.fragment.SettingsFragment;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.fragment.TestInfoFragment;
+import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 
-public class MainActivity extends AppCompatActivity implements Observer {
+public class MainActivity extends AppCompatActivity  implements Observer {
+    private DrawerLayout mDrawerLayout;
+    private ListView mDrawerList;
+    private ActionBarDrawerToggle mDrawerToggle;
 
-    private NotScrollableListView mAvailableTestsListView;
-    private NotScrollableListView mRunningTestsListView;
-    private NotScrollableListView mFinishedTestsListView;
-    private TestsAvailableListAdapter mAvailableTestsListAdapter;
-    private TestsRunningListAdapter mRunningTestsListAdapter;
-    private TestsListAdapter mFinishedTestsListAdapter;
-    private static TestStorage ts;
-
-    static {
-        System.loadLibrary("measurement_kit");
-    }
+    private CharSequence mDrawerTitle;
+    private CharSequence mTitle;
+    private String[] mMenuItemsTitles;
+    private LeftMenuListAdapter mleftMenuListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         checkResources();
+        TestData.getInstance(this, this).addObserver(this);
 
-        ts = new TestStorage();
-        TestData.getInstance(this).addObserver(this);
+        mTitle = mDrawerTitle = getTitle();
+        mMenuItemsTitles = new String[]{getString(R.string.run_tests), getString(R.string.past_tests), getString(R.string.settings), getString(R.string.about)};
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
-        mAvailableTestsListView = (NotScrollableListView) findViewById(R.id.availableTests);
-        mAvailableTestsListAdapter = new TestsAvailableListAdapter(this, TestData.getInstance(this).availableTests);
-        mAvailableTestsListView.setAdapter(mAvailableTestsListAdapter);
-        mAvailableTestsListView.setLayoutManager(new LinearLayoutManager(this));
-        mAvailableTestsListAdapter.setData(TestData.getInstance(this).availableTests);
+        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+        //mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.menu_item, mMenuItemsTitles));
+        ArrayList <String> stringList = new ArrayList<String>(Arrays.asList(mMenuItemsTitles));
+        mleftMenuListAdapter = new LeftMenuListAdapter(this, R.layout.row_left_menu, stringList);
+        mDrawerList.setAdapter(mleftMenuListAdapter);
 
-        mRunningTestsListView = (NotScrollableListView) findViewById(R.id.runningTests);
-        mRunningTestsListAdapter = new TestsRunningListAdapter(this, new ArrayList<NetworkMeasurement>());
-        mRunningTestsListView.setAdapter(mRunningTestsListAdapter);
-        mRunningTestsListView.setLayoutManager(new LinearLayoutManager(this));
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
-        mFinishedTestsListView = (NotScrollableListView) findViewById(R.id.finishedTests);
-        mFinishedTestsListAdapter = new TestsListAdapter(this, new ArrayList<NetworkMeasurement>());
-        mFinishedTestsListView.setAdapter(mFinishedTestsListAdapter);
-        mFinishedTestsListView.setLayoutManager(new LinearLayoutManager(this));
-        mFinishedTestsListAdapter.setData(ts.loadTestsReverse(this));
+        ImageView _imgView = new ImageView(this);
+        _imgView.setImageResource(R.drawable.ooni_logo);
+        mDrawerList.addFooterView(_imgView);
 
-        //LoggerApi.setVerbose(1);
-        LoggerApi.useAndroidLogger();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
+        updateActionBar();
+
+        // Only used with v4.app.ActionBarDrawerToggle
+        //getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu_white);
+
+        mDrawerToggle = new ActionBarDrawerToggle(
+                this,
+                mDrawerLayout,
+                //R.drawable.menu_white,  /* Only used with v4.app.ActionBarDrawerToggle */
+                R.string.drawer_open,
+                R.string.drawer_close
+        ) {
+            public void onDrawerClosed(View view) {
+                //getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu_white);
+                mleftMenuListAdapter.notifyDataSetChanged();
+                //getSupportActionBar().setTitle(mTitle);
+                invalidateOptionsMenu();
+            }
+
+            public void onDrawerOpened(View drawerView) {
+                //getSupportActionBar().setHomeAsUpIndicator(R.drawable.notification_icon);
+                mleftMenuListAdapter.notifyDataSetChanged();
+                //getSupportActionBar().setTitle(mDrawerTitle);
+                invalidateOptionsMenu();
+            }
+
+            public void onDrawerStateChanged(int newState){
+
+            }
+        };
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+
+        if (savedInstanceState == null) {
+            selectItem(0);
+        }
 
         checkInformedConsent();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return mDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
+    }
+
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            selectItem(position);
+        }
+    }
+
+    private void selectItem(int position) {
+        switch (position){
+            case 0:
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new RunTestsFragment(), "run_tests").commit();
+                break;
+            case 1:
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new PastTestsFragment(), "past_tests").commit();
+                break;
+            case 2:
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new SettingsFragment(), "settings").commit();
+                break;
+            case 3:
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new AboutFragment(), "about").commit();
+                break;
+        }
+
+        mDrawerList.setItemChecked(position, true);
+        setTitle(mMenuItemsTitles[position]);
+        mDrawerLayout.closeDrawer(mDrawerList);
+    }
+
+    @Override
+    public void setTitle(CharSequence title) {
+        mTitle = title;
+        getSupportActionBar().setTitle(mTitle);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
     @Override
@@ -89,35 +179,36 @@ public class MainActivity extends AppCompatActivity implements Observer {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            Intent i = new Intent(this, SettingsActivity.class);
-            startActivity(i);
-            return true;
+    public void checkInformedConsent() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (preferences.getBoolean("first_run", true)) {
+            startInformedConsentActivity();
         }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void update(Observable observable, Object data) {
-        if (mFinishedTestsListAdapter != null) {
-            ArrayList<NetworkMeasurement> finishedTests = new ArrayList<NetworkMeasurement>(TestData.getInstance(this).finishedTests);
-            Collections.reverse(finishedTests);
-            mFinishedTestsListAdapter.setData(finishedTests);
+        updateActionBar();
+        //update the fragments
+        RunTestsFragment runTestsFragment = (RunTestsFragment)getSupportFragmentManager().findFragmentByTag("run_tests");
+        if (runTestsFragment != null && runTestsFragment.isVisible()) {
+            runTestsFragment.updateList();
         }
-        if (mRunningTestsListAdapter != null) {
-            mRunningTestsListAdapter.setData(TestData.getInstance(this).runningTests);
+        PastTestsFragment pastTestsFragment = (PastTestsFragment)getSupportFragmentManager().findFragmentByTag("past_tests");
+        if (pastTestsFragment != null && pastTestsFragment.isVisible()) {
+            pastTestsFragment.updateList();
         }
-        if (mAvailableTestsListAdapter != null) {
-            mAvailableTestsListAdapter.setData(TestData.getInstance(this).availableTests);
+        TestInfoFragment testInfoFragment = (TestInfoFragment)getSupportFragmentManager().findFragmentByTag("test_info");
+        if (testInfoFragment != null && testInfoFragment.isVisible()) {
+            testInfoFragment.updateButtons();
+        }
+        if (data != null && data instanceof String){
+            String string = NetworkMeasurement.getTestName(this, (String)data) + " " + getString(R.string.test_name_finished);
+            Toast toast = Toast.makeText(this, string, Toast.LENGTH_LONG);
+            View view = toast.getView();
+            TextView text = (TextView) view.findViewById(android.R.id.message);
+            text.setGravity(Gravity.CENTER);;
+            toast.show();
         }
         System.out.println("update "+ observable);
     }
@@ -149,14 +240,6 @@ public class MainActivity extends AppCompatActivity implements Observer {
         Log.v(TAG, "copyResources... done");
     }
 
-
-    public void checkInformedConsent() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (preferences.getBoolean("first_run", true)) {
-            startInformedConsentActivity();
-        }
-    }
-
     public void startInformedConsentActivity() {
         Intent InformedConsentIntent = new Intent(MainActivity.this, InformedConsentActivity.class);
         startActivityForResult(InformedConsentIntent, InformedConsentActivity.REQUEST_CODE);
@@ -183,10 +266,17 @@ public class MainActivity extends AppCompatActivity implements Observer {
         view.setBackgroundResource(success ? R.drawable.success_toast_bg : R.drawable.error_toast_bg);
         TextView text = (TextView) view.findViewById(android.R.id.message);
         text.setGravity(Gravity.CENTER);;
-        text.setTextColor(getResources().getColor(success ? R.color.successTextColor : R.color.errorTextColor));
+        text.setTextColor(getResources().getColor(R.color.color_off_white));
         toast.show();
     }
 
-    private static final String TAG = "main-activity";
-}
+    public void updateActionBar(){
+        if (TestStorage.newTests(this))
+            getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.action_bar_layout));
+        else
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.color_ooni_blue)));
+    }
 
+    private static final String TAG = "main-activity";
+
+}

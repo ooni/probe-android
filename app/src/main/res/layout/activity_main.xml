@@ -1,40 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scrollbars="vertical"
-    android:scrollbarAlwaysDrawVerticalTrack="true"
-    android:fadeScrollbars="false"
-    android:background="@color/color_white"
-    tools:context="org.openobservatory.ooniprobe.activity.MainActivity">
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_off_white"
+        />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:descendantFocusability="blocksDescendants">
+    <ListView
+        android:id="@+id/left_drawer"
+        android:layout_width="240dp"
+        android:paddingTop="20dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:choiceMode="singleChoice"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="20dp"
+        android:background="@color/color_ooni_blue" />
 
-        <org.openobservatory.ooniprobe.view.NotScrollableListView
-            android:id="@+id/availableTests"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="0dp" />
-
-        <org.openobservatory.ooniprobe.view.NotScrollableListView
-            android:id="@+id/runningTests"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="0dp" />
-
-        <org.openobservatory.ooniprobe.view.NotScrollableListView
-            android:id="@+id/finishedTests"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:divider="@color/color_grey_light"
-            android:dividerHeight="1dp" />
-
-    </LinearLayout>
-</ScrollView>
+</android.support.v4.widget.DrawerLayout>

@@ -14,10 +14,7 @@ import android.support.v4.app.NotificationCompat;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
 
 /**
  * https://code.tutsplus.com/tutorials/android-fundamentals-scheduling-recurring-tasks--mobile-5788
@@ -78,7 +75,7 @@ public class Notifications {
                 Context.ALARM_SERVICE);
         alarms.setInexactRepeating(AlarmManager.RTC_WAKEUP,
                 updateTime.getTimeInMillis(),
-                AlarmManager.INTERVAL_FIFTEEN_MINUTES, recurringAlarm);
+                AlarmManager.INTERVAL_DAY, recurringAlarm);
     }
 
     public static void cancelRecurringAlarm(Context context) {

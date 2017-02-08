@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:fillViewport="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="7dp" >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/notifications"
+            android:textSize="13dp"
+            android:textColor="@color/color_off_black" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:id="@+id/local_notifications"
+            android:drawableLeft="@drawable/local_notifications"
+            android:drawableStart="@drawable/local_notifications"
+            android:drawablePadding="5dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/local_notifications"
+            android:checked="true"
+            android:textColor="@color/color_ooni_blue" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:id="@+id/local_notifications_timeLayout"
+            android:clickable="true"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true" >
+
+            <TextView
+                android:id="@+id/local_notifications_timeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/local_notifications_time"
+                android:drawableLeft="@drawable/local_notifications_time"
+                android:drawableStart="@drawable/local_notifications_time"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/color_ooni_blue"
+                android:layout_alignBaseline="@+id/local_notifications_timeEditText"
+                android:layout_alignBottom="@+id/local_notifications_timeEditText"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/local_notifications_timeEditText"
+                android:layout_toStartOf="@+id/local_notifications_timeEditText"/>
+
+            <EditText
+                android:id="@+id/local_notifications_timeEditText"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:gravity="center_vertical"
+                android:focusable="false"
+                android:textColor="@color/color_off_black"
+                android:focusableInTouchMode="false"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/privacy"
+            android:textSize="13dp"
+            android:textColor="@color/color_off_black" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:id="@+id/ck_upload_results"
+            android:drawableLeft="@drawable/upload_results"
+            android:drawableStart="@drawable/upload_results"
+            android:drawablePadding="5dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/upload_results"
+            android:checked="true"
+            android:textColor="@color/color_ooni_blue" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:id="@+id/ck_include_ip"
+            android:drawableLeft="@drawable/include_ip"
+            android:drawableStart="@drawable/include_ip"
+            android:drawablePadding="5dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/include_ip"
+            android:checked="false"
+            android:textColor="@color/color_ooni_blue" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:id="@+id/ck_include_asn"
+            android:drawablePadding="5dp"
+            android:layout_marginBottom="10dp"
+            android:drawableLeft="@drawable/include_asn"
+            android:drawableStart="@drawable/include_asn"
+            android:text="@string/include_asn"
+            android:checked="true"
+            android:textColor="@color/color_ooni_blue" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:id="@+id/ck_include_country"
+            android:drawableLeft="@drawable/include_cc"
+            android:drawableStart="@drawable/include_cc"
+            android:drawablePadding="5dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/include_cc"
+            android:checked="true"
+            android:textColor="@color/color_ooni_blue" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:id="@+id/send_crash"
+            android:drawableLeft="@drawable/send_crash"
+            android:drawableStart="@drawable/send_crash"
+            android:drawablePadding="5dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/send_crash"
+            android:checked="true"
+            android:textColor="@color/color_ooni_blue" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/advanced_settings"
+            android:textSize="13dp"
+            android:textColor="@color/color_off_black" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:id="@+id/max_runtimeLayout"
+            android:clickable="true"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true" >
+
+            <TextView
+                android:id="@+id/max_runtimeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/max_runtime"
+                android:gravity="center_vertical"
+                android:drawableLeft="@drawable/max_runtime"
+                android:drawableStart="@drawable/max_runtime"
+                android:drawablePadding="5dp"
+                android:textColor="@color/color_ooni_blue"
+                android:layout_alignBaseline="@+id/max_runtimeEditText"
+                android:layout_alignBottom="@+id/max_runtimeEditText"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/max_runtimeEditText"
+                android:layout_toStartOf="@+id/max_runtimeEditText"/>
+
+            <EditText
+                android:id="@+id/max_runtimeEditText"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="@string/collector_address"
+                android:textColor="@color/color_off_black"
+                android:textSize="12sp"
+                android:inputType="phone"
+                android:digits="1234567890"
+                android:gravity="center_vertical"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:id="@+id/collector_addressLayout"
+            android:clickable="true" >
+
+            <TextView
+                android:id="@+id/collector_addressText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/collector_address"
+                android:drawableStart="@drawable/collector_address"
+                android:drawablePadding="5dp"
+                android:text="@string/collector_address"
+                android:gravity="center_vertical"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textColor="@color/color_ooni_blue" />
+
+            <TextView
+                android:id="@+id/collector_address_subText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/collector_address"
+                android:layout_marginLeft="25dp"
+                android:textColor="@color/color_off_black"
+                android:textSize="10sp"
+                android:gravity="center_vertical"
+                android:layout_below="@+id/collector_addressText"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

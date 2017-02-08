@@ -1,25 +1,25 @@
 package org.openobservatory.ooniprobe.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatButton;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioGroup;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.InformedConsentActivity;
 
 public class IConsentPage3Fragment extends Fragment {
 
-
     private InformedConsentActivity mActivity;
-    private RadioGroup mRadio1;
-    private RadioGroup mRadio2;
+    private AppCompatButton nextButton;
+    private AppCompatButton learn_moreButton;
 
     public static IConsentPage3Fragment create() {
         IConsentPage3Fragment atf = new IConsentPage3Fragment();
@@ -55,12 +55,59 @@ public class IConsentPage3Fragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_ic_page_3, container, false);
-        mRadio1 = (RadioGroup) v.findViewById(R.id.radio_1);
-        mRadio2 = (RadioGroup) v.findViewById(R.id.radio_2);
+        nextButton = (AppCompatButton) v.findViewById(R.id.nextButton);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                mActivity.getWizard().navigateNext();
+            }
+        });
+        learn_moreButton = (AppCompatButton) v.findViewById(R.id.learn_more_button);
+        learn_moreButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ooni.torproject.org/about/risks/"));
+                startActivity(browserIntent);
+            }
+        });
 
+        final GestureDetector gesture = new GestureDetector(getActivity(),
+                new GestureDetector.SimpleOnGestureListener() {
+                    @Override
+                    public boolean onDown(MotionEvent e) {
+                        return true;
+                    }
+                    @Override
+                    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+                                           float velocityY) {
+                        final int SWIPE_MIN_DISTANCE = 120;
+                        final int SWIPE_MAX_OFF_PATH = 250;
+                        final int SWIPE_THRESHOLD_VELOCITY = 200;
+                        try {
+                            if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH)
+                                return false;
+                            if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
+                                    && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                                mActivity.getWizard().navigateNext();
+                            } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
+                                    && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                                mActivity.getWizard().navigatePrevious();
+                            }
+                        } catch (Exception e) {
+                            // nothing
+                        }
+                        return super.onFling(e1, e2, velocityX, velocityY);
+                    }
+                });
+
+        v.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return gesture.onTouchEvent(event);
+            }
+        });
         return v;
     }
 
+    /*
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
@@ -74,17 +121,10 @@ public class IConsentPage3Fragment extends Fragment {
                 mActivity.getWizard().navigatePrevious();
                 break;
             case R.id.menu_next:
-                if (mRadio1.getCheckedRadioButtonId() == R.id.answer_1_1 && mRadio2.getCheckedRadioButtonId() == R.id.answer_2_2) {
-                    mActivity.showToast(R.string.correct, true);
-                    mActivity.getWizard().navigateNext();
-
-                } else {
-                    mActivity.showToast(R.string.wrong, false);
-                    mActivity.getWizard().navigatePrevious();
-                }
+                mActivity.getWizard().navigateNext();
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
-
+    */
 }

@@ -1,13 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <WebView
-        android:id="@+id/wv"
+    android:layout_height="match_parent"
+    android:background="@color/color_off_white"
+    android:padding="7dp">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
-        />
+        android:orientation="vertical">
 
-</RelativeLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/what_is_ooniprobe"
+            android:textStyle="bold"
+            android:textSize="38sp"
+            android:textColor="@color/color_ooni_blue"
+            android:gravity="center"  />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="15sp"
+            android:text="@string/risks_text_1"
+            android:textColor="@color/color_ooni_blue"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="15sp"
+            android:text="@string/risks_text_2"
+            android:textColor="@color/color_off_black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="15sp"
+            android:text="@string/risks_text_3"
+            android:textColor="@color/color_off_black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="15sp"
+            android:text="@string/risks_text_4"
+            android:textColor="@color/color_off_black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="15sp"
+            android:text="@string/risks_text_5"
+            android:textColor="@color/color_off_black"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/nextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:textSize="24sp"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:text="@string/learn_more"
+                app:textAllCaps="false"
+                android:textColor="@color/color_off_white"
+                android:background="@drawable/nextbutton"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</ScrollView>
