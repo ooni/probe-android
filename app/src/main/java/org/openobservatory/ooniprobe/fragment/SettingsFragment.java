@@ -259,8 +259,7 @@ public class SettingsFragment extends Fragment {
         builder.setTitle(getString(R.string.collector_address));
 
         final EditText input = new EditText(mActivity);
-
-        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        input.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         input.setText(preferences.getString("collector_address", OONITests.COLLECTOR_ADDRESS));
         builder.setView(input);
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
