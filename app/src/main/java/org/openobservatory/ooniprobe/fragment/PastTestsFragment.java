@@ -64,6 +64,7 @@ public class PastTestsFragment extends Fragment {
                 layoutManager.getOrientation());
         mPastTestsListView.addItemDecoration(dividerItemDecoration);
         TestStorage.resetNewTests(mActivity);
+        mActivity.updateActionBar();
         return v;
     }
 

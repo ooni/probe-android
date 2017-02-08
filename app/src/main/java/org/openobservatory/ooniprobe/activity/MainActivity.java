@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
@@ -33,6 +35,7 @@ import java.util.Observer;
 
 import org.openobservatory.ooniprobe.adapter.LeftMenuListAdapter;
 import org.openobservatory.ooniprobe.data.TestData;
+import org.openobservatory.ooniprobe.data.TestStorage;
 import org.openobservatory.ooniprobe.fragment.AboutFragment;
 import org.openobservatory.ooniprobe.fragment.PastTestsFragment;
 import org.openobservatory.ooniprobe.fragment.RunTestsFragment;
@@ -76,28 +79,37 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         mDrawerList.addFooterView(_imgView);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        updateActionBar();
+
         // Only used with v4.app.ActionBarDrawerToggle
-        // getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu_white);
+        //getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu_white);
 
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,
                 mDrawerLayout,
-                //R.drawable.ic_drawer,  /* Only used with v4.app.ActionBarDrawerToggle */
+                //R.drawable.menu_white,  /* Only used with v4.app.ActionBarDrawerToggle */
                 R.string.drawer_open,
                 R.string.drawer_close
         ) {
             public void onDrawerClosed(View view) {
+                //getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu_white);
                 mleftMenuListAdapter.notifyDataSetChanged();
                 //getSupportActionBar().setTitle(mTitle);
-                //invalidateOptionsMenu();
+                invalidateOptionsMenu();
             }
 
             public void onDrawerOpened(View drawerView) {
+                //getSupportActionBar().setHomeAsUpIndicator(R.drawable.notification_icon);
                 mleftMenuListAdapter.notifyDataSetChanged();
                 //getSupportActionBar().setTitle(mDrawerTitle);
-                //invalidateOptionsMenu();
+                invalidateOptionsMenu();
+            }
+
+            public void onDrawerStateChanged(int newState){
+
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
@@ -175,6 +187,7 @@ public class MainActivity extends AppCompatActivity  implements Observer {
 
     @Override
     public void update(Observable observable, Object data) {
+        updateActionBar();
         //update the fragments
         RunTestsFragment runTestsFragment = (RunTestsFragment)getSupportFragmentManager().findFragmentByTag("run_tests");
         if (runTestsFragment != null && runTestsFragment.isVisible()) {
@@ -246,6 +259,13 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         text.setGravity(Gravity.CENTER);;
         text.setTextColor(getResources().getColor(R.color.color_off_white));
         toast.show();
+    }
+
+    public void updateActionBar(){
+        if (TestStorage.newTests(this))
+            getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.action_bar_layout));
+        else
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.color_ooni_blue)));
     }
 
     private static final String TAG = "main-activity";
