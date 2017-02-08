@@ -275,7 +275,7 @@ public class TestData extends Observable {
                     }
 
                     protected void onProgressUpdate(String... values) {
-                /* Nothing */
+                        /* Nothing */
                     }
 
                     protected void onPostExecute(Boolean success) {
@@ -284,7 +284,7 @@ public class TestData extends Observable {
                         runningTests.remove(currentTest);
                         finishedTests.add(currentTest);
                         availableTests.put(testName, true);
-                        if (activity != null) TestData.getInstance(context, activity).notifyObservers();
+                        if (activity != null) TestData.getInstance(context, activity).notifyObservers(testName);
                         Notifications.notifyTestEnded(ctx, testName);
                         Log.v(TAG, "doNetworkMeasurements " + testName + "... done");
                     }

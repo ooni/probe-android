@@ -43,6 +43,7 @@ import org.openobservatory.ooniprobe.fragment.SettingsFragment;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.TestInfoFragment;
+import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 
 public class MainActivity extends AppCompatActivity  implements Observer {
     private DrawerLayout mDrawerLayout;
@@ -200,6 +201,14 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         TestInfoFragment testInfoFragment = (TestInfoFragment)getSupportFragmentManager().findFragmentByTag("test_info");
         if (testInfoFragment != null && testInfoFragment.isVisible()) {
             testInfoFragment.updateButtons();
+        }
+        if (data != null && data instanceof String){
+            String string = NetworkMeasurement.getTestName(this, (String)data) + " " + getString(R.string.test_name_finished);
+            Toast toast = Toast.makeText(this, string, Toast.LENGTH_LONG);
+            View view = toast.getView();
+            TextView text = (TextView) view.findViewById(android.R.id.message);
+            text.setGravity(Gravity.CENTER);;
+            toast.show();
         }
         System.out.println("update "+ observable);
     }
