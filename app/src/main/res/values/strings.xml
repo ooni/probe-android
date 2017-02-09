@@ -69,7 +69,7 @@
     <string name="local_notifications_time">Time</string>
     <string name="local_notifications_text">Time to run tests</string>
     <string name="notifications">Notifications</string>
-    <string name="max_runtime">Max runtime (seconds)</string>
+    <string name="max_runtime">Web Connectivity max runtime (seconds)</string>
     <string name="advanced_settings">Advanced settings</string>
     <string name="finished_running">finished running</string>
     <string name="view_log">View log</string>
