@@ -133,19 +133,6 @@
             android:checked="true"
             android:textColor="@color/color_ooni_blue" />
 
-        <android.support.v7.widget.SwitchCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:id="@+id/send_crash"
-            android:drawableLeft="@drawable/send_crash"
-            android:drawableStart="@drawable/send_crash"
-            android:drawablePadding="5dp"
-            android:layout_marginBottom="10dp"
-            android:text="@string/send_crash"
-            android:checked="true"
-            android:textColor="@color/color_ooni_blue" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

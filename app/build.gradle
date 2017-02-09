@@ -1,8 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
 
 repositories {
-    maven { url 'https://maven.fabric.io/public' }
     maven { url "https://jitpack.io" }
 }
 
@@ -34,8 +32,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.4'
     compile 'me.panavtec:wizard:1.2'
     compile 'us.feras.mdv:markdownview:1.1.0'
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.6@aar') {
-        transitive = true;
-    }
     compile 'com.github.AndroidDeveloperLB:AutoFitTextView:4'
 }

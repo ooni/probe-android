@@ -23,10 +23,6 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import com.crashlytics.android.Crashlytics;
-import com.crashlytics.android.core.CrashlyticsCore;
-
-import io.fabric.sdk.android.Fabric;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
@@ -107,24 +103,6 @@ public class SettingsFragment extends Fragment {
                     editor.putBoolean("include_cc", false);
                 }
                 editor.commit();
-            }
-        });
-
-        final SwitchCompat send_crashButton = (SwitchCompat) v.findViewById(R.id.send_crash);
-        send_crashButton.setChecked(preferences.getBoolean("send_crash", true));
-        send_crashButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences.Editor editor = preferences.edit();
-                if (isChecked) {
-                    editor.putBoolean("send_crash", true);
-                } else {
-                    editor.putBoolean("send_crash", false);
-                }
-                editor.commit();
-                final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mActivity);
-                final Boolean send_crash = preferences.getBoolean("send_crash", true);
-                CrashlyticsCore core = new CrashlyticsCore.Builder().disabled(send_crash).build();
-                Fabric.with(mActivity, new Crashlytics.Builder().core(core).build());
             }
         });
 
