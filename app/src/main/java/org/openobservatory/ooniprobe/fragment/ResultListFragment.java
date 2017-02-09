@@ -21,6 +21,7 @@ import org.openobservatory.ooniprobe.model.TestResult;
 import org.openobservatory.ooniprobe.utils.JSONUtils;
 import org.openobservatory.ooniprobe.utils.LogUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -51,10 +52,11 @@ public class ResultListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v =inflater.inflate(R.layout.fragment_result_list, container, false);
-        String json_file = getActivity().getIntent().getExtras().getString("json_file");
+        String jsonFilename = getActivity().getIntent().getExtras().getString("json_file");
         ArrayList<TestResult> listItems = new ArrayList<>();
         try {
-            JSONUtils.JSONL jsonl = new JSONUtils.JSONL(mActivity.getFilesDir()+json_file);
+            File jsonFile = new File(mActivity.getFilesDir(), jsonFilename);
+            JSONUtils.JSONL jsonl = new JSONUtils.JSONL(jsonFile);
             for (JSONObject jsonObj:jsonl){
                 try {
                     int anomaly;
@@ -70,12 +72,12 @@ public class ResultListFragment extends Fragment {
                     listItems.add(result);
                 }
                 catch (JSONException e) {
-                    Log.e(DEBUG_TAG, "Failed to open json object " + json_file);
+                    Log.e(DEBUG_TAG, "Failed to open json object " + jsonFilename);
                 }
             }
         } catch (IOException e) {
             //TODO show to user
-            Log.e(DEBUG_TAG, "Failed to open file " + json_file);
+            Log.e(DEBUG_TAG, "Failed to open file " + jsonFilename);
         }
         testResultList = (RecyclerView) v.findViewById(R.id.resultList);
         mResultTestsListAdapter = new TestResultListAdapter(getActivity(), listItems);

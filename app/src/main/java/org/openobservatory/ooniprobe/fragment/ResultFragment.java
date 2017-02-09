@@ -19,6 +19,9 @@ import org.openobservatory.ooniprobe.utils.JSONUtils;
 import org.openobservatory.ooniprobe.utils.LogUtils;
 import org.openobservatory.ooniprobe.utils.OoniWebViewClient;
 
+import java.io.File;
+import java.io.IOException;
+
 public class ResultFragment extends Fragment {
     private ResultActivity mActivity;
     private ProgressBar mPbar = null;
@@ -53,16 +56,22 @@ public class ResultFragment extends Fragment {
         setHasOptionsMenu(true);
 
         int position = this.getArguments().getInt("position");
-        String json_file = getActivity().getIntent().getExtras().getString("json_file");
-        //final String parts = LogUtils.getLogParts(getActivity(), json_file, position);
+        String jsonFilename = getActivity().getIntent().getExtras().getString("json_file");
         mPbar = (ProgressBar) v.findViewById(R.id.web_view_progress);
-
-        WebView wv = (WebView) v.findViewById(R.id.webview);
-        wv.setWebViewClient(new OoniWebViewClient(mPbar));
-        wv.getSettings().setJavaScriptEnabled(true);
-        //wv.addJavascriptInterface(new JSONUtils.InjectedJSON(parts), "MeasurementJSON");
-        wv.loadUrl("file:///android_asset/webui/index.html");
-
+        File jsonFile = new File(mActivity.getFilesDir(), jsonFilename);
+        try {
+            JSONUtils.JSONL jsonl = new JSONUtils.JSONL(jsonFile);
+            final String jsonLine = jsonl.getLineN(position);
+            WebView wv = (WebView) v.findViewById(R.id.webview);
+            wv.setWebViewClient(new OoniWebViewClient(mPbar));
+            wv.getSettings().setJavaScriptEnabled(true);
+            wv.addJavascriptInterface(new JSONUtils.InjectedJSON(jsonLine), "MeasurementJSON");
+            wv.loadUrl("file:///android_asset/webui/index.html");
+        } catch (IOException e) {
+            // XXX log the IO exception in some way
+        } catch (RuntimeException e) {
+            // XXX log the runtime exception in some way
+        }
         return v;
     }
 }

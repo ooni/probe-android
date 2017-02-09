@@ -19,65 +19,86 @@ public class JSONUtils {
         private static final String DEBUG_TAG = "JSONLIterator";
 
         private FileReader fr;
-        private String filePath;
+        private File file;
 
-        public JSONL(String filePath) throws IOException {
-            this.filePath = filePath;
-            File file = new File(filePath);
+        public JSONL(File file) throws IOException {
             try {
+                this.file = file;
                 this.fr = new FileReader(file);
             } catch (IOException e) {
-                Log.e(DEBUG_TAG, "Failed to open file " + this.filePath);
+                Log.e(DEBUG_TAG, "Failed to open file " + file.getPath());
                 throw e;
             }
         }
 
+        public String getLineN(int n) throws RuntimeException {
+            BufferedReader br = new BufferedReader(this.fr);
+            String line;
+            int idx = 0;
+            try {
+                while ((line = br.readLine()) != null) {
+                    if (idx == n) {
+                        return line;
+                    }
+                    idx++;
+                }
+            } catch (IOException e) {
+                throw new RuntimeException("IOError in reading line");
+            }
+            throw new RuntimeException("Could not find line at offset");
+        }
+
         public Iterator<JSONObject> iterator(){
             BufferedReader br = new BufferedReader(this.fr);
-            return new JSONIterator(br, this.filePath);
+            return new JSONIterator(br, this.file);
         }
 
         private class JSONIterator  implements  Iterator<JSONObject>{
             private BufferedReader br;
-            private Boolean eof;
-            private String filePath;
+            private File file;
 
-            public JSONIterator(BufferedReader br, String filePath) {
+            public JSONIterator(BufferedReader br, File file) {
                 this.br = br;
-                this.filePath = filePath;
-                this.eof = false;
+                this.file = file;
+            }
+
+            private void closeReader() {
+                try {
+                    this.br.close();
+                } catch (IOException f) {
+                    Log.e(DEBUG_TAG, "Failed to close file " + this.file.getPath());
+                }
             }
 
             public boolean hasNext() {
-                return !this.eof;
+                try {
+                    // Will return true when there is still data to read.
+                    if (!this.br.ready()) {
+                        this.closeReader();
+                        return false;
+                    }
+                    return true;
+                } catch (IOException e) {
+                    Log.e(DEBUG_TAG, "Failed to read file " + this.file.getPath());
+                    this.closeReader();
+                    return false;
+                }
             }
 
-            public JSONObject next() {
+            public JSONObject next() throws NoSuchElementException {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
                 String line;
                 try {
                     line = this.br.readLine();
-                    if (line == null) {
-                        this.eof = true;
-                        this.br.close();
-                        throw new NoSuchElementException();
-                    }
-                } catch (IOException e) {
-                    Log.e(DEBUG_TAG, "Failed to read file " + this.filePath);
-                    this.eof = true;
-                    try { this.br.close(); } catch (IOException f) {}
-                    throw new NoSuchElementException();
-                }
-
-                try {
                     return new JSONObject(line);
+                } catch (IOException e) {
+                    Log.e(DEBUG_TAG, "Failed to read line " + this.file.getPath());
+                    return next();
                 } catch (JSONException e) {
-                    Log.e(DEBUG_TAG, "Failed to read line " + this.filePath);
-                    // We skip invalid lines
-                    //return next();
-                    throw new NoSuchElementException();
+                    Log.e(DEBUG_TAG, "Failed to parse JSON in line " + this.file.getPath());
+                    return next();
                 }
             }
 
@@ -86,6 +107,7 @@ public class JSONUtils {
             }
         }
     }
+
     public static class InjectedJSON {
         private String jsonData;
 
