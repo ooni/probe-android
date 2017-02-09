@@ -109,6 +109,7 @@ public class TestData extends Observable {
                                 w.set_error_filepath(logPath);
                                 w.set_verbosity(LogSeverity.INFO);
                                 w.set_options("dns/nameserver", nameserver);
+                                w.set_options("dns/engine", "system");
                                 w.set_options("geoip_country_path", geoip_country);
                                 w.set_options("geoip_asn_path", geoip_asn);
                                 w.set_options("save_real_probe_ip", boolToString(include_ip));
@@ -126,6 +127,7 @@ public class TestData extends Observable {
                                         .set_error_filepath(logPath)
                                         .set_verbosity(LogSeverity.INFO)
                                         .set_options("dns/nameserver", nameserver)
+                                        .set_options("dns/engine", "system")
                                         .set_options("geoip_country_path", geoip_country)
                                         .set_options("geoip_asn_path", geoip_asn)
                                         .set_options("save_real_probe_ip", boolToString(include_ip))
@@ -166,6 +168,7 @@ public class TestData extends Observable {
                                 w.set_verbosity(LogSeverity.INFO);
                                 w.set_options("port", "80");
                                 w.set_options("dns/nameserver", nameserver);
+                                w.set_options("dns/engine", "system");
                                 w.set_options("geoip_country_path", geoip_country);
                                 w.set_options("geoip_asn_path", geoip_asn);
                                 w.set_options("save_real_probe_ip", boolToString(include_ip));
@@ -192,6 +195,7 @@ public class TestData extends Observable {
                              */
                                         .set_options("dns/nameserver", nameserver)
                                         .set_options("nameserver", nameserver)
+                                        .set_options("dns/engine", "system")
                                         .set_options("geoip_country_path", geoip_country)
                                         .set_options("geoip_asn_path", geoip_asn)
                                         .set_options("save_real_probe_ip", boolToString(include_ip))
@@ -233,6 +237,7 @@ public class TestData extends Observable {
                                         .set_error_filepath(logPath)
                                         .set_verbosity(LogSeverity.INFO)
                                         .set_options("dns/nameserver", nameserver)
+                                        .set_options("dns/engine", "system")
                                         .set_options("geoip_country_path", geoip_country)
                                         .set_options("geoip_asn_path", geoip_asn)
                                         .set_options("save_real_probe_ip", boolToString(include_ip))
