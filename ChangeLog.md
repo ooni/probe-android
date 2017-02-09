@@ -4,6 +4,14 @@ Bugfixes:
 
 * Use system resolver when doing DNS queries (this solves an issue with IPv6 lookups)
 
+* Fix problem with tapping of Time row
+
+* Add support for showing test log
+
+* Rename "Max runtime" to "Web Connectivity max runtime"
+
+* Fix issue that leads to scheduled runs not being persistent across reboot
+
 measurement-kit version: 0.4.0-beta.3
 
 ooniprobe-wui version: 2.2.0-rc.0
