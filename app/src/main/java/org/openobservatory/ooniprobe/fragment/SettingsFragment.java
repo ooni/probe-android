@@ -165,12 +165,6 @@ public class SettingsFragment extends Fragment {
         im.hideSoftInputFromWindow(local_notifications_timeEditText.getWindowToken(), 0);
 
         local_notifications_timeLayout = (RelativeLayout) v.findViewById(R.id.local_notifications_timeLayout);
-        local_notifications_timeLayout.setOnClickListener(new RelativeLayout.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPopup();
-            }
-        });
         SwitchCompat local_notificationsButton = (SwitchCompat) v.findViewById(R.id.local_notifications);
         local_notificationsButton.setChecked(preferences.getBoolean("local_notifications", false));
         local_notificationsButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
