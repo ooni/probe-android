@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +18,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.TestResult;
+import org.openobservatory.ooniprobe.utils.JSONUtils;
 import org.openobservatory.ooniprobe.utils.LogUtils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ResultListFragment extends Fragment {
     private RecyclerView testResultList;
     private TestResultListAdapter mResultTestsListAdapter;
     private ResultActivity mActivity;
+    private static final String DEBUG_TAG = "ResultListFragment";
 
     @Override
     public void onAttach(Activity activity) {
@@ -48,24 +52,30 @@ public class ResultListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v =inflater.inflate(R.layout.fragment_result_list, container, false);
         String json_file = getActivity().getIntent().getExtras().getString("json_file");
-        final String[] parts = LogUtils.getLogParts(getActivity(), json_file);
         ArrayList<TestResult> listItems = new ArrayList<>();
         try {
-            for(String str:parts) {
-                JSONObject jsonObj = new JSONObject(str);
-                int anomaly = 0;
-                JSONObject blocking = jsonObj.getJSONObject("test_keys");
-                Object object = blocking.get("blocking");
-                if(object instanceof String)
-                    anomaly = 2;
-                else if(object instanceof Boolean)
-                    anomaly = 0;
-                else
-                    anomaly = 1;
-                TestResult result = new TestResult(jsonObj.getString("input"), anomaly);
-                listItems.add(result);
+            JSONUtils.JSONL jsonl = new JSONUtils.JSONL(mActivity.getFilesDir()+json_file);
+            for (JSONObject jsonObj:jsonl){
+                try {
+                    int anomaly;
+                    JSONObject blocking = jsonObj.getJSONObject("test_keys");
+                    Object object = blocking.get("blocking");
+                    if(object instanceof String)
+                        anomaly = 2;
+                    else if(object instanceof Boolean)
+                        anomaly = 0;
+                    else
+                        anomaly = 1;
+                    TestResult result = new TestResult(jsonObj.getString("input"), anomaly);
+                    listItems.add(result);
+                }
+                catch (JSONException e) {
+                    Log.e(DEBUG_TAG, "Failed to open json object " + json_file);
+                }
             }
-        } catch (JSONException e) {
+        } catch (IOException e) {
+            //TODO show to user
+            Log.e(DEBUG_TAG, "Failed to open file " + json_file);
         }
         testResultList = (RecyclerView) v.findViewById(R.id.resultList);
         mResultTestsListAdapter = new TestResultListAdapter(getActivity(), listItems);

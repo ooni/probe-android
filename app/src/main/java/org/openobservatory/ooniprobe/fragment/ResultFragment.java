@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.ResultActivity;
 import org.openobservatory.ooniprobe.utils.Alert;
+import org.openobservatory.ooniprobe.utils.JSONUtils;
 import org.openobservatory.ooniprobe.utils.LogUtils;
 import org.openobservatory.ooniprobe.utils.OoniWebViewClient;
 
@@ -53,13 +54,13 @@ public class ResultFragment extends Fragment {
 
         int position = this.getArguments().getInt("position");
         String json_file = getActivity().getIntent().getExtras().getString("json_file");
-        final String parts = LogUtils.getLogParts(getActivity(), json_file, position);
+        //final String parts = LogUtils.getLogParts(getActivity(), json_file, position);
         mPbar = (ProgressBar) v.findViewById(R.id.web_view_progress);
 
         WebView wv = (WebView) v.findViewById(R.id.webview);
         wv.setWebViewClient(new OoniWebViewClient(mPbar));
         wv.getSettings().setJavaScriptEnabled(true);
-        wv.addJavascriptInterface(new Alert.InjectedJSON(parts), "MeasurementJSON");
+        //wv.addJavascriptInterface(new JSONUtils.InjectedJSON(parts), "MeasurementJSON");
         wv.loadUrl("file:///android_asset/webui/index.html");
 
         return v;
