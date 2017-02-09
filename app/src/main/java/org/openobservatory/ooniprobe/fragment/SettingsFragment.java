@@ -139,7 +139,7 @@ public class SettingsFragment extends Fragment {
             }
         });
         TextView max_runtime = (TextView) v.findViewById(R.id.max_runtimeEditText);
-        max_runtime.setText(preferences.getString("max_runtime", "90"));
+        max_runtime.setText(preferences.getString("max_runtime", OONITests.MAX_RUNTIME));
         max_runtime.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable s) {
@@ -165,12 +165,6 @@ public class SettingsFragment extends Fragment {
         im.hideSoftInputFromWindow(local_notifications_timeEditText.getWindowToken(), 0);
 
         local_notifications_timeLayout = (RelativeLayout) v.findViewById(R.id.local_notifications_timeLayout);
-        local_notifications_timeLayout.setOnClickListener(new RelativeLayout.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPopup();
-            }
-        });
         SwitchCompat local_notificationsButton = (SwitchCompat) v.findViewById(R.id.local_notifications);
         local_notificationsButton.setChecked(preferences.getBoolean("local_notifications", false));
         local_notificationsButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

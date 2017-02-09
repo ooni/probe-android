@@ -1,3 +1,13 @@
+# ooniprobe-android 1.1.1 [2017-02-09]
+
+Bugfixes:
+
+* Use system resolver when doing DNS queries (this solves an issue with IPv6 lookups)
+
+measurement-kit version: 0.4.0-beta.3
+
+ooniprobe-wui version: 2.2.0-rc.0
+
 # ooniprobe-android 1.1.0 [2017-02-08]
 
 This is the first public release of ooniprobe-android.

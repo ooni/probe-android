@@ -129,6 +129,7 @@ public class PastTestsListAdapter extends RecyclerView.Adapter<PastTestsListAdap
         if (i.entry){
             Intent intent = new Intent(mActivity, ResultActivity.class);
             intent.putExtra("json_file", i.json_file);
+            intent.putExtra("log_file", i.log_file);
             intent.putExtra("test_name", i.testName);
             mActivity.startActivity(intent);
         }
