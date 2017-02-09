@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -140,6 +141,7 @@ public class SettingsFragment extends Fragment {
         });
         TextView max_runtime = (TextView) v.findViewById(R.id.max_runtimeEditText);
         max_runtime.setText(preferences.getString("max_runtime", OONITests.MAX_RUNTIME));
+        max_runtime.setImeOptions(EditorInfo.IME_ACTION_DONE);
         max_runtime.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable s) {
