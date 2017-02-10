@@ -1,4 +1,10 @@
-# ooniprobe for Android
+![ooniprobe android](assets/title.png)
+
+This is the android version of [ooniprobe](https://ooni.torproject.org/).
+
+Download it on the [Play Store](https://play.google.com/store/apps/details?id=org.openobservatory.ooniprobe).
+
+[![](assets/play-store-badge.png)](https://play.google.com/store/apps/details?id=org.openobservatory.ooniprobe)
 
 This application requires Android Studio. In any case, before opening the
 project with Android Studio, make sure you download the dependencies using
