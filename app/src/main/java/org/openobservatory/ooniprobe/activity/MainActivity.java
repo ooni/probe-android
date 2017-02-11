@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         ImageView _imgView = new ImageView(this);
+        _imgView.setEnabled(false);
         _imgView.setImageResource(R.drawable.ooni_logo);
         mDrawerList.addFooterView(_imgView);
 
