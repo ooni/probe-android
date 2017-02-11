@@ -122,7 +122,7 @@ public class TestData extends Observable {
                                 Log.v(TAG, "running http_invalid_request_line test...");
                                 new HttpInvalidRequestLineTest()
                                         .use_logcat()
-                                        .set_options("backend", "http://213.138.109.232/")
+                                        .set_options("backend", OONITests.HIRL_BACKEND)
                                         .set_output_filepath(outputPath)
                                         .set_error_filepath(logPath)
                                         .set_verbosity(LogSeverity.INFO)
@@ -186,7 +186,7 @@ public class TestData extends Observable {
                                         .set_output_filepath(outputPath)
                                         .set_error_filepath(logPath)
                                         .set_verbosity(LogSeverity.INFO)
-                                        .set_options("backend", "https://b.web-connectivity.th.ooni.io")
+                                        .set_options("backend", OONITests.WC_BACKEND)
                             /*
                              * XXX nameserver is the nameserver to be used for
                              * the DNS phase of web-connectivity only while
