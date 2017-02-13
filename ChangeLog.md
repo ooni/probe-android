@@ -1,4 +1,4 @@
-# ooniprobe-android 1.1.2 [2017-02-11]
+# ooniprobe-android 1.1.2 [2017-02-13]
 
 Bugfixes:
 
@@ -7,6 +7,8 @@ Bugfixes:
 * Done action in keyboard
 
 * Fixing crash on tap of ooni logo
+
+* Fix crash when running very long input lists
 
 measurement-kit version: 0.4.0-beta.4
 
