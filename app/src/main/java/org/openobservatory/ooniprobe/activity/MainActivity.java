@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         ImageView _imgView = new ImageView(this);
+        _imgView.setEnabled(false);
         _imgView.setImageResource(R.drawable.ooni_logo);
         mDrawerList.addFooterView(_imgView);
 
@@ -150,10 +151,11 @@ public class MainActivity extends AppCompatActivity  implements Observer {
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new AboutFragment(), "about").commit();
                 break;
         }
-
-        mDrawerList.setItemChecked(position, true);
-        setTitle(mMenuItemsTitles[position]);
-        mDrawerLayout.closeDrawer(mDrawerList);
+        if (position < mMenuItemsTitles.length){
+            mDrawerList.setItemChecked(position, true);
+            setTitle(mMenuItemsTitles[position]);
+            mDrawerLayout.closeDrawer(mDrawerList);
+        }
     }
 
     @Override

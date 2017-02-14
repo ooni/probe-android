@@ -1,3 +1,19 @@
+# ooniprobe-android 1.1.2 [2017-02-13]
+
+Bugfixes:
+
+* JSON file iterator
+
+* Done action in keyboard
+
+* Fixing crash on tap of ooni logo
+
+* Fix crash when running very long input lists
+
+measurement-kit version: 0.4.0-beta.4
+
+ooniprobe-wui version: 2.2.0-rc.0
+
 # ooniprobe-android 1.1.1 [2017-02-09]
 
 Bugfixes:

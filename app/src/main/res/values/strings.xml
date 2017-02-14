@@ -13,10 +13,10 @@
     <string name="ndt_test">NDT Speed Test</string>
     <string name="web_connectivity_desc">Check if websites are blocked</string>
     <string name="http_invalid_request_line_desc">Find \'middle boxes\'</string>
-    <string name="ndt_test_desc">Measurement network speed and performance</string>
+    <string name="ndt_test_desc">Measure network speed and performance</string>
     <string name="http_invalid_request_line_longdesc">This test tries to detect the presence of network components (“middle box”) which could be responsible for censorship and/or surveillance.</string>
     <string name="web_connectivity_longdesc">This test examines whether access to websites is blocked through DNS tampering, TCP/IP blocking, or by a transparent HTTP proxy.\n\nEvery time you run Web Connectivity you test different websites.</string>
-    <string name="ndt_test_longdesc">This test measures the speed and performance of your network.</string>
+    <string name="ndt_test_longdesc">This test measures the speed and performance of your network.\n\nDisclaimer: This is a third-party performance test based on third-party servers, and we cannot guarantee that your IP address will not be collected, processed, and published.</string>
     <string name="running_tests">Running tests</string>
     <string name="finished_tests">Finished tests</string>
     <string name="collector_address">Collector Address</string>
@@ -79,6 +79,7 @@
     <string name="privacy">Privacy</string>
     <string name="view_data_policy">Click here to view our data policy</string>
     <string name="test_name_finished">finished, go to Past Tests to see the results</string>
+    <string name="open_url_alert">Do you want to open the following URL?</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
 </resources>
