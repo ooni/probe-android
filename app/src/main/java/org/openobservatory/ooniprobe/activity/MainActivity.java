@@ -206,7 +206,7 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         }
         if (data != null && data instanceof String){
             String string = NetworkMeasurement.getTestName(this, (String)data) + " " + getString(R.string.test_name_finished);
-            Toast toast = Toast.makeText(this, string, Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(this, string, Toast.LENGTH_SHORT);
             View view = toast.getView();
             TextView text = (TextView) view.findViewById(android.R.id.message);
             text.setGravity(Gravity.CENTER);;
