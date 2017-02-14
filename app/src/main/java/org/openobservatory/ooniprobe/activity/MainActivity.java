@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -26,7 +25,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -63,7 +61,6 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         setContentView(R.layout.activity_main);
         checkResources();
         TestData.getInstance(this, this).addObserver(this);
-        preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         mTitle = mDrawerTitle = getTitle();
         mMenuItemsTitles = new String[]{getString(R.string.run_tests), getString(R.string.past_tests), getString(R.string.settings), getString(R.string.about)};
@@ -124,17 +121,13 @@ public class MainActivity extends AppCompatActivity  implements Observer {
             selectItem(0);
         }
 
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         if (!preferences.getBoolean("cleanup_unused_files", false)) {
             TestStorage.removeUnusedFiles(this);
-            preferences.edit().putBoolean("cleanup_unused_files", true).apply();
+            PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("cleanup_unused_files", true).apply();
         }
 
         checkInformedConsent();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return mDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
@@ -190,8 +183,23 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     }
 
     public void checkInformedConsent() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         if (preferences.getBoolean("first_run", true)) {
             startInformedConsentActivity();
+        }
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()) {
+            case R.id.menu_remove_all_tests:
+                TestStorage.removeAllTests(this);
+                PastTestsFragment pastTestsFragment = (PastTestsFragment)getSupportFragmentManager().findFragmentByTag("past_tests");
+                if (pastTestsFragment != null && pastTestsFragment.isVisible()) {
+                    pastTestsFragment.updateList();
+                }
+                return true;
+            default:
+                return mDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
         }
     }
 
@@ -223,12 +231,13 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     }
 
     public void checkResources() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         if (!preferences.getBoolean("resources_copied", false)) {
             copyResources(R.raw.hosts, "hosts.txt");
             copyResources(R.raw.geoipasnum, "GeoIPASNum.dat");
             copyResources(R.raw.geoip, "GeoIP.dat");
             copyResources(R.raw.global, "global.txt");
-            preferences.edit().putBoolean("resources_copied", true).apply();
+            PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("resources_copied", true).apply();
         }
     }
 
@@ -262,7 +271,7 @@ public class MainActivity extends AppCompatActivity  implements Observer {
                 finish();
             }
             else {
-                preferences.edit().putBoolean("first_run", false).apply();
+                PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("first_run", false).apply();
                 showToast(R.string.ooniprobe_configured, true);
             }
         }

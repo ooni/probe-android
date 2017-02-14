@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_remove"
+        android:id="@+id/menu_remove_all_tests"
         android:orderInCategory="100"
         app:showAsAction="never"
-        android:title="@string/delete" />
+        android:title="@string/clear_all_tests" />
 </menu>
 
