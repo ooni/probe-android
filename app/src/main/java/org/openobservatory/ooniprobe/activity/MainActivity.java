@@ -26,6 +26,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     private CharSequence mTitle;
     private String[] mMenuItemsTitles;
     private LeftMenuListAdapter mleftMenuListAdapter;
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         setContentView(R.layout.activity_main);
         checkResources();
         TestData.getInstance(this, this).addObserver(this);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         mTitle = mDrawerTitle = getTitle();
         mMenuItemsTitles = new String[]{getString(R.string.run_tests), getString(R.string.past_tests), getString(R.string.settings), getString(R.string.about)};
@@ -119,6 +122,11 @@ public class MainActivity extends AppCompatActivity  implements Observer {
 
         if (savedInstanceState == null) {
             selectItem(0);
+        }
+
+        if (!preferences.getBoolean("cleanup_unused_files", false)) {
+            TestStorage.removeUnusedFiles(this);
+            preferences.edit().putBoolean("cleanup_unused_files", true).apply();
         }
 
         checkInformedConsent();
@@ -182,7 +190,6 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     }
 
     public void checkInformedConsent() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         if (preferences.getBoolean("first_run", true)) {
             startInformedConsentActivity();
         }
@@ -216,13 +223,12 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     }
 
     public void checkResources() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         if (!preferences.getBoolean("resources_copied", false)) {
             copyResources(R.raw.hosts, "hosts.txt");
             copyResources(R.raw.geoipasnum, "GeoIPASNum.dat");
             copyResources(R.raw.geoip, "GeoIP.dat");
             copyResources(R.raw.global, "global.txt");
-            PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("resources_copied", true).apply();
+            preferences.edit().putBoolean("resources_copied", true).apply();
         }
     }
 
@@ -256,7 +262,7 @@ public class MainActivity extends AppCompatActivity  implements Observer {
                 finish();
             }
             else {
-                PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("first_run", false).apply();
+                preferences.edit().putBoolean("first_run", false).apply();
                 showToast(R.string.ooniprobe_configured, true);
             }
         }
