@@ -15,9 +15,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -203,12 +201,13 @@ public class TestStorage {
     public static void removeAllTests(Context context) {
         List tests = loadTests(context);
         if (tests != null){
-            for(int i = 0; i < tests.size(); i++) {
+            for(int i = tests.size()-1; i >= 0; i--) {
                 NetworkMeasurement n = (NetworkMeasurement)tests.get(i);
                 File jsonFile = new File(context.getFilesDir(), n.json_file);
                 File logFile = new File(context.getFilesDir(), n.log_file);
                 jsonFile.delete();
                 logFile.delete();
+                System.out.println("remove "+ i + " jsonFile " + jsonFile);
                 tests.remove(i);
             }
         }
