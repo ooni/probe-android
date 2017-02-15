@@ -35,6 +35,13 @@ public class AboutFragment extends Fragment {
         mActivity = null;
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mActivity.setTitle(mActivity.getString(R.string.about));
+    }
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);

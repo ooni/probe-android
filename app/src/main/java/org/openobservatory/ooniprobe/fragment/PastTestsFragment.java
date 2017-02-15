@@ -46,6 +46,7 @@ public class PastTestsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        mActivity.setTitle(mActivity.getString(R.string.past_tests));
         updateList();
     }
 

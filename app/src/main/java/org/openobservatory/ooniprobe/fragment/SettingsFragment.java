@@ -63,6 +63,12 @@ public class SettingsFragment extends Fragment {
         mActivity = null;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mActivity.setTitle(mActivity.getString(R.string.settings));
+    }
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);

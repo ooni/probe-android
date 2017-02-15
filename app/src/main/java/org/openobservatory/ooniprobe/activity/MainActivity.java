@@ -10,6 +10,9 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
 import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -138,26 +141,54 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     }
 
     private void selectItem(int position) {
+        Fragment f = null;
         switch (position){
             case 0:
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new RunTestsFragment(), "run_tests").commit();
+                f = new RunTestsFragment();
                 break;
             case 1:
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new PastTestsFragment(), "past_tests").commit();
+                f = new PastTestsFragment();
                 break;
             case 2:
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new SettingsFragment(), "settings").commit();
+                f = new SettingsFragment();
                 break;
             case 3:
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new AboutFragment(), "about").commit();
+                f = new AboutFragment();
                 break;
         }
-        if (position < mMenuItemsTitles.length){
+        if (f != null){
+            replaceFragment(f);
             mDrawerList.setItemChecked(position, true);
-            setTitle(mMenuItemsTitles[position]);
             mDrawerLayout.closeDrawer(mDrawerList);
         }
     }
+
+    public void replaceFragment(Fragment f) {
+        String backStateName = f.getClass().getName();
+        FragmentManager manager = getSupportFragmentManager();
+        boolean fragmentPopped = manager.popBackStackImmediate(backStateName, 0);
+        if (!fragmentPopped && manager.findFragmentByTag(backStateName) == null) {
+            // fragment not in back stack, create it.
+            FragmentTransaction ft = manager.beginTransaction();
+            ft.replace(R.id.content_frame, f, backStateName);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            ft.addToBackStack(backStateName);
+            ft.commit();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            mDrawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
+            finish();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
 
     @Override
     public void setTitle(CharSequence title) {
