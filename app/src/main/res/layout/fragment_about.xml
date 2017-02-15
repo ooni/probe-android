@@ -63,6 +63,16 @@
                 android:layout_below="@+id/learn_more_button"
                 android:layout_centerHorizontal="true"
                  />
+            <TextView
+                android:id="@+id/ooniprobe_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:textSize="15sp"
+                android:layout_centerHorizontal="true"
+                android:text="version"
+                android:layout_below="@+id/privacy_policy_button"
+                android:textColor="@color/color_off_black"/>
         </RelativeLayout>
     </LinearLayout>
 </ScrollView>

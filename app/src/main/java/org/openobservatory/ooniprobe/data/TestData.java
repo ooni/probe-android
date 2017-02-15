@@ -7,7 +7,6 @@ import android.preference.PreferenceManager;
 import android.support.v4.os.AsyncTaskCompat;
 import android.util.Log;
 
-import junit.framework.Test;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

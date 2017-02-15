@@ -52,11 +52,9 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
 
-    private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private String[] mMenuItemsTitles;
     private LeftMenuListAdapter mleftMenuListAdapter;
-    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,13 +63,13 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         checkResources();
         TestData.getInstance(this, this).addObserver(this);
 
-        mTitle = mDrawerTitle = getTitle();
+        mTitle = getTitle();
         mMenuItemsTitles = new String[]{getString(R.string.run_tests), getString(R.string.past_tests), getString(R.string.settings), getString(R.string.about)};
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-        //mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.menu_item, mMenuItemsTitles));
+
         ArrayList <String> stringList = new ArrayList<String>(Arrays.asList(mMenuItemsTitles));
         mleftMenuListAdapter = new LeftMenuListAdapter(this, R.layout.row_left_menu, stringList);
         mDrawerList.setAdapter(mleftMenuListAdapter);
@@ -100,16 +98,12 @@ public class MainActivity extends AppCompatActivity  implements Observer {
                 R.string.drawer_close
         ) {
             public void onDrawerClosed(View view) {
-                //getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu_white);
                 mleftMenuListAdapter.notifyDataSetChanged();
-                //getSupportActionBar().setTitle(mTitle);
                 invalidateOptionsMenu();
             }
 
             public void onDrawerOpened(View drawerView) {
-                //getSupportActionBar().setHomeAsUpIndicator(R.drawable.notification_icon);
                 mleftMenuListAdapter.notifyDataSetChanged();
-                //getSupportActionBar().setTitle(mDrawerTitle);
                 invalidateOptionsMenu();
             }
 
