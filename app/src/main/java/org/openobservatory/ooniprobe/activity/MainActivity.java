@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         }
     }
 
-    private void selectItem(int position) {
+    public void selectItem(int position) {
         Fragment f = null;
         switch (position){
             case 0:
@@ -218,7 +218,7 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         switch (item.getItemId()) {
             case R.id.menu_remove_all_tests:
                 TestStorage.removeAllTests(this);
-                PastTestsFragment pastTestsFragment = (PastTestsFragment)getSupportFragmentManager().findFragmentByTag("past_tests");
+                PastTestsFragment pastTestsFragment = (PastTestsFragment)getSupportFragmentManager().findFragmentByTag("org.openobservatory.ooniprobe.fragment.PastTestsFragment");
                 if (pastTestsFragment != null && pastTestsFragment.isVisible()) {
                     pastTestsFragment.updateList();
                 }
@@ -232,15 +232,15 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     public void update(Observable observable, Object data) {
         updateActionBar();
         //update the fragments
-        RunTestsFragment runTestsFragment = (RunTestsFragment)getSupportFragmentManager().findFragmentByTag("run_tests");
+        RunTestsFragment runTestsFragment = (RunTestsFragment)getSupportFragmentManager().findFragmentByTag("org.openobservatory.ooniprobe.fragment.RunTestsFragment");
         if (runTestsFragment != null && runTestsFragment.isVisible()) {
             runTestsFragment.updateList();
         }
-        PastTestsFragment pastTestsFragment = (PastTestsFragment)getSupportFragmentManager().findFragmentByTag("past_tests");
+        PastTestsFragment pastTestsFragment = (PastTestsFragment)getSupportFragmentManager().findFragmentByTag("org.openobservatory.ooniprobe.fragment.PastTestsFragment");
         if (pastTestsFragment != null && pastTestsFragment.isVisible()) {
             pastTestsFragment.updateList();
         }
-        TestInfoFragment testInfoFragment = (TestInfoFragment)getSupportFragmentManager().findFragmentByTag("test_info");
+        TestInfoFragment testInfoFragment = (TestInfoFragment)getSupportFragmentManager().findFragmentByTag("org.openobservatory.ooniprobe.fragment.TestInfoFragment");
         if (testInfoFragment != null && testInfoFragment.isVisible()) {
             testInfoFragment.updateButtons();
         }

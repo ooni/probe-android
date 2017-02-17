@@ -3,27 +3,28 @@ package org.openobservatory.ooniprobe.fragment;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.adapter.PastTestsListAdapter;
-import org.openobservatory.ooniprobe.data.TestData;
 import org.openobservatory.ooniprobe.data.TestStorage;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
+import org.openobservatory.ooniprobe.utils.EmptyRecyclerView;
 
 import java.util.ArrayList;
 
 public class PastTestsFragment extends Fragment {
     private MainActivity mActivity;
-    private RecyclerView mPastTestsListView;
+    private EmptyRecyclerView mPastTestsListView;
     private PastTestsListAdapter mPastTestsListAdapter;
 
     @Override
@@ -65,7 +66,8 @@ public class PastTestsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_past_tests, container, false);
-        mPastTestsListView = (RecyclerView) v.findViewById(R.id.pastTests);
+        mPastTestsListView = (EmptyRecyclerView) v.findViewById(R.id.pastTests);
+
         mPastTestsListAdapter = new PastTestsListAdapter(mActivity, new ArrayList<NetworkMeasurement>());
         mPastTestsListView.setAdapter(mPastTestsListAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(mActivity);
@@ -75,6 +77,16 @@ public class PastTestsFragment extends Fragment {
         mPastTestsListView.addItemDecoration(dividerItemDecoration);
         TestStorage.resetNewTests(mActivity);
         mActivity.updateActionBar();
+        mPastTestsListView.setEmptyView(v.findViewById(R.id.empty_tests_view));
+
+        AppCompatButton runTest = (AppCompatButton) v.findViewById(R.id.run_test_button);
+        runTest.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        mActivity.selectItem(0);
+                    }
+                }
+        );
         return v;
     }
 
