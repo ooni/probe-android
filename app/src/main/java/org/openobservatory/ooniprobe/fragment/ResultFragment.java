@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
@@ -14,9 +13,7 @@ import android.widget.ProgressBar;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.ResultActivity;
-import org.openobservatory.ooniprobe.utils.Alert;
 import org.openobservatory.ooniprobe.utils.JSONUtils;
-import org.openobservatory.ooniprobe.utils.LogUtils;
 import org.openobservatory.ooniprobe.utils.OoniWebViewClient;
 
 import java.io.File;
@@ -66,7 +63,6 @@ public class ResultFragment extends Fragment {
             WebView wv = (WebView) v.findViewById(R.id.webview);
             wv.setWebViewClient(new OoniWebViewClient(mPbar));
             wv.getSettings().setJavaScriptEnabled(true);
-            //TODO bug, I send userLocale = it and it doesnt work
             wv.addJavascriptInterface(new JSONUtils.InjectedJSON(Locale.getDefault().getLanguage()), "userLocale");
             wv.addJavascriptInterface(new JSONUtils.InjectedJSON(jsonLine), "MeasurementJSON");
             wv.loadUrl("file:///android_asset/webui/index.html");
