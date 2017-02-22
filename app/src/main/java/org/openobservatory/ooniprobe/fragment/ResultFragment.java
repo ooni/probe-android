@@ -21,6 +21,7 @@ import org.openobservatory.ooniprobe.utils.OoniWebViewClient;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Locale;
 
 public class ResultFragment extends Fragment {
     private ResultActivity mActivity;
@@ -65,6 +66,8 @@ public class ResultFragment extends Fragment {
             WebView wv = (WebView) v.findViewById(R.id.webview);
             wv.setWebViewClient(new OoniWebViewClient(mPbar));
             wv.getSettings().setJavaScriptEnabled(true);
+            //TODO bug, I send userLocale = it and it doesnt work
+            wv.addJavascriptInterface(new JSONUtils.InjectedJSON(Locale.getDefault().getLanguage()), "userLocale");
             wv.addJavascriptInterface(new JSONUtils.InjectedJSON(jsonLine), "MeasurementJSON");
             wv.loadUrl("file:///android_asset/webui/index.html");
         } catch (IOException e) {
