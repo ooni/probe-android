@@ -1,5 +1,7 @@
 ![ooniprobe android](assets/title.png)
 
+[![Slack Channel](https://slack.openobservatory.org/badge.svg)](https://slack.openobservatory.org/)
+
 This is the android version of [ooniprobe](https://ooni.torproject.org/).
 
 Download it on the [Play Store](https://play.google.com/store/apps/details?id=org.openobservatory.ooniprobe).
