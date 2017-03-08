@@ -5,12 +5,12 @@
     <string name="past_tests">Tests antérieurs</string>
     <string name="settings">Paramètres</string>
     <string name="about">À propos</string>
-    <string name="dns_injection">Injection DNS</string>
+    <string name="dns_injection">DNS Injection</string>
     <string name="tcp_connect">TCP Connect</string>
-    <string name="http_invalid_request_line">HTTP Ligne de requête invalide</string>
-    <string name="http_header_field_manipulation">HTTP Manipulation du champ d\'en-tête</string>
-    <string name="web_connectivity">Connectivité Web</string>
-    <string name="ndt_test">Test de vitesse NDT</string>
+    <string name="http_invalid_request_line">HTTP Invalid Request Line</string>
+    <string name="http_header_field_manipulation">HTTP Header Field Manipulation</string>
+    <string name="web_connectivity">Web Connectivity</string>
+    <string name="ndt_test">NDT Speed Test</string>
     <string name="web_connectivity_desc">Vérifier si des sites Web sont bloqués</string>
     <string name="http_invalid_request_line_desc">Trouver des dispositifs intermédiaires</string>
     <string name="ndt_test_desc">Mesurer la vitesse et les performances du réseau</string>
