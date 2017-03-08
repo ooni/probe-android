@@ -80,6 +80,9 @@
     <string name="view_data_policy">Pulse aquí para ver nuestra \'Política de datos\'.</string>
     <string name="test_name_finished">Finalizado. Vaya a \'Tests anteriores\' para ver los resultados.</string>
     <string name="open_url_alert">¿Quiere abrir la siguiente URL?</string>
+    <string name="max_runtime_low">El tiempo de ejecución máximo que ha introducido es demasiado bajo, configurando como predeterminado.</string>
+    <string name="clear_all_tests">Eliminar todos los resultados de los tests</string>
+    <string name="past_tests_empty">Los resultados de los tests pasados aparecerán aquí una vez que los tests hayan terminado de ejecutarse</string>
     <string name="drawer_open">Abrir panel lateral de navegación</string>
     <string name="drawer_close">Cerrar panel lateral de navegación</string>
 </resources>

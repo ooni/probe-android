@@ -81,6 +81,9 @@ Attenzione: NDT è un test di prestazione eseguito su server di terze parti gest
     <string name="view_data_policy">Tappa qui per le nostre Politiche sui Dati</string>
     <string name="test_name_finished">Concluso. Vai a Test Passati per vedere i risultati</string>
     <string name="open_url_alert">Vuoi aprire il seguente indirizzo internet?</string>
+    <string name="max_runtime_low">Il tempo di esecuzione massimo che avete inserito è troppo basso, useremo il default.</string>
+    <string name="clear_all_tests">Cancella tutti i risultati dei test</string>
+    <string name="past_tests_empty">I risultati dei test passati appariranno qui quando il test ha finito di eseguire</string>
     <string name="drawer_open">Apri il pannello di navigazione</string>
     <string name="drawer_close">Chiudi il pannello di navigazione</string>
 </resources>

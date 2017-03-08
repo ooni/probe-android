@@ -81,8 +81,8 @@
     <string name="test_name_finished">finished, go to Past Tests to see the results</string>
     <string name="open_url_alert">Do you want to open the following URL?</string>
     <string name="max_runtime_low">The max runtime you have entered is too low, setting to default.</string>
-    <string name="clear_all_tests">Clear all tests</string>
-    <string name="past_tests_empty">Past tests restults will appear here once the tests have finished running</string>
+    <string name="clear_all_tests">Delete all test results</string>
+    <string name="past_tests_empty">Past test results will appear here once the tests have finished running</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
 </resources>
