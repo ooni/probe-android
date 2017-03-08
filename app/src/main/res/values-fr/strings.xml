@@ -81,7 +81,7 @@
     <string name="test_name_finished">Terminé. Aller aux tests antérieurs pour visualiser les résultats</string>
     <string name="open_url_alert">Souhaitez-vous ouvrir l\'URL suivante ?</string>
     <string name="max_runtime_low">La durée que vous avez entrée est trop courte; réglage par défaut activé.</string>
-    <string name="clear_all_tests">Supprimer tous les résultats de test</string>
+    <string name="clear_all_tests_alert">Voulez-vous supprimer tous les résultats de test?</string>
     <string name="past_tests_empty">Les résultats des précédents tests apparaîtront une fois que les tests se seront exécutés</string>
     <string name="drawer_open">Ouvrir le tiroir de navigation</string>
     <string name="drawer_close">Fermer le tiroir de navigation</string>

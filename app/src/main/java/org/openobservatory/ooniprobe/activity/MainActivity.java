@@ -5,6 +5,7 @@
 package org.openobservatory.ooniprobe.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -16,6 +17,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -217,11 +219,25 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()) {
             case R.id.menu_remove_all_tests:
-                TestStorage.removeAllTests(this);
-                PastTestsFragment pastTestsFragment = (PastTestsFragment)getSupportFragmentManager().findFragmentByTag("org.openobservatory.ooniprobe.fragment.PastTestsFragment");
-                if (pastTestsFragment != null && pastTestsFragment.isVisible()) {
-                    pastTestsFragment.updateList();
-                }
+                new AlertDialog.Builder(this)
+                        .setMessage(getString(R.string.clear_all_tests_alert))
+                        .setPositiveButton(getString(R.string.ok),
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        TestStorage.removeAllTests(MainActivity.this);
+                                        PastTestsFragment pastTestsFragment = (PastTestsFragment)getSupportFragmentManager().findFragmentByTag("org.openobservatory.ooniprobe.fragment.PastTestsFragment");
+                                        if (pastTestsFragment != null && pastTestsFragment.isVisible()) {
+                                            pastTestsFragment.updateList();
+                                        }
+                                    }
+                                })
+                        .setNegativeButton(getString(R.string.cancel),
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                })
+                        .show();
                 return true;
             default:
                 return mDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
