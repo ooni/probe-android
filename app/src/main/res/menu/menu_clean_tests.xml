@@ -6,6 +6,6 @@
         android:orderInCategory="100"
         app:showAsAction="always"
         android:icon="@drawable/trash"
-        android:title="@string/clear_all_tests" />
+        android:title="@string/clear_all_tests_alert" />
 </menu>
 
