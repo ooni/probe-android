@@ -17,7 +17,7 @@
     <string name="http_invalid_request_line_longdesc">Questo test prova a rilevare la presenza di componenti della rete ("middle box") che potrebbero essere responsabili di censura e/o sorveglianza.</string>
     <string name="web_connectivity_longdesc">Questo test verifica se l\'accesso ai siti web è bloccato tramite manomissione DNS, blocchi su base TCP/IP, o da proxy HTTP trasparenti.\\n\\nOgni volta che esegui il test di Connettività web testi siti web diversi.</string>
     <string name="ndt_test_longdesc">Questo test misura la velocità e le prestazioni della vostra rete.\n\n
-        Attenzione: NDT è un test di prestazione eseguito su server di terze parti gestiti da Measurement Lab (M-Lab). Il test di M-Lab NDT richiede che venga raccolto e pubblicato il vostro indirizzo IP per finalità di ricerca.</string>
+Attenzione: NDT è un test di prestazione eseguito su server di terze parti gestiti da Measurement Lab (M-Lab). Il test di M-Lab NDT richiede che venga raccolto e pubblicato il vostro indirizzo IP per finalità di ricerca.</string>
     <string name="running_tests">Test in esecuzione</string>
     <string name="finished_tests">Test conclusi</string>
     <string name="collector_address">Indirizzo Collettore</string>
@@ -30,6 +30,7 @@
     <string name="get_started">Pronti per iniziare?</string>
     <string name="what_is_ooniprobe">Cos\'è ooniprobe?</string>
     <string name="learn_more">Piú informazioni</string>
+    <string name="risks_text_1">ooniprobe è un software gratuito ed open source che permette di analizzare la presenza di censura internet sulla tua rete!</string>
     <string name="risks_text_2">Nell\'eseguire questa app, puoi controllare se e come i siti web sono bloccati, e se censura e/o sistemi di sorveglianza sono presenti nella tua rete.</string>
     <string name="risks_text_3">Puoi utilizzare questa app anche per misurare la velocità e la performance della tua rete.</string>
     <string name="risks_text_4">I dati collezionati da questa app possono essere utilizzati come prove concrete di eventi di censura</string>
