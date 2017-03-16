@@ -224,7 +224,7 @@ public class MainActivity extends AppCompatActivity  implements Observer {
                         .setPositiveButton(getString(R.string.ok),
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
-                                        TestStorage.removeAllTests(MainActivity.this);
+                                        TestStorage.removeAllTests(MainActivity.this, MainActivity.this);
                                         PastTestsFragment pastTestsFragment = (PastTestsFragment)getSupportFragmentManager().findFragmentByTag("org.openobservatory.ooniprobe.fragment.PastTestsFragment");
                                         if (pastTestsFragment != null && pastTestsFragment.isVisible()) {
                                             pastTestsFragment.updateList();

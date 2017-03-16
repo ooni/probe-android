@@ -198,21 +198,32 @@ public class TestStorage {
         return settings.getBoolean(NEW_TESTS, false);
     }
 
-    public static void removeAllTests(Context context) {
-        List tests = loadTests(context);
-        if (tests != null){
-            for(int i = tests.size()-1; i >= 0; i--) {
-                NetworkMeasurement n = (NetworkMeasurement)tests.get(i);
-                File jsonFile = new File(context.getFilesDir(), n.json_file);
-                File logFile = new File(context.getFilesDir(), n.log_file);
-                jsonFile.delete();
-                logFile.delete();
-                System.out.println("remove "+ i + " jsonFile " + jsonFile);
-                tests.remove(i);
+    public static void removeAllTests(MainActivity activity, Context context) {
+        List toRemove = loadTestsReverse(activity);
+        List test_ids = new ArrayList();
+        if (toRemove != null){
+            for(int i = 0; i < toRemove.size(); i++) {
+                NetworkMeasurement n = (NetworkMeasurement)toRemove.get(i);
+                test_ids.add(n.test_id);
             }
         }
-        storeTests(context, tests);
-        resetNewTests(context);
+        List tests = loadTests(context);
+        if (tests != null && test_ids.size() > 0){
+            for(int i = tests.size()-1; i >= 0; i--) {
+                NetworkMeasurement n = (NetworkMeasurement)tests.get(i);
+                if (test_ids.contains(n.test_id)) {
+                    File jsonFile = new File(context.getFilesDir(), n.json_file);
+                    File logFile = new File(context.getFilesDir(), n.log_file);
+                    jsonFile.delete();
+                    logFile.delete();
+                    //System.out.println("remove "+ i + " jsonFile " + jsonFile);
+                    tests.remove(i);
+                }
+            }
+            storeTests(context, tests);
+            resetNewTests(context);
+            activity.updateActionBar();
+        }
     }
 
     public static void removeUnusedFiles(Context context) {
