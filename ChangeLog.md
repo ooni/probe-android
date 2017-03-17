@@ -1,4 +1,4 @@
-# ooniprobe-ios 1.1.3 [2017-03-08]
+# ooniprobe-ios 1.1.3 [2017-03-17]
 
 New Languages:
 
