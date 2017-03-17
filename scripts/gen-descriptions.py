@@ -8,9 +8,6 @@ short_description_tmpl = u"{shortdescription}"
 full_description_tmpl = u"""
 {intro}
 {intro2}
-{intro-bullet-1}
-{intro-bullet-2}
-{intro-bullet-3}
 
 {intro3}
 {intro4}
