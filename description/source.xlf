@@ -14,56 +14,46 @@
         <note from="developer">This is limited by Google to 80 characters</note>
       </trans-unit>
       <trans-unit id="intro">
-        <source>Interested in collecting evidence of Internet censorship? Curious about the speed and performance of the network that you are using?
-        </source>
+        <source>Collect evidence of Internet censorship. Measure the speed and performance of your network. Play an active role in increasing transparency of information controls around the world.</source>
       </trans-unit>
       <trans-unit id="intro2">
-        <source>By running the tests in this app, you will examine the following:</source>
-      </trans-unit>
-      <trans-unit id="intro-bullet-1">
-        <source>• Blocking of websites</source>
-      </trans-unit>
-      <trans-unit id="intro-bullet-2">
-        <source>• Presence of systems that could be responsible for censorship and/or surveillance</source>
-      </trans-unit>
-      <trans-unit id="intro-bullet-3">
-        <source>• Speed and performance of your network</source>
+        <source>By running ooniprobe, you will examine the blocking of websites, your network's speed and performance, and whether systems that could be responsible for censorship and surveillance are in your network.</source>
       </trans-unit>
       <trans-unit id="intro3">
         <source>These tests have been developed by the Open Observatory of Network Interference (OONI), a free software project (under The Tor Project) that aims to uncover Internet censorship around the world.</source>
       </trans-unit>
       <trans-unit id="intro4">
-        <source>Since 2012, OONI has collected millions of network measurements across more than 190 countries, shedding light on multiple cases of network interference. By running these tests, you will help increase transparency around Internet censorship and network interference around the world.</source>
+        <source>Since 2012, OONI has collected millions of network measurements across more than 190 countries, shedding light on multiple cases of network interference. By running ooniprobe, you will help increase transparency of Internet censorship around the world.</source>
       </trans-unit>
       <trans-unit id="evidence-title">
         <source>Collecting evidence of internet censorship</source>
       </trans-unit>
       <trans-unit id="evidence-description">
-        <source>OONI's web connectivity test is designed to examine whether websites are blocked and if so, how. This test, in particular, attempts to determine whether access to sites is blocked through DNS tampering, TCP/IP blocking, or by a transparent HTTP proxy. By knowing how access to sites is interfered with, you can more easily evaluate how to circumvent that specific type of censorship. As OONI is committed to transparency through the publication of all network measurement data, you can use it as evidence of any censorship events that you come across.</source>
+        <source>OONI's Web Connectivity test is designed to examine whether access to sites is blocked through DNS tampering, TCP/IP blocking, or by a transparent HTTP proxy. By running this test, you will collect data that can serve as evidence of internet censorship, and you will be provided with circumvention tips.</source>
       </trans-unit>
       <trans-unit id="systems-title">
         <source>Detecting systems responsible for censorship and surveillance</source>
       </trans-unit>
       <trans-unit id="systems-description">
-        <source>Various types of proxy technologies are used in networks for implementing censorship, surveillance, and traffic manipulation. OONI's HTTP invalid request line test is designed to uncover the presence of such systems within tested networks. However, it's important to point out that not all systems that you might find are necessarily responsible for censorship and/or surveillance! Many proxy technologies, for example, are used in networks for caching purposes.</source>
+        <source>OONI's HTTP Invalid Request Line test is designed to uncover the presence of systems that could be responsible for censorship and surveillance.</source>
       </trans-unit>
       <trans-unit id="speed-title">
         <source>Measuring the speed and performance of your network</source>
       </trans-unit>
       <trans-unit id="speed-description">
-        <source>Sometimes the network that we are using doesn't work as well as we'd like it to. OONI's implementation of the Network Diagnostic Test (NDT) attempts to measure the speed of your network by connecting to mLab servers near you and by subsequently uploading and downloading random data. In doing so, NDT collects low level TCP/IP information that can help characterize the speed and performance of your network. Such information can also be useful in examining cases of throttling.</source>
+        <source>OONI's implementation of the Network Diagnostic Test (NDT) measures the speed of your network by connecting to mLab servers near you and by collecting low level TCP/IP information that can help characterize the speed and performance of your network.</source>
       </trans-unit>
       <trans-unit id="opendata-title">
         <source>Open data</source>
       </trans-unit>
       <trans-unit id="opendata-description">
-        <source>OONI publishes all network measurement data that it collects and processes because open data allows third parties to conduct independent studies, to verify OONI findings and/or to answer other research questions. Such data also helps increase transparency around Internet censorship and various forms of network interference. All data is published on OONI Explorer: https://explorer.ooni.torproject.org/</source>
+        <source>OONI publishes all network measurement data that it collects because open data allows third parties to conduct independent studies, verify OONI findings and/or to answer other research questions. Such data also helps increase transparency of Internet censorship around the world. All data is published on OONI Explorer: https://explorer.ooni.torproject.org/</source>
       </trans-unit>
       <trans-unit id="freesoftware-title">
         <source>Free software</source>
       </trans-unit>
       <trans-unit id="freesoftware-description">
-        <source>All OONI tests, as well as its NDT implementation, are based on free and open source software. You can find the source code through the following link: https://github.com/thetorproject/ooniprobe-ios</source>
+        <source>All OONI tests, as well as its NDT implementation, are based on free and open source software. You can find the source code through the following link: https://github.com/thetorproject/ooniprobe-android</source>
       </trans-unit>
 
       <trans-unit id="social-links">
