@@ -26,10 +26,10 @@
         <source>Since 2012, OONI has collected millions of network measurements across more than 190 countries, shedding light on multiple cases of network interference. By running ooniprobe, you will help increase transparency of Internet censorship around the world.</source>
       </trans-unit>
       <trans-unit id="evidence-title">
-        <source>Collecting evidence of internet censorship</source>
+        <source>Collecting evidence of Internet censorship</source>
       </trans-unit>
       <trans-unit id="evidence-description">
-        <source>OONI's Web Connectivity test is designed to examine whether access to sites is blocked through DNS tampering, TCP/IP blocking, or by a transparent HTTP proxy. By running this test, you will collect data that can serve as evidence of internet censorship, and you will be provided with circumvention tips.</source>
+        <source>OONI's Web Connectivity test is designed to examine whether access to sites is blocked through DNS tampering, TCP/IP blocking, or by a transparent HTTP proxy. By running this test, you will collect data that can serve as evidence of Internet censorship, and you will be provided with circumvention tips.</source>
       </trans-unit>
       <trans-unit id="systems-title">
         <source>Detecting systems responsible for censorship and surveillance</source>
@@ -65,10 +65,10 @@
       </trans-unit>
 
       <trans-unit id="screenshot1">
-        <source>Detect internet censorship and test your network's speed and performance</source>
+        <source>Detect Internet censorship and test your network's speed and performance</source>
       </trans-unit>
       <trans-unit id="screenshot2">
-        <source>Undercover evidence of internet censorship and lear how to circumvent it</source>
+        <source>Undercover evidence of Internet censorship and learn how to circumvent it</source>
       </trans-unit>
       <trans-unit id="screenshot3">
         <source>Run a sophisticated network speed and diagnostics test</source>
@@ -80,7 +80,7 @@
         <source>Testing your network is fun with a friendly octopus!</source>
       </trans-unit>
       <trans-unit id="feature-graphic">
-        <source>The Open Observatory og Network Interference is a global observation network for detecting censorship, surveillance and treffic manipulation on the internet.</source>
+        <source>The Open Observatory of Network Interference is a global observation network for detecting censorship, surveillance and treffic manipulation on the Internet.</source>
       </trans-unit>
       <trans-unit id="keywords">
         <source>network,speedtest,measurement,net,wifi,networking,scan,bandwidth,bench,dns,mobile,ooni,research,tool</source>
