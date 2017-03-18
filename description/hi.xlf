@@ -1,0 +1,115 @@
+<?xml version="1.0" ?><xliff version="1.2">
+  <file datatype="plaintext" original="source.xlf" source-language="en" target-language="hi">
+    <header>
+      <note from="developer">Google places strick character limits on the various text fields in Google Play. The title is 30 characters, the short description is 80 characters, and the rest of the strings, which all go together in the description, are limited to 4000 characters.</note>
+    </header>
+    <body>
+      <trans-unit id="title" maxwidth="30" size-unit="char">
+        <source>ooniprobe</source>
+        <target>यूनीप्रोबे </target>
+        <note from="developer">This is limited by Google to 30 characters</note>
+      </trans-unit>
+      <trans-unit id="shortdescription" maxwidth="80" size-unit="char">
+        <source>Measure Internet Censorship, Speed &amp; Performance</source>
+        <target>इंटरनेट सेंसरशिप, गति और प्रदर्शन को मापें</target>
+        <note from="developer">This is limited by Google to 80 characters</note>
+      </trans-unit>
+      <trans-unit id="intro">
+        <source>Collect evidence of Internet censorship. Measure the speed and performance of your network. Play an active role in increasing transparency of information controls around the world.</source>
+        <target>इंटरनेट सेंसरशिप के सबूत एकत्रित करें अपने नेटवर्क की गति और प्रदर्शन को मापें। दुनिया भर में सूचना नियंत्रण की पारदर्शिता बढ़ाने में एक सक्रिय भूमिका निभाएं।</target>
+      </trans-unit>
+      <trans-unit id="intro2">
+        <source>By running ooniprobe, you will examine the blocking of websites, your network's speed and performance, and whether systems that could be responsible for censorship and surveillance are in your network.</source>
+        <target>यूनीप्रोबे  चलाने के द्वारा, आप वेबसाइटों के अवरुद्ध, आपके नेटवर्क की गति और प्रदर्शन की जांच करेंगे, और क्या सेंसरशिप और निगरानी के लिए ज़िम्मेदार सिस्टम आपके नेटवर्क में हैं या नहीं।</target>
+      </trans-unit>
+      <trans-unit id="intro3">
+        <source>These tests have been developed by the Open Observatory of Network Interference (OONI), a free software project (under The Tor Project) that aims to uncover Internet censorship around the world.</source>
+        <target>इन परीक्षणों को ओपन वेधशाला नेटवर्क इंटरफेरेशन (ऊनी) द्वारा विकसित किया गया है, जो एक निशुल्क सॉफ्टवेयर प्रोजेक्ट है (टॉर प्रोजेक्ट के तहत) जिसका उद्देश्य दुनिया भर में इंटरनेट सेंसरशिप को उजागर करना है।</target>
+      </trans-unit>
+      <trans-unit id="intro4">
+        <source>Since 2012, OONI has collected millions of network measurements across more than 190 countries, shedding light on multiple cases of network interference. By running ooniprobe, you will help increase transparency of Internet censorship around the world.</source>
+        <target>2012 के बाद से, ऊनी  ने 190 से अधिक देशों में लाखों नेटवर्क माप एकत्र किए हैं, जो नेटवर्क के हस्तक्षेप के कई मामलों पर प्रकाश डाला जाता है। यूनीप्रोबे चलकर, आप दुनिया भर में इंटरनेट सेंसरशिप की पारदर्शिता को बढ़ाने में मदद करेंगे।</target>
+      </trans-unit>
+      <trans-unit id="evidence-title">
+        <source>Collecting evidence of Internet censorship</source>
+        <target>इंटरनेट सेंसरशिप के सबूत इकट्ठा</target>
+      </trans-unit>
+      <trans-unit id="evidence-description">
+        <source>OONI's Web Connectivity test is designed to examine whether access to sites is blocked through DNS tampering, TCP/IP blocking, or by a transparent HTTP proxy. By running this test, you will collect data that can serve as evidence of Internet censorship, and you will be provided with circumvention tips.</source>
+        <target>ऊनी  के वेब कनेक्टिविटी टेस्ट को यह देखने के लिए डिज़ाइन किया गया है कि क्या साइटों तक पहुंच DNS छेड़छाड़, टीसीपी / आईपी अवरोधन, या पारदर्शी HTTP प्रॉक्सी द्वारा अवरुद्ध है या नहीं। इस परीक्षा को चलाने के द्वारा, आप डेटा एकत्र करेंगे जो इंटरनेट सेंसरशिप के साक्ष्य के रूप में काम कर सकता है, और आप को छेड़छाड़ की नोक के साथ प्रदान किया जाएगा</target>
+      </trans-unit>
+      <trans-unit id="systems-title">
+        <source>Detecting systems responsible for censorship and surveillance</source>
+        <target>सेंसरशिप और निगरानी के लिए जिम्मेदार सिस्टम का पता लगा रहा है</target>
+      </trans-unit>
+      <trans-unit id="systems-description">
+        <source>OONI's HTTP Invalid Request Line test is designed to uncover the presence of systems that could be responsible for censorship and surveillance.</source>
+        <target>ऊनी  के HTTP अमान्य अनुरोध पंक्ति परीक्षा प्रणाली की उपस्थिति को उजागर करने के लिए डिज़ाइन की गई है जो सेंसरशिप और निगरानी के लिए जिम्मेदार हो सकती है।</target>
+      </trans-unit>
+      <trans-unit id="speed-title">
+        <source>Measuring the speed and performance of your network</source>
+        <target>आपके नेटवर्क की गति और प्रदर्शन को मापना</target>
+      </trans-unit>
+      <trans-unit id="speed-description">
+        <source>OONI's implementation of the Network Diagnostic Test (NDT) measures the speed of your network by connecting to mLab servers near you and by collecting low level TCP/IP information that can help characterize the speed and performance of your network.</source>
+        <target>ऊनी  के नेटवर्क डायग्नोस्टिक टेस्ट (एनडीटी) के कार्यान्वयन ने आपके पास एमएलबी सर्वर से कनेक्ट करके और निम्न स्तर की टीसीपी / आईपी जानकारी इकट्ठा करके आपके नेटवर्क की गति को मापता है जो आपके नेटवर्क की गति और प्रदर्शन को चिह्नित करने में मदद कर सकता है।</target>
+      </trans-unit>
+      <trans-unit id="opendata-title">
+        <source>Open data</source>
+        <target>मुक्त डेटा</target>
+      </trans-unit>
+      <trans-unit id="opendata-description">
+        <source>OONI publishes all network measurement data that it collects because open data allows third parties to conduct independent studies, verify OONI findings and/or to answer other research questions. Such data also helps increase transparency of Internet censorship around the world. All data is published on OONI Explorer: https://explorer.ooni.torproject.org/</source>
+        <target>ऊनी सभी नेटवर्क मापन डेटा प्रकाशित करता है जो इसे एकत्र करता है क्योंकि खुले डेटा तृतीय पक्षों को स्वतंत्र अध्ययन करने, ओओआई निष्कर्ष सत्यापित करने और / या अन्य शोध प्रश्नों के उत्तर देने की अनुमति देता है। इस तरह के आंकड़े दुनिया भर में इंटरनेट सेंसरशिप की पारदर्शिता को बढ़ाने में मदद करते हैं। ओनोआई एक्सप्लोरर पर सभी डेटा प्रकाशित किया गया है: https://explorer.ooni.torproject.org/</target>
+      </trans-unit>
+      <trans-unit id="freesoftware-title">
+        <source>Free software</source>
+        <target>मुफ्त सॉफ्टवेयर</target>
+      </trans-unit>
+      <trans-unit id="freesoftware-description">
+        <source>All OONI tests, as well as its NDT implementation, are based on free and open source software. You can find the source code through the following link: https://github.com/thetorproject/ooniprobe-android</source>
+        <target>सभी ऊनी  परीक्षण, साथ ही इसके एनडीटी कार्यान्वयन, फ्री और ओपन सोर्स सॉफ़्टवेयर पर आधारित हैं। आप निम्न लिंक के माध्यम से स्रोत कोड पा सकते हैं:
+https://github.com/thetorproject/ooniprobe-android</target>
+      </trans-unit>
+
+      <trans-unit id="social-links">
+        <source>Follow us on Twitter: https://twitter.com/OpenObservatory</source>
+        <target>ट्विटर पर हमें का पालन करें: https://twitter.com/OpenObservatory</target>
+      </trans-unit>
+
+      <trans-unit id="disclaimer">
+        <source>Please note: Running ooniprobe might be against the terms of service of your ISP or legally questionable in your country. By running ooniprobe you will connect to web services which may be banned, and use web censorship circumvention methods such as Tor. The OONI project will publish data submitted by probes, possibly including your IP address or other identifying information. In addition, your use of ooniprobe will be clear to anyone who has access to your computer, and to anyone who can monitor your Internet connection (such as your employer, ISP or government).</source>
+        <target>कृपया ध्यान दें: यूनीप्रोबे चलाना आपके आईएसपी की सेवा की शर्तों या आपके देश में कानूनी तौर पर संदिग्ध हो सकता है। यूनीप्रोबे चलकर आप उन वेब सेवाओं से कनेक्ट हो जाएंगे जिन्हें प्रतिबंधित किया जा सकता है, और वेब सेंसरशिप रिसाव विधियों जैसे टॉर का उपयोग कर सकते हैं ऊनी  प्रोजेक्ट जांच द्वारा प्रस्तुत आंकड़ों को प्रकाशित करेगा, संभवत: आपके आईपी पते या अन्य पहचान वाली जानकारी सहित इसके अलावा, ओयोनप्रोफ का आपका उपयोग किसी भी व्यक्ति को स्पष्ट होगा जो आपके कंप्यूटर से एक्सेस कर रहे हैं, और जो आपके इंटरनेट कनेक्शन की निगरानी कर सकता है (जैसे कि आपका नियोक्ता, आईएसपी या सरकार)।</target>
+      </trans-unit>
+
+      <trans-unit id="screenshot1">
+        <source>Detect Internet censorship and test your network's speed and performance</source>
+        <target>इंटरनेट सेंसरशिप का पता लगाएं और अपने नेटवर्क की गति और प्रदर्शन का परीक्षण करें</target>
+      </trans-unit>
+      <trans-unit id="screenshot2">
+        <source>Undercover evidence of Internet censorship and learn how to circumvent it</source>
+        <target>इंटरनेट सेंसरशिप के मुखौटे के साक्ष्य और यह कैसे निबटना सीखें</target>
+      </trans-unit>
+      <trans-unit id="screenshot3">
+        <source>Run a sophisticated network speed and diagnostics test</source>
+        <target>एक परिष्कृत नेटवर्क की गति और निदान परीक्षण चलाएं</target>
+      </trans-unit>
+      <trans-unit id="screenshot4">
+        <source>Easily discover which websites are blocked on your network</source>
+        <target>आसानी से पता लगाएं कि आपके नेटवर्क पर कौन सी वेबसाइटें अवरोधित हैं</target>
+      </trans-unit>
+      <trans-unit id="screenshot5">
+        <source>Testing your network is fun with a friendly octopus!</source>
+        <target>अपने नेटवर्क का परीक्षण करना मैत्रीपूर्ण ऑक्टोपस के साथ मज़ेदार है!</target>
+      </trans-unit>
+      <trans-unit id="feature-graphic">
+        <source>The Open Observatory of Network Interference is a global observation network for detecting censorship, surveillance and treffic manipulation on the Internet.</source>
+        <target>नेटवर्क के हस्तक्षेप का ओपन वेधशाला इंटरनेट पर सेंसरशिप, निगरानी और ट्रैफ़िक हेरफेर का पता लगाने के लिए एक वैश्विक अवलोकन नेटवर्क है।</target>
+      </trans-unit>
+      <trans-unit id="keywords">
+        <source>network,speedtest,measurement,net,wifi,networking,scan,bandwidth,bench,dns,mobile,ooni,research,tool</source>
+        <target>नेटवर्क, स्पीड टेस्ट, मापन, नेट, वाईफाई, नेटवर्किंग, स्कैन, बैंडविड्थ, बेंच, डीएनएस, मोबाइल, ऊनी, रिसर्च, टूल</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
