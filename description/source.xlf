@@ -80,7 +80,7 @@
         <source>Testing your network is fun with a friendly octopus!</source>
       </trans-unit>
       <trans-unit id="feature-graphic">
-        <source>The Open Observatory of Network Interference is a global observation network for detecting censorship, surveillance and treffic manipulation on the Internet.</source>
+        <source>The Open Observatory of Network Interference is a global observation network for detecting censorship, surveillance and traffic manipulation on the Internet.</source>
       </trans-unit>
       <trans-unit id="keywords">
         <source>network,speedtest,measurement,net,wifi,networking,scan,bandwidth,bench,dns,mobile,ooni,research,tool</source>
