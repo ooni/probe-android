@@ -7,18 +7,18 @@ import org.json.JSONObject;
 import org.openobservatory.ooniprobe.R;
 
 public class NetworkMeasurement {
-    public final String testName;
+    public String testName = "";
     public boolean entry = false;
-    public final long test_id;
+    public long test_id = 0;
     public int progress = 0;
 
     public final String json_file;
     public final String log_file;
-    public Boolean running;
-    public Boolean viewed;
-    public int anomaly;
+    public boolean running = false;
+    public boolean viewed = false;
+    public int anomaly = 0;
 
-    public NetworkMeasurement(String name){
+    public NetworkMeasurement(String name) {
         this.testName = name;
         this.test_id = System.currentTimeMillis();
         this.log_file = "/test-"+ test_id +".log";
