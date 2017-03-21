@@ -30,6 +30,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -272,18 +273,24 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     }
 
     public void checkResources() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (!preferences.getBoolean("resources_copied", false)) {
-            copyResources(R.raw.hosts, "hosts.txt");
-            copyResources(R.raw.geoipasnum, "GeoIPASNum.dat");
-            copyResources(R.raw.geoip, "GeoIP.dat");
-            copyResources(R.raw.global, "global.txt");
-            PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("resources_copied", true).apply();
-        }
+        copyResources(R.raw.hosts, "hosts.txt");
+        copyResources(R.raw.geoipasnum, "GeoIPASNum.dat");
+        copyResources(R.raw.geoip, "GeoIP.dat");
+        copyResources(R.raw.global, "global.txt");
     }
 
     private void copyResources(int id, String filename) {
-        Log.v(TAG, "copyResources...");
+        boolean exists = false;
+        try {
+            openFileInput(filename);
+            exists = true;
+        } catch (FileNotFoundException exc) {
+            /* FALLTHROUGH */
+        }
+        if (exists) {
+            return;
+        }
+        Log.v(TAG, "copyResources: " + filename + " ...");
         try {
             InputStream in = getResources().openRawResource(id);
             FileOutputStream out = openFileOutput(filename, 0);
@@ -293,9 +300,9 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         } catch (java.io.IOException err) {
             // XXX suppress exception
             // XXX not closing in and out
-            Log.e(TAG, "copyResources: error: " + err);
+            Log.e(TAG, "copyResources: error: " + err + " for: " + filename);
         }
-        Log.v(TAG, "copyResources... done");
+        Log.v(TAG, "copyResources: " + filename + " ... done");
     }
 
     public void startInformedConsentActivity() {
