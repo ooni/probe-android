@@ -1,11 +1,11 @@
 [main]
 host = https://www.transifex.com
 
-#[ooniprobe.stringsxml]
-#file_filter = res/values-<lang>/strings.xml
-#source_file = res/values/strings.xml
-#source_lang = en
-#type = ANDROID
+[ooniprobe.stringsxml]
+file_filter = app/src/main/res/values-<lang>/strings.xml
+source_file = app/src/main/res/values/strings.xml
+source_lang = en
+type = ANDROID
 
 [ooniprobe.description]
 file_filter = description/<lang>.xlf

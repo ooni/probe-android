@@ -1,8 +1,8 @@
-# ooniprobe-ios 1.1.3 [2017-03-17]
+# ooniprobe-ios 1.1.3 [2017-03-25]
 
 New Languages:
 
-* Added multilingual support and Spanish, French and Italian translations
+* Added multilingual support and Spanish, French, Italian and Hindi translations
 
 Bugfixes:
 

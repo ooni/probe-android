@@ -51,8 +51,8 @@
         <target>आपके नेटवर्क की गति और प्रदर्शन को मापना</target>
       </trans-unit>
       <trans-unit id="speed-description">
-        <source>OONI's implementation of the Network Diagnostic Test (NDT) measures the speed of your network by connecting to mLab servers near you and by collecting low level TCP/IP information that can help characterize the speed and performance of your network.</source>
-        <target>ऊनी  के नेटवर्क डायग्नोस्टिक टेस्ट (एनडीटी) के कार्यान्वयन ने आपके पास एमएलबी सर्वर से कनेक्ट करके और निम्न स्तर की टीसीपी / आईपी जानकारी इकट्ठा करके आपके नेटवर्क की गति को मापता है जो आपके नेटवर्क की गति और प्रदर्शन को चिह्नित करने में मदद कर सकता है।</target>
+        <source>OONI's implementation of the Network Diagnostic Test (NDT) measures the speed of your network by connecting to M-Lab servers near you and by collecting low level TCP/IP information that can help characterize the speed and performance of your network.</source>
+        <target>ओएनआई के नेटवर्क नैदानिक टेस्ट (एनडीटी) के कार्यान्वयन ने आपके पास एम-लैब सर्वर से कनेक्ट करके और निम्न स्तर टीसीपी इकट्ठा करके अपने नेटवर्क की गति को मापता है</target>
       </trans-unit>
       <trans-unit id="opendata-title">
         <source>Open data</source>
@@ -87,8 +87,8 @@ https://github.com/thetorproject/ooniprobe-android</target>
         <target>इंटरनेट सेंसरशिप का पता लगाएं और अपने नेटवर्क की गति और प्रदर्शन का परीक्षण करें</target>
       </trans-unit>
       <trans-unit id="screenshot2">
-        <source>Undercover evidence of Internet censorship and learn how to circumvent it</source>
-        <target>इंटरनेट सेंसरशिप के मुखौटे के साक्ष्य और यह कैसे निबटना सीखें</target>
+        <source>Uncover evidence of Internet censorship and learn how to circumvent it</source>
+        <target>इंटरनेट सेंसरशिप के साक्ष्य को उजागर करें और इसे कैसे निरोधक करना सीखें</target>
       </trans-unit>
       <trans-unit id="screenshot3">
         <source>Run a sophisticated network speed and diagnostics test</source>
@@ -103,7 +103,7 @@ https://github.com/thetorproject/ooniprobe-android</target>
         <target>अपने नेटवर्क का परीक्षण करना मैत्रीपूर्ण ऑक्टोपस के साथ मज़ेदार है!</target>
       </trans-unit>
       <trans-unit id="feature-graphic">
-        <source>The Open Observatory of Network Interference is a global observation network for detecting censorship, surveillance and treffic manipulation on the Internet.</source>
+        <source>The Open Observatory of Network Interference is a global observation network for detecting censorship, surveillance and traffic manipulation on the Internet.</source>
         <target>नेटवर्क के हस्तक्षेप का ओपन वेधशाला इंटरनेट पर सेंसरशिप, निगरानी और ट्रैफ़िक हेरफेर का पता लगाने के लिए एक वैश्विक अवलोकन नेटवर्क है।</target>
       </trans-unit>
       <trans-unit id="keywords">

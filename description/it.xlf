@@ -51,7 +51,7 @@
         <target>Misurare la velocità e le prestazioni della vostra rete</target>
       </trans-unit>
       <trans-unit id="speed-description">
-        <source>OONI's implementation of the Network Diagnostic Test (NDT) measures the speed of your network by connecting to mLab servers near you and by collecting low level TCP/IP information that can help characterize the speed and performance of your network.</source>
+        <source>OONI's implementation of the Network Diagnostic Test (NDT) measures the speed of your network by connecting to M-Lab servers near you and by collecting low level TCP/IP information that can help characterize the speed and performance of your network.</source>
         <target>La implementazione di OONI di NDT (Network Diagnostic Test), misura la velocità della vostra rete collegandosi ai server di M-Lab più vicini a voi e attraverso la raccolta di dati TCP/IP a basso livello che possono essere utili per caratterizza la velocità e le prestazioni della vostra rete.</target>
       </trans-unit>
       <trans-unit id="opendata-title">
@@ -86,7 +86,7 @@
         <target>Rileva censura internet e scopri la velocità e le prestazioni della vostra rete</target>
       </trans-unit>
       <trans-unit id="screenshot2">
-        <source>Undercover evidence of Internet censorship and learn how to circumvent it</source>
+        <source>Uncover evidence of Internet censorship and learn how to circumvent it</source>
         <target>Scoprite evidenze di censura internet e imparate ad aggirarle</target>
       </trans-unit>
       <trans-unit id="screenshot3">
@@ -102,7 +102,7 @@
         <target>Misurare la vostra rete è divertente, con un simpatico polipo!</target>
       </trans-unit>
       <trans-unit id="feature-graphic">
-        <source>The Open Observatory of Network Interference is a global observation network for detecting censorship, surveillance and treffic manipulation on the Internet.</source>
+        <source>The Open Observatory of Network Interference is a global observation network for detecting censorship, surveillance and traffic manipulation on the Internet.</source>
         <target>OONI, l'Osservatorio Aperto delle Interferenze di Rete è una rete globale di osservazione mirata a rilevare la presenza di censura internet, sorveglianza e manipolazione del traffico su internet</target>
       </trans-unit>
       <trans-unit id="keywords">

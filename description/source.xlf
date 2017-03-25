@@ -1,16 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xliff version="1.2">
+<?xml version="1.0" ?><xliff version="1.2">
   <file datatype="plaintext" original="source.xlf" source-language="en">
     <header>
       <note from="developer">Google places strick character limits on the various text fields in Google Play. The title is 30 characters, the short description is 80 characters, and the rest of the strings, which all go together in the description, are limited to 4000 characters.</note>
     </header>
     <body>
-      <trans-unit id="title" size-unit="char" maxwidth="30">
+      <trans-unit id="title" maxwidth="30" size-unit="char">
         <source>ooniprobe</source>
         <note from="developer">This is limited by Google to 30 characters</note>
       </trans-unit>
-      <trans-unit id="shortdescription" size-unit="char" maxwidth="80">
-        <source>Measure Internet Censorship, Speed &#038; Performance</source>
+      <trans-unit id="shortdescription" maxwidth="80" size-unit="char">
+        <source>Measure Internet Censorship, Speed &amp; Performance</source>
         <note from="developer">This is limited by Google to 80 characters</note>
       </trans-unit>
       <trans-unit id="intro">
@@ -41,7 +40,7 @@
         <source>Measuring the speed and performance of your network</source>
       </trans-unit>
       <trans-unit id="speed-description">
-        <source>OONI's implementation of the Network Diagnostic Test (NDT) measures the speed of your network by connecting to mLab servers near you and by collecting low level TCP/IP information that can help characterize the speed and performance of your network.</source>
+        <source>OONI's implementation of the Network Diagnostic Test (NDT) measures the speed of your network by connecting to M-Lab servers near you and by collecting low level TCP/IP information that can help characterize the speed and performance of your network.</source>
       </trans-unit>
       <trans-unit id="opendata-title">
         <source>Open data</source>
@@ -68,7 +67,7 @@
         <source>Detect Internet censorship and test your network's speed and performance</source>
       </trans-unit>
       <trans-unit id="screenshot2">
-        <source>Undercover evidence of Internet censorship and learn how to circumvent it</source>
+        <source>Uncover evidence of Internet censorship and learn how to circumvent it</source>
       </trans-unit>
       <trans-unit id="screenshot3">
         <source>Run a sophisticated network speed and diagnostics test</source>
