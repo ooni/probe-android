@@ -29,7 +29,7 @@
     <string name="get_started">Commençons !</string>
     <string name="what_is_ooniprobe">Qu\'est-ce qu\'ooniprobe ?</string>
     <string name="learn_more">En apprendre davantage</string>
-    <string name="risks_text_1">ooniprobe est un logiciel libre et à code source ouvert qui vous permet d'examiner la censure d'Internet sur votre réseau !</string>
+    <string name="risks_text_1">ooniprobe est un logiciel libre et à code source ouvert qui vous permet d\'examiner la censure d\'Internet sur votre réseau !</string>
     <string name="risks_text_2">En exécutant cette appli, vous pouvez examiner si des sites Web sont bloqués et comment ils le sont, ainsi que la présence de systèmes de censure ou de surveillance sur votre réseau.</string>
     <string name="risks_text_3">Vous pouvez aussi faire fonctionner cette appli pour mesurer la vitesse et les performances de votre réseau.</string>
     <string name="risks_text_4">Les données que vous pouvez recueillir grâce à cette appli peuvent être utilisées comme preuve de cas de censure.</string>
@@ -43,7 +43,7 @@
     <string name="laws_text_6">À notre connaissance, aucun utilisateur d\'ooniprobe n\'a dû faire face aux conséquences de l\'utilisation de notre plateforme. Cependant, de nombreux pays présentent une longue histoire en matière de ciblage et de répression des défenseurs des droits numériques, et des utilisateurs d\'ooniprobe pourraient être passibles de sévères sanctions civiles, criminelles ou extrajudiciaires.</string>
     <string name="i_understand_the_risks">Je comprends les risques.</string>
     <string name="pop_quiz">Jeu-questionnaire !</string>
-    <string name="question_1">Question 1 : quiconque surveille mon activité Internet (p. ex. FAI, gouvernement, employeur) peut-il savoir que j'utilise ooniprobe même si OONI prend des précautions pour entraver la détection ?</string>
+    <string name="question_1">Question 1 : quiconque surveille mon activité Internet (p. ex. FAI, gouvernement, employeur) peut-il savoir que j\'utilise ooniprobe même si OONI prend des précautions pour entraver la détection ?</string>
     <string name="question_2">Question 2 : mes mesures seront-elles par défaut publiées par OONI et pourraient-elles inclure des informations nominatives ?</string>
     <string name="_true">Vrai</string>
     <string name="_false">Faux</string>
