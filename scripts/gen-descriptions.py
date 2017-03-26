@@ -1,9 +1,10 @@
+# -*- coding: utf-8 -*-
 import os
 import sys
 import xml.dom.minidom as md
 
-title_tmpl = u"{title}"
-short_description_tmpl = u"{shortdescription}"
+title_tmpl = u"{title-android}"
+short_description_tmpl = u"{shortdescription-android}"
 
 full_description_tmpl = u"""
 {intro}
