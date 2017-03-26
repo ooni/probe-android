@@ -84,7 +84,7 @@ public class RunTestListAdapter extends RecyclerView.Adapter<RunTestListAdapter.
                         FragmentTransaction t = mActivity.getSupportFragmentManager().beginTransaction();
                         TestInfoFragment mFrag = new TestInfoFragment();
                         mFrag.setArguments(data);
-                        t.replace(R.id.content_frame, mFrag, "test_info");
+                        t.replace(R.id.content_frame, mFrag, mFrag.getClass().getName());
                         t.addToBackStack(null);
                         t.commit();
                     }

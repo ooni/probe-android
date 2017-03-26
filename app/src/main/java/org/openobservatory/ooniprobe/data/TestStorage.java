@@ -8,10 +8,16 @@ import com.google.gson.Gson;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 
+import java.io.File;
+import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class TestStorage {
     public static final String PREFS_NAME = "OONIPROBE_APP";
@@ -174,6 +180,10 @@ public class TestStorage {
             for(int i = 0; i < tests.size(); i++) {
                 NetworkMeasurement n = (NetworkMeasurement)tests.get(i);
                 if (n.test_id == test.test_id) {
+                    File jsonFile = new File(context.getFilesDir(), n.json_file);
+                    File logFile = new File(context.getFilesDir(), n.log_file);
+                    jsonFile.delete();
+                    logFile.delete();
                     tests.remove(i);
                     break;
                 }
@@ -188,12 +198,59 @@ public class TestStorage {
         return settings.getBoolean(NEW_TESTS, false);
     }
 
-    //NOT USED
-    public static void removeTestObject(Context context, NetworkMeasurement test) {
-        ArrayList tests = loadTests(context);
-        if (tests != null) {
-            tests.remove(test);
+    public static void removeAllTests(MainActivity activity, Context context) {
+        List toRemove = loadTestsReverse(activity);
+        List test_ids = new ArrayList();
+        if (toRemove != null){
+            for(int i = 0; i < toRemove.size(); i++) {
+                NetworkMeasurement n = (NetworkMeasurement)toRemove.get(i);
+                test_ids.add(n.test_id);
+            }
+        }
+        List tests = loadTests(context);
+        if (tests != null && test_ids.size() > 0){
+            for(int i = tests.size()-1; i >= 0; i--) {
+                NetworkMeasurement n = (NetworkMeasurement)tests.get(i);
+                if (test_ids.contains(n.test_id)) {
+                    File jsonFile = new File(context.getFilesDir(), n.json_file);
+                    File logFile = new File(context.getFilesDir(), n.log_file);
+                    jsonFile.delete();
+                    logFile.delete();
+                    //System.out.println("remove "+ i + " jsonFile " + jsonFile);
+                    tests.remove(i);
+                }
+            }
             storeTests(context, tests);
+            resetNewTests(context);
+            activity.updateActionBar();
+        }
+    }
+
+    public static void removeUnusedFiles(Context context) {
+        List tests = loadTests(context);
+        Set<File> usedFiles = new HashSet<>();
+        if (tests != null) {
+            for (int i = 0; i < tests.size(); i++) {
+                NetworkMeasurement n = (NetworkMeasurement) tests.get(i);
+                usedFiles.add(new File(context.getFilesDir(), n.json_file));
+                usedFiles.add(new File(context.getFilesDir(), n.log_file));
+            }
+        }
+
+        Set<File> allFiles = new HashSet<>(usedFiles);
+        allFiles.addAll(Arrays.asList(context.getFilesDir().listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.toLowerCase().endsWith(".json") || name.toLowerCase().endsWith(".log");
+            }
+        })));
+
+        allFiles.removeAll(usedFiles);
+
+        Iterator iter = allFiles.iterator();
+        while (iter.hasNext()) {
+            File file = (File) iter.next();
+            file.delete();
         }
     }
 }

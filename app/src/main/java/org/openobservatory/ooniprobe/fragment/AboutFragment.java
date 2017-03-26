@@ -9,7 +9,10 @@ import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import org.openobservatory.measurement_kit.Version;
+import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 
@@ -35,6 +38,13 @@ public class AboutFragment extends Fragment {
         mActivity = null;
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mActivity.setTitle(mActivity.getString(R.string.about));
+    }
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
@@ -58,7 +68,8 @@ public class AboutFragment extends Fragment {
                 startActivity(browserIntent);
             }
         });
-
+        TextView version_text = (TextView) v.findViewById(R.id.ooniprobe_version);
+        version_text.setText("ooniprobe: " + BuildConfig.VERSION_NAME + "\n" + "measurement-kit: " + Version.getVersion());
         return v;
     }
 }

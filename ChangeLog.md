@@ -1,3 +1,25 @@
+# ooniprobe-android 1.1.3 [2017-03-25]
+
+New Languages:
+
+* Added multilingual support and Spanish, French, Italian and Hindi translations
+
+Bugfixes:
+
+* Various GUI fixing
+
+* Expose app version number in app
+
+* Empty screen in "Past Tests" on init
+
+* Delete all tests button
+
+* Render failed "NDT Speed Test"
+
+measurement-kit version: 0.4.3
+
+ooniprobe-wui version: 2.2.0-rc.6
+
 # ooniprobe-android 1.1.2 [2017-02-13]
 
 Bugfixes:

@@ -120,5 +120,4 @@ public class JSONUtils {
             return jsonData;
         }
     }
-
 }
