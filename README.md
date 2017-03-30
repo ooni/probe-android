@@ -1,4 +1,4 @@
-![ooniprobe android](assets/title.png)
+[![ooniprobe android](assets/title.png)](https://ooni.torproject.org/)
 
 [![Slack Channel](https://slack.openobservatory.org/badge.svg)](https://slack.openobservatory.org/)
 
@@ -32,10 +32,10 @@ If the signature is correct, the above command will install the JNI
 libaries inside the `src/main/` folder. Specifically, the following paths
 are affected by that command:
 
-- app/src/main/jniLibs: added with Measurement Kit jniLibs compiled for
+- `app/src/main/jniLibs`: added with Measurement Kit jniLibs compiled for
   several Android architectures inside it
 
-- app/src/main/java/org/openobservatory/measurement_kit/jni/: added with Java files
+- `app/src/main/java/org/openobservatory/measurement_kit/jni/`: added with Java files
   corresponding to the jniLibs
 
 
