@@ -38,7 +38,9 @@ import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.model.OONITests;
 import org.openobservatory.ooniprobe.utils.Notifications;
 
+import java.text.NumberFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class SettingsFragment extends Fragment {
     private MainActivity mActivity;
@@ -150,23 +152,33 @@ public class SettingsFragment extends Fragment {
             }
         });
         final TextView max_runtime = (TextView) v.findViewById(R.id.max_runtimeEditText);
-        max_runtime.setText(preferences.getString("max_runtime", OONITests.MAX_RUNTIME));
+        String max_runtime_str = preferences.getString("max_runtime", OONITests.MAX_RUNTIME);
+        NumberFormat nf= NumberFormat.getInstance(Locale.getDefault());
+        max_runtime.setText(nf.format(Integer.parseInt(max_runtime_str)));
         max_runtime.setImeOptions(EditorInfo.IME_ACTION_DONE);
         max_runtime.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    if (Integer.valueOf(v.getText().toString()) < 10){
-                        SharedPreferences.Editor editor = preferences.edit();
-                        editor.putString("max_runtime", "10");
-                        editor.commit();
-                        max_runtime.setText(preferences.getString("max_runtime", OONITests.MAX_RUNTIME));
+                    int new_max_runtime = Integer.parseInt(v.getText().toString());
+                    if (new_max_runtime < 10){
+                        new_max_runtime = 10;
+                        //SharedPreferences.Editor editor = preferences.edit();
+                        //editor.putString("max_runtime", "10");
+                        //editor.commit();
                         Toast toast = Toast.makeText(mActivity, mActivity.getText(R.string.max_runtime_low), Toast.LENGTH_LONG);
                         View view = toast.getView();
                         TextView text = (TextView) view.findViewById(android.R.id.message);
                         text.setGravity(Gravity.CENTER);
                         toast.show();
                     }
+                    SharedPreferences.Editor editor = preferences.edit();
+                    NumberFormat nf = NumberFormat.getInstance(new Locale("en","EN"));
+                    editor.putString("max_runtime", String.valueOf(nf.format(new_max_runtime)));
+                    editor.commit();
+                    System.out.println("max_runtime_save " + String.valueOf(nf.format(new_max_runtime)));
+                    NumberFormat nf2 = NumberFormat.getInstance(Locale.getDefault());
+                    max_runtime.setText(nf2.format(new_max_runtime));
                 }
                 return false;
             }
@@ -182,12 +194,10 @@ public class SettingsFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("max_runtime", s.toString());
-                editor.commit();
             }
         });
 
+        //TODO handle arabic and hindi numbers
         final EditText local_notifications_timeEditText = (EditText) v.findViewById(R.id.local_notifications_timeEditText);
         local_notifications_timeEditText.setText(preferences.getString("local_notifications_time", "18:00"));
         InputMethodManager im = (InputMethodManager)mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -302,5 +312,4 @@ public class SettingsFragment extends Fragment {
         d.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         d.show();
     }
-
 }

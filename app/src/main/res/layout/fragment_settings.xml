@@ -189,7 +189,7 @@
                 android:textColor="@color/color_off_black"
                 android:textSize="12sp"
                 android:inputType="phone"
-                android:digits="1234567890"
+                android:digits="1234567890٩٨٧٦٥٤٣٢١٠"
                 android:gravity="center_vertical"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"

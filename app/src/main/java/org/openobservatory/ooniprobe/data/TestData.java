@@ -71,7 +71,7 @@ public class TestData extends Observable {
         final Boolean upload_results = preferences.getBoolean("upload_results", true);
         final String collector_address = preferences.getString("collector_address", OONITests.COLLECTOR_ADDRESS);
         final String max_runtime = preferences.getString("max_runtime", OONITests.MAX_RUNTIME);
-
+        System.out.println("max_runtime " +max_runtime);
         TestStorage.addTest(ctx, currentTest);
         runningTests.add(currentTest);
         availableTests.put(testName, false);
