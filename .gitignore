@@ -1,7 +1,5 @@
-#mk files
-measurement_kit_android-*.tar.bz2
-measurement_kit_android-*.tar.bz2.asc
-app/src/main/java/org/openobservatory/measurement_kit/
+# Place where we put the AAR file
+/libs
 
 # Built application files
 /*/build/
