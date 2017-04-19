@@ -8,12 +8,32 @@ Download it on the [Play Store](https://play.google.com/store/apps/details?id=or
 
 [![](assets/play-store-badge.png)](https://play.google.com/store/apps/details?id=org.openobservatory.ooniprobe)
 
+## Dependencies
+
+### Using gradle
+
 This application requires Android Studio. We use gradle and, as part of the
 initial gradle sync, Android studio will download all the required
 dependencies. The most important dependency is [measurement-kit](
 https://github.com/measurement-kit/measurement-kit) which is fetched
 from our [Bintray jcenter repository](
 https://bintray.com/measurement-kit/android/android-libs).
+
+### Manually fetching MK
+
+As an alternative, you can manually download a version of MK
+from our [Bintray jcenter repository](
+https://bintray.com/measurement-kit/android/android-libs) using
+the `scripts/fetch-aar.sh` script. Example usage:
+
+```
+./scripts/fetch-aar.sh 0.4.3-aar-3
+```
+
+This script will download the specified version of the AAR, verify
+its digital signature, and move it inside the `libs` folder.
+
+### Forcing a specific version of MK
 
 ## Building an apk
 
