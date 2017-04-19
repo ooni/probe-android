@@ -4,15 +4,20 @@
       <note from="developer">Google places strick character limits on the various text fields in Google Play. The title is 30 characters, the short description is 80 characters, and the rest of the strings, which all go together in the description, are limited to 4000 characters.</note>
     </header>
     <body>
-      <trans-unit id="title" maxwidth="30" size-unit="char">
+      <trans-unit id="title-android" maxwidth="30" size-unit="char">
         <source>ooniprobe</source>
         <target>ooniprobe</target>
         <note from="developer">This is limited by Google to 30 characters</note>
       </trans-unit>
-      <trans-unit id="shortdescription" maxwidth="80" size-unit="char">
+      <trans-unit id="shortdescription-android" maxwidth="80" size-unit="char">
         <source>Measure Internet Censorship, Speed &amp; Performance</source>
         <target>Mesurer la censure, la vitesse et les performances d'Internet</target>
         <note from="developer">This is limited by Google to 80 characters</note>
+      </trans-unit>
+      <trans-unit id="title-ios" maxwidth="50" size-unit="char">
+          <source>ooniprobe - Measure Internet Censorship, Speed &amp; Performance</source>
+          <target>ooniprobe - Mesurer la censure d'Internet</target>
+          <note from="developer">This is limited by Apple to 50 characters</note>
       </trans-unit>
       <trans-unit id="intro">
         <source>Collect evidence of Internet censorship. Measure the speed and performance of your network. Play an active role in increasing transparency of information controls around the world.</source>
@@ -105,7 +110,7 @@
         <source>The Open Observatory of Network Interference is a global observation network for detecting censorship, surveillance and traffic manipulation on the Internet.</source>
         <target>L'observatoire ouvert du dysfonctionnement du réseau (OONI) est un réseau mondial d'observation permettant de détecter la censure, la surveillance et la manipulation du trafic Internet.</target>
       </trans-unit>
-      <trans-unit id="keywords">
+      <trans-unit id="keywords" maxwidth="100">
         <source>network,speedtest,measurement,net,wifi,networking,scan,bandwidth,bench,dns,mobile,ooni,research,tool</source>
         <target>réseau,test de vitesse,mesure,net,wi-fi,wifi,réseautage,analyser,balayer,bande passante,test,dns,mobile,ooni,recherche,outil</target>
       </trans-unit>
