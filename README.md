@@ -8,32 +8,12 @@ Download it on the [Play Store](https://play.google.com/store/apps/details?id=or
 
 [![](assets/play-store-badge.png)](https://play.google.com/store/apps/details?id=org.openobservatory.ooniprobe)
 
-This application requires Android Studio. In any case, before opening the
-project with Android Studio, make sure you download the dependencies using
-`./get-library`. Before you can do this, you should install the
-GPG key with which binaries are signed. Binaries are digitally signed by
-Simone Basso using a PGP key with
-(`7388 77AA 6C82 9F26 A431 C5F4 80B6 9127 7733 D95B`)
-or by Lorenzo Primiterra using a PGP key with
-fingerprint (`1191 0C85 CD8C D493 8DFA  17F7 AA09 A57A ECEB 9D12`). You
-can fetch this
-key using gpg using the following command:
-
-```bash
-gpg --recv-keys 738877AA6C829F26A431C5F480B691277733D95B                       \
-  11910C85CD8CD4938DFA17F7AA09A57AECEB9D12
-```
-
-After this step, you can proceed with automatically downloading binaries
-and verifying their digital signatures using this command:
-
-```
-./get-library
-```
-
-If the signature is correct, the above command will install the AAR
-library inside the `libs/` folder. This AAR library should be automatically
-recognized by Android studio.
+This application requires Android Studio. We use gradle and, as part of the
+initial gradle sync, Android studio will download all the required
+dependencies. The most important dependency is [measurement-kit](
+https://github.com/measurement-kit/measurement-kit) which is fetched
+from our [Bintray jcenter repository](
+https://bintray.com/measurement-kit/android/android-libs).
 
 ## Building an apk
 

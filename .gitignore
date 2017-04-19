@@ -1,6 +1,3 @@
-# Place where we put the AAR file
-/libs
-
 # Built application files
 /*/build/
 build/
