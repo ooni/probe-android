@@ -33,7 +33,20 @@ the `scripts/fetch-aar.sh` script. Example usage:
 This script will download the specified version of the AAR, verify
 its digital signature, and move it inside the `libs` folder.
 
+This script will also warn you if the version number of the file you
+downloaded is different from the one inside of `app/build.gradle`.
+
 ### Forcing a specific version of MK
+
+Just put the AAR file inside of `libs`. Then run
+
+```
+./script/check-version-consistency.sh
+```
+
+to make sure the version of the AAR inside libs is the same of
+the version listed in `app/build.gradle`. Update said file in
+case there is a version mismatch.
 
 ## Building an apk
 
