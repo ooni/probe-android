@@ -7,7 +7,9 @@ import java.io.IOException;
 import android.content.Context;
 
 public class LogUtils {
+
     public static String readLogFile(Context c, String filename) {
+
         String logPath = c.getFilesDir() + filename;
         File file = new File(logPath);
 
@@ -26,7 +28,7 @@ public class LogUtils {
         }
         return text.toString();
     }
-
+/*
     public static String[] getLogParts(Context c, String jsonfile){
         final String jsonContent = LogUtils.readLogFile(c, jsonfile);
         final String[] parts = jsonContent.split("\n");
@@ -48,5 +50,5 @@ public class LogUtils {
             return 1;
         return 0;
     }
-
+*/
 }

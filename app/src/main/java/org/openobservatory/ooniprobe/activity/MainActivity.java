@@ -5,15 +5,19 @@
 package org.openobservatory.ooniprobe.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -26,6 +30,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -50,7 +55,6 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
 
-    private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private String[] mMenuItemsTitles;
     private LeftMenuListAdapter mleftMenuListAdapter;
@@ -62,13 +66,13 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         checkResources();
         TestData.getInstance(this, this).addObserver(this);
 
-        mTitle = mDrawerTitle = getTitle();
+        mTitle = getTitle();
         mMenuItemsTitles = new String[]{getString(R.string.run_tests), getString(R.string.past_tests), getString(R.string.settings), getString(R.string.about)};
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-        //mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.menu_item, mMenuItemsTitles));
+
         ArrayList <String> stringList = new ArrayList<String>(Arrays.asList(mMenuItemsTitles));
         mleftMenuListAdapter = new LeftMenuListAdapter(this, R.layout.row_left_menu, stringList);
         mDrawerList.setAdapter(mleftMenuListAdapter);
@@ -76,6 +80,7 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         ImageView _imgView = new ImageView(this);
+        _imgView.setEnabled(false);
         _imgView.setImageResource(R.drawable.ooni_logo);
         mDrawerList.addFooterView(_imgView);
 
@@ -96,16 +101,12 @@ public class MainActivity extends AppCompatActivity  implements Observer {
                 R.string.drawer_close
         ) {
             public void onDrawerClosed(View view) {
-                //getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu_white);
                 mleftMenuListAdapter.notifyDataSetChanged();
-                //getSupportActionBar().setTitle(mTitle);
                 invalidateOptionsMenu();
             }
 
             public void onDrawerOpened(View drawerView) {
-                //getSupportActionBar().setHomeAsUpIndicator(R.drawable.notification_icon);
                 mleftMenuListAdapter.notifyDataSetChanged();
-                //getSupportActionBar().setTitle(mDrawerTitle);
                 invalidateOptionsMenu();
             }
 
@@ -120,12 +121,13 @@ public class MainActivity extends AppCompatActivity  implements Observer {
             selectItem(0);
         }
 
-        checkInformedConsent();
-    }
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (!preferences.getBoolean("cleanup_unused_files", false)) {
+            TestStorage.removeUnusedFiles(this);
+            PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("cleanup_unused_files", true).apply();
+        }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return mDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
+        checkInformedConsent();
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
@@ -135,26 +137,55 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         }
     }
 
-    private void selectItem(int position) {
+    public void selectItem(int position) {
+        Fragment f = null;
         switch (position){
             case 0:
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new RunTestsFragment(), "run_tests").commit();
+                f = new RunTestsFragment();
                 break;
             case 1:
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new PastTestsFragment(), "past_tests").commit();
+                f = new PastTestsFragment();
                 break;
             case 2:
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new SettingsFragment(), "settings").commit();
+                f = new SettingsFragment();
                 break;
             case 3:
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new AboutFragment(), "about").commit();
+                f = new AboutFragment();
                 break;
         }
-
-        mDrawerList.setItemChecked(position, true);
-        setTitle(mMenuItemsTitles[position]);
-        mDrawerLayout.closeDrawer(mDrawerList);
+        if (f != null){
+            replaceFragment(f);
+            mDrawerList.setItemChecked(position, true);
+            mDrawerLayout.closeDrawer(mDrawerList);
+        }
     }
+
+    public void replaceFragment(Fragment f) {
+        String backStateName = f.getClass().getName();
+        FragmentManager manager = getSupportFragmentManager();
+        boolean fragmentPopped = manager.popBackStackImmediate(backStateName, 0);
+        if (!fragmentPopped && manager.findFragmentByTag(backStateName) == null) {
+            // fragment not in back stack, create it.
+            FragmentTransaction ft = manager.beginTransaction();
+            ft.replace(R.id.content_frame, f, backStateName);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            ft.addToBackStack(backStateName);
+            ft.commit();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            mDrawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
+            finish();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
 
     @Override
     public void setTitle(CharSequence title) {
@@ -186,25 +217,53 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         }
     }
 
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()) {
+            case R.id.menu_remove_all_tests:
+                new AlertDialog.Builder(this)
+                        .setMessage(getString(R.string.clear_all_tests_alert))
+                        .setPositiveButton(getString(R.string.ok),
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        TestStorage.removeAllTests(MainActivity.this, MainActivity.this);
+                                        PastTestsFragment pastTestsFragment = (PastTestsFragment)getSupportFragmentManager().findFragmentByTag("org.openobservatory.ooniprobe.fragment.PastTestsFragment");
+                                        if (pastTestsFragment != null && pastTestsFragment.isVisible()) {
+                                            pastTestsFragment.updateList();
+                                        }
+                                    }
+                                })
+                        .setNegativeButton(getString(R.string.cancel),
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                })
+                        .show();
+                return true;
+            default:
+                return mDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
+        }
+    }
+
     @Override
     public void update(Observable observable, Object data) {
         updateActionBar();
         //update the fragments
-        RunTestsFragment runTestsFragment = (RunTestsFragment)getSupportFragmentManager().findFragmentByTag("run_tests");
+        RunTestsFragment runTestsFragment = (RunTestsFragment)getSupportFragmentManager().findFragmentByTag("org.openobservatory.ooniprobe.fragment.RunTestsFragment");
         if (runTestsFragment != null && runTestsFragment.isVisible()) {
             runTestsFragment.updateList();
         }
-        PastTestsFragment pastTestsFragment = (PastTestsFragment)getSupportFragmentManager().findFragmentByTag("past_tests");
+        PastTestsFragment pastTestsFragment = (PastTestsFragment)getSupportFragmentManager().findFragmentByTag("org.openobservatory.ooniprobe.fragment.PastTestsFragment");
         if (pastTestsFragment != null && pastTestsFragment.isVisible()) {
             pastTestsFragment.updateList();
         }
-        TestInfoFragment testInfoFragment = (TestInfoFragment)getSupportFragmentManager().findFragmentByTag("test_info");
+        TestInfoFragment testInfoFragment = (TestInfoFragment)getSupportFragmentManager().findFragmentByTag("org.openobservatory.ooniprobe.fragment.TestInfoFragment");
         if (testInfoFragment != null && testInfoFragment.isVisible()) {
             testInfoFragment.updateButtons();
         }
         if (data != null && data instanceof String){
             String string = NetworkMeasurement.getTestName(this, (String)data) + " " + getString(R.string.test_name_finished);
-            Toast toast = Toast.makeText(this, string, Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(this, string, Toast.LENGTH_SHORT);
             View view = toast.getView();
             TextView text = (TextView) view.findViewById(android.R.id.message);
             text.setGravity(Gravity.CENTER);;
@@ -214,18 +273,24 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     }
 
     public void checkResources() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (!preferences.getBoolean("resources_copied", false)) {
-            copyResources(R.raw.hosts, "hosts.txt");
-            copyResources(R.raw.geoipasnum, "GeoIPASNum.dat");
-            copyResources(R.raw.geoip, "GeoIP.dat");
-            copyResources(R.raw.global, "global.txt");
-            PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("resources_copied", true).apply();
-        }
+        copyResources(R.raw.hosts, "hosts.txt");
+        copyResources(R.raw.geoipasnum, "GeoIPASNum.dat");
+        copyResources(R.raw.geoip, "GeoIP.dat");
+        copyResources(R.raw.global, "global.txt");
     }
 
     private void copyResources(int id, String filename) {
-        Log.v(TAG, "copyResources...");
+        boolean exists = false;
+        try {
+            openFileInput(filename);
+            exists = true;
+        } catch (FileNotFoundException exc) {
+            /* FALLTHROUGH */
+        }
+        if (exists) {
+            return;
+        }
+        Log.v(TAG, "copyResources: " + filename + " ...");
         try {
             InputStream in = getResources().openRawResource(id);
             FileOutputStream out = openFileOutput(filename, 0);
@@ -235,9 +300,9 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         } catch (java.io.IOException err) {
             // XXX suppress exception
             // XXX not closing in and out
-            Log.e(TAG, "copyResources: error: " + err);
+            Log.e(TAG, "copyResources: error: " + err + " for: " + filename);
         }
-        Log.v(TAG, "copyResources... done");
+        Log.v(TAG, "copyResources: " + filename + " ... done");
     }
 
     public void startInformedConsentActivity() {

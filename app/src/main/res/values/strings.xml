@@ -13,10 +13,10 @@
     <string name="ndt_test">NDT Speed Test</string>
     <string name="web_connectivity_desc">Check if websites are blocked</string>
     <string name="http_invalid_request_line_desc">Find \'middle boxes\'</string>
-    <string name="ndt_test_desc">Measurement network speed and performance</string>
+    <string name="ndt_test_desc">Measure network speed and performance</string>
     <string name="http_invalid_request_line_longdesc">This test tries to detect the presence of network components (“middle box”) which could be responsible for censorship and/or surveillance.</string>
     <string name="web_connectivity_longdesc">This test examines whether access to websites is blocked through DNS tampering, TCP/IP blocking, or by a transparent HTTP proxy.\n\nEvery time you run Web Connectivity you test different websites.</string>
-    <string name="ndt_test_longdesc">This test measures the speed and performance of your network.</string>
+    <string name="ndt_test_longdesc">This test measures the speed and performance of your network.\n\nDisclaimer: This is a third-party performance test based on third-party servers, and we cannot guarantee that your IP address will not be collected, processed, and published.</string>
     <string name="running_tests">Running tests</string>
     <string name="finished_tests">Finished tests</string>
     <string name="collector_address">Collector Address</string>
@@ -29,7 +29,7 @@
     <string name="get_started">Get Started!</string>
     <string name="what_is_ooniprobe">What is ooniprobe?</string>
     <string name="learn_more">Learn more</string>
-    <string name="risks_text_1">Ooniprobe is free and open source software that enables you to examine internet censorship in your network!</string>
+    <string name="risks_text_1">ooniprobe is free and open source software that enables you to examine internet censorship in your network!</string>
     <string name="risks_text_2">By running this app, you can examine whether and how websites are blocked, and whether censorship and/or surveillance systems are present in your network.</string>
     <string name="risks_text_3">You can also run this app to measure the speed and performance of your network.</string>
     <string name="risks_text_4">The data that you can collect through this app can serve as evidence of censorship events .</string>
@@ -43,14 +43,14 @@
     <string name="laws_text_6">To our knowledge, no ooniprobe user has ever faced consequences from the use of our platform. However, many countries have a lengthy history of targeting and abusing digital rights activists, which could leave ooniprobe users subject to severe civil, criminal, or extra-judicial penalties.</string>
     <string name="i_understand_the_risks">I understand the risks.</string>
     <string name="pop_quiz">Pop Quiz!</string>
-    <string name="question_1">Question 1: Anyone monitoring my internet activity (e.g. ISP, government or employer) might be able to see that I am running ooniprobe, even though OONI takes precautions to make this hard</string>
-    <string name="question_2">Question 2: My measurements will by default get published on OONI Explorer and might include personally-identifiable information.</string>
+    <string name="question_1">Question 1: Might anyone monitoring my internet activity (e.g. ISP, government or employer) be able to see that I am running ooniprobe, even though OONI takes precautions to make this hard?</string>
+    <string name="question_2">Question 2: Will my measurements by default get published by OONI and might they include personally-identifiable information?</string>
     <string name="_true">True</string>
     <string name="_false">False</string>
     <string name="how_did_i_do">How did I do?</string>
     <string name="wrong">A little bit more reading is required for you to proceed.</string>
     <string name="correct">Good job! You have answered the quiz correctly.</string>
-    <string name="set_up_sharing">Set Up Sharing</string>
+    <string name="set_up_sharing">Setup Sharing</string>
     <string name="include_ip">Include your IP?</string>
     <string name="include_asn">Include your network info?</string>
     <string name="include_cc">Include your country name?</string>
@@ -79,6 +79,10 @@
     <string name="privacy">Privacy</string>
     <string name="view_data_policy">Click here to view our data policy</string>
     <string name="test_name_finished">finished, go to Past Tests to see the results</string>
+    <string name="open_url_alert">Do you want to open the following URL?</string>
+    <string name="max_runtime_low">The max runtime you have entered is too low, setting to default.</string>
+    <string name="clear_all_tests_alert">Do you want to delete all test results?</string>
+    <string name="past_tests_empty">Past test results will appear here once the tests have finished running</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
 </resources>

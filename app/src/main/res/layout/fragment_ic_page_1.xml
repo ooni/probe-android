@@ -23,6 +23,7 @@
             android:layout_centerVertical="true"
             android:src="@drawable/ic_ooni_sparkles"
             android:scaleType="fitEnd"
+            android:layout_centerHorizontal="true"
             android:adjustViewBounds="true" />
 
     <android.support.v7.widget.AppCompatButton

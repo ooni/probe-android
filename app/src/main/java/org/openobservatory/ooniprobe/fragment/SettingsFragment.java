@@ -13,16 +13,20 @@ import android.support.v7.widget.SwitchCompat;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
@@ -52,6 +56,12 @@ public class SettingsFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mActivity = null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mActivity.setTitle(mActivity.getString(R.string.settings));
     }
 
     public void onCreate(Bundle savedInstanceState) {
@@ -116,17 +126,35 @@ public class SettingsFragment extends Fragment {
                 showPopup();
             }
         });
-        TextView max_runtime = (TextView) v.findViewById(R.id.max_runtimeEditText);
+        final TextView max_runtime = (TextView) v.findViewById(R.id.max_runtimeEditText);
         max_runtime.setText(preferences.getString("max_runtime", OONITests.MAX_RUNTIME));
+        max_runtime.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        max_runtime.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    if (Integer.valueOf(v.getText().toString()) < 10){
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("max_runtime", "10");
+                        editor.commit();
+                        max_runtime.setText(preferences.getString("max_runtime", OONITests.MAX_RUNTIME));
+                        Toast toast = Toast.makeText(mActivity, mActivity.getText(R.string.max_runtime_low), Toast.LENGTH_LONG);
+                        View view = toast.getView();
+                        TextView text = (TextView) view.findViewById(android.R.id.message);
+                        text.setGravity(Gravity.CENTER);
+                        toast.show();
+                    }
+                }
+                return false;
+            }
+        });
         max_runtime.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable s) {
-                // TODO Auto-generated method stub
             }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // TODO Auto-generated method stub
             }
 
             @Override
