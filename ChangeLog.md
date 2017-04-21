@@ -1,3 +1,7 @@
+# ooniprobe-android 1.1.3-fdroid-1 [2017-04-21]
+
+* Remove reference to fabric's maven repos
+
 # ooniprobe-android 1.1.3-fdroid [2017-04-21]
 
 * Remove fabric
