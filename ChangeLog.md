@@ -1,3 +1,9 @@
+# ooniprobe-android 1.1.3-fdroid [2017-04-21]
+
+* Remove fabric
+
+* Use gradle and Bintray jcenter to download dependencies
+
 # ooniprobe-android 1.1.3 [2017-03-25]
 
 New Languages:
