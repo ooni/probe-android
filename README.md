@@ -50,7 +50,7 @@ case there is a version mismatch.
 
 ## Building an apk
 
-* Ensure you have Android Studio and gradle installed
+Ensure you have Android Studio and gradle installed.
 
 On macOS you can do:
 
