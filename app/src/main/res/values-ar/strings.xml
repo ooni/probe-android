@@ -7,6 +7,8 @@
     <string name="about">من نحن</string>
     <string name="dns_injection">إدراج نظام أسماء النطاقات </string>
     <string name="tcp_connect">ربط TCP </string>
+    <string name="http_invalid_request_line">عدم صلوحية طلب ال HTTP </string>
+    <string name="http_header_field_manipulation">التلاعب بسجل عنوان ال HTTP </string>
     <string name="web_connectivity">الاتصال بالشبكة</string>
     <string name="ndt_test">أداة تشخيص سرعة الشبكة</string>
     <string name="web_connectivity_desc">اكتشف إن كان هناك مواقع محجوبة</string>
@@ -16,6 +18,9 @@
     <string name="web_connectivity_longdesc">يعمل هذا الاختبار على كشف مقدار وجود حجب للمواقع عبر تقنيات مختلفة (DNS Tampering، TCP/IP Blocking، Transparent HTTP Proxy).
 
 في كل مرة يتم إجراء الاختبار يتم تجربة حزمة مواقع مختلفة.</string>
+    <string name="ndt_test_longdesc">يعمل هذا الاختبار على فحص سرعة وجودة الشبكة. هذا إختبار يخص الأداء يعتمد على خوادم أطراف جهات خارجية.
+
+إخلاء المسؤولية: لا يمكننا الجزم أنه لان يتم تجميع، إستعمال أو نشر عنوان ال IP الخاص بك.</string>
     <string name="running_tests">الاختبارات الجارية</string>
     <string name="finished_tests">الاختبارات المنتهية</string>
     <string name="collector_address">إلغاء</string>
@@ -28,6 +33,7 @@
     <string name="get_started">ابدأ</string>
     <string name="what_is_ooniprobe">ما هو أوني-بروب؟</string>
     <string name="learn_more">إعرف المزيد</string>
+    <string name="risks_text_1">أوني-بروب هو عبارة عن برنامج حر ومفتوح المصدر يسمح بإجراء اختبارات للكشف عن أنماط الحجب على الشبكة الخاصة بك.</string>
     <string name="risks_text_2">يمكنك باستخدام هذا البرنامج الكشف عن وجود حجب للمواقع من عدمه وتقنية الحجب، وعن وجود أي أنظمة مراقبة على الشبكة.</string>
     <string name="risks_text_3">كما يمكنك استخدام هذا التطبيق لفحص سرعة وجودة الشبكة.</string>
     <string name="risks_text_4">البيانات التي يمكنكم جمعها باستخدام هذا التطبيق يمكن استخدامها كدليل عن حدوث الحجب.</string>
@@ -35,19 +41,25 @@
     <string name="potential_risks">المخاطر المحتملة</string>
     <string name="laws_text_1">أي شخص يقوم بمراقبة نشاطك على الانترنت (أمثلة: مقدمي خدمة الإنترنت – الحكومة – موظف عمومي) يستطيع أن يرى أنك تستخدم أوني-بروب (بالرغم من أوني-بروب يعمل جاهدا على جعل هذه المهمة صعبة)</string>
     <string name="laws_text_2">عند إجراء اختبارات حجب الموقع، سوف تقوم بالاتصالات وتنزيل بيانات من مواقع قد تعتبر استفزازية أو غير مرحب بها (مثل مواقع إباحية) قد تعتبر غير قانونية في دولتك.</string>
+    <string name="laws_text_3">إجراء اختبار أوني الخاص بـHTTP Invalid Request قد يثير ريبة مقدم خدمة الإنترنت الخاص بك معتبرا هذا النشاط شكل من أشكال الاختراق.</string>
+    <string name="laws_text_4">جميع البيانات التي يتم جمعها من خلال الاختبارات عبر هذا التطبيق سوف يتم نشرها بواسطة أوني. وقد تتضمن البيانات المجمعة بعض البيانات التعريفية الشخصية (على رغم من محاولة أوني تجنب وقوع هذا)، إلا إذا قمت بتغيير الإعدادات الخاصة بك في التطبيق.</string>
     <string name="laws_text_5">قد يعتبر مجرد استخدام أوني-بروب من أعمال الجاسوسية بغض النظر عن القوانين في دولتك.</string>
     <string name="laws_text_6">حسب معلوماتنا، لم يتعرض أي مستخدم أوني-بروب ﻷي تبعات نتيجة استخدام منصتنا. وبالرغم من ذلك يوجد دول كثيرة ذات تاريخ طويل من الإساءة إلى واستهداف نشطاء التقنية والحريات الرقمية، مما قد يعرض مستخدمي أوني-بروب إلى عقوبات شديدة مدنية أو جنائية أو خارج إطار القانون.</string>
     <string name="i_understand_the_risks">أفهم الخاطر.</string>
     <string name="pop_quiz">اختبار سريع!</string>
+    <string name="question_1">السؤال الأول: أي شخص يقوم بمراقبة نشاطي على الانترنت (أمثلة: مقدمي خدمة الإنترنت – الحكومة – موظف عمومي) قد يستطيع أن يتعرف على استخدامي للتطبيق بالرغم من سعي أوني-بروب لجعل هذه المهمة صعبة؟</string>
+    <string name="question_2">السؤال الثاني: سوف يتم نشر جميع الاختبارات التي أقوم بها على نحو افتراضي عبر أوني، وقد تتضمن بيانات تعريفية شخصية.</string>
     <string name="_true">صح</string>
     <string name="_false">خطأ</string>
     <string name="how_did_i_do">كيف أبليت في الاختبار؟</string>
     <string name="wrong">القليل من القراءة الإضافية مطلوبة لكي تستطيع المتابعة.</string>
     <string name="correct">أحسنت! قمت بإجابة الاختبار على نحو صحيح.</string>
+    <string name="set_up_sharing">إعداد المشاركة</string>
     <string name="include_ip">شمل المعرف الرقمي الخاص بك؟</string>
     <string name="include_asn">إدراج البيانات الخاصة بشبكتك؟</string>
     <string name="include_cc">إدراج أسم دولتك؟</string>
     <string name="upload_results">مشاركة النتائج علانية؟</string>
+    <string name="settings_text">يتم إرسال جميع نتائج الإختبارات بصفة آلية إلى أوني كما يتم نشرها عبر منصات أوني العامة.</string>
     <string name="im_all_set">أنا على أتم الاستعداد!</string>
     <string name="ooniprobe_configured">لقد تم إعداد أوني-بروب بنجاح ويمكنك البدء.</string>
     <string name="about_ooni">عن أوني</string>
@@ -63,12 +75,14 @@
     <string name="notifications">تنبيهات</string>
     <string name="max_runtime">الحد الأقصى للاتصال بالشبكة (ثواني)</string>
     <string name="advanced_settings">إعدادات متقدمة</string>
+    <string name="finished_running">إنتهاء التشغيل </string>
     <string name="view_log">مطالعة النتيجة</string>
     <string name="copy_to_clipboard">نسخ إلى الذاكرة التخزين المؤقتة</string>
     <string name="copied_clipboard">تم النسخ إلى الذاكرة التخزين المؤقتة</string>
     <string name="send_crash">أرسل تقارير حول تعطل التطبيق</string>
     <string name="privacy">الخصوصية</string>
     <string name="view_data_policy">اضغطوا هنا لمراجعة سياسة البيانات الخاصة بنا</string>
+    <string name="test_name_finished">إنتهى، اذهب إلى الإختبارات السابقة لمطالعة النتائج</string>
     <string name="open_url_alert">هل ترغب في فتح الرابط التالي؟</string>
     <string name="max_runtime_low">الزمن الأقصى لعمل التطبيق الذي قمتم بإدخاله منخفض جدا، لذلك سنستخدم القيمة الافتراضية.</string>
     <string name="clear_all_tests_alert">هل تريدون حذف جيع نتائج الاختبارات؟</string>
