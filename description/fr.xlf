@@ -15,7 +15,7 @@
         <note from="developer">This is limited by Google to 80 characters</note>
       </trans-unit>
       <trans-unit id="title-ios" maxwidth="50" size-unit="char">
-          <source>ooniprobe - Measure Internet Censorship, Speed &amp; Performance</source>
+          <source>ooniprobe - Measure Internet Censorship &amp; Speed</source>
           <target>ooniprobe - Mesurer la censure d'Internet</target>
           <note from="developer">This is limited by Apple to 50 characters</note>
       </trans-unit>
