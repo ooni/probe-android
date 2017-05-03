@@ -32,14 +32,17 @@ public class NetworkMeasurement {
         switch (name) {
             case OONITests.DNS_INJECTION:
                 return context.getString(R.string.dns_injection);
-            case OONITests.HTTP_INVALID_REQUEST_LINE:
-                return context.getString(R.string.http_invalid_request_line);
-            case OONITests.NDT_TEST:
-                return context.getString(R.string.ndt_test);
             case OONITests.TCP_CONNECT:
                 return context.getString(R.string.tcp_connect);
             case OONITests.WEB_CONNECTIVITY:
                 return context.getString(R.string.web_connectivity);
+            case OONITests.HTTP_INVALID_REQUEST_LINE:
+                return context.getString(R.string.http_invalid_request_line);
+            case OONITests.HTTP_HEADER_FIELD_MANIPULATION:
+                return context.getString(R.string.http_header_field_manipulation);
+            case OONITests.NDT_TEST:
+                return context.getString(R.string.ndt_test);
+
             default:
                 return "";
         }
@@ -47,12 +50,14 @@ public class NetworkMeasurement {
 
     public static String getTestDescr(Context context, String name) {
         switch (name) {
-            case OONITests.HTTP_INVALID_REQUEST_LINE:
-                return context.getString(R.string.http_invalid_request_line_desc);
-            case OONITests.NDT_TEST:
-                return context.getString(R.string.ndt_test_desc);
             case OONITests.WEB_CONNECTIVITY:
                 return context.getString(R.string.web_connectivity_desc);
+            case OONITests.HTTP_INVALID_REQUEST_LINE:
+                return context.getString(R.string.http_invalid_request_line_desc);
+            case OONITests.HTTP_HEADER_FIELD_MANIPULATION:
+                return context.getString(R.string.http_header_field_manipulation_desc);
+            case OONITests.NDT_TEST:
+                return context.getString(R.string.ndt_test_desc);
             default:
                 return "";
         }
@@ -60,20 +65,6 @@ public class NetworkMeasurement {
 
     public static int getTestImage(String name, int anomaly) {
         switch (name) {
-            case OONITests.HTTP_INVALID_REQUEST_LINE:
-                if (anomaly == 0)
-                    return R.drawable.http_invalid_request_line;
-                else if (anomaly == 1)
-                    return R.drawable.http_invalid_request_line_warning;
-                else
-                    return R.drawable.http_invalid_request_line_no;
-            case OONITests.NDT_TEST:
-                if (anomaly == 0)
-                    return R.drawable.ndt_test;
-                else if (anomaly == 1)
-                    return R.drawable.ndt_test_warning;
-                else
-                    return R.drawable.ndt_test_no;
             case OONITests.WEB_CONNECTIVITY:
                 if (anomaly == 0)
                     return R.drawable.web_connectivity;
@@ -81,6 +72,27 @@ public class NetworkMeasurement {
                     return R.drawable.web_connectivity_warning;
                 else
                     return R.drawable.web_connectivity_no;
+            case OONITests.HTTP_INVALID_REQUEST_LINE:
+                if (anomaly == 0)
+                    return R.drawable.http_invalid_request_line;
+                else if (anomaly == 1)
+                    return R.drawable.http_invalid_request_line_warning;
+                else
+                    return R.drawable.http_invalid_request_line_no;
+            case OONITests.HTTP_HEADER_FIELD_MANIPULATION:
+                if (anomaly == 0)
+                    return R.drawable.http_header_field_manipulation;
+                else if (anomaly == 1)
+                    return R.drawable.http_header_field_manipulation_warning;
+                else
+                    return R.drawable.http_header_field_manipulation_no;
+            case OONITests.NDT_TEST:
+                if (anomaly == 0)
+                    return R.drawable.ndt_test;
+                else if (anomaly == 1)
+                    return R.drawable.ndt_test_warning;
+                else
+                    return R.drawable.ndt_test_no;
             default:
                 return 0;
         }
@@ -88,12 +100,14 @@ public class NetworkMeasurement {
 
     public static int getTestImageBig(String name) {
         switch (name) {
-            case OONITests.HTTP_INVALID_REQUEST_LINE:
-                return R.drawable.http_invalid_request_line_big;
-            case OONITests.NDT_TEST:
-                return R.drawable.ndt_test_big;
             case OONITests.WEB_CONNECTIVITY:
                 return R.drawable.web_connectivity_big;
+            case OONITests.HTTP_INVALID_REQUEST_LINE:
+                return R.drawable.http_invalid_request_line_big;
+            case OONITests.HTTP_HEADER_FIELD_MANIPULATION:
+                return R.drawable.http_header_field_manipulation_big;
+            case OONITests.NDT_TEST:
+                return R.drawable.ndt_test_big;
             default:
                 return 0;
         }
