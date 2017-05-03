@@ -44,6 +44,7 @@ public class TestData extends Observable {
             availableTests = new LinkedHashMap<>();
             availableTests.put(OONITests.WEB_CONNECTIVITY, true);
             availableTests.put(OONITests.HTTP_INVALID_REQUEST_LINE, true);
+            availableTests.put(OONITests.HTTP_HEADER_FIELD_MANIPULATION, true);
             availableTests.put(OONITests.NDT_TEST, true);
         }
         else if (activity == null && a != null){
@@ -157,7 +158,49 @@ public class TestData extends Observable {
                                             }
                                         })
                                         .run();
-                            } else if (testName.compareTo(OONITests.TCP_CONNECT) == 0) {
+                            }
+                            else if (testName.compareTo(OONITests.HTTP_HEADER_FIELD_MANIPULATION) == 0) {
+                                Log.v(TAG, "running http_header_field_manipulation test...");
+                                new HttpHeaderFieldManipulationTest()
+                                        .use_logcat()
+                                        .set_options("backend", OONITests.HHFM_BACKEND)
+                                        .set_output_filepath(outputPath)
+                                        .set_error_filepath(logPath)
+                                        .set_verbosity(LogSeverity.INFO)
+                                        .set_options("dns/nameserver", nameserver)
+                                        .set_options("dns/engine", "system")
+                                        .set_options("geoip_country_path", geoip_country)
+                                        .set_options("geoip_asn_path", geoip_asn)
+                                        .set_options("save_real_probe_ip", boolToString(include_ip))
+                                        .set_options("save_real_probe_asn", boolToString(include_asn))
+                                        .set_options("save_real_probe_cc", boolToString(include_cc))
+                                        .set_options("no_collector", boolToString(!upload_results))
+                                        .set_options("collector_base_url", collector_address)
+                                        .set_options("software_name", "ooniprobe-android")
+                                        .set_options("software_version", BuildConfig.VERSION_NAME)
+                                        .on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
+                                            @Override
+                                            public void callback(double percent, String msg) {
+                                                currentTest.progress = (int)(percent*100);
+                                                if (activity != null){
+                                                    activity.runOnUiThread(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            TestData.getInstance(context, activity).notifyObservers();
+                                                        }
+                                                    });
+                                                }
+                                            }
+                                        })
+                                        .on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
+                                            @Override
+                                            public void callback(String entry) {
+                                                setAnomaly(entry, currentTest);
+                                            }
+                                        })
+                                        .run();
+                            }
+                            else if (testName.compareTo(OONITests.TCP_CONNECT) == 0) {
                                 Log.v(TAG, "running tcp-connect test...");
                                 OoniTestWrapper w = new OoniTestWrapper("tcp_connect");
                                 w.use_logcat();
