@@ -15,7 +15,7 @@ android {
         minSdkVersion 9
         targetSdkVersion 25
         versionCode 6
-        versionName "1.1.4-dev"
+        versionName "1.1.4-dev-2"
     }
     buildTypes {
         release {
@@ -23,14 +23,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile "org.openobservatory.measurement_kit:android-libs:0.6.0-beta-2"
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.3.0'
-    compile 'com.android.support:recyclerview-v7:25.3.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
     compile 'com.google.code.gson:gson:2.7'
     compile 'me.panavtec:wizard:1.2'
