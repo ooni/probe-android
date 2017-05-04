@@ -13,8 +13,8 @@
     <string name="ndt_test">NDT Speed Test</string>
     <string name="web_connectivity_desc">Controlla se i siti web sono bloccati</string>
     <string name="http_invalid_request_line_desc">Trova \'middle box\'</string>
+    <string name="http_header_field_manipulation_desc">Trova \'middle box\'</string>
     <string name="ndt_test_desc">Misura velocità e performance della rete</string>
-    <string name="http_invalid_request_line_longdesc">Questo test prova a rilevare la presenza di componenti della rete ("middle box") che potrebbero essere responsabili di censura e/o sorveglianza.</string>
     <string name="web_connectivity_longdesc">Questo test verifica se l\'accesso ai siti web è bloccato tramite manomissione DNS, blocchi su base TCP/IP, o da proxy HTTP trasparenti.\\n\\nOgni volta che esegui il test di Connettività web testi siti web diversi.</string>
     <string name="ndt_test_longdesc">Questo test misura la velocità e le prestazioni della vostra rete.\n\n
 Attenzione: NDT è un test di prestazione eseguito su server di terze parti gestiti da Measurement Lab (M-Lab). Il test di M-Lab NDT richiede che venga raccolto e pubblicato il vostro indirizzo IP per finalità di ricerca.</string>

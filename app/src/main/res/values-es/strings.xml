@@ -13,8 +13,8 @@
     <string name="ndt_test">NDT Speed Test</string>
     <string name="web_connectivity_desc">Comprueba si los sitios web están bloqueados</string>
     <string name="http_invalid_request_line_desc">Busca dispositivos modificadores del tráfico (\'middle boxes\')</string>
+    <string name="http_header_field_manipulation_desc">Busca dispositivos modificadores del tráfico (\'middle boxes\')</string>
     <string name="ndt_test_desc">Mide la velocidad y rendimiento de la red</string>
-    <string name="http_invalid_request_line_longdesc">Este test trata de detectar la presencia de componentes de red (\"middle box\") que podrían ser responsables de censura y/o vigilancia.</string>
     <string name="web_connectivity_longdesc">Este test examina si el acceso a sitios web está bloqueado mediante alteración del DNS, bloqueo TCP/IP, o con un proxy HTTP transparente.\\n\\nCada vez que ejecute \'Conectividad Web\' estará probando distintos sitios web.</string>
     <string name="ndt_test_longdesc">Este test mide la velocidad y rendimiento de su red.\\n\\nDescargo: Este es un test de rendimiento proveniente de terceros radicado en servidores de terceros, y no podemos garantizar que su dirección IP no será recopilada, procesada, y publicada.</string>
     <string name="running_tests">Tests en ejecución</string>

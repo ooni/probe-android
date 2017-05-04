@@ -13,8 +13,8 @@
     <string name="ndt_test">NDT أداة تشخيص سرعة الشبكة</string>
     <string name="web_connectivity_desc">تحقق مما إذا تم حجب المواقع</string>
     <string name="http_invalid_request_line_desc">اِكْتَشَفَ وجود \'أجهزة وسيطة\'</string>
+    <string name="http_header_field_manipulation_desc">اِكْتَشَفَ وجود \'أجهزة وسيطة\'</string>
     <string name="ndt_test_desc">فحص سرعة وجودة الشبكة</string>
-    <string name="http_invalid_request_line_longdesc">يعمل هذا الاختبار على كشف وجود مكونات (“الاجهزة الوسيطة”) في الشبكة قد تستخدم في المراقبة أو الحجب.</string>
     <string name="web_connectivity_longdesc">يعمل هذا الاختبار على كشف مقدار وجود حجب للمواقع عبر تقنيات مختلفة DNS tampering,  TCP/IP blocking أو من خلال transparent HTTP proxy .
 
 في كل مرة يتم إجراء الاختبار يتم تجربة حزمة مواقع مختلفة.</string>

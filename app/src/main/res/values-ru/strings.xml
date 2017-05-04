@@ -13,8 +13,8 @@
     <string name="ndt_test">NDT Speed Test</string>
     <string name="web_connectivity_desc">Проверка блокировок сайтов</string>
     <string name="http_invalid_request_line_desc">Найти \"узлы-посредники\"</string>
+    <string name="http_header_field_manipulation_desc">Найти \"узлы-посредники\"</string>
     <string name="ndt_test_desc">Измерение скорости и производительности</string>
-    <string name="http_invalid_request_line_longdesc">Этот тест пытается обнаружить сетевые компоненты (узлы-посредники), которые могут отвечать за цензуру и/или наблюдение.</string>
     <string name="web_connectivity_longdesc">Этот тест позволяет понять, каким именно методом заблокирован доступ к ресурсам: через подделку DNS, через блокировку уровня TCP/IP или с помощью прозрачного HTTP прокси-сервера. Каждый запуск теста Web Connectivity проверяет разные сайты. </string>
     <string name="ndt_test_longdesc">Этот тест измеряет скорость и производительность вашей сети. 
 
