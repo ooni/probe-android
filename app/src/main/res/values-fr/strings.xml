@@ -16,7 +16,7 @@
     <string name="http_header_field_manipulation_desc">Trouver des boîtiers intermédiaires</string>
     <string name="ndt_test_desc">Mesurer la vitesse et les performances du réseau</string>
     <string name="web_connectivity_longdesc">Ce test examine si l\'accès aux sites Web est bloqué par une manipulation DNS, un blocage TCP/IP ou par un mandataire HTTP transparent.\n\nChaque fois que vous effectuez le test Connectivité Web, vous tester des sites Web différents.</string>
-    <string name="http_invalid_request_line_longdesc">Ce test tente de détecter la présence de systèmes (boîtiers intermédiaires) qui pourraient être la source de censure ou de surveillance en envoyant une ligne de requête HTTP invalide à un service d'écho. Si de tels systèmes se trouvent sur votre réseau, la ligne de requête HTTP invalide sera interceptée et pourrait déclencher une erreur.</string>
+    <string name="http_invalid_request_line_longdesc">Ce test tente de détecter la présence de systèmes (boîtiers intermédiaires) qui pourraient être la source de censure ou de surveillance en envoyant une ligne de requête HTTP invalide à un service d\'écho. Si de tels systèmes se trouvent sur votre réseau, la ligne de requête HTTP invalide sera interceptée et pourrait déclencher une erreur.</string>
     <string name="http_header_field_manipulation_longdesc">Ce test tente de détecter la présence de systèmes (boîtiers intermédiaires) qui pourraient être la source de censure ou de surveillance en envoyant des requêtes HTTP avec des en-têtes non canoniques à un serveur dorsal de contrôle. Si de tels systèmes se trouvent sur votre réseau, ils normaliseront probablement les en-têtes ou ajouteront des en-têtes supplémentaires.</string>
     <string name="ndt_test_longdesc">Ce test mesure la vitesse et les performances de votre réseau.\n\nAvis de non-responsabilité : ce test de performance, fourni par un tiers, est effectué avec des serveurs tiers et nous ne pouvons pas garantir que votre adresse IP ne sera pas recueillie, traitée et publiée</string>
     <string name="running_tests">Tests en cours</string>
@@ -31,7 +31,7 @@
     <string name="get_started">Commençons !</string>
     <string name="what_is_ooniprobe">Qu\'est-ce qu\'ooniprobe ?</string>
     <string name="learn_more">En apprendre davantage</string>
-    <string name="risks_text_1">ooniprobe est un logiciel libre et à code source ouvert qui vous permet d'examiner la censure d'Internet sur votre réseau !</string>
+    <string name="risks_text_1">ooniprobe est un logiciel libre et à code source ouvert qui vous permet d\'examiner la censure d\'Internet sur votre réseau !</string>
     <string name="risks_text_2">En exécutant cette appli, vous pouvez examiner si des sites Web sont bloqués et comment ils le sont, ainsi que la présence de systèmes de censure ou de surveillance sur votre réseau.</string>
     <string name="risks_text_3">Vous pouvez aussi faire fonctionner cette appli pour mesurer la vitesse et les performances de votre réseau.</string>
     <string name="risks_text_4">Les données que vous pouvez recueillir grâce à cette appli peuvent être utilisées comme preuve de cas de censure.</string>
@@ -45,7 +45,7 @@
     <string name="laws_text_6">À notre connaissance, aucun utilisateur d\'ooniprobe n\'a dû faire face aux conséquences de l\'utilisation de notre plateforme. Cependant, de nombreux pays présentent une longue histoire en matière de ciblage et de répression des défenseurs des droits numériques, et des utilisateurs d\'ooniprobe pourraient être passibles de sévères sanctions civiles, criminelles ou extrajudiciaires.</string>
     <string name="i_understand_the_risks">Je comprends les risques.</string>
     <string name="pop_quiz">Jeu-questionnaire !</string>
-    <string name="question_1">Question 1 : quiconque surveille mon activité Internet (p. ex. FAI, gouvernement, employeur) peut-il savoir que j'utilise ooniprobe même si OONI prend des précautions pour entraver la détection ?</string>
+    <string name="question_1">Question 1 : quiconque surveille mon activité Internet (p. ex. FAI, gouvernement, employeur) peut-il savoir que j\'utilise ooniprobe même si OONI prend des précautions pour entraver la détection ?</string>
     <string name="question_2">Question 2 : mes mesures seront-elles par défaut publiées par OONI et pourraient-elles inclure des informations nominatives ?</string>
     <string name="_true">Vrai</string>
     <string name="_false">Faux</string>
