@@ -31,7 +31,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "org.openobservatory.measurement_kit:android-libs:0.6.0-beta-2"
+    compile "org.openobservatory.measurement_kit:android-libs:0.6.2-1"
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'
