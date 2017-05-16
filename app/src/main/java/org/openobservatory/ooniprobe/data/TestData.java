@@ -154,7 +154,7 @@ public class TestData extends Observable {
                                         .on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
                                             public void callback(String entry) {
-                                                setAnomaly(entry, currentTest);
+                                                setAnomaly_hirl(entry, currentTest);
                                             }
                                         })
                                         .run();
@@ -265,7 +265,7 @@ public class TestData extends Observable {
                                         .on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
                                             public void callback(String entry) {
-                                                setAnomaly(entry, currentTest);
+                                                setAnomaly_wc(entry, currentTest);
                                             }
                                         })
                                         .run();
@@ -306,7 +306,7 @@ public class TestData extends Observable {
                                         .on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
                                             public void callback(String entry) {
-                                                setAnomaly(entry, currentTest);
+                                                setAnomaly_ndt(entry, currentTest);
                                             }
                                         })
                                         .run();
@@ -339,7 +339,7 @@ public class TestData extends Observable {
         );
     }
 
-    public static void setAnomaly(String entry, NetworkMeasurement test){
+    public static void setAnomaly_wc(String entry, NetworkMeasurement test){
         if(!test.entry) {
             TestStorage.setEntry(context, test);
             test.entry = true;
@@ -347,14 +347,40 @@ public class TestData extends Observable {
         try {
             int anomaly = 0;
             JSONObject jsonObj = new JSONObject(entry);
-            JSONObject blocking = jsonObj.getJSONObject("test_keys");
-            Object object = blocking.get("blocking");
-            if(object instanceof String)
+            JSONObject test_keys = jsonObj.getJSONObject("test_keys");
+            Object blocking = test_keys.get("blocking");
+            if(blocking instanceof String)
                 anomaly = 2;
-            else if(object instanceof Boolean)
+            else if(blocking instanceof Boolean)
                 anomaly = 0;
             else
                 anomaly = 1;
+            if (test.anomaly < anomaly) {
+                test.anomaly = anomaly;
+                TestStorage.setAnomaly(context, test.test_id, anomaly);
+            }
+        } catch (JSONException e) {
+        }
+    }
+
+    //TODO document this functions
+    //TODO rewrite these functions to avoidin repeating so much code
+    public static void setAnomaly_hirl(String entry, NetworkMeasurement test){
+        if(!test.entry) {
+            TestStorage.setEntry(context, test);
+            test.entry = true;
+        }
+        try {
+            int anomaly = 0;
+            JSONObject jsonObj = new JSONObject(entry);
+            JSONObject test_keys = jsonObj.getJSONObject("test_keys");
+            if (test_keys.has("tampering")) {
+                Boolean tampering = test_keys.getBoolean("tampering");
+                if (tampering == null)
+                    anomaly = 1;
+                else if (tampering == true)
+                    anomaly = 2;
+            }
             if (test.anomaly < anomaly) {
                 test.anomaly = anomaly;
                 TestStorage.setAnomaly(context, test.test_id, anomaly);
@@ -415,6 +441,27 @@ public class TestData extends Observable {
         }
     }
 
+    public static void setAnomaly_ndt(String entry, NetworkMeasurement test){
+        if(!test.entry) {
+            TestStorage.setEntry(context, test);
+            test.entry = true;
+        }
+        try {
+            int anomaly = 0;
+            JSONObject jsonObj = new JSONObject(entry);
+            JSONObject test_keys = jsonObj.getJSONObject("test_keys");
+            if (test_keys.has("failure")) {
+                Object failure = test_keys.get("failure");
+                if (failure == null)
+                    anomaly = 1;
+            }
+            if (test.anomaly < anomaly) {
+                test.anomaly = anomaly;
+                TestStorage.setAnomaly(context, test.test_id, anomaly);
+            }
+        } catch (JSONException e) {
+        }
+    }
 
     @Override
     public void notifyObservers(Object type) {
