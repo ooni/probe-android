@@ -44,6 +44,7 @@ public class TestData extends Observable {
             availableTests = new LinkedHashMap<>();
             availableTests.put(OONITests.WEB_CONNECTIVITY, true);
             availableTests.put(OONITests.HTTP_INVALID_REQUEST_LINE, true);
+            availableTests.put(OONITests.HTTP_HEADER_FIELD_MANIPULATION, true);
             availableTests.put(OONITests.NDT_TEST, true);
         }
         else if (activity == null && a != null){
@@ -71,7 +72,7 @@ public class TestData extends Observable {
         final Boolean upload_results = preferences.getBoolean("upload_results", true);
         final String collector_address = preferences.getString("collector_address", OONITests.COLLECTOR_ADDRESS);
         final String max_runtime = preferences.getString("max_runtime", OONITests.MAX_RUNTIME);
-
+        System.out.println("max_runtime " +max_runtime);
         TestStorage.addTest(ctx, currentTest);
         runningTests.add(currentTest);
         availableTests.put(testName, false);
@@ -153,11 +154,53 @@ public class TestData extends Observable {
                                         .on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
                                             public void callback(String entry) {
-                                                setAnomaly(entry, currentTest);
+                                                setAnomaly_hirl(entry, currentTest);
                                             }
                                         })
                                         .run();
-                            } else if (testName.compareTo(OONITests.TCP_CONNECT) == 0) {
+                            }
+                            else if (testName.compareTo(OONITests.HTTP_HEADER_FIELD_MANIPULATION) == 0) {
+                                Log.v(TAG, "running http_header_field_manipulation test...");
+                                new HttpHeaderFieldManipulationTest()
+                                        .use_logcat()
+                                        .set_options("backend", OONITests.HHFM_BACKEND)
+                                        .set_output_filepath(outputPath)
+                                        .set_error_filepath(logPath)
+                                        .set_verbosity(LogSeverity.INFO)
+                                        .set_options("dns/nameserver", nameserver)
+                                        .set_options("dns/engine", "system")
+                                        .set_options("geoip_country_path", geoip_country)
+                                        .set_options("geoip_asn_path", geoip_asn)
+                                        .set_options("save_real_probe_ip", boolToString(include_ip))
+                                        .set_options("save_real_probe_asn", boolToString(include_asn))
+                                        .set_options("save_real_probe_cc", boolToString(include_cc))
+                                        .set_options("no_collector", boolToString(!upload_results))
+                                        .set_options("collector_base_url", collector_address)
+                                        .set_options("software_name", "ooniprobe-android")
+                                        .set_options("software_version", BuildConfig.VERSION_NAME)
+                                        .on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
+                                            @Override
+                                            public void callback(double percent, String msg) {
+                                                currentTest.progress = (int)(percent*100);
+                                                if (activity != null){
+                                                    activity.runOnUiThread(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            TestData.getInstance(context, activity).notifyObservers();
+                                                        }
+                                                    });
+                                                }
+                                            }
+                                        })
+                                        .on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
+                                            @Override
+                                            public void callback(String entry) {
+                                                setAnomaly_hhfm(entry, currentTest);
+                                            }
+                                        })
+                                        .run();
+                            }
+                            else if (testName.compareTo(OONITests.TCP_CONNECT) == 0) {
                                 Log.v(TAG, "running tcp-connect test...");
                                 OoniTestWrapper w = new OoniTestWrapper("tcp_connect");
                                 w.use_logcat();
@@ -222,7 +265,7 @@ public class TestData extends Observable {
                                         .on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
                                             public void callback(String entry) {
-                                                setAnomaly(entry, currentTest);
+                                                setAnomaly_wc(entry, currentTest);
                                             }
                                         })
                                         .run();
@@ -263,7 +306,7 @@ public class TestData extends Observable {
                                         .on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
                                             public void callback(String entry) {
-                                                setAnomaly(entry, currentTest);
+                                                setAnomaly_ndt(entry, currentTest);
                                             }
                                         })
                                         .run();
@@ -296,7 +339,7 @@ public class TestData extends Observable {
         );
     }
 
-    public static void setAnomaly(String entry, NetworkMeasurement test){
+    public static void setAnomaly_wc(String entry, NetworkMeasurement test){
         if(!test.entry) {
             TestStorage.setEntry(context, test);
             test.entry = true;
@@ -304,14 +347,114 @@ public class TestData extends Observable {
         try {
             int anomaly = 0;
             JSONObject jsonObj = new JSONObject(entry);
-            JSONObject blocking = jsonObj.getJSONObject("test_keys");
-            Object object = blocking.get("blocking");
-            if(object instanceof String)
+            JSONObject test_keys = jsonObj.getJSONObject("test_keys");
+            Object blocking = test_keys.get("blocking");
+            if(blocking instanceof String)
                 anomaly = 2;
-            else if(object instanceof Boolean)
+            else if(blocking instanceof Boolean)
                 anomaly = 0;
             else
                 anomaly = 1;
+            if (test.anomaly < anomaly) {
+                test.anomaly = anomaly;
+                TestStorage.setAnomaly(context, test.test_id, anomaly);
+            }
+        } catch (JSONException e) {
+        }
+    }
+
+    //TODO document this functions
+    //TODO rewrite these functions to avoidin repeating so much code
+    public static void setAnomaly_hirl(String entry, NetworkMeasurement test){
+        if(!test.entry) {
+            TestStorage.setEntry(context, test);
+            test.entry = true;
+        }
+        try {
+            int anomaly = 0;
+            JSONObject jsonObj = new JSONObject(entry);
+            JSONObject test_keys = jsonObj.getJSONObject("test_keys");
+            if (test_keys.has("tampering")) {
+                Boolean tampering = test_keys.getBoolean("tampering");
+                if (tampering == null)
+                    anomaly = 1;
+                else if (tampering == true)
+                    anomaly = 2;
+            }
+            if (test.anomaly < anomaly) {
+                test.anomaly = anomaly;
+                TestStorage.setAnomaly(context, test.test_id, anomaly);
+            }
+        } catch (JSONException e) {
+        }
+    }
+
+    public static void setAnomaly_hhfm(String entry, NetworkMeasurement test){
+        if(!test.entry) {
+            TestStorage.setEntry(context, test);
+            test.entry = true;
+        }
+        try {
+            int anomaly = 0;
+            JSONObject jsonObj = new JSONObject(entry);
+            JSONObject test_keys = jsonObj.getJSONObject("test_keys");
+            Object failure = test_keys.get("failure");
+            System.out.println("failure " + failure);
+            System.out.println("test_keys " + test_keys);
+
+            if(failure == null)
+                anomaly = 1;
+            else {
+                JSONObject tampering = test_keys.getJSONObject("tampering");
+                System.out.println("tampering " + tampering);
+
+                Boolean header_field_name = false;
+                Boolean header_field_number = false;
+                Boolean header_field_value = false;
+                Boolean header_name_capitalization = false;
+                Boolean request_line_capitalization = false;
+                Boolean total = false;
+
+                if (test_keys.has("header_field_name"))
+                    header_field_name = tampering.getBoolean("header_field_name");
+                if (test_keys.has("header_field_number"))
+                    header_field_number = tampering.getBoolean("header_field_number");
+                if (test_keys.has("header_field_value"))
+                    header_field_value = tampering.getBoolean("header_field_value");
+                if (test_keys.has("header_name_capitalization"))
+                    header_name_capitalization = tampering.getBoolean("header_name_capitalization");
+                if (test_keys.has("request_line_capitalization"))
+                    request_line_capitalization = tampering.getBoolean("request_line_capitalization");
+                if (test_keys.has("total"))
+                    total = tampering.getBoolean("total");
+
+                if (header_field_name || header_field_number || header_field_value || header_name_capitalization || request_line_capitalization || total)
+                    anomaly = 2;
+            }
+            System.out.println("anomaly "+ anomaly);
+            if (test.anomaly < anomaly) {
+                test.anomaly = anomaly;
+                TestStorage.setAnomaly(context, test.test_id, anomaly);
+            }
+        } catch (JSONException e) {
+            System.out.println("JSONException "+ e);
+        }
+    }
+
+    public static void setAnomaly_ndt(String entry, NetworkMeasurement test){
+        if(!test.entry) {
+            TestStorage.setEntry(context, test);
+            test.entry = true;
+        }
+        try {
+            int anomaly = 0;
+            JSONObject jsonObj = new JSONObject(entry);
+            JSONObject test_keys = jsonObj.getJSONObject("test_keys");
+            if (test_keys.has("failure")) {
+                Object failure = test_keys.get("failure");
+                if (failure == null)
+                    anomaly = 1;
+            }
             if (test.anomaly < anomaly) {
                 test.anomaly = anomaly;
                 TestStorage.setAnomaly(context, test.test_id, anomaly);

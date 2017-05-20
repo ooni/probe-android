@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <stroke android:width="3dp" android:color="@color/color_ooni_blue" />
+            <solid android:color="@color/color_ooni_blue" />
+        </shape>
+    </item>
+    <item
+        android:right="11dp"
+        android:bottom="11dp">
+        <bitmap
+            android:src="@drawable/green_dot"
+            android:gravity="right"
+            />
+    </item>
+</layer-list>

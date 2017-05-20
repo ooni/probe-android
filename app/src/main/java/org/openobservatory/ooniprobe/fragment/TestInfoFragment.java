@@ -122,12 +122,14 @@ public class TestInfoFragment extends Fragment {
 
     public String getTestDesc(String name) {
         switch (name) {
-            case OONITests.HTTP_INVALID_REQUEST_LINE:
-                return mActivity.getString(R.string.http_invalid_request_line_longdesc);
-            case OONITests.NDT_TEST:
-                return mActivity.getString(R.string.ndt_test_longdesc);
             case OONITests.WEB_CONNECTIVITY:
                 return mActivity.getString(R.string.web_connectivity_longdesc);
+            case OONITests.HTTP_INVALID_REQUEST_LINE:
+                return mActivity.getString(R.string.http_invalid_request_line_longdesc);
+            case OONITests.HTTP_HEADER_FIELD_MANIPULATION:
+                return mActivity.getString(R.string.http_header_field_manipulation_longdesc);
+            case OONITests.NDT_TEST:
+                return mActivity.getString(R.string.ndt_test_longdesc);
             default:
                 return "";
         }

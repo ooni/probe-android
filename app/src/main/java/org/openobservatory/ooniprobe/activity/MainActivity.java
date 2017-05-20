@@ -35,6 +35,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -336,8 +337,12 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     }
 
     public void updateActionBar(){
-        if (TestStorage.newTests(this))
-            getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.action_bar_layout));
+        if (TestStorage.newTests(this)) {
+            if (Locale.getDefault().getLanguage().equals("ar"))
+                getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.action_bar_layout_ar));
+            else
+                getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.action_bar_layout));
+        }
         else
             getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.color_ooni_blue)));
     }

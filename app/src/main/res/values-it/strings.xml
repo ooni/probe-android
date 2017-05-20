@@ -13,9 +13,11 @@
     <string name="ndt_test">NDT Speed Test</string>
     <string name="web_connectivity_desc">Controlla se i siti web sono bloccati</string>
     <string name="http_invalid_request_line_desc">Trova \'middle box\'</string>
+    <string name="http_header_field_manipulation_desc">Trova \'middle box\'</string>
     <string name="ndt_test_desc">Misura velocità e performance della rete</string>
-    <string name="http_invalid_request_line_longdesc">Questo test prova a rilevare la presenza di componenti della rete ("middle box") che potrebbero essere responsabili di censura e/o sorveglianza.</string>
     <string name="web_connectivity_longdesc">Questo test verifica se l\'accesso ai siti web è bloccato tramite manomissione DNS, blocchi su base TCP/IP, o da proxy HTTP trasparenti.\\n\\nOgni volta che esegui il test di Connettività web testi siti web diversi.</string>
+    <string name="http_invalid_request_line_longdesc">Questo test prova a rilevare la presenza di sistemi (\"middle boxes\") che potrebbero essere responsabili di censura o sorveglianza, inviando una \"request line\" HTTP invalida ad un servizio echo. Se questo sistema è presente sulla rete, allora la richiesta HTTP verrà intercettata e potrebbe sollecitare un errore.</string>
+    <string name="http_header_field_manipulation_longdesc">Questo test prova a rilevare la presenza di sistemi (\"middle boxes\") che potrebbero essere responsabili di censura o sorveglianza, inviando richieste HTTP con \"header\" non canonici ad un server di controllo. Se questi sistemi sono presenti nella rete, allora potrebbero normalizzare gli \"header\" o aggiungere altri \"header\".</string>
     <string name="ndt_test_longdesc">Questo test misura la velocità e le prestazioni della vostra rete.\n\n
 Attenzione: NDT è un test di prestazione eseguito su server di terze parti gestiti da Measurement Lab (M-Lab). Il test di M-Lab NDT richiede che venga raccolto e pubblicato il vostro indirizzo IP per finalità di ricerca.</string>
     <string name="running_tests">Test in esecuzione</string>
@@ -38,7 +40,7 @@ Attenzione: NDT è un test di prestazione eseguito su server di terze parti gest
     <string name="potential_risks">Rischi potenziali</string>
     <string name="laws_text_1">Chiunque stia monitorando il tuo traffico internet (ad es. fornitori del servizio Internet, governo, datore di lavoro) potrebbe rilevare che stai utilizzando ooniprobe (anche se OONI fa di tutto per nasconderlo).</string>
     <string name="laws_text_2">Durante il test dei siti web per la censura, ti connetterai e scaricherai materiale da siti provocativi o poco raccomandabili ( ad es. pornografia) che potrebbero essere illegali nel tuo paese.</string>
-    <string name="laws_text_3">Il test HTTP Invalid Request Line di OONI potrebbe essere visto dal tuo gestore internet come una forma di "hacking" e attivare il loro sospetto.</string>
+    <string name="laws_text_3">Il test HTTP Invalid Request Line di OONI potrebbe essere visto dal tuo gestore internet come una forma di \"hacking\" e attivare il loro sospetto.</string>
     <string name="laws_text_4">A meno che non vengano configurate diversamente, tutti i dati collezionati dai test verranno di default pubblicati da OONI e potrebbero includere delle informazioni personalmente identificative (anche se OONI prova a nasconderle)</string>
     <string name="laws_text_5">Il solo uso di ooniprobe potrebbe essere visto come una forma di spionaggio, indipendentemente dalle leggi della tua nazione.</string>
     <string name="laws_text_6">A nostra conoscenza, nessun utente di ooniprobe ha mai subito conseguenze legali dall\'uso della nostra piattaforma. Tuttavia, molti paesi hanno una lunga storia di abusi contro gli attivisti dei diritti digitali, e ooniprobe potrebbe esporre i suoi utenti a severe pene civili, penali o extra-giudiziarie.</string>

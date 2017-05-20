@@ -1,3 +1,21 @@
+# ooniprobe-android 1.1.4 [2017-05-15]
+
+New Languages:
+
+* Added multilingual support and Persian, Russian, Arabic and Greek translations
+
+Bugfixes:
+
+* Bug fixing
+
+* Added support for right to left layouts
+
+* Added HTTP Header Field Manipulation test            
+
+measurement-kit version: 0.6.5-1
+
+ooniprobe-wui version: 2.2.2
+
 # ooniprobe-android 1.1.3 [2017-03-25]
 
 New Languages:
