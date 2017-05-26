@@ -23,7 +23,7 @@ import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 import org.openobservatory.ooniprobe.model.OONITests;
 import org.openobservatory.ooniprobe.model.UnknownTest;
-import org.openobservatory.ooniprobe.utils.Notifications;
+import org.openobservatory.ooniprobe.utils.NotificationHandler;
 
 public class TestData extends Observable {
     private static final String TAG = "TestData";
@@ -332,7 +332,7 @@ public class TestData extends Observable {
                         finishedTests.add(currentTest);
                         availableTests.put(testName, true);
                         if (activity != null) TestData.getInstance(context, activity).notifyObservers(testName);
-                        Notifications.notifyTestEnded(ctx, testName);
+                        NotificationHandler.notifyTestEnded(ctx, testName);
                         Log.v(TAG, "doNetworkMeasurements " + testName + "... done");
                     }
                 }

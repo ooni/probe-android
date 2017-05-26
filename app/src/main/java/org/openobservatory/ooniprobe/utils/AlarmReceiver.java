@@ -14,7 +14,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         //System.out.println(DEBUG_TAG);
-        Notifications.sendNotification(context, context.getString(R.string.local_notifications_text));
+        NotificationHandler.sendNotification(context, context.getString(R.string.local_notifications_text));
         TestData.getInstance(context, null);
         TestData.doNetworkMeasurements(context, "web_connectivity");
         TestData.doNetworkMeasurements(context, "http_invalid_request_line");
