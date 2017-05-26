@@ -5,6 +5,10 @@ import android.util.Log;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
+import org.openobservatory.ooniprobe.BuildConfig;
+
+import java.util.Locale;
+
 public class NotificationRegister extends FirebaseInstanceIdService {
     private static final String TAG = "NotificationRegister";
 
@@ -19,7 +23,14 @@ public class NotificationRegister extends FirebaseInstanceIdService {
         // Get updated InstanceID token.
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Log.d(TAG, "Refreshed token: " + refreshedToken);
-        System.out.println("Refreshed token: " + refreshedToken);
+
+
+        System.out.println("token: " + refreshedToken);
+        System.out.println("platform: android");
+        System.out.println("software_name ooniprobe-android");
+        System.out.println("software_version: " + BuildConfig.VERSION_NAME);
+        System.out.println("supported_tests");
+        System.out.println("language" + Locale.getDefault().getLanguage());
 
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
