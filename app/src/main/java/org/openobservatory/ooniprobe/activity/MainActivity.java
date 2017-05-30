@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -38,7 +39,9 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Set;
 
+import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.adapter.LeftMenuListAdapter;
 import org.openobservatory.ooniprobe.data.TestData;
 import org.openobservatory.ooniprobe.data.TestStorage;
@@ -129,6 +132,23 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         }
 
         checkInformedConsent();
+
+        // Get the intent that started this activity
+        Intent intent = getIntent();
+        Uri data = intent.getData();
+        System.out.println(data);
+        if (Intent.ACTION_VIEW.equals(intent.getAction())) {
+            Uri uri = intent.getData();
+            //Set<String> parameters = uri.getQueryParameterNames();
+            String required_version_json = uri.getQueryParameter("required_version_json");
+            String valueTwo = uri.getQueryParameter("test_timeout");
+            System.out.println("required_version_json "+ required_version_json);
+            //Compare with name or code?
+            //BuildConfig.VERSION_NAME
+            //BuildConfig.VERSION_CODE
+
+        }
+
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
