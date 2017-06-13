@@ -38,7 +38,7 @@ public class NotificationHandler extends FirebaseMessagingService {
     public static void notifyTestEnded(Context c, String text) {
             if (text.equals("http_invalid_request_line")) text = c.getString(R.string.http_invalid_request_line);
             else if (text.equals("web_connectivity")) text = c.getString(R.string.web_connectivity);
-            else if (text.equals("ndt_test")) text = c.getString(R.string.ndt_test);
+            else if (text.equals("ndt_test")) text = c.getString(R.string.ndt);
             else if (text.equals("http_header_field_manipulation")) text = c.getString(R.string.http_header_field_manipulation);
             sendNotification(c, text + " " + c.getString(R.string.finished_running));
         }

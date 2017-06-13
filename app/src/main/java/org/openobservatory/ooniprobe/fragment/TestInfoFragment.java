@@ -115,6 +115,8 @@ public class TestInfoFragment extends Fragment {
                 return "https://ooni.torproject.org/nettest/ndt/";
             case OONITests.WEB_CONNECTIVITY:
                 return "https://ooni.torproject.org/nettest/web-connectivity/";
+            case OONITests.HTTP_HEADER_FIELD_MANIPULATION:
+                return "https://ooni.torproject.org/nettest/http-header-field-manipulation/";
             default:
                 return "";
         }
@@ -129,7 +131,7 @@ public class TestInfoFragment extends Fragment {
             case OONITests.HTTP_HEADER_FIELD_MANIPULATION:
                 return mActivity.getString(R.string.http_header_field_manipulation_longdesc);
             case OONITests.NDT_TEST:
-                return mActivity.getString(R.string.ndt_test_longdesc);
+                return mActivity.getString(R.string.ndt_longdesc);
             default:
                 return "";
         }
