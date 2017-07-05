@@ -35,7 +35,7 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.6.6@aar') {
         transitive = true;
     }
-    compile 'org.openobservatory.measurement_kit:android-libs:0.6.6-1'
+    compile "org.openobservatory.measurement_kit:android-libs:0.7.0-alpha.2-2"
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'

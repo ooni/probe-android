@@ -201,6 +201,12 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         String backStateName = f.getClass().getName();
         FragmentManager manager = getSupportFragmentManager();
         boolean fragmentPopped = manager.popBackStackImmediate(backStateName, 0);
+        Fragment currentFragment = manager.findFragmentById(R.id.content_frame);
+        if (currentFragment != null){
+            if (!f.getClass().equals(PastTestsFragment.class) && currentFragment.getClass().equals(PastTestsFragment.class)){
+                TestStorage.setAllViewed(this);
+            }
+        }
         if (!fragmentPopped && manager.findFragmentByTag(backStateName) == null) {
             // fragment not in back stack, create it.
             FragmentTransaction ft = manager.beginTransaction();
