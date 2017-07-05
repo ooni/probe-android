@@ -4,16 +4,21 @@
 
 package org.openobservatory.ooniprobe.activity;
 
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.preference.PreferenceManager;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -128,8 +133,39 @@ public class MainActivity extends AppCompatActivity  implements Observer {
             PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("cleanup_unused_files", true).apply();
         }
 
-        checkInformedConsent();
+        //checkInformedConsent();
+        //loadCustomTabs();
+        //Intent BrowserIntent = new Intent(MainActivity.this, BrowserActivity.class);
+        //startActivity(BrowserIntent);
+
+        //Open other urls https://developer.chrome.com/multidevice/android/customtabs#custom-tabs connection callback
+        String url = "https://paul.kinlan.me/";
+        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+        builder.setToolbarColor(ContextCompat.getColor(this, R.color.color_ooni_blue));
+        builder.setActionButton(BitmapFactory.decodeResource(getResources(), R.drawable.ooni_icon), "Material Color Picker", addActionButton());
+        CustomTabsIntent customTabsIntent = builder.build();
+        customTabsIntent.launchUrl(this, Uri.parse(url));
     }
+
+    public void loadCustomTabs() {
+        String url = "https://paul.kinlan.me/";
+        CustomTabsIntent.Builder mBuilder = new CustomTabsIntent.Builder();
+        mBuilder.setToolbarColor(ContextCompat.getColor(this, R.color.color_ooni_blue));
+        //mBuilder.setCloseButtonIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_arrow_back_white_24dp));
+        //mBuilder.addMenuItem("Share", setMenuItem());
+        mBuilder.setActionButton(BitmapFactory.decodeResource(getResources(), R.drawable.ooni_logo), "Material Color Picker", addActionButton());
+        //mBuilder.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
+        //mBuilder.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
+        CustomTabsIntent mIntent = mBuilder.build();
+        mIntent.launchUrl(this, Uri.parse(url));
+    }
+
+    private PendingIntent addActionButton() {
+        Intent playStoreIntent = new Intent(Intent.ACTION_VIEW,
+                Uri.parse("market://details?id=com.anjithsasindran.materialcolorpicker"));
+        return PendingIntent.getActivity(this, 0, playStoreIntent, 0);
+    }
+
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
