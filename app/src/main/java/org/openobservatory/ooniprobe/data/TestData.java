@@ -17,7 +17,6 @@ import org.json.JSONObject;
 import org.openobservatory.measurement_kit.android.DnsUtils;
 import org.openobservatory.measurement_kit.common.LogSeverity;
 import org.openobservatory.measurement_kit.nettests.*;
-import org.openobservatory.measurement_kit.swig.OoniTestWrapper;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
@@ -97,17 +96,14 @@ public class TestData extends Observable {
                         {
                             Log.v(TAG, "running test...");
                             if (testName.compareTo(OONITests.DNS_INJECTION) == 0) {
-                        /*
-                         * TODO: add high level class for this test.
-                         */
-                                OoniTestWrapper w = new OoniTestWrapper("dns_injection");
+                                DnsInjectionTest w = new DnsInjectionTest();
                                 Log.v(TAG, "running dns_injection test...");
                                 w.use_logcat();
                                 w.set_options("backend", "8.8.8.1");
                                 w.set_input_filepath(inputPath);
                                 w.set_output_filepath(outputPath);
                                 w.set_error_filepath(logPath);
-                                w.set_verbosity(LogSeverity.INFO);
+                                w.set_verbosity(LogSeverity.LOG_INFO);
                                 w.set_options("dns/nameserver", nameserver);
                                 w.set_options("dns/engine", "system");
                                 w.set_options("geoip_country_path", geoip_country);
@@ -125,7 +121,7 @@ public class TestData extends Observable {
                                         .set_options("backend", OONITests.HIRL_BACKEND)
                                         .set_output_filepath(outputPath)
                                         .set_error_filepath(logPath)
-                                        .set_verbosity(LogSeverity.INFO)
+                                        .set_verbosity(LogSeverity.LOG_INFO)
                                         .set_options("dns/nameserver", nameserver)
                                         .set_options("dns/engine", "system")
                                         .set_options("geoip_country_path", geoip_country)
@@ -166,7 +162,7 @@ public class TestData extends Observable {
                                         .set_options("backend", OONITests.HHFM_BACKEND)
                                         .set_output_filepath(outputPath)
                                         .set_error_filepath(logPath)
-                                        .set_verbosity(LogSeverity.INFO)
+                                        .set_verbosity(LogSeverity.LOG_INFO)
                                         .set_options("dns/nameserver", nameserver)
                                         .set_options("dns/engine", "system")
                                         .set_options("geoip_country_path", geoip_country)
@@ -202,12 +198,12 @@ public class TestData extends Observable {
                             }
                             else if (testName.compareTo(OONITests.TCP_CONNECT) == 0) {
                                 Log.v(TAG, "running tcp-connect test...");
-                                OoniTestWrapper w = new OoniTestWrapper("tcp_connect");
+                                TcpConnectTest w = new TcpConnectTest();
                                 w.use_logcat();
                                 w.set_input_filepath(inputPath);
                                 w.set_output_filepath(outputPath);
                                 w.set_error_filepath(logPath);
-                                w.set_verbosity(LogSeverity.INFO);
+                                w.set_verbosity(LogSeverity.LOG_INFO);
                                 w.set_options("port", "80");
                                 w.set_options("dns/nameserver", nameserver);
                                 w.set_options("dns/engine", "system");
@@ -227,7 +223,7 @@ public class TestData extends Observable {
                                         .set_input_filepath(inputUrlsPath)
                                         .set_output_filepath(outputPath)
                                         .set_error_filepath(logPath)
-                                        .set_verbosity(LogSeverity.INFO)
+                                        .set_verbosity(LogSeverity.LOG_INFO)
                                         .set_options("backend", OONITests.WC_BACKEND)
                             /*
                              * XXX nameserver is the nameserver to be used for
@@ -277,7 +273,7 @@ public class TestData extends Observable {
                                         .set_input_filepath(inputPath)
                                         .set_output_filepath(outputPath)
                                         .set_error_filepath(logPath)
-                                        .set_verbosity(LogSeverity.INFO)
+                                        .set_verbosity(LogSeverity.LOG_INFO)
                                         .set_options("dns/nameserver", nameserver)
                                         .set_options("dns/engine", "system")
                                         .set_options("geoip_country_path", geoip_country)
@@ -364,7 +360,7 @@ public class TestData extends Observable {
     }
 
     //TODO document this functions
-    //TODO rewrite these functions to avoidin repeating so much code
+    //TODO rewrite these functions to avoid repeating so much code
     public static void setAnomaly_hirl(String entry, NetworkMeasurement test){
         if(!test.entry) {
             TestStorage.setEntry(context, test);
