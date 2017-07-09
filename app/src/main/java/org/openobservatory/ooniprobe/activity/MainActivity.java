@@ -138,13 +138,16 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         //Intent BrowserIntent = new Intent(MainActivity.this, BrowserActivity.class);
         //startActivity(BrowserIntent);
 
+
         //Open other urls https://developer.chrome.com/multidevice/android/customtabs#custom-tabs connection callback
+        /*
         String url = "https://paul.kinlan.me/";
         CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
         builder.setToolbarColor(ContextCompat.getColor(this, R.color.color_ooni_blue));
         builder.setActionButton(BitmapFactory.decodeResource(getResources(), R.drawable.ooni_icon), "Material Color Picker", addActionButton());
         CustomTabsIntent customTabsIntent = builder.build();
         customTabsIntent.launchUrl(this, Uri.parse(url));
+        */
     }
 
     public void loadCustomTabs() {

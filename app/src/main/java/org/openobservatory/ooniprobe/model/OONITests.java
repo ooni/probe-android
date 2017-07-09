@@ -16,4 +16,7 @@ public class OONITests {
     public static final String WC_BACKEND = "https://b.web-connectivity.th.ooni.io";
     public static final String HIRL_BACKEND = "http://a.echo.th.ooni.io";
     public static final String HHFM_BACKEND = "http://a.http.th.ooni.io";
+    public static final String NOTIFICATION_SERVER = "https://registry.proteus.test.ooni.io";
+
+
 }
