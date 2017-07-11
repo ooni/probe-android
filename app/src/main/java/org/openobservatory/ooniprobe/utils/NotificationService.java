@@ -109,7 +109,7 @@ public class NotificationService {
                         client.set_probe_asn(probe_asn);
                         client.set_probe_cc(probe_cc);
                         Error err = auth.load(auth_secret_file);
-                        if (error.as_bool()) {
+                        if (err.as_bool()) {
                             client.register_probe(
                                     OrchestrateAuth.make_password(),
                                     new OrchestrateRegisterProbeCallback() {
