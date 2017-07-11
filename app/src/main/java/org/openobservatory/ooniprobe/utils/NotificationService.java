@@ -66,7 +66,7 @@ public class NotificationService {
      *
      */
     public void sendRegistrationToServer() {
-        final String auth_secret_file = "orchestration_secret.json";
+        final String auth_secret_file = context.getFilesDir() + "/orchestration_secret.json";
 
         //LOGGING
         System.out.println("probe_cc: " + geoip_country_path);
@@ -80,6 +80,7 @@ public class NotificationService {
         final OrchestrateClient client = new OrchestrateClient();
         client.increase_verbosity();
         client.increase_verbosity();
+        client.use_logcat();
         client.set_geoip_country_path(geoip_country_path);
         client.set_geoip_asn_path(geoip_asn_path);
         client.set_platform(platform);
