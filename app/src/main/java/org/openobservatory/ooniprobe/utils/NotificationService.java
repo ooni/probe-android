@@ -41,8 +41,8 @@ public class NotificationService {
         if (instance == null) {
             context = c;
             instance = new NotificationService();
-            geoip_country_path = "GeoIP.dat";
-            geoip_asn_path = "GeoIPASNum.dat";
+            geoip_asn_path = c.getFilesDir() + "/GeoIPASNum.dat";
+            geoip_country_path = c.getFilesDir() + "/GeoIP.dat";
             platform = "android";
             software_name = "ooniprobe-android";
             software_version = BuildConfig.VERSION_NAME;
