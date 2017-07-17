@@ -71,7 +71,7 @@ public class TestData extends Observable {
         final Boolean upload_results = preferences.getBoolean("upload_results", true);
         final String collector_address = preferences.getString("collector_address", OONITests.COLLECTOR_ADDRESS);
         final String max_runtime = preferences.getString("max_runtime", OONITests.MAX_RUNTIME);
-        System.out.println("max_runtime " +max_runtime);
+
         TestStorage.addTest(ctx, currentTest);
         runningTests.add(currentTest);
         availableTests.put(testName, false);
@@ -99,13 +99,10 @@ public class TestData extends Observable {
                                 DnsInjectionTest w = new DnsInjectionTest();
                                 Log.v(TAG, "running dns_injection test...");
                                 w.use_logcat();
-                                w.set_options("backend", "8.8.8.1");
                                 w.set_input_filepath(inputPath);
                                 w.set_output_filepath(outputPath);
                                 w.set_error_filepath(logPath);
                                 w.set_verbosity(LogSeverity.LOG_INFO);
-                                w.set_options("dns/nameserver", nameserver);
-                                w.set_options("dns/engine", "system");
                                 w.set_options("geoip_country_path", geoip_country);
                                 w.set_options("geoip_asn_path", geoip_asn);
                                 w.set_options("save_real_probe_ip", boolToString(include_ip));
@@ -118,12 +115,9 @@ public class TestData extends Observable {
                                 Log.v(TAG, "running http_invalid_request_line test...");
                                 new HttpInvalidRequestLineTest()
                                         .use_logcat()
-                                        .set_options("backend", OONITests.HIRL_BACKEND)
                                         .set_output_filepath(outputPath)
                                         .set_error_filepath(logPath)
                                         .set_verbosity(LogSeverity.LOG_INFO)
-                                        .set_options("dns/nameserver", nameserver)
-                                        .set_options("dns/engine", "system")
                                         .set_options("geoip_country_path", geoip_country)
                                         .set_options("geoip_asn_path", geoip_asn)
                                         .set_options("save_real_probe_ip", boolToString(include_ip))
@@ -159,12 +153,9 @@ public class TestData extends Observable {
                                 Log.v(TAG, "running http_header_field_manipulation test...");
                                 new HttpHeaderFieldManipulationTest()
                                         .use_logcat()
-                                        .set_options("backend", OONITests.HHFM_BACKEND)
                                         .set_output_filepath(outputPath)
                                         .set_error_filepath(logPath)
                                         .set_verbosity(LogSeverity.LOG_INFO)
-                                        .set_options("dns/nameserver", nameserver)
-                                        .set_options("dns/engine", "system")
                                         .set_options("geoip_country_path", geoip_country)
                                         .set_options("geoip_asn_path", geoip_asn)
                                         .set_options("save_real_probe_ip", boolToString(include_ip))
@@ -204,9 +195,6 @@ public class TestData extends Observable {
                                 w.set_output_filepath(outputPath);
                                 w.set_error_filepath(logPath);
                                 w.set_verbosity(LogSeverity.LOG_INFO);
-                                w.set_options("port", "80");
-                                w.set_options("dns/nameserver", nameserver);
-                                w.set_options("dns/engine", "system");
                                 w.set_options("geoip_country_path", geoip_country);
                                 w.set_options("geoip_asn_path", geoip_asn);
                                 w.set_options("save_real_probe_ip", boolToString(include_ip));
@@ -224,16 +212,6 @@ public class TestData extends Observable {
                                         .set_output_filepath(outputPath)
                                         .set_error_filepath(logPath)
                                         .set_verbosity(LogSeverity.LOG_INFO)
-                                        .set_options("backend", OONITests.WC_BACKEND)
-                            /*
-                             * XXX nameserver is the nameserver to be used for
-                             * the DNS phase of web-connectivity only while
-                             * dns/nameserver is the one used for all the other
-                             * DNS operations. Do we need to have both?
-                             */
-                                        .set_options("dns/nameserver", nameserver)
-                                        .set_options("nameserver", nameserver)
-                                        .set_options("dns/engine", "system")
                                         .set_options("geoip_country_path", geoip_country)
                                         .set_options("geoip_asn_path", geoip_asn)
                                         .set_options("save_real_probe_ip", boolToString(include_ip))
@@ -274,8 +252,6 @@ public class TestData extends Observable {
                                         .set_output_filepath(outputPath)
                                         .set_error_filepath(logPath)
                                         .set_verbosity(LogSeverity.LOG_INFO)
-                                        .set_options("dns/nameserver", nameserver)
-                                        .set_options("dns/engine", "system")
                                         .set_options("geoip_country_path", geoip_country)
                                         .set_options("geoip_asn_path", geoip_asn)
                                         .set_options("save_real_probe_ip", boolToString(include_ip))
