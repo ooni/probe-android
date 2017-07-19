@@ -42,7 +42,8 @@ public class NetworkMeasurement {
                 return context.getString(R.string.http_header_field_manipulation);
             case OONITests.NDT_TEST:
                 return context.getString(R.string.ndt);
-
+            case OONITests.DASH:
+                return context.getString(R.string.dash);
             default:
                 return "";
         }
@@ -58,6 +59,8 @@ public class NetworkMeasurement {
                 return context.getString(R.string.http_header_field_manipulation_desc);
             case OONITests.NDT_TEST:
                 return context.getString(R.string.ndt_desc);
+            case OONITests.DASH:
+                return context.getString(R.string.dash_desc);
             default:
                 return "";
         }
@@ -93,6 +96,14 @@ public class NetworkMeasurement {
                     return R.drawable.ndt_warning;
                 else
                     return R.drawable.ndt_no;
+            // FIXME: add the proper image for the dash test
+            case OONITests.DASH:
+                if (anomaly == 0)
+                    return R.drawable.ndt;
+                else if (anomaly == 1)
+                    return R.drawable.ndt_warning;
+                else
+                    return R.drawable.ndt_no;
             default:
                 return 0;
         }
@@ -107,6 +118,9 @@ public class NetworkMeasurement {
             case OONITests.HTTP_HEADER_FIELD_MANIPULATION:
                 return R.drawable.http_header_field_manipulation_big;
             case OONITests.NDT_TEST:
+                return R.drawable.ndt_big;
+            // FIXME add the proper image for the DASH test
+            case OONITests.DASH:
                 return R.drawable.ndt_big;
             default:
                 return 0;

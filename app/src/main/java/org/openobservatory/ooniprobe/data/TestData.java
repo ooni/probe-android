@@ -41,6 +41,7 @@ public class TestData extends Observable {
             runningTests = new ArrayList<>();
             finishedTests = TestStorage.loadTests(context);
             availableTests = new LinkedHashMap<>();
+            availableTests.put(OONITests.DASH, true);
             availableTests.put(OONITests.WEB_CONNECTIVITY, true);
             availableTests.put(OONITests.HTTP_INVALID_REQUEST_LINE, true);
             availableTests.put(OONITests.HTTP_HEADER_FIELD_MANIPULATION, true);
@@ -95,7 +96,44 @@ public class TestData extends Observable {
                         try
                         {
                             Log.v(TAG, "running test...");
-                            if (testName.compareTo(OONITests.DNS_INJECTION) == 0) {
+                            if (testName.compareTo(OONITests.DASH) == 0) {
+                                Log.v(TAG, "running dash test...");
+                                new DashTest()
+                                    .use_logcat()
+                                    .set_output_filepath(outputPath)
+                                    .set_error_filepath(logPath)
+                                    .set_verbosity(LogSeverity.LOG_INFO)
+                                    .set_options("geoip_country_path", geoip_country)
+                                    .set_options("geoip_asn_path", geoip_asn)
+                                    .set_options("save_real_probe_ip", boolToString(include_ip))
+                                    .set_options("save_real_probe_asn", boolToString(include_asn))
+                                    .set_options("save_real_probe_cc", boolToString(include_cc))
+                                    .set_options("no_collector", boolToString(!upload_results))
+                                    .set_options("collector_base_url", collector_address)
+                                    .set_options("software_name", "ooniprobe-android")
+                                    .set_options("software_version", BuildConfig.VERSION_NAME)
+                                    .on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
+                                        @Override
+                                        public void callback(double percent, String msg) {
+                                            currentTest.progress = (int)(percent*100);
+                                            if (activity != null){
+                                                activity.runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        TestData.getInstance(context, activity).notifyObservers();
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    })
+                                    .on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
+                                        @Override
+                                        public void callback(String entry) {
+                                            /* NOTHING */ ;
+                                        }
+                                    })
+                                    .run();
+                            } else if (testName.compareTo(OONITests.DNS_INJECTION) == 0) {
                                 DnsInjectionTest w = new DnsInjectionTest();
                                 Log.v(TAG, "running dns_injection test...");
                                 w.use_logcat();
