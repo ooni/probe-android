@@ -155,10 +155,13 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         // XXX: This is probably not correct: we would like to send
         // info to the orchestrator only when the network or any other
         // orchestrator parameter like country code changed.
-        NotificationService.getInstance(getApplicationContext())
-            .setDevice_token(FirebaseInstanceId.getInstance().getToken());
-        NotificationService.getInstance(getApplicationContext())
-            .sendRegistrationToServer();
+        String token = FirebaseInstanceId.getInstance().getToken();
+        if (token != null) {
+            NotificationService ns = NotificationService.getInstance(
+                getApplicationContext());
+            ns.setDevice_token(token);
+            ns.sendRegistrationToServer();
+        }
     }
 
     public void loadCustomTabs() {
