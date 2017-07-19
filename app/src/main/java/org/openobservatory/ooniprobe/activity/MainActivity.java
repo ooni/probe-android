@@ -35,6 +35,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -55,6 +57,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.TestInfoFragment;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
+import org.openobservatory.ooniprobe.utils.NotificationService;
 
 public class MainActivity extends AppCompatActivity  implements Observer {
     private DrawerLayout mDrawerLayout;
@@ -148,6 +151,14 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         CustomTabsIntent customTabsIntent = builder.build();
         customTabsIntent.launchUrl(this, Uri.parse(url));
         */
+
+        // XXX: This is probably not correct: we would like to send
+        // info to the orchestrator only when the network or any other
+        // orchestrator parameter like country code changed.
+        NotificationService.getInstance(getApplicationContext())
+            .setDevice_token(FirebaseInstanceId.getInstance().getToken());
+        NotificationService.getInstance(getApplicationContext())
+            .sendRegistrationToServer();
     }
 
     public void loadCustomTabs() {
@@ -231,7 +242,6 @@ public class MainActivity extends AppCompatActivity  implements Observer {
             super.onBackPressed();
         }
     }
-
 
     @Override
     public void setTitle(CharSequence title) {
