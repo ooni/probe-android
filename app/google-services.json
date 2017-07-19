@@ -1,35 +1,27 @@
 {
   "project_info": {
-    "project_number": "951667061699",
-    "firebase_url": "https://ooniprobe-android.firebaseio.com",
-    "project_id": "ooniprobe-android",
-    "storage_bucket": "ooniprobe-android.appspot.com"
+    "project_number": "567655237933",
+    "firebase_url": "https://ooniprobe.firebaseio.com",
+    "project_id": "ooniprobe",
+    "storage_bucket": "ooniprobe.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:951667061699:android:12ea7e8f6168b9e2",
+        "mobilesdk_app_id": "1:567655237933:android:12ea7e8f6168b9e2",
         "android_client_info": {
           "package_name": "org.openobservatory.ooniprobe"
         }
       },
       "oauth_client": [
         {
-          "client_id": "951667061699-o4i6pjdbeq9daum312u6fhmqc9gr4hu1.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "org.openobservatory.ooniprobe",
-            "certificate_hash": "a8f4bc5bef49e43d386647bdffdad32c07a8d3b8"
-          }
-        },
-        {
-          "client_id": "951667061699-2aq9bnbot04qdjbed2bpnl9ee4ro0c39.apps.googleusercontent.com",
+          "client_id": "567655237933-vgvppsh88a59hdvhjipvdpfou9n5uul5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBsbX_pOQoqlyOOyZ6yf7CJf0lZZn6O1yg"
+          "current_key": "AIzaSyBn_aQDtYy6CgEhnNpIiDd_c6q8re_Jr_k"
         }
       ],
       "services": {
@@ -37,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "951667061699-2aq9bnbot04qdjbed2bpnl9ee4ro0c39.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2
