@@ -6,6 +6,7 @@ import android.net.NetworkInfo;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import org.openobservatory.measurement_kit.common.LogSeverity;
 import org.openobservatory.measurement_kit.swig.Error;
 import org.openobservatory.measurement_kit.swig.OrchestrateAuth;
 import org.openobservatory.measurement_kit.swig.OrchestrateClient;
@@ -22,6 +23,7 @@ import java.util.Locale;
 
 public class NotificationService {
     private static final String TAG = "NotificationService";
+
     //TODO handle these warnings
     private static NotificationService instance;
     public static Context context;
@@ -78,8 +80,7 @@ public class NotificationService {
         System.out.println("token: " + device_token);
 
         final OrchestrateClient client = new OrchestrateClient();
-        client.increase_verbosity();
-        client.increase_verbosity();
+        client.set_verbosity(LogSeverity.LOG_DEBUG);
         client.use_logcat();
         client.set_geoip_country_path(geoip_country_path);
         client.set_geoip_asn_path(geoip_asn_path);
