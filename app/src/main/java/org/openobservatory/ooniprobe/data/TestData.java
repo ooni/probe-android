@@ -67,7 +67,7 @@ public class TestData extends Observable {
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
 
         final Boolean include_ip = preferences.getBoolean("include_ip", false);
-        final Boolean include_asn = preferences.getBoolean("include_asn", false);
+        final Boolean include_asn = preferences.getBoolean("include_asn", true);
         final Boolean include_cc = preferences.getBoolean("include_cc", true);
         final Boolean upload_results = preferences.getBoolean("upload_results", true);
         final String collector_address = preferences.getString("collector_address", OONITests.COLLECTOR_ADDRESS);
