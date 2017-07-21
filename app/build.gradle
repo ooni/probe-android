@@ -16,6 +16,7 @@ android {
         targetSdkVersion 25
         versionCode 8
         versionName "1.1.5-alpha"
+        setProperty("archivesBaseName", "ooniprobe-$versionName")
     }
     buildTypes {
         release {
