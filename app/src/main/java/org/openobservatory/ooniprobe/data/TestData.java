@@ -41,11 +41,11 @@ public class TestData extends Observable {
             runningTests = new ArrayList<>();
             finishedTests = TestStorage.loadTests(context);
             availableTests = new LinkedHashMap<>();
-            availableTests.put(OONITests.DASH, true);
             availableTests.put(OONITests.WEB_CONNECTIVITY, true);
             availableTests.put(OONITests.HTTP_INVALID_REQUEST_LINE, true);
             availableTests.put(OONITests.HTTP_HEADER_FIELD_MANIPULATION, true);
             availableTests.put(OONITests.NDT_TEST, true);
+            availableTests.put(OONITests.DASH, true);
         }
         else if (activity == null && a != null){
             activity = a;
