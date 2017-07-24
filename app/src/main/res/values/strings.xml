@@ -6,13 +6,13 @@
     <string name="settings">Settings</string>
     <string name="about">About</string>
     <string name="dns_injection">DNS Injection</string>
-    <string name="dash">DASH streaming test</string>
+    <string name="dash">DASH Streaming Test</string>
     <string name="tcp_connect">TCP Connect</string>
     <string name="http_invalid_request_line">HTTP Invalid request line</string>
     <string name="http_header_field_manipulation">HTTP Header field manipulation</string>
     <string name="web_connectivity">Web Connectivity</string>
     <string name="ndt">NDT Speed Test</string>
-    <string name="dash_desc">Emulate video streaming</string>
+    <string name="dash_desc">Measure video streaming quality</string>
     <string name="web_connectivity_desc">Check if websites are blocked</string>
     <string name="http_invalid_request_line_desc">Find \'middle boxes\'</string>
     <string name="http_header_field_manipulation_desc">Find \'middle boxes\'</string>
@@ -21,7 +21,7 @@
     <string name="http_invalid_request_line_longdesc">This test tries to detect systems (“middle boxes”) that could be responsible for censorship or surveillance by sending an invalid HTTP request line to an echo service. If such systems are in your network, the invalid HTTP request line will be intercepted and may trigger an error.</string>
     <string name="http_header_field_manipulation_longdesc">This test tries to detect the presence of systems (“middle boxes”) that could be responsible for censorship or surveillance by sending HTTP requests with non-canonical headers to a backend control server. If such systems are in your network, they will likely normalize the headers or add extra headers.</string>
     <string name="ndt_longdesc">This test measures the speed and performance of your network.\n\nDisclaimer: This is a third-party performance test based on third-party servers, and we cannot guarantee that your IP address will not be collected, processed, and published.</string>
-    <string name="dash_longdesc">This test emulates a very simple video player streaming at variable quality from a remote server. The test is designed to obtain a baseline performance of your network for performing video streaming. More advanced players (e.g. YouTube\'s and Netflix\'s ones) will possibly be able to stream at a higher quality, by using multiple connections, buffering aggressively content, etc.\n\nDisclaimer: This is a third-party performance test based on third-party servers, and we cannot guarantee that your IP address will not be collected, processed, and published</string>
+    <string name="dash_longdesc">This test emulates a very simple video player streaming at variable quality from a remote server. The test is designed to obtain a baseline performance of your network for performing video streaming.\n\nDisclaimer: This is a third-party performance test based on third-party servers, and we cannot guarantee that your IP address will not be collected, processed, and published.</string>
     <string name="running_tests">Running tests</string>
     <string name="finished_tests">Finished tests</string>
     <string name="collector_address">Collector Address</string>
