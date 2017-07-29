@@ -96,14 +96,13 @@ public class NetworkMeasurement {
                     return R.drawable.ndt_warning;
                 else
                     return R.drawable.ndt_no;
-            // FIXME: add the proper image for the dash test
             case OONITests.DASH:
                 if (anomaly == 0)
-                    return R.drawable.ndt;
+                    return R.drawable.dash;
                 else if (anomaly == 1)
-                    return R.drawable.ndt_warning;
+                    return R.drawable.dash_warning;
                 else
-                    return R.drawable.ndt_no;
+                    return R.drawable.dash_no;
             default:
                 return 0;
         }
@@ -119,9 +118,8 @@ public class NetworkMeasurement {
                 return R.drawable.http_header_field_manipulation_big;
             case OONITests.NDT_TEST:
                 return R.drawable.ndt_big;
-            // FIXME add the proper image for the DASH test
             case OONITests.DASH:
-                return R.drawable.ndt_big;
+                return R.drawable.dash_big;
             default:
                 return 0;
         }
