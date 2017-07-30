@@ -67,17 +67,24 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     void reloadButtons(){
-        if (webView.canGoBack())
-            back.setVisibility(View.VISIBLE);
-        else
-            back.setVisibility(View.GONE);
-
-        if (webView.canGoForward())
-            forward.setVisibility(View.VISIBLE);
-        else
-            forward.setVisibility(View.GONE);
-
+        if (webView.canGoBack()){
+            back.setAlpha(.5f);
+            back.setClickable(false);
+        }
+        else {
+            back.setAlpha(.5f);
+            back.setClickable(false);
+        }
+        if (webView.canGoForward()){
+            forward.setAlpha(.5f);
+            forward.setClickable(false);
+        }
+        else {
+            forward.setAlpha(.5f);
+            forward.setClickable(false);
+        }
     }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -122,7 +129,7 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
             refresh.setVisibility(View.VISIBLE);
             if (webViewProgressBar.isShown())
                 webViewProgressBar.setVisibility(View.GONE);
-            System.out.println("Finished loading");
+            System.out.println("Finished loading " + url);
             if (url.substring(0, 5).equals("https"))
                 urlLabel.setText("\uD83D\uDD12 " + url);
             else
