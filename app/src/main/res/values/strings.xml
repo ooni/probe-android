@@ -90,4 +90,6 @@
     <string name="past_tests_empty">Past test results will appear here once the tests have finished running</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    <string name="try_mirror">Try mirror</string>
+    <string name="loading">Loading...</string>
 </resources>

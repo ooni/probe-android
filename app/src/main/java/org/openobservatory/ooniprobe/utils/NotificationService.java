@@ -51,6 +51,7 @@ public class NotificationService {
             supported_tests = new ArrayList<>(TestData.getInstance(c, null).availableTests.keySet());
             network_type = getNetworkType(c);
             language = Locale.getDefault().getLanguage();
+            //TODO can crash check null
             device_token = FirebaseInstanceId.getInstance().getToken();
         }
         return instance;
@@ -59,6 +60,18 @@ public class NotificationService {
     public void setDevice_token(String token){
         device_token = token;
     }
+
+    /*
+    firebase basics
+    https://stackoverflow.com/questions/42644167/firebase-showing-success-but-not-sending-cloud-messaging-android-php
+    https://firebase.google.com/docs/cloud-messaging/android/client
+     */
+
+    /*
+    update network state
+    https://stackoverflow.com/questions/11343249/android-check-3g-or-wifi-network-is-on-or-available-or-not-on-android-device
+    https://developer.android.com/training/monitoring-device-state/connectivity-monitoring.html
+    */
 
     /**
      * Persist token to third-party servers.
