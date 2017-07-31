@@ -33,7 +33,9 @@ import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.model.OONITests;
 import org.openobservatory.ooniprobe.utils.Notifications;
 
+import java.text.NumberFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class SettingsFragment extends Fragment {
     private MainActivity mActivity;
@@ -127,23 +129,25 @@ public class SettingsFragment extends Fragment {
             }
         });
         final TextView max_runtime = (TextView) v.findViewById(R.id.max_runtimeEditText);
-        max_runtime.setText(preferences.getString("max_runtime", OONITests.MAX_RUNTIME));
+        String max_runtime_str = preferences.getString("max_runtime", OONITests.MAX_RUNTIME);
+        max_runtime.setText(max_runtime_str);
         max_runtime.setImeOptions(EditorInfo.IME_ACTION_DONE);
         max_runtime.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    if (Integer.valueOf(v.getText().toString()) < 10){
-                        SharedPreferences.Editor editor = preferences.edit();
-                        editor.putString("max_runtime", "10");
-                        editor.commit();
-                        max_runtime.setText(preferences.getString("max_runtime", OONITests.MAX_RUNTIME));
+                    String new_max_runtime = v.getText().toString();
+                    if (Integer.parseInt(new_max_runtime) < 10){
+                        new_max_runtime = "10";
                         Toast toast = Toast.makeText(mActivity, mActivity.getText(R.string.max_runtime_low), Toast.LENGTH_LONG);
                         View view = toast.getView();
                         TextView text = (TextView) view.findViewById(android.R.id.message);
                         text.setGravity(Gravity.CENTER);
                         toast.show();
                     }
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("max_runtime", new_max_runtime);
+                    editor.commit();
                 }
                 return false;
             }
@@ -159,17 +163,17 @@ public class SettingsFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("max_runtime", s.toString());
-                editor.commit();
             }
         });
 
         final EditText local_notifications_timeEditText = (EditText) v.findViewById(R.id.local_notifications_timeEditText);
-        local_notifications_timeEditText.setText(preferences.getString("local_notifications_time", "18:00"));
+        String local_notifications_time = preferences.getString("local_notifications_time", "18:00");
+        String[] separated = local_notifications_time.split(":");
+        int hours = Integer.valueOf(separated[0]);
+        int minutes = Integer.valueOf(separated[1]);
+        local_notifications_timeEditText.setText(String.format("%02d", hours) + ":" +String.format("%02d", minutes));
         InputMethodManager im = (InputMethodManager)mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
         im.hideSoftInputFromWindow(local_notifications_timeEditText.getWindowToken(), 0);
-
         local_notifications_timeLayout = (RelativeLayout) v.findViewById(R.id.local_notifications_timeLayout);
         SwitchCompat local_notificationsButton = (SwitchCompat) v.findViewById(R.id.local_notifications);
         local_notificationsButton.setChecked(preferences.getBoolean("local_notifications", false));
@@ -199,11 +203,15 @@ public class SettingsFragment extends Fragment {
                 mTimePicker = new TimePickerDialog(mActivity, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        String time = String.format("%02d", selectedHour) + ":" + String.format("%02d", selectedMinute);
+                        Locale en_locale = new Locale("en","EN");
+                        NumberFormat nf = NumberFormat.getInstance(en_locale);
+                        int hour = Integer.parseInt(nf.format(selectedHour));
+                        int minute = Integer.parseInt(nf.format(selectedMinute));
+                        String time = String.format(en_locale, "%02d", hour) + ":" + String.format(en_locale, "%02d", minute);
                         SharedPreferences.Editor editor = preferences.edit();
                         editor.putString("local_notifications_time", time);
                         editor.commit();
-                        local_notifications_timeEditText.setText(time);
+                        local_notifications_timeEditText.setText(String.format("%02d", selectedHour) + ":" + String.format("%02d", selectedMinute));
                         Notifications.setRecurringAlarm(mActivity.getApplicationContext());
                     }
                 }, hour, minute, true);
@@ -279,5 +287,4 @@ public class SettingsFragment extends Fragment {
         d.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         d.show();
     }
-
 }

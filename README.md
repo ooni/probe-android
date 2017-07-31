@@ -40,6 +40,14 @@ If you wish to test the apk inside of an emulator this can be done with
 
 The app should then be installed inside of the emulator `Nexus_5_API_23_marshmallow_6.0`.
 
+## Building the app for f-droid
+
+Just use the `f-droid` branch rather than the `master` branch. We periodically merge
+`master` into `f-droid` and tag releases with the `-fdroid` suffix.
+
+Compared to `master`, the `f-droid` branch contains small tweaks required to have
+the app accepted by [f-droid](https://f-droid.org/).
+
 ## Managing translations
 
 To manage translations ensure you have installed the [transifex command line
