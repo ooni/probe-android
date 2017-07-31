@@ -1,3 +1,7 @@
+# ooniprobe-android 1.1.4-fdroid [2017-07-31]
+
+* Merge tag v1.1.4 and resolve conflicts
+
 # ooniprobe-android 1.1.4 [2017-05-15]
 
 New Languages:
