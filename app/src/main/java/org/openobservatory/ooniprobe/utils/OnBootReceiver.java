@@ -14,7 +14,7 @@ public class OnBootReceiver extends BroadcastReceiver {
         //System.out.println(DEBUG_TAG);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         if (preferences.getBoolean("local_notifications", false)){
-            Notifications.setRecurringAlarm(context);
+            NotificationHandler.setRecurringAlarm(context);
         }
     }
 }

@@ -31,7 +31,7 @@ import android.widget.Toast;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.model.OONITests;
-import org.openobservatory.ooniprobe.utils.Notifications;
+import org.openobservatory.ooniprobe.utils.NotificationHandler;
 
 import java.text.NumberFormat;
 import java.util.Calendar;
@@ -183,11 +183,11 @@ public class SettingsFragment extends Fragment {
                 if (isChecked) {
                     local_notifications_timeLayout.setVisibility(View.VISIBLE);
                     editor.putBoolean("local_notifications", true);
-                    Notifications.setRecurringAlarm(mActivity.getApplicationContext());
+                    NotificationHandler.setRecurringAlarm(mActivity.getApplicationContext());
                 } else {
                     local_notifications_timeLayout.setVisibility(View.GONE);
                     editor.putBoolean("local_notifications", false);
-                    Notifications.cancelRecurringAlarm(mActivity.getApplicationContext());
+                    NotificationHandler.cancelRecurringAlarm(mActivity.getApplicationContext());
                 }
                 editor.commit();
             }
@@ -212,7 +212,7 @@ public class SettingsFragment extends Fragment {
                         editor.putString("local_notifications_time", time);
                         editor.commit();
                         local_notifications_timeEditText.setText(String.format("%02d", selectedHour) + ":" + String.format("%02d", selectedMinute));
-                        Notifications.setRecurringAlarm(mActivity.getApplicationContext());
+                        NotificationHandler.setRecurringAlarm(mActivity.getApplicationContext());
                     }
                 }, hour, minute, true);
                 mTimePicker.show();

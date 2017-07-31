@@ -10,18 +10,18 @@
     <string name="http_invalid_request_line">عدم صلاحية طلب ال HTTP </string>
     <string name="http_header_field_manipulation">HTTP Header Field Manipulation</string>
     <string name="web_connectivity">الاتصال بالشبكة</string>
-    <string name="ndt_test">NDT أداة تشخيص سرعة الشبكة</string>
+    <string name="ndt">NDT أداة تشخيص سرعة الشبكة</string>
     <string name="web_connectivity_desc">تحقق مما إذا تم حجب المواقع</string>
     <string name="http_invalid_request_line_desc">اِكْتَشَفَ وجود \'أجهزة وسيطة\'</string>
     <string name="http_header_field_manipulation_desc">اِكْتَشَفَ وجود \'أجهزة وسيطة\'</string>
-    <string name="ndt_test_desc">فحص سرعة وجودة الشبكة</string>
+    <string name="ndt_desc">فحص سرعة وجودة الشبكة</string>
     <string name="web_connectivity_longdesc">يعمل هذا الاختبار على كشف مقدار وجود حجب للمواقع عبر تقنيات مختلفة DNS tampering,  TCP/IP blocking أو من خلال transparent HTTP proxy .
 
 في كل مرة يتم إجراء اختبار Web Connectivity يتم تجربة حزمة مواقع مختلفة.</string>
     <string name="http_invalid_request_line_longdesc">يعمل هذا الاختبار على كشف وجود مكونات (“middle boxes”) في الشبكة قد تستخدم في المراقبة أو الحجب و ذلك بإرسال طلب HTTP غير صالح   لخدمة echo . إن وجد هذا النظام على شبكتك، بإمكانه إعتراض invalid HTTP request line  و إثارة خطأ  </string>
     <string name="http_header_field_manipulation_longdesc">
 يعمل هذا الاختبار على كشف وجود مكونات (“middle boxes”) في الشبكة قد تستخدم في المراقبة أو الحجب و ذلك بإرسال طلب HTTP غير صالح لخدمة echo . إذا كانت هذه الأنظمة موجودة في شبكتك، فمن المحتمل أن تؤدي إلى تطبيع عناوين الHTTP أو إضافة عناوين HTTP إضافية.</string>
-    <string name="ndt_test_longdesc">يعمل هذا الاختبار على فحص سرعة وجودة الشبكة. هذا إختبار يخص الأداء يعتمد على خوادم أطراف جهات خارجية.
+    <string name="ndt_longdesc">يعمل هذا الاختبار على فحص سرعة وجودة الشبكة. هذا إختبار يخص الأداء يعتمد على خوادم أطراف جهات خارجية.
 
 إخلاء المسؤولية: لا يمكننا الجزم أنه لان يتم تجميع، إستعمال أو نشر عنوان ال IP الخاص بك.</string>
     <string name="running_tests">الاختبارات الجارية</string>

@@ -10,15 +10,15 @@
     <string name="http_invalid_request_line">HTTP अमान्य अनुरोध पंक्ति</string>
     <string name="http_header_field_manipulation">HTTP हैडर फ़ील्ड हेरफेर</string>
     <string name="web_connectivity">वेब कनेक्टिविटी</string>
-    <string name="ndt_test">एनडीटी स्पीड टेस्ट</string>
+    <string name="ndt">एनडीटी स्पीड टेस्ट</string>
     <string name="web_connectivity_desc">जाँच करें अगर वेबसाइटों अवरुद्ध कर रहे हैं</string>
     <string name="http_invalid_request_line_desc"> \'बीच बक्से\' खोजें</string>
     <string name="http_header_field_manipulation_desc"> \'बीच बक्से\' खोजें</string>
-    <string name="ndt_test_desc">नेटवर्क की गति और प्रदर्शन को मापने</string>
+    <string name="ndt_desc">नेटवर्क की गति और प्रदर्शन को मापने</string>
     <string name="web_connectivity_longdesc">इस परीक्षा की परख होती है कि वेबसाइटों के लिए उपयोग छेड़छाड़, टीसीपी / आईपी अवरुद्ध, या एक पारदर्शी HTTP प्रॉक्सी द्वारा डीएनएस के माध्यम से अवरुद्ध है। हर बार जब आप वेब कनेक्टिविटी चलाने आप विभिन्न वेबसाइटों का परीक्षण करें।</string>
     <string name="http_invalid_request_line_longdesc">यह परीक्षा प्रणालियों (\"मध्यम बक्से\") का पता लगाने की कोशिश करती है जो प्रतिध्वनि सेवा के लिए एक अवैध HTTP अनुरोध पंक्ति भेजकर सेंसरशिप या निगरानी के लिए जिम्मेदार हो सकती है। यदि ऐसी व्यवस्था आपके नेटवर्क में है, तो अमान्य HTTP अनुरोध पंक्ति को रोक दिया जाएगा और एक त्रुटि को ट्रिगर किया जा सकता है।</string>
     <string name="http_header_field_manipulation_longdesc">यह टेस्ट सिस्टम (\"मिडल बक्से\") की मौजूदगी का पता लगाने की कोशिश करता है जो बैकेंड नियंत्रण सर्वर पर गैर-वैमानिक हेडर के साथ HTTP अनुरोध भेजकर सेंसरशिप या निगरानी के लिए जिम्मेदार हो सकता है। यदि ऐसी प्रणालियां आपके नेटवर्क में हैं, तो वे शीर्ष लेखों को सामान्य मान लेंगे या अतिरिक्त शीर्षलेख जोड़ सकते हैं।</string>
-    <string name="ndt_test_longdesc">यह परीक्षण आपके नेटवर्क की गति और प्रदर्शन को मापता है। 
+    <string name="ndt_longdesc">यह परीक्षण आपके नेटवर्क की गति और प्रदर्शन को मापता है। 
 अस्वीकरण: यह तीसरे पक्ष के सर्वर पर आधारित तृतीय-पक्ष प्रदर्शन परीक्षा है, और हम यह गारंटी नहीं दे सकते कि आपका आईपी पता एकत्रित, संसाधित और प्रकाशित नहीं किया जाएगा।</string>
     <string name="running_tests">परीक्षण चल रहा है</string>
     <string name="finished_tests">परीक्षण सामाप्त </string>

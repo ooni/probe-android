@@ -20,17 +20,28 @@ import java.util.Calendar;
  * https://code.tutsplus.com/tutorials/android-fundamentals-scheduling-recurring-tasks--mobile-5788
  */
 
-public class Notifications {
+public class NotificationHandler {
 
-        public static void notifyTestEnded(Context c, String text) {
+    private static final String TAG = "NotificationHandler";
+    /*
+    Example to execute tasks:
+    https://firebase.google.com/docs/cloud-messaging/android/client
+    https://github.com/firebase/quickstart-android/blob/master/messaging/app/src/main/AndroidManifest.xml#L32-L37
+    https://github.com/firebase/quickstart-android/blob/master/messaging/app/src/main/java/com/google/firebase/quickstart/fcm/MyFirebaseMessagingService.java
+
+    long running task:
+    https://github.com/firebase/quickstart-android/blob/master/messaging/app/src/main/java/com/google/firebase/quickstart/fcm/MyJobService.java
+    */
+
+    public static void notifyTestEnded(Context c, String text) {
             if (text.equals("http_invalid_request_line")) text = c.getString(R.string.http_invalid_request_line);
             else if (text.equals("web_connectivity")) text = c.getString(R.string.web_connectivity);
-            else if (text.equals("ndt_test")) text = c.getString(R.string.ndt_test);
+            else if (text.equals("ndt_test")) text = c.getString(R.string.ndt);
             else if (text.equals("http_header_field_manipulation")) text = c.getString(R.string.http_header_field_manipulation);
             sendNotification(c, text + " " + c.getString(R.string.finished_running));
         }
 
-        public static void sendNotification(Context c, String text) {
+    public static void sendNotification(Context c, String text) {
 
         int icon = R.drawable.notification_icon;
 
@@ -87,6 +98,4 @@ public class Notifications {
                 Context.ALARM_SERVICE);
         alarms.cancel(recurringAlarm);
     }
-
 }
-

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_ooni_blue"
+        android:minHeight="?attr/actionBarSize">
+
+        <ImageView
+            android:id="@+id/webviewBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_back" />
+
+        <ImageView
+            android:id="@+id/webviewForward"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_margin="5dp"
+            android:layout_toRightOf="@+id/webviewBack"
+            android:padding="5dp"
+            android:src="@drawable/ic_forward" />
+
+        <TextView
+            android:id="@+id/urlLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/webviewForward"
+            android:layout_toLeftOf="@+id/reloadOrProgress"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:padding="5dp"
+            android:text="@string/loading"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+
+    <RelativeLayout
+        android:id="@+id/reloadOrProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/webviewClose"
+        android:layout_centerVertical="true"
+        android:layout_gravity="end" >
+
+        <ImageView
+            android:id="@+id/webviewReload"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_refresh"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:visibility="gone" />
+
+        <ProgressBar
+            android:id="@+id/webViewProgressBar"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_margin="10dp"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/webviewClose"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_close"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_alignTop="@+id/webviewForward"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#7e7e7e" />
+
+
+    <WebView
+        android:id="@+id/sitesWebView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+</LinearLayout>

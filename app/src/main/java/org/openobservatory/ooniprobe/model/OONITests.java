@@ -5,6 +5,7 @@
 package org.openobservatory.ooniprobe.model;
 
 public class OONITests {
+    public static final String DASH = "dash";
     public static final String DNS_INJECTION = "dns_injection";
     public static final String HTTP_INVALID_REQUEST_LINE = "http_invalid_request_line";
     public static final String HTTP_HEADER_FIELD_MANIPULATION = "http_header_field_manipulation";
@@ -13,7 +14,4 @@ public class OONITests {
     public static final String NDT_TEST = "ndt_test";
     public static final String COLLECTOR_ADDRESS = "https://b.collector.ooni.io";
     public static final String MAX_RUNTIME = "90";
-    public static final String WC_BACKEND = "https://b.web-connectivity.th.ooni.io";
-    public static final String HIRL_BACKEND = "http://a.echo.th.ooni.io";
-    public static final String HHFM_BACKEND = "http://a.http.th.ooni.io";
 }

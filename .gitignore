@@ -2,6 +2,9 @@
 /*/build/
 build/
 
+# Files that the IDE can easily re-generate
+*.iml
+
 # Crashlytics configuations
 com_crashlytics_export_strings.xml
 

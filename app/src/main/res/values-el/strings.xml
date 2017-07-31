@@ -10,17 +10,17 @@
     <string name="http_invalid_request_line">HTTP Invalid request line</string>
     <string name="http_header_field_manipulation">HTTP Header Field Manipulation</string>
     <string name="web_connectivity">Web Connectivity</string>
-    <string name="ndt_test">NDT Δοκιμή Ταχύτητας</string>
+    <string name="ndt">NDT Δοκιμή Ταχύτητας</string>
     <string name="web_connectivity_desc">Ελέγξτε εάν οι ιστοσελίδες έχουν μπλοκαριστεί</string>
     <string name="http_invalid_request_line_desc">Βρείτε \'ενδιάμεσες συσκευές\'</string>
     <string name="http_header_field_manipulation_desc">Βρείτε \'ενδιάμεσες συσκευές\'</string>
-    <string name="ndt_test_desc">Μετρήστε την ταχύτητα και την απόδοση του δικτύου σας</string>
+    <string name="ndt_desc">Μετρήστε την ταχύτητα και την απόδοση του δικτύου σας</string>
     <string name="web_connectivity_longdesc">Αυτή η δοκιμή εξετάζει κατά πόσον η πρόσβαση σε ιστοσελίδες είναι αποκλεισμένη μέσω παραβίασης DNS, αποκλεισμού TCP/IP ή μέσω διαφανούς proxy HTTP.
 
 Κάθε φορά που εκτελείτε Web Connectivity, δοκιμάζετε διαφορετικούς ιστότοπους.</string>
     <string name="http_invalid_request_line_longdesc">Αυτή η δοκιμή προσπαθεί να ανιχνεύσει συστήματα (\"ενδιάμεσες συσκευές\") που θα μπορούσαν να είναι υπεύθυνα για λογοκρισία ή επιτήρηση στέλνοντας μια μη έγκυρη γραμμή αίτησης HTTP σε έναν διακομιστή. Εάν τέτοια συστήματα βρίσκονται στο δίκτυό σας, η μη έγκυρη γραμμή αίτησης HTTP θα παρακρατηθεί και ενδέχεται να προκαλέσει σφάλμα.</string>
     <string name="http_header_field_manipulation_longdesc">Αυτή η δοκιμή προσπαθεί να ανιχνεύσει την παρουσία συστημάτων (\"ενδιάμεσες συσκευές\") που θα μπορούσαν να είναι υπεύθυνα για λογοκρισία ή επιτήρηση στέλνοντας αιτήσεις HTTP με μη κανονικές κεφαλίδες σε ένα διακομιστή ελέγχου. Εάν τέτοια συστήματα βρίσκονται στο δίκτυό σας, πιθανόν να ομαλοποιήσουν τις κεφαλίδες ή να προσθέσουν επιπλέον κεφαλίδες.</string>
-    <string name="ndt_test_longdesc">Αυτή η δοκιμή μετρά την ταχύτητα και την απόδοση του δικτύου σας.
+    <string name="ndt_longdesc">Αυτή η δοκιμή μετρά την ταχύτητα και την απόδοση του δικτύου σας.
 
 Αποποίηση ευθυνών: Πρόκειται για δοκιμή απόδοσης τρίτων με βάση διακομιστές τρίτων και δεν μπορούμε να εγγυηθούμε ότι η διεύθυνση IP σας δεν θα συλλεχθεί, θα επεξεργαστεί και θα δημοσιευθεί.</string>
     <string name="running_tests">Εκτελέστε δοκιμές</string>
