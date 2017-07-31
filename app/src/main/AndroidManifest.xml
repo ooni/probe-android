@@ -59,8 +59,6 @@
             android:name="io.fabric.ApiKey"
             android:value="529a3ff33bd5359fe86c53f6252035178bdb03a1" />
 
-        <!--         <activity android:name=".activity.BrowserActivity"></activity> -->
-
         <service android:name=".utils.NotificationsRouter">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -75,8 +73,12 @@
             android:resource="@color/color_ooni_blue" />
 
         <activity android:name=".activity.BrowserActivity"
-            android:theme="@style/FullScreen"
-            />
+            android:theme="@style/FullScreen">
+            <intent-filter>
+                <action android:name="org.openobservatory.ooniprobe.OPEN_BROWSER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -135,22 +135,19 @@ public class MainActivity extends AppCompatActivity  implements Observer {
             PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("cleanup_unused_files", true).apply();
         }
 
-        //checkInformedConsent();
+        checkInformedConsent();
 
-        //NotificationService.getInstance(this).setDevice_token("LORENZO");
-        //NotificationService.getInstance(this).sendRegistrationToServer();
-        System.out.println("AAAAA+ "+ FirebaseInstanceId.getInstance().getToken());
+        /*
         ArrayList<String> urls = new ArrayList<>();
         urls.add("https://paul.kinlan.me/");
         urls.add("http://lorenzo.primiterra.it");
         urls.add("http://www.gazzetta.it");
         urls.add("https://www.google.it");
 
-        //Browser.getInstance(this).setUrls(urls);
-
         Intent browserIntent = new Intent(MainActivity.this, BrowserActivity.class);
         browserIntent.putStringArrayListExtra("urls", urls);
         startActivity(browserIntent);
+        */
 
         // XXX: This is probably not correct: we would like to send
         // info to the orchestrator only when the network or any other

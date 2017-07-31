@@ -2,11 +2,17 @@ package org.openobservatory.ooniprobe.utils;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.BrowserActivity;
+import org.openobservatory.ooniprobe.activity.MainActivity;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -16,8 +22,6 @@ public class NotificationsRouter extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        // ...
-
         // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
         Log.d(TAG, "Message from: " + remoteMessage.getFrom());
@@ -32,13 +36,21 @@ public class NotificationsRouter extends FirebaseMessagingService {
                     JSONObject payload = data.getJSONObject("payload");
                     String href = payload.getString("href");
                     JSONArray alt_hrefs = payload.getJSONArray("alt_hrefs");
-                    ArrayList<String>urls = new ArrayList<>();
+                    final ArrayList<String>urls = new ArrayList<>();
                     urls.add(href);
                     for(int i=0; i< alt_hrefs.length(); i++)
                     {
                         urls.add(alt_hrefs.getString(i));
                     }
                     Log.d(TAG, "Message data urls: " + urls);
+                    Alert.alertDialogTwoButtons(getApplicationContext(), getString(R.string.notifications), remoteMessage.getNotification().getBody(), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
+                            Intent browserIntent = new Intent(getApplicationContext(), BrowserActivity.class);
+                            browserIntent.putStringArrayListExtra("urls", urls);
+                            startActivity(browserIntent);
+                        }
+                    });
                 }
             }
             catch (Exception e) {
@@ -54,27 +66,16 @@ public class NotificationsRouter extends FirebaseMessagingService {
 
         // Also if you intend on generating your own notifications as a result of a received FCM
         // message, here is where that should be initiated.
-
+        /*
         IntentRouter.getInstance(getApplicationContext())
             .emit_string("orchestrate/notification",
                 remoteMessage.getNotification().getBody());
+         */
     }
 
     @Override
     public void onDeletedMessages() {
         // TODO
-    }
-
-    private JSONObject getJsonFromMap(Map<String, Object> map) throws JSONException {
-        JSONObject jsonData = new JSONObject();
-        for (String key : map.keySet()) {
-            Object value = map.get(key);
-            if (value instanceof Map<?, ?>) {
-                value = getJsonFromMap((Map<String, Object>) value);
-            }
-            jsonData.put(key, value);
-        }
-        return jsonData;
     }
 
     private final String TAG = "NotificationsRouter";
