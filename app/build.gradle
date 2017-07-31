@@ -14,8 +14,8 @@ android {
         applicationId "org.openobservatory.ooniprobe"
         minSdkVersion 23
         targetSdkVersion 25
-        versionCode 9
-        versionName "1.1.5-alpha.1"
+        versionCode 10
+        versionName "1.1.5-alpha.2"
         setProperty("archivesBaseName", "ooniprobe-$versionName")
     }
     buildTypes {
