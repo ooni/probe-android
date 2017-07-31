@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.BrowserActivity;
 import org.openobservatory.ooniprobe.activity.MainActivity;
+import org.openobservatory.ooniprobe.activity.NotificationDialog;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -43,14 +44,12 @@ public class NotificationsRouter extends FirebaseMessagingService {
                         urls.add(alt_hrefs.getString(i));
                     }
                     Log.d(TAG, "Message data urls: " + urls);
-                    Alert.alertDialogTwoButtons(getApplicationContext(), getString(R.string.notifications), remoteMessage.getNotification().getBody(), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int id) {
-                            Intent browserIntent = new Intent(getApplicationContext(), BrowserActivity.class);
-                            browserIntent.putStringArrayListExtra("urls", urls);
-                            startActivity(browserIntent);
-                        }
-                    });
+                    Intent intent =  new Intent(getApplicationContext(), NotificationDialog.class);
+                    //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("message", remoteMessage.getNotification().getBody());
+                    intent.putStringArrayListExtra("urls", urls);
+                    getApplicationContext().startActivity(intent);
                 }
             }
             catch (Exception e) {
