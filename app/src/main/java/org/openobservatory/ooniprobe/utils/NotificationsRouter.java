@@ -45,7 +45,6 @@ public class NotificationsRouter extends FirebaseMessagingService {
                     }
                     Log.d(TAG, "Message data urls: " + urls);
                     Intent intent =  new Intent(getApplicationContext(), NotificationDialog.class);
-                    //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("message", remoteMessage.getNotification().getBody());
                     intent.putStringArrayListExtra("urls", urls);
