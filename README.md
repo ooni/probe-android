@@ -4,9 +4,10 @@
 
 This is the android version of [ooniprobe](https://ooni.torproject.org/).
 
-Download it on the [Play Store](https://play.google.com/store/apps/details?id=org.openobservatory.ooniprobe).
-
-[![](assets/play-store-badge.png)](https://play.google.com/store/apps/details?id=org.openobservatory.ooniprobe)
+<a href="https://f-droid.org/packages/org.openobservatory.ooniprobe/" target="_blank">
+<img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="90"/></a>
+<a href="https://play.google.com/store/apps/details?id=org.openobservatory.ooniprobe" target="_blank">
+<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" alt="Get it on Google Play" height="90"/></a>
 
 This application requires Android Studio. We use gradle and, as part of the
 initial gradle sync, Android studio will download all the required
