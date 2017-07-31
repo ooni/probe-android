@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -15,6 +16,7 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -22,22 +24,30 @@ import android.widget.Toast;
 
 import org.openobservatory.ooniprobe.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.lang.Boolean.FALSE;
+
 public class BrowserActivity extends AppCompatActivity implements View.OnClickListener {
     private static WebView webView;
     private static ProgressBar webViewProgressBar;
-    private static ImageView back, forward, refresh, close;
+    private static ImageView back, forward, refresh, close, share;
+    private static Button try_mirror;
     private static TextView urlLabel;
-    private static final String webViewUrl = "http://lorenzo.primiterra.it";
+    private static ArrayList<String> urls;
+    private static int urlIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browser);
+        urls = getIntent().getStringArrayListExtra("urls");
         initViews();
         setUpWebView();
         reloadButtons();
         setListeners();
-    }
+     }
 
     private void initViews() {
         back = (ImageView) findViewById(R.id.webviewBack);
@@ -46,6 +56,10 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
         close = (ImageView) findViewById(R.id.webviewClose);
         webViewProgressBar = (ProgressBar) findViewById(R.id.webViewProgressBar);
         urlLabel = (TextView) findViewById(R.id.urlLabel);
+        share = (ImageView) findViewById(R.id.shareButton);
+        try_mirror = (Button) findViewById(R.id.tryMirror);
+        if (urls.size() == 1)
+            try_mirror.setEnabled(FALSE);
     }
 
 
@@ -56,7 +70,7 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
         webView.setInitialScale(1);
         webView.getSettings().setLoadWithOverviewMode(true);
         webView.getSettings().setUseWideViewPort(true);
-        LoadWebViewUrl(webViewUrl);
+        LoadWebViewUrl(urls.get(urlIndex));
     }
 
     private void setListeners() {
@@ -64,6 +78,8 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
         forward.setOnClickListener(this);
         refresh.setOnClickListener(this);
         close.setOnClickListener(this);
+        share.setOnClickListener(this);
+        try_mirror.setOnClickListener(this);
     }
 
     void reloadButtons(){
@@ -102,6 +118,12 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.webviewClose:
                 finish();
                 break;
+            case R.id.shareButton:
+                shareUrl();
+                break;
+            case R.id.tryMirror:
+                tryMirror();
+                break;
         }
     }
 
@@ -137,16 +159,14 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
             reloadButtons();
         }
 
+        //TODO keep the error toasts for all messages? are they necessary?
         @Override
         public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
             super.onReceivedError(view, request, error);
             refresh.setVisibility(View.VISIBLE);
             if (webViewProgressBar.isShown())
                 webViewProgressBar.setVisibility(View.GONE);
-            System.out.println("Error: "+ error.getDescription());
-            //Toast.makeText(BrowserActivity.this, error.getDescription(), Toast.LENGTH_SHORT).show();
             Toast.makeText(BrowserActivity.this, "Unexpected error occurred.Reload page again.", Toast.LENGTH_SHORT).show();
-
         }
 
         @Override
@@ -155,13 +175,13 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
             refresh.setVisibility(View.VISIBLE);
             if (webViewProgressBar.isShown())
                 webViewProgressBar.setVisibility(View.GONE);
-            //999 Request denied
-            System.out.println("Error: "+ errorResponse.getStatusCode());
-            //Toast.makeText(BrowserActivity.this, errorResponse.getReasonPhrase(), Toast.LENGTH_SHORT).show();
+            //TODO requies api 21
+            //if (errorResponse.getStatusCode())
+            //System.out.println("Error: "+ errorResponse.getStatusCode());
             Toast.makeText(BrowserActivity.this, "Unexpected HTTP error occurred.Reload page again.", Toast.LENGTH_SHORT).show();
-
         }
 
+        //TODO keep this?
         @Override
         public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
             super.onReceivedSslError(view, handler, error);
@@ -169,7 +189,6 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
             if (webViewProgressBar.isShown())
                 webViewProgressBar.setVisibility(View.GONE);
             Toast.makeText(BrowserActivity.this, "Unexpected SSL error occurred.Reload page again.", Toast.LENGTH_SHORT).show();
-
         }
 
     }
@@ -184,6 +203,24 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
         return super.onKeyDown(keyCode, event);
     }
 
+    private void shareUrl(){
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, webView.getUrl());
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
+    }
+
+    private void tryMirror(){
+        if ((urlIndex+1) < urls.size()){
+            urlIndex++;
+            LoadWebViewUrl(urls.get(urlIndex));
+        }
+        else {
+            urlIndex = 0;
+            LoadWebViewUrl(urls.get(urlIndex));
+        }
+    }
 
     private void isWebViewCanGoBack() {
         if (webView.canGoBack())

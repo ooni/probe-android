@@ -37,6 +37,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
@@ -142,12 +143,14 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         ArrayList<String> urls = new ArrayList<>();
         urls.add("https://paul.kinlan.me/");
         urls.add("http://lorenzo.primiterra.it");
-        urls.add("http://www.google.it");
+        urls.add("http://www.gazzetta.it");
+        urls.add("https://www.google.it");
 
         //Browser.getInstance(this).setUrls(urls);
 
-        Intent BrowserIntent = new Intent(MainActivity.this, BrowserActivity.class);
-        startActivity(BrowserIntent);
+        Intent browserIntent = new Intent(MainActivity.this, BrowserActivity.class);
+        browserIntent.putStringArrayListExtra("urls", urls);
+        startActivity(browserIntent);
 
         // XXX: This is probably not correct: we would like to send
         // info to the orchestrator only when the network or any other
