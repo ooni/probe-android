@@ -32,29 +32,19 @@ public class NotificationsRouter extends FirebaseMessagingService {
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
             try {
+                //TODO we can use click_action instead of type
                 JSONObject data = new JSONObject(params.toString());
                 if (data.getString("type").equals("open_href")){
-                    JSONObject payload = data.getJSONObject("payload");
-                    String href = payload.getString("href");
-                    JSONArray alt_hrefs = payload.getJSONArray("alt_hrefs");
-                    final ArrayList<String>urls = new ArrayList<>();
-                    urls.add(href);
-                    for(int i=0; i< alt_hrefs.length(); i++)
-                    {
-                        urls.add(alt_hrefs.getString(i));
-                    }
-                    Log.d(TAG, "Message data urls: " + urls);
                     Intent intent =  new Intent(getApplicationContext(), NotificationDialog.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("message", remoteMessage.getNotification().getBody());
-                    intent.putStringArrayListExtra("urls", urls);
+                    intent.putExtra("payload", data.getString("payload"));
                     getApplicationContext().startActivity(intent);
                 }
             }
             catch (Exception e) {
                 System.out.println("JSONException "+ e);
             }
-
         }
 
         // Check if message contains a notification payload.

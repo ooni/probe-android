@@ -14,18 +14,17 @@ import org.openobservatory.ooniprobe.utils.Alert;
 import java.util.ArrayList;
 
 public class NotificationDialog extends Activity {
-    private static final String LOG_TAG = "NotificationDialog";
+    private static final String TAG = "NotificationDialog";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE); //hide activity title
         final String message = getIntent().getStringExtra("message");
-        final ArrayList<String> urls = getIntent().getStringArrayListExtra("urls");
-        displayAlert(message, urls);
+        displayAlert(message);
     }
 
-    private void displayAlert(String message, final ArrayList<String> urls)
+    private void displayAlert(String message)
     {
 
         new AlertDialog.Builder(NotificationDialog.this)
@@ -43,7 +42,7 @@ public class NotificationDialog extends Activity {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 Intent browserIntent = new Intent(NotificationDialog.this, BrowserActivity.class);
-                                browserIntent.putStringArrayListExtra("urls", urls);
+                                browserIntent.putExtra("payload", getIntent().getStringExtra("payload"));
                                 startActivity(browserIntent);
                                 finish();
                             }

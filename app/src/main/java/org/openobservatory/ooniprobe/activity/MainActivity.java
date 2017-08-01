@@ -137,25 +137,12 @@ public class MainActivity extends AppCompatActivity  implements Observer {
 
         checkInformedConsent();
 
-        /*
-        ArrayList<String> urls = new ArrayList<>();
-        urls.add("https://paul.kinlan.me/");
-        urls.add("http://lorenzo.primiterra.it");
-        urls.add("http://www.gazzetta.it");
-        urls.add("https://www.google.it");
-
-        Intent browserIntent = new Intent(MainActivity.this, BrowserActivity.class);
-        browserIntent.putStringArrayListExtra("urls", urls);
-        startActivity(browserIntent);
-        */
-
         // XXX: This is probably not correct: we would like to send
         // info to the orchestrator only when the network or any other
         // orchestrator parameter like country code changed.
         String token = FirebaseInstanceId.getInstance().getToken();
         if (token != null) {
-            NotificationService ns = NotificationService.getInstance(
-                getApplicationContext());
+            NotificationService ns = NotificationService.getInstance(this);
             ns.setDevice_token(token);
             ns.sendRegistrationToServer();
         }

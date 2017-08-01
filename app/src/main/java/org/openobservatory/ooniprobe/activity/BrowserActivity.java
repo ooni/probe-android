@@ -8,6 +8,7 @@ import android.net.NetworkInfo;
 import android.net.http.SslError;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.SslErrorHandler;
@@ -22,6 +23,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.openobservatory.ooniprobe.R;
 
 import java.util.ArrayList;
@@ -37,12 +41,27 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
     private static TextView urlLabel;
     private static ArrayList<String> urls;
     private static int urlIndex = 0;
+    private static final String TAG = "BrowserActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browser);
-        urls = getIntent().getStringArrayListExtra("urls");
+        urls = new ArrayList<>();
+        try {
+            JSONObject payload = new JSONObject(getIntent().getStringExtra("payload"));
+            String href = payload.getString("href");
+            urls.add(href);
+            JSONArray alt_hrefs = payload.getJSONArray("alt_hrefs");
+            for(int i=0; i< alt_hrefs.length(); i++)
+            {
+                urls.add(alt_hrefs.getString(i));
+            }
+            Log.d(TAG, "Message data urls: " + urls);
+        }
+        catch (JSONException e){
+            System.out.println("JSONException "+ e);
+        }
         initViews();
         setUpWebView();
         reloadButtons();
@@ -70,6 +89,7 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
         webView.setInitialScale(1);
         webView.getSettings().setLoadWithOverviewMode(true);
         webView.getSettings().setUseWideViewPort(true);
+        Log.d(TAG, "Loading: " + urls.get(urlIndex));
         LoadWebViewUrl(urls.get(urlIndex));
     }
 
@@ -169,6 +189,7 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
             Toast.makeText(BrowserActivity.this, "Unexpected error occurred.Reload page again.", Toast.LENGTH_SHORT).show();
         }
 
+        //TODO this should be removed includes error in internal frames
         @Override
         public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
             super.onReceivedHttpError(view, request, errorResponse);
