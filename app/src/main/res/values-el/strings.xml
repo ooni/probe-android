@@ -6,11 +6,13 @@
     <string name="settings">Ρυθμίσεις</string>
     <string name="about">Σχετικά με OONI</string>
     <string name="dns_injection">DNS Injection</string>
+    <string name="dash">DASH Streaming Test</string>
     <string name="tcp_connect">TCP Connect</string>
     <string name="http_invalid_request_line">HTTP Invalid request line</string>
     <string name="http_header_field_manipulation">HTTP Header Field Manipulation</string>
     <string name="web_connectivity">Web Connectivity</string>
     <string name="ndt">NDT Δοκιμή Ταχύτητας</string>
+    <string name="dash_desc">Μέτρηση ποιότητας βίντεο συνεχούς ροής</string>
     <string name="web_connectivity_desc">Ελέγξτε εάν οι ιστοσελίδες έχουν μπλοκαριστεί</string>
     <string name="http_invalid_request_line_desc">Βρείτε \'ενδιάμεσες συσκευές\'</string>
     <string name="http_header_field_manipulation_desc">Βρείτε \'ενδιάμεσες συσκευές\'</string>
@@ -23,6 +25,7 @@
     <string name="ndt_longdesc">Αυτή η δοκιμή μετρά την ταχύτητα και την απόδοση του δικτύου σας.
 
 Αποποίηση ευθυνών: Πρόκειται για δοκιμή απόδοσης τρίτων με βάση διακομιστές τρίτων και δεν μπορούμε να εγγυηθούμε ότι η διεύθυνση IP σας δεν θα συλλεχθεί, θα επεξεργαστεί και θα δημοσιευθεί.</string>
+    <string name="dash_longdesc">Αυτή η δοκιμή μιμείται ένα πολύ απλό πρόγραμμα αναπαραγωγής βίντεο που μεταδίδεται σε μεταβλητή ποιότητα από έναν απομακρυσμένο διακομιστή. Η δοκιμή έχει σχεδιαστεί για να αποκτήσει μια βασική απόδοση του δικτύου σας για την εκτέλεση συνεχούς ροής βίντεο.\n\nΑποποίηση ευθυνών: Πρόκειται για δοκιμή απόδοσης τρίτων βασισμένη σε διακομιστές τρίτων και δεν μπορούμε να εγγυηθούμε ότι η διεύθυνση IP σας δεν θα συλλεχθεί, δεν θα υποστεί επεξεργασία και δεν θα δημοσιευθεί.</string>
     <string name="running_tests">Εκτελέστε δοκιμές</string>
     <string name="finished_tests">Τελείωσαν οι δοκιμές</string>
     <string name="collector_address">Συλλεκτική διεύθυνση</string>
@@ -91,4 +94,6 @@
     <string name="past_tests_empty">Τα αποτελέσματα των προηγούμενων δοκιμών θα εμφανιστούν εδώ μόλις ολοκληρωθούν οι δοκιμές</string>
     <string name="drawer_open">Ανοίξτε το συρτάρι πλοήγησης</string>
     <string name="drawer_close">Κλείστε το συρτάρι πλοήγησης</string>
+    <string name="try_mirror">Δοκιμάστε mirror</string>
+    <string name="loading">Γίνεται φόρτωση...</string>
 </resources>

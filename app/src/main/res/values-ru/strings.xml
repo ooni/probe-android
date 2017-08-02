@@ -6,11 +6,13 @@
     <string name="settings">Настройки</string>
     <string name="about">О приложении</string>
     <string name="dns_injection">DNS инъекция</string>
+    <string name="dash">DASH Тест Видео-потока</string>
     <string name="tcp_connect">TCP соединение</string>
     <string name="http_invalid_request_line">Некорректный HTTP запрос</string>
     <string name="http_header_field_manipulation">Манипуляции заголовками HTTP</string>
     <string name="web_connectivity">Web связность</string>
     <string name="ndt">NDT Speed Test</string>
+    <string name="dash_desc">Измерить качество потокового видео</string>
     <string name="web_connectivity_desc">Проверка блокировок сайтов</string>
     <string name="http_invalid_request_line_desc">Найти \"узлы-посредники\"</string>
     <string name="http_header_field_manipulation_desc">Найти \"узлы-посредники\"</string>
@@ -19,6 +21,7 @@
     <string name="http_invalid_request_line_longdesc">Этот тест позволяет выявить устройства (\"узлы-посредники\"), которые могут осуществлять цензуру или слежку, отправляя недействительные запросы по HTTP. Если в твоей сети обнаружены подобные устройства, недействительный запрос HTTP будет перехвачен и может вызвать ошибку. </string>
     <string name="http_header_field_manipulation_longdesc">Этот тест позволяет выявить устройства (\"узлы-посредники\"), которые могут осуществлять цензуру или слежку, отправляя запрос по HTTP с нестандартными заголовками на контрольный бекэнд сервер. Если в твоей сети присутствуют подобные устройства, они скорее всего будут приводить заголовки в нормальный вид или добавлять дополнительные заголовки. </string>
     <string name="ndt_longdesc">Этот тест измеряет скорость и производительность вашей сети.\n\nОтказ от ответственности: NDT – тест производительности, использующий сервера предоставленные третьей стороной. Мы не можем гарантировать, что твой IP-адрес не будет сохранён, проанализирован и опубликован.</string>
+    <string name="dash_longdesc">Этот тест эмулирует очень простой видеоплеер, воспроизводящий аудиопоток с отдаленного сервера. Этот тест сделан для измерения базового уровеня производительности сети для потокового видео.  \n\nОтказ от ответственности: NDT – тест производительности, использующий сервера предоставленные третьей стороной. Мы не можем гарантировать, что твой IP адрес не будет сохранён, проанализирован и опубликован. </string>
     <string name="running_tests">Текущие тесты</string>
     <string name="finished_tests">Завершённые тесты</string>
     <string name="collector_address">Адрес сборщика</string>
@@ -87,4 +90,6 @@
     <string name="past_tests_empty">Прошедшие результаты теста появятся здесь, когда тест закончится</string>
     <string name="drawer_open">Открыть окно для навигации</string>
     <string name="drawer_close">Закрыть окно для навигации</string>
+    <string name="try_mirror">Сервер-зеркало</string>
+    <string name="loading">Идет загрузка...</string>
 </resources>
