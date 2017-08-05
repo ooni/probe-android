@@ -25,7 +25,6 @@ import java.util.LinkedHashMap;
 import static org.openobservatory.ooniprobe.R.id.progressBar;
 
 public class RunTestListAdapter extends RecyclerView.Adapter<RunTestListAdapter.ViewHolder> {
-
     private static final String TAG = RunTestListAdapter.class.toString();
 
     private MainActivity mActivity;

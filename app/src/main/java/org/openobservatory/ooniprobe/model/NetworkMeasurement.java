@@ -41,8 +41,9 @@ public class NetworkMeasurement {
             case OONITests.HTTP_HEADER_FIELD_MANIPULATION:
                 return context.getString(R.string.http_header_field_manipulation);
             case OONITests.NDT_TEST:
-                return context.getString(R.string.ndt_test);
-
+                return context.getString(R.string.ndt);
+            case OONITests.DASH:
+                return context.getString(R.string.dash);
             default:
                 return "";
         }
@@ -57,7 +58,9 @@ public class NetworkMeasurement {
             case OONITests.HTTP_HEADER_FIELD_MANIPULATION:
                 return context.getString(R.string.http_header_field_manipulation_desc);
             case OONITests.NDT_TEST:
-                return context.getString(R.string.ndt_test_desc);
+                return context.getString(R.string.ndt_desc);
+            case OONITests.DASH:
+                return context.getString(R.string.dash_desc);
             default:
                 return "";
         }
@@ -88,11 +91,18 @@ public class NetworkMeasurement {
                     return R.drawable.http_header_field_manipulation_no;
             case OONITests.NDT_TEST:
                 if (anomaly == 0)
-                    return R.drawable.ndt_test;
+                    return R.drawable.ndt;
                 else if (anomaly == 1)
-                    return R.drawable.ndt_test_warning;
+                    return R.drawable.ndt_warning;
                 else
-                    return R.drawable.ndt_test_no;
+                    return R.drawable.ndt_no;
+            case OONITests.DASH:
+                if (anomaly == 0)
+                    return R.drawable.dash;
+                else if (anomaly == 1)
+                    return R.drawable.dash_warning;
+                else
+                    return R.drawable.dash_no;
             default:
                 return 0;
         }
@@ -107,7 +117,9 @@ public class NetworkMeasurement {
             case OONITests.HTTP_HEADER_FIELD_MANIPULATION:
                 return R.drawable.http_header_field_manipulation_big;
             case OONITests.NDT_TEST:
-                return R.drawable.ndt_test_big;
+                return R.drawable.ndt_big;
+            case OONITests.DASH:
+                return R.drawable.dash_big;
             default:
                 return 0;
         }

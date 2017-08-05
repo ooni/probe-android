@@ -14,8 +14,9 @@ android {
         applicationId "org.openobservatory.ooniprobe"
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 6
-        versionName "1.1.4"
+        versionCode 10
+        versionName "1.1.5"
+        setProperty("archivesBaseName", "ooniprobe-$versionName")
     }
     buildTypes {
         release {
@@ -28,18 +29,25 @@ android {
         abortOnError false
     }
 }
-
+//https://firebase.googleblog.com/2016/11/google-play-services-and-firebase-for-android-will-support-api-level-14-at-minimum.html
+//ALT: https://developers.google.com/instance-id/guides/android-implementation
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "org.openobservatory.measurement_kit:android-libs:0.7.0-alpha.2-2"
-    testCompile 'junit:junit:4.12'
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.6@aar') {
+        transitive = true;
+    }
+    //compile 'com.android.support:customtabs:25.3.1'
+    compile 'org.openobservatory.measurement_kit:android-libs:0.7.0-beta-2'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
     compile 'com.google.code.gson:gson:2.7'
     compile 'me.panavtec:wizard:1.2'
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.6@aar') {
-        transitive = true;
-    }
+    compile 'com.google.firebase:firebase-core:10.2.6'
+    compile 'com.google.firebase:firebase-messaging:10.2.6'
     compile 'com.github.AndroidDeveloperLB:AutoFitTextView:4'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
+    compile 'com.android.support:design:25.3.1'
+    testCompile 'junit:junit:4.12'
 }
+apply plugin: 'com.google.gms.google-services'

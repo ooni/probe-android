@@ -30,6 +30,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -50,6 +52,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.TestInfoFragment;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
+import org.openobservatory.ooniprobe.utils.NotificationService;
 
 public class MainActivity extends AppCompatActivity  implements Observer {
     private DrawerLayout mDrawerLayout;
@@ -74,7 +77,7 @@ public class MainActivity extends AppCompatActivity  implements Observer {
 
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
-        ArrayList <String> stringList = new ArrayList<String>(Arrays.asList(mMenuItemsTitles));
+        ArrayList<String> stringList = new ArrayList<String>(Arrays.asList(mMenuItemsTitles));
         mleftMenuListAdapter = new LeftMenuListAdapter(this, R.layout.row_left_menu, stringList);
         mDrawerList.setAdapter(mleftMenuListAdapter);
 
@@ -95,11 +98,11 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         //getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu_white);
 
         mDrawerToggle = new ActionBarDrawerToggle(
-                this,
-                mDrawerLayout,
-                //R.drawable.menu_white,  /* Only used with v4.app.ActionBarDrawerToggle */
-                R.string.drawer_open,
-                R.string.drawer_close
+            this,
+            mDrawerLayout,
+            //R.drawable.menu_white,  /* Only used with v4.app.ActionBarDrawerToggle */
+            R.string.drawer_open,
+            R.string.drawer_close
         ) {
             public void onDrawerClosed(View view) {
                 mleftMenuListAdapter.notifyDataSetChanged();
@@ -111,7 +114,7 @@ public class MainActivity extends AppCompatActivity  implements Observer {
                 invalidateOptionsMenu();
             }
 
-            public void onDrawerStateChanged(int newState){
+            public void onDrawerStateChanged(int newState) {
 
             }
         };
@@ -129,6 +132,17 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         }
 
         checkInformedConsent();
+
+        // XXX: This is probably not correct: we would like to send
+        // info to the orchestrator only when the network or any other
+        // orchestrator parameter like country code changed.
+        //TODO remove this code in 1.1.6
+        String token = FirebaseInstanceId.getInstance().getToken();
+        if (token != null) {
+            NotificationService ns = NotificationService.getInstance(this);
+            ns.setDevice_token(token);
+            ns.sendRegistrationToServer();
+        }
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
@@ -192,7 +206,6 @@ public class MainActivity extends AppCompatActivity  implements Observer {
             super.onBackPressed();
         }
     }
-
 
     @Override
     public void setTitle(CharSequence title) {
