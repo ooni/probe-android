@@ -63,7 +63,6 @@ public class NotificationsRouter extends FirebaseMessagingService {
 
     @Override
     public void onDeletedMessages() {
-        // TODO
     }
 
     private final String TAG = "NotificationsRouter";

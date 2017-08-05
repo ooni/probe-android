@@ -51,8 +51,10 @@ public class NotificationService {
             supported_tests = new ArrayList<>(TestData.getInstance(c, null).availableTests.keySet());
             network_type = getNetworkType(c);
             language = Locale.getDefault().getLanguage();
-            //TODO can crash check null
-            device_token = FirebaseInstanceId.getInstance().getToken();
+            if (FirebaseInstanceId.getInstance().getToken() != null)
+                device_token = FirebaseInstanceId.getInstance().getToken();
+            else
+                device_token = "";
         }
         return instance;
     }

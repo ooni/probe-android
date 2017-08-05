@@ -233,6 +233,8 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void tryMirror(){
+        if (urls.size() == 0) return;
+
         if ((urlIndex+1) < urls.size()){
             urlIndex++;
             LoadWebViewUrl(urls.get(urlIndex));
@@ -246,8 +248,6 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
     private void isWebViewCanGoBack() {
         if (webView.canGoBack())
             webView.goBack();
-        //else
-        //    finish();
     }
 
     private void LoadWebViewUrl(String url) {

@@ -16,5 +16,5 @@ public class OONITests {
     public static final String MAX_RUNTIME = "90";
     public static final String NOTIFICATION_SERVER_DEV = "https://registry.proteus.test.ooni.io";
     public static final String NOTIFICATION_SERVER_PROD = "https://registry.proteus.ooni.io";
-    public static final String NOTIFICATION_SERVER = NOTIFICATION_SERVER_DEV;
+    public static final String NOTIFICATION_SERVER = NOTIFICATION_SERVER_PROD;
 }
