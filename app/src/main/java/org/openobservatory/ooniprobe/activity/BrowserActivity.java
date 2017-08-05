@@ -105,16 +105,16 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
 
     void reloadButtons(){
         if (webView.canGoBack()){
-            back.setAlpha(.5f);
-            back.setClickable(false);
+            back.setAlpha(1.0f);
+            back.setClickable(true);
         }
         else {
             back.setAlpha(.5f);
             back.setClickable(false);
         }
         if (webView.canGoForward()){
-            forward.setAlpha(.5f);
-            forward.setClickable(false);
+            forward.setAlpha(1.0f);
+            forward.setClickable(true);
         }
         else {
             forward.setAlpha(.5f);
