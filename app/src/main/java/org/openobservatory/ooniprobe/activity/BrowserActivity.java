@@ -180,14 +180,14 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
             reloadButtons();
         }
 
-        //TODO keep the error toasts for all messages? are they necessary?
+        //TODO translate strings
         @Override
         public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
             super.onReceivedError(view, request, error);
             refresh.setVisibility(View.VISIBLE);
             if (webViewProgressBar.isShown())
                 webViewProgressBar.setVisibility(View.GONE);
-            //Toast.makeText(BrowserActivity.this, "Unexpected error occurred.Reload page again.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(BrowserActivity.this, "Unexpected error occurred. Reload page again.", Toast.LENGTH_SHORT).show();
         }
 
         //TODO this should be removed includes error in internal frames
@@ -203,14 +203,22 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
             //Toast.makeText(BrowserActivity.this, "Unexpected HTTP error occurred.Reload page again.", Toast.LENGTH_SHORT).show();
         }
 
-        //TODO keep this?
         @Override
         public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
             super.onReceivedSslError(view, handler, error);
             refresh.setVisibility(View.VISIBLE);
             if (webViewProgressBar.isShown())
                 webViewProgressBar.setVisibility(View.GONE);
-            //Toast.makeText(BrowserActivity.this, "Unexpected SSL error occurred.Reload page again.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(BrowserActivity.this, "Unexpected SSL error occurred. Reload page again.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void LoadWebViewUrl(String url) {
+        if (isInternetConnected())
+            webView.loadUrl(url);
+        else {
+            refresh.setVisibility(View.VISIBLE);
+            Toast.makeText(BrowserActivity.this, "There is no internet connection. Please enable your internet connection.", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -248,15 +256,6 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
     private void isWebViewCanGoBack() {
         if (webView.canGoBack())
             webView.goBack();
-    }
-
-    private void LoadWebViewUrl(String url) {
-        if (isInternetConnected())
-            webView.loadUrl(url);
-        else {
-            refresh.setVisibility(View.VISIBLE);
-            //Toast.makeText(BrowserActivity.this, "Oops!! There is no internet connection. Please enable your internet connection.", Toast.LENGTH_LONG).show();
-        }
     }
 
     public boolean isInternetConnected() {
