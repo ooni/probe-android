@@ -28,8 +28,6 @@ import junit.framework.Test;
 import java.util.ArrayList;
 
 public class TestResultListAdapter extends RecyclerView.Adapter<TestResultListAdapter.ViewHolder> {
-
-
     private static final String TAG = TestResultListAdapter.class.toString();
 
     private FragmentActivity mActivity;

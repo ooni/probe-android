@@ -18,4 +18,18 @@ public class Alert {
                     }
                 }).show();
     }
+
+    public static void alertDialogTwoButtons(Context c, String title, String text, DialogInterface.OnClickListener ocl) {
+        new AlertDialog.Builder(c)
+                .setTitle(title)
+                .setMessage(text)
+                .setNegativeButton(c.getString(R.string.cancel),
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        })
+                .setPositiveButton(c.getString(R.string.ok), ocl).show();
+    }
+
 }

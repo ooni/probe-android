@@ -6,19 +6,22 @@
     <string name="settings">Configuración</string>
     <string name="about">Acerca de</string>
     <string name="dns_injection">DNS Injection</string>
+    <string name="dash">Test de streaming DASH</string>
     <string name="tcp_connect">TCP Connect</string>
     <string name="http_invalid_request_line">HTTP Invalid Request Line</string>
     <string name="http_header_field_manipulation">HTTP Header Field Manipulation</string>
     <string name="web_connectivity">Web Connectivity</string>
-    <string name="ndt_test">NDT Speed Test</string>
+    <string name="ndt">NDT Speed Test</string>
+    <string name="dash_desc">Mide la calidad del streaming de vídeo</string>
     <string name="web_connectivity_desc">Comprueba si los sitios web están bloqueados</string>
     <string name="http_invalid_request_line_desc">Busca dispositivos modificadores del tráfico (\'middle boxes\')</string>
     <string name="http_header_field_manipulation_desc">Busca dispositivos modificadores del tráfico (\'middle boxes\')</string>
-    <string name="ndt_test_desc">Mide la velocidad y rendimiento de la red</string>
+    <string name="ndt_desc">Mide la velocidad y rendimiento de la red</string>
     <string name="web_connectivity_longdesc">Este test examina si el acceso a sitios web está bloqueado mediante alteración del DNS, bloqueo TCP/IP, o con un proxy HTTP transparente.\\n\\nCada vez que ejecute \'Conectividad Web\' estará probando distintos sitios web.</string>
     <string name="http_invalid_request_line_longdesc">Este test trata de detectar sistemas (“middle boxes”, dispositivos modificadores de tráfico) que podrían ser responsables de censura o vigilancia mediante el envío de una línea de petición HTTP no válida a un servicio “echo”, de eco. Si tales sistemas están presentes en su red, la línea de petición HTTP no válida será interceptada y podría producir un error.</string>
     <string name="http_header_field_manipulation_longdesc">Este test trata de detectar la presencia de sistemas (“middle boxes”, dispositivos modificadores de tráfico) que podrían ser responsables de censura o vigilancia mediante el envío de peticiones HTTP con cabeceras no-canónicas a un servidor de infraestructura de control. Si tales sistemas están presentes en su red, probablemente normalizarán las cabeceras o añadirán cabeceras extra.</string>
-    <string name="ndt_test_longdesc">Este test mide la velocidad y rendimiento de su red.\\n\\nDescargo: Este es un test de rendimiento proveniente de terceros radicado en servidores de terceros, y no podemos garantizar que su dirección IP no será recopilada, procesada, y publicada.</string>
+    <string name="ndt_longdesc">Este test mide la velocidad y rendimiento de su red.\\n\\nDescargo: Este es un test de rendimiento proveniente de terceros radicado en servidores de terceros, y no podemos garantizar que su dirección IP no será recopilada, procesada, y publicada.</string>
+    <string name="dash_longdesc">Este test emula un reproductor de vídeo muy simple adquiriendo un streaming a calidad variable desde un servidor remoto. El test está diseñado para obtener un rendimiento base de su red para la realización de streaming de vídeo.\n\nDescargo: Este es un test de rendimiento de terceros radicado en servidores de terceros, y no podemos garantizar que su dirección IP no será recopilada, procesada, y publicada.</string>
     <string name="running_tests">Tests en ejecución</string>
     <string name="finished_tests">Tests finalizados</string>
     <string name="collector_address">Dirección del recopilador</string>
@@ -87,4 +90,6 @@
     <string name="past_tests_empty">Los resultados de los tests pasados aparecerán aquí una vez que los tests hayan terminado de ejecutarse</string>
     <string name="drawer_open">Abrir panel lateral de navegación</string>
     <string name="drawer_close">Cerrar panel lateral de navegación</string>
+    <string name="try_mirror">Probar réplica</string>
+    <string name="loading">Cargando...</string>
 </resources>

@@ -159,8 +159,10 @@ public class TestStorage {
         if (tests != null){
             for(int i = 0; i < tests.size(); i++) {
                 NetworkMeasurement n = (NetworkMeasurement)tests.get(i);
-                n.viewed = true;
-                tests.set(i, n);
+                if (!n.viewed && !n.running){
+                    n.viewed = true;
+                    tests.set(i, n);
+                }
             }
             storeTests(context, tests);
         }

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.openobservatory.ooniprobe">
 
-    <uses-sdk tools:overrideLibrary="us.feras.mdv" />
+    <uses-sdk tools:overrideLibrary="com.google.android.gms,com.google.android.gms.tasks,com.google.firebase,com.google.firebase.messaging,com.google.firebase.iid" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -18,9 +18,10 @@
         <activity
             android:name=".activity.MainActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -36,13 +37,14 @@
             android:name=".activity.ResultActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
+
         <receiver
             android:name=".utils.AlarmReceiver"
             android:enabled="true"
             android:exported="false"
-            android:permission="android.permission.INTERNET">
-        </receiver>
-        <receiver android:name=".utils.OnBootReceiver"
+            android:permission="android.permission.INTERNET" />
+        <receiver
+            android:name=".utils.OnBootReceiver"
             android:enabled="true"
             android:exported="false"
             android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
@@ -50,10 +52,41 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
+        <service android:name=".utils.NotificationRegister">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="529a3ff33bd5359fe86c53f6252035178bdb03a1"
-            />
+            android:value="529a3ff33bd5359fe86c53f6252035178bdb03a1" />
+
+        <service android:name=".utils.NotificationsRouter">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/notification_icon" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/color_ooni_blue" />
+
+        <activity
+            android:name=".activity.BrowserActivity"
+            android:theme="@style/FullScreen">
+            <intent-filter>
+                <action android:name="org.openobservatory.ooniprobe.OPEN_BROWSER" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.NotificationDialog"
+            android:theme="@style/Theme.Transparent" />
     </application>
 
 </manifest>

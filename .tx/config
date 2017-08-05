@@ -12,3 +12,4 @@ file_filter = description/<lang>.xlf
 source_file = description/source.xlf
 source_lang = en
 type = XLIFF
+

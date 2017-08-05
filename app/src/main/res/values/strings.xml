@@ -6,19 +6,22 @@
     <string name="settings">Settings</string>
     <string name="about">About</string>
     <string name="dns_injection">DNS Injection</string>
+    <string name="dash">DASH Streaming Test</string>
     <string name="tcp_connect">TCP Connect</string>
     <string name="http_invalid_request_line">HTTP Invalid request line</string>
     <string name="http_header_field_manipulation">HTTP Header field manipulation</string>
     <string name="web_connectivity">Web Connectivity</string>
-    <string name="ndt_test">NDT Speed Test</string>
+    <string name="ndt">NDT Speed Test</string>
+    <string name="dash_desc">Measure video streaming quality</string>
     <string name="web_connectivity_desc">Check if websites are blocked</string>
     <string name="http_invalid_request_line_desc">Find \'middle boxes\'</string>
     <string name="http_header_field_manipulation_desc">Find \'middle boxes\'</string>
-    <string name="ndt_test_desc">Measure network speed and performance</string>
+    <string name="ndt_desc">Measure network speed and performance</string>
     <string name="web_connectivity_longdesc">This test examines whether access to websites is blocked through DNS tampering, TCP/IP blocking, or by a transparent HTTP proxy.\n\nEvery time you run Web Connectivity you test different websites.</string>
     <string name="http_invalid_request_line_longdesc">This test tries to detect systems (“middle boxes”) that could be responsible for censorship or surveillance by sending an invalid HTTP request line to an echo service. If such systems are in your network, the invalid HTTP request line will be intercepted and may trigger an error.</string>
     <string name="http_header_field_manipulation_longdesc">This test tries to detect the presence of systems (“middle boxes”) that could be responsible for censorship or surveillance by sending HTTP requests with non-canonical headers to a backend control server. If such systems are in your network, they will likely normalize the headers or add extra headers.</string>
-    <string name="ndt_test_longdesc">This test measures the speed and performance of your network.\n\nDisclaimer: This is a third-party performance test based on third-party servers, and we cannot guarantee that your IP address will not be collected, processed, and published.</string>
+    <string name="ndt_longdesc">This test measures the speed and performance of your network.\n\nDisclaimer: This is a third-party performance test based on third-party servers, and we cannot guarantee that your IP address will not be collected, processed, and published.</string>
+    <string name="dash_longdesc">This test emulates a very simple video player streaming at variable quality from a remote server. The test is designed to obtain a baseline performance of your network for performing video streaming.\n\nDisclaimer: This is a third-party performance test based on third-party servers, and we cannot guarantee that your IP address will not be collected, processed, and published.</string>
     <string name="running_tests">Running tests</string>
     <string name="finished_tests">Finished tests</string>
     <string name="collector_address">Collector Address</string>
@@ -87,4 +90,6 @@
     <string name="past_tests_empty">Past test results will appear here once the tests have finished running</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    <string name="try_mirror">Try mirror</string>
+    <string name="loading">Loading...</string>
 </resources>

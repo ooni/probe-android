@@ -17,13 +17,12 @@ import org.json.JSONObject;
 import org.openobservatory.measurement_kit.android.DnsUtils;
 import org.openobservatory.measurement_kit.common.LogSeverity;
 import org.openobservatory.measurement_kit.nettests.*;
-import org.openobservatory.measurement_kit.swig.OoniTestWrapper;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 import org.openobservatory.ooniprobe.model.OONITests;
 import org.openobservatory.ooniprobe.model.UnknownTest;
-import org.openobservatory.ooniprobe.utils.Notifications;
+import org.openobservatory.ooniprobe.utils.NotificationHandler;
 
 public class TestData extends Observable {
     private static final String TAG = "TestData";
@@ -46,6 +45,7 @@ public class TestData extends Observable {
             availableTests.put(OONITests.HTTP_INVALID_REQUEST_LINE, true);
             availableTests.put(OONITests.HTTP_HEADER_FIELD_MANIPULATION, true);
             availableTests.put(OONITests.NDT_TEST, true);
+            availableTests.put(OONITests.DASH, true);
         }
         else if (activity == null && a != null){
             activity = a;
@@ -67,12 +67,12 @@ public class TestData extends Observable {
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
 
         final Boolean include_ip = preferences.getBoolean("include_ip", false);
-        final Boolean include_asn = preferences.getBoolean("include_asn", false);
+        final Boolean include_asn = preferences.getBoolean("include_asn", true);
         final Boolean include_cc = preferences.getBoolean("include_cc", true);
         final Boolean upload_results = preferences.getBoolean("upload_results", true);
         final String collector_address = preferences.getString("collector_address", OONITests.COLLECTOR_ADDRESS);
         final String max_runtime = preferences.getString("max_runtime", OONITests.MAX_RUNTIME);
-        System.out.println("max_runtime " +max_runtime);
+
         TestStorage.addTest(ctx, currentTest);
         runningTests.add(currentTest);
         availableTests.put(testName, false);
@@ -97,19 +97,13 @@ public class TestData extends Observable {
                         {
                             Log.v(TAG, "running test...");
                             if (testName.compareTo(OONITests.DNS_INJECTION) == 0) {
-                        /*
-                         * TODO: add high level class for this test.
-                         */
-                                OoniTestWrapper w = new OoniTestWrapper("dns_injection");
+                                DnsInjectionTest w = new DnsInjectionTest();
                                 Log.v(TAG, "running dns_injection test...");
                                 w.use_logcat();
-                                w.set_options("backend", "8.8.8.1");
                                 w.set_input_filepath(inputPath);
                                 w.set_output_filepath(outputPath);
                                 w.set_error_filepath(logPath);
-                                w.set_verbosity(LogSeverity.INFO);
-                                w.set_options("dns/nameserver", nameserver);
-                                w.set_options("dns/engine", "system");
+                                w.set_verbosity(LogSeverity.LOG_INFO);
                                 w.set_options("geoip_country_path", geoip_country);
                                 w.set_options("geoip_asn_path", geoip_asn);
                                 w.set_options("save_real_probe_ip", boolToString(include_ip));
@@ -122,12 +116,9 @@ public class TestData extends Observable {
                                 Log.v(TAG, "running http_invalid_request_line test...");
                                 new HttpInvalidRequestLineTest()
                                         .use_logcat()
-                                        .set_options("backend", OONITests.HIRL_BACKEND)
                                         .set_output_filepath(outputPath)
                                         .set_error_filepath(logPath)
-                                        .set_verbosity(LogSeverity.INFO)
-                                        .set_options("dns/nameserver", nameserver)
-                                        .set_options("dns/engine", "system")
+                                        .set_verbosity(LogSeverity.LOG_INFO)
                                         .set_options("geoip_country_path", geoip_country)
                                         .set_options("geoip_asn_path", geoip_asn)
                                         .set_options("save_real_probe_ip", boolToString(include_ip))
@@ -163,12 +154,9 @@ public class TestData extends Observable {
                                 Log.v(TAG, "running http_header_field_manipulation test...");
                                 new HttpHeaderFieldManipulationTest()
                                         .use_logcat()
-                                        .set_options("backend", OONITests.HHFM_BACKEND)
                                         .set_output_filepath(outputPath)
                                         .set_error_filepath(logPath)
-                                        .set_verbosity(LogSeverity.INFO)
-                                        .set_options("dns/nameserver", nameserver)
-                                        .set_options("dns/engine", "system")
+                                        .set_verbosity(LogSeverity.LOG_INFO)
                                         .set_options("geoip_country_path", geoip_country)
                                         .set_options("geoip_asn_path", geoip_asn)
                                         .set_options("save_real_probe_ip", boolToString(include_ip))
@@ -202,15 +190,12 @@ public class TestData extends Observable {
                             }
                             else if (testName.compareTo(OONITests.TCP_CONNECT) == 0) {
                                 Log.v(TAG, "running tcp-connect test...");
-                                OoniTestWrapper w = new OoniTestWrapper("tcp_connect");
+                                TcpConnectTest w = new TcpConnectTest();
                                 w.use_logcat();
                                 w.set_input_filepath(inputPath);
                                 w.set_output_filepath(outputPath);
                                 w.set_error_filepath(logPath);
-                                w.set_verbosity(LogSeverity.INFO);
-                                w.set_options("port", "80");
-                                w.set_options("dns/nameserver", nameserver);
-                                w.set_options("dns/engine", "system");
+                                w.set_verbosity(LogSeverity.LOG_INFO);
                                 w.set_options("geoip_country_path", geoip_country);
                                 w.set_options("geoip_asn_path", geoip_asn);
                                 w.set_options("save_real_probe_ip", boolToString(include_ip));
@@ -227,17 +212,7 @@ public class TestData extends Observable {
                                         .set_input_filepath(inputUrlsPath)
                                         .set_output_filepath(outputPath)
                                         .set_error_filepath(logPath)
-                                        .set_verbosity(LogSeverity.INFO)
-                                        .set_options("backend", OONITests.WC_BACKEND)
-                            /*
-                             * XXX nameserver is the nameserver to be used for
-                             * the DNS phase of web-connectivity only while
-                             * dns/nameserver is the one used for all the other
-                             * DNS operations. Do we need to have both?
-                             */
-                                        .set_options("dns/nameserver", nameserver)
-                                        .set_options("nameserver", nameserver)
-                                        .set_options("dns/engine", "system")
+                                        .set_verbosity(LogSeverity.LOG_INFO)
                                         .set_options("geoip_country_path", geoip_country)
                                         .set_options("geoip_asn_path", geoip_asn)
                                         .set_options("save_real_probe_ip", boolToString(include_ip))
@@ -277,9 +252,45 @@ public class TestData extends Observable {
                                         .set_input_filepath(inputPath)
                                         .set_output_filepath(outputPath)
                                         .set_error_filepath(logPath)
-                                        .set_verbosity(LogSeverity.INFO)
-                                        .set_options("dns/nameserver", nameserver)
-                                        .set_options("dns/engine", "system")
+                                        .set_verbosity(LogSeverity.LOG_INFO)
+                                        .set_options("geoip_country_path", geoip_country)
+                                        .set_options("geoip_asn_path", geoip_asn)
+                                        .set_options("save_real_probe_ip", boolToString(include_ip))
+                                        .set_options("save_real_probe_asn", boolToString(include_asn))
+                                        .set_options("save_real_probe_cc", boolToString(include_cc))
+                                        .set_options("no_collector", boolToString(!upload_results))
+                                        .set_options("collector_base_url", collector_address)
+                                        .set_options("software_name", "ooniprobe-android")
+                                        .set_options("software_version", BuildConfig.VERSION_NAME)
+                                        .on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
+                                            @Override
+                                            public void callback(double percent, String msg) {
+                                                currentTest.progress = (int)(percent*100);
+                                                if (activity != null){
+                                                    activity.runOnUiThread(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            TestData.getInstance(context, activity).notifyObservers();
+                                                        }
+                                                    });
+                                                }
+                                            }
+                                        })
+                                        .on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
+                                            @Override
+                                            public void callback(String entry) {
+                                                setAnomaly_ndt(entry, currentTest);
+                                            }
+                                        })
+                                        .run();
+                            }
+                            else if (testName.compareTo(OONITests.DASH) == 0) {
+                                Log.v(TAG, "running dash test...");
+                                new DashTest()
+                                        .use_logcat()
+                                        .set_output_filepath(outputPath)
+                                        .set_error_filepath(logPath)
+                                        .set_verbosity(LogSeverity.LOG_INFO)
                                         .set_options("geoip_country_path", geoip_country)
                                         .set_options("geoip_asn_path", geoip_asn)
                                         .set_options("save_real_probe_ip", boolToString(include_ip))
@@ -332,7 +343,7 @@ public class TestData extends Observable {
                         finishedTests.add(currentTest);
                         availableTests.put(testName, true);
                         if (activity != null) TestData.getInstance(context, activity).notifyObservers(testName);
-                        Notifications.notifyTestEnded(ctx, testName);
+                        NotificationHandler.notifyTestEnded(ctx, testName);
                         Log.v(TAG, "doNetworkMeasurements " + testName + "... done");
                     }
                 }
@@ -364,7 +375,7 @@ public class TestData extends Observable {
     }
 
     //TODO document this functions
-    //TODO rewrite these functions to avoidin repeating so much code
+    //TODO rewrite these functions to avoid repeating so much code
     public static void setAnomaly_hirl(String entry, NetworkMeasurement test){
         if(!test.entry) {
             TestStorage.setEntry(context, test);
