@@ -61,6 +61,7 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
         }
         catch (JSONException e){
             System.out.println("JSONException "+ e);
+            finish();
         }
         initViews();
         setUpWebView();
@@ -186,7 +187,7 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
             refresh.setVisibility(View.VISIBLE);
             if (webViewProgressBar.isShown())
                 webViewProgressBar.setVisibility(View.GONE);
-            Toast.makeText(BrowserActivity.this, "Unexpected error occurred.Reload page again.", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(BrowserActivity.this, "Unexpected error occurred.Reload page again.", Toast.LENGTH_SHORT).show();
         }
 
         //TODO this should be removed includes error in internal frames
@@ -199,7 +200,7 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
             //TODO requies api 21
             //if (errorResponse.getStatusCode())
             //System.out.println("Error: "+ errorResponse.getStatusCode());
-            Toast.makeText(BrowserActivity.this, "Unexpected HTTP error occurred.Reload page again.", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(BrowserActivity.this, "Unexpected HTTP error occurred.Reload page again.", Toast.LENGTH_SHORT).show();
         }
 
         //TODO keep this?
@@ -209,9 +210,8 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
             refresh.setVisibility(View.VISIBLE);
             if (webViewProgressBar.isShown())
                 webViewProgressBar.setVisibility(View.GONE);
-            Toast.makeText(BrowserActivity.this, "Unexpected SSL error occurred.Reload page again.", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(BrowserActivity.this, "Unexpected SSL error occurred.Reload page again.", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     // To handle "Back" key press event for WebView to go back to previous screen.
@@ -255,8 +255,7 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
             webView.loadUrl(url);
         else {
             refresh.setVisibility(View.VISIBLE);
-            Toast.makeText(BrowserActivity.this, "Oops!! There is no internet connection. Please enable your internet connection.", Toast.LENGTH_LONG).show();
-
+            //Toast.makeText(BrowserActivity.this, "Oops!! There is no internet connection. Please enable your internet connection.", Toast.LENGTH_LONG).show();
         }
     }
 
