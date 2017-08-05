@@ -46,19 +46,6 @@ public class NotificationsRouter extends FirebaseMessagingService {
                 System.out.println("JSONException "+ e);
             }
         }
-
-        // Check if message contains a notification payload.
-        if (remoteMessage.getNotification() != null) {
-            Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
-        }
-
-        // Also if you intend on generating your own notifications as a result of a received FCM
-        // message, here is where that should be initiated.
-        /*
-        IntentRouter.getInstance(getApplicationContext())
-            .emit_string("orchestrate/notification",
-                remoteMessage.getNotification().getBody());
-         */
     }
 
     @Override

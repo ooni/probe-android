@@ -37,7 +37,6 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
@@ -53,8 +52,6 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.TestInfoFragment;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
-import org.openobservatory.ooniprobe.utils.IntentCallback;
-import org.openobservatory.ooniprobe.utils.IntentRouter;
 import org.openobservatory.ooniprobe.utils.NotificationService;
 
 public class MainActivity extends AppCompatActivity  implements Observer {
@@ -146,35 +143,6 @@ public class MainActivity extends AppCompatActivity  implements Observer {
             ns.setDevice_token(token);
             ns.sendRegistrationToServer();
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        final MainActivity activity = this;
-        IntentRouter.getInstance(getApplicationContext())
-            .register_handler("main_activity", "orchestrate/notification",
-                new IntentCallback() {
-                    @Override
-                    public void callback(Intent intent) {
-                        Log.d(TAG, intent.getStringExtra("message"));
-                        AlertDialog.Builder builder = new AlertDialog.Builder(
-                            activity
-                        );
-                        builder
-                            .setMessage(intent.getStringExtra("message"))
-                            .setTitle("ORCHESTRATION");
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
-                    }
-                });
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        IntentRouter.getInstance(getApplicationContext())
-            .unregister_handler("main_activity", "orchestrate/notification");
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
