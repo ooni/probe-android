@@ -1,3 +1,7 @@
+# ooniprobe-android 1.1.5-frdoid [2017-08-11]
+
+* Merge master and resolve conflicts
+
 # ooniprobe-android 1.1.5 [2017-08-07]
 
 New Languages:
