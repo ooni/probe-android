@@ -47,9 +47,18 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".activity.BrowserActivity"
-            android:theme="@style/FullScreen"
-            />
-    </application>
+        <activity
+            android:name=".activity.BrowserActivity"
+            android:theme="@style/FullScreen">
+            <intent-filter>
+                <action android:name="org.openobservatory.ooniprobe.OPEN_BROWSER" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activity.NotificationDialog"
+            android:theme="@style/Theme.Transparent" />
+
+    </application>
 </manifest>

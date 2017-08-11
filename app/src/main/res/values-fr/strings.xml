@@ -6,11 +6,13 @@
     <string name="settings">Paramètres</string>
     <string name="about">À propos</string>
     <string name="dns_injection">Injection DNS</string>
+    <string name="dash">Test de lecture en continu DASH</string>
     <string name="tcp_connect">TCP Connect</string>
     <string name="http_invalid_request_line">HTTP Ligne de requête invalide</string>
     <string name="http_header_field_manipulation">HTTP Manipulation du champ d\'en-tête</string>
     <string name="web_connectivity">Connectivité Web</string>
     <string name="ndt">Test de vitesse TDR</string>
+    <string name="dash_desc">Mesurer la qualité de la lecture en continu de la vidéo</string>
     <string name="web_connectivity_desc">Vérifier si des sites Web sont bloqués</string>
     <string name="http_invalid_request_line_desc">Trouver des boîtiers intermédiaires</string>
     <string name="http_header_field_manipulation_desc">Trouver des boîtiers intermédiaires</string>
@@ -19,6 +21,7 @@
     <string name="http_invalid_request_line_longdesc">Ce test tente de détecter la présence de systèmes (boîtiers intermédiaires) qui pourraient être la source de censure ou de surveillance en envoyant une ligne de requête HTTP invalide à un service d\'écho. Si de tels systèmes se trouvent sur votre réseau, la ligne de requête HTTP invalide sera interceptée et pourrait déclencher une erreur.</string>
     <string name="http_header_field_manipulation_longdesc">Ce test tente de détecter la présence de systèmes (boîtiers intermédiaires) qui pourraient être la source de censure ou de surveillance en envoyant des requêtes HTTP avec des en-têtes non canoniques à un serveur dorsal de contrôle. Si de tels systèmes se trouvent sur votre réseau, ils normaliseront probablement les en-têtes ou ajouteront des en-têtes supplémentaires.</string>
     <string name="ndt_longdesc">Ce test mesure la vitesse et les performances de votre réseau.\n\nAvis de non-responsabilité : ce test de performance, fourni par un tiers, est effectué avec des serveurs tiers et nous ne pouvons pas garantir que votre adresse IP ne sera pas recueillie, traitée et publiée</string>
+    <string name="dash_longdesc">Ce test émule un lecteur très simple lisant en continu de la vidéo d\'un serveur distant à des qualités variées. Ce test est conçu pour obtenir une évaluation des performances de base de votre réseau lors d\'une lecture en continu de contenu vidéo.\n\nAvis de non-responsabilité : ce test de performance tiers repose sur des serveurs tiers et ne pouvons pas garantir que votre adresse IP ne sera pas recueillie, traitée ou publiée.</string>
     <string name="running_tests">Tests en cours</string>
     <string name="finished_tests">Tests terminés</string>
     <string name="collector_address">Adresse collectrice</string>
@@ -87,4 +90,6 @@
     <string name="past_tests_empty">Les résultats des tests antérieurs apparaîtront ici une fois que les tests seront terminés</string>
     <string name="drawer_open">Ouvrir le tiroir de navigation</string>
     <string name="drawer_close">Fermer le tiroir de navigation</string>
+    <string name="try_mirror">Essayer un miroir</string>
+    <string name="loading">Chargement...</string>
 </resources>

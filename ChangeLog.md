@@ -1,3 +1,23 @@
+# ooniprobe-android 1.1.5 [2017-08-07]
+
+New Languages:
+
+* Added German, Japanese, Chinese (China and Taiwan) translations
+
+New features:
+
+* Bug fixing
+
+* Added dash test
+
+* Added support for push notifications
+
+* Added internal browser to open links from notifications
+
+measurement-kit version: 0.7.0
+
+ooniprobe-wui version: 2.2.4-beta.1
+
 # ooniprobe-android 1.1.4-fdroid [2017-07-31]
 
 * Merge tag v1.1.4 and resolve conflicts

@@ -6,11 +6,13 @@
     <string name="settings">設定</string>
     <string name="about">アプリについて</string>
     <string name="dns_injection">DNS インジェクション</string>
+    <string name="dash">DASH ストリーミングテスト</string>
     <string name="tcp_connect">TCP 接続</string>
     <string name="http_invalid_request_line">HTTP 無効なリクエスト行</string>
     <string name="http_header_field_manipulation">HTTP ヘッダーフィールドの操作</string>
     <string name="web_connectivity">Web 接続性</string>
     <string name="ndt">NDT スピードテスト</string>
+    <string name="dash_desc">ビデオストリーミングの品質を測定</string>
     <string name="web_connectivity_desc">ウェブサイトがブロックされているかどうかを確認します</string>
     <string name="http_invalid_request_line_desc">\'ミドルボックス\' を探す</string>
     <string name="http_header_field_manipulation_desc">\'ミドルボックス\' を探す</string>
@@ -19,6 +21,7 @@
     <string name="http_invalid_request_line_longdesc">このテストは、無効な HTTP リクエスト行をエコーサービスに送信することによって、検閲や監視の責任を負う可能性のあるシステム (“ミドルボックス”) を検出しようとします。 そのようなシステムがネットワーク上にある場合、無効な HTTP リクエスト行が傍受されて、エラーが発生する可能性があります。</string>
     <string name="http_header_field_manipulation_longdesc">このテストは、非標準的ヘッダーを持つ HTTP リクエストをバックエンド制御サーバーに送信することによって、検閲や監視の責任を負う可能性のあるシステム (“ミドルボックス”) の存在を検出しようとします。 そのようなシステムがネットワークにある場合、ヘッダーを正規化したり、余分なヘッダーを追加したりすることがあります。</string>
     <string name="ndt_longdesc">このテストは、ネットワークの速度とパフォーマンスを測定します。\n\n免責事項: サードパーティのサーバーをベースにしたサードパーティのパフォーマンステストであり、IP アドレスの収集、処理、公開は保証されません。</string>
+    <string name="dash_longdesc">このテストは、リモートサーバーからさまざまな品質でストリーミングする、非常にシンプルなビデオプレーヤーをエミュレートします。 テストは、ビデオストリーミングを行うネットワークのベースラインパフォーマンスを取得するように設計されています。\n\n免責事項: これは、サードパーティのサーバーをベースにしたサードパーティのパフォーマンステストであり、IP アドレスの収集、処理、公開は保証されません。 </string>
     <string name="running_tests">テストの実行中</string>
     <string name="finished_tests">テストが完了しました</string>
     <string name="collector_address">収集アドレス</string>
@@ -87,4 +90,6 @@
     <string name="past_tests_empty">テストが完了すると、過去のテスト結果がここに表示されます</string>
     <string name="drawer_open">ナビゲーションドロワーを開く</string>
     <string name="drawer_close">ナビゲーションドロワーを閉じる</string>
+    <string name="try_mirror">ミラーで試す</string>
+    <string name="loading">読み込み中...</string>
 </resources>
