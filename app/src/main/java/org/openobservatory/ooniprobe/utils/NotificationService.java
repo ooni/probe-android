@@ -1,8 +1,10 @@
 package org.openobservatory.ooniprobe.utils;
 
 import android.content.Context;
+import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
@@ -55,6 +57,10 @@ public class NotificationService {
                 device_token = FirebaseInstanceId.getInstance().getToken();
             else
                 device_token = "";
+
+            final IntentFilter mIFNetwork = new IntentFilter();
+            mIFNetwork.addAction(android.net.ConnectivityManager.CONNECTIVITY_ACTION);
+            c.registerReceiver(new ConnectionStateMonitor(), mIFNetwork);
         }
         return instance;
     }
@@ -62,18 +68,6 @@ public class NotificationService {
     public void setDevice_token(String token){
         device_token = token;
     }
-
-    /*
-    firebase basics
-    https://stackoverflow.com/questions/42644167/firebase-showing-success-but-not-sending-cloud-messaging-android-php
-    https://firebase.google.com/docs/cloud-messaging/android/client
-     */
-
-    /*
-    update network state
-    https://stackoverflow.com/questions/11343249/android-check-3g-or-wifi-network-is-on-or-available-or-not-on-android-device
-    https://developer.android.com/training/monitoring-device-state/connectivity-monitoring.html
-    */
 
     /**
      * Persist token to third-party servers.
@@ -178,7 +172,14 @@ public class NotificationService {
             // not connected to the internet
             networkType = "no_internet";
         }
+        //Log.d(TAG, networkType);
         return networkType;
+    }
+
+    public void updateNetworkType(Context context) {
+        network_type = getNetworkType(context);
+        if (!network_type.equals("no_internet"))
+            sendRegistrationToServer();
     }
 
 }

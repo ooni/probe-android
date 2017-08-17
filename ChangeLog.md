@@ -1,4 +1,4 @@
-# ooniprobe-android 1.1.5 [2017-08-04]
+# ooniprobe-android 1.1.5 [2017-08-07]
 
 New Languages:
 
@@ -14,7 +14,7 @@ New features:
 
 * Added internal browser to open links from notifications
 
-measurement-kit version: 0.7.0-beta-2
+measurement-kit version: 0.7.0
 
 ooniprobe-wui version: 2.2.4-beta.1
 
