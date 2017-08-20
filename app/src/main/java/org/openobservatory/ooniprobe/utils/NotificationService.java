@@ -56,7 +56,7 @@ public class NotificationService {
             if (FirebaseInstanceId.getInstance().getToken() != null)
                 device_token = FirebaseInstanceId.getInstance().getToken();
             else
-                device_token = "";
+                device_token = null;
 
             final IntentFilter mIFNetwork = new IntentFilter();
             mIFNetwork.addAction(android.net.ConnectivityManager.CONNECTIVITY_ACTION);
@@ -80,6 +80,7 @@ public class NotificationService {
         final String auth_secret_file = context.getFilesDir() + "/orchestration_secret.json";
 
         //LOGGING
+        /*
         System.out.println("probe_cc: " + geoip_country_path);
         System.out.println("probe_asn: " + geoip_asn_path);
         System.out.println("platform: " + platform);
@@ -87,6 +88,8 @@ public class NotificationService {
         System.out.println("software_version: " + software_version);
         System.out.println("supported_tests: " + supported_tests);
         System.out.println("token: " + device_token);
+        */
+        if (device_token == null) return;
 
         final OrchestrateClient client = new OrchestrateClient();
         client.set_verbosity(LogSeverity.LOG_DEBUG);
