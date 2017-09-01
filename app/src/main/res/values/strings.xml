@@ -100,4 +100,5 @@
     <string name="ooniprobe_outdate">ooniprobe is out of date</string>
     <string name="ooniprobe_outdate_msg">In order to run this test you need a newer version of ooniprobe, click on the button below to update</string>
     <string name="invalid_parameter">Invalid parameter</string>
+    <string name="close">Close</string>
 </resources>

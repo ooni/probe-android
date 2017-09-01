@@ -148,11 +148,24 @@ public class MainActivity extends AppCompatActivity  implements Observer {
                 if (versionCompare(BuildConfig.VERSION_NAME, mv) >= 0) {
                     Set<String> parameters = uri.getQueryParameterNames();
                     System.out.println("action "+ uri.getHost());
-
-
-                    String tn = uri.getQueryParameter("tn");
-                    String ta = uri.getQueryParameter("ta");
-                    String td = uri.getQueryParameter("td");
+                    if (uri.getHost().equals("nettest")){
+                        String tn = uri.getQueryParameter("tn");
+                        String ta = uri.getQueryParameter("ta");
+                        String td = uri.getQueryParameter("td");
+                        String test = NetworkMeasurement.getTestName(this, tn);
+                        if (test.length() > 0){
+                            Intent runTestActivity = new Intent(MainActivity.this, RunTestActivity.class);
+                            runTestActivity.putExtra("tn", tn);
+                            if (ta != null)
+                                runTestActivity.putExtra("ta", ta);
+                            if (td != null)
+                                runTestActivity.putExtra("td", td);
+                            startActivity(runTestActivity);
+                        }
+                        else {
+                            Alert.alertDialog(this, getString(R.string.invalid_parameter), getString(R.string.test_name) +  " : " + tn);
+                        }
+                    }
                 }
                 else {
                     Alert.alertDialogTwoButtons(this, getString(R.string.ooniprobe_outdate), getString(R.string.ooniprobe_outdate_msg), new DialogInterface.OnClickListener() {
@@ -162,7 +175,8 @@ public class MainActivity extends AppCompatActivity  implements Observer {
                                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
                             } catch (android.content.ActivityNotFoundException anfe) {
                                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
-                            }                        }
+                            }
+                        }
                     });
                 }
             }

@@ -23,9 +23,12 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="ooni" />
             </intent-filter>
         </activity>
@@ -78,15 +81,20 @@
 
         <activity
             android:name=".activity.BrowserActivity"
-            android:theme="@style/FullScreen">
+            android:theme="@style/FullScreen"
+            android:label="">
             <intent-filter>
                 <action android:name="org.openobservatory.ooniprobe.OPEN_BROWSER" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.NotificationDialog"
+        <activity
+            android:name=".activity.NotificationDialog"
             android:theme="@style/Theme.Transparent" />
+        <activity
+            android:name=".activity.RunTestActivity"
+            android:label="@string/run_tests">
+        </activity>
     </application>
 
 </manifest>
