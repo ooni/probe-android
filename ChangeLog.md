@@ -1,3 +1,7 @@
+# ooniprobe-android 1.1.5-fdroid.1 [2017-09-02]
+
+* fix(app/build.gradle): don't use alpha versions
+
 # ooniprobe-android 1.1.5-frdoid [2017-08-11]
 
 * Merge master and resolve conflicts
