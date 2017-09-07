@@ -1,3 +1,9 @@
+# ooniprobe-android 1.2.0-rc.1 [2017-09-07]
+
+Added:
+
+* Support for custom URI scheme
+
 # ooniprobe-android 1.1.5 [2017-08-07]
 
 New Languages:
