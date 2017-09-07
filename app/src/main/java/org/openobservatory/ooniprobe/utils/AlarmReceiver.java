@@ -16,9 +16,9 @@ public class AlarmReceiver extends BroadcastReceiver {
         //System.out.println(DEBUG_TAG);
         NotificationHandler.sendNotification(context, context.getString(R.string.local_notifications_text));
         TestData.getInstance(context, null);
-        TestData.doNetworkMeasurements(context, "web_connectivity");
-        TestData.doNetworkMeasurements(context, "http_invalid_request_line");
-        TestData.doNetworkMeasurements(context, "ndt_test");
+        TestData.doNetworkMeasurements(context, "web_connectivity", null);
+        TestData.doNetworkMeasurements(context, "http_invalid_request_line", null);
+        TestData.doNetworkMeasurements(context, "ndt_test", null);
     }
 
 }

@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.data;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -30,10 +31,10 @@ public class TestData extends Observable {
     public static ArrayList<NetworkMeasurement> runningTests;
     public static ArrayList<NetworkMeasurement> finishedTests;
     public static LinkedHashMap<String, Boolean> availableTests;
-    public static MainActivity activity;
+    public static Activity activity;
     public static Context context;
 
-    public static TestData getInstance(final Context c, final MainActivity a) {
+    public static TestData getInstance(final Context c, final Activity a) {
         if (instance == null) {
             context = c;
             activity = a;
@@ -53,7 +54,7 @@ public class TestData extends Observable {
         return instance;
     }
 
-    public static void doNetworkMeasurements(final Context ctx, final String testName) {
+    public static void doNetworkMeasurements(final Context ctx, final String testName, final ArrayList<String> urls) {
         final String inputPath = ctx.getFilesDir() + "/hosts.txt";
         final String inputUrlsPath = ctx.getFilesDir() + "/global.txt";
 
@@ -207,23 +208,29 @@ public class TestData extends Observable {
                             }
                             else if (testName.compareTo(OONITests.WEB_CONNECTIVITY) == 0) {
                                 Log.v(TAG, "running web-connectivity test...");
-                                new WebConnectivityTest()
-                                        .use_logcat()
-                                        .set_input_filepath(inputUrlsPath)
-                                        .set_output_filepath(outputPath)
-                                        .set_error_filepath(logPath)
-                                        .set_verbosity(LogSeverity.LOG_INFO)
-                                        .set_options("geoip_country_path", geoip_country)
-                                        .set_options("geoip_asn_path", geoip_asn)
-                                        .set_options("save_real_probe_ip", boolToString(include_ip))
-                                        .set_options("save_real_probe_asn", boolToString(include_asn))
-                                        .set_options("save_real_probe_cc", boolToString(include_cc))
-                                        .set_options("no_collector", boolToString(!upload_results))
-                                        .set_options("collector_base_url", collector_address)
-                                        .set_options("max_runtime", max_runtime)
-                                        .set_options("software_name", "ooniprobe-android")
-                                        .set_options("software_version", BuildConfig.VERSION_NAME)
-                                        .on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
+                                WebConnectivityTest test = new WebConnectivityTest();
+                                test.use_logcat();
+                                if (urls != null && urls.size() > 0) {
+                                    for (int i = 0; i < urls.size(); i++)
+                                        test.add_input(urls.get(i));
+                                }
+                                else
+                                    test.set_input_filepath(inputUrlsPath);
+
+                                test.set_output_filepath(outputPath);
+                                test.set_error_filepath(logPath);
+                                test.set_verbosity(LogSeverity.LOG_INFO);
+                                test.set_options("geoip_country_path", geoip_country);
+                                test.set_options("geoip_asn_path", geoip_asn);
+                                test.set_options("save_real_probe_ip", boolToString(include_ip));
+                                test.set_options("save_real_probe_asn", boolToString(include_asn));
+                                test.set_options("save_real_probe_cc", boolToString(include_cc));
+                                test.set_options("no_collector", boolToString(!upload_results));
+                                test.set_options("collector_base_url", collector_address);
+                                test.set_options("max_runtime", max_runtime);
+                                test.set_options("software_name", "ooniprobe-android");
+                                test.set_options("software_version", BuildConfig.VERSION_NAME);
+                                test.on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
                                             @Override
                                             public void callback(double percent, String msg) {
                                                 currentTest.progress = (int)(percent*100);
@@ -236,14 +243,14 @@ public class TestData extends Observable {
                                                     });
                                                 }
                                             }
-                                        })
-                                        .on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
+                                        });
+                                test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
                                             public void callback(String entry) {
                                                 setAnomaly_wc(entry, currentTest);
                                             }
-                                        })
-                                        .run();
+                                        });
+                                test.run();
                             }
                             else if (testName.compareTo(OONITests.NDT_TEST) == 0) {
                                 Log.v(TAG, "running ndt test...");

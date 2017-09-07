@@ -10,7 +10,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -20,16 +19,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.adapter.TestResultListAdapter;
 import org.openobservatory.ooniprobe.adapter.UrlListAdapter;
 import org.openobservatory.ooniprobe.data.TestData;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
-import org.openobservatory.ooniprobe.model.TestResult;
 
 import java.util.ArrayList;
-import java.util.StringTokenizer;
+import java.util.Observable;
+import java.util.Observer;
 
-public class RunTestActivity extends AppCompatActivity {
+public class RunTestActivity extends AppCompatActivity implements Observer {
     private RecyclerView testUrlList;
     private UrlListAdapter mUrlListAdapter;
     private static ImageView testImage;
@@ -42,6 +40,8 @@ public class RunTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_run_test);
+        TestData.getInstance(this, this).addObserver(this);
+
         test_name = getIntent().getStringExtra("tn");
 
         title = (TextView) findViewById(R.id.run_test_message);
@@ -57,27 +57,31 @@ public class RunTestActivity extends AppCompatActivity {
         testImage = (ImageView) findViewById(R.id.test_logo);
         testImage.setImageResource(NetworkMeasurement.getTestImageBig(test_name));
 
+        ArrayList<String> listItems = new ArrayList<>();
+        final ArrayList<String> urlItems = new ArrayList<>();
+        try {
+            JSONObject ta = new JSONObject(getIntent().getStringExtra("ta"));
+            JSONArray urls = ta.getJSONArray("urls");
+            for (int i = 0; i < urls.length(); i++)
+                urlItems.add(urls.getString(i));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        listItems.addAll(urlItems);
+        if (listItems.size() == 0 && test_name.equals("web_connectivity"))
+            listItems.add(getString(R.string.random_sampling_urls));
+
         runButton = (AppCompatButton) findViewById(R.id.run_test_button);
         runButton.setOnClickListener(
                 new ImageButton.OnClickListener() {
                     public void onClick(View v) {
-                        TestData.doNetworkMeasurements(getApplicationContext(), test_name);
+                        TestData.doNetworkMeasurements(getApplicationContext(), test_name, urlItems);
+                        finish();
                     }
                 }
         );
 
         test_progress = (ProgressBar) findViewById(R.id.progressIndicator);
-        ArrayList<String> listItems = new ArrayList<>();
-        System.out.println(getIntent().getStringExtra("ta"));
-        try {
-            JSONObject ta = new JSONObject(getIntent().getStringExtra("ta"));
-            JSONArray urls = ta.getJSONArray("urls");
-            for (int i = 0; i < urls.length(); i++)
-                listItems.add(urls.getString(i));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
 
         testUrlList = (RecyclerView) findViewById(R.id.urlList);
         mUrlListAdapter = new UrlListAdapter(this, listItems);
@@ -87,10 +91,6 @@ public class RunTestActivity extends AppCompatActivity {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(testUrlList.getContext(),
                 layoutManager.getOrientation());
         testUrlList.addItemDecoration(dividerItemDecoration);
-        //TODO
-        // - disable run if test is running (?)
-        // - add generic text if there are no urls
-        // - pass urls to web con test
     }
 
     @Override
@@ -109,5 +109,32 @@ public class RunTestActivity extends AppCompatActivity {
                 this.onBackPressed();
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void update(Observable observable, Object data) {
+        System.out.println("update "+ observable);
+        updateTest();
+    }
+
+    public void updateTest(){
+        if (isRunning()){
+            test_progress.setIndeterminate(true);
+            test_progress.setVisibility(View.VISIBLE);
+            runButton.setVisibility(View.INVISIBLE);
+        }
+        else {
+            test_progress.setVisibility(View.INVISIBLE);
+            runButton.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public Boolean isRunning(){
+        ArrayList<NetworkMeasurement> runningTests = TestData.getInstance(this, this).runningTests;
+        for(NetworkMeasurement test : runningTests) {
+            if (test.testName.equals(test_name))
+                return true;
+        }
+        return false;
     }
 }

@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.model;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,6 +29,7 @@ public class NetworkMeasurement {
         this.anomaly = 0;
     }
 
+    @NonNull
     public static String getTestName(Context context, String name) {
         switch (name) {
             case OONITests.DNS_INJECTION:

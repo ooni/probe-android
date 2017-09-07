@@ -194,6 +194,12 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        TestData.getInstance(this, this).addObserver(this);
+    }
+
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
