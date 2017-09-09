@@ -417,37 +417,17 @@ public class TestData extends Observable {
             JSONObject jsonObj = new JSONObject(entry);
             JSONObject test_keys = jsonObj.getJSONObject("test_keys");
             Object failure = test_keys.get("failure");
-            System.out.println("failure " + failure);
-            System.out.println("test_keys " + test_keys);
-
             if(failure == null)
                 anomaly = 1;
             else {
                 JSONObject tampering = test_keys.getJSONObject("tampering");
-                System.out.println("tampering " + tampering);
-
-                Boolean header_field_name = false;
-                Boolean header_field_number = false;
-                Boolean header_field_value = false;
-                Boolean header_name_capitalization = false;
-                Boolean request_line_capitalization = false;
-                Boolean total = false;
-
-                if (test_keys.has("header_field_name"))
-                    header_field_name = tampering.getBoolean("header_field_name");
-                if (test_keys.has("header_field_number"))
-                    header_field_number = tampering.getBoolean("header_field_number");
-                if (test_keys.has("header_field_value"))
-                    header_field_value = tampering.getBoolean("header_field_value");
-                if (test_keys.has("header_name_capitalization"))
-                    header_name_capitalization = tampering.getBoolean("header_name_capitalization");
-                if (test_keys.has("request_line_capitalization"))
-                    request_line_capitalization = tampering.getBoolean("request_line_capitalization");
-                if (test_keys.has("total"))
-                    total = tampering.getBoolean("total");
-
-                if (header_field_name || header_field_number || header_field_value || header_name_capitalization || request_line_capitalization || total)
-                    anomaly = 2;
+                String keys[] = {"header_field_name","header_field_number","header_field_value", "header_name_capitalization", "request_line_capitalization", "total"};
+                for (String key: keys)
+                {
+                    if (tampering.has(key))
+                        if (tampering.getBoolean(key))
+                            anomaly = 2;
+                }
             }
             System.out.println("anomaly "+ anomaly);
             if (test.anomaly < anomaly) {
