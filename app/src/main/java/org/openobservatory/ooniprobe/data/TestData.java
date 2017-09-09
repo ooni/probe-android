@@ -429,7 +429,6 @@ public class TestData extends Observable {
                             anomaly = 2;
                 }
             }
-            System.out.println("anomaly "+ anomaly);
             if (test.anomaly < anomaly) {
                 test.anomaly = anomaly;
                 TestStorage.setAnomaly(context, test.test_id, anomaly);
