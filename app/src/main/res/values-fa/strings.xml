@@ -18,9 +18,9 @@
     <string name="web_connectivity_longdesc">این تست آزمایش می‌کند که آیا دسترسی به وب‌سایت‌ها از طریق دستکاری DNS، فیلترکردن آی‌پی یا TCP  و یا به وسیله‌ی پراکسی شفاف HTTP محدود شده‌اند.
 
 شما هر بار با انتخابِ Web Connectivity، وبسایت‌های مختلفی را آزمایش می‌کنید.</string>
-    <string name="http_invalid_request_line_longdesc">این آزمایش سعی در تشخیص حضور سیستم‌هایی (“middle boxes”) را دارد که با فرستادن invalid HTTP request line به سرویس echo می‌توانند مسئول سانسور یا نظارت اینترنتی  باشند.
+    <string name="http_invalid_request_line_longdesc">این آزمایش سعی در تشخیص حضور سیستم‌هایی (“middle boxes”) را دارد که با فرستادن invalid HTTP request line به سرویس echo می‌توانند مسئول سانسور یا نظارت اینترنتی باشند.
 اگر چنین سیستم‌هایی در شبکه شما وجود داشته باشد، the invalid HTTP request متوقف خواهد شد و امکان بروز خطا وجود خواهد داشت.</string>
-    <string name="http_header_field_manipulation_longdesc">این آزمایش سعی در تشخیص حضور سیستم‌هایی (“middle boxes”) را دارد که می‌توانند با فرستادن invalid HTTP request line همراه با سرآیندهای غیرقانونی به سرور کنترلی backend مسئول سانسور یا نظارت اینترنتی  باشند.
+    <string name="http_header_field_manipulation_longdesc">این آزمایش سعی در تشخیص حضور سیستم‌هایی (“middle boxes”) را دارد که می‌توانند با فرستادن invalid HTTP request line همراه با سرآیندهای غیرقانونی به سرور کنترلی backend مسئول سانسور یا نظارت اینترنتی باشند.
 اگر چنین سیستم‌هایی در شبکه شما وجود داشته باشد، سرآیندها را متعادل و یا سرآیند‌های بیشتر اضافه خواهند کرد.</string>
     <string name="ndt_longdesc">این تست سرعت و عملکرد شبکه‌ی شما را اندازه‌گیری می‌کند. این تست اجرایی توسط سرورهای شخص ثالث پایه‌بندی شده است. و ما تضمین نمی‌کنیم که آدرس ‌آی‌پی شما جمع‌آوری، پردازش و منتشر نشود. </string>
     <string name="running_tests">در حال اجرای آزمایش‌ها</string>
@@ -50,7 +50,7 @@
     <string name="i_understand_the_risks">خطرهای احتمالی را درک می‌کنم.</string>
     <string name="pop_quiz">پرسش و آزمون</string>
     <string name="question_1">سوال 1: آیا ممکن است کسانی که فعالیت اینترنتی من را زیر نظر دارند (مانندِ آی‌اس‌پی، دولت و یا کارفرمای من ) -با وجود اقدامات OONI درجهت سخت کردن این کار- از استفاده‌ی من از OONI خبردار شوند؟</string>
-    <string name="question_2">سوال 2: آیا سنجش‌های  من به صورت پیش‌فرض به وسیله‌ی OONI منتشر خواهند شد؟ و ممکن است که این سنجش‌ها شامل اطلاعات شخصی و قابل شناسی باشند؟</string>
+    <string name="question_2">سوال 2: آیا اندازه‌گیری‌های من به صورت پیش‌فرض به وسیله‌ی OONI منتشر خواهند شد؟ و ممکن است که این اندازه‌گیری‌ها شامل اطلاعات شخصی و قابل شناسی باشند؟</string>
     <string name="_true">درست</string>
     <string name="_false"> غلط</string>
     <string name="how_did_i_do">نتایج پرسش و آزمون</string>
@@ -83,7 +83,7 @@
     <string name="copied_clipboard">به کلیپ‌بورد کپی شد</string>
     <string name="send_crash">ارسال گزارش درباره‌ی متوقف شدن برنامه </string>
     <string name="privacy">حریم خصوصی</string>
-    <string name="view_data_policy">خواندن لاگ</string>
+    <string name="view_data_policy">برای خواندن سیاست داده‌ها اینجا کلیک کنید.</string>
     <string name="test_name_finished">به پایان رسید. برای دیدن نتیجه‌ها به آزمایش‌های قبلی بروید.</string>
     <string name="open_url_alert">آیا مایلید که URL زیر را باز کنید؟</string>
     <string name="max_runtime_low">حداکثر زمان اجرای درخواستی بسیار کم است، به حالت پیش فرض تنظیم کنید.</string>

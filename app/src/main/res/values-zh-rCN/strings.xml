@@ -6,19 +6,22 @@
     <string name="settings">设定</string>
     <string name="about">关于</string>
     <string name="dns_injection">DNS注入</string>
+    <string name="dash">DASH 串流测试</string>
     <string name="tcp_connect">TCP 连接</string>
     <string name="http_invalid_request_line">HTTP无效请求行</string>
     <string name="http_header_field_manipulation">HTTP　表头栏操控</string>
     <string name="web_connectivity">万维网连结度</string>
     <string name="ndt">NDT速度测试</string>
+    <string name="dash_desc">测量影片串流品质</string>
     <string name="web_connectivity_desc">检查网站是否被封锁</string>
-    <string name="http_invalid_request_line_desc">找寻\'中间盒\'</string>
+    <string name="http_invalid_request_line_desc">找寻\'中间盒</string>
     <string name="http_header_field_manipulation_desc">找寻\'中间盒</string>
     <string name="ndt_desc">测量网路速度和表现</string>
     <string name="web_connectivity_longdesc">这个测试检查网站的近用是否受到DNS 窜改, TCP/IP 封锁, 或是透明HTTP 代理等方式而遭封锁屏蔽。\n\n每次执行万维网连接度时，请试试不同的网站。</string>
     <string name="http_invalid_request_line_longdesc">这个测试试著透过无效HTTP请求行到一个回声服务，以侦察可能是执行审查或监控的系统 (俗称的“中间盒”)。如果这类系统存在于你的网路里，这个无效HTTP请求行将会被拦截而触动一个错误。</string>
     <string name="http_header_field_manipulation_longdesc">这个测试试著传送一个附不规则表头的无效HTTP请求行到后端控制服务器，以侦察可能是执行审查或监控的系统 (俗称的“中间盒”)。如果这类系统存在于你的网路里，它们很可能正规化表头或是增加额外的表头。</string>
     <string name="ndt_longdesc">这个测试会计算你的网路速度和表现。\n\n免责声明：这是一个基于第三方服务器的第三方的表现测试。我们无法保证你的IP 地址不会被收集、处理与公布。</string>
+    <string name="dash_longdesc">这个测试模拟远端服务器以不同品质播放一个简单视频影片这个测试是为了取得你所在网路播放影片的表现基准\ n\ n免责声明：这是基于第三方服务器上由第三方所进行的表现测试，我们无法保证你的IP 位置不会被收集，处理和公布。</string>
     <string name="running_tests">执行测试</string>
     <string name="finished_tests">完成的测试</string>
     <string name="collector_address">收集器地址</string>
@@ -87,4 +90,6 @@
     <string name="past_tests_empty">一旦测试完成执行，过去的测试结果将会立即出现在此</string>
     <string name="drawer_open">开启导航抽屉</string>
     <string name="drawer_close">关闭导航抽屉</string>
+    <string name="try_mirror">试试镜像站</string>
+    <string name="loading">戴入中....</string>
 </resources>

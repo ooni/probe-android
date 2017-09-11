@@ -1,3 +1,15 @@
+# ooniprobe-android 1.2.0-rc.2 [2017-09-10]
+
+New features:
+
+* Added support for running tests with custom URI scheme
+
+* Fixed bug on HTTP Header Field Manipulation result list
+
+measurement-kit version: 0.7.3-3
+
+ooniprobe-wui version: 2.2.4-beta.1
+
 # ooniprobe-android 1.1.5 [2017-08-07]
 
 New Languages:

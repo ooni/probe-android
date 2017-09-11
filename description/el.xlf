@@ -19,6 +19,16 @@
           <target>ooniprobe - Εξετάστε τη Λογοκρισία στο Διαδίκτυο </target>
           <note from="developer">This is limited by Apple to 50 characters</note>
       </trans-unit>
+      <trans-unit id="subtitle-ios" maxwidth="30" size-unit="char">
+        <source>Measure Internet Censorship</source>
+        <target>Εξέταση Λογοκρισίας Διαδiκτύου</target>
+        <note from="developer">This is limited by Apple to 30 characters</note>
+      </trans-unit>
+      <trans-unit id="promotionaltext-ios" maxwidth="170" size-unit="char">
+        <source>Collect evidence of Internet censorship. Measure the speed and performance of your network.</source>
+        <target>Συλλέξτε στοιχεία για τη λογοκρισία του Διαδικτύου. Μετρήστε την ταχύτητα και την απόδοση του δικτύου σας.</target>
+        <note from="developer">This is limited by Apple to 170 characters</note>
+      </trans-unit>
       <trans-unit id="intro">
         <source>Collect evidence of Internet censorship. Measure the speed and performance of your network. Play an active role in increasing transparency of information controls around the world.</source>
         <target>Συλλέξτε αποδεικτικά στοιχεία λογοκρισίας στο Διαδίκτυο. Μετρήστε την ταχύτητα και την απόδοση του δικτύου σας. Παίξτε ενεργό ρόλο στην αύξηση της διαφάνειας του ελέγχου πληροφοριών σε όλο τον κόσμο.</target>
