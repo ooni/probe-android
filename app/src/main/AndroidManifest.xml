@@ -85,7 +85,7 @@
             android:theme="@style/Theme.Transparent" />
         <activity
             android:name=".activity.RunTestActivity"
-            android:label="@string/run_tests"
+            android:label="@string/app_name"
             android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

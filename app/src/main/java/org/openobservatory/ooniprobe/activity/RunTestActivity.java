@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.activity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -32,6 +33,9 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Set;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class RunTestActivity extends AppCompatActivity implements Observer {
     private RecyclerView testUrlList;
@@ -114,12 +118,16 @@ public class RunTestActivity extends AppCompatActivity implements Observer {
             }
             listItems.addAll(urlItems);
         }
-        else
-            urls.setVisibility(View.INVISIBLE);
 
-        if (listItems.size() == 0 && test_name.equals("web_connectivity"))
+        if (listItems.size() == 0 && test_name.equals("web_connectivity")){
             listItems.add(getString(R.string.random_sampling_urls));
+            mUrlListAdapter = new UrlListAdapter(this, listItems, false);
+        }
+        else
+            mUrlListAdapter = new UrlListAdapter(this, listItems, true);
 
+        if (listItems.size() == 0)
+            urls.setVisibility(View.INVISIBLE);
 
         runButton = (AppCompatButton) findViewById(R.id.run_test_button);
         runButton.setOnClickListener(
@@ -139,13 +147,9 @@ public class RunTestActivity extends AppCompatActivity implements Observer {
         test_progress = (ProgressBar) findViewById(R.id.progressIndicator);
 
         testUrlList = (RecyclerView) findViewById(R.id.urlList);
-        mUrlListAdapter = new UrlListAdapter(this, listItems);
         testUrlList.setAdapter(mUrlListAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         testUrlList.setLayoutManager(layoutManager);
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(testUrlList.getContext(),
-                layoutManager.getOrientation());
-        testUrlList.addItemDecoration(dividerItemDecoration);
     }
 
     @Override
@@ -164,6 +168,11 @@ public class RunTestActivity extends AppCompatActivity implements Observer {
                 this.onBackPressed();
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     @Override
