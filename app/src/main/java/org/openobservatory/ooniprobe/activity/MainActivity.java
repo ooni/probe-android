@@ -66,10 +66,19 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     private CharSequence mTitle;
     private String[] mMenuItemsTitles;
     private LeftMenuListAdapter mleftMenuListAdapter;
+    static boolean active = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /*
+        if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
+            // Activity is being brought to front and not being created again,
+            // Thus finishing this activity will bring the last viewed activity to foreground
+            Log.v(TAG, "FLAG_ACTIVITY_BROUGHT_TO_FRONT");
+            finish();
+        }
+        */
         setContentView(R.layout.activity_main);
         checkResources();
         TestData.getInstance(this, this).addObserver(this);
@@ -137,51 +146,6 @@ public class MainActivity extends AppCompatActivity  implements Observer {
 
         checkInformedConsent();
 
-        // Get the intent that started this activity
-        Intent intent = getIntent();
-        Uri data = intent.getData();
-        System.out.println(data);
-        if (Intent.ACTION_VIEW.equals(intent.getAction())) {
-            Uri uri = intent.getData();
-            String mv = uri.getQueryParameter("mv");
-            if (mv != null){
-                if (versionCompare(BuildConfig.VERSION_NAME, mv) >= 0) {
-                    Set<String> parameters = uri.getQueryParameterNames();
-                    System.out.println("action "+ uri.getHost());
-                    if (uri.getHost().equals("nettest")){
-                        String tn = uri.getQueryParameter("tn");
-                        String ta = uri.getQueryParameter("ta");
-                        String td = uri.getQueryParameter("td");
-                        String test = NetworkMeasurement.getTestName(this, tn);
-                        if (test.length() > 0){
-                            Intent runTestActivity = new Intent(MainActivity.this, RunTestActivity.class);
-                            runTestActivity.putExtra("tn", tn);
-                            if (ta != null)
-                                runTestActivity.putExtra("ta", ta);
-                            if (td != null)
-                                runTestActivity.putExtra("td", td);
-                            startActivity(runTestActivity);
-                        }
-                        else {
-                            Alert.alertDialog(this, getString(R.string.invalid_parameter), getString(R.string.test_name) +  " : " + tn);
-                        }
-                    }
-                }
-                else {
-                    Alert.alertDialogTwoButtons(this, getString(R.string.ooniprobe_outdate), getString(R.string.ooniprobe_outdate_msg), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
-                            try {
-                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
-                            } catch (android.content.ActivityNotFoundException anfe) {
-                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
-                            }
-                        }
-                    });
-                }
-            }
-        }
-
         // XXX: This is probably not correct: we would like to send
         // info to the orchestrator only when the network or any other
         // orchestrator parameter like country code changed.
@@ -197,6 +161,7 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     @Override
     public void onResume() {
         super.onResume();
+        System.out.println("onResume");
         TestData.getInstance(this, this).addObserver(this);
     }
 
@@ -260,6 +225,22 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        active = true;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        //active = false;
+    }
+
+    public static boolean mainActivityIsOpen() {
+        return active;
     }
 
     @Override
@@ -419,38 +400,6 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         }
         else
             getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.color_ooni_blue)));
-    }
-
-    /**
-     * Compares two version strings.
-     *
-     * Use this instead of String.compareTo() for a non-lexicographical
-     * comparison that works for version strings. e.g. "1.10".compareTo("1.6").
-     *
-     * @note It does not work if "1.10" is supposed to be equal to "1.10.0".
-     *
-     * @param str1 a string of ordinal numbers separated by decimal points.
-     * @param str2 a string of ordinal numbers separated by decimal points.
-     * @return The result is a negative integer if str1 is _numerically_ less than str2.
-     *         The result is a positive integer if str1 is _numerically_ greater than str2.
-     *         The result is zero if the strings are _numerically_ equal.
-     */
-    public static int versionCompare(String str1, String str2) {
-        String[] vals1 = str1.split("\\.");
-        String[] vals2 = str2.split("\\.");
-        int i = 0;
-        // set index to first non-equal ordinal or length of shortest version string
-        while (i < vals1.length && i < vals2.length && vals1[i].equals(vals2[i])) {
-            i++;
-        }
-        // compare first non-equal ordinal number
-        if (i < vals1.length && i < vals2.length) {
-            int diff = Integer.valueOf(vals1[i]).compareTo(Integer.valueOf(vals2[i]));
-            return Integer.signum(diff);
-        }
-        // the strings are equal or one string is a substring of the other
-        // e.g. "1.2.3" = "1.2.3" or "1.2.3" < "1.2.3.4"
-        return Integer.signum(vals1.length - vals2.length);
     }
 
     private static final String TAG = "main-activity";
