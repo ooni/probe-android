@@ -42,6 +42,8 @@ public class NetworkMeasurement {
                 return context.getString(R.string.http_invalid_request_line);
             case OONITests.HTTP_HEADER_FIELD_MANIPULATION:
                 return context.getString(R.string.http_header_field_manipulation);
+            case OONITests.NDT:
+                return context.getString(R.string.ndt);
             case OONITests.NDT_TEST:
                 return context.getString(R.string.ndt);
             case OONITests.DASH:
@@ -59,7 +61,7 @@ public class NetworkMeasurement {
                 return context.getString(R.string.http_invalid_request_line_desc);
             case OONITests.HTTP_HEADER_FIELD_MANIPULATION:
                 return context.getString(R.string.http_header_field_manipulation_desc);
-            case OONITests.NDT_TEST:
+            case OONITests.NDT:
                 return context.getString(R.string.ndt_desc);
             case OONITests.DASH:
                 return context.getString(R.string.dash_desc);
@@ -98,6 +100,13 @@ public class NetworkMeasurement {
                     return R.drawable.ndt_warning;
                 else
                     return R.drawable.ndt_no;
+            case OONITests.NDT:
+                if (anomaly == 0)
+                    return R.drawable.ndt;
+                else if (anomaly == 1)
+                    return R.drawable.ndt_warning;
+                else
+                    return R.drawable.ndt_no;
             case OONITests.DASH:
                 if (anomaly == 0)
                     return R.drawable.dash;
@@ -118,7 +127,7 @@ public class NetworkMeasurement {
                 return R.drawable.http_invalid_request_line_big;
             case OONITests.HTTP_HEADER_FIELD_MANIPULATION:
                 return R.drawable.http_header_field_manipulation_big;
-            case OONITests.NDT_TEST:
+            case OONITests.NDT:
                 return R.drawable.ndt_big;
             case OONITests.DASH:
                 return R.drawable.dash_big;

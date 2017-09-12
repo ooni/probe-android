@@ -45,7 +45,7 @@ public class TestData extends Observable {
             availableTests.put(OONITests.WEB_CONNECTIVITY, true);
             availableTests.put(OONITests.HTTP_INVALID_REQUEST_LINE, true);
             availableTests.put(OONITests.HTTP_HEADER_FIELD_MANIPULATION, true);
-            availableTests.put(OONITests.NDT_TEST, true);
+            availableTests.put(OONITests.NDT, true);
             availableTests.put(OONITests.DASH, true);
         }
         else if (activity == null && a != null){
@@ -252,7 +252,7 @@ public class TestData extends Observable {
                                         });
                                 test.run();
                             }
-                            else if (testName.compareTo(OONITests.NDT_TEST) == 0) {
+                            else if (testName.compareTo(OONITests.NDT) == 0) {
                                 Log.v(TAG, "running ndt test...");
                                 new NdtTest()
                                         .use_logcat()

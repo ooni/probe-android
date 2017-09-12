@@ -151,6 +151,7 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         // orchestrator parameter like country code changed.
         //TODO remove this code in 1.1.6
         String token = FirebaseInstanceId.getInstance().getToken();
+        System.out.println("token " + token);
         if (token != null) {
             NotificationService ns = NotificationService.getInstance(this);
             ns.setDevice_token(token);
@@ -161,7 +162,6 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     @Override
     public void onResume() {
         super.onResume();
-        System.out.println("onResume");
         TestData.getInstance(this, this).addObserver(this);
     }
 
@@ -233,11 +233,6 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         active = true;
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        //active = false;
-    }
 
     public static boolean mainActivityIsOpen() {
         return active;

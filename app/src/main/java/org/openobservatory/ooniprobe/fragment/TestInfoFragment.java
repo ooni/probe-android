@@ -111,7 +111,7 @@ public class TestInfoFragment extends Fragment {
         switch (name) {
             case OONITests.HTTP_INVALID_REQUEST_LINE:
                 return "https://ooni.torproject.org/nettest/http-invalid-request-line/";
-            case OONITests.NDT_TEST:
+            case OONITests.NDT:
                 return "https://ooni.torproject.org/nettest/ndt/";
             case OONITests.WEB_CONNECTIVITY:
                 return "https://ooni.torproject.org/nettest/web-connectivity/";
@@ -132,7 +132,7 @@ public class TestInfoFragment extends Fragment {
                 return mActivity.getString(R.string.http_invalid_request_line_longdesc);
             case OONITests.HTTP_HEADER_FIELD_MANIPULATION:
                 return mActivity.getString(R.string.http_header_field_manipulation_longdesc);
-            case OONITests.NDT_TEST:
+            case OONITests.NDT:
                 return mActivity.getString(R.string.ndt_longdesc);
             case OONITests.DASH:
                 return mActivity.getString(R.string.dash_longdesc);

@@ -38,7 +38,7 @@ public class RunTestActivity extends AppCompatActivity implements Observer {
     private UrlListAdapter mUrlListAdapter;
     private static ImageView testImage;
     private static AppCompatButton runButton;
-    private static TextView title, testTitle;
+    private static TextView title, testTitle, urls;
     private ProgressBar test_progress;
     private static String test_name;
 
@@ -90,6 +90,7 @@ public class RunTestActivity extends AppCompatActivity implements Observer {
 
     public void configureScreen(String td, String ta){
         TestData.getInstance(this, this).addObserver(this);
+         urls = (TextView) findViewById(R.id.urls);
 
         title = (TextView) findViewById(R.id.run_test_message);
         if (td != null)
@@ -117,8 +118,12 @@ public class RunTestActivity extends AppCompatActivity implements Observer {
             }
             listItems.addAll(urlItems);
         }
+        else
+            urls.setVisibility(View.INVISIBLE);
+
         if (listItems.size() == 0 && test_name.equals("web_connectivity"))
             listItems.add(getString(R.string.random_sampling_urls));
+
 
         runButton = (AppCompatButton) findViewById(R.id.run_test_button);
         runButton.setOnClickListener(
