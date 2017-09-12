@@ -130,14 +130,11 @@ public class RunTestActivity extends AppCompatActivity implements Observer {
                 new ImageButton.OnClickListener() {
                     public void onClick(View v) {
                         TestData.doNetworkMeasurements(getApplicationContext(), test_name, urlItems);
-                        if (!MainActivity.mainActivityIsOpen())
-                        {
-                            Intent MainActivityIntent = new Intent(RunTestActivity.this, MainActivity.class);
-                            MainActivityIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            MainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            MainActivityIntent.setPackage(getApplicationContext().getPackageName());
-                            startActivity(MainActivityIntent);
-                        }
+                        Intent MainActivityIntent = new Intent(RunTestActivity.this, MainActivity.class);
+                        MainActivityIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        MainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        MainActivityIntent.setPackage(getApplicationContext().getPackageName());
+                        startActivity(MainActivityIntent);
                         finish();
                     }
                 }

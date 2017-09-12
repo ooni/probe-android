@@ -66,19 +66,11 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     private CharSequence mTitle;
     private String[] mMenuItemsTitles;
     private LeftMenuListAdapter mleftMenuListAdapter;
-    static boolean active = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*
-        if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
-            // Activity is being brought to front and not being created again,
-            // Thus finishing this activity will bring the last viewed activity to foreground
-            Log.v(TAG, "FLAG_ACTIVITY_BROUGHT_TO_FRONT");
-            finish();
-        }
-        */
+
         setContentView(R.layout.activity_main);
         checkResources();
         TestData.getInstance(this, this).addObserver(this);
@@ -225,17 +217,6 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        active = true;
-    }
-
-
-    public static boolean mainActivityIsOpen() {
-        return active;
     }
 
     @Override
