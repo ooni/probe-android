@@ -50,20 +50,16 @@ public class RunTestActivity extends AppCompatActivity implements Observer {
         // Get the intent that started this activity
         Intent intent = getIntent();
         Uri data = intent.getData();
-        System.out.println("data " + data);
         if (Intent.ACTION_VIEW.equals(intent.getAction())) {
             Uri uri = intent.getData();
             String mv = uri.getQueryParameter("mv");
             if (mv != null){
                 if (versionCompare(BuildConfig.VERSION_NAME, mv) >= 0) {
                     Set<String> parameters = uri.getQueryParameterNames();
-                    System.out.println("action "+ uri.getHost());
                     String tn = uri.getQueryParameter("tn");
                     String ta = uri.getQueryParameter("ta");
                     String td = uri.getQueryParameter("td");
-                    System.out.println("tn " + tn);
                     String test = NetworkMeasurement.getTestName(this, tn);
-                    System.out.println("testname " + test);
                     if (test.length() > 0){
                         test_name = tn;
                         configureScreen(td, ta);
