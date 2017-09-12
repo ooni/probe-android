@@ -46,7 +46,7 @@ public class NetworkMeasurement {
                 return context.getString(R.string.ndt);
             case OONITests.DASH:
                 return context.getString(R.string.dash);
-            default:
+             default:
                 return "";
         }
     }
