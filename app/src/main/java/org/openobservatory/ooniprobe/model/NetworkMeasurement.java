@@ -61,6 +61,8 @@ public class NetworkMeasurement {
                 return context.getString(R.string.http_invalid_request_line_desc);
             case OONITests.HTTP_HEADER_FIELD_MANIPULATION:
                 return context.getString(R.string.http_header_field_manipulation_desc);
+            case OONITests.NDT_TEST:
+                return context.getString(R.string.ndt_desc);
             case OONITests.NDT:
                 return context.getString(R.string.ndt_desc);
             case OONITests.DASH:

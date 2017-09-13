@@ -42,7 +42,9 @@
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/learn_more_button"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="60dp"
+                android:textSize="24sp"
+                android:padding="10dp"
                 android:textStyle="bold"
                 android:text="@string/learn_more"
                 app:textAllCaps="false"

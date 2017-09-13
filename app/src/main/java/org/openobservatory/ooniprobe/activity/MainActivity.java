@@ -137,18 +137,6 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         }
 
         checkInformedConsent();
-
-        // XXX: This is probably not correct: we would like to send
-        // info to the orchestrator only when the network or any other
-        // orchestrator parameter like country code changed.
-        //TODO remove this code in 1.1.6
-        String token = FirebaseInstanceId.getInstance().getToken();
-        System.out.println("token " + token);
-        if (token != null) {
-            NotificationService ns = NotificationService.getInstance(this);
-            ns.setDevice_token(token);
-            ns.sendRegistrationToServer();
-        }
     }
 
     @Override
