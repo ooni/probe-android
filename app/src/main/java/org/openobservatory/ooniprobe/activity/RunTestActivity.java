@@ -53,13 +53,11 @@ public class RunTestActivity extends AppCompatActivity implements Observer {
 
         // Get the intent that started this activity
         Intent intent = getIntent();
-        Uri data = intent.getData();
         if (Intent.ACTION_VIEW.equals(intent.getAction())) {
             Uri uri = intent.getData();
             String mv = uri.getQueryParameter("mv");
             if (mv != null){
                 if (versionCompare(BuildConfig.VERSION_NAME, mv) >= 0) {
-                    Set<String> parameters = uri.getQueryParameterNames();
                     String tn = uri.getQueryParameter("tn");
                     String ta = uri.getQueryParameter("ta");
                     String td = uri.getQueryParameter("td");

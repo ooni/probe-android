@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity  implements Observer {
 
         setContentView(R.layout.activity_main);
         checkResources();
-        TestData.getInstance(this, this).addObserver(this);
 
         mTitle = getTitle();
         mMenuItemsTitles = new String[]{getString(R.string.run_tests), getString(R.string.past_tests), getString(R.string.settings), getString(R.string.about)};
