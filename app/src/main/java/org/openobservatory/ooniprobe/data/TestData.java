@@ -381,8 +381,13 @@ public class TestData extends Observable {
         }
     }
 
-    //TODO document this functions
-    //TODO rewrite these functions to avoid repeating so much code
+    //TODO use DEFINE instead of 0,1,2
+    
+    /*
+     on_entry method for http invalid request line test
+     if the "tampering" key exists and is null then anomaly will be set to 1 (orange)
+     otherwise "tampering" object exists and is TRUE, then anomaly will be set to 2 (red)
+     */
     public static void setAnomaly_hirl(String entry, NetworkMeasurement test){
         if(!test.entry) {
             TestStorage.setEntry(context, test);
@@ -407,6 +412,11 @@ public class TestData extends Observable {
         }
     }
 
+    /*
+    on_entry method for http invalid request line test
+    if the "failure" key exists and is not null then anomaly will be set to 1 (orange)
+    otherwise the keys in the "tampering" object will be checked, if any of them is TRUE, then anomaly will be set to 2 (red)
+    */
     public static void setAnomaly_hhfm(String entry, NetworkMeasurement test){
         if(!test.entry) {
             TestStorage.setEntry(context, test);
@@ -421,7 +431,12 @@ public class TestData extends Observable {
                 anomaly = 1;
             else {
                 JSONObject tampering = test_keys.getJSONObject("tampering");
-                String keys[] = {"header_field_name","header_field_number","header_field_value", "header_name_capitalization", "request_line_capitalization", "total"};
+                String keys[] = {"header_field_name",
+                                 "header_field_number",
+                                 "header_field_value",
+                                 "header_name_capitalization",
+                                 "request_line_capitalization",
+                                 "total"};
                 for (String key: keys)
                 {
                     if (tampering.has(key))
@@ -438,6 +453,10 @@ public class TestData extends Observable {
         }
     }
 
+    /*
+    on_entry method for ndt and dash test
+    if the "failure" key exists and is not null then anomaly will be set to 1 (orange)
+    */
     public static void setAnomaly_ndt(String entry, NetworkMeasurement test){
         if(!test.entry) {
             TestStorage.setEntry(context, test);

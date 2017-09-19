@@ -89,6 +89,8 @@ public class NotificationService {
         System.out.println("supported_tests: " + supported_tests);
         System.out.println("token: " + device_token);
         */
+
+        //if device_token is null the user hasn't enabled push notifications
         if (device_token == null) return;
 
         final OrchestrateClient client = new OrchestrateClient();
