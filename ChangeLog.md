@@ -1,4 +1,4 @@
-# ooniprobe-android 1.2.0 [2017-09-xx]
+# ooniprobe-android 1.2.0 [2017-09-25]
 
 New features:
 
@@ -7,6 +7,12 @@ New features:
 * Fixed bug on HTTP Header Field Manipulation result list
 
 * Added possibility to open links from run.ooni.io
+
+measurement-kit version: 0.7.2-1
+
+ooniprobe-wui version: 2.2.4
+
+# ooniprobe-ios 1.2.0 [version yanked]
 
 measurement-kit version: 0.7.2-1
 
