@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
@@ -37,6 +38,8 @@ import java.util.Set;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
+import static java.lang.Boolean.FALSE;
+
 public class RunTestActivity extends AppCompatActivity implements Observer {
     private RecyclerView testUrlList;
     private UrlListAdapter mUrlListAdapter;
@@ -50,6 +53,13 @@ public class RunTestActivity extends AppCompatActivity implements Observer {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_run_test);
+        urls = (TextView) findViewById(R.id.urls);
+        runButton = (AppCompatButton) findViewById(R.id.run_test_button);
+        title = (TextView) findViewById(R.id.run_test_message);
+        testTitle = (TextView) findViewById(R.id.test_title);
+        testImage = (ImageView) findViewById(R.id.test_logo);
+        test_progress = (ProgressBar) findViewById(R.id.progressIndicator);
+        testUrlList = (RecyclerView) findViewById(R.id.urlList);
 
         // Get the intent that started this activity
         Intent intent = getIntent();
@@ -67,20 +77,30 @@ public class RunTestActivity extends AppCompatActivity implements Observer {
                         configureScreen(td, ta);
                     }
                     else {
-                        Alert.alertDialog(this, getString(R.string.invalid_parameter), getString(R.string.test_name) +  " : " + tn);
+                        Alert.alertDialogWithAction(this, getString(R.string.invalid_parameter), getString(R.string.test_name) +  " : " + tn, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                goToMainActivity();
+                            }
+                        });
                     }
                 }
                 else {
-                    Alert.alertDialogTwoButtons(this, getString(R.string.ooniprobe_outdate), getString(R.string.ooniprobe_outdate_msg), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
-                            try {
-                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
-                            } catch (android.content.ActivityNotFoundException anfe) {
-                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
-                            }
-                        }
-                    });
+                    Alert.alertDialogWithAction(this, getString(R.string.ooniprobe_outdate), getString(R.string.ooniprobe_outdate_msg),
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+                                    try {
+                                        openPlayStore("market://details?id=" + appPackageName);
+                                    } catch (android.content.ActivityNotFoundException anfe) {
+                                        openPlayStore("https://play.google.com/store/apps/details?id=" + appPackageName);
+                                    }
+                                }
+                        },
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    goToMainActivity();
+                                }
+                            });
                 }
             }
         }
@@ -88,19 +108,14 @@ public class RunTestActivity extends AppCompatActivity implements Observer {
 
     public void configureScreen(String td, String ta){
         TestData.getInstance(this, this).addObserver(this);
-         urls = (TextView) findViewById(R.id.urls);
 
-        title = (TextView) findViewById(R.id.run_test_message);
         if (td != null)
             title.setText(td);
         else
             title.setText(getString(R.string.run_test_message));
 
         String test = NetworkMeasurement.getTestName(this, test_name);
-        testTitle = (TextView) findViewById(R.id.test_title);
         testTitle.setText(test);
-
-        testImage = (ImageView) findViewById(R.id.test_logo);
         testImage.setImageResource(NetworkMeasurement.getTestImageBig(test_name));
 
         ArrayList<String> listItems = new ArrayList<>();
@@ -112,6 +127,11 @@ public class RunTestActivity extends AppCompatActivity implements Observer {
                 for (int i = 0; i < urls.length(); i++)
                     urlItems.add(urls.getString(i));
             } catch (JSONException e) {
+                Alert.alertDialogWithAction(this, getString(R.string.invalid_parameter), getString(R.string.urls), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        goToMainActivity();
+                    }
+                });
                 e.printStackTrace();
             }
             listItems.addAll(urlItems);
@@ -127,27 +147,38 @@ public class RunTestActivity extends AppCompatActivity implements Observer {
         if (listItems.size() == 0)
             urls.setVisibility(View.INVISIBLE);
 
-        runButton = (AppCompatButton) findViewById(R.id.run_test_button);
         runButton.setOnClickListener(
                 new ImageButton.OnClickListener() {
                     public void onClick(View v) {
                         TestData.doNetworkMeasurements(getApplicationContext(), test_name, urlItems);
-                        Intent MainActivityIntent = new Intent(RunTestActivity.this, MainActivity.class);
-                        MainActivityIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        MainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        MainActivityIntent.setPackage(getApplicationContext().getPackageName());
-                        startActivity(MainActivityIntent);
-                        finish();
+                        goToMainActivity();
                     }
                 }
         );
 
-        test_progress = (ProgressBar) findViewById(R.id.progressIndicator);
-
-        testUrlList = (RecyclerView) findViewById(R.id.urlList);
         testUrlList.setAdapter(mUrlListAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         testUrlList.setLayoutManager(layoutManager);
+    }
+
+    public void goToMainActivity(){
+        Intent MainActivityIntent = new Intent(RunTestActivity.this, MainActivity.class);
+        /*
+        Here are the definitions: https://developer.android.com/reference/android/content/Intent.html
+        Snippet took from: https://stackoverflow.com/questions/14332441/finish-current-activity-and-start-a-new-one
+        */
+        MainActivityIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        MainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        MainActivityIntent.setPackage(getApplicationContext().getPackageName());
+        startActivity(MainActivityIntent);
+        finish();
+    }
+
+    public void openPlayStore(String appPackageName) {
+        Intent playStore = new Intent(Intent.ACTION_VIEW, Uri.parse(appPackageName));
+        playStore.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(playStore);
+        finish();
     }
 
     @Override
