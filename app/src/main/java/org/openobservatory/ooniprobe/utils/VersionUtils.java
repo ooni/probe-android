@@ -6,6 +6,6 @@ import org.openobservatory.ooniprobe.model.OONITests;
 public class VersionUtils {
 
     public static String get_software_version(){
-        return BuildConfig.VERSION_NAME + OONITests.RELEASE_NAME + "+" +BuildConfig.VERSION_CODE;
+        return BuildConfig.VERSION_NAME + BuildConfig.RELEASE_NAME + "+" +BuildConfig.VERSION_CODE;
     }
 }

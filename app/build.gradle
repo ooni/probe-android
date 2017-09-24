@@ -16,6 +16,7 @@ android {
         targetSdkVersion 25
         versionCode 13
         versionName "1.2.0"
+        buildConfigField "String", "RELEASE_NAME", "\"-rc.5\""
         setProperty("archivesBaseName", "ooniprobe-$versionName")
     }
     buildTypes {
