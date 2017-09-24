@@ -14,7 +14,7 @@ android {
         applicationId "org.openobservatory.ooniprobe"
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 12
+        versionCode 13
         versionName "1.2.0"
         setProperty("archivesBaseName", "ooniprobe-$versionName")
     }
@@ -37,7 +37,7 @@ dependencies {
         transitive = true;
     }
     //compile 'com.android.support:customtabs:25.3.1'
-    compile 'org.openobservatory.measurement_kit:android-libs:0.7.2-1'
+    compile 'org.openobservatory.measurement_kit:android-libs:0.7.3-1'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'

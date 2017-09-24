@@ -1,4 +1,4 @@
-# ooniprobe-android 1.2.0 [2017-09-25]
+# ooniprobe-android 1.2.1 [2017-09-25]
 
 New features:
 

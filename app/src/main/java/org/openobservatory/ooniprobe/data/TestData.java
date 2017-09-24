@@ -18,12 +18,12 @@ import org.json.JSONObject;
 import org.openobservatory.measurement_kit.android.DnsUtils;
 import org.openobservatory.measurement_kit.common.LogSeverity;
 import org.openobservatory.measurement_kit.nettests.*;
-import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 import org.openobservatory.ooniprobe.model.OONITests;
 import org.openobservatory.ooniprobe.model.UnknownTest;
 import org.openobservatory.ooniprobe.utils.NotificationHandler;
+import org.openobservatory.ooniprobe.utils.VersionUtils;
 
 public class TestData extends Observable {
     private static final String TAG = "TestData";
@@ -128,7 +128,7 @@ public class TestData extends Observable {
                                         .set_options("no_collector", boolToString(!upload_results))
                                         .set_options("collector_base_url", collector_address)
                                         .set_options("software_name", "ooniprobe-android")
-                                        .set_options("software_version", BuildConfig.VERSION_NAME)
+                                        .set_options("software_version", VersionUtils.get_software_version())
                                         .on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
                                             @Override
                                             public void callback(double percent, String msg) {
@@ -166,7 +166,7 @@ public class TestData extends Observable {
                                         .set_options("no_collector", boolToString(!upload_results))
                                         .set_options("collector_base_url", collector_address)
                                         .set_options("software_name", "ooniprobe-android")
-                                        .set_options("software_version", BuildConfig.VERSION_NAME)
+                                        .set_options("software_version", VersionUtils.get_software_version())
                                         .on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
                                             @Override
                                             public void callback(double percent, String msg) {
@@ -229,7 +229,7 @@ public class TestData extends Observable {
                                 test.set_options("collector_base_url", collector_address);
                                 test.set_options("max_runtime", max_runtime);
                                 test.set_options("software_name", "ooniprobe-android");
-                                test.set_options("software_version", BuildConfig.VERSION_NAME);
+                                test.set_options("software_version", VersionUtils.get_software_version());
                                 test.on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
                                             @Override
                                             public void callback(double percent, String msg) {
@@ -268,7 +268,7 @@ public class TestData extends Observable {
                                         .set_options("no_collector", boolToString(!upload_results))
                                         .set_options("collector_base_url", collector_address)
                                         .set_options("software_name", "ooniprobe-android")
-                                        .set_options("software_version", BuildConfig.VERSION_NAME)
+                                        .set_options("software_version", VersionUtils.get_software_version())
                                         .on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
                                             @Override
                                             public void callback(double percent, String msg) {
@@ -306,7 +306,7 @@ public class TestData extends Observable {
                                         .set_options("no_collector", boolToString(!upload_results))
                                         .set_options("collector_base_url", collector_address)
                                         .set_options("software_name", "ooniprobe-android")
-                                        .set_options("software_version", BuildConfig.VERSION_NAME)
+                                        .set_options("software_version", VersionUtils.get_software_version())
                                         .on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
                                             @Override
                                             public void callback(double percent, String msg) {

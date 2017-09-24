@@ -57,6 +57,7 @@ import org.openobservatory.ooniprobe.fragment.TestInfoFragment;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 import org.openobservatory.ooniprobe.utils.Alert;
 import org.openobservatory.ooniprobe.utils.NotificationService;
+import org.openobservatory.ooniprobe.utils.VersionUtils;
 
 public class MainActivity extends AppCompatActivity  implements Observer {
     private DrawerLayout mDrawerLayout;
@@ -70,6 +71,8 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+System.out.println("VERSION: "+VersionUtils.get_software_version());
 
         setContentView(R.layout.activity_main);
         checkResources();

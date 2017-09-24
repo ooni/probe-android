@@ -15,7 +15,6 @@ import org.openobservatory.measurement_kit.swig.OrchestrateClient;
 import org.openobservatory.measurement_kit.swig.OrchestrateFindLocationCallback;
 import org.openobservatory.measurement_kit.swig.OrchestrateRegisterProbeCallback;
 import org.openobservatory.measurement_kit.swig.OrchestrateUpdateCallback;
-import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.data.TestData;
 import org.openobservatory.ooniprobe.model.OONITests;
 
@@ -49,7 +48,7 @@ public class NotificationService {
             geoip_country_path = c.getFilesDir() + "/GeoIP.dat";
             platform = "android";
             software_name = "ooniprobe-android";
-            software_version = BuildConfig.VERSION_NAME;
+            software_version = VersionUtils.get_software_version();
             supported_tests = new ArrayList<>(TestData.getInstance(c, null).availableTests.keySet());
             network_type = getNetworkType(c);
             language = Locale.getDefault().getLanguage();
