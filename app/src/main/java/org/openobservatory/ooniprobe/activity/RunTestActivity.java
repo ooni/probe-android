@@ -133,6 +133,7 @@ public class RunTestActivity extends AppCompatActivity implements Observer {
                     }
                 });
                 e.printStackTrace();
+                return;
             }
             listItems.addAll(urlItems);
         }
