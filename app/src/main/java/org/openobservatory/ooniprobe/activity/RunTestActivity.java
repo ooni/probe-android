@@ -66,6 +66,7 @@ public class RunTestActivity extends AppCompatActivity implements Observer {
         if (Intent.ACTION_VIEW.equals(intent.getAction())) {
             Uri uri = intent.getData();
             String mv = uri.getQueryParameter("mv");
+            //TODO cut all the stuff after the BuildConfig.VERSION_NAME like -rc.1
             if (mv != null){
                 if (versionCompare(BuildConfig.VERSION_NAME, mv) >= 0) {
                     String tn = uri.getQueryParameter("tn");

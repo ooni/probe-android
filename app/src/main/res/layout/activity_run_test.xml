@@ -55,7 +55,9 @@
                     android:textColor="@color/color_ooni_blue"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:layout_alignParentStart="true"
+                    android:layout_toLeftOf="@+id/test_logo"
+                    android:layout_toStartOf="@+id/test_logo" />
 
                 <ImageView
                     android:id="@+id/test_logo"
