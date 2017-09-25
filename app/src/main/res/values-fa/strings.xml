@@ -91,4 +91,5 @@
     <string name="past_tests_empty">نتایج تست‌های قبلی بعد از تمام شدن در اینجا نمایش داده خواهند شد.</string>
     <string name="drawer_open">باز کردن منوی برنامه</string>
     <string name="drawer_close">بستن منوی برنامه</string>
+    <string name="loading">در حال بارگذاری..</string>
 </resources>

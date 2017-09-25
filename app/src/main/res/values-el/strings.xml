@@ -96,4 +96,5 @@
     <string name="drawer_close">Κλείστε το συρτάρι πλοήγησης</string>
     <string name="try_mirror">Δοκιμάστε mirror</string>
     <string name="loading">Γίνεται φόρτωση...</string>
+    <string name="close">Κλείσιμο</string>
 </resources>
