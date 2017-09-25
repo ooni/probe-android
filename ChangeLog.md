@@ -1,3 +1,33 @@
+# ooniprobe-android 1.2.0-rc.5 [2017-09-24] [version yanked]
+
+* Added class to manage version semantic
+
+measurement-kit version: 0.7.3-1
+
+ooniprobe-wui version: 2.2.4
+
+# ooniprobe-android 1.2.0-rc.4 [2017-09-14]
+
+* Fixed a crash on start
+
+# ooniprobe-android 1.2.0-rc.3 [2017-09-11]
+
+* Added possibility to open links from run.ooni.io
+
+# ooniprobe-android 1.2.0-rc.2 [2017-09-09]
+
+* Fixed bug on HTTP Header Field Manipulation result list
+
+# ooniprobe-android 1.2.0-rc.1 [2017-09-07]
+
+New features:
+
+Added support for running tests with custom URI scheme
+
+measurement-kit version: 0.7.1-3
+
+ooniprobe-wui version: 2.2.4-beta.1
+
 # ooniprobe-android 1.1.5 [2017-08-07]
 
 New Languages:

@@ -14,8 +14,8 @@ android {
         applicationId "org.openobservatory.ooniprobe"
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 11
-        versionName "1.1.5"
+        versionCode 13
+        versionName "1.2.0-rc.5"
         setProperty("archivesBaseName", "ooniprobe-$versionName")
     }
     buildTypes {
@@ -37,7 +37,7 @@ dependencies {
         transitive = true;
     }
     //compile 'com.android.support:customtabs:25.3.1'
-    compile 'org.openobservatory.measurement_kit:android-libs:0.7.0-1'
+    compile 'org.openobservatory.measurement_kit:android-libs:0.7.3-1'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
@@ -46,7 +46,7 @@ dependencies {
     compile 'com.google.firebase:firebase-core:10.2.6'
     compile 'com.google.firebase:firebase-messaging:10.2.6'
     compile 'com.github.AndroidDeveloperLB:AutoFitTextView:4'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:25.3.1'
     testCompile 'junit:junit:4.12'
 }

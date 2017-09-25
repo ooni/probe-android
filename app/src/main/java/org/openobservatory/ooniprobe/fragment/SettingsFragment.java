@@ -304,6 +304,16 @@ public class SettingsFragment extends Fragment {
                 collector_address.setText(input.getText().toString());
             }
         });
+        builder.setNeutralButton(R.string.set_default, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("collector_address", OONITests.COLLECTOR_ADDRESS);
+                editor.commit();
+                TextView collector_address = (TextView)mActivity.findViewById(R.id.collector_address_subText);
+                collector_address.setText(OONITests.COLLECTOR_ADDRESS);
+            }
+        });
         builder.setNegativeButton(R.string.cancel, null);
 
         AlertDialog d = builder.create();

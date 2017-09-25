@@ -11,6 +11,7 @@ public class OONITests {
     public static final String HTTP_HEADER_FIELD_MANIPULATION = "http_header_field_manipulation";
     public static final String TCP_CONNECT = "tcp_connect";
     public static final String WEB_CONNECTIVITY = "web_connectivity";
+    public static final String NDT = "ndt";
     public static final String NDT_TEST = "ndt_test";
     public static final String COLLECTOR_ADDRESS = "https://b.collector.ooni.io";
     public static final String MAX_RUNTIME = "90";

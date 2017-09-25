@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">ooniprobe</string>
     <string name="run_tests">Führe Tests aus</string>
-    <string name="past_tests">Ältere Tests</string>
+    <string name="past_tests">Beendete Tests</string>
     <string name="settings">Einstellungen</string>
     <string name="about">Infos</string>
     <string name="dns_injection">DNS Injection</string>
@@ -40,7 +40,7 @@
     <string name="laws_text_1">Jeder, der deine Internet Aktivität überwacht (z.B. Dienstanbieter, Regierung, Arbeitgeber), kann potentiell ermitteln, dass du ooniprobe ausführst (auch wenn OONI versucht, dies zu erschweren).</string>
     <string name="laws_text_2">Beim Testen auf Zensur von Webseiten verbindest du dich und lädst Daten von provokativen oder fragwürdigen Seiten (z.B. Pornographie), die in deinem Land illegal sein können.</string>
     <string name="laws_text_3">OONI\'s \'Ungültige HTTP Request Zeile\' Test könnte deinem Netzanbieter verdächtig vorkommen und als eine Form von \"Hacking\" angesehen werden. </string>
-    <string name="laws_text_4">So lange du deine Einstellungen nicht veränderst, werden alle gesammelten Testdaten per Voreinstellung durch OONI publiziert und kann bestimmte identifizierbare Daten beinhalten (auch wenn OONI versucht, dies zu verhindern).</string>
+    <string name="laws_text_4">Soweit du deine Einstellungen nicht veränderst, werden alle gesammelten Testdaten per Voreinstellung durch OONI publiziert und kann bestimmte identifizierbare Daten beinhalten (auch wenn OONI versucht, dies zu verhindern).</string>
     <string name="laws_text_5">Das reine Ausführen von ooniprobe kann in bestimmten Fällen als Form von Spionage angesehen werden, unabhängig von den Gesetzen in deinem Land.</string>
     <string name="laws_text_6">Nach unserem Wissensstand hat kein ooniprobe Nutzer je nach Benutzung unserer Plattform Konsequenzen tragen müssen. Allerdings haben einige Staaten eine lange Geschichte in der
 Verfolgung und dem Missbrauch von Netzaktivisten, was für bestimmte ooniprobe Nutzer schwere Zivil-, Kriminal- oder außergerichtlichen Konsequenzen mit sich ziehen könnte.</string>
@@ -61,7 +61,7 @@ Verfolgung und dem Missbrauch von Netzaktivisten, was für bestimmte ooniprobe N
     <string name="settings_text">Alle Messungen werden per Voreinstellung an OONIs Messungs-Sammelstelle gesendet und automatisch im OONI Explorer und OONIs Messungsliste publiziert.</string>
     <string name="im_all_set">Bereit!</string>
     <string name="ooniprobe_configured">ooniprobe ist erfolgreich konfiguriert. Du bist soweit startklar!</string>
-    <string name="about_ooni">Über OOni</string>
+    <string name="about_ooni">Über OONI</string>
     <string name="about_text_1">Das Open Observatory of Network Interference (OONI) ist ein Freies Software Projekt unter dem Tor Project, das sich als Ziel gesetzt hat, Transparenz im Bezug auf weltweite Internet-Zensur auszuweiten. </string>
     <string name="about_text_2">Seit 2012 hat OONI Millionen von Netzwerk-Messungen aus der ganzen Welt zusammen getragen und somit Licht auf eine Vielzahl von Fällen der Internet-Zensur und Traffic-Manipulation geworfen. </string>
     <string name="run">Ausführen</string>
@@ -79,7 +79,7 @@ Verfolgung und dem Missbrauch von Netzaktivisten, was für bestimmte ooniprobe N
     <string name="copy_to_clipboard">In die Zwischenablage kopieren</string>
     <string name="copied_clipboard">In die Zwischenablage kopiert</string>
     <string name="send_crash">Sende Absturzberichte</string>
-    <string name="privacy">Privatssphäre</string>
+    <string name="privacy">Privatsphäre</string>
     <string name="view_data_policy">Klicke hier um unseren Datenrichtlinie einzusehen</string>
     <string name="test_name_finished">Abgeschlossen, du kannst die Ergebnisse nun unter \'Beendete Tests\' einsehen</string>
     <string name="open_url_alert">Möchtest du die folgende URL öffnen?</string>

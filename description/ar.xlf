@@ -19,6 +19,14 @@
           <target>ooniprobe - يقيس مدى الحجب و سرعة الشبكة</target>
           <note from="developer">This is limited by Apple to 50 characters</note>
       </trans-unit>
+      <trans-unit id="subtitle-ios" maxwidth="30" size-unit="char">
+        <source>Measure Internet Censorship</source>
+        <note from="developer">This is limited by Apple to 30 characters</note>
+      </trans-unit>
+      <trans-unit id="promotionaltext-ios" maxwidth="170" size-unit="char">
+        <source>Collect evidence of Internet censorship. Measure the speed and performance of your network.</source>
+        <note from="developer">This is limited by Apple to 170 characters</note>
+      </trans-unit>
       <trans-unit id="intro">
         <source>Collect evidence of Internet censorship. Measure the speed and performance of your network. Play an active role in increasing transparency of information controls around the world.</source>
         <target>يجمع دلائل حجب الانترنت. يقيس سرعة و جودة الشبكة. يلعب دور فعال في دعم شفافية مراقبة الانترنت حول العالم.</target>

@@ -9,7 +9,7 @@
     <string name="tcp_connect">ربط TCP </string>
     <string name="http_invalid_request_line">عدم صلاحية طلب ال HTTP </string>
     <string name="http_header_field_manipulation">HTTP Header Field Manipulation</string>
-    <string name="web_connectivity">الاتصال بالشبكة</string>
+    <string name="web_connectivity">الاتصال بشبكة الويب</string>
     <string name="ndt">NDT أداة تشخيص سرعة الشبكة</string>
     <string name="web_connectivity_desc">تحقق مما إذا تم حجب المواقع</string>
     <string name="http_invalid_request_line_desc">اِكْتَشَفَ وجود \'أجهزة وسيطة\'</string>
@@ -18,14 +18,14 @@
     <string name="web_connectivity_longdesc">يعمل هذا الاختبار على كشف مقدار وجود حجب للمواقع عبر تقنيات مختلفة DNS tampering,  TCP/IP blocking أو من خلال transparent HTTP proxy .
 
 في كل مرة يتم إجراء اختبار Web Connectivity يتم تجربة حزمة مواقع مختلفة.</string>
-    <string name="http_invalid_request_line_longdesc">يعمل هذا الاختبار على كشف وجود مكونات (“middle boxes”) في الشبكة قد تستخدم في المراقبة أو الحجب و ذلك بإرسال طلب HTTP غير صالح   لخدمة echo . إن وجد هذا النظام على شبكتك، بإمكانه إعتراض invalid HTTP request line  و إثارة خطأ  </string>
+    <string name="http_invalid_request_line_longdesc">يعمل هذا الاختبار على كشف وجود مكونات (“middle boxes”) في الشبكة قد تستخدم في المراقبة أو الحجب و ذلك بإرسال طلب HTTP غير صالح   لخدمة echo . ذا كانت هذه الأنظمة موجودة في شبكتك، بإمكانها إعتراض invalid HTTP request line  و إحداث خطأ  </string>
     <string name="http_header_field_manipulation_longdesc">
 يعمل هذا الاختبار على كشف وجود مكونات (“middle boxes”) في الشبكة قد تستخدم في المراقبة أو الحجب و ذلك بإرسال طلب HTTP غير صالح لخدمة echo . إذا كانت هذه الأنظمة موجودة في شبكتك، فمن المحتمل أن تؤدي إلى تطبيع عناوين الHTTP أو إضافة عناوين HTTP إضافية.</string>
     <string name="ndt_longdesc">يعمل هذا الاختبار على فحص سرعة وجودة الشبكة. هذا إختبار يخص الأداء يعتمد على خوادم أطراف جهات خارجية.
 
 إخلاء المسؤولية: لا يمكننا الجزم أنه لان يتم تجميع، إستعمال أو نشر عنوان ال IP الخاص بك.</string>
     <string name="running_tests">الاختبارات الجارية</string>
-    <string name="finished_tests">الاختبارات المنتهية</string>
+    <string name="finished_tests">الاختبارات المنجزة</string>
     <string name="collector_address">جامع العناوين</string>
     <string name="cancel">إلغاء</string>
     <string name="ok">موافق</string>
@@ -35,7 +35,7 @@
     <string name="welcome_ooniprobe">أهلا بك في ooniprobe!</string>
     <string name="get_started">ابدأ!</string>
     <string name="what_is_ooniprobe">ما هو ooniprobe؟</string>
-    <string name="learn_more">إعرف المزيد</string>
+    <string name="learn_more">اعرفوا المزيد</string>
     <string name="risks_text_1">ooniprobe هو عبارة عن برنامج حر ومفتوح المصدر يسمح بإجراء اختبارات للكشف عن أنماط الحجب على الشبكة الخاصة بك.</string>
     <string name="risks_text_2">يمكنك باستخدام هذا البرنامج الكشف عن وجود حجب للمواقع من عدمه وتقنية الحجب، وعن وجود أي أنظمة مراقبة على الشبكة.</string>
     <string name="risks_text_3">كما يمكنك استخدام هذا التطبيق لفحص سرعة وجودة الشبكة.</string>
@@ -50,8 +50,8 @@
     <string name="laws_text_6">حسب معلوماتنا، لم يتعرض أي مستخدم ooniprobe ﻷي تبعات نتيجة استخدام منصتنا. وبالرغم من ذلك يوجد دول كثيرة ذات تاريخ طويل من الإساءة إلى واستهداف نشطاء التقنية والحريات الرقمية، مما قد يعرض مستخدمي ooniprobe إلى عقوبات شديدة مدنية أو جنائية أو خارج إطار القانون.</string>
     <string name="i_understand_the_risks">أفهم المخاطر.</string>
     <string name="pop_quiz">اختبار سريع!</string>
-    <string name="question_1">السؤال 1: أي شخص يقوم بمراقبة نشاطي على الانترنت (أمثلة: مقدمي خدمة الإنترنت, الحكومة, المٌشغل) قد يستطيع أن يتعرف على استخدامي للتطبيق بالرغم من سعي أوني OONI لجعل هذه المهمة صعبة؟</string>
-    <string name="question_2">السؤال 2: هل سيتم نشر جميع الاختبارات التي أقوم بها على نحو افتراضي عبر أوني OONI، وقد تتضمن بيانات تعريفية شخصية؟</string>
+    <string name="question_1">السؤال الأول: هل يمكن لأي شخص يراقب نشاطي على الإنترنت (أمثلة: مقدمي خدمة الإنترنت, الحكومة, المٌشغل) قد يستطيع أن يتعرف على استخدامي للتطبيق على الرغم من أن OONI تتخذ الاحتياطات اللازمة لجعل هذا الأمر صعبًا؟</string>
+    <string name="question_2">السؤال 2: هل سيتم نشر جميع الاختبارات التي أقوم بها على نحو افتراضي عبر OONI، وقد تتضمن بيانات تعريفية شخصية؟</string>
     <string name="_true">صحيح</string>
     <string name="_false">خاطئ</string>
     <string name="how_did_i_do">كيف لي أن أفعل؟</string>
@@ -70,7 +70,7 @@
 </string>
     <string name="about_text_2">منذ 2012، قام أوني OONI بجمع ملايين الاختبارات حول العالم وتسليط الضوء على حالات الحجب والتلاعب في الشبكة.</string>
     <string name="run">ابدأ</string>
-    <string name="view">النتيجة</string>
+    <string name="view">مراجعة</string>
     <string name="no_result">لا يوجد نتائج</string>
     <string name="no_result_msg">لا يوجد نتائج للاختبار أو تم إلغاءه</string>
     <string name="local_notifications">تشغيل الإختبار بصفة آلية</string>

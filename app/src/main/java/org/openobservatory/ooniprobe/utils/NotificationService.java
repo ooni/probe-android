@@ -15,7 +15,6 @@ import org.openobservatory.measurement_kit.swig.OrchestrateClient;
 import org.openobservatory.measurement_kit.swig.OrchestrateFindLocationCallback;
 import org.openobservatory.measurement_kit.swig.OrchestrateRegisterProbeCallback;
 import org.openobservatory.measurement_kit.swig.OrchestrateUpdateCallback;
-import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.data.TestData;
 import org.openobservatory.ooniprobe.model.OONITests;
 
@@ -49,14 +48,14 @@ public class NotificationService {
             geoip_country_path = c.getFilesDir() + "/GeoIP.dat";
             platform = "android";
             software_name = "ooniprobe-android";
-            software_version = BuildConfig.VERSION_NAME;
+            software_version = VersionUtils.get_software_version();
             supported_tests = new ArrayList<>(TestData.getInstance(c, null).availableTests.keySet());
             network_type = getNetworkType(c);
             language = Locale.getDefault().getLanguage();
             if (FirebaseInstanceId.getInstance().getToken() != null)
                 device_token = FirebaseInstanceId.getInstance().getToken();
             else
-                device_token = "";
+                device_token = null;
 
             final IntentFilter mIFNetwork = new IntentFilter();
             mIFNetwork.addAction(android.net.ConnectivityManager.CONNECTIVITY_ACTION);
@@ -80,6 +79,7 @@ public class NotificationService {
         final String auth_secret_file = context.getFilesDir() + "/orchestration_secret.json";
 
         //LOGGING
+        /*
         System.out.println("probe_cc: " + geoip_country_path);
         System.out.println("probe_asn: " + geoip_asn_path);
         System.out.println("platform: " + platform);
@@ -87,6 +87,10 @@ public class NotificationService {
         System.out.println("software_version: " + software_version);
         System.out.println("supported_tests: " + supported_tests);
         System.out.println("token: " + device_token);
+        */
+
+        //if device_token is null the user hasn't enabled push notifications
+        if (device_token == null) return;
 
         final OrchestrateClient client = new OrchestrateClient();
         client.set_verbosity(LogSeverity.LOG_DEBUG);

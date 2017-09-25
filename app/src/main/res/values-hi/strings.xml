@@ -6,11 +6,13 @@
     <string name="settings">सेटिंग्स</string>
     <string name="about">बारे में</string>
     <string name="dns_injection">DNS इंजेक्शन</string>
+    <string name="dash">डैश स्ट्रीमिंग टेस्ट</string>
     <string name="tcp_connect">टीसीपी कनेक्ट</string>
     <string name="http_invalid_request_line">HTTP अमान्य अनुरोध पंक्ति</string>
     <string name="http_header_field_manipulation">HTTP हैडर फ़ील्ड हेरफेर</string>
     <string name="web_connectivity">वेब कनेक्टिविटी</string>
     <string name="ndt">एनडीटी स्पीड टेस्ट</string>
+    <string name="dash_desc">वीडियो स्ट्रीमिंग गुणवत्ता मापें</string>
     <string name="web_connectivity_desc">जाँच करें अगर वेबसाइटों अवरुद्ध कर रहे हैं</string>
     <string name="http_invalid_request_line_desc"> \'बीच बक्से\' खोजें</string>
     <string name="http_header_field_manipulation_desc"> \'बीच बक्से\' खोजें</string>
@@ -20,6 +22,9 @@
     <string name="http_header_field_manipulation_longdesc">यह टेस्ट सिस्टम (\"मिडल बक्से\") की मौजूदगी का पता लगाने की कोशिश करता है जो बैकेंड नियंत्रण सर्वर पर गैर-वैमानिक हेडर के साथ HTTP अनुरोध भेजकर सेंसरशिप या निगरानी के लिए जिम्मेदार हो सकता है। यदि ऐसी प्रणालियां आपके नेटवर्क में हैं, तो वे शीर्ष लेखों को सामान्य मान लेंगे या अतिरिक्त शीर्षलेख जोड़ सकते हैं।</string>
     <string name="ndt_longdesc">यह परीक्षण आपके नेटवर्क की गति और प्रदर्शन को मापता है। 
 अस्वीकरण: यह तीसरे पक्ष के सर्वर पर आधारित तृतीय-पक्ष प्रदर्शन परीक्षा है, और हम यह गारंटी नहीं दे सकते कि आपका आईपी पता एकत्रित, संसाधित और प्रकाशित नहीं किया जाएगा।</string>
+    <string name="dash_longdesc">यह परीक्षण रिमोट सर्वर से चर गुणवत्ता पर एक बहुत आसान वीडियो प्लेयर स्ट्रीमिंग है। परीक्षण अपने वीडियो स्ट्रीमिंग के लिए बुनियादी प्रदर्शन प्राप्त करने के लिए डिज़ाइन किया गया है
+
+   अस्वीकरण: यह तीसरे पक्ष के सर्वर पर आधारित तृतीय-पक्ष प्रदर्शन परीक्षा है, और हम यह गारंटी नहीं दे सकते कि आपकी आईपी पते को एकत्रित, संसाधित और प्रकाशित नहीं किया जाएगा।</string>
     <string name="running_tests">परीक्षण चल रहा है</string>
     <string name="finished_tests">परीक्षण सामाप्त </string>
     <string name="collector_address">कलेक्टर पता</string>
@@ -88,4 +93,6 @@
     <string name="past_tests_empty">एक बार परीक्षण समाप्त हो जाने के बाद एक पिछले परीक्षण के परिणाम यहां दिखाई देंगे</string>
     <string name="drawer_open">ओपन नेविगेशन दराज</string>
     <string name="drawer_close">बंद नेविगेशन दराज</string>
+    <string name="try_mirror">दर्पण की कोशिश करो</string>
+    <string name="loading">लोड हो रहा है...</string>
 </resources>

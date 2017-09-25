@@ -19,6 +19,16 @@
           <target>ooniprobe - Mide velocidad y censura de Internet</target>
           <note from="developer">This is limited by Apple to 50 characters</note>
       </trans-unit>
+      <trans-unit id="subtitle-ios" maxwidth="30" size-unit="char">
+        <source>Measure Internet Censorship</source>
+        <target>Mide la censura en Internet</target>
+        <note from="developer">This is limited by Apple to 30 characters</note>
+      </trans-unit>
+      <trans-unit id="promotionaltext-ios" maxwidth="170" size-unit="char">
+        <source>Collect evidence of Internet censorship. Measure the speed and performance of your network.</source>
+        <target>Recopila evidencias de censura en Internet. Mide la velocidad y rendimiento de su red.</target>
+        <note from="developer">This is limited by Apple to 170 characters</note>
+      </trans-unit>
       <trans-unit id="intro">
         <source>Collect evidence of Internet censorship. Measure the speed and performance of your network. Play an active role in increasing transparency of information controls around the world.</source>
         <target>Recopila evidencias de censura de Internet. Mide la velocidad y rendimiento de su red. Juega un papel activo en el incremento de la transparencia sobre el control de la información por todo el mundo.</target>

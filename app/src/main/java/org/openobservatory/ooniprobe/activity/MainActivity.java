@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -40,7 +41,9 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Set;
 
+import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.adapter.LeftMenuListAdapter;
 import org.openobservatory.ooniprobe.data.TestData;
 import org.openobservatory.ooniprobe.data.TestStorage;
@@ -52,7 +55,9 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.TestInfoFragment;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
+import org.openobservatory.ooniprobe.utils.Alert;
 import org.openobservatory.ooniprobe.utils.NotificationService;
+import org.openobservatory.ooniprobe.utils.VersionUtils;
 
 public class MainActivity extends AppCompatActivity  implements Observer {
     private DrawerLayout mDrawerLayout;
@@ -66,9 +71,9 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         checkResources();
-        TestData.getInstance(this, this).addObserver(this);
 
         mTitle = getTitle();
         mMenuItemsTitles = new String[]{getString(R.string.run_tests), getString(R.string.past_tests), getString(R.string.settings), getString(R.string.about)};
@@ -132,17 +137,12 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         }
 
         checkInformedConsent();
+    }
 
-        // XXX: This is probably not correct: we would like to send
-        // info to the orchestrator only when the network or any other
-        // orchestrator parameter like country code changed.
-        //TODO remove this code in 1.1.6
-        String token = FirebaseInstanceId.getInstance().getToken();
-        if (token != null) {
-            NotificationService ns = NotificationService.getInstance(this);
-            ns.setDevice_token(token);
-            ns.sendRegistrationToServer();
-        }
+    @Override
+    public void onResume() {
+        super.onResume();
+        TestData.getInstance(this, this).addObserver(this);
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {

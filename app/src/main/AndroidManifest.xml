@@ -21,7 +21,6 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -74,15 +73,46 @@
 
         <activity
             android:name=".activity.BrowserActivity"
-            android:theme="@style/FullScreen">
+            android:theme="@style/FullScreen"
+            android:label="">
             <intent-filter>
                 <action android:name="org.openobservatory.ooniprobe.OPEN_BROWSER" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.NotificationDialog"
+        <activity
+            android:name=".activity.NotificationDialog"
             android:theme="@style/Theme.Transparent" />
+        <activity
+            android:name=".activity.RunTestActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleInstance">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <action android:name="org.openobservatory.ooniprobe.nettest" />
+                <data android:scheme="https"
+                    android:host="run.ooni.io"
+                    android:pathPrefix="/nettest" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <action android:name="org.openobservatory.ooniprobe.nettest" />
+                <data android:scheme="http"
+                    android:host="run.ooni.io"
+                    android:pathPrefix="/nettest" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="ooni"
+                    android:host="nettest" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
