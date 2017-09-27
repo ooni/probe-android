@@ -214,9 +214,10 @@ public class TestData extends Observable {
                                     for (int i = 0; i < urls.size(); i++)
                                         test.add_input(urls.get(i));
                                 }
-                                else
+                                else {
+                                    test.set_options("max_runtime", max_runtime);
                                     test.set_input_filepath(inputUrlsPath);
-
+                                }
                                 test.set_output_filepath(outputPath);
                                 test.set_error_filepath(logPath);
                                 test.set_verbosity(LogSeverity.LOG_INFO);
@@ -227,7 +228,6 @@ public class TestData extends Observable {
                                 test.set_options("save_real_probe_cc", boolToString(include_cc));
                                 test.set_options("no_collector", boolToString(!upload_results));
                                 test.set_options("collector_base_url", collector_address);
-                                test.set_options("max_runtime", max_runtime);
                                 test.set_options("software_name", "ooniprobe-android");
                                 test.set_options("software_version", VersionUtils.get_software_version());
                                 test.on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
