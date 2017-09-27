@@ -92,6 +92,7 @@
     <string name="drawer_close">Fermer le tiroir de navigation</string>
     <string name="try_mirror">Essayer un miroir</string>
     <string name="loading">Chargement...</string>
+    <string name="set_default">Définir comme valeur par défaut</string>
     <string name="run_test_message">Vous êtes sur le point d\'effectuer un test ooniprobe sur votre réseau</string>
     <string name="urls">URL</string>
     <string name="test_name">Nom du test</string>

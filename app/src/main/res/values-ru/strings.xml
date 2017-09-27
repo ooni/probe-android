@@ -92,4 +92,5 @@
     <string name="drawer_close">Закрыть окно для навигации</string>
     <string name="try_mirror">Сервер-зеркало</string>
     <string name="loading">Идет загрузка...</string>
+    <string name="close">Закрыть</string>
 </resources>
