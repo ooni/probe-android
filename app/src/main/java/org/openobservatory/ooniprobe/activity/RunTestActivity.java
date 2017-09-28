@@ -63,9 +63,21 @@ public class RunTestActivity extends AppCompatActivity implements Observer {
 
         // Get the intent that started this activity
         Intent intent = getIntent();
+        gotIntent(intent);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent)
+    {
+        super.onNewIntent(intent);
+        gotIntent(intent);
+    }
+
+    public void gotIntent(Intent intent){
         if (Intent.ACTION_VIEW.equals(intent.getAction())) {
             Uri uri = intent.getData();
             String mv = uri.getQueryParameter("mv");
+
             String[] split = BuildConfig.VERSION_NAME.split("-");
             String version_name = split[0];
             if (mv != null){
@@ -97,7 +109,7 @@ public class RunTestActivity extends AppCompatActivity implements Observer {
                                         openPlayStore("https://play.google.com/store/apps/details?id=" + appPackageName);
                                     }
                                 }
-                        },
+                            },
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     goToMainActivity();
