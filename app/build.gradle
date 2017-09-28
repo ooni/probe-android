@@ -15,7 +15,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 25
         versionCode 16
-        versionName "1.2.2"
+        versionName "1.2.3-alpha.1"
         setProperty("archivesBaseName", "ooniprobe-$versionName")
     }
     buildTypes {
