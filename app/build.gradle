@@ -16,7 +16,11 @@ android {
         targetSdkVersion 25
         versionCode 17
         versionName "1.2.3-alpha.1"
+<<<<<<< HEAD
         setProperty("archivesBaseName", "ooniprobe-android-$versionName")
+=======
+        setProperty("archivesBaseName", "ooniprobe-$versionName")
+>>>>>>> master
     }
     buildTypes {
         release {
