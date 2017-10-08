@@ -76,7 +76,7 @@ public class ResultListFragment extends Fragment {
                 }
             }
         } catch (IOException e) {
-            //TODO show to user
+            // It should never happens because we already opened the file when arriving at this point
             Log.e(DEBUG_TAG, "Failed to open file " + jsonFilename);
         }
         testResultList = (RecyclerView) v.findViewById(R.id.resultList);

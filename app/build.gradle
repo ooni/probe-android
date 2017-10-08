@@ -7,16 +7,16 @@ repositories {
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
 
     defaultConfig {
         applicationId "org.openobservatory.ooniprobe"
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 17
-        versionName "1.2.3-alpha.1"
-        setProperty("archivesBaseName", "ooniprobe-$versionName")
+        versionName "1.2.3"
+        setProperty("archivesBaseName", "ooniprobe-android-$versionName")
     }
     buildTypes {
         release {
@@ -37,9 +37,10 @@ dependencies {
         transitive = true;
     }
     //compile 'com.android.support:customtabs:25.3.1'
-    compile 'org.openobservatory.measurement_kit:android-libs:0.7.4-1'
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'org.openobservatory.measurement_kit:android-libs:0.7.6-1'
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support:recyclerview-v7:26.+'
+    compile 'com.android.support:design:26.+'
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
     compile 'com.google.code.gson:gson:2.7'
     compile 'me.panavtec:wizard:1.2'
@@ -47,7 +48,6 @@ dependencies {
     compile 'com.google.firebase:firebase-messaging:10.2.6'
     compile 'com.github.AndroidDeveloperLB:AutoFitTextView:4'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:design:25.3.1'
     testCompile 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'

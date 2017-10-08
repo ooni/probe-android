@@ -8,14 +8,23 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.ResultFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
 import org.openobservatory.ooniprobe.fragment.TestLogFragment;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 import org.openobservatory.ooniprobe.model.OONITests;
+import org.openobservatory.ooniprobe.model.TestResult;
+import org.openobservatory.ooniprobe.utils.JSONUtils;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -28,21 +37,13 @@ public class ResultActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if(intent.getExtras() != null) {
             if (intent.getStringExtra("test_name").equals(OONITests.WEB_CONNECTIVITY)){
-                Fragment fragment = new ResultListFragment();
-                FragmentManager fm= getSupportFragmentManager();
-                FragmentTransaction ft=fm.beginTransaction();
-                ft.add(R.id.fragment,fragment);
-                ft.commit();
+                if (hasMultipleResult())
+                    goToResultList();
+                else
+                    goToResult();
             }
             else {
-                Fragment fragment = new ResultFragment();
-                FragmentManager fm= getSupportFragmentManager();
-                FragmentTransaction ft=fm.beginTransaction();
-                Bundle bundle = new Bundle();
-                bundle.putInt("position", 0);
-                fragment.setArguments(bundle);
-                ft.add(R.id.fragment,fragment);
-                ft.commit();
+                goToResult();
             }
             ActionBar actionBar = getSupportActionBar();
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -50,6 +51,25 @@ public class ResultActivity extends AppCompatActivity {
         }
     }
 
+
+    public void goToResult(){
+        Fragment fragment = new ResultFragment();
+        FragmentManager fm= getSupportFragmentManager();
+        FragmentTransaction ft=fm.beginTransaction();
+        Bundle bundle = new Bundle();
+        bundle.putInt("position", 0);
+        fragment.setArguments(bundle);
+        ft.add(R.id.fragment,fragment);
+        ft.commit();
+    }
+
+    public void goToResultList(){
+        Fragment fragment = new ResultListFragment();
+        FragmentManager fm= getSupportFragmentManager();
+        FragmentTransaction ft=fm.beginTransaction();
+        ft.add(R.id.fragment,fragment);
+        ft.commit();
+    }
 
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()) {
@@ -69,6 +89,25 @@ public class ResultActivity extends AppCompatActivity {
         ft.replace(R.id.fragment,fragment);
         ft.addToBackStack(null);
         ft.commit();
+    }
+
+    public Boolean hasMultipleResult(){
+        int results = 0;
+        String jsonFilename = getIntent().getExtras().getString("json_file");
+        try {
+            File jsonFile = new File(getFilesDir(), jsonFilename);
+            JSONUtils.JSONL jsonl = new JSONUtils.JSONL(jsonFile);
+            for (JSONObject jsonObj:jsonl){
+                results++;
+                if (results > 1)
+                    return true;
+            }
+        } catch (IOException e) {
+            //TODO handle Exception when file can't be opened.
+            // Probably go back to previous screen showing an alert.
+            return true;
+        }
+        return false;
     }
 
     @Override
