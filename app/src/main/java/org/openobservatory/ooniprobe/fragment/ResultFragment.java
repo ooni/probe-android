@@ -68,6 +68,7 @@ public class ResultFragment extends Fragment {
             wv.loadUrl("file:///android_asset/webui/index.html");
         } catch (IOException e) {
             // XXX log the IO exception in some way
+            // It should never happens because we already opened the file when arriving at this point
         } catch (RuntimeException e) {
             // XXX log the runtime exception in some way
         }

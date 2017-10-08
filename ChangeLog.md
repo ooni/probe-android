@@ -1,4 +1,16 @@
-ooniprobe-android 1.2.2+16 [2017-09-27]
+# ooniprobe-android 1.2.3+17 [2017-10-08]
+
+New features:
+
+* Run test screen reloaded when clicking on a second link without dismissing it
+
+* Graphic fixes
+
+measurement-kit version: 0.7.6-1
+
+ooniprobe-wui version: 2.2.4
+
+# ooniprobe-android 1.2.2+16 [2017-09-27]
 
 New features:
 
@@ -10,7 +22,7 @@ measurement-kit version: 0.7.4-1
 
 ooniprobe-wui version: 2.2.4
 
-ooniprobe-android 1.2.2-rc.1+15 [2017-09-27]
+# ooniprobe-android 1.2.2-rc.1+15 [2017-09-27]
 
 * Fixed max_runtime being used when running from URI scheme
 
