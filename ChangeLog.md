@@ -1,3 +1,7 @@
+# ooniprobe-android 1.2.3-fdroid.1 [2017-10-08]
+
+Update to ooniprobe-android v1.2.3.
+
 # ooniprobe-android 1.2.3+17 [2017-10-08]
 
 New features:
