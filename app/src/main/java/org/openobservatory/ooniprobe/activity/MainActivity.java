@@ -53,9 +53,6 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.TestInfoFragment;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
-import org.openobservatory.ooniprobe.utils.Alert;
-import org.openobservatory.ooniprobe.utils.NotificationService;
-import org.openobservatory.ooniprobe.utils.VersionUtils;
 
 public class MainActivity extends AppCompatActivity  implements Observer {
     private DrawerLayout mDrawerLayout;
