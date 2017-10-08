@@ -6,6 +6,8 @@
     <color name="color_ok_green">#4FD156</color>
     <color name="color_bad_red">#cc0000</color>
     <color name="color_warning_orange">#ffa500</color>
+    <color name="color_light_gray">#E1E1E1</color>
+
 
     <color name="color_ooni_blue_dark">#046799</color>
 </resources>

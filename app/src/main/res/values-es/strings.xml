@@ -36,7 +36,7 @@
     <string name="learn_more">Conocer más</string>
     <string name="risks_text_1">¡ooniprobe es un software libre de código abierto que le permite examinar la censura de Internet presente en su red!</string>
     <string name="risks_text_2">Al ejecutar esta aplicación, puede examinar si los sitios web están siendo bloqueados y cómo, y si hay sistemas de censura y/o vigilancia presentes en su red.</string>
-    <string name="risks_text_3">También puede ejecutar esta aplicación para medir la velocidad y rendimiento de su red.</string>
+    <string name="risks_text_3">También puede ejecutar esta aplicación para medir la velocidad y el rendimiento de su red.</string>
     <string name="risks_text_4">Los datos que puede recopilar mediante esta aplicación pueden servir como evidencia de casos de censura.</string>
     <string name="risks_text_5">Ya que ooniprobe es una herramienta de investigación, y como tal, puede comportar algunos riesgos.</string>
     <string name="potential_risks">Riesgos potenciales</string>
@@ -52,7 +52,7 @@
     <string name="question_2">Pregunta 2: ¿Mis mediciones serán por defecto publicadas por OONI y podrían incluir información que con capacidad potencial de identificarme?</string>
     <string name="_true">Verdadero</string>
     <string name="_false">Falso</string>
-    <string name="how_did_i_do">¿Cómo lo hice?</string>
+    <string name="how_did_i_do">¿Qué tal lo hice?</string>
     <string name="wrong">Se requiere un poco más de lectura para que continúe.</string>
     <string name="correct">¡Buen trabajo! Ha contestado al cuestionario correctamente.</string>
     <string name="set_up_sharing">Configurar compartición</string>
@@ -92,4 +92,14 @@
     <string name="drawer_close">Cerrar panel lateral de navegación</string>
     <string name="try_mirror">Probar réplica</string>
     <string name="loading">Cargando...</string>
+    <string name="set_default">Establecer predeterminado</string>
+    <string name="run_test_message">Está a punto de ejecutar una prueba de ooniprobe en su red.</string>
+    <string name="urls">URLs</string>
+    <string name="test_name">Nombre del test</string>
+    <string name="test_details">Detalles del test</string>
+    <string name="ooniprobe_outdate">ooniprobe está desactualizado</string>
+    <string name="ooniprobe_outdate_msg">Para ejecutar este test necesita una versión más reciente de ooniprobe, haga clic en el botón de debajo para actualizar</string>
+    <string name="invalid_parameter">Parámetro no válido</string>
+    <string name="random_sampling_urls">Una muestra aleatoria de URLs desde la lista global</string>
+    <string name="close">Cerrar</string>
 </resources>

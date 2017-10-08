@@ -18,7 +18,6 @@ public class Alert {
                     }
                 }).show();
     }
-
     public static void alertDialogTwoButtons(Context c, String title, String text, DialogInterface.OnClickListener ocl) {
         new AlertDialog.Builder(c)
                 .setTitle(title)
@@ -31,5 +30,18 @@ public class Alert {
                         })
                 .setPositiveButton(c.getString(R.string.ok), ocl).show();
     }
+    public static void alertDialogWithAction(Context c, String title, String text, DialogInterface.OnClickListener ocl, DialogInterface.OnClickListener ocl_cancel) {
+        new AlertDialog.Builder(c)
+                .setTitle(title)
+                .setMessage(text)
+                .setNegativeButton(c.getString(R.string.cancel), ocl_cancel)
+                .setPositiveButton(c.getString(R.string.ok), ocl).show();
+    }
 
+    public static void alertDialogWithAction(Context c, String title, String text, DialogInterface.OnClickListener ocl) {
+        new AlertDialog.Builder(c)
+                .setTitle(title)
+                .setMessage(text)
+                .setPositiveButton(c.getString(R.string.ok), ocl).show();
+    }
 }

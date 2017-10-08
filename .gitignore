@@ -39,6 +39,3 @@ local.properties
 .Trashes
 ehthumbs.db
 Thumbs.db
-
-# Files that the IDE can easily re-generate
-*.iml

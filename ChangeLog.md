@@ -1,3 +1,71 @@
+# ooniprobe-android 1.2.3-fdroid.1 [2017-10-08]
+
+Update to ooniprobe-android v1.2.3.
+
+# ooniprobe-android 1.2.3+17 [2017-10-08]
+
+New features:
+
+* Run test screen reloaded when clicking on a second link without dismissing it
+
+* Graphic fixes
+
+measurement-kit version: 0.7.6-1
+
+ooniprobe-wui version: 2.2.4
+
+# ooniprobe-android 1.2.2+16 [2017-09-27]
+
+New features:
+
+* Added support for running tests with custom URI scheme
+
+* Added possibility to open links from run.ooni.io
+
+measurement-kit version: 0.7.4-1
+
+ooniprobe-wui version: 2.2.4
+
+# ooniprobe-android 1.2.2-rc.1+15 [2017-09-27]
+
+* Fixed max_runtime being used when running from URI scheme
+
+* Fixed version name in About screen
+
+measurement-kit version: 0.7.4-1
+
+ooniprobe-wui version: 2.2.4
+
+# ooniprobe-android 1.2.0-rc.5 [2017-09-24] [version yanked]
+
+* Added class to manage version semantic
+
+measurement-kit version: 0.7.3-1
+
+ooniprobe-wui version: 2.2.4
+
+# ooniprobe-android 1.2.0-rc.4 [2017-09-14]
+
+* Fixed a crash on start
+
+# ooniprobe-android 1.2.0-rc.3 [2017-09-11]
+
+* Added possibility to open links from run.ooni.io
+
+# ooniprobe-android 1.2.0-rc.2 [2017-09-09]
+
+* Fixed bug on HTTP Header Field Manipulation result list
+
+# ooniprobe-android 1.2.0-rc.1 [2017-09-07]
+
+New features:
+
+Added support for running tests with custom URI scheme
+
+measurement-kit version: 0.7.1-3
+
+ooniprobe-wui version: 2.2.4-beta.1
+
 # ooniprobe-android 1.1.5-fdroid.1 [2017-09-02]
 
 * fix(app/build.gradle): don't use alpha versions

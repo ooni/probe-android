@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -38,7 +39,9 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Set;
 
+import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.adapter.LeftMenuListAdapter;
 import org.openobservatory.ooniprobe.data.TestData;
 import org.openobservatory.ooniprobe.data.TestStorage;
@@ -63,9 +66,9 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         checkResources();
-        TestData.getInstance(this, this).addObserver(this);
 
         mTitle = getTitle();
         mMenuItemsTitles = new String[]{getString(R.string.run_tests), getString(R.string.past_tests), getString(R.string.settings), getString(R.string.about)};
@@ -129,6 +132,12 @@ public class MainActivity extends AppCompatActivity  implements Observer {
         }
 
         checkInformedConsent();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        TestData.getInstance(this, this).addObserver(this);
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
