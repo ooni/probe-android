@@ -31,6 +31,8 @@ import org.openobservatory.ooniprobe.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 import static java.lang.Boolean.FALSE;
 
 public class BrowserActivity extends AppCompatActivity implements View.OnClickListener {
@@ -148,6 +150,10 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     private class MyWebViewClient extends WebViewClient {
         @Override

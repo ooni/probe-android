@@ -92,4 +92,14 @@
     <string name="drawer_close">ナビゲーションドロワーを閉じる</string>
     <string name="try_mirror">ミラーで試す</string>
     <string name="loading">読み込み中...</string>
+    <string name="set_default">デフォルトに設定</string>
+    <string name="run_test_message">ネットワークで ooniprobe テストを実行しようとしています</string>
+    <string name="urls">URL</string>
+    <string name="test_name">テスト名</string>
+    <string name="test_details">テスト詳細</string>
+    <string name="ooniprobe_outdate">古い ooniprobe です</string>
+    <string name="ooniprobe_outdate_msg">このテストを実行するには、新しいバージョンの ooniprobe が必要です。下のボタンをクリックして更新してください</string>
+    <string name="invalid_parameter">無効なパラメータ</string>
+    <string name="random_sampling_urls">グローバルリストからランダムなURLのサンプリング</string>
+    <string name="close">閉じる</string>
 </resources>

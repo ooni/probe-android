@@ -92,4 +92,15 @@
     <string name="drawer_close">Fermer le tiroir de navigation</string>
     <string name="try_mirror">Essayer un miroir</string>
     <string name="loading">Chargement...</string>
+    <string name="set_default">Définir comme valeur par défaut</string>
+    <string name="run_test_message">Vous êtes sur le point d\'effectuer un test ooniprobe sur votre réseau</string>
+    <string name="urls">URL</string>
+    <string name="test_name">Nom du test</string>
+    <string name="test_details">Détails du test</string>
+    <string name="ooniprobe_outdate">ooniprobe</string>
+    <string name="ooniprobe_outdate_msg">Afin d\'effectuer ce test, il vous faut une nouvelle version d\'ooniprobe. Cliquez sur le bouton ci-dessous pour mettre à jour</string>
+    <string name="invalid_parameter">Le paramètre est invalide</string>
+    <string name="random_sampling_urls">Un échantillon aléatoire d\'URL de la liste globale</string>
+    <string name="close">Fermer
+</string>
 </resources>

@@ -15,6 +15,7 @@ import org.openobservatory.measurement_kit.Version;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
+import org.openobservatory.ooniprobe.utils.VersionUtils;
 
 public class AboutFragment extends Fragment {
     private MainActivity mActivity;
@@ -69,7 +70,7 @@ public class AboutFragment extends Fragment {
             }
         });
         TextView version_text = (TextView) v.findViewById(R.id.ooniprobe_version);
-        version_text.setText("ooniprobe: " + BuildConfig.VERSION_NAME + "\n" + "measurement-kit: " + Version.getVersion());
+        version_text.setText("ooniprobe: " + VersionUtils.get_software_version() + "\n" + "measurement-kit: " + Version.getVersion());
         return v;
     }
 }

@@ -13,6 +13,7 @@ import android.support.v4.app.NotificationCompat;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
+import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 
 import java.util.Calendar;
 
@@ -34,11 +35,7 @@ public class NotificationHandler {
     */
 
     public static void notifyTestEnded(Context c, String text) {
-            if (text.equals("http_invalid_request_line")) text = c.getString(R.string.http_invalid_request_line);
-            else if (text.equals("web_connectivity")) text = c.getString(R.string.web_connectivity);
-            else if (text.equals("ndt_test")) text = c.getString(R.string.ndt);
-            else if (text.equals("http_header_field_manipulation")) text = c.getString(R.string.http_header_field_manipulation);
-            sendNotification(c, text + " " + c.getString(R.string.finished_running));
+            sendNotification(c, NetworkMeasurement.getTestName(c, text) + " " + c.getString(R.string.finished_running));
         }
 
     public static void sendNotification(Context c, String text) {
