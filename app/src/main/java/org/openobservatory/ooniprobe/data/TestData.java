@@ -71,7 +71,6 @@ public class TestData extends Observable {
         final Boolean include_asn = preferences.getBoolean("include_asn", true);
         final Boolean include_cc = preferences.getBoolean("include_cc", true);
         final Boolean upload_results = preferences.getBoolean("upload_results", true);
-        final String collector_address = preferences.getString("collector_address", OONITests.COLLECTOR_ADDRESS);
         final String max_runtime = preferences.getString("max_runtime", OONITests.MAX_RUNTIME);
 
         TestStorage.addTest(ctx, currentTest);
@@ -111,7 +110,6 @@ public class TestData extends Observable {
                                 w.set_options("save_real_probe_asn", boolToString(include_asn));
                                 w.set_options("save_real_probe_cc", boolToString(include_cc));
                                 w.set_options("no_collector", boolToString(!upload_results));
-                                w.set_options("collector_base_url", collector_address);
                                 w.run();
                             } else if (testName.compareTo(OONITests.HTTP_INVALID_REQUEST_LINE) == 0) {
                                 Log.v(TAG, "running http_invalid_request_line test...");
@@ -126,7 +124,6 @@ public class TestData extends Observable {
                                         .set_options("save_real_probe_asn", boolToString(include_asn))
                                         .set_options("save_real_probe_cc", boolToString(include_cc))
                                         .set_options("no_collector", boolToString(!upload_results))
-                                        .set_options("collector_base_url", collector_address)
                                         .set_options("software_name", "ooniprobe-android")
                                         .set_options("software_version", VersionUtils.get_software_version())
                                         .on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
@@ -164,7 +161,6 @@ public class TestData extends Observable {
                                         .set_options("save_real_probe_asn", boolToString(include_asn))
                                         .set_options("save_real_probe_cc", boolToString(include_cc))
                                         .set_options("no_collector", boolToString(!upload_results))
-                                        .set_options("collector_base_url", collector_address)
                                         .set_options("software_name", "ooniprobe-android")
                                         .set_options("software_version", VersionUtils.get_software_version())
                                         .on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
@@ -203,7 +199,6 @@ public class TestData extends Observable {
                                 w.set_options("save_real_probe_asn", boolToString(include_asn));
                                 w.set_options("save_real_probe_cc", boolToString(include_cc));
                                 w.set_options("no_collector", boolToString(!upload_results));
-                                w.set_options("collector_base_url", collector_address);
                                 w.run();
                             }
                             else if (testName.compareTo(OONITests.WEB_CONNECTIVITY) == 0) {
@@ -227,7 +222,6 @@ public class TestData extends Observable {
                                 test.set_options("save_real_probe_asn", boolToString(include_asn));
                                 test.set_options("save_real_probe_cc", boolToString(include_cc));
                                 test.set_options("no_collector", boolToString(!upload_results));
-                                test.set_options("collector_base_url", collector_address);
                                 test.set_options("software_name", "ooniprobe-android");
                                 test.set_options("software_version", VersionUtils.get_software_version());
                                 test.on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
@@ -266,7 +260,6 @@ public class TestData extends Observable {
                                         .set_options("save_real_probe_asn", boolToString(include_asn))
                                         .set_options("save_real_probe_cc", boolToString(include_cc))
                                         .set_options("no_collector", boolToString(!upload_results))
-                                        .set_options("collector_base_url", collector_address)
                                         .set_options("software_name", "ooniprobe-android")
                                         .set_options("software_version", VersionUtils.get_software_version())
                                         .on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
@@ -304,7 +297,6 @@ public class TestData extends Observable {
                                         .set_options("save_real_probe_asn", boolToString(include_asn))
                                         .set_options("save_real_probe_cc", boolToString(include_cc))
                                         .set_options("no_collector", boolToString(!upload_results))
-                                        .set_options("collector_base_url", collector_address)
                                         .set_options("software_name", "ooniprobe-android")
                                         .set_options("software_version", VersionUtils.get_software_version())
                                         .on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
