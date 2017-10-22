@@ -48,8 +48,6 @@ dependencies {
     compile 'com.google.firebase:firebase-messaging:10.2.6'
     compile 'com.github.AndroidDeveloperLB:AutoFitTextView:4'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'de.siegmar:fastcsv:1.0.1'
-
     testCompile 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'

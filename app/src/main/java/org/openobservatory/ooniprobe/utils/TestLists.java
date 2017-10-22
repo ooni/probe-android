@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class TestLists {
 
     public static List<String> getUrlsForCountry(Context c, String country){
@@ -45,25 +46,5 @@ public class TestLists {
             urls.add(rows[0]);
         }
         return urls;
-    }
-
-    private void otherMethod(){
-        /*
-        TODO swithc to https://github.com/osiegmar/FastCSV ?
-        https://stackoverflow.com/questions/43055661/reading-csv-file-in-android-app
-        https://stackoverflow.com/questions/11820142/how-to-pass-a-file-path-which-is-in-assets-folder-to-filestring-path
-         */
-        /*
-        File file = new File("android_asset/test_lists/ru.csv");
-        CsvReader csvReader = new CsvReader();
-        try {
-            CsvContainer csv = csvReader.read(file, Charset.forName("UTF-8"));
-            for (CsvRow row : csv.getRows()) {
-                System.out.println("Read line: " + row);
-                System.out.println("First column of line: " + row.getField(0));
-            }
-        } catch (java.io.IOException err) {
-        }
-        */
     }
 }
