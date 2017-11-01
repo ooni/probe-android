@@ -143,7 +143,7 @@ public class TestData extends Observable {
                                 Log.v(TAG, "running web-connectivity test...");
                                 final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
                                 final String max_runtime = preferences.getString("max_runtime", OONITests.MAX_RUNTIME);
-                                //This is gonna be removed after the merge of test lists branch
+                                //This is gonna be handled in test_lists branch
                                 if (urls != null && urls.size() > 0) {
                                     for (int i = 0; i < urls.size(); i++)
                                         currentTest.test.add_input(urls.get(i));
