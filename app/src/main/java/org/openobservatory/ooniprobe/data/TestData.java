@@ -68,8 +68,6 @@ public class TestData extends Observable {
         final Boolean include_cc = preferences.getBoolean("include_cc", true);
         final Boolean upload_results = preferences.getBoolean("upload_results", true);
 
-        final String nameserver = DnsUtils.get_device_dns();
-        Log.v(TAG, "nameserver: " + nameserver);
         currentTest.test.use_logcat();
         currentTest.test.set_output_filepath(outputPath);
         currentTest.test.set_error_filepath(logPath);
