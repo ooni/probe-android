@@ -73,7 +73,7 @@ public class TestData extends Observable {
         currentTest.test.use_logcat();
         currentTest.test.set_output_filepath(outputPath);
         currentTest.test.set_error_filepath(logPath);
-        currentTest.test.set_verbosity(OONITests.VERBOSITY);
+        currentTest.test.set_verbosity(OONITests.MK_VERBOSITY);
         currentTest.test.set_options("geoip_country_path", geoip_country);
         currentTest.test.set_options("geoip_asn_path", geoip_asn);
         currentTest.test.set_options("save_real_probe_ip", boolToString(include_ip));

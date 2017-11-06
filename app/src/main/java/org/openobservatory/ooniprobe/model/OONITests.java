@@ -20,7 +20,7 @@ public class OONITests {
     public static final String NOTIFICATION_SERVER_DEV = "https://registry.proteus.test.ooni.io";
     public static final String NOTIFICATION_SERVER_PROD = "https://registry.proteus.ooni.io";
     public static final String NOTIFICATION_SERVER = NOTIFICATION_SERVER_PROD;
-    public static final int VERBOSITY = LogSeverity.LOG_INFO;
+    public static final int MK_VERBOSITY = LogSeverity.LOG_INFO;
     public static final int ANOMALY_GREEN = 0;
     public static final int ANOMALY_ORANGE = 1;
     public static final int ANOMALY_RED = 2;
