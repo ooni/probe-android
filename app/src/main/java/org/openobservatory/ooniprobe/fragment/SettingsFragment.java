@@ -3,22 +3,18 @@ package org.openobservatory.ooniprobe.fragment;
 import android.app.Activity;
 import android.app.TimePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SwitchCompat;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
@@ -45,7 +41,6 @@ import java.util.Locale;
 public class SettingsFragment extends Fragment {
     private MainActivity mActivity;
     SharedPreferences preferences;
-    RelativeLayout collector_addressLayout;
     RelativeLayout local_notifications_timeLayout;
 
     @Override
@@ -141,16 +136,6 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-        TextView collector_address = (TextView) v.findViewById(R.id.collector_address_subText);
-        collector_address.setText(preferences.getString("collector_address", OONITests.COLLECTOR_ADDRESS));
-
-        collector_addressLayout = (RelativeLayout) v.findViewById(R.id.collector_addressLayout);
-        collector_addressLayout.setOnClickListener(new RelativeLayout.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPopup();
-            }
-        });
         final TextView max_runtime = (TextView) v.findViewById(R.id.max_runtimeEditText);
         String max_runtime_str = preferences.getString("max_runtime", OONITests.MAX_RUNTIME);
         max_runtime.setText(max_runtime_str);
@@ -248,13 +233,11 @@ public class SettingsFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 SharedPreferences.Editor editor = preferences.edit();
                 if (isChecked) {
-                    collector_addressLayout.setVisibility(View.VISIBLE);
                     include_asnButton.setVisibility(View.VISIBLE);
                     include_ccButton.setVisibility(View.VISIBLE);
                     include_ipButton.setVisibility(View.VISIBLE);
                     editor.putBoolean("upload_results", true);
                 } else {
-                    collector_addressLayout.setVisibility(View.GONE);
                     include_asnButton.setVisibility(View.GONE);
                     include_ccButton.setVisibility(View.GONE);
                     include_ipButton.setVisibility(View.GONE);
@@ -265,13 +248,11 @@ public class SettingsFragment extends Fragment {
         });
 
         if (preferences.getBoolean("upload_results", true)){
-            collector_addressLayout.setVisibility(View.VISIBLE);
             include_asnButton.setVisibility(View.VISIBLE);
             include_ccButton.setVisibility(View.VISIBLE);
             include_ipButton.setVisibility(View.VISIBLE);
         }
         else{
-            collector_addressLayout.setVisibility(View.GONE);
             include_asnButton.setVisibility(View.GONE);
             include_ccButton.setVisibility(View.GONE);
             include_ipButton.setVisibility(View.GONE);
@@ -283,41 +264,5 @@ public class SettingsFragment extends Fragment {
             local_notifications_timeLayout.setVisibility(View.GONE);
 
         return v;
-    }
-
-    private void showPopup(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
-        builder.setTitle(getString(R.string.collector_address));
-
-        final EditText input = new EditText(mActivity);
-        input.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
-        input.setText(preferences.getString("collector_address", OONITests.COLLECTOR_ADDRESS));
-        builder.setView(input);
-        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("collector_address", input.getText().toString());
-                editor.commit();
-                //Workaround to reload settings
-                TextView collector_address = (TextView)mActivity.findViewById(R.id.collector_address_subText);
-                collector_address.setText(input.getText().toString());
-            }
-        });
-        builder.setNeutralButton(R.string.set_default, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("collector_address", OONITests.COLLECTOR_ADDRESS);
-                editor.commit();
-                TextView collector_address = (TextView)mActivity.findViewById(R.id.collector_address_subText);
-                collector_address.setText(OONITests.COLLECTOR_ADDRESS);
-            }
-        });
-        builder.setNegativeButton(R.string.cancel, null);
-
-        AlertDialog d = builder.create();
-        d.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-        d.show();
     }
 }

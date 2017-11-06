@@ -3,8 +3,12 @@ package org.openobservatory.ooniprobe.model;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.openobservatory.measurement_kit.nettests.BaseTest;
+import org.openobservatory.measurement_kit.nettests.DashTest;
+import org.openobservatory.measurement_kit.nettests.HttpHeaderFieldManipulationTest;
+import org.openobservatory.measurement_kit.nettests.HttpInvalidRequestLineTest;
+import org.openobservatory.measurement_kit.nettests.NdtTest;
+import org.openobservatory.measurement_kit.nettests.WebConnectivityTest;
 import org.openobservatory.ooniprobe.R;
 
 public class NetworkMeasurement {
@@ -18,15 +22,26 @@ public class NetworkMeasurement {
     public boolean running = false;
     public boolean viewed = false;
     public int anomaly = 0;
+    public BaseTest test;
 
     public NetworkMeasurement(String name) {
         this.testName = name;
         this.test_id = System.currentTimeMillis();
-        this.log_file = "/test-"+ test_id +".log";
-        this.json_file = "/test-"+ test_id +".json";
+        this.log_file = "/test-" + test_id + ".log";
+        this.json_file = "/test-" + test_id + ".json";
         this.running = true;
         this.viewed = false;
         this.anomaly = 0;
+        if (testName.compareTo(OONITests.HTTP_INVALID_REQUEST_LINE) == 0)
+            test = new HttpInvalidRequestLineTest();
+        else if (testName.compareTo(OONITests.HTTP_HEADER_FIELD_MANIPULATION) == 0)
+            test = new HttpHeaderFieldManipulationTest();
+        else if (testName.compareTo(OONITests.WEB_CONNECTIVITY) == 0)
+            test = new WebConnectivityTest();
+        else if (testName.compareTo(OONITests.NDT) == 0)
+            test = new NdtTest();
+        else if (testName.compareTo(OONITests.DASH) == 0)
+            test = new DashTest();
     }
 
     @NonNull
