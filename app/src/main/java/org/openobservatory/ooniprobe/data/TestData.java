@@ -54,8 +54,7 @@ public class TestData extends Observable {
         return instance;
     }
 
-    public static NetworkMeasurement configureTest(final Context ctx, final String testName) {
-        final NetworkMeasurement currentTest = new NetworkMeasurement(testName);
+    public static NetworkMeasurement configureTest(final Context ctx, final NetworkMeasurement currentTest) {
         final String outputPath = ctx.getFilesDir() + "/"  + currentTest.json_file;
         final String logPath = ctx.getFilesDir() + "/"  + currentTest.log_file;
 
@@ -97,14 +96,14 @@ public class TestData extends Observable {
         return currentTest;
     }
 
-    public static void doNetworkMeasurements(final Context ctx, final String testName, final ArrayList<String> urls) {
-        final NetworkMeasurement currentTest = configureTest(ctx, testName);
+    public static void doNetworkMeasurements(final Context ctx, final NetworkMeasurement currentTest) {
+        configureTest(ctx, currentTest);
         TestStorage.addTest(ctx, currentTest);
         runningTests.add(currentTest);
-        availableTests.put(testName, false);
+        availableTests.put(currentTest.testName, false);
         if (activity != null) TestData.getInstance(context, activity).notifyObservers();
 
-        Log.v(TAG, "doNetworkMeasurements " + testName + "...");
+        Log.v(TAG, "doNetworkMeasurements " + currentTest.testName + "...");
         /*
         Using AsyncTask  may not be the optimal solution since OONI tests could take a long time to complete
         For more info read: http://developer.android.com/reference/android/os/AsyncTask.html
@@ -118,7 +117,7 @@ public class TestData extends Observable {
                         try
                         {
                             Log.v(TAG, "running test...");
-                            if (testName.compareTo(OONITests.HTTP_INVALID_REQUEST_LINE) == 0) {
+                            if (currentTest.testName.compareTo(OONITests.HTTP_INVALID_REQUEST_LINE) == 0) {
                                 Log.v(TAG, "running http_invalid_request_line test...");
                                 currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
@@ -127,7 +126,7 @@ public class TestData extends Observable {
                                             }
                                         }).run();
                             }
-                            else if (testName.compareTo(OONITests.HTTP_HEADER_FIELD_MANIPULATION) == 0) {
+                            else if (currentTest.testName.compareTo(OONITests.HTTP_HEADER_FIELD_MANIPULATION) == 0) {
                                 Log.v(TAG, "running http_header_field_manipulation test...");
                                 currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
@@ -137,19 +136,8 @@ public class TestData extends Observable {
                                         })
                                         .run();
                             }
-                            else if (testName.compareTo(OONITests.WEB_CONNECTIVITY) == 0) {
+                            else if (currentTest.testName.compareTo(OONITests.WEB_CONNECTIVITY) == 0) {
                                 Log.v(TAG, "running web-connectivity test...");
-                                final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
-                                final String max_runtime = preferences.getString("max_runtime", OONITests.MAX_RUNTIME);
-                                //This is gonna be handled in test_lists branch
-                                if (urls != null && urls.size() > 0) {
-                                    for (int i = 0; i < urls.size(); i++)
-                                        currentTest.test.add_input(urls.get(i));
-                                }
-                                else {
-                                    currentTest.test.set_options("max_runtime", max_runtime);
-                                    currentTest.test.set_input_filepath(null);
-                                }
                                 currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
                                             public void callback(String entry) {
@@ -157,7 +145,7 @@ public class TestData extends Observable {
                                             }
                                         }).run();
                             }
-                            else if (testName.compareTo(OONITests.NDT) == 0) {
+                            else if (currentTest.testName.compareTo(OONITests.NDT) == 0) {
                                 Log.v(TAG, "running ndt test...");
                                 currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
@@ -167,7 +155,7 @@ public class TestData extends Observable {
                                         })
                                         .run();
                             }
-                            else if (testName.compareTo(OONITests.DASH) == 0) {
+                            else if (currentTest.testName.compareTo(OONITests.DASH) == 0) {
                                 Log.v(TAG, "running dash test...");
                                 currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
@@ -177,7 +165,7 @@ public class TestData extends Observable {
                                         })
                                         .run();
                             } else {
-                                throw new UnknownTest(testName);
+                                throw new UnknownTest(currentTest.testName);
                             }
                             Log.v(TAG, "running test... done");
                         }
@@ -196,10 +184,10 @@ public class TestData extends Observable {
                         currentTest.entry = true;
                         runningTests.remove(currentTest);
                         finishedTests.add(currentTest);
-                        availableTests.put(testName, true);
-                        if (activity != null) TestData.getInstance(context, activity).notifyObservers(testName);
-                        NotificationHandler.notifyTestEnded(ctx, testName);
-                        Log.v(TAG, "doNetworkMeasurements " + testName + "... done");
+                        availableTests.put(currentTest.testName, true);
+                        if (activity != null) TestData.getInstance(context, activity).notifyObservers(currentTest.testName);
+                        NotificationHandler.notifyTestEnded(ctx, currentTest.testName);
+                        Log.v(TAG, "doNetworkMeasurements " + currentTest.testName + "... done");
                     }
                 }
         );

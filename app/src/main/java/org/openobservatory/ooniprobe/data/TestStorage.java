@@ -87,7 +87,7 @@ public class TestStorage {
         }
         String jsonTests = settings.getString(TESTS, null);
         Gson gson = new Gson();
-        NetworkMeasurement[] favoriteItems = gson.fromJson(jsonTests,NetworkMeasurement[].class);
+        NetworkMeasurement[] favoriteItems = gson.fromJson(jsonTests, NetworkMeasurement[].class);
         tests = Arrays.asList(favoriteItems);
         return new ArrayList(tests);
     }

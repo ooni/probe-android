@@ -11,21 +11,32 @@ import java.util.List;
 
 
 public class TestLists {
+    private static TestLists instance;
+    public static String probe_cc;
+    public static String probe_asn;
 
-    public static List<String> getUrlsForCountry(Context c, String country){
-        List<String> global_urls = getURLs(readCVSFromAssetFolder(c, "global"));
-        List<String> local_urls = getURLs(readCVSFromAssetFolder(c, country));
+    public static TestLists getInstance() {
+        if (instance == null) {
+            instance = new TestLists();
+            probe_cc = "it";
+        }
+        return instance;
+    }
+
+    public static ArrayList<String> getUrls(Context context){
+        ArrayList<String> global_urls = getURLsforAsset(readCVSFromAssetFolder(context, "global"));
+        ArrayList<String> local_urls = getURLsforAsset(readCVSFromAssetFolder(context, probe_cc));
         if (local_urls.size() > 0)
             global_urls.addAll(local_urls);
         return global_urls;
     }
 
     //https://inducesmile.com/android-tips/android-how-to-read-csv-file-from-remote-server-or-assets-folder-in-android/
-    private static List<String[]> readCVSFromAssetFolder(Context c, String country){
-        List<String[]> csvLine = new ArrayList<>();
+    private static ArrayList<String[]> readCVSFromAssetFolder(Context context, String country){
+        ArrayList<String[]> csvLine = new ArrayList<>();
         String[] content = null;
         try {
-            InputStream inputStream = c.getAssets().open("test_lists/"+ country +".csv");
+            InputStream inputStream = context.getAssets().open("test_lists/"+ country +".csv");
             BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
             String line = "";
             while((line = br.readLine()) != null){
@@ -39,11 +50,14 @@ public class TestLists {
         return csvLine;
     }
 
-    private static List<String> getURLs(List<String[]> result){
-        List<String> urls = new ArrayList<>();
-        for (int i = 0; i < result.size(); i++){
-            String [] rows = result.get(i);
-            urls.add(rows[0]);
+    private static ArrayList<String> getURLsforAsset(List<String[]> result){
+        ArrayList<String> urls = new ArrayList<>();
+        if (result.size() > 1){
+            //Skipping first line
+            for (int i = 1; i < result.size(); i++){
+                String [] rows = result.get(i);
+                urls.add(rows[0]);
+            }
         }
         return urls;
     }

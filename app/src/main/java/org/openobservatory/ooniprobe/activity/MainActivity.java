@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity  implements Observer {
 
         setContentView(R.layout.activity_main);
         checkResources();
-        TestLists.getUrlsForCountry(this, "ru");
 
         mTitle = getTitle();
         mMenuItemsTitles = new String[]{getString(R.string.run_tests), getString(R.string.past_tests), getString(R.string.settings), getString(R.string.about)};
