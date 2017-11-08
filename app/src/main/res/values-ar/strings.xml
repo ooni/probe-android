@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ooniprobe</string>
+    <string name="app_name">OONI Probe</string>
     <string name="run_tests">إجراء الاختبارات</string>
     <string name="past_tests">الاختبارات السابقة</string>
     <string name="settings">الإعدادات</string>

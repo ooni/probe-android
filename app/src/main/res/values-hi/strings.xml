@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">यूनीप्रोबे </string>
+    <string name="app_name">OONI Probe</string>
     <string name="run_tests">चलाने के परीक्षण</string>
     <string name="past_tests">विगत टेस्ट</string>
     <string name="settings">सेटिंग्स</string>
