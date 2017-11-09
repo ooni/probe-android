@@ -2,41 +2,61 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_off_white"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="7dp">
+    android:background="@drawable/splash_background">
 
     <TextView
+        android:id="@+id/welcome_to"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="@string/welcome_ooniprobe"
-        android:textStyle="bold"
-        android:textSize="38sp"
-        android:textColor="@color/color_ooni_blue"
-        android:gravity="center"  />
+        android:text="@string/welcome_to"
+        android:layout_marginTop="10dp"
+        android:textSize="32sp"
+        android:textColor="@color/color_white"
+        android:gravity="center" />
 
-        <ImageView
-            android:id="@+id/test_logo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_ooni_sparkles"
-            android:scaleType="fitEnd"
-            android:layout_centerHorizontal="true"
-            android:adjustViewBounds="true" />
+    <ImageView
+        android:id="@+id/ooniprobe_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ooniprobe_logo"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:adjustViewBounds="true"
+        android:layout_below="@+id/welcome_to" />
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/nextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:textSize="24sp"
-        android:padding="10dp"
-        android:textStyle="bold"
-        android:text="@string/get_started"
-        app:textAllCaps="false"
-        android:textColor="@color/color_off_white"
-        android:background="@drawable/nextbutton"
+    <ImageView
+        android:id="@+id/octopus_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/octopus"
+        android:padding="30dp"
+        android:adjustViewBounds="true"
+        android:layout_below="@+id/ooniprobe_logo"
+        android:layout_above="@+id/lnextButtonLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:gravity = "center_horizontal"
+        android:id="@+id/lnextButtonLayout"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:weightSum="1.0">
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/nextButton"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_weight="0.7"
+            android:textSize="20sp"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:text="@string/get_started"
+            android:textColor="@color/color_blue5"
+            android:background="@drawable/nextbutton" />
+    </LinearLayout>
 </RelativeLayout>
