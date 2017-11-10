@@ -93,59 +93,50 @@ public class IConsentPage4Fragment extends Fragment {
             questionText.setText(mActivity.getString(R.string.question_2));
     }
 
-    private void next(Boolean answer){
-        if (mActivity.QUESTION_NUMBER == 1) {
-            if (answer){
-
-                //TODO showAnimation and reloadView
-                //https://github.com/bumptech/glide/issues/1706
-                gifView.setVisibility(View.VISIBLE);
-                /*
-                Glide REALLY SLOW
+    private void next(final Boolean answer){
+        /*
+                Glide is a bit slow, alternatives
                 https://stackoverflow.com/questions/29363321/picasso-v-s-imageloader-v-s-fresco-vs-glide
                 https://github.com/Cutta/GifView/
+                https://github.com/koral--/android-gif-drawable
                  */
-                Glide.with(mActivity)
-                        .load(R.drawable.correct_answer)
-                        .into(new DrawableImageViewTarget(gifView) {
-                            @Override
-                            public void onResourceReady(Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                                if (resource instanceof GifDrawable) {
-                                    ((GifDrawable)resource).setLoopCount(1);
-                                    Handler handler = new Handler();
-                                    handler.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            gifView.setVisibility(View.GONE);
-                                            mActivity.QUESTION_NUMBER = 2;
-                                            loadView();
-                                        }
-                                    }, 3000);
-                                }
-                                super.onResourceReady(resource, transition);
-                            }
-                        });
-
                 /*
-                Can't know when gif ends in glide 4
+                Can't know when gif ends in glide 4, have to set timer
                 https://github.com/bumptech/glide/issues/860
                 https://github.com/bumptech/glide/issues/2524
                 ALT: http://frescolib.org/docs/animations.html#playing-animations-manually
                  */
 
-            }
-            else {
-                //TODO showAnimation and showActuallyView
-            }
-        }
-        else if (mActivity.QUESTION_NUMBER == 2) {
-            if (answer){
-                //TODO showAnimation and
-                mActivity.getWizard().navigateNext();
-            }
-            else {
-                //TODO showAnimation and showActuallyView
-            }
-        }
+        gifView.setVisibility(View.VISIBLE);
+        Glide.with(mActivity)
+                .load(answer? R.drawable.correct_answer : R.drawable.correct_answer)
+                .into(new DrawableImageViewTarget(gifView) {
+                    @Override
+                    public void onResourceReady(Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                        if (resource instanceof GifDrawable) {
+                            ((GifDrawable)resource).setLoopCount(1);
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    gifView.setVisibility(View.GONE);
+                                    /*if (!answer)
+                                    show popup actually
+                                    else if (mActivity.QUESTION_NUMBER == 1) {
+                                        mActivity.QUESTION_NUMBER = 2;
+                                        loadView();
+                                     else if (mActivity.QUESTION_NUMBER == 2) {
+                                     go next
+                                     */
+                                    if (mActivity.QUESTION_NUMBER == 1) {
+                                        mActivity.QUESTION_NUMBER = 2;
+                                        loadView();
+                                    }
+                                }
+                            }, 3000);
+                        }
+                        super.onResourceReady(resource, transition);
+                    }
+                });
     }
 }

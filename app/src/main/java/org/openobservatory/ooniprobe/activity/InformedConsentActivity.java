@@ -28,7 +28,7 @@ public class InformedConsentActivity extends AppCompatActivity implements Wizard
 
     public static final int REQUEST_CODE = 1000;
     public static final int RESULT_CODE_COMPLETED = 1;
-    public static int QUESTION_NUMBER = 1;
+    public int QUESTION_NUMBER = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
