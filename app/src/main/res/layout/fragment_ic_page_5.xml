@@ -1,96 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_off_white"
-    android:padding="7dp">
+    android:background="@color/color_blue5">
+
+    <TextView
+        android:id="@+id/default_settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/default_settings"
+        android:layout_marginTop="10dp"
+        android:textSize="32sp"
+        android:textColor="@color/color_white"
+        android:gravity="center" />
+
+    <ImageView
+        android:id="@+id/sharkLogo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ooniprobe_logo"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:adjustViewBounds="true"
+        android:layout_below="@+id/default_settings" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
+        android:layout_height="wrap_content"
+        android:padding="30dp"
+        android:orientation="vertical"
+        android:layout_below="@+id/sharkLogo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="@string/set_up_sharing"
+            android:text="@string/we_will_collect"
             android:textStyle="bold"
-            android:textSize="38sp"
-            android:textColor="@color/color_ooni_blue"
-            android:gravity="center"  />
-
-        <TextView
+            android:textSize="18sp"
+            android:textColor="@color/color_white" />
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:textSize="15sp"
-            android:text="@string/settings_text"
-            android:textColor="@color/color_off_black"/>
-
-        <android.support.v7.widget.SwitchCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ck_include_ip"
-            android:drawableLeft="@drawable/include_ip"
-            android:drawableStart="@drawable/include_ip"
-            android:drawablePadding="5dp"
-            android:layout_marginBottom="10dp"
-            android:text="@string/include_ip"
-            android:checked="false"
-            android:textColor="@color/color_ooni_blue" />
-
-        <android.support.v7.widget.SwitchCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ck_include_asn"
-            android:drawablePadding="5dp"
-            android:layout_marginBottom="10dp"
-            android:drawableLeft="@drawable/include_asn"
-            android:drawableStart="@drawable/include_asn"
-            android:text="@string/include_asn"
-            android:checked="true"
-            android:textColor="@color/color_ooni_blue" />
-
-        <android.support.v7.widget.SwitchCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ck_include_country"
-            android:drawableLeft="@drawable/include_cc"
-            android:drawableStart="@drawable/include_cc"
-            android:drawablePadding="5dp"
-            android:layout_marginBottom="10dp"
-            android:text="@string/include_cc"
-            android:checked="true"
-            android:textColor="@color/color_ooni_blue" />
-
-        <android.support.v7.widget.SwitchCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ck_upload_results"
-            android:drawableLeft="@drawable/upload_results"
-            android:drawableStart="@drawable/upload_results"
-            android:drawablePadding="5dp"
-            android:layout_marginBottom="10dp"
-            android:text="@string/upload_results"
-            android:checked="true"
-            android:textColor="@color/color_ooni_blue" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/nextButton"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:textSize="24sp"
-                android:padding="10dp"
-                android:textStyle="bold"
-                android:text="@string/im_all_set"
-                app:textAllCaps="false"
-                android:textColor="@color/color_off_white"
-                android:background="@drawable/nextbutton"
-                android:layout_centerHorizontal="true" />
-        </RelativeLayout>
+            android:orientation="horizontal">
+            <View
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/bulleticon" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/default_settings_1"
+                android:textSize="18sp"
+                android:textColor="@color/color_white" />
         </LinearLayout>
-    </ScrollView>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <View
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/bulleticon" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/default_settings_2"
+                android:textSize="18sp"
+                android:textColor="@color/color_white" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <View
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/bulleticon" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/default_settings_3"
+                android:textSize="18sp"
+                android:textColor="@color/color_white" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/we_will_not_collect"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/color_white" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <View
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/bulleticon" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/default_settings_4"
+                android:textSize="18sp"
+                android:textColor="@color/color_white" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:gravity = "center_horizontal"
+        android:id="@+id/nextButtonLayout"
+        android:layout_marginBottom="12dp"
+        android:weightSum="1.0"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/changeButton"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_weight="0.4"
+            android:textSize="20sp"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:text="@string/change"
+            android:textColor="@color/color_white"
+            android:background="@drawable/button_left" />
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/nextButton"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_weight="0.4"
+            android:textSize="20sp"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:text="@string/lets_go"
+            android:textColor="@color/color_blue5"
+            android:background="@drawable/button_right" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout">
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/border_right"
+            android:layout_weight="1" />
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/border_right"
+            android:layout_weight="1" />
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/border_right"
+            android:layout_weight="1" />
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/border_right"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+</RelativeLayout>

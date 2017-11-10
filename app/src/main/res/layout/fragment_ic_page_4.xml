@@ -1,117 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_off_white"
-    android:padding="7dp">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@color/color_blue5">
 
-    <TextView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="@string/pop_quiz"
-        android:textStyle="bold"
-        android:textSize="38sp"
-        android:textColor="@color/color_ooni_blue"
-        android:gravity="center"  />
-    
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:text="@string/question_1"
-        android:textColor="@color/color_off_black"/>
+        android:layout_height="match_parent">
 
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/radio_1" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <RadioButton
-            android:drawablePadding="8dp"
-            android:button="@null"
-            android:drawableLeft="@drawable/checkbox_selector"
-            android:drawableStart="@drawable/checkbox_selector"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:id="@+id/answer_1_1"
-            android:text="@string/_true"
-            android:textColor="@color/color_ooni_blue" />
+            <TextView
+                android:id="@+id/pop_quiz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/pop_quiz"
+                android:layout_marginTop="10dp"
+                android:textSize="32sp"
+                android:textColor="@color/color_white"
+                android:gravity="center" />
 
-        <RadioButton
-            android:drawablePadding="8dp"
-            android:button="@null"
-            android:drawableLeft="@drawable/checkbox_selector"
-            android:drawableStart="@drawable/checkbox_selector"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/answer_1_2"
-            android:text="@string/_false"
-            android:textColor="@color/color_ooni_blue" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="30dp"
+                android:orientation="vertical"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+                <TextView
+                    android:id="@+id/question_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/question"
+                    android:textSize="18sp"
+                    android:textColor="@color/color_white"
+                    android:gravity="center"  />
 
-    </RadioGroup>
+                <TextView
+                    android:id="@+id/question_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/question_1"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textColor="@color/color_white"
+                    android:gravity="center"  />
+            </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/text"
-        android:text="@string/question_2"
-        android:textColor="@color/color_off_black"/>
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity = "center_horizontal"
+                android:id="@+id/lnextButtonLayout"
+                android:layout_marginBottom="12dp"
+                android:weightSum="1.0"
+                android:layout_above="@+id/linearLayout2"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/trueButton"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_weight="0.4"
+                    android:textSize="20sp"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:text="@string/_true"
+                    android:textColor="@color/color_white"
+                    android:background="@drawable/button_true" />
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/falseButton"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_weight="0.4"
+                    android:textSize="20sp"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:text="@string/_false"
+                    android:textColor="@color/color_white"
+                    android:background="@drawable/button_false" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout2">
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/border_right"
+                    android:layout_weight="1" />
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/border_right"
+                    android:layout_weight="1" />
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/border_right"
+                    android:layout_weight="1" />
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/border_right_off"
+                    android:layout_weight="1" />
 
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/radio_2" >
+            </LinearLayout>
+        </RelativeLayout>
 
-        <RadioButton
-            android:button="@null"
-            android:drawablePadding="8dp"
-            android:drawableLeft="@drawable/checkbox_selector"
-            android:drawableStart="@drawable/checkbox_selector"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:id="@+id/answer_2_1"
-            android:text="@string/_true"
-            android:textColor="@color/color_ooni_blue" />
+        <ImageView
+            android:id="@+id/gifView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY" />
 
-        <RadioButton
-            android:button="@null"
-            android:drawablePadding="8dp"
-            android:drawableLeft="@drawable/checkbox_selector"
-            android:drawableStart="@drawable/checkbox_selector"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/answer_2_2"
-            android:text="@string/_false"
-            android:textColor="@color/color_ooni_blue" />
-    </RadioGroup>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/nextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:textSize="24sp"
-            android:padding="10dp"
-            android:textStyle="bold"
-            android:text="@string/how_did_i_do"
-            app:textAllCaps="false"
-            android:textColor="@color/color_off_white"
-            android:background="@drawable/nextbutton"
-            android:layout_centerHorizontal="true" />
-    </RelativeLayout>
-</LinearLayout>
-</ScrollView>
+    </FrameLayout>
+</RelativeLayout>

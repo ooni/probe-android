@@ -28,6 +28,7 @@ public class InformedConsentActivity extends AppCompatActivity implements Wizard
 
     public static final int REQUEST_CODE = 1000;
     public static final int RESULT_CODE_COMPLETED = 1;
+    public static int QUESTION_NUMBER = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +69,7 @@ public class InformedConsentActivity extends AppCompatActivity implements Wizard
 
     }
 
+    //TODO Remove: Probably deprecated
     public void showToast(int string, boolean success){
         Toast toast = Toast.makeText(this, string, Toast.LENGTH_LONG);
         View view = toast.getView();
@@ -80,7 +82,8 @@ public class InformedConsentActivity extends AppCompatActivity implements Wizard
     }
 
     @Override public void onBackPressed() {
-        if (wizard.onBackPressed()) {
+        //Disable going back to splash screen
+        if (wizard.onBackPressed() && wizard.getCurrentIndex() != 1) {
             super.onBackPressed();
         }
     }

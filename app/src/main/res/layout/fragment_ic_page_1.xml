@@ -14,17 +14,24 @@
         android:textColor="@color/color_white"
         android:gravity="center" />
 
-    <ImageView
-        android:id="@+id/ooniprobe_logo"
-        android:layout_width="match_parent"
+    <LinearLayout
         android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:gravity = "center_horizontal"
+        android:id="@+id/ooniprobe_logoLayout"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/ooniprobe_logo"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:adjustViewBounds="true"
-        android:layout_below="@+id/welcome_to" />
+        android:layout_below="@+id/welcome_to"
+        android:weightSum="1.0">
+        <ImageView
+            android:id="@+id/ooniprobe_logo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ooniprobe_logo"
+            android:layout_weight="0.7"
+            android:adjustViewBounds="true" />
+    </LinearLayout>
+
 
     <ImageView
         android:id="@+id/octopus_logo"
@@ -33,7 +40,7 @@
         android:src="@drawable/octopus"
         android:padding="30dp"
         android:adjustViewBounds="true"
-        android:layout_below="@+id/ooniprobe_logo"
+        android:layout_below="@+id/ooniprobe_logoLayout"
         android:layout_above="@+id/lnextButtonLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -51,12 +58,12 @@
             android:id="@+id/nextButton"
             android:layout_width="0dp"
             android:layout_height="55dp"
-            android:layout_weight="0.7"
+            android:layout_weight="0.6"
             android:textSize="20sp"
             android:padding="10dp"
             android:textStyle="bold"
             android:text="@string/get_started"
             android:textColor="@color/color_blue5"
-            android:background="@drawable/nextbutton" />
+            android:background="@drawable/button_next" />
     </LinearLayout>
 </RelativeLayout>
