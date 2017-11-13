@@ -18,7 +18,7 @@ public class TestLists {
     public static TestLists getInstance() {
         if (instance == null) {
             instance = new TestLists();
-            probe_cc = "it";
+            probe_cc = "ru";
         }
         return instance;
     }
@@ -45,6 +45,7 @@ public class TestLists {
             }
             br.close();
         } catch (IOException e) {
+            //java.io.FileNotFoundException will return empty array
             e.printStackTrace();
         }
         return csvLine;
