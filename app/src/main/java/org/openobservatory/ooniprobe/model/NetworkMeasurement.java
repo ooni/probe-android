@@ -28,7 +28,7 @@ public class NetworkMeasurement {
     public boolean running = false;
     public boolean viewed = false;
     public int anomaly = 0;
-    public BaseTest test;
+    public transient BaseTest test;
 
     public NetworkMeasurement(Context context, String name) {
         this.testName = name;
