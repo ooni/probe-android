@@ -120,7 +120,6 @@
             android:id="@+id/animationView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/color_red6"
             android:scaleType="fitXY"/>
 
     </FrameLayout>
