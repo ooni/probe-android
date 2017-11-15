@@ -23,6 +23,7 @@ public class IConsentPage5Fragment extends Fragment {
 
     private InformedConsentActivity mActivity;
     private AppCompatButton nextButton;
+    private AppCompatButton changeButton;
 
     public static IConsentPage5Fragment create() {
         IConsentPage5Fragment atf = new IConsentPage5Fragment();
@@ -57,12 +58,20 @@ public class IConsentPage5Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_ic_page_5, container, false);
-        nextButton = (AppCompatButton) v.findViewById(R.id.nextButton);
+        nextButton = v.findViewById(R.id.nextButton);
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 next();
             }
         });
+
+        changeButton= v.findViewById(R.id.changeButton);
+        changeButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                next();
+            }
+        });
+
         return v;
     }
 
