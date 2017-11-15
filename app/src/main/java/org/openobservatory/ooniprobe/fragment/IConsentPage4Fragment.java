@@ -9,7 +9,9 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.AppCompatButton;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -88,6 +90,43 @@ public class IConsentPage4Fragment extends Fragment {
             }
         });
 
+        final GestureDetector gesture = new GestureDetector(getActivity(),
+                new GestureDetector.SimpleOnGestureListener() {
+                    @Override
+                    public boolean onDown(MotionEvent e) {
+                        return true;
+                    }
+                    @Override
+                    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+                                           float velocityY) {
+                        final int SWIPE_MIN_DISTANCE = 120;
+                        final int SWIPE_MAX_OFF_PATH = 250;
+                        final int SWIPE_THRESHOLD_VELOCITY = 200;
+                        try {
+                            if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH)
+                                return false;
+                            if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
+                                    && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                                mActivity.getWizard().navigateNext();
+                            }
+                            else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
+                                    && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                                mActivity.getWizard().navigatePrevious();
+                            }
+                        } catch (Exception e) {
+                            // nothing
+                        }
+                        return super.onFling(e1, e2, velocityX, velocityY);
+                    }
+                });
+
+        v.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return gesture.onTouchEvent(event);
+            }
+        });
+
         return v;
     }
 
@@ -100,23 +139,27 @@ public class IConsentPage4Fragment extends Fragment {
     }
 
     private void answer(final Boolean answer){
+        animationView.setBackgroundColor(answer? getResources().getColor(R.color.color_teal5): getResources().getColor(R.color.color_red6));
+        animationView.setAnimation(answer? "anim/checkMark.json" : "anim/crossMark.json");
         animationView.setVisibility(View.VISIBLE);
-        animationView.setAnimation(answer? "anim/LottieLogo1.json" : "anim/LottieLogo2.json");
         animationView.addAnimatorListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                System.out.println("onAnimationEnd " + mActivity.QUESTION_NUMBER);
-                //animationView.cancelAnimation();
                 next(answer);
+                if (answer)
+                    removeAnim();
                 animationView.removeAnimatorListener(this);
             }
         });
         animationView.playAnimation();
     }
 
-    private void next(final Boolean answer){
+    public void removeAnim(){
         animationView.setVisibility(View.GONE);
         animationView.setProgress(0);
+    }
+
+    private void next(final Boolean answer){
         if (mActivity.QUESTION_NUMBER == 1) {
             if (!answer){
                 FragmentManager fm = getFragmentManager();

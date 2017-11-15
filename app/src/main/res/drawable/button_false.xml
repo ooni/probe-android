@@ -6,7 +6,7 @@
                 android:topRightRadius="30dip"
                 android:bottomRightRadius="30dip"
                 />
-            <gradient android:angle="-90" android:startColor="@color/color_red6" android:endColor="@color/color_red6"  />
+            <gradient android:angle="0" android:startColor="@color/color_red5" android:endColor="@color/color_red5" />
         </shape>
     </item>
     <item android:state_focused="true">
@@ -24,7 +24,7 @@
                 android:topRightRadius="30dip"
                 android:bottomRightRadius="30dip"
                 />
-            <gradient android:angle="-90" android:startColor="@color/color_red6" android:endColor="@color/color_red6"  />
+            <gradient android:angle="0" android:startColor="@color/color_red6" android:endColor="@color/color_red6"  />
         </shape>
     </item>
 </selector>

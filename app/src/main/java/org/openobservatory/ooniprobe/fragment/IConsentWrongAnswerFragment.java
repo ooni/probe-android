@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.opengl.Visibility;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -36,13 +37,23 @@ public class IConsentWrongAnswerFragment extends DialogFragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_ic_wrong_answer, container,
                 false);
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                IConsentPage4Fragment current = (IConsentPage4Fragment)mActivity.getWizard().getCurrent();
+                current.removeAnim();
+            }
+        }, 100);
+
         continueButton = v.findViewById(R.id.continueButton);
         continueButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (mActivity.QUESTION_NUMBER == 1) {
                     mActivity.QUESTION_NUMBER = 2;
                     IConsentPage4Fragment current = (IConsentPage4Fragment)mActivity.getWizard().getCurrent();
-                    current.loadView();
+                    current.removeAnim();
+                    //current.loadView();
                     dismiss();
                 }
                 else {
