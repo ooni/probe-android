@@ -33,10 +33,12 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/ooniprobe_logo"
+        android:src="@drawable/octopus_white"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
         android:adjustViewBounds="true"
+        android:padding="30dp"
+        android:layout_above="@+id/lnextButtonLayout"
         android:layout_below="@+id/wrongAsnwer" />
 
     <LinearLayout

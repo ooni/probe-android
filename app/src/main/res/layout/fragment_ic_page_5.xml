@@ -15,22 +15,23 @@
         android:gravity="center" />
 
     <ImageView
-        android:id="@+id/sharkLogo"
+        android:id="@+id/folderImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/ooniprobe_logo"
+        android:src="@drawable/folder"
+        android:padding="15dp"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
-        android:adjustViewBounds="true"
         android:layout_below="@+id/default_settings" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="30dp"
         android:orientation="vertical"
-        android:layout_below="@+id/sharkLogo"
+        android:layout_below="@+id/folderImage"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
         <TextView

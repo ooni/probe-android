@@ -37,7 +37,7 @@
         android:id="@+id/octopus_logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/octopus"
+        android:src="@drawable/octopus_white"
         android:padding="30dp"
         android:adjustViewBounds="true"
         android:layout_below="@+id/ooniprobe_logoLayout"

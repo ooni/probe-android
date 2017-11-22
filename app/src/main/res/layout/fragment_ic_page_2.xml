@@ -20,10 +20,10 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/ooniprobe_logo"
+        android:padding="15dp"
+        android:src="@drawable/octopus_shark"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
-        android:adjustViewBounds="true"
         android:layout_below="@+id/what_is_ooniprobe" />
 
     <TextView
