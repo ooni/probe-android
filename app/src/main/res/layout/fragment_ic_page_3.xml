@@ -134,23 +134,11 @@
         android:layout_width="match_parent"
         android:layout_height="8dp"
         android:id="@+id/linearLayout2"
-        android:background="@color/color_blue4"
+        android:gravity = "center_horizontal"
+        android:layout_marginBottom="5dp"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:background="@color/color_white"
-            android:layout_weight="1" />
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:background="@color/color_white"
-            android:layout_weight="1" />
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+        android:orientation="horizontal"
+        android:weightSum="1.0">
         <View
             android:layout_width="6dp"
             android:layout_height="6dp"
@@ -158,8 +146,37 @@
             android:background="@drawable/circle" />
         <View
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_height="2dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/color_white"
+            android:layout_weight="0.2" />
+        <View
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_gravity="center"
+            android:background="@drawable/circle" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/color_blue4"
+            android:layout_weight="0.2" />
+        <View
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_gravity="center"
+            android:background="@drawable/circle_blue" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/color_blue4"
+            android:layout_weight="0.2" />
+        <View
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_gravity="center"
+            android:background="@drawable/circle_blue" />
     </LinearLayout>
 
 </RelativeLayout>
