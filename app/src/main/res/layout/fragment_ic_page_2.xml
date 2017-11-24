@@ -56,7 +56,7 @@
         android:id="@+id/lnextButtonLayout"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="70dp"
         android:weightSum="1.0">
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/nextButton"
@@ -69,42 +69,5 @@
             android:text="@string/learn_more"
             android:textColor="@color/color_blue5"
             android:background="@drawable/button_next" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="8dp"
-        android:id="@+id/linearLayout2"
-        android:gravity = "center_horizontal"
-        android:layout_marginBottom="10dp"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:weightSum="1.0">
-        <View
-            android:layout_width="6dp"
-            android:layout_height="6dp"
-            android:layout_gravity="center"
-            android:background="@drawable/circle" />
-        <View
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:layout_gravity="center_vertical"
-            android:background="@color/color_blue4"
-            android:layout_weight="0.2" />
-        <View
-            android:layout_width="6dp"
-            android:layout_height="6dp"
-            android:layout_gravity="center"
-            android:background="@drawable/circle_blue" />
-        <View
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:layout_gravity="center_vertical"
-            android:background="@color/color_blue4"
-            android:layout_weight="0.2" />
-        <View
-            android:layout_width="6dp"
-            android:layout_height="6dp"
-            android:layout_gravity="center"
-            android:background="@drawable/circle_blue" />
     </LinearLayout>
 </RelativeLayout>

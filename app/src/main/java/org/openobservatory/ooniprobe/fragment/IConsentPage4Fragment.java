@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.paolorotolo.appintro.AppIntroFragment;
+
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.InformedConsentActivity;
 
@@ -72,6 +74,6 @@ public class IConsentPage4Fragment extends Fragment {
         editor.putBoolean("include_country", true);
         editor.putBoolean("upload_results", true);
         editor.apply();
-        mActivity.getWizard().navigateNext();
+        //mActivity.getWizard().navigateNext();
     }
 }

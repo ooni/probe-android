@@ -1,8 +1,9 @@
 package org.openobservatory.ooniprobe.activity;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -10,63 +11,98 @@ import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.paolorotolo.appintro.AppIntro;
+import com.github.paolorotolo.appintro.AppIntroFragment;
+
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.IConsentPage1Fragment;
 import org.openobservatory.ooniprobe.fragment.IConsentPage2Fragment;
 import org.openobservatory.ooniprobe.fragment.IConsentPage3Fragment;
-import org.openobservatory.ooniprobe.fragment.IConsentQuizFragment;
 import org.openobservatory.ooniprobe.fragment.IConsentPage4Fragment;
+import org.openobservatory.ooniprobe.fragment.IConsentQuizFragment;
 
-import me.panavtec.wizard.Wizard;
-import me.panavtec.wizard.WizardListener;
-import me.panavtec.wizard.WizardPage;
-import me.panavtec.wizard.WizardPageListener;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class InformedConsentActivity extends AppCompatActivity implements WizardPageListener, WizardListener {
+public class InformedConsentActivity extends AppIntro {
 
-    private Wizard wizard;
 
     public static final int REQUEST_CODE = 1000;
     public static final int RESULT_CODE_COMPLETED = 1;
     public int QUESTION_NUMBER = 1;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
-        getSupportActionBar().hide();
-        //http://stackoverflow.com/questions/8500283/how-to-hide-action-bar-before-activity-is-created-and-then-show-it-again
-        setContentView(R.layout.activity_informed_consent);
-        switchToWizard(0);
+        //getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+        //getSupportActionBar().hide();
+
+        // Note here that we DO NOT use setContentView();
+        //setContentView(R.layout.activity_informed_consent);
+
+        // Add your slide fragments here.
+        // AppIntro will automatically generate the dots indicator and buttons.
+        /*addSlide(firstFragment);
+        addSlide(secondFragment);
+        addSlide(thirdFragment);
+        addSlide(fourthFragment);
+*/
+        addSlide(new IConsentPage1Fragment());
+        addSlide(new IConsentPage2Fragment());
+        addSlide(new IConsentPage3Fragment());
+        addSlide(new IConsentPage4Fragment());
+        /*
+        addSlide(IConsentPage1Fragment.instantiate(this, "page_1"));
+        addSlide(IConsentPage2Fragment.instantiate(this, "page_2"));
+        addSlide(IConsentPage3Fragment.instantiate(this, "page_3"));
+        addSlide(IConsentPage4Fragment.instantiate(this, "page_4"));
+*/
+
+/*
+        addSlide(SampleSlide.newInstance(R.layout.fragment_ic_page_1));
+        addSlide(SampleSlide.newInstance(R.layout.fragment_ic_page_2));
+        addSlide(SampleSlide.newInstance(R.layout.fragment_ic_page_3));
+        addSlide(SampleSlide.newInstance(R.layout.fragment_ic_page_4));
+*/
+        // Instead of fragments, you can also use our default slide
+        // Just set a title, description, background and image. AppIntro will do the rest.
+        //addSlide(AppIntroFragment.newInstance(title, description, image, backgroundColor));
+
+        // OPTIONAL METHODS
+        // Override bar/separator color.
+        //setBarColor(Color.parseColor("#3F51B5"));
+        //setSeparatorColor(Color.parseColor("#2196F3"));
+
+        // Hide Skip/Done button.
+        showSkipButton(false);
+        //setProgressButtonEnabled(false);
+
+        // Turn vibration on and set intensity.
+        // NOTE: you will probably need to ask VIBRATE permission in Manifest.
+        //setVibrate(true);
+        //setVibrateIntensity(30);
     }
 
+    @Override
+    public void onSkipPressed(Fragment currentFragment) {
+        super.onSkipPressed(currentFragment);
+        // Do something when users tap on Skip button.
+    }
+
+    @Override
+    public void onDonePressed(Fragment currentFragment) {
+        super.onDonePressed(currentFragment);
+        // Do something when users tap on Done button.
+    }
+
+    @Override
+    public void onSlideChanged(@Nullable Fragment oldFragment, @Nullable Fragment newFragment) {
+        super.onSlideChanged(oldFragment, newFragment);
+        // Do something when the slide changes.
+    }
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-    }
-
-    public void switchToWizard(int step) {
-        WizardPage[] wizardPages = {
-                new WizardStep1(),
-                new WizardStep2(),
-                new WizardStep3(),
-                new WizardStep4()};
-        wizard = new Wizard.Builder(this, wizardPages)
-                .containerId(R.id.container_body)
-                .enterAnimation(R.anim.card_slide_right_in)
-                .exitAnimation(R.anim.card_slide_left_out)
-                .popEnterAnimation(R.anim.card_slide_left_in)
-                .popExitAnimation(R.anim.card_slide_right_out)
-                .pageListener(this)
-                .wizardListener(this)
-                .build();
-        wizard.init();
-
-        for (int i=1; i< step; i++)
-            wizard.navigateNext();
-
-
     }
 
     //TODO Remove: Probably deprecated
@@ -83,10 +119,7 @@ public class InformedConsentActivity extends AppCompatActivity implements Wizard
 
     @Override
     public void onBackPressed() {
-        //Disable going back to splash screen
-        if (wizard.onBackPressed() && wizard.getCurrentIndex() != 1) {
-            super.onBackPressed();
-        }
+        super.onBackPressed();
     }
 
     public void loadQuizFragment(){
@@ -96,42 +129,4 @@ public class InformedConsentActivity extends AppCompatActivity implements Wizard
         dFragment.show(fm, "quiz");
     }
 
-    @Override
-    public void onWizardFinished() {
-            setResult(RESULT_CODE_COMPLETED);
-            finish();
-    }
-
-    @Override
-    public void onPageChanged(int currentPageIndex, WizardPage page) {
-
-    }
-
-    public Wizard getWizard(){
-        return wizard;
-    }
-
-    class WizardStep1 extends WizardPage<IConsentPage1Fragment> {
-        @Override public IConsentPage1Fragment createFragment() {
-            return new IConsentPage1Fragment();
-        }
-    }
-
-    class WizardStep2 extends WizardPage<IConsentPage2Fragment> {
-        @Override public IConsentPage2Fragment createFragment() {
-            return new IConsentPage2Fragment();
-        }
-    }
-
-    class WizardStep3 extends WizardPage<IConsentPage3Fragment> {
-        @Override public IConsentPage3Fragment createFragment() {
-            return new IConsentPage3Fragment();
-        }
-    }
-
-    class WizardStep4 extends WizardPage<IConsentPage4Fragment> {
-        @Override public IConsentPage4Fragment createFragment() {
-            return new IConsentPage4Fragment();
-        }
-    }
 }

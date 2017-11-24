@@ -104,7 +104,7 @@ public class IConsentQuizFragment extends DialogFragment {
         else if (mActivity.QUESTION_NUMBER == 2) {
             mActivity.QUESTION_NUMBER = 3;
             dismiss();
-            mActivity.getWizard().navigateNext();
+            //mActivity.getWizard().navigateNext();
         }
     }
 

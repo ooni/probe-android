@@ -10,6 +10,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.paolorotolo.appintro.AppIntroFragment;
+
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.InformedConsentActivity;
 
@@ -51,7 +53,7 @@ public class IConsentPage2Fragment extends Fragment {
         nextButton = (AppCompatButton) v.findViewById(R.id.nextButton);
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                mActivity.getWizard().navigateNext();
+                //mActivity.getWizard().navigateNext();
             }
         });
         return v;
