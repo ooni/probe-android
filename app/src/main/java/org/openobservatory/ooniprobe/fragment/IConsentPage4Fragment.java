@@ -1,23 +1,14 @@
 package org.openobservatory.ooniprobe.fragment;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
-import android.opengl.Visibility;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.AppCompatButton;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.airbnb.lottie.LottieAnimationView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.InformedConsentActivity;
@@ -25,21 +16,14 @@ import org.openobservatory.ooniprobe.activity.InformedConsentActivity;
 public class IConsentPage4Fragment extends Fragment {
 
     private InformedConsentActivity mActivity;
-    private AppCompatButton trueButton;
-    private AppCompatButton falseButton;
-    private TextView questionNumber;
-    private TextView questionText;
-    private LottieAnimationView animationView;
+    private AppCompatButton nextButton;
+    private AppCompatButton changeButton;
 
     public static IConsentPage4Fragment create() {
         IConsentPage4Fragment atf = new IConsentPage4Fragment();
         Bundle args = new Bundle();
         atf.setArguments(args);
         return atf;
-    }
-
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -60,91 +44,34 @@ public class IConsentPage4Fragment extends Fragment {
     }
 
     @Override
-    public void onResume()
-    {
-        super.onResume();
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_ic_page_4, container, false);
-        questionNumber = v.findViewById(R.id.question_number);
-        questionText = v.findViewById(R.id.question_text);
-        animationView = v.findViewById(R.id.animationView);
-        animationView.setVisibility(View.GONE);
-        animationView.setImageAssetsFolder("anim/");
 
-        loadView();
-
-        trueButton = v.findViewById(R.id.trueButton);
-        trueButton.setOnClickListener(new View.OnClickListener() {
+        nextButton = v.findViewById(R.id.nextButton);
+        nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                answer(true);
+                //next();
             }
         });
-        falseButton = v.findViewById(R.id.falseButton);
-        falseButton.setOnClickListener(new View.OnClickListener() {
+
+        changeButton= v.findViewById(R.id.changeButton);
+        changeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                answer(false);
+                //next();
             }
         });
+
         return v;
     }
 
-    public void loadView(){
-        questionNumber.setText(mActivity.getString(R.string.question) + " " + mActivity.QUESTION_NUMBER + "/2");
-        if (mActivity.QUESTION_NUMBER == 1)
-            questionText.setText(mActivity.getString(R.string.question_1));
-        else if (mActivity.QUESTION_NUMBER == 2)
-            questionText.setText(mActivity.getString(R.string.question_2));
+    private void next() {
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(mActivity).edit();
+        editor.putBoolean("include_ip", false);
+        editor.putBoolean("include_asn", true);
+        editor.putBoolean("include_country", true);
+        editor.putBoolean("upload_results", true);
+        editor.apply();
+        mActivity.getWizard().navigateNext();
     }
-
-    private void answer(final Boolean answer){
-        animationView.setBackgroundColor(answer? getResources().getColor(R.color.color_teal5): getResources().getColor(R.color.color_red6));
-        animationView.setAnimation(answer? "anim/checkMark.json" : "anim/crossMark.json");
-        animationView.setVisibility(View.VISIBLE);
-        animationView.addAnimatorListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                next(answer);
-                if (answer)
-                    removeAnim();
-                animationView.removeAnimatorListener(this);
-            }
-        });
-        animationView.playAnimation();
-    }
-
-    public void removeAnim(){
-        animationView.setVisibility(View.GONE);
-        animationView.setProgress(0);
-    }
-
-    private void next(final Boolean answer){
-        if (mActivity.QUESTION_NUMBER == 1) {
-            if (!answer){
-                FragmentManager fm = getFragmentManager();
-                IConsentWrongAnswerFragment dFragment = new IConsentWrongAnswerFragment();
-                dFragment.mActivity = mActivity;
-                dFragment.show(fm, "Dialog Fragment");
-            }
-            else {
-                mActivity.QUESTION_NUMBER = 2;
-                loadView();
-            }
-        }
-        else if (mActivity.QUESTION_NUMBER == 2) {
-            if (!answer){
-                FragmentManager fm = getFragmentManager();
-                IConsentWrongAnswerFragment dFragment = new IConsentWrongAnswerFragment();
-                dFragment.mActivity = mActivity;
-                dFragment.show(fm, "Dialog Fragment");
-            }
-            else {
-                mActivity.getWizard().navigateNext();
-            }
-        }
-    }
-
 }

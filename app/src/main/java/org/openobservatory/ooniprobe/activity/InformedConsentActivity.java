@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.activity;
 
 import android.content.Context;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -13,8 +14,8 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.IConsentPage1Fragment;
 import org.openobservatory.ooniprobe.fragment.IConsentPage2Fragment;
 import org.openobservatory.ooniprobe.fragment.IConsentPage3Fragment;
+import org.openobservatory.ooniprobe.fragment.IConsentQuizFragment;
 import org.openobservatory.ooniprobe.fragment.IConsentPage4Fragment;
-import org.openobservatory.ooniprobe.fragment.IConsentPage5Fragment;
 
 import me.panavtec.wizard.Wizard;
 import me.panavtec.wizard.WizardListener;
@@ -50,8 +51,7 @@ public class InformedConsentActivity extends AppCompatActivity implements Wizard
                 new WizardStep1(),
                 new WizardStep2(),
                 new WizardStep3(),
-                new WizardStep4(),
-                new WizardStep5()};
+                new WizardStep4()};
         wizard = new Wizard.Builder(this, wizardPages)
                 .containerId(R.id.container_body)
                 .enterAnimation(R.anim.card_slide_right_in)
@@ -81,11 +81,19 @@ public class InformedConsentActivity extends AppCompatActivity implements Wizard
         toast.show();
     }
 
-    @Override public void onBackPressed() {
+    @Override
+    public void onBackPressed() {
         //Disable going back to splash screen
         if (wizard.onBackPressed() && wizard.getCurrentIndex() != 1) {
             super.onBackPressed();
         }
+    }
+
+    public void loadQuizFragment(){
+        FragmentManager fm = getSupportFragmentManager();
+        IConsentQuizFragment dFragment = new IConsentQuizFragment();
+        dFragment.mActivity = this;
+        dFragment.show(fm, "quiz");
     }
 
     @Override
@@ -124,12 +132,6 @@ public class InformedConsentActivity extends AppCompatActivity implements Wizard
     class WizardStep4 extends WizardPage<IConsentPage4Fragment> {
         @Override public IConsentPage4Fragment createFragment() {
             return new IConsentPage4Fragment();
-        }
-    }
-
-    class WizardStep5 extends WizardPage<IConsentPage5Fragment> {
-        @Override public IConsentPage5Fragment createFragment() {
-            return new IConsentPage5Fragment();
         }
     }
 }

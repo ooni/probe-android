@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.AppCompatButton;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -53,7 +54,17 @@ public class IConsentPage3Fragment extends Fragment {
         nextButton = (AppCompatButton) v.findViewById(R.id.nextButton);
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                mActivity.getWizard().navigateNext();
+                if (mActivity.QUESTION_NUMBER < 3) {
+                    mActivity.loadQuizFragment();
+                    /*
+                    FragmentManager fm = getFragmentManager();
+                    IConsentQuizFragment dFragment = new IConsentQuizFragment();
+                    dFragment.mActivity = mActivity;
+                    dFragment.show(fm, "quiz");
+                    */
+                }
+                else
+                    mActivity.getWizard().navigateNext();
             }
         });
         /*
