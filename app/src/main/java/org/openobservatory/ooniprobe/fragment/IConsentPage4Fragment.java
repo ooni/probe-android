@@ -18,6 +18,7 @@ public class IConsentPage4Fragment extends Fragment {
     private InformedConsentActivity mActivity;
     private AppCompatButton nextButton;
     private AppCompatButton changeButton;
+    private AppCompatButton backButton;
 
     public static IConsentPage4Fragment create() {
         IConsentPage4Fragment atf = new IConsentPage4Fragment();
@@ -52,6 +53,13 @@ public class IConsentPage4Fragment extends Fragment {
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //next();
+            }
+        });
+
+        backButton = v.findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                mActivity.getWizard().navigatePrevious();
             }
         });
 

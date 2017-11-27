@@ -2,6 +2,7 @@ package org.openobservatory.ooniprobe.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
 import android.view.GestureDetector;
@@ -40,12 +41,13 @@ public class IConsentPage1Fragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_ic_page_1, container, false);
-        nextButton = (AppCompatButton) v.findViewById(R.id.nextButton);
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                mActivity.getWizard().navigateNext();
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //mActivity.getWizard().navigateNext();
             }
-        });
+        }, 2000);
         return v;
     }
 

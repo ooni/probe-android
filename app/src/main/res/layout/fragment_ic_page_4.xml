@@ -4,15 +4,13 @@
     android:layout_height="match_parent"
     android:background="@color/color_blue5">
 
-    <TextView
-        android:id="@+id/default_settings"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/default_settings"
-        android:layout_marginTop="10dp"
-        android:textSize="32sp"
-        android:textColor="@color/color_white"
-        android:gravity="center" />
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/backButton"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/ic_arrow_back" />
+
 
     <ImageView
         android:id="@+id/folderImage"
@@ -24,14 +22,25 @@
         android:padding="15dp"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
-        android:layout_below="@+id/default_settings" />
+        android:layout_below="@+id/backButton" />
+
+    <TextView
+        android:id="@+id/default_settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/default_settings"
+        android:layout_marginTop="10dp"
+        android:textSize="32sp"
+        android:textColor="@color/color_white"
+        android:gravity="center"
+        android:layout_below="@+id/folderImage" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="30dp"
         android:orientation="vertical"
-        android:layout_below="@+id/folderImage"
+        android:layout_below="@+id/default_settings"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
         <TextView
@@ -121,16 +130,16 @@
         android:layout_width="fill_parent"
         android:gravity = "center_horizontal"
         android:id="@+id/nextButtonLayout"
-        android:layout_marginBottom="12dp"
         android:weightSum="1.0"
         android:layout_above="@+id/linearLayout2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp" >
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/changeButton"
             android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:layout_weight="0.4"
+            android:layout_height="60dp"
+            android:layout_weight="0.35"
             android:textSize="20sp"
             android:padding="10dp"
             android:textStyle="bold"
@@ -140,8 +149,8 @@
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/nextButton"
             android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:layout_weight="0.4"
+            android:layout_height="60dp"
+            android:layout_weight="0.35"
             android:textSize="20sp"
             android:padding="10dp"
             android:textStyle="bold"

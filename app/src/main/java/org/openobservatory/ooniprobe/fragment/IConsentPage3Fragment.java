@@ -20,7 +20,7 @@ public class IConsentPage3Fragment extends Fragment {
 
     private InformedConsentActivity mActivity;
     private AppCompatButton nextButton;
-    //private AppCompatButton learn_moreButton;
+    private AppCompatButton backButton;
 
     public static IConsentPage3Fragment create() {
         IConsentPage3Fragment atf = new IConsentPage3Fragment();
@@ -75,6 +75,14 @@ public class IConsentPage3Fragment extends Fragment {
                 startActivity(browserIntent);
             }
         });*/
+
+        backButton = v.findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                mActivity.getWizard().navigatePrevious();
+            }
+        });
+
         return v;
     }
 

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/splash_background">
@@ -9,9 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/welcome_to"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:textSize="32sp"
         android:textColor="@color/color_white"
+        fontPath="webui/font-fira-sans-light.7dd0ad25580893d980bbf0475f88aead.otf"
         android:gravity="center" />
 
     <LinearLayout
@@ -37,33 +40,12 @@
         android:id="@+id/octopus_logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/octopus_white"
-        android:padding="30dp"
+        android:src="@drawable/octopus"
+        android:padding="60dp"
         android:adjustViewBounds="true"
+        android:layout_marginBottom="60dp"
         android:layout_below="@+id/ooniprobe_logoLayout"
-        android:layout_above="@+id/lnextButtonLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:gravity = "center_horizontal"
-        android:id="@+id/lnextButtonLayout"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        android:weightSum="1.0">
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/nextButton"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:layout_weight="0.6"
-            android:textSize="20sp"
-            android:padding="10dp"
-            android:textStyle="bold"
-            android:text="@string/get_started"
-            android:textColor="@color/color_blue5"
-            android:background="@drawable/button_next" />
-    </LinearLayout>
 </RelativeLayout>
