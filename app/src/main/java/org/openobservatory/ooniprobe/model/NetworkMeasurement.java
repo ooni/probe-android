@@ -47,7 +47,7 @@ public class NetworkMeasurement {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
             String max_runtime = preferences.getString("max_runtime", OONITests.MAX_RUNTIME);
             test.set_options("max_runtime", max_runtime);
-            ArrayList<String> urls = TestLists.getInstance().getUrls(context);
+            ArrayList<String> urls = TestLists.getInstance(context).getUrls();
             for (int i = 0; i < urls.size(); i++)
                 test.add_input(urls.get(i));
             System.out.println(urls);

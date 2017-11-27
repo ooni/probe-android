@@ -2,6 +2,15 @@ package org.openobservatory.ooniprobe.utils;
 
 import android.content.Context;
 
+import org.openobservatory.measurement_kit.common.LogSeverity;
+import org.openobservatory.measurement_kit.swig.Error;
+import org.openobservatory.measurement_kit.swig.OrchestrateAuth;
+import org.openobservatory.measurement_kit.swig.OrchestrateClient;
+import org.openobservatory.measurement_kit.swig.OrchestrateFindLocationCallback;
+import org.openobservatory.measurement_kit.swig.OrchestrateRegisterProbeCallback;
+import org.openobservatory.measurement_kit.swig.OrchestrateUpdateCallback;
+import org.openobservatory.ooniprobe.model.OONITests;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,25 +23,29 @@ public class TestLists {
     private static TestLists instance;
     public static String probe_cc;
     public static String probe_asn;
+    public static Context context;
 
-    public static TestLists getInstance() {
+    public static TestLists getInstance(Context ctx) {
         if (instance == null) {
             instance = new TestLists();
-            probe_cc = "ru";
+            context = ctx;
+            probe_cc = "";
+            probe_asn = "";
+            updateCC_async();
         }
         return instance;
     }
 
-    public static ArrayList<String> getUrls(Context context){
-        ArrayList<String> global_urls = getURLsforAsset(readCVSFromAssetFolder(context, "global"));
-        ArrayList<String> local_urls = getURLsforAsset(readCVSFromAssetFolder(context, probe_cc));
+    public static ArrayList<String> getUrls(){
+        ArrayList<String> global_urls = getURLsforAsset(readCVSFromAssetFolder("global"));
+        ArrayList<String> local_urls = getURLsforAsset(readCVSFromAssetFolder(probe_cc));
         if (local_urls.size() > 0)
             global_urls.addAll(local_urls);
         return global_urls;
     }
 
     //https://inducesmile.com/android-tips/android-how-to-read-csv-file-from-remote-server-or-assets-folder-in-android/
-    private static ArrayList<String[]> readCVSFromAssetFolder(Context context, String country){
+    private static ArrayList<String[]> readCVSFromAssetFolder(String country){
         ArrayList<String[]> csvLine = new ArrayList<>();
         String[] content = null;
         try {
@@ -61,5 +74,33 @@ public class TestLists {
             }
         }
         return urls;
+    }
+
+    public static void updateCC_async() {
+        String geoip_asn_path = context.getFilesDir() + "/GeoIPASNum.dat";
+        String geoip_country_path = context.getFilesDir() + "/GeoIP.dat";
+        final OrchestrateClient client = new OrchestrateClient();
+        client.set_verbosity(LogSeverity.LOG_DEBUG);
+        client.use_logcat();
+        client.set_geoip_country_path(geoip_country_path);
+        client.set_geoip_asn_path(geoip_asn_path);
+        client.find_location(
+                new OrchestrateFindLocationCallback() {
+                    @Override
+                    public void callback(
+                            final Error error, final String asn,
+                            final String cc) {
+                        if (error.as_bool()) {
+                            System.out.println(error.reason());
+                            return;
+                        }
+                        System.out.println("ASN: " + cc);
+                        System.out.println("CC: " + asn);
+                        client.set_probe_asn(asn);
+                        client.set_probe_cc(cc);
+                        probe_cc = cc;
+                        probe_asn = asn;
+                    }
+                });
     }
 }
