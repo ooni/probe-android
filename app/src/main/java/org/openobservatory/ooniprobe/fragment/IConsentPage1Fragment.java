@@ -45,7 +45,7 @@ public class IConsentPage1Fragment extends Fragment {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                //mActivity.getWizard().navigateNext();
+                mActivity.getWizard().navigateNext();
             }
         }, 2000);
         return v;

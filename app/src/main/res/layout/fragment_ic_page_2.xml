@@ -2,6 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
     android:background="@color/color_blue5">
 
     <ImageView
@@ -26,6 +28,7 @@
         android:textSize="32sp"
         android:textColor="@color/color_white"
         android:gravity="center"
+        fontPath="fonts/FiraSans-Light.otf"
         android:layout_below="@+id/sharkLogo" />
 
     <LinearLayout
@@ -46,6 +49,7 @@
             android:text="@string/what_is_ooniprobe_1"
             android:textStyle="bold"
             android:textSize="18sp"
+            fontPath="fonts/FiraSans-SemiBold.otf"
             android:textColor="@color/color_white"
             android:gravity="center"  />
 
@@ -54,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="@string/what_is_ooniprobe_1"
+            android:text="@string/what_is_ooniprobe_2"
             android:textSize="18sp"
             android:textColor="@color/color_white"
             android:gravity="center"  />
@@ -78,6 +82,7 @@
             android:padding="10dp"
             android:textStyle="bold"
             android:text="@string/learn_more"
+            fontPath="fonts/FiraSans-SemiBold.otf"
             android:textColor="@color/color_blue5"
             android:background="@drawable/button_next" />
     </LinearLayout>

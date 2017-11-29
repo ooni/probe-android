@@ -14,7 +14,7 @@
         android:layout_marginTop="30dp"
         android:textSize="32sp"
         android:textColor="@color/color_white"
-        fontPath="webui/font-fira-sans-light.7dd0ad25580893d980bbf0475f88aead.otf"
+        fontPath="fonts/FiraSans-Light.otf"
         android:gravity="center" />
 
     <LinearLayout
