@@ -104,12 +104,11 @@ public class IConsentQuizFragment extends DialogFragment {
         else if (mActivity.QUESTION_NUMBER == 2) {
             mActivity.QUESTION_NUMBER = 3;
             dismiss();
-            //mActivity.getWizard().navigateNext();
+            mActivity.setNextPageSwipeLock(false);
         }
     }
 
     private void showWrong(){
-
         dismiss();
         FragmentManager fm = getFragmentManager();
         IConsentWrongAnswerFragment dFragment = new IConsentWrongAnswerFragment();

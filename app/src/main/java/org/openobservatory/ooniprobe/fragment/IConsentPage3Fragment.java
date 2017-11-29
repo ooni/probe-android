@@ -57,7 +57,7 @@ public class IConsentPage3Fragment extends Fragment {
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (mActivity.QUESTION_NUMBER < 3) {
-                    //mActivity.loadQuizFragment();
+                    mActivity.loadQuizFragment();
                     /*
                     FragmentManager fm = getFragmentManager();
                     IConsentQuizFragment dFragment = new IConsentQuizFragment();

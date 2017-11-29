@@ -51,6 +51,7 @@ public class InformedConsentActivity extends AppIntro {
         addSlide(new IConsentPage2Fragment());
         addSlide(new IConsentPage3Fragment());
         addSlide(new IConsentPage4Fragment());
+
         /*
         addSlide(IConsentPage1Fragment.instantiate(this, "page_1"));
         addSlide(IConsentPage2Fragment.instantiate(this, "page_2"));
@@ -129,4 +130,13 @@ public class InformedConsentActivity extends AppIntro {
         dFragment.show(fm, "quiz");
     }
 
+    @Override
+    public void onPageSelected(int position) {
+        if (position == 2 && QUESTION_NUMBER < 3) {
+            setNextPageSwipeLock(true);
+        }
+        else
+            setNextPageSwipeLock(false);
+
+    }
 }
