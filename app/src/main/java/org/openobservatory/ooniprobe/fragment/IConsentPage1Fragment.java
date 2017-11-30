@@ -18,7 +18,6 @@ import org.openobservatory.ooniprobe.activity.InformedConsentActivity;
 public class IConsentPage1Fragment extends Fragment {
 
     private InformedConsentActivity mActivity;
-    private AppCompatButton nextButton;
 
     @Override
     public void onAttach(Activity activity) {
@@ -42,12 +41,6 @@ public class IConsentPage1Fragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_ic_page_1, container, false);
-        nextButton = (AppCompatButton) v.findViewById(R.id.nextButton);
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //mActivity.getWizard().navigateNext();
-            }
-        });
         return v;
     }
 

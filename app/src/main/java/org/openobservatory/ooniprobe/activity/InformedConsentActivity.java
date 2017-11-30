@@ -29,11 +29,19 @@ public class InformedConsentActivity extends AppIntro {
     public static final int REQUEST_CODE = 1000;
     public static final int RESULT_CODE_COMPLETED = 1;
     public int QUESTION_NUMBER = 1;
-
+    private IConsentPage1Fragment fragment1;
+    private IConsentPage2Fragment fragment2;
+    private IConsentPage3Fragment fragment3;
+    private IConsentPage4Fragment fragment4;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        fragment1 = new IConsentPage1Fragment();
+        fragment2 = new IConsentPage2Fragment();
+        fragment3 = new IConsentPage3Fragment();
+        fragment4 = new IConsentPage4Fragment();
+
         //getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         //getSupportActionBar().hide();
 
@@ -47,10 +55,10 @@ public class InformedConsentActivity extends AppIntro {
         addSlide(thirdFragment);
         addSlide(fourthFragment);
 */
-        addSlide(new IConsentPage1Fragment());
-        addSlide(new IConsentPage2Fragment());
-        addSlide(new IConsentPage3Fragment());
-        addSlide(new IConsentPage4Fragment());
+        addSlide(fragment1);
+        addSlide(fragment2);
+        addSlide(fragment3);
+        addSlide(fragment4);
 
         /*
         addSlide(IConsentPage1Fragment.instantiate(this, "page_1"));
@@ -137,6 +145,9 @@ public class InformedConsentActivity extends AppIntro {
         }
         else
             setNextPageSwipeLock(false);
+    }
 
+    public void hideNextButton() {
+        fragment3.hideNextButton();
     }
 }

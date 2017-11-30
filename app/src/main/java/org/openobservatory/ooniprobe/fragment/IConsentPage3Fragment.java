@@ -3,6 +3,7 @@ package org.openobservatory.ooniprobe.fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -22,7 +23,6 @@ public class IConsentPage3Fragment extends Fragment {
 
     private InformedConsentActivity mActivity;
     private AppCompatButton nextButton;
-    //private AppCompatButton learn_moreButton;
 
     public static IConsentPage3Fragment create() {
         IConsentPage3Fragment atf = new IConsentPage3Fragment();
@@ -78,6 +78,10 @@ public class IConsentPage3Fragment extends Fragment {
             }
         });*/
         return v;
+    }
+
+    public void hideNextButton(){
+        nextButton.setVisibility(View.GONE);
     }
 
 }
