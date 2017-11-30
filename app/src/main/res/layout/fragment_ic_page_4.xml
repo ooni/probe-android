@@ -2,6 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
     android:background="@color/color_blue5">
 
     <TextView
@@ -11,6 +13,7 @@
         android:text="@string/default_settings"
         android:layout_marginTop="10dp"
         android:textSize="32sp"
+        fontPath="fonts/FiraSans-Light.otf"
         android:textColor="@color/color_white"
         android:gravity="center" />
 

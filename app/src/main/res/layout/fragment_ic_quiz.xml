@@ -2,6 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
     android:background="@drawable/dialog_quiz">
 
     <FrameLayout
@@ -18,10 +20,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/pop_quiz"
-                android:layout_marginTop="10dp"
+                android:layout_margin="10dp"
                 android:textSize="32sp"
                 android:textColor="@color/color_white"
+                fontPath="fonts/FiraSans-Light.otf"
                 android:gravity="center" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center_vertical"
+                android:background="@color/color_white" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -65,6 +74,7 @@
                     android:textSize="20sp"
                     android:padding="10dp"
                     android:textStyle="bold"
+                    fontPath="fonts/FiraSans-SemiBold.otf"
                     android:text="@string/_true"
                     android:textColor="@color/color_white"
                     android:background="@drawable/button_true" />
@@ -76,6 +86,7 @@
                     android:textSize="20sp"
                     android:padding="10dp"
                     android:textStyle="bold"
+                    fontPath="fonts/FiraSans-SemiBold.otf"
                     android:text="@string/_false"
                     android:textColor="@color/color_white"
                     android:background="@drawable/button_false" />

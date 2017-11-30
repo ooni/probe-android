@@ -24,7 +24,7 @@ public class ooniprobeApp extends Application {
         Fabric.with(this, new Crashlytics.Builder().core(core).build());
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("webui/font-fira-sans-bold.5310ca5fb41a915987df5663660da770.otf")
+                .setDefaultFontPath("fonts/FiraSans-Regular.otf")
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );
