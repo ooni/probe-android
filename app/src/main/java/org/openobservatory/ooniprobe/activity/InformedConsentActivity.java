@@ -1,6 +1,8 @@
 package org.openobservatory.ooniprobe.activity;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -85,6 +87,8 @@ public class InformedConsentActivity extends AppIntro {
         // Hide Skip/Done button.
         showSkipButton(false);
         //setProgressButtonEnabled(false);
+        setSkipText(getString(R.string.change));
+        setDoneText(getString(R.string.lets_go));
 
         // Turn vibration on and set intensity.
         // NOTE: you will probably need to ask VIBRATE permission in Manifest.
@@ -95,13 +99,13 @@ public class InformedConsentActivity extends AppIntro {
     @Override
     public void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
-        // Do something when users tap on Skip button.
+        //next();
     }
 
     @Override
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
-        // Do something when users tap on Done button.
+        //next();
     }
 
     @Override
@@ -145,9 +149,24 @@ public class InformedConsentActivity extends AppIntro {
         }
         else
             setNextPageSwipeLock(false);
+
+        if (position == 3)
+            showSkipButton(true);
+        else
+            showSkipButton(false);
     }
 
     public void hideNextButton() {
         fragment3.hideNextButton();
+    }
+
+    private void next() {
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
+        editor.putBoolean("include_ip", false);
+        editor.putBoolean("include_asn", true);
+        editor.putBoolean("include_country", true);
+        editor.putBoolean("upload_results", true);
+        editor.apply();
+        //mActivity.getWizard().navigateNext();
     }
 }

@@ -6,6 +6,16 @@
     tools:ignore="MissingPrefix"
     android:background="@color/color_blue5">
 
+    <ImageView
+        android:id="@+id/folderImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/folder"
+        android:padding="15dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp" />
+
     <TextView
         android:id="@+id/default_settings"
         android:layout_width="match_parent"
@@ -15,26 +25,15 @@
         android:textSize="32sp"
         fontPath="fonts/FiraSans-Light.otf"
         android:textColor="@color/color_white"
+        android:layout_below="@+id/folderImage"
         android:gravity="center" />
-
-    <ImageView
-        android:id="@+id/folderImage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/folder"
-        android:padding="15dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_below="@+id/default_settings" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="30dp"
         android:orientation="vertical"
-        android:layout_below="@+id/folderImage"
+        android:layout_below="@+id/default_settings"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
         <TextView
@@ -117,39 +116,5 @@
                 android:textSize="18sp"
                 android:textColor="@color/color_white" />
         </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:gravity = "center_horizontal"
-        android:id="@+id/nextButtonLayout"
-        android:weightSum="1.0"
-        android:layout_marginBottom="70dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/changeButton"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:layout_weight="0.4"
-            android:textSize="20sp"
-            android:padding="10dp"
-            android:textStyle="bold"
-            android:text="@string/change"
-            android:textColor="@color/color_white"
-            android:background="@drawable/button_left" />
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/nextButton"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:layout_weight="0.4"
-            android:textSize="20sp"
-            android:padding="10dp"
-            android:textStyle="bold"
-            android:text="@string/lets_go"
-            android:textColor="@color/color_blue5"
-            android:background="@drawable/button_right" />
     </LinearLayout>
 </RelativeLayout>

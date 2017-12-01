@@ -6,6 +6,16 @@
     tools:ignore="MissingPrefix"
     android:background="@color/color_blue5">
 
+    <ImageView
+        android:id="@+id/folderImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/folder"
+        android:padding="15dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp" />
+
     <TextView
         android:id="@+id/things_to_know"
         android:layout_width="match_parent"
@@ -15,26 +25,15 @@
         android:textSize="32sp"
         fontPath="fonts/FiraSans-Light.otf"
         android:textColor="@color/color_white"
+        android:layout_below="@+id/folderImage"
         android:gravity="center" />
-
-    <ImageView
-        android:id="@+id/folderImage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/folder"
-        android:padding="15dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_below="@+id/things_to_know" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="30dp"
         android:orientation="vertical"
-        android:layout_below="@+id/folderImage"
+        android:layout_below="@+id/things_to_know"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
