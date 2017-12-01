@@ -19,6 +19,7 @@ public class IConsentPage4Fragment extends Fragment {
 
     private InformedConsentActivity mActivity;
 
+
     public static IConsentPage4Fragment create() {
         IConsentPage4Fragment atf = new IConsentPage4Fragment();
         Bundle args = new Bundle();
