@@ -44,7 +44,8 @@ public class IConsentWrongAnswerFragment extends DialogFragment {
                     mActivity.QUESTION_NUMBER = 3;
                     //quizFragment.dismiss();
                     dismiss();
-                    mActivity.getWizard().navigateNext();
+                    mActivity.hideNextButton();
+                    mActivity.setNextPageSwipeLock(false);
                 }
             }
         });

@@ -10,117 +10,47 @@
         android:id="@+id/sharkLogo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:padding="15dp"
         android:src="@drawable/octopus_shark"
-        android:layout_marginTop="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_alignParentTop="true" />
+        android:padding="30dp" />
 
     <TextView
         android:id="@+id/what_is_ooniprobe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/what_is_ooniprobe"
-        android:layout_marginTop="10dp"
-        android:textSize="32sp"
-        android:textColor="@color/color_white"
-        android:gravity="center"
-        fontPath="fonts/FiraSans-Light.otf"
-        android:layout_below="@+id/sharkLogo" />
-
-    <LinearLayout
-        android:id="@+id/ooniprobe_descLayout"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:gravity = "center_horizontal"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:padding="30dp"
-        android:orientation="vertical"
-        android:layout_below="@+id/what_is_ooniprobe">
-        <TextView
-            android:id="@+id/what_is_ooniprobe1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="@string/what_is_ooniprobe_1"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            fontPath="fonts/FiraSans-SemiBold.otf"
-            android:textColor="@color/color_white"
-            android:gravity="center"  />
-
-        <TextView
-            android:id="@+id/what_is_ooniprobe2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="@string/what_is_ooniprobe_2"
-            android:textSize="18sp"
-            android:textColor="@color/color_white"
-            android:gravity="center"  />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:gravity = "center_horizontal"
-        android:id="@+id/lnextButtonLayout"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
-        android:weightSum="1.0">
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/nextButton"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="0.5"
-            android:textSize="20sp"
-            android:padding="10dp"
-            android:textStyle="bold"
-            android:text="@string/learn_more"
-            fontPath="fonts/FiraSans-SemiBold.otf"
-            android:textColor="@color/color_blue5"
-            android:background="@drawable/button_next" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="8dp"
-        android:id="@+id/linearLayout2"
-        android:gravity = "center_horizontal"
+        android:layout_below="@+id/sharkLogo"
         android:layout_marginBottom="10dp"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:weightSum="1.0">
-        <View
-            android:layout_width="6dp"
-            android:layout_height="6dp"
-            android:layout_gravity="center"
-            android:background="@drawable/circle" />
-        <View
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:layout_gravity="center_vertical"
-            android:background="@color/color_blue4"
-            android:layout_weight="0.2" />
-        <View
-            android:layout_width="6dp"
-            android:layout_height="6dp"
-            android:layout_gravity="center"
-            android:background="@drawable/circle_blue" />
-        <View
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:layout_gravity="center_vertical"
-            android:background="@color/color_blue4"
-            android:layout_weight="0.2" />
-        <View
-            android:layout_width="6dp"
-            android:layout_height="6dp"
-            android:layout_gravity="center"
-            android:background="@drawable/circle_blue" />
-    </LinearLayout>
+        android:textSize="32sp"
+        fontPath="fonts/FiraSans-Light.otf"
+        android:textColor="@color/color_white"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/what_is_ooniprobe1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/what_is_ooniprobe"
+        android:layout_marginBottom="10dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text="@string/what_is_ooniprobe_1"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/color_white"
+        android:gravity="center"  />
+
+    <TextView
+        android:id="@+id/what_is_ooniprobe2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/what_is_ooniprobe1"
+        android:layout_marginBottom="10dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text="@string/what_is_ooniprobe_1"
+        android:textSize="18sp"
+        android:textColor="@color/color_white"
+        android:gravity="center"  />
+
 </RelativeLayout>

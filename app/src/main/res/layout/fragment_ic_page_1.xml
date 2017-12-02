@@ -35,7 +35,6 @@
             android:adjustViewBounds="true" />
     </LinearLayout>
 
-
     <ImageView
         android:id="@+id/octopus_logo"
         android:layout_width="match_parent"

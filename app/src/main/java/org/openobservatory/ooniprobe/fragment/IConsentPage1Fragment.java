@@ -11,13 +11,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.paolorotolo.appintro.AppIntroFragment;
+
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.InformedConsentActivity;
 
 public class IConsentPage1Fragment extends Fragment {
 
     private InformedConsentActivity mActivity;
-    private AppCompatButton nextButton;
 
     @Override
     public void onAttach(Activity activity) {
@@ -41,13 +42,6 @@ public class IConsentPage1Fragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_ic_page_1, container, false);
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mActivity.getWizard().navigateNext();
-            }
-        }, 2000);
         return v;
     }
 
