@@ -34,13 +34,15 @@
         android:padding="30dp"
         android:orientation="vertical"
         android:layout_below="@+id/things_to_know"
+        android:layout_above="@+id/lnextButtonLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            >
 
             <View
                 android:layout_width="20dp"
