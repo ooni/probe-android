@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/folderImage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="139dp"
+        android:layout_height="104dp"
         android:layout_centerHorizontal="true"
         android:src="@drawable/folder"
         android:padding="15dp"
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:text="@string/things_to_know"
         android:layout_marginTop="10dp"
-        android:textSize="32sp"
+        android:textSize="30sp"
         fontPath="fonts/FiraSans-Light.otf"
         android:textColor="@color/color_white"
         android:layout_below="@+id/folderImage"
@@ -31,7 +31,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="30dp"
+        android:padding="15dp"
         android:orientation="vertical"
         android:layout_below="@+id/things_to_know"
         android:layout_above="@+id/lnextButtonLayout"
@@ -51,10 +51,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:text="@string/things_to_know_1"
                 android:textStyle="bold"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textColor="@color/color_white" />
         </LinearLayout>
         <LinearLayout
@@ -68,10 +68,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:text="@string/things_to_know_2"
                 android:textStyle="bold"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textColor="@color/color_white" />
         </LinearLayout>
         <LinearLayout
@@ -85,10 +85,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:text="@string/things_to_know_3"
                 android:textStyle="bold"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textColor="@color/color_white" />
         </LinearLayout>
         <LinearLayout
@@ -102,10 +102,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:text="@string/things_to_know_4"
                 android:textStyle="bold"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textColor="@color/color_white" />
         </LinearLayout>
 
