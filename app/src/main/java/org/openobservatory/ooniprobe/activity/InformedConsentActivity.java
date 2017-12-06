@@ -44,6 +44,9 @@ public class InformedConsentActivity extends AppIntro {
         fragment3 = new IConsentPage3Fragment();
         fragment4 = new IConsentPage4Fragment();
 
+        TextView separator = findViewById(R.id.bottom_separator);
+        separator.setVisibility(View.GONE);
+
         //getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         //getSupportActionBar().hide();
 
