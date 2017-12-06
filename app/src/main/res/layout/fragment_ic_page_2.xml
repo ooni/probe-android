@@ -10,6 +10,7 @@
         android:id="@+id/sharkLogo"
         android:layout_width="281dp"
         android:layout_height="170dp"
+        android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
         android:src="@drawable/octopus_shark"
         android:padding="30dp" />

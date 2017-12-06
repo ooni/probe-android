@@ -13,6 +13,7 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/folder"
         android:padding="15dp"
+        android:layout_marginTop="8dp"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp" />
 
@@ -21,7 +22,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/things_to_know"
-        android:layout_marginTop="10dp"
         android:textSize="30sp"
         fontPath="fonts/FiraSans-Light.otf"
         android:textColor="@color/color_white"

@@ -4,11 +4,9 @@
     <!-- Active strings -->
         <!-- Onboarding -->
     <string name="welcome_to">Welcome to</string>
-    <string name="get_started">Get Started</string>
     <string name="what_is_ooniprobe">What is OONI Probe?</string>
     <string name="what_is_ooniprobe_1">OONI Probe is free and open source software that enables you to examine internet censorship in your network.</string>
     <string name="what_is_ooniprobe_2">The data that you can collect through this app can serve as evidence of censorship events.</string>
-    <string name="learn_more">Learn more</string>
     <string name="things_to_know">Things to know</string>
     <string name="things_to_know_1">OONI data is openly published and will include your network information.</string>
     <string name="things_to_know_2">Anyone monitoring your internet activity (e.g governments or ISP) will know that you are running OONI Probe.</string>
