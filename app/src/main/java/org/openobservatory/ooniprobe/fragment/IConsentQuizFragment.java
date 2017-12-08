@@ -120,6 +120,7 @@ public class IConsentQuizFragment extends DialogFragment {
             dismiss();
             mActivity.hideNextButton();
             mActivity.setNextPageSwipeLock(false);
+            mActivity.getPager().setCurrentItem(4);
         }
     }
 
