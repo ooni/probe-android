@@ -8,6 +8,8 @@ import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.InformedConsentActivity;
@@ -17,6 +19,16 @@ public class IConsentWrongAnswerFragment extends DialogFragment {
     private AppCompatButton continueButton;
     private AppCompatButton backButton;
     public IConsentQuizFragment quizFragment;
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Window window = getDialog().getWindow();
+        WindowManager.LayoutParams windowParams = window.getAttributes();
+        windowParams.dimAmount = 0.90f;
+        windowParams.flags |= WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+        window.setAttributes(windowParams);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
