@@ -33,7 +33,6 @@ public class IConsentWrongAnswerFragment extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setStyle(STYLE_NO_FRAME, android.R.style.Theme_Holo_Light);
     }
 
     @Override
@@ -48,13 +47,11 @@ public class IConsentWrongAnswerFragment extends DialogFragment {
             public void onClick(View v) {
                 if (mActivity.QUESTION_NUMBER == 1) {
                     mActivity.QUESTION_NUMBER = 2;
-                    //quizFragment.loadView();
                     dismiss();
                     mActivity.loadQuizFragment();
                 }
                 else {
                     mActivity.QUESTION_NUMBER = 3;
-                    //quizFragment.dismiss();
                     dismiss();
                     mActivity.hideNextButton();
                     mActivity.setNextPageSwipeLock(false);
@@ -66,7 +63,6 @@ public class IConsentWrongAnswerFragment extends DialogFragment {
         backButton = v.findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //quizFragment.dismiss();
                 dismiss();
             }
         });

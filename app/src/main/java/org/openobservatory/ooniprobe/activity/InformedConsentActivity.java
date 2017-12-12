@@ -7,14 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.View;
-import android.view.Window;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.paolorotolo.appintro.AppIntro;
-import com.github.paolorotolo.appintro.AppIntroFragment;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.IConsentPage1Fragment;
@@ -44,64 +38,22 @@ public class InformedConsentActivity extends AppIntro {
         fragment3 = new IConsentPage3Fragment();
         fragment4 = new IConsentPage4Fragment();
 
-        TextView separator = findViewById(R.id.bottom_separator);
-        separator.setVisibility(View.GONE);
-
-        //getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
-        //getSupportActionBar().hide();
-
-        // Note here that we DO NOT use setContentView();
-        //setContentView(R.layout.activity_informed_consent);
-
-        // Add your slide fragments here.
-        // AppIntro will automatically generate the dots indicator and buttons.
-        /*addSlide(firstFragment);
-        addSlide(secondFragment);
-        addSlide(thirdFragment);
-        addSlide(fourthFragment);
-*/
         addSlide(fragment1);
         addSlide(fragment2);
         addSlide(fragment3);
         addSlide(fragment4);
 
-        /*
-        addSlide(IConsentPage1Fragment.instantiate(this, "page_1"));
-        addSlide(IConsentPage2Fragment.instantiate(this, "page_2"));
-        addSlide(IConsentPage3Fragment.instantiate(this, "page_3"));
-        addSlide(IConsentPage4Fragment.instantiate(this, "page_4"));
-*/
-
-/*
-        addSlide(SampleSlide.newInstance(R.layout.fragment_ic_page_1));
-        addSlide(SampleSlide.newInstance(R.layout.fragment_ic_page_2));
-        addSlide(SampleSlide.newInstance(R.layout.fragment_ic_page_3));
-        addSlide(SampleSlide.newInstance(R.layout.fragment_ic_page_4));
-*/
-        // Instead of fragments, you can also use our default slide
-        // Just set a title, description, background and image. AppIntro will do the rest.
-        //addSlide(AppIntroFragment.newInstance(title, description, image, backgroundColor));
-
-        // OPTIONAL METHODS
-        // Override bar/separator color.
-        //setBarColor(Color.parseColor("#3F51B5"));
-        //setSeparatorColor(Color.parseColor("#2196F3"));
-
-        // Hide Skip/Done button.
+        setSeparatorColor(getResources().getColor(android.R.color.transparent));
         showSkipButton(false);
-        //setProgressButtonEnabled(false);
         setSkipText(getString(R.string.change));
         setDoneText(getString(R.string.lets_go));
-
-        // Turn vibration on and set intensity.
-        // NOTE: you will probably need to ask VIBRATE permission in Manifest.
-        //setVibrate(true);
-        //setVibrateIntensity(30);
     }
 
     @Override
     public void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
+        //To @sbs: shouln't be possible yet to enter the app,
+        //this code will remain commented until the dashboard will be done.
         //next();
     }
 
@@ -114,23 +66,11 @@ public class InformedConsentActivity extends AppIntro {
     @Override
     public void onSlideChanged(@Nullable Fragment oldFragment, @Nullable Fragment newFragment) {
         super.onSlideChanged(oldFragment, newFragment);
-        // Do something when the slide changes.
     }
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-    }
-
-    //TODO Remove: Probably deprecated
-    public void showToast(int string, boolean success){
-        Toast toast = Toast.makeText(this, string, Toast.LENGTH_LONG);
-        View view = toast.getView();
-        view.setBackgroundResource(success ? R.drawable.success_toast_bg : R.drawable.error_toast_bg);
-        TextView text = (TextView) view.findViewById(android.R.id.message);
-        text.setGravity(Gravity.CENTER);;
-        text.setTextColor(getResources().getColor(R.color.color_off_white));
-        /*here you can do anything with text*/
-        toast.show();
     }
 
     @Override
@@ -170,6 +110,5 @@ public class InformedConsentActivity extends AppIntro {
         editor.putBoolean("include_country", true);
         editor.putBoolean("upload_results", true);
         editor.apply();
-        //mActivity.getWizard().navigateNext();
     }
 }

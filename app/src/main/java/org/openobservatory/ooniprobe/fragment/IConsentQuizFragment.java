@@ -2,14 +2,11 @@ package org.openobservatory.ooniprobe.fragment;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +29,7 @@ public class IConsentQuizFragment extends DialogFragment {
     private TextView questionText;
     private LottieAnimationView animationView;
 
-    //make background darker, from https://stackoverflow.com/questions/13822842/dialogfragment-with-clear-background-not-dimmed
+    //make background darker, from https://stackoverflow.com/questions/13822842/
     @Override
     public void onStart() {
         super.onStart();
@@ -94,8 +91,7 @@ public class IConsentQuizFragment extends DialogFragment {
             @Override
             public void onAnimationEnd(Animator animation) {
                 next(answer);
-                //if (answer)
-                    removeAnim();
+                removeAnim();
                 animationView.removeAnimatorListener(this);
             }
         });
@@ -130,40 +126,6 @@ public class IConsentQuizFragment extends DialogFragment {
         IConsentWrongAnswerFragment dFragment = new IConsentWrongAnswerFragment();
         dFragment.mActivity = mActivity;
         dFragment.quizFragment = this;
-        //questo da(va) problemi nel dismiss
         dFragment.show(fm, "wrong_answer");
-
-        FragmentTransaction ft = getChildFragmentManager().beginTransaction();
-        //appear on centre of other fragment
-        //ft.add(dFragment, "wrong_answer");
-
-        //fade on top of the other fragment
-        //ft.replace(R.id.fragmentHolder, dFragment, null);
-        //ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        //ft.commit();
-
-        //ft.addToBackStack(null);
-/*
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                FragmentManager fm = getFragmentManager();
-                IConsentWrongAnswerFragment dFragment = new IConsentWrongAnswerFragment();
-                dFragment.mActivity = mActivity;
-                //dFragment.show(ft, "wrong_answer");
-                ft.add(dFragment, "wrong_answer");
-                ft.commit();
-
-
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                Fragment prev = getFragmentManager().findFragmentByTag("quiz");
-                if (prev != null) {
-                    ft.remove(prev);
-                }
-                ft.addToBackStack(null);
-
-                // Create and show the dialog.
-                DialogFragment newFragment = MyDialogFragment.newInstance(mStackLevel);
-                newFragment.show(ft, "dialog");
-                */
-
     }
 }
