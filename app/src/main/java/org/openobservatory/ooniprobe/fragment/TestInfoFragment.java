@@ -74,7 +74,7 @@ public class TestInfoFragment extends Fragment {
         runButton.setOnClickListener(
                 new ImageButton.OnClickListener() {
                     public void onClick(View v) {
-                        TestData.doNetworkMeasurements(mActivity, test_name, null);
+                        TestData.doNetworkMeasurements(mActivity, new NetworkMeasurement(mActivity, test_name));
                     }
                 }
         );

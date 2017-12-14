@@ -122,6 +122,9 @@ public class NotificationService {
                         OrchestrateAuth auth = new OrchestrateAuth();
                         client.set_probe_asn(probe_asn);
                         client.set_probe_cc(probe_cc);
+                        TestLists.getInstance(context).probe_cc = probe_cc;
+                        TestLists.getInstance(context).probe_asn = probe_asn;
+
                         Error err = auth.load(auth_secret_file);
                         if (err.as_bool()) {
                             client.register_probe(

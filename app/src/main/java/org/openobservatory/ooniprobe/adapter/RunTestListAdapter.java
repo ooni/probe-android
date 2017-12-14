@@ -71,7 +71,7 @@ public class RunTestListAdapter extends RecyclerView.Adapter<RunTestListAdapter.
         holder.runTest.setOnClickListener(
                 new ImageButton.OnClickListener() {
                     public void onClick(View v) {
-                        TestData.doNetworkMeasurements(mActivity, key, null);
+                        TestData.doNetworkMeasurements(mActivity, new NetworkMeasurement(mActivity, key));
                     }
                 }
         );
