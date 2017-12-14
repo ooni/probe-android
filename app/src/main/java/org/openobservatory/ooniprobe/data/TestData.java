@@ -374,7 +374,6 @@ public class TestData extends Observable {
     }
 
     //TODO use DEFINE instead of 0,1,2
-    
     /*
      on_entry method for http invalid request line test
      if the "tampering" key exists and is null then anomaly will be set to 1 (orange)

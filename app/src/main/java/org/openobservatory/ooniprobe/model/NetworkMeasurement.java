@@ -48,7 +48,13 @@ public class NetworkMeasurement {
                 return context.getString(R.string.ndt);
             case OONITests.DASH:
                 return context.getString(R.string.dash);
-             default:
+            case OONITests.WHATSAPP:
+                return context.getString(R.string.whatsapp);
+            case OONITests.TELEGRAM:
+                return context.getString(R.string.telegram);
+            case OONITests.FACEBOOK_MESSENGER:
+                return context.getString(R.string.facebook_messenger);
+            default:
                 return "";
         }
     }
@@ -67,6 +73,12 @@ public class NetworkMeasurement {
                 return context.getString(R.string.ndt_desc);
             case OONITests.DASH:
                 return context.getString(R.string.dash_desc);
+            case OONITests.WHATSAPP:
+                return context.getString(R.string.whatsapp_desc);
+            case OONITests.TELEGRAM:
+                return context.getString(R.string.telegram_desc);
+            case OONITests.FACEBOOK_MESSENGER:
+                return context.getString(R.string.facebook_messenger_desc);
             default:
                 return "";
         }
@@ -116,6 +128,27 @@ public class NetworkMeasurement {
                     return R.drawable.dash_warning;
                 else
                     return R.drawable.dash_no;
+            case OONITests.WHATSAPP:
+                if (anomaly == 0)
+                    return R.drawable.whatsapp;
+                else if (anomaly == 1)
+                    return R.drawable.whatsapp_warning;
+                else
+                    return R.drawable.whatsapp_no;
+            case OONITests.TELEGRAM:
+                if (anomaly == 0)
+                    return R.drawable.telegram;
+                else if (anomaly == 1)
+                    return R.drawable.telegram_warning;
+                else
+                    return R.drawable.telegram_no;
+            case OONITests.FACEBOOK_MESSENGER:
+                if (anomaly == 0)
+                    return R.drawable.facebook_messenger;
+                else if (anomaly == 1)
+                    return R.drawable.facebook_messenger_warning;
+                else
+                    return R.drawable.facebook_messenger_no;
             default:
                 return 0;
         }
@@ -133,6 +166,12 @@ public class NetworkMeasurement {
                 return R.drawable.ndt_big;
             case OONITests.DASH:
                 return R.drawable.dash_big;
+            case OONITests.WHATSAPP:
+                return R.drawable.whatsapp_big;
+            case OONITests.TELEGRAM:
+                return R.drawable.telegram_big;
+            case OONITests.FACEBOOK_MESSENGER:
+                return R.drawable.facebook_messenger_big;
             default:
                 return 0;
         }
