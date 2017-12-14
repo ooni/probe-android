@@ -8,6 +8,8 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
 
+import org.openobservatory.ooniprobe.utils.TestLists;
+
 import io.fabric.sdk.android.Fabric;
 
 public class ooniprobeApp extends Application {
@@ -22,6 +24,7 @@ public class ooniprobeApp extends Application {
         final Boolean send_crash = preferences.getBoolean("send_crash", true);
         CrashlyticsCore core = new CrashlyticsCore.Builder().disabled(send_crash).build();
         Fabric.with(this, new Crashlytics.Builder().core(core).build());
+        TestLists.getInstance(this).updateCC_async();
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                 .setDefaultFontPath("webui/font-fira-sans-bold.5310ca5fb41a915987df5663660da770.otf")

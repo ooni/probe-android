@@ -1,11 +1,21 @@
 package org.openobservatory.ooniprobe.model;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringDef;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.openobservatory.measurement_kit.nettests.BaseTest;
+import org.openobservatory.measurement_kit.nettests.DashTest;
+import org.openobservatory.measurement_kit.nettests.HttpHeaderFieldManipulationTest;
+import org.openobservatory.measurement_kit.nettests.HttpInvalidRequestLineTest;
+import org.openobservatory.measurement_kit.nettests.NdtTest;
+import org.openobservatory.measurement_kit.nettests.WebConnectivityTest;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.utils.TestLists;
+
+import java.util.ArrayList;
 
 public class NetworkMeasurement {
     public String testName = "";
@@ -18,15 +28,58 @@ public class NetworkMeasurement {
     public boolean running = false;
     public boolean viewed = false;
     public int anomaly = 0;
+    public transient BaseTest test;
 
-    public NetworkMeasurement(String name) {
+    public NetworkMeasurement(Context context, String name) {
         this.testName = name;
         this.test_id = System.currentTimeMillis();
-        this.log_file = "/test-"+ test_id +".log";
-        this.json_file = "/test-"+ test_id +".json";
+        this.log_file = "/test-" + test_id + ".log";
+        this.json_file = "/test-" + test_id + ".json";
         this.running = true;
         this.viewed = false;
         this.anomaly = 0;
+        if (testName.compareTo(OONITests.HTTP_INVALID_REQUEST_LINE) == 0)
+            test = new HttpInvalidRequestLineTest();
+        else if (testName.compareTo(OONITests.HTTP_HEADER_FIELD_MANIPULATION) == 0)
+            test = new HttpHeaderFieldManipulationTest();
+        else if (testName.compareTo(OONITests.WEB_CONNECTIVITY) == 0) {
+            test = new WebConnectivityTest();
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+            String max_runtime = preferences.getString("max_runtime", OONITests.MAX_RUNTIME);
+            test.set_options("max_runtime", max_runtime);
+            ArrayList<String> urls = TestLists.getInstance(context).getUrls();
+            for (int i = 0; i < urls.size(); i++)
+                test.add_input(urls.get(i));
+            System.out.println(urls);
+        }
+        else if (testName.compareTo(OONITests.NDT) == 0)
+            test = new NdtTest();
+        else if (testName.compareTo(OONITests.DASH) == 0)
+            test = new DashTest();
+    }
+
+    //Test ran from uri scheme screen
+    public NetworkMeasurement(Context context, String name, ArrayList<String>urls) {
+        this.testName = name;
+        this.test_id = System.currentTimeMillis();
+        this.log_file = "/test-" + test_id + ".log";
+        this.json_file = "/test-" + test_id + ".json";
+        this.running = true;
+        this.viewed = false;
+        this.anomaly = 0;
+        if (testName.compareTo(OONITests.HTTP_INVALID_REQUEST_LINE) == 0)
+            test = new HttpInvalidRequestLineTest();
+        else if (testName.compareTo(OONITests.HTTP_HEADER_FIELD_MANIPULATION) == 0)
+            test = new HttpHeaderFieldManipulationTest();
+        else if (testName.compareTo(OONITests.WEB_CONNECTIVITY) == 0) {
+            test = new WebConnectivityTest();
+            for (int i = 0; i < urls.size(); i++)
+                test.add_input(urls.get(i));
+        }
+        else if (testName.compareTo(OONITests.NDT) == 0)
+            test = new NdtTest();
+        else if (testName.compareTo(OONITests.DASH) == 0)
+            test = new DashTest();
     }
 
     @NonNull
