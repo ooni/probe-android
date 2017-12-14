@@ -31,5 +31,6 @@ public class ooniprobeApp extends Application {
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );
+        FirebaseApp.initializeApp(this);
     }
 }
