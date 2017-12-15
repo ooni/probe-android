@@ -245,4 +245,50 @@ public class NetworkMeasurement {
         }
     }
 
+    public static String getTestUrl(String name){
+        switch (name) {
+            case OONITests.HTTP_INVALID_REQUEST_LINE:
+                return "https://ooni.torproject.org/nettest/http-invalid-request-line/";
+            case OONITests.NDT:
+                return "https://ooni.torproject.org/nettest/ndt/";
+            case OONITests.WEB_CONNECTIVITY:
+                return "https://ooni.torproject.org/nettest/web-connectivity/";
+            case OONITests.HTTP_HEADER_FIELD_MANIPULATION:
+                return "https://ooni.torproject.org/nettest/http-header-field-manipulation/";
+            case OONITests.DASH:
+                return "https://ooni.torproject.org/nettest/dash/";
+            case OONITests.WHATSAPP:
+                return "https://ooni.torproject.org/nettest/whatsapp/";
+            case OONITests.TELEGRAM:
+                return "https://ooni.torproject.org/nettest/telegram/";
+            case OONITests.FACEBOOK_MESSENGER:
+                return "https://ooni.torproject.org/nettest/facebook-messenger/";
+            default:
+                return "";
+        }
+    }
+
+    public static String getTestDesc(Context context, String name) {
+        switch (name) {
+            case OONITests.WEB_CONNECTIVITY:
+                return context.getString(R.string.web_connectivity_longdesc);
+            case OONITests.HTTP_INVALID_REQUEST_LINE:
+                return context.getString(R.string.http_invalid_request_line_longdesc);
+            case OONITests.HTTP_HEADER_FIELD_MANIPULATION:
+                return context.getString(R.string.http_header_field_manipulation_longdesc);
+            case OONITests.NDT:
+                return context.getString(R.string.ndt_longdesc);
+            case OONITests.DASH:
+                return context.getString(R.string.dash_longdesc);
+            case OONITests.WHATSAPP:
+                return context.getString(R.string.whatsapp_longdesc);
+            case OONITests.TELEGRAM:
+                return context.getString(R.string.telegram_longdesc);
+            case OONITests.FACEBOOK_MESSENGER:
+                return context.getString(R.string.facebook_messenger_longdesc);
+
+            default:
+                return "";
+        }
+    }
 }
