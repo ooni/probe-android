@@ -47,6 +47,9 @@ public class TestData extends Observable {
             availableTests.put(OONITests.HTTP_HEADER_FIELD_MANIPULATION, true);
             availableTests.put(OONITests.NDT, true);
             availableTests.put(OONITests.DASH, true);
+            availableTests.put(OONITests.WHATSAPP, true);
+            availableTests.put(OONITests.TELEGRAM, true);
+            availableTests.put(OONITests.FACEBOOK_MESSENGER, true);
         }
         else if (activity == null && a != null){
             activity = a;
@@ -164,7 +167,38 @@ public class TestData extends Observable {
                                             }
                                         })
                                         .run();
-                            } else {
+                            }
+                            else if (currentTest.testName.compareTo(OONITests.WHATSAPP) == 0) {
+                                Log.v(TAG, "running whatsapp test...");
+                                currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
+                                    @Override
+                                    public void callback(String entry) {
+                                        setAnomaly_whatsapp(entry, currentTest);
+                                    }
+                                })
+                                        .run();
+                            }
+                            else if (currentTest.testName.compareTo(OONITests.TELEGRAM) == 0) {
+                                Log.v(TAG, "running telegram test...");
+                                currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
+                                    @Override
+                                    public void callback(String entry) {
+                                        setAnomaly_telegram(entry, currentTest);
+                                    }
+                                })
+                                        .run();
+                            }
+                            else if (currentTest.testName.compareTo(OONITests.FACEBOOK_MESSENGER) == 0) {
+                                Log.v(TAG, "running facebook_messenger test...");
+                                currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
+                                    @Override
+                                    public void callback(String entry) {
+                                        setAnomaly_facebook_messenger(entry, currentTest);
+                                    }
+                                })
+                                        .run();
+                            }
+                            else {
                                 throw new UnknownTest(currentTest.testName);
                             }
                             Log.v(TAG, "running test... done");
@@ -312,6 +346,113 @@ public class TestData extends Observable {
         } catch (JSONException e) {
         }
     }
+
+    /*
+     whatsapp: red if "whatsapp_endpoints_status" or "whatsapp_web_status" or "registration_server" are "blocked"
+     docs: https://github.com/TheTorProject/ooni-spec/blob/master/test-specs/ts-018-whatsapp.md#semantics
+     */
+    public static void setAnomaly_whatsapp(String entry, NetworkMeasurement test) {
+        if(!test.entry) {
+            TestStorage.setEntry(context, test);
+            test.entry = true;
+        }
+        try {
+            int anomaly = OONITests.ANOMALY_GREEN;
+            JSONObject jsonObj = new JSONObject(entry);
+            String keys[] = {"whatsapp_endpoints_status",
+                    "whatsapp_web_status",
+                    "registration_server_status"};
+            for (String key: keys)
+            {
+                String value = jsonObj.getString(key);
+                if (value == null)
+                    anomaly = OONITests.ANOMALY_ORANGE;
+                else if (value.equals("blocked"))
+                    anomaly = OONITests.ANOMALY_RED;
+            }
+            if (test.anomaly < anomaly) {
+                test.anomaly = anomaly;
+                TestStorage.setAnomaly(context, test.test_id, anomaly);
+            }
+        } catch (JSONException e) {
+            System.out.println("JSONException "+ e);
+        }
+    }
+
+    /*
+    for telegram: red if either "telegram_http_blocking" or "telegram_tcp_blocking" is true, OR if ""telegram_web_status" is "blocked"
+    the "*_failure" keys for telegram and whatsapp might indicate a test failure / anomaly
+    docs: https://github.com/TheTorProject/ooni-spec/blob/master/test-specs/ts-020-telegram.md#semantics
+    */
+    public static void setAnomaly_telegram(String entry, NetworkMeasurement test) {
+        if(!test.entry) {
+            TestStorage.setEntry(context, test);
+            test.entry = true;
+        }
+        try {
+            int anomaly = OONITests.ANOMALY_GREEN;
+            JSONObject jsonObj = new JSONObject(entry);
+            String keys[] = {"telegram_http_blocking",
+                    "telegram_tcp_blocking"};
+            for (String key: keys)
+            {
+                Object value = jsonObj.get(key);
+                Boolean boolvalue = jsonObj.getBoolean(key);
+                if (value == null)
+                    anomaly = OONITests.ANOMALY_ORANGE;
+                else if (boolvalue)
+                    anomaly = OONITests.ANOMALY_RED;
+            }
+            if (jsonObj.has("telegram_web_status")) {
+                String telegram_web_status = jsonObj.getString("telegram_web_status");
+                if (telegram_web_status == null)
+                    anomaly = OONITests.ANOMALY_ORANGE;
+                else if (telegram_web_status.equals("blocked"))
+                    anomaly = OONITests.ANOMALY_RED;
+            }
+            if (test.anomaly < anomaly) {
+                test.anomaly = anomaly;
+                TestStorage.setAnomaly(context, test.test_id, anomaly);
+            }
+        } catch (JSONException e) {
+        }
+
+
+    }
+
+    /*
+    FB: red blocking if either "facebook_tcp_blocking" or "facebook_dns_blocking" is true
+    docs: https://github.com/TheTorProject/ooni-spec/blob/master/test-specs/ts-019-facebook-messenger.md#semantics
+    */
+    public static void setAnomaly_facebook_messenger(String entry, NetworkMeasurement test) {
+        if(!test.entry) {
+            TestStorage.setEntry(context, test);
+            test.entry = true;
+        }
+        try {
+            int anomaly = OONITests.ANOMALY_GREEN;
+            JSONObject jsonObj = new JSONObject(entry);
+            String keys[] = {"facebook_tcp_blocking",
+                    "facebook_dns_blocking"};
+            for (String key: keys)
+            {
+                Object value = jsonObj.get(key);
+                Boolean boolvalue = jsonObj.getBoolean(key);
+                if (value == null)
+                    anomaly = OONITests.ANOMALY_ORANGE;
+                else if (boolvalue)
+                    anomaly = OONITests.ANOMALY_RED;
+            }
+            if (test.anomaly < anomaly) {
+                test.anomaly = anomaly;
+                TestStorage.setAnomaly(context, test.test_id, anomaly);
+            }
+        } catch (JSONException e) {
+            System.out.println("JSONException "+ e);
+        }
+    }
+
+
 
     @Override
     public void notifyObservers(Object type) {

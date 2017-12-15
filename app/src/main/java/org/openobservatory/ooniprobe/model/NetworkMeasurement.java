@@ -8,10 +8,13 @@ import android.support.annotation.StringDef;
 
 import org.openobservatory.measurement_kit.nettests.BaseTest;
 import org.openobservatory.measurement_kit.nettests.DashTest;
+import org.openobservatory.measurement_kit.nettests.FacebookMessengerTest;
 import org.openobservatory.measurement_kit.nettests.HttpHeaderFieldManipulationTest;
 import org.openobservatory.measurement_kit.nettests.HttpInvalidRequestLineTest;
 import org.openobservatory.measurement_kit.nettests.NdtTest;
+import org.openobservatory.measurement_kit.nettests.TelegramTest;
 import org.openobservatory.measurement_kit.nettests.WebConnectivityTest;
+import org.openobservatory.measurement_kit.nettests.WhatsappTest;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.utils.TestLists;
 
@@ -56,6 +59,12 @@ public class NetworkMeasurement {
             test = new NdtTest();
         else if (testName.compareTo(OONITests.DASH) == 0)
             test = new DashTest();
+        else if (testName.compareTo(OONITests.WHATSAPP) == 0)
+            test = new WhatsappTest();
+        else if (testName.compareTo(OONITests.TELEGRAM) == 0)
+            test = new TelegramTest();
+        else if (testName.compareTo(OONITests.FACEBOOK_MESSENGER) == 0)
+            test = new FacebookMessengerTest();
     }
 
     //Test ran from uri scheme screen
@@ -80,6 +89,12 @@ public class NetworkMeasurement {
             test = new NdtTest();
         else if (testName.compareTo(OONITests.DASH) == 0)
             test = new DashTest();
+        else if (testName.compareTo(OONITests.WHATSAPP) == 0)
+            test = new WhatsappTest();
+        else if (testName.compareTo(OONITests.TELEGRAM) == 0)
+            test = new TelegramTest();
+        else if (testName.compareTo(OONITests.FACEBOOK_MESSENGER) == 0)
+            test = new FacebookMessengerTest();
     }
 
     @NonNull

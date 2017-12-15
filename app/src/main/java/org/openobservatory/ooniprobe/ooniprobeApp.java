@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
+import com.google.firebase.FirebaseApp;
 
 import org.openobservatory.ooniprobe.utils.TestLists;
 
