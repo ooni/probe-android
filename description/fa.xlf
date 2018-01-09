@@ -6,7 +6,7 @@
     <body>
       <trans-unit id="title-android" maxwidth="30" size-unit="char">
         <source>ooniprobe</source>
-        <target>ooniprobe</target>
+        <target>اونی‌پراب</target>
         <note from="developer">This is limited by Google to 30 characters</note>
       </trans-unit>
       <trans-unit id="shortdescription-android" maxwidth="80" size-unit="char">
@@ -21,10 +21,12 @@
       </trans-unit>
       <trans-unit id="subtitle-ios" maxwidth="30" size-unit="char">
         <source>Measure Internet Censorship</source>
+        <target>اندازه گیری سانسور اینترنت</target>
         <note from="developer">This is limited by Apple to 30 characters</note>
       </trans-unit>
       <trans-unit id="promotionaltext-ios" maxwidth="170" size-unit="char">
         <source>Collect evidence of Internet censorship. Measure the speed and performance of your network.</source>
+        <target>شواهد سانسور اینترنت را جمع آوری کنید. سرعت و عملکرد شبکه ی خود را اندازه بگیرید.</target>
         <note from="developer">This is limited by Apple to 170 characters</note>
       </trans-unit>
       <trans-unit id="intro">
@@ -41,7 +43,7 @@
       </trans-unit>
       <trans-unit id="intro4">
         <source>Since 2012, OONI has collected millions of network measurements across more than 190 countries, shedding light on multiple cases of network interference. By running ooniprobe, you will help increase transparency of Internet censorship around the world.</source>
-        <target>از سال 2012، OONI میلیون‌ها تست سنجش شبکه را از بیش از 190 کشور در سراسر جهان جمع آوری کرده است. این سنجش‌ها نمونه‌ای بارز از سانسور و دستکاری ترافیک اینترنتی به شمار می‌آیند.</target>
+        <target>از سال ۲۰۱۲، OONI میلیون‌ها تست سنجش شبکه را از بیش از 190 کشور در سراسر جهان جمع آوری کرده است. این سنجش‌ها نمونه‌ای بارز از سانسور و دستکاری ترافیک اینترنتی به شمار می‌آیند.</target>
       </trans-unit>
       <trans-unit id="evidence-title">
         <source>Collecting evidence of Internet censorship</source>
@@ -97,7 +99,7 @@
 
       <trans-unit id="screenshot1">
         <source>Detect Internet censorship and test your network's speed and performance</source>
-        <target>تشخیص سانسور اینترنت و تست سرعت و عملکرد شبکه خود</target>
+        <target>تشخیص سانسور اینترنت، تست سرعت و عملکرد شبکه‌ شما</target>
       </trans-unit>
       <trans-unit id="screenshot2">
         <source>Uncover evidence of Internet censorship and learn how to circumvent it</source>
@@ -113,15 +115,15 @@
       </trans-unit>
       <trans-unit id="screenshot5">
         <source>Testing your network is fun with a friendly octopus!</source>
-        <target>آزمایش شبکه خود توسط یک هشت‌پا مهربان کار سرگرم کننده‌ای است!</target>
+        <target>آزمایش شبکه خود توسط یک هشت‌پا مهربان، کار سرگرم کننده‌ای است!</target>
       </trans-unit>
       <trans-unit id="feature-graphic">
         <source>The Open Observatory of Network Interference is a global observation network for detecting censorship, surveillance and traffic manipulation on the Internet.</source>
-        <target>رصدخانه باز تداخل شبکه یک شبکه نظارت جهانی برای تشخیص سانسور، نظارت و دستکاری ترافیک در اینترنت است.</target>
+        <target>رصدخانه باز تداخل شبکه، یک شبکه نظارت جهانی برای تشخیص سانسور، نظارت و دستکاری ترافیک در اینترنت است.</target>
       </trans-unit>
       <trans-unit id="keywords" maxwidth="100">
         <source>network,speedtest,measurement,net,wifi,networking,scan,bandwidth,bench,dns,mobile,ooni,research,tool</source>
-        <target>شبکه، تست سرعت، اندازه گیری، خالص، وای فای، شبکه، اسکن، پهنای باند، نیمکت، دی‌ان‌اس، تلفن همراه، ooni، تحقیق، ابزار</target>
+        <target>شبکه، تست سرعت، اندازه گیری، خالص، وای فای، شبکه، اسکن شبکه، پهنای باند، bench، دی‌ان‌اس، تلفن همراه، ooni، تحقیق، ابزار</target>
       </trans-unit>
     </body>
   </file>
