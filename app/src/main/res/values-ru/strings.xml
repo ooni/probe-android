@@ -20,7 +20,7 @@
     <string name="http_invalid_request_line_desc">Найти \"узлы-посредники\"</string>
     <string name="http_header_field_manipulation_desc">Найти \"узлы-посредники\"</string>
     <string name="ndt_desc">Измерение скорости и производительности</string>
-    <string name="whatsapp_desc"><br>Проверить блокировку WhatsApp</string>
+    <string name="whatsapp_desc"><П></П>роверить блокировку WhatsApp</string>
     <string name="telegram_desc">Проверить блокировку Telegram</string>
     <string name="facebook_messenger_desc">Проверить блокировку Facebook Messenger </string>
     <string name="web_connectivity_longdesc">Этот тест позволяет понять, каким именно методом заблокирован доступ к ресурсам: через подделку DNS, через блокировку уровня TCP/IP или с помощью прозрачного HTTP прокси-сервера. Каждый запуск теста Web связности проверяет разные сайты. </string>
