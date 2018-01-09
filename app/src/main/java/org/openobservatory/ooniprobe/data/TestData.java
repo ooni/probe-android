@@ -415,6 +415,7 @@ public class TestData extends Observable {
                 TestStorage.setAnomaly(context, test.test_id, anomaly);
             }
         } catch (JSONException e) {
+            System.out.println("JSONException "+ e);
         }
 
 
