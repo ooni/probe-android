@@ -125,7 +125,7 @@ public class TestData extends Observable {
                                 currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
                                             public void callback(String entry) {
-                                                setAnomaly_hirl(entry, currentTest);
+                                                setAnomalyHirl(entry, currentTest);
                                             }
                                         }).run();
                             }
@@ -134,7 +134,7 @@ public class TestData extends Observable {
                                 currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
                                             public void callback(String entry) {
-                                                setAnomaly_hhfm(entry, currentTest);
+                                                setAnomalyHhfm(entry, currentTest);
                                             }
                                         })
                                         .run();
@@ -144,7 +144,7 @@ public class TestData extends Observable {
                                 currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
                                             public void callback(String entry) {
-                                                setAnomaly_wc(entry, currentTest);
+                                                setAnomalyWc(entry, currentTest);
                                             }
                                         }).run();
                             }
@@ -153,7 +153,7 @@ public class TestData extends Observable {
                                 currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
                                             public void callback(String entry) {
-                                                setAnomaly_ndt(entry, currentTest);
+                                                setAnomalyNdt(entry, currentTest);
                                             }
                                         })
                                         .run();
@@ -163,7 +163,7 @@ public class TestData extends Observable {
                                 currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
                                             public void callback(String entry) {
-                                                setAnomaly_ndt(entry, currentTest);
+                                                setAnomalyNdt(entry, currentTest);
                                             }
                                         })
                                         .run();
@@ -173,7 +173,7 @@ public class TestData extends Observable {
                                 currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                     @Override
                                     public void callback(String entry) {
-                                        setAnomaly_whatsapp(entry, currentTest);
+                                        setAnomalyWhatsapp(entry, currentTest);
                                     }
                                 })
                                         .run();
@@ -183,7 +183,7 @@ public class TestData extends Observable {
                                 currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                     @Override
                                     public void callback(String entry) {
-                                        setAnomaly_telegram(entry, currentTest);
+                                        setAnomalyTelegram(entry, currentTest);
                                     }
                                 })
                                         .run();
@@ -193,7 +193,7 @@ public class TestData extends Observable {
                                 currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                     @Override
                                     public void callback(String entry) {
-                                        setAnomaly_facebook_messenger(entry, currentTest);
+                                        setAnomalyFacebookMessenger(entry, currentTest);
                                     }
                                 })
                                         .run();
@@ -227,7 +227,8 @@ public class TestData extends Observable {
         );
     }
 
-    public static void setAnomaly_wc(String entry, NetworkMeasurement test){
+    //TODO unify all these in an unique function that takes the test name.
+    public static void setAnomalyWc(String entry, NetworkMeasurement test){
         if(!test.entry) {
             TestStorage.setEntry(context, test);
             test.entry = true;
@@ -256,7 +257,7 @@ public class TestData extends Observable {
      if the "tampering" key exists and is null then anomaly will be set to 1 (orange)
      otherwise "tampering" object exists and is TRUE, then anomaly will be set to 2 (red)
      */
-    public static void setAnomaly_hirl(String entry, NetworkMeasurement test){
+    public static void setAnomalyHirl(String entry, NetworkMeasurement test){
         if(!test.entry) {
             TestStorage.setEntry(context, test);
             test.entry = true;
@@ -285,7 +286,7 @@ public class TestData extends Observable {
     if the "failure" key exists and is not null then anomaly will be set to 1 (orange)
     otherwise the keys in the "tampering" object will be checked, if any of them is TRUE, then anomaly will be set to 2 (red)
     */
-    public static void setAnomaly_hhfm(String entry, NetworkMeasurement test){
+    public static void setAnomalyHhfm(String entry, NetworkMeasurement test){
         if(!test.entry) {
             TestStorage.setEntry(context, test);
             test.entry = true;
@@ -317,7 +318,7 @@ public class TestData extends Observable {
                 TestStorage.setAnomaly(context, test.test_id, anomaly);
             }
         } catch (JSONException e) {
-            System.out.println("JSONException "+ e);
+            Log.v(TAG, "JSONException "+ e);
         }
     }
 
@@ -325,7 +326,7 @@ public class TestData extends Observable {
     on_entry method for ndt and dash test
     if the "failure" key exists and is not null then anomaly will be set to 1 (orange)
     */
-    public static void setAnomaly_ndt(String entry, NetworkMeasurement test){
+    public static void setAnomalyNdt(String entry, NetworkMeasurement test){
         if(!test.entry) {
             TestStorage.setEntry(context, test);
             test.entry = true;
@@ -344,6 +345,7 @@ public class TestData extends Observable {
                 TestStorage.setAnomaly(context, test.test_id, anomaly);
             }
         } catch (JSONException e) {
+            Log.v(TAG, "JSONException "+ e);
         }
     }
 
@@ -351,7 +353,7 @@ public class TestData extends Observable {
      whatsapp: red if "whatsapp_endpoints_status" or "whatsapp_web_status" or "registration_server" are "blocked"
      docs: https://github.com/TheTorProject/ooni-spec/blob/master/test-specs/ts-018-whatsapp.md#semantics
      */
-    public static void setAnomaly_whatsapp(String entry, NetworkMeasurement test) {
+    public static void setAnomalyWhatsapp(String entry, NetworkMeasurement test) {
         if(!test.entry) {
             TestStorage.setEntry(context, test);
             test.entry = true;
@@ -375,7 +377,7 @@ public class TestData extends Observable {
                 TestStorage.setAnomaly(context, test.test_id, anomaly);
             }
         } catch (JSONException e) {
-            System.out.println("JSONException "+ e);
+            Log.v(TAG, "JSONException "+ e);
         }
     }
 
@@ -384,7 +386,7 @@ public class TestData extends Observable {
     the "*_failure" keys for telegram and whatsapp might indicate a test failure / anomaly
     docs: https://github.com/TheTorProject/ooni-spec/blob/master/test-specs/ts-020-telegram.md#semantics
     */
-    public static void setAnomaly_telegram(String entry, NetworkMeasurement test) {
+    public static void setAnomalyTelegram(String entry, NetworkMeasurement test) {
         if(!test.entry) {
             TestStorage.setEntry(context, test);
             test.entry = true;
@@ -415,7 +417,7 @@ public class TestData extends Observable {
                 TestStorage.setAnomaly(context, test.test_id, anomaly);
             }
         } catch (JSONException e) {
-            System.out.println("JSONException "+ e);
+            Log.v(TAG, "JSONException "+ e);
         }
 
 
@@ -425,7 +427,7 @@ public class TestData extends Observable {
     FB: red blocking if either "facebook_tcp_blocking" or "facebook_dns_blocking" is true
     docs: https://github.com/TheTorProject/ooni-spec/blob/master/test-specs/ts-019-facebook-messenger.md#semantics
     */
-    public static void setAnomaly_facebook_messenger(String entry, NetworkMeasurement test) {
+    public static void setAnomalyFacebookMessenger(String entry, NetworkMeasurement test) {
         if(!test.entry) {
             TestStorage.setEntry(context, test);
             test.entry = true;
@@ -449,7 +451,7 @@ public class TestData extends Observable {
                 TestStorage.setAnomaly(context, test.test_id, anomaly);
             }
         } catch (JSONException e) {
-            System.out.println("JSONException "+ e);
+            Log.v(TAG, "JSONException "+ e);
         }
     }
 
