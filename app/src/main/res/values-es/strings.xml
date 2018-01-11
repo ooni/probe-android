@@ -83,7 +83,7 @@
     <string name="local_notifications_time">Hora</string>
     <string name="local_notifications_text">Hora para ejecutar tests</string>
     <string name="notifications">Notificaciones</string>
-    <string name="max_runtime">Tiempo máximo de ejecución de 'Conectividad web' (segundos)</string>
+    <string name="max_runtime">Tiempo máximo de ejecución de \'Conectividad web\' (segundos)</string>
     <string name="advanced_settings">Configuración avanzada</string>
     <string name="finished_running">finalizó la ejecución</string>
     <string name="view_log">Ver registro (log)</string>
