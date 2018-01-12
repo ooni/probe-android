@@ -15,6 +15,9 @@ public class OONITests {
     public static final String WEB_CONNECTIVITY = "web_connectivity";
     public static final String NDT = "ndt";
     public static final String NDT_TEST = "ndt_test";
+    public static final String WHATSAPP = "whatsapp";
+    public static final String TELEGRAM = "telegram";
+    public static final String FACEBOOK_MESSENGER = "facebook_messenger";
     public static final String COLLECTOR_ADDRESS = "https://b.collector.ooni.io";
     public static final String MAX_RUNTIME = "90";
     public static final String NOTIFICATION_SERVER_DEV = "https://registry.proteus.test.ooni.io";

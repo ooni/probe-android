@@ -66,7 +66,7 @@ public class TestInfoFragment extends Fragment {
         learn_moreButton = (AppCompatButton) v.findViewById(R.id.learn_more_button);
         learn_moreButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getTestUrl(test_name)));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(NetworkMeasurement.getTestUrl(test_name)));
                 startActivity(browserIntent);
             }
         });
@@ -82,7 +82,7 @@ public class TestInfoFragment extends Fragment {
         testImage.setImageResource(NetworkMeasurement.getTestImageBig(test_name));
 
         testDesc = (TextView) v.findViewById(R.id.testDesc);
-        testDesc.setText(getTestDesc(test_name));
+        testDesc.setText(NetworkMeasurement.getTestDesc(mActivity, test_name));
 
         test_progress = (ProgressBar) v.findViewById(R.id.progressIndicator);
         updateButtons();
@@ -104,40 +104,6 @@ public class TestInfoFragment extends Fragment {
         else {
             test_progress.setVisibility(View.GONE);
             runButton.setVisibility(View.VISIBLE);
-        }
-    }
-
-    private String getTestUrl(String name){
-        switch (name) {
-            case OONITests.HTTP_INVALID_REQUEST_LINE:
-                return "https://ooni.torproject.org/nettest/http-invalid-request-line/";
-            case OONITests.NDT:
-                return "https://ooni.torproject.org/nettest/ndt/";
-            case OONITests.WEB_CONNECTIVITY:
-                return "https://ooni.torproject.org/nettest/web-connectivity/";
-            case OONITests.HTTP_HEADER_FIELD_MANIPULATION:
-                return "https://ooni.torproject.org/nettest/http-header-field-manipulation/";
-            case OONITests.DASH:
-                return "https://ooni.torproject.org/nettest/dash/";
-            default:
-                return "";
-        }
-    }
-
-    public String getTestDesc(String name) {
-        switch (name) {
-            case OONITests.WEB_CONNECTIVITY:
-                return mActivity.getString(R.string.web_connectivity_longdesc);
-            case OONITests.HTTP_INVALID_REQUEST_LINE:
-                return mActivity.getString(R.string.http_invalid_request_line_longdesc);
-            case OONITests.HTTP_HEADER_FIELD_MANIPULATION:
-                return mActivity.getString(R.string.http_header_field_manipulation_longdesc);
-            case OONITests.NDT:
-                return mActivity.getString(R.string.ndt_longdesc);
-            case OONITests.DASH:
-                return mActivity.getString(R.string.dash_longdesc);
-            default:
-                return "";
         }
     }
 }

@@ -21,10 +21,12 @@
       </trans-unit>
       <trans-unit id="subtitle-ios" maxwidth="30" size-unit="char">
         <source>Measure Internet Censorship</source>
+        <target>مقياس الرقابة على الإنترنت</target>
         <note from="developer">This is limited by Apple to 30 characters</note>
       </trans-unit>
       <trans-unit id="promotionaltext-ios" maxwidth="170" size-unit="char">
         <source>Collect evidence of Internet censorship. Measure the speed and performance of your network.</source>
+        <target>لجمع الأدلة على الرقابة على الإنترنت. وقياس سرعة وأداء الشبكة.</target>
         <note from="developer">This is limited by Apple to 170 characters</note>
       </trans-unit>
       <trans-unit id="intro">
@@ -66,7 +68,7 @@
       </trans-unit>
       <trans-unit id="speed-description">
         <source>OONI's implementation of the Network Diagnostic Test (NDT) measures the speed of your network by connecting to M-Lab servers near you and by collecting low level TCP/IP information that can help characterize the speed and performance of your network.</source>
-        <target>يقيسNDT, إختبار أداة تشخيص سرعة الشبكة لOONI، سرعة شبكتك بالإتصال بخوادم M-Lab القريبة منك مجمعة معلومات TCP/IP التي ستساعد على وصف السرعة و الجودة.</target>
+        <target>يقيس OONI's implementation of the Network Diagnostic Test (NDT), إختبار أداة تشخيص سرعة الشبكة الخاصة بك بالإتصال بخوادم M-Lab القريبة منك ويجمع معلومات TCP/IP التي ستساعد على وصف السرعة و الجودة.</target>
       </trans-unit>
       <trans-unit id="opendata-title">
         <source>Open data</source>

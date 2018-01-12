@@ -13,10 +13,16 @@
     <string name="web_connectivity">वेब कनेक्टिविटी</string>
     <string name="ndt">एनडीटी स्पीड टेस्ट</string>
     <string name="dash_desc">वीडियो स्ट्रीमिंग गुणवत्ता मापें</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="telegram">Telegram</string>
+    <string name="facebook_messenger">Facebook Messenger</string>
     <string name="web_connectivity_desc">जाँच करें अगर वेबसाइटों अवरुद्ध कर रहे हैं</string>
     <string name="http_invalid_request_line_desc"> \'बीच बक्से\' खोजें</string>
     <string name="http_header_field_manipulation_desc"> \'बीच बक्से\' खोजें</string>
     <string name="ndt_desc">नेटवर्क की गति और प्रदर्शन को मापने</string>
+    <string name="whatsapp_desc">जाँच करें कि क्या व्हाट्सएप अवरुद्ध है</string>
+    <string name="telegram_desc">जांचें कि टेलीग्राम अवरुद्ध है या नहीं</string>
+    <string name="facebook_messenger_desc">जांचें कि फेसबुक मैसेंजर अवरुद्ध है या नहीं</string>
     <string name="web_connectivity_longdesc">इस परीक्षा की परख होती है कि वेबसाइटों के लिए उपयोग छेड़छाड़, टीसीपी / आईपी अवरुद्ध, या एक पारदर्शी HTTP प्रॉक्सी द्वारा डीएनएस के माध्यम से अवरुद्ध है। हर बार जब आप वेब कनेक्टिविटी चलाने आप विभिन्न वेबसाइटों का परीक्षण करें।</string>
     <string name="http_invalid_request_line_longdesc">यह परीक्षा प्रणालियों (\"मध्यम बक्से\") का पता लगाने की कोशिश करती है जो प्रतिध्वनि सेवा के लिए एक अवैध HTTP अनुरोध पंक्ति भेजकर सेंसरशिप या निगरानी के लिए जिम्मेदार हो सकती है। यदि ऐसी व्यवस्था आपके नेटवर्क में है, तो अमान्य HTTP अनुरोध पंक्ति को रोक दिया जाएगा और एक त्रुटि को ट्रिगर किया जा सकता है।</string>
     <string name="http_header_field_manipulation_longdesc">यह टेस्ट सिस्टम (\"मिडल बक्से\") की मौजूदगी का पता लगाने की कोशिश करता है जो बैकेंड नियंत्रण सर्वर पर गैर-वैमानिक हेडर के साथ HTTP अनुरोध भेजकर सेंसरशिप या निगरानी के लिए जिम्मेदार हो सकता है। यदि ऐसी प्रणालियां आपके नेटवर्क में हैं, तो वे शीर्ष लेखों को सामान्य मान लेंगे या अतिरिक्त शीर्षलेख जोड़ सकते हैं।</string>
@@ -25,6 +31,9 @@
     <string name="dash_longdesc">यह परीक्षण रिमोट सर्वर से चर गुणवत्ता पर एक बहुत आसान वीडियो प्लेयर स्ट्रीमिंग है। परीक्षण अपने वीडियो स्ट्रीमिंग के लिए बुनियादी प्रदर्शन प्राप्त करने के लिए डिज़ाइन किया गया है
 
    अस्वीकरण: यह तीसरे पक्ष के सर्वर पर आधारित तृतीय-पक्ष प्रदर्शन परीक्षा है, और हम यह गारंटी नहीं दे सकते कि आपकी आईपी पते को एकत्रित, संसाधित और प्रकाशित नहीं किया जाएगा।</string>
+    <string name="whatsapp_longdesc">यह टेस्ट व्हाट्सएप के ऐप और व्हाट्सएप व्हाट्स वर्जन के एक परीक्षण वाले नेटवर्क के भीतर पहुंचने की जांच करने के लिए डिज़ाइन किया गया है।</string>
+    <string name="telegram_longdesc">इस परीक्षण को टेलेग्राम के ऐप और वेब संस्करण की एक जांच नेटवर्क में पहुंचने की जांच करने के लिए डिज़ाइन किया गया है।</string>
+    <string name="facebook_messenger_longdesc">जांचें कि फेसबुक मैसेंजर अवरुद्ध है या नहीं</string>
     <string name="running_tests">परीक्षण चल रहा है</string>
     <string name="finished_tests">परीक्षण सामाप्त </string>
     <string name="collector_address">कलेक्टर पता</string>
@@ -95,4 +104,14 @@
     <string name="drawer_close">बंद नेविगेशन दराज</string>
     <string name="try_mirror">दर्पण की कोशिश करो</string>
     <string name="loading">लोड हो रहा है...</string>
+    <string name="set_default">डिफॉल्ट सेट करें</string>
+    <string name="run_test_message">आप अपने नेटवर्क पर एक ओयिनप्रोफ परीक्षण चलाने वाले हैं</string>
+    <string name="urls">यूआरएल</string>
+    <string name="test_name">परीक्षण का नाम</string>
+    <string name="test_details">टेस्ट विवरण</string>
+    <string name="ooniprobe_outdate">ओनोप्रोब पुरानी है</string>
+    <string name="ooniprobe_outdate_msg">इस परीक्षा को चलाने के लिए आपको ओनोिप्रोब के नए संस्करण की आवश्यकता है, अद्यतन करने के लिए नीचे दिए गए बटन पर क्लिक करें</string>
+    <string name="invalid_parameter">अमान्य मापदंड</string>
+    <string name="random_sampling_urls">वैश्विक सूची से यूआरएल का यादृच्छिक नमूना</string>
+    <string name="close">बंद करे</string>
 </resources>
