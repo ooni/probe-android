@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ooniprobe</string>
+    <string name="app_name">OONI Probe</string>
     <string name="run_tests">Τρέξτε δοκιμές</string>
     <string name="past_tests">Παλιές δοκιμές</string>
     <string name="settings">Ρυθμίσεις</string>
