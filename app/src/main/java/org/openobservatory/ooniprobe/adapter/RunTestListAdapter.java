@@ -46,9 +46,30 @@ public class RunTestListAdapter extends RecyclerView.Adapter<RunTestListAdapter.
         return vh;
     }
 
+    // header hack from https://cyrilmottier.com/2011/07/05/listview-tips-tricks-2-section-your-listview/
+
     @Override
     public void onBindViewHolder(RunTestListAdapter.ViewHolder holder, int position) {
         final String key = keys[position];
+        if (position == 0) {
+            holder.headerText.setText(mActivity.getString(R.string.websites));
+            holder.headerText.setVisibility(View.VISIBLE);
+        }
+        else if (position == 1) {
+            holder.headerText.setText(mActivity.getString(R.string.instant_messaging));
+            holder.headerText.setVisibility(View.VISIBLE);
+        }
+        else if (position == 4) {
+            holder.headerText.setText(mActivity.getString(R.string.middle_boxes));
+            holder.headerText.setVisibility(View.VISIBLE);
+        }
+        else if (position == 6) {
+            holder.headerText.setText(mActivity.getString(R.string.performance));
+            holder.headerText.setVisibility(View.VISIBLE);
+        }
+        else {
+            holder.headerText.setVisibility(View.GONE);
+        }
         Boolean available = getItem(position);
         holder.txtTitle.setText(NetworkMeasurement.getTestName(mActivity, key));
         holder.txtDesc.setText(NetworkMeasurement.getTestDescr(mActivity, key));
@@ -107,6 +128,7 @@ public class RunTestListAdapter extends RecyclerView.Adapter<RunTestListAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public TextView headerText;
         public AutoResizeTextView txtTitle;
         public TextView txtDesc;
         public Button runTest;
@@ -117,6 +139,7 @@ public class RunTestListAdapter extends RecyclerView.Adapter<RunTestListAdapter.
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
+            headerText = (TextView) itemView.findViewById(R.id.separator);
             txtTitle = (AutoResizeTextView) itemView.findViewById(R.id.test_title);
             txtDesc = (TextView) itemView.findViewById(R.id.test_desc);
             runTest = (Button) itemView.findViewById(R.id.run_test_button);

@@ -43,13 +43,16 @@ public class TestData extends Observable {
             finishedTests = TestStorage.loadTests(context);
             availableTests = new LinkedHashMap<>();
             availableTests.put(OONITests.WEB_CONNECTIVITY, true);
-            availableTests.put(OONITests.HTTP_INVALID_REQUEST_LINE, true);
-            availableTests.put(OONITests.HTTP_HEADER_FIELD_MANIPULATION, true);
-            availableTests.put(OONITests.NDT, true);
-            availableTests.put(OONITests.DASH, true);
-            availableTests.put(OONITests.WHATSAPP, true);
-            availableTests.put(OONITests.TELEGRAM, true);
+
             availableTests.put(OONITests.FACEBOOK_MESSENGER, true);
+            availableTests.put(OONITests.TELEGRAM, true);
+            availableTests.put(OONITests.WHATSAPP, true);
+
+            availableTests.put(OONITests.HTTP_HEADER_FIELD_MANIPULATION, true);
+            availableTests.put(OONITests.HTTP_INVALID_REQUEST_LINE, true);
+
+            availableTests.put(OONITests.DASH, true);
+            availableTests.put(OONITests.NDT, true);
         }
         else if (activity == null && a != null){
             activity = a;

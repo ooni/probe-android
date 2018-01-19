@@ -111,4 +111,8 @@
     <string name="invalid_parameter">Invalid parameter</string>
     <string name="random_sampling_urls">A random sampling of URLs from the global list</string>
     <string name="close">Close</string>
+    <string name="websites">Websites</string>
+    <string name="instant_messaging">Instant Messaging</string>
+    <string name="middle_boxes">Middle Boxes</string>
+    <string name="performance">Performance</string>
 </resources>
