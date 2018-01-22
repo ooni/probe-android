@@ -364,12 +364,13 @@ public class TestData extends Observable {
         try {
             int anomaly = OONITests.ANOMALY_GREEN;
             JSONObject jsonObj = new JSONObject(entry);
+            JSONObject test_keys = jsonObj.getJSONObject("test_keys");
             String keys[] = {"whatsapp_endpoints_status",
                     "whatsapp_web_status",
                     "registration_server_status"};
             for (String key: keys)
             {
-                String value = jsonObj.getString(key);
+                String value = test_keys.getString(key);
                 if (value == null)
                     anomaly = OONITests.ANOMALY_ORANGE;
                 else if (value.equals("blocked"))
@@ -397,19 +398,20 @@ public class TestData extends Observable {
         try {
             int anomaly = OONITests.ANOMALY_GREEN;
             JSONObject jsonObj = new JSONObject(entry);
+            JSONObject test_keys = jsonObj.getJSONObject("test_keys");
             String keys[] = {"telegram_http_blocking",
                     "telegram_tcp_blocking"};
             for (String key: keys)
             {
-                Object value = jsonObj.get(key);
-                Boolean boolvalue = jsonObj.getBoolean(key);
+                Object value = test_keys.get(key);
+                Boolean boolvalue = test_keys.getBoolean(key);
                 if (value == null)
                     anomaly = OONITests.ANOMALY_ORANGE;
                 else if (boolvalue)
                     anomaly = OONITests.ANOMALY_RED;
             }
-            if (jsonObj.has("telegram_web_status")) {
-                String telegram_web_status = jsonObj.getString("telegram_web_status");
+            if (test_keys.has("telegram_web_status")) {
+                String telegram_web_status = test_keys.getString("telegram_web_status");
                 if (telegram_web_status == null)
                     anomaly = OONITests.ANOMALY_ORANGE;
                 else if (telegram_web_status.equals("blocked"))
@@ -438,12 +440,13 @@ public class TestData extends Observable {
         try {
             int anomaly = OONITests.ANOMALY_GREEN;
             JSONObject jsonObj = new JSONObject(entry);
+            JSONObject test_keys = jsonObj.getJSONObject("test_keys");
             String keys[] = {"facebook_tcp_blocking",
                     "facebook_dns_blocking"};
             for (String key: keys)
             {
-                Object value = jsonObj.get(key);
-                Boolean boolvalue = jsonObj.getBoolean(key);
+                Object value = test_keys.get(key);
+                Boolean boolvalue = test_keys.getBoolean(key);
                 if (value == null)
                     anomaly = OONITests.ANOMALY_ORANGE;
                 else if (boolvalue)
