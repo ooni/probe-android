@@ -111,4 +111,8 @@
     <string name="invalid_parameter">Parámetro no válido</string>
     <string name="random_sampling_urls">Una muestra aleatoria de URLs desde la lista global</string>
     <string name="close">Cerrar</string>
+    <string name="websites">Sitios web</string>
+    <string name="instant_messaging">Mensajería instantánea</string>
+    <string name="middle_boxes">Dispositivos intermediarios (\'middle boxes\')</string>
+    <string name="performance">Rendimiento</string>
 </resources>

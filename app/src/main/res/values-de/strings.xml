@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">OONI Probe</string>
     <string name="run_tests">Führe Tests aus</string>
     <string name="past_tests">Beendete Tests</string>
     <string name="settings">Einstellungen</string>
@@ -112,4 +111,6 @@ Verfolgung und dem Missbrauch von Netzaktivisten, was für bestimmte ooniprobe N
     <string name="invalid_parameter">Ungültiger Parameter</string>
     <string name="random_sampling_urls">Eine zufällige Stichprobe von URLs aus der globalen Liste</string>
     <string name="close">Schließen</string>
+    <string name="websites">Webseiten</string>
+    <string name="performance">Leistung</string>
 </resources>

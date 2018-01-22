@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">اونی‌پراب</string>
     <string name="run_tests">اجرای آزمایش</string>
     <string name="past_tests">آزمایش‌های قبلی</string>
     <string name="settings">تنظیمات</string>
@@ -115,4 +114,6 @@
     <string name="invalid_parameter">پارامتر نامعتبر</string>
     <string name="random_sampling_urls">نمونه برداری تصادفی از لینک‌های لیست جهانی</string>
     <string name="close">بستن</string>
+    <string name="websites">وب سایت</string>
+    <string name="performance">کارایی</string>
 </resources>

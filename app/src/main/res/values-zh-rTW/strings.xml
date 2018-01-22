@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">OONI Probe</string>
     <string name="run_tests">執行測試</string>
     <string name="past_tests">過去的測試</string>
     <string name="settings">設定</string>
@@ -111,4 +110,5 @@
     <string name="invalid_parameter">無效的參數</string>
     <string name="random_sampling_urls">全球清單上隨機抽取一個網址樣本</string>
     <string name="close">關閉</string>
+    <string name="websites">網站</string>
 </resources>

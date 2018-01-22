@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">यूनीप्रोबे </string>
     <string name="run_tests">चलाने के परीक्षण</string>
     <string name="past_tests">विगत टेस्ट</string>
     <string name="settings">सेटिंग्स</string>
@@ -114,4 +113,5 @@
     <string name="invalid_parameter">अमान्य मापदंड</string>
     <string name="random_sampling_urls">वैश्विक सूची से यूआरएल का यादृच्छिक नमूना</string>
     <string name="close">बंद करे</string>
+    <string name="performance">प्रदर्शन</string>
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">OONI Probe</string>
     <string name="run_tests">运行测试</string>
     <string name="past_tests">过去的测试</string>
     <string name="settings">设置</string>
@@ -111,4 +110,6 @@
     <string name="invalid_parameter">无效的参数</string>
     <string name="random_sampling_urls">从全球列表中随机抽取网址样本</string>
     <string name="close">关闭</string>
+    <string name="websites">网站</string>
+    <string name="performance">性能</string>
 </resources>

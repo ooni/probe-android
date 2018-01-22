@@ -112,4 +112,8 @@
     <string name="random_sampling_urls">Un échantillon aléatoire d’URL de la liste globale</string>
     <string name="close">Fermer
 </string>
+    <string name="websites">Sites Web</string>
+    <string name="instant_messaging">La messagerie instantanée</string>
+    <string name="middle_boxes">Les boîtiers intermédiaires</string>
+    <string name="performance">Performances</string>
 </resources>

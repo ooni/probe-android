@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">OONI Probe</string>
     <string name="run_tests">Τρέξτε δοκιμές</string>
     <string name="past_tests">Παλιές δοκιμές</string>
     <string name="settings">Ρυθμίσεις</string>
@@ -115,4 +114,5 @@
     <string name="invalid_parameter">Μη έγκυρη παράμετρος</string>
     <string name="random_sampling_urls">Μια τυχαία δειγματοληψία διευθύνσεων URL από την παγκόσμια λίστα</string>
     <string name="close">Κλείσιμο</string>
+    <string name="websites">Ιστοσελιδες</string>
 </resources>

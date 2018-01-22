@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">OONI Probe</string>
     <string name="run_tests">إجراء الاختبارات</string>
     <string name="past_tests">الاختبارات السابقة</string>
     <string name="settings">الإعدادات</string>
@@ -117,4 +116,7 @@
     <string name="invalid_parameter">مُدخل خاطئ</string>
     <string name="random_sampling_urls">عينة عشوائية الروابط من القائمة العامة</string>
     <string name="close">أغلق</string>
+    <string name="websites">مواقع </string>
+    <string name="instant_messaging">المراسلة الفورية</string>
+    <string name="performance">الأداء</string>
 </resources>

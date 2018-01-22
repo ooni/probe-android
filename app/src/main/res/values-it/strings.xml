@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">OONI Probe</string>
     <string name="run_tests">Esegui Test</string>
     <string name="past_tests">Test Passati</string>
     <string name="settings">Impostazioni</string>
@@ -112,4 +111,6 @@ Attenzione: NDT è un test di prestazione eseguito su server di terze parti, e q
     <string name="invalid_parameter">Parametro invalido</string>
     <string name="random_sampling_urls">Un campionamento casuale di URL dall\'elenco globale</string>
     <string name="close">Chiudi</string>
+    <string name="websites">Siti Web</string>
+    <string name="performance">Prestazioni</string>
 </resources>
