@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">OONI Probe</string>
     <string name="run_tests">Запуск</string>
     <string name="past_tests">Журнал</string>
     <string name="settings">Настройки</string>
@@ -38,25 +39,25 @@
     <string name="delete">Удалить</string>
     <string name="test_result">Результаты теста</string>
     <string name="change">Изменить</string>
-    <string name="welcome_ooniprobe">Добро пожаловать в ooniprobe!</string>
+    <string name="welcome_ooniprobe">Добро пожаловать в OONI Probe!</string>
     <string name="get_started">Начнём!</string>
-    <string name="what_is_ooniprobe">Что такое ooniprobe?</string>
+    <string name="what_is_ooniprobe">Что такое OONI Probe?</string>
     <string name="learn_more">Узнать подробнее</string>
-    <string name="risks_text_1">Ooniprobe – это свободное программное обеспечение, которое позволяет тебе исследовать интернет-цензуру в твоей сети.</string>
+    <string name="risks_text_1">OONI Probe – это свободное программное обеспечение, которое позволяет тебе исследовать интернет-цензуру в твоей сети.</string>
     <string name="risks_text_2">Запуская у себя ooniprobe, ты сможешь анализировать блокировку вебсайтов, а также узнать, установлены ли в твоей сети специальные элементы, отвечающие за контроль и слежку за твоим соединением.</string>
     <string name="risks_text_3">Ты можешь также использовать это приложение, чтобы измерять скорость и качество твоего интернет-соединения.</string>
     <string name="risks_text_4">Данные, которые ты собираешь с помощью этого приложения, смогут служить свидетельством интернет-цензуры.</string>
-    <string name="risks_text_5">Поскольку ooniprobe – инструмент для расследований, он может повлечь за собой некоторые риски.</string>
+    <string name="risks_text_5">Поскольку OONI Probe – инструмент для расследований, он может повлечь за собой некоторые риски.</string>
     <string name="potential_risks">Возможные риски</string>
-    <string name="laws_text_1">Любой, кто следит за твоей интернет-активностью (провайдер, правительство, работодатель) может узнать, что ты используешь ooniprobe (даже если OONI старается сделать это очень сложным).</string>
+    <string name="laws_text_1">Любой, кто следит за твоей интернет-активностью (провайдер, правительство, работодатель) может узнать, что ты используешь OONI Probe (даже если OONI старается сделать это очень сложным).</string>
     <string name="laws_text_2">При тестировании блокировки вебсайтов тебе придётся переходить и загружать информацию с провокационных и сомнительных вебсайтов (например, порнографию), что может быть незаконно в твоей стране.  </string>
     <string name="laws_text_3">Тест \"Некорректный HTTP запрос\" может вызвать подозрение у твоего интернет-провайдера и считаться формой “хакерства”.</string>
     <string name="laws_text_4">Если ты не изменишь настройки вручную, все данные, собранные с твоих тестов, будут по умолчанию опубликованы OONI и могут включать определённую идентифицирующую информацию (хотя OONI старается предотвратить это). </string>
-    <string name="laws_text_5">Один лишь факт использования ooniprobe может считаться формой шпионажа, несмотря на законы в твоей стране. </string>
-    <string name="laws_text_6">Насколько нам известно, ни один пользователь ooniprobe не понёс никаких последствий от использования нашей платформы. Хотя во многих странах есть опыт преследования и атак на активистов, борящихся за цифровые права, что может поставить пользователей ooniprobe под угрозу жестоких административных, уголовных или внеправовых наказаний. </string>
+    <string name="laws_text_5">Один лишь факт использования OONI Probe может считаться формой шпионажа, несмотря на законы в твоей стране.</string>
+    <string name="laws_text_6">К твоему сведению, ни один пользователь OONI Probe не понёс никаких последствий от использования нашей платформы. Хотя во многих странах есть опыт преследования и атак на активистов, борящихся за цифровые права, что может поставить пользователей OONI Probe под угрозу жестоких административных, уголовных или внеправовых наказаний.</string>
     <string name="i_understand_the_risks">Я понимаю риски.</string>
     <string name="pop_quiz">Экспресс-тест!</string>
-    <string name="question_1">Вопрос 1: Может ли любой, кто следит за моей интернет-активностью (провайдер, правительство, работодатель) узнать, что я использую ooniprobe, даже если OONI старается сделать это очень сложным?</string>
+    <string name="question_1">Вопрос 1: Может ли любой, кто следит за моей интернет-активностью (провайдер, правительство, работодатель) узнать, что я использую OONI Probe, даже если OONI старается сделать это очень сложным?</string>
     <string name="question_2">Вопрос 2: Будут ли мои измерения по умолчанию опубликованы OONI и могут ли они содержать личную информацию?</string>
     <string name="_true">Да</string>
     <string name="_false">Нет</string>
@@ -70,7 +71,7 @@
     <string name="upload_results">Поделиться результатами публично?</string>
     <string name="settings_text">Все данные по умолчанию отправляются в коллектор измерений OONI и автоматически публикуются через OONI explorer и в список измерений OONI.</string>
     <string name="im_all_set">Поехали!</string>
-    <string name="ooniprobe_configured">Ooniprobe успешно настроен. Всё готово!</string>
+    <string name="ooniprobe_configured">OONI Probe успешно настроен. Всё готово!</string>
     <string name="about_ooni">Об OONI</string>
     <string name="about_text_1">Эти тесты разработаны Открытой Обсерваторией Сетевых Помех (Open Observatory of Network Interference, OONI). Это свободное программное обеспечение. Проект входит в состав The Tor Project и имеет своей задачей раскрывать факты Интернет-цензуры во всём мире. </string>
     <string name="about_text_2">С 2012 года OONI собрала миллионы измерений работы сети со всего мира, проливая свет на множество случаев интернет-цензуры и манипуляций трафиком.</string>
@@ -101,14 +102,17 @@
     <string name="try_mirror">Сервер-зеркало</string>
     <string name="loading">Идет загрузка...</string>
     <string name="set_default">Установить по умолчанию</string>
-    <string name="run_test_message">Вы собираетесь запустить тест ooniprobe в вашей сети</string>
+    <string name="run_test_message">Вы собираетесь запустить тест OONI Probe в вашей сети</string>
     <string name="urls">URL</string>
     <string name="test_name">Название теста</string>
     <string name="test_details">Подробности теста</string>
-    <string name="ooniprobe_outdate">ooniprobe устарел</string>
-    <string name="ooniprobe_outdate_msg">Для запуска теста вам необходимо установить новую версию ooniprobe. Нажмите на кнопку ниже, чтобы обновить</string>
+    <string name="ooniprobe_outdate">OONI Probe устарел</string>
+    <string name="ooniprobe_outdate_msg">Для запуска теста вам необходимо установить новую версию OONI Probe. Нажмите на кнопку ниже, чтобы обновить</string>
     <string name="invalid_parameter">Неверный параметр</string>
     <string name="random_sampling_urls">Случайные URL из глобального списка</string>
     <string name="close">Закрыть</string>
     <string name="websites">Веб-сайты</string>
+    <string name="instant_messaging">Мгновенный обмен сообщениями</string>
+    <string name="middle_boxes">Узлы-посредники</string>
+    <string name="performance">Производительность</string>
 </resources>
