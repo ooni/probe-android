@@ -60,7 +60,7 @@
     <string name="laws_text_6">À notre connaissance, aucun utilisateur d’OONI Probe n’a dû faire face aux conséquences de l’utilisation de notre plateforme. Cependant, de nombreux pays présentent une longue histoire en matière de ciblage et de répression des défenseurs des droits numériques et des utilisateurs d’OONI Probe pourraient être passibles de sévères sanctions civiles, criminelles ou extrajudiciaires.</string>
     <string name="i_understand_the_risks">Je comprends les risques</string>
     <string name="pop_quiz">Jeu-questionnaire !</string>
-    <string name="question_1">Affirmation 1 : quiconque surveille mon activité Internet (p. ex. FAI, gouvernement, employeur) peut savoir que j’utilise OONI Probe même si OONI prend des précautions pour entraver la détection .</string>
+    <string name="question_1">Affirmation 1 : quiconque surveille mon activité Internet (p. ex. FAI, gouvernement, employeur) peut savoir que j’utilise OONI Probe même si OONI prend des précautions pour entraver la détection.</string>
     <string name="question_2">Affirmation 2 : mes mesures seront publiées par défaut par OONI et pourraient inclure des informations nominatives ?</string>
     <string name="_true">Vrai</string>
     <string name="_false">Faux</string>
