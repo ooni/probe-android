@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">اونی‌پراب</string>
+    <string name="app_name">OONI Probe</string>
     <string name="run_tests">اجرای آزمایش</string>
     <string name="past_tests">آزمایش‌های قبلی</string>
     <string name="settings">تنظیمات</string>
@@ -43,17 +43,17 @@
     <string name="delete">حذف</string>
     <string name="test_result">نتایج آزمایش‌</string>
     <string name="change">تغییر</string>
-    <string name="welcome_ooniprobe">به ooniprobe خوش آمدید!</string>
+    <string name="welcome_ooniprobe">به OONI Probe خوش آمدید!</string>
     <string name="get_started">شروع به کار</string>
-    <string name="what_is_ooniprobe">ooniprobe چیست؟</string>
+    <string name="what_is_ooniprobe">OONI Probe چیست؟</string>
     <string name="learn_more">اطلاعات بیشتر</string>
-    <string name="risks_text_1">نرم‌افزار ooniprobe برنامه‌ای رایگان و متن‌باز است که به شما امکان ِ آزمایش سانسور اینترنتی در شبکه‌ را می‌دهد.</string>
+    <string name="risks_text_1">نرم‌افزار OONI Probe برنامه‌ای رایگان و متن‌باز است که به شما امکان ِ آزمایش سانسور اینترنتی در شبکه‌ را می‌دهد.</string>
     <string name="risks_text_2">استفاده از این اپلیکیشن به شما کمک خواهد کرد تا دریابید که وب‌سایت‌های مختلف در شبکه‌ی شما فیلتر شده‌اند یا نه و یا حتی چگونه فیلتر شده‌اند. هم‌چنین خواهید دریافت که سانسور و یا سیستم‌های ردیابی در شبکه‌ی شما موجودند یا نه!</string>
     <string name="risks_text_3">شما همچنین می‌توانید از این برنامه برای سنجش سرعت و عملکرد شبکه خود استفاده کنید.</string>
     <string name="risks_text_4">داده‌هایی که شما از طریق این اپلیکیشن جمع‌آوری می‌کنید  می‌توانند به عنوان شواهدی از سانسور اینترنت به کار گرفته شوند.</string>
-    <string name="risks_text_5">از آنجایی که ooniprobe یک ابزار تحقیقاتی است، ممکن است با خطراتی همراه باشد.</string>
+    <string name="risks_text_5">از آنجایی که OONI Probe یک ابزار تحقیقاتی است، ممکن است با خطراتی همراه باشد.</string>
     <string name="potential_risks">خطرهای احتمالی</string>
-    <string name="laws_text_1">هر کسی که فعالیت‌های اینترنتی شما را زیر نظر دارد (به طور مثال: آی‌اس‌پی شما، دولت و یا کارفرمای شما ) می‌تواند از استفاده‌ی شما از این اپلیکیشن خبردار شود.( با وجود اینکه OONI در تلاش است که این کار را برای آنان سخت کند.)</string>
+    <string name="laws_text_1">هر کسی که فعالیت‌های اینترنتی شما را زیر نظر دارد (به طور مثال: آی‌اس‌پی شما، دولت و یا کارفرمای شما) می‌تواند از استفاده‌ی شما از این اپلیکیشن خبردار شود. (با وجود اینکه OONI در تلاش است که این کار را برای آنان سخت کند.)</string>
     <string name="laws_text_2">وقتی در حال تست و آزمایش کردن وبسایت‌ها برای سانسور هستید، به وبسایت‌های محرک و ایراد دار (مانند وبسایت‌های پورنوگرافی) وصل خواهید شد و از آنها داده دانلود خواهید کرد که در کشور شما ممکن است غیرقانونی باشد.</string>
     <string name="laws_text_3">آزمایش HTTP invalid request line در اپلیکیشن OONI امکان دارد که شک آی‌اس‌پی شما را برانگیزد و به‌گونه‌ای “هک کردن” گمان شود.</string>
     <string name="laws_text_4">تمامی داده‌های جمع‌آوری شده از تست‌های شما به صورت پیش‌فرض به وسیله‌ی اپلیکیشن OONI منتشر خواهد شد، مگر اینکه تنظیمات خود را به گونه‌ای دیگر انجام داده باشید. داده‌ها ممکن است شامل بعضی اطلاعات شخصی و قابل شناسایی باشند. (اگرچه که ‌OONI سعی در جلوگیری از این اتفاقات دارد.)</string>
@@ -75,7 +75,7 @@
     <string name="upload_results">نتایج به صورت عمومی نمایش داده شوند؟ </string>
     <string name="settings_text">تمام سنجش‌ها به طور پیش فرض به گردآورنده‌ی سنجش OONI فرستاده می‌شود و نتایج آن به صورت خودکار در OONI explorer و لیست سنجش‌های OONI منتشر می‌شود.</string>
     <string name="im_all_set">آماده‌ام!</string>
-    <string name="ooniprobe_configured">ooniprobe با موفقیت پیکربندی شد. </string>
+    <string name="ooniprobe_configured">OONI Probe با موفقیت پیکربندی شد. </string>
     <string name="about_ooni">درباره‌ی OONI</string>
     <string name="about_text_1">این آزمایش‌ها توسط رصدخانه‌ی باز تداخل شبکه (OONI) - که یک پروژه‌ی نرم افزاری رایگان تحت نظر پروژه Tor است- با هدف آشکار سازی سانسور اینترنت در سراسر جهان توسعه یافته شده است.</string>
     <string name="about_text_2">از سال ۲۰۱۲، OONI میلیون‌ها تست سنجش شبکه از سراسر جهان جمع آوری کرده است. این سنجش‌ها نمونه‌ای بارز از سانسور و دستکاری ترافیک اینترنتی به شمار می‌آیند.</string>
@@ -106,13 +106,17 @@
     <string name="try_mirror">سرورهای آینه را امتحان کنید</string>
     <string name="loading">در حال بارگذاری..</string>
     <string name="set_default">حالت پیش فرض</string>
-    <string name="run_test_message">شما در آستانه‌ی اجرای یک تست ooniprobe روی شبکه‌ی خود هستید</string>
+    <string name="run_test_message">شما در آستانه‌ی اجرای یک تست OONI Probe روی شبکه‌ی خود هستید</string>
     <string name="urls">آدرس‌ها</string>
     <string name="test_name">نام تست</string>
     <string name="test_details">جزئیات تست</string>
-    <string name="ooniprobe_outdate">ooniprobe به‌روز نیست</string>
-    <string name="ooniprobe_outdate_msg">برای اجرای این تست،‌ شما به نسخه جدیدی از ooniprobe نیاز دارید، برای بروزرسانی روی دکمه ی زیر کلیک کنید.</string>
+    <string name="ooniprobe_outdate">OONI Probe به روز نیست</string>
+    <string name="ooniprobe_outdate_msg">برای اجرای این تست،‌ شما به یک نسخه‌ی جدیدتر OONI Probe نیاز دارید، برای بروزرسانی روی دکمه‌ی زیر کلیک کنید.</string>
     <string name="invalid_parameter">پارامتر نامعتبر</string>
     <string name="random_sampling_urls">نمونه برداری تصادفی از لینک‌های لیست جهانی</string>
     <string name="close">بستن</string>
+    <string name="websites">وب سایت</string>
+    <string name="instant_messaging">پيام رسانی سريع</string>
+    <string name="middle_boxes">Middle Boxes</string>
+    <string name="performance">کارایی</string>
 </resources>

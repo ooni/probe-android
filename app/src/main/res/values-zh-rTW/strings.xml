@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ooniprobe</string>
+    <string name="app_name">OONI Probe</string>
     <string name="run_tests">執行測試</string>
     <string name="past_tests">過去的測試</string>
     <string name="settings">設定</string>
@@ -39,25 +39,25 @@
     <string name="delete">刪除</string>
     <string name="test_result">測試結果</string>
     <string name="change">改變</string>
-    <string name="welcome_ooniprobe">歡迎來到 ooniprobe！</string>
+    <string name="welcome_ooniprobe">歡迎來到 OONI Probe！</string>
     <string name="get_started">準備開始！</string>
-    <string name="what_is_ooniprobe">什麼是 ooniprobe？</string>
+    <string name="what_is_ooniprobe">什麼是 OONI Probe？</string>
     <string name="learn_more">了解更多</string>
-    <string name="risks_text_1">ooniprobe 是一個免費開放軟體，可讓你檢查網路中的網際網路審查狀況！</string>
+    <string name="risks_text_1">OONI Probe 是一個自由開源軟體可讓你來檢查網路中的網際網路審查！</string>
     <string name="risks_text_2">執行這個應用程式，你可以檢查網站是否遭到封鎖，以及如何被封鎖，是否有審查或監控系統存在於你的網路中。</string>
     <string name="risks_text_3">你也可以執行這個應用程式，來測量網路的速度和效能。</string>
     <string name="risks_text_4">透過這個應用程式所收集的資料，可以用來作為審查事件的證據。</string>
-    <string name="risks_text_5">因為 ooniprobe 可以作為調查工具等使用，它也帶有一些風險。</string>
+    <string name="risks_text_5">因為 OONI Probe 可以作為調查工具等使用，它也帶有一些風險。</string>
     <string name="potential_risks">潛在風險</string>
-    <string name="laws_text_1">任何人監控你的網路活動（如：ISP、政府或上司）可能會知道我在執行ooniprobe（儘管 OONI 努力地讓這不易發生）</string>
+    <string name="laws_text_1">任何人監控你的網路活動（如：ISP、政府或上司）可能會知道我在執行OONI Probe（儘管 OONI 努力地讓這不易發生）</string>
     <string name="laws_text_2">在測試網站的審查狀況時，你會被連結或下載一些挑釁或可能被拒的網站(例如色情網站）資料，這些網站可能在你的國家並不合法。</string>
     <string name="laws_text_3">OONI 的 HTTP 無效請求行測試可能會觸動 ISP 的懷疑，而將你的行為視為一種駭客行為。</string>
     <string name="laws_text_4">除非有修改設定，所有測試所收集的數據將會預設由 OONI 公布，其中可能有些私人的、可辨識的資訊。（雖然 OONI 努力地防止此情況發生）</string>
-    <string name="laws_text_5">單純只是使用 ooniprobe，也可能在你的國家被視為間諜活動或是無視國家法律的行為。</string>
-    <string name="laws_text_6">據我們所知，沒有任何 ooniprobe 使用者因使用我們的平台而面臨這些下場。然而有些國家長期對付倡議網路自由的活躍份子，有可能讓 ooniprobe 使用者因此而面臨了嚴厲的民事、刑事或法外處罰等威脅。</string>
+    <string name="laws_text_5">只是使用 OONI Probe 可能被當成一種無視國家法律的間諜行為。</string>
+    <string name="laws_text_6">據我們所知，沒有任何 OONI Probe 使用者因使用我們的平台而面臨這些下場。然而有些國家長期對付倡議網路自由的活躍份子，有可能讓 OONI Probe 使用者因此而面臨了嚴厲的民事、刑事或法外處罰等威脅。</string>
     <string name="i_understand_the_risks">我了解這些風險。</string>
     <string name="pop_quiz">突擊測驗！</string>
-    <string name="question_1">問題1：儘管 OONI 很謹慎地預防，但是否仍可能有人（如：ISP，政府或上司）會監控我的網路活動，從而知道我在執行 ooniprobe？</string>
+    <string name="question_1">問題 1：儘管 OONI 很謹慎地防止，但有人（如：ISP、政府或上司）還是可能會監控我的網路活動，因而知道我在執行 OONI Probe？</string>
     <string name="question_2">問題 2：我的測量結果是否預設會被 OONI 公佈，其中可能包含可以辨識個人資訊的訊息？</string>
     <string name="_true">是</string>
     <string name="_false">否</string>
@@ -71,7 +71,7 @@
     <string name="upload_results">公開分享結果？</string>
     <string name="settings_text">所有測量都會預設送到 OONI 的測量收集器，並自動公布到OONI explorer 以及 OONI 的測量表單上。</string>
     <string name="im_all_set">都弄好了！</string>
-    <string name="ooniprobe_configured">你成功地設定好 ooniprobe ，並可以準備開始使用了！</string>
+    <string name="ooniprobe_configured">成功地設定好 OONI Probe 一切設定都生效了！</string>
     <string name="about_ooni">關於 OONI</string>
     <string name="about_text_1">The Open Observatory of Network Interference (OONI) 是 Tor 計畫底下的一個自由軟體專案，旨在增加全球網際網路審查的透明度。</string>
     <string name="about_text_2">自2012年，OONI 已收集了全世界上百萬個網路測量結果，篩出多個網際網路審查與流量操縱的實例。</string>
@@ -102,13 +102,17 @@
     <string name="try_mirror">試試鏡像站</string>
     <string name="loading">載入中…</string>
     <string name="set_default">作為預設</string>
-    <string name="run_test_message">你將在自身網路中執行 ooniprobe 測試</string>
+    <string name="run_test_message">您即將在您的網路上運行OONI Probe測試</string>
     <string name="urls">URLs</string>
     <string name="test_name">測試名稱</string>
     <string name="test_details">測試詳情</string>
-    <string name="ooniprobe_outdate">ooniprobe 已過時未更新</string>
-    <string name="ooniprobe_outdate_msg">執行此次測試需要更新版本的 ooniprobe ，請點擊下方按鍵進行更新。</string>
+    <string name="ooniprobe_outdate">OONI Probe 已過時未更新</string>
+    <string name="ooniprobe_outdate_msg">執行此次測試需要更新版本的 OONI Probe ，請點擊下方按鍵進行更新。</string>
     <string name="invalid_parameter">無效的參數</string>
     <string name="random_sampling_urls">全球清單上隨機抽取一個網址樣本</string>
     <string name="close">關閉</string>
+    <string name="websites">網站</string>
+    <string name="instant_messaging">即時通訊</string>
+    <string name="middle_boxes">中間設備</string>
+    <string name="performance">性能</string>
 </resources>

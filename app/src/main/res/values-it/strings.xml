@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ooniprobe</string>
+    <string name="app_name">OONI Probe</string>
     <string name="run_tests">Esegui Test</string>
     <string name="past_tests">Test Passati</string>
     <string name="settings">Impostazioni</string>
@@ -40,25 +40,25 @@ Attenzione: NDT è un test di prestazione eseguito su server di terze parti, e q
     <string name="delete">Elimina</string>
     <string name="test_result">Risultati del test</string>
     <string name="change">Cambia</string>
-    <string name="welcome_ooniprobe">Benvenuti a ooniprobe!</string>
+    <string name="welcome_ooniprobe">Benvenuto a OONI Probe!</string>
     <string name="get_started">Pronti per iniziare?</string>
-    <string name="what_is_ooniprobe">Cos\'è ooniprobe?</string>
+    <string name="what_is_ooniprobe">Cos\'è OONI Probe?</string>
     <string name="learn_more">Piú informazioni</string>
-    <string name="risks_text_1">ooniprobe è un software gratuito ed open source che permette di analizzare la presenza di censura internet sulla tua rete!</string>
+    <string name="risks_text_1">OONI Probe è un software gratuito ed open source che permette di analizzare la presenza di censura internet sulla tua rete!</string>
     <string name="risks_text_2">Nell\'eseguire questa app, puoi controllare se e come i siti web sono bloccati, e se censura e/o sistemi di sorveglianza sono presenti nella tua rete.</string>
     <string name="risks_text_3">Puoi utilizzare questa app anche per misurare la velocità e la performance della tua rete.</string>
     <string name="risks_text_4">I dati collezionati da questa app possono essere utilizzati come prove concrete di eventi di censura</string>
-    <string name="risks_text_5">ooniprobe è uno strumento investigativo e puó presentare alcuni rischi</string>
+    <string name="risks_text_5">OONI Probe è uno strumento investigativo e può presentare alcuni rischi.</string>
     <string name="potential_risks">Rischi potenziali</string>
-    <string name="laws_text_1">Chiunque stia monitorando il tuo traffico internet (ad es. fornitori del servizio Internet, governo, datore di lavoro) potrebbe rilevare che stai utilizzando ooniprobe (anche se OONI fa di tutto per nasconderlo).</string>
+    <string name="laws_text_1">Chiunque stia monitorando il tuo traffico internet (ad es. fornitori del servizio Internet, governo, datore di lavoro) potrebbe rilevare che stai utilizzando OONI Probe (anche se OONI fa di tutto per nasconderlo).</string>
     <string name="laws_text_2">Durante il test dei siti web per la censura, ti collegherai e scaricherai materiale da siti provocanti o poco raccomandabili (ad es. pornografia) che potrebbero essere illegali nel tuo paese.</string>
     <string name="laws_text_3">Il test HTTP Invalid Request Line di OONI potrebbe essere visto dal tuo gestore internet come una forma di \"hacking\" e attivare il loro sospetto.</string>
     <string name="laws_text_4">A meno che non vengano configurate diversamente, tutti i dati collezionati dai test verranno di default pubblicati da OONI e potrebbero includere delle informazioni personalmente identificative (anche se OONI prova a nasconderle)</string>
-    <string name="laws_text_5">Il solo uso di ooniprobe potrebbe essere visto come una forma di spionaggio, indipendentemente dalle leggi della tua nazione.</string>
-    <string name="laws_text_6">A nostra conoscenza, nessun utente di ooniprobe ha mai subito conseguenze legali dall\'uso della nostra piattaforma. Tuttavia, molti paesi hanno una lunga storia di abusi contro gli attivisti dei diritti digitali, e ooniprobe potrebbe esporre i suoi utenti a severe pene civili, penali o extra-giudiziarie.</string>
+    <string name="laws_text_5">Il solo uso di OONI Probe potrebbe essere visto come una forma di spionaggio, indipendentemente dalle leggi della tua nazione.</string>
+    <string name="laws_text_6">A nostra conoscenza, nessun utente di OONI Probe ha mai subito conseguenze legali dall\'uso della nostra piattaforma. Tuttavia, molti paesi hanno una lunga storia di abusi contro gli attivisti dei diritti digitali, e OONI Probe potrebbe esporre i suoi utenti a severe pene civili, penali o extra-giudiziarie.</string>
     <string name="i_understand_the_risks">Ho compreso i rischi.</string>
     <string name="pop_quiz">Quiz</string>
-    <string name="question_1">Domanda 1: Chiunque stia monitorando il mio traffico internet (ad es. fornitori del servizio Internet, governo, datore di lavoro) potrebbe rilevare che sto utilizzando ooniprobe, anche se OONI prende delle precauzioni per nasconderlo?</string>
+    <string name="question_1">Domanda 1: Chiunque stia monitorando il mio traffico internet (ad es. fornitori del servizio Internet, governo, datore di lavoro) potrebbe rilevare che stai utilizzando OONI Probe, anche se OONI prende delle precauzioni per nasconderlo?</string>
     <string name="question_2">Domanda 2: Verranno pubblicate, per impostazione di default, le mie misure da OONI e potrebbero includere informazioni personalmente identificative?</string>
     <string name="_true">Vero</string>
     <string name="_false">Falso</string>
@@ -72,7 +72,7 @@ Attenzione: NDT è un test di prestazione eseguito su server di terze parti, e q
     <string name="upload_results">Condividere i risultati pubblicamente?</string>
     <string name="settings_text">Tutte le misurazione sono, di default, inviate al registro delle misurazioni di OONI e sono automaticamente pubblicate su OONI Explorer e sull\'interfaccia di misurazione di OONI.</string>
     <string name="im_all_set">Tutto pronto!</string>
-    <string name="ooniprobe_configured">Hai configurato con successo ooniprobe. Siete pronti per cominciare!</string>
+    <string name="ooniprobe_configured">Hai configurato con successo OONI Probe. Sei pronto per cominciare!</string>
     <string name="about_ooni">Informazioni su OONI</string>
     <string name="about_text_1">L\'Osservatorio Libero dell\'Interferenza di Rete (Open Observatory of Network Interference, OONI) è un progetto di software libero del Progetto Tor che punta a incrementare la trasparenza della censura di Internet in tutto il mondo.</string>
     <string name="about_text_2">Dal 2012, OONI ha collezionato milioni di misurazioni di rete in tutto il mondo, puntando i riflettori su numerosi casi di censura internet e manipolazione del traffico.</string>
@@ -103,13 +103,17 @@ Attenzione: NDT è un test di prestazione eseguito su server di terze parti, e q
     <string name="try_mirror">Prova un mirror</string>
     <string name="loading">Caricamento...</string>
     <string name="set_default">Imposta prefedinito</string>
-    <string name="run_test_message">Stai per eseguire un test ooniprobe sulla tua rete</string>
+    <string name="run_test_message">Stai per eseguire un test OONI Probe sulla tua rete</string>
     <string name="urls">URLs</string>
     <string name="test_name">Nome test</string>
     <string name="test_details">Dettagli del test</string>
-    <string name="ooniprobe_outdate">ooniprobe non è aggiornato</string>
-    <string name="ooniprobe_outdate_msg">Per eseguire questo test è necessaria una versione più recente di ooniprobe, fare clic sul pulsante qui sotto per aggiornare</string>
+    <string name="ooniprobe_outdate">OONI Probe non è aggiornato</string>
+    <string name="ooniprobe_outdate_msg">Per eseguire questo test è necessaria una versione più recente di OONI Probe, fai clic sul pulsante qui sotto per aggiornare</string>
     <string name="invalid_parameter">Parametro invalido</string>
     <string name="random_sampling_urls">Un campionamento casuale di URL dall\'elenco globale</string>
     <string name="close">Chiudi</string>
+    <string name="websites">Siti Web</string>
+    <string name="instant_messaging">Messaggistica istantanea</string>
+    <string name="middle_boxes">Middle Box</string>
+    <string name="performance">Prestazioni</string>
 </resources>

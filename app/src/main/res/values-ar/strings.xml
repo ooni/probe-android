@@ -1,40 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ooniprobe</string>
+    <string name="app_name">OONI Probe</string>
     <string name="run_tests">إجراء الاختبارات</string>
     <string name="past_tests">الاختبارات السابقة</string>
     <string name="settings">الإعدادات</string>
     <string name="about">حول</string>
-    <string name="dns_injection">حقن DNS</string>
-    <string name="dash">DASH اختبار البث</string>
+    <string name="dns_injection">حقن الDNS</string>
+    <string name="dash">اختبار بث الDASH</string>
     <string name="tcp_connect">ربط TCP </string>
-    <string name="http_invalid_request_line">عدم صلاحية طلب ال HTTP </string>
-    <string name="http_header_field_manipulation">HTTP Header Field Manipulation</string>
+    <string name="http_invalid_request_line">عدم صلاحية طلب الHTTP </string>
+    <string name="http_header_field_manipulation">التلاعب بخانة رأس صفحة الHTTP </string>
     <string name="web_connectivity">الاتصال بشبكة الويب</string>
-    <string name="ndt">NDT أداة تشخيص سرعة الشبكة</string>
+    <string name="ndt">أداة تشخيص سرعة الشبكة الNDT</string>
     <string name="dash_desc">قياس جودة بث الفيديو</string>
     <string name="whatsapp">واتساب</string>
     <string name="telegram">تيليجرام</string>
     <string name="facebook_messenger">فيسبوك مسنجر</string>
-    <string name="web_connectivity_desc">تحقق مما إذا تم حجب المواقع</string>
-    <string name="http_invalid_request_line_desc">اِكْتَشَفَ وجود \'أجهزة وسيطة\'</string>
-    <string name="http_header_field_manipulation_desc">اِكْتَشَفَ وجود \'أجهزة وسيطة\'</string>
+    <string name="web_connectivity_desc">تحقق مما إذا تم حجب مواقع</string>
+    <string name="http_invalid_request_line_desc">أوجد \'أجهزة وسيطة\'</string>
+    <string name="http_header_field_manipulation_desc">أوجد \'أجهزة وسيطة\'</string>
     <string name="ndt_desc">فحص سرعة وجودة الشبكة</string>
     <string name="whatsapp_desc">تحقق من حجب الواتساب</string>
     <string name="telegram_desc">تحقق من حجب التيليجرام</string>
     <string name="facebook_messenger_desc">تحقق من حجب الفيسبوك مسنجر</string>
-    <string name="web_connectivity_longdesc">يعمل هذا الاختبار على كشف مقدار وجود حجب للمواقع عبر تقنيات مختلفة DNS tampering,  TCP/IP blocking أو من خلال transparent HTTP proxy .
+    <string name="web_connectivity_longdesc">يعمل هذا الاختبار على كشف وجود حجب للمواقع عبر تقنيات مختلفة DNS tampering,  TCP/IP blocking أو من خلال transparent HTTP proxy .
 
 في كل مرة يتم إجراء اختبار Web Connectivity يتم تجربة حزمة مواقع مختلفة.</string>
-    <string name="http_invalid_request_line_longdesc">يعمل هذا الاختبار على كشف وجود مكونات (“middle boxes”) في الشبكة قد تستخدم في المراقبة أو الحجب و ذلك بإرسال طلب HTTP غير صالح   لخدمة echo . ذا كانت هذه الأنظمة موجودة في شبكتك، بإمكانها إعتراض invalid HTTP request line  و إحداث خطأ  </string>
-    <string name="http_header_field_manipulation_longdesc">
-يعمل هذا الاختبار على كشف وجود مكونات (“middle boxes”) في الشبكة قد تستخدم في المراقبة أو الحجب و ذلك بإرسال طلب HTTP غير صالح لخدمة echo . إذا كانت هذه الأنظمة موجودة في شبكتك، فمن المحتمل أن تؤدي إلى تطبيع عناوين الHTTP أو إضافة عناوين HTTP إضافية.</string>
-    <string name="ndt_longdesc">يعمل هذا الاختبار على فحص سرعة وجودة الشبكة. هذا إختبار يخص الأداء يعتمد على خوادم أطراف جهات خارجية.
+    <string name="http_invalid_request_line_longdesc">يحاول هذا الاختبار كشف وجود مكونات أجهزة وسيطة (“middle boxes”) في الشبكة قد تستخدم في الرقابة أو الحجب، وذلك بإرسال طلب HTTP غير صحيح إلى خدمة echo . إذا كانت هذه الأنظمة موجودة في شبكتك، ستقوم بإعتراض طلب الHTTP الغير صحيح وتفعيل رسالة خطأ.</string>
+    <string name="http_header_field_manipulation_longdesc">يحاول هذا الاختبار كشف مكونات أنظمة وسيطة (“middle boxes”) في الشبكة قد تستخدم في الرقابة أو الحجب، وذلك بإرسال مكونات HTTP  غير متعارف عليها إلى خادم تحكم خلفي. إذا كانت هذه الأنظمة موجودة في شبكتك، ستقوم على الأغلب بتعديل مكونات HTTP المرسلة، أو إضافة مكونات إضافية.</string>
+    <string name="ndt_longdesc">يعمل هذا الاختبار على فحص سرعة وجودة الشبكة. 
 
-إخلاء المسؤولية: لا يمكننا الجزم أنه لان يتم تجميع، إستعمال أو نشر عنوان ال IP الخاص بك.</string>
-    <string name="dash_longdesc">يحاكي هذا الاختبار مشغل فيديو بسيط جدا يبث بجودة متغيرة من خادم بعيد. تم تصميم الاختبار للحصول على أداء شبكتك حين يتم إجراء بث فيديو.\n\nإخلاء المسؤولية: هذا اختبار اداء مقدم من جهة خارجية إستنادًا إلى خوادم الجهات الخارجية, ولا يمكننا ضمان عدم جمع عنوان IP الخاص بك ومعالجته, ونشره.</string>
-    <string name="whatsapp_longdesc">تم تصميم هذا الإختبار لدراسة إمكانية الوصول إلى كُلٍ من تطبيق الواتساب ونسخة واتساب ويب ضمن الشبكة المختبرة.</string>
-    <string name="telegram_longdesc">تم تصميم هذا الإختبار لدراسة إمكانية الوصول إلى كُلٍ من تطبيق التيليجرام ونسخة تيليجرام ويب ضمن الشبكة المختبرة.</string>
+إخلاء المسؤولية: هذا إختبار أداء الطرف الثالث يعتمد على خوادم الطرف الثالث. لا يمكننا الجزم أنه لن يتم تجميع أو إستعمال أو نشر عنوان ال IP الخاص بك.</string>
+    <string name="dash_longdesc">يحاكي هذا الاختبار مشغل فيديو بسيط جدا يبث بجودة متغيرة من خادم بعيد. تم تصميم الاختبار للحصول على معيار أساس لأداء شبكتك لإجراء بث فيديو.
+
+إخلاء المسؤولية: هذا إختبار أداء يعتمد على خوادم الطرف الثالث. لا يمكننا الجزم أنه لن يتم تجميع أو إستعمال أو نشر عنوان ال IP الخاص بك.</string>
+    <string name="whatsapp_longdesc">تم تصميم هذا الإختبار لدراسة إمكانية الوصول إلى كُلٍ من تطبيق الواتساب ونسخة واتساب ويب ضمن شبكة مختبرة.</string>
+    <string name="telegram_longdesc">تم تصميم هذا الإختبار لدراسة إمكانية الوصول إلى كُلٍ من تطبيق التيليجرام ونسخة تيليجرام ويب ضمن شبكة مختبرة.</string>
     <string name="facebook_messenger_longdesc">تحقق من حجب الفيسبوك مسنجر</string>
     <string name="running_tests">الاختبارات الجارية</string>
     <string name="finished_tests">الاختبارات المنجزة</string>
@@ -44,52 +45,52 @@
     <string name="delete">حذف</string>
     <string name="test_result">نتائج الاختبار</string>
     <string name="change">تغيير</string>
-    <string name="welcome_ooniprobe">أهلا بك في ooniprobe!</string>
+    <string name="welcome_ooniprobe">أهلا بك في OONI Probe!</string>
     <string name="get_started">ابدأ!</string>
-    <string name="what_is_ooniprobe">ما هو ooniprobe؟</string>
+    <string name="what_is_ooniprobe">ما هو OONI Probe؟</string>
     <string name="learn_more">اعرفوا المزيد</string>
-    <string name="risks_text_1">ooniprobe هو عبارة عن برنامج حر ومفتوح المصدر يسمح بإجراء اختبارات للكشف عن أنماط الحجب على الشبكة الخاصة بك.</string>
-    <string name="risks_text_2">يمكنك باستخدام هذا البرنامج الكشف عن وجود حجب للمواقع من عدمه وتقنية الحجب، وعن وجود أي أنظمة مراقبة على الشبكة.</string>
+    <string name="risks_text_1">OONI Probe هو عبارة عن برنامج حر ومفتوح المصدر يسمح بإجراء اختبارات للكشف عن أنماط الحجب على شبكتك!</string>
+    <string name="risks_text_2">يمكنك باستخدام هذا البرنامج الكشف عن وجود حجب للمواقع من عدمه وتقنية الحجب، وعن وجود أي أنظمة حجب و/أو مراقبة على الشبكة.</string>
     <string name="risks_text_3">كما يمكنك استخدام هذا التطبيق لفحص سرعة وجودة الشبكة.</string>
     <string name="risks_text_4">البيانات التي يمكنكم جمعها باستخدام هذا التطبيق يمكن استخدامها كدليل عن حدوث الحجب.</string>
-    <string name="risks_text_5">لأن ooniprobe أداة للتحقيق والتقصّي، قد يشكل ذلك بعض الخطورة.</string>
+    <string name="risks_text_5">لأن OONI Probe أداة للتحقيق والتقصّي، قد يشكل ذلك بعض الخطورة.</string>
     <string name="potential_risks">المخاطر المحتملة</string>
-    <string name="laws_text_1">أي شخص يقوم بمراقبة نشاطك على الانترنت (أمثلة: مقدمي خدمة الإنترنت, الحكومة, المُشغل) يستطيع أن يرى أنك تستخدم أوني-بروب (بالرغم من أن OONI يعمل جاهدا على جعل هذه المهمة صعبة)</string>
-    <string name="laws_text_2">عند إجراء اختبارات حجب الموقع، سوف تقوم بالاتصالات وتنزيل بيانات من مواقع قد تعتبر استفزازية أو غير مرحب بها (مثل مواقع إباحية) قد تعتبر غير قانونية في دولتك.</string>
+    <string name="laws_text_1">أي شخص يقوم بمراقبة نشاطك على الانترنت (أمثلة: مقدمي خدمة الإنترنت – الحكومة – موظف عمومي) يستطيع أن يرى أنك تستخدم OONI Probe (بالرغم من OONI Probe يعمل جاهدا على جعل هذه المهمة صعبة)</string>
+    <string name="laws_text_2">عند إجراء اختبارات حجب الموقع، سوف تقوم بالاتصالات وتنزيل بيانات من مواقع قد تعتبر استفزازية أو غير مرحب بها (مثل المواقع الإباحية) قد تعتبر غير قانونية في دولتك.</string>
     <string name="laws_text_3">إجراء اختبار OONI الذي يحتوي على طلب HTTP غير صالح قد يثير ريبة مقدم خدمة الإنترنت الخاص بك معتبرا هذا النشاط شكل من أشكال “الاختراق”.</string>
     <string name="laws_text_4">جميع البيانات التي يتم جمعها من خلال الاختبارات عبر هذا التطبيق سوف يتم نشرها بواسطة OONI. وقد تتضمن البيانات المجمعة بعض البيانات التعريفية الشخصية (على رغم من محاولة OONI تجنب وقوع هذا)، إلا إذا قمت بتغيير الإعدادات الخاصة بك في التطبيق.</string>
-    <string name="laws_text_5">قد يعتبر مجرد استخدام ooniprobe من أعمال الجاسوسية بغض النظر عن القوانين في دولتك.</string>
-    <string name="laws_text_6">حسب معلوماتنا، لم يتعرض أي مستخدم ooniprobe ﻷي تبعات نتيجة استخدام منصتنا. وبالرغم من ذلك يوجد دول كثيرة ذات تاريخ طويل من الإساءة إلى واستهداف نشطاء التقنية والحريات الرقمية، مما قد يعرض مستخدمي ooniprobe إلى عقوبات شديدة مدنية أو جنائية أو خارج إطار القانون.</string>
+    <string name="laws_text_5">قد يعتبر مجرد استخدام OONI Probe من أعمال الجوسسة بغض النظر عن القوانين في دولتك.</string>
+    <string name="laws_text_6">حسب معلوماتنا، لم يتعرض أي مستخدم OONI Probe ﻷي تبعات نتيجة استخدام منصتنا. وبالرغم من ذلك يوجد دول كثيرة ذات تاريخ طويل من الإساءة إلى واستهداف نشطاء الحريات الرقمية، مما قد يعرض مستخدمي OONI Probe إلى عقوبات شديدة مدنية أو جنائية أو خارج إطار القانون.</string>
     <string name="i_understand_the_risks">أفهم المخاطر.</string>
     <string name="pop_quiz">اختبار سريع!</string>
-    <string name="question_1">السؤال الأول: هل يمكن لأي شخص يراقب نشاطي على الإنترنت (أمثلة: مقدمي خدمة الإنترنت, الحكومة, المٌشغل) قد يستطيع أن يتعرف على استخدامي للتطبيق على الرغم من أن OONI تتخذ الاحتياطات اللازمة لجعل هذا الأمر صعبًا؟</string>
+    <string name="question_1">السؤال الأول: هل يمكن لأي شخص يراقب نشاطي على الإنترنت (أمثلة: مقدمي خدمة الإنترنت، الحكومة، المٌشغل) قد يستطيع أن يتعرف على استخدامي للتطبيق على الرغم من أن OONI تتخذ الاحتياطات اللازمة لجعل هذا الأمر صعبًا؟</string>
     <string name="question_2">السؤال 2: هل سيتم نشر جميع الاختبارات التي أقوم بها على نحو افتراضي عبر OONI، وقد تتضمن بيانات تعريفية شخصية؟</string>
     <string name="_true">صحيح</string>
     <string name="_false">خاطئ</string>
-    <string name="how_did_i_do">كيف لي أن أفعل؟</string>
+    <string name="how_did_i_do">كيف أبليت؟</string>
     <string name="wrong">مطلوب المزيد من القراءة قليلًا بالنسبة لك للمضي قدمًا.</string>
-    <string name="correct">عمل جيد! قمت بإجابة الاختبار بشكل صحيح.</string>
+    <string name="correct">أحسنت! أجبت على الاختبار بشكل صحيح.</string>
     <string name="set_up_sharing">إعداد المشاركة</string>
     <string name="include_ip">إدراج المعرف الرقمي الخاص بك؟</string>
     <string name="include_asn">إدراج البيانات الخاصة بشبكتك؟</string>
     <string name="include_cc">إدراج أسم دولتك؟</string>
-    <string name="upload_results">مشاركة النتائج علانية؟</string>
-    <string name="settings_text">يتم إرسال جميع نتائج الإختبارات بصفة آلية إلى OONI كما يتم نشرها عبر OONI Explorer و OONI\'s measurement API.</string>
+    <string name="upload_results">مشاركة النتائج بشكل علني؟</string>
+    <string name="settings_text">يتم إرسال جميع نتائج الإختبارات بصفة آلية إلى OONI كما يتم نشرها بشكل آلي عبر OONI Explorer و OONI\'s measurement API.</string>
     <string name="im_all_set">أنا على أتم الاستعداد!</string>
-    <string name="ooniprobe_configured">لقد تم إعداد ooniprobe بنجاح ويمكنك البدء.</string>
+    <string name="ooniprobe_configured">لقد تم إعداد OONI Probe بنجاح ويمكنك البدء.</string>
     <string name="about_ooni">عن OONI</string>
-    <string name="about_text_1">The Open Observatory of Network Interference (OONI) عبارة عن مشروع برنامج حر ومفتوح المصدر تابع لThe Tor Project، يسعى إلى تعزيز الشفافية حول ممارسات الحجب حول العالم.
+    <string name="about_text_1">(The Open Observatory of Network Interference OONI) عبارة عن مشروع برنامج حر ومفتوح المصدر تابع لThe Tor Project، يسعى إلى تعزيز الشفافية حول ممارسات الحجب حول العالم.
 </string>
-    <string name="about_text_2">منذ 2012، قام أوني OONI بجمع ملايين الاختبارات حول العالم وتسليط الضوء على حالات الحجب والتلاعب في الشبكة.</string>
+    <string name="about_text_2">منذ 2012، قام أوني OONI بجمع ملايين الاختبارات حول العالم وتسليط الضوء على حالات الحجب والتلاعب في شبكة الانترنت.</string>
     <string name="run">ابدأ</string>
-    <string name="view">مراجعة</string>
+    <string name="view">الاطلاع</string>
     <string name="no_result">لا يوجد نتائج</string>
     <string name="no_result_msg">لا يوجد نتائج للاختبار أو تم إلغاءه</string>
     <string name="local_notifications">تشغيل الإختبار بصفة آلية</string>
     <string name="local_notifications_time">الوقت</string>
     <string name="local_notifications_text">وقت إجراء الاختبار</string>
     <string name="notifications">التنبيهات</string>
-    <string name="max_runtime">الحد الأقصى لتشغيل  Web Connectivity (ثواني)</string>
+    <string name="max_runtime">الحد الأقصى لتشغيل  Web Connectivity (ثوان)</string>
     <string name="advanced_settings">إعدادات متقدمة</string>
     <string name="finished_running">إنتهاء التشغيل </string>
     <string name="view_log">عرض السجل</string>
@@ -107,14 +108,18 @@
     <string name="drawer_close">إغلاق قائمة التصفح</string>
     <string name="try_mirror">تجربة رابط</string>
     <string name="loading">تحميل..</string>
-    <string name="set_default">افتراضي</string>
-    <string name="run_test_message">أنت على وشك تشغيل إختبار ooniprobe على شبكتك</string>
+    <string name="set_default">تثبيت الوضع الافتراضي</string>
+    <string name="run_test_message">أنت على وشك تشغيل إختبار OONI Probe على شبكتك</string>
     <string name="urls">روابط</string>
     <string name="test_name">اسم الاختبار</string>
     <string name="test_details">تفاصيل الاختبار</string>
-    <string name="ooniprobe_outdate">ooniprobe غير محدث</string>
-    <string name="ooniprobe_outdate_msg">لإجراء الاختبار تحتاج إصدار جديدة من ooniprobe لإجراء هذا لاختبار، على الزر أدناه للتحديث</string>
-    <string name="invalid_parameter">مُدخل خاطئ</string>
-    <string name="random_sampling_urls">عينة عشوائية الروابط من القائمة العامة</string>
+    <string name="ooniprobe_outdate">OONI Probe غير محدث</string>
+    <string name="ooniprobe_outdate_msg">لإجراء هذا الاختبار تحتاج الى إصدار أجدّ من OONI Probe، انقر على الزر أدناه للتحديث</string>
+    <string name="invalid_parameter">مُعطى خاطئ</string>
+    <string name="random_sampling_urls">عينة عشوائية من الروابط من ضمن القائمة العامة</string>
     <string name="close">أغلق</string>
+    <string name="websites">مواقع </string>
+    <string name="instant_messaging">المراسلة الفورية</string>
+    <string name="middle_boxes"> أنظمة وسيطة</string>
+    <string name="performance">الأداء</string>
 </resources>
