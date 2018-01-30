@@ -5,13 +5,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
-import com.crashlytics.android.Crashlytics;
-import com.crashlytics.android.core.CrashlyticsCore;
-import com.google.firebase.FirebaseApp;
-
 import org.openobservatory.ooniprobe.utils.TestLists;
-
-import io.fabric.sdk.android.Fabric;
 
 public class ooniprobeApp extends Application {
     static {
@@ -26,6 +20,5 @@ public class ooniprobeApp extends Application {
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );
-        FirebaseApp.initializeApp(this);
     }
 }
