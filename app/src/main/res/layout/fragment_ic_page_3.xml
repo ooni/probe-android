@@ -57,14 +57,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="15sp"
-            android:text="@string/laws_text_5"
-            android:textColor="@color/color_off_black"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:textSize="15sp"
             android:text="@string/laws_text_6"
             android:textColor="@color/color_off_black"/>
 
