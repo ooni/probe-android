@@ -31,16 +31,12 @@ public class TestLists {
             context = ctx;
             probe_cc = "";
             probe_asn = "";
-            updateCC_async();
         }
         return instance;
     }
 
     public static ArrayList<String> getUrls(){
         ArrayList<String> global_urls = getURLsforAsset(readCVSFromAssetFolder("global"));
-        ArrayList<String> local_urls = getURLsforAsset(readCVSFromAssetFolder(probe_cc));
-        if (local_urls.size() > 0)
-            global_urls.addAll(local_urls);
         return global_urls;
     }
 

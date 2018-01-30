@@ -25,7 +25,6 @@ public class ooniprobeApp extends Application {
         final Boolean send_crash = preferences.getBoolean("send_crash", true);
         CrashlyticsCore core = new CrashlyticsCore.Builder().disabled(send_crash).build();
         Fabric.with(this, new Crashlytics.Builder().core(core).build());
-        TestLists.getInstance(this).updateCC_async();
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                 .setDefaultFontPath("webui/font-fira-sans-bold.5310ca5fb41a915987df5663660da770.otf")
