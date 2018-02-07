@@ -172,7 +172,6 @@
                 android:id="@+id/max_runtimeEditText"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="@string/collector_address"
                 android:textColor="@color/color_off_black"
                 android:textSize="12sp"
                 android:inputType="phone"
@@ -181,41 +180,6 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="8dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:id="@+id/collector_addressLayout"
-            android:clickable="true" >
-
-            <TextView
-                android:id="@+id/collector_addressText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/collector_address"
-                android:drawableStart="@drawable/collector_address"
-                android:drawablePadding="5dp"
-                android:text="@string/collector_address"
-                android:gravity="center_vertical"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:textColor="@color/color_ooni_blue" />
-
-            <TextView
-                android:id="@+id/collector_address_subText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/collector_address"
-                android:layout_marginLeft="25dp"
-                android:textColor="@color/color_off_black"
-                android:textSize="10sp"
-                android:gravity="center_vertical"
-                android:layout_below="@+id/collector_addressText"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
         </RelativeLayout>
     </LinearLayout>
 </ScrollView>

@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import org.openobservatory.ooniprobe.utils.TestLists;
 
 public class ooniprobeApp extends Application {
     static {

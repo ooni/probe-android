@@ -43,10 +43,16 @@ public class TestData extends Observable {
             finishedTests = TestStorage.loadTests(context);
             availableTests = new LinkedHashMap<>();
             availableTests.put(OONITests.WEB_CONNECTIVITY, true);
-            availableTests.put(OONITests.HTTP_INVALID_REQUEST_LINE, true);
+
+            availableTests.put(OONITests.FACEBOOK_MESSENGER, true);
+            availableTests.put(OONITests.TELEGRAM, true);
+            availableTests.put(OONITests.WHATSAPP, true);
+
             availableTests.put(OONITests.HTTP_HEADER_FIELD_MANIPULATION, true);
-            availableTests.put(OONITests.NDT, true);
+            availableTests.put(OONITests.HTTP_INVALID_REQUEST_LINE, true);
+
             availableTests.put(OONITests.DASH, true);
+            availableTests.put(OONITests.NDT, true);
         }
         else if (activity == null && a != null){
             activity = a;
@@ -54,11 +60,7 @@ public class TestData extends Observable {
         return instance;
     }
 
-    public static void doNetworkMeasurements(final Context ctx, final String testName, final ArrayList<String> urls) {
-        final String inputPath = ctx.getFilesDir() + "/hosts.txt";
-        final String inputUrlsPath = ctx.getFilesDir() + "/global.txt";
-
-        final NetworkMeasurement currentTest = new NetworkMeasurement(testName);
+    public static NetworkMeasurement configureTest(final Context ctx, final NetworkMeasurement currentTest) {
         final String outputPath = ctx.getFilesDir() + "/"  + currentTest.json_file;
         final String logPath = ctx.getFilesDir() + "/"  + currentTest.log_file;
 
@@ -66,24 +68,48 @@ public class TestData extends Observable {
         final String geoip_country = ctx.getFilesDir() + "/GeoIP.dat";
 
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
-
         final Boolean include_ip = preferences.getBoolean("include_ip", false);
         final Boolean include_asn = preferences.getBoolean("include_asn", true);
         final Boolean include_cc = preferences.getBoolean("include_cc", true);
         final Boolean upload_results = preferences.getBoolean("upload_results", true);
-        final String collector_address = preferences.getString("collector_address", OONITests.COLLECTOR_ADDRESS);
-        final String max_runtime = preferences.getString("max_runtime", OONITests.MAX_RUNTIME);
 
+        currentTest.test.use_logcat();
+        currentTest.test.set_output_filepath(outputPath);
+        currentTest.test.set_error_filepath(logPath);
+        currentTest.test.set_verbosity(OONITests.MK_VERBOSITY);
+        currentTest.test.set_options("geoip_country_path", geoip_country);
+        currentTest.test.set_options("geoip_asn_path", geoip_asn);
+        currentTest.test.set_options("save_real_probe_ip", boolToString(include_ip));
+        currentTest.test.set_options("save_real_probe_asn", boolToString(include_asn));
+        currentTest.test.set_options("save_real_probe_cc", boolToString(include_cc));
+        currentTest.test.set_options("no_collector", boolToString(!upload_results));
+        currentTest.test.set_options("software_name", "ooniprobe-android");
+        currentTest.test.set_options("software_version", VersionUtils.get_software_version());
+        currentTest.test.on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
+            @Override
+            public void callback(double percent, String msg) {
+                currentTest.progress = (int)(percent*100);
+                if (activity != null){
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            TestData.getInstance(context, activity).notifyObservers();
+                        }
+                    });
+                }
+            }
+        });
+        return currentTest;
+    }
+
+    public static void doNetworkMeasurements(final Context ctx, final NetworkMeasurement currentTest) {
+        configureTest(ctx, currentTest);
         TestStorage.addTest(ctx, currentTest);
         runningTests.add(currentTest);
-        availableTests.put(testName, false);
+        availableTests.put(currentTest.testName, false);
         if (activity != null) TestData.getInstance(context, activity).notifyObservers();
 
-        final String nameserver = DnsUtils.get_device_dns();
-        Log.v(TAG, "nameserver: " + nameserver);
-
-        Log.v(TAG, "doNetworkMeasurements " + testName + "...");
-
+        Log.v(TAG, "doNetworkMeasurements " + currentTest.testName + "...");
         /*
         Using AsyncTask  may not be the optimal solution since OONI tests could take a long time to complete
         For more info read: http://developer.android.com/reference/android/os/AsyncTask.html
@@ -97,239 +123,86 @@ public class TestData extends Observable {
                         try
                         {
                             Log.v(TAG, "running test...");
-                            if (testName.compareTo(OONITests.DNS_INJECTION) == 0) {
-                                DnsInjectionTest w = new DnsInjectionTest();
-                                Log.v(TAG, "running dns_injection test...");
-                                w.use_logcat();
-                                w.set_input_filepath(inputPath);
-                                w.set_output_filepath(outputPath);
-                                w.set_error_filepath(logPath);
-                                w.set_verbosity(LogSeverity.LOG_INFO);
-                                w.set_options("geoip_country_path", geoip_country);
-                                w.set_options("geoip_asn_path", geoip_asn);
-                                w.set_options("save_real_probe_ip", boolToString(include_ip));
-                                w.set_options("save_real_probe_asn", boolToString(include_asn));
-                                w.set_options("save_real_probe_cc", boolToString(include_cc));
-                                w.set_options("no_collector", boolToString(!upload_results));
-                                w.set_options("collector_base_url", collector_address);
-                                w.run();
-                            } else if (testName.compareTo(OONITests.HTTP_INVALID_REQUEST_LINE) == 0) {
+                            if (currentTest.testName.compareTo(OONITests.HTTP_INVALID_REQUEST_LINE) == 0) {
                                 Log.v(TAG, "running http_invalid_request_line test...");
-                                new HttpInvalidRequestLineTest()
-                                        .use_logcat()
-                                        .set_output_filepath(outputPath)
-                                        .set_error_filepath(logPath)
-                                        .set_verbosity(LogSeverity.LOG_INFO)
-                                        .set_options("geoip_country_path", geoip_country)
-                                        .set_options("geoip_asn_path", geoip_asn)
-                                        .set_options("save_real_probe_ip", boolToString(include_ip))
-                                        .set_options("save_real_probe_asn", boolToString(include_asn))
-                                        .set_options("save_real_probe_cc", boolToString(include_cc))
-                                        .set_options("no_collector", boolToString(!upload_results))
-                                        .set_options("collector_base_url", collector_address)
-                                        .set_options("software_name", "ooniprobe-android")
-                                        .set_options("software_version", VersionUtils.get_software_version())
-                                        .on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
-                                            @Override
-                                            public void callback(double percent, String msg) {
-                                                currentTest.progress = (int)(percent*100);
-                                                if (activity != null){
-                                                    activity.runOnUiThread(new Runnable() {
-                                                        @Override
-                                                        public void run() {
-                                                            TestData.getInstance(context, activity).notifyObservers();
-                                                        }
-                                                    });
-                                                }
-                                            }
-                                        })
-                                        .on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
+                                currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
                                             public void callback(String entry) {
-                                                setAnomaly_hirl(entry, currentTest);
+                                                setAnomalyHirl(entry, currentTest);
                                             }
-                                        })
-                                        .run();
+                                        }).run();
                             }
-                            else if (testName.compareTo(OONITests.HTTP_HEADER_FIELD_MANIPULATION) == 0) {
+                            else if (currentTest.testName.compareTo(OONITests.HTTP_HEADER_FIELD_MANIPULATION) == 0) {
                                 Log.v(TAG, "running http_header_field_manipulation test...");
-                                new HttpHeaderFieldManipulationTest()
-                                        .use_logcat()
-                                        .set_output_filepath(outputPath)
-                                        .set_error_filepath(logPath)
-                                        .set_verbosity(LogSeverity.LOG_INFO)
-                                        .set_options("geoip_country_path", geoip_country)
-                                        .set_options("geoip_asn_path", geoip_asn)
-                                        .set_options("save_real_probe_ip", boolToString(include_ip))
-                                        .set_options("save_real_probe_asn", boolToString(include_asn))
-                                        .set_options("save_real_probe_cc", boolToString(include_cc))
-                                        .set_options("no_collector", boolToString(!upload_results))
-                                        .set_options("collector_base_url", collector_address)
-                                        .set_options("software_name", "ooniprobe-android")
-                                        .set_options("software_version", VersionUtils.get_software_version())
-                                        .on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
-                                            @Override
-                                            public void callback(double percent, String msg) {
-                                                currentTest.progress = (int)(percent*100);
-                                                if (activity != null){
-                                                    activity.runOnUiThread(new Runnable() {
-                                                        @Override
-                                                        public void run() {
-                                                            TestData.getInstance(context, activity).notifyObservers();
-                                                        }
-                                                    });
-                                                }
-                                            }
-                                        })
-                                        .on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
+                                currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
                                             public void callback(String entry) {
-                                                setAnomaly_hhfm(entry, currentTest);
+                                                setAnomalyHhfm(entry, currentTest);
                                             }
                                         })
                                         .run();
                             }
-                            else if (testName.compareTo(OONITests.TCP_CONNECT) == 0) {
-                                Log.v(TAG, "running tcp-connect test...");
-                                TcpConnectTest w = new TcpConnectTest();
-                                w.use_logcat();
-                                w.set_input_filepath(inputPath);
-                                w.set_output_filepath(outputPath);
-                                w.set_error_filepath(logPath);
-                                w.set_verbosity(LogSeverity.LOG_INFO);
-                                w.set_options("geoip_country_path", geoip_country);
-                                w.set_options("geoip_asn_path", geoip_asn);
-                                w.set_options("save_real_probe_ip", boolToString(include_ip));
-                                w.set_options("save_real_probe_asn", boolToString(include_asn));
-                                w.set_options("save_real_probe_cc", boolToString(include_cc));
-                                w.set_options("no_collector", boolToString(!upload_results));
-                                w.set_options("collector_base_url", collector_address);
-                                w.run();
-                            }
-                            else if (testName.compareTo(OONITests.WEB_CONNECTIVITY) == 0) {
+                            else if (currentTest.testName.compareTo(OONITests.WEB_CONNECTIVITY) == 0) {
                                 Log.v(TAG, "running web-connectivity test...");
-                                WebConnectivityTest test = new WebConnectivityTest();
-                                test.use_logcat();
-                                if (urls != null && urls.size() > 0) {
-                                    for (int i = 0; i < urls.size(); i++)
-                                        test.add_input(urls.get(i));
-                                }
-                                else {
-                                    test.set_options("max_runtime", max_runtime);
-                                    test.set_input_filepath(inputUrlsPath);
-                                }
-                                test.set_output_filepath(outputPath);
-                                test.set_error_filepath(logPath);
-                                test.set_verbosity(LogSeverity.LOG_INFO);
-                                test.set_options("geoip_country_path", geoip_country);
-                                test.set_options("geoip_asn_path", geoip_asn);
-                                test.set_options("save_real_probe_ip", boolToString(include_ip));
-                                test.set_options("save_real_probe_asn", boolToString(include_asn));
-                                test.set_options("save_real_probe_cc", boolToString(include_cc));
-                                test.set_options("no_collector", boolToString(!upload_results));
-                                test.set_options("collector_base_url", collector_address);
-                                test.set_options("software_name", "ooniprobe-android");
-                                test.set_options("software_version", VersionUtils.get_software_version());
-                                test.on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
-                                            @Override
-                                            public void callback(double percent, String msg) {
-                                                currentTest.progress = (int)(percent*100);
-                                                if (activity != null){
-                                                    activity.runOnUiThread(new Runnable() {
-                                                        @Override
-                                                        public void run() {
-                                                            TestData.getInstance(context, activity).notifyObservers();
-                                                        }
-                                                    });
-                                                }
-                                            }
-                                        });
-                                test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
+                                currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
                                             public void callback(String entry) {
-                                                setAnomaly_wc(entry, currentTest);
+                                                setAnomalyWc(entry, currentTest);
                                             }
-                                        });
-                                test.run();
+                                        }).run();
                             }
-                            else if (testName.compareTo(OONITests.NDT) == 0) {
+                            else if (currentTest.testName.compareTo(OONITests.NDT) == 0) {
                                 Log.v(TAG, "running ndt test...");
-                                new NdtTest()
-                                        .use_logcat()
-                                        .set_input_filepath(inputPath)
-                                        .set_output_filepath(outputPath)
-                                        .set_error_filepath(logPath)
-                                        .set_verbosity(LogSeverity.LOG_INFO)
-                                        .set_options("geoip_country_path", geoip_country)
-                                        .set_options("geoip_asn_path", geoip_asn)
-                                        .set_options("save_real_probe_ip", boolToString(include_ip))
-                                        .set_options("save_real_probe_asn", boolToString(include_asn))
-                                        .set_options("save_real_probe_cc", boolToString(include_cc))
-                                        .set_options("no_collector", boolToString(!upload_results))
-                                        .set_options("collector_base_url", collector_address)
-                                        .set_options("software_name", "ooniprobe-android")
-                                        .set_options("software_version", VersionUtils.get_software_version())
-                                        .on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
-                                            @Override
-                                            public void callback(double percent, String msg) {
-                                                currentTest.progress = (int)(percent*100);
-                                                if (activity != null){
-                                                    activity.runOnUiThread(new Runnable() {
-                                                        @Override
-                                                        public void run() {
-                                                            TestData.getInstance(context, activity).notifyObservers();
-                                                        }
-                                                    });
-                                                }
-                                            }
-                                        })
-                                        .on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
+                                currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
                                             public void callback(String entry) {
-                                                setAnomaly_ndt(entry, currentTest);
+                                                setAnomalyNdt(entry, currentTest);
                                             }
                                         })
                                         .run();
                             }
-                            else if (testName.compareTo(OONITests.DASH) == 0) {
+                            else if (currentTest.testName.compareTo(OONITests.DASH) == 0) {
                                 Log.v(TAG, "running dash test...");
-                                new DashTest()
-                                        .use_logcat()
-                                        .set_output_filepath(outputPath)
-                                        .set_error_filepath(logPath)
-                                        .set_verbosity(LogSeverity.LOG_INFO)
-                                        .set_options("geoip_country_path", geoip_country)
-                                        .set_options("geoip_asn_path", geoip_asn)
-                                        .set_options("save_real_probe_ip", boolToString(include_ip))
-                                        .set_options("save_real_probe_asn", boolToString(include_asn))
-                                        .set_options("save_real_probe_cc", boolToString(include_cc))
-                                        .set_options("no_collector", boolToString(!upload_results))
-                                        .set_options("collector_base_url", collector_address)
-                                        .set_options("software_name", "ooniprobe-android")
-                                        .set_options("software_version", VersionUtils.get_software_version())
-                                        .on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
-                                            @Override
-                                            public void callback(double percent, String msg) {
-                                                currentTest.progress = (int)(percent*100);
-                                                if (activity != null){
-                                                    activity.runOnUiThread(new Runnable() {
-                                                        @Override
-                                                        public void run() {
-                                                            TestData.getInstance(context, activity).notifyObservers();
-                                                        }
-                                                    });
-                                                }
-                                            }
-                                        })
-                                        .on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
+                                currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
                                             public void callback(String entry) {
-                                                setAnomaly_ndt(entry, currentTest);
+                                                setAnomalyNdt(entry, currentTest);
                                             }
                                         })
                                         .run();
-                            } else {
-                                throw new UnknownTest(testName);
+                            }
+                            else if (currentTest.testName.compareTo(OONITests.WHATSAPP) == 0) {
+                                Log.v(TAG, "running whatsapp test...");
+                                currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
+                                    @Override
+                                    public void callback(String entry) {
+                                        setAnomalyWhatsapp(entry, currentTest);
+                                    }
+                                })
+                                        .run();
+                            }
+                            else if (currentTest.testName.compareTo(OONITests.TELEGRAM) == 0) {
+                                Log.v(TAG, "running telegram test...");
+                                currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
+                                    @Override
+                                    public void callback(String entry) {
+                                        setAnomalyTelegram(entry, currentTest);
+                                    }
+                                })
+                                        .run();
+                            }
+                            else if (currentTest.testName.compareTo(OONITests.FACEBOOK_MESSENGER) == 0) {
+                                Log.v(TAG, "running facebook_messenger test...");
+                                currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
+                                    @Override
+                                    public void callback(String entry) {
+                                        setAnomalyFacebookMessenger(entry, currentTest);
+                                    }
+                                })
+                                        .run();
+                            }
+                            else {
+                                throw new UnknownTest(currentTest.testName);
                             }
                             Log.v(TAG, "running test... done");
                         }
@@ -348,31 +221,32 @@ public class TestData extends Observable {
                         currentTest.entry = true;
                         runningTests.remove(currentTest);
                         finishedTests.add(currentTest);
-                        availableTests.put(testName, true);
-                        if (activity != null) TestData.getInstance(context, activity).notifyObservers(testName);
-                        NotificationHandler.notifyTestEnded(ctx, testName);
-                        Log.v(TAG, "doNetworkMeasurements " + testName + "... done");
+                        availableTests.put(currentTest.testName, true);
+                        if (activity != null) TestData.getInstance(context, activity).notifyObservers(currentTest.testName);
+                        NotificationHandler.notifyTestEnded(ctx, currentTest.testName);
+                        Log.v(TAG, "doNetworkMeasurements " + currentTest.testName + "... done");
                     }
                 }
         );
     }
 
-    public static void setAnomaly_wc(String entry, NetworkMeasurement test){
+    //TODO unify all these in an unique function that takes the test name.
+    public static void setAnomalyWc(String entry, NetworkMeasurement test){
         if(!test.entry) {
             TestStorage.setEntry(context, test);
             test.entry = true;
         }
         try {
-            int anomaly = 0;
+            int anomaly = OONITests.ANOMALY_GREEN;
             JSONObject jsonObj = new JSONObject(entry);
             JSONObject test_keys = jsonObj.getJSONObject("test_keys");
             Object blocking = test_keys.get("blocking");
             if(blocking instanceof String)
-                anomaly = 2;
+                anomaly = OONITests.ANOMALY_RED;
             else if(blocking instanceof Boolean)
-                anomaly = 0;
+                anomaly = OONITests.ANOMALY_GREEN;
             else
-                anomaly = 1;
+                anomaly = OONITests.ANOMALY_ORANGE;
             if (test.anomaly < anomaly) {
                 test.anomaly = anomaly;
                 TestStorage.setAnomaly(context, test.test_id, anomaly);
@@ -381,28 +255,26 @@ public class TestData extends Observable {
         }
     }
 
-    //TODO use DEFINE instead of 0,1,2
-    
     /*
      on_entry method for http invalid request line test
      if the "tampering" key exists and is null then anomaly will be set to 1 (orange)
      otherwise "tampering" object exists and is TRUE, then anomaly will be set to 2 (red)
      */
-    public static void setAnomaly_hirl(String entry, NetworkMeasurement test){
+    public static void setAnomalyHirl(String entry, NetworkMeasurement test){
         if(!test.entry) {
             TestStorage.setEntry(context, test);
             test.entry = true;
         }
         try {
-            int anomaly = 0;
+            int anomaly = OONITests.ANOMALY_GREEN;
             JSONObject jsonObj = new JSONObject(entry);
             JSONObject test_keys = jsonObj.getJSONObject("test_keys");
             if (test_keys.has("tampering")) {
                 Boolean tampering = test_keys.getBoolean("tampering");
                 if (tampering == null)
-                    anomaly = 1;
+                    anomaly = OONITests.ANOMALY_ORANGE;
                 else if (tampering == true)
-                    anomaly = 2;
+                    anomaly = OONITests.ANOMALY_RED;
             }
             if (test.anomaly < anomaly) {
                 test.anomaly = anomaly;
@@ -417,18 +289,18 @@ public class TestData extends Observable {
     if the "failure" key exists and is not null then anomaly will be set to 1 (orange)
     otherwise the keys in the "tampering" object will be checked, if any of them is TRUE, then anomaly will be set to 2 (red)
     */
-    public static void setAnomaly_hhfm(String entry, NetworkMeasurement test){
+    public static void setAnomalyHhfm(String entry, NetworkMeasurement test){
         if(!test.entry) {
             TestStorage.setEntry(context, test);
             test.entry = true;
         }
         try {
-            int anomaly = 0;
+            int anomaly = OONITests.ANOMALY_GREEN;
             JSONObject jsonObj = new JSONObject(entry);
             JSONObject test_keys = jsonObj.getJSONObject("test_keys");
             Object failure = test_keys.get("failure");
             if(failure == null)
-                anomaly = 1;
+                anomaly = OONITests.ANOMALY_ORANGE;
             else {
                 JSONObject tampering = test_keys.getJSONObject("tampering");
                 String keys[] = {"header_field_name",
@@ -441,7 +313,7 @@ public class TestData extends Observable {
                 {
                     if (tampering.has(key))
                         if (tampering.getBoolean(key))
-                            anomaly = 2;
+                            anomaly = OONITests.ANOMALY_RED;
                 }
             }
             if (test.anomaly < anomaly) {
@@ -449,7 +321,7 @@ public class TestData extends Observable {
                 TestStorage.setAnomaly(context, test.test_id, anomaly);
             }
         } catch (JSONException e) {
-            System.out.println("JSONException "+ e);
+            Log.v(TAG, "JSONException "+ e);
         }
     }
 
@@ -457,27 +329,139 @@ public class TestData extends Observable {
     on_entry method for ndt and dash test
     if the "failure" key exists and is not null then anomaly will be set to 1 (orange)
     */
-    public static void setAnomaly_ndt(String entry, NetworkMeasurement test){
+    public static void setAnomalyNdt(String entry, NetworkMeasurement test){
         if(!test.entry) {
             TestStorage.setEntry(context, test);
             test.entry = true;
         }
         try {
-            int anomaly = 0;
+            int anomaly = OONITests.ANOMALY_GREEN;
             JSONObject jsonObj = new JSONObject(entry);
             JSONObject test_keys = jsonObj.getJSONObject("test_keys");
             if (test_keys.has("failure")) {
                 Object failure = test_keys.get("failure");
                 if (failure == null)
-                    anomaly = 1;
+                    anomaly = OONITests.ANOMALY_ORANGE;
             }
             if (test.anomaly < anomaly) {
                 test.anomaly = anomaly;
                 TestStorage.setAnomaly(context, test.test_id, anomaly);
             }
         } catch (JSONException e) {
+            Log.v(TAG, "JSONException "+ e);
         }
     }
+
+    /*
+     whatsapp: red if "whatsapp_endpoints_status" or "whatsapp_web_status" or "registration_server" are "blocked"
+     docs: https://github.com/TheTorProject/ooni-spec/blob/master/test-specs/ts-018-whatsapp.md#semantics
+     */
+    public static void setAnomalyWhatsapp(String entry, NetworkMeasurement test) {
+        if(!test.entry) {
+            TestStorage.setEntry(context, test);
+            test.entry = true;
+        }
+        try {
+            int anomaly = OONITests.ANOMALY_GREEN;
+            JSONObject jsonObj = new JSONObject(entry);
+            JSONObject test_keys = jsonObj.getJSONObject("test_keys");
+            String keys[] = {"whatsapp_endpoints_status",
+                    "whatsapp_web_status",
+                    "registration_server_status"};
+            for (String key: keys)
+            {
+                String value = test_keys.getString(key);
+                if (value == null)
+                    anomaly = OONITests.ANOMALY_ORANGE;
+                else if (value.equals("blocked"))
+                    anomaly = OONITests.ANOMALY_RED;
+            }
+            if (test.anomaly < anomaly) {
+                test.anomaly = anomaly;
+                TestStorage.setAnomaly(context, test.test_id, anomaly);
+            }
+        } catch (JSONException e) {
+            Log.v(TAG, "JSONException "+ e);
+        }
+    }
+
+    /*
+    for telegram: red if either "telegram_http_blocking" or "telegram_tcp_blocking" is true, OR if ""telegram_web_status" is "blocked"
+    the "*_failure" keys for telegram and whatsapp might indicate a test failure / anomaly
+    docs: https://github.com/TheTorProject/ooni-spec/blob/master/test-specs/ts-020-telegram.md#semantics
+    */
+    public static void setAnomalyTelegram(String entry, NetworkMeasurement test) {
+        if(!test.entry) {
+            TestStorage.setEntry(context, test);
+            test.entry = true;
+        }
+        try {
+            int anomaly = OONITests.ANOMALY_GREEN;
+            JSONObject jsonObj = new JSONObject(entry);
+            JSONObject test_keys = jsonObj.getJSONObject("test_keys");
+            String keys[] = {"telegram_http_blocking",
+                    "telegram_tcp_blocking"};
+            for (String key: keys)
+            {
+                Object value = test_keys.get(key);
+                Boolean boolvalue = test_keys.getBoolean(key);
+                if (value == null)
+                    anomaly = OONITests.ANOMALY_ORANGE;
+                else if (boolvalue)
+                    anomaly = OONITests.ANOMALY_RED;
+            }
+            if (test_keys.has("telegram_web_status")) {
+                String telegram_web_status = test_keys.getString("telegram_web_status");
+                if (telegram_web_status == null)
+                    anomaly = OONITests.ANOMALY_ORANGE;
+                else if (telegram_web_status.equals("blocked"))
+                    anomaly = OONITests.ANOMALY_RED;
+            }
+            if (test.anomaly < anomaly) {
+                test.anomaly = anomaly;
+                TestStorage.setAnomaly(context, test.test_id, anomaly);
+            }
+        } catch (JSONException e) {
+            Log.v(TAG, "JSONException "+ e);
+        }
+
+
+    }
+
+    /*
+    FB: red blocking if either "facebook_tcp_blocking" or "facebook_dns_blocking" is true
+    docs: https://github.com/TheTorProject/ooni-spec/blob/master/test-specs/ts-019-facebook-messenger.md#semantics
+    */
+    public static void setAnomalyFacebookMessenger(String entry, NetworkMeasurement test) {
+        if(!test.entry) {
+            TestStorage.setEntry(context, test);
+            test.entry = true;
+        }
+        try {
+            int anomaly = OONITests.ANOMALY_GREEN;
+            JSONObject jsonObj = new JSONObject(entry);
+            JSONObject test_keys = jsonObj.getJSONObject("test_keys");
+            String keys[] = {"facebook_tcp_blocking",
+                    "facebook_dns_blocking"};
+            for (String key: keys)
+            {
+                Object value = test_keys.get(key);
+                Boolean boolvalue = test_keys.getBoolean(key);
+                if (value == null)
+                    anomaly = OONITests.ANOMALY_ORANGE;
+                else if (boolvalue)
+                    anomaly = OONITests.ANOMALY_RED;
+            }
+            if (test.anomaly < anomaly) {
+                test.anomaly = anomaly;
+                TestStorage.setAnomaly(context, test.test_id, anomaly);
+            }
+        } catch (JSONException e) {
+            Log.v(TAG, "JSONException "+ e);
+        }
+    }
+
+
 
     @Override
     public void notifyObservers(Object type) {

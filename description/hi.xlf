@@ -6,7 +6,7 @@
     <body>
       <trans-unit id="title-android" maxwidth="30" size-unit="char">
         <source>ooniprobe</source>
-        <target>यूनीप्रोबे </target>
+        <target>ooniprobe</target>
         <note from="developer">This is limited by Google to 30 characters</note>
       </trans-unit>
       <trans-unit id="shortdescription-android" maxwidth="80" size-unit="char">
@@ -16,7 +16,7 @@
       </trans-unit>
       <trans-unit id="title-ios" maxwidth="50" size-unit="char">
           <source>ooniprobe - Measure Internet Censorship &amp; Speed</source>
-          <target>यूनीप्रोबे - इंटरनेट सेंसरशिप और स्पीड को मापें</target>
+          <target>ooniprobe - इंटरनेट सेंसरशिप और स्पीड को मापें</target>
           <note from="developer">This is limited by Apple to 50 characters</note>
       </trans-unit>
       <trans-unit id="subtitle-ios" maxwidth="30" size-unit="char">
@@ -35,7 +35,7 @@
       </trans-unit>
       <trans-unit id="intro2">
         <source>By running ooniprobe, you will examine the blocking of websites, your network's speed and performance, and whether systems that could be responsible for censorship and surveillance are in your network.</source>
-        <target>यूनीप्रोबे  चलाने के द्वारा, आप वेबसाइटों के अवरुद्ध, आपके नेटवर्क की गति और प्रदर्शन की जांच करेंगे, और क्या सेंसरशिप और निगरानी के लिए ज़िम्मेदार सिस्टम आपके नेटवर्क में हैं या नहीं।</target>
+        <target>ooniprobe चलाने के द्वारा, आप वेबसाइटों के अवरुद्ध, आपके नेटवर्क की गति और प्रदर्शन की जांच करेंगे, और क्या सेंसरशिप और निगरानी के लिए ज़िम्मेदार सिस्टम आपके नेटवर्क में हैं या नहीं।</target>
       </trans-unit>
       <trans-unit id="intro3">
         <source>These tests have been developed by the Open Observatory of Network Interference (OONI), a free software project (under The Tor Project) that aims to uncover Internet censorship around the world.</source>
@@ -43,7 +43,7 @@
       </trans-unit>
       <trans-unit id="intro4">
         <source>Since 2012, OONI has collected millions of network measurements across more than 190 countries, shedding light on multiple cases of network interference. By running ooniprobe, you will help increase transparency of Internet censorship around the world.</source>
-        <target>2012 के बाद से, ऊनी  ने 190 से अधिक देशों में लाखों नेटवर्क माप एकत्र किए हैं, जो नेटवर्क के हस्तक्षेप के कई मामलों पर प्रकाश डाला जाता है। यूनीप्रोबे चलकर, आप दुनिया भर में इंटरनेट सेंसरशिप की पारदर्शिता को बढ़ाने में मदद करेंगे।</target>
+        <target>2012 के बाद से, OONI  ने 190 से अधिक देशों में लाखों नेटवर्क माप एकत्र किए हैं, जो नेटवर्क के हस्तक्षेप के कई मामलों पर प्रकाश डाला जाता है। ooniprobe चलकर, आप दुनिया भर में इंटरनेट सेंसरशिप की पारदर्शिता को बढ़ाने में मदद करेंगे।</target>
       </trans-unit>
       <trans-unit id="evidence-title">
         <source>Collecting evidence of Internet censorship</source>
@@ -83,7 +83,7 @@
       </trans-unit>
       <trans-unit id="freesoftware-description">
         <source>All OONI tests, as well as its NDT implementation, are based on free and open source software. You can find the source code through the following link: https://github.com/thetorproject/ooniprobe-android</source>
-        <target>सभी ऊनी  परीक्षण, साथ ही इसके एनडीटी कार्यान्वयन, फ्री और ओपन सोर्स सॉफ़्टवेयर पर आधारित हैं। आप निम्न लिंक के माध्यम से स्रोत कोड पा सकते हैं:
+        <target>सभी OONI परीक्षण, साथ ही इसके एनडीटी कार्यान्वयन, फ्री और ओपन सोर्स सॉफ़्टवेयर पर आधारित हैं। आप निम्न लिंक के माध्यम से स्रोत कोड पा सकते हैं:
 https://github.com/thetorproject/ooniprobe-android</target>
       </trans-unit>
 
@@ -94,7 +94,7 @@ https://github.com/thetorproject/ooniprobe-android</target>
 
       <trans-unit id="disclaimer">
         <source>Please note: Running ooniprobe might be against the terms of service of your ISP or legally questionable in your country. By running ooniprobe you will connect to web services which may be banned, and use web censorship circumvention methods such as Tor. The OONI project will publish data submitted by probes, possibly including your IP address or other identifying information. In addition, your use of ooniprobe will be clear to anyone who has access to your computer, and to anyone who can monitor your Internet connection (such as your employer, ISP or government).</source>
-        <target>कृपया ध्यान दें: यूनीप्रोबे चलाना आपके आईएसपी की सेवा की शर्तों या आपके देश में कानूनी तौर पर संदिग्ध हो सकता है। यूनीप्रोबे चलकर आप उन वेब सेवाओं से कनेक्ट हो जाएंगे जिन्हें प्रतिबंधित किया जा सकता है, और वेब सेंसरशिप रिसाव विधियों जैसे टॉर का उपयोग कर सकते हैं ऊनी  प्रोजेक्ट जांच द्वारा प्रस्तुत आंकड़ों को प्रकाशित करेगा, संभवत: आपके आईपी पते या अन्य पहचान वाली जानकारी सहित इसके अलावा, ओयोनप्रोफ का आपका उपयोग किसी भी व्यक्ति को स्पष्ट होगा जो आपके कंप्यूटर से एक्सेस कर रहे हैं, और जो आपके इंटरनेट कनेक्शन की निगरानी कर सकता है (जैसे कि आपका नियोक्ता, आईएसपी या सरकार)।</target>
+        <target>कृपया ध्यान दें: ooniprobe चलाना आपके आईएसपी की सेवा की शर्तों या आपके देश में कानूनी तौर पर संदिग्ध हो सकता है। ooniprobe चलकर आप उन वेब सेवाओं से कनेक्ट हो जाएंगे जिन्हें प्रतिबंधित किया जा सकता है, और वेब सेंसरशिप रिसाव विधियों जैसे टॉर का उपयोग कर सकते हैं OONI  प्रोजेक्ट जांच द्वारा प्रस्तुत आंकड़ों को प्रकाशित करेगा, संभवत: आपके आईपी पते या अन्य पहचान वाली जानकारी सहित इसके अलावा, ooniprobe का आपका उपयोग किसी भी व्यक्ति को स्पष्ट होगा जो आपके कंप्यूटर से एक्सेस कर रहे हैं, और जो आपके इंटरनेट कनेक्शन की निगरानी कर सकता है (जैसे कि आपका नियोक्ता, आईएसपी या सरकार)।</target>
       </trans-unit>
 
       <trans-unit id="screenshot1">

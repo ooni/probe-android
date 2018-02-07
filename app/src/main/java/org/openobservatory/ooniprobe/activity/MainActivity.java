@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -31,6 +30,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import junit.framework.Test;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -39,9 +40,7 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Set;
 
-import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.adapter.LeftMenuListAdapter;
 import org.openobservatory.ooniprobe.data.TestData;
 import org.openobservatory.ooniprobe.data.TestStorage;
@@ -49,10 +48,12 @@ import org.openobservatory.ooniprobe.fragment.AboutFragment;
 import org.openobservatory.ooniprobe.fragment.PastTestsFragment;
 import org.openobservatory.ooniprobe.fragment.RunTestsFragment;
 import org.openobservatory.ooniprobe.fragment.SettingsFragment;
+
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.TestInfoFragment;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
+import org.openobservatory.ooniprobe.utils.TestLists;
 
 public class MainActivity extends AppCompatActivity  implements Observer {
     private DrawerLayout mDrawerLayout;
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity  implements Observer {
     private CharSequence mTitle;
     private String[] mMenuItemsTitles;
     private LeftMenuListAdapter mleftMenuListAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

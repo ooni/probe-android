@@ -165,7 +165,7 @@ public class RunTestActivity extends AppCompatActivity implements Observer {
         runButton.setOnClickListener(
                 new ImageButton.OnClickListener() {
                     public void onClick(View v) {
-                        TestData.doNetworkMeasurements(getApplicationContext(), test_name, urlItems);
+                        TestData.doNetworkMeasurements(getApplicationContext(), new NetworkMeasurement(getApplicationContext(), test_name, urlItems));
                         goToMainActivity();
                     }
                 }
