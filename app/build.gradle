@@ -10,7 +10,7 @@ repositories {
 android {
     compileSdkVersion 26
     buildToolsVersion "27.0.1"
-
+    //TODO addConfig for f-droid
     defaultConfig {
         applicationId "org.openobservatory.ooniprobe"
         minSdkVersion 14

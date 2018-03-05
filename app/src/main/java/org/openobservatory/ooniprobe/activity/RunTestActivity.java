@@ -117,6 +117,13 @@ public class RunTestActivity extends AppCompatActivity implements Observer {
                             });
                 }
             }
+            else {
+                Alert.alertDialogWithAction(this, getString(R.string.invalid_parameter), "mv", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        goToMainActivity();
+                    }
+                });
+            }
         }
     }
 
