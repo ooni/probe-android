@@ -100,7 +100,6 @@ public class TestStorage {
                 NetworkMeasurement n = (NetworkMeasurement)tests.get(i);
                 if (n.test_id == test.test_id) {
                     n.running = false;
-                    n.entry = true;
                     tests.set(i, n);
                     newTestDetected(context);
                     break;
