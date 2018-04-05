@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
@@ -87,7 +88,7 @@ public class TestStorage {
         }
         String jsonTests = settings.getString(TESTS, null);
         Gson gson = new Gson();
-        NetworkMeasurement[] favoriteItems = gson.fromJson(jsonTests,NetworkMeasurement[].class);
+        NetworkMeasurement[] favoriteItems = gson.fromJson(jsonTests, NetworkMeasurement[].class);
         tests = Arrays.asList(favoriteItems);
         return new ArrayList(tests);
     }
@@ -99,7 +100,6 @@ public class TestStorage {
                 NetworkMeasurement n = (NetworkMeasurement)tests.get(i);
                 if (n.test_id == test.test_id) {
                     n.running = false;
-                    n.entry = true;
                     tests.set(i, n);
                     newTestDetected(context);
                     break;

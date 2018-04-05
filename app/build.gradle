@@ -5,12 +5,13 @@ repositories {
     maven { url 'https://maven.fabric.io/public' }
     maven { url "https://jitpack.io" }
     maven { url 'https://maven.google.com' }
+    google()
 }
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.2"
-
+    buildToolsVersion "27.0.1"
+    //TODO addConfig for f-droid
     defaultConfig {
         applicationId "org.openobservatory.ooniprobe"
         minSdkVersion 14
@@ -34,8 +35,8 @@ android {
 //ALT: https://developers.google.com/instance-id/guides/android-implementation
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.6@aar') {
-        transitive = true;
+    compile('com.crashlytics.sdk.android:crashlytics:2.8.0@aar') {
+        transitive = true
     }
     compile 'org.openobservatory.measurement_kit:android-libs:0.8.0-1'
     compile 'com.android.support:appcompat-v7:26.1.0'
