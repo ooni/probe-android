@@ -1,117 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_off_white"
-    android:padding="7dp">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
+    android:background="@color/color_blue5">
+
+    <ImageView
+        android:id="@+id/folderImage"
+        android:layout_width="139dp"
+        android:layout_height="104dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/folder"
+        android:layout_marginTop="15dp"
+        android:padding="15dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp" />
 
     <TextView
+        android:id="@+id/default_settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="@string/pop_quiz"
-        android:textStyle="bold"
-        android:textSize="38sp"
-        android:textColor="@color/color_ooni_blue"
-        android:gravity="center"  />
-    
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:text="@string/question_1"
-        android:textColor="@color/color_off_black"/>
+        android:text="@string/default_settings"
+        android:textSize="30sp"
+        fontPath="fonts/FiraSans-Light.otf"
+        android:textColor="@color/color_white"
+        android:layout_below="@+id/folderImage"
+        android:gravity="center" />
 
-    <RadioGroup
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="15dp"
         android:orientation="vertical"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/radio_1" >
-
-        <RadioButton
-            android:drawablePadding="8dp"
-            android:button="@null"
-            android:drawableLeft="@drawable/checkbox_selector"
-            android:drawableStart="@drawable/checkbox_selector"
-            android:layout_width="wrap_content"
+        android:layout_below="@+id/default_settings"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:id="@+id/answer_1_1"
-            android:text="@string/_true"
-            android:textColor="@color/color_ooni_blue" />
-
-        <RadioButton
-            android:drawablePadding="8dp"
-            android:button="@null"
-            android:drawableLeft="@drawable/checkbox_selector"
-            android:drawableStart="@drawable/checkbox_selector"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/answer_1_2"
-            android:text="@string/_false"
-            android:textColor="@color/color_ooni_blue" />
-
-    </RadioGroup>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/text"
-        android:text="@string/question_2"
-        android:textColor="@color/color_off_black"/>
-
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/radio_2" >
-
-        <RadioButton
-            android:button="@null"
-            android:drawablePadding="8dp"
-            android:drawableLeft="@drawable/checkbox_selector"
-            android:drawableStart="@drawable/checkbox_selector"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:id="@+id/answer_2_1"
-            android:text="@string/_true"
-            android:textColor="@color/color_ooni_blue" />
-
-        <RadioButton
-            android:button="@null"
-            android:drawablePadding="8dp"
-            android:drawableLeft="@drawable/checkbox_selector"
-            android:drawableStart="@drawable/checkbox_selector"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/answer_2_2"
-            android:text="@string/_false"
-            android:textColor="@color/color_ooni_blue" />
-    </RadioGroup>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/nextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:textSize="24sp"
-            android:padding="10dp"
+            android:text="@string/we_will_collect"
             android:textStyle="bold"
-            android:text="@string/how_did_i_do"
-            app:textAllCaps="false"
-            android:textColor="@color/color_off_white"
-            android:background="@drawable/nextbutton"
-            android:layout_centerHorizontal="true" />
-    </RelativeLayout>
-</LinearLayout>
-</ScrollView>
+            android:textSize="16sp"
+            android:textColor="@color/color_white" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <View
+                android:layout_width="20dp"
+                android:layout_height="24dp"
+                android:background="@drawable/bulleticon" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/default_settings_1"
+                android:textSize="16sp"
+                android:textColor="@color/color_white" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <View
+                android:layout_width="20dp"
+                android:layout_height="24dp"
+                android:background="@drawable/bulleticon" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/default_settings_2"
+                android:textSize="16sp"
+                android:textColor="@color/color_white" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <View
+                android:layout_width="20dp"
+                android:layout_height="24dp"
+                android:background="@drawable/bulleticon" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/default_settings_3"
+                android:textSize="16sp"
+                android:textColor="@color/color_white" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/we_will_not_collect"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/color_white" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <View
+                android:layout_width="20dp"
+                android:layout_height="24dp"
+                android:background="@drawable/bulleticon" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/default_settings_4"
+                android:textSize="16sp"
+                android:textColor="@color/color_white" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

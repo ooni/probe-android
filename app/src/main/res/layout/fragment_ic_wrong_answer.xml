@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_wrong"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/actually"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/actually"
+        android:layout_margin="10dp"
+        android:textSize="32sp"
+        fontPath="fonts/FiraSans-Light.otf"
+        android:textColor="@color/color_white"
+        android:gravity="center" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="center_vertical"
+        android:background="@color/color_white" />
+
+    <TextView
+        android:id="@+id/wrongAsnwer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="30dp"
+        android:text="@string/question_1_wrong"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/color_white"
+        android:gravity="center"  />
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:gravity = "center_horizontal"
+        android:id="@+id/lnextButtonLayout"
+        android:weightSum="1.0">
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/backButton"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_weight="0.5"
+            android:textSize="20sp"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:text="@string/go_back"
+            fontPath="fonts/FiraSans-SemiBold.otf"
+            android:textColor="@color/color_white"
+            android:background="@drawable/button_back" />
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/continueButton"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_weight="0.5"
+            android:textSize="20sp"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:text="@string/_continue"
+            fontPath="fonts/FiraSans-SemiBold.otf"
+            android:textColor="@color/color_gray8"
+            android:background="@drawable/button_continue" />
+    </LinearLayout>
+</LinearLayout>
