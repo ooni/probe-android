@@ -73,10 +73,8 @@
     <string name="ok">OK</string>
     <string name="delete">Delete</string>
     <string name="test_result">Test result</string>
-    <string name="change">Change</string>
     <string name="welcome_ooniprobe">Welcome to OONI Probe!</string>
     <string name="get_started">Get Started!</string>
-    <string name="what_is_ooniprobe">What is OONI Probe?</string>
     <string name="learn_more">Learn more</string>
     <string name="risks_text_1">OONI Probe is free and open source software that enables you to examine internet censorship in your network!</string>
     <string name="risks_text_2">By running this app, you can examine whether and how websites are blocked, and whether censorship and/or surveillance systems are present in your network.</string>
@@ -91,15 +89,10 @@
     <string name="laws_text_5">The mere use of OONI Probe might be viewed as a form of espionage, regardless of the laws in your country.</string>
     <string name="laws_text_6">To our knowledge, no OONI Probe user has ever faced consequences from the use of our platform. However, many countries have a lengthy history of targeting and abusing digital rights activists, which could leave OONI Probe users subject to severe civil, criminal, or extra-judicial penalties.</string>
     <string name="i_understand_the_risks">I understand the risks.</string>
-    <string name="pop_quiz">Pop Quiz!</string>
-    <string name="question_1">Question 1: Might anyone monitoring my internet activity (e.g. ISP, government or employer) be able to see that I am running OONI Probe, even though OONI takes precautions to make this hard?</string>
-    <string name="question_2">Question 2: Will my measurements by default get published by OONI and might they include personally-identifiable information?</string>
-    <string name="_true">True</string>
-    <string name="_false">False</string>
     <string name="how_did_i_do">How did I do?</string>
     <string name="wrong">A little bit more reading is required for you to proceed.</string>
     <string name="correct">Good job! You have answered the quiz correctly.</string>
->>>>>>> master
+
     <string name="set_up_sharing">Setup Sharing</string>
     <string name="include_ip">Include your IP?</string>
     <string name="include_asn">Include your network info?</string>
