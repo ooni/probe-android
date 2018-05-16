@@ -3,7 +3,6 @@ https://2600.org/,HACK,Hacking Tools,2014-04-15,citizenlab,Updated by OONI on 20
 http://4genderjustice.org/,HUMR,Human Rights Issues,2014-04-15,citizenlab,Updated by OONI on 2017-02-14
 http://666games.net,GAME,Gaming,2014-04-15,citizenlab,Updated by OONI on 2017-02-14
 http://8thstreetlatinas.com,PORN,Pornography,2014-04-15,citizenlab,Updated by OONI on 2017-02-14
-http://911lies.org,CULTR,Culture,2014-04-15,citizenlab,Updated by OONI on 2017-02-14
 http://a1408.g.akamai.net/5/1408/1388/2005110406/1a1a1ad948be278cff2d96046ad90768d848b41947aa1986/sample_sorenson.mov.zip,MMED,Media sharing,2014-04-15,citizenlab,Updated by OONI on 2017-02-14
 http://abpr2.railfan.net,MMED,Media sharing,2014-04-15,citizenlab,Updated by OONI on 2017-02-14
 https://addons.mozilla.org,FILE,File-sharing,2014-04-15,citizenlab,Updated by OONI on 2017-02-14
@@ -94,7 +93,7 @@ https://encrypted.google.com,SRCH,Search Engines,2014-04-15,citizenlab,Updated b
 https://epic.org/,HUMR,Human Rights Issues,2014-04-15,citizenlab,Updated by OONI on 2017-02-14
 https://evernote.com,MMED,Media sharing,2014-04-15,citizenlab,Updated by OONI on 2017-02-14
 https://exitinternational.net/,HUMR,Human Rights Issues,2014-04-15,citizenlab,Updated by OONI on 2017-02-14
-https://explorer.ooni.torproject.org,ANON,Anonymization and circumvention tools,2017-05-31,ADEF,probably blocked in Egypt as of 2017-05-31
+https://explorer.ooni.io,HUMR,Human Rights Issues,2017-05-31,ADEF,probably blocked in Egypt as of 2017-05-31
 http://exscn.net,REL,Religion,2014-04-15,citizenlab,Updated by OONI on 2017-02-14
 https://extratorrent.cc,FILE,File-sharing,2016-08-11,sinarproject,Updated by OONI on 2017-02-14
 https://www.fanfiction.net/,CULTR,Culture,2017-10-12,sinarproject,
@@ -411,7 +410,6 @@ http://www.blacksandjews.com/Welcome.html,HATE,Hate Speech,2014-04-15,citizenlab
 http://www.blizzard.com,GAME,Gaming,2014-04-15,citizenlab,Updated by OONI on 2017-02-14
 http://www.blogeasy.com,HOST,Hosting and Blogging Platforms,2014-04-15,citizenlab,Updated by OONI on 2017-02-14
 https://www.blogger.com/,HOST,Hosting and Blogging Platforms,2014-04-15,citizenlab,Updated by OONI on 2017-02-14
-http://www.bloglines.com,HOST,Hosting and Blogging Platforms,2014-04-15,citizenlab,Updated by OONI on 2017-02-14
 http://www.blogsome.com,HOST,Hosting and Blogging Platforms,2014-04-15,citizenlab,Updated by OONI on 2017-02-14
 http://www.blubster.com,FILE,File-sharing,2014-04-15,citizenlab,Updated by OONI on 2017-02-14
 https://www.bme.com/,CULTR,Culture,2014-04-15,citizenlab,Updated by OONI on 2017-02-14
@@ -592,6 +590,7 @@ http://www.geocities.com,HOST,Hosting and Blogging Platforms,2014-04-15,citizenl
 http://www.ghostrecon.com,GAME,Gaming,2014-04-15,citizenlab,Updated by OONI on 2017-02-14
 http://www.giganews.com,GRP,Social Networking,2014-04-15,citizenlab,Updated by OONI on 2017-02-14
 http://www.ginvodka.org,ALDR,Alcohol & Drugs,2014-04-15,citizenlab,Updated by OONI on 2017-02-14
+https://github.com,HOST,Hosting and Blogging Platforms,2018-02-06,EvasivePangolin,
 http://www.glaad.org,LGBT,LGBT,2014-04-15,citizenlab,Updated by OONI on 2017-02-14
 http://www.glbtqarchive.com/,LGBT,LGBT,2014-04-15,citizenlab,Updated by OONI on 2017-02-14
 http://www.glil.org,LGBT,LGBT,2014-04-15,citizenlab,Updated by OONI on 2017-02-14
@@ -1116,3 +1115,10 @@ http://zoomshare.com/,HOST,Hosting and Blogging Platforms,2014-04-15,citizenlab,
 https://www.opentech.fund/,HUMR,Human Rights Issues,2017-09-26,OONI,
 https://www.womenonwaves.org/,HUMR,Human Rights Issues,2017-10-26,OONI,
 https://www.womenonweb.org/,HUMR,Human Rights Issues,2017-10-26,OONI,
+https://amp.cloudflare.com/v0/amp-iframe-0.1.js,HOST,Hosting and Blogging Platforms,2018-02-08,OONI,AMP is reportedly blocked in EG: https://cpj.org/amp/028977.html
+https://cdn.ampproject.org/v0/amp-iframe-0.1.js,HOST,Hosting and Blogging Platforms,2018-02-08,OONI,AMP is reportedly blocked in EG: https://cpj.org/amp/028977.html
+https://www.uber.com/,COMM,E-commerce,2018-02-13,OONI,Reportedly blocked in Argentina
+https://pastebin.com/,HOST,Hosting and Blogging Platforms,2017-02-12,Anonymous,Often blocked website
+https://yandex.com/,SRCH,Search Engines,2018-02-23,igorv,
+https://protonmail.com/,HACK,Hacking Tools,2018-03-19,OONI,
+https://getoutline.org/,ANON,Anonymization and circumvention tools,2018-04-06,Duplika,

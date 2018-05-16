@@ -9,14 +9,14 @@ repositories {
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "27.0.1"
+    buildToolsVersion "27.0.3"
     //TODO addConfig for f-droid
     defaultConfig {
         applicationId "org.openobservatory.ooniprobe"
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 24
-        versionName "1.3.1"
+        versionCode 25
+        versionName "1.3.2-alpha.2"
         setProperty("archivesBaseName", "ooniprobe-android-$versionName")
     }
     buildTypes {
@@ -37,17 +37,17 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.8.0@aar') {
         transitive = true
     }
-    compile 'org.openobservatory.measurement_kit:android-libs:0.8.1-2'
+    compile 'org.openobservatory.measurement_kit:android-libs:0.8.3-1'
     compile 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support:recyclerview-v7:26.1.0'
     compile 'com.android.support:design:26.1.0'
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'me.panavtec:wizard:1.2'
-    compile 'com.google.firebase:firebase-core:11.8.0'
-    compile 'com.google.firebase:firebase-messaging:11.8.0'
+    compile 'com.google.firebase:firebase-core:15.0.2'
+    compile 'com.google.firebase:firebase-messaging:15.0.2'
     compile 'com.github.AndroidDeveloperLB:AutoFitTextView:4'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support.constraint:constraint-layout:1.1.0'
     testCompile 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'

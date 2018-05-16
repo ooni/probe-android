@@ -1,3 +1,9 @@
+# ooniprobe-android 1.3.2-alpha.1+25 [2018-05-04]
+
+measurement-kit version: 0.8.3-1
+
+ooniprobe-wui version: 2.2.4
+
 # ooniprobe-android 1.2.3+17 [2017-10-08]
 
 New features:
