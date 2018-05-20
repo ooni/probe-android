@@ -1,36 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">OONI Probe</string>
-    <!-- Onboarding -->
-    <string name="welcome_to">Welcome to</string>
-    <string name="what_is_ooniprobe">What is OONI Probe?</string>
-    <string name="what_is_ooniprobe_1">OONI Probe is free and open source software that enables you to examine internet censorship in your network.</string>
-    <string name="what_is_ooniprobe_2">The data that you can collect through this app can serve as evidence of censorship events.</string>
-    <string name="things_to_know">Things to know</string>
-    <string name="things_to_know_1">OONI data is openly published and will include your network information.</string>
-    <string name="things_to_know_2">Anyone monitoring your internet activity (e.g governments or ISP) will know that you are running OONI Probe.</string>
-    <string name="things_to_know_3">You may test objectionable sites.</string>
-    <string name="things_to_know_4">Read the docs to learn more.</string>
-    <string name="i_understand">I understand</string>
-    <string name="pop_quiz">Pop Quiz</string>
-    <string name="question">Question</string>
-    <string name="question_1">Anyone monitoring your internet activity may be able to see that you are running OONI Probe.</string>
-    <string name="question_2">My measurements will get published by OONI and they will include my network information.</string>
-    <string name="_true">True</string>
-    <string name="_false">False</string>
-    <string name="actually">Actually</string>
-    <string name="question_1_wrong">Anyone monitoring your internet activity (e.g government, ISP, employer) will know that you are running OONI Probe, just like any other software.</string>
-    <string name="go_back">Go back</string>
-    <string name="_continue">Continue</string>
-    <string name="default_settings">Default Settings</string>
-    <string name="we_will_collect">We will collect and publish:</string>
-    <string name="default_settings_1">Country code of measurements</string>
-    <string name="default_settings_2">Your network information (i.e ASN)</string>
-    <string name="default_settings_3">Time &amp; date of measurements</string>
-    <string name="we_will_not_collect">We will not include:</string>
-    <string name="default_settings_4">Your IP address</string>
-    <string name="change">Change</string>
-    <string name="lets_go">Let\'s go</string>
+    <string name="General.AppName">OONI Probe</string>
+
+    <string name="Onboarding.Welcome.Title">Welcome to</string>
+    <string name="Onboarding.WhatIsOONIProbe.Title">What is OONI Probe?</string>
+    <string name="Onboarding.WhatIsOONIProbe.Paragraph.1">Your tool for detecting internet censorship!</string>
+    <string name="Onboarding.WhatIsOONIProbe.Paragraph.2">OONI Probe checks whether your provider blocks access to sites and services. Run OONI Probe to collect evidence of internet censorship and to measure your network performance.</string>
+    <string name="Onboarding.ThingsToKnow.Title">Heads-up</string>
+    <string name="Onboarding.ThingsToKnow.Bullet.1">Anyone monitoring your internet activity (such as your government or ISP) may be able to see that you are running OONI Probe.</string>
+    <string name="Onboarding.ThingsToKnow.Bullet.2">The network data you will collect will automatically be published (unless you opt-out in the settings).</string>
+    <string name="Onboarding.ThingsToKnow.Bullet.3">You may test objectionable sites.</string>
+    <string name="Onboarding.ThingsToKnow.Bullet.4">Read the documentation to learn more.</string>
+    <string name="Onboarding.ThingsToKnow.Button">I understand</string>
+    <string name="Onboarding.PopQuiz.Title">Pop Quiz</string>
+    <string name="Onboarding.PopQuiz.True">True</string>
+    <string name="Onboarding.PopQuiz.False">False</string>
+    <string name="Onboarding.PopQuiz.Wrong.Button.Back">Go back</string>
+    <string name="Onboarding.PopQuiz.Wrong.Button.Continue">Continue</string>
+    <string name="Onboarding.PopQuiz.1.Title">Question 1/2</string>
+    <string name="Onboarding.PopQuiz.1.Question">Anyone monitoring my internet activity may be able to see that I am running OONI Probe.</string>
+    <string name="Onboarding.PopQuiz.1.Wrong.Title">Actually...</string>
+    <string name="Onboarding.PopQuiz.1.Wrong.Paragraph">OONI Probe is not a privacy tool. Therefore, anyone monitoring your internet activity may be able to see which software you are running.</string>
+    <string name="Onboarding.PopQuiz.2.Title">Question 2/2</string>
+    <string name="Onboarding.PopQuiz.2.Question">The network data I will collect will automatically be published (unless I opt-out in the settings).</string>
+    <string name="Onboarding.PopQuiz.2.Wrong.Title">Actually...</string>
+    <string name="Onboarding.PopQuiz.2.Wrong.Paragraph">The network data you will collect will automatically be published to increase transparency of internet censorship (unless you opt-out in the settings).</string>
+    <string name="Onboarding.DefaultSettings.Title">Default Settings</string>
+    <string name="Onboarding.DefaultSettings.Header.1">We will collect and publish:</string>
+    <string name="Onboarding.DefaultSettings.Bullet.1">Country code (e.g. IT for Italy)</string>
+    <string name="Onboarding.DefaultSettings.Bullet.2">Network information (i.e. ASN)</string>
+    <string name="Onboarding.DefaultSettings.Bullet.3">Time &amp; date of measurements</string>
+    <string name="Onboarding.DefaultSettings.Header.2">We do our best not to publish:</string>
+    <string name="Onboarding.DefaultSettings.Bullet.4">Your IP address</string>
+    <string name="Onboarding.DefaultSettings.Button.Change">Change</string>
+    <string name="Onboarding.DefaultSettings.Button.Go">Let\'s go!</string>
+
     <!-- Dashboard -->
 
     <!-- Settings -->

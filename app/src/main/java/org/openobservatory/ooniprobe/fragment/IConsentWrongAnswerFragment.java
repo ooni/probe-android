@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.InformedConsentActivity;
@@ -66,6 +67,17 @@ public class IConsentWrongAnswerFragment extends DialogFragment {
                 dismiss();
             }
         });
+
+        TextView actually = v.findViewById(R.id.actually);
+        TextView wrongAnswer = v.findViewById(R.id.wrongAsnwer);
+        if (mActivity.QUESTION_NUMBER == 1) {
+            actually.setText(mActivity.getString(R.string.Onboarding_PopQuiz_1_Wrong_Title));
+            wrongAnswer.setText(mActivity.getString(R.string.Onboarding_PopQuiz_1_Wrong_Paragraph));
+        }
+        else if (mActivity.QUESTION_NUMBER == 2) {
+            actually.setText(mActivity.getString(R.string.Onboarding_PopQuiz_2_Wrong_Title));
+            wrongAnswer.setText(mActivity.getString(R.string.Onboarding_PopQuiz_2_Wrong_Paragraph));
+        }
 
         return v;
     }

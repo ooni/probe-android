@@ -45,8 +45,8 @@ public class InformedConsentActivity extends AppIntro {
 
         setSeparatorColor(getResources().getColor(android.R.color.transparent));
         showSkipButton(false);
-        setSkipText(getString(R.string.change));
-        setDoneText(getString(R.string.lets_go));
+        setSkipText(getString(R.string.Onboarding_DefaultSettings_Button_Change));
+        setDoneText(getString(R.string.Onboarding_DefaultSettings_Button_Go));
     }
 
     @Override
