@@ -25,6 +25,7 @@ public class TestStorage {
     public static final String TESTS = "Test";
     public static final String NEW_TESTS = "new_tests";
 
+    //TODO DEPRECATED CLASS - REMOVE
     public static void storeTests(Context context, List tests) {
     // used for store arrayList in json format
         SharedPreferences settings;
@@ -224,7 +225,7 @@ public class TestStorage {
             }
             storeTests(context, tests);
             resetNewTests(context);
-            activity.updateActionBar();
+            //activity.updateActionBar();
         }
     }
 

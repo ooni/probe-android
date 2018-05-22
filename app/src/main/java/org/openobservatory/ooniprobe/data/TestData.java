@@ -21,10 +21,11 @@ import org.openobservatory.measurement_kit.nettests.*;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 import org.openobservatory.ooniprobe.model.OONITests;
-import org.openobservatory.ooniprobe.model.UnknownTest;
 import org.openobservatory.ooniprobe.utils.NotificationHandler;
 import org.openobservatory.ooniprobe.utils.VersionUtils;
 
+
+//TODO DEPRECATED CLASS - REWRITE
 public class TestData extends Observable {
     private static final String TAG = "TestData";
     private static TestData instance;
