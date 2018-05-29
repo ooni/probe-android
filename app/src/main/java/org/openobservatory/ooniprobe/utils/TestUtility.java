@@ -41,23 +41,21 @@ public class TestUtility {
             case PERFORMANCE:
                 return context.getString(R.string.Test_Performance_Fullname);
             case WEB_CONNECTIVITY:
-                return context.getString(R.string.web_connectivity);
+                return context.getString(R.string.Test_WebConnectivity_Fullname);
             case HTTP_INVALID_REQUEST_LINE:
-                return context.getString(R.string.http_invalid_request_line);
+                return context.getString(R.string.Test_HTTPInvalidRequestLine_Fullname);
             case HTTP_HEADER_FIELD_MANIPULATION:
-                return context.getString(R.string.http_header_field_manipulation);
+                return context.getString(R.string.Test_HTTPHeaderFieldManipulation_Fullname);
             case NDT:
-                return context.getString(R.string.ndt);
-            case NDT_TEST:
-                return context.getString(R.string.ndt);
+                return context.getString(R.string.Test_NDT_Fullname);
             case DASH:
-                return context.getString(R.string.dash);
+                return context.getString(R.string.Test_Dash_Fullname);
             case WHATSAPP:
-                return context.getString(R.string.whatsapp);
+                return context.getString(R.string.Test_WhatsApp_Fullname);
             case TELEGRAM:
-                return context.getString(R.string.telegram);
+                return context.getString(R.string.Test_Telegram_Fullname);
             case FACEBOOK_MESSENGER:
-                return context.getString(R.string.facebook_messenger);
+                return context.getString(R.string.Test_FacebookMessenger_Fullname);
             default:
                 return "";
         }
@@ -91,91 +89,19 @@ public class TestUtility {
     public static int getTestImage(String name) {
         switch (name) {
             case WEB_CONNECTIVITY:
-                if (anomaly == 0)
-                    return R.drawable.web_connectivity;
-                else if (anomaly == 1)
-                    return R.drawable.web_connectivity_warning;
-                else
-                    return R.drawable.web_connectivity_no;
-            case HTTP_INVALID_REQUEST_LINE:
-                if (anomaly == 0)
-                    return R.drawable.http_invalid_request_line;
-                else if (anomaly == 1)
-                    return R.drawable.http_invalid_request_line_warning;
-                else
-                    return R.drawable.http_invalid_request_line_no;
-            case HTTP_HEADER_FIELD_MANIPULATION:
-                if (anomaly == 0)
-                    return R.drawable.http_header_field_manipulation;
-                else if (anomaly == 1)
-                    return R.drawable.http_header_field_manipulation_warning;
-                else
-                    return R.drawable.http_header_field_manipulation_no;
-            case NDT_TEST:
-                if (anomaly == 0)
-                    return R.drawable.ndt;
-                else if (anomaly == 1)
-                    return R.drawable.ndt_warning;
-                else
-                    return R.drawable.ndt_no;
-            case NDT:
-                if (anomaly == 0)
-                    return R.drawable.ndt;
-                else if (anomaly == 1)
-                    return R.drawable.ndt_warning;
-                else
-                    return R.drawable.ndt_no;
-            case DASH:
-                if (anomaly == 0)
-                    return R.drawable.dash;
-                else if (anomaly == 1)
-                    return R.drawable.dash_warning;
-                else
-                    return R.drawable.dash_no;
+                    return R.drawable.test_websites;
+            case MIDDLEBOXES:
+                return R.drawable.test_middle_boxes;
+            case INSTANT_MESSAGING:
+                return R.drawable.test_instant_messaging;
+            case PERFORMANCE:
+                return R.drawable.test_performance;
             case WHATSAPP:
-                if (anomaly == 0)
-                    return R.drawable.whatsapp;
-                else if (anomaly == 1)
-                    return R.drawable.whatsapp_warning;
-                else
-                    return R.drawable.whatsapp_no;
+                return R.drawable.test_whatsapp;
             case TELEGRAM:
-                if (anomaly == 0)
-                    return R.drawable.telegram;
-                else if (anomaly == 1)
-                    return R.drawable.telegram_warning;
-                else
-                    return R.drawable.telegram_no;
+                return R.drawable.test_telegram;
             case FACEBOOK_MESSENGER:
-                if (anomaly == 0)
-                    return R.drawable.facebook_messenger;
-                else if (anomaly == 1)
-                    return R.drawable.facebook_messenger_warning;
-                else
-                    return R.drawable.facebook_messenger_no;
-            default:
-                return 0;
-        }
-    }
-
-    public static int getTestImageBig(String name) {
-        switch (name) {
-            case WEB_CONNECTIVITY:
-                return R.drawable.web_connectivity_big;
-            case HTTP_INVALID_REQUEST_LINE:
-                return R.drawable.http_invalid_request_line_big;
-            case HTTP_HEADER_FIELD_MANIPULATION:
-                return R.drawable.http_header_field_manipulation_big;
-            case NDT:
-                return R.drawable.ndt_big;
-            case DASH:
-                return R.drawable.dash_big;
-            case WHATSAPP:
-                return R.drawable.whatsapp_big;
-            case TELEGRAM:
-                return R.drawable.telegram_big;
-            case FACEBOOK_MESSENGER:
-                return R.drawable.facebook_messenger_big;
+                return R.drawable.test_facebook_messenger;
             default:
                 return 0;
         }
@@ -204,27 +130,4 @@ public class TestUtility {
         }
     }
 
-    public static String getTestDesc(Context context, String name) {
-        switch (name) {
-            case WEB_CONNECTIVITY:
-                return context.getString(R.string.web_connectivity_longdesc);
-            case HTTP_INVALID_REQUEST_LINE:
-                return context.getString(R.string.http_invalid_request_line_longdesc);
-            case HTTP_HEADER_FIELD_MANIPULATION:
-                return context.getString(R.string.http_header_field_manipulation_longdesc);
-            case NDT:
-                return context.getString(R.string.ndt_longdesc);
-            case DASH:
-                return context.getString(R.string.dash_longdesc);
-            case WHATSAPP:
-                return context.getString(R.string.whatsapp_longdesc);
-            case TELEGRAM:
-                return context.getString(R.string.telegram_longdesc);
-            case FACEBOOK_MESSENGER:
-                return context.getString(R.string.facebook_messenger_longdesc);
-
-            default:
-                return "";
-        }
-    }
 }

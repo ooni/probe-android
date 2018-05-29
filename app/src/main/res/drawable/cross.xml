@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:auto="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="NewApi"
+    android:viewportWidth="31.516"
+    auto:viewportWidth="31.516"
+    android:viewportHeight="31.516"
+    auto:viewportHeight="31.516"
+    android:width="31.516dp"
+    auto:width="31.516dp"
+    android:height="31.516dp"
+    auto:height="31.516dp">
+    <group
+        android:translateX="-9076.258"
+        auto:translateX="-9076.258"
+        android:translateY="5064.216"
+        auto:translateY="5064.216">
+        <group
+            android:translateX="-3426"
+            auto:translateX="-3426"
+            android:translateY="920"
+            auto:translateY="920">
+            <group
+                android:rotation="-45"
+                auto:rotation="-45"
+                android:translateX="12502.26"
+                auto:translateX="12502.26"
+                android:translateY="-5968.458"
+                auto:translateY="-5968.458">
+                <path
+                    android:pathData="M7.959 22.285l0 -7.959 -7.959 0 0 -6.367 7.959 0 0 -7.959 6.367 0 0 7.959 7.959 0 0 6.367 -7.959 0 0 7.959z"
+                    auto:pathData="M7.959 22.285l0 -7.959 -7.959 0 0 -6.367 7.959 0 0 -7.959 6.367 0 0 7.959 7.959 0 0 6.367 -7.959 0 0 7.959z"
+                    android:fillColor="#e03131"
+                    auto:fillColor="#e03131" />
+            </group>
+        </group>
+    </group>
+</vector>
