@@ -10,19 +10,11 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.View;
 import android.util.Log;
-import android.widget.TextView;
-import android.widget.Toast;
-
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.Observer;
-
-import org.openobservatory.ooniprobe.data.TestData;
 import org.openobservatory.ooniprobe.data.TestStorage;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -38,11 +30,12 @@ public class MainActivity extends AppCompatActivity  {
 
         setContentView(R.layout.activity_main);
         checkResources();
-
+        TestStorage.oldTestsDetected(this);
+        /*
         if (TestStorage.loadTests(this).size() > 0) {
             TestStorage.removeAllTests(this, this);
         }
-
+*/
         checkInformedConsent();
     }
 
@@ -71,10 +64,9 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     public void checkResources() {
-        copyResources(R.raw.hosts, "hosts.txt");
+        //TODO save version number and update only if needed
         copyResources(R.raw.geoipasnum, "GeoIPASNum.dat");
         copyResources(R.raw.geoip, "GeoIP.dat");
-        copyResources(R.raw.global, "global.txt");
     }
 
     private void copyResources(int id, String filename) {
@@ -117,21 +109,9 @@ public class MainActivity extends AppCompatActivity  {
             }
             else {
                 PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("first_run", false).apply();
-                //showToast(R.string.ooniprobe_configured, true);
             }
         }
     }
 
-    public void showToast(int string, boolean success){
-        Toast toast = Toast.makeText(this, string, Toast.LENGTH_LONG);
-        View view = toast.getView();
-        view.setBackgroundResource(success ? R.drawable.success_toast_bg : R.drawable.error_toast_bg);
-        TextView text = (TextView) view.findViewById(android.R.id.message);
-        text.setGravity(Gravity.CENTER);;
-        text.setTextColor(getResources().getColor(R.color.color_off_white));
-        toast.show();
-    }
-
     private static final String TAG = "main-activity";
-
 }

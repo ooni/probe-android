@@ -151,7 +151,7 @@ public class NetworkMeasurement {
                 return "";
         }
     }
-/*
+
     public static int getTestImage(String name, int anomaly) {
         switch (name) {
             case OONITests.WEB_CONNECTIVITY:
@@ -291,5 +291,5 @@ public class NetworkMeasurement {
                 return "";
         }
     }
-    */
+
 }

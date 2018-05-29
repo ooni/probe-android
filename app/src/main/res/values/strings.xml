@@ -300,6 +300,7 @@
     <string name="OONIRun.OONIProbeOutOfDate">OONI Probe is out of date.</string>
     <string name="OONIRun.OONIProbeNewerVersion">You need a newer version of OONI Probe to run this test.</string>
     <string name="OONIRun.InvalidParameter">Invalid parameter</string>
+    <string name="OONIRun.InvalidParameter.Msg">The OONI Run link is either malformed or your app is out of date</string>
     <string name="OONIRun.RandomSamplingOfURLs">A random sampling of URLs from the global test list</string>
     <string name="CategoryCode.ALDR.Name">Drugs &amp; Alcohol</string>
     <string name="CategoryCode.REL.Name">Religion</string>

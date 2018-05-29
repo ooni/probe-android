@@ -201,34 +201,6 @@ public class TestStorage {
         return settings.getBoolean(NEW_TESTS, false);
     }
 
-    public static void removeAllTests(MainActivity activity, Context context) {
-        List toRemove = loadTestsReverse(activity);
-        List test_ids = new ArrayList();
-        if (toRemove != null){
-            for(int i = 0; i < toRemove.size(); i++) {
-                NetworkMeasurement n = (NetworkMeasurement)toRemove.get(i);
-                test_ids.add(n.test_id);
-            }
-        }
-        List tests = loadTests(context);
-        if (tests != null && test_ids.size() > 0){
-            for(int i = tests.size()-1; i >= 0; i--) {
-                NetworkMeasurement n = (NetworkMeasurement)tests.get(i);
-                if (test_ids.contains(n.test_id)) {
-                    File jsonFile = new File(context.getFilesDir(), n.json_file);
-                    File logFile = new File(context.getFilesDir(), n.log_file);
-                    jsonFile.delete();
-                    logFile.delete();
-                    //System.out.println("remove "+ i + " jsonFile " + jsonFile);
-                    tests.remove(i);
-                }
-            }
-            storeTests(context, tests);
-            resetNewTests(context);
-            //activity.updateActionBar();
-        }
-    }
-
     public static void removeUnusedFiles(Context context) {
         List tests = loadTests(context);
         Set<File> usedFiles = new HashSet<>();
@@ -256,5 +228,54 @@ public class TestStorage {
             file.delete();
         }
     }
+
+    //KEEP THIS
+    public static Boolean oldTestsDetected(Context context) {
+        // used for retrieving arraylist from json formatted string
+        SharedPreferences settings;
+        List tests;
+        settings = context.getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
+        if (!settings.contains(TESTS)) {
+            return Boolean.FALSE;
+        }
+        return Boolean.TRUE;
+    }
+
+    public static void removeAllTests(MainActivity activity, Context context) {
+        SharedPreferences settings;
+        Editor editor;
+        settings = context.getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
+        editor = settings.edit();
+        editor.remove(NEW_TESTS);
+        editor.remove(TESTS);
+        editor.commit();
+
+        File dirFiles = context.getFilesDir();
+        for (String strFile : dirFiles.list())
+        {
+            System.out.println("oldTestsDetected FILEFOUND " + strFile);
+            /*
+ hosts.txt
+ GeoIPASNum.dat
+ GeoIP.dat
+ global.txt
+ .Fabric
+ orchestration_secret.json
+ test-1527505390226.log
+ test-1527505390777.log
+ test-1527505391176.log
+ test-1527505391726.log
+ test-1527505390226.json
+ test-1527505392610.log
+ test-1527505393160.log
+ test-1527505390777.json
+ test-1527505391176.json
+ test-1527505391726.json
+ test-1527505392610.json
+             */
+        }
+
+    }
+
 }
 
