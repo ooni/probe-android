@@ -3,7 +3,7 @@ package org.openobservatory.ooniprobe.model;
 import java.sql.Date;
 
 public class Result {
-    String name;
+    public String name;
     Date startTime;
     float duration;
     long dataUsageDown;

@@ -8,7 +8,7 @@ import org.openobservatory.ooniprobe.R;
 public class TestUtility {
     public static final String WEBSITES = "websites";
     public static final String INSTANT_MESSAGING = "instant_messaging";
-    public static final String MIDDLEBOXES = "middleboxes";
+    public static final String MIDDLE_BOXES = "middle_boxes";
     public static final String PERFORMANCE = "performance";
 
     public static final String DASH = "dash";
@@ -36,7 +36,7 @@ public class TestUtility {
                 return context.getString(R.string.Test_Websites_Fullname);
             case INSTANT_MESSAGING:
                 return context.getString(R.string.Test_InstantMessaging_Fullname);
-            case MIDDLEBOXES:
+            case MIDDLE_BOXES:
                 return context.getString(R.string.Test_Middleboxes_Fullname);
             case PERFORMANCE:
                 return context.getString(R.string.Test_Performance_Fullname);
@@ -90,7 +90,7 @@ public class TestUtility {
         switch (name) {
             case WEB_CONNECTIVITY:
                     return R.drawable.test_websites;
-            case MIDDLEBOXES:
+            case MIDDLE_BOXES:
                 return R.drawable.test_middle_boxes;
             case INSTANT_MESSAGING:
                 return R.drawable.test_instant_messaging;
