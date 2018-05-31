@@ -16,8 +16,8 @@ android {
         applicationId "org.openobservatory.ooniprobe"
         minSdkVersion 14
         targetSdkVersion 27
-        versionCode 24
-        versionName "2.0.0-alpha.1"
+        versionCode 28
+        versionName "2.0.0-alpha.2"
         setProperty("archivesBaseName", "ooniprobe-android-$versionName")
     }
     buildTypes {
@@ -34,22 +34,22 @@ android {
 //https://firebase.googleblog.com/2016/11/google-play-services-and-firebase-for-android-will-support-api-level-14-at-minimum.html
 //ALT: https://developers.google.com/instance-id/guides/android-implementation
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile('com.crashlytics.sdk.android:crashlytics:2.8.0@aar') {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation('com.crashlytics.sdk.android:crashlytics:2.8.0@aar') {
         transitive = true
     }
-    compile 'org.openobservatory.measurement_kit:android-libs:0.8.1-2'
-    compile 'com.android.support:appcompat-v7:27.1.0'
-    compile 'com.android.support:recyclerview-v7:27.1.0'
-    compile 'com.android.support:design:27.1.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.google.code.gson:gson:2.8.0'
-    compile 'com.google.firebase:firebase-core:12.0.1'
-    compile 'com.google.firebase:firebase-messaging:12.0.1'
-    compile 'uk.co.chrisjenx:calligraphy:2.2.0'
-    compile 'com.github.AndroidDeveloperLB:AutoFitTextView:4'
-    compile 'com.airbnb.android:lottie:2.2.5'
-    compile 'com.github.apl-devs:appintro:v4.2.2'
-    testCompile 'junit:junit:4.12'
+    implementation 'org.openobservatory.measurement_kit:android-libs:0.8.3-1'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.google.code.gson:gson:2.8.0'
+    implementation 'com.google.firebase:firebase-core:15.0.2'
+    implementation 'com.google.firebase:firebase-messaging:15.0.2'
+    implementation 'uk.co.chrisjenx:calligraphy:2.2.0'
+    implementation 'com.github.AndroidDeveloperLB:AutoFitTextView:4'
+    implementation 'com.airbnb.android:lottie:2.2.5'
+    implementation 'com.github.apl-devs:appintro:v4.2.2'
+    testImplementation 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'

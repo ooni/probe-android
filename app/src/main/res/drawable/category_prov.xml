@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:auto="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="NewApi"
+    android:viewportWidth="29.024"
+    auto:viewportWidth="29.024"
+    android:viewportHeight="29.024"
+    auto:viewportHeight="29.024"
+    android:width="29.024dp"
+    auto:width="29.024dp"
+    android:height="29.024dp"
+    auto:height="29.024dp">
+    <group
+        android:translateX="-9820.487"
+        auto:translateX="-9820.487"
+        android:translateY="5245.455"
+        auto:translateY="5245.455">
+        <group
+            android:translateX="-4027"
+            auto:translateX="-4027"
+            android:translateY="1538"
+            auto:translateY="1538">
+            <group
+                android:translateX="13848.79"
+                auto:translateX="13848.79"
+                android:translateY="-6779.629"
+                auto:translateY="-6779.629">
+                <path
+                    android:pathData="M24.638 4.881C24.457 4.881 24.457 4.7 24.275 4.7l-0.181 0 -0.363 0.181C21.554 5.788 17.563 7.6 13.21 7.6 8.857 7.6 4.865 5.788 2.688 4.881L2.507 4.7 2.326 4.7C2.145 4.7 2.145 4.7 1.963 4.881 1.782 4.881 1.6 5.062 1.6 5.425l0 2.9a0.481 0.481 0 0 0 0.544 0.544c5.079 0.363 9.433 5.079 9.8 10.7a0.579 0.579 0 0 0 0.544 0.544l1.27 0a0.481 0.481 0 0 0 0.544 -0.544c0.363 -5.8 4.716 -10.521 9.8 -10.7a0.579 0.579 0 0 0 0.544 -0.544l0 -2.9C24.82 5.063 24.638 4.881 24.638 4.881Z"
+                    auto:pathData="M24.638 4.881C24.457 4.881 24.457 4.7 24.275 4.7l-0.181 0 -0.363 0.181C21.554 5.788 17.563 7.6 13.21 7.6 8.857 7.6 4.865 5.788 2.688 4.881L2.507 4.7 2.326 4.7C2.145 4.7 2.145 4.7 1.963 4.881 1.782 4.881 1.6 5.062 1.6 5.425l0 2.9a0.481 0.481 0 0 0 0.544 0.544c5.079 0.363 9.433 5.079 9.8 10.7a0.579 0.579 0 0 0 0.544 0.544l1.27 0a0.481 0.481 0 0 0 0.544 -0.544c0.363 -5.8 4.716 -10.521 9.8 -10.7a0.579 0.579 0 0 0 0.544 -0.544l0 -2.9C24.82 5.063 24.638 4.881 24.638 4.881Z"
+                    android:fillColor="#1987c8"
+                    auto:fillColor="#1987c8" />
+            </group>
+        </group>
+    </group>
+</vector>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:auto="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="NewApi"
+    android:viewportWidth="29.024"
+    auto:viewportWidth="29.024"
+    android:viewportHeight="29.024"
+    auto:viewportHeight="29.024"
+    android:width="29.024dp"
+    auto:width="29.024dp"
+    android:height="29.024dp"
+    auto:height="29.024dp">
+    <group
+        android:translateX="-9867.654"
+        auto:translateX="-9867.654"
+        android:translateY="5245.455"
+        auto:translateY="5245.455">
+        <group
+            android:translateX="-4027"
+            auto:translateX="-4027"
+            android:translateY="1538"
+            auto:translateY="1538">
+            <group
+                android:translateX="13896.61"
+                auto:translateX="13896.61"
+                android:translateY="-6778.083"
+                auto:translateY="-6778.083">
+                <path
+                    android:pathData="M18.363 10.772"
+                    auto:pathData="M18.363 10.772"
+                    android:fillColor="#1987c8"
+                    auto:fillColor="#1987c8" />
+            </group>
+            <group
+                android:translateX="13896.53"
+                auto:translateX="13896.53"
+                android:translateY="-6781.583"
+                auto:translateY="-6781.583">
+                <path
+                    android:pathData="M6.109 12.64L8.286 6.654C8.467 6.291 8.83 5.928 9.193 6.11A1.205 1.205 0 0 1 10.1 6.836l2.721 9.977 3.266 -7.983a1 1 0 0 1 0.907 -0.544 0.926 0.926 0 0 1 0.907 0.726l1.27 3.447 3.809 0A10.417 10.417 0 0 0 12.64 2.3 10.454 10.454 0 0 0 2.3 12.64Z"
+                    auto:pathData="M6.109 12.64L8.286 6.654C8.467 6.291 8.83 5.928 9.193 6.11A1.205 1.205 0 0 1 10.1 6.836l2.721 9.977 3.266 -7.983a1 1 0 0 1 0.907 -0.544 0.926 0.926 0 0 1 0.907 0.726l1.27 3.447 3.809 0A10.417 10.417 0 0 0 12.64 2.3 10.454 10.454 0 0 0 2.3 12.64Z"
+                    android:fillColor="#1987c8"
+                    auto:fillColor="#1987c8" />
+            </group>
+        </group>
+    </group>
+</vector>

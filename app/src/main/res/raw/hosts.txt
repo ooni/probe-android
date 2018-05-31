@@ -1,3 +1,0 @@
-torproject.org
-ooni.nu
-neubot.org

@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
-import android.support.v4.os.AsyncTaskCompat;
+//import android.support.v4.os.AsyncTaskCompat;
 import android.util.Log;
 
 
@@ -21,10 +21,11 @@ import org.openobservatory.measurement_kit.nettests.*;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 import org.openobservatory.ooniprobe.model.OONITests;
-import org.openobservatory.ooniprobe.model.UnknownTest;
 import org.openobservatory.ooniprobe.utils.NotificationHandler;
 import org.openobservatory.ooniprobe.utils.VersionUtils;
 
+
+//TODO DEPRECATED CLASS - REWRITE
 public class TestData extends Observable {
     private static final String TAG = "TestData";
     private static TestData instance;
@@ -115,6 +116,7 @@ public class TestData extends Observable {
         For more info read: http://developer.android.com/reference/android/os/AsyncTask.html
         https://developer.android.com/reference/android/support/v4/os/AsyncTaskCompat.html
         */
+        /*
         AsyncTaskCompat.executeParallel(
                 new AsyncTask<String, String, Boolean>(){
                     @Override
@@ -213,7 +215,7 @@ public class TestData extends Observable {
                     }
 
                     protected void onProgressUpdate(String... values) {
-                        /* Nothing */
+                        // Nothing
                     }
 
                     protected void onPostExecute(Boolean success) {
@@ -228,6 +230,7 @@ public class TestData extends Observable {
                     }
                 }
         );
+        */
     }
 
     //TODO unify all these in an unique function that takes the test name.

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:auto="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="NewApi"
+    android:viewportWidth="166.247"
+    auto:viewportWidth="166.247"
+    android:viewportHeight="166.248"
+    auto:viewportHeight="166.248"
+    android:width="166.247dp"
+    auto:width="166.247dp"
+    android:height="166.248dp"
+    auto:height="166.248dp">
+    <group
+        android:translateX="-9276.505"
+        auto:translateX="-9276.505"
+        android:translateY="3634.585"
+        auto:translateY="3634.585">
+        <group
+            android:translateX="9276.505"
+            auto:translateX="9276.505"
+            android:translateY="-3634.585"
+            auto:translateY="-3634.585">
+            <group
+                android:translateX="17.044"
+                auto:translateX="17.044"
+                android:translateY="16.898"
+                auto:translateY="16.898">
+                <path
+                    android:pathData="M110.3 21.211l-67.878 33.938 0 25.451 -16.969 -8.482 0 -25.453L93.329 12.727 67.875 0 0 33.938l0 67.876 67.875 33.938 67.875 -33.938 0 -67.876z"
+                    auto:pathData="M110.3 21.211l-67.878 33.938 0 25.451 -16.969 -8.482 0 -25.453L93.329 12.727 67.875 0 0 33.938l0 67.876 67.875 33.938 67.875 -33.938 0 -67.876z"
+                    android:fillColor="#ffffff"
+                    auto:fillColor="#ffffff" />
+            </group>
+        </group>
+    </group>
+</vector>

@@ -76,11 +76,14 @@ public class IConsentQuizFragment extends DialogFragment {
     }
 
     public void loadView(){
-        questionNumber.setText(mActivity.getString(R.string.question) + " " + mActivity.QUESTION_NUMBER + "/2");
-        if (mActivity.QUESTION_NUMBER == 1)
-            questionText.setText(mActivity.getString(R.string.question_1));
-        else if (mActivity.QUESTION_NUMBER == 2)
-            questionText.setText(mActivity.getString(R.string.question_2));
+        if (mActivity.QUESTION_NUMBER == 1) {
+            questionNumber.setText(mActivity.getString(R.string.Onboarding_PopQuiz_1_Title));
+            questionText.setText(mActivity.getString(R.string.Onboarding_PopQuiz_1_Question));
+        }
+        else if (mActivity.QUESTION_NUMBER == 2) {
+            questionNumber.setText(mActivity.getString(R.string.Onboarding_PopQuiz_2_Title));
+            questionText.setText(mActivity.getString(R.string.Onboarding_PopQuiz_2_Question));
+        }
     }
 
     private void answer(final Boolean answer){

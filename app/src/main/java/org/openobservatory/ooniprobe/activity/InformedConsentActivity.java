@@ -45,22 +45,21 @@ public class InformedConsentActivity extends AppIntro {
 
         setSeparatorColor(getResources().getColor(android.R.color.transparent));
         showSkipButton(false);
-        setSkipText(getString(R.string.change));
-        setDoneText(getString(R.string.lets_go));
+        setSkipText(getString(R.string.Onboarding_DefaultSettings_Button_Change));
+        setDoneText(getString(R.string.Onboarding_DefaultSettings_Button_Go));
     }
 
     @Override
     public void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
-        //To @sbs: shouln't be possible yet to enter the app,
-        //this code will remain commented until the dashboard will be done.
-        //next();
+        //TODO open settings
+        next();
     }
 
     @Override
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
-        //next();
+        next();
     }
 
     @Override
@@ -110,5 +109,7 @@ public class InformedConsentActivity extends AppIntro {
         editor.putBoolean("include_country", true);
         editor.putBoolean("upload_results", true);
         editor.apply();
+        setResult(RESULT_CODE_COMPLETED);
+        finish();
     }
 }
