@@ -5,7 +5,28 @@
       <map>
         <entry key="vectorWizard">
           <value>
-            <PersistentState />
+            <PersistentState>
+              <option name="children">
+                <map>
+                  <entry key="vectorAssetStep">
+                    <value>
+                      <PersistentState>
+                        <option name="values">
+                          <map>
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="height" value="316" />
+                            <entry key="outputName" value="octopus" />
+                            <entry key="overrideSize" value="true" />
+                            <entry key="sourceFile" value="$USER_HOME$/Desktop/exported/Quattro-01.svg" />
+                            <entry key="width" value="259" />
+                          </map>
+                        </option>
+                      </PersistentState>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </PersistentState>
           </value>
         </entry>
       </map>

@@ -86,6 +86,7 @@ public class TestUtility {
         }
     }
 
+    /*
     public static int getTestImage(String name) {
         switch (name) {
             case WEB_CONNECTIVITY:
@@ -106,6 +107,7 @@ public class TestUtility {
                 return 0;
         }
     }
+*/
 
     public static String getTestUrl(String name){
         switch (name) {

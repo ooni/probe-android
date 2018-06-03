@@ -41,7 +41,7 @@ public class TestData extends Observable {
             activity = a;
             instance = new TestData();
             runningTests = new ArrayList<>();
-            finishedTests = TestStorage.loadTests(context);
+            //finishedTests = TestStorage.loadTests(context);
             availableTests = new LinkedHashMap<>();
             availableTests.put(OONITests.WEB_CONNECTIVITY, true);
 
@@ -105,7 +105,7 @@ public class TestData extends Observable {
 
     public static void doNetworkMeasurements(final Context ctx, final NetworkMeasurement currentTest) {
         configureTest(ctx, currentTest);
-        TestStorage.addTest(ctx, currentTest);
+        //TestStorage.addTest(ctx, currentTest);
         runningTests.add(currentTest);
         availableTests.put(currentTest.testName, false);
         if (activity != null) TestData.getInstance(context, activity).notifyObservers();
@@ -236,7 +236,7 @@ public class TestData extends Observable {
     //TODO unify all these in an unique function that takes the test name.
     public static void setAnomalyWc(String entry, NetworkMeasurement test){
         if(!test.entry) {
-            TestStorage.setEntry(context, test);
+            //TestStorage.setEntry(context, test);
             test.entry = true;
         }
         try {
@@ -252,7 +252,7 @@ public class TestData extends Observable {
                 anomaly = OONITests.ANOMALY_ORANGE;
             if (test.anomaly < anomaly) {
                 test.anomaly = anomaly;
-                TestStorage.setAnomaly(context, test.test_id, anomaly);
+                //TestStorage.setAnomaly(context, test.test_id, anomaly);
             }
         } catch (JSONException e) {
         }
@@ -265,7 +265,7 @@ public class TestData extends Observable {
      */
     public static void setAnomalyHirl(String entry, NetworkMeasurement test){
         if(!test.entry) {
-            TestStorage.setEntry(context, test);
+            //TestStorage.setEntry(context, test);
             test.entry = true;
         }
         try {
@@ -281,7 +281,7 @@ public class TestData extends Observable {
             }
             if (test.anomaly < anomaly) {
                 test.anomaly = anomaly;
-                TestStorage.setAnomaly(context, test.test_id, anomaly);
+                //TestStorage.setAnomaly(context, test.test_id, anomaly);
             }
         } catch (JSONException e) {
         }
@@ -294,7 +294,7 @@ public class TestData extends Observable {
     */
     public static void setAnomalyHhfm(String entry, NetworkMeasurement test){
         if(!test.entry) {
-            TestStorage.setEntry(context, test);
+            //TestStorage.setEntry(context, test);
             test.entry = true;
         }
         try {
@@ -321,7 +321,7 @@ public class TestData extends Observable {
             }
             if (test.anomaly < anomaly) {
                 test.anomaly = anomaly;
-                TestStorage.setAnomaly(context, test.test_id, anomaly);
+                //TestStorage.setAnomaly(context, test.test_id, anomaly);
             }
         } catch (JSONException e) {
             Log.v(TAG, "JSONException "+ e);
@@ -334,7 +334,7 @@ public class TestData extends Observable {
     */
     public static void setAnomalyNdt(String entry, NetworkMeasurement test){
         if(!test.entry) {
-            TestStorage.setEntry(context, test);
+            //TestStorage.setEntry(context, test);
             test.entry = true;
         }
         try {
@@ -348,7 +348,7 @@ public class TestData extends Observable {
             }
             if (test.anomaly < anomaly) {
                 test.anomaly = anomaly;
-                TestStorage.setAnomaly(context, test.test_id, anomaly);
+                //TestStorage.setAnomaly(context, test.test_id, anomaly);
             }
         } catch (JSONException e) {
             Log.v(TAG, "JSONException "+ e);
@@ -361,7 +361,7 @@ public class TestData extends Observable {
      */
     public static void setAnomalyWhatsapp(String entry, NetworkMeasurement test) {
         if(!test.entry) {
-            TestStorage.setEntry(context, test);
+            //TestStorage.setEntry(context, test);
             test.entry = true;
         }
         try {
@@ -381,7 +381,7 @@ public class TestData extends Observable {
             }
             if (test.anomaly < anomaly) {
                 test.anomaly = anomaly;
-                TestStorage.setAnomaly(context, test.test_id, anomaly);
+                //TestStorage.setAnomaly(context, test.test_id, anomaly);
             }
         } catch (JSONException e) {
             Log.v(TAG, "JSONException "+ e);
@@ -395,7 +395,7 @@ public class TestData extends Observable {
     */
     public static void setAnomalyTelegram(String entry, NetworkMeasurement test) {
         if(!test.entry) {
-            TestStorage.setEntry(context, test);
+            //TestStorage.setEntry(context, test);
             test.entry = true;
         }
         try {
@@ -422,7 +422,7 @@ public class TestData extends Observable {
             }
             if (test.anomaly < anomaly) {
                 test.anomaly = anomaly;
-                TestStorage.setAnomaly(context, test.test_id, anomaly);
+                //TestStorage.setAnomaly(context, test.test_id, anomaly);
             }
         } catch (JSONException e) {
             Log.v(TAG, "JSONException "+ e);
@@ -437,7 +437,7 @@ public class TestData extends Observable {
     */
     public static void setAnomalyFacebookMessenger(String entry, NetworkMeasurement test) {
         if(!test.entry) {
-            TestStorage.setEntry(context, test);
+            //TestStorage.setEntry(context, test);
             test.entry = true;
         }
         try {
@@ -457,7 +457,7 @@ public class TestData extends Observable {
             }
             if (test.anomaly < anomaly) {
                 test.anomaly = anomaly;
-                TestStorage.setAnomaly(context, test.test_id, anomaly);
+                //TestStorage.setAnomaly(context, test.test_id, anomaly);
             }
         } catch (JSONException e) {
             Log.v(TAG, "JSONException "+ e);
