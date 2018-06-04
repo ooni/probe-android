@@ -16,7 +16,7 @@ import org.openobservatory.measurement_kit.swig.OrchestrateFindLocationCallback;
 import org.openobservatory.measurement_kit.swig.OrchestrateRegisterProbeCallback;
 import org.openobservatory.measurement_kit.swig.OrchestrateUpdateCallback;
 import org.openobservatory.ooniprobe.data.TestData;
-import org.openobservatory.ooniprobe.model.OONITests;
+import org.openobservatory.ooniprobe.model.TestUtility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,7 +104,7 @@ public class NotificationService {
         client.set_network_type(network_type);
         client.set_language(language);
         client.set_device_token(device_token);
-        client.set_registry_url(OONITests.NOTIFICATION_SERVER);
+        client.set_registry_url(TestUtility.NOTIFICATION_SERVER);
         //client.set_available_bandwidth();
 
         client.find_location(

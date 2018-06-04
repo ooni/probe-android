@@ -17,6 +17,7 @@ import org.openobservatory.measurement_kit.nettests.WebConnectivityTest;
 import org.openobservatory.measurement_kit.nettests.WhatsappTest;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.utils.TestLists;
+import org.openobservatory.ooniprobe.utils.TestUtility;
 
 import java.util.ArrayList;
 
@@ -41,29 +42,29 @@ public class NetworkMeasurement {
         this.running = true;
         this.viewed = false;
         this.anomaly = 0;
-        if (testName.compareTo(OONITests.HTTP_INVALID_REQUEST_LINE) == 0)
+        if (testName.compareTo(TestUtility.HTTP_INVALID_REQUEST_LINE) == 0)
             test = new HttpInvalidRequestLineTest();
-        else if (testName.compareTo(OONITests.HTTP_HEADER_FIELD_MANIPULATION) == 0)
+        else if (testName.compareTo(TestUtility.HTTP_HEADER_FIELD_MANIPULATION) == 0)
             test = new HttpHeaderFieldManipulationTest();
-        else if (testName.compareTo(OONITests.WEB_CONNECTIVITY) == 0) {
+        else if (testName.compareTo(TestUtility.WEB_CONNECTIVITY) == 0) {
             test = new WebConnectivityTest();
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-            String max_runtime = preferences.getString("max_runtime", OONITests.MAX_RUNTIME);
+            String max_runtime = preferences.getString("max_runtime", TestUtility.MAX_RUNTIME);
             test.set_options("max_runtime", max_runtime);
             ArrayList<String> urls = TestLists.getInstance(context).getUrls();
             for (int i = 0; i < urls.size(); i++)
                 test.add_input(urls.get(i));
             System.out.println(urls);
         }
-        else if (testName.compareTo(OONITests.NDT) == 0)
+        else if (testName.compareTo(TestUtility.NDT) == 0)
             test = new NdtTest();
-        else if (testName.compareTo(OONITests.DASH) == 0)
+        else if (testName.compareTo(TestUtility.DASH) == 0)
             test = new DashTest();
-        else if (testName.compareTo(OONITests.WHATSAPP) == 0)
+        else if (testName.compareTo(TestUtility.WHATSAPP) == 0)
             test = new WhatsappTest();
-        else if (testName.compareTo(OONITests.TELEGRAM) == 0)
+        else if (testName.compareTo(TestUtility.TELEGRAM) == 0)
             test = new TelegramTest();
-        else if (testName.compareTo(OONITests.FACEBOOK_MESSENGER) == 0)
+        else if (testName.compareTo(TestUtility.FACEBOOK_MESSENGER) == 0)
             test = new FacebookMessengerTest();
     }
 
@@ -76,51 +77,47 @@ public class NetworkMeasurement {
         this.running = true;
         this.viewed = false;
         this.anomaly = 0;
-        if (testName.compareTo(OONITests.HTTP_INVALID_REQUEST_LINE) == 0)
+        if (testName.compareTo(TestUtility.HTTP_INVALID_REQUEST_LINE) == 0)
             test = new HttpInvalidRequestLineTest();
-        else if (testName.compareTo(OONITests.HTTP_HEADER_FIELD_MANIPULATION) == 0)
+        else if (testName.compareTo(TestUtility.HTTP_HEADER_FIELD_MANIPULATION) == 0)
             test = new HttpHeaderFieldManipulationTest();
-        else if (testName.compareTo(OONITests.WEB_CONNECTIVITY) == 0) {
+        else if (testName.compareTo(TestUtility.WEB_CONNECTIVITY) == 0) {
             test = new WebConnectivityTest();
             for (int i = 0; i < urls.size(); i++)
                 test.add_input(urls.get(i));
         }
-        else if (testName.compareTo(OONITests.NDT) == 0)
+        else if (testName.compareTo(TestUtility.NDT) == 0)
             test = new NdtTest();
-        else if (testName.compareTo(OONITests.DASH) == 0)
+        else if (testName.compareTo(TestUtility.DASH) == 0)
             test = new DashTest();
-        else if (testName.compareTo(OONITests.WHATSAPP) == 0)
+        else if (testName.compareTo(TestUtility.WHATSAPP) == 0)
             test = new WhatsappTest();
-        else if (testName.compareTo(OONITests.TELEGRAM) == 0)
+        else if (testName.compareTo(TestUtility.TELEGRAM) == 0)
             test = new TelegramTest();
-        else if (testName.compareTo(OONITests.FACEBOOK_MESSENGER) == 0)
+        else if (testName.compareTo(TestUtility.FACEBOOK_MESSENGER) == 0)
             test = new FacebookMessengerTest();
     }
 
     @NonNull
     public static String getTestName(Context context, String name) {
         switch (name) {
-            case OONITests.DNS_INJECTION:
-                return context.getString(R.string.dns_injection);
-            case OONITests.TCP_CONNECT:
-                return context.getString(R.string.tcp_connect);
-            case OONITests.WEB_CONNECTIVITY:
+            case TestUtility.WEB_CONNECTIVITY:
                 return context.getString(R.string.web_connectivity);
-            case OONITests.HTTP_INVALID_REQUEST_LINE:
+            case TestUtility.HTTP_INVALID_REQUEST_LINE:
                 return context.getString(R.string.http_invalid_request_line);
-            case OONITests.HTTP_HEADER_FIELD_MANIPULATION:
+            case TestUtility.HTTP_HEADER_FIELD_MANIPULATION:
                 return context.getString(R.string.http_header_field_manipulation);
-            case OONITests.NDT:
+            case TestUtility.NDT:
                 return context.getString(R.string.ndt);
-            case OONITests.NDT_TEST:
+            case TestUtility.NDT_TEST:
                 return context.getString(R.string.ndt);
-            case OONITests.DASH:
+            case TestUtility.DASH:
                 return context.getString(R.string.dash);
-            case OONITests.WHATSAPP:
+            case TestUtility.WHATSAPP:
                 return context.getString(R.string.whatsapp);
-            case OONITests.TELEGRAM:
+            case TestUtility.TELEGRAM:
                 return context.getString(R.string.telegram);
-            case OONITests.FACEBOOK_MESSENGER:
+            case TestUtility.FACEBOOK_MESSENGER:
                 return context.getString(R.string.facebook_messenger);
             default:
                 return "";
@@ -129,23 +126,23 @@ public class NetworkMeasurement {
 
     public static String getTestDescr(Context context, String name) {
         switch (name) {
-            case OONITests.WEB_CONNECTIVITY:
+            case TestUtility.WEB_CONNECTIVITY:
                 return context.getString(R.string.web_connectivity_desc);
-            case OONITests.HTTP_INVALID_REQUEST_LINE:
+            case TestUtility.HTTP_INVALID_REQUEST_LINE:
                 return context.getString(R.string.http_invalid_request_line_desc);
-            case OONITests.HTTP_HEADER_FIELD_MANIPULATION:
+            case TestUtility.HTTP_HEADER_FIELD_MANIPULATION:
                 return context.getString(R.string.http_header_field_manipulation_desc);
-            case OONITests.NDT_TEST:
+            case TestUtility.NDT_TEST:
                 return context.getString(R.string.ndt_desc);
-            case OONITests.NDT:
+            case TestUtility.NDT:
                 return context.getString(R.string.ndt_desc);
-            case OONITests.DASH:
+            case TestUtility.DASH:
                 return context.getString(R.string.dash_desc);
-            case OONITests.WHATSAPP:
+            case TestUtility.WHATSAPP:
                 return context.getString(R.string.whatsapp_desc);
-            case OONITests.TELEGRAM:
+            case TestUtility.TELEGRAM:
                 return context.getString(R.string.telegram_desc);
-            case OONITests.FACEBOOK_MESSENGER:
+            case TestUtility.FACEBOOK_MESSENGER:
                 return context.getString(R.string.facebook_messenger_desc);
             default:
                 return "";

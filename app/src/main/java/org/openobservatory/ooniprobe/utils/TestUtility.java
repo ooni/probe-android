@@ -5,6 +5,8 @@ import android.content.Context;
 import org.openobservatory.measurement_kit.common.LogSeverity;
 import org.openobservatory.ooniprobe.R;
 
+import java.util.ArrayList;
+
 public class TestUtility {
     public static final String WEBSITES = "websites";
     public static final String INSTANT_MESSAGING = "instant_messaging";
@@ -26,9 +28,6 @@ public class TestUtility {
     public static final String NOTIFICATION_SERVER_PROD = "https://registry.proteus.ooni.io";
     public static final String NOTIFICATION_SERVER = NOTIFICATION_SERVER_PROD;
     public static final int MK_VERBOSITY = LogSeverity.LOG_INFO;
-    public static final int ANOMALY_GREEN = 0;
-    public static final int ANOMALY_ORANGE = 1;
-    public static final int ANOMALY_RED = 2;
 
     public static String getTestName(Context context, String name) {
         switch (name) {
@@ -86,7 +85,6 @@ public class TestUtility {
         }
     }
 
-    /*
     public static int getTestImage(String name) {
         switch (name) {
             case WEB_CONNECTIVITY:
@@ -107,7 +105,6 @@ public class TestUtility {
                 return 0;
         }
     }
-*/
 
     public static String getTestUrl(String name){
         switch (name) {

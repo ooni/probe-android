@@ -4,12 +4,8 @@ import android.content.Context;
 
 import org.openobservatory.measurement_kit.common.LogSeverity;
 import org.openobservatory.measurement_kit.swig.Error;
-import org.openobservatory.measurement_kit.swig.OrchestrateAuth;
 import org.openobservatory.measurement_kit.swig.OrchestrateClient;
 import org.openobservatory.measurement_kit.swig.OrchestrateFindLocationCallback;
-import org.openobservatory.measurement_kit.swig.OrchestrateRegisterProbeCallback;
-import org.openobservatory.measurement_kit.swig.OrchestrateUpdateCallback;
-import org.openobservatory.ooniprobe.model.OONITests;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,6 +21,7 @@ public class TestLists {
     public static String probe_asn;
     public static Context context;
 
+    //TODO DEPRECATED CLASS
     public static TestLists getInstance(Context ctx) {
         if (instance == null) {
             instance = new TestLists();

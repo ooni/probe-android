@@ -15,13 +15,8 @@ import java.util.Observable;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.openobservatory.measurement_kit.android.DnsUtils;
-import org.openobservatory.measurement_kit.common.LogSeverity;
-import org.openobservatory.measurement_kit.nettests.*;
-import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
-import org.openobservatory.ooniprobe.model.OONITests;
-import org.openobservatory.ooniprobe.utils.NotificationHandler;
+import org.openobservatory.ooniprobe.utils.TestUtility;
 import org.openobservatory.ooniprobe.utils.VersionUtils;
 
 
@@ -43,17 +38,17 @@ public class TestData extends Observable {
             runningTests = new ArrayList<>();
             //finishedTests = TestStorage.loadTests(context);
             availableTests = new LinkedHashMap<>();
-            availableTests.put(OONITests.WEB_CONNECTIVITY, true);
+            availableTests.put(TestUtility.WEB_CONNECTIVITY, true);
 
-            availableTests.put(OONITests.FACEBOOK_MESSENGER, true);
-            availableTests.put(OONITests.TELEGRAM, true);
-            availableTests.put(OONITests.WHATSAPP, true);
+            availableTests.put(TestUtility.FACEBOOK_MESSENGER, true);
+            availableTests.put(TestUtility.TELEGRAM, true);
+            availableTests.put(TestUtility.WHATSAPP, true);
 
-            availableTests.put(OONITests.HTTP_HEADER_FIELD_MANIPULATION, true);
-            availableTests.put(OONITests.HTTP_INVALID_REQUEST_LINE, true);
+            availableTests.put(TestUtility.HTTP_HEADER_FIELD_MANIPULATION, true);
+            availableTests.put(TestUtility.HTTP_INVALID_REQUEST_LINE, true);
 
-            availableTests.put(OONITests.DASH, true);
-            availableTests.put(OONITests.NDT, true);
+            availableTests.put(TestUtility.DASH, true);
+            availableTests.put(TestUtility.NDT, true);
         }
         else if (activity == null && a != null){
             activity = a;
@@ -77,15 +72,15 @@ public class TestData extends Observable {
         currentTest.test.use_logcat();
         currentTest.test.set_output_filepath(outputPath);
         currentTest.test.set_error_filepath(logPath);
-        currentTest.test.set_verbosity(OONITests.MK_VERBOSITY);
-        currentTest.test.set_options("geoip_country_path", geoip_country);
-        currentTest.test.set_options("geoip_asn_path", geoip_asn);
-        currentTest.test.set_options("save_real_probe_ip", boolToString(include_ip));
-        currentTest.test.set_options("save_real_probe_asn", boolToString(include_asn));
-        currentTest.test.set_options("save_real_probe_cc", boolToString(include_cc));
-        currentTest.test.set_options("no_collector", boolToString(!upload_results));
-        currentTest.test.set_options("software_name", "ooniprobe-android");
-        currentTest.test.set_options("software_version", VersionUtils.get_software_version());
+        currentTest.test.set_verbosity(TestUtility.MK_VERBOSITY);
+        currentTest.test.set_option("geoip_country_path", geoip_country);
+        currentTest.test.set_option("geoip_asn_path", geoip_asn);
+        currentTest.test.set_option("save_real_probe_ip", boolToString(include_ip));
+        currentTest.test.set_option("save_real_probe_asn", boolToString(include_asn));
+        currentTest.test.set_option("save_real_probe_cc", boolToString(include_cc));
+        currentTest.test.set_option("no_collector", boolToString(!upload_results));
+        currentTest.test.set_option("software_name", "ooniprobe-android");
+        currentTest.test.set_option("software_version", VersionUtils.get_software_version());
         currentTest.test.on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
             @Override
             public void callback(double percent, String msg) {
@@ -125,7 +120,7 @@ public class TestData extends Observable {
                         try
                         {
                             Log.v(TAG, "running test...");
-                            if (currentTest.testName.compareTo(OONITests.HTTP_INVALID_REQUEST_LINE) == 0) {
+                            if (currentTest.testName.compareTo(TestUtility.HTTP_INVALID_REQUEST_LINE) == 0) {
                                 Log.v(TAG, "running http_invalid_request_line test...");
                                 currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
@@ -134,7 +129,7 @@ public class TestData extends Observable {
                                             }
                                         }).run();
                             }
-                            else if (currentTest.testName.compareTo(OONITests.HTTP_HEADER_FIELD_MANIPULATION) == 0) {
+                            else if (currentTest.testName.compareTo(TestUtility.HTTP_HEADER_FIELD_MANIPULATION) == 0) {
                                 Log.v(TAG, "running http_header_field_manipulation test...");
                                 currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
@@ -144,7 +139,7 @@ public class TestData extends Observable {
                                         })
                                         .run();
                             }
-                            else if (currentTest.testName.compareTo(OONITests.WEB_CONNECTIVITY) == 0) {
+                            else if (currentTest.testName.compareTo(TestUtility.WEB_CONNECTIVITY) == 0) {
                                 Log.v(TAG, "running web-connectivity test...");
                                 currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
@@ -153,7 +148,7 @@ public class TestData extends Observable {
                                             }
                                         }).run();
                             }
-                            else if (currentTest.testName.compareTo(OONITests.NDT) == 0) {
+                            else if (currentTest.testName.compareTo(TestUtility.NDT) == 0) {
                                 Log.v(TAG, "running ndt test...");
                                 currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
@@ -163,7 +158,7 @@ public class TestData extends Observable {
                                         })
                                         .run();
                             }
-                            else if (currentTest.testName.compareTo(OONITests.DASH) == 0) {
+                            else if (currentTest.testName.compareTo(TestUtility.DASH) == 0) {
                                 Log.v(TAG, "running dash test...");
                                 currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                             @Override
@@ -173,7 +168,7 @@ public class TestData extends Observable {
                                         })
                                         .run();
                             }
-                            else if (currentTest.testName.compareTo(OONITests.WHATSAPP) == 0) {
+                            else if (currentTest.testName.compareTo(TestUtility.WHATSAPP) == 0) {
                                 Log.v(TAG, "running whatsapp test...");
                                 currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                     @Override
@@ -183,7 +178,7 @@ public class TestData extends Observable {
                                 })
                                         .run();
                             }
-                            else if (currentTest.testName.compareTo(OONITests.TELEGRAM) == 0) {
+                            else if (currentTest.testName.compareTo(TestUtility.TELEGRAM) == 0) {
                                 Log.v(TAG, "running telegram test...");
                                 currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                     @Override
@@ -193,7 +188,7 @@ public class TestData extends Observable {
                                 })
                                         .run();
                             }
-                            else if (currentTest.testName.compareTo(OONITests.FACEBOOK_MESSENGER) == 0) {
+                            else if (currentTest.testName.compareTo(TestUtility.FACEBOOK_MESSENGER) == 0) {
                                 Log.v(TAG, "running facebook_messenger test...");
                                 currentTest.test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
                                     @Override
@@ -240,16 +235,16 @@ public class TestData extends Observable {
             test.entry = true;
         }
         try {
-            int anomaly = OONITests.ANOMALY_GREEN;
+            int anomaly = TestUtility.ANOMALY_GREEN;
             JSONObject jsonObj = new JSONObject(entry);
             JSONObject test_keys = jsonObj.getJSONObject("test_keys");
             Object blocking = test_keys.get("blocking");
             if(blocking instanceof String)
-                anomaly = OONITests.ANOMALY_RED;
+                anomaly = TestUtility.ANOMALY_RED;
             else if(blocking instanceof Boolean)
-                anomaly = OONITests.ANOMALY_GREEN;
+                anomaly = TestUtility.ANOMALY_GREEN;
             else
-                anomaly = OONITests.ANOMALY_ORANGE;
+                anomaly = TestUtility.ANOMALY_ORANGE;
             if (test.anomaly < anomaly) {
                 test.anomaly = anomaly;
                 //TestStorage.setAnomaly(context, test.test_id, anomaly);
@@ -269,15 +264,15 @@ public class TestData extends Observable {
             test.entry = true;
         }
         try {
-            int anomaly = OONITests.ANOMALY_GREEN;
+            int anomaly = TestUtility.ANOMALY_GREEN;
             JSONObject jsonObj = new JSONObject(entry);
             JSONObject test_keys = jsonObj.getJSONObject("test_keys");
             if (test_keys.has("tampering")) {
                 Boolean tampering = test_keys.getBoolean("tampering");
                 if (tampering == null)
-                    anomaly = OONITests.ANOMALY_ORANGE;
+                    anomaly = TestUtility.ANOMALY_ORANGE;
                 else if (tampering == true)
-                    anomaly = OONITests.ANOMALY_RED;
+                    anomaly = TestUtility.ANOMALY_RED;
             }
             if (test.anomaly < anomaly) {
                 test.anomaly = anomaly;
@@ -298,12 +293,12 @@ public class TestData extends Observable {
             test.entry = true;
         }
         try {
-            int anomaly = OONITests.ANOMALY_GREEN;
+            int anomaly = TestUtility.ANOMALY_GREEN;
             JSONObject jsonObj = new JSONObject(entry);
             JSONObject test_keys = jsonObj.getJSONObject("test_keys");
             Object failure = test_keys.get("failure");
             if(failure == null)
-                anomaly = OONITests.ANOMALY_ORANGE;
+                anomaly = TestUtility.ANOMALY_ORANGE;
             else {
                 JSONObject tampering = test_keys.getJSONObject("tampering");
                 String keys[] = {"header_field_name",
@@ -316,7 +311,7 @@ public class TestData extends Observable {
                 {
                     if (tampering.has(key))
                         if (tampering.getBoolean(key))
-                            anomaly = OONITests.ANOMALY_RED;
+                            anomaly = TestUtility.ANOMALY_RED;
                 }
             }
             if (test.anomaly < anomaly) {
@@ -338,13 +333,13 @@ public class TestData extends Observable {
             test.entry = true;
         }
         try {
-            int anomaly = OONITests.ANOMALY_GREEN;
+            int anomaly = TestUtility.ANOMALY_GREEN;
             JSONObject jsonObj = new JSONObject(entry);
             JSONObject test_keys = jsonObj.getJSONObject("test_keys");
             if (test_keys.has("failure")) {
                 Object failure = test_keys.get("failure");
                 if (failure == null)
-                    anomaly = OONITests.ANOMALY_ORANGE;
+                    anomaly = TestUtility.ANOMALY_ORANGE;
             }
             if (test.anomaly < anomaly) {
                 test.anomaly = anomaly;
@@ -365,7 +360,7 @@ public class TestData extends Observable {
             test.entry = true;
         }
         try {
-            int anomaly = OONITests.ANOMALY_GREEN;
+            int anomaly = TestUtility.ANOMALY_GREEN;
             JSONObject jsonObj = new JSONObject(entry);
             JSONObject test_keys = jsonObj.getJSONObject("test_keys");
             String keys[] = {"whatsapp_endpoints_status",
@@ -375,9 +370,9 @@ public class TestData extends Observable {
             {
                 String value = test_keys.getString(key);
                 if (value == null)
-                    anomaly = OONITests.ANOMALY_ORANGE;
+                    anomaly = TestUtility.ANOMALY_ORANGE;
                 else if (value.equals("blocked"))
-                    anomaly = OONITests.ANOMALY_RED;
+                    anomaly = TestUtility.ANOMALY_RED;
             }
             if (test.anomaly < anomaly) {
                 test.anomaly = anomaly;
@@ -399,7 +394,7 @@ public class TestData extends Observable {
             test.entry = true;
         }
         try {
-            int anomaly = OONITests.ANOMALY_GREEN;
+            int anomaly = TestUtility.ANOMALY_GREEN;
             JSONObject jsonObj = new JSONObject(entry);
             JSONObject test_keys = jsonObj.getJSONObject("test_keys");
             String keys[] = {"telegram_http_blocking",
@@ -409,16 +404,16 @@ public class TestData extends Observable {
                 Object value = test_keys.get(key);
                 Boolean boolvalue = test_keys.getBoolean(key);
                 if (value == null)
-                    anomaly = OONITests.ANOMALY_ORANGE;
+                    anomaly = TestUtility.ANOMALY_ORANGE;
                 else if (boolvalue)
-                    anomaly = OONITests.ANOMALY_RED;
+                    anomaly = TestUtility.ANOMALY_RED;
             }
             if (test_keys.has("telegram_web_status")) {
                 String telegram_web_status = test_keys.getString("telegram_web_status");
                 if (telegram_web_status == null)
-                    anomaly = OONITests.ANOMALY_ORANGE;
+                    anomaly = TestUtility.ANOMALY_ORANGE;
                 else if (telegram_web_status.equals("blocked"))
-                    anomaly = OONITests.ANOMALY_RED;
+                    anomaly = TestUtility.ANOMALY_RED;
             }
             if (test.anomaly < anomaly) {
                 test.anomaly = anomaly;
@@ -441,7 +436,7 @@ public class TestData extends Observable {
             test.entry = true;
         }
         try {
-            int anomaly = OONITests.ANOMALY_GREEN;
+            int anomaly = TestUtility.ANOMALY_GREEN;
             JSONObject jsonObj = new JSONObject(entry);
             JSONObject test_keys = jsonObj.getJSONObject("test_keys");
             String keys[] = {"facebook_tcp_blocking",
@@ -451,9 +446,9 @@ public class TestData extends Observable {
                 Object value = test_keys.get(key);
                 Boolean boolvalue = test_keys.getBoolean(key);
                 if (value == null)
-                    anomaly = OONITests.ANOMALY_ORANGE;
+                    anomaly = TestUtility.ANOMALY_ORANGE;
                 else if (boolvalue)
-                    anomaly = OONITests.ANOMALY_RED;
+                    anomaly = TestUtility.ANOMALY_RED;
             }
             if (test.anomaly < anomaly) {
                 test.anomaly = anomaly;

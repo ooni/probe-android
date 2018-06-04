@@ -1,7 +1,7 @@
 package org.openobservatory.ooniprobe.utils;
 
 import org.openobservatory.ooniprobe.BuildConfig;
-import org.openobservatory.ooniprobe.model.OONITests;
+import org.openobservatory.ooniprobe.model.TestUtility;
 
 public class VersionUtils {
 

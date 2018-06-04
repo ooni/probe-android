@@ -1,4 +1,4 @@
-package org.openobservatory.ooniprobe.TestClasses;
+package org.openobservatory.ooniprobe.tests;
 
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.utils.TestUtility;

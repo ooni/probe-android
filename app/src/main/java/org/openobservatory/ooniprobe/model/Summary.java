@@ -8,4 +8,13 @@ public class Summary {
     int failedMeasurements;
     int blockedMeasurements;
     JSONObject json;
+
+    public Summary(){
+
+    }
+
+    public Summary(String summaryJson){
+
+    }
+
 }
