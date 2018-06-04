@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.utils;
 
 import android.content.Context;
+import android.util.ArrayMap;
 
 import org.openobservatory.measurement_kit.common.LogSeverity;
 import org.openobservatory.ooniprobe.R;
@@ -22,12 +23,10 @@ public class TestUtility {
     public static final String WHATSAPP = "whatsapp";
     public static final String TELEGRAM = "telegram";
     public static final String FACEBOOK_MESSENGER = "facebook_messenger";
-    public static final String COLLECTOR_ADDRESS = "https://b.collector.ooni.io";
-    public static final String MAX_RUNTIME = "90";
-    public static final String NOTIFICATION_SERVER_DEV = "https://registry.proteus.test.ooni.io";
-    public static final String NOTIFICATION_SERVER_PROD = "https://registry.proteus.ooni.io";
-    public static final String NOTIFICATION_SERVER = NOTIFICATION_SERVER_PROD;
+
+    //TODO move them into settings
     public static final int MK_VERBOSITY = LogSeverity.LOG_INFO;
+    public static final String MAX_RUNTIME = "90";
 
     public static String getTestName(Context context, String name) {
         switch (name) {
@@ -127,6 +126,16 @@ public class TestUtility {
             default:
                 return "";
         }
+    }
+
+    public String[] getUrlsTest(){
+        String[] urls = {
+                "http://www.foxnews.com",
+                "https://www.1and1.com/",
+                "http://www.anonymsurfen.com",
+                "http://www.bearshare.com"
+        };
+        return urls;
     }
 
 }

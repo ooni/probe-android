@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
@@ -15,8 +14,6 @@ import org.openobservatory.measurement_kit.swig.OrchestrateClient;
 import org.openobservatory.measurement_kit.swig.OrchestrateFindLocationCallback;
 import org.openobservatory.measurement_kit.swig.OrchestrateRegisterProbeCallback;
 import org.openobservatory.measurement_kit.swig.OrchestrateUpdateCallback;
-import org.openobservatory.ooniprobe.data.TestData;
-import org.openobservatory.ooniprobe.model.TestUtility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +49,7 @@ public class NotificationService {
             platform = "android";
             software_name = "ooniprobe-android";
             software_version = VersionUtils.get_software_version();
-            supported_tests = new ArrayList<>(TestData.getInstance(c, null).availableTests.keySet());
+            supported_tests = new ArrayList<>();
             network_type = getNetworkType(c);
             language = Locale.getDefault().getLanguage();
             if (FirebaseInstanceId.getInstance().getToken() != null)
@@ -107,7 +104,7 @@ public class NotificationService {
         client.set_network_type(network_type);
         client.set_language(language);
         client.set_device_token(device_token);
-        client.set_registry_url(TestUtility.NOTIFICATION_SERVER);
+        client.set_registry_url(NOTIFICATION_SERVER);
         //client.set_available_bandwidth();
 
         client.find_location(
@@ -125,9 +122,6 @@ public class NotificationService {
                         OrchestrateAuth auth = new OrchestrateAuth();
                         client.set_probe_asn(probe_asn);
                         client.set_probe_cc(probe_cc);
-                        TestLists.getInstance(context).probe_cc = probe_cc;
-                        TestLists.getInstance(context).probe_asn = probe_asn;
-
                         Error err = auth.load(auth_secret_file);
                         if (err.as_bool()) {
                             client.register_probe(

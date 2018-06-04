@@ -2,21 +2,10 @@ package org.openobservatory.ooniprobe.utils;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
-
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.activity.BrowserActivity;
-import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.NotificationDialog;
-
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Map;
 
 public class NotificationsRouter extends FirebaseMessagingService {

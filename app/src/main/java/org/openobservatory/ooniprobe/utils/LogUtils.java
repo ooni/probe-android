@@ -6,14 +6,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import android.content.Context;
 
-//TODO UNUSED CLASS
 public class LogUtils {
 
     public static String readLogFile(Context c, String filename) {
-
         String logPath = c.getFilesDir() + filename;
         File file = new File(logPath);
-
         StringBuilder text = new StringBuilder();
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));

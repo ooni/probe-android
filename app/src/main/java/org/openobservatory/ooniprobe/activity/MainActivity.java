@@ -15,7 +15,7 @@ import android.util.Log;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import org.openobservatory.ooniprobe.data.TestStorage;
+import org.openobservatory.ooniprobe.data.OldTestStorage;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import org.openobservatory.ooniprobe.R;
@@ -27,15 +27,13 @@ public class MainActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
         checkResources();
-        TestStorage.oldTestsDetected(this);
-        /*
-        if (TestStorage.loadTests(this).size() > 0) {
-            TestStorage.removeAllTests(this, this);
+        checkInformedConsent();
+        if (OldTestStorage.oldTestsDetected(this)) {
+            //TODO Show confirmation popup
+            OldTestStorage.removeAllTests(this);
         }
-*/
         checkInformedConsent();
     }
 
