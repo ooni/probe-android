@@ -24,6 +24,9 @@ import java.util.Locale;
 
 public class NotificationService {
     private static final String TAG = "NotificationService";
+    public static final String NOTIFICATION_SERVER_DEV = "https://registry.proteus.test.ooni.io";
+    public static final String NOTIFICATION_SERVER_PROD = "https://registry.proteus.ooni.io";
+    public static final String NOTIFICATION_SERVER = NOTIFICATION_SERVER_PROD;
 
     //TODO handle these warnings
     private static NotificationService instance;
