@@ -23,11 +23,7 @@ public class TestUtility {
     public static final String WHATSAPP = "whatsapp";
     public static final String TELEGRAM = "telegram";
     public static final String FACEBOOK_MESSENGER = "facebook_messenger";
-
-    //TODO move them into settings
-    public static final int MK_VERBOSITY = LogSeverity.LOG_INFO;
-    public static final String MAX_RUNTIME = "90";
-
+    
     public static String getTestName(Context context, String name) {
         switch (name) {
             case WEBSITES:
