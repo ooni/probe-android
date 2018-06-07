@@ -7,7 +7,7 @@
         android:id="@+id/navigationBar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_ooni_blue"
+        android:background="@color/color_base"
         android:minHeight="?attr/actionBarSize"
         android:layout_alignParentTop="true" >
 
@@ -108,7 +108,7 @@
         android:id="@+id/bottomBar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_ooni_blue"
+        android:background="@color/color_base"
         android:minHeight="?attr/actionBarSize"
         android:layout_alignParentBottom="true" >
 
@@ -124,7 +124,7 @@
             android:padding="5dp"
             style="?android:attr/borderlessButtonStyle"
             android:textAllCaps="false"
-            android:textColor="@color/color_off_white" />
+            android:textColor="@color/color_white" />
 
         <ImageView
             android:id="@+id/shareButton"

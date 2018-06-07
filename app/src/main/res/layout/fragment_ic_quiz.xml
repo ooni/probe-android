@@ -19,7 +19,7 @@
                 android:id="@+id/pop_quiz"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/Onboarding.PopQuiz.Title"
+                android:text="@string/Onboarding_PopQuiz_Title"
                 android:layout_margin="10dp"
                 android:textSize="32sp"
                 android:textColor="@color/color_white"
@@ -43,7 +43,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text="@string/Onboarding.PopQuiz.1.Title"
+                    android:text="@string/Onboarding_PopQuiz_1_Title"
                     android:textSize="18sp"
                     android:textColor="@color/color_white"
                     android:gravity="center"  />
@@ -53,7 +53,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text="@string/Onboarding.PopQuiz.1.Question"
+                    android:text="@string/Onboarding_PopQuiz_1_Question"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:textColor="@color/color_white"
@@ -75,7 +75,7 @@
                     android:padding="10dp"
                     android:textStyle="bold"
                     fontPath="fonts/FiraSans-SemiBold.otf"
-                    android:text="@string/Onboarding.PopQuiz.True"
+                    android:text="@string/Onboarding_PopQuiz_True"
                     android:textColor="@color/color_white"
                     android:background="@drawable/button_true" />
                 <android.support.v7.widget.AppCompatButton
@@ -87,7 +87,7 @@
                     android:padding="10dp"
                     android:textStyle="bold"
                     fontPath="fonts/FiraSans-SemiBold.otf"
-                    android:text="@string/Onboarding.PopQuiz.False"
+                    android:text="@string/Onboarding_PopQuiz_False"
                     android:textColor="@color/color_white"
                     android:background="@drawable/button_false" />
             </LinearLayout>

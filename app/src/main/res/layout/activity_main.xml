@@ -3,56 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/websitesButton"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:textSize="24sp"
-        android:layout_margin="10dp"
-        android:padding="10dp"
-        android:layout_gravity="center"
-        android:textStyle="bold"
-        android:text="@string/Test.Websites.Fullname"
-        android:textColor="@color/color_off_white"
-        android:background="@drawable/button_next" />
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/instantMessagingButton"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:textSize="24sp"
-        android:layout_margin="10dp"
-        android:padding="10dp"
-        android:layout_gravity="center"
-        android:textStyle="bold"
-        android:text="@string/Test.InstantMessaging.Fullname"
-        android:textColor="@color/color_off_white"
-        android:background="@drawable/button_next" />
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/MiddleboxesButton"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:textSize="24sp"
-        android:layout_margin="10dp"
-        android:padding="10dp"
-        android:layout_gravity="center"
-        android:textStyle="bold"
-        android:text="@string/Test.Middleboxes.Fullname"
-        android:textColor="@color/color_off_white"
-        android:background="@drawable/button_next" />
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/performanceButton"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:textSize="24sp"
-        android:layout_margin="10dp"
-        android:padding="10dp"
-        android:layout_gravity="center"
-        android:textStyle="bold"
-        android:text="@string/Test.Performance.Fullname"
-        android:textColor="@color/color_off_white"
-        android:background="@drawable/button_next" />
 
 
 </LinearLayout>

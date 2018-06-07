@@ -21,7 +21,7 @@
         android:id="@+id/things_to_know"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/Onboarding.ThingsToKnow.Title"
+        android:text="@string/Onboarding_ThingsToKnow_Title"
         android:textSize="30sp"
         fontPath="fonts/FiraSans-Light.otf"
         android:textColor="@color/color_white"
@@ -52,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="@string/Onboarding.ThingsToKnow.Bullet.1"
+                android:text="@string/Onboarding_ThingsToKnow_Bullet_1"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:textColor="@color/color_white" />
@@ -69,7 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="@string/Onboarding.ThingsToKnow.Bullet.2"
+                android:text="@string/Onboarding_ThingsToKnow_Bullet_2"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:textColor="@color/color_white" />
@@ -86,7 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="@string/Onboarding.ThingsToKnow.Bullet.3"
+                android:text="@string/Onboarding_ThingsToKnow_Bullet_3"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:textColor="@color/color_white" />
@@ -103,7 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="@string/Onboarding.ThingsToKnow.Bullet.4"
+                android:text="@string/Onboarding_ThingsToKnow_Bullet_4"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:textColor="@color/color_white" />
@@ -128,7 +128,7 @@
             android:layout_weight="0.6"
             android:background="@drawable/button_next"
             android:padding="10dp"
-            android:text="@string/Onboarding.ThingsToKnow.Button"
+            android:text="@string/Onboarding_ThingsToKnow_Button"
             fontPath="fonts/FiraSans-SemiBold.otf"
             android:textColor="@color/color_blue5"
             android:textSize="20sp"

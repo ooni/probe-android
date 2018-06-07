@@ -21,7 +21,7 @@
         android:id="@+id/default_settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/Onboarding.DefaultSettings.Title"
+        android:text="@string/Onboarding_DefaultSettings_Title"
         android:textSize="30sp"
         fontPath="fonts/FiraSans-Light.otf"
         android:textColor="@color/color_white"
@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="@string/Onboarding.DefaultSettings.Header.1"
+            android:text="@string/Onboarding_DefaultSettings_Header_1"
             android:textStyle="bold"
             android:textSize="16sp"
             android:textColor="@color/color_white" />
@@ -56,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="@string/Onboarding.DefaultSettings.Bullet.1"
+                android:text="@string/Onboarding_DefaultSettings_Bullet_1"
                 android:textSize="16sp"
                 android:textColor="@color/color_white" />
         </LinearLayout>
@@ -72,7 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="@string/Onboarding.DefaultSettings.Bullet.2"
+                android:text="@string/Onboarding_DefaultSettings_Bullet_2"
                 android:textSize="16sp"
                 android:textColor="@color/color_white" />
         </LinearLayout>
@@ -88,7 +88,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="@string/Onboarding.DefaultSettings.Bullet.3"
+                android:text="@string/Onboarding_DefaultSettings_Bullet_3"
                 android:textSize="16sp"
                 android:textColor="@color/color_white" />
         </LinearLayout>
@@ -96,7 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="@string/Onboarding.DefaultSettings.Header.2"
+            android:text="@string/Onboarding_DefaultSettings_Header_2"
             android:textStyle="bold"
             android:textSize="16sp"
             android:textColor="@color/color_white" />
@@ -112,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="@string/Onboarding.DefaultSettings.Bullet.4"
+                android:text="@string/Onboarding_DefaultSettings_Bullet_4"
                 android:textSize="16sp"
                 android:textColor="@color/color_white" />
         </LinearLayout>
