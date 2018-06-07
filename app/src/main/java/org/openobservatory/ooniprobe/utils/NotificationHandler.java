@@ -37,7 +37,7 @@ public class NotificationHandler extends FirebaseMessagingService {
     */
 
     public static void notifyTestEnded(Context c, String text) {
-            sendNotification(c, NetworkMeasurement.getTestName(c, text) + " " + c.getString(R.string.finished_running));
+            sendNotification(c, TestUtility.getTestName(c, text) + " " + c.getString(R.string.finished_running));
         }
 
         public static void sendNotification(Context c, String text) {
@@ -64,39 +64,5 @@ public class NotificationHandler extends FirebaseMessagingService {
         NotificationManager notificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(1, b.build());
     }
-
-    public static void setRecurringAlarm(Context context) {
-        cancelRecurringAlarm(context);
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String time = preferences.getString("local_notifications_time", "18:00");
-
-        String[] separated = time.split(":");
-        int hours = Integer.valueOf(separated[0]);
-        int minutes = Integer.valueOf(separated[1]);
-
-        Calendar updateTime = Calendar.getInstance();
-        updateTime.setTimeZone(updateTime.getTimeZone());
-        updateTime.set(Calendar.HOUR_OF_DAY, hours);
-        updateTime.set(Calendar.MINUTE, minutes);
-
-        Intent alarm = new Intent(context, AlarmReceiver.class);
-        PendingIntent recurringAlarm = PendingIntent.getBroadcast(context,
-                0, alarm, PendingIntent.FLAG_CANCEL_CURRENT);
-        AlarmManager alarms = (AlarmManager) context.getSystemService(
-                Context.ALARM_SERVICE);
-        alarms.setInexactRepeating(AlarmManager.RTC_WAKEUP,
-                updateTime.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, recurringAlarm);
-    }
-
-    public static void cancelRecurringAlarm(Context context) {
-        Intent alarm = new Intent(context, AlarmReceiver.class);
-        PendingIntent recurringAlarm = PendingIntent.getBroadcast(context,
-                0, alarm, PendingIntent.FLAG_CANCEL_CURRENT);
-        AlarmManager alarms = (AlarmManager) context.getSystemService(
-                Context.ALARM_SERVICE);
-        alarms.cancel(recurringAlarm);
-    }
-
 }
 
