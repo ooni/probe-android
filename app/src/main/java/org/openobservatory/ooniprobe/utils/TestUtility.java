@@ -1,12 +1,7 @@
 package org.openobservatory.ooniprobe.utils;
 
 import android.content.Context;
-import android.util.ArrayMap;
-
-import org.openobservatory.measurement_kit.common.LogSeverity;
 import org.openobservatory.ooniprobe.R;
-
-import java.util.ArrayList;
 
 public class TestUtility {
     public static final String WEBSITES = "websites";
@@ -82,7 +77,7 @@ public class TestUtility {
 
     public static int getTestImage(String name) {
         switch (name) {
-            case WEB_CONNECTIVITY:
+            case WEBSITES:
                     return R.drawable.test_websites;
             case MIDDLE_BOXES:
                 return R.drawable.test_middle_boxes;
@@ -98,6 +93,21 @@ public class TestUtility {
                 return R.drawable.test_facebook_messenger;
             default:
                 return 0;
+        }
+    }
+
+    public static int getTestColor(String name) {
+        switch (name) {
+            case WEBSITES:
+                return R.color.color_indigo6;
+            case MIDDLE_BOXES:
+                return R.color.color_fuchsia6;
+            case INSTANT_MESSAGING:
+                return R.color.color_violet8;
+            case PERFORMANCE:
+                return R.color.color_cyan6;
+            default:
+                return R.color.color_blue5;
         }
     }
 

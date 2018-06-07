@@ -1,27 +1,27 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/color_ooni_blue</item>
-        <item name="colorPrimaryDark">@color/color_ooni_blue</item>
-        <item name="colorAccent">@color/color_ooni_blue</item>
-        <item name="android:actionMenuTextColor">@color/color_off_black</item>
+        <item name="colorPrimary">@color/color_base</item>
+        <item name="colorPrimaryDark">@color/color_base</item>
+        <item name="colorAccent">@color/color_base</item>
+        <item name="android:actionMenuTextColor">@color/color_black</item>
         <item name="android:popupMenuStyle">@style/PopupMenu</item>
         <item name="android:textAppearanceLargePopupMenu">@style/myPopupMenuTextAppearanceLarge</item>
         <item name="android:textAppearanceSmallPopupMenu">@style/myPopupMenuTextAppearanceSmall</item>
     </style>
 
     <style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
-        <item name="android:popupBackground">@color/color_off_white</item>
-        <item name="android:textColor">@color/color_off_black</item>
+        <item name="android:popupBackground">@color/color_white</item>
+        <item name="android:textColor">@color/color_black</item>
         <item name="android:textSize">13sp</item>
     </style>
 
     <style name="myPopupMenuTextAppearanceSmall" parent="@android:style/TextAppearance.DeviceDefault.Widget.PopupMenu.Small">
-        <item name="android:textColor">@color/color_off_black</item>
+        <item name="android:textColor">@color/color_black</item>
         <item name="android:textSize">13sp</item>
     </style>
     <style name="myPopupMenuTextAppearanceLarge" parent="@android:style/TextAppearance.DeviceDefault.Widget.PopupMenu.Large">
-        <item name="android:textColor">@color/color_off_black</item>
+        <item name="android:textColor">@color/color_black</item>
         <item name="android:textSize">18sp</item>
     </style>
 
