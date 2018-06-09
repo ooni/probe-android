@@ -13,6 +13,11 @@ public class NetworkTest {
         result = new Result();
     }
 
+    public void run (){
+        //for (MKNetworkTest current : mkNetworkTests)
+            //current.run();
+    }
+
     public class WCNetworkTest extends NetworkTest{
         public WCNetworkTest(){
             result.name = TestUtility.WEBSITES;
