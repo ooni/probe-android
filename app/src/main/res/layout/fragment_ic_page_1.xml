@@ -44,7 +44,6 @@
         android:adjustViewBounds="true"
         android:layout_marginBottom="60dp"
         android:layout_below="@+id/ooniprobe_logoLayout"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
 </RelativeLayout>

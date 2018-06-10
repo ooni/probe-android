@@ -1,105 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="MissingPrefix"
-    android:background="@drawable/dialog_quiz">
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:background="@drawable/dialog_quiz"
+	tools:ignore="MissingPrefix">
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+	<FrameLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/pop_quiz"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/Onboarding_PopQuiz_Title"
-                android:layout_margin="10dp"
-                android:textSize="32sp"
-                android:textColor="@color/color_white"
-                fontPath="fonts/FiraSans-Light.otf"
-                android:gravity="center" />
+			<TextView
+				android:id="@+id/pop_quiz"
+				fontPath="fonts/FiraSans-Light.otf"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_margin="10dp"
+				android:gravity="center"
+				android:text="@string/Onboarding_PopQuiz_Title"
+				android:textColor="@color/color_white"
+				android:textSize="32sp"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_gravity="center_vertical"
-                android:background="@color/color_white" />
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_gravity="center_vertical"
+				android:background="@color/color_white"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="30dp"
-                android:id="@+id/questionLayout"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/question_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/Onboarding_PopQuiz_1_Title"
-                    android:textSize="18sp"
-                    android:textColor="@color/color_white"
-                    android:gravity="center"  />
+			<LinearLayout
+				android:id="@+id/questionLayout"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:padding="30dp">
 
-                <TextView
-                    android:id="@+id/question_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/Onboarding_PopQuiz_1_Question"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:textColor="@color/color_white"
-                    android:gravity="center"  />
-            </LinearLayout>
+				<TextView
+					android:id="@+id/question_number"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginBottom="10dp"
+					android:gravity="center"
+					android:text="@string/Onboarding_PopQuiz_1_Title"
+					android:textColor="@color/color_white"
+					android:textSize="18sp"/>
 
-            <LinearLayout
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:gravity="center_horizontal"
-                android:id="@+id/nextButtonLayout"
-                android:weightSum="1.0">
-                <android.support.v7.widget.AppCompatButton
-                    android:id="@+id/trueButton"
-                    android:layout_width="0dp"
-                    android:layout_height="55dp"
-                    android:layout_weight="0.5"
-                    android:textSize="20sp"
-                    android:padding="10dp"
-                    android:textStyle="bold"
-                    fontPath="fonts/FiraSans-SemiBold.otf"
-                    android:text="@string/Onboarding_PopQuiz_True"
-                    android:textColor="@color/color_white"
-                    android:background="@drawable/button_true" />
-                <android.support.v7.widget.AppCompatButton
-                    android:id="@+id/falseButton"
-                    android:layout_width="0dp"
-                    android:layout_height="55dp"
-                    android:layout_weight="0.5"
-                    android:textSize="20sp"
-                    android:padding="10dp"
-                    android:textStyle="bold"
-                    fontPath="fonts/FiraSans-SemiBold.otf"
-                    android:text="@string/Onboarding_PopQuiz_False"
-                    android:textColor="@color/color_white"
-                    android:background="@drawable/button_false" />
-            </LinearLayout>
-        </LinearLayout>
+				<TextView
+					android:id="@+id/question_text"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginBottom="10dp"
+					android:gravity="center"
+					android:text="@string/Onboarding_PopQuiz_1_Question"
+					android:textColor="@color/color_white"
+					android:textSize="18sp"
+					android:textStyle="bold"/>
+			</LinearLayout>
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/animationView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:scaleType="fitCenter"
-            android:background="@drawable/dialog_wrong" />
+			<LinearLayout
+				android:id="@+id/nextButtonLayout"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center_horizontal"
+				android:weightSum="1.0">
 
-    </FrameLayout>
+				<Button
+					android:id="@+id/trueButton"
+					fontPath="fonts/FiraSans-SemiBold.otf"
+					android:layout_width="0dp"
+					android:layout_height="55dp"
+					android:layout_weight="0.5"
+					android:background="@drawable/button_true"
+					android:padding="10dp"
+					android:text="@string/Onboarding_PopQuiz_True"
+					android:textColor="@color/color_white"
+					android:textSize="20sp"
+					android:textStyle="bold"/>
+
+				<Button
+					android:id="@+id/falseButton"
+					fontPath="fonts/FiraSans-SemiBold.otf"
+					android:layout_width="0dp"
+					android:layout_height="55dp"
+					android:layout_weight="0.5"
+					android:background="@drawable/button_false"
+					android:padding="10dp"
+					android:text="@string/Onboarding_PopQuiz_False"
+					android:textColor="@color/color_white"
+					android:textSize="20sp"
+					android:textStyle="bold"/>
+			</LinearLayout>
+		</LinearLayout>
+
+		<com.airbnb.lottie.LottieAnimationView
+			android:id="@+id/animationView"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_gravity="center"
+			android:background="@drawable/dialog_wrong"
+			android:scaleType="fitCenter"/>
+	</FrameLayout>
 </RelativeLayout>
