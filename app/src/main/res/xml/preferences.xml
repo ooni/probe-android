@@ -9,9 +9,12 @@
 			android:key="@string/notifications_enabled"
 			android:title="@string/Settings_Notifications_Enabled"/>
 		<SwitchPreference
+			android:defaultValue="true"
+			android:dependency="@string/notifications_enabled"
 			android:key="@string/notifications_completion"
 			android:title="@string/Settings_Notifications_OnTestCompletion"/>
 		<SwitchPreference
+			android:dependency="@string/notifications_enabled"
 			android:key="@string/notifications_news"
 			android:title="@string/Settings_Notifications_OnNews"/>
 	</PreferenceScreen>

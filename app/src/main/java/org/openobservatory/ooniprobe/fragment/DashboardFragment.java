@@ -28,10 +28,10 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		View v = inflater.inflate(R.layout.recycler, container, false);
 		ButterKnife.bind(this, v);
 		items = new ArrayList<>();
-		items.add(new TestItem(new Test(R.string.Test_Websites_Fullname, R.string.Dashboard_Websites_Card_Description, R.drawable.test_websites, R.color.color_cyan9), this));
-		items.add(new TestItem(new Test(R.string.Test_InstantMessaging_Fullname, R.string.Dashboard_InstantMessaging_Card_Description, R.drawable.test_instant_messaging, R.color.color_green9), this));
-		items.add(new TestItem(new Test(R.string.Test_Middleboxes_Fullname, R.string.Dashboard_Middleboxes_Card_Description, R.drawable.test_middle_boxes, R.color.color_blue9), this));
-		items.add(new TestItem(new Test(R.string.Test_Performance_Fullname, R.string.Dashboard_Performance_Card_Description, R.drawable.test_performance, R.color.color_yellow9), this));
+		items.add(new TestItem(Test.getWebsiteTest(), this));
+		items.add(new TestItem(Test.getInstantMessaging(), this));
+		items.add(new TestItem(Test.getMiddleBoxes(), this));
+		items.add(new TestItem(Test.getPerformance(), this));
 		adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
 		recycler.setAdapter(adapter);
 		recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
