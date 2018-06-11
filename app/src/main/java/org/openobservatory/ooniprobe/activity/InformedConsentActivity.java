@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import com.github.paolorotolo.appintro.AppIntro;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.fragment.consent.IConsentPage1Fragment;
 import org.openobservatory.ooniprobe.fragment.consent.IConsentPage2Fragment;
 import org.openobservatory.ooniprobe.fragment.consent.IConsentPage3Fragment;
@@ -29,18 +30,21 @@ public class InformedConsentActivity extends AppIntro {
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		fragment1 = new IConsentPage1Fragment();
-		fragment2 = new IConsentPage2Fragment();
-		fragment3 = new IConsentPage3Fragment();
-		fragment4 = new IConsentPage4Fragment();
-		addSlide(fragment1);
-		addSlide(fragment2);
-		addSlide(fragment3);
-		addSlide(fragment4);
-		setSeparatorColor(getResources().getColor(android.R.color.transparent));
-		showSkipButton(false);
-		setSkipText(getString(R.string.Onboarding_DefaultSettings_Button_Change));
-		setDoneText(getString(R.string.Onboarding_DefaultSettings_Button_Go));
+		if (((Application) getApplication()).getPreferenceManager().isShowIntro()) {
+			fragment1 = new IConsentPage1Fragment();
+			fragment2 = new IConsentPage2Fragment();
+			fragment3 = new IConsentPage3Fragment();
+			fragment4 = new IConsentPage4Fragment();
+			addSlide(fragment1);
+			addSlide(fragment2);
+			addSlide(fragment3);
+			addSlide(fragment4);
+			setSeparatorColor(getResources().getColor(android.R.color.transparent));
+			showSkipButton(false);
+			setSkipText(getString(R.string.Onboarding_DefaultSettings_Button_Change));
+			setDoneText(getString(R.string.Onboarding_DefaultSettings_Button_Go));
+		} else
+			startActivity(new Intent(this, MainActivity.class));
 	}
 
 	@Override
@@ -97,6 +101,7 @@ public class InformedConsentActivity extends AppIntro {
 		editor.putBoolean("upload_results", true);
 		editor.apply();
 		setResult(RESULT_CODE_COMPLETED);
+		((Application) getApplication()).getPreferenceManager().setShowIntro(false);
 		startActivity(new Intent(this, MainActivity.class));
 	}
 }

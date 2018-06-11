@@ -10,11 +10,9 @@
 			android:title="@string/enabled"/>
 		<SwitchPreference
 			android:key="@string/key_testNotification"
-			android:layout="?android:attr/preferenceLayoutChild"
 			android:title="@string/testNotification"/>
 		<SwitchPreference
 			android:key="@string/key_feedNotification"
-			android:layout="?android:attr/preferenceLayoutChild"
 			android:title="@string/feedNotification"/>
 	</PreferenceScreen>
 	<PreferenceScreen

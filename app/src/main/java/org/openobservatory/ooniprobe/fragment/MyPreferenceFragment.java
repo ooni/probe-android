@@ -38,7 +38,6 @@ public class MyPreferenceFragment extends ExtendedPreferenceFragment<MyPreferenc
 
 	@Override public void onResume() {
 		super.onResume();
-		getActivity().setTitle(getPreferenceScreen().getTitle());
 		if (refresh) {
 			setPreferencesFromResource(R.xml.preferences, android.R.id.content, rootKey);
 			for (int[] pref : PREF_TO_REFRESH) {
@@ -48,6 +47,7 @@ public class MyPreferenceFragment extends ExtendedPreferenceFragment<MyPreferenc
 					prefScreen.setSummary(switchPreference.isChecked() ? R.string.enabled : R.string.disabled);
 			}
 		}
+		getActivity().setTitle(getPreferenceScreen().getTitle());
 	}
 
 	@Override protected MyPreferenceFragment newInstance() {

@@ -42,4 +42,8 @@ public class Application extends android.app.Application {
 			e.printStackTrace();
 		}
 	}
+
+	public PreferenceManager getPreferenceManager() {
+		return preferenceManager;
+	}
 }
