@@ -1,10 +1,10 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-	android:title="@string/Settings_Title"
-	android:key="@string/preferences">
+	android:key="@string/preferences"
+	android:title="@string/Settings_Title">
 	<PreferenceScreen
 		android:icon="@drawable/notifications"
-		android:title="@string/Settings_Notifications_Label"
-		android:key="@string/notifications">
+		android:key="@string/notifications"
+		android:title="@string/Settings_Notifications_Label">
 		<SwitchPreference
 			android:key="@string/notifications_enabled"
 			android:title="@string/Settings_Notifications_Enabled"/>
@@ -28,8 +28,8 @@
 		<SwitchPreference
 			android:key="@string/include_asn"
 			android:title="@string/Settings_Sharing_IncludeNetwork"/>
-    </PreferenceScreen>
-    <PreferenceScreen
+	</PreferenceScreen>
+	<PreferenceScreen
 		android:icon="@drawable/advanced"
 		android:key="@string/advanced"
 		android:title="@string/Settings_Advanced_Label">
@@ -45,9 +45,11 @@
 		<SwitchPreference
 			android:key="@string/include_cc"
 			android:title="@string/Settings_Advanced_ShareCountryCode"/>
-    </PreferenceScreen>
-    <PreferenceScreen
+	</PreferenceScreen>
+	<PreferenceScreen
 		android:icon="@drawable/about_ooni"
 		android:key="@string/about_ooni"
-		android:title="@string/Settings_About_Label"/>
+		android:title="@string/Settings_About_Label">
+		<intent android:action="org.openobservatory.ooniprobe.activity.InfoActivity"/>
+	</PreferenceScreen>
 </PreferenceScreen>
