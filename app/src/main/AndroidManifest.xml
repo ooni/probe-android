@@ -34,10 +34,8 @@
 		</service>
 
 		<activity
-			android:name=".activity.InformedConsentActivity"
-			android:noHistory="true"
-			android:screenOrientation="portrait"
-			android:theme="@style/Theme.AppCompat.NoActionBar">
+			android:name=".activity.MainActivity"
+			android:screenOrientation="portrait">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
 				<category android:name="android.intent.category.LAUNCHER"/>
@@ -55,7 +53,10 @@
 		<activity
 			android:name=".activity.NotificationDialog"
 			android:theme="@style/Theme.AppCompat.Light.Transparent"/>
-		<activity android:name=".activity.MainActivity"/>
+		<activity
+			android:name=".activity.InformedConsentActivity"
+			android:screenOrientation="portrait"
+			android:theme="@style/Theme.AppCompat.NoActionBar" />
 		<activity
 			android:name=".activity.PreferenceActivity"
 			android:parentActivityName=".activity.MainActivity"/>

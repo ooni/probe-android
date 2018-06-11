@@ -30,21 +30,18 @@ public class InformedConsentActivity extends AppIntro {
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		if (((Application) getApplication()).getPreferenceManager().isShowIntro()) {
-			fragment1 = new IConsentPage1Fragment();
-			fragment2 = new IConsentPage2Fragment();
-			fragment3 = new IConsentPage3Fragment();
-			fragment4 = new IConsentPage4Fragment();
-			addSlide(fragment1);
-			addSlide(fragment2);
-			addSlide(fragment3);
-			addSlide(fragment4);
-			setSeparatorColor(getResources().getColor(android.R.color.transparent));
-			showSkipButton(false);
-			setSkipText(getString(R.string.Onboarding_DefaultSettings_Button_Change));
-			setDoneText(getString(R.string.Onboarding_DefaultSettings_Button_Go));
-		} else
-			startActivity(new Intent(this, MainActivity.class));
+		fragment1 = new IConsentPage1Fragment();
+		fragment2 = new IConsentPage2Fragment();
+		fragment3 = new IConsentPage3Fragment();
+		fragment4 = new IConsentPage4Fragment();
+		addSlide(fragment1);
+		addSlide(fragment2);
+		addSlide(fragment3);
+		addSlide(fragment4);
+		setSeparatorColor(getResources().getColor(android.R.color.transparent));
+		showSkipButton(false);
+		setSkipText(getString(R.string.Onboarding_DefaultSettings_Button_Change));
+		setDoneText(getString(R.string.Onboarding_DefaultSettings_Button_Go));
 	}
 
 	@Override

@@ -1,7 +1,9 @@
 package org.openobservatory.ooniprobe.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.ActionBar;
@@ -10,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
 import org.openobservatory.ooniprobe.fragment.MyPreferenceFragment;
 
@@ -41,6 +44,14 @@ public class MainActivity extends AppCompatActivity {
 			bar.setDisplayShowCustomEnabled(true);
 			bar.setCustomView(R.layout.logo);
 		}
+		/* please don't remove
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+		if (!preferences.getBoolean("cleanup_unused_files", false)) {
+			TestStorage.removeUnusedFiles(this);
+			PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("cleanup_unused_files", true).apply();
+		}
+	*/
+	checkInformedConsent();
 	}
 
 	@Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -57,4 +68,27 @@ public class MainActivity extends AppCompatActivity {
 				return super.onOptionsItemSelected(item);
 		}
 	}
+
+	public void checkInformedConsent() {
+		if (!((Application) getApplication()).getPreferenceManager().isShowIntro()) {
+			Intent InformedConsentIntent = new Intent(MainActivity.this, InformedConsentActivity.class);
+			startActivityForResult(InformedConsentIntent, InformedConsentActivity.REQUEST_CODE);
+		}
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == InformedConsentActivity.REQUEST_CODE){
+			if (resultCode != InformedConsentActivity.RESULT_CODE_COMPLETED) {
+				finish();
+			}
+			else {
+				//TODO refactor with the newPreference
+				PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("first_run", false).apply();
+			}
+		}
+	}
+
+
 }

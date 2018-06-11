@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 public class PreferenceManager {
 	private static final String SEND_CRASH = "send_crash";
-	private static final String SHOW_INTRO = "show_intro";
+	private static final String SHOW_INTRO = "first_run";
 	private SharedPreferences sp;
 
 	PreferenceManager(Context context) {
