@@ -6,22 +6,23 @@ import android.support.v7.preference.Preference;
 
 import org.openobservatory.ooniprobe.R;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import localhost.toolkit.preference.ExtendedPreferenceFragment;
 
-public class MyPreferenceFragment extends ExtendedPreferenceFragment<MyPreferenceFragment> {
-	private static final List<Integer> PREF_REQUIRE_REFRESH = Collections.singletonList(R.string.key_websiteTypes);
-	private static final List<int[]> PREF_TO_REFRESH = Arrays.asList(
-			new int[]{R.string.key_screen_aldr, R.string.key_switch_aldr},
+public class OONIPreferenceFragment extends ExtendedPreferenceFragment<OONIPreferenceFragment> {
+	private static final List<Integer> PREF_REQUIRE_REFRESH = new ArrayList<>();
+			//= Collections.singletonList(R.string.key_websiteTypes);
+	private static final List<int[]> PREF_TO_REFRESH = Arrays.asList();
+			/*new int[]{R.string.key_screen_aldr, R.string.key_switch_aldr},
 			new int[]{R.string.key_screen_rel, R.string.key_switch_rel},
 			new int[]{R.string.key_screen_porn, R.string.key_switch_porn},
 			new int[]{R.string.key_screen_prov, R.string.key_switch_prov},
 			new int[]{R.string.key_screen_polr, R.string.key_switch_polr},
 			new int[]{R.string.key_screen_humr, R.string.key_switch_humr}
-	);
+	);*/
 	private String rootKey;
 	private boolean refresh;
 
@@ -44,14 +45,14 @@ public class MyPreferenceFragment extends ExtendedPreferenceFragment<MyPreferenc
 				Preference prefScreen = findPreference(getString(pref[0]));
 				SwitchPreference switchPreference = (SwitchPreference) findPreference(getString(pref[1]));
 				if (prefScreen != null && switchPreference != null)
-					prefScreen.setSummary(switchPreference.isChecked() ? R.string.enabled : R.string.disabled);
+					prefScreen.setSummary(switchPreference.isChecked() ? R.string.Settings_Enabled : R.string.Settings_Disabled);
 			}
 		}
 		getActivity().setTitle(getPreferenceScreen().getTitle());
 	}
 
-	@Override protected MyPreferenceFragment newInstance() {
-		return new MyPreferenceFragment();
+	@Override protected OONIPreferenceFragment newInstance() {
+		return new OONIPreferenceFragment();
 	}
 }
 

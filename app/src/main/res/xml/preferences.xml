@@ -1,152 +1,53 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-	android:title="@string/settings"
-	android:key="@string/key_preference">
+	android:title="@string/Settings_Title"
+	android:key="@string/preferences">
 	<PreferenceScreen
 		android:icon="@drawable/notifications"
-		android:key="@string/key_notification"
-		android:title="@string/notification">
+		android:title="@string/Settings_Notifications_Label"
+		android:key="@string/notifications">
 		<SwitchPreference
-			android:key="@string/key_notificationEnabled"
-			android:title="@string/enabled"/>
+			android:key="@string/notifications_enabled"
+			android:title="@string/Settings_Notifications_Enabled"/>
 		<SwitchPreference
-			android:key="@string/key_testNotification"
-			android:title="@string/testNotification"/>
+			android:key="@string/notifications_completion"
+			android:title="@string/Settings_Notifications_OnTestCompletion"/>
 		<SwitchPreference
-			android:key="@string/key_feedNotification"
-			android:title="@string/feedNotification"/>
-	</PreferenceScreen>
-	<PreferenceScreen
-		android:icon="@drawable/automated_testing"
-		android:key="@string/key_dailyTesting"
-		android:title="@string/dailyTesting">
-		<SwitchPreference
-			android:key="@string/key_dailyTestingEnabled"
-			android:title="@string/enabled"/>
-		<PreferenceScreen
-			android:key="@string/key_dailyTestingList"
-			android:title="@string/enabledTests">
-			<PreferenceCategory android:title="@string/websites">
-				<SwitchPreference
-					android:icon="@drawable/automated_testing"
-					android:key="@string/key_webConnectivityTest"
-					android:title="@string/webConnectivityTest"/>
-			</PreferenceCategory>
-			<PreferenceCategory android:title="@string/instantMessaging">
-				<SwitchPreference
-					android:icon="@drawable/test_whatsapp"
-					android:key="@string/key_whatsAppTest"
-					android:title="@string/whatsAppTest"/>
-				<SwitchPreference
-					android:icon="@drawable/test_telegram"
-					android:key="@string/key_telegramTest"
-					android:title="@string/telegramTest"/>
-				<SwitchPreference
-					android:icon="@drawable/test_facebook_messenger"
-					android:key="@string/key_facebookMessengerTest"
-					android:title="@string/facebookMessengerTest"/>
-			</PreferenceCategory>
-			<PreferenceCategory android:title="@string/middleboxes">
-				<SwitchPreference
-					android:icon="@drawable/test_middle_boxes"
-					android:key="@string/key_httpInvalidRequestLineTest"
-					android:title="@string/httpInvalidRequestLineTest"/>
-				<SwitchPreference
-					android:icon="@drawable/test_middle_boxes"
-					android:key="@string/key_httpHeaderFieldManipulationTest"
-					android:title="@string/httpHeaderFieldManipulationTest"/>
-			</PreferenceCategory>
-			<PreferenceCategory android:title="@string/performance">
-				<SwitchPreference
-					android:icon="@drawable/test_performance"
-					android:key="@string/key_ndt"
-					android:title="@string/ndt"/>
-				<SwitchPreference
-					android:icon="@drawable/test_performance"
-					android:key="@string/key_dash"
-					android:title="@string/dash"/>
-			</PreferenceCategory>
-		</PreferenceScreen>
-		<PreferenceScreen
-			android:key="@string/key_websiteTypes"
-			android:title="@string/websiteTypes">
-			<PreferenceScreen
-				android:icon="@drawable/category_aldr"
-				android:key="@string/key_screen_aldr" android:tag=""
-				android:title="@string/CategoryCode_ALDR_Name">
-				<PreferenceCategory android:title="@string/CategoryCode_ALDR_Description">
-					<SwitchPreference
-						android:icon="@drawable/category_aldr"
-						android:key="switch_aldr"
-						android:title="@string/CategoryCode_ALDR_Name"/>
-				</PreferenceCategory>
-			</PreferenceScreen>
-			<PreferenceScreen
-				android:icon="@drawable/category_rel"
-				android:key="@string/key_screen_rel"
-				android:title="@string/CategoryCode_REL_Name">
-				<PreferenceCategory android:title="@string/CategoryCode_REL_Description">
-					<SwitchPreference
-						android:icon="@drawable/category_rel"
-						android:key="@string/key_switch_rel"
-						android:title="@string/CategoryCode_REL_Name"/>
-				</PreferenceCategory>
-			</PreferenceScreen>
-			<PreferenceScreen
-				android:icon="@drawable/category_porn"
-				android:key="@string/key_screen_porn"
-				android:title="@string/CategoryCode_PORN_Name">
-				<PreferenceCategory android:title="@string/CategoryCode_PORN_Description">
-					<SwitchPreference
-						android:icon="@drawable/category_porn"
-						android:key="@string/key_switch_porn"
-						android:title="@string/CategoryCode_PORN_Name"/>
-				</PreferenceCategory>
-			</PreferenceScreen>
-			<PreferenceScreen
-				android:icon="@drawable/category_prov"
-				android:key="@string/key_screen_prov"
-				android:title="@string/CategoryCode_PROV_Name">
-				<PreferenceCategory android:title="@string/CategoryCode_PROV_Description">
-					<SwitchPreference
-						android:icon="@drawable/category_prov"
-						android:key="@string/key_switch_prov"
-						android:title="@string/CategoryCode_PROV_Name"/>
-				</PreferenceCategory>
-			</PreferenceScreen>
-			<PreferenceScreen
-				android:icon="@drawable/category_polr"
-				android:key="@string/key_screen_polr"
-				android:title="@string/CategoryCode_POLR_Name">
-				<PreferenceCategory android:title="@string/CategoryCode_POLR_Description">
-					<SwitchPreference
-						android:icon="@drawable/category_polr"
-						android:key="@string/key_switch_polr"
-						android:title="@string/CategoryCode_POLR_Name"/>
-				</PreferenceCategory>
-			</PreferenceScreen>
-			<PreferenceScreen
-				android:icon="@drawable/category_humr"
-				android:key="@string/key_screen_humr"
-				android:title="@string/CategoryCode_HUMR_Name">
-				<PreferenceCategory android:title="@string/CategoryCode_HUMR_Description">
-					<SwitchPreference
-						android:icon="@drawable/category_humr"
-						android:key="@string/key_switch_humr"
-						android:title="@string/CategoryCode_HUMR_Name"/>
-				</PreferenceCategory>
-			</PreferenceScreen>
-		</PreferenceScreen>
+			android:key="@string/notifications_news"
+			android:title="@string/Settings_Notifications_OnNews"/>
 	</PreferenceScreen>
 	<PreferenceScreen
 		android:icon="@drawable/sharing"
-		android:key="@string/key_sharing"
-		android:title="@string/sharing"/>
-	<PreferenceScreen
+		android:key="@string/sharing"
+		android:title="@string/Settings_Sharing_Label">
+		<SwitchPreference
+			android:key="@string/upload_results"
+			android:title="@string/Settings_Sharing_UploadResults"/>
+		<SwitchPreference
+			android:key="@string/include_ip"
+			android:title="@string/Settings_Sharing_IncludeIP"/>
+		<SwitchPreference
+			android:key="@string/include_asn"
+			android:title="@string/Settings_Sharing_IncludeNetwork"/>
+    </PreferenceScreen>
+    <PreferenceScreen
 		android:icon="@drawable/advanced"
-		android:key="@string/key_advanced"
-		android:title="@string/advanced"/>
-	<PreferenceScreen
+		android:key="@string/advanced"
+		android:title="@string/Settings_Advanced_Label">
+		<SwitchPreference
+			android:key="@string/keep_screen_on"
+			android:title="@string/Settings_Advanced_KeepScreenOn"/>
+		<SwitchPreference
+			android:key="@string/send_crash"
+			android:title="@string/Settings_Advanced_SendCrashReports"/>
+		<SwitchPreference
+			android:key="@string/notifications_news"
+			android:title="@string/Settings_Advanced_DebugLogs"/>
+		<SwitchPreference
+			android:key="@string/include_cc"
+			android:title="@string/Settings_Advanced_ShareCountryCode"/>
+    </PreferenceScreen>
+    <PreferenceScreen
 		android:icon="@drawable/about_ooni"
-		android:key="@string/key_aboutOoni"
-		android:title="@string/aboutOoni"/>
+		android:key="@string/about_ooni"
+		android:title="@string/Settings_About_Label"/>
 </PreferenceScreen>

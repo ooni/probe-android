@@ -1,36 +1,20 @@
 <resources>
-	<string name="app_name" translatable="false">OONI Probe</string>
-	<string name="key_notification" translatable="false">notification</string>
-	<string name="key_notificationEnabled" translatable="false">notificationEnabled</string>
-	<string name="key_preference" translatable="false">preference</string>
-	<string name="key_testNotification" translatable="false">testNotification</string>
-	<string name="key_feedNotification" translatable="false">feedNotification</string>
-	<string name="key_dailyTesting" translatable="false">dailyTesting</string>
-	<string name="key_dailyTestingEnabled" translatable="false">dailyTestingEnabled</string>
-	<string name="key_dailyTestingList" translatable="false">dailyTestingList</string>
-	<string name="key_webConnectivityTest" translatable="false">webConnectivityTest</string>
-	<string name="key_whatsAppTest" translatable="false">whatsAppTest</string>
-	<string name="key_telegramTest" translatable="false">telegramTest</string>
-	<string name="key_facebookMessengerTest" translatable="false">facebookMessengerTest</string>
-	<string name="key_httpInvalidRequestLineTest" translatable="false">httpInvalidRequestLineTest</string>
-	<string name="key_httpHeaderFieldManipulationTest" translatable="false">httpHeaderFieldManipulationTest</string>
-	<string name="key_websiteTypes" translatable="false">websiteTypes</string>
-	<string name="key_sharing" translatable="false">sharing</string>
-	<string name="key_advanced" translatable="false">advanced</string>
-	<string name="key_aboutOoni" translatable="false">aboutOoni</string>
-	<string name="key_performance" translatable="false">performance</string>
-	<string name="key_ndt" translatable="false">ndt</string>
-	<string name="key_dash" translatable="false">dash</string>
-	<string name="key_screen_aldr" translatable="false">screen_aldr</string>
-	<string name="key_switch_aldr" translatable="false">switch_aldr</string>
-	<string name="key_screen_rel" translatable="false">screen_rel</string>
-	<string name="key_switch_rel" translatable="false">switch_rel</string>
-	<string name="key_screen_porn" translatable="false">screen_porn</string>
-	<string name="key_switch_porn" translatable="false">switch_porn</string>
-	<string name="key_screen_prov" translatable="false">screen_prov</string>
-	<string name="key_switch_prov" translatable="false">switch_prov</string>
-	<string name="key_screen_polr" translatable="false">screen_polr</string>
-	<string name="key_switch_polr" translatable="false">switch_polr</string>
-	<string name="key_screen_humr" translatable="false">screen_humr</string>
-	<string name="key_switch_humr" translatable="false">switch_humr</string>
+	<string name="preferences" translatable="false">preferences</string>
+	<string name="notifications" translatable="false">notifications</string>
+	<string name="sharing" translatable="false">sharing</string>
+	<string name="advanced" translatable="false">advanced</string>
+	<string name="about_ooni" translatable="false">about_ooni</string>
+
+	<string name="notifications_enabled" translatable="false">notifications_enabled</string>
+	<string name="notifications_completion" translatable="false">notifications_completion</string>
+	<string name="notifications_news" translatable="false">notifications_news</string>
+
+	<string name="upload_results" translatable="false">upload_results</string>
+	<string name="include_ip" translatable="false">include_ip</string>
+	<string name="include_asn" translatable="false">include_asn</string>
+
+	<string name="keep_screen_on" translatable="false">keep_screen_on</string>
+	<string name="send_crash" translatable="false">send_crash</string>
+	<string name="debug_logs" translatable="false">debug_logs</string>
+	<string name="include_cc" translatable="false">include_cc</string>
 </resources>

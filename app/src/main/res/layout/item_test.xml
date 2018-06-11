@@ -38,7 +38,7 @@
 				style="@style/Widget.AppCompat.Button.Borderless"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="@string/configure"/>
+				android:text="@string/Dashboard_Card_Configure"/>
 
 			<LinearLayout
 				android:layout_width="match_parent"
@@ -62,14 +62,14 @@
 						android:id="@+id/run"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:text="@string/run"
+						android:text="@string/Dashboard_Card_Run"
 						android:theme="@style/Theme.AppCompat.Light"/>
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_gravity="center_horizontal"
-						android:text="@string/twoMin"/>
+						android:text="2min"/>
 				</LinearLayout>
 			</LinearLayout>
 		</LinearLayout>

@@ -200,7 +200,7 @@ public class BrowserActivity extends AppCompatActivity implements View.OnClickLi
 		public void onPageStarted(WebView view, String url, Bitmap favicon) {
 			super.onPageStarted(view, url, favicon);
 			refresh.setVisibility(View.GONE);
-			urlLabel.setText(getString(R.string.loading));
+			urlLabel.setText(getString(R.string.OONIRun_Loading));
 			if (!webViewProgressBar.isShown())
 				webViewProgressBar.setVisibility(View.VISIBLE);
 		}
