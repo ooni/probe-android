@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
-import org.openobservatory.ooniprobe.fragment.OONIPreferenceFragment;
+import org.openobservatory.ooniprobe.fragment.PreferenceFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 					getFragmentManager().beginTransaction().replace(R.id.content, new DashboardFragment()).commit();
 					return true;
 				case R.id.testResults:
-					getFragmentManager().beginTransaction().replace(R.id.content, new OONIPreferenceFragment()).commit();
+					getFragmentManager().beginTransaction().replace(R.id.content, new DashboardFragment()).commit();
 					return true;
 				default:
 					return false;
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 			PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("cleanup_unused_files", true).apply();
 		}
 	*/
-	checkInformedConsent();
+		checkInformedConsent();
 	}
 
 	@Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 	@Override public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.settings:
-				startActivity(new Intent(this, PreferenceActivity.class));
+				startActivity(PreferenceActivity.newIntent(this, R.xml.preferences_global));
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
@@ -77,15 +77,12 @@ public class MainActivity extends AppCompatActivity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if (requestCode == InformedConsentActivity.REQUEST_CODE){
+		if (requestCode == InformedConsentActivity.REQUEST_CODE) {
 			if (resultCode != InformedConsentActivity.RESULT_CODE_COMPLETED) {
 				finish();
-			}
-			else {
+			} else {
 				((Application) getApplication()).getPreferenceManager().setShowIntro(false);
 			}
 		}
 	}
-
-
 }

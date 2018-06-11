@@ -1,0 +1,12 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	android:key="@string/Test_Middleboxes_Fullname"
+	android:title="@string/Test_Middleboxes_Fullname">
+	<SwitchPreference
+		android:defaultValue="true"
+		android:key="@string/testHTTPInvalidRequestLine"
+		android:title="@string/Settings_Middleboxes_TestHTTPInvalidRequestLine"/>
+	<SwitchPreference
+		android:defaultValue="true"
+		android:key="@string/testHTTPHeaderFieldManipulation"
+		android:title="@string/Settings_Middleboxes_TestHTTPHeaderFieldManipulation"/>
+</PreferenceScreen>

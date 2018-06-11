@@ -1,0 +1,13 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	android:key="@string/Test_Websites_Fullname"
+	android:title="@string/Test_Websites_Fullname">
+	<PreferenceScreen
+		android:key="@string/Settings_AutomatedTesting_Categories_Label"
+		android:title="@string/Settings_AutomatedTesting_Categories_Label"/>
+	<EditTextPreference
+		android:key="@string/maxRuntime"
+		android:title="@string/Settings_Websites_MaxRuntime"/>
+	<PreferenceScreen
+		android:key="@string/Settings_Websites_CustomURL"
+		android:title="@string/Settings_Websites_CustomURL"/>
+</PreferenceScreen>

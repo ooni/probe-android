@@ -17,4 +17,21 @@
 	<string name="send_crash" translatable="false">send_crash</string>
 	<string name="debug_logs" translatable="false">debug_logs</string>
 	<string name="include_cc" translatable="false">include_cc</string>
+
+	<string name="testHTTPInvalidRequestLine" translatable="false">TestHTTPInvalidRequestLine</string>
+	<string name="testHTTPHeaderFieldManipulation" translatable="false">testHTTPHeaderFieldManipulation</string>
+	<string name="testWhatsApp" translatable="false">testWhatsApp</string>
+	<string name="whatsAppExtensiveTesting" translatable="false">whatsAppExtensiveTesting</string>
+	<string name="testTelegram" translatable="false">testTelegram</string>
+	<string name="testFacebookMessenger" translatable="false">testFacebookMessenger</string>
+	<string name="testNDT" translatable="false">testNDT</string>
+
+	<string name="ndtAutomaticServerSelection" translatable="false">ndtAutomaticServerSelection</string>
+	<string name="testDash" translatable="false">testDash</string>
+	<string name="dashAutomaticServerSelection" translatable="false">dashAutomaticServerSelection</string>
+	<string name="ndtServerAddress" translatable="false">ndtServerAddress</string>
+	<string name="ndtServerPort" translatable="false">ndtServerPort</string>
+
+	<string name="maxRuntime" translatable="false">maxRuntime</string>
+
 </resources>

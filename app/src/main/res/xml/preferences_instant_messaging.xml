@@ -1,0 +1,21 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	android:key="@string/Test_InstantMessaging_Fullname"
+	android:title="@string/Test_InstantMessaging_Fullname">
+	<SwitchPreference
+		android:defaultValue="true"
+		android:key="@string/testWhatsApp"
+		android:title="@string/Settings_InstantMessaging_TestWhatsApp"/>
+	<SwitchPreference
+		android:defaultValue="false"
+		android:dependency="@string/testWhatsApp"
+		android:key="@string/whatsAppExtensiveTesting"
+		android:title="@string/Settings_InstantMessaging_WhatsAppExtensiveTesting"/>
+	<SwitchPreference
+		android:defaultValue="true"
+		android:key="@string/testTelegram"
+		android:title="@string/Settings_InstantMessaging_TestTelegram"/>
+	<SwitchPreference
+		android:defaultValue="true"
+		android:key="@string/testFacebookMessenger"
+		android:title="@string/Settings_InstantMessaging_TestFacebookMessenger"/>
+</PreferenceScreen>
