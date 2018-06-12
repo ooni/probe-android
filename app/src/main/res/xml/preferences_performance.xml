@@ -3,27 +3,39 @@
 	android:title="@string/Test_Performance_Fullname">
 	<SwitchPreference
 		android:defaultValue="true"
-		android:key="@string/testNDT"
+		android:key="@string/run_ndt"
 		android:title="@string/Settings_Performance_TestNDT"/>
 	<SwitchPreference
 		android:defaultValue="true"
 		android:disableDependentsState="true"
-		android:key="@string/ndtAutomaticServerSelection"
+		android:dependency="@string/run_ndt"
+		android:key="@string/ndt_server_auto"
 		android:title="@string/Settings_Performance_NDTAutomaticServerSelection"/>
 	<EditTextPreference
-		android:dependency="@string/ndtAutomaticServerSelection"
-		android:key="@string/ndtServerAddress"
+		android:dependency="@string/ndt_server_auto"
+		android:key="@string/ndt_server"
 		android:title="@string/Settings_Performance_NDTServerAddress"/>
 	<EditTextPreference
-		android:dependency="@string/ndtAutomaticServerSelection"
-		android:key="@string/ndtServerPort"
+		android:defaultValue="3001"
+		android:dependency="@string/ndt_server_auto"
+		android:key="@string/ndt_server_port"
 		android:title="@string/Settings_Performance_NDTServerPort"/>
 	<SwitchPreference
 		android:defaultValue="true"
-		android:key="@string/testDash"
+		android:key="@string/run_dash"
 		android:title="@string/Settings_Performance_TestDash"/>
 	<SwitchPreference
+		android:dependency="@string/run_dash"
 		android:defaultValue="true"
-		android:key="@string/dashAutomaticServerSelection"
+		android:key="@string/dash_server"
 		android:title="@string/Settings_Performance_DashAutomaticServerSelection"/>
+	<EditTextPreference
+		android:dependency="@string/dash_server_auto"
+		android:key="@string/dash_server"
+		android:title="@string/Settings_Performance_DashServerAddress"/>
+	<EditTextPreference
+		android:defaultValue="80"
+		android:dependency="@string/dash_server_auto"
+		android:key="@string/dash_server_port"
+		android:title="@string/Settings_Performance_DashServerPort"/>
 </PreferenceScreen>

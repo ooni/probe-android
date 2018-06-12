@@ -5,7 +5,8 @@
 		android:key="@string/Settings_AutomatedTesting_Categories_Label"
 		android:title="@string/Settings_AutomatedTesting_Categories_Label"/>
 	<EditTextPreference
-		android:key="@string/maxRuntime"
+		android:defaultValue="90"
+		android:key="@string/max_runtime"
 		android:title="@string/Settings_Websites_MaxRuntime"/>
 	<PreferenceScreen
 		android:key="@string/Settings_Websites_CustomURL"

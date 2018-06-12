@@ -3,10 +3,10 @@
 	android:title="@string/Test_Middleboxes_Fullname">
 	<SwitchPreference
 		android:defaultValue="true"
-		android:key="@string/testHTTPInvalidRequestLine"
+		android:key="@string/run_http_invalid_request_line"
 		android:title="@string/Settings_Middleboxes_TestHTTPInvalidRequestLine"/>
 	<SwitchPreference
 		android:defaultValue="true"
-		android:key="@string/testHTTPHeaderFieldManipulation"
+		android:key="@string/run_http_header_field_manipulation"
 		android:title="@string/Settings_Middleboxes_TestHTTPHeaderFieldManipulation"/>
 </PreferenceScreen>

@@ -3,19 +3,19 @@
 	android:title="@string/Test_InstantMessaging_Fullname">
 	<SwitchPreference
 		android:defaultValue="true"
-		android:key="@string/testWhatsApp"
+		android:key="@string/test_whatsapp"
 		android:title="@string/Settings_InstantMessaging_TestWhatsApp"/>
 	<SwitchPreference
 		android:defaultValue="false"
-		android:dependency="@string/testWhatsApp"
-		android:key="@string/whatsAppExtensiveTesting"
+		android:dependency="@string/test_whatsapp"
+		android:key="@string/test_whatsapp_extensive"
 		android:title="@string/Settings_InstantMessaging_WhatsAppExtensiveTesting"/>
 	<SwitchPreference
 		android:defaultValue="true"
-		android:key="@string/testTelegram"
+		android:key="@string/test_telegram"
 		android:title="@string/Settings_InstantMessaging_TestTelegram"/>
 	<SwitchPreference
 		android:defaultValue="true"
-		android:key="@string/testFacebookMessenger"
+		android:key="@string/test_facebook_messenger"
 		android:title="@string/Settings_InstantMessaging_TestFacebookMessenger"/>
 </PreferenceScreen>
