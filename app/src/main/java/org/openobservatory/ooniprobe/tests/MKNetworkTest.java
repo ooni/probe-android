@@ -2,10 +2,13 @@ package org.openobservatory.ooniprobe.tests;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.openobservatory.measurement_kit.common.LogSeverity;
 import org.openobservatory.measurement_kit.nettests.BaseTest;
+import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.utils.VersionUtils;
@@ -67,24 +70,13 @@ public class MKNetworkTest {
         test.on_progress(new org.openobservatory.measurement_kit.nettests.ProgressCallback() {
             @Override
             public void callback(double percent, String msg) {
-                /*
-                //TODO UPDATE progressbar. Old method below
-                currentTest.progress = (int)(percent*100);
-                if (activity != null){
-                    activity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            TestData.getInstance(context, activity).notifyObservers();
-                        }
-                    });
-                }*/
+                updateProgress(percent);
             }
         });
         test.on_log(new org.openobservatory.measurement_kit.common.LogCallback(){
             @Override
             public void callback(long l, String s) {
-                //TODO update log on screen
-                System.out.println(s);
+                onLog(s);
             }
         });
 
@@ -98,73 +90,102 @@ public class MKNetworkTest {
         return b ? "1" : "0";
     }
 
-    public void run(){
-
+    public void updateProgress(double percent){
+        /*
+                //TODO UPDATE progressbar. Old method below
+                currentTest.progress = (int)(percent*100);
+                if (activity != null){
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            TestData.getInstance(context, activity).notifyObservers();
+                        }
+                    });
+                }*/
     }
 
-    public JSONObject onEntryCommon(String entry){
-        try {
-            JSONObject jsonObj = new JSONObject(entry);
-            JSONObject test_keys = jsonObj.getJSONObject("test_keys");
-            jsonObj.getString("test_start_time");
+    public void onLog(String s){
+        //TODO update log on screen
+        System.out.println(s);
+    }
 
-            /*
-            if ([json safeObjectForKey:@"test_start_time"])
-            [self.result setStartTimeWithUTCstr:[json safeObjectForKey:@"test_start_time"]];
-        if ([json safeObjectForKey:@"measurement_start_time"])
-            [self.measurement setStartTimeWithUTCstr:[json safeObjectForKey:@"measurement_start_time"]];
-        if ([json safeObjectForKey:@"test_runtime"]){
-            [self.measurement setDuration:[[json safeObjectForKey:@"test_runtime"] floatValue]];
-            [self.result addDuration:[[json safeObjectForKey:@"test_runtime"] floatValue]];
-        }
-        //if the user doesn't want to share asn leave null on the db object
-        if ([json safeObjectForKey:@"probe_asn"] && [SettingsUtility getSettingWithName:@"include_asn"]){
-            //TODO-SBS asn name
-            [self.measurement setAsn:[json objectForKey:@"probe_asn"]];
-            [self.measurement setAsnName:@"Vodafone"];
-            if (self.result.asn == nil){
+    public JsonResult onEntryCommon(String entry){
+        if (entry != null) {
+            JsonResult json = new Gson().fromJson(entry, JsonResult.class);
+            if (json.test_start_time != null)
+                result.setStartTimeWithUTCstr(Float.valueOf(json.test_start_time));
+            if (json.measurement_start_time != null)
+                measurement.setStartTimeWithUTCstr(Float.valueOf(json.measurement_start_time));
+            if (json.test_runtime != null) {
+                measurement.duration = Float.valueOf(json.test_runtime);
+                result.addDuration(Float.valueOf(json.test_runtime));
+            }
+            //if the user doesn't want to share asn leave null on the db object
+            //TODO ADD && [SettingsUtility getSettingWithName:@"include_asn"]
+            if (json.probe_asn != null) {
                 //TODO-SBS asn name
-                [self.result setAsn:[json objectForKey:@"probe_asn"]];
-                [self.result setAsnName:@"Vodafone"];
-                [self.result save];
+                measurement.asn = json.probe_asn;
+                measurement.asnName = "Vodafone";
+                if (result.asn == null){
+                    result.asn = json.probe_asn;
+                    result.asnName = "Vodafone";
+                }
+                else if (!measurement.asn.equals(result.asn))
+                    System.out.println("Something's wrong");
             }
-            else {
-                if (![self.result.asn isEqualToString:self.measurement.asn])
-                    NSLog(@"Something's wrong");
+            //TODO ADD && [SettingsUtility getSettingWithName:@"include_cc"]
+            if (json.probe_cc != null) {
+                measurement.country = json.probe_cc;
+                if (result.country == null){
+                    result.country = json.probe_cc;
+                }
+                else if (!measurement.country.equals(result.country))
+                    System.out.println("Something's wrong");
             }
-        }
-        if ([json safeObjectForKey:@"probe_cc"] && [SettingsUtility getSettingWithName:@"include_cc"]){
-            [self.measurement setCountry:[json objectForKey:@"probe_cc"]];
-            if (self.result.country == nil){
-                [self.result setCountry:[json objectForKey:@"probe_cc"]];
-                [self.result save];
+            //TODO ADD && [SettingsUtility getSettingWithName:@"include_ip"]
+            if (json.probe_ip != null) {
+                measurement.ip = json.probe_ip;
+                if (result.ip == null){
+                    result.ip = json.probe_ip;
+                }
+                else if (!measurement.ip.equals(result.ip))
+                    System.out.println("Something's wrong");
             }
-            else {
-                if (![self.result.country isEqualToString:self.measurement.country])
-                    NSLog(@"Something's wrong");
-            }
-        }
-        if ([json safeObjectForKey:@"probe_ip"] && [SettingsUtility getSettingWithName:@"include_ip"]){
-            [self.measurement setIp:[json objectForKey:@"probe_ip"]];
-            if (self.result.ip == nil){
-                [self.result setIp:[json objectForKey:@"probe_ip"]];
-                [self.result save];
-            }
-            else {
-                if (![self.result.ip isEqualToString:self.measurement.ip])
-                    NSLog(@"Something's wrong");
-            }
-        }
-        if ([json safeObjectForKey:@"report_id"])
-            [self.measurement setReportId:[json objectForKey:@"report_id"]];
 
-            */
-
-            return jsonObj;
-        } catch (JSONException e) {
-            this.measurement.state = measurementFailed;
-            return null;
+            if (json.report_id != null) {
+                measurement.reportId = json.report_id;
+            }
+            return json;
         }
+        measurement.state = measurementFailed;
+        return null;
     }
 
+    public void updateSummary(String s) {
+        /*
+            Summary *summary = [self.result getSummary];
+    if (self.measurement.state != measurementFailed){
+        summary.failedMeasurements--;
+        if (!self.measurement.anomaly)
+            summary.okMeasurements++;
+        else
+            summary.anomalousMeasurements++;
+        [self.result setSummary];
+        [self.result save];
     }
+         */
+    }
+
+    public void run(){
+        measurement.state = measurementActive;
+        measurement.save();
+        //in iOS here i create a background task
+    }
+
+    public void testEnded() {
+        updateProgress(1);
+        measurement.state = measurementDone;
+        measurement.save();
+        //TODO call delegate (networktest) testEnded
+    }
+}

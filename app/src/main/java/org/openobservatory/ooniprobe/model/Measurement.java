@@ -21,20 +21,20 @@ public class Measurement {
     }
     int id;
     public String name;
-    Date startTime;
-    float duration;
-    String ip;
-    String asn;
-    String asnName;
-    String country;
-    String networkName;
-    String networkType;
+    public Date startTime;
+    public float duration;
+    public String ip;
+    public String asn;
+    public String asnName;
+    public String country;
+    public String networkName;
+    public String networkType;
     public MeasurementState state;
-    Boolean anomaly;
+    public Boolean anomaly;
     public Result result;
-    String reportId;
-    String input;
-    String category;
+    public String reportId;
+    public String input;
+    public String category;
 
     //defaultValuesForEntity
     /*

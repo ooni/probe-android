@@ -2,9 +2,12 @@ package org.openobservatory.ooniprobe.tests;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.openobservatory.measurement_kit.nettests.HttpInvalidRequestLineTest;
+import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Test;
 
 public class HttpInvalidRequestLine extends MKNetworkTest {
@@ -37,8 +40,8 @@ public class HttpInvalidRequestLine extends MKNetworkTest {
      if the "tampering" key exists and is null then anomaly will be set to 1 (orange)
      otherwise "tampering" object exists and is TRUE, then anomaly will be set to 2 (red)
      */
-    public void onEntry(String entry){
-        JSONObject jsonObj = super.onEntry(entry);
+    public void onEntry(String entry) {
+        JsonResult json = super.onEntryCommon(entry);
         if(jsonObj != null) {
             try {
                 int anomaly = TestUtility.ANOMALY_GREEN;

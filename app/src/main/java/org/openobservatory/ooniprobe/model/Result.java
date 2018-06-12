@@ -10,21 +10,21 @@ import java.text.DecimalFormat;
 public class Result {
     int id;
     public String name;
-    Date startTime;
-    float duration;
-    long dataUsageDown;
-    long dataUsageUp;
-    String ip;
-    String asn;
-    String asnName;
-    String country;
-    String networkName;
-    String networkType;
-    String summary;
-    Summary summaryObj;
+    public Date startTime;
+    public float duration;
+    public long dataUsageDown;
+    public long dataUsageUp;
+    public String ip;
+    public String asn;
+    public String asnName;
+    public String country;
+    public String networkName;
+    public String networkType;
+    public String summary;
+    public Summary summaryObj;
     boolean viewed;
     boolean done;
-    Measurement measurements;
+    public Measurement measurements;
 
     //defaultValuesForEntity
     /*

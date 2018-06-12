@@ -47,6 +47,7 @@ dependencies {
 	implementation 'pub.devrel:easypermissions:1.2.0'
 	implementation 'com.airbnb.android:lottie:2.5.5'
 	implementation 'com.github.apl-devs:appintro:v4.2.3'
+	implementation 'com.google.code.gson:gson:2.8.5'
 }
 
 apply plugin: 'com.google.gms.google-services'
