@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.text.DecimalFormat;
 
 public class Result {
+    int id;
     public String name;
     Date startTime;
     float duration;

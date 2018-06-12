@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.model;
 
+import android.content.Context;
+
 import java.sql.Date;
 
 public class Measurement {
@@ -17,8 +19,8 @@ public class Measurement {
         measurementUploaded,
         measurementProcessed
     }
-
-    String name;
+    int id;
+    public String name;
     Date startTime;
     float duration;
     String ip;
@@ -27,9 +29,9 @@ public class Measurement {
     String country;
     String networkName;
     String networkType;
-    MeasurementState state;
+    public MeasurementState state;
     Boolean anomaly;
-    Result result;
+    public Result result;
     String reportId;
     String input;
     String category;
@@ -47,17 +49,18 @@ public class Measurement {
     }
 
 
-    public String getFile(String ext){
-        //TODO get file with ext json or log
-        return "";
+    public String getFile(Context ctx, String ext){
+        if (this.name == Test.WEB_CONNECTIVITY)
+            return ctx.getFilesDir() + this.name + "-" + this.result.id + ext;
+        return ctx.getFilesDir() + this.name + "-" + this.id + ext;
     }
 
-    public String getReportFile(String ext){
-        return getFile("json");
+    public String getReportFile(Context ctx){
+        return getFile(ctx,".json");
     }
 
-    public String getLogFile(String ext){
-        return getFile("log");
+    public String getLogFile(Context ctx){
+        return getFile(ctx,".log");
     }
 
 
