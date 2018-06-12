@@ -27,7 +27,7 @@
 	<SwitchPreference
 		android:dependency="@string/run_dash"
 		android:defaultValue="true"
-		android:key="@string/dash_server"
+		android:key="@string/dash_server_auto"
 		android:title="@string/Settings_Performance_DashAutomaticServerSelection"/>
 	<EditTextPreference
 		android:dependency="@string/dash_server_auto"

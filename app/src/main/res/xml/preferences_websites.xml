@@ -10,5 +10,7 @@
 		android:title="@string/Settings_Websites_MaxRuntime"/>
 	<PreferenceScreen
 		android:key="@string/Settings_Websites_CustomURL"
-		android:title="@string/Settings_Websites_CustomURL"/>
+		android:title="@string/Settings_Websites_CustomURL">
+		<intent android:action="org.openobservatory.ooniprobe.activity.CustomWebsiteActivity"/>
+	</PreferenceScreen>
 </PreferenceScreen>
