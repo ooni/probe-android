@@ -106,7 +106,7 @@ public class MKNetworkTest {
         try {
             JSONObject jsonObj = new JSONObject(entry);
             JSONObject test_keys = jsonObj.getJSONObject("test_keys");
-
+            jsonObj.getString("test_start_time");
 
             /*
             if ([json safeObjectForKey:@"test_start_time"])

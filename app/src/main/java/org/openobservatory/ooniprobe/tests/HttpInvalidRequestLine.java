@@ -5,16 +5,19 @@ import android.content.Context;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.openobservatory.measurement_kit.nettests.HttpInvalidRequestLineTest;
+import org.openobservatory.ooniprobe.model.Test;
 
 public class HttpInvalidRequestLine extends MKNetworkTest {
 
     public HttpInvalidRequestLine(Context context){
-        //TODO how to call super init?
         super(context);
+        super.name = Test.HTTP_INVALID_REQUEST_LINE;
+        super.measurement.name = super.name;
     }
 
     public void run(){
         super.run();
+        runTest();
     }
 
     public void runTest(){
