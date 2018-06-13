@@ -43,7 +43,7 @@
 			android:key="@string/send_crash"
 			android:title="@string/Settings_Advanced_SendCrashReports"/>
 		<android.support.v7.preference.SwitchPreferenceCompat
-			android:key="@string/notifications_news"
+			android:key="@string/debugLogs"
 			android:title="@string/Settings_Advanced_DebugLogs"/>
 		<android.support.v7.preference.SwitchPreferenceCompat
 			android:key="@string/include_cc"

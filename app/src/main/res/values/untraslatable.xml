@@ -12,6 +12,7 @@
 	<string name="upload_results" translatable="false">upload_results</string>
 	<string name="include_ip" translatable="false">include_ip</string>
 	<string name="include_asn" translatable="false">include_asn</string>
+	<string name="debugLogs" translatable="false">debugLogs</string>
 
 	<string name="keep_screen_on" translatable="false">keep_screen_on</string>
 	<string name="send_crash" translatable="false">send_crash</string>
@@ -37,5 +38,37 @@
 	<string name="dash_server_port" translatable="false">dash_server_port</string>
 
 	<string name="max_runtime" translatable="false">max_runtime</string>
+
+	<string name="CategoryCode_ALDR_Key">ALDR</string>
+	<string name="CategoryCode_REL_Key">REL</string>
+	<string name="CategoryCode_PORN_Key">PORN</string>
+	<string name="CategoryCode_PROV_Key">PROV</string>
+	<string name="CategoryCode_POLR_Key">POLR</string>
+	<string name="CategoryCode_HUMR_Key">HUMR</string>
+	<string name="CategoryCode_ENV_Key">ENV</string>
+	<string name="CategoryCode_MILX_Key">MILX</string>
+	<string name="CategoryCode_HATE_Key">HATE</string>
+	<string name="CategoryCode_NEWS_Key">NEWS</string>
+	<string name="CategoryCode_XED_Key">XED</string>
+	<string name="CategoryCode_PUBH_Key">PUBH</string>
+	<string name="CategoryCode_GMB_Key">GMB</string>
+	<string name="CategoryCode_ANON_Key">ANON</string>
+	<string name="CategoryCode_DATE_Key">DATE</string>
+	<string name="CategoryCode_GRP_Key">GRP</string>
+	<string name="CategoryCode_LGBT_Key">LGBT</string>
+	<string name="CategoryCode_FILE_Key">FILE</string>
+	<string name="CategoryCode_HACK_Key">HACK</string>
+	<string name="CategoryCode_COMT_Key">COMT</string>
+	<string name="CategoryCode_MMED_Key">MMED</string>
+	<string name="CategoryCode_HOST_Key">HOST</string>
+	<string name="CategoryCode_SRCH_Key">SRCH</string>
+	<string name="CategoryCode_GAME_Key">GAME</string>
+	<string name="CategoryCode_CULTR_Key">CULTR</string>
+	<string name="CategoryCode_ECON_Key">ECON</string>
+	<string name="CategoryCode_GOVT_Key">GOVT</string>
+	<string name="CategoryCode_COMM_Key">COMM</string>
+	<string name="CategoryCode_CTRL_Key">CTRL</string>
+	<string name="CategoryCode_IGO_Key">IGO</string>
+	<string name="CategoryCode_MISC_Key">MISC</string>
 
 </resources>

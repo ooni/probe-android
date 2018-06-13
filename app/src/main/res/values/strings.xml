@@ -333,7 +333,7 @@
 	<string name="CategoryCode_COMM_Name">E-commerce</string>
 	<string name="CategoryCode_CTRL_Name">Control content</string>
 	<string name="CategoryCode_IGO_Name">Intergovernmental Orgs.</string>
-	<string name="CategoryCode_MISC_Name">Miscelaneous content</string>
+	<string name="CategoryCode_MISC_Name">Miscellaneous content</string>
 	<string name="CategoryCode_ALDR_Description">Sites devoted to the use and sale of drugs and alcohol.</string>
 	<string name="CategoryCode_REL_Description">Sites devoted to discussion of religious issues, both supportive and critical, as well as discussion of minority religious groups.</string>
 	<string name="CategoryCode_PORN_Description">Hard-core and soft-core pornography.</string>
