@@ -53,8 +53,8 @@ public class MKNetworkTest {
 
 
         test.use_logcat();
-        test.set_output_filepath(measurement.getReportFile(ctx));
-        test.set_error_filepath(measurement.getLogFile(ctx));
+        test.set_output_filepath(measurement.getReportFile(context));
+        test.set_error_filepath(measurement.getLogFile(context));
         if (true)
             test.set_verbosity(LogSeverity.LOG_DEBUG2);
         else
@@ -161,7 +161,7 @@ public class MKNetworkTest {
         return null;
     }
 
-    public void updateSummary(String s) {
+    public void updateSummary() {
         /*
             Summary *summary = [self.result getSummary];
     if (self.measurement.state != measurementFailed){
