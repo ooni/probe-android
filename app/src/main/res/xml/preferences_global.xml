@@ -5,15 +5,15 @@
 		android:icon="@drawable/notifications"
 		android:key="@string/notifications"
 		android:title="@string/Settings_Notifications_Label">
-		<SwitchPreference
+		<android.support.v7.preference.SwitchPreferenceCompat
 			android:key="@string/notifications_enabled"
 			android:title="@string/Settings_Notifications_Enabled"/>
-		<SwitchPreference
+		<android.support.v7.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:dependency="@string/notifications_enabled"
 			android:key="@string/notifications_completion"
 			android:title="@string/Settings_Notifications_OnTestCompletion"/>
-		<SwitchPreference
+		<android.support.v7.preference.SwitchPreferenceCompat
 			android:dependency="@string/notifications_enabled"
 			android:key="@string/notifications_news"
 			android:title="@string/Settings_Notifications_OnNews"/>
@@ -22,13 +22,13 @@
 		android:icon="@drawable/sharing"
 		android:key="@string/sharing"
 		android:title="@string/Settings_Sharing_Label">
-		<SwitchPreference
+		<android.support.v7.preference.SwitchPreferenceCompat
 			android:key="@string/upload_results"
 			android:title="@string/Settings_Sharing_UploadResults"/>
-		<SwitchPreference
+		<android.support.v7.preference.SwitchPreferenceCompat
 			android:key="@string/include_ip"
 			android:title="@string/Settings_Sharing_IncludeIP"/>
-		<SwitchPreference
+		<android.support.v7.preference.SwitchPreferenceCompat
 			android:key="@string/include_asn"
 			android:title="@string/Settings_Sharing_IncludeNetwork"/>
 	</PreferenceScreen>
@@ -36,16 +36,16 @@
 		android:icon="@drawable/advanced"
 		android:key="@string/advanced"
 		android:title="@string/Settings_Advanced_Label">
-		<SwitchPreference
+		<android.support.v7.preference.SwitchPreferenceCompat
 			android:key="@string/keep_screen_on"
 			android:title="@string/Settings_Advanced_KeepScreenOn"/>
-		<SwitchPreference
+		<android.support.v7.preference.SwitchPreferenceCompat
 			android:key="@string/send_crash"
 			android:title="@string/Settings_Advanced_SendCrashReports"/>
-		<SwitchPreference
+		<android.support.v7.preference.SwitchPreferenceCompat
 			android:key="@string/notifications_news"
 			android:title="@string/Settings_Advanced_DebugLogs"/>
-		<SwitchPreference
+		<android.support.v7.preference.SwitchPreferenceCompat
 			android:key="@string/include_cc"
 			android:title="@string/Settings_Advanced_ShareCountryCode"/>
 	</PreferenceScreen>
