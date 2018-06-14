@@ -56,7 +56,7 @@ public class HttpHeaderFieldManipulation extends MKNetworkTest {
             //TODO
 
             Summary summary = result.getSummary();
-            summary.http_invalid_request_line = keys;
+            summary.http_header_field_manipulation = keys;
             super.updateSummary();
             measurement.save();
         }

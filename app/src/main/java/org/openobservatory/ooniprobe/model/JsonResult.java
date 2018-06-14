@@ -41,6 +41,23 @@ public class JsonResult {
 
         @SerializedName("tampering")
         public String tampering;
+        /*
+        //TODO
+        http_invalid_request_line {
+            tampering BOOL
+        }
+
+        http_header_field_manipulation {
+            tampering {
+                header_field_name
+                        header_field_number
+                header_field_value
+                        header_name_capitalization
+                request_line_capitalization
+                        total
+            }
+        }
+        */
 
         @SerializedName("sent")
         public String sent;
