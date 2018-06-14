@@ -35,21 +35,19 @@ public class Ndt extends MKNetworkTest {
     }
 
     /*
-     on_entry method for http invalid request line test
-     if the "tampering" key exists and is null then anomaly will be set to 1 (orange)
-     otherwise "tampering" object exists and is TRUE, then anomaly will be set to 2 (red)
+     onEntry method for ndt test, check "failure" key
+     !=null => failed
      */
     public void onEntry(String entry) {
         JsonResult json = super.onEntryCommon(entry);
         if(json != null) {
             JsonResult.TestKeys keys = json.test_keys;
-            if (keys.tampering == null)
+            if (keys.failure != null)
                 measurement.state = measurementFailed;
-            else if (Boolean.valueOf(keys.tampering))
-                measurement.anomaly = true;
 
             Summary summary = result.getSummary();
-            summary.http_invalid_request_line = keys;
+            summary.ndt = keys;
+            //TODO calc server name and country
             super.updateSummary();
             measurement.save();
         }

@@ -35,21 +35,20 @@ public class FacebookMessenger extends MKNetworkTest {
     }
 
     /*
-     on_entry method for http invalid request line test
-     if the "tampering" key exists and is null then anomaly will be set to 1 (orange)
-     otherwise "tampering" object exists and is TRUE, then anomaly will be set to 2 (red)
+        if "facebook_tcp_blocking", "facebook_dns_blocking" are null => failed
+        if "facebook_tcp_blocking" or "facebook_dns_blocking" are true => anomalous
      */
     public void onEntry(String entry) {
         JsonResult json = super.onEntryCommon(entry);
         if(json != null) {
             JsonResult.TestKeys keys = json.test_keys;
-            if (keys.tampering == null)
+            if (keys.facebook_tcp_blocking == null || keys.facebook_dns_blocking == null)
                 measurement.state = measurementFailed;
-            else if (Boolean.valueOf(keys.tampering))
+            else if (Boolean.valueOf(keys.facebook_tcp_blocking) || Boolean.valueOf(keys.facebook_dns_blocking))
                 measurement.anomaly = true;
 
             Summary summary = result.getSummary();
-            summary.http_invalid_request_line = keys;
+            summary.facebook_messenger = keys;
             super.updateSummary();
             measurement.save();
         }

@@ -35,21 +35,20 @@ public class Whatsapp extends MKNetworkTest {
     }
 
     /*
-     on_entry method for http invalid request line test
-     if the "tampering" key exists and is null then anomaly will be set to 1 (orange)
-     otherwise "tampering" object exists and is TRUE, then anomaly will be set to 2 (red)
+         if "whatsapp_endpoints_status", "whatsapp_web_status", "registration_server" are null => failed
+         if "whatsapp_endpoints_status" or "whatsapp_web_status" or "registration_server_status" are "blocked" => anomalous
      */
     public void onEntry(String entry) {
         JsonResult json = super.onEntryCommon(entry);
         if(json != null) {
             JsonResult.TestKeys keys = json.test_keys;
-            if (keys.tampering == null)
+            if (keys.whatsapp_endpoints_status == null || keys.whatsapp_web_status == null || keys.registration_server_status == null)
                 measurement.state = measurementFailed;
-            else if (Boolean.valueOf(keys.tampering))
+            else if (keys.whatsapp_endpoints_status.equals("blocked") || keys.whatsapp_web_status.equals("blocked") || keys.registration_server_status.equals("blocked"))
                 measurement.anomaly = true;
 
             Summary summary = result.getSummary();
-            summary.http_invalid_request_line = keys;
+            summary.whatsapp = keys;
             super.updateSummary();
             measurement.save();
         }
