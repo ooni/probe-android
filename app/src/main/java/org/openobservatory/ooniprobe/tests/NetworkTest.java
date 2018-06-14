@@ -30,6 +30,12 @@ public class NetworkTest {
     public class IMNetworkTest extends NetworkTest{
         public IMNetworkTest(){
             result.name = Test.INSTANT_MESSAGING;
+            if (true)
+                mkNetworkTests.add(new Whatsapp(context));
+            if (true)
+                mkNetworkTests.add(new Telegram(context));
+            if (true)
+                mkNetworkTests.add(new FacebookMessenger(context));
         }
     }
     public class MBNetworkTest extends NetworkTest{
@@ -37,12 +43,19 @@ public class NetworkTest {
             result.name = Test.MIDDLE_BOXES;
             if (true)
                 mkNetworkTests.add(new HttpInvalidRequestLine(context));
+            if (true)
+                mkNetworkTests.add(new HttpHeaderFieldManipulation(context));
         }
     }
 
     public class SPNetworkTest extends NetworkTest{
         public SPNetworkTest(){
-            result.name = Test.WEBSITES;
+            result.name = Test.PERFORMANCE;
+            if (true)
+                mkNetworkTests.add(new Ndt(context));
+            if (true)
+                mkNetworkTests.add(new Dash(context));
+
         }
     }
 

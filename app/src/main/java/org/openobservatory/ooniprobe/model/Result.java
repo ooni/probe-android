@@ -80,7 +80,7 @@ public class Result {
     public Summary getSummary() {
         if (this.summaryObj != null){
             if (this.summary != null)
-                this.summaryObj = new Summary(this.summary);
+                this.summaryObj = Summary.fromJson(this.summary);
         else
             this.summaryObj = new Summary();
         }

@@ -4,8 +4,6 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.openobservatory.measurement_kit.common.LogSeverity;
 import org.openobservatory.measurement_kit.nettests.BaseTest;
 import org.openobservatory.ooniprobe.model.JsonResult;

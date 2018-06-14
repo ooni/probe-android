@@ -40,9 +40,8 @@ public class Summary {
 
     }
 
-    public Summary (String summaryJson){
-        Summary summary = new Gson().fromJson(summaryJson, Summary.class);
-        this = summary;
+    public static Summary fromJson(String json) {
+        return new Gson().fromJson(json, Summary.class);
     }
-
+    
 }
