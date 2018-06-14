@@ -71,19 +71,19 @@ public class Test implements Serializable {
 	}
 
 	public static Test getWebsiteTest() {
-		return new Test(R.string.Test_Websites_Fullname, R.string.Dashboard_Websites_Card_Description, R.drawable.test_websites, R.color.color_cyan9);
+		return new Test(R.string.Test_Websites_Fullname, R.string.Dashboard_Websites_Card_Description, R.drawable.test_websites, R.color.color_indigo6);
 	}
 
 	public static Test getInstantMessaging() {
-		return new Test(R.string.Test_InstantMessaging_Fullname, R.string.Dashboard_InstantMessaging_Card_Description, R.drawable.test_instant_messaging, R.color.color_green9);
+		return new Test(R.string.Test_InstantMessaging_Fullname, R.string.Dashboard_InstantMessaging_Card_Description, R.drawable.test_instant_messaging, R.color.color_cyan6);
 	}
 
 	public static Test getMiddleBoxes() {
-		return new Test(R.string.Test_Middleboxes_Fullname, R.string.Dashboard_Middleboxes_Card_Description, R.drawable.test_middle_boxes, R.color.color_blue9);
+		return new Test(R.string.Test_Middleboxes_Fullname, R.string.Dashboard_Middleboxes_Card_Description, R.drawable.test_middle_boxes, R.color.color_violet8);
 	}
 
 	public static Test getPerformance() {
-		return new Test(R.string.Test_Performance_Fullname, R.string.Dashboard_Performance_Card_Description, R.drawable.test_performance, R.color.color_yellow9);
+		return new Test(R.string.Test_Performance_Fullname, R.string.Dashboard_Performance_Card_Description, R.drawable.test_performance, R.color.color_fuchsia6);
 	}
 
 	public int getTitle() {
