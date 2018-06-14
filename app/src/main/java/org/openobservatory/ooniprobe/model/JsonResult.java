@@ -101,6 +101,42 @@ public class JsonResult {
 
         @SerializedName("telegram_web_status")
         public String telegram_web_status;
+
+        @SerializedName("simple")
+        public Simple simple;
+
+        @SerializedName("advanced")
+        public Advanced advanced;
+
+        public class Simple {
+            @SerializedName("upload")
+            public String upload;
+
+            @SerializedName("download")
+            public String download;
+
+            @SerializedName("ping")
+            public String ping;
+        }
+
+        public class Advanced {
+            @SerializedName("packet_loss")
+            public String packet_loss;
+
+            @SerializedName("out_of_order")
+            public String out_of_order;
+
+            @SerializedName("avg_rtt")
+            public String avg_rtt;
+
+            @SerializedName("max_rtt")
+            public String max_rtt;
+
+            @SerializedName("mss")
+            public String mss;
+
+            @SerializedName("timeouts")
+            public String timeouts;
+        }
     }
 }
-

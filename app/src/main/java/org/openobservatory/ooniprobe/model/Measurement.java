@@ -50,7 +50,7 @@ public class Measurement {
 
 
     public String getFile(Context ctx, String ext){
-        if (this.name == Test.WEB_CONNECTIVITY)
+        if (this.name.equals(Test.WEB_CONNECTIVITY))
             return ctx.getFilesDir() + this.name + "-" + this.result.id + ext;
         return ctx.getFilesDir() + this.name + "-" + this.id + ext;
     }

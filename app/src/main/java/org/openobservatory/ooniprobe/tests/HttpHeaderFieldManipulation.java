@@ -2,17 +2,17 @@ package org.openobservatory.ooniprobe.tests;
 
 import android.content.Context;
 
-import org.openobservatory.measurement_kit.nettests.HttpInvalidRequestLineTest;
+import org.openobservatory.measurement_kit.nettests.HttpHeaderFieldManipulationTest;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Summary;
 import org.openobservatory.ooniprobe.model.Test;
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
-public class HttpInvalidRequestLine extends MKNetworkTest {
+public class HttpHeaderFieldManipulation extends MKNetworkTest {
 
-    public HttpInvalidRequestLine(Context context){
+    public HttpHeaderFieldManipulation(Context context){
         super(context);
-        super.name = Test.HTTP_INVALID_REQUEST_LINE;
+        super.name = Test.HTTP_HEADER_FIELD_MANIPULATION;
         super.measurement.name = super.name;
     }
 
@@ -22,7 +22,7 @@ public class HttpInvalidRequestLine extends MKNetworkTest {
     }
 
     public void runTest(){
-        HttpInvalidRequestLineTest test = new HttpInvalidRequestLineTest();
+        HttpHeaderFieldManipulationTest test = new HttpHeaderFieldManipulationTest();
         test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
             @Override
             public void callback(String entry) {

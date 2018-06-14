@@ -11,6 +11,7 @@ import org.openobservatory.measurement_kit.nettests.BaseTest;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
+import org.openobservatory.ooniprobe.model.Summary;
 import org.openobservatory.ooniprobe.utils.VersionUtils;
 
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.*;
@@ -45,12 +46,11 @@ public class MKNetworkTest {
         final String geoip_asn = context.getFilesDir() + "/GeoIPASNum.dat";
         final String geoip_country = context.getFilesDir() + "/GeoIP.dat";
 
-        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
-        final Boolean include_ip = preferences.getBoolean("include_ip", false);
-        final Boolean include_asn = preferences.getBoolean("include_asn", true);
-        final Boolean include_cc = preferences.getBoolean("include_cc", true);
-        final Boolean upload_results = preferences.getBoolean("upload_results", true);
-
+        //TODO
+        Boolean include_ip = false;
+        Boolean include_asn = true;
+        Boolean include_cc = true;
+        Boolean upload_results = true;
 
         test.use_logcat();
         test.set_output_filepath(measurement.getReportFile(context));
@@ -79,7 +79,6 @@ public class MKNetworkTest {
                 onLog(s);
             }
         });
-
         //on_begin
         //on_overall_data_usage
         //start
@@ -162,18 +161,15 @@ public class MKNetworkTest {
     }
 
     public void updateSummary() {
-        /*
-            Summary *summary = [self.result getSummary];
-    if (self.measurement.state != measurementFailed){
-        summary.failedMeasurements--;
-        if (!self.measurement.anomaly)
+        Summary summary = result.getSummary();
+        if (measurement.state != measurementFailed)
+            summary.failedMeasurements--;
+        if (!measurement.anomaly)
             summary.okMeasurements++;
         else
             summary.anomalousMeasurements++;
-        [self.result setSummary];
-        [self.result save];
-    }
-         */
+        result.setSummary();
+        result.save();
     }
 
     public void run(){

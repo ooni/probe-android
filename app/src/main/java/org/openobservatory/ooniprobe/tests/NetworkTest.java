@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.tests;
 
+import android.content.Context;
+
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.model.Test;
 
@@ -8,6 +10,7 @@ import java.util.ArrayList;
 public class NetworkTest {
     public static ArrayList<MKNetworkTest> mkNetworkTests;
     Result result;
+    Context context;
 
     public NetworkTest(){
         result = new Result();
@@ -21,8 +24,7 @@ public class NetworkTest {
     public class WCNetworkTest extends NetworkTest{
         public WCNetworkTest(){
             result.name = Test.WEBSITES;
-            if (true)
-                mkNetworkTests.add(new MKNetworkTest());
+            mkNetworkTests.add(new WebConnectivity(context));
         }
     }
     public class IMNetworkTest extends NetworkTest{
@@ -33,6 +35,8 @@ public class NetworkTest {
     public class MBNetworkTest extends NetworkTest{
         public MBNetworkTest(){
             result.name = Test.MIDDLE_BOXES;
+            if (true)
+                mkNetworkTests.add(new HttpInvalidRequestLine(context));
         }
     }
 

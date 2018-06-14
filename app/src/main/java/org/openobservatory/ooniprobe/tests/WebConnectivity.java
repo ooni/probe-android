@@ -1,40 +1,58 @@
 package org.openobservatory.ooniprobe.tests;
 
+import android.content.Context;
+
+import org.openobservatory.measurement_kit.nettests.HttpHeaderFieldManipulationTest;
+import org.openobservatory.ooniprobe.model.JsonResult;
+import org.openobservatory.ooniprobe.model.Summary;
+import org.openobservatory.ooniprobe.model.Test;
+
+import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
+
 public class WebConnectivity extends MKNetworkTest {
 
-    public WebConnectivity(){
-        //TODO how to call super init?
+    public WebConnectivity(Context context){
+        super(context);
+        super.name = Test.WEB_CONNECTIVITY;
+        super.measurement.name = super.name;
     }
+
 
     public void run(){
         super.run();
+        runTest();
     }
 
     public void runTest(){
-    }
-/*
-    public static void onEntry(String entry){
-        if(!test.entry) {
-            //TestStorage.setEntry(context, test);
-            test.entry = true;
-        }
-        try {
-            int anomaly = TestUtility.ANOMALY_GREEN;
-            JSONObject jsonObj = new JSONObject(entry);
-            JSONObject test_keys = jsonObj.getJSONObject("test_keys");
-            Object blocking = test_keys.get("blocking");
-            if(blocking instanceof String)
-                anomaly = TestUtility.ANOMALY_RED;
-            else if(blocking instanceof Boolean)
-                anomaly = TestUtility.ANOMALY_GREEN;
-            else
-                anomaly = TestUtility.ANOMALY_ORANGE;
-            if (test.anomaly < anomaly) {
-                test.anomaly = anomaly;
-                //TestStorage.setAnomaly(context, test.test_id, anomaly);
+        HttpHeaderFieldManipulationTest test = new HttpHeaderFieldManipulationTest();
+        test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
+            @Override
+            public void callback(String entry) {
+                onEntry(entry);
             }
-        } catch (JSONException e) {
+        });
+        super.initCommon(test);
+        //test.run();
+    }
+
+    /*
+     on_entry method for http invalid request line test
+     if the "tampering" key exists and is null then anomaly will be set to 1 (orange)
+     otherwise "tampering" object exists and is TRUE, then anomaly will be set to 2 (red)
+     */
+    public void onEntry(String entry) {
+        JsonResult json = super.onEntryCommon(entry);
+        if(json != null) {
+            JsonResult.TestKeys keys = json.test_keys;
+            if (keys.tampering == null)
+                measurement.state = measurementFailed;
+            else if (Boolean.valueOf(keys.tampering))
+                measurement.anomaly = true;
+
+            Summary summary = result.getSummary();
+            summary.http_invalid_request_line = keys;
+            super.updateSummary();
+            measurement.save();
         }
     }
-*/
 }

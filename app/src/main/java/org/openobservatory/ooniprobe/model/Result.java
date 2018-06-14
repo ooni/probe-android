@@ -2,6 +2,8 @@ package org.openobservatory.ooniprobe.model;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+
 import org.openobservatory.ooniprobe.R;
 
 import java.sql.Date;
@@ -86,9 +88,8 @@ public class Result {
 
     }
 
-    //TODO
     public void setSummary(){
-        //self.summary = [self.summaryObj getJsonStr];
+        this.summary = new Gson().toJson(summary);
     }
 
     public String getAsn(Context context) {
