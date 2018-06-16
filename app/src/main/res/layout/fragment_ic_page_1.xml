@@ -1,49 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="MissingPrefix"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/splash_background">
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@drawable/splash_background">
 
-    <TextView
-        android:id="@+id/welcome_to"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Onboarding_Welcome_Title"
-        android:layout_marginTop="30dp"
-        android:textSize="32sp"
-        android:textColor="@color/color_white"
-        fontPath="fonts/FiraSans-Light.otf"
-        android:gravity="center" />
+	<TextView
+		android:id="@+id/welcome_to"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="30dp"
+		android:gravity="center"
+		android:text="@string/Onboarding_Welcome_Title"
+		android:textColor="@color/color_white"
+		android:textSize="32sp"/>
 
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:gravity = "center_horizontal"
-        android:id="@+id/ooniprobe_logoLayout"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/welcome_to"
-        android:weightSum="1.0">
-        <ImageView
-            android:id="@+id/ooniprobe_logo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ooniprobe_logo"
-            android:layout_weight="0.7"
-            android:adjustViewBounds="true" />
-    </LinearLayout>
+	<LinearLayout
+		android:id="@+id/ooniprobe_logoLayout"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/welcome_to"
+		android:layout_centerHorizontal="true"
+		android:layout_centerVertical="true"
+		android:gravity="center_horizontal"
+		android:weightSum="1.0">
 
-    <ImageView
-        android:id="@+id/octopus_logo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/octopus"
-        android:padding="30dp"
-        android:adjustViewBounds="true"
-        android:layout_marginBottom="60dp"
-        android:layout_below="@+id/ooniprobe_logoLayout"
-        android:layout_alignParentStart="true" />
+		<ImageView
+			android:id="@+id/ooniprobe_logo"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="0.7"
+			android:adjustViewBounds="true"
+			android:src="@drawable/ooniprobe_logo"/>
+	</LinearLayout>
 
+	<ImageView
+		android:id="@+id/octopus_logo"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentStart="true"
+		android:layout_below="@+id/ooniprobe_logoLayout"
+		android:layout_marginBottom="60dp"
+		android:adjustViewBounds="true"
+		android:padding="30dp"
+		android:src="@drawable/octopus"/>
 </RelativeLayout>

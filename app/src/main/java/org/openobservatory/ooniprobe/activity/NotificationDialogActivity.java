@@ -8,8 +8,8 @@ import android.view.Window;
 
 import org.openobservatory.ooniprobe.R;
 
-public class NotificationDialog extends Activity {
-	private static final String TAG = "NotificationDialog";
+public class NotificationDialogActivity extends Activity {
+	private static final String TAG = "NotificationDialogActivity";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class NotificationDialog extends Activity {
 	}
 
 	private void displayAlert(String message) {
-		new AlertDialog.Builder(NotificationDialog.this)
+		new AlertDialog.Builder(NotificationDialogActivity.this)
 				.setTitle(getString(R.string.notifications))
 				.setMessage(message)
 				.setNegativeButton(getString(android.R.string.cancel), (dialog, id) -> {
@@ -28,7 +28,7 @@ public class NotificationDialog extends Activity {
 					finish();
 				})
 				.setPositiveButton(getString(android.R.string.ok), (dialog, id) -> {
-					Intent browserIntent = new Intent(NotificationDialog.this, BrowserActivity.class);
+					Intent browserIntent = new Intent(NotificationDialogActivity.this, BrowserActivity.class);
 					browserIntent.putExtra("payload", getIntent().getStringExtra("payload"));
 					startActivity(browserIntent);
 					finish();

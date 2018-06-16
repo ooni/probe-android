@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@color/color_blue5"
-	tools:ignore="MissingPrefix">
+	android:background="@color/color_blue5">
 
 	<ImageView
 		android:id="@+id/folderImage"
@@ -19,7 +17,6 @@
 
 	<TextView
 		android:id="@+id/things_to_know"
-		fontPath="fonts/FiraSans-Light.otf"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_below="@+id/folderImage"
@@ -131,7 +128,6 @@
 
 		<Button
 			android:id="@+id/nextButton"
-			fontPath="fonts/FiraSans-SemiBold.otf"
 			android:layout_width="0dp"
 			android:layout_height="55dp"
 			android:layout_weight="0.6"

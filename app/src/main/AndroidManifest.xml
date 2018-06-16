@@ -52,7 +52,7 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".activity.NotificationDialog"
+			android:name=".activity.NotificationDialogActivity"
 			android:theme="@style/Theme.AppCompat.Light.Transparent"/>
 		<activity
 			android:name=".activity.InformedConsentActivity"
