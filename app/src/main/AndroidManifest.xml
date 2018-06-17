@@ -63,6 +63,10 @@
 			android:launchMode="singleTop"
 			android:parentActivityName=".activity.MainActivity"/>
 		<activity
+			android:name=".activity.OverviewActivity"
+			android:launchMode="singleTop"
+			android:parentActivityName=".activity.MainActivity"/>
+		<activity
 			android:name=".activity.InfoActivity"
 			android:label="@string/Settings_About_Label"
 			android:parentActivityName=".activity.PreferenceActivity">

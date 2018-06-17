@@ -31,13 +31,15 @@ public class TestItem extends HeterogeneousRecyclerItem<Test, TestItem.ViewHolde
 
 	@Override public void onBindViewHolder(ViewHolderImpl holder) {
 		holder.title.setText(extra.getTitle());
-		holder.desc.setText(extra.getDesc());
+		holder.desc.setText(extra.getCardDesc());
 		holder.icon.setImageResource(extra.getIcon());
 		holder.card.setCardBackgroundColor(ContextCompat.getColor(holder.card.getContext(), extra.getColor()));
 		holder.configure.setOnClickListener(onClickListener);
 		holder.run.setOnClickListener(onClickListener);
+		holder.itemView.setOnClickListener(onClickListener);
 		holder.configure.setTag(extra);
 		holder.run.setTag(extra);
+		holder.itemView.setTag(extra);
 
 	}
 

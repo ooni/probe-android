@@ -1,14 +1,39 @@
 <resources>
-	<color name="colorPrimary">#3F51B5</color>
-	<color name="colorPrimaryDark">#303F9F</color>
-	<color name="colorAccent">#FF4081</color>
 
 	<style name="Theme.AppCompat.Light.DarkActionBar.App">
-		<item name="colorPrimary">@color/colorPrimary</item>
-		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-		<item name="colorAccent">@color/colorAccent</item>
+		<item name="colorPrimary">@color/color_orange4</item>
+		<item name="colorPrimaryDark">@color/color_orange9</item>
+		<item name="colorAccent">@color/color_yellow2</item>
 		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 		<item name="android:fontFamily">@font/firasans</item>
+	</style>
+
+	<style name="Theme.AppCompat.Light.DarkActionBar.App.Websites">
+		<item name="windowActionBar">false</item>
+		<item name="windowNoTitle">true</item>
+		<item name="colorPrimary">@color/color_indigo6</item>
+		<item name="colorPrimaryDark">@color/color_indigo9</item>
+	</style>
+
+	<style name="Theme.AppCompat.Light.DarkActionBar.App.InstantMessaging">
+		<item name="windowActionBar">false</item>
+		<item name="windowNoTitle">true</item>
+		<item name="colorPrimary">@color/color_cyan6</item>
+		<item name="colorPrimaryDark">@color/color_cyan9</item>
+	</style>
+
+	<style name="Theme.AppCompat.Light.DarkActionBar.App.MiddleBoxes">
+		<item name="windowActionBar">false</item>
+		<item name="windowNoTitle">true</item>
+		<item name="colorPrimary">@color/color_violet8</item>
+		<item name="colorPrimaryDark">@color/color_violet9</item>
+	</style>
+
+	<style name="Theme.AppCompat.Light.DarkActionBar.App.Performance">
+		<item name="windowActionBar">false</item>
+		<item name="windowNoTitle">true</item>
+		<item name="colorPrimary">@color/color_fuchsia6</item>
+		<item name="colorPrimaryDark">@color/color_fuchsia9</item>
 	</style>
 
 	<style name="Theme.AppCompat.Light.Transparent">
@@ -19,5 +44,9 @@
 		<item name="android:windowIsFloating">true</item>
 		<item name="android:backgroundDimEnabled">false</item>
 		<item name="android:fontFamily">@font/firasans</item>
+	</style>
+
+	<style name="TextAppearance.AppCompat.Small.Transparent">
+		<item name="android:textColor">@android:color/transparent</item>
 	</style>
 </resources>
