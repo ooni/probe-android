@@ -124,6 +124,8 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.dash_server_auto), true);
 	}
 
+
+	//TODO All these are not needed, I will only need a method that returns array of enabled (or disabled) categories
 	public boolean isALDR() {
 		return sp.getBoolean(r.getString(R.string.CategoryCode_ALDR_Key), true);
 	}
