@@ -39,7 +39,8 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:background="@drawable/button_conf"
-				android:text="@string/Dashboard_Card_Configure"/>
+				android:text="@string/Dashboard_Card_Configure"
+				android:textAllCaps="false"/>
 
 			<LinearLayout
 				android:layout_width="match_parent"
@@ -65,6 +66,8 @@
 						android:layout_height="wrap_content"
 						android:background="@drawable/button_next"
 						android:text="@string/Dashboard_Card_Run"
+						android:textAllCaps="false"
+						android:textStyle="bold"
 						android:theme="@style/Theme.AppCompat.Light"/>
 
 					<TextView
