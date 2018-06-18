@@ -7,7 +7,7 @@ import android.content.res.Resources;
 import org.openobservatory.ooniprobe.R;
 
 public class PreferenceManager {
-	private static final String SHOW_INTRO = "firstRun";
+	private static final String SHOW_INTRO = "first_run";
 	private SharedPreferences sp;
 	private Resources r;
 
