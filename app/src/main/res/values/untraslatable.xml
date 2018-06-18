@@ -1,4 +1,7 @@
 <resources>
+
+	<string name="version" translatable="false">ooniprobe: %1$s\nmeasurement-kit: %2$s</string>
+
 	<string name="preferences" translatable="false">preferences</string>
 	<string name="notifications" translatable="false">notifications</string>
 	<string name="sharing" translatable="false">sharing</string>

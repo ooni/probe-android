@@ -81,7 +81,7 @@ public class Test implements Serializable {
 				R.string.Dashboard_Websites_Card_Description,
 				R.drawable.test_websites,
 				R.color.color_indigo6,
-				R.style.Theme_AppCompat_Light_DarkActionBar_App_Websites,
+				R.style.Theme_AppCompat_Light_DarkActionBar_App_NoActionBar_Websites,
 				R.string.Dashboard_Websites_Overview_Paragraph_1,
 				R.string.Dashboard_Websites_Overview_Paragraph_2
 		);
@@ -93,7 +93,7 @@ public class Test implements Serializable {
 				R.string.Dashboard_InstantMessaging_Card_Description,
 				R.drawable.test_instant_messaging,
 				R.color.color_cyan6,
-				R.style.Theme_AppCompat_Light_DarkActionBar_App_InstantMessaging,
+				R.style.Theme_AppCompat_Light_DarkActionBar_App_NoActionBar_InstantMessaging,
 				R.string.Dashboard_InstantMessaging_Overview_Paragraph_1,
 				R.string.Dashboard_InstantMessaging_Overview_Paragraph_2
 		);
@@ -105,7 +105,7 @@ public class Test implements Serializable {
 				R.string.Dashboard_Middleboxes_Card_Description,
 				R.drawable.test_middle_boxes,
 				R.color.color_violet8,
-				R.style.Theme_AppCompat_Light_DarkActionBar_App_MiddleBoxes,
+				R.style.Theme_AppCompat_Light_DarkActionBar_App_NoActionBar_MiddleBoxes,
 				R.string.Dashboard_Middleboxes_Overview_Paragraph_1,
 				R.string.Dashboard_Middleboxes_Overview_Paragraph_2
 		);
@@ -117,7 +117,7 @@ public class Test implements Serializable {
 				R.string.Dashboard_Performance_Card_Description,
 				R.drawable.test_performance,
 				R.color.color_fuchsia6,
-				R.style.Theme_AppCompat_Light_DarkActionBar_App_Performance,
+				R.style.Theme_AppCompat_Light_DarkActionBar_App_NoActionBar_Performance,
 				R.string.Dashboard_Performance_Overview_Paragraph_1,
 				R.string.Dashboard_Performance_Overview_Paragraph_2
 		);

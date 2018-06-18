@@ -2,11 +2,6 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 	<item
 		android:bottom="8dp"
-		android:top="8dp">
-		<shape android:shape="rectangle">
-			<corners android:radius="16dp"/>
-			<solid
-				android:color="@color/color_white"/>
-		</shape>
-	</item>
+		android:drawable="@drawable/button_rectangle_rounded"
+		android:top="8dp"/>
 </layer-list>

@@ -7,30 +7,27 @@
 		<item name="android:fontFamily">@font/firasans</item>
 	</style>
 
-	<style name="Theme.AppCompat.Light.DarkActionBar.App.Websites">
+	<style name="Theme.AppCompat.Light.DarkActionBar.App.NoActionBar">
 		<item name="windowActionBar">false</item>
 		<item name="windowNoTitle">true</item>
+	</style>
+
+	<style name="Theme.AppCompat.Light.DarkActionBar.App.NoActionBar.Websites">
 		<item name="colorPrimary">@color/color_indigo6</item>
 		<item name="colorPrimaryDark">@color/color_indigo9</item>
 	</style>
 
-	<style name="Theme.AppCompat.Light.DarkActionBar.App.InstantMessaging">
-		<item name="windowActionBar">false</item>
-		<item name="windowNoTitle">true</item>
+	<style name="Theme.AppCompat.Light.DarkActionBar.App.NoActionBar.InstantMessaging">
 		<item name="colorPrimary">@color/color_cyan6</item>
 		<item name="colorPrimaryDark">@color/color_cyan9</item>
 	</style>
 
-	<style name="Theme.AppCompat.Light.DarkActionBar.App.MiddleBoxes">
-		<item name="windowActionBar">false</item>
-		<item name="windowNoTitle">true</item>
+	<style name="Theme.AppCompat.Light.DarkActionBar.App.NoActionBar.MiddleBoxes">
 		<item name="colorPrimary">@color/color_violet8</item>
 		<item name="colorPrimaryDark">@color/color_violet9</item>
 	</style>
 
-	<style name="Theme.AppCompat.Light.DarkActionBar.App.Performance">
-		<item name="windowActionBar">false</item>
-		<item name="windowNoTitle">true</item>
+	<style name="Theme.AppCompat.Light.DarkActionBar.App.NoActionBar.Performance">
 		<item name="colorPrimary">@color/color_fuchsia6</item>
 		<item name="colorPrimaryDark">@color/color_fuchsia9</item>
 	</style>

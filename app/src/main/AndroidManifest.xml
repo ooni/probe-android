@@ -69,7 +69,8 @@
 		<activity
 			android:name=".activity.InfoActivity"
 			android:label="@string/Settings_About_Label"
-			android:parentActivityName=".activity.PreferenceActivity">
+			android:parentActivityName=".activity.PreferenceActivity"
+			android:theme="@style/Theme.AppCompat.Light.DarkActionBar.App.NoActionBar">
 			<intent-filter>
 				<action android:name="org.openobservatory.ooniprobe.activity.InfoActivity"/>
 				<category android:name="android.intent.category.DEFAULT"/>
