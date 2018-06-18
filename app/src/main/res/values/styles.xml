@@ -1,9 +1,8 @@
 <resources>
 
 	<style name="Theme.AppCompat.Light.DarkActionBar.App">
-		<item name="colorPrimary">@color/color_orange4</item>
-		<item name="colorPrimaryDark">@color/color_orange9</item>
-		<item name="colorAccent">@color/color_yellow2</item>
+		<item name="colorPrimary">@color/color_base</item>
+		<item name="colorPrimaryDark">@color/color_blue6</item>
 		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 		<item name="android:fontFamily">@font/firasans</item>
 	</style>
