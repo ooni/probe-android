@@ -78,18 +78,14 @@
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_margin="32dp"
+		android:layout_marginTop="5dp"
+		android:layout_marginBottom="5dp"
+		android:paddingLeft="10dp"
+		android:paddingRight="10dp"
 		android:orientation="vertical"
 		app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-		<TextView
-			android:id="@+id/desc1"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:gravity="center_horizontal"/>
-
-		<TextView
-			android:id="@+id/desc2"
+		<br.tiagohm.markdownview.MarkdownView
+			android:id="@+id/desc"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"/>

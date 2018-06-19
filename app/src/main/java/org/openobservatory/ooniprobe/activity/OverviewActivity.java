@@ -13,6 +13,9 @@ import android.widget.TextView;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.Test;
 
+import br.tiagohm.markdownview.MarkdownView;
+import br.tiagohm.markdownview.css.InternalStyleSheet;
+import br.tiagohm.markdownview.css.styles.Github;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -22,8 +25,7 @@ public class OverviewActivity extends AppCompatActivity {
 	@BindView(R.id.icon) ImageView icon;
 	@BindView(R.id.title) TextView title;
 	@BindView(R.id.configure) Button configure;
-	@BindView(R.id.desc1) TextView desc1;
-	@BindView(R.id.desc2) TextView desc2;
+	@BindView(R.id.desc) MarkdownView desc;
 
 	public static Intent newIntent(Context context, Test test) {
 		return new Intent(context, OverviewActivity.class).putExtra(TEST, test);
@@ -39,7 +41,9 @@ public class OverviewActivity extends AppCompatActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		icon.setImageResource(test.getIcon());
 		title.setText(test.getTitle());
-		desc1.setText(test.getDesc1());
-		desc2.setText(test.getDesc2());
+		InternalStyleSheet css = new Github();
+		css.addFontFace("FiraSans", "regular", "italic", "normal", "url('firasans_regular_normal.otf')");
+		desc.addStyleSheet(css);
+		desc.loadMarkdown(getString(test.getDesc1()) +  "\n\n" + getString(test.getDesc1()));
 	}
 }
