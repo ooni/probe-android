@@ -31,7 +31,7 @@ import java.util.ArrayList;
 
 import static java.lang.Boolean.FALSE;
 
-public class BrowserActivity extends AppCompatActivity implements View.OnClickListener {
+public class BrowserActivity extends AbstractActivity implements View.OnClickListener {
 	private static final String TAG = "BrowserActivity";
 	private WebView webView;
 	private ProgressBar webViewProgressBar;

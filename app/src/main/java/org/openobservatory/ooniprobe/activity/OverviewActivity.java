@@ -19,7 +19,7 @@ import br.tiagohm.markdownview.css.styles.Github;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class OverviewActivity extends AppCompatActivity {
+public class OverviewActivity extends AbstractActivity {
 	public static final String TEST = "test";
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.icon) ImageView icon;

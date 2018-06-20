@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 
 import org.openobservatory.measurement_kit.common.LogSeverity;
 import org.openobservatory.measurement_kit.nettests.BaseTest;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
@@ -19,6 +20,7 @@ public class MKNetworkTest {
     Measurement measurement;
     String name;
     Context context;
+    PreferenceManager preferenceManager;
 
     public MKNetworkTest(Context context){
         this.context = context;
@@ -44,12 +46,10 @@ public class MKNetworkTest {
         final String geoip_asn = context.getFilesDir() + "/GeoIPASNum.dat";
         final String geoip_country = context.getFilesDir() + "/GeoIP.dat";
 
-        //TODO preference
-        //isIncludeCc, isIncludeIp, isIncludeAsn, isUploadResults
-        Boolean include_ip = false;
-        Boolean include_asn = true;
-        Boolean include_cc = true;
-        Boolean upload_results = true;
+        Boolean include_ip = preferenceManager.isIncludeIp();
+        Boolean include_asn = preferenceManager.isIncludeAsn();
+        Boolean include_cc = preferenceManager.isIncludeCc();
+        Boolean upload_results = preferenceManager.isUploadResults();
 
         test.use_logcat();
         test.set_output_filepath(measurement.getReportFile(context));

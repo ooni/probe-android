@@ -20,7 +20,7 @@ import butterknife.OnClick;
 import localhost.toolkit.text.ErrorListenerList;
 import localhost.toolkit.text.ErrorRegexListener;
 
-public class CustomWebsiteActivity extends AppCompatActivity {
+public class CustomWebsiteActivity extends AbstractActivity {
 	@BindView(R.id.urlContainer) LinearLayout urlContainer;
 	private ErrorListenerList errorListenerList;
 

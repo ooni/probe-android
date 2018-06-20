@@ -17,7 +17,7 @@ import org.openobservatory.ooniprobe.fragment.PreferenceFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AbstractActivity {
 	@BindView(R.id.bottomNavigation) BottomNavigationView bottomNavigation;
 
 	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,8 +68,7 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	public void checkInformedConsent() {
-		//TODO preference
-		if (!((Application) getApplication()).getPreferenceManager().isShowIntro()) {
+		if (!getPreferenceManager().isShowIntro()) {
 			Intent InformedConsentIntent = new Intent(MainActivity.this, InformedConsentActivity.class);
 			startActivityForResult(InformedConsentIntent, InformedConsentActivity.REQUEST_CODE);
 		}
@@ -82,8 +81,7 @@ public class MainActivity extends AppCompatActivity {
 			if (resultCode != InformedConsentActivity.RESULT_CODE_COMPLETED) {
 				finish();
 			} else {
-				//TODO preference
-				((Application) getApplication()).getPreferenceManager().setShowIntro(false);
+				getPreferenceManager().setShowIntro(false);
 			}
 		}
 	}

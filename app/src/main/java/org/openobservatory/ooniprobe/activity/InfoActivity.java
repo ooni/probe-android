@@ -16,7 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class InfoActivity extends AppCompatActivity {
+public class InfoActivity extends AbstractActivity {
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.version) TextView version;
 

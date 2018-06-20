@@ -9,7 +9,7 @@ import android.view.MenuItem;
 
 import org.openobservatory.ooniprobe.fragment.PreferenceFragment;
 
-public class PreferenceActivity extends AppCompatActivity {
+public class PreferenceActivity extends AbstractActivity {
 	public static final String PREFERENCE = "preference";
 
 	public static Intent newIntent(Context context, int preference) {

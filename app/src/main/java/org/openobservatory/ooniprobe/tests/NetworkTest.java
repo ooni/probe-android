@@ -2,68 +2,64 @@ package org.openobservatory.ooniprobe.tests;
 
 import android.content.Context;
 
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.model.Test;
 
 import java.util.ArrayList;
 
 public class NetworkTest {
-    public static ArrayList<MKNetworkTest> mkNetworkTests;
-    Result result;
-    Context context;
 
-    public NetworkTest(){
-        result = new Result();
-    }
+	public static ArrayList<MKNetworkTest> mkNetworkTests;
+	Result result;
+	Context context;
+	PreferenceManager preferenceManager;
 
-    public void run (){
-        //for (MKNetworkTest current : mkNetworkTests)
-        //current.run();
-    }
+	public NetworkTest() {
+		result = new Result();
+	}
 
-    public class WCNetworkTest extends NetworkTest{
-        public WCNetworkTest(){
-            result.name = Test.WEBSITES;
-            mkNetworkTests.add(new WebConnectivity(context));
-        }
-    }
-    public class IMNetworkTest extends NetworkTest{
-        public IMNetworkTest(){
-            result.name = Test.INSTANT_MESSAGING;
-            //TODO preference isTestWhatsapp
-            if (true)
-                mkNetworkTests.add(new Whatsapp(context));
-            //TODO preference isTestTelegram
-            if (true)
-                mkNetworkTests.add(new Telegram(context));
-            //TODO preference isTestFacebookMessenger
-            if (true)
-                mkNetworkTests.add(new FacebookMessenger(context));
-        }
-    }
-    public class MBNetworkTest extends NetworkTest{
-        public MBNetworkTest(){
-            result.name = Test.MIDDLE_BOXES;
-            //TODO preference isRunHttpInvalidRequestLine
-            if (true)
-                mkNetworkTests.add(new HttpInvalidRequestLine(context));
-            //TODO preference isRunHttpHeaderFieldManipulation
-            if (true)
-                mkNetworkTests.add(new HttpHeaderFieldManipulation(context));
-        }
-    }
+	public void run() {
+		//for (MKNetworkTest current : mkNetworkTests)
+		//current.run();
+	}
 
-    public class SPNetworkTest extends NetworkTest{
-        public SPNetworkTest(){
-            result.name = Test.PERFORMANCE;
-            //TODO preference isRunNdt
-            if (true)
-                mkNetworkTests.add(new Ndt(context));
-            //TODO preference isRunDash
-            if (true)
-                mkNetworkTests.add(new Dash(context));
+	public class WCNetworkTest extends NetworkTest {
+		public WCNetworkTest() {
+			result.name = Test.WEBSITES;
+			mkNetworkTests.add(new WebConnectivity(context));
+		}
+	}
 
-        }
-    }
+	public class IMNetworkTest extends NetworkTest {
+		public IMNetworkTest() {
+			result.name = Test.INSTANT_MESSAGING;
+			if (preferenceManager.isTestWhatsapp())
+				mkNetworkTests.add(new Whatsapp(context));
+			if (preferenceManager.isTestTelegram())
+				mkNetworkTests.add(new Telegram(context));
+			if (preferenceManager.isTestFacebookMessenger())
+				mkNetworkTests.add(new FacebookMessenger(context));
+		}
+	}
 
+	public class MBNetworkTest extends NetworkTest {
+		public MBNetworkTest() {
+			result.name = Test.MIDDLE_BOXES;
+			if (preferenceManager.isRunHttpInvalidRequestLine())
+				mkNetworkTests.add(new HttpInvalidRequestLine(context));
+			if (preferenceManager.isRunHttpHeaderFieldManipulation())
+				mkNetworkTests.add(new HttpHeaderFieldManipulation(context));
+		}
+	}
+
+	public class SPNetworkTest extends NetworkTest {
+		public SPNetworkTest() {
+			result.name = Test.PERFORMANCE;
+			if (preferenceManager.isRunNdt())
+				mkNetworkTests.add(new Ndt(context));
+			if (preferenceManager.isRunDash())
+				mkNetworkTests.add(new Dash(context));
+		}
+	}
 }
