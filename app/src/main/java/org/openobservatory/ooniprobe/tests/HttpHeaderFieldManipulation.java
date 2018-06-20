@@ -51,9 +51,16 @@ public class HttpHeaderFieldManipulation extends MKNetworkTest {
         JsonResult json = super.onEntryCommon(entry);
         if(json != null) {
             JsonResult.TestKeys keys = json.test_keys;
-            if (keys.tampering == null)
+            JsonResult.TestKeys.Tampering tampering = keys.tampering;
+            if (tampering == null)
                 measurement.state = measurementFailed;
-            //TODO
+            else if (Boolean.valueOf(tampering.header_field_name) ||
+                        Boolean.valueOf(tampering.header_field_number) ||
+                        Boolean.valueOf(tampering.header_field_value) ||
+                        Boolean.valueOf(tampering.header_name_capitalization) ||
+                        Boolean.valueOf(tampering.request_line_capitalization) ||
+                        Boolean.valueOf(tampering.total))
+                measurement.anomaly = true;
 
             Summary summary = result.getSummary();
             summary.http_header_field_manipulation = keys;

@@ -44,8 +44,9 @@ public class HttpInvalidRequestLine extends MKNetworkTest {
             JsonResult.TestKeys keys = json.test_keys;
             if (keys.failure != null)
                 measurement.state = measurementFailed;
-            else if (Boolean.valueOf(keys.tampering))
-                measurement.anomaly = true;
+            //TODO
+            //else if (Boolean.valueOf(keys.tampering))
+            //    measurement.anomaly = true;
 
             Summary summary = result.getSummary();
             summary.http_invalid_request_line = keys;

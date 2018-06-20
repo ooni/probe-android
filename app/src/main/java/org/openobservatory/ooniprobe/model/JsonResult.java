@@ -39,25 +39,13 @@ public class JsonResult {
         @SerializedName("accessible")
         public String accessible;
 
-        @SerializedName("tampering")
-        public String tampering;
         /*
-        //TODO
-        http_invalid_request_line {
-            tampering BOOL
-        }
-
-        http_header_field_manipulation {
-            tampering {
-                header_field_name
-                        header_field_number
-                header_field_value
-                        header_name_capitalization
-                request_line_capitalization
-                        total
-            }
-        }
+        TODO Can be Tampering class (http_header_field_manipulation) or BOOL (http_invalid_request_line)
+        check what happen incase of BOOL or subclass
         */
+
+        @SerializedName("tampering")
+        public Tampering tampering;
 
         @SerializedName("sent")
         public String sent;
@@ -154,6 +142,26 @@ public class JsonResult {
 
             @SerializedName("timeouts")
             public String timeouts;
+        }
+
+        public class Tampering {
+            @SerializedName("header_field_name")
+            public String header_field_name;
+
+            @SerializedName("header_field_number")
+            public String header_field_number;
+
+            @SerializedName("header_field_value")
+            public String header_field_value;
+
+            @SerializedName("header_name_capitalization")
+            public String header_name_capitalization;
+
+            @SerializedName("request_line_capitalization")
+            public String request_line_capitalization;
+
+            @SerializedName("total")
+            public String total;
         }
     }
 }
