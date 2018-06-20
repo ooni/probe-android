@@ -7,7 +7,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import org.json.JSONObject;
-import org.openobservatory.ooniprobe.activity.NotificationDialog;
+import org.openobservatory.ooniprobe.activity.NotificationDialogActivity;
 
 import java.util.Map;
 
@@ -27,7 +27,7 @@ public class NotificationsRouter extends FirebaseMessagingService {
 				//TODO we can use click_action instead of type
 				JSONObject data = new JSONObject(params.toString());
 				if (data.getString("type").equals("open_href")) {
-					Intent intent = new Intent(getApplicationContext(), NotificationDialog.class);
+					Intent intent = new Intent(getApplicationContext(), NotificationDialogActivity.class);
 					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					intent.putExtra("message", remoteMessage.getNotification().getBody());
 					intent.putExtra("payload", data.getString("payload"));

@@ -26,16 +26,44 @@
 				app:layout_collapseMode="parallax">
 
 				<ImageView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:src="@drawable/ooni_logo"/>
+					android:id="@+id/icon"
+					android:layout_width="96dp"
+					android:layout_height="96dp"
+					android:tint="@color/color_white"/>
 
 				<TextView
-					android:id="@+id/version"
+					android:id="@+id/title"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:layout_marginTop="8dp"
-					android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+					android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+
+				<Button
+					android:id="@+id/configure"
+					style="@style/Widget.AppCompat.Button.Borderless"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:background="@drawable/button_conf"
+					android:text="@string/Dashboard_Card_Configure"/>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal"
+					android:text="2min"/>
+
+				<Button
+					android:id="@+id/run"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:background="@drawable/button_next"
+					android:text="@string/Dashboard_Card_Run"
+					android:theme="@style/Theme.AppCompat.Light"/>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal"
+					android:text="2 settimane fa"/>
 			</LinearLayout>
 
 			<android.support.v7.widget.Toolbar
@@ -50,46 +78,16 @@
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_margin="16dp"
-		android:gravity="center_horizontal"
+		android:layout_marginTop="5dp"
+		android:layout_marginBottom="5dp"
+		android:paddingLeft="10dp"
+		android:paddingRight="10dp"
 		android:orientation="vertical"
 		app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-		<TextView
+		<br.tiagohm.markdownview.MarkdownView
+			android:id="@+id/desc"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:gravity="center_horizontal"
-			android:text="@string/Settings_About_Content_Paragraph_1"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
-
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:gravity="center_horizontal"
-			android:text="@string/Settings_About_Content_Paragraph_2"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
-
-		<Button
-			android:id="@+id/learnMore"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="16dp"
-			android:background="@drawable/button_rectangle_rounded"
-			android:backgroundTint="@color/color_base"
-			android:text="@string/Settings_About_Content_LearnMore"
-			android:textAllCaps="false"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-			android:textColor="@color/color_white"
-			android:textStyle="bold"/>
-
-		<Button
-			android:id="@+id/dataPolicy"
-			style="@style/Widget.AppCompat.Button.Borderless.Colored"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/Settings_About_Content_DataPolicy"
-			android:textAllCaps="false"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-			android:textStyle="bold"/>
+			android:gravity="center_horizontal"/>
 	</LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

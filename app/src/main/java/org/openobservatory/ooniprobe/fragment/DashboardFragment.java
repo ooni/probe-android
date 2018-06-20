@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.OverviewActivity;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.item.TestItem;
 import org.openobservatory.ooniprobe.model.Test;
@@ -41,42 +42,27 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
 	@Override public void onClick(View v) {
 		Test test = (Test) v.getTag();
-		switch (test.getTitle()) {
-			case R.string.Test_Websites_Fullname:
-				switch (v.getId()) {
-					case R.id.configure:
+		switch (v.getId()) {
+			case R.id.configure:
+				switch (test.getTitle()) {
+					case R.string.Test_Websites_Fullname:
 						startActivity(PreferenceActivity.newIntent(getActivity(), R.xml.preferences_websites));
 						break;
-					case R.id.run:
-						break;
-				}
-				break;
-			case R.string.Test_InstantMessaging_Fullname:
-				switch (v.getId()) {
-					case R.id.configure:
+					case R.string.Test_InstantMessaging_Fullname:
 						startActivity(PreferenceActivity.newIntent(getActivity(), R.xml.preferences_instant_messaging));
 						break;
-					case R.id.run:
-						break;
-				}
-				break;
-			case R.string.Test_Middleboxes_Fullname:
-				switch (v.getId()) {
-					case R.id.configure:
+					case R.string.Test_Middleboxes_Fullname:
 						startActivity(PreferenceActivity.newIntent(getActivity(), R.xml.preferences_middleboxes));
 						break;
-					case R.id.run:
+					case R.string.Test_Performance_Fullname:
+						startActivity(PreferenceActivity.newIntent(getActivity(), R.xml.preferences_performance));
 						break;
 				}
 				break;
-			case R.string.Test_Performance_Fullname:
-				switch (v.getId()) {
-					case R.id.configure:
-						startActivity(PreferenceActivity.newIntent(getActivity(), R.xml.preferences_performance));
-						break;
-					case R.id.run:
-						break;
-				}
+			case R.id.run:
+				break;
+			default:
+				startActivity(OverviewActivity.newIntent(getActivity(), test));
 				break;
 		}
 	}

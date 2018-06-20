@@ -35,6 +35,7 @@
 
 		<activity
 			android:name=".activity.MainActivity"
+			android:launchMode="singleTop"
 			android:screenOrientation="portrait">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
@@ -51,7 +52,7 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".activity.NotificationDialog"
+			android:name=".activity.NotificationDialogActivity"
 			android:theme="@style/Theme.AppCompat.Light.Transparent"/>
 		<activity
 			android:name=".activity.InformedConsentActivity"
@@ -59,18 +60,33 @@
 			android:theme="@style/Theme.AppCompat.NoActionBar"/>
 		<activity
 			android:name=".activity.PreferenceActivity"
+			android:launchMode="singleTop"
+			android:parentActivityName=".activity.MainActivity"/>
+		<activity
+			android:name=".activity.OverviewActivity"
+			android:launchMode="singleTop"
 			android:parentActivityName=".activity.MainActivity"/>
 		<activity
 			android:name=".activity.InfoActivity"
 			android:label="@string/Settings_About_Label"
+			android:parentActivityName=".activity.PreferenceActivity"
+			android:theme="@style/Theme.AppCompat.Light.DarkActionBar.App.NoActionBar">
+			<intent-filter>
+				<action android:name="org.openobservatory.ooniprobe.activity.InfoActivity"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+			</intent-filter>
+		</activity>
+		<activity
+			android:name=".activity.CustomWebsiteActivity"
+			android:label="@string/Settings_Websites_CustomURL"
 			android:parentActivityName=".activity.PreferenceActivity">
 			<intent-filter>
-				<action android:name="org.openobservatory.ooniprobe.activity.InfoActivity" />
-				<category android:name="android.intent.category.DEFAULT" />
+				<action android:name="org.openobservatory.ooniprobe.activity.CustomWebsiteActivity"/>
+				<category android:name="android.intent.category.DEFAULT"/>
 			</intent-filter>
 		</activity>
 	</application>
-</manifest>	<!--- THIS IS FOR USI SCHEME
+</manifest>    <!--- THIS IS FOR USI SCHEME
 	<activity
 		android:name=".activity.RunTestActivity"
 		android:label="@string/app_name"
