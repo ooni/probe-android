@@ -19,7 +19,6 @@ public class Test implements Serializable {
 	public static final String HTTP_INVALID_REQUEST_LINE = "http_invalid_request_line";
 	public static final String HTTP_HEADER_FIELD_MANIPULATION = "http_header_field_manipulation";
 	public static final String WEB_CONNECTIVITY = "web_connectivity";
-	public static final String NDT = "ndt";
 	public static final String NDT_TEST = "ndt_test";
 	public static final String WHATSAPP = "whatsapp";
 	public static final String TELEGRAM = "telegram";

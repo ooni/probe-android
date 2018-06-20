@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.model;
 
+import android.content.Context;
+
 import java.sql.Date;
 
 public class Measurement {
@@ -17,22 +19,22 @@ public class Measurement {
         measurementUploaded,
         measurementProcessed
     }
-
-    String name;
-    Date startTime;
-    float duration;
-    String ip;
-    String asn;
-    String asnName;
-    String country;
-    String networkName;
-    String networkType;
-    MeasurementState state;
-    Boolean anomaly;
-    Result result;
-    String reportId;
-    String input;
-    String category;
+    int id;
+    public String name;
+    public Date startTime;
+    public float duration;
+    public String ip;
+    public String asn;
+    public String asnName;
+    public String country;
+    public String networkName;
+    public String networkType;
+    public MeasurementState state;
+    public Boolean anomaly;
+    public Result result;
+    public String reportId;
+    public String input;
+    public String category;
 
     //defaultValuesForEntity
     /*
@@ -47,17 +49,18 @@ public class Measurement {
     }
 
 
-    public String getFile(String ext){
-        //TODO get file with ext json or log
-        return "";
+    public String getFile(Context ctx, String ext){
+        if (this.name.equals(Test.WEB_CONNECTIVITY))
+            return ctx.getFilesDir() + this.name + "-" + this.result.id + ext;
+        return ctx.getFilesDir() + this.name + "-" + this.id + ext;
     }
 
-    public String getReportFile(String ext){
-        return getFile("json");
+    public String getReportFile(Context ctx){
+        return getFile(ctx,".json");
     }
 
-    public String getLogFile(String ext){
-        return getFile("log");
+    public String getLogFile(Context ctx){
+        return getFile(ctx,".log");
     }
 
 

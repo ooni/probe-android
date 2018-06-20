@@ -2,28 +2,31 @@ package org.openobservatory.ooniprobe.model;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+
 import org.openobservatory.ooniprobe.R;
 
 import java.sql.Date;
 import java.text.DecimalFormat;
 
 public class Result {
+    int id;
     public String name;
-    Date startTime;
-    float duration;
-    long dataUsageDown;
-    long dataUsageUp;
-    String ip;
-    String asn;
-    String asnName;
-    String country;
-    String networkName;
-    String networkType;
-    String summary;
-    Summary summaryObj;
+    public Date startTime;
+    public float duration;
+    public long dataUsageDown;
+    public long dataUsageUp;
+    public String ip;
+    public String asn;
+    public String asnName;
+    public String country;
+    public String networkName;
+    public String networkType;
+    public String summary;
+    public Summary summaryObj;
     boolean viewed;
     boolean done;
-    Measurement measurements;
+    public Measurement measurements;
 
     //defaultValuesForEntity
     /*
@@ -77,7 +80,7 @@ public class Result {
     public Summary getSummary() {
         if (this.summaryObj != null){
             if (this.summary != null)
-                this.summaryObj = new Summary(this.summary);
+                this.summaryObj = Summary.fromJson(this.summary);
         else
             this.summaryObj = new Summary();
         }
@@ -85,9 +88,8 @@ public class Result {
 
     }
 
-    //TODO
     public void setSummary(){
-        //self.summary = [self.summaryObj getJsonStr];
+        this.summary = new Gson().toJson(summary);
     }
 
     public String getAsn(Context context) {
