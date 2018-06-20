@@ -44,7 +44,8 @@ public class MKNetworkTest {
         final String geoip_asn = context.getFilesDir() + "/GeoIPASNum.dat";
         final String geoip_country = context.getFilesDir() + "/GeoIP.dat";
 
-        //TODO
+        //TODO preference
+        //isIncludeCc, isIncludeIp, isIncludeAsn, isUploadResults
         Boolean include_ip = false;
         Boolean include_asn = true;
         Boolean include_cc = true;

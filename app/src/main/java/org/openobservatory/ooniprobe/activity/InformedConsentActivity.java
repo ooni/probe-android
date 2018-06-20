@@ -98,6 +98,7 @@ public class InformedConsentActivity extends AppIntro {
 		editor.putBoolean("upload_results", true);
 		editor.apply();
 		setResult(RESULT_CODE_COMPLETED);
+		//TODO preference
 		((Application) getApplication()).getPreferenceManager().setShowIntro(false);
 		startActivity(new Intent(this, MainActivity.class));
 	}
