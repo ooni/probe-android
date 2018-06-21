@@ -87,7 +87,6 @@ public class MKNetworkTest {
     private static String boolToString(Boolean b) {
         return b ? "1" : "0";
     }
-
     public void updateProgress(double percent){
         /*
                 //TODO UPDATE progressbar. Old method below
@@ -119,8 +118,7 @@ public class MKNetworkTest {
                 result.addDuration(Float.valueOf(json.test_runtime));
             }
             //if the user doesn't want to share asn leave null on the db object
-            //TODO ADD && [SettingsUtility getSettingWithName:@"include_asn"]
-            if (json.probe_asn != null) {
+            if (json.probe_asn != null && preferenceManager.isIncludeAsn()) {
                 //TODO-SBS asn name
                 measurement.asn = json.probe_asn;
                 measurement.asnName = "Vodafone";
@@ -131,8 +129,7 @@ public class MKNetworkTest {
                 else if (!measurement.asn.equals(result.asn))
                     System.out.println("Something's wrong");
             }
-            //TODO ADD && [SettingsUtility getSettingWithName:@"include_cc"]
-            if (json.probe_cc != null) {
+            if (json.probe_cc != null && preferenceManager.isIncludeCc()) {
                 measurement.country = json.probe_cc;
                 if (result.country == null){
                     result.country = json.probe_cc;
@@ -140,8 +137,7 @@ public class MKNetworkTest {
                 else if (!measurement.country.equals(result.country))
                     System.out.println("Something's wrong");
             }
-            //TODO ADD && [SettingsUtility getSettingWithName:@"include_ip"]
-            if (json.probe_ip != null) {
+            if (json.probe_ip != null && preferenceManager.isIncludeIp()) {
                 measurement.ip = json.probe_ip;
                 if (result.ip == null){
                     result.ip = json.probe_ip;

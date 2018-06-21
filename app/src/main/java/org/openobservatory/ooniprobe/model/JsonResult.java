@@ -77,6 +77,10 @@ public class JsonResult {
         @SerializedName("server_address")
         public String server_address;
 
+        public String server_name;
+
+        public String server_country;
+
         @SerializedName("median_bitrate")
         public String median_bitrate;
 

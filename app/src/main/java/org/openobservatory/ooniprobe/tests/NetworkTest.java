@@ -20,8 +20,8 @@ public class NetworkTest {
 	}
 
 	public void run() {
-		//for (MKNetworkTest current : mkNetworkTests)
-		//current.run();
+		for (MKNetworkTest current : mkNetworkTests)
+			current.run();
 	}
 
 	public class WCNetworkTest extends NetworkTest {
