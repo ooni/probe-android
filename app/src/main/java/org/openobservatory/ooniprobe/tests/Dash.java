@@ -15,23 +15,23 @@ public class Dash extends MKNetworkTest {
         super(context);
         super.name = Test.DASH;
         super.measurement.name = super.name;
+        initTest();
     }
 
     public void run(){
         super.run();
-        runTest();
     }
 
-    public void runTest(){
+    public void initTest(){
         DashTest test = new DashTest();
+        this.test = test;
         test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
             @Override
             public void callback(String entry) {
                 onEntry(entry);
             }
         });
-        super.initCommon(test);
-        //test.run();
+        super.initCommon();
     }
 
     /*

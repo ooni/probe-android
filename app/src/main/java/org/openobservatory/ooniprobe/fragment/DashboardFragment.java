@@ -14,6 +14,7 @@ import org.openobservatory.ooniprobe.activity.OverviewActivity;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.item.TestItem;
 import org.openobservatory.ooniprobe.model.Test;
+import org.openobservatory.ooniprobe.tests.NetworkTest;
 
 import java.util.ArrayList;
 
@@ -60,6 +61,24 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 				}
 				break;
 			case R.id.run:
+				switch (test.getTitle()) {
+					case R.string.Test_Websites_Fullname:
+						NetworkTest.WCNetworkTest wcTest = new NetworkTest.WCNetworkTest(getActivity());
+						wcTest.run();
+						break;
+					case R.string.Test_InstantMessaging_Fullname:
+						NetworkTest.IMNetworkTest imTest = new NetworkTest.IMNetworkTest(getActivity());
+						imTest.run();
+						break;
+					case R.string.Test_Middleboxes_Fullname:
+						NetworkTest.MBNetworkTest mbTest = new NetworkTest.MBNetworkTest(getActivity());
+						mbTest.run();
+						break;
+					case R.string.Test_Performance_Fullname:
+						NetworkTest.SPNetworkTest spTest = new NetworkTest.SPNetworkTest(getActivity());
+						spTest.run();
+						break;
+				}
 				break;
 			default:
 				startActivity(OverviewActivity.newIntent(getActivity(), test));

@@ -2,6 +2,7 @@ package org.openobservatory.ooniprobe.tests;
 
 import android.content.Context;
 
+import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.model.Test;
@@ -15,24 +16,32 @@ public class NetworkTest {
 	Context context;
 	PreferenceManager preferenceManager;
 
-	public NetworkTest() {
+	public NetworkTest(Context context) {
+		this.context = context;
+		//TODO-TEST getPreferenceManager in a better way
+		preferenceManager = ((AbstractActivity)context).getPreferenceManager();
 		result = new Result();
+		mkNetworkTests = new ArrayList<>();
 	}
 
 	public void run() {
-		for (MKNetworkTest current : mkNetworkTests)
-			current.run();
+		for (MKNetworkTest current : mkNetworkTests) {
+		    current.setResultOfMeasurement(result);
+            current.run();
+        }
 	}
 
-	public class WCNetworkTest extends NetworkTest {
-		public WCNetworkTest() {
+	public static class WCNetworkTest extends NetworkTest {
+		public WCNetworkTest(Context context) {
+			super(context);
 			result.name = Test.WEBSITES;
 			mkNetworkTests.add(new WebConnectivity(context));
 		}
 	}
 
-	public class IMNetworkTest extends NetworkTest {
-		public IMNetworkTest() {
+	public static class IMNetworkTest extends NetworkTest {
+		public IMNetworkTest(Context context) {
+			super(context);
 			result.name = Test.INSTANT_MESSAGING;
 			if (preferenceManager.isTestWhatsapp())
 				mkNetworkTests.add(new Whatsapp(context));
@@ -43,8 +52,9 @@ public class NetworkTest {
 		}
 	}
 
-	public class MBNetworkTest extends NetworkTest {
-		public MBNetworkTest() {
+	public static class MBNetworkTest extends NetworkTest {
+		public MBNetworkTest(Context context) {
+			super(context);
 			result.name = Test.MIDDLE_BOXES;
 			if (preferenceManager.isRunHttpInvalidRequestLine())
 				mkNetworkTests.add(new HttpInvalidRequestLine(context));
@@ -53,8 +63,9 @@ public class NetworkTest {
 		}
 	}
 
-	public class SPNetworkTest extends NetworkTest {
-		public SPNetworkTest() {
+	public static class SPNetworkTest extends NetworkTest {
+		public SPNetworkTest(Context context) {
+			super(context);
 			result.name = Test.PERFORMANCE;
 			if (preferenceManager.isRunNdt())
 				mkNetworkTests.add(new Ndt(context));

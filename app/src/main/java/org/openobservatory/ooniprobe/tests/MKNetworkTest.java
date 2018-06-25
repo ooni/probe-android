@@ -1,11 +1,14 @@
 package org.openobservatory.ooniprobe.tests;
 
 import android.content.Context;
+import android.os.AsyncTask;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
 import org.openobservatory.measurement_kit.common.LogSeverity;
 import org.openobservatory.measurement_kit.nettests.BaseTest;
+import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Measurement;
@@ -21,9 +24,12 @@ public class MKNetworkTest {
     String name;
     Context context;
     PreferenceManager preferenceManager;
+    BaseTest test;
 
     public MKNetworkTest(Context context){
         this.context = context;
+        //TODO-TEST getPreferenceManager in a better way
+        preferenceManager = ((AbstractActivity)context).getPreferenceManager();
         createMeasurementObject();
     }
 
@@ -42,7 +48,7 @@ public class MKNetworkTest {
     }
 
 
-    public BaseTest initCommon(BaseTest test) {
+    public BaseTest initCommon() {
         final String geoip_asn = context.getFilesDir() + "/GeoIPASNum.dat";
         final String geoip_country = context.getFilesDir() + "/GeoIP.dat";
 
@@ -110,9 +116,9 @@ public class MKNetworkTest {
         if (entry != null) {
             JsonResult json = new Gson().fromJson(entry, JsonResult.class);
             if (json.test_start_time != null)
-                result.setStartTimeWithUTCstr(Float.valueOf(json.test_start_time));
+                result.setStartTimeWithUTCstr(json.test_start_time);
             if (json.measurement_start_time != null)
-                measurement.setStartTimeWithUTCstr(Float.valueOf(json.measurement_start_time));
+                measurement.setStartTimeWithUTCstr(json.measurement_start_time);
             if (json.test_runtime != null) {
                 measurement.duration = Float.valueOf(json.test_runtime);
                 result.addDuration(Float.valueOf(json.test_runtime));
@@ -170,7 +176,21 @@ public class MKNetworkTest {
     public void run(){
         measurement.state = measurementActive;
         measurement.save();
-        //in iOS here i create a background task
+        new AsyncTask<String, String, Boolean>(){
+            @Override
+            protected Boolean doInBackground(String... params)
+            {
+                test.run();
+                return true;
+            }
+
+            protected void onProgressUpdate(String... values) {
+                // Nothing
+            }
+
+            protected void onPostExecute(Boolean success) {
+            }
+        }.execute();
     }
 
     public void testEnded() {

@@ -27,6 +27,8 @@ public class Application extends android.app.Application {
 		FirebaseApp.initializeApp(this);
 		copyResources(R.raw.geoipasnum, "GeoIPASNum.dat");
 		copyResources(R.raw.geoip, "GeoIP.dat");
+		//TODO remove before release
+		copyResources(R.raw.global, "global.txt");
 	}
 
 	private void copyResources(int id, String filename) {
