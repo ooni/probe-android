@@ -29,6 +29,7 @@ public class WebConnectivity extends MKNetworkTest {
         //TODO remove before release
         String inputUrlsPath = context.getFilesDir() + "/global.txt";
         test.set_input_filepath(inputUrlsPath);
+        test.set_option("max_runtime", preferenceManager.getmaxRuntime());
         test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
             @Override
             public void callback(String entry) {
