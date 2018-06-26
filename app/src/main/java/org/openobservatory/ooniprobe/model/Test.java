@@ -4,6 +4,7 @@ import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
 import android.support.annotation.StyleRes;
+import android.support.annotation.XmlRes;
 
 import org.openobservatory.ooniprobe.R;
 
@@ -27,18 +28,22 @@ public class Test implements Serializable {
 	int cardDesc;
 	int icon;
 	int color;
-	int theme;
+	int themeLight;
+	int themeDark;
 	int desc1;
 	int desc2;
+	int pref;
 
-	public Test(@StringRes int title, @StringRes int cardDesc, @DrawableRes int icon, @ColorRes int color, @StyleRes int theme, @StringRes int desc1, @StringRes int desc2) {
+	public Test(@StringRes int title, @StringRes int cardDesc, @DrawableRes int icon, @ColorRes int color, @StyleRes int themeLight,@StyleRes int themeDark, @StringRes int desc1, @StringRes int desc2, @XmlRes int pref) {
 		this.title = title;
 		this.cardDesc = cardDesc;
 		this.icon = icon;
 		this.color = color;
-		this.theme = theme;
+		this.themeLight = themeLight;
+		this.themeDark = themeDark;
 		this.desc1 = desc1;
 		this.desc2 = desc2;
+		this.pref = pref;
 	}
 
 	public static Test get(String name) {
@@ -81,8 +86,10 @@ public class Test implements Serializable {
 				R.drawable.test_websites,
 				R.color.color_indigo6,
 				R.style.Theme_AppCompat_Light_DarkActionBar_App_NoActionBar_Websites,
+				R.style.Theme_AppCompat_NoActionBar_App_Websites,
 				R.string.Dashboard_Websites_Overview_Paragraph_1,
-				R.string.Dashboard_Websites_Overview_Paragraph_2
+				R.string.Dashboard_Websites_Overview_Paragraph_2,
+				R.xml.preferences_websites
 		);
 	}
 
@@ -93,8 +100,10 @@ public class Test implements Serializable {
 				R.drawable.test_instant_messaging,
 				R.color.color_cyan6,
 				R.style.Theme_AppCompat_Light_DarkActionBar_App_NoActionBar_InstantMessaging,
+				R.style.Theme_AppCompat_NoActionBar_App_InstantMessaging,
 				R.string.Dashboard_InstantMessaging_Overview_Paragraph_1,
-				R.string.Dashboard_InstantMessaging_Overview_Paragraph_2
+				R.string.Dashboard_InstantMessaging_Overview_Paragraph_2,
+				R.xml.preferences_instant_messaging
 		);
 	}
 
@@ -105,8 +114,10 @@ public class Test implements Serializable {
 				R.drawable.test_middle_boxes,
 				R.color.color_violet8,
 				R.style.Theme_AppCompat_Light_DarkActionBar_App_NoActionBar_MiddleBoxes,
+				R.style.Theme_AppCompat_NoActionBar_App_MiddleBoxes,
 				R.string.Dashboard_Middleboxes_Overview_Paragraph_1,
-				R.string.Dashboard_Middleboxes_Overview_Paragraph_2
+				R.string.Dashboard_Middleboxes_Overview_Paragraph_2,
+				R.xml.preferences_middleboxes
 		);
 	}
 
@@ -117,8 +128,10 @@ public class Test implements Serializable {
 				R.drawable.test_performance,
 				R.color.color_fuchsia6,
 				R.style.Theme_AppCompat_Light_DarkActionBar_App_NoActionBar_Performance,
+				R.style.Theme_AppCompat_NoActionBar_App_Performance,
 				R.string.Dashboard_Performance_Overview_Paragraph_1,
-				R.string.Dashboard_Performance_Overview_Paragraph_2
+				R.string.Dashboard_Performance_Overview_Paragraph_2,
+				R.xml.preferences_performance
 		);
 	}
 
@@ -138,8 +151,12 @@ public class Test implements Serializable {
 		return color;
 	}
 
-	public int getTheme() {
-		return theme;
+	public int getThemeLight() {
+		return themeLight;
+	}
+
+	public int getThemeDark() {
+		return themeDark;
 	}
 
 	public int getDesc1() {
@@ -148,5 +165,9 @@ public class Test implements Serializable {
 
 	public int getDesc2() {
 		return desc2;
+	}
+
+	public int getPref() {
+		return pref;
 	}
 }

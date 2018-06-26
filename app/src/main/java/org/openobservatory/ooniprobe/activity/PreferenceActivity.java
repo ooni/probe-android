@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.XmlRes;
 import android.view.MenuItem;
 
 import org.openobservatory.ooniprobe.fragment.PreferenceFragment;
@@ -12,7 +12,7 @@ import org.openobservatory.ooniprobe.fragment.PreferenceFragment;
 public class PreferenceActivity extends AbstractActivity {
 	public static final String PREFERENCE = "preference";
 
-	public static Intent newIntent(Context context, int preference) {
+	public static Intent newIntent(Context context, @XmlRes int preference) {
 		return new Intent(context, PreferenceActivity.class).putExtra(PREFERENCE, preference);
 	}
 
