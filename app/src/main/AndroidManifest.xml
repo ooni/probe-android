@@ -44,8 +44,7 @@
 		</activity>
 		<activity
 			android:name=".activity.BrowserActivity"
-			android:label=""
-			android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+			android:theme="@style/Theme.AppCompat.Light.DarkActionBar.App.NoActionBar">
 			<intent-filter>
 				<action android:name="org.openobservatory.ooniprobe.OPEN_BROWSER"/>
 				<category android:name="android.intent.category.DEFAULT"/>
@@ -57,7 +56,7 @@
 		<activity
 			android:name=".activity.InformedConsentActivity"
 			android:screenOrientation="portrait"
-			android:theme="@style/Theme.AppCompat.NoActionBar"/>
+			android:theme="@style/Theme.AppCompat.Light.DarkActionBar.App.NoActionBar"/>
 		<activity
 			android:name=".activity.PreferenceActivity"
 			android:launchMode="singleTop"
