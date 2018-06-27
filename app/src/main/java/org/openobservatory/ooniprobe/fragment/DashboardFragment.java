@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.OverviewActivity;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
+import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.item.TestItem;
 import org.openobservatory.ooniprobe.model.Test;
 import org.openobservatory.ooniprobe.tests.NetworkTest;
@@ -45,23 +46,11 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		Test test = (Test) v.getTag();
 		switch (v.getId()) {
 			case R.id.configure:
-				switch (test.getTitle()) {
-					case R.string.Test_Websites_Fullname:
-						startActivity(PreferenceActivity.newIntent(getActivity(), R.xml.preferences_websites));
-						break;
-					case R.string.Test_InstantMessaging_Fullname:
-						startActivity(PreferenceActivity.newIntent(getActivity(), R.xml.preferences_instant_messaging));
-						break;
-					case R.string.Test_Middleboxes_Fullname:
-						startActivity(PreferenceActivity.newIntent(getActivity(), R.xml.preferences_middleboxes));
-						break;
-					case R.string.Test_Performance_Fullname:
-						startActivity(PreferenceActivity.newIntent(getActivity(), R.xml.preferences_performance));
-						break;
-				}
+				startActivity(PreferenceActivity.newIntent(getActivity(), test.getPref()));
 				break;
 			case R.id.run:
-				switch (test.getTitle()) {
+/* TODO
+switch (test.getTitle()) {
 					case R.string.Test_Websites_Fullname:
 						NetworkTest.WCNetworkTest wcTest = new NetworkTest.WCNetworkTest(getActivity());
 						wcTest.run();
@@ -79,6 +68,8 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 						spTest.run();
 						break;
 				}
+*/
+				startActivity(RunningActivity.newIntent(getActivity(), test));
 				break;
 			default:
 				startActivity(OverviewActivity.newIntent(getActivity(), test));

@@ -8,9 +8,6 @@ import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Summary;
 import org.openobservatory.ooniprobe.model.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
 public class Ndt extends MKNetworkTest {
@@ -67,12 +64,9 @@ public class Ndt extends MKNetworkTest {
 	}
 
 	private String getAirportCountry(String serverName) {
-		String[] countries = context.getResources().getStringArray(R.array.countries);
-		Map<String, String> map = new HashMap<>();
-		for (String country : countries) {
-			final String[] fields = country.split("\\|");
-			map.put(fields[0], fields[1]);
-		}
-		return map.get(serverName);
+		for (String country : context.getResources().getStringArray(R.array.countries))
+			if (country.startsWith(serverName))
+				return country.split("\\|")[1];
+		return null;
 	}
 }
