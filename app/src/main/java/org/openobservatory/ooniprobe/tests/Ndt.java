@@ -11,28 +11,29 @@ import org.openobservatory.ooniprobe.model.Test;
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
 public class Ndt extends MKNetworkTest {
-	public Ndt(Context context) {
-		super(context);
-		super.name = Test.NDT_TEST;
-		super.measurement.name = super.name;
-	}
 
-	public void run() {
-		super.run();
-		runTest();
-	}
+    public Ndt(Context context){
+        super(context);
+        super.name = Test.NDT_TEST;
+        super.measurement.name = super.name;
+        initTest();
+    }
 
-	public void runTest() {
-		NdtTest test = new NdtTest();
-		test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
-			@Override
-			public void callback(String entry) {
-				onEntry(entry);
-			}
-		});
-		super.initCommon(test);
-		//test.run();
-	}
+    public void run(){
+        super.run();
+    }
+
+    public void initTest(){
+        NdtTest test = new NdtTest();
+        this.test = test;
+        test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
+            @Override
+            public void callback(String entry) {
+                onEntry(entry);
+            }
+        });
+        super.initCommon();
+    }
 
 	/*
 	 onEntry method for ndt test, check "failure" key

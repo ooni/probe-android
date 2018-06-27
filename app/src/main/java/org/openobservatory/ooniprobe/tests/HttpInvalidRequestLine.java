@@ -14,23 +14,23 @@ public class HttpInvalidRequestLine extends MKNetworkTest {
         super(context);
         super.name = Test.HTTP_INVALID_REQUEST_LINE;
         super.measurement.name = super.name;
+        initTest();
     }
 
     public void run(){
         super.run();
-        runTest();
     }
 
-    public void runTest(){
+    public void initTest(){
         HttpInvalidRequestLineTest test = new HttpInvalidRequestLineTest();
+        this.test = test;
         test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
             @Override
             public void callback(String entry) {
                 onEntry(entry);
             }
         });
-        super.initCommon(test);
-        //test.run();
+        super.initCommon();
     }
 
     /*

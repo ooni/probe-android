@@ -3,6 +3,7 @@ package org.openobservatory.ooniprobe.tests;
 import android.content.Context;
 
 import org.openobservatory.measurement_kit.nettests.HttpHeaderFieldManipulationTest;
+import org.openobservatory.measurement_kit.nettests.WebConnectivityTest;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Summary;
 import org.openobservatory.ooniprobe.model.Test;
@@ -15,24 +16,27 @@ public class WebConnectivity extends MKNetworkTest {
         super(context);
         super.name = Test.WEB_CONNECTIVITY;
         super.measurement.name = super.name;
+        initTest();
     }
-
 
     public void run(){
         super.run();
-        runTest();
     }
 
-    public void runTest(){
-        HttpHeaderFieldManipulationTest test = new HttpHeaderFieldManipulationTest();
+    public void initTest(){
+        WebConnectivityTest test = new WebConnectivityTest();
+        this.test = test;
+        //TODO remove before release
+        String inputUrlsPath = context.getFilesDir() + "/global.txt";
+        test.set_input_filepath(inputUrlsPath);
+        test.set_option("max_runtime", preferenceManager.getmaxRuntime());
         test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
             @Override
             public void callback(String entry) {
                 onEntry(entry);
             }
         });
-        super.initCommon(test);
-        //test.run();
+        super.initCommon();
     }
 
     /*
@@ -46,12 +50,11 @@ public class WebConnectivity extends MKNetworkTest {
             JsonResult.TestKeys keys = json.test_keys;
             if (keys.blocking == null)
                 measurement.state = measurementFailed;
-            //TODO
-            // else if (Boolean.valueOf(keys.tampering))
-            //    measurement.anomaly = true;
+            else if (!keys.blocking.equals("false"))
+                measurement.anomaly = true;
 
             Summary summary = result.getSummary();
-            summary.http_invalid_request_line = keys;
+            summary.web_connectivity = keys;
             super.updateSummary();
             measurement.save();
         }

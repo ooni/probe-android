@@ -2,7 +2,8 @@ package org.openobservatory.ooniprobe.model;
 
 import android.content.Context;
 
-import java.sql.Date;
+import java.util.Date;
+import java.util.Random;
 
 public class Measurement {
 
@@ -31,27 +32,32 @@ public class Measurement {
     public String networkType;
     public MeasurementState state;
     public Boolean anomaly;
+    //TODO this should be an array of results
     public Result result;
     public String reportId;
     public String input;
     public String category;
 
-    //defaultValuesForEntity
-    /*
-    "startTime": date now
-    "duration" : 0
-    "anomaly" : false
-    */
-
-
-    public void setStartTimeWithUTCstr (float value) {
-        //TODO set startTime with UTC string
+    public Measurement (){
+        Random random = new Random();
+        this.id = random.nextInt();
+        //defaultValuesForEntity
+        this.anomaly = false;
+        this.duration = 0;
+        this.startTime = new java.util.Date();;
     }
 
+    public void setStartTimeWithUTCstr (String value) {
+        //TODO set startTime with UTC string
+        //input 2018-06-21 13:37:16
+    }
 
     public String getFile(Context ctx, String ext){
+        //TODO to fix after adding db functionalities
+        Random random = new Random();
         if (this.name.equals(Test.WEB_CONNECTIVITY))
-            return ctx.getFilesDir() + this.name + "-" + this.result.id + ext;
+            return ctx.getFilesDir() + this.name + "-" + random.nextInt() + ext;
+            //return ctx.getFilesDir() + this.name + "-" + this.result.id + ext;
         return ctx.getFilesDir() + this.name + "-" + this.id + ext;
     }
 

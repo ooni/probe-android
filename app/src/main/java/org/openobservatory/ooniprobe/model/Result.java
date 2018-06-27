@@ -6,8 +6,9 @@ import com.google.gson.Gson;
 
 import org.openobservatory.ooniprobe.R;
 
-import java.sql.Date;
+import java.util.Date;
 import java.text.DecimalFormat;
+import java.util.Random;
 
 public class Result {
     int id;
@@ -28,15 +29,17 @@ public class Result {
     boolean done;
     public Measurement measurements;
 
-    //defaultValuesForEntity
-    /*
-    "startTime": date now
-    "duration" : 0
-    "viewed" : FALSE
-    "done" : FALSE
-    "dataUsageDown" : 0
-    dataUsageUp : 0
-    */
+    public Result (){
+        Random random = new Random();
+        this.id = random.nextInt();
+        //defaultValuesForEntity
+        this.startTime = new java.util.Date();;
+        this.duration = 0;
+        this.viewed = false;
+        this.done = false;
+        this.dataUsageDown = 0;
+        this.dataUsageUp = 0;
+    }
 
     public String getLocalizedNetworkType (Context context){
     if (this.networkType.equals("wifi"))
@@ -48,8 +51,9 @@ public class Result {
     return "";
     }
 
-    public void setStartTimeWithUTCstr (float value) {
+    public void setStartTimeWithUTCstr (String value) {
      //TODO set startTime with UTC string
+        //input 2018-06-21 13:37:16
     }
 
     public void addDuration (float value){
@@ -78,11 +82,11 @@ public class Result {
     I have to get the summary of an old test and don't modify it
     */
     public Summary getSummary() {
-        if (this.summaryObj != null){
+        if (this.summaryObj == null){
             if (this.summary != null)
                 this.summaryObj = Summary.fromJson(this.summary);
-        else
-            this.summaryObj = new Summary();
+            else
+                this.summaryObj = new Summary();
         }
         return this.summaryObj;
 

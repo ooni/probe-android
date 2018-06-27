@@ -14,23 +14,23 @@ public class HttpHeaderFieldManipulation extends MKNetworkTest {
         super(context);
         super.name = Test.HTTP_HEADER_FIELD_MANIPULATION;
         super.measurement.name = super.name;
+        initTest();
     }
 
     public void run(){
         super.run();
-        runTest();
     }
 
-    public void runTest(){
+    public void initTest(){
         HttpHeaderFieldManipulationTest test = new HttpHeaderFieldManipulationTest();
+        this.test = test;
         test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
             @Override
             public void callback(String entry) {
                 onEntry(entry);
             }
         });
-        super.initCommon(test);
-        //test.run();
+        super.initCommon();
     }
 
     /*
