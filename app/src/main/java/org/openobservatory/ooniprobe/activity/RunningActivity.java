@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.Test;
+import org.openobservatory.ooniprobe.tests.NetworkTest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,5 +33,24 @@ public class RunningActivity extends AbstractActivity {
 		ButterKnife.bind(this);
 		name.setText(test.getTitle());
 		icon.setImageResource(test.getIcon());
+		switch (test.getTitle()) {
+			case R.string.Test_Websites_Fullname:
+				NetworkTest.WCNetworkTest wcTest = new NetworkTest.WCNetworkTest(this);
+				wcTest.run();
+				break;
+			case R.string.Test_InstantMessaging_Fullname:
+				NetworkTest.IMNetworkTest imTest = new NetworkTest.IMNetworkTest(this);
+				imTest.run();
+				break;
+			case R.string.Test_Middleboxes_Fullname:
+				NetworkTest.MBNetworkTest mbTest = new NetworkTest.MBNetworkTest(this);
+				mbTest.run();
+				break;
+			case R.string.Test_Performance_Fullname:
+				NetworkTest.SPNetworkTest spTest = new NetworkTest.SPNetworkTest(this);
+				spTest.run();
+				break;
+		}
+
 	}
 }

@@ -189,6 +189,10 @@ public class MKNetworkTest {
             }
 
             protected void onPostExecute(Boolean success) {
+                measurement.state = measurementDone;
+                //TODO set progress completed for this test
+                measurement.save();
+                //TODO tell NetworkTest delegate that one test has ended
             }
         }.execute();
     }

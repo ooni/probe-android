@@ -31,6 +31,22 @@ public class NetworkTest {
         }
 	}
 
+	public void testEnded() {
+		//TODO what i do in iOS
+		/*
+		Remove current from mkNetworkTests array
+		if mkNetworkTests count == 0{
+			//is last test
+			result.done = TRUE;
+		}
+		 */
+		result.setSummary();
+		result.save();
+		//if (preferenceManager.isNotifications() && preferenceManager.isNotificationsCompletion())
+	  	//send local notification
+	}
+	
+
 	public static class WCNetworkTest extends NetworkTest {
 		public WCNetworkTest(Context context) {
 			super(context);
