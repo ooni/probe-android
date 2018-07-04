@@ -23,7 +23,7 @@ public class Measurement {
     int id;
     public String name;
     public Date startTime;
-    public float duration;
+    public double duration;
     public String ip;
     public String asn;
     public String asnName;
@@ -44,10 +44,10 @@ public class Measurement {
         //defaultValuesForEntity
         this.anomaly = false;
         this.duration = 0;
-        this.startTime = new java.util.Date();;
+        this.startTime = new java.util.Date();
     }
 
-    public void setStartTimeWithUTCstr (String value) {
+    public void setStartTimeWithUTCstr (Date value) {
         //TODO set startTime with UTC string
         //input 2018-06-21 13:37:16
     }

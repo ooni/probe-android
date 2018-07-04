@@ -51,12 +51,12 @@ public class Result {
     return "";
     }
 
-    public void setStartTimeWithUTCstr (String value) {
+    public void setStartTimeWithUTCstr (Date value) {
      //TODO set startTime with UTC string
         //input 2018-06-21 13:37:16
     }
 
-    public void addDuration (float value){
+    public void addDuration (double value){
         this.duration+=value;
     }
 

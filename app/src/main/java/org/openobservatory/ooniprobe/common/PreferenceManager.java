@@ -64,12 +64,24 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.upload_results), true);
 	}
 
+	public String getNoUploadResults() {
+		return isUploadResults() ? "0" : "1";
+	}
+
 	public boolean isIncludeIp() {
 		return sp.getBoolean(r.getString(R.string.include_ip), true);
 	}
 
+	public String getIncludeIp() {
+		return isIncludeIp() ? "1" : "0";
+	}
+
 	public boolean isIncludeAsn() {
 		return sp.getBoolean(r.getString(R.string.include_asn), true);
+	}
+
+	public String getIncludeAsn() {
+		return isIncludeAsn() ? "1" : "0";
 	}
 
 	public boolean isKeepScreenOn() {
@@ -82,6 +94,10 @@ public class PreferenceManager {
 
 	public boolean isIncludeCc() {
 		return sp.getBoolean(r.getString(R.string.include_cc), true);
+	}
+
+	public String getIncludeCc() {
+		return isIncludeCc() ? "1" : "0";
 	}
 
 	public boolean isTestWhatsapp() {
@@ -123,7 +139,6 @@ public class PreferenceManager {
 	public boolean isDashServerAuto() {
 		return sp.getBoolean(r.getString(R.string.dash_server_auto), true);
 	}
-
 
 	//TODO All these are not needed, I will only need a method that returns array of enabled (or disabled) categories
 	public boolean isALDR() {

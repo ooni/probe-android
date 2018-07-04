@@ -120,8 +120,8 @@ public class MKNetworkTest {
             if (json.measurement_start_time != null)
                 measurement.setStartTimeWithUTCstr(json.measurement_start_time);
             if (json.test_runtime != null) {
-                measurement.duration = Float.valueOf(json.test_runtime);
-                result.addDuration(Float.valueOf(json.test_runtime));
+                measurement.duration = json.test_runtime;
+                result.addDuration(json.test_runtime);
             }
             //if the user doesn't want to share asn leave null on the db object
             if (json.probe_asn != null && preferenceManager.isIncludeAsn()) {

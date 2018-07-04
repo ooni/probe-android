@@ -40,7 +40,6 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginHorizontal="64dp"
-		android:progress="50"
 		android:progressDrawable="@drawable/progress"/>
 
 	<TextView
@@ -55,8 +54,10 @@
 		android:textStyle="bold"/>
 
 	<TextView
+		android:id="@+id/log"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_margin="32dp"
-		android:text="webconnectivity"/>
+		android:ellipsize="end"
+		android:maxLines="1"/>
 </LinearLayout>
