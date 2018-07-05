@@ -3,49 +3,44 @@ package org.openobservatory.ooniprobe.test2;
 import android.os.AsyncTask;
 
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
-import org.openobservatory.ooniprobe.model.AbstractJsonResult;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class TestAsyncTask<JR extends AbstractJsonResult> extends AsyncTask<AbstractTest<JR>, String, List<JR>> implements AbstractTest.TestCallback {
+public class TestAsyncTask extends AsyncTask<AbstractTest, String, Void> implements AbstractTest.TestCallback {
 	public static final String PRG = "PRG";
 	public static final String LOG = "LOG";
 	public static final String RUN = "RUN";
 
-	public static AbstractTest.TestJsonResult[] getIMTestList(AbstractActivity activity) {
-		return new AbstractTest.TestJsonResult[]{
+	public static AbstractTest[] getIMTestList(AbstractActivity activity) {
+		return new AbstractTest[]{
 				new Whatsapp(activity),
 				new Telegram(activity),
 				new FacebookMessenger(activity)
 		};
 	}
 
-	public static AbstractTest.TestJsonResult[] getWCTestList(AbstractActivity activity) {
-		return new AbstractTest.TestJsonResult[]{
+	public static AbstractTest[] getWCTestList(AbstractActivity activity) {
+		return new AbstractTest[]{
 				new WebConnectivity(activity)
 		};
 	}
 
-	public static AbstractTest.TestJsonResult[] getSPTestList(AbstractActivity activity) {
-		return new AbstractTest.TestJsonResult[]{
+	public static AbstractTest[] getSPTestList(AbstractActivity activity) {
+		return new AbstractTest[]{
 				new Ndt(activity),
 				new Dash(activity)
 		};
 	}
 
-	public static AbstractTest.TestJsonResultHttp[] getMBTestList(AbstractActivity activity) {
-		return new AbstractTest.TestJsonResultHttp[]{
+	public static AbstractTest[] getMBTestList(AbstractActivity activity) {
+		return new AbstractTest[]{
 				new HttpHeaderFieldManipulation(activity),
 				new HttpInvalidRequestLine(activity)
 		};
 	}
 
-	@Override protected List<JR> doInBackground(AbstractTest<JR>... tests) {
-		List<JR> JRS = new ArrayList<>();
+	@Override protected Void doInBackground(AbstractTest... tests) {
 		for (int i = 0; i < tests.length; i++)
-			JRS.addAll(tests[i].run(i, this));
-		return JRS;
+			tests[i].run(i, this);
+		return null;
 	}
 
 	@Override public void onStart(String name) {

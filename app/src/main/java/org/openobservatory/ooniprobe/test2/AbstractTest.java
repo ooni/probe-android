@@ -11,7 +11,7 @@ import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.AbstractJsonResult;
 import org.openobservatory.ooniprobe.model.JsonResult;
-import org.openobservatory.ooniprobe.model.JsonResultHttp;
+import org.openobservatory.ooniprobe.model.JsonResultHttpHeader;
 import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.model.Summary;
@@ -28,13 +28,14 @@ public abstract class AbstractTest<JR extends AbstractJsonResult> {
 	Result result;
 	Measurement measurement;
 	BaseTest test;
+	PreferenceManager preferenceManager;
 	private Class<JR> classOfResult;
 	private Gson gson;
-	PreferenceManager preferenceManager;
 
-	public AbstractTest(AbstractActivity activity, BaseTest test, Class<JR> classOfResult) {
+	public AbstractTest(AbstractActivity activity, String name, BaseTest test, Class<JR> classOfResult) {
 		preferenceManager = activity.getPreferenceManager();
 		this.test = test;
+		this.name = name;
 		this.classOfResult = classOfResult;
 		gson = activity.getGson();
 		String filesDir = activity.getFilesDir().toString();
@@ -67,7 +68,7 @@ public abstract class AbstractTest<JR extends AbstractJsonResult> {
 		return jrList;
 	}
 
-	public void onEntry(JR json){
+	public void onEntry(JR json) {
 		if (json != null) {
 			if (json.test_start_time != null)
 				result.setStartTimeWithUTCstr(json.test_start_time);
@@ -82,35 +83,30 @@ public abstract class AbstractTest<JR extends AbstractJsonResult> {
 				//TODO-SBS asn name
 				measurement.asn = json.probe_asn;
 				measurement.asnName = "Vodafone";
-				if (result.asn == null){
+				if (result.asn == null) {
 					result.asn = json.probe_asn;
 					result.asnName = "Vodafone";
-				}
-				else if (!measurement.asn.equals(result.asn))
+				} else if (!measurement.asn.equals(result.asn))
 					System.out.println("Something's wrong");
 			}
 			if (json.probe_cc != null && preferenceManager.isIncludeCc()) {
 				measurement.country = json.probe_cc;
-				if (result.country == null){
+				if (result.country == null) {
 					result.country = json.probe_cc;
-				}
-				else if (!measurement.country.equals(result.country))
+				} else if (!measurement.country.equals(result.country))
 					System.out.println("Something's wrong");
 			}
 			if (json.probe_ip != null && preferenceManager.isIncludeIp()) {
 				measurement.ip = json.probe_ip;
-				if (result.ip == null){
+				if (result.ip == null) {
 					result.ip = json.probe_ip;
-				}
-				else if (!measurement.ip.equals(result.ip))
+				} else if (!measurement.ip.equals(result.ip))
 					System.out.println("Something's wrong");
 			}
-
 			if (json.report_id != null) {
 				measurement.reportId = json.report_id;
 			}
-		}
-		else
+		} else
 			measurement.state = measurementFailed;
 	}
 
@@ -135,14 +131,14 @@ public abstract class AbstractTest<JR extends AbstractJsonResult> {
 	}
 
 	public abstract static class TestJsonResult extends AbstractTest<JsonResult> {
-		TestJsonResult(AbstractActivity activity, BaseTest test) {
-			super(activity, test, JsonResult.class);
+		TestJsonResult(AbstractActivity activity, String name, BaseTest test) {
+			super(activity, name, test, JsonResult.class);
 		}
 	}
 
-	public abstract static class TestJsonResultHttp extends AbstractTest<JsonResultHttp> {
-		TestJsonResultHttp(AbstractActivity activity, BaseTest test) {
-			super(activity, test, JsonResultHttp.class);
+	public abstract static class TestJsonResultHttpHeader extends AbstractTest<JsonResultHttpHeader> {
+		TestJsonResultHttpHeader(AbstractActivity activity, String name, BaseTest test) {
+			super(activity, name, test, JsonResultHttpHeader.class);
 		}
 	}
 }

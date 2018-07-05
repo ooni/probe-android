@@ -38,7 +38,7 @@ public class RunningActivity extends AbstractActivity {
 		setContentView(R.layout.activity_running);
 		ButterKnife.bind(this);
 		icon.setImageResource(test.getIcon());
-		AbstractTest.TestJsonResult[] testList = TestAsyncTask.getIMTestList(this);
+		AbstractTest[] testList = TestAsyncTask.getIMTestList(this);
 		progress.setMax(testList.length * 100);
 		new TestAsyncTaskImpl(this).execute(testList);
 
@@ -62,7 +62,7 @@ public class RunningActivity extends AbstractActivity {
 		}*/
 	}
 
-	private static class TestAsyncTaskImpl extends TestAsyncTask<JsonResult> {
+	private static class TestAsyncTaskImpl extends TestAsyncTask {
 		private WeakReference<RunningActivity> ref;
 
 		TestAsyncTaskImpl(RunningActivity act) {
@@ -85,12 +85,9 @@ public class RunningActivity extends AbstractActivity {
 				}
 		}
 
-		@Override protected void onPostExecute(List<JsonResult> jsonResults) {
-			super.onPostExecute(jsonResults);
-			RunningActivity act = ref.get();
-			if (act != null && !act.isFinishing()) {
-				// TODO all test are finished, use jsonResults only for UI here if needed
-			}
+		@Override protected void onPostExecute(Void aVoid) {
+			super.onPostExecute(aVoid);
+
 		}
 	}
 }
