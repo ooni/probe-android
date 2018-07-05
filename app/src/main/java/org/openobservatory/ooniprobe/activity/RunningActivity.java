@@ -9,13 +9,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Test;
 import org.openobservatory.ooniprobe.test2.AbstractTest;
 import org.openobservatory.ooniprobe.test2.TestAsyncTask;
 
 import java.lang.ref.WeakReference;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,28 +36,25 @@ public class RunningActivity extends AbstractActivity {
 		setContentView(R.layout.activity_running);
 		ButterKnife.bind(this);
 		icon.setImageResource(test.getIcon());
-		AbstractTest[] testList = TestAsyncTask.getIMTestList(this);
-		progress.setMax(testList.length * 100);
-		new TestAsyncTaskImpl(this).execute(testList);
-
-	/*	switch (test.getTitle()) {
+		AbstractTest[] testList = null;
+		switch (test.getTitle()) {
 			case R.string.Test_Websites_Fullname:
-				NetworkTest.WCNetworkTest wcTest = new NetworkTest.WCNetworkTest(this);
-				wcTest.run();
+				testList = TestAsyncTask.getWCTestList(this);
 				break;
 			case R.string.Test_InstantMessaging_Fullname:
-				NetworkTest.IMNetworkTest imTest = new NetworkTest.IMNetworkTest(this);
-				imTest.run();
+				testList = TestAsyncTask.getIMTestList(this);
 				break;
 			case R.string.Test_Middleboxes_Fullname:
-				NetworkTest.MBNetworkTest mbTest = new NetworkTest.MBNetworkTest(this);
-				mbTest.run();
+				testList = TestAsyncTask.getMBTestList(this);
 				break;
 			case R.string.Test_Performance_Fullname:
-				NetworkTest.SPNetworkTest spTest = new NetworkTest.SPNetworkTest(this);
-				spTest.run();
+				testList = TestAsyncTask.getSPTestList(this);
 				break;
-		}*/
+		}
+		if (testList != null) {
+			progress.setMax(testList.length * 100);
+			new TestAsyncTaskImpl(this).execute(testList);
+		}
 	}
 
 	private static class TestAsyncTaskImpl extends TestAsyncTask {
@@ -87,7 +82,6 @@ public class RunningActivity extends AbstractActivity {
 
 		@Override protected void onPostExecute(Void aVoid) {
 			super.onPostExecute(aVoid);
-
 		}
 	}
 }
