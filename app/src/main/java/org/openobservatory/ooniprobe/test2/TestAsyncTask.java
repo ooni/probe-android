@@ -8,20 +8,20 @@ import org.openobservatory.ooniprobe.model.AbstractJsonResult;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestAsyncTask<JR extends AbstractJsonResult> extends AsyncTask<Test<JR>, String, List<JR>> implements Test.TestCallback {
+public class TestAsyncTask<JR extends AbstractJsonResult> extends AsyncTask<AbstractTest<JR>, String, List<JR>> implements AbstractTest.TestCallback {
 	public static final String PRG = "PRG";
 	public static final String LOG = "LOG";
 	public static final String RUN = "RUN";
 
-	public static Test.TestJsonResult[] getIMTestList(AbstractActivity activity) {
-		return new Test.TestJsonResult[]{
+	public static AbstractTest.TestJsonResult[] getIMTestList(AbstractActivity activity) {
+		return new AbstractTest.TestJsonResult[]{
 				new WhatsappTest(activity),
 				new TelegramTest(activity),
 				new FacebookMessengerTest(activity)
 		};
 	}
 
-	@Override protected List<JR> doInBackground(Test<JR>... tests) {
+	@Override protected List<JR> doInBackground(AbstractTest<JR>... tests) {
 		List<JR> JRS = new ArrayList<>();
 		for (int i = 0; i < tests.length; i++)
 			JRS.addAll(tests[i].run(i, this));

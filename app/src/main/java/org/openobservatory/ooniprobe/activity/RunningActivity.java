@@ -11,6 +11,7 @@ import android.widget.TextView;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Test;
+import org.openobservatory.ooniprobe.test2.AbstractTest;
 import org.openobservatory.ooniprobe.test2.TestAsyncTask;
 
 import java.lang.ref.WeakReference;
@@ -37,7 +38,7 @@ public class RunningActivity extends AbstractActivity {
 		setContentView(R.layout.activity_running);
 		ButterKnife.bind(this);
 		icon.setImageResource(test.getIcon());
-		org.openobservatory.ooniprobe.test2.Test.TestJsonResult[] testList = TestAsyncTask.getIMTestList(this);
+		AbstractTest.TestJsonResult[] testList = TestAsyncTask.getIMTestList(this);
 		progress.setMax(testList.length * 100);
 		new TestAsyncTaskImpl(this).execute(testList);
 

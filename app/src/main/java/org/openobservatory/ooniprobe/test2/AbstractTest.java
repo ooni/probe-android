@@ -17,12 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public abstract class Test<JR extends AbstractJsonResult> {
+public abstract class AbstractTest<JR extends AbstractJsonResult> {
 	private BaseTest test;
 	private Class<JR> classOfResult;
 	private Gson gson;
 
-	public Test(AbstractActivity activity, BaseTest test, Class<JR> classOfResult) {
+	public AbstractTest(AbstractActivity activity, BaseTest test, Class<JR> classOfResult) {
 		this.test = test;
 		this.classOfResult = classOfResult;
 		PreferenceManager preferenceManager = activity.getPreferenceManager();
@@ -69,7 +69,7 @@ public abstract class Test<JR extends AbstractJsonResult> {
 		void onLog(String log);
 	}
 
-	public abstract static class TestJsonResult extends Test<JsonResult> {
+	public abstract static class TestJsonResult extends AbstractTest<JsonResult> {
 		TestJsonResult(AbstractActivity activity, BaseTest test) {
 			super(activity, test, JsonResult.class);
 		}
