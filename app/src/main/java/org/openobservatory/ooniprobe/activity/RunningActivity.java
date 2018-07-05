@@ -13,6 +13,7 @@ import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Test;
 import org.openobservatory.ooniprobe.test2.TestAsyncTask;
 
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 import butterknife.BindView;
@@ -38,7 +39,7 @@ public class RunningActivity extends AbstractActivity {
 		icon.setImageResource(test.getIcon());
 		org.openobservatory.ooniprobe.test2.Test.TestJsonResult[] testList = TestAsyncTask.getIMTestList(this);
 		progress.setMax(testList.length * 100);
-		new TestAsyncTaskImpl().execute(testList);
+		new TestAsyncTaskImpl(this).execute(testList);
 
 	/*	switch (test.getTitle()) {
 			case R.string.Test_Websites_Fullname:
@@ -60,24 +61,35 @@ public class RunningActivity extends AbstractActivity {
 		}*/
 	}
 
-	private class TestAsyncTaskImpl extends TestAsyncTask<JsonResult> {
+	private static class TestAsyncTaskImpl extends TestAsyncTask<JsonResult> {
+		private WeakReference<RunningActivity> ref;
+
+		TestAsyncTaskImpl(RunningActivity act) {
+			ref = new WeakReference<>(act);
+		}
+
 		@Override protected void onProgressUpdate(String... values) {
-			switch (values[0]) {
-				case TestAsyncTask.RUN:
-					name.setText(values[1]);
-					break;
-				case TestAsyncTask.PRG:
-					progress.setProgress(Integer.parseInt(values[1]));
-					break;
-				case TestAsyncTask.LOG:
-					log.setText(values[1]);
-					break;
-			}
+			RunningActivity act = ref.get();
+			if (act != null && !act.isFinishing())
+				switch (values[0]) {
+					case TestAsyncTask.RUN:
+						act.name.setText(values[1]);
+						break;
+					case TestAsyncTask.PRG:
+						act.progress.setProgress(Integer.parseInt(values[1]));
+						break;
+					case TestAsyncTask.LOG:
+						act.log.setText(values[1]);
+						break;
+				}
 		}
 
 		@Override protected void onPostExecute(List<JsonResult> jsonResults) {
 			super.onPostExecute(jsonResults);
-			// TODO all test are finished, use jsonResults only for UI here if needed
+			RunningActivity act = ref.get();
+			if (act != null && !act.isFinishing()) {
+				// TODO all test are finished, use jsonResults only for UI here if needed
+			}
 		}
 	}
 }
