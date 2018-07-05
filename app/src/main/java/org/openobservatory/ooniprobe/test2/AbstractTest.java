@@ -67,9 +67,8 @@ public abstract class AbstractTest<JR extends AbstractJsonResult> {
 		return jrList;
 	}
 
-	public JsonResult onEntryCommon(String entry){
-		if (entry != null) {
-			JsonResult json = new Gson().fromJson(entry, JsonResult.class);
+	public void onEntry(JR json){
+		if (json != null) {
 			if (json.test_start_time != null)
 				result.setStartTimeWithUTCstr(json.test_start_time);
 			if (json.measurement_start_time != null)
@@ -110,10 +109,9 @@ public abstract class AbstractTest<JR extends AbstractJsonResult> {
 			if (json.report_id != null) {
 				measurement.reportId = json.report_id;
 			}
-			return json;
 		}
-		measurement.state = measurementFailed;
-		return null;
+		else
+			measurement.state = measurementFailed;
 	}
 
 	public void updateSummary() {

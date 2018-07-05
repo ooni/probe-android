@@ -3,8 +3,8 @@ package org.openobservatory.ooniprobe.test2;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResultHttp;
 
-public class HttpHeaderFieldManipulationTest extends AbstractTest.TestJsonResultHttp {
-	public HttpHeaderFieldManipulationTest(AbstractActivity activity) {
+public class HttpHeaderFieldManipulation extends AbstractTest.TestJsonResultHttp {
+	public HttpHeaderFieldManipulation(AbstractActivity activity) {
 		super(activity, new org.openobservatory.measurement_kit.nettests.HttpHeaderFieldManipulationTest());
 	}
 

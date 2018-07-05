@@ -3,8 +3,8 @@ package org.openobservatory.ooniprobe.test2;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResultHttp;
 
-public class HttpInvalidRequestLineTest extends AbstractTest.TestJsonResultHttp {
-	public HttpInvalidRequestLineTest(AbstractActivity activity) {
+public class HttpInvalidRequestLine extends AbstractTest.TestJsonResultHttp {
+	public HttpInvalidRequestLine(AbstractActivity activity) {
 		super(activity, new org.openobservatory.measurement_kit.nettests.HttpInvalidRequestLineTest());
 	}
 

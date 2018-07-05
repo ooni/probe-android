@@ -15,29 +15,29 @@ public class TestAsyncTask<JR extends AbstractJsonResult> extends AsyncTask<Abst
 
 	public static AbstractTest.TestJsonResult[] getIMTestList(AbstractActivity activity) {
 		return new AbstractTest.TestJsonResult[]{
-				new WhatsappTest(activity),
-				new TelegramTest(activity),
-				new FacebookMessengerTest(activity)
+				new Whatsapp(activity),
+				new Telegram(activity),
+				new FacebookMessenger(activity)
 		};
 	}
 
 	public static AbstractTest.TestJsonResult[] getWCTestList(AbstractActivity activity) {
 		return new AbstractTest.TestJsonResult[]{
-				new WebConnectivityTest(activity)
+				new WebConnectivity(activity)
 		};
 	}
 
 	public static AbstractTest.TestJsonResult[] getSPTestList(AbstractActivity activity) {
 		return new AbstractTest.TestJsonResult[]{
-				new NdtTest(activity),
-				new DashTest(activity)
+				new Ndt(activity),
+				new Dash(activity)
 		};
 	}
 
 	public static AbstractTest.TestJsonResultHttp[] getMBTestList(AbstractActivity activity) {
 		return new AbstractTest.TestJsonResultHttp[]{
-				new HttpHeaderFieldManipulationTest(activity),
-				new HttpInvalidRequestLineTest(activity)
+				new HttpHeaderFieldManipulation(activity),
+				new HttpInvalidRequestLine(activity)
 		};
 	}
 
