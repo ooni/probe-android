@@ -2,21 +2,30 @@ package org.openobservatory.ooniprobe.test2;
 
 import android.os.AsyncTask;
 
+import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.AbstractJsonResult;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestSuite<Result extends AbstractJsonResult> extends AsyncTask<Test<Result>, String, List<Result>> implements Test.TestCallback {
+public class TestAsyncTask<JR extends AbstractJsonResult> extends AsyncTask<Test<JR>, String, List<JR>> implements Test.TestCallback {
 	public static final String PRG = "PRG";
 	public static final String LOG = "LOG";
 	public static final String RUN = "RUN";
 
-	@Override protected List<Result> doInBackground(Test<Result>... tests) {
-		List<Result> results = new ArrayList<>();
+	public static Test.TestJsonResult[] getIMTestList(AbstractActivity activity) {
+		return new Test.TestJsonResult[]{
+				new WhatsappTest(activity),
+				new TelegramTest(activity),
+				new FacebookMessengerTest(activity)
+		};
+	}
+
+	@Override protected List<JR> doInBackground(Test<JR>... tests) {
+		List<JR> JRS = new ArrayList<>();
 		for (int i = 0; i < tests.length; i++)
-			results.addAll(tests[i].run(i, this));
-		return results;
+			JRS.addAll(tests[i].run(i, this));
+		return JRS;
 	}
 
 	@Override public void onStart(String name) {
@@ -29,10 +38,5 @@ public class TestSuite<Result extends AbstractJsonResult> extends AsyncTask<Test
 
 	@Override public final void onLog(String log) {
 		publishProgress(LOG, log);
-	}
-
-	@Override protected void onPostExecute(List<Result> results) {
-		super.onPostExecute(results);
-		// TODO manage entry
 	}
 }

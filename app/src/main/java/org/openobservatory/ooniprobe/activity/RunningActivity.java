@@ -11,7 +11,9 @@ import android.widget.TextView;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Test;
-import org.openobservatory.ooniprobe.test2.TestSuite;
+import org.openobservatory.ooniprobe.test2.TestAsyncTask;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,9 +36,9 @@ public class RunningActivity extends AbstractActivity {
 		setContentView(R.layout.activity_running);
 		ButterKnife.bind(this);
 		icon.setImageResource(test.getIcon());
-		org.openobservatory.ooniprobe.test2.Test.TestJsonResult[] testList = org.openobservatory.ooniprobe.test2.Test.getIMTestList(this);
+		org.openobservatory.ooniprobe.test2.Test.TestJsonResult[] testList = TestAsyncTask.getIMTestList(this);
 		progress.setMax(testList.length * 100);
-		new TestSuiteImpl().execute(testList);
+		new TestAsyncTaskImpl().execute(testList);
 
 	/*	switch (test.getTitle()) {
 			case R.string.Test_Websites_Fullname:
@@ -58,19 +60,24 @@ public class RunningActivity extends AbstractActivity {
 		}*/
 	}
 
-	private class TestSuiteImpl extends TestSuite<JsonResult> {
+	private class TestAsyncTaskImpl extends TestAsyncTask<JsonResult> {
 		@Override protected void onProgressUpdate(String... values) {
 			switch (values[0]) {
-				case TestSuite.RUN:
+				case TestAsyncTask.RUN:
 					name.setText(values[1]);
 					break;
-				case TestSuite.PRG:
+				case TestAsyncTask.PRG:
 					progress.setProgress(Integer.parseInt(values[1]));
 					break;
-				case TestSuite.LOG:
+				case TestAsyncTask.LOG:
 					log.setText(values[1]);
 					break;
 			}
+		}
+
+		@Override protected void onPostExecute(List<JsonResult> jsonResults) {
+			super.onPostExecute(jsonResults);
+			// TODO all test are finished, use jsonResults only for UI here if needed
 		}
 	}
 }
