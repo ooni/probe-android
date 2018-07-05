@@ -12,21 +12,30 @@ import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.AbstractJsonResult;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.JsonResultHttp;
+import org.openobservatory.ooniprobe.model.Measurement;
+import org.openobservatory.ooniprobe.model.Result;
+import org.openobservatory.ooniprobe.model.Summary;
 import org.openobservatory.ooniprobe.utils.VersionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
+
 public abstract class AbstractTest<JR extends AbstractJsonResult> {
-	private BaseTest test;
+	String name;
+	Result result;
+	Measurement measurement;
+	BaseTest test;
 	private Class<JR> classOfResult;
 	private Gson gson;
+	PreferenceManager preferenceManager;
 
 	public AbstractTest(AbstractActivity activity, BaseTest test, Class<JR> classOfResult) {
+		preferenceManager = activity.getPreferenceManager();
 		this.test = test;
 		this.classOfResult = classOfResult;
-		PreferenceManager preferenceManager = activity.getPreferenceManager();
 		gson = activity.getGson();
 		String filesDir = activity.getFilesDir().toString();
 		test.use_logcat();
@@ -58,8 +67,65 @@ public abstract class AbstractTest<JR extends AbstractJsonResult> {
 		return jrList;
 	}
 
-	public void onEntry(JR JR) {
-		// TODO add onEntryCommon logic here
+	public JsonResult onEntryCommon(String entry){
+		if (entry != null) {
+			JsonResult json = new Gson().fromJson(entry, JsonResult.class);
+			if (json.test_start_time != null)
+				result.setStartTimeWithUTCstr(json.test_start_time);
+			if (json.measurement_start_time != null)
+				measurement.setStartTimeWithUTCstr(json.measurement_start_time);
+			if (json.test_runtime != null) {
+				measurement.duration = json.test_runtime;
+				result.addDuration(json.test_runtime);
+			}
+			//if the user doesn't want to share asn leave null on the db object
+			if (json.probe_asn != null && preferenceManager.isIncludeAsn()) {
+				//TODO-SBS asn name
+				measurement.asn = json.probe_asn;
+				measurement.asnName = "Vodafone";
+				if (result.asn == null){
+					result.asn = json.probe_asn;
+					result.asnName = "Vodafone";
+				}
+				else if (!measurement.asn.equals(result.asn))
+					System.out.println("Something's wrong");
+			}
+			if (json.probe_cc != null && preferenceManager.isIncludeCc()) {
+				measurement.country = json.probe_cc;
+				if (result.country == null){
+					result.country = json.probe_cc;
+				}
+				else if (!measurement.country.equals(result.country))
+					System.out.println("Something's wrong");
+			}
+			if (json.probe_ip != null && preferenceManager.isIncludeIp()) {
+				measurement.ip = json.probe_ip;
+				if (result.ip == null){
+					result.ip = json.probe_ip;
+				}
+				else if (!measurement.ip.equals(result.ip))
+					System.out.println("Something's wrong");
+			}
+
+			if (json.report_id != null) {
+				measurement.reportId = json.report_id;
+			}
+			return json;
+		}
+		measurement.state = measurementFailed;
+		return null;
+	}
+
+	public void updateSummary() {
+		Summary summary = result.getSummary();
+		if (measurement.state != measurementFailed)
+			summary.failedMeasurements--;
+		if (!measurement.anomaly)
+			summary.okMeasurements++;
+		else
+			summary.anomalousMeasurements++;
+		result.setSummary();
+		result.save();
 	}
 
 	public interface TestCallback {
