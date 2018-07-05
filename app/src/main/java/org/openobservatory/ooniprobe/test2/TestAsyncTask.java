@@ -21,6 +21,26 @@ public class TestAsyncTask<JR extends AbstractJsonResult> extends AsyncTask<Abst
 		};
 	}
 
+	public static AbstractTest.TestJsonResult[] getWCTestList(AbstractActivity activity) {
+		return new AbstractTest.TestJsonResult[]{
+				new WebConnectivityTest(activity)
+		};
+	}
+
+	public static AbstractTest.TestJsonResult[] getSPTestList(AbstractActivity activity) {
+		return new AbstractTest.TestJsonResult[]{
+				new NdtTest(activity),
+				new DashTest(activity)
+		};
+	}
+
+	public static AbstractTest.TestJsonResultHttp[] getMBTestList(AbstractActivity activity) {
+		return new AbstractTest.TestJsonResultHttp[]{
+				new HttpHeaderFieldManipulationTest(activity),
+				new HttpInvalidRequestLineTest(activity)
+		};
+	}
+
 	@Override protected List<JR> doInBackground(AbstractTest<JR>... tests) {
 		List<JR> JRS = new ArrayList<>();
 		for (int i = 0; i < tests.length; i++)

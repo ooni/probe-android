@@ -11,6 +11,7 @@ import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.AbstractJsonResult;
 import org.openobservatory.ooniprobe.model.JsonResult;
+import org.openobservatory.ooniprobe.model.JsonResultHttp;
 import org.openobservatory.ooniprobe.utils.VersionUtils;
 
 import java.util.ArrayList;
@@ -72,6 +73,12 @@ public abstract class AbstractTest<JR extends AbstractJsonResult> {
 	public abstract static class TestJsonResult extends AbstractTest<JsonResult> {
 		TestJsonResult(AbstractActivity activity, BaseTest test) {
 			super(activity, test, JsonResult.class);
+		}
+	}
+
+	public abstract static class TestJsonResultHttp extends AbstractTest<JsonResultHttp> {
+		TestJsonResultHttp(AbstractActivity activity, BaseTest test) {
+			super(activity, test, JsonResultHttp.class);
 		}
 	}
 }
