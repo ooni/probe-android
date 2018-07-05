@@ -7,9 +7,9 @@ import org.openobservatory.ooniprobe.model.Test;
 
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
-public class FacebookMessenger extends AbstractTest.TestJsonResult {
+public class FacebookMessenger extends AbstractTest<JsonResult> {
 	public FacebookMessenger(AbstractActivity activity) {
-		super(activity, Test.FACEBOOK_MESSENGER, new org.openobservatory.measurement_kit.nettests.FacebookMessengerTest());
+		super(activity, Test.FACEBOOK_MESSENGER, new org.openobservatory.measurement_kit.nettests.FacebookMessengerTest(), JsonResult.class);
 	}
 
 	/*

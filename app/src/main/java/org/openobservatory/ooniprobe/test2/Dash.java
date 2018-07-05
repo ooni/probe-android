@@ -7,9 +7,9 @@ import org.openobservatory.ooniprobe.model.Test;
 
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
-public class Dash extends AbstractTest.TestJsonResult {
+public class Dash extends AbstractTest<JsonResult> {
 	public Dash(AbstractActivity activity) {
-		super(activity, Test.DASH, new org.openobservatory.measurement_kit.nettests.DashTest());
+		super(activity, Test.DASH, new org.openobservatory.measurement_kit.nettests.DashTest(), JsonResult.class);
 	}
 
 	/*

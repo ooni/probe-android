@@ -8,9 +8,13 @@ import org.openobservatory.ooniprobe.model.Test;
 
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
-public class Ndt extends AbstractTest.TestJsonResult {
+public class Ndt extends AbstractTest<JsonResult> {
+	private String[] countries;
+
+
 	public Ndt(AbstractActivity activity) {
-		super(activity, Test.NDT_TEST, new org.openobservatory.measurement_kit.nettests.NdtTest());
+		super(activity, Test.NDT_TEST, new org.openobservatory.measurement_kit.nettests.NdtTest(), JsonResult.class);
+		countries = activity.getResources().getStringArray(R.array.countries);
 	}
 
 	/*
@@ -42,7 +46,7 @@ public class Ndt extends AbstractTest.TestJsonResult {
 	}
 
 	private String getAirportCountry(String serverName) {
-		for (String country : context.getResources().getStringArray(R.array.countries))
+		for (String country : countries)
 			if (country.startsWith(serverName))
 				return country.split("\\|")[1];
 		return null;

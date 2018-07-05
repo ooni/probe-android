@@ -7,9 +7,9 @@ import org.openobservatory.ooniprobe.model.Test;
 
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
-public class WebConnectivity extends AbstractTest.TestJsonResult {
+public class WebConnectivity extends AbstractTest<JsonResult> {
 	public WebConnectivity(AbstractActivity activity) {
-		super(activity, Test.WEB_CONNECTIVITY, new org.openobservatory.measurement_kit.nettests.WebConnectivityTest());
+		super(activity, Test.WEB_CONNECTIVITY, new org.openobservatory.measurement_kit.nettests.WebConnectivityTest(), JsonResult.class);
 	}
 
 	/*

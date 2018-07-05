@@ -1,16 +1,15 @@
 package org.openobservatory.ooniprobe.test2;
 
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
-import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.JsonResultHttpHeader;
 import org.openobservatory.ooniprobe.model.Summary;
 import org.openobservatory.ooniprobe.model.Test;
 
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
-public class HttpHeaderFieldManipulation extends AbstractTest.TestJsonResultHttpHeader {
+public class HttpHeaderFieldManipulation extends AbstractTest<JsonResultHttpHeader> {
 	public HttpHeaderFieldManipulation(AbstractActivity activity) {
-		super(activity, Test.HTTP_HEADER_FIELD_MANIPULATION, new org.openobservatory.measurement_kit.nettests.HttpHeaderFieldManipulationTest());
+		super(activity, Test.HTTP_HEADER_FIELD_MANIPULATION, new org.openobservatory.measurement_kit.nettests.HttpHeaderFieldManipulationTest(), JsonResultHttpHeader.class);
 	}
 
 	/*
@@ -29,7 +28,7 @@ public class HttpHeaderFieldManipulation extends AbstractTest.TestJsonResultHttp
      */
 	@Override public void onEntry(JsonResultHttpHeader json) {
 		super.onEntry(json);
-		if(json != null) {
+		if (json != null) {
 			JsonResultHttpHeader.TestKeys keys = json.test_keys;
 			JsonResultHttpHeader.TestKeys.Tampering tampering = keys.tampering;
 			if (tampering == null)
@@ -41,7 +40,6 @@ public class HttpHeaderFieldManipulation extends AbstractTest.TestJsonResultHttp
 					Boolean.valueOf(tampering.request_line_capitalization) ||
 					Boolean.valueOf(tampering.total))
 				measurement.anomaly = true;
-
 			Summary summary = result.getSummary();
 			summary.http_header_field_manipulation = keys;
 			super.updateSummary();

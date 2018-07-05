@@ -7,9 +7,9 @@ import org.openobservatory.ooniprobe.model.Test;
 
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
-public class Telegram extends AbstractTest.TestJsonResult {
+public class Telegram extends AbstractTest<JsonResult> {
 	public Telegram(AbstractActivity activity) {
-		super(activity, Test.TELEGRAM, new org.openobservatory.measurement_kit.nettests.TelegramTest());
+		super(activity, Test.TELEGRAM, new org.openobservatory.measurement_kit.nettests.TelegramTest(), JsonResult.class);
 	}
 
 	/*

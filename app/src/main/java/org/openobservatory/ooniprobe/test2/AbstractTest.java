@@ -129,16 +129,4 @@ public abstract class AbstractTest<JR extends AbstractJsonResult> {
 
 		void onLog(String log);
 	}
-
-	public abstract static class TestJsonResult extends AbstractTest<JsonResult> {
-		TestJsonResult(AbstractActivity activity, String name, BaseTest test) {
-			super(activity, name, test, JsonResult.class);
-		}
-	}
-
-	public abstract static class TestJsonResultHttpHeader extends AbstractTest<JsonResultHttpHeader> {
-		TestJsonResultHttpHeader(AbstractActivity activity, String name, BaseTest test) {
-			super(activity, name, test, JsonResultHttpHeader.class);
-		}
-	}
 }

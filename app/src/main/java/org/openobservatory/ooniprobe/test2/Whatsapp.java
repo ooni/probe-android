@@ -7,9 +7,9 @@ import org.openobservatory.ooniprobe.model.Test;
 
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
-public class Whatsapp extends AbstractTest.TestJsonResult {
+public class Whatsapp extends AbstractTest<JsonResult> {
 	public Whatsapp(AbstractActivity activity) {
-		super(activity, Test.WHATSAPP, new org.openobservatory.measurement_kit.nettests.WhatsappTest());
+		super(activity, Test.WHATSAPP, new org.openobservatory.measurement_kit.nettests.WhatsappTest(), JsonResult.class);
 	}
 
 	/*

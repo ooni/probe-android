@@ -7,9 +7,9 @@ import org.openobservatory.ooniprobe.model.Test;
 
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
-public class HttpInvalidRequestLine extends AbstractTest.TestJsonResult {
+public class HttpInvalidRequestLine extends AbstractTest<JsonResult> {
 	public HttpInvalidRequestLine(AbstractActivity activity) {
-		super(activity, Test.HTTP_INVALID_REQUEST_LINE, new org.openobservatory.measurement_kit.nettests.HttpInvalidRequestLineTest());
+		super(activity, Test.HTTP_INVALID_REQUEST_LINE, new org.openobservatory.measurement_kit.nettests.HttpInvalidRequestLineTest(), JsonResult.class);
 	}
 
 	/*
