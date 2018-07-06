@@ -87,6 +87,9 @@ public class RunningActivity extends AbstractActivity {
 
 		@Override protected void onPostExecute(Void aVoid) {
 			super.onPostExecute(aVoid);
+			RunningActivity act = ref.get();
+			if (act != null && !act.isFinishing())
+				act.startActivity(MainActivity.newIntent(act, R.id.testResults));
 		}
 	}
 }

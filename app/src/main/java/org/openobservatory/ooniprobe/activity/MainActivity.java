@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,7 +16,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AbstractActivity {
+	public static final String RES_ITEM = "resItem";
 	@BindView(R.id.bottomNavigation) BottomNavigationView bottomNavigation;
+
+	public static Intent newIntent(Context context, int resItem) {
+		return new Intent(context, MainActivity.class).putExtra(RES_ITEM, resItem).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+	}
 
 	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,7 +39,7 @@ public class MainActivity extends AbstractActivity {
 					return false;
 			}
 		});
-		bottomNavigation.setSelectedItemId(R.id.dashboard);
+		bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
 		ActionBar bar = getSupportActionBar();
 		if (bar != null) {
 			bar.setDisplayShowCustomEnabled(true);
@@ -65,10 +71,8 @@ public class MainActivity extends AbstractActivity {
 	}
 
 	public void checkInformedConsent() {
-		if (getPreferenceManager().isShowIntro()) {
-			Intent InformedConsentIntent = new Intent(MainActivity.this, InformedConsentActivity.class);
-			startActivityForResult(InformedConsentIntent, InformedConsentActivity.REQUEST_CODE);
-		}
+		if (getPreferenceManager().isShowIntro())
+			startActivityForResult(new Intent(MainActivity.this, InformedConsentActivity.class), InformedConsentActivity.REQUEST_CODE);
 	}
 
 	@Override

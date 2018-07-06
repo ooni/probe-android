@@ -24,16 +24,16 @@ public class Test implements Serializable {
 	public static final String WHATSAPP = "whatsapp";
 	public static final String TELEGRAM = "telegram";
 	public static final String FACEBOOK_MESSENGER = "facebook_messenger";
-	int title;
-	int cardDesc;
-	int icon;
-	int color;
-	int themeLight;
-	int themeDark;
-	int desc1;
-	int desc2;
-	int pref;
-	String anim;
+	private int title;
+	private int cardDesc;
+	private int icon;
+	private int color;
+	private int themeLight;
+	private int themeDark;
+	private int desc1;
+	private int desc2;
+	private int pref;
+	private String anim;
 
 	public Test(@StringRes int title, @StringRes int cardDesc, @DrawableRes int icon, @ColorRes int color, @StyleRes int themeLight,@StyleRes int themeDark, @StringRes int desc1, @StringRes int desc2, @XmlRes int pref, String anim) {
 		this.title = title;

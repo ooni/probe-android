@@ -1,6 +1,5 @@
 package org.openobservatory.ooniprobe.activity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -11,7 +10,6 @@ import android.support.v4.app.FragmentManager;
 import com.github.paolorotolo.appintro.AppIntro;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.fragment.consent.IConsentPage1Fragment;
 import org.openobservatory.ooniprobe.fragment.consent.IConsentPage2Fragment;
 import org.openobservatory.ooniprobe.fragment.consent.IConsentPage3Fragment;
@@ -98,7 +96,6 @@ public class InformedConsentActivity extends AppIntro {
 		editor.putBoolean("upload_results", true);
 		editor.apply();
 		setResult(RESULT_CODE_COMPLETED);
-		((Application) getApplication()).getPreferenceManager().setShowIntro(false);
-		startActivity(new Intent(this, MainActivity.class));
+		finish();
 	}
 }
