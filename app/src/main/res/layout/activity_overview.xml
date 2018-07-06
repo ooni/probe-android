@@ -75,19 +75,10 @@
 		</android.support.design.widget.CollapsingToolbarLayout>
 	</android.support.design.widget.AppBarLayout>
 
-	<LinearLayout
+	<br.tiagohm.markdownview.MarkdownView
+		android:id="@+id/desc"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="5dp"
-		android:layout_marginBottom="5dp"
-		android:paddingLeft="10dp"
-		android:paddingRight="10dp"
-		android:orientation="vertical"
-		app:layout_behavior="@string/appbar_scrolling_view_behavior">
-		<br.tiagohm.markdownview.MarkdownView
-			android:id="@+id/desc"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:gravity="center_horizontal"/>
-	</LinearLayout>
+		android:layout_height="match_parent"
+		android:gravity="center_horizontal"
+		app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 </android.support.design.widget.CoordinatorLayout>

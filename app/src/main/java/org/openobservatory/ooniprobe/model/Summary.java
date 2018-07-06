@@ -29,7 +29,7 @@ public class Summary {
     @SerializedName("http_invalid_request_line")
     public JsonResult.TestKeys http_invalid_request_line;
     @SerializedName("http_header_field_manipulation")
-    public JsonResult.TestKeys http_header_field_manipulation;
+    public JsonResultHttpHeader.TestKeys http_header_field_manipulation;
 
     @SerializedName("ndt")
     public JsonResult.TestKeys ndt;

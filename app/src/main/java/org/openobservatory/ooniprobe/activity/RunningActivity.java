@@ -4,18 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.widget.ImageView;
+import android.view.animation.Animation;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
+
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Test;
 import org.openobservatory.ooniprobe.test2.AbstractTest;
 import org.openobservatory.ooniprobe.test2.TestAsyncTask;
 
 import java.lang.ref.WeakReference;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,7 +25,7 @@ public class RunningActivity extends AbstractActivity {
 	@BindView(R.id.name) TextView name;
 	@BindView(R.id.log) TextView log;
 	@BindView(R.id.progress) ProgressBar progress;
-	@BindView(R.id.icon) ImageView icon;
+	@BindView(R.id.animation) LottieAnimationView animation;
 
 	public static Intent newIntent(Context context, Test test) {
 		return new Intent(context, RunningActivity.class).putExtra(TEST, test);
@@ -37,32 +37,32 @@ public class RunningActivity extends AbstractActivity {
 		setTheme(test.getThemeDark());
 		setContentView(R.layout.activity_running);
 		ButterKnife.bind(this);
-		icon.setImageResource(test.getIcon());
-		AbstractTest.TestJsonResult[] testList = TestAsyncTask.getIMTestList(this);
-		progress.setMax(testList.length * 100);
-		new TestAsyncTaskImpl(this).execute(testList);
-
-	/*	switch (test.getTitle()) {
+		animation.setImageAssetsFolder("anim/");
+		animation.setAnimation(test.getAnim());
+		animation.setRepeatCount(Animation.INFINITE);
+		animation.playAnimation();
+		AbstractTest[] testList = null;
+		switch (test.getTitle()) {
 			case R.string.Test_Websites_Fullname:
-				NetworkTest.WCNetworkTest wcTest = new NetworkTest.WCNetworkTest(this);
-				wcTest.run();
+				testList = TestAsyncTask.getWCTestList(this);
 				break;
 			case R.string.Test_InstantMessaging_Fullname:
-				NetworkTest.IMNetworkTest imTest = new NetworkTest.IMNetworkTest(this);
-				imTest.run();
+				testList = TestAsyncTask.getIMTestList(this);
 				break;
 			case R.string.Test_Middleboxes_Fullname:
-				NetworkTest.MBNetworkTest mbTest = new NetworkTest.MBNetworkTest(this);
-				mbTest.run();
+				testList = TestAsyncTask.getMBTestList(this);
 				break;
 			case R.string.Test_Performance_Fullname:
-				NetworkTest.SPNetworkTest spTest = new NetworkTest.SPNetworkTest(this);
-				spTest.run();
+				testList = TestAsyncTask.getSPTestList(this);
 				break;
-		}*/
+		}
+		if (testList != null) {
+			progress.setMax(testList.length * 100);
+			new TestAsyncTaskImpl(this).execute(testList);
+		}
 	}
 
-	private static class TestAsyncTaskImpl extends TestAsyncTask<JsonResult> {
+	private static class TestAsyncTaskImpl extends TestAsyncTask {
 		private WeakReference<RunningActivity> ref;
 
 		TestAsyncTaskImpl(RunningActivity act) {
@@ -85,12 +85,8 @@ public class RunningActivity extends AbstractActivity {
 				}
 		}
 
-		@Override protected void onPostExecute(List<JsonResult> jsonResults) {
-			super.onPostExecute(jsonResults);
-			RunningActivity act = ref.get();
-			if (act != null && !act.isFinishing()) {
-				// TODO all test are finished, use jsonResults only for UI here if needed
-			}
+		@Override protected void onPostExecute(Void aVoid) {
+			super.onPostExecute(aVoid);
 		}
 	}
 }

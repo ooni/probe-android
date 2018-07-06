@@ -33,8 +33,9 @@ public class Test implements Serializable {
 	int desc1;
 	int desc2;
 	int pref;
+	String anim;
 
-	public Test(@StringRes int title, @StringRes int cardDesc, @DrawableRes int icon, @ColorRes int color, @StyleRes int themeLight,@StyleRes int themeDark, @StringRes int desc1, @StringRes int desc2, @XmlRes int pref) {
+	public Test(@StringRes int title, @StringRes int cardDesc, @DrawableRes int icon, @ColorRes int color, @StyleRes int themeLight,@StyleRes int themeDark, @StringRes int desc1, @StringRes int desc2, @XmlRes int pref, String anim) {
 		this.title = title;
 		this.cardDesc = cardDesc;
 		this.icon = icon;
@@ -44,6 +45,7 @@ public class Test implements Serializable {
 		this.desc1 = desc1;
 		this.desc2 = desc2;
 		this.pref = pref;
+		this.anim = anim;
 	}
 
 	public static Test get(String name) {
@@ -89,7 +91,8 @@ public class Test implements Serializable {
 				R.style.Theme_AppCompat_NoActionBar_App_Websites,
 				R.string.Dashboard_Websites_Overview_Paragraph_1,
 				R.string.Dashboard_Websites_Overview_Paragraph_2,
-				R.xml.preferences_websites
+				R.xml.preferences_websites,
+				"anim/websites.json"
 		);
 	}
 
@@ -103,7 +106,8 @@ public class Test implements Serializable {
 				R.style.Theme_AppCompat_NoActionBar_App_InstantMessaging,
 				R.string.Dashboard_InstantMessaging_Overview_Paragraph_1,
 				R.string.Dashboard_InstantMessaging_Overview_Paragraph_2,
-				R.xml.preferences_instant_messaging
+				R.xml.preferences_instant_messaging,
+				"anim/instant_messaging.json"
 		);
 	}
 
@@ -117,7 +121,8 @@ public class Test implements Serializable {
 				R.style.Theme_AppCompat_NoActionBar_App_MiddleBoxes,
 				R.string.Dashboard_Middleboxes_Overview_Paragraph_1,
 				R.string.Dashboard_Middleboxes_Overview_Paragraph_2,
-				R.xml.preferences_middleboxes
+				R.xml.preferences_middleboxes,
+				"anim/middle_boxes.json"
 		);
 	}
 
@@ -131,7 +136,8 @@ public class Test implements Serializable {
 				R.style.Theme_AppCompat_NoActionBar_App_Performance,
 				R.string.Dashboard_Performance_Overview_Paragraph_1,
 				R.string.Dashboard_Performance_Overview_Paragraph_2,
-				R.xml.preferences_performance
+				R.xml.preferences_performance,
+				"anim/performance.json"
 		);
 	}
 
@@ -145,6 +151,10 @@ public class Test implements Serializable {
 
 	public int getIcon() {
 		return icon;
+	}
+
+	public String getAnim() {
+		return anim;
 	}
 
 	public int getColor() {

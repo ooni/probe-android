@@ -48,10 +48,11 @@ public class HttpHeaderFieldManipulation extends MKNetworkTest {
 	        }
      */
     public void onEntry(String entry) {
+        /*
         JsonResult json = super.onEntryCommon(entry);
         if(json != null) {
             JsonResult.TestKeys keys = json.test_keys;
-            JsonResult.TestKeys.Tampering tampering = keys.tampering;
+            JsonResult.TestKeys.tampering tampering = keys.tampering;
             if (tampering == null)
                 measurement.state = measurementFailed;
             else if (Boolean.valueOf(tampering.header_field_name) ||
@@ -66,6 +67,6 @@ public class HttpHeaderFieldManipulation extends MKNetworkTest {
             summary.http_header_field_manipulation = keys;
             super.updateSummary();
             measurement.save();
-        }
+        }*/
     }
 }
