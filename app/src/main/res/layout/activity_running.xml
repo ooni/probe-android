@@ -22,12 +22,12 @@
 		android:layout_height="0dp"
 		android:layout_weight="1"/>
 
-	<ImageView
-		android:id="@+id/icon"
+	<com.airbnb.lottie.LottieAnimationView
+		android:id="@+id/animation"
 		android:layout_width="192dp"
 		android:layout_height="192dp"
 		android:layout_gravity="center"
-		android:src="@drawable/test_websites"/>
+		android:scaleType="fitCenter"/>
 
 	<View
 		android:layout_width="0dp"

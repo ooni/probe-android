@@ -4,9 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.widget.ImageView;
+import android.view.animation.Animation;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.airbnb.lottie.LottieAnimationView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.Test;
@@ -23,7 +25,7 @@ public class RunningActivity extends AbstractActivity {
 	@BindView(R.id.name) TextView name;
 	@BindView(R.id.log) TextView log;
 	@BindView(R.id.progress) ProgressBar progress;
-	@BindView(R.id.icon) ImageView icon;
+	@BindView(R.id.animation) LottieAnimationView animation;
 
 	public static Intent newIntent(Context context, Test test) {
 		return new Intent(context, RunningActivity.class).putExtra(TEST, test);
@@ -35,7 +37,10 @@ public class RunningActivity extends AbstractActivity {
 		setTheme(test.getThemeDark());
 		setContentView(R.layout.activity_running);
 		ButterKnife.bind(this);
-		icon.setImageResource(test.getIcon());
+		animation.setImageAssetsFolder("anim/");
+		animation.setAnimation(test.getAnim());
+		animation.setRepeatCount(Animation.INFINITE);
+		animation.playAnimation();
 		AbstractTest[] testList = null;
 		switch (test.getTitle()) {
 			case R.string.Test_Websites_Fullname:
