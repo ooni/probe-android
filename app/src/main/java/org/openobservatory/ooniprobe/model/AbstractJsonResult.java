@@ -2,6 +2,7 @@ package org.openobservatory.ooniprobe.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public abstract class AbstractJsonResult {
@@ -28,9 +29,9 @@ public abstract class AbstractJsonResult {
 		@SerializedName("accessible")
 		public String accessible;
 		@SerializedName("sent")
-		public String sent;
+		public ArrayList sent;
 		@SerializedName("received")
-		public String received;
+		public ArrayList received;
 		@SerializedName("failure")
 		public String failure;
 		@SerializedName("header_field_name")

@@ -33,6 +33,9 @@ public abstract class AbstractTest<JR extends AbstractJsonResult> {
 	private Gson gson;
 
 	public AbstractTest(AbstractActivity activity, String name, BaseTest test, Class<JR> classOfResult) {
+		//TODO-ALE managing db class
+		measurement = new Measurement();
+		result = new Result();
 		preferenceManager = activity.getPreferenceManager();
 		this.test = test;
 		this.name = name;
@@ -70,6 +73,7 @@ public abstract class AbstractTest<JR extends AbstractJsonResult> {
 
 	public void onEntry(JR json) {
 		if (json != null) {
+			//TODO-ALE
 			if (json.test_start_time != null)
 				result.setStartTimeWithUTCstr(json.test_start_time);
 			if (json.measurement_start_time != null)
