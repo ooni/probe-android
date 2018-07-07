@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.model.Test;
+import org.openobservatory.ooniprobe.test.TestSuite;
 
 import br.tiagohm.markdownview.MarkdownView;
 import br.tiagohm.markdownview.css.InternalStyleSheet;
@@ -26,33 +26,33 @@ public class OverviewActivity extends AbstractActivity {
 	@BindView(R.id.title) TextView title;
 	@BindView(R.id.configure) Button configure;
 	@BindView(R.id.desc) MarkdownView desc;
-	private Test test;
+	private TestSuite testSuite;
 
-	public static Intent newIntent(Context context, Test test) {
-		return new Intent(context, OverviewActivity.class).putExtra(TEST, test);
+	public static Intent newIntent(Context context, TestSuite testSuite) {
+		return new Intent(context, OverviewActivity.class).putExtra(TEST, testSuite);
 	}
 
 	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		test = (Test) getIntent().getSerializableExtra(TEST);
-		setTheme(test.getThemeLight());
+		testSuite = (TestSuite) getIntent().getSerializableExtra(TEST);
+		setTheme(testSuite.getThemeLight());
 		setContentView(R.layout.activity_overview);
 		ButterKnife.bind(this);
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		icon.setImageResource(test.getIcon());
-		title.setText(test.getTitle());
+		icon.setImageResource(testSuite.getIcon());
+		title.setText(testSuite.getTitle());
 		InternalStyleSheet css = new Github();
 		css.addFontFace("FiraSans", "regular", "italic", "normal", "url('firasans_regular_normal.otf')");
 		desc.addStyleSheet(css);
-		desc.loadMarkdown(getString(test.getDesc1()) + "\n\n" + getString(test.getDesc1()));
+		desc.loadMarkdown(getString(testSuite.getDesc1()) + "\n\n" + getString(testSuite.getDesc1()));
 	}
 
 	@OnClick(R.id.configure) void onConfigureClick() {
-		startActivity(PreferenceActivity.newIntent(this, test.getPref()));
+		startActivity(PreferenceActivity.newIntent(this, testSuite.getPref()));
 	}
 
 	@OnClick(R.id.run) void onRunClick() {
-		startActivity(RunningActivity.newIntent(this, test));
+		startActivity(RunningActivity.newIntent(this, testSuite));
 	}
 }

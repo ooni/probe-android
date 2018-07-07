@@ -1,15 +1,17 @@
-package org.openobservatory.ooniprobe.test2;
+package org.openobservatory.ooniprobe.test.impl;
 
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Summary;
-import org.openobservatory.ooniprobe.model.Test;
+import org.openobservatory.ooniprobe.test.AbstractTest;
 
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
 public class HttpInvalidRequestLine extends AbstractTest<JsonResult> {
+	public static final String NAME = "http_invalid_request_line";
+
 	public HttpInvalidRequestLine(AbstractActivity activity) {
-		super(activity, Test.HTTP_INVALID_REQUEST_LINE, new org.openobservatory.measurement_kit.nettests.HttpInvalidRequestLineTest(), JsonResult.class);
+		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.HttpInvalidRequestLineTest(), JsonResult.class);
 	}
 
 	/*
@@ -19,14 +21,13 @@ public class HttpInvalidRequestLine extends AbstractTest<JsonResult> {
      */
 	@Override public void onEntry(JsonResult json) {
 		super.onEntry(json);
-		if(json != null) {
+		if (json != null) {
 			JsonResult.TestKeys keys = json.test_keys;
 			if (keys.failure != null)
 				measurement.state = measurementFailed;
 			//TODO
 			//else if (Boolean.valueOf(keys.tampering))
 			//    measurement.anomaly = true;
-
 			Summary summary = result.getSummary();
 			summary.http_invalid_request_line = keys;
 			super.updateSummary();

@@ -1,15 +1,17 @@
-package org.openobservatory.ooniprobe.test2;
+package org.openobservatory.ooniprobe.test.impl;
 
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Summary;
-import org.openobservatory.ooniprobe.model.Test;
+import org.openobservatory.ooniprobe.test.AbstractTest;
 
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
 public class Telegram extends AbstractTest<JsonResult> {
+	public static final String NAME = "telegram";
+
 	public Telegram(AbstractActivity activity) {
-		super(activity, Test.TELEGRAM, new org.openobservatory.measurement_kit.nettests.TelegramTest(), JsonResult.class);
+		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.TelegramTest(), JsonResult.class);
 	}
 
 	/*
@@ -18,13 +20,12 @@ public class Telegram extends AbstractTest<JsonResult> {
      */
 	@Override public void onEntry(JsonResult json) {
 		super.onEntry(json);
-		if(json != null) {
+		if (json != null) {
 			JsonResult.TestKeys keys = json.test_keys;
 			if (keys.telegram_http_blocking == null || keys.telegram_tcp_blocking == null || keys.telegram_web_status == null)
 				measurement.state = measurementFailed;
 			else if (Boolean.valueOf(keys.telegram_http_blocking) || Boolean.valueOf(keys.telegram_tcp_blocking) || keys.telegram_web_status.equals("blocked"))
 				measurement.anomaly = true;
-
 			Summary summary = result.getSummary();
 			summary.telegram = keys;
 			super.updateSummary();

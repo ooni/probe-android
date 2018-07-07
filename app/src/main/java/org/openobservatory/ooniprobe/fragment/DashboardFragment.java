@@ -14,7 +14,7 @@ import org.openobservatory.ooniprobe.activity.OverviewActivity;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.item.TestItem;
-import org.openobservatory.ooniprobe.model.Test;
+import org.openobservatory.ooniprobe.test.TestSuite;
 
 import java.util.ArrayList;
 
@@ -31,10 +31,10 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		View v = inflater.inflate(R.layout.recycler, container, false);
 		ButterKnife.bind(this, v);
 		items = new ArrayList<>();
-		items.add(new TestItem(Test.getWebsiteTest(), this));
-		items.add(new TestItem(Test.getInstantMessaging(), this));
-		items.add(new TestItem(Test.getMiddleBoxes(), this));
-		items.add(new TestItem(Test.getPerformance(), this));
+		items.add(new TestItem(TestSuite.getWebsiteTest(), this));
+		items.add(new TestItem(TestSuite.getInstantMessaging(), this));
+		items.add(new TestItem(TestSuite.getMiddleBoxes(), this));
+		items.add(new TestItem(TestSuite.getPerformance(), this));
 		adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
 		recycler.setAdapter(adapter);
 		recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -42,16 +42,16 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 	}
 
 	@Override public void onClick(View v) {
-		Test test = (Test) v.getTag();
+		TestSuite testSuite = (TestSuite) v.getTag();
 		switch (v.getId()) {
 			case R.id.configure:
-				startActivity(PreferenceActivity.newIntent(getActivity(), test.getPref()));
+				startActivity(PreferenceActivity.newIntent(getActivity(), testSuite.getPref()));
 				break;
 			case R.id.run:
-				startActivity(RunningActivity.newIntent(getActivity(), test));
+				startActivity(RunningActivity.newIntent(getActivity(), testSuite));
 				break;
 			default:
-				startActivity(OverviewActivity.newIntent(getActivity(), test));
+				startActivity(OverviewActivity.newIntent(getActivity(), testSuite));
 				break;
 		}
 	}

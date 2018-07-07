@@ -1,15 +1,17 @@
-package org.openobservatory.ooniprobe.test2;
+package org.openobservatory.ooniprobe.test.impl;
 
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Summary;
-import org.openobservatory.ooniprobe.model.Test;
+import org.openobservatory.ooniprobe.test.AbstractTest;
 
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
 public class Dash extends AbstractTest<JsonResult> {
+	public static final String NAME = "dash";
+
 	public Dash(AbstractActivity activity) {
-		super(activity, Test.DASH, new org.openobservatory.measurement_kit.nettests.DashTest(), JsonResult.class);
+		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.DashTest(), JsonResult.class);
 	}
 
 	/*

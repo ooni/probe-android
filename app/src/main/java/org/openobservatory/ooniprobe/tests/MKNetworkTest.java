@@ -58,8 +58,8 @@ public class MKNetworkTest {
         Boolean upload_results = preferenceManager.isUploadResults();
 
         test.use_logcat();
-        test.set_output_filepath(measurement.getReportFile(context));
-        test.set_error_filepath(measurement.getLogFile(context));
+    //    test.set_output_filepath(measurement.getReportFile(context));
+    //    test.set_error_filepath(measurement.getLogFile(context));
         if (true)
             test.set_verbosity(LogSeverity.LOG_DEBUG2);
         else

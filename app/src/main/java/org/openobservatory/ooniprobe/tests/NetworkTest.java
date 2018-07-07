@@ -5,7 +5,6 @@ import android.content.Context;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.Result;
-import org.openobservatory.ooniprobe.model.Test;
 
 import java.util.ArrayList;
 
@@ -46,7 +45,7 @@ public class NetworkTest {
 	  	//send local notification
 	}
 	
-
+/*
 	public static class WCNetworkTest extends NetworkTest {
 		public WCNetworkTest(Context context) {
 			super(context);
@@ -88,5 +87,5 @@ public class NetworkTest {
 			if (preferenceManager.isRunDash())
 				mkNetworkTests.add(new Dash(context));
 		}
-	}
+	}*/
 }

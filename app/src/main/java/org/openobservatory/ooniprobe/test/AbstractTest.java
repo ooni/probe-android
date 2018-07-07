@@ -1,5 +1,7 @@
-package org.openobservatory.ooniprobe.test2;
+package org.openobservatory.ooniprobe.test;
 
+import android.content.Context;
+import android.support.annotation.CallSuper;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -10,27 +12,22 @@ import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.AbstractJsonResult;
-import org.openobservatory.ooniprobe.model.JsonResult;
-import org.openobservatory.ooniprobe.model.JsonResultHttpHeader;
 import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.model.Summary;
 import org.openobservatory.ooniprobe.utils.VersionUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
 public abstract class AbstractTest<JR extends AbstractJsonResult> {
-	String name;
-	Result result;
-	Measurement measurement;
-	BaseTest test;
-	PreferenceManager preferenceManager;
+	protected String name;
+	protected Result result;
+	protected Measurement measurement;
+	protected BaseTest test;
+	protected PreferenceManager preferenceManager;
 	private Class<JR> classOfResult;
 	private Gson gson;
+	private long timestamp;
 
 	public AbstractTest(AbstractActivity activity, String name, BaseTest test, Class<JR> classOfResult) {
 		//TODO-ALE managing db class
@@ -41,13 +38,13 @@ public abstract class AbstractTest<JR extends AbstractJsonResult> {
 		this.name = name;
 		this.classOfResult = classOfResult;
 		gson = activity.getGson();
-		String filesDir = activity.getFilesDir().toString();
+		timestamp = System.currentTimeMillis();
 		test.use_logcat();
-		test.set_output_filepath(filesDir + "/" + new Random().nextInt() + ".json"); // TODO check file name
-		test.set_error_filepath(filesDir + "/" + new Random().nextInt() + ".log"); // TODO check file name
+		test.set_output_filepath(getOutputFilepath(activity));
+		test.set_error_filepath(getErrorFilepath(activity));
 		test.set_verbosity(BuildConfig.DEBUG ? LogSeverity.LOG_DEBUG2 : LogSeverity.LOG_INFO);
-		test.set_option("geoip_country_path", filesDir + "/GeoIP.dat");
-		test.set_option("geoip_asn_path", filesDir + "/GeoIPASNum.dat");
+		test.set_option("geoip_country_path", activity.getFilesDir() + "/GeoIP.dat");
+		test.set_option("geoip_asn_path", activity.getFilesDir() + "/GeoIPASNum.dat");
 		test.set_option("save_real_probe_ip", preferenceManager.getIncludeIp());
 		test.set_option("save_real_probe_asn", preferenceManager.getIncludeAsn());
 		test.set_option("save_real_probe_cc", preferenceManager.getIncludeCc());
@@ -56,22 +53,26 @@ public abstract class AbstractTest<JR extends AbstractJsonResult> {
 		test.set_option("software_version", VersionUtils.get_software_version());
 	}
 
-	public List<JR> run(int index, TestCallback testCallback) {
-		List<JR> jrList = new ArrayList<>();
+	public String getOutputFilepath(Context context) {
+		return context.getFilesDir() + name + "-" + timestamp + ".json";
+	}
+
+	public String getErrorFilepath(Context context) {
+		return context.getFilesDir() + name + "-" + timestamp + ".log";
+	}
+
+	public void run(int index, TestCallback testCallback) {
 		test.on_progress((v, s) -> testCallback.onProgress(Double.valueOf((index + v) * 100).intValue()));
 		test.on_log((l, s) -> testCallback.onLog(s));
 		test.on_entry(entry -> {
 			Log.d("entry", entry);
-			JR r = gson.fromJson(entry, classOfResult);
-			onEntry(r);
-			jrList.add(r);
+			onEntry(gson.fromJson(entry, classOfResult));
 		});
 		testCallback.onStart("test: " + index);
 		test.run();
-		return jrList;
 	}
 
-	public void onEntry(JR json) {
+	@CallSuper public void onEntry(JR json) {
 		if (json != null) {
 			//TODO-ALE
 			if (json.test_start_time != null)

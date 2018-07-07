@@ -1,46 +1,28 @@
-package org.openobservatory.ooniprobe.tests;
+package org.openobservatory.ooniprobe.test.impl;
 
-import android.content.Context;
-
-import org.openobservatory.measurement_kit.nettests.NdtTest;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Summary;
-import org.openobservatory.ooniprobe.model.Test;
+import org.openobservatory.ooniprobe.test.AbstractTest;
 
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
-public class Ndt extends MKNetworkTest {
+public class Ndt extends AbstractTest<JsonResult> {
+	public static final String NAME = "ndt_test";
+	private String[] countries;
 
-    public Ndt(Context context){
-        super(context);
-        super.name = Test.NDT_TEST;
-        super.measurement.name = super.name;
-        initTest();
-    }
-
-    public void run(){
-        super.run();
-    }
-
-    public void initTest(){
-        NdtTest test = new NdtTest();
-        this.test = test;
-        test.on_entry(new org.openobservatory.measurement_kit.nettests.EntryCallback() {
-            @Override
-            public void callback(String entry) {
-                onEntry(entry);
-            }
-        });
-        super.initCommon();
-    }
+	public Ndt(AbstractActivity activity) {
+		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.NdtTest(), JsonResult.class);
+		countries = activity.getResources().getStringArray(R.array.countries);
+	}
 
 	/*
-	 onEntry method for ndt test, check "failure" key
-	 !=null => failed
+	 	onEntry method for ndt test, check "failure" key
+	 	!=null => failed
 	 */
-	public void onEntry(String entry) {
-		JsonResult json = super.onEntryCommon(entry);
+	@Override public void onEntry(JsonResult json) {
+		super.onEntry(json);
 		if (json != null) {
 			JsonResult.TestKeys keys = json.test_keys;
 			if (keys.failure != null)
@@ -64,7 +46,7 @@ public class Ndt extends MKNetworkTest {
 	}
 
 	private String getAirportCountry(String serverName) {
-		for (String country : context.getResources().getStringArray(R.array.countries))
+		for (String country : countries)
 			if (country.startsWith(serverName))
 				return country.split("\\|")[1];
 		return null;
