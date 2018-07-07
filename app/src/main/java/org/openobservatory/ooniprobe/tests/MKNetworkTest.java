@@ -116,9 +116,9 @@ public class MKNetworkTest {
         if (entry != null) {
             JsonResult json = new Gson().fromJson(entry, JsonResult.class);
             if (json.test_start_time != null)
-                result.setStartTimeWithUTCstr(json.test_start_time);
+                result.startTime = json.measurement_start_time;
             if (json.measurement_start_time != null)
-                measurement.setStartTimeWithUTCstr(json.measurement_start_time);
+                measurement.startTime = json.measurement_start_time;
             if (json.test_runtime != null) {
                 measurement.duration = json.test_runtime;
                 result.addDuration(json.test_runtime);

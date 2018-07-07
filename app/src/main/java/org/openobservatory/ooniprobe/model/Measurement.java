@@ -1,9 +1,9 @@
 package org.openobservatory.ooniprobe.model;
 
 import java.util.Date;
-import java.util.Random;
 
 public class Measurement {
+	public int id;
 	public String name;
 	public Date startTime;
 	public double duration;
@@ -14,25 +14,15 @@ public class Measurement {
 	public String networkName;
 	public String networkType;
 	public MeasurementState state;
-	public Boolean anomaly;
+	public boolean anomaly;
 	//TODO this should be an array of results
 	public Result result;
 	public String reportId;
 	public String input;
 	public String category;
-	int id;
-	public Measurement() {
-		Random random = new Random();
-		this.id = random.nextInt(); // TODO get id from abstract test
-		//defaultValuesForEntity
-		this.anomaly = false;
-		this.duration = 0;
-		this.startTime = new java.util.Date();
-	}
 
-	public void setStartTimeWithUTCstr(Date value) {
-		//TODO set startTime with UTC string
-		//input 2018-06-21 13:37:16
+	public Measurement() {
+		startTime = new java.util.Date();
 	}
 
 	public void save() {

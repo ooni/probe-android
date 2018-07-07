@@ -40,8 +40,7 @@ public abstract class AbstractTest<JR extends AbstractJsonResult> {
 		gson = activity.getGson();
 		timestamp = System.currentTimeMillis();
 		test.use_logcat();
-		test.set_output_filepath(getOutputFilepath(activity));
-		test.set_error_filepath(getErrorFilepath(activity));
+		setFilepaths(activity, test);
 		test.set_verbosity(BuildConfig.DEBUG ? LogSeverity.LOG_DEBUG2 : LogSeverity.LOG_INFO);
 		test.set_option("geoip_country_path", activity.getFilesDir() + "/GeoIP.dat");
 		test.set_option("geoip_asn_path", activity.getFilesDir() + "/GeoIPASNum.dat");
@@ -53,12 +52,9 @@ public abstract class AbstractTest<JR extends AbstractJsonResult> {
 		test.set_option("software_version", VersionUtils.get_software_version());
 	}
 
-	public String getOutputFilepath(Context context) {
-		return context.getFilesDir() + name + "-" + timestamp + ".json";
-	}
-
-	public String getErrorFilepath(Context context) {
-		return context.getFilesDir() + name + "-" + timestamp + ".log";
+	protected void setFilepaths(Context context, BaseTest test) {
+		test.set_output_filepath(context.getFilesDir() + name + "-" + measurement.id + ".json");
+		test.set_error_filepath(context.getFilesDir() + name + "-" + measurement.id + ".log");
 	}
 
 	public void run(int index, TestCallback testCallback) {
@@ -76,9 +72,9 @@ public abstract class AbstractTest<JR extends AbstractJsonResult> {
 		if (json != null) {
 			//TODO-ALE
 			if (json.test_start_time != null)
-				result.setStartTimeWithUTCstr(json.test_start_time);
+				result.startTime = json.test_start_time;
 			if (json.measurement_start_time != null)
-				measurement.setStartTimeWithUTCstr(json.measurement_start_time);
+				measurement.startTime = json.measurement_start_time;
 			if (json.test_runtime != null) {
 				measurement.duration = json.test_runtime;
 				result.addDuration(json.test_runtime);

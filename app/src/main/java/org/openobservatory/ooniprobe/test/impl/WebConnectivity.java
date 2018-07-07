@@ -2,6 +2,7 @@ package org.openobservatory.ooniprobe.test.impl;
 
 import android.content.Context;
 
+import org.openobservatory.measurement_kit.nettests.BaseTest;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Summary;
@@ -16,12 +17,8 @@ public class WebConnectivity extends AbstractTest<JsonResult> {
 		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.WebConnectivityTest(), JsonResult.class);
 	}
 
-	@Override public String getOutputFilepath(Context context) {
-		return context.getFilesDir() + name + "-" + System.currentTimeMillis() + ".json";
-	}
-
-	@Override public String getErrorFilepath(Context context) {
-		return context.getFilesDir() + name + "-" + System.currentTimeMillis() + ".log";
+	@Override protected void setFilepaths(Context context, BaseTest test) {
+		test.set_error_filepath(context.getFilesDir() + name + "-" + measurement.id + ".log");
 	}
 
 	/*
