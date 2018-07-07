@@ -2,7 +2,7 @@ package org.openobservatory.ooniprobe.test.impl;
 
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
-import org.openobservatory.ooniprobe.model.Summary;
+import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.test.AbstractTest;
 
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
@@ -10,8 +10,8 @@ import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.m
 public class HttpInvalidRequestLine extends AbstractTest<JsonResult> {
 	public static final String NAME = "http_invalid_request_line";
 
-	public HttpInvalidRequestLine(AbstractActivity activity) {
-		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.HttpInvalidRequestLineTest(), JsonResult.class);
+	public HttpInvalidRequestLine(AbstractActivity activity, Result result) {
+		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.HttpInvalidRequestLineTest(), JsonResult.class, result);
 	}
 
 	/*
@@ -28,9 +28,7 @@ public class HttpInvalidRequestLine extends AbstractTest<JsonResult> {
 			//TODO
 			//else if (Boolean.valueOf(keys.tampering))
 			//    measurement.anomaly = true;
-			Summary summary = result.getSummary();
-			summary.http_invalid_request_line = keys;
-			super.updateSummary();
+			super.updateSummary(json);
 			measurement.save();
 		}
 	}

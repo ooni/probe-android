@@ -5,7 +5,7 @@ import android.content.Context;
 import org.openobservatory.measurement_kit.nettests.BaseTest;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
-import org.openobservatory.ooniprobe.model.Summary;
+import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.test.AbstractTest;
 
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
@@ -13,12 +13,12 @@ import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.m
 public class WebConnectivity extends AbstractTest<JsonResult> {
 	public static final String NAME = "web_connectivity";
 
-	public WebConnectivity(AbstractActivity activity) {
-		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.WebConnectivityTest(), JsonResult.class);
+	public WebConnectivity(AbstractActivity activity, Result result) {
+		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.WebConnectivityTest(), JsonResult.class, result);
 	}
 
 	@Override protected void setFilepaths(Context context, BaseTest test) {
-		test.set_error_filepath(context.getFilesDir() + name + "-" + measurement.id + ".log");
+		test.set_error_filepath(context.getFilesDir() + measurement.name + "-" + measurement.id + ".log");
 	}
 
 	/*
@@ -34,9 +34,7 @@ public class WebConnectivity extends AbstractTest<JsonResult> {
 				measurement.state = measurementFailed;
 			else if (!keys.blocking.equals("false"))
 				measurement.anomaly = true;
-			Summary summary = result.getSummary();
-			summary.web_connectivity = keys;
-			super.updateSummary();
+			super.updateSummary(json);
 			measurement.save();
 		}
 	}

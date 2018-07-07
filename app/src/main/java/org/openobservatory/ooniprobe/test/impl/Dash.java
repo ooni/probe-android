@@ -2,7 +2,7 @@ package org.openobservatory.ooniprobe.test.impl;
 
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
-import org.openobservatory.ooniprobe.model.Summary;
+import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.test.AbstractTest;
 
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
@@ -10,8 +10,8 @@ import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.m
 public class Dash extends AbstractTest<JsonResult> {
 	public static final String NAME = "dash";
 
-	public Dash(AbstractActivity activity) {
-		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.DashTest(), JsonResult.class);
+	public Dash(AbstractActivity activity, Result result) {
+		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.DashTest(), JsonResult.class, result);
 	}
 
 	/*
@@ -24,9 +24,7 @@ public class Dash extends AbstractTest<JsonResult> {
 			JsonResult.TestKeys keys = json.test_keys;
 			if (keys.failure != null)
 				measurement.state = measurementFailed;
-			Summary summary = result.getSummary();
-			summary.dash = keys;
-			super.updateSummary();
+			super.updateSummary(json);
 			measurement.save();
 		}
 	}

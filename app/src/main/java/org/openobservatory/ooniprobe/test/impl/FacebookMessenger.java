@@ -2,7 +2,7 @@ package org.openobservatory.ooniprobe.test.impl;
 
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
-import org.openobservatory.ooniprobe.model.Summary;
+import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.test.AbstractTest;
 
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
@@ -10,8 +10,8 @@ import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.m
 public class FacebookMessenger extends AbstractTest<JsonResult> {
 	public static final String NAME = "facebook_messenger";
 
-	public FacebookMessenger(AbstractActivity activity) {
-		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.FacebookMessengerTest(), JsonResult.class);
+	public FacebookMessenger(AbstractActivity activity, Result result) {
+		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.FacebookMessengerTest(), JsonResult.class, result);
 	}
 
 	/*
@@ -26,9 +26,7 @@ public class FacebookMessenger extends AbstractTest<JsonResult> {
 				measurement.state = measurementFailed;
 			else if (Boolean.valueOf(keys.facebook_tcp_blocking) || Boolean.valueOf(keys.facebook_dns_blocking))
 				measurement.anomaly = true;
-			Summary summary = result.getSummary();
-			summary.facebook_messenger = keys;
-			super.updateSummary();
+			super.updateSummary(json);
 			measurement.save();
 		}
 	}

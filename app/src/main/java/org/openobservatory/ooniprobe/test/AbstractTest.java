@@ -12,6 +12,7 @@ import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.AbstractJsonResult;
+import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.model.Summary;
@@ -20,8 +21,6 @@ import org.openobservatory.ooniprobe.utils.VersionUtils;
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
 public abstract class AbstractTest<JR extends AbstractJsonResult> {
-	protected String name;
-	protected Result result;
 	protected Measurement measurement;
 	protected BaseTest test;
 	protected PreferenceManager preferenceManager;
@@ -29,13 +28,13 @@ public abstract class AbstractTest<JR extends AbstractJsonResult> {
 	private Gson gson;
 	private long timestamp;
 
-	public AbstractTest(AbstractActivity activity, String name, BaseTest test, Class<JR> classOfResult) {
+	public AbstractTest(AbstractActivity activity, String name, BaseTest test, Class<JR> classOfResult, Result result) {
 		//TODO-ALE managing db class
 		measurement = new Measurement();
-		result = new Result();
+		measurement.result = result;
+		measurement.name = name;
 		preferenceManager = activity.getPreferenceManager();
 		this.test = test;
-		this.name = name;
 		this.classOfResult = classOfResult;
 		gson = activity.getGson();
 		timestamp = System.currentTimeMillis();
@@ -53,8 +52,8 @@ public abstract class AbstractTest<JR extends AbstractJsonResult> {
 	}
 
 	protected void setFilepaths(Context context, BaseTest test) {
-		test.set_output_filepath(context.getFilesDir() + name + "-" + measurement.id + ".json");
-		test.set_error_filepath(context.getFilesDir() + name + "-" + measurement.id + ".log");
+		test.set_output_filepath(context.getFilesDir() + measurement.name + "-" + measurement.id + ".json");
+		test.set_error_filepath(context.getFilesDir() + measurement.name + "-" + measurement.id + ".log");
 	}
 
 	public void run(int index, TestCallback testCallback) {
@@ -72,36 +71,36 @@ public abstract class AbstractTest<JR extends AbstractJsonResult> {
 		if (json != null) {
 			//TODO-ALE
 			if (json.test_start_time != null)
-				result.startTime = json.test_start_time;
+				measurement.result.startTime = json.test_start_time;
 			if (json.measurement_start_time != null)
 				measurement.startTime = json.measurement_start_time;
 			if (json.test_runtime != null) {
 				measurement.duration = json.test_runtime;
-				result.addDuration(json.test_runtime);
+				measurement.result.addDuration(json.test_runtime);
 			}
 			//if the user doesn't want to share asn leave null on the db object
 			if (json.probe_asn != null && preferenceManager.isIncludeAsn()) {
 				//TODO-SBS asn name
 				measurement.asn = json.probe_asn;
 				measurement.asnName = "Vodafone";
-				if (result.asn == null) {
-					result.asn = json.probe_asn;
-					result.asnName = "Vodafone";
-				} else if (!measurement.asn.equals(result.asn))
+				if (measurement.result.asn == null) {
+					measurement.result.asn = json.probe_asn;
+					measurement.result.asnName = "Vodafone";
+				} else if (!measurement.asn.equals(measurement.result.asn))
 					System.out.println("Something's wrong");
 			}
 			if (json.probe_cc != null && preferenceManager.isIncludeCc()) {
 				measurement.country = json.probe_cc;
-				if (result.country == null) {
-					result.country = json.probe_cc;
-				} else if (!measurement.country.equals(result.country))
+				if (measurement.result.country == null) {
+					measurement.result.country = json.probe_cc;
+				} else if (!measurement.country.equals(measurement.result.country))
 					System.out.println("Something's wrong");
 			}
 			if (json.probe_ip != null && preferenceManager.isIncludeIp()) {
 				measurement.ip = json.probe_ip;
-				if (result.ip == null) {
-					result.ip = json.probe_ip;
-				} else if (!measurement.ip.equals(result.ip))
+				if (measurement.result.ip == null) {
+					measurement.result.ip = json.probe_ip;
+				} else if (!measurement.ip.equals(measurement.result.ip))
 					System.out.println("Something's wrong");
 			}
 			if (json.report_id != null) {
@@ -111,16 +110,18 @@ public abstract class AbstractTest<JR extends AbstractJsonResult> {
 			measurement.state = measurementFailed;
 	}
 
-	public void updateSummary() {
-		Summary summary = result.getSummary();
+	public void updateSummary(JsonResult json) {
+		Summary summary = measurement.result.getSummary();
+		if (json != null)
+			summary.getTestKeysMap().put(measurement.name, json.test_keys);
 		if (measurement.state != measurementFailed)
 			summary.failedMeasurements--;
 		if (!measurement.anomaly)
 			summary.okMeasurements++;
 		else
 			summary.anomalousMeasurements++;
-		result.setSummary();
-		result.save();
+		measurement.result.setSummary();
+		measurement.result.save();
 	}
 
 	public interface TestCallback {

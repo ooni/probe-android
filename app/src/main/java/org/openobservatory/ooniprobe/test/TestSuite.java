@@ -8,6 +8,8 @@ import android.support.annotation.XmlRes;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.test.impl.Dash;
 import org.openobservatory.ooniprobe.test.impl.FacebookMessenger;
 import org.openobservatory.ooniprobe.test.impl.HttpHeaderFieldManipulation;
@@ -18,6 +20,7 @@ import org.openobservatory.ooniprobe.test.impl.WebConnectivity;
 import org.openobservatory.ooniprobe.test.impl.Whatsapp;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class TestSuite implements Serializable {
 	private int title;
@@ -105,18 +108,36 @@ public class TestSuite implements Serializable {
 	}
 
 	public AbstractTest[] getTestList(AbstractActivity activity) {
+		PreferenceManager preferenceManager = activity.getPreferenceManager();
+		Result result = new Result();
+		result.save();
+		ArrayList<AbstractTest> list = new ArrayList<>();
 		switch (title) {
 			case R.string.Test_Websites_Fullname:
-				return new AbstractTest[]{new WebConnectivity(activity)};
+				list.add(new WebConnectivity(activity, result));
+				break;
 			case R.string.Test_InstantMessaging_Fullname:
-				return new AbstractTest[]{new Whatsapp(activity), new Telegram(activity), new FacebookMessenger(activity)};
+				if (preferenceManager.isTestWhatsapp())
+					list.add(new Whatsapp(activity, result));
+				if (preferenceManager.isTestTelegram())
+					list.add(new Telegram(activity, result));
+				if (preferenceManager.isTestFacebookMessenger())
+					list.add(new FacebookMessenger(activity, result));
+				break;
 			case R.string.Test_Middleboxes_Fullname:
-				return new AbstractTest[]{new HttpHeaderFieldManipulation(activity), new HttpInvalidRequestLine(activity)};
+				if (preferenceManager.isRunHttpHeaderFieldManipulation())
+					list.add(new HttpHeaderFieldManipulation(activity, result));
+				if (preferenceManager.isRunHttpInvalidRequestLine())
+					list.add(new HttpInvalidRequestLine(activity, result));
+				break;
 			case R.string.Test_Performance_Fullname:
-				return new AbstractTest[]{new Ndt(activity), new Dash(activity)};
-			default:
-				return null;
+				if (preferenceManager.isRunNdt())
+					list.add(new Ndt(activity, result));
+				if (preferenceManager.isRunDash())
+					list.add(new Dash(activity, result));
+				break;
 		}
+		return list.toArray(new AbstractTest[list.size()]);
 	}
 
 	public int getTitle() {

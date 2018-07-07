@@ -2,7 +2,7 @@ package org.openobservatory.ooniprobe.test.impl;
 
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResultHttpHeader;
-import org.openobservatory.ooniprobe.model.Summary;
+import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.test.AbstractTest;
 
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
@@ -10,8 +10,8 @@ import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.m
 public class HttpHeaderFieldManipulation extends AbstractTest<JsonResultHttpHeader> {
 	public static final String NAME = "http_header_field_manipulation";
 
-	public HttpHeaderFieldManipulation(AbstractActivity activity) {
-		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.HttpHeaderFieldManipulationTest(), JsonResultHttpHeader.class);
+	public HttpHeaderFieldManipulation(AbstractActivity activity, Result result) {
+		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.HttpHeaderFieldManipulationTest(), JsonResultHttpHeader.class, result);
 	}
 
 	/*
@@ -42,9 +42,8 @@ public class HttpHeaderFieldManipulation extends AbstractTest<JsonResultHttpHead
 					Boolean.valueOf(tampering.request_line_capitalization) ||
 					Boolean.valueOf(tampering.total))
 				measurement.anomaly = true;
-			Summary summary = result.getSummary();
-			summary.http_header_field_manipulation = keys;
-			super.updateSummary();
+			measurement.result.getSummary().testKeysHttpHeader = json.test_keys;
+			super.updateSummary(null);
 			measurement.save();
 		}
 	}
