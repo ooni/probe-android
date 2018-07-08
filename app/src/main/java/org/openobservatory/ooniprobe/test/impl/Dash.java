@@ -20,7 +20,7 @@ public class Dash extends AbstractTest {
      !=null => failed
      */
 	@Override public void onEntry(@NonNull JsonResult json) {
-		measurement.state = json.testKeys.failure == null ? Measurement.State.DONE : Measurement.State.FAILED;
+		measurement.state = json.test_keys.failure == null ? Measurement.State.DONE : Measurement.State.FAILED;
 		super.onEntry(json);
 	}
 }

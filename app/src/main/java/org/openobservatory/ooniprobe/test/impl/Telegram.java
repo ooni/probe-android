@@ -20,9 +20,9 @@ public class Telegram extends AbstractTest {
          if either "telegram_http_blocking" or "telegram_tcp_blocking" is true, OR if "telegram_web_status" is "blocked" => anomalous
      */
 	@Override public void onEntry(@NonNull JsonResult json) {
-		if (json.testKeys.telegramHttpBlocking == null || json.testKeys.telegramTcpBlocking == null || json.testKeys.telegramWebStatus == null)
+		if (json.test_keys.telegram_http_blocking == null || json.test_keys.telegram_tcp_blocking == null || json.test_keys.telegram_web_status == null)
 			measurement.state = Measurement.State.FAILED;
-		else if (json.testKeys.telegramHttpBlocking || json.testKeys.telegramTcpBlocking || json.testKeys.telegramWebStatus.equals("blocked")) {
+		else if (json.test_keys.telegram_http_blocking || json.test_keys.telegram_tcp_blocking || json.test_keys.telegram_web_status.equals("blocked")) {
 			measurement.state = Measurement.State.DONE;
 			measurement.anomaly = true;
 		}
