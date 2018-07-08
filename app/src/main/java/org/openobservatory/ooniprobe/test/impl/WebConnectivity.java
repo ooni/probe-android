@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.test.impl;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import org.openobservatory.measurement_kit.nettests.BaseTest;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
@@ -26,16 +27,13 @@ public class WebConnectivity extends AbstractTest<JsonResult> {
      false => not blocked
      string (dns, tcp-ip, http-failure, http-diff) => anomalous
      */
-	@Override public void onEntry(JsonResult json) {
+	@Override public void onEntry(@NonNull JsonResult json) {
+		JsonResult.TestKeys keys = json.test_keys;
+		if (keys.blocking == null)
+			measurement.state = measurementFailed;
+		else if (!keys.blocking.equals("false"))
+			measurement.anomaly = true;
+		measurement.result.getSummary().getTestKeysMap().put(measurement.name, json.test_keys);
 		super.onEntry(json);
-		if (json != null) {
-			JsonResult.TestKeys keys = json.test_keys;
-			if (keys.blocking == null)
-				measurement.state = measurementFailed;
-			else if (!keys.blocking.equals("false"))
-				measurement.anomaly = true;
-			super.updateSummary(json);
-			measurement.save();
-		}
 	}
 }

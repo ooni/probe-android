@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.test.impl;
 
+import android.support.annotation.NonNull;
+
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Result;
@@ -19,17 +21,14 @@ public class HttpInvalidRequestLine extends AbstractTest<JsonResult> {
          null => failed
          true => anomalous
      */
-	@Override public void onEntry(JsonResult json) {
+	@Override public void onEntry(@NonNull JsonResult json) {
+		JsonResult.TestKeys keys = json.test_keys;
+		if (keys.failure != null)
+			measurement.state = measurementFailed;
+		//TODO
+		//else if (Boolean.valueOf(keys.tampering))
+		//    measurement.anomaly = true;
+		measurement.result.getSummary().getTestKeysMap().put(measurement.name, json.test_keys);
 		super.onEntry(json);
-		if (json != null) {
-			JsonResult.TestKeys keys = json.test_keys;
-			if (keys.failure != null)
-				measurement.state = measurementFailed;
-			//TODO
-			//else if (Boolean.valueOf(keys.tampering))
-			//    measurement.anomaly = true;
-			super.updateSummary(json);
-			measurement.save();
-		}
 	}
 }

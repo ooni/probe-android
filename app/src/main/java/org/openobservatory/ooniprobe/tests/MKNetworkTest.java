@@ -34,11 +34,7 @@ public class MKNetworkTest {
     }
 
     public void createMeasurementObject(){
-        measurement = new Measurement();
-        if (result != null)
-            measurement.result = result;
-        if (name != null)
-            measurement.name = name;
+        measurement = new Measurement(result, name);
         measurement.save();
     }
 

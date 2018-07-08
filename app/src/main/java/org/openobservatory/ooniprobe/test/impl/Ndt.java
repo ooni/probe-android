@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.test.impl;
 
+import android.support.annotation.NonNull;
+
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
@@ -21,16 +23,13 @@ public class Ndt extends AbstractTest<JsonResult> {
 	 	onEntry method for ndt test, check "failure" key
 	 	!=null => failed
 	 */
-	@Override public void onEntry(JsonResult json) {
+	@Override public void onEntry(@NonNull JsonResult json) {
+		JsonResult.TestKeys keys = json.test_keys;
+		if (keys.failure != null)
+			measurement.state = measurementFailed;
+		calculateServerName(keys);
+		measurement.result.getSummary().getTestKeysMap().put(measurement.name, json.test_keys);
 		super.onEntry(json);
-		if (json != null) {
-			JsonResult.TestKeys keys = json.test_keys;
-			if (keys.failure != null)
-				measurement.state = measurementFailed;
-			calculateServerName(keys);
-			super.updateSummary(json);
-			measurement.save();
-		}
 	}
 
 	private void calculateServerName(JsonResult.TestKeys keys) {

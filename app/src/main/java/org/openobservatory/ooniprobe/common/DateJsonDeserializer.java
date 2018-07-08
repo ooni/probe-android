@@ -10,7 +10,7 @@ import com.google.gson.JsonPrimitive;
 import java.lang.reflect.Type;
 import java.util.Date;
 
-public class DateAdapter implements JsonDeserializer<Date> {
+public class DateJsonDeserializer implements JsonDeserializer<Date> {
 	@Override public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
 		return new Gson().fromJson(new JsonPrimitive(json.getAsString().replace(' ','T') + "Z"), typeOfT);
 	}

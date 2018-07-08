@@ -26,7 +26,7 @@ public class Application extends android.app.Application {
 	@Override public void onCreate() {
 		super.onCreate();
 		preferenceManager = new PreferenceManager(this);
-		gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateAdapter()).create();
+		gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateJsonDeserializer()).create();
 		CrashlyticsCore core = new CrashlyticsCore.Builder().disabled(preferenceManager.isSendCrash()).build();
 		Fabric.with(this, new Crashlytics.Builder().core(core).build());
 		FirebaseApp.initializeApp(this);

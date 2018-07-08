@@ -21,8 +21,11 @@ public class Measurement {
 	public String input;
 	public String category;
 
-	public Measurement() {
+	public Measurement(Result result, String name) {
+		this.result = result;
+		this.name = name;
 		startTime = new java.util.Date();
+		state = MeasurementState.measurementFailed;
 	}
 
 	public void save() {

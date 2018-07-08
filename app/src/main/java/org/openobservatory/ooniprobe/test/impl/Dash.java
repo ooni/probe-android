@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.test.impl;
 
+import android.support.annotation.NonNull;
+
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Result;
@@ -18,14 +20,11 @@ public class Dash extends AbstractTest<JsonResult> {
      onEntry method for dash test, check "failure" key
      !=null => failed
      */
-	@Override public void onEntry(JsonResult json) {
+	@Override public void onEntry(@NonNull JsonResult json) {
+		JsonResult.TestKeys keys = json.test_keys;
+		if (keys.failure != null)
+			measurement.state = measurementFailed;
+		measurement.result.getSummary().getTestKeysMap().put(measurement.name, json.test_keys);
 		super.onEntry(json);
-		if (json != null) {
-			JsonResult.TestKeys keys = json.test_keys;
-			if (keys.failure != null)
-				measurement.state = measurementFailed;
-			super.updateSummary(json);
-			measurement.save();
-		}
 	}
 }
