@@ -31,12 +31,10 @@ public class HttpHeaderFieldManipulation extends AbstractTest {
 	        }
      */
 	@Override public void onEntry(@NonNull JsonResult json) {
-		JsonResult.TestKeys keys = json.test_keys;
-		JsonResult.TestKeys.Tampering tampering = keys.tampering;
-		if (tampering == null)
+		if (json.test_keys.tampering == null)
 			measurement.state = measurementFailed;
-		else if (tampering.value)
-			measurement.anomaly = true;
+		else
+			measurement.anomaly = json.test_keys.tampering.value;
 		super.onEntry(json);
 	}
 }

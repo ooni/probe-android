@@ -21,10 +21,9 @@ public class Whatsapp extends AbstractTest {
          if "whatsapp_endpoints_status" or "whatsapp_web_status" or "registration_server_status" are "blocked" => anomalous
      */
 	@Override public void onEntry(@NonNull JsonResult json) {
-		JsonResult.TestKeys keys = json.test_keys;
-		if (keys.whatsapp_endpoints_status == null || keys.whatsapp_web_status == null || keys.registration_server_status == null)
+		if (json.test_keys.whatsapp_endpoints_status == null || json.test_keys.whatsapp_web_status == null || json.test_keys.registration_server_status == null)
 			measurement.state = measurementFailed;
-		else if (keys.whatsapp_endpoints_status.equals("blocked") || keys.whatsapp_web_status.equals("blocked") || keys.registration_server_status.equals("blocked"))
+		else if (json.test_keys.whatsapp_endpoints_status.equals("blocked") || json.test_keys.whatsapp_web_status.equals("blocked") || json.test_keys.registration_server_status.equals("blocked"))
 			measurement.anomaly = true;
 		super.onEntry(json);
 	}

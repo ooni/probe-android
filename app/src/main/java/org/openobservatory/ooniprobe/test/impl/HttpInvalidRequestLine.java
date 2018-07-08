@@ -23,11 +23,10 @@ public class HttpInvalidRequestLine extends AbstractTest {
      */
 	@Override public void onEntry(@NonNull JsonResult json) {
 		JsonResult.TestKeys keys = json.test_keys;
-		if (keys.failure != null)
+		if (keys.failure != null || keys.tampering == null) // TODO lorenzo check this
 			measurement.state = measurementFailed;
-		//TODO
-		//else if (Boolean.valueOf(keys.tampering))
-		//    measurement.anomaly = true;
+		else
+			measurement.anomaly = keys.tampering.value;
 		super.onEntry(json);
 	}
 }

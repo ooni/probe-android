@@ -24,20 +24,17 @@ public class Ndt extends AbstractTest {
 	 	!=null => failed
 	 */
 	@Override public void onEntry(@NonNull JsonResult json) {
-		JsonResult.TestKeys keys = json.test_keys;
-		if (keys.failure != null)
+		if (json.test_keys.failure != null)
 			measurement.state = measurementFailed;
-		calculateServerName(keys);
+		calculateServerName(json.test_keys);
 		super.onEntry(json);
 	}
 
 	private void calculateServerName(JsonResult.TestKeys keys) {
-		String serverAddress = keys.server_address;
-		String[] parts = serverAddress.split(",");
+		String[] parts = keys.server_address.split(",");
 		if (parts.length > 3) {
-			String serverName = parts[3];
-			keys.server_name = serverName;
-			keys.server_country = getAirportCountry(serverName.substring(0, 3));
+			keys.server_name = parts[3];
+			keys.server_country = getAirportCountry(parts[3].substring(0, 3));
 		}
 	}
 

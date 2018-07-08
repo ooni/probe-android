@@ -70,7 +70,7 @@ public abstract class AbstractTest {
 		measurement.state = Measurement.MeasurementState.measurementActive;
 		measurement.save();
 		test.run();
-		if (measurement.state != Measurement.MeasurementState.measurementFailed)
+		if (measurement.state != Measurement.MeasurementState.measurementFailed) // TODO Lorenzo check this "if"
 			measurement.state = Measurement.MeasurementState.measurementDone;
 		measurement.save();
 	}

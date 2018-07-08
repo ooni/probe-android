@@ -27,7 +27,7 @@ public abstract class JsonResult {
 
 	public abstract static class TestKeys {
 		@SerializedName("blocking")
-		public String blocking;
+		public Boolean blocking;
 		@SerializedName("accessible")
 		public String accessible;
 		@SerializedName("sent")
@@ -63,13 +63,13 @@ public abstract class JsonResult {
 		@SerializedName("registration_server_status")
 		public String registration_server_status;
 		@SerializedName("facebook_tcp_blocking")
-		public String facebook_tcp_blocking;
+		public Boolean facebook_tcp_blocking;
 		@SerializedName("facebook_dns_blocking")
-		public String facebook_dns_blocking;
+		public Boolean facebook_dns_blocking;
 		@SerializedName("telegram_http_blocking")
-		public String telegram_http_blocking;
+		public Boolean telegram_http_blocking;
 		@SerializedName("telegram_tcp_blocking")
-		public String telegram_tcp_blocking;
+		public Boolean telegram_tcp_blocking;
 		@SerializedName("telegram_web_status")
 		public String telegram_web_status;
 		@SerializedName("simple")
