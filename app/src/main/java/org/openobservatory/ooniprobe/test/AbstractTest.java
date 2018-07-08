@@ -74,43 +74,43 @@ public abstract class AbstractTest {
 	}
 
 	@CallSuper public void onEntry(@NonNull JsonResult json) {
-		if (json.test_start_time != null)
-			measurement.result.startTime = json.test_start_time;
-		if (json.measurement_start_time != null)
-			measurement.startTime = json.measurement_start_time;
+		if (json.testStartTime != null)
+			measurement.result.startTime = json.testStartTime;
+		if (json.measurementStartTime != null)
+			measurement.startTime = json.measurementStartTime;
 		if (json.test_runtime != null) {
 			measurement.duration = json.test_runtime;
 			measurement.result.addDuration(json.test_runtime);
 		}
 		//if the user doesn't want to share asn leave null on the db object
-		if (json.probe_asn != null && preferenceManager.isIncludeAsn()) {
+		if (json.probeAsn != null && preferenceManager.isIncludeAsn()) {
 			//TODO-SBS asn name
-			measurement.asn = json.probe_asn;
+			measurement.asn = json.probeAsn;
 			measurement.asnName = "Vodafone";
 			if (measurement.result.asn == null) {
-				measurement.result.asn = json.probe_asn;
+				measurement.result.asn = json.probeAsn;
 				measurement.result.asnName = "Vodafone";
 			} else if (!measurement.asn.equals(measurement.result.asn))
 				System.out.println("Something's wrong");
 		}
-		if (json.probe_cc != null && preferenceManager.isIncludeCc()) {
-			measurement.country = json.probe_cc;
+		if (json.probeCc != null && preferenceManager.isIncludeCc()) {
+			measurement.country = json.probeCc;
 			if (measurement.result.country == null) {
-				measurement.result.country = json.probe_cc;
+				measurement.result.country = json.probeCc;
 			} else if (!measurement.country.equals(measurement.result.country))
 				System.out.println("Something's wrong");
 		}
-		if (json.probe_ip != null && preferenceManager.isIncludeIp()) {
-			measurement.ip = json.probe_ip;
+		if (json.probeIp != null && preferenceManager.isIncludeIp()) {
+			measurement.ip = json.probeIp;
 			if (measurement.result.ip == null) {
-				measurement.result.ip = json.probe_ip;
+				measurement.result.ip = json.probeIp;
 			} else if (!measurement.ip.equals(measurement.result.ip))
 				System.out.println("Something's wrong");
 		}
-		if (json.report_id != null) {
-			measurement.reportId = json.report_id;
+		if (json.reportId != null) {
+			measurement.reportId = json.reportId;
 		}
-		measurement.result.getSummary().getTestKeysMap().put(measurement.name, json.test_keys);
+		measurement.result.getSummary().getTestKeysMap().put(measurement.name, json.testKeys);
 	}
 
 	private void updateSummary() {

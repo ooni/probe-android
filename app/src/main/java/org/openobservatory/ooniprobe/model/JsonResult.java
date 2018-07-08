@@ -7,23 +7,23 @@ import java.util.Date;
 
 public abstract class JsonResult {
 	@SerializedName("probe_asn")
-	public String probe_asn;
+	public String probeAsn;
 	@SerializedName("probe_cc")
-	public String probe_cc;
+	public String probeCc;
 	@SerializedName("test_start_time")
-	public Date test_start_time;
+	public Date testStartTime;
 	@SerializedName("measurement_start_time")
-	public Date measurement_start_time;
+	public Date measurementStartTime;
 	@SerializedName("test_runtime")
 	public Double test_runtime;
 	@SerializedName("probe_ip")
-	public String probe_ip;
+	public String probeIp;
 	@SerializedName("report_id")
-	public String report_id;
+	public String reportId;
 	@SerializedName("input")
 	public String input;
 	@SerializedName("test_keys")
-	public TestKeys test_keys;
+	public TestKeys testKeys;
 
 	public abstract static class TestKeys {
 		@SerializedName("blocking")
@@ -37,41 +37,41 @@ public abstract class JsonResult {
 		@SerializedName("failure")
 		public String failure;
 		@SerializedName("header_field_name")
-		public String header_field_name;
+		public String headerFieldName;
 		@SerializedName("header_field_number")
-		public String header_field_number;
+		public String headerFieldNumber;
 		@SerializedName("header_field_value")
-		public String header_field_value;
+		public String headerFieldValue;
 		@SerializedName("header_name_capitalization")
-		public String header_name_capitalization;
+		public String headerNameCapitalization;
 		@SerializedName("request_line_capitalization")
-		public String request_line_capitalization;
+		public String requestLineCapitalization;
 		@SerializedName("total")
 		public String total;
 		@SerializedName("server_address")
-		public String server_address;
-		public String server_name;
-		public String server_country;
+		public String serverAddress;
+		public String serverName;
+		public String serverCountry;
 		@SerializedName("median_bitrate")
-		public String median_bitrate;
+		public String medianBitrate;
 		@SerializedName("min_playout_delay")
-		public String min_playout_delay;
+		public String minPlayoutDelay;
 		@SerializedName("whatsapp_endpoints_status")
-		public String whatsapp_endpoints_status;
+		public String whatsappEndpointsStatus;
 		@SerializedName("whatsapp_web_status")
-		public String whatsapp_web_status;
+		public String whatsappWebStatus;
 		@SerializedName("registration_server_status")
-		public String registration_server_status;
+		public String registrationServerStatus;
 		@SerializedName("facebook_tcp_blocking")
-		public Boolean facebook_tcp_blocking;
+		public Boolean facebookTcpBlocking;
 		@SerializedName("facebook_dns_blocking")
-		public Boolean facebook_dns_blocking;
+		public Boolean facebookDnsBlocking;
 		@SerializedName("telegram_http_blocking")
-		public Boolean telegram_http_blocking;
+		public Boolean telegramHttpBlocking;
 		@SerializedName("telegram_tcp_blocking")
-		public Boolean telegram_tcp_blocking;
+		public Boolean telegramTcpBlocking;
 		@SerializedName("telegram_web_status")
-		public String telegram_web_status;
+		public String telegramWebStatus;
 		@SerializedName("simple")
 		public Simple simple;
 		@SerializedName("advanced")
@@ -90,13 +90,13 @@ public abstract class JsonResult {
 
 		public class Advanced {
 			@SerializedName("packet_loss")
-			public String packet_loss;
+			public String packetLoss;
 			@SerializedName("out_of_order")
-			public String out_of_order;
+			public String outOfOrder;
 			@SerializedName("avg_rtt")
-			public String avg_rtt;
+			public String avgRtt;
 			@SerializedName("max_rtt")
-			public String max_rtt;
+			public String maxRtt;
 			@SerializedName("mss")
 			public String mss;
 			@SerializedName("timeouts")

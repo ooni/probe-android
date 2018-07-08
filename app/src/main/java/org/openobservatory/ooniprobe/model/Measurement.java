@@ -15,7 +15,6 @@ public class Measurement {
 	public String networkType;
 	public State state;
 	public boolean anomaly;
-	//TODO this should be an array of results
 	public Result result;
 	public String reportId;
 	public String input;

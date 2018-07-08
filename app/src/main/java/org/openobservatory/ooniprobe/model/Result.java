@@ -8,6 +8,7 @@ import org.openobservatory.ooniprobe.R;
 
 import java.text.DecimalFormat;
 import java.util.Date;
+import java.util.List;
 
 public class Result {
 	public int id;
@@ -26,7 +27,7 @@ public class Result {
 	public Summary summaryObj;
 	public boolean viewed;
 	public boolean done;
-	public Measurement measurements;
+	public List<Measurement> measurements;
 
 	public Result() {
 		this.startTime = new Date();

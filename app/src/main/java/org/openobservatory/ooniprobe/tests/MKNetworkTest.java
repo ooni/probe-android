@@ -110,45 +110,45 @@ public class MKNetworkTest {
     public JsonResult onEntryCommon(String entry){
         if (entry != null) {
             JsonResult json = new Gson().fromJson(entry, JsonResult.class);
-            if (json.test_start_time != null)
-                result.startTime = json.measurement_start_time;
-            if (json.measurement_start_time != null)
-                measurement.startTime = json.measurement_start_time;
+            if (json.testStartTime != null)
+                result.startTime = json.measurementStartTime;
+            if (json.measurementStartTime != null)
+                measurement.startTime = json.measurementStartTime;
             if (json.test_runtime != null) {
                 measurement.duration = json.test_runtime;
                 result.addDuration(json.test_runtime);
             }
             //if the user doesn't want to share asn leave null on the db object
-            if (json.probe_asn != null && preferenceManager.isIncludeAsn()) {
+            if (json.probeAsn != null && preferenceManager.isIncludeAsn()) {
                 //TODO-SBS asn name
-                measurement.asn = json.probe_asn;
+                measurement.asn = json.probeAsn;
                 measurement.asnName = "Vodafone";
                 if (result.asn == null){
-                    result.asn = json.probe_asn;
+                    result.asn = json.probeAsn;
                     result.asnName = "Vodafone";
                 }
                 else if (!measurement.asn.equals(result.asn))
                     System.out.println("Something's wrong");
             }
-            if (json.probe_cc != null && preferenceManager.isIncludeCc()) {
-                measurement.country = json.probe_cc;
+            if (json.probeCc != null && preferenceManager.isIncludeCc()) {
+                measurement.country = json.probeCc;
                 if (result.country == null){
-                    result.country = json.probe_cc;
+                    result.country = json.probeCc;
                 }
                 else if (!measurement.country.equals(result.country))
                     System.out.println("Something's wrong");
             }
-            if (json.probe_ip != null && preferenceManager.isIncludeIp()) {
-                measurement.ip = json.probe_ip;
+            if (json.probeIp != null && preferenceManager.isIncludeIp()) {
+                measurement.ip = json.probeIp;
                 if (result.ip == null){
-                    result.ip = json.probe_ip;
+                    result.ip = json.probeIp;
                 }
                 else if (!measurement.ip.equals(result.ip))
                     System.out.println("Something's wrong");
             }
 
-            if (json.report_id != null) {
-                measurement.reportId = json.report_id;
+            if (json.reportId != null) {
+                measurement.reportId = json.reportId;
             }
             return json;
         }

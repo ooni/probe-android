@@ -21,7 +21,7 @@ public class HttpInvalidRequestLine extends AbstractTest {
          true => anomalous
      */
 	@Override public void onEntry(@NonNull JsonResult json) {
-		JsonResult.TestKeys keys = json.test_keys;
+		JsonResult.TestKeys keys = json.testKeys;
 		if (keys.failure != null || keys.tampering == null) // TODO lorenzo check "|| keys.tampering == null"
 			measurement.state = Measurement.State.FAILED;
 		else {

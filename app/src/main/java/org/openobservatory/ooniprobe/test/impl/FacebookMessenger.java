@@ -20,11 +20,11 @@ public class FacebookMessenger extends AbstractTest {
         if "facebook_tcp_blocking" or "facebook_dns_blocking" are true => anomalous
      */
 	@Override public void onEntry(@NonNull JsonResult json) {
-		if (json.test_keys.facebook_tcp_blocking == null || json.test_keys.facebook_dns_blocking == null)
+		if (json.testKeys.facebookTcpBlocking == null || json.testKeys.facebookDnsBlocking == null)
 			measurement.state = Measurement.State.FAILED;
 		else {
 			measurement.state = Measurement.State.DONE;
-			measurement.anomaly = json.test_keys.facebook_tcp_blocking || json.test_keys.facebook_dns_blocking;
+			measurement.anomaly = json.testKeys.facebookTcpBlocking || json.testKeys.facebookDnsBlocking;
 		}
 		super.onEntry(json);
 	}

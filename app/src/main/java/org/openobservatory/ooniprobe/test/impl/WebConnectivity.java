@@ -27,9 +27,9 @@ public class WebConnectivity extends AbstractTest {
      string (dns, tcp-ip, http-failure, http-diff) => anomalous
      */
 	@Override public void onEntry(@NonNull JsonResult json) {
-		if (json.test_keys.blocking == null)
+		if (json.testKeys.blocking == null)
 			measurement.state = Measurement.State.FAILED;
-		else if (json.test_keys.blocking) {
+		else if (json.testKeys.blocking) {
 			measurement.state = Measurement.State.DONE;
 			measurement.anomaly = true;
 		}
