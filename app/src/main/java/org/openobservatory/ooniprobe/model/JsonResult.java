@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.Date;
 
-public abstract class JsonResult {
+public class JsonResult {
 	@SerializedName("probe_asn")
 	public String probeAsn;
 	@SerializedName("probe_cc")
@@ -25,7 +25,7 @@ public abstract class JsonResult {
 	@SerializedName("test_keys")
 	public TestKeys testKeys;
 
-	public abstract static class TestKeys {
+	public static class TestKeys {
 		@SerializedName("blocking")
 		public Boolean blocking;
 		@SerializedName("accessible")
@@ -79,7 +79,7 @@ public abstract class JsonResult {
 		@SerializedName("tampering")
 		public Tampering tampering;
 
-		public class Simple {
+		public static class Simple {
 			@SerializedName("upload")
 			public String upload;
 			@SerializedName("download")
@@ -88,7 +88,7 @@ public abstract class JsonResult {
 			public String ping;
 		}
 
-		public class Advanced {
+		public static class Advanced {
 			@SerializedName("packet_loss")
 			public String packetLoss;
 			@SerializedName("out_of_order")

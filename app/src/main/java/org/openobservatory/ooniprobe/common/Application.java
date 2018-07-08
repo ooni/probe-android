@@ -6,6 +6,8 @@ import com.google.android.gms.common.util.IOUtils;
 import com.google.firebase.FirebaseApp;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.raizlabs.android.dbflow.annotation.Database;
+import com.raizlabs.android.dbflow.config.FlowManager;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.JsonResult;
@@ -16,6 +18,7 @@ import java.util.Date;
 
 import io.fabric.sdk.android.Fabric;
 
+@Database(version = 1, foreignKeyConstraintsEnforced = true)
 public class Application extends android.app.Application {
 	static {
 		System.loadLibrary("measurement_kit");
@@ -26,6 +29,7 @@ public class Application extends android.app.Application {
 
 	@Override public void onCreate() {
 		super.onCreate();
+		FlowManager.init(this);
 		preferenceManager = new PreferenceManager(this);
 		gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateJsonDeserializer()).registerTypeAdapter(JsonResult.TestKeys.Tampering.class, new TamperingJsonDeserializer()).create();
 		CrashlyticsCore core = new CrashlyticsCore.Builder().disabled(preferenceManager.isSendCrash()).build();

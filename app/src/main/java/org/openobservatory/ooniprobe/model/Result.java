@@ -3,31 +3,39 @@ package org.openobservatory.ooniprobe.model;
 import android.content.Context;
 
 import com.google.gson.Gson;
+import com.raizlabs.android.dbflow.annotation.Column;
+import com.raizlabs.android.dbflow.annotation.OneToMany;
+import com.raizlabs.android.dbflow.annotation.PrimaryKey;
+import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
+import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.Application;
 
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 
-public class Result {
-	public int id;
-	public String name;
-	public Date startTime;
-	public float duration;
-	public long dataUsageDown;
-	public long dataUsageUp;
-	public String ip;
-	public String asn;
-	public String asnName;
-	public String country;
-	public String networkName;
-	public String networkType;
-	public String summary;
-	public Summary summaryObj;
-	public boolean viewed;
-	public boolean done;
-	public List<Measurement> measurements;
+@Table(database = Application.class)
+public class Result extends BaseModel {
+	@PrimaryKey(autoincrement = true) public int id;
+	@Column public float duration;
+	@Column public long dataUsageDown;
+	@Column public long dataUsageUp;
+	@Column public boolean viewed;
+	@Column public boolean done;
+	@Column public Date startTime;
+	@Column public String name;
+	@Column public String ip;
+	@Column public String asn;
+	@Column public String asnName;
+	@Column public String country;
+	@Column public String networkName;
+	@Column public String networkType;
+	@Column public String summary;
+	List<Measurement> measurements;
+	private Summary summaryObj;
 
 	public Result() {
 		this.startTime = new Date();
@@ -38,6 +46,13 @@ public class Result {
 		final String[] units = new String[]{"B", "kB", "MB", "GB", "TB"};
 		int digitGroups = (int) (Math.log10(size) / Math.log10(1024));
 		return new DecimalFormat("#,##0.#").format(size / Math.pow(1024, digitGroups)) + " " + units[digitGroups];
+	}
+
+	@OneToMany(methods = {OneToMany.Method.ALL}, variableName = "measurements")
+	public List<Measurement> getMeasurements() {
+		if (measurements == null || measurements.isEmpty())
+			measurements = SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id)).queryList();
+		return measurements;
 	}
 
 	public String getLocalizedNetworkType(Context context) {
@@ -100,10 +115,8 @@ public class Result {
 		return context.getString(R.string.TestResults_UnknownASN);
 	}
 
-	public void save() {
-	}
-
-	public void deleteObject() {
+	@Override public boolean delete() {
 		//TODO delete logFile and jsonFile for every measurement and the measurements
+		return super.delete();
 	}
 }

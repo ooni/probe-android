@@ -1,24 +1,36 @@
 package org.openobservatory.ooniprobe.model;
 
+import com.raizlabs.android.dbflow.annotation.Column;
+import com.raizlabs.android.dbflow.annotation.ForeignKey;
+import com.raizlabs.android.dbflow.annotation.PrimaryKey;
+import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.structure.BaseModel;
+
+import org.openobservatory.ooniprobe.common.Application;
+
 import java.util.Date;
 
-public class Measurement {
-	public int id;
-	public String name;
-	public Date startTime;
-	public double duration;
-	public String ip;
-	public String asn;
-	public String asnName;
-	public String country;
-	public String networkName;
-	public String networkType;
-	public State state;
-	public boolean anomaly;
-	public Result result;
-	public String reportId;
-	public String input;
-	public String category;
+@Table(database = Application.class)
+public class Measurement extends BaseModel {
+	@PrimaryKey(autoincrement = true) public int id;
+	@Column public double duration;
+	@Column public boolean anomaly;
+	@Column public String name;
+	@Column public String ip;
+	@Column public String asn;
+	@Column public String asnName;
+	@Column public String country;
+	@Column public String networkName;
+	@Column public String networkType;
+	@Column public String reportId;
+	@Column public String input;
+	@Column public String category;
+	@Column public Date startTime;
+	@Column public State state;
+	@ForeignKey public Result result;
+
+	public Measurement() {
+	}
 
 	public Measurement(Result result, String name) {
 		this.result = result;
@@ -27,11 +39,9 @@ public class Measurement {
 		state = State.FAILED;
 	}
 
-	public void save() {
-	}
-
-	public void deleteObject() {
+	@Override public boolean delete() {
 		//TODO delete logFile and jsonFile
+		return super.delete();
 	}
 
 	// The possible states of a measurements are:
