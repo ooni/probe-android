@@ -4,10 +4,9 @@ import android.support.annotation.NonNull;
 
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
+import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.test.AbstractTest;
-
-import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
 public class HttpInvalidRequestLine extends AbstractTest {
 	public static final String NAME = "http_invalid_request_line";
@@ -23,10 +22,12 @@ public class HttpInvalidRequestLine extends AbstractTest {
      */
 	@Override public void onEntry(@NonNull JsonResult json) {
 		JsonResult.TestKeys keys = json.test_keys;
-		if (keys.failure != null || keys.tampering == null) // TODO lorenzo check this
-			measurement.state = measurementFailed;
-		else
+		if (keys.failure != null || keys.tampering == null) // TODO lorenzo check "|| keys.tampering == null"
+			measurement.state = Measurement.State.FAILED;
+		else {
+			measurement.state = Measurement.State.DONE;
 			measurement.anomaly = keys.tampering.value;
+		}
 		super.onEntry(json);
 	}
 }

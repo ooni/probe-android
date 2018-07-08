@@ -6,10 +6,9 @@ import android.support.annotation.NonNull;
 import org.openobservatory.measurement_kit.nettests.BaseTest;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
+import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.test.AbstractTest;
-
-import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
 public class WebConnectivity extends AbstractTest {
 	public static final String NAME = "web_connectivity";
@@ -29,9 +28,11 @@ public class WebConnectivity extends AbstractTest {
      */
 	@Override public void onEntry(@NonNull JsonResult json) {
 		if (json.test_keys.blocking == null)
-			measurement.state = measurementFailed;
-		else if (json.test_keys.blocking)
+			measurement.state = Measurement.State.FAILED;
+		else if (json.test_keys.blocking) {
+			measurement.state = Measurement.State.DONE;
 			measurement.anomaly = true;
+		}
 		super.onEntry(json);
 	}
 }

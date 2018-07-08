@@ -2,7 +2,6 @@ package org.openobservatory.ooniprobe.tests;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -16,7 +15,7 @@ import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.model.Summary;
 import org.openobservatory.ooniprobe.utils.VersionUtils;
 
-import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.*;
+import static org.openobservatory.ooniprobe.model.Measurement.State.*;
 
 public class MKNetworkTest {
     Result result;
@@ -153,13 +152,13 @@ public class MKNetworkTest {
             }
             return json;
         }
-        measurement.state = measurementFailed;
+        measurement.state = FAILED;
         return null;
     }
 
     public void updateSummary() {
         Summary summary = result.getSummary();
-        if (measurement.state != measurementFailed)
+        if (measurement.state != FAILED)
             summary.failedMeasurements--;
         if (!measurement.anomaly)
             summary.okMeasurements++;
@@ -170,7 +169,7 @@ public class MKNetworkTest {
     }
 
     public void run(){
-        measurement.state = measurementActive;
+        measurement.state = ACTIVE;
         measurement.save();
         new AsyncTask<String, String, Boolean>(){
             @Override
@@ -185,7 +184,7 @@ public class MKNetworkTest {
             }
 
             protected void onPostExecute(Boolean success) {
-                measurement.state = measurementDone;
+                measurement.state = DONE;
                 //TODO set progress completed for this test
                 measurement.save();
                 //TODO tell NetworkTest delegate that one test has ended
@@ -195,7 +194,7 @@ public class MKNetworkTest {
 
     public void testEnded() {
         updateProgress(1);
-        measurement.state = measurementDone;
+        measurement.state = DONE;
         measurement.save();
         //TODO call delegate (networktest) testEnded
     }

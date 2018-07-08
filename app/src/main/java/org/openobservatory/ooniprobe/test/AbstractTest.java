@@ -18,7 +18,7 @@ import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.model.Summary;
 import org.openobservatory.ooniprobe.utils.VersionUtils;
 
-import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
+import static org.openobservatory.ooniprobe.model.Measurement.State.FAILED;
 
 public abstract class AbstractTest {
 	protected Measurement measurement;
@@ -60,18 +60,16 @@ public abstract class AbstractTest {
 			Log.d("entry", entry);
 			JsonResult jr = gson.fromJson(entry, JsonResult.class);
 			if (jr == null)
-				measurement.state = measurementFailed;
+				measurement.state = FAILED;
 			else
 				onEntry(jr);
 			updateSummary();
 			measurement.save();
 		});
 		testCallback.onStart("test: " + index);
-		measurement.state = Measurement.MeasurementState.measurementActive;
+		measurement.state = Measurement.State.ACTIVE;
 		measurement.save();
 		test.run();
-		if (measurement.state != Measurement.MeasurementState.measurementFailed) // TODO Lorenzo check this "if"
-			measurement.state = Measurement.MeasurementState.measurementDone;
 		measurement.save();
 	}
 
@@ -113,12 +111,11 @@ public abstract class AbstractTest {
 			measurement.reportId = json.report_id;
 		}
 		measurement.result.getSummary().getTestKeysMap().put(measurement.name, json.test_keys);
-
 	}
 
 	private void updateSummary() {
 		Summary summary = measurement.result.getSummary();
-		if (measurement.state != measurementFailed)
+		if (measurement.state != FAILED)
 			summary.failedMeasurements--;
 		if (!measurement.anomaly)
 			summary.okMeasurements++;

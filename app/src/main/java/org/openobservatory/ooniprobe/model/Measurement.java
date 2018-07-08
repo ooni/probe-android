@@ -13,7 +13,7 @@ public class Measurement {
 	public String country;
 	public String networkName;
 	public String networkType;
-	public MeasurementState state;
+	public State state;
 	public boolean anomaly;
 	//TODO this should be an array of results
 	public Result result;
@@ -25,7 +25,7 @@ public class Measurement {
 		this.result = result;
 		this.name = name;
 		startTime = new java.util.Date();
-		state = MeasurementState.measurementFailed;
+		state = State.FAILED;
 	}
 
 	public void save() {
@@ -40,11 +40,11 @@ public class Measurement {
 	//  done, when it's finished, but not necessarily uploaded
 	//  uploaded, if it has been uploaded successfully
 	//  processed, if the pipeline has processed the measurement
-	public enum MeasurementState {
-		measurementActive,
-		measurementFailed,
-		measurementDone,
-		measurementUploaded,
-		measurementProcessed
+	public enum State {
+		ACTIVE,
+		FAILED,
+		DONE,
+		UPLOADED,
+		PROCESSED
 	}
 }

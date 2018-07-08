@@ -4,10 +4,9 @@ import android.support.annotation.NonNull;
 
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
+import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.test.AbstractTest;
-
-import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
 public class Telegram extends AbstractTest {
 	public static final String NAME = "telegram";
@@ -22,9 +21,11 @@ public class Telegram extends AbstractTest {
      */
 	@Override public void onEntry(@NonNull JsonResult json) {
 		if (json.test_keys.telegram_http_blocking == null || json.test_keys.telegram_tcp_blocking == null || json.test_keys.telegram_web_status == null)
-			measurement.state = measurementFailed;
-		else if (json.test_keys.telegram_http_blocking || json.test_keys.telegram_tcp_blocking || json.test_keys.telegram_web_status.equals("blocked"))
+			measurement.state = Measurement.State.FAILED;
+		else if (json.test_keys.telegram_http_blocking || json.test_keys.telegram_tcp_blocking || json.test_keys.telegram_web_status.equals("blocked")) {
+			measurement.state = Measurement.State.DONE;
 			measurement.anomaly = true;
+		}
 		super.onEntry(json);
 	}
 }

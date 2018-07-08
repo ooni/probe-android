@@ -5,10 +5,9 @@ import android.support.annotation.NonNull;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
+import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.test.AbstractTest;
-
-import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
 public class Ndt extends AbstractTest {
 	public static final String NAME = "ndt_test";
@@ -24,8 +23,7 @@ public class Ndt extends AbstractTest {
 	 	!=null => failed
 	 */
 	@Override public void onEntry(@NonNull JsonResult json) {
-		if (json.test_keys.failure != null)
-			measurement.state = measurementFailed;
+		measurement.state = json.test_keys.failure == null ? Measurement.State.DONE : Measurement.State.FAILED;
 		calculateServerName(json.test_keys);
 		super.onEntry(json);
 	}
