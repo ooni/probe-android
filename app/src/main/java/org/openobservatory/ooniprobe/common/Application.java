@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.model.JsonResult;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -26,7 +27,7 @@ public class Application extends android.app.Application {
 	@Override public void onCreate() {
 		super.onCreate();
 		preferenceManager = new PreferenceManager(this);
-		gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateJsonDeserializer()).create();
+		gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateJsonDeserializer()).registerTypeAdapter(JsonResult.TestKeys.Tampering.class, new TamperingJsonDeserializer()).create();
 		CrashlyticsCore core = new CrashlyticsCore.Builder().disabled(preferenceManager.isSendCrash()).build();
 		Fabric.with(this, new Crashlytics.Builder().core(core).build());
 		FirebaseApp.initializeApp(this);

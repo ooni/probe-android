@@ -14,8 +14,6 @@ public class Summary {
 	public int failedMeasurements;
 	@SerializedName("anomalousMeasurements")
 	public int anomalousMeasurements;
-	@SerializedName("testKeysHttpHeader")
-	public JsonResultHttpHeader.TestKeys testKeysHttpHeader;
 	@SerializedName("testKeysMap")
 	private HashMap<String, JsonResult.TestKeys> testKeysMap;
 

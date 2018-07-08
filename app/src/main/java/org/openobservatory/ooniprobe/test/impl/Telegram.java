@@ -9,11 +9,11 @@ import org.openobservatory.ooniprobe.test.AbstractTest;
 
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
-public class Telegram extends AbstractTest<JsonResult> {
+public class Telegram extends AbstractTest {
 	public static final String NAME = "telegram";
 
 	public Telegram(AbstractActivity activity, Result result) {
-		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.TelegramTest(), JsonResult.class, result);
+		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.TelegramTest(), result);
 	}
 
 	/*
@@ -26,7 +26,6 @@ public class Telegram extends AbstractTest<JsonResult> {
 			measurement.state = measurementFailed;
 		else if (Boolean.valueOf(keys.telegram_http_blocking) || Boolean.valueOf(keys.telegram_tcp_blocking) || keys.telegram_web_status.equals("blocked"))
 			measurement.anomaly = true;
-		measurement.result.getSummary().getTestKeysMap().put(measurement.name, json.test_keys);
 		super.onEntry(json);
 	}
 }

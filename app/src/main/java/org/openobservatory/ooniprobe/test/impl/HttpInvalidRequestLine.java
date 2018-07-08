@@ -9,11 +9,11 @@ import org.openobservatory.ooniprobe.test.AbstractTest;
 
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
-public class HttpInvalidRequestLine extends AbstractTest<JsonResult> {
+public class HttpInvalidRequestLine extends AbstractTest {
 	public static final String NAME = "http_invalid_request_line";
 
 	public HttpInvalidRequestLine(AbstractActivity activity, Result result) {
-		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.HttpInvalidRequestLineTest(), JsonResult.class, result);
+		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.HttpInvalidRequestLineTest(), result);
 	}
 
 	/*
@@ -28,7 +28,6 @@ public class HttpInvalidRequestLine extends AbstractTest<JsonResult> {
 		//TODO
 		//else if (Boolean.valueOf(keys.tampering))
 		//    measurement.anomaly = true;
-		measurement.result.getSummary().getTestKeysMap().put(measurement.name, json.test_keys);
 		super.onEntry(json);
 	}
 }

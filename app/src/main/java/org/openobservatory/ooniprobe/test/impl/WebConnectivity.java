@@ -11,11 +11,11 @@ import org.openobservatory.ooniprobe.test.AbstractTest;
 
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
-public class WebConnectivity extends AbstractTest<JsonResult> {
+public class WebConnectivity extends AbstractTest {
 	public static final String NAME = "web_connectivity";
 
 	public WebConnectivity(AbstractActivity activity, Result result) {
-		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.WebConnectivityTest(), JsonResult.class, result);
+		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.WebConnectivityTest(), result);
 	}
 
 	@Override protected void setFilepaths(Context context, BaseTest test) {
@@ -33,7 +33,6 @@ public class WebConnectivity extends AbstractTest<JsonResult> {
 			measurement.state = measurementFailed;
 		else if (!keys.blocking.equals("false"))
 			measurement.anomaly = true;
-		measurement.result.getSummary().getTestKeysMap().put(measurement.name, json.test_keys);
 		super.onEntry(json);
 	}
 }

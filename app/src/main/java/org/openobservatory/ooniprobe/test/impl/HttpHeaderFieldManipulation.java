@@ -3,17 +3,17 @@ package org.openobservatory.ooniprobe.test.impl;
 import android.support.annotation.NonNull;
 
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
-import org.openobservatory.ooniprobe.model.JsonResultHttpHeader;
+import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.test.AbstractTest;
 
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
-public class HttpHeaderFieldManipulation extends AbstractTest<JsonResultHttpHeader> {
+public class HttpHeaderFieldManipulation extends AbstractTest {
 	public static final String NAME = "http_header_field_manipulation";
 
 	public HttpHeaderFieldManipulation(AbstractActivity activity, Result result) {
-		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.HttpHeaderFieldManipulationTest(), JsonResultHttpHeader.class, result);
+		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.HttpHeaderFieldManipulationTest(), result);
 	}
 
 	/*
@@ -30,14 +30,13 @@ public class HttpHeaderFieldManipulation extends AbstractTest<JsonResultHttpHead
 		        total
 	        }
      */
-	@Override public void onEntry(@NonNull JsonResultHttpHeader json) {
-		JsonResultHttpHeader.TestKeys keys = json.test_keys;
-		JsonResultHttpHeader.TestKeys.Tampering tampering = keys.tampering;
+	@Override public void onEntry(@NonNull JsonResult json) {
+		JsonResult.TestKeys keys = json.test_keys;
+		JsonResult.TestKeys.Tampering tampering = keys.tampering;
 		if (tampering == null)
 			measurement.state = measurementFailed;
-		else if (tampering.isAnomaly())
+		else if (tampering.value)
 			measurement.anomaly = true;
-		measurement.result.getSummary().testKeysHttpHeader = json.test_keys;
 		super.onEntry(json);
 	}
 }

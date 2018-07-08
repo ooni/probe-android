@@ -12,7 +12,7 @@ import org.openobservatory.measurement_kit.nettests.BaseTest;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
-import org.openobservatory.ooniprobe.model.AbstractJsonResult;
+import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.model.Summary;
@@ -20,21 +20,19 @@ import org.openobservatory.ooniprobe.utils.VersionUtils;
 
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
-public abstract class AbstractTest<JR extends AbstractJsonResult> {
+public abstract class AbstractTest {
 	protected Measurement measurement;
 	protected BaseTest test;
 	protected PreferenceManager preferenceManager;
-	private Class<JR> classOfResult;
 	private Gson gson;
 	private long timestamp;
 
-	public AbstractTest(AbstractActivity activity, String name, BaseTest test, Class<JR> classOfResult, Result result) {
+	public AbstractTest(AbstractActivity activity, String name, BaseTest test, Result result) {
 		//TODO-ALE managing db class
 		measurement = new Measurement(result, name);
 		measurement.save();
 		preferenceManager = activity.getPreferenceManager();
 		this.test = test;
-		this.classOfResult = classOfResult;
 		gson = activity.getGson();
 		timestamp = System.currentTimeMillis();
 		test.use_logcat();
@@ -60,7 +58,7 @@ public abstract class AbstractTest<JR extends AbstractJsonResult> {
 		test.on_log((l, s) -> testCallback.onLog(s));
 		test.on_entry(entry -> {
 			Log.d("entry", entry);
-			JR jr = gson.fromJson(entry, classOfResult);
+			JsonResult jr = gson.fromJson(entry, JsonResult.class);
 			if (jr == null)
 				measurement.state = measurementFailed;
 			else
@@ -77,7 +75,7 @@ public abstract class AbstractTest<JR extends AbstractJsonResult> {
 		measurement.save();
 	}
 
-	@CallSuper public void onEntry(@NonNull JR json) {
+	@CallSuper public void onEntry(@NonNull JsonResult json) {
 		if (json.test_start_time != null)
 			measurement.result.startTime = json.test_start_time;
 		if (json.measurement_start_time != null)
@@ -114,6 +112,8 @@ public abstract class AbstractTest<JR extends AbstractJsonResult> {
 		if (json.report_id != null) {
 			measurement.reportId = json.report_id;
 		}
+		measurement.result.getSummary().getTestKeysMap().put(measurement.name, json.test_keys);
+
 	}
 
 	private void updateSummary() {

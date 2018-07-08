@@ -10,12 +10,12 @@ import org.openobservatory.ooniprobe.test.AbstractTest;
 
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
-public class Ndt extends AbstractTest<JsonResult> {
+public class Ndt extends AbstractTest {
 	public static final String NAME = "ndt_test";
 	private String[] countries;
 
 	public Ndt(AbstractActivity activity, Result result) {
-		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.NdtTest(), JsonResult.class, result);
+		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.NdtTest(), result);
 		countries = activity.getResources().getStringArray(R.array.countries);
 	}
 
@@ -28,7 +28,6 @@ public class Ndt extends AbstractTest<JsonResult> {
 		if (keys.failure != null)
 			measurement.state = measurementFailed;
 		calculateServerName(keys);
-		measurement.result.getSummary().getTestKeysMap().put(measurement.name, json.test_keys);
 		super.onEntry(json);
 	}
 

@@ -9,11 +9,11 @@ import org.openobservatory.ooniprobe.test.AbstractTest;
 
 import static org.openobservatory.ooniprobe.model.Measurement.MeasurementState.measurementFailed;
 
-public class Whatsapp extends AbstractTest<JsonResult> {
+public class Whatsapp extends AbstractTest {
 	public static final String NAME = "whatsapp";
 
 	public Whatsapp(AbstractActivity activity, Result result) {
-		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.WhatsappTest(), JsonResult.class, result);
+		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.WhatsappTest(), result);
 	}
 
 	/*
@@ -26,7 +26,6 @@ public class Whatsapp extends AbstractTest<JsonResult> {
 			measurement.state = measurementFailed;
 		else if (keys.whatsapp_endpoints_status.equals("blocked") || keys.whatsapp_web_status.equals("blocked") || keys.registration_server_status.equals("blocked"))
 			measurement.anomaly = true;
-		measurement.result.getSummary().getTestKeysMap().put(measurement.name, json.test_keys);
 		super.onEntry(json);
 	}
 }
