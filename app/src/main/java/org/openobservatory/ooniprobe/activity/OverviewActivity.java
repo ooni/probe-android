@@ -40,6 +40,7 @@ public class OverviewActivity extends AbstractActivity {
 		ButterKnife.bind(this);
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setDisplayShowTitleEnabled(false);
 		icon.setImageResource(testSuite.getIcon());
 		title.setText(testSuite.getTitle());
 		InternalStyleSheet css = new Github();
