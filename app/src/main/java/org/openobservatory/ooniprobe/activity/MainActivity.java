@@ -41,11 +41,13 @@ public class MainActivity extends AbstractActivity {
 			}
 		});
 		bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
-		ActionBar bar = getSupportActionBar();
+
+	/*	ActionBar bar = getSupportActionBar();
 		if (bar != null) {
 			bar.setDisplayShowCustomEnabled(true);
 			bar.setCustomView(R.layout.logo);
-		}
+		}*/
+
 		/* please don't remove
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		if (!preferences.getBoolean("cleanup_unused_files", false)) {
@@ -56,20 +58,7 @@ public class MainActivity extends AbstractActivity {
 		checkInformedConsent();
 	}
 
-	@Override public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.settings, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
 
-	@Override public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-			case R.id.settings:
-				startActivity(PreferenceActivity.newIntent(this, R.xml.preferences_global));
-				return true;
-			default:
-				return super.onOptionsItemSelected(item);
-		}
-	}
 
 	public void checkInformedConsent() {
 		if (getPreferenceManager().isShowIntro())
