@@ -23,6 +23,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class TestSuite implements Serializable {
+	public static final String WEBSITES = "websites";
+	public static final String INSTANT_MESSAGING = "instant_messaging";
+	public static final String MIDDLE_BOXES = "middle_boxes";
+	public static final String PERFORMANCE = "performance";
 	private int title;
 	private int cardDesc;
 	private int icon;
@@ -33,8 +37,9 @@ public class TestSuite implements Serializable {
 	private int desc2;
 	private int pref;
 	private String anim;
+	private String name;
 
-	public TestSuite(@StringRes int title, @StringRes int cardDesc, @DrawableRes int icon, @ColorRes int color, @StyleRes int themeLight, @StyleRes int themeDark, @StringRes int desc1, @StringRes int desc2, @XmlRes int pref, String anim) {
+	public TestSuite(String name, @StringRes int title, @StringRes int cardDesc, @DrawableRes int icon, @ColorRes int color, @StyleRes int themeLight, @StyleRes int themeDark, @StringRes int desc1, @StringRes int desc2, @XmlRes int pref, String anim) {
 		this.title = title;
 		this.cardDesc = cardDesc;
 		this.icon = icon;
@@ -45,10 +50,11 @@ public class TestSuite implements Serializable {
 		this.desc2 = desc2;
 		this.pref = pref;
 		this.anim = anim;
+		this.name = name;
 	}
 
 	public static TestSuite getWebsiteTest() {
-		return new TestSuite(
+		return new TestSuite(WEBSITES,
 				R.string.Test_Websites_Fullname,
 				R.string.Dashboard_Websites_Card_Description,
 				R.drawable.test_websites,
@@ -63,7 +69,7 @@ public class TestSuite implements Serializable {
 	}
 
 	public static TestSuite getInstantMessaging() {
-		return new TestSuite(
+		return new TestSuite(INSTANT_MESSAGING,
 				R.string.Test_InstantMessaging_Fullname,
 				R.string.Dashboard_InstantMessaging_Card_Description,
 				R.drawable.test_instant_messaging,
@@ -78,7 +84,7 @@ public class TestSuite implements Serializable {
 	}
 
 	public static TestSuite getMiddleBoxes() {
-		return new TestSuite(
+		return new TestSuite(MIDDLE_BOXES,
 				R.string.Test_Middleboxes_Fullname,
 				R.string.Dashboard_Middleboxes_Card_Description,
 				R.drawable.test_middle_boxes,
@@ -93,7 +99,7 @@ public class TestSuite implements Serializable {
 	}
 
 	public static TestSuite getPerformance() {
-		return new TestSuite(
+		return new TestSuite(PERFORMANCE,
 				R.string.Test_Performance_Fullname,
 				R.string.Dashboard_Performance_Card_Description,
 				R.drawable.test_performance,
@@ -109,14 +115,14 @@ public class TestSuite implements Serializable {
 
 	public AbstractTest[] getTestList(AbstractActivity activity) {
 		PreferenceManager preferenceManager = activity.getPreferenceManager();
-		Result result = new Result();
+		Result result = new Result(name);
 		result.save();
 		ArrayList<AbstractTest> list = new ArrayList<>();
-		switch (title) {
-			case R.string.Test_Websites_Fullname:
+		switch (name) {
+			case WEBSITES:
 				list.add(new WebConnectivity(activity, result));
 				break;
-			case R.string.Test_InstantMessaging_Fullname:
+			case INSTANT_MESSAGING:
 				if (preferenceManager.isTestWhatsapp())
 					list.add(new Whatsapp(activity, result));
 				if (preferenceManager.isTestTelegram())
@@ -124,13 +130,13 @@ public class TestSuite implements Serializable {
 				if (preferenceManager.isTestFacebookMessenger())
 					list.add(new FacebookMessenger(activity, result));
 				break;
-			case R.string.Test_Middleboxes_Fullname:
+			case MIDDLE_BOXES:
 				if (preferenceManager.isRunHttpHeaderFieldManipulation())
 					list.add(new HttpHeaderFieldManipulation(activity, result));
 				if (preferenceManager.isRunHttpInvalidRequestLine())
 					list.add(new HttpInvalidRequestLine(activity, result));
 				break;
-			case R.string.Test_Performance_Fullname:
+			case PERFORMANCE:
 				if (preferenceManager.isRunNdt())
 					list.add(new Ndt(activity, result));
 				if (preferenceManager.isRunDash())

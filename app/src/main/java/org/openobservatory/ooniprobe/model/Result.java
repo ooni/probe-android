@@ -13,12 +13,13 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 
 @Table(database = Application.class)
-public class Result extends BaseModel {
+public class Result extends BaseModel implements Serializable {
 	@PrimaryKey(autoincrement = true) public int id;
 	@Column public float duration;
 	@Column public long dataUsageDown;
@@ -34,10 +35,14 @@ public class Result extends BaseModel {
 	@Column public String networkName;
 	@Column public String networkType;
 	@Column public String summary;
-	List<Measurement> measurements;
+	private List<Measurement> measurements;
 	private Summary summaryObj;
 
 	public Result() {
+	}
+
+	public Result(String name) {
+		this.name = name;
 		this.startTime = new Date();
 	}
 
@@ -85,17 +90,17 @@ public class Result extends BaseModel {
     I have to get the summary of an old test and don't modify it
 	*/
 	public Summary getSummary() {
-		if (this.summaryObj == null) {
-			if (this.summary != null)
-				this.summaryObj = Summary.fromJson(this.summary);
+		if (summaryObj == null) {
+			if (summary != null)
+				summaryObj = new Gson().fromJson(summary, Summary.class);
 			else
-				this.summaryObj = new Summary();
+				summaryObj = new Summary();
 		}
-		return this.summaryObj;
+		return summaryObj;
 	}
 
 	public void setSummary() {
-		this.summary = new Gson().toJson(summary);
+		summary = new Gson().toJson(summaryObj);
 	}
 
 	public String getAsn(Context context) {

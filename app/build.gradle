@@ -12,7 +12,7 @@ android {
 
 	defaultConfig {
 		applicationId "org.openobservatory.ooniprobe"
-		minSdkVersion 17
+		minSdkVersion 18
 		targetSdkVersion 27
 		versionName "2.0.0-alpha.3"
 		versionCode 29
