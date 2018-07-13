@@ -78,6 +78,7 @@ public class Result extends BaseModel {
 	}
 
 	/*
+	//TODO-ALE these are method for iOS, maybe in Android can be simplified
 	Three scenarios:
     I'm running the test, I start the empty summary, I add stuff and save
     I'm running the test, there is data in the summary, I add stuff and save
