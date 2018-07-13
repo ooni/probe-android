@@ -27,7 +27,8 @@ public class Measurement extends BaseModel {
 	@Column public String category;
 	@Column public Date startTime;
 	@Column public State state;
-	@ForeignKey public Result result;
+	@ForeignKey(stubbedRelationship = true)
+	public Result result;
 
 	public Measurement() {
 	}
@@ -56,4 +57,5 @@ public class Measurement extends BaseModel {
 		UPLOADED,
 		PROCESSED
 	}
+
 }

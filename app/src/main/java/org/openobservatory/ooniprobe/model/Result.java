@@ -48,7 +48,7 @@ public class Result extends BaseModel {
 		return new DecimalFormat("#,##0.#").format(size / Math.pow(1024, digitGroups)) + " " + units[digitGroups];
 	}
 
-	@OneToMany(methods = {OneToMany.Method.ALL}, variableName = "measurements")
+	@OneToMany(variableName = "measurements")
 	public List<Measurement> getMeasurements() {
 		if (measurements == null || measurements.isEmpty())
 			measurements = SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id)).queryList();

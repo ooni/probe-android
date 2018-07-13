@@ -4,6 +4,82 @@
 	android:layout_height="match_parent"
 	android:orientation="vertical">
 
+	<android.support.design.widget.AppBarLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+		<android.support.v7.widget.Toolbar
+			android:id="@+id/toolbar"
+			android:layout_width="match_parent"
+			android:layout_height="?attr/actionBarSize"/>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:divider="?android:attr/dividerHorizontal"
+			android:orientation="horizontal"
+			android:showDividers="middle">
+
+			<LinearLayout
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:orientation="vertical">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/TestResults_Overview_Hero_Tests"/>
+
+				<TextView
+					android:id="@+id/tests"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:orientation="vertical">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/TestResults_Overview_Hero_Networks"/>
+
+				<TextView
+					android:id="@+id/networks"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:orientation="vertical">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/TestResults_Overview_Hero_DataUsage"/>
+
+				<TextView
+					android:id="@+id/dataUsage"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+			</LinearLayout>
+		</LinearLayout>
+	</android.support.design.widget.AppBarLayout>
+
 	<TextView
 		android:id="@+id/results"
 		android:layout_width="wrap_content"

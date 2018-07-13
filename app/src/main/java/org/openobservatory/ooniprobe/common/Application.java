@@ -7,8 +7,10 @@ import com.google.firebase.FirebaseApp;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.raizlabs.android.dbflow.annotation.Database;
+import com.raizlabs.android.dbflow.config.FlowLog;
 import com.raizlabs.android.dbflow.config.FlowManager;
 
+import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.JsonResult;
 
@@ -35,6 +37,8 @@ public class Application extends android.app.Application {
 		CrashlyticsCore core = new CrashlyticsCore.Builder().disabled(preferenceManager.isSendCrash()).build();
 		Fabric.with(this, new Crashlytics.Builder().core(core).build());
 		FirebaseApp.initializeApp(this);
+		if (BuildConfig.DEBUG)
+			FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
 		copyResources(R.raw.geoipasnum, "GeoIPASNum.dat");
 		copyResources(R.raw.geoip, "GeoIP.dat");
 		//TODO remove before release

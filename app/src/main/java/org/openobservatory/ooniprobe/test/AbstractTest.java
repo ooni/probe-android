@@ -18,7 +18,6 @@ import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.model.Summary;
 import org.openobservatory.ooniprobe.utils.VersionUtils;
 
-
 public abstract class AbstractTest {
 	protected Measurement measurement;
 	protected BaseTest test;
@@ -53,6 +52,9 @@ public abstract class AbstractTest {
 	}
 
 	public void run(int index, TestCallback testCallback) {
+		testCallback.onStart("test: " + index);
+		measurement.state = Measurement.State.ACTIVE;
+		measurement.save();
 		test.on_progress((v, s) -> testCallback.onProgress(Double.valueOf((index + v) * 100).intValue()));
 		test.on_log((l, s) -> testCallback.onLog(s));
 		test.on_entry(entry -> {
@@ -64,10 +66,8 @@ public abstract class AbstractTest {
 				onEntry(jr);
 			updateSummary();
 			measurement.save();
+			measurement.result.save();
 		});
-		testCallback.onStart("test: " + index);
-		measurement.state = Measurement.State.ACTIVE;
-		measurement.save();
 		test.run();
 		measurement.save();
 	}
