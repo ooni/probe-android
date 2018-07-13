@@ -53,9 +53,9 @@ public class JsonResult {
 		public String server_name;
 		public String server_country;
 		@SerializedName("median_bitrate")
-		public String median_bitrate;
+		public double median_bitrate;
 		@SerializedName("min_playout_delay")
-		public String min_playout_delay;
+		public double min_playout_delay;
 		@SerializedName("whatsapp_endpoints_status")
 		public String whatsapp_endpoints_status;
 		@SerializedName("whatsapp_web_status")

@@ -10,30 +10,31 @@ import android.widget.TextView;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.Result;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
 public class PerformanceItem extends HeterogeneousRecyclerItem<Result, PerformanceItem.ViewHolder> {
-
 	public PerformanceItem(Result extra) {
 		super(extra);
 	}
 
 	@Override public ViewHolder onCreateViewHolder(LayoutInflater layoutInflater, ViewGroup viewGroup) {
-		return new ViewHolder(layoutInflater.inflate(R.layout.item_date, viewGroup, false));
+		return new ViewHolder(layoutInflater.inflate(R.layout.item_performance, viewGroup, false));
 	}
 
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
-		viewHolder.textView.setText(extra.name);
+		viewHolder.asnName.setText(extra.asnName);
+		viewHolder.startTime.setText(DateFormat.getDateFormat(viewHolder.startTime.getContext()).format(extra.startTime));
+		viewHolder.quality.setText(extra.getSummary().getVideoQuality(viewHolder.quality.getContext(), false));
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {
-		@BindView(R.id.textView) TextView textView;
+		@BindView(R.id.asnName) TextView asnName;
+		@BindView(R.id.startTime) TextView startTime;
+		@BindView(R.id.upload) TextView upload;
+		@BindView(R.id.download) TextView download;
+		@BindView(R.id.quality) TextView quality;
 
 		ViewHolder(View itemView) {
 			super(itemView);

@@ -9,6 +9,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -48,6 +51,7 @@ public class ResultFragment extends Fragment {
 		View v = inflater.inflate(R.layout.fragment_result, container, false);
 		ButterKnife.bind(this, v);
 		((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+		setHasOptionsMenu(true);
 		getActivity().setTitle(R.string.TestResults_Overview_Title);
 		tests.setText(getString(R.string.decimal, SQLite.selectCountOf().from(Result.class).longValue()));
 		networks.setText(getString(R.string.decimal, SQLite.selectCountOf(Result_Table.asn.distinct()).from(Result.class).longValue()));
@@ -84,6 +88,20 @@ public class ResultFragment extends Fragment {
 		HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
 		recycler.setAdapter(adapter);
 		return v;
+	}
+
+	@Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		inflater.inflate(R.menu.delete, menu);
+		super.onCreateOptionsMenu(menu, inflater);
+	}
+
+	@Override public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.delete:
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
 	}
 
 	@OnItemSelected(R.id.filterTests) public void filterTestsItemSelected(int pos) {
