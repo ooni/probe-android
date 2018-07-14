@@ -81,11 +81,11 @@ public class JsonResult {
 
 		public static class Simple {
 			@SerializedName("upload")
-			public String upload;
+			public double upload;
 			@SerializedName("download")
-			public String download;
+			public double download;
 			@SerializedName("ping")
-			public String ping;
+			public double ping;
 		}
 
 		public static class Advanced {

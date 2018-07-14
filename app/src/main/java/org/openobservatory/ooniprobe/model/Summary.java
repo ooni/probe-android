@@ -12,13 +12,13 @@ import java.util.HashMap;
 import java.util.Locale;
 
 public class Summary {
-	@SerializedName("totalMeasurements")
+	@SerializedName("total")
 	public int totalMeasurements;
-	@SerializedName("okMeasurements")
+	@SerializedName("ok")
 	public int okMeasurements;
-	@SerializedName("failedMeasurements")
+	@SerializedName("failed")
 	public int failedMeasurements;
-	@SerializedName("anomalousMeasurements")
+	@SerializedName("anomalous")
 	public int anomalousMeasurements;
 	@SerializedName("testKeysMap")
 	private HashMap<String, JsonResult.TestKeys> testKeysMap;
@@ -42,7 +42,53 @@ public class Summary {
 	//Facebook
 
 	//NDT
-	private float getScaledValue(float value) {
+	private String getUpload(Context ctx){
+		JsonResult.TestKeys testKeys = testKeysMap.get("ndt");
+		if(testKeys != null){
+			return setFractionalDigits(getScaledValue(testKeys.simple.upload));
+		}
+		return ctx.getString(R.string.TestResults_NotAvailable);
+	}
+
+	private String getUploadUnit(Context ctx){
+		JsonResult.TestKeys testKeys = testKeysMap.get("ndt");
+		if(testKeys != null){
+			return getUnit(testKeys.simple.upload, ctx);
+		}
+		return ctx.getString(R.string.TestResults_NotAvailable);
+	}
+
+	private String getUploadWithUnit(Context ctx){
+		String uploadUnit = getUploadUnit(ctx);
+		if (!uploadUnit.equals(ctx.getString(R.string.TestResults_NotAvailable)))
+			return getUpload(ctx) + " " + uploadUnit;
+		return ctx.getString(R.string.TestResults_NotAvailable);
+	}
+
+	private String getDownload(Context ctx){
+		JsonResult.TestKeys testKeys = testKeysMap.get("ndt");
+		if(testKeys != null){
+			return setFractionalDigits(getScaledValue(testKeys.simple.download));
+		}
+		return ctx.getString(R.string.TestResults_NotAvailable);
+	}
+
+	private String getDownloadUnit(Context ctx){
+		JsonResult.TestKeys testKeys = testKeysMap.get("ndt");
+		if(testKeys != null){
+			return getUnit(testKeys.simple.download, ctx);
+		}
+		return ctx.getString(R.string.TestResults_NotAvailable);
+	}
+
+	private String getDownloadWithUnit(Context ctx){
+		String downloadUnit = getDownloadUnit(ctx);
+		if (!downloadUnit.equals(ctx.getString(R.string.TestResults_NotAvailable)))
+			return getDownload(ctx) + " " + downloadUnit;
+		return ctx.getString(R.string.TestResults_NotAvailable);
+	}
+
+	private double getScaledValue(double value) {
 		if (value < 100)
 			return value;
 		else if (value < 100000)
@@ -51,14 +97,14 @@ public class Summary {
 			return value/1000000;
 	}
 
-	private String setFractionalDigits(float value) {
+	private String setFractionalDigits(double value) {
 		if (value < 10)
-			String.format(Locale.getDefault(),"%.2f", value);
+			return String.format(Locale.getDefault(),"%.2f", value);
     	else
-			String.format(Locale.getDefault(),"%.1f", value);
+			return String.format(Locale.getDefault(),"%.1f", value);
 	}
 
-	private String getUnit(float value, Context ctx) {
+	private String getUnit(double value, Context ctx) {
 		//We assume there is no Tbit/s (for now!)
 		if (value < 100)
 			return ctx.getString(R.string.TestResults_Kbps);
@@ -72,8 +118,7 @@ public class Summary {
 	public String getMedianBitrate(Context ctx){
 		JsonResult.TestKeys testKeys = testKeysMap.get("dash");
 		if (testKeys != null){
-			float mb = Float.valueOf(testKeys.median_bitrate);
-			return setFractionalDigits(getScaledValue(mb));
+			return setFractionalDigits(getScaledValue(testKeys.median_bitrate));
 		}
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
@@ -81,8 +126,7 @@ public class Summary {
 	public String getMedianBitrateUnit(Context ctx){
 		JsonResult.TestKeys testKeys = testKeysMap.get("dash");
 		if (testKeys != null){
-			float mb = Float.valueOf(testKeys.median_bitrate);
-			return getUnit(mb, ctx);
+			return getUnit(testKeys.median_bitrate, ctx);
 		}
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
@@ -90,13 +134,12 @@ public class Summary {
 	public String getVideoQuality(Context ctx, Boolean extended){
 		JsonResult.TestKeys testKeys = testKeysMap.get("dash");
 		if (testKeys != null){
-			float vc = Float.valueOf(testKeys.median_bitrate);
-			return minimumBitrateForVideo(vc, extended);
+			return minimumBitrateForVideo(testKeys.median_bitrate, extended);
 		}
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	private String minimumBitrateForVideo(float videoQuality, Boolean extended){
+	private String minimumBitrateForVideo(double videoQuality, Boolean extended){
 		if (videoQuality < 600)
 			return "240p";
     	else if (videoQuality < 1000)
@@ -116,8 +159,7 @@ public class Summary {
 	public String getPlayoutDelay(Context ctx){
 		JsonResult.TestKeys testKeys = testKeysMap.get("dash");
 		if (testKeys != null){
-			float md = Float.valueOf(testKeys.min_playout_delay);
-			return String.format(Locale.getDefault(),"%.2f", md);
+			return String.format(Locale.getDefault(),"%.2f", testKeys.min_playout_delay);
 		}
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
