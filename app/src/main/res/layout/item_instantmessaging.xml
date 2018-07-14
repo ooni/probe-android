@@ -44,27 +44,19 @@
 		android:orientation="vertical">
 
 		<TextView
-			android:id="@+id/okMeasurements"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:drawablePadding="8dp"
-			android:drawableStart="@drawable/tick"
-			android:drawableTint="@android:color/secondary_text_light"/>
-
-		<TextView
 			android:id="@+id/failedMeasurements"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:drawablePadding="8dp"
 			android:drawableStart="@drawable/cross"
 			android:textColor="@color/color_red8"/>
-	</LinearLayout>
 
-	<ImageView
-		android:layout_width="24dp"
-		android:layout_height="24dp"
-		android:layout_gravity="center_vertical"
-		android:layout_margin="8dp"
-		android:src="@drawable/ic_forward"
-		android:tint="@color/color_gray4"/>
+		<TextView
+			android:id="@+id/okMeasurements"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:drawablePadding="8dp"
+			android:drawableStart="@drawable/tick"
+			android:drawableTint="@android:color/secondary_text_light"/>
+	</LinearLayout>
 </LinearLayout>

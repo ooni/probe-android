@@ -67,12 +67,4 @@
 			android:drawableStart="@drawable/video_quality"
 			android:drawableTint="@android:color/secondary_text_light"/>
 	</LinearLayout>
-
-	<ImageView
-		android:layout_width="24dp"
-		android:layout_height="24dp"
-		android:layout_gravity="center_vertical"
-		android:layout_margin="8dp"
-		android:src="@drawable/ic_forward"
-		android:tint="@color/color_gray4"/>
 </LinearLayout>
