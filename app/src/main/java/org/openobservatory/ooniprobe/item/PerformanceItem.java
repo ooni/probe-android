@@ -24,7 +24,7 @@ public class PerformanceItem extends HeterogeneousRecyclerItem<Result, Performan
 	}
 
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
-		viewHolder.asnName.setText(extra.asnName);
+		viewHolder.asnName.setText(extra.getAsnName(viewHolder.asnName.getContext()));
 		viewHolder.startTime.setText(DateFormat.getDateFormat(viewHolder.startTime.getContext()).format(extra.startTime));
 		viewHolder.quality.setText(extra.getSummary().getVideoQuality(viewHolder.quality.getContext(), false));
 	}

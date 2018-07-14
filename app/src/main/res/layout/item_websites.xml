@@ -16,10 +16,10 @@
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_vertical"
 			android:drawablePadding="4dp"
-			android:drawableStart="@drawable/test_middle_boxes_small"
-			android:drawableTint="@color/color_violet8"
+			android:drawableStart="@drawable/test_websites_small"
+			android:drawableTint="@color/color_indigo6"
 			android:gravity="center_vertical"
-			android:text="@string/Test_Middleboxes_Fullname"
+			android:text="@string/Test_InstantMessaging_Fullname"
 			android:textStyle="bold"/>
 
 		<TextView
@@ -44,9 +44,19 @@
 		android:orientation="vertical">
 
 		<TextView
-			android:id="@+id/status"
+			android:id="@+id/failedMeasurements"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="32dp"/>
+			android:drawablePadding="8dp"
+			android:drawableStart="@drawable/cross"
+			android:textColor="@color/color_red8"/>
+
+		<TextView
+			android:id="@+id/okMeasurements"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:drawablePadding="8dp"
+			android:drawableStart="@drawable/globe"
+			android:drawableTint="@android:color/secondary_text_light"/>
 	</LinearLayout>
 </LinearLayout>

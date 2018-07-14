@@ -24,7 +24,7 @@ public class InstantMessagingItem extends HeterogeneousRecyclerItem<Result, Inst
 	}
 
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
-		viewHolder.asnName.setText(extra.asnName);
+		viewHolder.asnName.setText(extra.getAsnName(viewHolder.asnName.getContext()));
 		viewHolder.startTime.setText(DateFormat.getDateFormat(viewHolder.startTime.getContext()).format(extra.startTime));
 		viewHolder.failedMeasurements.setText(viewHolder.failedMeasurements.getContext().getString(R.string.decimal, extra.getSummary().failedMeasurements)+" blockEd");
 		viewHolder.okMeasurements.setText(viewHolder.failedMeasurements.getContext().getString(R.string.decimal, extra.getSummary().okMeasurements)+" accesiblE");
