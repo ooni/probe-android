@@ -30,7 +30,7 @@ public class HttpHeaderFieldManipulation extends AbstractTest {
 	        }
      */
 	@Override public void onEntry(@NonNull JsonResult json) {
-		if (json.test_keys.tampering == null)
+		if (json.test_keys.failure != null && json.test_keys.tampering == null)
 			measurement.state = Measurement.State.FAILED;
 		else {
 			measurement.state = Measurement.State.DONE;
