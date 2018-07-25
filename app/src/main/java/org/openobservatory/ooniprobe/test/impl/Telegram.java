@@ -22,9 +22,9 @@ public class Telegram extends AbstractTest {
 	@Override public void onEntry(@NonNull JsonResult json) {
 		if (json.test_keys.telegram_http_blocking == null || json.test_keys.telegram_tcp_blocking == null || json.test_keys.telegram_web_status == null)
 			measurement.state = Measurement.State.FAILED;
-		else if (json.test_keys.telegram_http_blocking || json.test_keys.telegram_tcp_blocking || json.test_keys.telegram_web_status.equals("blocked")) {
+		else {
 			measurement.state = Measurement.State.DONE;
-			measurement.anomaly = true;
+			measurement.anomaly = json.test_keys.telegram_http_blocking || json.test_keys.telegram_tcp_blocking || json.test_keys.telegram_web_status.equals("blocked");
 		}
 		super.onEntry(json);
 	}

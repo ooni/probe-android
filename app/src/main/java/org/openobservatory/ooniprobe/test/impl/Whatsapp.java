@@ -22,9 +22,9 @@ public class Whatsapp extends AbstractTest {
 	@Override public void onEntry(@NonNull JsonResult json) {
 		if (json.test_keys.whatsapp_endpoints_status == null || json.test_keys.whatsapp_web_status == null || json.test_keys.registration_server_status == null)
 			measurement.state = Measurement.State.FAILED;
-		else if (json.test_keys.whatsapp_endpoints_status.equals("blocked") || json.test_keys.whatsapp_web_status.equals("blocked") || json.test_keys.registration_server_status.equals("blocked")) {
+		else {
 			measurement.state = Measurement.State.DONE;
-			measurement.anomaly = true;
+			measurement.anomaly = json.test_keys.whatsapp_endpoints_status.equals("blocked") || json.test_keys.whatsapp_web_status.equals("blocked") || json.test_keys.registration_server_status.equals("blocked");
 		}
 		super.onEntry(json);
 	}

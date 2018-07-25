@@ -27,7 +27,7 @@ public class JsonResult {
 
 	public static class TestKeys {
 		@SerializedName("blocking")
-		public Boolean blocking;
+		public String blocking;
 		@SerializedName("accessible")
 		public String accessible;
 		@SerializedName("sent")
