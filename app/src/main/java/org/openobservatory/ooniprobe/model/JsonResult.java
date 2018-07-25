@@ -36,18 +36,6 @@ public class JsonResult {
 		public ArrayList received;
 		@SerializedName("failure")
 		public String failure;
-		@SerializedName("header_field_name")
-		public String header_field_name;
-		@SerializedName("header_field_number")
-		public String header_field_number;
-		@SerializedName("header_field_value")
-		public String header_field_value;
-		@SerializedName("header_name_capitalization")
-		public String header_name_capitalization;
-		@SerializedName("request_line_capitalization")
-		public String request_line_capitalization;
-		@SerializedName("total")
-		public String total;
 		@SerializedName("server_address")
 		public String server_address;
 		public String server_name;
@@ -110,7 +98,7 @@ public class JsonResult {
 				this.value = value;
 			}
 
-			public class TamperingObj { // TODO LORENZO check header_name_diff
+			public class TamperingObj {
 				@SerializedName("header_field_name") boolean header_field_name;
 				@SerializedName("header_field_number") boolean header_field_number;
 				@SerializedName("header_field_value") boolean header_field_value;
