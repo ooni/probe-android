@@ -31,7 +31,7 @@ public class WebConnectivity extends AbstractTest {
 			measurement.state = Measurement.State.FAILED;
 		else {
 			measurement.state = Measurement.State.DONE;
-			measurement.anomaly = !json.test_keys.blocking.equals("false");
+			measurement.anomaly = !json.test_keys.blocking.equals("0");
 		}
 		super.onEntry(json);
 	}
