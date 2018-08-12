@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
 
 import butterknife.BindView;
@@ -26,9 +27,9 @@ public class MiddleboxesItem extends HeterogeneousRecyclerItem<Result, Middlebox
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
 		viewHolder.asnName.setText(extra.getAsnName(viewHolder.asnName.getContext()));
 		viewHolder.startTime.setText(DateFormat.getDateFormat(viewHolder.startTime.getContext()).format(extra.startTime));
-		if (extra.getSummary().anomalousMeasurements > 0)
+		if (extra.countMeasurement(null, true) > 0)
 			viewHolder.status.setText(R.string.TestResults_Overview_MiddleBoxes_Found);
-		else if (extra.getSummary().okMeasurements == extra.getSummary().totalMeasurements - extra.getSummary().failedMeasurements)
+		else if (extra.countMeasurement(Measurement.State.FAILED, null) == 0)
 			viewHolder.status.setText(R.string.TestResults_Overview_MiddleBoxes_NotFound);
 		else
 			viewHolder.status.setText(R.string.TestResults_Overview_MiddleBoxes_Failed);

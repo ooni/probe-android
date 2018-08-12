@@ -39,7 +39,7 @@ public class NetworkTest {
 			result.done = TRUE;
 		}
 		 */
-		result.setSummary();
+	//	result.setSummary();
 		result.save();
 		//if (preferenceManager.isNotifications() && preferenceManager.isNotificationsCompletion())
 	  	//send local notification

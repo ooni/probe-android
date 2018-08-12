@@ -7,6 +7,7 @@ import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
+import org.openobservatory.ooniprobe.model.TestKeys;
 import org.openobservatory.ooniprobe.test.AbstractTest;
 
 public class Ndt extends AbstractTest {
@@ -28,7 +29,7 @@ public class Ndt extends AbstractTest {
 		super.onEntry(json);
 	}
 
-	private void calculateServerName(JsonResult.TestKeys keys) {
+	private void calculateServerName(TestKeys keys) {
 		String[] parts = keys.server_address.split(",");
 		if (parts.length > 3) {
 			keys.server_name = parts[3];

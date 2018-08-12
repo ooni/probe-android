@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.Result;
+import org.openobservatory.ooniprobe.test.impl.Dash;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,7 +27,7 @@ public class PerformanceItem extends HeterogeneousRecyclerItem<Result, Performan
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
 		viewHolder.asnName.setText(extra.getAsnName(viewHolder.asnName.getContext()));
 		viewHolder.startTime.setText(DateFormat.getDateFormat(viewHolder.startTime.getContext()).format(extra.startTime));
-		viewHolder.quality.setText(extra.getSummary().getVideoQuality(viewHolder.quality.getContext(), false));
+		viewHolder.quality.setText(extra.getMeasurement(Dash.NAME).getTestKeysObj().getVideoQuality(viewHolder.quality.getContext(), false));
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {

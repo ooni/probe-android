@@ -12,7 +12,6 @@ import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
-import org.openobservatory.ooniprobe.model.Summary;
 import org.openobservatory.ooniprobe.utils.VersionUtils;
 
 import static org.openobservatory.ooniprobe.model.Measurement.State.*;
@@ -156,7 +155,7 @@ public class MKNetworkTest {
         return null;
     }
 
-    public void updateSummary() {
+/*    public void updateSummary() {
         Summary summary = result.getSummary();
         if (measurement.state != FAILED)
             summary.failedMeasurements--;
@@ -166,7 +165,7 @@ public class MKNetworkTest {
             summary.anomalousMeasurements++;
         result.setSummary();
         result.save();
-    }
+    }*/
 
     public void run(){
         measurement.state = ACTIVE;

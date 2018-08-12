@@ -6,15 +6,15 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 
-import org.openobservatory.ooniprobe.model.JsonResult;
+import org.openobservatory.ooniprobe.model.TestKeys;
 
 import java.lang.reflect.Type;
 
-public class TamperingJsonDeserializer implements JsonDeserializer<JsonResult.TestKeys.Tampering> {
-	@Override public JsonResult.TestKeys.Tampering deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+public class TamperingJsonDeserializer implements JsonDeserializer<TestKeys.Tampering> {
+	@Override public TestKeys.Tampering deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
 		if (json.isJsonPrimitive() && json.getAsJsonPrimitive().isBoolean())
-			return new JsonResult.TestKeys.Tampering(json.getAsJsonPrimitive().getAsBoolean());
+			return new TestKeys.Tampering(json.getAsJsonPrimitive().getAsBoolean());
 		else
-			return new JsonResult.TestKeys.Tampering(new Gson().fromJson(json, JsonResult.TestKeys.Tampering.TamperingObj.class).isAnomaly());
+			return new TestKeys.Tampering(new Gson().fromJson(json, TestKeys.Tampering.TamperingObj.class).isAnomaly());
 	}
 }

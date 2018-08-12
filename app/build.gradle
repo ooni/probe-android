@@ -3,7 +3,7 @@ apply plugin: 'io.fabric'
 
 android {
 	compileSdkVersion 27
-	buildToolsVersion "28.0.1"
+	buildToolsVersion "28.0.2"
 
 	compileOptions {
 		sourceCompatibility JavaVersion.VERSION_1_8
@@ -33,6 +33,7 @@ dependencies {
 	implementation 'com.android.support:preference-v7:27.1.1'
 
 	implementation 'com.google.firebase:firebase-messaging:17.1.0'
+	implementation 'com.google.firebase:firebase-core:16.0.1'
 
 	annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:4.2.4"
 	implementation "com.github.Raizlabs.DBFlow:dbflow-core:4.2.4"

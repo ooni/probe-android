@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
 
 import butterknife.BindView;
@@ -26,8 +27,8 @@ public class InstantMessagingItem extends HeterogeneousRecyclerItem<Result, Inst
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
 		viewHolder.asnName.setText(extra.getAsnName(viewHolder.asnName.getContext()));
 		viewHolder.startTime.setText(DateFormat.getDateFormat(viewHolder.startTime.getContext()).format(extra.startTime));
-		viewHolder.failedMeasurements.setText(viewHolder.failedMeasurements.getContext().getString(R.string.decimal, extra.getSummary().failedMeasurements)+" blockEd");
-		viewHolder.okMeasurements.setText(viewHolder.failedMeasurements.getContext().getString(R.string.decimal, extra.getSummary().okMeasurements)+" accesiblE");
+		viewHolder.failedMeasurements.setText(viewHolder.failedMeasurements.getContext().getString(R.string.decimal, extra.countMeasurement(Measurement.State.FAILED, null)) + " blockEd");
+		viewHolder.okMeasurements.setText(viewHolder.okMeasurements.getContext().getString(R.string.decimal, extra.countMeasurement(Measurement.State.DONE, false)) + " accesiblE");
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {

@@ -2,11 +2,11 @@ package org.openobservatory.ooniprobe.model;
 
 import android.content.Context;
 
-import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.OneToMany;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.sql.language.SQLOperator;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
@@ -15,6 +15,7 @@ import org.openobservatory.ooniprobe.common.Application;
 
 import java.io.Serializable;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -56,6 +57,20 @@ public class Result extends BaseModel implements Serializable {
 		if (measurements == null || measurements.isEmpty())
 			measurements = SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id)).queryList();
 		return measurements;
+	}
+
+	public Measurement getMeasurement(String name) {
+		return SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.name.eq(name)).querySingle();
+	}
+
+	public long countMeasurement(Measurement.State state, Boolean anomaly) {
+		ArrayList<SQLOperator> sqlOperators = new ArrayList<>();
+		sqlOperators.add(Measurement_Table.result_id.eq(id));
+		if (state != null)
+			sqlOperators.add(Measurement_Table.state.eq(state));
+		if (anomaly != null)
+			sqlOperators.add(Measurement_Table.anomaly.eq(anomaly));
+		return SQLite.selectCountOf().from(Measurement.class).where(sqlOperators.toArray(new SQLOperator[sqlOperators.size()])).count();
 	}
 
 	public String getLocalizedNetworkType(Context context) {
