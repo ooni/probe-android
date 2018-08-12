@@ -7,7 +7,7 @@
         android:id="@+id/navigationBar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_ooni_blue"
+        android:background="@color/color_base"
         android:minHeight="?attr/actionBarSize"
         android:layout_alignParentTop="true" >
 
@@ -43,7 +43,7 @@
             android:maxLines="1"
             android:ellipsize="end"
             android:padding="5dp"
-            android:text="@string/loading"
+            android:text="@string/OONIRun_Loading"
             android:textColor="#ffffff"
             android:textSize="16sp" />
 
@@ -108,7 +108,7 @@
         android:id="@+id/bottomBar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_ooni_blue"
+        android:background="@color/color_base"
         android:minHeight="?attr/actionBarSize"
         android:layout_alignParentBottom="true" >
 
@@ -119,12 +119,12 @@
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
-            android:text="@string/try_mirror"
+            android:text="@string/OONIRun_TryMirror"
             android:layout_margin="5dp"
             android:padding="5dp"
             style="?android:attr/borderlessButtonStyle"
             android:textAllCaps="false"
-            android:textColor="@color/color_off_white" />
+            android:textColor="@color/color_white" />
 
         <ImageView
             android:id="@+id/shareButton"

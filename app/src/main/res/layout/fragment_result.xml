@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+
+	<android.support.design.widget.AppBarLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+		<android.support.v7.widget.Toolbar
+			android:id="@+id/toolbar"
+			android:layout_width="match_parent"
+			android:layout_height="?attr/actionBarSize"/>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+
+			<TextView
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:text="@string/TestResults_Overview_Hero_Tests"
+				android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+			<TextView
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:text="@string/TestResults_Overview_Hero_Networks"
+				android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+			<TextView
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:text="@string/TestResults_Overview_Hero_DataUsage"
+				android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="8dp"
+			android:divider="@color/color_white"
+			android:gravity="center_vertical"
+			android:orientation="horizontal"
+			android:showDividers="middle">
+
+			<TextView
+				android:id="@+id/tests"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+
+			<TextView
+				android:id="@+id/networks"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+
+			<LinearLayout
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:orientation="vertical">
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+
+					<TextView
+						android:id="@+id/upload"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:drawableStart="@drawable/upload"/>
+
+					<TextView
+						android:id="@+id/download"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:drawableStart="@drawable/download"/>
+				</LinearLayout>
+			</LinearLayout>
+		</LinearLayout>
+	</android.support.design.widget.AppBarLayout>
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical"
+			android:text="@string/TestResults_Overview_FilterTests"
+			android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
+
+		<Spinner
+			android:id="@+id/filterTests"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:entries="@array/filterTests"
+			android:paddingVertical="8dp"
+			android:textAlignment="center"/>
+	</FrameLayout>
+
+	<android.support.v7.widget.RecyclerView
+		android:id="@+id/recycler"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"/>
+</LinearLayout>

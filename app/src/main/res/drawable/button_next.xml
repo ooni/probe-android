@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:state_pressed="true" >
-        <shape android:shape="rectangle"  >
-            <corners android:radius="30dip" />
-            <solid android:color="@color/color_gray2" />
-        </shape>
-    </item>
-    <item android:state_focused="true">
-        <shape android:shape="rectangle"  >
-            <corners android:radius="5dip" />
-            <solid android:color="@color/color_white"/>
-        </shape>
-    </item>
-    <item >
-        <shape android:shape="rectangle"  >
-            <corners android:radius="30dip" />
-            <solid android:color="@color/color_white" />
-        </shape>
-    </item>
-</selector>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+	<item
+		android:bottom="8dp"
+		android:drawable="@drawable/button_rectangle_rounded"
+		android:top="8dp"/>
+</layer-list>

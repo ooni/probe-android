@@ -1,57 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="MissingPrefix"
-    android:background="@color/color_blue5">
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/color_blue5">
 
-    <ImageView
-        android:id="@+id/sharkLogo"
-        android:layout_width="281dp"
-        android:layout_height="170dp"
-        android:layout_marginTop="15dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/octopus_shark"
-        android:padding="30dp" />
+	<ImageView
+		android:id="@+id/sharkLogo"
+		android:layout_width="281dp"
+		android:layout_height="170dp"
+		android:layout_centerHorizontal="true"
+		android:layout_marginTop="15dp"
+		android:padding="30dp"
+		android:src="@drawable/octopus_shark"/>
 
-    <TextView
-        android:id="@+id/what_is_ooniprobe"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Onboarding.WhatIsOONIProbe.Title"
-        android:layout_below="@+id/sharkLogo"
-        android:layout_marginBottom="10dp"
-        android:textSize="30sp"
-        fontPath="fonts/FiraSans-Light.otf"
-        android:textColor="@color/color_white"
-        android:gravity="center" />
+	<TextView
+		android:id="@+id/what_is_ooniprobe"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/sharkLogo"
+		android:layout_marginBottom="10dp"
+		android:gravity="center"
+		android:text="@string/Onboarding_WhatIsOONIProbe_Title"
+		android:textColor="@color/color_white"
+		android:textSize="30sp"/>
 
-    <TextView
-        android:id="@+id/what_is_ooniprobe1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/what_is_ooniprobe"
-        android:layout_marginBottom="10dp"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:text="@string/Onboarding.WhatIsOONIProbe.Paragraph.1"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:textColor="@color/color_white"
-        android:gravity="center"  />
+	<TextView
+		android:id="@+id/what_is_ooniprobe1"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/what_is_ooniprobe"
+		android:layout_marginBottom="10dp"
+		android:gravity="center"
+		android:paddingLeft="30dp"
+		android:paddingRight="30dp"
+		android:text="@string/Onboarding_WhatIsOONIProbe_Paragraph_1"
+		android:textColor="@color/color_white"
+		android:textSize="16sp"
+		android:textStyle="bold"/>
 
-    <TextView
-        android:id="@+id/what_is_ooniprobe2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/what_is_ooniprobe1"
-        android:layout_marginBottom="10dp"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:text="@string/Onboarding.WhatIsOONIProbe.Paragraph.2"
-        android:textSize="16sp"
-        android:textColor="@color/color_white"
-        android:gravity="center"  />
-
+	<TextView
+		android:id="@+id/what_is_ooniprobe2"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/what_is_ooniprobe1"
+		android:layout_marginBottom="10dp"
+		android:gravity="center"
+		android:paddingLeft="30dp"
+		android:paddingRight="30dp"
+		android:text="@string/Onboarding_WhatIsOONIProbe_Paragraph_2"
+		android:textColor="@color/color_white"
+		android:textSize="16sp"/>
 </RelativeLayout>

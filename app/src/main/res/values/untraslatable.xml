@@ -1,0 +1,73 @@
+<resources>
+	<string name="version" translatable="false">ooniprobe: %1$s\nmeasurement-kit: %2$s</string>
+	<string name="preferences" translatable="false">preferences</string>
+	<string name="notifications" translatable="false">notifications</string>
+	<string name="sharing" translatable="false">sharing</string>
+	<string name="advanced" translatable="false">advanced</string>
+	<string name="about_ooni" translatable="false">about_ooni</string>
+	<string name="notifications_enabled" translatable="false">notifications_enabled</string>
+	<string name="notifications_completion" translatable="false">notifications_completion</string>
+	<string name="notifications_news" translatable="false">notifications_news</string>
+	<string name="upload_results" translatable="false">upload_results</string>
+	<string name="include_ip" translatable="false">include_ip</string>
+	<string name="include_asn" translatable="false">include_asn</string>
+	<string name="debugLogs" translatable="false">debugLogs</string>
+	<string name="keep_screen_on" translatable="false">keep_screen_on</string>
+	<string name="send_crash" translatable="false">send_crash</string>
+	<string name="debug_logs" translatable="false">debug_logs</string>
+	<string name="include_cc" translatable="false">include_cc</string>
+	<string name="run_http_invalid_request_line" translatable="false">run_http_invalid_request_line</string>
+	<string name="run_http_header_field_manipulation" translatable="false">run_http_header_field_manipulation</string>
+	<string name="test_whatsapp" translatable="false">test_whatsapp</string>
+	<string name="test_whatsapp_extensive" translatable="false">test_whatsapp_extensive</string>
+	<string name="test_telegram" translatable="false">test_telegram</string>
+	<string name="test_facebook_messenger" translatable="false">test_facebook_messenger</string>
+	<string name="run_ndt" translatable="false">run_ndt</string>
+	<string name="ndt_server_auto" translatable="false">ndt_server_auto</string>
+	<string name="ndt_server" translatable="false">ndt_server</string>
+	<string name="ndt_server_port" translatable="false">ndt_server_port</string>
+	<string name="run_dash" translatable="false">run_dash</string>
+	<string name="dash_server_auto" translatable="false">dash_server_auto</string>
+	<string name="dash_server" translatable="false">dash_server</string>
+	<string name="dash_server_port" translatable="false">dash_server_port</string>
+	<string name="max_runtime" translatable="false">max_runtime</string>
+	<string name="CategoryCode_ALDR_Key" translatable="false">ALDR</string>
+	<string name="CategoryCode_REL_Key" translatable="false">REL</string>
+	<string name="CategoryCode_PORN_Key" translatable="false">PORN</string>
+	<string name="CategoryCode_PROV_Key" translatable="false">PROV</string>
+	<string name="CategoryCode_POLR_Key" translatable="false">POLR</string>
+	<string name="CategoryCode_HUMR_Key" translatable="false">HUMR</string>
+	<string name="CategoryCode_ENV_Key" translatable="false">ENV</string>
+	<string name="CategoryCode_MILX_Key" translatable="false">MILX</string>
+	<string name="CategoryCode_HATE_Key" translatable="false">HATE</string>
+	<string name="CategoryCode_NEWS_Key" translatable="false">NEWS</string>
+	<string name="CategoryCode_XED_Key" translatable="false">XED</string>
+	<string name="CategoryCode_PUBH_Key" translatable="false">PUBH</string>
+	<string name="CategoryCode_GMB_Key" translatable="false">GMB</string>
+	<string name="CategoryCode_ANON_Key" translatable="false">ANON</string>
+	<string name="CategoryCode_DATE_Key" translatable="false">DATE</string>
+	<string name="CategoryCode_GRP_Key" translatable="false">GRP</string>
+	<string name="CategoryCode_LGBT_Key" translatable="false">LGBT</string>
+	<string name="CategoryCode_FILE_Key" translatable="false">FILE</string>
+	<string name="CategoryCode_HACK_Key" translatable="false">HACK</string>
+	<string name="CategoryCode_COMT_Key" translatable="false">COMT</string>
+	<string name="CategoryCode_MMED_Key" translatable="false">MMED</string>
+	<string name="CategoryCode_HOST_Key" translatable="false">HOST</string>
+	<string name="CategoryCode_SRCH_Key" translatable="false">SRCH</string>
+	<string name="CategoryCode_GAME_Key" translatable="false">GAME</string>
+	<string name="CategoryCode_CULTR_Key" translatable="false">CULTR</string>
+	<string name="CategoryCode_ECON_Key" translatable="false">ECON</string>
+	<string name="CategoryCode_GOVT_Key" translatable="false">GOVT</string>
+	<string name="CategoryCode_COMM_Key" translatable="false">COMM</string>
+	<string name="CategoryCode_CTRL_Key" translatable="false">CTRL</string>
+	<string name="CategoryCode_IGO_Key" translatable="false">IGO</string>
+	<string name="CategoryCode_MISC_Key" translatable="false">MISC</string>
+	<string name="decimal" translatable="false">%1$d</string>
+	<string-array name="filterTests" translatable="false">
+		<item>@string/TestResults_Overview_FilterTests_AllTests</item>
+		<item>@string/TestResults_Overview_FilterTests_Websites</item>
+		<item>@string/TestResults_Overview_FilterTests_InstantMessaging</item>
+		<item>@string/TestResults_Overview_FilterTests_MiddleBoxes</item>
+		<item>@string/TestResults_Overview_FilterTests_Performance</item>
+	</string-array>
+</resources>

@@ -11,7 +11,7 @@ import java.util.List;
 
 public class OldTestStorage {
     public static final String PREFS_NAME = "OONIPROBE_APP";
-    public static final String TESTS = "Test";
+    public static final String TESTS = "AbstractTest";
     public static final String NEW_TESTS = "new_tests";
 
     public static Boolean oldTestsDetected(Context context) {

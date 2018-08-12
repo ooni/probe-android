@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="color_ooni_blue">#0588CB</color>
-    <color name="color_off_black">#777777</color>
-    <color name="color_off_white">#f2f2f2</color>
-    <color name="color_ok_green">#4FD156</color>
-    <color name="color_bad_red">#cc0000</color>
-    <color name="color_warning_orange">#ffa500</color>
-    <color name="color_light_gray">#E1E1E1</color>
-    <color name="color_ooni_blue_dark">#046799</color>
-
-
     <color name="color_base">#0588cb</color>
-    <color name="color_black">#f8f9fa</color>
+    <color name="color_black">#000000</color>
     <color name="color_gray0">#f8f9fa</color>
     <color name="color_gray1">#f1f3f5</color>
     <color name="color_gray2">#e9ecef</color>

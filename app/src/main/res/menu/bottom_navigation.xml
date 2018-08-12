@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item
+		android:id="@+id/dashboard"
+		android:icon="@drawable/tab_dashboard"
+		android:title="@string/Dashboard_Tab_Label"/>
+	<item
+		android:id="@+id/testResults"
+		android:icon="@drawable/tab_test_results"
+		android:title="@string/TestResults_Overview_Tab_Label"/>
+</menu>

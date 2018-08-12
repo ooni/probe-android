@@ -1,137 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="MissingPrefix"
-    android:background="@color/color_blue5">
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/color_blue5">
 
-    <ImageView
-        android:id="@+id/folderImage"
-        android:layout_width="139dp"
-        android:layout_height="104dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/folder"
-        android:padding="15dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp" />
+	<ImageView
+		android:id="@+id/folderImage"
+		android:layout_width="139dp"
+		android:layout_height="104dp"
+		android:layout_centerHorizontal="true"
+		android:layout_marginLeft="32dp"
+		android:layout_marginRight="32dp"
+		android:layout_marginTop="8dp"
+		android:padding="15dp"
+		android:src="@drawable/folder"/>
 
-    <TextView
-        android:id="@+id/things_to_know"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Onboarding.ThingsToKnow.Title"
-        android:textSize="30sp"
-        fontPath="fonts/FiraSans-Light.otf"
-        android:textColor="@color/color_white"
-        android:layout_below="@+id/folderImage"
-        android:gravity="center" />
+	<TextView
+		android:id="@+id/things_to_know"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/folderImage"
+		android:gravity="center"
+		android:text="@string/Onboarding_ThingsToKnow_Title"
+		android:textColor="@color/color_white"
+		android:textSize="30sp"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:orientation="vertical"
-        android:layout_below="@+id/things_to_know"
-        android:layout_above="@+id/lnextButtonLayout"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_above="@+id/lnextButtonLayout"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentStart="true"
+		android:layout_below="@+id/things_to_know"
+		android:orientation="vertical"
+		android:padding="15dp">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
 
-            <View
-                android:layout_width="20dp"
-                android:layout_height="24dp"
-                android:background="@drawable/bulleticon" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:text="@string/Onboarding.ThingsToKnow.Bullet.1"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:textColor="@color/color_white" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <View
-                android:layout_width="20dp"
-                android:layout_height="24dp"
-                android:background="@drawable/bulleticon" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:text="@string/Onboarding.ThingsToKnow.Bullet.2"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:textColor="@color/color_white" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <View
-                android:layout_width="20dp"
-                android:layout_height="24dp"
-                android:background="@drawable/bulleticon" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:text="@string/Onboarding.ThingsToKnow.Bullet.3"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:textColor="@color/color_white" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <View
-                android:layout_width="20dp"
-                android:layout_height="24dp"
-                android:background="@drawable/bulleticon" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:text="@string/Onboarding.ThingsToKnow.Bullet.4"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:textColor="@color/color_white" />
-        </LinearLayout>
+			<View
+				android:layout_width="20dp"
+				android:layout_height="24dp"
+				android:background="@drawable/bulleticon"/>
 
-    </LinearLayout>
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="5dp"
+				android:text="@string/Onboarding_ThingsToKnow_Bullet_1"
+				android:textColor="@color/color_white"
+				android:textSize="16sp"
+				android:textStyle="bold"/>
+		</LinearLayout>
 
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:gravity = "center_horizontal"
-        android:id="@+id/lnextButtonLayout"
-        android:layout_marginBottom="70dp"
-        android:weightSum="1.0"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/nextButton"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:layout_weight="0.6"
-            android:background="@drawable/button_next"
-            android:padding="10dp"
-            android:text="@string/Onboarding.ThingsToKnow.Button"
-            fontPath="fonts/FiraSans-SemiBold.otf"
-            android:textColor="@color/color_blue5"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+
+			<View
+				android:layout_width="20dp"
+				android:layout_height="24dp"
+				android:background="@drawable/bulleticon"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="5dp"
+				android:text="@string/Onboarding_ThingsToKnow_Bullet_2"
+				android:textColor="@color/color_white"
+				android:textSize="16sp"
+				android:textStyle="bold"/>
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+
+			<View
+				android:layout_width="20dp"
+				android:layout_height="24dp"
+				android:background="@drawable/bulleticon"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="5dp"
+				android:text="@string/Onboarding_ThingsToKnow_Bullet_3"
+				android:textColor="@color/color_white"
+				android:textSize="16sp"
+				android:textStyle="bold"/>
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+
+			<View
+				android:layout_width="20dp"
+				android:layout_height="24dp"
+				android:background="@drawable/bulleticon"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="5dp"
+				android:text="@string/Onboarding_ThingsToKnow_Bullet_4"
+				android:textColor="@color/color_white"
+				android:textSize="16sp"
+				android:textStyle="bold"/>
+		</LinearLayout>
+	</LinearLayout>
+
+	<LinearLayout
+		android:id="@+id/lnextButtonLayout"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentStart="true"
+		android:layout_marginBottom="70dp"
+		android:gravity="center_horizontal"
+		android:weightSum="1.0">
+
+		<Button
+			android:id="@+id/nextButton"
+			android:layout_width="0dp"
+			android:layout_height="55dp"
+			android:layout_weight="0.6"
+			android:background="@drawable/button_next"
+			android:padding="10dp"
+			android:text="@string/Onboarding_ThingsToKnow_Button"
+			android:textColor="@color/color_blue5"
+			android:textSize="20sp"
+			android:textStyle="bold"/>
+	</LinearLayout>
 </RelativeLayout>

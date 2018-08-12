@@ -1,103 +1,124 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="org.openobservatory.ooniprobe">
+	package="org.openobservatory.ooniprobe">
 
-    <uses-sdk tools:overrideLibrary="com.google.android.gms,com.google.android.gms.tasks,com.google.firebase,com.google.firebase.messaging,com.google.firebase.iid" />
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<application
+		android:name=".common.Application"
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.AppCompat.Light.DarkActionBar.App">
+		<meta-data
+			android:name="io.fabric.ApiKey"
+			android:value="529a3ff33bd5359fe86c53f6252035178bdb03a1"/>
+		<meta-data
+			android:name="com.google.firebase.messaging.default_notification_icon"
+			android:resource="@drawable/ic_notification"/>
+		<meta-data
+			android:name="com.google.firebase.messaging.default_notification_color"
+			android:resource="@color/color_base"/>
 
-    <application
-        android:name=".ooniprobeApp"
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity
-            android:name=".activity.MainActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".activity.InformedConsentActivity"
-            android:configChanges="orientation"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait" />
+		<service android:name=".utils.NotificationRegister">
+			<intent-filter>
+				<action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+			</intent-filter>
+		</service>
+		<service android:name=".utils.NotificationsRouter">
+			<intent-filter>
+				<action android:name="com.google.firebase.MESSAGING_EVENT"/>
+			</intent-filter>
+		</service>
 
-        <service android:name=".utils.NotificationRegister">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
-        </service>
-
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="529a3ff33bd5359fe86c53f6252035178bdb03a1" />
-
-        <service android:name=".utils.NotificationsRouter">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/notification_icon" />
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/color_ooni_blue" />
-
-        <activity
-            android:name=".activity.BrowserActivity"
-            android:theme="@style/FullScreen"
-            android:label="">
-            <intent-filter>
-                <action android:name="org.openobservatory.ooniprobe.OPEN_BROWSER" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".activity.NotificationDialog"
-            android:theme="@style/Theme.Transparent" />
-        <!--- THIS IS FOR USI SCHEME
-        <activity
-            android:name=".activity.RunTestActivity"
-            android:label="@string/app_name"
-            android:launchMode="singleInstance">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <action android:name="org.openobservatory.ooniprobe.nettest" />
-                <data android:scheme="https"
-                    android:host="run.ooni.io"
-                    android:pathPrefix="/nettest" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <action android:name="org.openobservatory.ooniprobe.nettest" />
-                <data android:scheme="http"
-                    android:host="run.ooni.io"
-                    android:pathPrefix="/nettest" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="ooni"
-                    android:host="nettest" />
-            </intent-filter>
-        </activity>
-    -->
-    </application>
-
-</manifest>
+		<activity
+			android:name=".activity.MainActivity"
+			android:launchMode="singleTop"
+			android:theme="@style/Theme.AppCompat.Light.DarkActionBar.App.NoActionBar"
+			android:screenOrientation="portrait">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
+		<activity
+			android:name=".activity.BrowserActivity"
+			android:theme="@style/Theme.AppCompat.Light.DarkActionBar.App.NoActionBar">
+			<intent-filter>
+				<action android:name="org.openobservatory.ooniprobe.OPEN_BROWSER"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+			</intent-filter>
+		</activity>
+		<activity
+			android:name=".activity.NotificationDialogActivity"
+			android:theme="@style/Theme.AppCompat.Light.Transparent"/>
+		<activity
+			android:name=".activity.InformedConsentActivity"
+			android:screenOrientation="portrait"
+			android:theme="@style/Theme.AppCompat.Light.DarkActionBar.App.NoActionBar"/>
+		<activity
+			android:name=".activity.PreferenceActivity"
+			android:launchMode="singleTop"
+			android:parentActivityName=".activity.MainActivity"/>
+		<activity
+			android:name=".activity.OverviewActivity"
+			android:launchMode="singleTop"
+			android:parentActivityName=".activity.MainActivity"/>
+		<activity
+			android:name=".activity.RunningActivity"
+			android:launchMode="singleTop"
+			android:parentActivityName=".activity.MainActivity"/>
+		<activity
+			android:name=".activity.InfoActivity"
+			android:label="@string/Settings_About_Label"
+			android:parentActivityName=".activity.PreferenceActivity"
+			android:theme="@style/Theme.AppCompat.Light.DarkActionBar.App.NoActionBar">
+			<intent-filter>
+				<action android:name="org.openobservatory.ooniprobe.activity.InfoActivity"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+			</intent-filter>
+		</activity>
+		<activity
+			android:name=".activity.CustomWebsiteActivity"
+			android:label="@string/Settings_Websites_CustomURL"
+			android:parentActivityName=".activity.PreferenceActivity">
+			<intent-filter>
+				<action android:name="org.openobservatory.ooniprobe.activity.CustomWebsiteActivity"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+			</intent-filter>
+		</activity>
+	</application>
+</manifest>    <!--- THIS IS FOR USI SCHEME
+	<activity
+		android:name=".activity.RunTestActivity"
+		android:label="@string/app_name"
+		android:launchMode="singleInstance">
+		<intent-filter>
+			<action android:name="android.intent.action.VIEW" />
+			<category android:name="android.intent.category.DEFAULT" />
+			<category android:name="android.intent.category.BROWSABLE" />
+			<action android:name="org.openobservatory.ooniprobe.nettest" />
+			<data android:scheme="https"
+				android:host="run.ooni.io"
+				android:pathPrefix="/nettest" />
+		</intent-filter>
+		<intent-filter>
+			<action android:name="android.intent.action.VIEW" />
+			<category android:name="android.intent.category.DEFAULT" />
+			<category android:name="android.intent.category.BROWSABLE" />
+			<action android:name="org.openobservatory.ooniprobe.nettest" />
+			<data android:scheme="http"
+				android:host="run.ooni.io"
+				android:pathPrefix="/nettest" />
+		</intent-filter>
+		<intent-filter>
+			<action android:name="android.intent.action.VIEW" />
+			<category android:name="android.intent.category.DEFAULT" />
+			<category android:name="android.intent.category.BROWSABLE" />
+			<data android:scheme="ooni"
+				android:host="nettest" />
+		</intent-filter>
+	</activity>
+-->

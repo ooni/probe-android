@@ -1,15 +1,7 @@
 External components used in this project:
-- Calligraphy
-Url: https://github.com/chrisjenx/Calligraphy
-License: https://github.com/chrisjenx/Calligraphy/blob/master/LICENSE (Apache 2)
-
 - gson
 Url: https://github.com/google/gson
 License: https://github.com/google/gson/blob/master/LICENSE (Apache 2)
-
-- AutoFitTextView
-Url: https://github.com/AndroidDeveloperLB/AutoFitTextView
-License: https://github.com/AndroidDeveloperLB/AutoFitTextView/blob/master/LICENSE (Apache 2)
 
 - Lottie
 Url: https://github.com/airbnb/lottie-android
@@ -24,3 +16,10 @@ Terms: https://fabric.io/terms
 
 - Firebase
 Terms: https://firebase.google.com/terms/
+
+- easypermissions
+- LocalhostToolkit
+- butterknife
+- DBFlow
+- LocalhostToolkit
+- MarkdownView
