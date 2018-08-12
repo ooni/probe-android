@@ -15,7 +15,6 @@ import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
-import org.openobservatory.ooniprobe.model.Summary;
 import org.openobservatory.ooniprobe.utils.VersionUtils;
 
 public abstract class AbstractTest {
@@ -64,7 +63,6 @@ public abstract class AbstractTest {
 				measurement.state = Measurement.State.FAILED;
 			else
 				onEntry(jr);
-			updateSummary();
 			measurement.save();
 			measurement.result.save();
 		});
@@ -109,18 +107,7 @@ public abstract class AbstractTest {
 		if (json.report_id != null) {
 			measurement.reportId = json.report_id;
 		}
-		measurement.result.getSummary().getTestKeysMap().put(measurement.name, json.test_keys);
-	}
-
-	private void updateSummary() {
-		Summary summary = measurement.result.getSummary();
-		if (measurement.state != Measurement.State.FAILED)
-			summary.failedMeasurements--;
-		if (!measurement.anomaly)
-			summary.okMeasurements++;
-		else
-			summary.anomalousMeasurements++;
-		measurement.result.setSummary();
+		measurement.setTestKeysObj(json.test_keys);
 	}
 
 	public interface TestCallback {

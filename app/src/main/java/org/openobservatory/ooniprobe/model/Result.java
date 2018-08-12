@@ -34,9 +34,7 @@ public class Result extends BaseModel implements Serializable {
 	@Column public String country;
 	@Column public String networkName;
 	@Column public String networkType;
-	@Column public String summary;
 	private List<Measurement> measurements;
-	private Summary summaryObj;
 
 	public Result() {
 	}
@@ -80,27 +78,6 @@ public class Result extends BaseModel implements Serializable {
 
 	public String getFormattedDataUsageDown() {
 		return readableFileSize(this.dataUsageDown);
-	}
-
-	/*
-	//TODO-ALE these are method for iOS, maybe in Android can be simplified
-	Three scenarios:
-    I'm running the test, I start the empty summary, I add stuff and save
-    I'm running the test, there is data in the summary, I add stuff and save
-    I have to get the summary of an old test and don't modify it
-	*/
-	public Summary getSummary() {
-		if (summaryObj == null) {
-			if (summary != null)
-				summaryObj = new Gson().fromJson(summary, Summary.class);
-			else
-				summaryObj = new Summary();
-		}
-		return summaryObj;
-	}
-
-	public void setSummary() {
-		summary = new Gson().toJson(summaryObj);
 	}
 
 	public String getAsn(Context context) {
