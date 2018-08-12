@@ -97,6 +97,116 @@ public class TestKeys {
     }
 
 
+    //Websites
+    private String getWebsiteBlocking(Context ctx){
+        if(this.blocking != null){
+            if (this.blocking.equals("dns"))
+                return ctx.getString(R.string.TestResults_Details_Websites_LikelyBlocked_BlockingReason_DNS);
+            else if (this.blocking.equals("tcp_ip"))
+                return ctx.getString(R.string.TestResults_Details_Websites_LikelyBlocked_BlockingReason_TCPIP);
+            else if (this.blocking.equals("http-diff"))
+                return ctx.getString(R.string.TestResults_Details_Websites_LikelyBlocked_BlockingReason_HTTPDiff);
+            else if (this.blocking.equals("http-failure"))
+                return ctx.getString(R.string.TestResults_Details_Websites_LikelyBlocked_BlockingReason_HTTPFailure);
+            else
+                return ctx.getString(R.string.TestResults_NotAvailable);
+        }
+        return ctx.getString(R.string.TestResults_NotAvailable);
+    }
+
+    //Whatsapp
+    private String getWhatsappEndpointStatus(Context ctx) {
+        if (this.whatsapp_endpoints_status != null) {
+            if (this.whatsapp_endpoints_status.equals("blocked"))
+                return ctx.getString(R.string.TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Failed);
+            return ctx.getString(R.string.TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Okay);
+        }
+        return ctx.getString(R.string.TestResults_NotAvailable);
+    }
+
+    private String getWhatsappWebStatus(Context ctx) {
+        if (this.whatsapp_web_status != null) {
+            if (this.whatsapp_web_status.equals("blocked"))
+                return ctx.getString(R.string.TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Failed);
+            return ctx.getString(R.string.TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Okay);
+        }
+        return ctx.getString(R.string.TestResults_NotAvailable);
+    }
+
+    private String getWhatsappRegistrationStatus(Context ctx) {
+        if (this.registration_server_status != null) {
+            if (this.registration_server_status.equals("blocked"))
+                return ctx.getString(R.string.TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Failed);
+            return ctx.getString(R.string.TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Okay);
+        }
+        return ctx.getString(R.string.TestResults_NotAvailable);
+    }
+
+    //Telegram
+    private String getTelegramEndpointStatus(Context ctx) {
+        if (this.telegram_http_blocking != null && this.telegram_tcp_blocking != null){
+            if (this.telegram_http_blocking || this.telegram_tcp_blocking)
+                return ctx.getString(R.string.TestResults_Details_InstantMessaging_Telegram_Application_Label_Failed);
+            else
+                return ctx.getString(R.string.TestResults_Details_InstantMessaging_Telegram_Application_Label_Okay);
+        }
+        return ctx.getString(R.string.TestResults_NotAvailable);
+    }
+
+    private String getTelegramWebStatus(Context ctx) {
+        if (this.telegram_web_status != null) {
+            if (this.telegram_web_status.equals("blocked"))
+                return ctx.getString(R.string.TestResults_Details_InstantMessaging_Telegram_Application_Label_Failed);
+            return ctx.getString(R.string.TestResults_Details_InstantMessaging_Telegram_Application_Label_Okay);
+        }
+        return ctx.getString(R.string.TestResults_NotAvailable);
+    }
+
+    private String getTelegramBlocking(Context ctx) {
+        if (this.telegram_http_blocking != null && this.telegram_tcp_blocking != null){
+            if (this.telegram_http_blocking && this.telegram_tcp_blocking)
+                return ctx.getString(R.string.TestResults_Details_InstantMessaging_Telegram_LikelyBlocked_Content_Paragraph_HTTPandTCPIP);
+            else if (this.telegram_http_blocking)
+                return ctx.getString(R.string.TestResults_Details_InstantMessaging_Telegram_LikelyBlocked_Content_Paragraph_HTTPOnly);
+            else if (this.telegram_tcp_blocking)
+                return ctx.getString(R.string.TestResults_Details_InstantMessaging_Telegram_LikelyBlocked_Content_Paragraph_TCPIPOnly);
+        }
+        return ctx.getString(R.string.TestResults_NotAvailable);
+    }
+
+    //Facebook Messenger
+    private String getFacebookMessengerDns(Context ctx) {
+        if (this.facebook_dns_blocking != null){
+            if (this.facebook_dns_blocking)
+                return ctx.getString(R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed);
+            else
+                return ctx.getString(R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Okay);
+        }
+        return ctx.getString(R.string.TestResults_NotAvailable);
+    }
+
+    private String getFacebookMessengerTcp(Context ctx) {
+        if (this.facebook_tcp_blocking != null){
+            if (this.facebook_tcp_blocking)
+                return ctx.getString(R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed);
+            else
+                return ctx.getString(R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Okay);
+        }
+        return ctx.getString(R.string.TestResults_NotAvailable);
+    }
+
+    private String getFacebookMessengerBlocking(Context ctx) {
+        if (this.facebook_dns_blocking != null && this.facebook_tcp_blocking != null){
+            if (this.facebook_dns_blocking && this.facebook_tcp_blocking)
+                return ctx.getString(R.string.TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_BlockingReason_DNSandTCPIP);
+            else if (this.facebook_dns_blocking)
+                return ctx.getString(R.string.TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_BlockingReason_DNSOnly);
+            else if (this.facebook_tcp_blocking)
+                return ctx.getString(R.string.TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_BlockingReason_TCPIPOnly);
+        }
+        return ctx.getString(R.string.TestResults_NotAvailable);
+    }
+
     //NDT
     private String getUpload(Context ctx){
         //TODO check this.simple.upload not null?
