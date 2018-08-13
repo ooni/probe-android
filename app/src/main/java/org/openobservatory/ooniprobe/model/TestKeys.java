@@ -24,10 +24,6 @@ public class TestKeys {
     public String server_address;
     public String server_name;
     public String server_country;
-    @SerializedName("median_bitrate")
-    public Double median_bitrate;
-    @SerializedName("min_playout_delay")
-    public Double min_playout_delay;
     @SerializedName("whatsapp_endpoints_status")
     public String whatsapp_endpoints_status;
     @SerializedName("whatsapp_web_status")
@@ -58,6 +54,10 @@ public class TestKeys {
         public double download;
         @SerializedName("ping")
         public double ping;
+        @SerializedName("median_bitrate")
+        public double median_bitrate;
+        @SerializedName("min_playout_delay")
+        public double min_playout_delay;
     }
 
     public static class Advanced {
