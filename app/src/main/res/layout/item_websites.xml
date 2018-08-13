@@ -19,7 +19,7 @@
 			android:drawableStart="@drawable/test_websites"
 			android:drawableTint="@color/color_indigo6"
 			android:gravity="center_vertical"
-			android:text="@string/Test_InstantMessaging_Fullname"
+			android:text="@string/Test_Websites_Fullname"
 			android:textStyle="bold"/>
 
 		<TextView
