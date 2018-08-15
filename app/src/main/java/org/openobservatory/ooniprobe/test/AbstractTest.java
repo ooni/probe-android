@@ -14,6 +14,7 @@ import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Measurement;
+import org.openobservatory.ooniprobe.model.Network;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.utils.VersionUtils;
 
@@ -46,13 +47,12 @@ public abstract class AbstractTest {
 	}
 
 	protected void setFilepaths(Context context, BaseTest test) {
-		test.set_output_filepath(context.getFilesDir() + measurement.name + "-" + measurement.id + ".json");
-		test.set_error_filepath(context.getFilesDir() + measurement.name + "-" + measurement.id + ".log");
+		test.set_output_filepath(context.getFilesDir() + measurement.test_name + "-" + measurement.id + ".json");
+		test.set_error_filepath(context.getFilesDir() + measurement.test_name + "-" + measurement.id + ".log");
 	}
 
 	public void run(int index, TestCallback testCallback) {
 		testCallback.onStart("test: " + index);
-		measurement.state = Measurement.State.ACTIVE;
 		measurement.save();
 		test.on_progress((v, s) -> testCallback.onProgress(Double.valueOf((index + v) * 100).intValue()));
 		test.on_log((l, s) -> testCallback.onLog(s));
@@ -60,7 +60,7 @@ public abstract class AbstractTest {
 			Log.d("entry", entry);
 			JsonResult jr = gson.fromJson(entry, JsonResult.class);
 			if (jr == null)
-				measurement.state = Measurement.State.FAILED;
+				measurement.is_failed = true;
 			else
 				onEntry(jr);
 			measurement.save();
@@ -72,42 +72,28 @@ public abstract class AbstractTest {
 
 	@CallSuper public void onEntry(@NonNull JsonResult json) {
 		if (json.test_start_time != null)
-			measurement.result.startTime = json.test_start_time;
+			measurement.result.start_time = json.test_start_time;
 		if (json.measurement_start_time != null)
-			measurement.startTime = json.measurement_start_time;
+			measurement.start_time = json.measurement_start_time;
 		if (json.test_runtime != null) {
-			measurement.duration = json.test_runtime;
+			measurement.runtime = json.test_runtime;
 			measurement.result.addDuration(json.test_runtime);
 		}
-		//if the user doesn't want to share asn leave null on the db object
+		measurement.network = new Network();
 		if (json.probe_asn != null && preferenceManager.isIncludeAsn()) {
-			//TODO-SBS asn name
-			measurement.asn = json.probe_asn;
-			measurement.asnName = "Vodafone";
-			if (measurement.result.asn == null) {
-				measurement.result.asn = json.probe_asn;
-				measurement.result.asnName = "Vodafone";
-			} else if (!measurement.asn.equals(measurement.result.asn))
-				System.out.println("Something's wrong");
+			measurement.network.asn = json.probe_asn; //TODO-SBS asn name
+			measurement.network.network_name = "Vodafone";
 		}
-		if (json.probe_cc != null && preferenceManager.isIncludeCc()) {
-			measurement.country = json.probe_cc;
-			if (measurement.result.country == null) {
-				measurement.result.country = json.probe_cc;
-			} else if (!measurement.country.equals(measurement.result.country))
-				System.out.println("Something's wrong");
-		}
-		if (json.probe_ip != null && preferenceManager.isIncludeIp()) {
-			measurement.ip = json.probe_ip;
-			if (measurement.result.ip == null) {
-				measurement.result.ip = json.probe_ip;
-			} else if (!measurement.ip.equals(measurement.result.ip))
-				System.out.println("Something's wrong");
-		}
-		if (json.report_id != null) {
-			measurement.reportId = json.report_id;
-		}
-		measurement.setTestKeysObj(json.test_keys);
+		if (json.probe_cc != null && preferenceManager.isIncludeCc())
+			measurement.network.country_code = json.probe_cc;
+		if (json.probe_ip != null && preferenceManager.isIncludeIp())
+			measurement.network.ip = json.probe_ip;
+		Network network = Network.querySingle(measurement.network);
+		if (network != null)
+			measurement.network = network;
+		if (json.report_id != null)
+			measurement.report_id = json.report_id;
+		measurement.setTestKeys(json.test_keys);
 	}
 
 	public interface TestCallback {

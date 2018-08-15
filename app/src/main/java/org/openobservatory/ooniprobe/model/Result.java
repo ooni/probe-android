@@ -1,7 +1,5 @@
 package org.openobservatory.ooniprobe.model;
 
-import android.content.Context;
-
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.OneToMany;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
@@ -10,7 +8,6 @@ import com.raizlabs.android.dbflow.sql.language.SQLOperator;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
-import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
 
 import java.io.Serializable;
@@ -22,27 +19,22 @@ import java.util.List;
 @Table(database = Application.class)
 public class Result extends BaseModel implements Serializable {
 	@PrimaryKey(autoincrement = true) public int id;
-	@Column public float duration;
-	@Column public long dataUsageDown;
-	@Column public long dataUsageUp;
-	@Column public boolean viewed;
-	@Column public boolean done;
-	@Column public Date startTime;
-	@Column public String name;
-	@Column public String ip;
-	@Column public String asn;
-	@Column public String asnName;
-	@Column public String country;
-	@Column public String networkName;
-	@Column public String networkType;
+	@Column public String test_group_name;
+	@Column public Date start_time;
+	@Column public float runtime;
+	@Column public boolean is_viewed;
+	@Column public boolean is_done;
+	@Column public long data_usage_up;
+	@Column public long data_usage_down;
+	// TODO log_file_path
 	private List<Measurement> measurements;
 
 	public Result() {
 	}
 
-	public Result(String name) {
-		this.name = name;
-		this.startTime = new Date();
+	public Result(String test_group_name) {
+		this.test_group_name = test_group_name;
+		this.start_time = new Date();
 	}
 
 	public static String readableFileSize(long size) {
@@ -52,7 +44,6 @@ public class Result extends BaseModel implements Serializable {
 		return new DecimalFormat("#,##0.#").format(size / Math.pow(1024, digitGroups)) + " " + units[digitGroups];
 	}
 
-	@OneToMany(variableName = "measurements")
 	public List<Measurement> getMeasurements() {
 		if (measurements == null || measurements.isEmpty())
 			measurements = SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id)).queryList();
@@ -60,57 +51,31 @@ public class Result extends BaseModel implements Serializable {
 	}
 
 	public Measurement getMeasurement(String name) {
-		return SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.name.eq(name)).querySingle();
+		return SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.test_name.eq(name)).querySingle();
 	}
 
-	public long countMeasurement(Measurement.State state, Boolean anomaly) {
+	public long countMeasurement(Boolean done, Boolean failed, Boolean anomaly) {
 		ArrayList<SQLOperator> sqlOperators = new ArrayList<>();
 		sqlOperators.add(Measurement_Table.result_id.eq(id));
-		if (state != null)
-			sqlOperators.add(Measurement_Table.state.eq(state));
+		if (done != null)
+			sqlOperators.add(Measurement_Table.is_done.eq(done));
+		if (failed != null)
+			sqlOperators.add(Measurement_Table.is_failed.eq(failed));
 		if (anomaly != null)
-			sqlOperators.add(Measurement_Table.anomaly.eq(anomaly));
+			sqlOperators.add(Measurement_Table.is_anomaly.eq(anomaly));
 		return SQLite.selectCountOf().from(Measurement.class).where(sqlOperators.toArray(new SQLOperator[sqlOperators.size()])).count();
 	}
 
-	public String getLocalizedNetworkType(Context context) {
-		if (this.networkType.equals("wifi"))
-			return context.getString(R.string.TestResults_Summary_Hero_WiFi);
-		else if (this.networkType.equals("mobile"))
-			return context.getString(R.string.TestResults_Summary_Hero_Mobile);
-		else if (this.networkType.equals("no_internet"))
-			return context.getString(R.string.TestResults_Summary_Hero_NoInternet);
-		return "";
-	}
-
 	public void addDuration(double value) {
-		this.duration += value;
+		this.runtime += value;
 	}
 
 	public String getFormattedDataUsageUp() {
-		return readableFileSize(this.dataUsageUp);
+		return readableFileSize(this.data_usage_up);
 	}
 
 	public String getFormattedDataUsageDown() {
-		return readableFileSize(this.dataUsageDown);
-	}
-
-	public String getAsn(Context context) {
-		if (this.asn != null)
-			return this.asn;
-		return context.getString(R.string.TestResults_UnknownASN);
-	}
-
-	public String getAsnName(Context context) {
-		if (this.asnName != null)
-			return this.asnName;
-		return context.getString(R.string.TestResults_UnknownASN);
-	}
-
-	public String getCountry(Context context) {
-		if (this.country != null)
-			return this.country;
-		return context.getString(R.string.TestResults_UnknownASN);
+		return readableFileSize(this.data_usage_down);
 	}
 
 	@Override public boolean delete() {

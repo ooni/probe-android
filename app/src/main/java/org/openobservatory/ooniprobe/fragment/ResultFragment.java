@@ -25,6 +25,7 @@ import org.openobservatory.ooniprobe.item.InstantMessagingItem;
 import org.openobservatory.ooniprobe.item.MiddleboxesItem;
 import org.openobservatory.ooniprobe.item.PerformanceItem;
 import org.openobservatory.ooniprobe.item.WebsiteItem;
+import org.openobservatory.ooniprobe.model.Network;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.model.Result_Table;
 import org.openobservatory.ooniprobe.test.TestSuite;
@@ -54,23 +55,25 @@ public class ResultFragment extends Fragment {
 		setHasOptionsMenu(true);
 		getActivity().setTitle(R.string.TestResults_Overview_Title);
 		tests.setText(getString(R.string.decimal, SQLite.selectCountOf().from(Result.class).longValue()));
-		networks.setText(getString(R.string.decimal, SQLite.selectCountOf(Result_Table.asn.distinct()).from(Result.class).longValue()));
-		upload.setText(getString(R.string.decimal, SQLite.select(Method.sum(Result_Table.dataUsageUp)).from(Result.class).longValue()));
-		download.setText(getString(R.string.decimal, SQLite.select(Method.sum(Result_Table.dataUsageDown)).from(Result.class).longValue()));
+
+		networks.setText(getString(R.string.decimal, SQLite.selectCountOf().from(Network.class).longValue()));
+
+		upload.setText(getString(R.string.decimal, SQLite.select(Method.sum(Result_Table.data_usage_up)).from(Result.class).longValue()));
+		download.setText(getString(R.string.decimal, SQLite.select(Method.sum(Result_Table.data_usage_down)).from(Result.class).longValue()));
 		LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
 		recycler.setLayoutManager(layoutManager);
 		recycler.addItemDecoration(new DividerItemDecoration(getActivity(), layoutManager.getOrientation()));
 		ArrayList<HeterogeneousRecyclerItem> items = new ArrayList<>();
 		HashSet<Integer> set = new HashSet<>();
-		for (Result result : SQLite.select().from(Result.class).orderBy(Result_Table.startTime, false).queryList()) {
+		for (Result result : SQLite.select().from(Result.class).orderBy(Result_Table.start_time, false).queryList()) {
 			Calendar c = Calendar.getInstance();
-			c.setTime(result.startTime);
+			c.setTime(result.start_time);
 			int key = c.get(Calendar.YEAR) * 100 + c.get(Calendar.MONTH);
 			if (!set.contains(key)) {
-				items.add(new DateItem(result.startTime));
+				items.add(new DateItem(result.start_time));
 				set.add(key);
 			}
-			switch (result.name) {
+			switch (result.test_group_name) {
 				case TestSuite.WEBSITES:
 					items.add(new WebsiteItem(result));
 					break;

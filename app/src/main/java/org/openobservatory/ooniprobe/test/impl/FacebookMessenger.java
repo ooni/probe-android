@@ -4,7 +4,6 @@ import android.support.annotation.NonNull;
 
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
-import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.test.AbstractTest;
 
@@ -20,11 +19,11 @@ public class FacebookMessenger extends AbstractTest {
         if "facebook_tcp_blocking" or "facebook_dns_blocking" are true => anomalous
      */
 	@Override public void onEntry(@NonNull JsonResult json) {
+		measurement.is_done = true;
 		if (json.test_keys.facebook_tcp_blocking == null || json.test_keys.facebook_dns_blocking == null)
-			measurement.state = Measurement.State.FAILED;
+			measurement.is_failed = true;
 		else {
-			measurement.state = Measurement.State.DONE;
-			measurement.anomaly = json.test_keys.facebook_tcp_blocking || json.test_keys.facebook_dns_blocking;
+			measurement.is_anomaly = json.test_keys.facebook_tcp_blocking || json.test_keys.facebook_dns_blocking;
 		}
 		super.onEntry(json);
 	}

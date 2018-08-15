@@ -25,10 +25,10 @@ public class WebsiteItem extends HeterogeneousRecyclerItem<Result, WebsiteItem.V
 	}
 
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
-		viewHolder.asnName.setText(extra.getAsnName(viewHolder.asnName.getContext()));
-		viewHolder.startTime.setText(DateFormat.getDateFormat(viewHolder.startTime.getContext()).format(extra.startTime));
-		viewHolder.failedMeasurements.setText(viewHolder.failedMeasurements.getContext().getString(R.string.decimal, extra.countMeasurement(Measurement.State.FAILED, null)) + " blockEd");
-		viewHolder.okMeasurements.setText(viewHolder.okMeasurements.getContext().getString(R.string.decimal, extra.countMeasurement(Measurement.State.DONE, false)) + " accesiblE");
+		viewHolder.asnName.setText(extra.getMeasurements().get(0).network.getAsnName(viewHolder.asnName.getContext()));
+		viewHolder.startTime.setText(DateFormat.getDateFormat(viewHolder.startTime.getContext()).format(extra.start_time));
+		viewHolder.failedMeasurements.setText(viewHolder.failedMeasurements.getContext().getString(R.string.decimal, extra.countMeasurement(null, true, null)) + " blockEd");
+		viewHolder.okMeasurements.setText(viewHolder.okMeasurements.getContext().getString(R.string.decimal, extra.countMeasurement(true, null, false)) + " accesiblE");
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {

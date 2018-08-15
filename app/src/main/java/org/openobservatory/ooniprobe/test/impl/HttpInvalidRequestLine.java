@@ -21,11 +21,11 @@ public class HttpInvalidRequestLine extends AbstractTest {
          true => anomalous
      */
 	@Override public void onEntry(@NonNull JsonResult json) {
+		measurement.is_done = true;
 		if (json.test_keys.tampering == null)
-			measurement.state = Measurement.State.FAILED;
+			measurement.is_failed = true;
 		else {
-			measurement.state = Measurement.State.DONE;
-			measurement.anomaly = json.test_keys.tampering.value;
+			measurement.is_anomaly = json.test_keys.tampering.value;
 		}
 		super.onEntry(json);
 	}

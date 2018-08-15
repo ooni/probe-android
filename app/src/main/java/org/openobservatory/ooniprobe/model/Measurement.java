@@ -7,83 +7,52 @@ import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
-import junit.framework.Test;
-
 import org.openobservatory.ooniprobe.common.Application;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Table(database = Application.class)
-public class Measurement extends BaseModel {
+public class Measurement extends BaseModel implements Serializable {
 	@PrimaryKey(autoincrement = true) public int id;
-	@Column public double duration;
-	@Column public boolean anomaly;
-	@Column public String name;
-	@Column public String ip;
-	@Column public String asn;
-	@Column public String asnName;
-	@Column public String country;
-	@Column public String networkName;
-	@Column public String networkType;
-	@Column public String reportId;
-	@Column public String input;
-	@Column public String category;
-	@Column public Date startTime;
-	@Column public State state;
-	@Column public String testKeys;
-	private TestKeys testKeysObj;
-
-	@ForeignKey(stubbedRelationship = true)
-	public Result result;
+	@Column public String test_name;
+	@Column public Date start_time;
+	@Column public double runtime;
+	@Column public boolean is_done;
+	@Column public boolean is_uploaded;
+	@Column public boolean is_failed;
+	@Column public String failure_msg;
+	@Column public boolean is_upload_failed;
+	@Column public String upload_failure_msg;
+	@Column public boolean is_rerun;
+	@Column public String report_id;
+	@Column public Integer measurement_id;
+	@Column public boolean is_anomaly;
+	@Column public String test_keys;
+	@ForeignKey(saveForeignKeyModel = true, deleteForeignKeyModel = true) public Network network;
+	@ForeignKey(saveForeignKeyModel = true, deleteForeignKeyModel = true) public Url url;
+	@ForeignKey(saveForeignKeyModel = true, deleteForeignKeyModel = true) public Result result;
+// TODO report_file_path
 
 	public Measurement() {
 	}
 
-	public Measurement(Result result, String name) {
+	public Measurement(Result result, String test_name) {
 		this.result = result;
-		this.name = name;
-		startTime = new java.util.Date();
-		state = State.FAILED;
+		this.test_name = test_name;
+		start_time = new java.util.Date();
 	}
 
-	/*
-	//TODO-ALE these are method for iOS, maybe in Android can be simplified
-	Three scenarios:
-    I'm running the test, I start the empty summary, I add stuff and save
-    I'm running the test, there is data in the summary, I add stuff and save
-    I have to get the summary of an old test and don't modify it
-	*/
-	public TestKeys getTestKeysObj() {
-		if (testKeysObj == null) {
-			if (testKeys != null)
-				testKeysObj = new Gson().fromJson(testKeys, TestKeys.class);
-			else
-				testKeysObj = new TestKeys();
-		}
-		return testKeysObj;
+	public TestKeys getTestKeys() {
+		return new Gson().fromJson(test_keys, TestKeys.class);
 	}
 
-	public void setTestKeysObj(TestKeys testKeysObj){
-		this.testKeysObj = testKeysObj;
-		testKeys = new Gson().toJson(testKeysObj);
+	public void setTestKeys(TestKeys testKeys) {
+		test_keys = new Gson().toJson(testKeys);
 	}
 
 	@Override public boolean delete() {
 		//TODO delete logFile and jsonFile
 		return super.delete();
 	}
-
-	// The possible states of a measurements are:
-	//  active, while the measurement is in progress
-	//  done, when it's finished, but not necessarily uploaded
-	//  uploaded, if it has been uploaded successfully
-	//  processed, if the pipeline has processed the measurement
-	public enum State {
-		ACTIVE,
-		FAILED,
-		DONE,
-		UPLOADED,
-		PROCESSED
-	}
-
 }
