@@ -17,16 +17,16 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
-public class TestItem extends HeterogeneousRecyclerItem<TestSuite, TestItem.ViewHolderImpl> {
+public class TestsuiteItem extends HeterogeneousRecyclerItem<TestSuite, TestsuiteItem.ViewHolderImpl> {
 	private View.OnClickListener onClickListener;
 
-	public TestItem(TestSuite extra, View.OnClickListener onClickListener) {
+	public TestsuiteItem(TestSuite extra, View.OnClickListener onClickListener) {
 		super(extra);
 		this.onClickListener = onClickListener;
 	}
 
 	@Override public ViewHolderImpl onCreateViewHolder(LayoutInflater layoutInflater, ViewGroup viewGroup) {
-		return new ViewHolderImpl(layoutInflater.inflate(R.layout.item_test, viewGroup, false));
+		return new ViewHolderImpl(layoutInflater.inflate(R.layout.item_testsuite, viewGroup, false));
 	}
 
 	@Override public void onBindViewHolder(ViewHolderImpl holder) {

@@ -19,7 +19,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.OverviewActivity;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
-import org.openobservatory.ooniprobe.item.TestItem;
+import org.openobservatory.ooniprobe.item.TestsuiteItem;
 import org.openobservatory.ooniprobe.test.TestSuite;
 
 import java.util.ArrayList;
@@ -31,8 +31,8 @@ import localhost.toolkit.widget.HeterogeneousRecyclerAdapter;
 public class DashboardFragment extends Fragment implements View.OnClickListener {
 	@BindView(R.id.recycler) RecyclerView recycler;
 	@BindView(R.id.toolbar) Toolbar toolbar;
-	private ArrayList<TestItem> items;
-	private HeterogeneousRecyclerAdapter<TestItem> adapter;
+	private ArrayList<TestsuiteItem> items;
+	private HeterogeneousRecyclerAdapter<TestsuiteItem> adapter;
 
 	@Nullable @Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_dashboard, container, false);
@@ -45,10 +45,10 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		}
 		setHasOptionsMenu(true);
 		items = new ArrayList<>();
-		items.add(new TestItem(TestSuite.getWebsiteTest(), this));
-		items.add(new TestItem(TestSuite.getInstantMessaging(), this));
-		items.add(new TestItem(TestSuite.getMiddleBoxes(), this));
-		items.add(new TestItem(TestSuite.getPerformance(), this));
+		items.add(new TestsuiteItem(TestSuite.getWebsiteTest(), this));
+		items.add(new TestsuiteItem(TestSuite.getInstantMessaging(), this));
+		items.add(new TestsuiteItem(TestSuite.getMiddleBoxes(), this));
+		items.add(new TestsuiteItem(TestSuite.getPerformance(), this));
 		adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
 		recycler.setAdapter(adapter);
 		recycler.setLayoutManager(new LinearLayoutManager(getActivity()));

@@ -26,7 +26,6 @@ public abstract class AbstractTest {
 	private long timestamp;
 
 	public AbstractTest(AbstractActivity activity, String name, BaseTest test, Result result) {
-		//TODO-ALE managing db class
 		measurement = new Measurement(result, name);
 		measurement.save();
 		preferenceManager = activity.getPreferenceManager();

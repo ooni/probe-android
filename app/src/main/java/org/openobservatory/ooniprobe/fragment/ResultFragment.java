@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.fragment;
 
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -14,8 +15,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.raizlabs.android.dbflow.sql.language.Delete;
 import com.raizlabs.android.dbflow.sql.language.Method;
 import com.raizlabs.android.dbflow.sql.language.SQLOperator;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
@@ -26,11 +29,14 @@ import org.openobservatory.ooniprobe.item.InstantMessagingItem;
 import org.openobservatory.ooniprobe.item.MiddleboxesItem;
 import org.openobservatory.ooniprobe.item.PerformanceItem;
 import org.openobservatory.ooniprobe.item.WebsiteItem;
+import org.openobservatory.ooniprobe.model.Measurement;
+import org.openobservatory.ooniprobe.model.Measurement_Table;
 import org.openobservatory.ooniprobe.model.Network;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.model.Result_Table;
 import org.openobservatory.ooniprobe.test.TestSuite;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
@@ -38,15 +44,17 @@ import java.util.HashSet;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnItemSelected;
+import localhost.toolkit.app.ConfirmDialogFragment;
 import localhost.toolkit.widget.HeterogeneousRecyclerAdapter;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
-public class ResultFragment extends Fragment {
+public class ResultFragment extends Fragment implements View.OnLongClickListener, ConfirmDialogFragment.OnConfirmedListener {
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.tests) TextView tests;
 	@BindView(R.id.networks) TextView networks;
 	@BindView(R.id.upload) TextView upload;
 	@BindView(R.id.download) TextView download;
+	@BindView(R.id.filterTests) Spinner filterTests;
 	@BindView(R.id.recycler) RecyclerView recycler;
 	private ArrayList<HeterogeneousRecyclerItem> items;
 	private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
@@ -78,18 +86,20 @@ public class ResultFragment extends Fragment {
 	@Override public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.delete:
+				ConfirmDialogFragment.newInstance(null, getString(R.string.app_name), getString(R.string.Modal_DoYouWantToDeleteResults)).show(getChildFragmentManager(), null);
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
 		}
 	}
 
-	private void queryList(String nameFilter) {
+	@OnItemSelected(R.id.filterTests) public void queryList() {
 		HashSet<Integer> set = new HashSet<>();
 		items.clear();
 		ArrayList<SQLOperator> where = new ArrayList<>();
-		if (nameFilter != null && !nameFilter.isEmpty())
-			where.add(Result_Table.test_group_name.is(nameFilter));
+		String filter = getResources().getStringArray(R.array.filterTestValues)[filterTests.getSelectedItemPosition()];
+		if (!filter.isEmpty())
+			where.add(Result_Table.test_group_name.is(filter));
 		for (Result result : SQLite.select().from(Result.class).where(where.toArray(new SQLOperator[where.size()])).orderBy(Result_Table.start_time, false).queryList()) {
 			Calendar c = Calendar.getInstance();
 			c.setTime(result.start_time);
@@ -100,23 +110,38 @@ public class ResultFragment extends Fragment {
 			}
 			switch (result.test_group_name) {
 				case TestSuite.WEBSITES:
-					items.add(new WebsiteItem(result));
+					items.add(new WebsiteItem(result, this));
 					break;
 				case TestSuite.INSTANT_MESSAGING:
-					items.add(new InstantMessagingItem(result));
+					items.add(new InstantMessagingItem(result, this));
 					break;
 				case TestSuite.MIDDLE_BOXES:
-					items.add(new MiddleboxesItem(result));
+					items.add(new MiddleboxesItem(result, this));
 					break;
 				case TestSuite.PERFORMANCE:
-					items.add(new PerformanceItem(result));
+					items.add(new PerformanceItem(result, this));
 					break;
 			}
 		}
 		adapter.notifyTypesChanged();
 	}
 
-	@OnItemSelected(R.id.filterTests) public void filterTestsItemSelected(int pos) {
-		queryList(getResources().getStringArray(R.array.filterTestValues)[pos]);
+	@Override public boolean onLongClick(View v) {
+		Result result = (Result) v.getTag();
+		ConfirmDialogFragment.newInstance(result, getString(R.string.app_name), "stringa mancante").show(getChildFragmentManager(), null);
+		return true;
+	}
+
+	@Override public void onConfirmation(Serializable serializable, int i) {
+		if (i == DialogInterface.BUTTON_POSITIVE) {
+			if (serializable == null) {
+				Delete.tables(Measurement.class, Result.class);
+			} else {
+				Result result = (Result) serializable;
+				SQLite.delete().from(Measurement.class).where(Measurement_Table.result_id.eq(result.id)).execute();
+				result.delete();
+			}
+			queryList();
+		}
 	}
 }
