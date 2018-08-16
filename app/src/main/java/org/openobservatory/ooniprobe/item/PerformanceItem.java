@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.model.Network;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.test.impl.Dash;
 
@@ -25,7 +26,7 @@ public class PerformanceItem extends HeterogeneousRecyclerItem<Result, Performan
 	}
 
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
-		viewHolder.asnName.setText(extra.getMeasurement().network.getAsnName(viewHolder.asnName.getContext()));
+		viewHolder.asnName.setText(Network.getAsnName(viewHolder.asnName.getContext(), extra.getMeasurement().network));
 		viewHolder.startTime.setText(DateFormat.getDateFormat(viewHolder.startTime.getContext()).format(extra.start_time));
 		viewHolder.quality.setText(extra.getMeasurement(Dash.NAME).getTestKeys().getVideoQuality(viewHolder.quality.getContext(), false));
 	}

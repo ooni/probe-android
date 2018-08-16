@@ -28,31 +28,34 @@ public class Network extends BaseModel implements Serializable {
 		return SQLite.select().from(Network.class).where(Network_Table.network_name.eq(network.network_name), Network_Table.asn.eq(network.asn), Network_Table.country_code.eq(network.country_code)).querySingle();
 	}
 
-	public String getLocalizedNetworkType(Context context) {
-		if (networkType.equals("wifi"))
-			return context.getString(R.string.TestResults_Summary_Hero_WiFi);
-		else if (networkType.equals("mobile"))
-			return context.getString(R.string.TestResults_Summary_Hero_Mobile);
-		else if (networkType.equals("no_internet"))
-			return context.getString(R.string.TestResults_Summary_Hero_NoInternet);
+	public static String getLocalizedNetworkType(Context context, Network network) {
+		if (network != null)
+			switch (network.networkType) {
+				case "wifi":
+					return context.getString(R.string.TestResults_Summary_Hero_WiFi);
+				case "mobile":
+					return context.getString(R.string.TestResults_Summary_Hero_Mobile);
+				case "no_internet":
+					return context.getString(R.string.TestResults_Summary_Hero_NoInternet);
+			}
 		return "";
 	}
 
-	public String getAsn(Context context) {
-		if (this.asn != null)
-			return this.asn;
+	public static String getAsn(Context context, Network network) {
+		if (network != null && network.asn != null)
+			return network.asn;
 		return context.getString(R.string.TestResults_UnknownASN);
 	}
 
-	public String getAsnName(Context context) {
-		if (this.network_name != null)
-			return this.network_name;
+	public static String getAsnName(Context context, Network network) {
+		if (network != null && network.network_name != null)
+			return network.network_name;
 		return context.getString(R.string.TestResults_UnknownASN);
 	}
 
-	public String getCountry(Context context) {
-		if (this.country_code != null)
-			return this.country_code;
+	public static String getCountry(Context context, Network network) {
+		if (network != null && network.country_code != null)
+			return network.country_code;
 		return context.getString(R.string.TestResults_UnknownASN);
 	}
 }
