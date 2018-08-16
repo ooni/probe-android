@@ -44,7 +44,7 @@ dependencies {
 
 	implementation('com.crashlytics.sdk.android:crashlytics:2.9.3@aar') { transitive = true }
 	implementation 'org.openobservatory.measurement_kit:android-libs:0.8.3-1'
-	implementation 'com.github.xanscale:LocalhostToolkit:3dea405153'
+	implementation 'com.github.xanscale.LocalhostToolkit:app:b1cbb84c43'
 	implementation 'pub.devrel:easypermissions:1.2.0'
 	implementation 'com.airbnb.android:lottie:2.5.5'
 	implementation 'com.github.apl-devs:appintro:v4.2.3'

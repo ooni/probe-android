@@ -52,7 +52,8 @@ public abstract class AbstractTest {
 	}
 
 	public void run(int index, TestCallback testCallback) {
-		testCallback.onStart("test: " + index);
+		testCallback.onStart(measurement.test_name);
+		testCallback.onProgress(Double.valueOf(index * 100).intValue());
 		measurement.save();
 		test.on_progress((v, s) -> testCallback.onProgress(Double.valueOf((index + v) * 100).intValue()));
 		test.on_log((l, s) -> testCallback.onLog(s));
