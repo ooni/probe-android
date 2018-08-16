@@ -24,7 +24,7 @@ public class MiddleboxesItem extends HeterogeneousRecyclerItem<Result, Middlebox
 	}
 
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
-		viewHolder.asnName.setText(extra.getMeasurements().get(0).network.getAsnName(viewHolder.asnName.getContext()));
+		viewHolder.asnName.setText(extra.getMeasurement().network.getAsnName(viewHolder.asnName.getContext()));
 		viewHolder.startTime.setText(DateFormat.getDateFormat(viewHolder.startTime.getContext()).format(extra.start_time));
 		if (extra.countMeasurement(null, null, true) > 0)
 			viewHolder.status.setText(R.string.TestResults_Overview_MiddleBoxes_Found);

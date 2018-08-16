@@ -1,7 +1,6 @@
 package org.openobservatory.ooniprobe.model;
 
 import com.raizlabs.android.dbflow.annotation.Column;
-import com.raizlabs.android.dbflow.annotation.OneToMany;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.sql.language.SQLOperator;
@@ -45,13 +44,20 @@ public class Result extends BaseModel implements Serializable {
 	}
 
 	public List<Measurement> getMeasurements() {
-		if (measurements == null || measurements.isEmpty())
+		if (measurements == null)
 			measurements = SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id)).queryList();
 		return measurements;
 	}
 
 	public Measurement getMeasurement(String name) {
 		return SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.test_name.eq(name)).querySingle();
+	}
+
+	public Measurement getMeasurement() {
+		if (measurements == null)
+			return SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id)).querySingle();
+		else
+			return measurements.get(0);
 	}
 
 	public long countMeasurement(Boolean done, Boolean failed, Boolean anomaly) {
