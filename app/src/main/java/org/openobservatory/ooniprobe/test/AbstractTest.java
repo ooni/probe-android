@@ -64,7 +64,6 @@ public abstract class AbstractTest {
 			else
 				onEntry(jr);
 			measurement.save();
-			measurement.result.save();
 		});
 		test.run();
 		measurement.save();

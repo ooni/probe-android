@@ -31,7 +31,7 @@ public class Measurement extends BaseModel implements Serializable {
 	@Column public String test_keys;
 	@ForeignKey(saveForeignKeyModel = true, deleteForeignKeyModel = true) public Network network;
 	@ForeignKey(saveForeignKeyModel = true, deleteForeignKeyModel = true) public Url url;
-	@ForeignKey(stubbedRelationship = true) public Result result;
+	@ForeignKey(saveForeignKeyModel = true, deleteForeignKeyModel = true, stubbedRelationship = true) public Result result;
 // TODO report_file_path
 
 	public Measurement() {
