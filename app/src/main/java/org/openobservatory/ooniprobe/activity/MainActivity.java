@@ -5,9 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.ActionBar;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
@@ -42,23 +39,21 @@ public class MainActivity extends AbstractActivity {
 		});
 		bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
 
-	/*	ActionBar bar = getSupportActionBar();
-		if (bar != null) {
-			bar.setDisplayShowCustomEnabled(true);
-			bar.setCustomView(R.layout.logo);
-		}*/
-
 		/* please don't remove
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		if (!preferences.getBoolean("cleanup_unused_files", false)) {
 			TestStorage.removeUnusedFiles(this);
 			PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("cleanup_unused_files", true).apply();
-		}
-	*/
+		}*/
 		checkInformedConsent();
 	}
 
-
+	@Override
+	public boolean onSupportNavigateUp() {
+		if (!super.onSupportNavigateUp())
+			onBackPressed();
+		return true;
+	}
 
 	public void checkInformedConsent() {
 		if (getPreferenceManager().isShowIntro())

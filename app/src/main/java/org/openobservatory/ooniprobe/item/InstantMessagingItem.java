@@ -17,10 +17,12 @@ import butterknife.ButterKnife;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
 public class InstantMessagingItem extends HeterogeneousRecyclerItem<Result, InstantMessagingItem.ViewHolder> {
+	private View.OnClickListener onClickListener;
 	private View.OnLongClickListener onLongClickListener;
 
-	public InstantMessagingItem(Result extra, View.OnLongClickListener onLongClickListener) {
+	public InstantMessagingItem(Result extra, View.OnClickListener onClickListener, View.OnLongClickListener onLongClickListener) {
 		super(extra);
+		this.onClickListener = onClickListener;
 		this.onLongClickListener = onLongClickListener;
 	}
 
@@ -30,12 +32,13 @@ public class InstantMessagingItem extends HeterogeneousRecyclerItem<Result, Inst
 
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
 		viewHolder.itemView.setTag(extra);
+		viewHolder.itemView.setOnClickListener(onClickListener);
 		viewHolder.itemView.setOnLongClickListener(onLongClickListener);
 		viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(viewHolder.itemView.getContext(), extra.is_viewed ? android.R.color.transparent : R.color.color_yellow0));
 		viewHolder.asnName.setText(Network.getAsnName(viewHolder.asnName.getContext(), extra.getMeasurement().network));
 		viewHolder.startTime.setText(DateFormat.getDateFormat(viewHolder.startTime.getContext()).format(extra.start_time));
-		viewHolder.failedMeasurements.setText(viewHolder.failedMeasurements.getContext().getString(R.string.decimal, extra.countMeasurement(null, true, null)) + " blockEd");
-		viewHolder.okMeasurements.setText(viewHolder.okMeasurements.getContext().getString(R.string.decimal, extra.countMeasurement(true, null, false)) + " accesiblE");
+		viewHolder.failedMeasurements.setText(viewHolder.failedMeasurements.getContext().getString(R.string.d, extra.countMeasurement(true, false)) + " blockEd");
+		viewHolder.okMeasurements.setText(viewHolder.okMeasurements.getContext().getString(R.string.d, extra.countMeasurement(false, false)) + " accesiblE");
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {

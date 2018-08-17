@@ -17,10 +17,12 @@ import butterknife.ButterKnife;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
 public class MiddleboxesItem extends HeterogeneousRecyclerItem<Result, MiddleboxesItem.ViewHolder> {
+	private View.OnClickListener onClickListener;
 	private View.OnLongClickListener onLongClickListener;
 
-	public MiddleboxesItem(Result extra, View.OnLongClickListener onLongClickListener) {
+	public MiddleboxesItem(Result extra, View.OnClickListener onClickListener, View.OnLongClickListener onLongClickListener) {
 		super(extra);
+		this.onClickListener = onClickListener;
 		this.onLongClickListener = onLongClickListener;
 	}
 
@@ -30,16 +32,17 @@ public class MiddleboxesItem extends HeterogeneousRecyclerItem<Result, Middlebox
 
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
 		viewHolder.itemView.setTag(extra);
+		viewHolder.itemView.setOnClickListener(onClickListener);
 		viewHolder.itemView.setOnLongClickListener(onLongClickListener);
 		viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(viewHolder.itemView.getContext(), extra.is_viewed ? android.R.color.transparent : R.color.color_yellow0));
 		viewHolder.asnName.setText(Network.getAsnName(viewHolder.asnName.getContext(), extra.getMeasurement().network));
 		viewHolder.startTime.setText(DateFormat.getDateFormat(viewHolder.startTime.getContext()).format(extra.start_time));
-		if (extra.countMeasurement(null, null, true) > 0)
+		if (extra.countMeasurement(true, null) > 0)
 			viewHolder.status.setText(R.string.TestResults_Overview_MiddleBoxes_Found);
-		else if (extra.countMeasurement(null, true, null) == 0)
-			viewHolder.status.setText(R.string.TestResults_Overview_MiddleBoxes_NotFound);
-		else
+		else if (extra.countMeasurement(null, false) == 0)
 			viewHolder.status.setText(R.string.TestResults_Overview_MiddleBoxes_Failed);
+		else
+			viewHolder.status.setText(R.string.TestResults_Overview_MiddleBoxes_NotFound);
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {

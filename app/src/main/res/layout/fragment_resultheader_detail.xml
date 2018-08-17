@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:gravity="center_vertical"
+	android:orientation="vertical"
+	android:padding="8dp"
+	android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:drawablePadding="4dp"
+			android:drawableStart="@drawable/data_usage"
+			android:text="@string/TestResults_Summary_Hero_DataUsage" />
+
+		<TextView
+			android:id="@+id/upload"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:drawablePadding="4dp"
+			android:drawableStart="@drawable/upload" />
+
+		<TextView
+			android:id="@+id/download"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:drawablePadding="4dp"
+			android:drawableStart="@drawable/download" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:drawablePadding="4dp"
+			android:drawableStart="@drawable/runtime"
+			android:text="@string/TestResults_Summary_Hero_Runtime" />
+
+		<TextView
+			android:id="@+id/runtime"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:drawablePadding="4dp"
+			android:drawableStart="@drawable/globe_18dp"
+			android:text="@string/TestResults_Summary_Hero_Country" />
+
+		<TextView
+			android:id="@+id/country"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:drawablePadding="4dp"
+			android:drawableStart="@drawable/network"
+			android:text="@string/TestResults_Summary_Hero_Network" />
+
+		<TextView
+			android:id="@+id/network"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+	</LinearLayout>
+</LinearLayout>

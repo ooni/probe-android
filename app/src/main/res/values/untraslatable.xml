@@ -62,7 +62,8 @@
 	<string name="CategoryCode_CTRL_Key" translatable="false">CTRL</string>
 	<string name="CategoryCode_IGO_Key" translatable="false">IGO</string>
 	<string name="CategoryCode_MISC_Key" translatable="false">MISC</string>
-	<string name="decimal" translatable="false">%1$d</string>
+	<string name="d" translatable="false">%1$d</string>
+	<string name="f" translatable="false">%1$.2f</string>
 	<string-array name="filterTests" translatable="false">
 		<item>@string/TestResults_Overview_FilterTests_AllTests</item>
 		<item>@string/TestResults_Overview_FilterTests_Websites</item>

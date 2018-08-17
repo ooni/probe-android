@@ -48,7 +48,7 @@ import localhost.toolkit.app.ConfirmDialogFragment;
 import localhost.toolkit.widget.HeterogeneousRecyclerAdapter;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
-public class ResultFragment extends Fragment implements View.OnLongClickListener, ConfirmDialogFragment.OnConfirmedListener {
+public class ResultFragment extends Fragment implements View.OnClickListener, View.OnLongClickListener, ConfirmDialogFragment.OnConfirmedListener {
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.tests) TextView tests;
 	@BindView(R.id.networks) TextView networks;
@@ -65,10 +65,10 @@ public class ResultFragment extends Fragment implements View.OnLongClickListener
 		((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 		setHasOptionsMenu(true);
 		getActivity().setTitle(R.string.TestResults_Overview_Title);
-		tests.setText(getString(R.string.decimal, SQLite.selectCountOf().from(Result.class).longValue()));
-		networks.setText(getString(R.string.decimal, SQLite.selectCountOf().from(Network.class).longValue()));
-		upload.setText(getString(R.string.decimal, SQLite.select(Method.sum(Result_Table.data_usage_up)).from(Result.class).longValue()));
-		download.setText(getString(R.string.decimal, SQLite.select(Method.sum(Result_Table.data_usage_down)).from(Result.class).longValue()));
+		tests.setText(getString(R.string.d, SQLite.selectCountOf().from(Result.class).longValue()));
+		networks.setText(getString(R.string.d, SQLite.selectCountOf().from(Network.class).longValue()));
+		upload.setText(getString(R.string.d, SQLite.select(Method.sum(Result_Table.data_usage_up)).from(Result.class).longValue()));
+		download.setText(getString(R.string.d, SQLite.select(Method.sum(Result_Table.data_usage_down)).from(Result.class).longValue()));
 		LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
 		recycler.setLayoutManager(layoutManager);
 		recycler.addItemDecoration(new DividerItemDecoration(getActivity(), layoutManager.getOrientation()));
@@ -110,20 +110,35 @@ public class ResultFragment extends Fragment implements View.OnLongClickListener
 			}
 			switch (result.test_group_name) {
 				case TestSuite.WEBSITES:
-					items.add(new WebsiteItem(result, this));
+					items.add(new WebsiteItem(result, this, this));
 					break;
 				case TestSuite.INSTANT_MESSAGING:
-					items.add(new InstantMessagingItem(result, this));
+					items.add(new InstantMessagingItem(result, this, this));
 					break;
 				case TestSuite.MIDDLE_BOXES:
-					items.add(new MiddleboxesItem(result, this));
+					items.add(new MiddleboxesItem(result, this, this));
 					break;
 				case TestSuite.PERFORMANCE:
-					items.add(new PerformanceItem(result, this));
+					items.add(new PerformanceItem(result, this, this));
 					break;
 			}
 		}
 		adapter.notifyTypesChanged();
+	}
+
+	@Override public void onClick(View v) {
+		Result result = (Result) v.getTag();
+		switch (result.test_group_name) {
+			case TestSuite.WEBSITES:
+				break;
+			case TestSuite.INSTANT_MESSAGING:
+				getFragmentManager().beginTransaction().replace(R.id.content, InstantMessagingFragment.newInstance(result.id)).addToBackStack(null).commit();
+				break;
+			case TestSuite.MIDDLE_BOXES:
+				break;
+			case TestSuite.PERFORMANCE:
+				break;
+		}
 	}
 
 	@Override public boolean onLongClick(View v) {

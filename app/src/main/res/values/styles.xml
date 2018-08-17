@@ -3,6 +3,7 @@
 	<style name="Theme.AppCompat.Light.DarkActionBar.App">
 		<item name="colorPrimary">@color/color_base</item>
 		<item name="colorPrimaryDark">@color/color_blue6</item>
+		<item name="colorAccent">@color/color_white</item>
 		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 		<item name="android:fontFamily">@font/firasans</item>
 	</style>

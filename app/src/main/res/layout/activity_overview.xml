@@ -14,19 +14,19 @@
 		<android.support.v7.widget.Toolbar
 			android:id="@+id/toolbar"
 			android:layout_width="match_parent"
-			android:layout_height="?attr/actionBarSize"/>
+			android:layout_height="?attr/actionBarSize" />
 
 		<ImageView
 			android:id="@+id/icon"
 			android:layout_width="96dp"
 			android:layout_height="96dp"
-			android:tint="@color/color_white"/>
+			android:tint="@color/color_white" />
 
 		<TextView
 			android:id="@+id/title"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+			android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
 		<Button
 			android:id="@+id/configure"
@@ -34,13 +34,13 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:background="@drawable/button_conf"
-			android:text="@string/Dashboard_Card_Configure"/>
+			android:text="@string/Dashboard_Card_Configure" />
 
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"
-			android:text="2min"/>
+			android:text="2min" />
 
 		<Button
 			android:id="@+id/run"
@@ -48,18 +48,19 @@
 			android:layout_height="wrap_content"
 			android:background="@drawable/button_next"
 			android:text="@string/Dashboard_Card_Run"
-			android:theme="@style/Theme.AppCompat.Light"/>
+			android:theme="@style/Theme.AppCompat.Light" />
 
 		<TextView
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:layout_marginBottom="16dp"
+			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"
-			android:text="2 settimane fa"/>
+			android:layout_marginBottom="16dp"
+			android:text="2 settimane fa" />
 	</android.support.design.widget.AppBarLayout>
 
 	<br.tiagohm.markdownview.MarkdownView
 		android:id="@+id/desc"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:gravity="center_horizontal"/>
+		android:gravity="center_horizontal" />
 </LinearLayout>
