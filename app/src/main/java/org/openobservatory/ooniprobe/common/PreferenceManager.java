@@ -12,6 +12,11 @@ public class PreferenceManager {
 	private Resources r;
 
 	PreferenceManager(Context context) {
+		android.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_global, true);
+		android.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_instant_messaging, true);
+		android.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_middleboxes, true);
+		android.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_performance, true);
+		android.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_websites, true);
 		sp = android.preference.PreferenceManager.getDefaultSharedPreferences(context);
 		r = context.getResources();
 	}
@@ -32,7 +37,7 @@ public class PreferenceManager {
 		return sp.getString(r.getString(R.string.dash_server_port), null);
 	}
 
-	public String getmaxRuntime() {
+	public String getMaxRuntime() {
 		return sp.getString(r.getString(R.string.max_runtime), null);
 	}
 

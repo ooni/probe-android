@@ -14,6 +14,8 @@ public class WebConnectivity extends AbstractTest {
 
 	public WebConnectivity(AbstractActivity activity, Result result) {
 		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.WebConnectivityTest(), result);
+		test.set_option("max_runtime", preferenceManager.getMaxRuntime());
+		test.add_input("http://4genderjustice.org/");
 	}
 
 	@Override protected void setFilepaths(Context context, BaseTest test) {
@@ -30,7 +32,7 @@ public class WebConnectivity extends AbstractTest {
 		if (json.test_keys.blocking == null)
 			measurement.is_failed = true;
 		else
-			measurement.is_anomaly = !json.test_keys.blocking.equals("0");
+			measurement.is_anomaly = !json.test_keys.blocking.equals("false");
 		super.onEntry(json);
 	}
 }
