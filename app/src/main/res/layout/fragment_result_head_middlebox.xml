@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<TextView
+		android:id="@+id/text"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_vertical"
+		android:drawablePadding="8dp"
+		android:drawableTint="@color/color_white"
+		android:drawableTop="@drawable/test_middle_boxes"
+		android:gravity="center_horizontal"
+		android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+</FrameLayout>

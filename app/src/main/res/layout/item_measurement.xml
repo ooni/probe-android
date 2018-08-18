@@ -5,4 +5,4 @@
 	android:layout_height="wrap_content"
 	android:drawablePadding="8dp"
 	android:gravity="center_vertical"
-	android:padding="8dp" />
+	android:padding="16dp" />

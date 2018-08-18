@@ -24,6 +24,7 @@ import org.openobservatory.ooniprobe.item.MeasurementItem;
 import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.model.Result_Table;
+import org.openobservatory.ooniprobe.test.TestSuite;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -80,7 +81,20 @@ public class ResultDetailFragment extends Fragment {
 		}
 
 		@Override public Fragment getItem(int position) {
-			return position == 0 ? ResultHeaderTBAFragment.newInstance(result, getString(R.string.TestResults_Summary_InstantMessaging_Hero_Apps_Plural)) : ResultHeaderDetailFragment.newInstance(result);
+			if (position == 1)
+				return ResultHeaderDetailFragment.newInstance(result);
+			else switch (result.test_group_name) {
+				case TestSuite.WEBSITES:
+					return ResultHeaderTBAFragment.newInstance(result, getString(R.string.TestResults_Summary_Websites_Hero_Sites_Plural));
+				case TestSuite.INSTANT_MESSAGING:
+					return ResultHeaderTBAFragment.newInstance(result, getString(R.string.TestResults_Summary_InstantMessaging_Hero_Apps_Plural));
+				case TestSuite.MIDDLE_BOXES:
+					return ResultHeaderMiddleboxFragment.newInstance(result.countMeasurement(true, null) > 0);
+				case TestSuite.PERFORMANCE:
+					return ResultHeaderDetailFragment.newInstance(result);
+				default:
+					return null;
+			}
 		}
 
 		@Override public int getCount() {
@@ -88,7 +102,7 @@ public class ResultDetailFragment extends Fragment {
 		}
 
 		@Nullable @Override public CharSequence getPageTitle(int position) {
-			return position == 0 ? "sum" : "detail";
+			return position == 0 ? "Sum" : "Network";
 		}
 	}
 }
