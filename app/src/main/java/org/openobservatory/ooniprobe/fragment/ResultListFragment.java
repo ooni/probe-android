@@ -24,6 +24,7 @@ import com.raizlabs.android.dbflow.sql.language.SQLOperator;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
 import org.openobservatory.ooniprobe.item.DateItem;
 import org.openobservatory.ooniprobe.item.InstantMessagingItem;
 import org.openobservatory.ooniprobe.item.MiddleboxesItem;
@@ -128,7 +129,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 
 	@Override public void onClick(View v) {
 		Result result = (Result) v.getTag();
-		getFragmentManager().beginTransaction().replace(R.id.content, ResultDetailFragment.newInstance(result.id)).addToBackStack(null).commit();
+		startActivity(ResultDetailActivity.newIntent(getActivity(), result.id));
 	}
 
 	@Override public boolean onLongClick(View v) {

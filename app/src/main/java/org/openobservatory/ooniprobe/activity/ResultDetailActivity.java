@@ -1,25 +1,26 @@
-package org.openobservatory.ooniprobe.fragment;
+package org.openobservatory.ooniprobe.activity;
 
 import android.app.Fragment;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateFormat;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.fragment.ResultHeaderDetailFragment;
+import org.openobservatory.ooniprobe.fragment.ResultHeaderMiddleboxFragment;
+import org.openobservatory.ooniprobe.fragment.ResultHeaderTBAFragment;
 import org.openobservatory.ooniprobe.item.MeasurementItem;
 import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
@@ -34,7 +35,7 @@ import butterknife.ButterKnife;
 import localhost.toolkit.widget.HeterogeneousRecyclerAdapter;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
-public class ResultDetailFragment extends Fragment {
+public class ResultDetailActivity extends AbstractActivity {
 	public static final String ID = "id";
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.tabLayout) TabLayout tabLayout;
@@ -44,40 +45,51 @@ public class ResultDetailFragment extends Fragment {
 	private ArrayList<HeterogeneousRecyclerItem> items;
 	private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
 
-	public static ResultDetailFragment newInstance(int id) {
-		Bundle args = new Bundle();
-		args.putInt(ID, id);
-		ResultDetailFragment fragment = new ResultDetailFragment();
-		fragment.setArguments(args);
-		return fragment;
+	public static Intent newIntent(Context context, int id) {
+		return new Intent(context, ResultDetailActivity.class).putExtra(ID, id);
 	}
 
-	@Nullable @Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-		result = SQLite.select().from(Result.class).where(Result_Table.id.eq(getArguments().getInt(ID))).querySingle();
-		View v = inflater.inflate(R.layout.fragment_result_detail, container, false);
-		ButterKnife.bind(this, v);
-		((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-		ActionBar bar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		result = SQLite.select().from(Result.class).where(Result_Table.id.eq(getIntent().getIntExtra(ID, 0))).querySingle();
+		assert result != null;
+		switch (result.test_group_name) {
+			case TestSuite.WEBSITES:
+				setTheme(R.style.Theme_AppCompat_Light_DarkActionBar_App_NoActionBar_Websites);
+				break;
+			case TestSuite.INSTANT_MESSAGING:
+				setTheme(R.style.Theme_AppCompat_Light_DarkActionBar_App_NoActionBar_InstantMessaging);
+				break;
+			case TestSuite.MIDDLE_BOXES:
+				setTheme(R.style.Theme_AppCompat_Light_DarkActionBar_App_NoActionBar_MiddleBoxes);
+				break;
+			case TestSuite.PERFORMANCE:
+				setTheme(R.style.Theme_AppCompat_Light_DarkActionBar_App_NoActionBar_Performance);
+				break;
+		}
+		setContentView(R.layout.activity_result_detail);
+		ButterKnife.bind(this);
+		setSupportActionBar(toolbar);
+		ActionBar bar = getSupportActionBar();
 		if (bar != null) {
 			bar.setDisplayHomeAsUpEnabled(true);
 			bar.setTitle(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), result.start_time));
 		}
 		pager.setAdapter(new ResultHeaderAdapter());
 		tabLayout.setupWithViewPager(pager);
-		LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+		LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 		recycler.setLayoutManager(layoutManager);
-		recycler.addItemDecoration(new DividerItemDecoration(getActivity(), layoutManager.getOrientation()));
+		recycler.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
 		items = new ArrayList<>();
 		for (Measurement measurement : result.getMeasurements())
 			items.add(new MeasurementItem(measurement));
-		adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
+		adapter = new HeterogeneousRecyclerAdapter<>(this, items);
 		recycler.setAdapter(adapter);
-		return v;
 	}
 
 	private class ResultHeaderAdapter extends FragmentPagerAdapter {
 		ResultHeaderAdapter() {
-			super(getChildFragmentManager());
+			super(getFragmentManager());
 		}
 
 		@Override public Fragment getItem(int position) {

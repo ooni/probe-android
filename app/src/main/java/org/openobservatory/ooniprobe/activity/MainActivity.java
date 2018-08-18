@@ -48,13 +48,6 @@ public class MainActivity extends AbstractActivity {
 		checkInformedConsent();
 	}
 
-	@Override
-	public boolean onSupportNavigateUp() {
-		if (!super.onSupportNavigateUp())
-			onBackPressed();
-		return true;
-	}
-
 	public void checkInformedConsent() {
 		if (getPreferenceManager().isShowIntro())
 			startActivityForResult(new Intent(MainActivity.this, InformedConsentActivity.class), InformedConsentActivity.REQUEST_CODE);
