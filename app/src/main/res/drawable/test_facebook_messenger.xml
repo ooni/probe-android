@@ -1,15 +1,15 @@
 <vector
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:name="vector"
-    android:width="29dp"
-    android:height="29dp"
+    android:width="36dp"
+    android:height="36dp"
     android:viewportWidth="29"
     android:viewportHeight="29">
     <group android:name="group">
         <path
             android:name="path"
             android:pathData="M 14.499 4.703 C 8.955 4.703 4.455 8.895 4.455 14.061 C 4.467 15.483 4.812 16.883 5.461 18.149 C 6.111 19.414 7.049 20.51 8.198 21.348 L 8.198 24.916 L 11.617 23.026 C 12.555 23.288 13.525 23.42 14.499 23.419 C 20.045 23.419 24.543 19.227 24.543 14.061 C 24.543 8.895 20.045 4.703 14.499 4.703 Z M 15.499 17.303 L 12.939 14.56 L 7.949 17.303 L 13.439 11.439 L 16.055 14.186 L 20.983 11.441 Z"
-            android:fillColor="#0588cb"
+            android:fillColor="#8a000000"
             android:strokeWidth="1"/>
     </group>
 </vector>

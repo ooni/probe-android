@@ -8,6 +8,9 @@ import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
@@ -17,20 +20,28 @@ import android.view.ViewGroup;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.item.MeasurementItem;
+import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.model.Result_Table;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import localhost.toolkit.widget.HeterogeneousRecyclerAdapter;
+import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
 public class InstantMessagingFragment extends Fragment {
 	public static final String ID = "id";
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.tabLayout) TabLayout tabLayout;
 	@BindView(R.id.pager) ViewPager pager;
+	@BindView(R.id.recyclerView) RecyclerView recycler;
 	private Result result;
+	private ArrayList<HeterogeneousRecyclerItem> items;
+	private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
 
 	public static InstantMessagingFragment newInstance(int id) {
 		Bundle args = new Bundle();
@@ -52,6 +63,14 @@ public class InstantMessagingFragment extends Fragment {
 		}
 		pager.setAdapter(new ResultHeaderAdapter());
 		tabLayout.setupWithViewPager(pager);
+		LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+		recycler.setLayoutManager(layoutManager);
+		recycler.addItemDecoration(new DividerItemDecoration(getActivity(), layoutManager.getOrientation()));
+		items = new ArrayList<>();
+		for (Measurement measurement : result.getMeasurements())
+			items.add(new MeasurementItem(measurement));
+		adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
+		recycler.setAdapter(adapter);
 		return v;
 	}
 
