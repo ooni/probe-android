@@ -15,4 +15,11 @@ public class Url extends BaseModel implements Serializable {
 	@Column public String url;
 	@Column public String category_code;
 	@Column public String country_code;
+
+	public Url() {
+	}
+
+	public Url(String url) {
+		this.url = url;
+	}
 }

@@ -14,6 +14,7 @@ import org.openobservatory.ooniprobe.test.impl.HttpHeaderFieldManipulation;
 import org.openobservatory.ooniprobe.test.impl.HttpInvalidRequestLine;
 import org.openobservatory.ooniprobe.test.impl.Ndt;
 import org.openobservatory.ooniprobe.test.impl.Telegram;
+import org.openobservatory.ooniprobe.test.impl.WebConnectivity;
 import org.openobservatory.ooniprobe.test.impl.Whatsapp;
 
 import butterknife.BindView;
@@ -30,8 +31,9 @@ public class MeasurementItem extends HeterogeneousRecyclerItem<Measurement, Meas
 	}
 
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
-		int textResId;
-		int drawResId;
+		int textResId = 0;
+		int drawResId = 0;
+		String text = null;
 		switch (extra.test_name) {
 			case FacebookMessenger.NAME:
 				textResId = R.string.Test_FacebookMessenger_Fullname;
@@ -61,15 +63,16 @@ public class MeasurementItem extends HeterogeneousRecyclerItem<Measurement, Meas
 				textResId = R.string.Test_NDT_Fullname;
 				drawResId = 0;
 				break;
-			default:
+			case WebConnectivity.NAME:
 				textResId = 0;
 				drawResId = 0;
+				text = extra.url.url;
 				break;
 		}
 		if (textResId != 0)
 			viewHolder.text.setText(textResId);
 		else
-			viewHolder.text.setText(null);
+			viewHolder.text.setText(text);
 		viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(drawResId, 0, extra.is_failed ? R.drawable.cross : R.drawable.tick, 0);
 	}
 

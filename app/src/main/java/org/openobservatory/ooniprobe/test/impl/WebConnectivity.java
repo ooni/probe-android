@@ -7,6 +7,7 @@ import org.openobservatory.measurement_kit.nettests.BaseTest;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Result;
+import org.openobservatory.ooniprobe.model.Url;
 import org.openobservatory.ooniprobe.test.AbstractTest;
 
 public class WebConnectivity extends AbstractTest {
@@ -33,6 +34,7 @@ public class WebConnectivity extends AbstractTest {
 			measurement.is_failed = true;
 		else
 			measurement.is_anomaly = !json.test_keys.blocking.equals("false");
+		measurement.url = new Url(json.input);
 		super.onEntry(json);
 	}
 }
