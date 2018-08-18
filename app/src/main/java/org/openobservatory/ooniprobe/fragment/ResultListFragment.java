@@ -48,7 +48,7 @@ import localhost.toolkit.app.ConfirmDialogFragment;
 import localhost.toolkit.widget.HeterogeneousRecyclerAdapter;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
-public class ResultFragment extends Fragment implements View.OnClickListener, View.OnLongClickListener, ConfirmDialogFragment.OnConfirmedListener {
+public class ResultListFragment extends Fragment implements View.OnClickListener, View.OnLongClickListener, ConfirmDialogFragment.OnConfirmedListener {
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.tests) TextView tests;
 	@BindView(R.id.networks) TextView networks;
@@ -60,7 +60,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener, Vi
 	private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
 
 	@Nullable @Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_result, container, false);
+		View v = inflater.inflate(R.layout.fragment_result_list, container, false);
 		ButterKnife.bind(this, v);
 		((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 		setHasOptionsMenu(true);
@@ -128,17 +128,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener, Vi
 
 	@Override public void onClick(View v) {
 		Result result = (Result) v.getTag();
-		switch (result.test_group_name) {
-			case TestSuite.WEBSITES:
-				break;
-			case TestSuite.INSTANT_MESSAGING:
-				getFragmentManager().beginTransaction().replace(R.id.content, InstantMessagingFragment.newInstance(result.id)).addToBackStack(null).commit();
-				break;
-			case TestSuite.MIDDLE_BOXES:
-				break;
-			case TestSuite.PERFORMANCE:
-				break;
-		}
+		getFragmentManager().beginTransaction().replace(R.id.content, ResultDetailFragment.newInstance(result.id)).addToBackStack(null).commit();
 	}
 
 	@Override public boolean onLongClick(View v) {

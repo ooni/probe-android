@@ -33,7 +33,7 @@ import butterknife.ButterKnife;
 import localhost.toolkit.widget.HeterogeneousRecyclerAdapter;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
-public class InstantMessagingFragment extends Fragment {
+public class ResultDetailFragment extends Fragment {
 	public static final String ID = "id";
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.tabLayout) TabLayout tabLayout;
@@ -43,17 +43,17 @@ public class InstantMessagingFragment extends Fragment {
 	private ArrayList<HeterogeneousRecyclerItem> items;
 	private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
 
-	public static InstantMessagingFragment newInstance(int id) {
+	public static ResultDetailFragment newInstance(int id) {
 		Bundle args = new Bundle();
 		args.putInt(ID, id);
-		InstantMessagingFragment fragment = new InstantMessagingFragment();
+		ResultDetailFragment fragment = new ResultDetailFragment();
 		fragment.setArguments(args);
 		return fragment;
 	}
 
 	@Nullable @Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 		result = SQLite.select().from(Result.class).where(Result_Table.id.eq(getArguments().getInt(ID))).querySingle();
-		View v = inflater.inflate(R.layout.fragment_instantmessaging, container, false);
+		View v = inflater.inflate(R.layout.fragment_result_detail, container, false);
 		ButterKnife.bind(this, v);
 		((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 		ActionBar bar = ((AppCompatActivity) getActivity()).getSupportActionBar();

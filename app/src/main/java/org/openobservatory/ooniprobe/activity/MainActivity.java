@@ -8,7 +8,7 @@ import android.support.design.widget.BottomNavigationView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
-import org.openobservatory.ooniprobe.fragment.ResultFragment;
+import org.openobservatory.ooniprobe.fragment.ResultListFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,7 +31,7 @@ public class MainActivity extends AbstractActivity {
 					getFragmentManager().beginTransaction().replace(R.id.content, new DashboardFragment()).commit();
 					return true;
 				case R.id.testResults:
-					getFragmentManager().beginTransaction().replace(R.id.content, new ResultFragment()).commit();
+					getFragmentManager().beginTransaction().replace(R.id.content, new ResultListFragment()).commit();
 					return true;
 				default:
 					return false;

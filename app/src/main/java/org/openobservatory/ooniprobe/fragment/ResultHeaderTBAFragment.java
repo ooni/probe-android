@@ -35,7 +35,7 @@ public class ResultHeaderTBAFragment extends Fragment {
 	}
 
 	@Nullable @Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_resultheader_tba, container, false);
+		View v = inflater.inflate(R.layout.fragment_result_head_tba, container, false);
 		ButterKnife.bind(this, v);
 		Result result = (Result) getArguments().getSerializable(RESULT);
 		assert result != null;

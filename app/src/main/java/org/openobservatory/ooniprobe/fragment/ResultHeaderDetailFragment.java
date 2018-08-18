@@ -31,7 +31,7 @@ public class ResultHeaderDetailFragment extends Fragment {
 	}
 
 	@Nullable @Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_resultheader_detail, container, false);
+		View v = inflater.inflate(R.layout.fragment_result_head_detail, container, false);
 		ButterKnife.bind(this, v);
 		Result result = (Result) getArguments().getSerializable(RESULT);
 		assert result != null;
