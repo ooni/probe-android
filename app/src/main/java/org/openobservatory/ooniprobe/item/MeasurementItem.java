@@ -55,14 +55,6 @@ public class MeasurementItem extends HeterogeneousRecyclerItem<Measurement, Meas
 				textResId = R.string.Test_HTTPInvalidRequestLine_Fullname;
 				drawResId = 0;
 				break;
-			case Dash.NAME:
-				textResId = R.string.Test_Dash_Fullname;
-				drawResId = 0;
-				break;
-			case Ndt.NAME:
-				textResId = R.string.Test_NDT_Fullname;
-				drawResId = 0;
-				break;
 			case WebConnectivity.NAME:
 				textResId = 0;
 				drawResId = 0;

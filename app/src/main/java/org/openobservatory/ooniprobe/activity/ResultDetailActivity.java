@@ -20,8 +20,10 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.ResultHeaderDetailFragment;
 import org.openobservatory.ooniprobe.fragment.ResultHeaderMiddleboxFragment;
+import org.openobservatory.ooniprobe.fragment.ResultHeaderPerformanceFragment;
 import org.openobservatory.ooniprobe.fragment.ResultHeaderTBAFragment;
 import org.openobservatory.ooniprobe.item.MeasurementItem;
+import org.openobservatory.ooniprobe.item.MeasurementPerfItem;
 import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.model.Result_Table;
@@ -81,8 +83,9 @@ public class ResultDetailActivity extends AbstractActivity {
 		recycler.setLayoutManager(layoutManager);
 		recycler.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
 		items = new ArrayList<>();
+		boolean isPerf = result.test_group_name.equals(TestSuite.PERFORMANCE);
 		for (Measurement measurement : result.getMeasurements())
-			items.add(new MeasurementItem(measurement));
+			items.add(isPerf ? new MeasurementPerfItem(measurement) : new MeasurementItem(measurement));
 		adapter = new HeterogeneousRecyclerAdapter<>(this, items);
 		recycler.setAdapter(adapter);
 	}
@@ -103,7 +106,7 @@ public class ResultDetailActivity extends AbstractActivity {
 				case TestSuite.MIDDLE_BOXES:
 					return ResultHeaderMiddleboxFragment.newInstance(result.countMeasurement(true, null) > 0);
 				case TestSuite.PERFORMANCE:
-					return ResultHeaderDetailFragment.newInstance(result);
+					return ResultHeaderPerformanceFragment.newInstance(result);
 				default:
 					return null;
 			}

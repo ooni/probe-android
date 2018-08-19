@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_vertical"
+		android:divider="@color/color_white"
+		android:orientation="horizontal"
+		android:showDividers="middle"
+		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+		<LinearLayout
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:orientation="vertical">
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center_horizontal"
+				android:text="@string/TestResults_Summary_Performance_Hero_Video"
+				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+			<TextView
+				android:id="@+id/video"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center_horizontal"
+				android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center_horizontal"
+				android:text="@string/TestResults_Summary_Performance_Hero_Video_Quality"
+				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:orientation="vertical">
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center_horizontal"
+				android:text="@string/TestResults_Summary_Performance_Hero_Upload"
+				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+			<TextView
+				android:id="@+id/upload"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center_horizontal"
+				android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+			<TextView
+				android:id="@+id/uploadUnit"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center_horizontal"
+				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:orientation="vertical">
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center_horizontal"
+				android:text="@string/TestResults_Summary_Performance_Hero_Download"
+				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+			<TextView
+				android:id="@+id/download"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center_horizontal"
+				android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+			<TextView
+				android:id="@+id/downloadUnit"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center_horizontal"
+				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:orientation="vertical">
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center_horizontal"
+				android:text="@string/TestResults_Summary_Performance_Hero_Ping"
+				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+			<TextView
+				android:id="@+id/ping"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center_horizontal"
+				android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center_horizontal"
+				android:text="@string/TestResults_ms"
+				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+		</LinearLayout>
+	</LinearLayout>
+</FrameLayout>
