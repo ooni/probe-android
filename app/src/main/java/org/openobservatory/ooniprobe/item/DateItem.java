@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
 public class DateItem extends HeterogeneousRecyclerItem<Date, DateItem.ViewHolder> {
-	public static final SimpleDateFormat SDF = new SimpleDateFormat(DateFormat.getBestDateTimePattern(Locale.getDefault(), "MMMMYYYY"), Locale.getDefault());
+	public static final SimpleDateFormat SDF = new SimpleDateFormat(DateFormat.getBestDateTimePattern(Locale.getDefault(), "MMMMyyyy"), Locale.getDefault());
 
 	public DateItem(Date extra) {
 		super(extra);

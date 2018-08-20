@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
 	package="org.openobservatory.ooniprobe">
 
 	<uses-permission android:name="android.permission.INTERNET" />
@@ -7,11 +8,12 @@
 
 	<application
 		android:name=".common.Application"
-		android:allowBackup="true"
+		android:allowBackup="false"
 		android:icon="@mipmap/ic_launcher"
 		android:label="@string/app_name"
 		android:supportsRtl="true"
-		android:theme="@style/Theme.AppCompat.Light.DarkActionBar.App">
+		android:theme="@style/Theme.AppCompat.Light.DarkActionBar.App"
+		tools:replace="android:allowBackup">
 		<meta-data
 			android:name="io.fabric.ApiKey"
 			android:value="529a3ff33bd5359fe86c53f6252035178bdb03a1" />
