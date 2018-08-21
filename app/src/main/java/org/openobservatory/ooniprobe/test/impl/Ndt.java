@@ -15,7 +15,7 @@ public class Ndt extends AbstractTest {
 	private String[] countries;
 
 	public Ndt(AbstractActivity activity, Result result) {
-		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.NdtTest(), result);
+		super(activity, new org.openobservatory.measurement_kit.nettests.NdtTest(), result, NAME, R.string.Test_NDT_Fullname);
 		countries = activity.getResources().getStringArray(R.array.countries);
 	}
 

@@ -2,6 +2,7 @@ package org.openobservatory.ooniprobe.test.impl;
 
 import android.support.annotation.NonNull;
 
+import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Measurement;
@@ -12,7 +13,7 @@ public class Telegram extends AbstractTest {
 	public static final String NAME = "telegram";
 
 	public Telegram(AbstractActivity activity, Result result) {
-		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.TelegramTest(), result);
+		super(activity, new org.openobservatory.measurement_kit.nettests.TelegramTest(), result, NAME, R.string.Test_Telegram_Fullname);
 	}
 
 	/*

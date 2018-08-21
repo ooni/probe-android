@@ -28,13 +28,15 @@ public abstract class AbstractTest {
 	private Result result;
 	private String name;
 	private Context context;
+	private int labelResId;
 
-	public AbstractTest(AbstractActivity activity, String name, BaseTest test, Result result) {
+	public AbstractTest(AbstractActivity activity, BaseTest test, Result result, String name, int labelResId) {
 		context = activity;
-		this.result = result;
-		this.name = name;
 		preferenceManager = activity.getPreferenceManager();
 		this.test = test;
+		this.result = result;
+		this.name = name;
+		this.labelResId = labelResId;
 		gson = activity.getGson();
 		test.use_logcat();
 		test.set_error_filepath(new File(activity.getFilesDir(), result.id + "-" + name + ".log").getPath());
@@ -50,7 +52,7 @@ public abstract class AbstractTest {
 	}
 
 	public void run(int index, TestCallback testCallback) {
-		testCallback.onStart(name);
+		testCallback.onStart(context.getString(labelResId));
 		testCallback.onProgress(Double.valueOf(index * 100).intValue());
 		test.on_progress((v, s) -> testCallback.onProgress(Double.valueOf((index + v) * 100).intValue()));
 		test.on_log((l, s) -> testCallback.onLog(s));

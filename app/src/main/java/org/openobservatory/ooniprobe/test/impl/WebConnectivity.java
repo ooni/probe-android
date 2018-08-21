@@ -2,6 +2,7 @@ package org.openobservatory.ooniprobe.test.impl;
 
 import android.support.annotation.NonNull;
 
+import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Measurement;
@@ -13,7 +14,7 @@ public class WebConnectivity extends AbstractTest {
 	public static final String NAME = "web_connectivity";
 
 	public WebConnectivity(AbstractActivity activity, Result result) {
-		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.WebConnectivityTest(), result);
+		super(activity, new org.openobservatory.measurement_kit.nettests.WebConnectivityTest(), result, NAME, R.string.Test_WebConnectivity_Fullname);
 		test.set_option("max_runtime", preferenceManager.getMaxRuntime());
 		test.add_input("http://4genderjustice.org/");
 	}

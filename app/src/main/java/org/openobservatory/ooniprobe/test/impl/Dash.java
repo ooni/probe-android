@@ -2,6 +2,7 @@ package org.openobservatory.ooniprobe.test.impl;
 
 import android.support.annotation.NonNull;
 
+import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Measurement;
@@ -12,7 +13,7 @@ public class Dash extends AbstractTest {
 	public static final String NAME = "dash";
 
 	public Dash(AbstractActivity activity, Result result) {
-		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.DashTest(), result);
+		super(activity, new org.openobservatory.measurement_kit.nettests.DashTest(), result, NAME, R.string.Test_Dash_Fullname);
 	}
 
 	/*

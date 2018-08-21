@@ -2,6 +2,7 @@ package org.openobservatory.ooniprobe.test.impl;
 
 import android.support.annotation.NonNull;
 
+import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Measurement;
@@ -12,7 +13,7 @@ public class HttpInvalidRequestLine extends AbstractTest {
 	public static final String NAME = "http_invalid_request_line";
 
 	public HttpInvalidRequestLine(AbstractActivity activity, Result result) {
-		super(activity, NAME, new org.openobservatory.measurement_kit.nettests.HttpInvalidRequestLineTest(), result);
+		super(activity, new org.openobservatory.measurement_kit.nettests.HttpInvalidRequestLineTest(), result, NAME, R.string.Test_HTTPInvalidRequestLine_Fullname);
 	}
 
 	/*
