@@ -25,6 +25,7 @@ import org.openobservatory.ooniprobe.fragment.ResultHeaderTBAFragment;
 import org.openobservatory.ooniprobe.item.MeasurementItem;
 import org.openobservatory.ooniprobe.item.MeasurementPerfItem;
 import org.openobservatory.ooniprobe.model.Measurement;
+import org.openobservatory.ooniprobe.model.Network;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.model.Result_Table;
 import org.openobservatory.ooniprobe.test.TestSuite;
@@ -96,9 +97,10 @@ public class ResultDetailActivity extends AbstractActivity {
 		}
 
 		@Override public Fragment getItem(int position) {
-			if (position == 1)
-				return ResultHeaderDetailFragment.newInstance(result);
-			else switch (result.test_group_name) {
+			if (position == 1) {
+				Network network = result.getMeasurement().network;
+				return ResultHeaderDetailFragment.newInstance(result.runtime, network.country_code, network.network_name);
+			}else switch (result.test_group_name) {
 				case TestSuite.WEBSITES:
 					return ResultHeaderTBAFragment.newInstance(result, R.plurals.TestResults_Summary_Websites_Hero_Sites);
 				case TestSuite.INSTANT_MESSAGING:
