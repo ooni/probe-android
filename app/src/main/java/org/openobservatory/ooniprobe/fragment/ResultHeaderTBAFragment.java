@@ -11,24 +11,26 @@ import android.widget.TextView;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.Result;
 
-import java.util.List;
-
 import butterknife.BindView;
-import butterknife.BindViews;
 import butterknife.ButterKnife;
 
 public class ResultHeaderTBAFragment extends Fragment {
-	public static final String LABEL = "label";
 	public static final String RESULT = "result";
+	public static final String LABEL_RES_ID = "labelResId";
 	@BindView(R.id.tested) TextView tested;
 	@BindView(R.id.blocked) TextView blocked;
 	@BindView(R.id.available) TextView available;
-	@BindViews({R.id.testedLabel, R.id.blockedLabel, R.id.availableLabel}) List<TextView> label;
+	@BindView(R.id.testedTag) TextView testedTag;
+	@BindView(R.id.blockedTag) TextView blockedTag;
+	@BindView(R.id.availableTag) TextView availableTag;
+	@BindView(R.id.testedLabel) TextView testedLabel;
+	@BindView(R.id.blockedLabel) TextView blockedLabel;
+	@BindView(R.id.availableLabel) TextView availableLabel;
 
-	public static ResultHeaderTBAFragment newInstance(Result result, String label) {
+	public static ResultHeaderTBAFragment newInstance(Result result, int labelResId) {
 		Bundle args = new Bundle();
 		args.putSerializable(RESULT, result);
-		args.putString(LABEL, label);
+		args.putInt(LABEL_RES_ID, labelResId);
 		ResultHeaderTBAFragment fragment = new ResultHeaderTBAFragment();
 		fragment.setArguments(args);
 		return fragment;
@@ -39,11 +41,18 @@ public class ResultHeaderTBAFragment extends Fragment {
 		ButterKnife.bind(this, v);
 		Result result = (Result) getArguments().getSerializable(RESULT);
 		assert result != null;
-		tested.setText(getString(R.string.d, result.countMeasurement(null, false)));
-		blocked.setText(getString(R.string.d, result.countMeasurement(true, false)));
-		available.setText(getString(R.string.d, result.countMeasurement(false, false)));
-		for (TextView tv : label)
-			tv.setText(getArguments().getString(LABEL));
+		long testedCount = result.countMeasurement(null, false);
+		long blockedCount = result.countMeasurement(true, false);
+		long availableCount = result.countMeasurement(false, false);
+		tested.setText(getString(R.string.d, testedCount));
+		blocked.setText(getString(R.string.d, blockedCount));
+		available.setText(getString(R.string.d, availableCount));
+		testedTag.setText(getResources().getQuantityText(R.plurals.TestResults_Summary_Websites_Hero_Tested, (int) testedCount));
+		blockedTag.setText(getResources().getQuantityText(R.plurals.TestResults_Summary_Websites_Hero_Blocked, (int) blockedCount));
+		availableTag.setText(getResources().getQuantityText(R.plurals.TestResults_Summary_Websites_Hero_Reachable, (int) availableCount));
+		testedLabel.setText(getResources().getQuantityText(getArguments().getInt(LABEL_RES_ID), (int) testedCount));
+		blockedLabel.setText(getResources().getQuantityText(getArguments().getInt(LABEL_RES_ID), (int) blockedCount));
+		availableLabel.setText(getResources().getQuantityText(getArguments().getInt(LABEL_RES_ID), (int) availableCount));
 		return v;
 	}
 }

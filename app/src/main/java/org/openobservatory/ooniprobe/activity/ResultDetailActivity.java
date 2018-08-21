@@ -100,9 +100,9 @@ public class ResultDetailActivity extends AbstractActivity {
 				return ResultHeaderDetailFragment.newInstance(result);
 			else switch (result.test_group_name) {
 				case TestSuite.WEBSITES:
-					return ResultHeaderTBAFragment.newInstance(result, getString(R.string.TestResults_Summary_Websites_Hero_Sites_Plural));
+					return ResultHeaderTBAFragment.newInstance(result, R.plurals.TestResults_Summary_Websites_Hero_Sites);
 				case TestSuite.INSTANT_MESSAGING:
-					return ResultHeaderTBAFragment.newInstance(result, getString(R.string.TestResults_Summary_InstantMessaging_Hero_Apps_Plural));
+					return ResultHeaderTBAFragment.newInstance(result, R.plurals.TestResults_Summary_InstantMessaging_Hero_Apps);
 				case TestSuite.MIDDLE_BOXES:
 					return ResultHeaderMiddleboxFragment.newInstance(result.countMeasurement(true, null) > 0);
 				case TestSuite.PERFORMANCE:

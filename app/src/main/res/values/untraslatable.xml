@@ -79,4 +79,52 @@
 		<item>middle_boxes</item>
 		<item>performance</item>
 	</string-array>
+	<plurals name="TestResults_Overview_Websites_Blocked">
+		<item quantity="one">@string/TestResults_Overview_Websites_Blocked_Singular</item>
+		<item quantity="other">@string/TestResults_Overview_Websites_Blocked_Plural</item>
+	</plurals>
+	<plurals name="TestResults_Overview_Websites_Tested">
+		<item quantity="one">@string/TestResults_Overview_Websites_Tested_Singular</item>
+		<item quantity="other">@string/TestResults_Overview_Websites_Tested_Plural</item>
+	</plurals>
+	<plurals name="TestResults_Overview_InstantMessaging_Blocked">
+		<item quantity="one">@string/TestResults_Overview_InstantMessaging_Blocked_Singular</item>
+		<item quantity="other">@string/TestResults_Overview_InstantMessaging_Blocked_Plural</item>
+	</plurals>
+	<plurals name="TestResults_Overview_InstantMessaging_Available">
+		<item quantity="one">@string/TestResults_Overview_InstantMessaging_Available_Singular</item>
+		<item quantity="other">@string/TestResults_Overview_InstantMessaging_Available_Plural</item>
+	</plurals>
+	<plurals name="TestResults_Summary_Websites_Hero_Tested">
+		<item quantity="one">@string/TestResults_Summary_Websites_Hero_Tested_Singular</item>
+		<item quantity="other">@string/TestResults_Summary_Websites_Hero_Tested_Plural</item>
+	</plurals>
+	<plurals name="TestResults_Summary_Websites_Hero_Blocked">
+		<item quantity="one">@string/TestResults_Summary_Websites_Hero_Blocked_Singular</item>
+		<item quantity="other">@string/TestResults_Summary_Websites_Hero_Blocked_Plural</item>
+	</plurals>
+	<plurals name="TestResults_Summary_Websites_Hero_Sites">
+		<item quantity="one">@string/TestResults_Summary_Websites_Hero_Sites_Singular</item>
+		<item quantity="other">@string/TestResults_Summary_Websites_Hero_Sites_Plural</item>
+	</plurals>
+	<plurals name="TestResults_Summary_Websites_Hero_Reachable">
+		<item quantity="one">@string/TestResults_Summary_Websites_Hero_Reachable_Singular</item>
+		<item quantity="other">@string/TestResults_Summary_Websites_Hero_Reachable_Plural</item>
+	</plurals>
+	<plurals name="TestResults_Summary_InstantMessaging_Hero_Tested">
+		<item quantity="one">@string/TestResults_Summary_InstantMessaging_Hero_Tested_Singular</item>
+		<item quantity="other">@string/TestResults_Summary_InstantMessaging_Hero_Tested_Plural</item>
+	</plurals>
+	<plurals name="TestResults_Summary_InstantMessaging_Hero_Blocked">
+		<item quantity="one">@string/TestResults_Summary_InstantMessaging_Hero_Blocked_Singular</item>
+		<item quantity="other">@string/TestResults_Summary_InstantMessaging_Hero_Blocked_Plural</item>
+	</plurals>
+	<plurals name="TestResults_Summary_InstantMessaging_Hero_Reachable">
+		<item quantity="one">@string/TestResults_Summary_InstantMessaging_Hero_Reachable_Singular</item>
+		<item quantity="other">@string/TestResults_Summary_InstantMessaging_Hero_Reachable_Plural</item>
+	</plurals>
+	<plurals name="TestResults_Summary_InstantMessaging_Hero_Apps">
+		<item quantity="one">@string/TestResults_Summary_InstantMessaging_Hero_Apps_Singular</item>
+		<item quantity="other">@string/TestResults_Summary_InstantMessaging_Hero_Apps_Plural</item>
+	</plurals>
 </resources>
