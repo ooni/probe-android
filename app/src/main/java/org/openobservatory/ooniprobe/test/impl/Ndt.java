@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
+import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.model.TestKeys;
 import org.openobservatory.ooniprobe.test.AbstractTest;
@@ -22,11 +23,11 @@ public class Ndt extends AbstractTest {
 	 	onEntry method for ndt test, check "failure" key
 	 	!=null => failed
 	 */
-	@Override public void onEntry(@NonNull JsonResult json) {
+	@Override public void onEntry(@NonNull JsonResult json, Measurement measurement) {
+		super.onEntry(json, measurement);
 		measurement.is_done = true;
 		measurement.is_failed = json.test_keys.failure != null;
 		calculateServerName(json.test_keys);
-		super.onEntry(json);
 	}
 
 	private void calculateServerName(TestKeys keys) {

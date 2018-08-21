@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
+import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.test.AbstractTest;
 
@@ -28,13 +29,12 @@ public class HttpHeaderFieldManipulation extends AbstractTest {
 		        total
 	        }
      */
-	@Override public void onEntry(@NonNull JsonResult json) {
+	@Override public void onEntry(@NonNull JsonResult json, Measurement measurement) {
+		super.onEntry(json, measurement);
 		measurement.is_done = true;
 		if (json.test_keys.failure != null && json.test_keys.tampering == null)
 			measurement.is_failed = true;
-		else {
+		else
 			measurement.is_anomaly = json.test_keys.tampering.value;
-		}
-		super.onEntry(json);
 	}
 }

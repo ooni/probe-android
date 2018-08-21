@@ -1,11 +1,10 @@
 package org.openobservatory.ooniprobe.test.impl;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 
-import org.openobservatory.measurement_kit.nettests.BaseTest;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.JsonResult;
+import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.model.Url;
 import org.openobservatory.ooniprobe.test.AbstractTest;
@@ -19,22 +18,18 @@ public class WebConnectivity extends AbstractTest {
 		test.add_input("http://4genderjustice.org/");
 	}
 
-	@Override protected void setFilepaths(Context context, BaseTest test) {
-		test.set_error_filepath(context.getFilesDir() + measurement.test_name + "-" + measurement.id + ".log");
-	}
-
 	/*
      null => failed {state = FAILED}
      false => not blocked {state = DONE, anomaly = false}
      string (dns, tcp-ip, http-failure, http-diff) => {state = DONE, anomaly = true}
      */
-	@Override public void onEntry(@NonNull JsonResult json) {
+	@Override public void onEntry(@NonNull JsonResult json, Measurement measurement) {
+		super.onEntry(json, measurement);
 		measurement.is_done = true;
 		if (json.test_keys.blocking == null)
 			measurement.is_failed = true;
 		else
 			measurement.is_anomaly = !json.test_keys.blocking.equals("false");
 		measurement.url = new Url(json.input);
-		super.onEntry(json);
 	}
 }

@@ -18,22 +18,26 @@ import org.openobservatory.ooniprobe.model.Network;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.utils.VersionUtils;
 
+import java.io.File;
+import java.io.FileOutputStream;
+
 public abstract class AbstractTest {
-	protected Measurement measurement;
 	protected BaseTest test;
 	protected PreferenceManager preferenceManager;
 	private Gson gson;
-	private long timestamp;
+	private Result result;
+	private String name;
+	private Context context;
 
 	public AbstractTest(AbstractActivity activity, String name, BaseTest test, Result result) {
-		measurement = new Measurement(result, name);
-		measurement.save();
+		context = activity;
+		this.result = result;
+		this.name = name;
 		preferenceManager = activity.getPreferenceManager();
 		this.test = test;
 		gson = activity.getGson();
-		timestamp = System.currentTimeMillis();
 		test.use_logcat();
-		setFilepaths(activity, test);
+		test.set_error_filepath(new File(activity.getFilesDir(), result.id + "-" + name + ".log").getPath());
 		test.set_verbosity(BuildConfig.DEBUG ? LogSeverity.LOG_DEBUG2 : LogSeverity.LOG_INFO);
 		test.set_option("geoip_country_path", activity.getFilesDir() + "/GeoIP.dat");
 		test.set_option("geoip_asn_path", activity.getFilesDir() + "/GeoIPASNum.dat");
@@ -45,31 +49,32 @@ public abstract class AbstractTest {
 		test.set_option("software_version", VersionUtils.get_software_version());
 	}
 
-	protected void setFilepaths(Context context, BaseTest test) {
-		test.set_output_filepath(context.getFilesDir() + measurement.test_name + "-" + measurement.id + ".json");
-		test.set_error_filepath(context.getFilesDir() + measurement.test_name + "-" + measurement.id + ".log");
-	}
-
 	public void run(int index, TestCallback testCallback) {
-		testCallback.onStart(measurement.test_name);
+		testCallback.onStart(name);
 		testCallback.onProgress(Double.valueOf(index * 100).intValue());
-		measurement.save();
 		test.on_progress((v, s) -> testCallback.onProgress(Double.valueOf((index + v) * 100).intValue()));
 		test.on_log((l, s) -> testCallback.onLog(s));
 		test.on_entry(entry -> {
 			Log.d("entry", entry);
+			Measurement measurement = new Measurement(result, name);
 			JsonResult jr = gson.fromJson(entry, JsonResult.class);
 			if (jr == null)
 				measurement.is_failed = true;
 			else
-				onEntry(jr);
+				onEntry(jr, measurement);
 			measurement.save();
+			try {
+				FileOutputStream outputStream = context.openFileOutput(measurement.id + "_" + measurement.test_name, Context.MODE_PRIVATE);
+				outputStream.write(entry.getBytes());
+				outputStream.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		});
 		test.run();
-		measurement.save();
 	}
 
-	@CallSuper public void onEntry(@NonNull JsonResult json) {
+	@CallSuper public void onEntry(@NonNull JsonResult json, Measurement measurement) {
 		if (json.test_start_time != null)
 			measurement.result.start_time = json.test_start_time;
 		if (json.measurement_start_time != null)
