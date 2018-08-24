@@ -14,6 +14,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateFormat;
+import android.view.View;
 
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
@@ -38,15 +39,13 @@ import butterknife.ButterKnife;
 import localhost.toolkit.widget.HeterogeneousRecyclerAdapter;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
-public class ResultDetailActivity extends AbstractActivity {
+public class ResultDetailActivity extends AbstractActivity implements View.OnClickListener {
 	public static final String ID = "id";
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.tabLayout) TabLayout tabLayout;
 	@BindView(R.id.pager) ViewPager pager;
 	@BindView(R.id.recyclerView) RecyclerView recycler;
 	private Result result;
-	private ArrayList<HeterogeneousRecyclerItem> items;
-	private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
 
 	public static Intent newIntent(Context context, int id) {
 		return new Intent(context, ResultDetailActivity.class).putExtra(ID, id);
@@ -83,12 +82,16 @@ public class ResultDetailActivity extends AbstractActivity {
 		LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 		recycler.setLayoutManager(layoutManager);
 		recycler.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
-		items = new ArrayList<>();
+		ArrayList<HeterogeneousRecyclerItem> items = new ArrayList<>();
 		boolean isPerf = result.test_group_name.equals(TestSuite.PERFORMANCE);
 		for (Measurement measurement : result.getMeasurements())
-			items.add(isPerf ? new MeasurementPerfItem(measurement) : new MeasurementItem(measurement));
-		adapter = new HeterogeneousRecyclerAdapter<>(this, items);
-		recycler.setAdapter(adapter);
+			items.add(isPerf ? new MeasurementPerfItem(measurement, this) : new MeasurementItem(measurement, this));
+		recycler.setAdapter(new HeterogeneousRecyclerAdapter<>(this, items));
+	}
+
+	@Override public void onClick(View v) {
+		Measurement measurement = (Measurement) v.getTag();
+		startActivity(MeasurementDetailActivity.newIntent(this, measurement.id));
 	}
 
 	private class ResultHeaderAdapter extends FragmentPagerAdapter {
@@ -99,8 +102,8 @@ public class ResultDetailActivity extends AbstractActivity {
 		@Override public Fragment getItem(int position) {
 			if (position == 1) {
 				Network network = result.getMeasurement().network;
-				return ResultHeaderDetailFragment.newInstance(result.runtime, network.country_code, network.network_name);
-			}else switch (result.test_group_name) {
+				return ResultHeaderDetailFragment.newInstance(0L, 0L, null, result.runtime, true, network.country_code, network.network_name);
+			} else switch (result.test_group_name) {
 				case TestSuite.WEBSITES:
 					return ResultHeaderTBAFragment.newInstance(result, R.plurals.TestResults_Summary_Websites_Hero_Sites);
 				case TestSuite.INSTANT_MESSAGING:

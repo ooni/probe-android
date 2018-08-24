@@ -39,7 +39,7 @@ public class TestSuite implements Serializable {
 	private String anim;
 	private String name;
 
-	public TestSuite(String name, @StringRes int title, @StringRes int cardDesc, @DrawableRes int icon, @ColorRes int color, @StyleRes int themeLight, @StyleRes int themeDark, @StringRes int desc1, @StringRes int desc2, @XmlRes int pref, String anim) {
+	private TestSuite(String name, @StringRes int title, @StringRes int cardDesc, @DrawableRes int icon, @ColorRes int color, @StyleRes int themeLight, @StyleRes int themeDark, @StringRes int desc1, @StringRes int desc2, @XmlRes int pref, String anim) {
 		this.title = title;
 		this.cardDesc = cardDesc;
 		this.icon = icon;

@@ -8,6 +8,7 @@
 	android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
 	<LinearLayout
+		android:id="@+id/dataUsage"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="horizontal">
@@ -33,6 +34,26 @@
 			android:layout_height="wrap_content"
 			android:drawablePadding="4dp"
 			android:drawableStart="@drawable/download" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:id="@+id/dateTime"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:drawablePadding="4dp"
+			android:drawableStart="@drawable/date_and_time"
+			android:text="@string/TestResults_Summary_Hero_DateAndTime" />
+
+		<TextView
+			android:id="@+id/startTime"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
 	</LinearLayout>
 
 	<LinearLayout

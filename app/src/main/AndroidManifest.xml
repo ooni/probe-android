@@ -73,6 +73,10 @@
 			android:launchMode="singleTop"
 			android:parentActivityName=".activity.MainActivity" />
 		<activity
+			android:name=".activity.MeasurementDetailActivity"
+			android:launchMode="singleTop"
+			android:parentActivityName=".activity.ResultDetailActivity" />
+		<activity
 			android:name=".activity.RunningActivity"
 			android:launchMode="singleTop"
 			android:parentActivityName=".activity.MainActivity" />

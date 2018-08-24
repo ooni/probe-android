@@ -15,8 +15,11 @@ import butterknife.ButterKnife;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
 public class MeasurementPerfItem extends HeterogeneousRecyclerItem<Measurement, MeasurementPerfItem.ViewHolder> {
-	public MeasurementPerfItem(Measurement extra) {
+	private View.OnClickListener onClickListener;
+
+	public MeasurementPerfItem(Measurement extra, View.OnClickListener onClickListener) {
 		super(extra);
+		this.onClickListener = onClickListener;
 	}
 
 	@Override public ViewHolder onCreateViewHolder(LayoutInflater layoutInflater, ViewGroup viewGroup) {
@@ -24,6 +27,7 @@ public class MeasurementPerfItem extends HeterogeneousRecyclerItem<Measurement, 
 	}
 
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
+		viewHolder.itemView.setTag(extra);
 		viewHolder.text.setText(extra.test_name.equals(Dash.NAME) ? R.string.Test_Dash_Fullname : R.string.Test_NDT_Fullname);
 		viewHolder.data.setCompoundDrawablesRelativeWithIntrinsicBounds(extra.test_name.equals(Dash.NAME) ? R.drawable.video_quality : 0, 0, 0, 0);
 		viewHolder.data.setText("?");
@@ -36,6 +40,7 @@ public class MeasurementPerfItem extends HeterogeneousRecyclerItem<Measurement, 
 		ViewHolder(View itemView) {
 			super(itemView);
 			ButterKnife.bind(this, itemView);
+			itemView.setOnClickListener(onClickListener);
 		}
 	}
 }

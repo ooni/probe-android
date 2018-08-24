@@ -8,11 +8,9 @@ import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.Measurement;
-import org.openobservatory.ooniprobe.test.impl.Dash;
 import org.openobservatory.ooniprobe.test.impl.FacebookMessenger;
 import org.openobservatory.ooniprobe.test.impl.HttpHeaderFieldManipulation;
 import org.openobservatory.ooniprobe.test.impl.HttpInvalidRequestLine;
-import org.openobservatory.ooniprobe.test.impl.Ndt;
 import org.openobservatory.ooniprobe.test.impl.Telegram;
 import org.openobservatory.ooniprobe.test.impl.WebConnectivity;
 import org.openobservatory.ooniprobe.test.impl.Whatsapp;
@@ -22,8 +20,11 @@ import butterknife.ButterKnife;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
 public class MeasurementItem extends HeterogeneousRecyclerItem<Measurement, MeasurementItem.ViewHolder> {
-	public MeasurementItem(Measurement extra) {
+	private View.OnClickListener onClickListener;
+
+	public MeasurementItem(Measurement extra, View.OnClickListener onClickListener) {
 		super(extra);
+		this.onClickListener = onClickListener;
 	}
 
 	@Override public ViewHolder onCreateViewHolder(LayoutInflater layoutInflater, ViewGroup viewGroup) {
@@ -31,6 +32,7 @@ public class MeasurementItem extends HeterogeneousRecyclerItem<Measurement, Meas
 	}
 
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
+		viewHolder.itemView.setTag(extra);
 		int textResId = 0;
 		int drawResId = 0;
 		String text = null;
@@ -74,6 +76,7 @@ public class MeasurementItem extends HeterogeneousRecyclerItem<Measurement, Meas
 		ViewHolder(View itemView) {
 			super(itemView);
 			ButterKnife.bind(this, itemView);
+			itemView.setOnClickListener(onClickListener);
 		}
 	}
 }

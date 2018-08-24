@@ -37,8 +37,10 @@ public class InstantMessagingItem extends HeterogeneousRecyclerItem<Result, Inst
 		viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(viewHolder.itemView.getContext(), extra.is_viewed ? android.R.color.transparent : R.color.color_yellow0));
 		viewHolder.asnName.setText(Network.getAsnName(viewHolder.asnName.getContext(), extra.getMeasurement().network));
 		viewHolder.startTime.setText(DateFormat.getDateFormat(viewHolder.startTime.getContext()).format(extra.start_time));
-		viewHolder.failedMeasurements.setText(viewHolder.failedMeasurements.getContext().getString(R.string.d, extra.countMeasurement(true, false)) + " blockEd");
-		viewHolder.okMeasurements.setText(viewHolder.okMeasurements.getContext().getString(R.string.d, extra.countMeasurement(false, false)) + " accesiblE");
+		long blocked = extra.countMeasurement(true, false);
+		long available = extra.countMeasurement(false, false);
+		viewHolder.failedMeasurements.setText(viewHolder.failedMeasurements.getContext().getString(R.string.d, blocked) + viewHolder.failedMeasurements.getContext().getResources().getQuantityString(R.plurals.TestResults_Overview_InstantMessaging_Blocked, (int) blocked));
+		viewHolder.okMeasurements.setText(viewHolder.okMeasurements.getContext().getString(R.string.d, available) + viewHolder.failedMeasurements.getContext().getResources().getQuantityString(R.plurals.TestResults_Overview_InstantMessaging_Available, (int) blocked));
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {
