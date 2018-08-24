@@ -35,7 +35,10 @@ import org.openobservatory.ooniprobe.model.Measurement_Table;
 import org.openobservatory.ooniprobe.model.Network;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.model.Result_Table;
-import org.openobservatory.ooniprobe.test.TestSuite;
+import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
+import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
+import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
+import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -110,16 +113,16 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 				set.add(key);
 			}
 			switch (result.test_group_name) {
-				case TestSuite.WEBSITES:
+				case WebsitesSuite.NAME:
 					items.add(new WebsiteItem(result, this, this));
 					break;
-				case TestSuite.INSTANT_MESSAGING:
+				case InstantMessagingSuite.NAME:
 					items.add(new InstantMessagingItem(result, this, this));
 					break;
-				case TestSuite.MIDDLE_BOXES:
+				case MiddleBoxesSuite.NAME:
 					items.add(new MiddleboxesItem(result, this, this));
 					break;
-				case TestSuite.PERFORMANCE:
+				case PerformanceSuite.NAME:
 					items.add(new PerformanceItem(result, this, this));
 					break;
 			}

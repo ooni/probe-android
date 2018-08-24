@@ -8,6 +8,11 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
+import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
+import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
+import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
+import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
 import java.io.Serializable;
 import java.text.DecimalFormat;
@@ -81,6 +86,21 @@ public class Result extends BaseModel implements Serializable {
 
 	public String getFormattedDataUsageDown() {
 		return readableFileSize(this.data_usage_down);
+	}
+
+	public AbstractSuite getTestSuite() {
+		switch (test_group_name) {
+			case WebsitesSuite.NAME:
+				return new WebsitesSuite();
+			case InstantMessagingSuite.NAME:
+				return new InstantMessagingSuite();
+			case MiddleBoxesSuite.NAME:
+				return new MiddleBoxesSuite();
+			case PerformanceSuite.NAME:
+				return new PerformanceSuite();
+			default:
+				return null;
+		}
 	}
 
 	@Override public boolean delete() {

@@ -39,8 +39,8 @@ public class WebsiteItem extends HeterogeneousRecyclerItem<Result, WebsiteItem.V
 		viewHolder.startTime.setText(DateFormat.getDateFormat(viewHolder.startTime.getContext()).format(extra.start_time));
 		long blocked = extra.countMeasurement(true, false);
 		long available = extra.countMeasurement(false, false);
-		viewHolder.failedMeasurements.setText(viewHolder.failedMeasurements.getContext().getString(R.string.d, blocked) + viewHolder.failedMeasurements.getContext().getResources().getQuantityString(R.plurals.TestResults_Overview_Websites_Blocked, (int) blocked));
-		viewHolder.okMeasurements.setText(viewHolder.okMeasurements.getContext().getString(R.string.d, available) + viewHolder.failedMeasurements.getContext().getResources().getQuantityString(R.plurals.TestResults_Overview_Websites_Tested, (int) blocked));
+		viewHolder.failedMeasurements.setText(viewHolder.failedMeasurements.getContext().getString(R.string.d, blocked) + " " + viewHolder.failedMeasurements.getContext().getResources().getQuantityString(R.plurals.TestResults_Overview_Websites_Blocked, (int) blocked));
+		viewHolder.okMeasurements.setText(viewHolder.okMeasurements.getContext().getString(R.string.d, available) + " " + viewHolder.failedMeasurements.getContext().getResources().getQuantityString(R.plurals.TestResults_Overview_Websites_Tested, (int) blocked));
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {

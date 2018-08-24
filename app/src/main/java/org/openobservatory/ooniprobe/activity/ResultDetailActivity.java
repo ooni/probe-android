@@ -29,7 +29,11 @@ import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Network;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.model.Result_Table;
-import org.openobservatory.ooniprobe.test.TestSuite;
+import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
+import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
+import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
+import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
+import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -55,20 +59,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 		super.onCreate(savedInstanceState);
 		result = SQLite.select().from(Result.class).where(Result_Table.id.eq(getIntent().getIntExtra(ID, 0))).querySingle();
 		assert result != null;
-		switch (result.test_group_name) {
-			case TestSuite.WEBSITES:
-				setTheme(R.style.Theme_AppCompat_Light_DarkActionBar_App_NoActionBar_Websites);
-				break;
-			case TestSuite.INSTANT_MESSAGING:
-				setTheme(R.style.Theme_AppCompat_Light_DarkActionBar_App_NoActionBar_InstantMessaging);
-				break;
-			case TestSuite.MIDDLE_BOXES:
-				setTheme(R.style.Theme_AppCompat_Light_DarkActionBar_App_NoActionBar_MiddleBoxes);
-				break;
-			case TestSuite.PERFORMANCE:
-				setTheme(R.style.Theme_AppCompat_Light_DarkActionBar_App_NoActionBar_Performance);
-				break;
-		}
+		setTheme(result.getTestSuite().getThemeLight());
 		setContentView(R.layout.activity_result_detail);
 		ButterKnife.bind(this);
 		setSupportActionBar(toolbar);
@@ -83,7 +74,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 		recycler.setLayoutManager(layoutManager);
 		recycler.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
 		ArrayList<HeterogeneousRecyclerItem> items = new ArrayList<>();
-		boolean isPerf = result.test_group_name.equals(TestSuite.PERFORMANCE);
+		boolean isPerf = result.test_group_name.equals(PerformanceSuite.NAME);
 		for (Measurement measurement : result.getMeasurements())
 			items.add(isPerf ? new MeasurementPerfItem(measurement, this) : new MeasurementItem(measurement, this));
 		recycler.setAdapter(new HeterogeneousRecyclerAdapter<>(this, items));
@@ -104,13 +95,13 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 				Network network = result.getMeasurement().network;
 				return ResultHeaderDetailFragment.newInstance(0L, 0L, null, result.runtime, true, network.country_code, network.network_name);
 			} else switch (result.test_group_name) {
-				case TestSuite.WEBSITES:
+				case WebsitesSuite.NAME:
 					return ResultHeaderTBAFragment.newInstance(result, R.plurals.TestResults_Summary_Websites_Hero_Sites);
-				case TestSuite.INSTANT_MESSAGING:
+				case InstantMessagingSuite.NAME:
 					return ResultHeaderTBAFragment.newInstance(result, R.plurals.TestResults_Summary_InstantMessaging_Hero_Apps);
-				case TestSuite.MIDDLE_BOXES:
+				case MiddleBoxesSuite.NAME:
 					return ResultHeaderMiddleboxFragment.newInstance(result.countMeasurement(true, null) > 0);
-				case TestSuite.PERFORMANCE:
+				case PerformanceSuite.NAME:
 					return ResultHeaderPerformanceFragment.newInstance(result);
 				default:
 					return null;
@@ -122,7 +113,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 		}
 
 		@Nullable @Override public CharSequence getPageTitle(int position) {
-			return position == 0 ? "Sum" : "Network";
+			return "●";
 		}
 	}
 }

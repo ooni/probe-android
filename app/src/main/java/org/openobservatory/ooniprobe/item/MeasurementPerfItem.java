@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.Measurement;
-import org.openobservatory.ooniprobe.test.impl.Dash;
+import org.openobservatory.ooniprobe.test.test.Dash;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,7 +28,7 @@ public class MeasurementPerfItem extends HeterogeneousRecyclerItem<Measurement, 
 
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
 		viewHolder.itemView.setTag(extra);
-		viewHolder.text.setText(extra.test_name.equals(Dash.NAME) ? R.string.Test_Dash_Fullname : R.string.Test_NDT_Fullname);
+		viewHolder.text.setText(extra.getTest().getLabelResId());
 		viewHolder.data.setCompoundDrawablesRelativeWithIntrinsicBounds(extra.test_name.equals(Dash.NAME) ? R.drawable.video_quality : 0, 0, 0, 0);
 		viewHolder.data.setText("?");
 	}

@@ -1,22 +1,28 @@
-package org.openobservatory.ooniprobe.test.impl;
+package org.openobservatory.ooniprobe.test.test;
 
 import android.support.annotation.NonNull;
 
+import org.openobservatory.measurement_kit.nettests.WebConnectivityTest;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.model.Url;
-import org.openobservatory.ooniprobe.test.AbstractTest;
 
 public class WebConnectivity extends AbstractTest {
 	public static final String NAME = "web_connectivity";
 
-	public WebConnectivity(AbstractActivity activity, Result result) {
-		super(activity, new org.openobservatory.measurement_kit.nettests.WebConnectivityTest(), result, NAME, R.string.Test_WebConnectivity_Fullname);
-		test.set_option("max_runtime", preferenceManager.getMaxRuntime());
+	public WebConnectivity() {
+		super(NAME, R.string.Test_WebConnectivity_Fullname, 0);
+	}
+
+	@Override public void run(AbstractActivity activity, Result result, int index, TestCallback testCallback) {
+		WebConnectivityTest test = new WebConnectivityTest();
+		test.set_option("max_runtime", activity.getPreferenceManager().getMaxRuntime());
 		test.add_input("http://4genderjustice.org/");
+		run(activity, test, result, index, testCallback);
 	}
 
 	/*
@@ -24,8 +30,8 @@ public class WebConnectivity extends AbstractTest {
      false => not blocked {state = DONE, anomaly = false}
      string (dns, tcp-ip, http-failure, http-diff) => {state = DONE, anomaly = true}
      */
-	@Override public void onEntry(@NonNull JsonResult json, Measurement measurement) {
-		super.onEntry(json, measurement);
+	@Override public void onEntry(PreferenceManager preferenceManager, @NonNull JsonResult json, Measurement measurement) {
+		super.onEntry(preferenceManager, json, measurement);
 		measurement.is_done = true;
 		if (json.test_keys.blocking == null)
 			measurement.is_failed = true;

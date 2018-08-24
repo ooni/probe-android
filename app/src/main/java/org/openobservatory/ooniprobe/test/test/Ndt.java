@@ -1,30 +1,34 @@
-package org.openobservatory.ooniprobe.test.impl;
+package org.openobservatory.ooniprobe.test.test;
 
 import android.support.annotation.NonNull;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.model.TestKeys;
-import org.openobservatory.ooniprobe.test.AbstractTest;
 
 public class Ndt extends AbstractTest {
 	public static final String NAME = "ndt_test";
 	private String[] countries;
 
-	public Ndt(AbstractActivity activity, Result result) {
-		super(activity, new org.openobservatory.measurement_kit.nettests.NdtTest(), result, NAME, R.string.Test_NDT_Fullname);
+	public Ndt() {
+		super(NAME, R.string.Test_NDT_Fullname, 0);
+	}
+
+	@Override public void run(AbstractActivity activity, Result result, int index, TestCallback testCallback) {
 		countries = activity.getResources().getStringArray(R.array.countries);
+		run(activity, new org.openobservatory.measurement_kit.nettests.NdtTest(), result, index, testCallback);
 	}
 
 	/*
 	 	onEntry method for ndt test, check "failure" key
 	 	!=null => failed
 	 */
-	@Override public void onEntry(@NonNull JsonResult json, Measurement measurement) {
-		super.onEntry(json, measurement);
+	@Override public void onEntry(PreferenceManager preferenceManager, @NonNull JsonResult json, Measurement measurement) {
+		super.onEntry(preferenceManager, json, measurement);
 		measurement.is_done = true;
 		measurement.is_failed = json.test_keys.failure != null;
 		calculateServerName(json.test_keys);

@@ -8,12 +8,8 @@ import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.Measurement;
-import org.openobservatory.ooniprobe.test.impl.FacebookMessenger;
-import org.openobservatory.ooniprobe.test.impl.HttpHeaderFieldManipulation;
-import org.openobservatory.ooniprobe.test.impl.HttpInvalidRequestLine;
-import org.openobservatory.ooniprobe.test.impl.Telegram;
-import org.openobservatory.ooniprobe.test.impl.WebConnectivity;
-import org.openobservatory.ooniprobe.test.impl.Whatsapp;
+import org.openobservatory.ooniprobe.test.test.AbstractTest;
+import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,41 +29,12 @@ public class MeasurementItem extends HeterogeneousRecyclerItem<Measurement, Meas
 
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
 		viewHolder.itemView.setTag(extra);
-		int textResId = 0;
-		int drawResId = 0;
-		String text = null;
-		switch (extra.test_name) {
-			case FacebookMessenger.NAME:
-				textResId = R.string.Test_FacebookMessenger_Fullname;
-				drawResId = R.drawable.test_facebook_messenger;
-				break;
-			case Telegram.NAME:
-				textResId = R.string.Test_Telegram_Fullname;
-				drawResId = R.drawable.test_telegram;
-				break;
-			case Whatsapp.NAME:
-				textResId = R.string.Test_WhatsApp_Fullname;
-				drawResId = R.drawable.test_whatsapp;
-				break;
-			case HttpHeaderFieldManipulation.NAME:
-				textResId = R.string.Test_HTTPHeaderFieldManipulation_Fullname;
-				drawResId = 0;
-				break;
-			case HttpInvalidRequestLine.NAME:
-				textResId = R.string.Test_HTTPInvalidRequestLine_Fullname;
-				drawResId = 0;
-				break;
-			case WebConnectivity.NAME:
-				textResId = 0;
-				drawResId = 0;
-				text = extra.url.url;
-				break;
-		}
-		if (textResId != 0)
-			viewHolder.text.setText(textResId);
+		AbstractTest test = extra.getTest();
+		if (extra.test_name.equals(WebConnectivity.NAME))
+			viewHolder.text.setText(extra.url.url);
 		else
-			viewHolder.text.setText(text);
-		viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(drawResId, 0, extra.is_failed ? R.drawable.cross : R.drawable.tick, 0);
+			viewHolder.text.setText(test.getLabelResId());
+		viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(test.getIconResId(), 0, extra.is_failed ? R.drawable.cross : R.drawable.tick, 0);
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {

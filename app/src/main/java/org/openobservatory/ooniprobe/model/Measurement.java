@@ -8,6 +8,13 @@ import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.test.test.AbstractTest;
+import org.openobservatory.ooniprobe.test.test.FacebookMessenger;
+import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
+import org.openobservatory.ooniprobe.test.test.HttpInvalidRequestLine;
+import org.openobservatory.ooniprobe.test.test.Telegram;
+import org.openobservatory.ooniprobe.test.test.WebConnectivity;
+import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -41,6 +48,25 @@ public class Measurement extends BaseModel implements Serializable {
 		this.result = result;
 		this.test_name = test_name;
 		start_time = new java.util.Date();
+	}
+
+	public AbstractTest getTest() {
+		switch (test_name) {
+			case FacebookMessenger.NAME:
+				return new FacebookMessenger();
+			case Telegram.NAME:
+				return new Telegram();
+			case Whatsapp.NAME:
+				return new Whatsapp();
+			case HttpHeaderFieldManipulation.NAME:
+				return new HttpHeaderFieldManipulation();
+			case HttpInvalidRequestLine.NAME:
+				return new HttpInvalidRequestLine();
+			case WebConnectivity.NAME:
+				return new WebConnectivity();
+			default:
+				return null;
+		}
 	}
 
 	public TestKeys getTestKeys() {

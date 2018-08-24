@@ -11,11 +11,10 @@ import android.widget.TextView;
 import com.airbnb.lottie.LottieAnimationView;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.test.TestSuite;
-import org.openobservatory.ooniprobe.test.AbstractTest;
+import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
-
-import java.lang.ref.WeakReference;
+import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
+import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,13 +26,13 @@ public class RunningActivity extends AbstractActivity {
 	@BindView(R.id.progress) ProgressBar progress;
 	@BindView(R.id.animation) LottieAnimationView animation;
 
-	public static Intent newIntent(Context context, TestSuite testSuite) {
+	public static Intent newIntent(Context context, AbstractSuite testSuite) {
 		return new Intent(context, RunningActivity.class).putExtra(TEST, testSuite);
 	}
 
 	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		TestSuite testSuite = (TestSuite) getIntent().getSerializableExtra(TEST);
+		AbstractSuite testSuite = (AbstractSuite) getIntent().getSerializableExtra(TEST);
 		setTheme(testSuite.getThemeDark());
 		setContentView(R.layout.activity_running);
 		ButterKnife.bind(this);
@@ -44,15 +43,13 @@ public class RunningActivity extends AbstractActivity {
 		AbstractTest[] testList = testSuite.getTestList(this);
 		if (testList != null) {
 			progress.setMax(testList.length * 100);
-			new TestAsyncTaskImpl(this).execute(testList);
+			new TestAsyncTaskImpl(this, testSuite.getName()).execute(testList);
 		}
 	}
 
-	private static class TestAsyncTaskImpl extends TestAsyncTask {
-		private WeakReference<RunningActivity> ref;
-
-		TestAsyncTaskImpl(RunningActivity act) {
-			ref = new WeakReference<>(act);
+	private static class TestAsyncTaskImpl extends TestAsyncTask<RunningActivity> {
+		TestAsyncTaskImpl(RunningActivity activity, String name) {
+			super(activity, new Result(name));
 		}
 
 		@Override protected void onProgressUpdate(String... values) {

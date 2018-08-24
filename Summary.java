@@ -6,14 +6,14 @@ import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.test.impl.Dash;
-import org.openobservatory.ooniprobe.test.impl.FacebookMessenger;
-import org.openobservatory.ooniprobe.test.impl.HttpHeaderFieldManipulation;
-import org.openobservatory.ooniprobe.test.impl.HttpInvalidRequestLine;
-import org.openobservatory.ooniprobe.test.impl.Ndt;
-import org.openobservatory.ooniprobe.test.impl.Telegram;
-import org.openobservatory.ooniprobe.test.impl.WebConnectivity;
-import org.openobservatory.ooniprobe.test.impl.Whatsapp;
+import org.openobservatory.ooniprobe.test.test.Dash;
+import org.openobservatory.ooniprobe.test.test.FacebookMessenger;
+import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
+import org.openobservatory.ooniprobe.test.test.HttpInvalidRequestLine;
+import org.openobservatory.ooniprobe.test.test.Ndt;
+import org.openobservatory.ooniprobe.test.test.Telegram;
+import org.openobservatory.ooniprobe.test.test.WebConnectivity;
+import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
 import java.util.ArrayList;
 import java.util.Locale;

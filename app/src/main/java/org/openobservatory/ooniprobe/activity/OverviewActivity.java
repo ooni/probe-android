@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.test.TestSuite;
+import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
 import br.tiagohm.markdownview.MarkdownView;
 import br.tiagohm.markdownview.css.InternalStyleSheet;
@@ -26,15 +26,15 @@ public class OverviewActivity extends AbstractActivity {
 	@BindView(R.id.title) TextView title;
 	@BindView(R.id.configure) Button configure;
 	@BindView(R.id.desc) MarkdownView desc;
-	private TestSuite testSuite;
+	private AbstractSuite testSuite;
 
-	public static Intent newIntent(Context context, TestSuite testSuite) {
+	public static Intent newIntent(Context context, AbstractSuite testSuite) {
 		return new Intent(context, OverviewActivity.class).putExtra(TEST, testSuite);
 	}
 
 	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		testSuite = (TestSuite) getIntent().getSerializableExtra(TEST);
+		testSuite = (AbstractSuite) getIntent().getSerializableExtra(TEST);
 		setTheme(testSuite.getThemeLight());
 		setContentView(R.layout.activity_overview);
 		ButterKnife.bind(this);

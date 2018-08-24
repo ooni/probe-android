@@ -11,16 +11,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.test.TestSuite;
+import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
-public class TestsuiteItem extends HeterogeneousRecyclerItem<TestSuite, TestsuiteItem.ViewHolderImpl> {
+public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, TestsuiteItem.ViewHolderImpl> {
 	private View.OnClickListener onClickListener;
 
-	public TestsuiteItem(TestSuite extra, View.OnClickListener onClickListener) {
+	public TestsuiteItem(AbstractSuite extra, View.OnClickListener onClickListener) {
 		super(extra);
 		this.onClickListener = onClickListener;
 	}

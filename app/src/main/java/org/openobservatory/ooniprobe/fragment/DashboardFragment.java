@@ -20,7 +20,11 @@ import org.openobservatory.ooniprobe.activity.OverviewActivity;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.item.TestsuiteItem;
-import org.openobservatory.ooniprobe.test.TestSuite;
+import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
+import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
+import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
+import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
+import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
 import java.util.ArrayList;
 
@@ -45,14 +49,13 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		}
 		setHasOptionsMenu(true);
 		items = new ArrayList<>();
-		items.add(new TestsuiteItem(TestSuite.getWebsiteTest(), this));
-		items.add(new TestsuiteItem(TestSuite.getInstantMessaging(), this));
-		items.add(new TestsuiteItem(TestSuite.getMiddleBoxes(), this));
-		items.add(new TestsuiteItem(TestSuite.getPerformance(), this));
+		items.add(new TestsuiteItem(new WebsitesSuite(), this));
+		items.add(new TestsuiteItem(new InstantMessagingSuite(), this));
+		items.add(new TestsuiteItem(new MiddleBoxesSuite(), this));
+		items.add(new TestsuiteItem(new PerformanceSuite(), this));
 		adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
 		recycler.setAdapter(adapter);
 		recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
-
 		return v;
 	}
 
@@ -72,7 +75,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 	}
 
 	@Override public void onClick(View v) {
-		TestSuite testSuite = (TestSuite) v.getTag();
+		AbstractSuite testSuite = (AbstractSuite) v.getTag();
 		switch (v.getId()) {
 			case R.id.configure:
 				startActivity(PreferenceActivity.newIntent(getActivity(), testSuite.getPref()));

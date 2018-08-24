@@ -1,19 +1,23 @@
-package org.openobservatory.ooniprobe.test.impl;
+package org.openobservatory.ooniprobe.test.test;
 
 import android.support.annotation.NonNull;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
-import org.openobservatory.ooniprobe.test.AbstractTest;
 
 public class HttpHeaderFieldManipulation extends AbstractTest {
 	public static final String NAME = "http_header_field_manipulation";
 
-	public HttpHeaderFieldManipulation(AbstractActivity activity, Result result) {
-		super(activity, new org.openobservatory.measurement_kit.nettests.HttpHeaderFieldManipulationTest(), result, NAME, R.string.Test_HTTPHeaderFieldManipulation_Fullname);
+	public HttpHeaderFieldManipulation() {
+		super(NAME, R.string.Test_HTTPHeaderFieldManipulation_Fullname, 0);
+	}
+
+	@Override public void run(AbstractActivity activity, Result result, int index, TestCallback testCallback) {
+		run(activity, new org.openobservatory.measurement_kit.nettests.HttpHeaderFieldManipulationTest(), result, index, testCallback);
 	}
 
 	/*
@@ -30,8 +34,8 @@ public class HttpHeaderFieldManipulation extends AbstractTest {
 		        total
 	        }
      */
-	@Override public void onEntry(@NonNull JsonResult json, Measurement measurement) {
-		super.onEntry(json, measurement);
+	@Override public void onEntry(PreferenceManager preferenceManager, @NonNull JsonResult json, Measurement measurement) {
+		super.onEntry(preferenceManager, json, measurement);
 		measurement.is_done = true;
 		if (json.test_keys.failure != null && json.test_keys.tampering == null)
 			measurement.is_failed = true;
