@@ -32,10 +32,11 @@ public class ResultHeaderDetailFragment extends Fragment {
 	@BindView(R.id.upload) TextView upload;
 	@BindView(R.id.download) TextView download;
 	@BindView(R.id.runtime) TextView runtime;
+	@BindView(R.id.runtimeLabel) TextView runtimeLabel;
 	@BindView(R.id.country) TextView country;
 	@BindView(R.id.network) TextView network;
 
-	public static ResultHeaderDetailFragment newInstance(Long data_usage_up, Long data_usage_down, Date start_time, float runtime, boolean isTotalRuntime, String country_code, String network_name) {
+	public static ResultHeaderDetailFragment newInstance(Long data_usage_up, Long data_usage_down, Date start_time, double runtime, boolean isTotalRuntime, String country_code, String network_name) {
 		Bundle args = new Bundle();
 		if (data_usage_up != null && data_usage_down != null) {
 			args.putLong(DATA_USAGE_UP, data_usage_up);
@@ -43,7 +44,7 @@ public class ResultHeaderDetailFragment extends Fragment {
 		}
 		if (start_time != null)
 			args.putSerializable(START_TIME, start_time);
-		args.putFloat(RUNTIME, runtime);
+		args.putDouble(RUNTIME, runtime);
 		args.putBoolean(IS_TOTAL_RUNTIME, isTotalRuntime);
 		args.putString(COUNTRY_CODE, country_code);
 		args.putString(NETWORK_NAME, network_name);
@@ -64,9 +65,10 @@ public class ResultHeaderDetailFragment extends Fragment {
 			startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), (Date) getArguments().getSerializable(START_TIME)));
 		else
 			dateTime.setVisibility(View.GONE);
-		runtime.setText(getString(R.string.f, getArguments().getFloat(RUNTIME)));
+		runtime.setText(getString(R.string.f, getArguments().getDouble(RUNTIME)));
 		country.setText(getArguments().getString(COUNTRY_CODE));
 		network.setText(getArguments().getString(NETWORK_NAME));
+		runtimeLabel.setText(getArguments().getBoolean(IS_TOTAL_RUNTIME)? R.string.TestResults_Summary_Hero_Runtime: R.string.TestResults_Details_Hero_Runtime);
 		return v;
 	}
 }

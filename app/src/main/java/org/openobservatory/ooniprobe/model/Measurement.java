@@ -9,9 +9,11 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
+import org.openobservatory.ooniprobe.test.test.Dash;
 import org.openobservatory.ooniprobe.test.test.FacebookMessenger;
 import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
 import org.openobservatory.ooniprobe.test.test.HttpInvalidRequestLine;
+import org.openobservatory.ooniprobe.test.test.Ndt;
 import org.openobservatory.ooniprobe.test.test.Telegram;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 import org.openobservatory.ooniprobe.test.test.Whatsapp;
@@ -64,6 +66,10 @@ public class Measurement extends BaseModel implements Serializable {
 				return new HttpInvalidRequestLine();
 			case WebConnectivity.NAME:
 				return new WebConnectivity();
+			case Ndt.NAME:
+				return new Ndt();
+			case Dash.NAME:
+				return new Dash();
 			default:
 				return null;
 		}

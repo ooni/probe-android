@@ -25,7 +25,7 @@ public class Result extends BaseModel implements Serializable {
 	@PrimaryKey(autoincrement = true) public int id;
 	@Column public String test_group_name;
 	@Column public Date start_time;
-	@Column public float runtime;
+	@Column public double runtime;
 	@Column public boolean is_viewed;
 	@Column public boolean is_done;
 	@Column public long data_usage_up;

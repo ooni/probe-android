@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.fragment.ResultHeaderDetailFragment;
 import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Measurement_Table;
 
@@ -31,7 +32,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
 		assert measurement != null;
 		measurement.result.load();
 		setTheme(measurement.result.getTestSuite().getThemeLight());
-		setContentView(R.layout.activity_result_detail);
+		setContentView(R.layout.activity_measurement_detail);
 		ButterKnife.bind(this);
 		setSupportActionBar(toolbar);
 		ActionBar bar = getSupportActionBar();
@@ -39,5 +40,6 @@ public class MeasurementDetailActivity extends AbstractActivity {
 			bar.setDisplayHomeAsUpEnabled(true);
 			bar.setTitle(measurement.getTest().getLabelResId());
 		}
+		getFragmentManager().beginTransaction().replace(R.id.head, ResultHeaderDetailFragment.newInstance(null, null, measurement.start_time, measurement.runtime, false, measurement.network.country_code, measurement.network.network_name)).commit();
 	}
 }
