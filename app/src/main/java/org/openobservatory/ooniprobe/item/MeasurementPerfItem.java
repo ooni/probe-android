@@ -31,20 +31,25 @@ public class MeasurementPerfItem extends HeterogeneousRecyclerItem<Measurement, 
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
 		viewHolder.itemView.setTag(extra);
 		TestKeys testKeys = extra.getTestKeys();
-		Context c = viewHolder.data.getContext();
+		Context c = viewHolder.text.getContext();
 		viewHolder.text.setText(extra.getTest().getLabelResId());
 		if (extra.test_name.equals(Dash.NAME)) {
-			viewHolder.data.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.video_quality, 0, 0, 0);
-			viewHolder.data.setText(testKeys.getVideoQuality(c, true));
+			viewHolder.data1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.video_quality, 0, 0, 0);
+			viewHolder.data1.setText(testKeys.getVideoQuality(c, true));
+			viewHolder.data2.setVisibility(View.GONE);
 		} else {
-			viewHolder.data.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
-			viewHolder.data.setText(c.getString(R.string.fourParam, testKeys.getDownload(c), testKeys.getDownloadUnit(c), testKeys.getUpload(c), testKeys.getUploadUnit(c)));
+			viewHolder.data1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.download, 0, 0, 0);
+			viewHolder.data1.setText(c.getString(R.string.twoParam, testKeys.getDownload(c), testKeys.getDownloadUnit(c)));
+			viewHolder.data2.setVisibility(View.VISIBLE);
+			viewHolder.data2.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.upload, 0, 0, 0);
+			viewHolder.data2.setText(c.getString(R.string.twoParam, testKeys.getUpload(c), testKeys.getUploadUnit(c)));
 		}
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {
 		@BindView(R.id.text) TextView text;
-		@BindView(R.id.data) TextView data;
+		@BindView(R.id.data1) TextView data1;
+		@BindView(R.id.data2) TextView data2;
 
 		ViewHolder(View itemView) {
 			super(itemView);

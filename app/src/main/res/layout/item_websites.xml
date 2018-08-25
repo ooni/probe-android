@@ -19,20 +19,20 @@
 			android:drawableStart="@drawable/test_websites"
 			android:gravity="center_vertical"
 			android:text="@string/Test_Websites_Fullname"
-			android:textStyle="bold"/>
+			android:textStyle="bold" />
 
 		<TextView
 			android:id="@+id/asnName"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-			android:textStyle="bold"/>
+			android:textStyle="bold" />
 
 		<TextView
 			android:id="@+id/startTime"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
+			android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 	</LinearLayout>
 
 	<LinearLayout
@@ -48,7 +48,7 @@
 			android:layout_height="wrap_content"
 			android:drawablePadding="8dp"
 			android:drawableStart="@drawable/cross"
-			android:textColor="@color/color_red8"/>
+			android:textColor="@color/color_red8" />
 
 		<TextView
 			android:id="@+id/okMeasurements"
@@ -56,6 +56,6 @@
 			android:layout_height="wrap_content"
 			android:drawablePadding="8dp"
 			android:drawableStart="@drawable/globe_24dp"
-			android:drawableTint="@android:color/secondary_text_light"/>
+			android:drawableTint="@android:color/black" />
 	</LinearLayout>
 </LinearLayout>

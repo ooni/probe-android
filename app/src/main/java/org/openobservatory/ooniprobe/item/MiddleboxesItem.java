@@ -37,12 +37,16 @@ public class MiddleboxesItem extends HeterogeneousRecyclerItem<Result, Middlebox
 		viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(viewHolder.itemView.getContext(), extra.is_viewed ? android.R.color.transparent : R.color.color_yellow0));
 		viewHolder.asnName.setText(Network.getAsnName(viewHolder.asnName.getContext(), extra.getMeasurement().network));
 		viewHolder.startTime.setText(DateFormat.getDateFormat(viewHolder.startTime.getContext()).format(extra.start_time));
-		if (extra.countMeasurement(true, null) > 0)
+		if (extra.countMeasurement(true, null) > 0) {
 			viewHolder.status.setText(R.string.TestResults_Overview_MiddleBoxes_Found);
-		else if (extra.countMeasurement(null, false) == 0)
+			viewHolder.status.setTextColor(ContextCompat.getColor(viewHolder.status.getContext(), R.color.color_yellow8)); // TODO
+		} else if (extra.countMeasurement(null, false) == 0) {
 			viewHolder.status.setText(R.string.TestResults_Overview_MiddleBoxes_Failed);
-		else
+			viewHolder.status.setTextColor(ContextCompat.getColor(viewHolder.status.getContext(), R.color.color_yellow8)); // TODO
+		} else {
 			viewHolder.status.setText(R.string.TestResults_Overview_MiddleBoxes_NotFound);
+			viewHolder.status.setTextColor(ContextCompat.getColor(viewHolder.status.getContext(), R.color.color_yellow8)); // TODO
+		}
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {
