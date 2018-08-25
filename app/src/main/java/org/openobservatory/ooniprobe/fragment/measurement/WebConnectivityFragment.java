@@ -6,14 +6,19 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.Measurement;
+import org.openobservatory.ooniprobe.model.TestKeys;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class WebConnectivityFragment extends Fragment {
 	public static final String MEASUREMENT = "measurement";
+	@BindView(R.id.title) TextView title;
+	@BindView(R.id.desc) TextView desc;
 
 	public static WebConnectivityFragment newInstance(Measurement measurement) {
 		Bundle args = new Bundle();
@@ -25,8 +30,22 @@ public class WebConnectivityFragment extends Fragment {
 
 	@Nullable @Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 		Measurement measurement = (Measurement) getArguments().getSerializable(MEASUREMENT);
+		assert measurement != null;
 		View v = inflater.inflate(R.layout.fragment_measurement_webconnectivity, container, false);
 		ButterKnife.bind(this, v);
+		TestKeys testKeys = measurement.getTestKeys();
+		if (measurement.is_anomaly) {
+			title.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.cross, 0, 0);
+			title.setText(R.string.TestResults_Details_Websites_LikelyBlocked_Hero_Title);
+			if (testKeys == null)
+				desc.setText(R.string.TestResults_Details_Websites_LikelyBlocked_Content_Paragraph_1);
+			else
+				desc.setText(getString(R.string.twoParam, getString(R.string.TestResults_Details_Websites_LikelyBlocked_Content_Paragraph_1), testKeys.getWebsiteBlocking(getActivity())));
+		} else {
+			title.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.tick, 0, 0);
+			title.setText(R.string.TestResults_Details_Websites_Reachable_Hero_Title);
+			desc.setText(R.string.TestResults_Details_Websites_Reachable_Content_Paragraph_1);
+		}
 		return v;
 	}
 }

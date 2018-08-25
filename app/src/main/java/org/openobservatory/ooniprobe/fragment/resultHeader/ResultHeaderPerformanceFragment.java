@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.Result;
+import org.openobservatory.ooniprobe.model.TestKeys;
+import org.openobservatory.ooniprobe.test.test.Dash;
+import org.openobservatory.ooniprobe.test.test.Ndt;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,13 +39,14 @@ public class ResultHeaderPerformanceFragment extends Fragment {
 		ButterKnife.bind(this, v);
 		Result result = (Result) getArguments().getSerializable(RESULT);
 		assert result != null;
-		// TODO
-		video.setText("?");
-		upload.setText("?");
-		uploadUnit.setText("?");
-		download.setText("?");
-		downloadUnit.setText("?");
-		ping.setText("?");
+		TestKeys dash = result.getMeasurement(Dash.NAME).getTestKeys();
+		TestKeys ndt = result.getMeasurement(Ndt.NAME).getTestKeys();
+		video.setText(dash.getVideoQuality(getActivity(), false));
+		upload.setText(ndt.getUpload(getActivity()));
+		uploadUnit.setText(ndt.getUploadUnit(getActivity()));
+		download.setText(ndt.getDownload(getActivity()));
+		downloadUnit.setText(ndt.getDownloadUnit(getActivity()));
+		ping.setText(ndt.simple.ping);
 		return v;
 	}
 }

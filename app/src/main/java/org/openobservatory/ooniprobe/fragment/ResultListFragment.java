@@ -62,6 +62,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 	@BindView(R.id.recycler) RecyclerView recycler;
 	private ArrayList<HeterogeneousRecyclerItem> items;
 	private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
+	private boolean refresh;
 
 	@Nullable @Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_result_list, container, false);
@@ -80,6 +81,19 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 		adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
 		recycler.setAdapter(adapter);
 		return v;
+	}
+
+	@Override public void onResume() {
+		super.onResume();
+		if (refresh) {
+			queryList();
+			refresh = false;
+		}
+	}
+
+	@Override public void onPause() {
+		super.onPause();
+		refresh = true;
 	}
 
 	@Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {

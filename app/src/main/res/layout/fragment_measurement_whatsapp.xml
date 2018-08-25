@@ -5,7 +5,77 @@
 	android:orientation="vertical">
 
 	<TextView
-		android:layout_width="wrap_content"
+		android:id="@+id/title"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="whatsapp" />
+		android:layout_margin="16dp"
+		android:gravity="center_horizontal"
+		android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+	<TextView
+		android:id="@+id/desc"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="16dp"
+		android:gravity="center_horizontal" />
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:gravity="center_horizontal"
+			android:text="@string/TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Title"
+			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:gravity="center_horizontal"
+			android:text="@string/TestResults_Details_InstantMessaging_WhatsApp_WebApp_Label_Title"
+			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:gravity="center_horizontal"
+			android:text="@string/TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Title"
+			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<TextView
+			android:id="@+id/application"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:gravity="center_horizontal"
+			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+		<TextView
+			android:id="@+id/webApp"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:gravity="center_horizontal"
+			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+		<TextView
+			android:id="@+id/registrations"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:gravity="center_horizontal"
+			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+	</LinearLayout>
 </LinearLayout>

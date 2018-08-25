@@ -77,6 +77,8 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 		for (Measurement measurement : result.getMeasurements())
 			items.add(isPerf ? new MeasurementPerfItem(measurement, this) : new MeasurementItem(measurement, this));
 		recycler.setAdapter(new HeterogeneousRecyclerAdapter<>(this, items));
+		result.is_viewed = true;
+		result.save();
 	}
 
 	@Override public void onClick(View v) {

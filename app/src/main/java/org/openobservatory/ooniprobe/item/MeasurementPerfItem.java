@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.item;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.Measurement;
+import org.openobservatory.ooniprobe.model.TestKeys;
 import org.openobservatory.ooniprobe.test.test.Dash;
 
 import butterknife.BindView;
@@ -28,9 +30,16 @@ public class MeasurementPerfItem extends HeterogeneousRecyclerItem<Measurement, 
 
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
 		viewHolder.itemView.setTag(extra);
+		TestKeys testKeys = extra.getTestKeys();
+		Context c = viewHolder.data.getContext();
 		viewHolder.text.setText(extra.getTest().getLabelResId());
-		viewHolder.data.setCompoundDrawablesRelativeWithIntrinsicBounds(extra.test_name.equals(Dash.NAME) ? R.drawable.video_quality : 0, 0, 0, 0);
-		viewHolder.data.setText(extra.test_name.equals(Dash.NAME) ? extra.getTestKeys().getVideoQuality(viewHolder.data.getContext(), true) : "?");
+		if (extra.test_name.equals(Dash.NAME)) {
+			viewHolder.data.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.video_quality, 0, 0, 0);
+			viewHolder.data.setText(testKeys.getVideoQuality(c, true));
+		} else {
+			viewHolder.data.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
+			viewHolder.data.setText(c.getString(R.string.fourParam, testKeys.getDownload(c), testKeys.getDownloadUnit(c), testKeys.getUpload(c), testKeys.getUploadUnit(c)));
+		}
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {

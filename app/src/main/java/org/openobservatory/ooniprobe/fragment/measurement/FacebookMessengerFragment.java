@@ -37,9 +37,11 @@ public class FacebookMessengerFragment extends Fragment {
 		ButterKnife.bind(this, v);
 		TestKeys testKeys = measurement.getTestKeys();
 		if (measurement.is_anomaly) {
+			title.setCompoundDrawablesRelativeWithIntrinsicBounds(0,R.drawable.cross,0,0);
 			title.setText(R.string.TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Hero_Title);
 			desc.setText(testKeys.getFacebookMessengerBlocking(getActivity()));
 		} else {
+			title.setCompoundDrawablesRelativeWithIntrinsicBounds(0,R.drawable.tick,0,0);
 			title.setText(R.string.TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Hero_Title);
 			desc.setText(R.string.TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Content_Paragraph_1);
 		}

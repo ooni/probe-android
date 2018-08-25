@@ -47,7 +47,6 @@ public class TestKeys {
 	@SerializedName("tampering")
 	public Tampering tampering;
 
-	//Websites
 	public String getWebsiteBlocking(Context ctx) {
 		if (this.blocking != null) {
 			if (this.blocking.equals("dns"))
@@ -64,7 +63,6 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	//Whatsapp
 	public String getWhatsappEndpointStatus(Context ctx) {
 		if (this.whatsapp_endpoints_status != null) {
 			if (this.whatsapp_endpoints_status.equals("blocked"))
@@ -92,7 +90,6 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	//Telegram
 	public String getTelegramEndpointStatus(Context ctx) {
 		if (this.telegram_http_blocking != null && this.telegram_tcp_blocking != null) {
 			if (this.telegram_http_blocking || this.telegram_tcp_blocking)
@@ -124,7 +121,6 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	//Facebook Messenger
 	public String getFacebookMessengerDns(Context ctx) {
 		if (this.facebook_dns_blocking != null) {
 			if (this.facebook_dns_blocking)
@@ -157,7 +153,6 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	//NDT
 	public String getUpload(Context ctx) {
 		//TODO check this.simple.upload not null?
 		if (this.simple != null) {
@@ -170,13 +165,6 @@ public class TestKeys {
 		if (this.simple != null) {
 			return getUnit(this.simple.upload, ctx);
 		}
-		return ctx.getString(R.string.TestResults_NotAvailable);
-	}
-
-	public String getUploadWithUnit(Context ctx) {
-		String uploadUnit = getUploadUnit(ctx);
-		if (!uploadUnit.equals(ctx.getString(R.string.TestResults_NotAvailable)))
-			return getUpload(ctx) + " " + uploadUnit;
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
@@ -194,14 +182,7 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	public String getDownloadWithUnit(Context ctx) {
-		String downloadUnit = getDownloadUnit(ctx);
-		if (!downloadUnit.equals(ctx.getString(R.string.TestResults_NotAvailable)))
-			return getDownload(ctx) + " " + downloadUnit;
-		return ctx.getString(R.string.TestResults_NotAvailable);
-	}
-
-	public double getScaledValue(double value) {
+	private double getScaledValue(double value) {
 		if (value < 100)
 			return value;
 		else if (value < 100000)
@@ -210,14 +191,14 @@ public class TestKeys {
 			return value / 1000000;
 	}
 
-	public String setFractionalDigits(double value) {
+	private String setFractionalDigits(double value) {
 		if (value < 10)
 			return String.format(Locale.getDefault(), "%.2f", value);
 		else
 			return String.format(Locale.getDefault(), "%.1f", value);
 	}
 
-	public String getUnit(double value, Context ctx) {
+	private String getUnit(double value, Context ctx) {
 		//We assume there is no Tbit/s (for now!)
 		if (value < 100)
 			return ctx.getString(R.string.TestResults_Kbps);
@@ -227,7 +208,6 @@ public class TestKeys {
 			return ctx.getString(R.string.TestResults_Gbps);
 	}
 
-	//Dash
 	public String getMedianBitrate(Context ctx) {
 		//TODO here in iOS I check for a null value
 		if (simple.median_bitrate != null) {
@@ -250,7 +230,7 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	public String minimumBitrateForVideo(double videoQuality, Boolean extended) {
+	private String minimumBitrateForVideo(double videoQuality, Boolean extended) {
 		if (videoQuality < 600)
 			return "240p";
 		else if (videoQuality < 1000)

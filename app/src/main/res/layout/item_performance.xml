@@ -46,9 +46,9 @@
 			android:id="@+id/upload"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:drawablePadding="8dp"
+			android:drawablePadding="8dp" android:textAppearance="@style/TextAppearance.AppCompat.Small"
 			android:drawableStart="@drawable/upload"
-			android:drawableTint="@android:color/secondary_text_light"/>
+			android:drawableTint="?android:attr/textColorSecondary"/>
 
 		<TextView
 			android:id="@+id/download"
@@ -56,7 +56,7 @@
 			android:layout_height="wrap_content"
 			android:drawablePadding="8dp"
 			android:drawableStart="@drawable/download"
-			android:drawableTint="@android:color/secondary_text_light"/>
+			android:drawableTint="?android:attr/textColorSecondary"/>
 
 		<TextView
 			android:id="@+id/quality"
@@ -64,6 +64,6 @@
 			android:layout_height="wrap_content"
 			android:drawablePadding="8dp"
 			android:drawableStart="@drawable/video_quality"
-			android:drawableTint="@android:color/secondary_text_light"/>
+			android:drawableTint="?android:attr/textColorSecondary"/>
 	</LinearLayout>
 </LinearLayout>
