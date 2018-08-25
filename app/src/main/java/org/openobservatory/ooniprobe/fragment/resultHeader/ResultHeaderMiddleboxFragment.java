@@ -1,4 +1,4 @@
-package org.openobservatory.ooniprobe.fragment;
+package org.openobservatory.ooniprobe.fragment.resultHeader;
 
 import android.app.Fragment;
 import android.os.Bundle;

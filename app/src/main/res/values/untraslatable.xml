@@ -65,6 +65,7 @@
 	<string name="d" translatable="false">%1$d</string>
 	<string name="f" translatable="false">%1$.2f</string>
 	<string name="normalBold" translatable="false">%1$s &lt;b>%2$s&lt;/b></string>
+	<string name="bigNormal" translatable="false">&lt;big>&lt;font color=#0588cb>%1$s&lt;/font>&lt;/big> %2$s</string>
 	<string-array name="filterTests" translatable="false">
 		<item>@string/TestResults_Overview_FilterTests_AllTests</item>
 		<item>@string/TestResults_Overview_FilterTests_Websites</item>

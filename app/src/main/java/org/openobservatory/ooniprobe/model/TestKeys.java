@@ -15,9 +15,9 @@ public class TestKeys {
 	@SerializedName("accessible")
 	public String accessible;
 	@SerializedName("sent")
-	public ArrayList sent;
+	public ArrayList<String> sent;
 	@SerializedName("received")
-	public ArrayList received;
+	public ArrayList<String> received;
 	@SerializedName("failure")
 	public String failure;
 	@SerializedName("server_address")
@@ -48,7 +48,7 @@ public class TestKeys {
 	public Tampering tampering;
 
 	//Websites
-	private String getWebsiteBlocking(Context ctx) {
+	public String getWebsiteBlocking(Context ctx) {
 		if (this.blocking != null) {
 			if (this.blocking.equals("dns"))
 				return ctx.getString(R.string.TestResults_Details_Websites_LikelyBlocked_BlockingReason_DNS);
@@ -65,7 +65,7 @@ public class TestKeys {
 	}
 
 	//Whatsapp
-	private String getWhatsappEndpointStatus(Context ctx) {
+	public String getWhatsappEndpointStatus(Context ctx) {
 		if (this.whatsapp_endpoints_status != null) {
 			if (this.whatsapp_endpoints_status.equals("blocked"))
 				return ctx.getString(R.string.TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Failed);
@@ -74,7 +74,7 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	private String getWhatsappWebStatus(Context ctx) {
+	public String getWhatsappWebStatus(Context ctx) {
 		if (this.whatsapp_web_status != null) {
 			if (this.whatsapp_web_status.equals("blocked"))
 				return ctx.getString(R.string.TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Failed);
@@ -83,7 +83,7 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	private String getWhatsappRegistrationStatus(Context ctx) {
+	public String getWhatsappRegistrationStatus(Context ctx) {
 		if (this.registration_server_status != null) {
 			if (this.registration_server_status.equals("blocked"))
 				return ctx.getString(R.string.TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Failed);
@@ -93,7 +93,7 @@ public class TestKeys {
 	}
 
 	//Telegram
-	private String getTelegramEndpointStatus(Context ctx) {
+	public String getTelegramEndpointStatus(Context ctx) {
 		if (this.telegram_http_blocking != null && this.telegram_tcp_blocking != null) {
 			if (this.telegram_http_blocking || this.telegram_tcp_blocking)
 				return ctx.getString(R.string.TestResults_Details_InstantMessaging_Telegram_Application_Label_Failed);
@@ -103,7 +103,7 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	private String getTelegramWebStatus(Context ctx) {
+	public String getTelegramWebStatus(Context ctx) {
 		if (this.telegram_web_status != null) {
 			if (this.telegram_web_status.equals("blocked"))
 				return ctx.getString(R.string.TestResults_Details_InstantMessaging_Telegram_Application_Label_Failed);
@@ -112,7 +112,7 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	private String getTelegramBlocking(Context ctx) {
+	public String getTelegramBlocking(Context ctx) {
 		if (this.telegram_http_blocking != null && this.telegram_tcp_blocking != null) {
 			if (this.telegram_http_blocking && this.telegram_tcp_blocking)
 				return ctx.getString(R.string.TestResults_Details_InstantMessaging_Telegram_LikelyBlocked_Content_Paragraph_HTTPandTCPIP);
@@ -125,7 +125,7 @@ public class TestKeys {
 	}
 
 	//Facebook Messenger
-	private String getFacebookMessengerDns(Context ctx) {
+	public String getFacebookMessengerDns(Context ctx) {
 		if (this.facebook_dns_blocking != null) {
 			if (this.facebook_dns_blocking)
 				return ctx.getString(R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed);
@@ -135,7 +135,7 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	private String getFacebookMessengerTcp(Context ctx) {
+	public String getFacebookMessengerTcp(Context ctx) {
 		if (this.facebook_tcp_blocking != null) {
 			if (this.facebook_tcp_blocking)
 				return ctx.getString(R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed);
@@ -145,7 +145,7 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	private String getFacebookMessengerBlocking(Context ctx) {
+	public String getFacebookMessengerBlocking(Context ctx) {
 		if (this.facebook_dns_blocking != null && this.facebook_tcp_blocking != null) {
 			if (this.facebook_dns_blocking && this.facebook_tcp_blocking)
 				return ctx.getString(R.string.TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_BlockingReason_DNSandTCPIP);
@@ -158,7 +158,7 @@ public class TestKeys {
 	}
 
 	//NDT
-	private String getUpload(Context ctx) {
+	public String getUpload(Context ctx) {
 		//TODO check this.simple.upload not null?
 		if (this.simple != null) {
 			return setFractionalDigits(getScaledValue(this.simple.upload));
@@ -166,42 +166,42 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	private String getUploadUnit(Context ctx) {
+	public String getUploadUnit(Context ctx) {
 		if (this.simple != null) {
 			return getUnit(this.simple.upload, ctx);
 		}
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	private String getUploadWithUnit(Context ctx) {
+	public String getUploadWithUnit(Context ctx) {
 		String uploadUnit = getUploadUnit(ctx);
 		if (!uploadUnit.equals(ctx.getString(R.string.TestResults_NotAvailable)))
 			return getUpload(ctx) + " " + uploadUnit;
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	private String getDownload(Context ctx) {
+	public String getDownload(Context ctx) {
 		if (this.simple != null) {
 			return setFractionalDigits(getScaledValue(this.simple.download));
 		}
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	private String getDownloadUnit(Context ctx) {
+	public String getDownloadUnit(Context ctx) {
 		if (this.simple != null) {
 			return getUnit(this.simple.download, ctx);
 		}
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	private String getDownloadWithUnit(Context ctx) {
+	public String getDownloadWithUnit(Context ctx) {
 		String downloadUnit = getDownloadUnit(ctx);
 		if (!downloadUnit.equals(ctx.getString(R.string.TestResults_NotAvailable)))
 			return getDownload(ctx) + " " + downloadUnit;
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	private double getScaledValue(double value) {
+	public double getScaledValue(double value) {
 		if (value < 100)
 			return value;
 		else if (value < 100000)
@@ -210,14 +210,14 @@ public class TestKeys {
 			return value / 1000000;
 	}
 
-	private String setFractionalDigits(double value) {
+	public String setFractionalDigits(double value) {
 		if (value < 10)
 			return String.format(Locale.getDefault(), "%.2f", value);
 		else
 			return String.format(Locale.getDefault(), "%.1f", value);
 	}
 
-	private String getUnit(double value, Context ctx) {
+	public String getUnit(double value, Context ctx) {
 		//We assume there is no Tbit/s (for now!)
 		if (value < 100)
 			return ctx.getString(R.string.TestResults_Kbps);
@@ -250,7 +250,7 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	private String minimumBitrateForVideo(double videoQuality, Boolean extended) {
+	public String minimumBitrateForVideo(double videoQuality, Boolean extended) {
 		if (videoQuality < 600)
 			return "240p";
 		else if (videoQuality < 1000)
@@ -258,13 +258,13 @@ public class TestKeys {
 		else if (videoQuality < 2500)
 			return "480p";
 		else if (videoQuality < 5000)
-			return (extended) ? "720p (HD)" : "720p";
+			return extended ? "720p (HD)" : "720p";
 		else if (videoQuality < 8000)
-			return (extended) ? "1080p (full HD)" : "1080p";
+			return extended ? "1080p (full HD)" : "1080p";
 		else if (videoQuality < 16000)
-			return (extended) ? "1440p (2k)" : "1440p";
+			return extended ? "1440p (2k)" : "1440p";
 		else
-			return (extended) ? "2160p (4k)" : "2160p";
+			return extended ? "2160p (4k)" : "2160p";
 	}
 
 	public String getPlayoutDelay(Context ctx) {
@@ -280,7 +280,7 @@ public class TestKeys {
 		@SerializedName("download")
 		public double download;
 		@SerializedName("ping")
-		public double ping;
+		public String ping;
 		@SerializedName("median_bitrate")
 		public Double median_bitrate;
 		@SerializedName("min_playout_delay")

@@ -30,7 +30,7 @@ public class MeasurementPerfItem extends HeterogeneousRecyclerItem<Measurement, 
 		viewHolder.itemView.setTag(extra);
 		viewHolder.text.setText(extra.getTest().getLabelResId());
 		viewHolder.data.setCompoundDrawablesRelativeWithIntrinsicBounds(extra.test_name.equals(Dash.NAME) ? R.drawable.video_quality : 0, 0, 0, 0);
-		viewHolder.data.setText("?");
+		viewHolder.data.setText(extra.test_name.equals(Dash.NAME) ? extra.getTestKeys().getVideoQuality(viewHolder.data.getContext(), true) : "?");
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {
