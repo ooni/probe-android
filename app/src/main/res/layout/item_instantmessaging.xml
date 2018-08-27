@@ -19,20 +19,20 @@
 			android:drawableStart="@drawable/test_instant_messaging"
 			android:gravity="center_vertical"
 			android:text="@string/Test_InstantMessaging_Fullname"
-			android:textStyle="bold"/>
+			android:textStyle="bold" />
 
 		<TextView
 			android:id="@+id/asnName"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-			android:textStyle="bold"/>
+			android:textStyle="bold" />
 
 		<TextView
 			android:id="@+id/startTime"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
+			android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 	</LinearLayout>
 
 	<LinearLayout
@@ -48,14 +48,13 @@
 			android:layout_height="wrap_content"
 			android:drawablePadding="8dp"
 			android:drawableStart="@drawable/cross"
-			android:textColor="@color/color_red8"/>
+			android:textColor="@color/color_red8" />
 
 		<TextView
 			android:id="@+id/okMeasurements"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:drawablePadding="8dp"
-			android:drawableStart="@drawable/tick"
-			android:drawableTint="@android:color/secondary_text_light"/>
+			android:drawableStart="@drawable/tick" />
 	</LinearLayout>
 </LinearLayout>

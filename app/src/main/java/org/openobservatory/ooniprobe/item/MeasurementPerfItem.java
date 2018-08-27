@@ -38,10 +38,10 @@ public class MeasurementPerfItem extends HeterogeneousRecyclerItem<Measurement, 
 			viewHolder.data1.setText(testKeys.getVideoQuality(c, true));
 			viewHolder.data2.setVisibility(View.GONE);
 		} else {
-			viewHolder.data1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.download, 0, 0, 0);
+			viewHolder.data1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.download_black, 0, 0, 0);
 			viewHolder.data1.setText(c.getString(R.string.twoParam, testKeys.getDownload(c), testKeys.getDownloadUnit(c)));
 			viewHolder.data2.setVisibility(View.VISIBLE);
-			viewHolder.data2.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.upload, 0, 0, 0);
+			viewHolder.data2.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.upload_black, 0, 0, 0);
 			viewHolder.data2.setText(c.getString(R.string.twoParam, testKeys.getUpload(c), testKeys.getUploadUnit(c)));
 		}
 	}

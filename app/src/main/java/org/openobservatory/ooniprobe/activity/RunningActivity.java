@@ -47,6 +47,10 @@ public class RunningActivity extends AbstractActivity {
 		}
 	}
 
+	@Override public void onBackPressed() {
+		// TODO add toast to
+	}
+
 	private static class TestAsyncTaskImpl extends TestAsyncTask<RunningActivity> {
 		TestAsyncTaskImpl(RunningActivity activity, String name) {
 			super(activity, new Result(name));

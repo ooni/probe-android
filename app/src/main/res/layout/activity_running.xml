@@ -2,54 +2,59 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:gravity="center_horizontal"
 	android:keepScreenOn="true"
 	android:orientation="vertical">
 
 	<TextView
 		style="@style/TextAppearance.AppCompat.Medium"
-		android:layout_width="wrap_content"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginTop="32dp"
-		android:text="@string/Dashboard_Running_Running"/>
+		android:gravity="center_horizontal"
+		android:text="@string/Dashboard_Running_Running" />
 
 	<TextView
 		android:id="@+id/name"
 		style="@style/TextAppearance.AppCompat.Large"
-		android:layout_width="wrap_content"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:textStyle="bold"/>
+		android:layout_marginHorizontal="32dp"
+		android:gravity="center_horizontal"
+		android:textStyle="bold" />
 
 	<com.airbnb.lottie.LottieAnimationView
 		android:id="@+id/animation"
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
-		android:layout_weight="1"/>
+		android:layout_weight="1" />
 
 	<ProgressBar
 		android:id="@+id/progress"
 		style="@style/Widget.AppCompat.ProgressBar.Horizontal"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginHorizontal="64dp"
-		android:progressDrawable="@drawable/progress"/>
+		android:layout_marginHorizontal="32dp"
+		android:progressDrawable="@drawable/progress" />
 
 	<TextView
-		android:layout_width="wrap_content"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="@string/Dashboard_Running_EstimatedTimeLeft"/>
+		android:gravity="center_horizontal"
+		android:text="@string/Dashboard_Running_EstimatedTimeLeft" />
 
 	<TextView
-		android:layout_width="wrap_content"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:gravity="center_horizontal"
 		android:text="0 seconds"
-		android:textStyle="bold"/>
+		android:textStyle="bold" />
 
 	<TextView
 		android:id="@+id/log"
-		android:layout_width="wrap_content"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_margin="32dp"
 		android:ellipsize="end"
-		android:maxLines="1"/>
+		android:gravity="center_horizontal"
+		android:maxLines="1" />
 </LinearLayout>

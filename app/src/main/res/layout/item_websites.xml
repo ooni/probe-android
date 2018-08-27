@@ -55,7 +55,6 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:drawablePadding="8dp"
-			android:drawableStart="@drawable/globe_24dp"
-			android:drawableTint="@android:color/black" />
+			android:drawableStart="@drawable/globe_24dp" />
 	</LinearLayout>
 </LinearLayout>

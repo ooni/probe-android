@@ -9,8 +9,7 @@
 		android:layout_height="wrap_content"
 		android:layout_gravity="center_vertical"
 		android:drawablePadding="8dp"
-		android:drawableTint="@color/color_white"
-		android:drawableTop="@drawable/test_middle_boxes"
+		android:drawableTop="@drawable/test_middle_boxes_white"
 		android:gravity="center_horizontal"
 		android:textAppearance="@style/TextAppearance.AppCompat.Medium"
 		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />

@@ -86,9 +86,6 @@ public abstract class AbstractTest {
 			measurement.network.country_code = json.probe_cc;
 		if (json.probe_ip != null && preferenceManager.isIncludeIp())
 			measurement.network.ip = json.probe_ip;
-		Network network = Network.querySingle(measurement.network);
-		if (network != null)
-			measurement.network = network;
 		if (json.report_id != null)
 			measurement.report_id = json.report_id;
 		measurement.setTestKeys(json.test_keys);
