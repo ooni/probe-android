@@ -9,9 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.samskivert.mustache.Mustache;
+
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.TestKeys;
+
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,7 +42,9 @@ public class DashFragment extends Fragment {
 		TestKeys testKeys = measurement.getTestKeys();
 		if (testKeys != null) {
 			title.setText(testKeys.getVideoQuality(getActivity(), true));
-			desc.setText(R.string.TestResults_Details_Performance_Dash_VideoWithoutBuffering);
+			HashMap<String, String> data = new HashMap<>();
+			data.put("VideoQuality", testKeys.getVideoQuality(getActivity(), false));
+			desc.setText(Mustache.compiler().compile(getString(R.string.TestResults_Details_Performance_Dash_VideoWithoutBuffering)).execute(data));
 			medianBitrate.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.getMedianBitrate(getActivity()), testKeys.getMedianBitrateUnit(getActivity()))));
 			playoutDelay.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.getPlayoutDelay(getActivity()), "s")));
 		}

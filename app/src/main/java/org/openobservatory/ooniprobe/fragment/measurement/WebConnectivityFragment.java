@@ -9,9 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.samskivert.mustache.Mustache;
+
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.TestKeys;
+
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,15 +43,17 @@ public class WebConnectivityFragment extends Fragment {
 			title.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.cross, 0, 0);
 			title.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_red8));
 			title.setText(R.string.TestResults_Details_Websites_LikelyBlocked_Hero_Title);
-			if (testKeys == null)
-				desc.setText(R.string.TestResults_Details_Websites_LikelyBlocked_Content_Paragraph_1);
-			else
-				desc.setText(getString(R.string.twoParam, getString(R.string.TestResults_Details_Websites_LikelyBlocked_Content_Paragraph_1), testKeys.getWebsiteBlocking(getActivity())));
+			HashMap<String, String> data = new HashMap<>();
+			data.put("WebsiteURL", measurement.url.url);
+			data.put("BlockingReason", testKeys.getWebsiteBlocking(getActivity()));
+			desc.setText(Mustache.compiler().compile(getString(R.string.TestResults_Details_Websites_LikelyBlocked_Content_Paragraph_1)).execute(data));
 		} else {
 			title.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.tick, 0, 0);
 			title.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_green7));
 			title.setText(R.string.TestResults_Details_Websites_Reachable_Hero_Title);
-			desc.setText(R.string.TestResults_Details_Websites_Reachable_Content_Paragraph_1);
+			HashMap<String, String> data = new HashMap<>();
+			data.put("WebsiteURL", measurement.url.url);
+			desc.setText(Mustache.compiler().compile(getString(R.string.TestResults_Details_Websites_Reachable_Content_Paragraph_1)).execute(data));
 		}
 		return v;
 	}
