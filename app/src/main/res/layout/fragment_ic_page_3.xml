@@ -131,7 +131,7 @@
 			android:layout_width="0dp"
 			android:layout_height="55dp"
 			android:layout_weight="0.6"
-			android:background="@drawable/button_next"
+			android:background="@drawable/rectangle_rounded_white"
 			android:padding="10dp"
 			android:text="@string/Onboarding_ThingsToKnow_Button"
 			android:textColor="@color/color_blue5"

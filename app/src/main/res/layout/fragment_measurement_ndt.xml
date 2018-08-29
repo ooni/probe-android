@@ -91,7 +91,8 @@
 				android:layout_height="wrap_content"
 				android:layout_weight="1"
 				android:gravity="center_horizontal"
-				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+				android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+				android:textColor="@color/color_base" />
 		</LinearLayout>
 
 		<LinearLayout
@@ -212,7 +213,8 @@
 				android:layout_height="wrap_content"
 				android:layout_weight="1"
 				android:gravity="center_horizontal"
-				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+				android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+				android:textColor="@color/color_base" />
 
 			<TextView
 				android:id="@+id/timeouts"
@@ -220,7 +222,8 @@
 				android:layout_height="wrap_content"
 				android:layout_weight="1"
 				android:gravity="center_horizontal"
-				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+				android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+				android:textColor="@color/color_base" />
 		</LinearLayout>
 
 		<View
@@ -236,6 +239,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"
+			android:background="@drawable/rectangle_rounded_blue"
 			android:text="@string/TestResults_Details_RawData" />
 
 		<Button

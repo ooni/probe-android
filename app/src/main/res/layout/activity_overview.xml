@@ -33,7 +33,7 @@
 			style="@style/Widget.AppCompat.Button.Borderless"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:background="@drawable/button_conf"
+			android:background="@drawable/rectangle_rounded_stroke"
 			android:text="@string/Dashboard_Card_Configure" />
 
 		<TextView
@@ -46,7 +46,7 @@
 			android:id="@+id/run"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:background="@drawable/button_next"
+			android:background="@drawable/rectangle_rounded_white"
 			android:text="@string/Dashboard_Card_Run"
 			android:theme="@style/Theme.AppCompat.Light" />
 
