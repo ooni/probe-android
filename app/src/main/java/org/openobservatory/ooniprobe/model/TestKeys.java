@@ -182,7 +182,7 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	private double getScaledValue(double value) {
+	public double getScaledValue(double value) {
 		if (value < 100)
 			return value;
 		else if (value < 100000)
@@ -191,14 +191,14 @@ public class TestKeys {
 			return value / 1000000;
 	}
 
-	private String setFractionalDigits(double value) {
+	public String setFractionalDigits(double value) {
 		if (value < 10)
 			return String.format(Locale.getDefault(), "%.2f", value);
 		else
 			return String.format(Locale.getDefault(), "%.1f", value);
 	}
 
-	private String getUnit(double value, Context ctx) {
+	public String getUnit(double value, Context ctx) {
 		//We assume there is no Tbit/s (for now!)
 		if (value < 100)
 			return ctx.getString(R.string.TestResults_Kbps);
@@ -209,69 +209,68 @@ public class TestKeys {
 	}
 
 	//TODO maybe change ping format to number
-	private String getPing(Context ctx) {
-		if (this.simple != null){
+	public String getPing(Context ctx) {
+		if (this.simple != null) {
 			return String.format(Locale.getDefault(), "%.1f", this.simple.ping);
 		}
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
-    
-    
-	private String getServer(Context ctx) {
-		if (this.server_name != null && this.server_country != null){
+
+	public String getServer(Context ctx) {
+		if (this.server_name != null && this.server_country != null) {
 			return this.server_name + " - " + this.server_country;
 		}
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
-    
-	private String getPacketLoss(Context ctx) {
-		if (this.advanced != null){
-			double pl = this.advanced.packet_loss*100;
+
+	public String getPacketLoss(Context ctx) {
+		if (this.advanced != null) {
+			double pl = this.advanced.packet_loss * 100;
 			return String.format(Locale.getDefault(), "%.3f", pl);
 		}
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
-    
-	private String getOutOfOrder(Context ctx) {
-		if (this.advanced != null){
-			double ooo = this.advanced.out_of_order*100;
+
+	public String getOutOfOrder(Context ctx) {
+		if (this.advanced != null) {
+			double ooo = this.advanced.out_of_order * 100;
 			return String.format(Locale.getDefault(), "%.1f", ooo);
 		}
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	//TODO maybe change avg_rtt format to number
-	private String getAveragePing(Context ctx) {
-		if (this.advanced != null){
+	public String getAveragePing(Context ctx) {
+		if (this.advanced != null) {
 			return String.format(Locale.getDefault(), "%.1f", this.advanced.avg_rtt);
 		}
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	//TODO maybe change max_rtt format to number
-	private String getMaxPing(Context ctx) {
-		if (this.advanced != null){
+	public String getMaxPing(Context ctx) {
+		if (this.advanced != null) {
 			return String.format(Locale.getDefault(), "%.1f", this.advanced.max_rtt);
 		}
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	//TODO maybe check the .mss internal object for null
-	private String getMSS(Context ctx) {
-		if (this.advanced != null){
+	public String getMSS(Context ctx) {
+		if (this.advanced != null) {
 			return this.advanced.mss;
 		}
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	//TODO maybe check the .timeouts internal object for null
-	private String getTimeouts(Context ctx) {
-		if (this.advanced != null){
+	public String getTimeouts(Context ctx) {
+		if (this.advanced != null) {
 			return this.advanced.timeouts;
 		}
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
-    
+
 	//Dash
 	public String getMedianBitrate(Context ctx) {
 		//TODO here in iOS I check for a null value
@@ -295,7 +294,7 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	private String minimumBitrateForVideo(double videoQuality, Boolean extended) {
+	public String minimumBitrateForVideo(double videoQuality, Boolean extended) {
 		if (videoQuality < 600)
 			return "240p";
 		else if (videoQuality < 1000)
@@ -321,11 +320,11 @@ public class TestKeys {
 
 	public static class Simple {
 		@SerializedName("upload")
-		public double upload;
+		public Double upload;
 		@SerializedName("download")
-		public double download;
+		public Double download;
 		@SerializedName("ping")
-		public String ping;
+		public Double ping;
 		@SerializedName("median_bitrate")
 		public Double median_bitrate;
 		@SerializedName("min_playout_delay")
@@ -338,9 +337,9 @@ public class TestKeys {
 		@SerializedName("out_of_order")
 		public Double out_of_order;
 		@SerializedName("avg_rtt")
-		public String avg_rtt;
+		public Double avg_rtt;
 		@SerializedName("max_rtt")
-		public String max_rtt;
+		public Double max_rtt;
 		@SerializedName("mss")
 		public String mss;
 		@SerializedName("timeouts")

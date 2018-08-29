@@ -46,7 +46,7 @@ public class ResultHeaderPerformanceFragment extends Fragment {
 		uploadUnit.setText(ndt.getUploadUnit(getActivity()));
 		download.setText(ndt.getDownload(getActivity()));
 		downloadUnit.setText(ndt.getDownloadUnit(getActivity()));
-		ping.setText(ndt.simple.ping);
+		ping.setText(ndt.getPing(getActivity()));
 		return v;
 	}
 }

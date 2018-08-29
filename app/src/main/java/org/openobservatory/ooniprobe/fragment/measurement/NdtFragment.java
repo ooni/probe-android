@@ -46,14 +46,14 @@ public class NdtFragment extends Fragment {
 		if (testKeys != null) {
 			download.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.getDownload(getActivity()), testKeys.getDownloadUnit(getActivity()))));
 			upload.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.getUpload(getActivity()), testKeys.getUploadUnit(getActivity()))));
-			ping.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.simple.ping, "ms")));
-			server.setText(testKeys.server_name);
-			packetLoss.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.advanced.packet_loss, "%")));
-			outOfOrder.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.advanced.out_of_order, "%")));
-			averagePing.setText(Html.fromHtml(getString(R.string.bigNormal, "?", "ms")));
-			maxPing.setText(Html.fromHtml(getString(R.string.bigNormal, "?", "ms")));
-			mss.setText(testKeys.advanced.mss);
-			timeouts.setText(testKeys.advanced.timeouts);
+			ping.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.getPing(getActivity()), "ms")));
+			server.setText(testKeys.getServer(getActivity()));
+			packetLoss.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.getPacketLoss(getActivity()), "%")));
+			outOfOrder.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.getOutOfOrder(getActivity()), "%")));
+			averagePing.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.getAveragePing(getActivity()), "ms")));
+			maxPing.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.getMaxPing(getActivity()), "ms")));
+			mss.setText(testKeys.getMSS(getActivity()));
+			timeouts.setText(testKeys.getTimeouts(getActivity()));
 		}
 		return v;
 	}
