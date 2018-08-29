@@ -1,231 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:orientation="vertical">
+	android:layout_height="match_parent">
 
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="8dp"
-		android:orientation="horizontal">
+		android:orientation="vertical">
 
-		<TextView
-			android:layout_width="0dp"
+		<LinearLayout
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:gravity="center_horizontal"
-			android:text="@string/TestResults_Details_Performance_NDT_Download"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+			android:layout_marginTop="8dp"
+			android:orientation="horizontal">
 
-		<TextView
-			android:layout_width="0dp"
+			<TextView
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:text="@string/TestResults_Details_Performance_NDT_Download" />
+
+			<TextView
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:text="@string/TestResults_Details_Performance_NDT_Upload" />
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:gravity="center_horizontal"
-			android:text="@string/TestResults_Details_Performance_NDT_Upload"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+			android:orientation="horizontal">
+
+			<TextView
+				android:id="@+id/download"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+			<TextView
+				android:id="@+id/upload"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:orientation="horizontal">
+
+			<TextView
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:text="@string/TestResults_Details_Performance_NDT_Ping" />
+
+			<TextView
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:text="@string/TestResults_Details_Performance_NDT_Server" />
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+
+			<TextView
+				android:id="@+id/ping"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+			<TextView
+				android:id="@+id/server"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:orientation="horizontal">
+
+			<TextView
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:text="@string/TestResults_Details_Performance_NDT_PacketLoss" />
+
+			<TextView
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:text="@string/TestResults_Details_Performance_NDT_OutOfOrder" />
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+
+			<TextView
+				android:id="@+id/packetLoss"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+			<TextView
+				android:id="@+id/outOfOrder"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:orientation="horizontal">
+
+			<TextView
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:text="@string/TestResults_Details_Performance_NDT_AveragePing" />
+
+			<TextView
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:text="@string/TestResults_Details_Performance_NDT_MaxPing" />
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+
+			<TextView
+				android:id="@+id/averagePing"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+			<TextView
+				android:id="@+id/maxPing"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:orientation="horizontal">
+
+			<TextView
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:text="@string/TestResults_Details_Performance_NDT_MSS" />
+
+			<TextView
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:text="@string/TestResults_Details_Performance_NDT_Timeouts" />
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+
+			<TextView
+				android:id="@+id/mss"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+			<TextView
+				android:id="@+id/timeouts"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center_horizontal"
+				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+		</LinearLayout>
+
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:layout_marginHorizontal="32dp"
+			android:layout_marginVertical="8dp"
+			android:background="@android:color/darker_gray" />
+
+		<Button
+			android:id="@+id/rawData"
+			style="@style/Widget.AppCompat.Button.Colored"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:text="@string/TestResults_Details_RawData" />
+
+		<Button
+			android:id="@+id/viewLog"
+			style="@style/Widget.AppCompat.Button.Borderless.Colored"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:text="@string/TestResults_Details_ViewLog" />
 	</LinearLayout>
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal">
-
-		<TextView
-			android:id="@+id/download"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:gravity="center_horizontal"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-		<TextView
-			android:id="@+id/upload"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:gravity="center_horizontal"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-	</LinearLayout>
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="8dp"
-		android:orientation="horizontal">
-
-		<TextView
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:gravity="center_horizontal"
-			android:text="@string/TestResults_Details_Performance_NDT_Ping"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-		<TextView
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:gravity="center_horizontal"
-			android:text="@string/TestResults_Details_Performance_NDT_Server"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-	</LinearLayout>
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal">
-
-		<TextView
-			android:id="@+id/ping"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:gravity="center_horizontal"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-		<TextView
-			android:id="@+id/server"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:gravity="center_horizontal"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-	</LinearLayout>
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="8dp"
-		android:orientation="horizontal">
-
-		<TextView
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:gravity="center_horizontal"
-			android:text="@string/TestResults_Details_Performance_NDT_PacketLoss"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-		<TextView
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:gravity="center_horizontal"
-			android:text="@string/TestResults_Details_Performance_NDT_OutOfOrder"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-	</LinearLayout>
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal">
-
-		<TextView
-			android:id="@+id/packetLoss"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:gravity="center_horizontal"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-		<TextView
-			android:id="@+id/outOfOrder"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:gravity="center_horizontal"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-	</LinearLayout>
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="8dp"
-		android:orientation="horizontal">
-
-		<TextView
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:gravity="center_horizontal"
-			android:text="@string/TestResults_Details_Performance_NDT_AveragePing"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-		<TextView
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:gravity="center_horizontal"
-			android:text="@string/TestResults_Details_Performance_NDT_MaxPing"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-	</LinearLayout>
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal">
-
-		<TextView
-			android:id="@+id/averagePing"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:gravity="center_horizontal"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-		<TextView
-			android:id="@+id/maxPing"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:gravity="center_horizontal"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-	</LinearLayout>
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="8dp"
-		android:orientation="horizontal">
-
-		<TextView
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:gravity="center_horizontal"
-			android:text="@string/TestResults_Details_Performance_NDT_MSS"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-		<TextView
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:gravity="center_horizontal"
-			android:text="@string/TestResults_Details_Performance_NDT_Timeouts"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-	</LinearLayout>
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal">
-
-		<TextView
-			android:id="@+id/mss"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:gravity="center_horizontal"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-		<TextView
-			android:id="@+id/timeouts"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:gravity="center_horizontal"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-	</LinearLayout>
-</LinearLayout>
+</ScrollView>
