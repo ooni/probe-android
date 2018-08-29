@@ -32,10 +32,11 @@ public class Ndt extends AbstractTest {
 		measurement.is_done = true;
 		measurement.is_failed = json.test_keys.failure != null;
 		calculateServerName(json.test_keys);
+		measurement.setTestKeys(json.test_keys);
 	}
 
 	private void calculateServerName(TestKeys keys) {
-		String[] parts = keys.server_address.split(",");
+		String[] parts = keys.server_address.split("\\.");
 		if (parts.length > 3) {
 			keys.server_name = parts[3];
 			keys.server_country = getAirportCountry(parts[3].substring(0, 3));
