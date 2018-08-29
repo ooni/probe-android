@@ -208,6 +208,71 @@ public class TestKeys {
 			return ctx.getString(R.string.TestResults_Gbps);
 	}
 
+	//TODO maybe change ping format to number
+	private String getPing(Context ctx) {
+		if (this.simple != null){
+			return String.format(Locale.getDefault(), "%.1f", this.simple.ping);
+		}
+		return ctx.getString(R.string.TestResults_NotAvailable);
+	}
+    
+    
+	private String getServer(Context ctx) {
+		if (this.server_name != null && this.server_country != null){
+			return this.server_name + " - " + this.server_country;
+		}
+		return ctx.getString(R.string.TestResults_NotAvailable);
+	}
+    
+	private String getPacketLoss(Context ctx) {
+		if (this.advanced != null){
+			double pl = this.advanced.packet_loss*100;
+			return String.format(Locale.getDefault(), "%.3f", pl);
+		}
+		return ctx.getString(R.string.TestResults_NotAvailable);
+	}
+    
+	private String getOutOfOrder(Context ctx) {
+		if (this.advanced != null){
+			double ooo = this.advanced.out_of_order*100;
+			return String.format(Locale.getDefault(), "%.1f", ooo);
+		}
+		return ctx.getString(R.string.TestResults_NotAvailable);
+	}
+
+	//TODO maybe change avg_rtt format to number
+	private String getAveragePing(Context ctx) {
+		if (this.advanced != null){
+			return String.format(Locale.getDefault(), "%.1f", this.advanced.avg_rtt);
+		}
+		return ctx.getString(R.string.TestResults_NotAvailable);
+	}
+
+	//TODO maybe change max_rtt format to number
+	private String getMaxPing(Context ctx) {
+		if (this.advanced != null){
+			return String.format(Locale.getDefault(), "%.1f", this.advanced.max_rtt);
+		}
+		return ctx.getString(R.string.TestResults_NotAvailable);
+	}
+
+	//TODO maybe check the .mss internal object for null
+	private String getMSS(Context ctx) {
+		if (this.advanced != null){
+			return this.advanced.mss;
+		}
+		return ctx.getString(R.string.TestResults_NotAvailable);
+	}
+
+	//TODO maybe check the .timeouts internal object for null
+	private String getTimeouts(Context ctx) {
+		if (this.advanced != null){
+			return this.advanced.timeouts;
+		}
+		return ctx.getString(R.string.TestResults_NotAvailable);
+	}
+    
+	//Dash
 	public String getMedianBitrate(Context ctx) {
 		//TODO here in iOS I check for a null value
 		if (simple.median_bitrate != null) {
@@ -269,9 +334,9 @@ public class TestKeys {
 
 	public static class Advanced {
 		@SerializedName("packet_loss")
-		public String packet_loss;
+		public Double packet_loss;
 		@SerializedName("out_of_order")
-		public String out_of_order;
+		public Double out_of_order;
 		@SerializedName("avg_rtt")
 		public String avg_rtt;
 		@SerializedName("max_rtt")
