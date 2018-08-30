@@ -12,12 +12,12 @@ public class PreferenceManager {
 	private Resources r;
 
 	PreferenceManager(Context context) {
-		android.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_global, true);
-		android.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_instant_messaging, true);
-		android.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_middleboxes, true);
-		android.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_performance, true);
-		android.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_websites, true);
-		sp = android.preference.PreferenceManager.getDefaultSharedPreferences(context);
+		android.support.v7.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_global, true);
+		android.support.v7.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_instant_messaging, true);
+		android.support.v7.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_middleboxes, true);
+		android.support.v7.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_performance, true);
+		android.support.v7.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_websites, true);
+		sp = android.support.v7.preference.PreferenceManager.getDefaultSharedPreferences(context);
 		r = context.getResources();
 	}
 
