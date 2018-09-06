@@ -6,6 +6,7 @@
 		<item name="colorPrimaryDark">@color/color_blue6</item>
 		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 		<item name="android:fontFamily">@font/firasans</item>
+		<item name="android:textColor">@color/color_gray9</item>
 	</style>
 
 	<style name="Theme.AppCompat.NoActionBar.App">
@@ -14,6 +15,7 @@
 		<item name="colorAccent">@color/color_white</item>
 		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 		<item name="android:fontFamily">@font/firasans</item>
+		<item name="android:textColor">@color/color_white</item>
 	</style>
 
 	<style name="Theme.AppCompat.Light.DarkActionBar.App.NoActionBar">

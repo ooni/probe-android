@@ -5,7 +5,7 @@
 	android:gravity="center_vertical"
 	android:orientation="vertical"
 	android:paddingHorizontal="16dp"
-	android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+	android:theme="@style/Theme.AppCompat.NoActionBar.App">
 
 	<LinearLayout
 		android:id="@+id/dataUsage"

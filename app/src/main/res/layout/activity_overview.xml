@@ -9,7 +9,7 @@
 		android:layout_height="wrap_content"
 		android:gravity="center_horizontal"
 		android:orientation="vertical"
-		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+		android:theme="@style/Theme.AppCompat.NoActionBar.App">
 
 		<android.support.v7.widget.Toolbar
 			android:id="@+id/toolbar"
@@ -48,7 +48,7 @@
 			android:layout_height="wrap_content"
 			android:background="@drawable/rectangle_rounded_white"
 			android:text="@string/Dashboard_Card_Run"
-			android:theme="@style/Theme.AppCompat.Light" />
+			android:theme="@style/Theme.AppCompat.Light.DarkActionBar.App" />
 
 		<TextView
 			android:layout_width="wrap_content"

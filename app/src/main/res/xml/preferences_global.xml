@@ -8,17 +8,17 @@
 		<android.support.v7.preference.SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="@string/notifications_enabled"
-			android:title="@string/Settings_Notifications_Enabled"/>
+			android:title="@string/Settings_Notifications_Enabled" />
 		<android.support.v7.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:dependency="@string/notifications_enabled"
 			android:key="@string/notifications_completion"
-			android:title="@string/Settings_Notifications_OnTestCompletion"/>
+			android:title="@string/Settings_Notifications_OnTestCompletion" />
 		<android.support.v7.preference.SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:dependency="@string/notifications_enabled"
 			android:key="@string/notifications_news"
-			android:title="@string/Settings_Notifications_OnNews"/>
+			android:title="@string/Settings_Notifications_OnNews" />
 	</PreferenceScreen>
 	<PreferenceScreen
 		android:icon="@drawable/sharing"
@@ -27,15 +27,15 @@
 		<android.support.v7.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="@string/upload_results"
-			android:title="@string/Settings_Sharing_UploadResults"/>
+			android:title="@string/Settings_Sharing_UploadResults" />
 		<android.support.v7.preference.SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="@string/include_ip"
-			android:title="@string/Settings_Sharing_IncludeIP"/>
+			android:title="@string/Settings_Sharing_IncludeIP" />
 		<android.support.v7.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="@string/include_asn"
-			android:title="@string/Settings_Sharing_IncludeNetwork"/>
+			android:title="@string/Settings_Sharing_IncludeNetwork" />
 	</PreferenceScreen>
 	<PreferenceScreen
 		android:icon="@drawable/advanced"
@@ -44,24 +44,24 @@
 		<android.support.v7.preference.SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="@string/keep_screen_on"
-			android:title="@string/Settings_Advanced_KeepScreenOn"/>
+			android:title="@string/Settings_Advanced_KeepScreenOn" />
 		<android.support.v7.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="@string/send_crash"
-			android:title="@string/Settings_Advanced_SendCrashReports"/>
+			android:title="@string/Settings_Advanced_SendCrashReports" />
 		<android.support.v7.preference.SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="@string/debugLogs"
-			android:title="@string/Settings_Advanced_DebugLogs"/>
+			android:title="@string/Settings_Advanced_DebugLogs" />
 		<android.support.v7.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="@string/include_cc"
-			android:title="@string/Settings_Advanced_ShareCountryCode"/>
+			android:title="@string/Settings_Advanced_ShareCountryCode" />
 	</PreferenceScreen>
 	<PreferenceScreen
 		android:icon="@drawable/about_ooni"
 		android:key="@string/about_ooni"
 		android:title="@string/Settings_About_Label">
-		<intent android:action="org.openobservatory.ooniprobe.activity.InfoActivity"/>
+		<intent android:action="org.openobservatory.ooniprobe.activity.InfoActivity" />
 	</PreferenceScreen>
 </PreferenceScreen>

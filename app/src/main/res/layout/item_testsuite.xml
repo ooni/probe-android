@@ -7,7 +7,7 @@
 	android:layout_marginHorizontal="16dp"
 	android:layout_marginVertical="8dp"
 	android:orientation="vertical"
-	android:theme="@style/Theme.AppCompat"
+	android:theme="@style/Theme.AppCompat.NoActionBar.App"
 	app:cardCornerRadius="16dp">
 
 	<FrameLayout
@@ -70,7 +70,7 @@
 						android:text="@string/Dashboard_Card_Run"
 						android:textAllCaps="false"
 						android:textStyle="bold"
-						android:theme="@style/Theme.AppCompat.Light" />
+						android:theme="@style/Theme.AppCompat.Light.DarkActionBar.App" />
 
 					<TextView
 						android:layout_width="wrap_content"

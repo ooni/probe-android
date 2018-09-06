@@ -12,5 +12,5 @@
 		android:drawableTop="@drawable/test_middle_boxes_white"
 		android:gravity="center_horizontal"
 		android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+		android:theme="@style/Theme.AppCompat.NoActionBar.App" />
 </FrameLayout>
