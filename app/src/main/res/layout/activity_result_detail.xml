@@ -26,6 +26,7 @@
 			android:layout_height="wrap_content"
 			app:tabGravity="center"
 			app:tabPadding="0dp"
+			app:tabTextAppearance="@style/TextAppearance.AppCompat.Large"
 			app:tabIndicatorHeight="0dp" />
 	</android.support.design.widget.AppBarLayout>
 

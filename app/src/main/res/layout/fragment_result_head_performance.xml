@@ -23,8 +23,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:gravity="center_horizontal"
-				android:text="@string/TestResults_Summary_Performance_Hero_Video"
-				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+				android:text="@string/TestResults_Summary_Performance_Hero_Video" />
 
 			<TextView
 				android:id="@+id/video"
@@ -37,8 +36,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:gravity="center_horizontal"
-				android:text="@string/TestResults_Summary_Performance_Hero_Video_Quality"
-				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+				android:text="@string/TestResults_Summary_Performance_Hero_Video_Quality" />
 		</LinearLayout>
 
 		<LinearLayout
@@ -51,8 +49,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:gravity="center_horizontal"
-				android:text="@string/TestResults_Summary_Performance_Hero_Upload"
-				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+				android:text="@string/TestResults_Summary_Performance_Hero_Upload" />
 
 			<TextView
 				android:id="@+id/upload"
@@ -65,8 +62,7 @@
 				android:id="@+id/uploadUnit"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:gravity="center_horizontal"
-				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+				android:gravity="center_horizontal" />
 		</LinearLayout>
 
 		<LinearLayout
@@ -79,8 +75,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:gravity="center_horizontal"
-				android:text="@string/TestResults_Summary_Performance_Hero_Download"
-				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+				android:text="@string/TestResults_Summary_Performance_Hero_Download" />
 
 			<TextView
 				android:id="@+id/download"
@@ -93,8 +88,7 @@
 				android:id="@+id/downloadUnit"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:gravity="center_horizontal"
-				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+				android:gravity="center_horizontal" />
 		</LinearLayout>
 
 		<LinearLayout
@@ -107,8 +101,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:gravity="center_horizontal"
-				android:text="@string/TestResults_Summary_Performance_Hero_Ping"
-				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+				android:text="@string/TestResults_Summary_Performance_Hero_Ping" />
 
 			<TextView
 				android:id="@+id/ping"
@@ -121,8 +114,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:gravity="center_horizontal"
-				android:text="@string/TestResults_ms"
-				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+				android:text="@string/TestResults_ms" />
 		</LinearLayout>
 	</LinearLayout>
 </FrameLayout>

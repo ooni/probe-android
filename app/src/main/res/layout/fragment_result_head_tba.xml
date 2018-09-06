@@ -23,8 +23,7 @@
 				android:id="@+id/testedTag"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:gravity="center_horizontal"
-				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+				android:gravity="center_horizontal" />
 
 			<TextView
 				android:id="@+id/tested"
@@ -37,8 +36,7 @@
 				android:id="@+id/testedLabel"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:gravity="center_horizontal"
-				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+				android:gravity="center_horizontal" />
 		</LinearLayout>
 
 		<LinearLayout
@@ -51,8 +49,7 @@
 				android:id="@+id/blockedTag"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:gravity="center_horizontal"
-				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+				android:gravity="center_horizontal" />
 
 			<TextView
 				android:id="@+id/blocked"
@@ -65,8 +62,7 @@
 				android:id="@+id/blockedLabel"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:gravity="center_horizontal"
-				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+				android:gravity="center_horizontal" />
 		</LinearLayout>
 
 		<LinearLayout
@@ -79,8 +75,7 @@
 				android:id="@+id/availableTag"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:gravity="center_horizontal"
-				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+				android:gravity="center_horizontal" />
 
 			<TextView
 				android:id="@+id/available"
@@ -93,8 +88,7 @@
 				android:id="@+id/availableLabel"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:gravity="center_horizontal"
-				android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+				android:gravity="center_horizontal" />
 		</LinearLayout>
 	</LinearLayout>
 </FrameLayout>
