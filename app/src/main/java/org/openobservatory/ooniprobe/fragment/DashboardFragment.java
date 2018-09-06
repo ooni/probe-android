@@ -30,6 +30,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import localhost.toolkit.widget.FirstLastSpacesItemDecoration;
 import localhost.toolkit.widget.HeterogeneousRecyclerAdapter;
 
 public class DashboardFragment extends Fragment implements View.OnClickListener {
@@ -56,6 +57,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
 		recycler.setAdapter(adapter);
 		recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+		recycler.addItemDecoration(new FirstLastSpacesItemDecoration(getActivity(), RecyclerView.VERTICAL, 8));
 		return v;
 	}
 

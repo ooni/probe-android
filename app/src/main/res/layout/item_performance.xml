@@ -19,6 +19,7 @@
 			android:drawableStart="@drawable/test_performance"
 			android:gravity="center_vertical"
 			android:text="@string/Test_Performance_Fullname"
+			android:textColor="@color/color_fuchsia6"
 			android:textStyle="bold" />
 
 		<TextView

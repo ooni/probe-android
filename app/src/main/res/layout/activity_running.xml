@@ -9,18 +9,18 @@
 		style="@style/TextAppearance.AppCompat.Medium"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="32dp"
+		android:layout_marginTop="?attr/actionBarSize"
 		android:gravity="center_horizontal"
-		android:text="@string/Dashboard_Running_Running" />
+		android:text="@string/Dashboard_Running_Running"
+		android:textStyle="bold" />
 
 	<TextView
 		android:id="@+id/name"
-		style="@style/TextAppearance.AppCompat.Large"
+		style="@style/TextAppearance.AppCompat.Display1"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginHorizontal="32dp"
-		android:gravity="center_horizontal"
-		android:textStyle="bold" />
+		android:gravity="center_horizontal" />
 
 	<com.airbnb.lottie.LottieAnimationView
 		android:id="@+id/animation"
@@ -33,6 +33,7 @@
 		style="@style/Widget.AppCompat.ProgressBar.Horizontal"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:layout_marginBottom="?attr/actionBarSize"
 		android:layout_marginHorizontal="32dp"
 		android:progressDrawable="@drawable/progress" />
 
@@ -43,6 +44,7 @@
 		android:text="@string/Dashboard_Running_EstimatedTimeLeft" />
 
 	<TextView
+		style="@style/TextAppearance.AppCompat.Large"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:gravity="center_horizontal"
@@ -53,7 +55,8 @@
 		android:id="@+id/log"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_margin="32dp"
+		android:layout_marginHorizontal="32dp"
+		android:layout_marginVertical="?attr/actionBarSize"
 		android:ellipsize="end"
 		android:gravity="center_horizontal"
 		android:maxLines="1" />

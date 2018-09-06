@@ -19,20 +19,21 @@
 			android:drawableStart="@drawable/test_middle_boxes"
 			android:gravity="center_vertical"
 			android:text="@string/Test_Middleboxes_Fullname"
-			android:textStyle="bold"/>
+			android:textColor="@color/color_violet8"
+			android:textStyle="bold" />
 
 		<TextView
 			android:id="@+id/asnName"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-			android:textStyle="bold"/>
+			android:textStyle="bold" />
 
 		<TextView
 			android:id="@+id/startTime"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
+			android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 	</LinearLayout>
 
 	<LinearLayout
@@ -46,6 +47,6 @@
 			android:id="@+id/status"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="32dp"/>
+			android:layout_marginStart="32dp" />
 	</LinearLayout>
 </LinearLayout>

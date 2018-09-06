@@ -19,6 +19,7 @@
 			android:drawableStart="@drawable/test_websites"
 			android:gravity="center_vertical"
 			android:text="@string/Test_Websites_Fullname"
+			android:textColor="@color/color_indigo6"
 			android:textStyle="bold" />
 
 		<TextView
@@ -48,6 +49,7 @@
 			android:layout_height="wrap_content"
 			android:drawablePadding="8dp"
 			android:drawableStart="@drawable/cross"
+			android:gravity="center_vertical"
 			android:textColor="@color/color_red8" />
 
 		<TextView
@@ -55,6 +57,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:drawablePadding="8dp"
-			android:drawableStart="@drawable/globe_24dp" />
+			android:drawableStart="@drawable/globe_24dp"
+			android:gravity="center_vertical" />
 	</LinearLayout>
 </LinearLayout>
