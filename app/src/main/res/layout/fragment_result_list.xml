@@ -7,7 +7,7 @@
 	<android.support.design.widget.AppBarLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:theme="@style/Theme.AppCompat.NoActionBar.App">
+		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
 		<android.support.v7.widget.Toolbar
 			android:id="@+id/toolbar"
@@ -21,7 +21,8 @@
 			android:divider="@drawable/divider"
 			android:dividerPadding="8dp"
 			android:orientation="horizontal"
-			android:showDividers="middle">
+			android:showDividers="middle"
+			android:theme="@style/Theme.AppCompat.NoActionBar.App">
 
 			<LinearLayout
 				android:layout_width="0dp"
