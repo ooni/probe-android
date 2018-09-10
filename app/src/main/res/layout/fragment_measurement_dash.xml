@@ -78,7 +78,7 @@
 
 		<Button
 			android:id="@+id/rawData"
-			style="@style/Widget.AppCompat.Button.Colored"
+			android:textColor="@color/color_white"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"

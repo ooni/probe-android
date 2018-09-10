@@ -34,12 +34,12 @@
 
 		<Button
 			android:id="@+id/rawData"
-			style="@style/Widget.AppCompat.Button.Colored"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"
 			android:background="@drawable/rectangle_rounded_blue"
-			android:text="@string/TestResults_Details_RawData" />
+			android:text="@string/TestResults_Details_RawData"
+			android:textColor="@color/color_white" />
 
 		<Button
 			android:id="@+id/viewLog"
