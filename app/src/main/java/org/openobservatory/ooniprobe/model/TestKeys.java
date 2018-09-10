@@ -208,7 +208,6 @@ public class TestKeys {
 			return ctx.getString(R.string.TestResults_Gbps);
 	}
 
-	//TODO maybe change ping format to number
 	public String getPing(Context ctx) {
 		if (this.simple != null) {
 			return String.format(Locale.getDefault(), "%.1f", this.simple.ping);
@@ -239,7 +238,6 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	//TODO maybe change avg_rtt format to number
 	public String getAveragePing(Context ctx) {
 		if (this.advanced != null) {
 			return String.format(Locale.getDefault(), "%.1f", this.advanced.avg_rtt);
@@ -247,7 +245,6 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	//TODO maybe change max_rtt format to number
 	public String getMaxPing(Context ctx) {
 		if (this.advanced != null) {
 			return String.format(Locale.getDefault(), "%.1f", this.advanced.max_rtt);
@@ -255,18 +252,16 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	//TODO maybe check the .mss internal object for null
 	public String getMSS(Context ctx) {
 		if (this.advanced != null) {
-			return this.advanced.mss;
+			return String.format(Locale.getDefault(), "%.0f", this.advanced.mss);
 		}
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	//TODO maybe check the .timeouts internal object for null
 	public String getTimeouts(Context ctx) {
 		if (this.advanced != null) {
-			return this.advanced.timeouts;
+			return String.format(Locale.getDefault(), "%.0f", this.advanced.timeouts);
 		}
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
@@ -341,9 +336,9 @@ public class TestKeys {
 		@SerializedName("max_rtt")
 		public Double max_rtt;
 		@SerializedName("mss")
-		public String mss;
+		public Double mss;
 		@SerializedName("timeouts")
-		public String timeouts;
+		public Double timeouts;
 	}
 
 	public static class Tampering {
