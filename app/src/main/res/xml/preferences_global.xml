@@ -36,6 +36,10 @@
 			android:defaultValue="true"
 			android:key="@string/include_asn"
 			android:title="@string/Settings_Sharing_IncludeNetwork" />
+		<android.support.v7.preference.SwitchPreferenceCompat
+			android:defaultValue="true"
+			android:key="@string/include_cc"
+			android:title="@string/Settings_Sharing_IncludeCountryCode" />
 	</PreferenceScreen>
 	<PreferenceScreen
 		android:icon="@drawable/advanced"
@@ -53,10 +57,6 @@
 			android:defaultValue="false"
 			android:key="@string/debugLogs"
 			android:title="@string/Settings_Advanced_DebugLogs" />
-		<android.support.v7.preference.SwitchPreferenceCompat
-			android:defaultValue="true"
-			android:key="@string/include_cc"
-			android:title="@string/Settings_Advanced_ShareCountryCode" />
 	</PreferenceScreen>
 	<PreferenceScreen
 		android:icon="@drawable/about_ooni"
