@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Network;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.model.TestKeys;
@@ -40,13 +41,24 @@ public class PerformanceItem extends HeterogeneousRecyclerItem<Result, Performan
 		viewHolder.itemView.setOnClickListener(onClickListener);
 		viewHolder.itemView.setOnLongClickListener(onLongClickListener);
 		viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(c, extra.is_viewed ? android.R.color.transparent : R.color.color_yellow0));
-		viewHolder.asnName.setText(Network.getAsnName(c, extra.getMeasurement().network));
+		viewHolder.asnName.setText(Network.getAsnName(c, extra.network));
 		viewHolder.startTime.setText(DateFormat.getDateFormat(c).format(extra.start_time));
-		TestKeys dash = extra.getMeasurement(Dash.NAME).getTestKeys();
-		TestKeys ndt = extra.getMeasurement(Ndt.NAME).getTestKeys();
-		viewHolder.quality.setText(dash.getVideoQuality(c, false));
-		viewHolder.upload.setText(c.getString(R.string.twoParam, ndt.getUpload(c), ndt.getUploadUnit(c)));
-		viewHolder.download.setText(c.getString(R.string.twoParam, ndt.getDownload(c), ndt.getDownloadUnit(c)));
+		Measurement dashM = extra.getMeasurement(Dash.NAME);
+		Measurement ndtM = extra.getMeasurement(Ndt.NAME);
+		if (dashM != null) {
+			TestKeys dashTK = dashM.getTestKeys();
+			viewHolder.quality.setText(dashTK.getVideoQuality(c, false));
+		} else {
+			viewHolder.quality.setText(null);
+		}
+		if (ndtM != null) {
+			TestKeys ndtTK = ndtM.getTestKeys();
+			viewHolder.upload.setText(c.getString(R.string.twoParam, ndtTK.getUpload(c), ndtTK.getUploadUnit(c)));
+			viewHolder.download.setText(c.getString(R.string.twoParam, ndtTK.getDownload(c), ndtTK.getDownloadUnit(c)));
+		} else {
+			viewHolder.upload.setText(null);
+			viewHolder.download.setText(null);
+		}
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {

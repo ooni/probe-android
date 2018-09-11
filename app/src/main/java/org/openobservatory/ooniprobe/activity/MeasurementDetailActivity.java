@@ -86,8 +86,9 @@ public class MeasurementDetailActivity extends AbstractActivity {
 				detail = null;
 				break;
 		}
+		measurement.result.load();
 		getFragmentManager().beginTransaction()
-				.replace(R.id.head, ResultHeaderDetailFragment.newInstance(null, null, measurement.start_time, measurement.runtime, false, measurement.network.country_code, measurement.network.network_name))
+				.replace(R.id.head, ResultHeaderDetailFragment.newInstance(null, null, measurement.start_time, measurement.runtime, false, measurement.result.network.country_code, measurement.result.network.network_name))
 				.replace(R.id.body, detail)
 				.commit();
 	}

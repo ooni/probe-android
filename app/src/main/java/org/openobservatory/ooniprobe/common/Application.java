@@ -20,7 +20,7 @@ import java.util.Date;
 
 import io.fabric.sdk.android.Fabric;
 
-@Database(name = "v1", version = 1, foreignKeyConstraintsEnforced = true)
+@Database(name = "v2", version = 1, foreignKeyConstraintsEnforced = true)
 public class Application extends android.app.Application {
 	static {
 		System.loadLibrary("measurement_kit");

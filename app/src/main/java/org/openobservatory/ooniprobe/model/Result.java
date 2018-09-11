@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.model;
 
 import com.raizlabs.android.dbflow.annotation.Column;
+import com.raizlabs.android.dbflow.annotation.ForeignKey;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.sql.language.SQLOperator;
@@ -30,6 +31,8 @@ public class Result extends BaseModel implements Serializable {
 	@Column public boolean is_done;
 	@Column public long data_usage_up;
 	@Column public long data_usage_down;
+	@ForeignKey(saveForeignKeyModel = true, deleteForeignKeyModel = true) public Network network;
+
 	// TODO log_file_path
 	protected List<Measurement> measurements;
 

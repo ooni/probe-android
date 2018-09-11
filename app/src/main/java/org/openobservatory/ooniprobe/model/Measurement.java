@@ -38,7 +38,6 @@ public class Measurement extends BaseModel implements Serializable {
 	@Column public Integer measurement_id;
 	@Column public boolean is_anomaly;
 	@Column public String test_keys;
-	@ForeignKey(saveForeignKeyModel = true, deleteForeignKeyModel = true) public Network network;
 	@ForeignKey(saveForeignKeyModel = true, deleteForeignKeyModel = true) public Url url;
 	@ForeignKey(saveForeignKeyModel = true, deleteForeignKeyModel = true, stubbedRelationship = true) public Result result;
 // TODO report_file_path

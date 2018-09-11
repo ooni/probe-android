@@ -77,18 +77,20 @@ public abstract class AbstractTest {
 			measurement.runtime = json.test_runtime;
 			measurement.result.addDuration(json.test_runtime);
 		}
-		measurement.network = new Network();
-		if (json.probe_asn != null && preferenceManager.isIncludeAsn()) {
-			measurement.network.asn = json.probe_asn; //TODO-SBS asn name
-			measurement.network.network_name = "Vodafone";
-		}
-		if (json.probe_cc != null && preferenceManager.isIncludeCc())
-			measurement.network.country_code = json.probe_cc;
-		if (json.probe_ip != null && preferenceManager.isIncludeIp())
-			measurement.network.ip = json.probe_ip;
 		if (json.report_id != null)
 			measurement.report_id = json.report_id;
 		measurement.setTestKeys(json.test_keys);
+		if (measurement.result.network == null) {
+			measurement.result.network = new Network();
+			if (json.probe_asn != null && preferenceManager.isIncludeAsn()) {
+				measurement.result.network.asn = json.probe_asn; //TODO-SBS asn name
+				measurement.result.network.network_name = "Vodafone";
+			}
+			if (json.probe_cc != null && preferenceManager.isIncludeCc())
+				measurement.result.network.country_code = json.probe_cc;
+			if (json.probe_ip != null && preferenceManager.isIncludeIp())
+				measurement.result.network.ip = json.probe_ip;
+		}
 	}
 
 	public int getLabelResId() {

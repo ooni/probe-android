@@ -93,7 +93,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 
 		@Override public Fragment getItem(int position) {
 			if (position == 1) {
-				Network network = result.getMeasurement().network;
+				Network network = result.network;
 				return ResultHeaderDetailFragment.newInstance(0L, 0L, null, result.runtime, true, network.country_code, network.network_name);
 			} else switch (result.test_group_name) {
 				case WebsitesSuite.NAME:

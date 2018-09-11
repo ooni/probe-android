@@ -35,7 +35,7 @@ public class MiddleboxesItem extends HeterogeneousRecyclerItem<Result, Middlebox
 		viewHolder.itemView.setOnClickListener(onClickListener);
 		viewHolder.itemView.setOnLongClickListener(onLongClickListener);
 		viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(viewHolder.itemView.getContext(), extra.is_viewed ? android.R.color.transparent : R.color.color_yellow0));
-		viewHolder.asnName.setText(Network.getAsnName(viewHolder.asnName.getContext(), extra.getMeasurement().network));
+		viewHolder.asnName.setText(Network.getAsnName(viewHolder.asnName.getContext(), extra.network));
 		viewHolder.startTime.setText(DateFormat.getDateFormat(viewHolder.startTime.getContext()).format(extra.start_time));
 		if (extra.countMeasurement(true, null) > 0) {
 			viewHolder.status.setText(R.string.TestResults_Overview_MiddleBoxes_Found);

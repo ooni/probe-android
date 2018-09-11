@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.model.TestKeys;
 import org.openobservatory.ooniprobe.test.test.Dash;
@@ -39,14 +40,20 @@ public class ResultHeaderPerformanceFragment extends Fragment {
 		ButterKnife.bind(this, v);
 		Result result = (Result) getArguments().getSerializable(RESULT);
 		assert result != null;
-		TestKeys dash = result.getMeasurement(Dash.NAME).getTestKeys();
-		TestKeys ndt = result.getMeasurement(Ndt.NAME).getTestKeys();
-		video.setText(dash.getVideoQuality(getActivity(), false));
-		upload.setText(ndt.getUpload(getActivity()));
-		uploadUnit.setText(ndt.getUploadUnit(getActivity()));
-		download.setText(ndt.getDownload(getActivity()));
-		downloadUnit.setText(ndt.getDownloadUnit(getActivity()));
-		ping.setText(ndt.getPing(getActivity()));
+		Measurement dashM = result.getMeasurement(Dash.NAME);
+		Measurement ndtM = result.getMeasurement(Ndt.NAME);
+		if (dashM != null) {
+			TestKeys dashTK = dashM.getTestKeys();
+			video.setText(dashTK.getVideoQuality(getActivity(), false));
+		}
+		if (ndtM != null) {
+			TestKeys ndtTK = ndtM.getTestKeys();
+			upload.setText(ndtTK.getUpload(getActivity()));
+			uploadUnit.setText(ndtTK.getUploadUnit(getActivity()));
+			download.setText(ndtTK.getDownload(getActivity()));
+			downloadUnit.setText(ndtTK.getDownloadUnit(getActivity()));
+			ping.setText(ndtTK.getPing(getActivity()));
+		}
 		return v;
 	}
 }
