@@ -19,11 +19,11 @@ public class Network extends BaseModel implements Serializable {
 	@Column public String ip;
 	@Column public String asn;
 	@Column public String country_code;
-	@Column public String networkType; // TODO check
+	@Column public String network_type;
 
 	public static String getLocalizedNetworkType(Context context, Network network) {
 		if (network != null)
-			switch (network.networkType) {
+			switch (network.network_type) {
 				case "wifi":
 					return context.getString(R.string.TestResults_Summary_Hero_WiFi);
 				case "mobile":
