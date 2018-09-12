@@ -51,6 +51,14 @@ public class Measurement extends BaseModel implements Serializable {
 		start_time = new java.util.Date();
 	}
 
+	public static String getEntryFileName(int id, String test_name) {
+		return id + "_" + test_name + ".json";
+	}
+
+	public static String getLogFileName(int id, String name) {
+		return id + "-" + name + ".log";
+	}
+
 	public AbstractTest getTest() {
 		switch (test_name) {
 			case FacebookMessenger.NAME:

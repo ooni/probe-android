@@ -34,8 +34,8 @@ public class HttpHeaderFieldManipulation extends AbstractTest {
 		        total
 	        }
      */
-	@Override public void onEntry(PreferenceManager preferenceManager, @NonNull JsonResult json, Measurement measurement) {
-		super.onEntry(preferenceManager, json, measurement);
+	@Override public void onEntry(AbstractActivity activity, @NonNull JsonResult json, Measurement measurement) {
+		super.onEntry(activity, json, measurement);
 		measurement.is_done = true;
 		if (json.test_keys.failure != null && json.test_keys.tampering == null)
 			measurement.is_failed = true;

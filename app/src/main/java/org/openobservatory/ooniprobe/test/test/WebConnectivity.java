@@ -30,8 +30,8 @@ public class WebConnectivity extends AbstractTest {
      false => not blocked {state = DONE, anomaly = false}
      string (dns, tcp-ip, http-failure, http-diff) => {state = DONE, anomaly = true}
      */
-	@Override public void onEntry(PreferenceManager preferenceManager, @NonNull JsonResult json, Measurement measurement) {
-		super.onEntry(preferenceManager, json, measurement);
+	@Override public void onEntry(AbstractActivity activity, @NonNull JsonResult json, Measurement measurement) {
+		super.onEntry(activity, json, measurement);
 		measurement.is_done = true;
 		if (json.test_keys.blocking == null)
 			measurement.is_failed = true;

@@ -77,6 +77,9 @@
 			android:launchMode="singleTop"
 			android:parentActivityName=".activity.ResultDetailActivity" />
 		<activity
+			android:name=".activity.TextActivity"
+			android:parentActivityName=".activity.MeasurementDetailActivity" />
+		<activity
 			android:name=".activity.RunningActivity"
 			android:launchMode="singleTop"
 			android:parentActivityName=".activity.MainActivity" />

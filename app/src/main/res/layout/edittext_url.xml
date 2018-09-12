@@ -6,5 +6,6 @@
 	<android.support.design.widget.TextInputEditText
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:hint="@string/Settings_Websites_CustomURL_URL"/>
+		android:hint="@string/Settings_Websites_CustomURL_URL"
+		android:text="@string/http" />
 </android.support.design.widget.TextInputLayout>

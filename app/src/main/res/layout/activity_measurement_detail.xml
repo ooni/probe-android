@@ -21,8 +21,43 @@
 			android:layout_marginVertical="16dp" />
 	</android.support.design.widget.AppBarLayout>
 
-	<FrameLayout
-		android:id="@+id/body"
+	<ScrollView
 		android:layout_width="match_parent"
-		android:layout_height="match_parent" />
+		android:layout_height="match_parent">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+			<FrameLayout
+				android:id="@+id/body"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent" />
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginHorizontal="32dp"
+				android:layout_marginVertical="8dp"
+				android:background="@android:color/darker_gray" />
+
+			<Button
+				android:id="@+id/rawData"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:background="@drawable/rectangle_rounded_blue"
+				android:text="@string/TestResults_Details_RawData"
+				android:textColor="@color/color_white" />
+
+			<Button
+				android:id="@+id/viewLog"
+				style="@style/Widget.AppCompat.Button.Borderless.Colored"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:text="@string/TestResults_Details_ViewLog" />
+		</LinearLayout>
+	</ScrollView>
 </LinearLayout>

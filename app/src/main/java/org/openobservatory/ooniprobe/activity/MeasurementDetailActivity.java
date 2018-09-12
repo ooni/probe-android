@@ -8,6 +8,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 
+import com.google.android.gms.common.util.IOUtils;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParser;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
@@ -31,11 +34,16 @@ import org.openobservatory.ooniprobe.test.test.Telegram;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MeasurementDetailActivity extends AbstractActivity {
 	public static final String ID = "id";
+	public Measurement measurement;
 	@BindView(R.id.toolbar) Toolbar toolbar;
 
 	public static Intent newIntent(Context context, int id) {
@@ -44,7 +52,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
 
 	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Measurement measurement = SQLite.select().from(Measurement.class).where(Measurement_Table.id.eq(getIntent().getIntExtra(ID, 0))).querySingle();
+		measurement = SQLite.select().from(Measurement.class).where(Measurement_Table.id.eq(getIntent().getIntExtra(ID, 0))).querySingle();
 		assert measurement != null;
 		measurement.result.load();
 		setTheme(measurement.result.getTestSuite().getThemeLight());
@@ -91,5 +99,26 @@ public class MeasurementDetailActivity extends AbstractActivity {
 				.replace(R.id.head, ResultHeaderDetailFragment.newInstance(null, null, measurement.start_time, measurement.runtime, false, measurement.result.network.country_code, measurement.result.network.network_name))
 				.replace(R.id.body, detail)
 				.commit();
+	}
+
+	@OnClick(R.id.rawData) public void onRawDataClick() {
+		try {
+			FileInputStream is = openFileInput(Measurement.getEntryFileName(measurement.id, measurement.test_name));
+			String json = new GsonBuilder().setPrettyPrinting().create().toJson(new JsonParser().parse(new InputStreamReader(is)).getAsJsonObject());
+			startActivity(TextActivity.newIntent(this, json));
+			is.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	@OnClick(R.id.viewLog) public void onViewLogClick() {
+		try {
+			FileInputStream is = openFileInput(Measurement.getLogFileName(measurement.result.id, measurement.test_name));
+			String log = new String(IOUtils.toByteArray(is));
+			startActivity(TextActivity.newIntent(this, log));
+			is.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

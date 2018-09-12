@@ -67,6 +67,7 @@
 	<string name="normalBold" translatable="false">%1$s &lt;b>%2$s&lt;/b></string>
 	<string name="bigNormal" translatable="false">&lt;font color=#0588cb>%1$s&lt;/font> &lt;small>%2$s&lt;/small></string>
 	<string name="twoParam" translatable="false">%1$s %2$s</string>
+	<string name="http" translatable="false">http://</string>
 	<string-array name="filterTests" translatable="false">
 		<item>@string/TestResults_Overview_FilterTests_AllTests</item>
 		<item>@string/TestResults_Overview_FilterTests_Websites</item>

@@ -24,8 +24,8 @@ public class Telegram extends AbstractTest {
          if "telegram_http_blocking", "telegram_tcp_blocking", "telegram_web_status" are null => failed
          if either "telegram_http_blocking" or "telegram_tcp_blocking" is true, OR if "telegram_web_status" is "blocked" => anomalous
      */
-	@Override public void onEntry(PreferenceManager preferenceManager, @NonNull JsonResult json, Measurement measurement) {
-		super.onEntry(preferenceManager, json, measurement);
+	@Override public void onEntry(AbstractActivity activity, @NonNull JsonResult json, Measurement measurement) {
+		super.onEntry(activity, json, measurement);
 		measurement.is_done = true;
 		if (json.test_keys.telegram_http_blocking == null || json.test_keys.telegram_tcp_blocking == null || json.test_keys.telegram_web_status == null)
 			measurement.is_failed = true;

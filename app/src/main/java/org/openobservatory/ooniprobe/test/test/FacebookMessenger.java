@@ -22,8 +22,8 @@ public class FacebookMessenger extends AbstractTest {
 
 	/*	if "facebook_tcp_blocking", "facebook_dns_blocking" are null => failed
 		if "facebook_tcp_blocking" or "facebook_dns_blocking" are true => anomalous */
-	@Override public void onEntry(PreferenceManager preferenceManager, @NonNull JsonResult json, Measurement measurement) {
-		super.onEntry(preferenceManager, json, measurement);
+	@Override public void onEntry(AbstractActivity activity, @NonNull JsonResult json, Measurement measurement) {
+		super.onEntry(activity, json, measurement);
 		measurement.is_done = true;
 		if (json.test_keys.facebook_tcp_blocking == null || json.test_keys.facebook_dns_blocking == null)
 			measurement.is_failed = true;

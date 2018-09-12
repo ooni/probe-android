@@ -9,13 +9,11 @@ import org.openobservatory.measurement_kit.common.LogSeverity;
 import org.openobservatory.measurement_kit.nettests.BaseTest;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
-import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Network;
 import org.openobservatory.ooniprobe.model.Result;
 import org.openobservatory.ooniprobe.utils.ConnectionState;
-import org.openobservatory.ooniprobe.utils.NotificationService;
 import org.openobservatory.ooniprobe.utils.VersionUtils;
 
 import java.io.File;
@@ -36,7 +34,7 @@ public abstract class AbstractTest {
 
 	protected void run(AbstractActivity activity, BaseTest test, Result result, int index, TestCallback testCallback) {
 		test.use_logcat();
-		test.set_error_filepath(new File(activity.getFilesDir(), result.id + "-" + name + ".log").getPath());
+		test.set_error_filepath(new File(activity.getFilesDir(), Measurement.getLogFileName(result.id, name)).getPath());
 		test.set_verbosity(BuildConfig.DEBUG ? LogSeverity.LOG_DEBUG2 : LogSeverity.LOG_INFO);
 		test.set_option("geoip_country_path", activity.getFilesDir() + "/GeoIP.dat");
 		test.set_option("geoip_asn_path", activity.getFilesDir() + "/GeoIPASNum.dat");
@@ -60,7 +58,7 @@ public abstract class AbstractTest {
 				onEntry(activity, jr, measurement);
 			measurement.save();
 			try {
-				FileOutputStream outputStream = activity.openFileOutput(measurement.id + "_" + measurement.test_name, Context.MODE_PRIVATE);
+				FileOutputStream outputStream = activity.openFileOutput(Measurement.getEntryFileName(measurement.id, measurement.test_name), Context.MODE_PRIVATE);
 				outputStream.write(entry.getBytes());
 				outputStream.close();
 			} catch (Exception e) {
@@ -70,7 +68,7 @@ public abstract class AbstractTest {
 		test.run();
 	}
 
-	@CallSuper public void onEntry(AbstractActivity activity, @NonNull JsonResult json, Measurement measurement) {
+	@CallSuper void onEntry(AbstractActivity activity, @NonNull JsonResult json, Measurement measurement) {
 		if (json.test_start_time != null)
 			measurement.result.start_time = json.test_start_time;
 		if (json.measurement_start_time != null)
