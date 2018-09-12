@@ -50,4 +50,18 @@
 		android:text="@string/Onboarding_WhatIsOONIProbe_Paragraph_2"
 		android:textColor="@color/color_white"
 		android:textSize="16sp"/>
+
+	<TextView
+		android:id="@+id/what_is_ooniprobe3"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/what_is_ooniprobe2"
+		android:layout_marginBottom="10dp"
+		android:gravity="center"
+		android:paddingLeft="30dp"
+		android:paddingRight="30dp"
+		android:text="@string/Onboarding_WhatIsOONIProbe_Paragraph_3"
+		android:textColor="@color/color_white"
+		android:textSize="16sp"/>
+
 </RelativeLayout>
