@@ -22,13 +22,13 @@ import java.util.Locale;
 public class NotificationService {
     private static final String TAG = "NotificationService";
     public static final String NOTIFICATION_SERVER_DEV = "https://registry.proteus.test.ooni.io";
-    public static final String NOTIFICATION_SERVER_PROD = "https://registry.proteus.ooni.io";
-    public static final String NOTIFICATION_SERVER = NOTIFICATION_SERVER_PROD;
+    private static final String NOTIFICATION_SERVER_PROD = "https://registry.proteus.ooni.io";
+    private static final String NOTIFICATION_SERVER = NOTIFICATION_SERVER_PROD;
 
     //TODO handle these warnings
     private static NotificationService instance;
     public static Context context;
-    
+
     static String geoip_country_path;
     static String geoip_asn_path;
     static String platform;
@@ -50,7 +50,7 @@ public class NotificationService {
             software_name = "ooniprobe-android";
             software_version = VersionUtils.get_software_version();
             supported_tests = new ArrayList<>();
-            network_type = getNetworkType(c);
+            network_type = ConnectionState.getInstance(c).getNetworkType();
             language = Locale.getDefault().getLanguage();
             if (FirebaseInstanceId.getInstance().getToken() != null)
                 device_token = FirebaseInstanceId.getInstance().getToken();
@@ -159,31 +159,6 @@ public class NotificationService {
                                 });
                     }
                 });
-    }
-
-    //https://developer.android.com/training/monitoring-device-state/connectivity-monitoring.html
-    public static String getNetworkType(Context context){
-        String networkType = null;
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
-        if (activeNetwork != null) { // connected to the internet
-            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
-                networkType = "wifi";
-            } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
-                networkType = "mobile";
-            }
-        } else {
-            // not connected to the internet
-            networkType = "no_internet";
-        }
-        //Log.d(TAG, networkType);
-        return networkType;
-    }
-
-    public void updateNetworkType(Context context) {
-        network_type = getNetworkType(context);
-        if (!network_type.equals("no_internet"))
-            sendRegistrationToServer();
     }
 
 }

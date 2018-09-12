@@ -8,7 +8,7 @@ public class ConnectionStateMonitor extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        NotificationService.getInstance(context).updateNetworkType(context);
+        ConnectionState.getInstance(context).updateNetworkType();
     }
 
 }

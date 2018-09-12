@@ -14,6 +14,7 @@ import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Network;
 import org.openobservatory.ooniprobe.model.Result;
+import org.openobservatory.ooniprobe.utils.ConnectionState;
 import org.openobservatory.ooniprobe.utils.NotificationService;
 import org.openobservatory.ooniprobe.utils.VersionUtils;
 
@@ -56,7 +57,7 @@ public abstract class AbstractTest {
 			if (jr == null)
 				measurement.is_failed = true;
 			else
-				onEntry(activity.getPreferenceManager(), jr, measurement);
+				onEntry(activity, jr, measurement);
 			measurement.save();
 			try {
 				FileOutputStream outputStream = activity.openFileOutput(measurement.id + "_" + measurement.test_name, Context.MODE_PRIVATE);
@@ -69,7 +70,7 @@ public abstract class AbstractTest {
 		test.run();
 	}
 
-	@CallSuper public void onEntry(PreferenceManager preferenceManager, @NonNull JsonResult json, Measurement measurement) {
+	@CallSuper public void onEntry(AbstractActivity activity, @NonNull JsonResult json, Measurement measurement) {
 		if (json.test_start_time != null)
 			measurement.result.start_time = json.test_start_time;
 		if (json.measurement_start_time != null)
@@ -84,14 +85,14 @@ public abstract class AbstractTest {
 		if (measurement.result.network == null) {
 			measurement.result.network = new Network();
 			//TODO need context
-			measurement.result.network.network_type = NotificationService.getNetworkType();
-			if (json.probe_asn != null && preferenceManager.isIncludeAsn()) {
+			measurement.result.network.network_type = ConnectionState.getInstance(activity).getNetworkType();
+			if (json.probe_asn != null && activity.getPreferenceManager().isIncludeAsn()) {
 				measurement.result.network.asn = json.probe_asn; //TODO-SBS asn name
 				measurement.result.network.network_name = "Vodafone";
 			}
-			if (json.probe_cc != null && preferenceManager.isIncludeCc())
+			if (json.probe_cc != null && activity.getPreferenceManager().isIncludeCc())
 				measurement.result.network.country_code = json.probe_cc;
-			if (json.probe_ip != null && preferenceManager.isIncludeIp())
+			if (json.probe_ip != null && activity.getPreferenceManager().isIncludeIp())
 				measurement.result.network.ip = json.probe_ip;
 		}
 	}
