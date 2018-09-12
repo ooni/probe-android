@@ -14,6 +14,7 @@ import org.openobservatory.ooniprobe.model.JsonResult;
 import org.openobservatory.ooniprobe.model.Measurement;
 import org.openobservatory.ooniprobe.model.Network;
 import org.openobservatory.ooniprobe.model.Result;
+import org.openobservatory.ooniprobe.utils.NotificationService;
 import org.openobservatory.ooniprobe.utils.VersionUtils;
 
 import java.io.File;
@@ -82,6 +83,8 @@ public abstract class AbstractTest {
 		measurement.setTestKeys(json.test_keys);
 		if (measurement.result.network == null) {
 			measurement.result.network = new Network();
+			//TODO need context
+			measurement.result.network.network_type = NotificationService.getNetworkType();
 			if (json.probe_asn != null && preferenceManager.isIncludeAsn()) {
 				measurement.result.network.asn = json.probe_asn; //TODO-SBS asn name
 				measurement.result.network.network_name = "Vodafone";
