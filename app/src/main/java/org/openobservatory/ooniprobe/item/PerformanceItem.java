@@ -3,6 +3,7 @@ package org.openobservatory.ooniprobe.item;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,7 +42,7 @@ public class PerformanceItem extends HeterogeneousRecyclerItem<Result, Performan
 		viewHolder.itemView.setOnClickListener(onClickListener);
 		viewHolder.itemView.setOnLongClickListener(onLongClickListener);
 		viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(c, extra.is_viewed ? android.R.color.transparent : R.color.color_yellow0));
-		viewHolder.asnName.setText(Network.getAsnName(c, extra.network));
+		viewHolder.asnName.setText(Html.fromHtml(extra.network.toString(viewHolder.asnName.getContext(), 1)));
 		viewHolder.startTime.setText(DateFormat.getDateFormat(c).format(extra.start_time));
 		Measurement dashM = extra.getMeasurement(Dash.NAME);
 		Measurement ndtM = extra.getMeasurement(Ndt.NAME);

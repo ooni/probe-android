@@ -96,7 +96,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
 		}
 		measurement.result.load();
 		getFragmentManager().beginTransaction()
-				.replace(R.id.head, ResultHeaderDetailFragment.newInstance(null, null, measurement.start_time, measurement.runtime, false, measurement.result.network.country_code, measurement.result.network.network_name))
+				.replace(R.id.head, ResultHeaderDetailFragment.newInstance(null, null, measurement.start_time, measurement.runtime, false, measurement.result.network.country_code, measurement.result.network.toString(this, 3)))
 				.replace(R.id.body, detail)
 				.commit();
 	}
@@ -111,6 +111,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
 			e.printStackTrace();
 		}
 	}
+
 	@OnClick(R.id.viewLog) public void onViewLogClick() {
 		try {
 			FileInputStream is = openFileInput(Measurement.getLogFileName(measurement.result.id, measurement.test_name));

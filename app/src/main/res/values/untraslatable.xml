@@ -64,6 +64,9 @@
 	<string name="CategoryCode_MISC_Key" translatable="false">MISC</string>
 	<string name="d" translatable="false">%1$d</string>
 	<string name="f" translatable="false">%1$.2f</string>
+	<string name="bold" translatable="false">&lt;b>%1$s&lt;/b></string>
+	<string name="brackets" translatable="false">(%1$s)</string>
+	<string name="seg" translatable="false">- %1$s</string>
 	<string name="normalBold" translatable="false">%1$s &lt;b>%2$s&lt;/b></string>
 	<string name="bigNormal" translatable="false">&lt;font color=#0588cb>%1$s&lt;/font> &lt;small>%2$s&lt;/small></string>
 	<string name="twoParam" translatable="false">%1$s %2$s</string>

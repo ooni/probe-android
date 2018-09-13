@@ -94,7 +94,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 		@Override public Fragment getItem(int position) {
 			if (position == 1) {
 				Network network = result.network;
-				return ResultHeaderDetailFragment.newInstance(0L, 0L, null, result.runtime, true, network.country_code, network.network_name);
+				return ResultHeaderDetailFragment.newInstance(0L, 0L, null, result.runtime, true, network.country_code, network.toString(ResultDetailActivity.this, 2));
 			} else switch (result.test_group_name) {
 				case WebsitesSuite.NAME:
 					return ResultHeaderTBAFragment.newInstance(result, R.plurals.TestResults_Summary_Websites_Hero_Sites);

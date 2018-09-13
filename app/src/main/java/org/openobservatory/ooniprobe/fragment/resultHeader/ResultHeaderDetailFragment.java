@@ -3,6 +3,7 @@ package org.openobservatory.ooniprobe.fragment.resultHeader;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Html;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,8 +68,8 @@ public class ResultHeaderDetailFragment extends Fragment {
 			dateTime.setVisibility(View.GONE);
 		runtime.setText(getString(R.string.f, getArguments().getDouble(RUNTIME)));
 		country.setText(getArguments().getString(COUNTRY_CODE));
-		network.setText(getArguments().getString(NETWORK_NAME));
-		runtimeLabel.setText(getArguments().getBoolean(IS_TOTAL_RUNTIME)? R.string.TestResults_Summary_Hero_Runtime: R.string.TestResults_Details_Hero_Runtime);
+		network.setText(Html.fromHtml(getArguments().getString(NETWORK_NAME)));
+		runtimeLabel.setText(getArguments().getBoolean(IS_TOTAL_RUNTIME) ? R.string.TestResults_Summary_Hero_Runtime : R.string.TestResults_Details_Hero_Runtime);
 		return v;
 	}
 }
