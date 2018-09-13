@@ -78,8 +78,8 @@
 	<string name="TestResults_Overview_Websites_Blocked_Plural">Blocked</string>
 	<string name="TestResults_Overview_Websites_Tested_Singular">Tested</string>
 	<string name="TestResults_Overview_Websites_Tested_Plural">Tested</string>
-	<string name="TestResults_Overview_MiddleBoxes_Found">Network tampering</string>
-	<string name="TestResults_Overview_MiddleBoxes_NotFound">No middleboxes detected</string>
+	<string name="TestResults_Overview_MiddleBoxes_Found">Detected</string>
+	<string name="TestResults_Overview_MiddleBoxes_NotFound">Not detected</string>
 	<string name="TestResults_Overview_MiddleBoxes_Failed">Failed</string>
 	<string name="TestResults_Overview_InstantMessaging_Blocked_Singular">Blocked</string>
 	<string name="TestResults_Overview_InstantMessaging_Blocked_Plural">Blocked</string>
@@ -106,8 +106,8 @@
 	<string name="TestResults_Summary_Performance_Hero_Upload">Upload</string>
 	<string name="TestResults_Summary_Performance_Hero_Download">Download</string>
 	<string name="TestResults_Summary_Performance_Hero_Ping">Ping</string>
-	<string name="TestResults_Summary_Middleboxes_Hero_Found">Network tampering</string>
-	<string name="TestResults_Summary_Middleboxes_Hero_NotFound">No middleboxes detected</string>
+	<string name="TestResults_Summary_Middleboxes_Hero_Found">Detected</string>
+	<string name="TestResults_Summary_Middleboxes_Hero_NotFound">Not detected</string>
 	<string name="TestResults_Summary_Middleboxes_Hero_Failed">Failed</string>
 	<string name="TestResults_Summary_InstantMessaging_Hero_Tested_Singular">Tested</string>
 	<string name="TestResults_Summary_InstantMessaging_Hero_Tested_Plural">Tested</string>
@@ -270,8 +270,8 @@
 	<string name="Settings_Sharing_GPS">Include approximate geo-location</string>
 	<string name="Settings_Sharing_IncludeIP">Include my IP address</string>
 	<string name="Settings_Sharing_IncludeCountryCode">Include country code</string>
-	<string name="Settings_Sharing_IncludeCountryCode_PopUp">This information (e.g. IT for Italy) is required to identify which country the measurements pertain to! Are you sure you want to disable this option?</string>
-	<string name="Settings_Sharing_Footer">By publishing the results you are helping the OONI community. Also be sure to include as much information about your network as possible, most importantly your country code, so we can make some sense of the measurements.</string>
+	<string name="Settings_Sharing_IncludeCountryCode_PopUp">This information (e.g. IT for Italy) is required to identify which country the measurements are collected from. Are you sure you want to disable this option?</string>
+	<string name="Settings_Sharing_Footer">By publishing results, you are increasing transparency of network interference and supporting the OONI community. Network information (i.e. Autonomous System Number) is required for identifying Internet Service Providers.</string>
 	<string name="Settings_Advanced_Label">Advanced</string>
 	<string name="Settings_Advanced_SendCrashReports">Send crash reports</string>
 	<string name="Settings_Advanced_KeepScreenOn">Keep screen on</string>
