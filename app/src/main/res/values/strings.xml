@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">OONI Probe</string>
 	<string name="General_AppName">OONI Probe</string>
 	<string name="Onboarding_Welcome_Title">Welcome to</string>
 	<string name="Onboarding_WhatIsOONIProbe_Title">What is OONI Probe?</string>
