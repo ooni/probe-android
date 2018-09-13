@@ -10,10 +10,10 @@
 		android:name=".common.Application"
 		android:allowBackup="false"
 		android:icon="@mipmap/ic_launcher"
-		android:label="@string/app_name"
+		android:label="@string/General_AppName"
 		android:supportsRtl="true"
 		android:theme="@style/Theme.AppCompat.Light.DarkActionBar.App"
-		tools:replace="android:allowBackup">
+		tools:replace="android:allowBackup, android:label">
 		<meta-data
 			android:name="io.fabric.ApiKey"
 			android:value="529a3ff33bd5359fe86c53f6252035178bdb03a1" />
@@ -103,10 +103,10 @@
 			</intent-filter>
 		</activity>
 	</application>
-</manifest>    <!--- THIS IS FOR USI SCHEME
+</manifest>    <!--- THIS IS FOR URI SCHEME
 	<activity
 		android:name=".activity.RunTestActivity"
-		android:label="@string/app_name"
+		android:label="@string/General_AppName"
 		android:launchMode="singleInstance">
 		<intent-filter>
 			<action android:name="android.intent.action.VIEW" />
