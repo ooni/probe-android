@@ -30,9 +30,9 @@ public class PerformanceSuite extends AbstractSuite {
 		PreferenceManager preferenceManager = activity.getPreferenceManager();
 		ArrayList<AbstractTest> list = new ArrayList<>();
 		if (preferenceManager.isRunNdt())
-			list.add(new Ndt());
+			list.add(new Ndt(activity));
 		if (preferenceManager.isRunDash())
-			list.add(new Dash());
+			list.add(new Dash(activity));
 		return list.toArray(new AbstractTest[list.size()]);
 	}
 }

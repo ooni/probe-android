@@ -23,6 +23,6 @@ public class WebsitesSuite extends AbstractSuite {
 	}
 
 	@Override public AbstractTest[] getTestList(AbstractActivity activity) {
-		return new AbstractTest[]{new WebConnectivity()};
+		return new AbstractTest[]{new WebConnectivity(activity)};
 	}
 }

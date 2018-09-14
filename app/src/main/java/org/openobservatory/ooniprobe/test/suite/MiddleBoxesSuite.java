@@ -30,9 +30,9 @@ public class MiddleBoxesSuite extends AbstractSuite {
 		PreferenceManager preferenceManager = activity.getPreferenceManager();
 		ArrayList<AbstractTest> list = new ArrayList<>();
 		if (preferenceManager.isRunHttpHeaderFieldManipulation())
-			list.add(new HttpHeaderFieldManipulation());
+			list.add(new HttpHeaderFieldManipulation(activity));
 		if (preferenceManager.isRunHttpInvalidRequestLine())
-			list.add(new HttpInvalidRequestLine());
+			list.add(new HttpInvalidRequestLine(activity));
 		return list.toArray(new AbstractTest[list.size()]);
 	}
 }

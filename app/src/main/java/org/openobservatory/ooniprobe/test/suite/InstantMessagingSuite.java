@@ -31,11 +31,11 @@ public class InstantMessagingSuite extends AbstractSuite {
 		PreferenceManager preferenceManager = activity.getPreferenceManager();
 		ArrayList<AbstractTest> list = new ArrayList<>();
 		if (preferenceManager.isTestWhatsapp())
-			list.add(new Whatsapp());
+			list.add(new Whatsapp(activity));
 		if (preferenceManager.isTestTelegram())
-			list.add(new Telegram());
+			list.add(new Telegram(activity));
 		if (preferenceManager.isTestFacebookMessenger())
-			list.add(new FacebookMessenger());
+			list.add(new FacebookMessenger(activity));
 		return list.toArray(new AbstractTest[list.size()]);
 	}
 }

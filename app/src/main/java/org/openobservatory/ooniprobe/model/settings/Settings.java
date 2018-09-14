@@ -51,7 +51,7 @@ public class Settings {
         @SerializedName("geoip_country_path")
         public String geoip_country_path;
         @SerializedName("max_runtime")
-        public Double max_runtime;
+        public int max_runtime;
         @SerializedName("no_collector")
         //TODO make it bool
         public String no_collector;
@@ -71,7 +71,7 @@ public class Settings {
         @SerializedName("server")
         public String server;
         @SerializedName("port")
-        public Double port;
+        public int port;
         @SerializedName("all_endpoints")
         public int all_endpoints;
 

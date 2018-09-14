@@ -25,20 +25,20 @@ public class PreferenceManager {
 		return sp.getString(r.getString(R.string.ndt_server), null);
 	}
 
-	public String getndtServerPort() {
-		return sp.getString(r.getString(R.string.ndt_server_port), null);
+	public int getndtServerPort() {
+		return sp.getInt(r.getString(R.string.ndt_server_port), 3001);
 	}
 
 	public String getdashServer() {
 		return sp.getString(r.getString(R.string.dash_server), null);
 	}
 
-	public String getdashServerPort() {
-		return sp.getString(r.getString(R.string.dash_server_port), null);
+	public int getdashServerPort() {
+		return sp.getInt(r.getString(R.string.dash_server_port), 80);
 	}
 
-	public String getMaxRuntime() {
-		return sp.getString(r.getString(R.string.max_runtime), null);
+	public int getMaxRuntime() {
+		return sp.getInt(r.getString(R.string.max_runtime), 90);
 	}
 
 	public boolean isSendCrash() {

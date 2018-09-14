@@ -60,8 +60,11 @@ public class Measurement extends BaseModel implements Serializable {
 		return id + "-" + name + ".log";
 	}
 
+	//TODO-URGENT this is wrong, a test should be created only to be run.
+	//use a getName function if the name is all you need
 	public AbstractTest getTest() {
 		switch (test_name) {
+			/*
 			case FacebookMessenger.NAME:
 				return new FacebookMessenger();
 			case Telegram.NAME:
@@ -78,6 +81,7 @@ public class Measurement extends BaseModel implements Serializable {
 				return new Ndt();
 			case Dash.NAME:
 				return new Dash();
+				*/
 			default:
 				return null;
 		}

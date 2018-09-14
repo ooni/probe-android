@@ -14,6 +14,10 @@ public class Dash extends AbstractTest {
 
 	public Dash(AbstractActivity activity) {
 		super(activity, NAME, MK_NAME, R.string.Test_Dash_Fullname, 0);
+		if(!activity.getPreferenceManager().isDashServerAuto()){
+			this.settings.options.server = activity.getPreferenceManager().getdashServer();
+			this.settings.options.port = activity.getPreferenceManager().getdashServerPort();
+		}
 	}
 
 	@Override public void run(AbstractActivity activity, Result result, int index, TestCallback testCallback) {

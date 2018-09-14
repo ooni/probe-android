@@ -17,6 +17,10 @@ public class Ndt extends AbstractTest {
 
 	public Ndt(AbstractActivity activity) {
 		super(activity, NAME, MK_NAME, R.string.Test_NDT_Fullname, 0);
+		if(!activity.getPreferenceManager().isNdtServerAuto()){
+			this.settings.options.server = activity.getPreferenceManager().getndtServer();
+			this.settings.options.port = activity.getPreferenceManager().getndtServerPort();
+		}
 	}
 
 	@Override public void run(AbstractActivity activity, Result result, int index, TestCallback testCallback) {
