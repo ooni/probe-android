@@ -14,6 +14,7 @@ public class Whatsapp extends AbstractTest {
 
 	public Whatsapp(AbstractActivity activity) {
 		super(activity, NAME, R.string.Test_WhatsApp_Fullname, R.drawable.test_whatsapp);
+		this.settings.name = MK_NAME;
 		if(activity.getPreferenceManager().isTestWhatsappExtensive())
 			this.settings.options.all_endpoints = 1;
 
