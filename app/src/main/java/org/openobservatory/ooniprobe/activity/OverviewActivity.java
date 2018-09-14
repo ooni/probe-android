@@ -46,7 +46,7 @@ public class OverviewActivity extends AbstractActivity {
 		InternalStyleSheet css = new Github();
 		css.addFontFace("FiraSans", "regular", "italic", "normal", "url('firasans_regular_normal.otf')");
 		desc.addStyleSheet(css);
-		desc.loadMarkdown(getString(testSuite.getDesc1()) + "\n\n" + getString(testSuite.getDesc1()));
+		desc.loadMarkdown(getString(testSuite.getDesc1()) + "\n\n" + getString(testSuite.getDesc2()));
 	}
 
 	@OnClick(R.id.configure) void onConfigureClick() {
