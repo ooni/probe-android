@@ -52,8 +52,8 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		items = new ArrayList<>();
 		items.add(new TestsuiteItem(new WebsitesSuite(), this));
 		items.add(new TestsuiteItem(new InstantMessagingSuite(), this));
-		items.add(new TestsuiteItem(new MiddleBoxesSuite(), this));
 		items.add(new TestsuiteItem(new PerformanceSuite(), this));
+		items.add(new TestsuiteItem(new MiddleBoxesSuite(), this));
 		adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
 		recycler.setAdapter(adapter);
 		recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
