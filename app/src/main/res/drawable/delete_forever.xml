@@ -1,9 +1,10 @@
+<!-- drawable/delete_forever.xml -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="18dp"
-    android:height="18dp"
-    android:viewportWidth="14"
-    android:viewportHeight="18">
-  <path
-      android:pathData="M1,16a2,2 0,0 0,2 2h8a2,2 0,0 0,2 -2L13,4L1,4L1,16m2.46,-7.12 l1.41,-1.41L7,9.59l2.12,-2.12 1.41,1.41L8.41,11l2.12,2.12 -1.41,1.41L7,12.41 4.88,14.53 3.47,13.12 5.59,11 3.46,8.88M10.5,1l-1,-1h-5l-1,1L0,1L0,3L14,3L14,1Z"
-      android:fillColor="#fff"/>
+	android:width="36dp"
+	android:height="36dp"
+	android:viewportHeight="24"
+	android:viewportWidth="24">
+	<path
+		android:fillColor="#fff"
+		android:pathData="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z" />
 </vector>

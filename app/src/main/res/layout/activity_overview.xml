@@ -26,7 +26,8 @@
 			android:id="@+id/title"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+			android:textAppearance="@style/TextAppearance.AppCompat.Large"
+			android:theme="@style/Theme.AppCompat.NoActionBar.App" />
 
 		<Button
 			android:id="@+id/configure"
@@ -41,7 +42,8 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"
-			android:text="2min" />
+			android:text="2min"
+			android:theme="@style/Theme.AppCompat.NoActionBar.App" />
 
 		<Button
 			android:id="@+id/run"
@@ -55,7 +57,8 @@
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"
 			android:layout_marginBottom="16dp"
-			android:text="2 settimane fa" />
+			android:text="2 settimane fa"
+			android:theme="@style/Theme.AppCompat.NoActionBar.App" />
 	</android.support.design.widget.AppBarLayout>
 
 	<br.tiagohm.markdownview.MarkdownView
