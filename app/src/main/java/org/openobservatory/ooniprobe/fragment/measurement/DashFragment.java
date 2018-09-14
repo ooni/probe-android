@@ -12,8 +12,8 @@ import android.widget.TextView;
 import com.samskivert.mustache.Mustache;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.model.Measurement;
-import org.openobservatory.ooniprobe.model.TestKeys;
+import org.openobservatory.ooniprobe.model.database.Measurement;
+import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
 import java.util.HashMap;
 

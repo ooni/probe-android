@@ -1,4 +1,4 @@
-package org.openobservatory.ooniprobe.model;
+package org.openobservatory.ooniprobe.model.database;
 
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;

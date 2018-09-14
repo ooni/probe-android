@@ -1,4 +1,4 @@
-package org.openobservatory.ooniprobe.model;
+package org.openobservatory.ooniprobe.model.jsonresult;
 
 import android.content.Context;
 

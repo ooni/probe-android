@@ -9,10 +9,10 @@ import org.openobservatory.measurement_kit.common.LogSeverity;
 import org.openobservatory.measurement_kit.nettests.BaseTest;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
-import org.openobservatory.ooniprobe.model.JsonResult;
-import org.openobservatory.ooniprobe.model.Measurement;
-import org.openobservatory.ooniprobe.model.Network;
-import org.openobservatory.ooniprobe.model.Result;
+import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
+import org.openobservatory.ooniprobe.model.database.Measurement;
+import org.openobservatory.ooniprobe.model.database.Network;
+import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.utils.ConnectionState;
 import org.openobservatory.ooniprobe.utils.VersionUtils;
 

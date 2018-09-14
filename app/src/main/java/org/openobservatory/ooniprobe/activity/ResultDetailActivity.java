@@ -25,9 +25,9 @@ import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderPerforman
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderTBAFragment;
 import org.openobservatory.ooniprobe.item.MeasurementItem;
 import org.openobservatory.ooniprobe.item.MeasurementPerfItem;
-import org.openobservatory.ooniprobe.model.Measurement;
-import org.openobservatory.ooniprobe.model.Network;
-import org.openobservatory.ooniprobe.model.Result;
+import org.openobservatory.ooniprobe.model.database.Measurement;
+import org.openobservatory.ooniprobe.model.database.Network;
+import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.Result_Table;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;

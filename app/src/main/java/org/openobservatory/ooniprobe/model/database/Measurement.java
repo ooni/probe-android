@@ -1,4 +1,4 @@
-package org.openobservatory.ooniprobe.model;
+package org.openobservatory.ooniprobe.model.database;
 
 import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.annotation.Column;
@@ -8,6 +8,7 @@ import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.Dash;
 import org.openobservatory.ooniprobe.test.test.FacebookMessenger;

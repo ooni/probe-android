@@ -11,8 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.model.Measurement;
-import org.openobservatory.ooniprobe.model.TestKeys;
+import org.openobservatory.ooniprobe.model.database.Measurement;
+import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

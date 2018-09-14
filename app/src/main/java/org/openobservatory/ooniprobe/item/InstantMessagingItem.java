@@ -10,8 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.model.Network;
-import org.openobservatory.ooniprobe.model.Result;
+import org.openobservatory.ooniprobe.model.database.Result;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

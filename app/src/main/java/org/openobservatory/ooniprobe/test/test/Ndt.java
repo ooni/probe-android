@@ -4,11 +4,10 @@ import android.support.annotation.NonNull;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
-import org.openobservatory.ooniprobe.common.PreferenceManager;
-import org.openobservatory.ooniprobe.model.JsonResult;
-import org.openobservatory.ooniprobe.model.Measurement;
-import org.openobservatory.ooniprobe.model.Result;
-import org.openobservatory.ooniprobe.model.TestKeys;
+import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
+import org.openobservatory.ooniprobe.model.database.Measurement;
+import org.openobservatory.ooniprobe.model.database.Result;
+import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
 public class Ndt extends AbstractTest {
 	public static final String NAME = "ndt_test";

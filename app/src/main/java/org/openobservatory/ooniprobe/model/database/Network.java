@@ -1,4 +1,4 @@
-package org.openobservatory.ooniprobe.model;
+package org.openobservatory.ooniprobe.model.database;
 
 import android.content.Context;
 import android.text.TextUtils;

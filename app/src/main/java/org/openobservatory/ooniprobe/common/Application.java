@@ -12,7 +12,7 @@ import com.raizlabs.android.dbflow.config.FlowManager;
 
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.model.TestKeys;
+import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

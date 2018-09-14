@@ -3,7 +3,7 @@ package org.openobservatory.ooniprobe.test;
 import android.os.AsyncTask;
 
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
-import org.openobservatory.ooniprobe.model.Result;
+import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
 import java.lang.ref.WeakReference;

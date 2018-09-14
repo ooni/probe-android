@@ -4,10 +4,9 @@ import android.support.annotation.NonNull;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
-import org.openobservatory.ooniprobe.common.PreferenceManager;
-import org.openobservatory.ooniprobe.model.JsonResult;
-import org.openobservatory.ooniprobe.model.Measurement;
-import org.openobservatory.ooniprobe.model.Result;
+import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
+import org.openobservatory.ooniprobe.model.database.Measurement;
+import org.openobservatory.ooniprobe.model.database.Result;
 
 public class Telegram extends AbstractTest {
 	public static final String NAME = "telegram";

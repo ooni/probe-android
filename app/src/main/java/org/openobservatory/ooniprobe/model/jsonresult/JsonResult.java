@@ -1,8 +1,7 @@
-package org.openobservatory.ooniprobe.model;
+package org.openobservatory.ooniprobe.model.jsonresult;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 public class JsonResult {
