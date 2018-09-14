@@ -49,4 +49,22 @@ public class Network extends BaseModel implements Serializable {
 			parts.add(c.getString(R.string.seg, asn));
 		return TextUtils.join(" ", parts);
 	}
+
+	public static String getAsn(Context context, Network network) {
+		if (network != null && network.asn != null)
+			return network.asn;
+		return context.getString(R.string.TestResults_UnknownASN);
+	}
+
+	public static String getAsnName(Context context, Network network) {
+		if (network != null && network.network_name != null)
+			return network.network_name;
+		return context.getString(R.string.TestResults_UnknownASN);
+	}
+
+	public static String getCountry(Context context, Network network) {
+		if (network != null && network.country_code != null)
+			return network.country_code;
+		return context.getString(R.string.TestResults_UnknownASN);
+	}
 }
