@@ -13,8 +13,7 @@ public class Whatsapp extends AbstractTest {
 	public static final String MK_NAME = "Whatsapp";
 
 	public Whatsapp(AbstractActivity activity) {
-		super(activity, NAME, R.string.Test_WhatsApp_Fullname, R.drawable.test_whatsapp);
-		this.settings.name = MK_NAME;
+		super(activity, NAME, MK_NAME, R.string.Test_WhatsApp_Fullname, R.drawable.test_whatsapp);
 		if(activity.getPreferenceManager().isTestWhatsappExtensive())
 			this.settings.options.all_endpoints = 1;
 

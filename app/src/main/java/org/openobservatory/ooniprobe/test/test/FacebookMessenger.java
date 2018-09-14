@@ -12,8 +12,8 @@ public class FacebookMessenger extends AbstractTest {
 	public static final String NAME = "facebook_messenger";
 	public static final String MK_NAME = "FacebookMessenger";
 
-	public FacebookMessenger() {
-		super(NAME, R.string.Test_FacebookMessenger_Fullname, R.drawable.test_facebook_messenger);
+	public FacebookMessenger(AbstractActivity activity) {
+		super(activity, NAME, MK_NAME, R.string.Test_FacebookMessenger_Fullname, R.drawable.test_facebook_messenger);
 	}
 
 	@Override public void run(AbstractActivity activity, Result result, int index, TestCallback testCallback) {

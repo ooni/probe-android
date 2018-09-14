@@ -12,8 +12,8 @@ public class Telegram extends AbstractTest {
 	public static final String NAME = "telegram";
 	public static final String MK_NAME = "Telegram";
 
-	public Telegram() {
-		super(NAME, R.string.Test_Telegram_Fullname, R.drawable.test_telegram);
+	public Telegram(AbstractActivity activity) {
+		super(activity, NAME, MK_NAME, R.string.Test_Telegram_Fullname, R.drawable.test_telegram);
 	}
 
 	@Override public void run(AbstractActivity activity, Result result, int index, TestCallback testCallback) {

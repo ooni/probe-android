@@ -14,8 +14,8 @@ public class WebConnectivity extends AbstractTest {
 	public static final String NAME = "web_connectivity";
 	public static final String MK_NAME = "WebConnectivitys";
 
-	public WebConnectivity() {
-		super(NAME, R.string.Test_WebConnectivity_Fullname, 0);
+	public WebConnectivity(AbstractActivity activity) {
+		super(activity, NAME, MK_NAME, R.string.Test_WebConnectivity_Fullname, 0);
 	}
 
 	@Override public void run(AbstractActivity activity, Result result, int index, TestCallback testCallback) {

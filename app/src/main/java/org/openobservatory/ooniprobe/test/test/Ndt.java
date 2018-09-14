@@ -15,8 +15,8 @@ public class Ndt extends AbstractTest {
 
 	private String[] countries;
 
-	public Ndt() {
-		super(NAME, R.string.Test_NDT_Fullname, 0);
+	public Ndt(AbstractActivity activity) {
+		super(activity, NAME, MK_NAME, R.string.Test_NDT_Fullname, 0);
 	}
 
 	@Override public void run(AbstractActivity activity, Result result, int index, TestCallback testCallback) {

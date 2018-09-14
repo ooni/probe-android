@@ -12,8 +12,8 @@ public class HttpInvalidRequestLine extends AbstractTest {
 	public static final String NAME = "http_invalid_request_line";
 	public static final String MK_NAME = "HttpInvalidRequestLine";
 
-	public HttpInvalidRequestLine() {
-		super(NAME, R.string.Test_HTTPInvalidRequestLine_Fullname, 0);
+	public HttpInvalidRequestLine(AbstractActivity activity) {
+		super(activity, NAME, MK_NAME, R.string.Test_HTTPInvalidRequestLine_Fullname, 0);
 	}
 
 	@Override public void run(AbstractActivity activity, Result result, int index, TestCallback testCallback) {

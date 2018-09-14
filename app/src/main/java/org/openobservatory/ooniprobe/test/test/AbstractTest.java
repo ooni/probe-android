@@ -26,11 +26,13 @@ public abstract class AbstractTest {
 	private int iconResId;
 	Settings settings;
 
-	public AbstractTest(AbstractActivity activity, String name, int labelResId, int iconResId) {
+	//TODO test can be run from app closed, activity should be changed with context
+	public AbstractTest(AbstractActivity activity, String name, String mkName, int labelResId, int iconResId) {
 		this.name = name;
 		this.labelResId = labelResId;
 		this.iconResId = iconResId;
 		this.settings = new Settings(activity);
+		this.settings.name = mkName;
 	}
 
 	public abstract void run(AbstractActivity activity, Result result, int index, TestCallback testCallback);

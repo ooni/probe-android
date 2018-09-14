@@ -12,8 +12,8 @@ public class Dash extends AbstractTest {
 	public static final String NAME = "dash";
 	public static final String MK_NAME = "Dash";
 
-	public Dash() {
-		super(NAME, R.string.Test_Dash_Fullname, 0);
+	public Dash(AbstractActivity activity) {
+		super(activity, NAME, MK_NAME, R.string.Test_Dash_Fullname, 0);
 	}
 
 	@Override public void run(AbstractActivity activity, Result result, int index, TestCallback testCallback) {

@@ -12,8 +12,8 @@ public class HttpHeaderFieldManipulation extends AbstractTest {
 	public static final String NAME = "http_header_field_manipulation";
 	public static final String MK_NAME = "HttpHeaderFieldManipulation";
 
-	public HttpHeaderFieldManipulation() {
-		super(NAME, R.string.Test_HTTPHeaderFieldManipulation_Fullname, 0);
+	public HttpHeaderFieldManipulation(AbstractActivity activity) {
+		super(activity, NAME, MK_NAME, R.string.Test_HTTPHeaderFieldManipulation_Fullname, 0);
 	}
 
 	@Override public void run(AbstractActivity activity, Result result, int index, TestCallback testCallback) {
