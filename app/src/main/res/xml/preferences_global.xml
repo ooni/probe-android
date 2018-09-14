@@ -29,10 +29,6 @@
 			android:key="@string/upload_results"
 			android:title="@string/Settings_Sharing_UploadResults" />
 		<android.support.v7.preference.SwitchPreferenceCompat
-			android:defaultValue="false"
-			android:key="@string/include_ip"
-			android:title="@string/Settings_Sharing_IncludeIP" />
-		<android.support.v7.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="@string/include_asn"
 			android:title="@string/Settings_Sharing_IncludeNetwork" />
@@ -40,6 +36,10 @@
 			android:defaultValue="true"
 			android:key="@string/include_cc"
 			android:title="@string/Settings_Sharing_IncludeCountryCode" />
+		<android.support.v7.preference.SwitchPreferenceCompat
+			android:defaultValue="false"
+			android:key="@string/include_ip"
+			android:title="@string/Settings_Sharing_IncludeIP" />
 	</PreferenceScreen>
 	<PreferenceScreen
 		android:icon="@drawable/advanced"
