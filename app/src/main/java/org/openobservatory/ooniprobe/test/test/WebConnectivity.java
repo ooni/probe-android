@@ -12,6 +12,7 @@ import org.openobservatory.ooniprobe.model.database.Url;
 
 public class WebConnectivity extends AbstractTest {
 	public static final String NAME = "web_connectivity";
+	public static final String MK_NAME = "WebConnectivitys";
 
 	public WebConnectivity() {
 		super(NAME, R.string.Test_WebConnectivity_Fullname, 0);

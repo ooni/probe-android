@@ -10,6 +10,7 @@ import org.openobservatory.ooniprobe.model.database.Result;
 
 public class Dash extends AbstractTest {
 	public static final String NAME = "dash";
+	public static final String MK_NAME = "Dash";
 
 	public Dash() {
 		super(NAME, R.string.Test_Dash_Fullname, 0);

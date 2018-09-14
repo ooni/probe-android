@@ -10,7 +10,9 @@ import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
 public class Ndt extends AbstractTest {
-	public static final String NAME = "ndt_test";
+	public static final String NAME = "ndt";
+	public static final String MK_NAME = "Ndt";
+
 	private String[] countries;
 
 	public Ndt() {

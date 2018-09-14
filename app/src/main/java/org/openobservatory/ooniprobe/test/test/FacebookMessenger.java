@@ -10,6 +10,7 @@ import org.openobservatory.ooniprobe.model.database.Result;
 
 public class FacebookMessenger extends AbstractTest {
 	public static final String NAME = "facebook_messenger";
+	public static final String MK_NAME = "FacebookMessenger";
 
 	public FacebookMessenger() {
 		super(NAME, R.string.Test_FacebookMessenger_Fullname, R.drawable.test_facebook_messenger);

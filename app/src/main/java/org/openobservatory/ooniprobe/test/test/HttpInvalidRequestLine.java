@@ -10,6 +10,7 @@ import org.openobservatory.ooniprobe.model.database.Result;
 
 public class HttpInvalidRequestLine extends AbstractTest {
 	public static final String NAME = "http_invalid_request_line";
+	public static final String MK_NAME = "HttpInvalidRequestLine";
 
 	public HttpInvalidRequestLine() {
 		super(NAME, R.string.Test_HTTPInvalidRequestLine_Fullname, 0);

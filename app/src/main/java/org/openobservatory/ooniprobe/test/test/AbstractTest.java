@@ -13,6 +13,7 @@ import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
+import org.openobservatory.ooniprobe.model.settings.Settings;
 import org.openobservatory.ooniprobe.utils.ConnectionState;
 import org.openobservatory.ooniprobe.utils.VersionUtils;
 
@@ -23,11 +24,13 @@ public abstract class AbstractTest {
 	private String name;
 	private int labelResId;
 	private int iconResId;
+	Settings settings;
 
-	public AbstractTest(String name, int labelResId, int iconResId) {
+	public AbstractTest(AbstractActivity activity, String name, int labelResId, int iconResId) {
 		this.name = name;
 		this.labelResId = labelResId;
 		this.iconResId = iconResId;
+		this.settings = new Settings(activity);
 	}
 
 	public abstract void run(AbstractActivity activity, Result result, int index, TestCallback testCallback);

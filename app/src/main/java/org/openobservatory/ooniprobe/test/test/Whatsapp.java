@@ -10,9 +10,13 @@ import org.openobservatory.ooniprobe.model.database.Result;
 
 public class Whatsapp extends AbstractTest {
 	public static final String NAME = "whatsapp";
+	public static final String MK_NAME = "Whatsapp";
 
-	public Whatsapp() {
-		super(NAME, R.string.Test_WhatsApp_Fullname, R.drawable.test_whatsapp);
+	public Whatsapp(AbstractActivity activity) {
+		super(activity, NAME, R.string.Test_WhatsApp_Fullname, R.drawable.test_whatsapp);
+		if(activity.getPreferenceManager().isTestWhatsappExtensive())
+			this.settings.options.all_endpoints = 1;
+
 	}
 
 	@Override public void run(AbstractActivity activity, Result result, int index, TestCallback testCallback) {
