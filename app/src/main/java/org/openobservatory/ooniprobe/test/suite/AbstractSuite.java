@@ -1,12 +1,15 @@
 package org.openobservatory.ooniprobe.test.suite;
 
+import android.content.Context;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
 import android.support.annotation.StyleRes;
 import android.support.annotation.XmlRes;
 
-import org.openobservatory.ooniprobe.activity.AbstractActivity;
+import com.google.gson.Gson;
+
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
 import java.io.Serializable;
@@ -38,7 +41,7 @@ public abstract class AbstractSuite implements Serializable {
 		this.name = name;
 	}
 
-	public abstract AbstractTest[] getTestList(AbstractActivity activity);
+	public abstract AbstractTest[] getTestList(Context c, PreferenceManager pm, Gson gson);
 
 	public int getTitle() {
 		return title;

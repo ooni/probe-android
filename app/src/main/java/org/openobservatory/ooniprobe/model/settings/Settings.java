@@ -1,9 +1,12 @@
 package org.openobservatory.ooniprobe.model.settings;
 
+import android.content.Context;
+
 import com.google.gson.annotations.SerializedName;
 
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.utils.ConnectionState;
 import org.openobservatory.ooniprobe.utils.VersionUtils;
@@ -36,13 +39,13 @@ public class Settings {
     @SerializedName("options")
     public Options options;
 
-    public Settings(AbstractActivity activity) {
+    public Settings(Context c, PreferenceManager pm) {
         this.annotations = new HashMap<>();
-        this.annotations.put("network_type", ConnectionState.getInstance(activity).getNetworkType());
+        this.annotations.put("network_type", ConnectionState.getInstance(c).getNetworkType());
         this.disabled_events = new ArrayList<>(Arrays.asList("status.queued", "failure.report_close"));
         //this.log_filepath = new File(activity.getFilesDir(), Measurement.getLogFileName(result.id, name)).getPath();
         this.log_level = BuildConfig.DEBUG ? "DEBUG" : "INFO";
-        this.options = new Options(activity);
+        this.options = new Options(c, pm);
     }
 
     public static class Options {
@@ -75,16 +78,16 @@ public class Settings {
         @SerializedName("all_endpoints")
         public int all_endpoints;
 
-        public Options(AbstractActivity activity) {
-            this.geoip_asn_path = activity.getFilesDir() + "/GeoIP.dat";
-            this.geoip_country_path = activity.getFilesDir() + "/GeoIPASNum.dat";
+        public Options(Context c, PreferenceManager pm) {
+            geoip_asn_path = c.getFilesDir() + "/GeoIP.dat";
+            geoip_country_path = c.getFilesDir() + "/GeoIPASNum.dat";
             //this.max_runtime = ;
-            this.no_collector = activity.getPreferenceManager().getNoUploadResults();
-            this.save_real_probe_asn = activity.getPreferenceManager().getIncludeAsn();
-            this.save_real_probe_cc = activity.getPreferenceManager().getIncludeCc();
-            this.save_real_probe_ip = activity.getPreferenceManager().getIncludeIp();
-            this.software_name = "ooniprobe-android";
-            this.software_version = VersionUtils.get_software_version();
+            no_collector = pm.getNoUploadResults();
+            save_real_probe_asn = pm.getIncludeAsn();
+            save_real_probe_cc = pm.getIncludeCc();
+            save_real_probe_ip = pm.getIncludeIp();
+            software_name = "ooniprobe-android";
+            software_version = VersionUtils.get_software_version();
             //this.server = ;
             //this.port = ;
             //this.all_endpoints = ;

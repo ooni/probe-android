@@ -5,14 +5,16 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import org.openobservatory.measurement_kit.common.LogSeverity;
 import org.openobservatory.measurement_kit.nettests.BaseTest;
 import org.openobservatory.ooniprobe.BuildConfig;
-import org.openobservatory.ooniprobe.activity.AbstractActivity;
-import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
+import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
 import org.openobservatory.ooniprobe.model.settings.Settings;
 import org.openobservatory.ooniprobe.utils.ConnectionState;
 import org.openobservatory.ooniprobe.utils.VersionUtils;
@@ -21,49 +23,54 @@ import java.io.File;
 import java.io.FileOutputStream;
 
 public abstract class AbstractTest {
+	protected Context c;
+	protected Settings settings;
 	private String name;
 	private int labelResId;
 	private int iconResId;
-	Settings settings;
+	private PreferenceManager pm;
+	private Gson gson;
 
-	//TODO test can be run from app closed, activity should be changed with context
-	public AbstractTest(AbstractActivity activity, String name, String mkName, int labelResId, int iconResId) {
+	public AbstractTest(Context c, PreferenceManager pm, Gson gson, String name, String mkName, int labelResId, int iconResId) {
+		this.c = c;
+		this.pm = pm;
+		this.gson = gson;
 		this.name = name;
 		this.labelResId = labelResId;
 		this.iconResId = iconResId;
-		this.settings = new Settings(activity);
+		this.settings = new Settings(c, pm);
 		this.settings.name = mkName;
 	}
 
-	public abstract void run(AbstractActivity activity, Result result, int index, TestCallback testCallback);
+	public abstract void run(Result result, int index, TestCallback testCallback);
 
-	protected void run(AbstractActivity activity, BaseTest test, Result result, int index, TestCallback testCallback) {
+	protected void run(BaseTest test, Result result, int index, TestCallback testCallback) {
 		test.use_logcat();
-		test.set_error_filepath(new File(activity.getFilesDir(), Measurement.getLogFileName(result.id, name)).getPath());
+		test.set_error_filepath(new File(c.getFilesDir(), Measurement.getLogFileName(result.id, name)).getPath());
 		test.set_verbosity(BuildConfig.DEBUG ? LogSeverity.LOG_DEBUG2 : LogSeverity.LOG_INFO);
-		test.set_option("geoip_country_path", activity.getFilesDir() + "/GeoIP.dat");
-		test.set_option("geoip_asn_path", activity.getFilesDir() + "/GeoIPASNum.dat");
-		test.set_option("save_real_probe_ip", activity.getPreferenceManager().getIncludeIp());
-		test.set_option("save_real_probe_asn", activity.getPreferenceManager().getIncludeAsn());
-		test.set_option("save_real_probe_cc", activity.getPreferenceManager().getIncludeCc());
-		test.set_option("no_collector", activity.getPreferenceManager().getNoUploadResults());
+		test.set_option("geoip_country_path", c.getFilesDir() + "/GeoIP.dat");
+		test.set_option("geoip_asn_path", c.getFilesDir() + "/GeoIPASNum.dat");
+		test.set_option("save_real_probe_ip", pm.getIncludeIp());
+		test.set_option("save_real_probe_asn", pm.getIncludeAsn());
+		test.set_option("save_real_probe_cc", pm.getIncludeCc());
+		test.set_option("no_collector", pm.getNoUploadResults());
 		test.set_option("software_name", "ooniprobe-android");
 		test.set_option("software_version", VersionUtils.get_software_version());
-		testCallback.onStart(activity.getString(labelResId));
+		testCallback.onStart(c.getString(labelResId));
 		testCallback.onProgress(Double.valueOf(index * 100).intValue());
 		test.on_progress((v, s) -> testCallback.onProgress(Double.valueOf((index + v) * 100).intValue()));
 		test.on_log((l, s) -> testCallback.onLog(s));
 		test.on_entry(entry -> {
 			Log.d("entry", entry);
 			Measurement measurement = new Measurement(result, name);
-			JsonResult jr = activity.getGson().fromJson(entry, JsonResult.class);
+			JsonResult jr = gson.fromJson(entry, JsonResult.class);
 			if (jr == null)
 				measurement.is_failed = true;
 			else
-				onEntry(activity, jr, measurement);
+				onEntry(jr, measurement);
 			measurement.save();
 			try {
-				FileOutputStream outputStream = activity.openFileOutput(Measurement.getEntryFileName(measurement.id, measurement.test_name), Context.MODE_PRIVATE);
+				FileOutputStream outputStream = c.openFileOutput(Measurement.getEntryFileName(measurement.id, measurement.test_name), Context.MODE_PRIVATE);
 				outputStream.write(entry.getBytes());
 				outputStream.close();
 			} catch (Exception e) {
@@ -73,7 +80,7 @@ public abstract class AbstractTest {
 		test.run();
 	}
 
-	@CallSuper void onEntry(AbstractActivity activity, @NonNull JsonResult json, Measurement measurement) {
+	@CallSuper void onEntry(@NonNull JsonResult json, Measurement measurement) {
 		if (json.test_start_time != null)
 			measurement.result.start_time = json.test_start_time;
 		if (json.measurement_start_time != null)
@@ -88,14 +95,14 @@ public abstract class AbstractTest {
 		if (measurement.result.network == null) {
 			measurement.result.network = new Network();
 			//TODO need context
-			measurement.result.network.network_type = ConnectionState.getInstance(activity).getNetworkType();
-			if (json.probe_asn != null && activity.getPreferenceManager().isIncludeAsn()) {
+			measurement.result.network.network_type = ConnectionState.getInstance(c).getNetworkType();
+			if (json.probe_asn != null && pm.isIncludeAsn()) {
 				measurement.result.network.asn = json.probe_asn; //TODO-SBS asn name
 				measurement.result.network.network_name = "Vodafone";
 			}
-			if (json.probe_cc != null && activity.getPreferenceManager().isIncludeCc())
+			if (json.probe_cc != null && pm.isIncludeCc())
 				measurement.result.network.country_code = json.probe_cc;
-			if (json.probe_ip != null && activity.getPreferenceManager().isIncludeIp())
+			if (json.probe_ip != null && pm.isIncludeIp())
 				measurement.result.network.ip = json.probe_ip;
 		}
 	}

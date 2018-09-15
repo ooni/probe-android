@@ -1,5 +1,9 @@
 package org.openobservatory.ooniprobe.test.suite;
 
+import android.content.Context;
+
+import com.google.gson.Gson;
+
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
@@ -26,13 +30,12 @@ public class PerformanceSuite extends AbstractSuite {
 				"anim/performance.json");
 	}
 
-	@Override public AbstractTest[] getTestList(AbstractActivity activity) {
-		PreferenceManager preferenceManager = activity.getPreferenceManager();
+	@Override public AbstractTest[] getTestList(Context c, PreferenceManager pm, Gson gson) {
 		ArrayList<AbstractTest> list = new ArrayList<>();
-		if (preferenceManager.isRunNdt())
-			list.add(new Ndt(activity));
-		if (preferenceManager.isRunDash())
-			list.add(new Dash(activity));
+		if (pm.isRunNdt())
+			list.add(new Ndt(c,pm, gson));
+		if (pm.isRunDash())
+			list.add(new Dash(c, pm, gson));
 		return list.toArray(new AbstractTest[list.size()]);
 	}
 }

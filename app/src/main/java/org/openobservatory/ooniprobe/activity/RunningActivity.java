@@ -40,7 +40,7 @@ public class RunningActivity extends AbstractActivity {
 		animation.setAnimation(testSuite.getAnim());
 		animation.setRepeatCount(Animation.INFINITE);
 		animation.playAnimation();
-		AbstractTest[] testList = testSuite.getTestList(this);
+		AbstractTest[] testList = testSuite.getTestList(this, getPreferenceManager(), getGson());
 		if (testList != null) {
 			progress.setMax(testList.length * 100);
 			new TestAsyncTaskImpl(this, testSuite.getName()).execute(testList);
