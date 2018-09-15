@@ -25,7 +25,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 		for (int i = 0; i < tests.length; i++) {
 			ACT act = ref.get();
 			if (act != null && !act.isFinishing())
-				tests[i].run(result, i, this);
+				tests[i].run(act, act.getPreferenceManager(), act.getGson(), result, i, this);
 		}
 		return null;
 	}

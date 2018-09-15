@@ -1,9 +1,5 @@
 package org.openobservatory.ooniprobe.test.suite;
 
-import android.content.Context;
-
-import com.google.gson.Gson;
-
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
@@ -30,14 +26,14 @@ public class InstantMessagingSuite extends AbstractSuite {
 				"anim/instant_messaging.json");
 	}
 
-	@Override public AbstractTest[] getTestList(Context c, PreferenceManager pm, Gson gson) {
+	@Override public AbstractTest[] getTestList(PreferenceManager pm) {
 		ArrayList<AbstractTest> list = new ArrayList<>();
 		if (pm.isTestWhatsapp())
-			list.add(new Whatsapp(c, pm, gson));
+			list.add(new Whatsapp());
 		if (pm.isTestTelegram())
-			list.add(new Telegram(c, pm, gson));
+			list.add(new Telegram());
 		if (pm.isTestFacebookMessenger())
-			list.add(new FacebookMessenger(c, pm, gson));
+			list.add(new FacebookMessenger());
 		return list.toArray(new AbstractTest[list.size()]);
 	}
 }

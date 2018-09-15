@@ -23,28 +23,22 @@ import java.io.File;
 import java.io.FileOutputStream;
 
 public abstract class AbstractTest {
-	protected Context c;
-	protected Settings settings;
 	private String name;
+	private String mkName;
 	private int labelResId;
 	private int iconResId;
-	private PreferenceManager pm;
-	private Gson gson;
 
-	public AbstractTest(Context c, PreferenceManager pm, Gson gson, String name, String mkName, int labelResId, int iconResId) {
-		this.c = c;
-		this.pm = pm;
-		this.gson = gson;
+	public AbstractTest(String name, String mkName, int labelResId, int iconResId) {
 		this.name = name;
+		this.mkName = mkName;
 		this.labelResId = labelResId;
 		this.iconResId = iconResId;
-		this.settings = new Settings(c, pm);
-		this.settings.name = mkName;
 	}
 
-	public abstract void run(Result result, int index, TestCallback testCallback);
+	public abstract void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback);
 
-	protected void run(BaseTest test, Result result, int index, TestCallback testCallback) {
+	protected void run(Context c, PreferenceManager pm, Gson gson, Settings settings, BaseTest test, Result result, int index, TestCallback testCallback) {
+		settings.name = mkName;
 		test.use_logcat();
 		test.set_error_filepath(new File(c.getFilesDir(), Measurement.getLogFileName(result.id, name)).getPath());
 		test.set_verbosity(BuildConfig.DEBUG ? LogSeverity.LOG_DEBUG2 : LogSeverity.LOG_INFO);
@@ -67,7 +61,7 @@ public abstract class AbstractTest {
 			if (jr == null)
 				measurement.is_failed = true;
 			else
-				onEntry(jr, measurement);
+				onEntry(c, pm, jr, measurement);
 			measurement.save();
 			try {
 				FileOutputStream outputStream = c.openFileOutput(Measurement.getEntryFileName(measurement.id, measurement.test_name), Context.MODE_PRIVATE);
@@ -80,7 +74,7 @@ public abstract class AbstractTest {
 		test.run();
 	}
 
-	@CallSuper void onEntry(@NonNull JsonResult json, Measurement measurement) {
+	@CallSuper void onEntry(Context c, PreferenceManager pm, @NonNull JsonResult json, Measurement measurement) {
 		if (json.test_start_time != null)
 			measurement.result.start_time = json.test_start_time;
 		if (json.measurement_start_time != null)

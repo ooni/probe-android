@@ -1,11 +1,6 @@
 package org.openobservatory.ooniprobe.test.suite;
 
-import android.content.Context;
-
-import com.google.gson.Gson;
-
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
@@ -30,12 +25,12 @@ public class MiddleBoxesSuite extends AbstractSuite {
 				"anim/middle_boxes.json");
 	}
 
-	@Override public AbstractTest[] getTestList(Context c, PreferenceManager pm, Gson gson) {
+	@Override public AbstractTest[] getTestList(PreferenceManager pm) {
 		ArrayList<AbstractTest> list = new ArrayList<>();
 		if (pm.isRunHttpHeaderFieldManipulation())
-			list.add(new HttpHeaderFieldManipulation(c, pm, gson));
+			list.add(new HttpHeaderFieldManipulation());
 		if (pm.isRunHttpInvalidRequestLine())
-			list.add(new HttpInvalidRequestLine(c, pm, gson));
+			list.add(new HttpInvalidRequestLine());
 		return list.toArray(new AbstractTest[list.size()]);
 	}
 }

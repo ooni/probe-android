@@ -10,21 +10,23 @@ import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
+import org.openobservatory.ooniprobe.model.settings.Settings;
 
 public class FacebookMessenger extends AbstractTest {
 	public static final String NAME = "facebook_messenger";
 	public static final String MK_NAME = "FacebookMessenger";
 
-	public FacebookMessenger(Context c, PreferenceManager pm, Gson gson) {
-		super(c, pm, gson, NAME, MK_NAME, R.string.Test_FacebookMessenger_Fullname, R.drawable.test_facebook_messenger);
+	public FacebookMessenger() {
+		super(NAME, MK_NAME, R.string.Test_FacebookMessenger_Fullname, R.drawable.test_facebook_messenger);
 	}
 
-	@Override public void run(Result result, int index, TestCallback testCallback) {
-		run(new org.openobservatory.measurement_kit.nettests.FacebookMessengerTest(), result, index, testCallback);
+	@Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback) {
+		Settings settings = new Settings(c, pm);
+		run(c, pm, gson, settings, new org.openobservatory.measurement_kit.nettests.FacebookMessengerTest(), result, index, testCallback);
 	}
 
-	@Override public void onEntry(@NonNull JsonResult json, Measurement measurement) {
-		super.onEntry(json, measurement);
+	@Override public void onEntry(Context c, PreferenceManager pm, @NonNull JsonResult json, Measurement measurement) {
+		super.onEntry(c, pm, json, measurement);
 		measurement.is_done = true;
 		if (json.test_keys.facebook_tcp_blocking == null || json.test_keys.facebook_dns_blocking == null)
 			measurement.is_failed = true;

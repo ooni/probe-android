@@ -1,9 +1,5 @@
 package org.openobservatory.ooniprobe.test.suite;
 
-import android.content.Context;
-
-import com.google.gson.Gson;
-
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
@@ -26,7 +22,7 @@ public class WebsitesSuite extends AbstractSuite {
 				"anim/websites.json");
 	}
 
-	@Override public AbstractTest[] getTestList(Context c, PreferenceManager pm, Gson gson) {
-		return new AbstractTest[]{new WebConnectivity(c, pm, gson)};
+	@Override public AbstractTest[] getTestList(PreferenceManager pm) {
+		return new AbstractTest[]{new WebConnectivity()};
 	}
 }
