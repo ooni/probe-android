@@ -43,6 +43,7 @@ public class RunningActivity extends AbstractActivity {
 		AbstractTest[] testList = testSuite.getTestList(getPreferenceManager());
 		if (testList != null) {
 			progress.setMax(testList.length * 100);
+			//TODO-ALE non so se serva, in AbstractTest ho messo il codice ci esempio che già usa un thread
 			new TestAsyncTaskImpl(this, testSuite.getName()).execute(testList);
 		}
 	}

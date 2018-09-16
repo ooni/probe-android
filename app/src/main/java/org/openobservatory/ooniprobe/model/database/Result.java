@@ -92,6 +92,10 @@ public class Result extends BaseModel implements Serializable {
 		return readableFileSize(this.data_usage_down);
 	}
 
+	public static String getLogFileName(int id, String name) {
+		return id + "-" + name + ".log";
+	}
+
 	public AbstractSuite getTestSuite() {
 		switch (test_group_name) {
 			case WebsitesSuite.NAME:

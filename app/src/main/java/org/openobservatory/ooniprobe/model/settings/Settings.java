@@ -18,15 +18,13 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Settings {
-    //TODO NSDictionary
     @SerializedName("annotations")
     public HashMap<String,String> annotations;
-    //TODO NSArray
     @SerializedName("disabled_events")
     public ArrayList disabled_events;
-    //TODO NSArray
     @SerializedName("inputs")
     public ArrayList inputs;
+    //TODO not used
     @SerializedName("log_filepath")
     public String log_filepath;
     @SerializedName("log_level")
@@ -43,7 +41,6 @@ public class Settings {
         this.annotations = new HashMap<>();
         this.annotations.put("network_type", ConnectionState.getInstance(c).getNetworkType());
         this.disabled_events = new ArrayList<>(Arrays.asList("status.queued", "failure.report_close"));
-        //this.log_filepath = new File(activity.getFilesDir(), Measurement.getLogFileName(result.id, name)).getPath();
         this.log_level = BuildConfig.DEBUG ? "DEBUG" : "INFO";
         this.options = new Options(c, pm);
     }
@@ -81,16 +78,12 @@ public class Settings {
         public Options(Context c, PreferenceManager pm) {
             geoip_asn_path = c.getFilesDir() + "/GeoIP.dat";
             geoip_country_path = c.getFilesDir() + "/GeoIPASNum.dat";
-            //this.max_runtime = ;
             no_collector = pm.getNoUploadResults();
             save_real_probe_asn = pm.getIncludeAsn();
             save_real_probe_cc = pm.getIncludeCc();
             save_real_probe_ip = pm.getIncludeIp();
             software_name = "ooniprobe-android";
             software_version = VersionUtils.get_software_version();
-            //this.server = ;
-            //this.port = ;
-            //this.all_endpoints = ;
         }
 
     }

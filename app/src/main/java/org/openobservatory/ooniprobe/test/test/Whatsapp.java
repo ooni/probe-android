@@ -24,7 +24,7 @@ public class Whatsapp extends AbstractTest {
 		Settings settings = new Settings(c, pm);
 		if (pm.isTestWhatsappExtensive())
 			settings.options.all_endpoints = 1;
-		run(c, pm, gson, settings, new org.openobservatory.measurement_kit.nettests.WhatsappTest(), result, index, testCallback);
+		run(c, pm, gson, settings, result, index, testCallback);
 	}
 
 	@Override public void onEntry(Context c, PreferenceManager pm, @NonNull JsonResult json, Measurement measurement) {

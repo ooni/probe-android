@@ -26,7 +26,7 @@ public class Dash extends AbstractTest {
 			settings.options.server = pm.getdashServer();
 			settings.options.port = pm.getdashServerPort();
 		}
-		run(c, pm, gson, settings, new org.openobservatory.measurement_kit.nettests.DashTest(), result, index, testCallback);
+		run(c, pm, gson, settings, result, index, testCallback);
 	}
 
 	@Override public void onEntry(Context c, PreferenceManager pm, @NonNull JsonResult json, Measurement measurement) {

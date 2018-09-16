@@ -22,7 +22,7 @@ public class HttpHeaderFieldManipulation extends AbstractTest {
 
 	@Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback) {
 		Settings settings = new Settings(c, pm);
-		run(c, pm, gson, settings, new org.openobservatory.measurement_kit.nettests.HttpHeaderFieldManipulationTest(), result, index, testCallback);
+		run(c, pm, gson, settings, result, index, testCallback);
 	}
 
 	@Override public void onEntry(Context c, PreferenceManager pm, @NonNull JsonResult json, Measurement measurement) {

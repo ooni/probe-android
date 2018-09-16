@@ -41,7 +41,6 @@ public class Measurement extends BaseModel implements Serializable {
 	@Column public String test_keys;
 	@ForeignKey(saveForeignKeyModel = true, deleteForeignKeyModel = true) public Url url;
 	@ForeignKey(saveForeignKeyModel = true, deleteForeignKeyModel = true, stubbedRelationship = true) public Result result;
-// TODO report_file_path
 
 	public Measurement() {
 	}
@@ -52,19 +51,29 @@ public class Measurement extends BaseModel implements Serializable {
 		start_time = new java.util.Date();
 	}
 
+	public Measurement(Result result, String test_name, String report_id) {
+		this.result = result;
+		this.test_name = test_name;
+		this.report_id = report_id;
+		start_time = new java.util.Date();
+	}
+
+
 	public static String getEntryFileName(int id, String test_name) {
+		//JSON: measurementID_test_name.log
 		return id + "_" + test_name + ".json";
 	}
 
 	public static String getLogFileName(int id, String name) {
+		//LOGS: resultID_test_name.log
+		//TODO-ALE non posso usare result.id perchè non è static
+		// return Result.getLogFileName(result.id, name);
 		return id + "-" + name + ".log";
+
 	}
 
-	//TODO-URGENT this is wrong, a test should be created only to be run.
-	//use a getName function if the name is all you need
 	public AbstractTest getTest() {
 		switch (test_name) {
-			/*
 			case FacebookMessenger.NAME:
 				return new FacebookMessenger();
 			case Telegram.NAME:
@@ -81,7 +90,6 @@ public class Measurement extends BaseModel implements Serializable {
 				return new Ndt();
 			case Dash.NAME:
 				return new Dash();
-				*/
 			default:
 				return null;
 		}
