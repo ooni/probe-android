@@ -85,7 +85,7 @@ public abstract class AbstractTest {
 							}
 							else if (key.equals("status.measurement_start")){
 								Double idx = value.optDouble("key");
-								String input = event.optString("key");
+								String input = event.optString("input");
 								if (idx == null || input == null) {
 									break;
 								}
