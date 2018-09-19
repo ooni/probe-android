@@ -31,11 +31,7 @@ public class WebConnectivity extends AbstractTest {
 		settings.inputs = new ArrayList<>(Arrays.asList("http://4genderjustice.org/", "http://www.google.com/"));
 		//TODO refactor into downloadUrl function
 		for (int i = 0; i < settings.inputs.size(); i++){
-			if (Url.getUrl(settings.inputs.get(i).toString()) == null) {
-				//Add every url in the db
-				Url url = new Url(settings.inputs.get(i).toString());
-				url.save();
-			}
+			Url url = Url.checkExistingUrl(settings.inputs.get(i).toString());
 		}
 		run(c, pm, gson, settings, result, index, testCallback);
 	}

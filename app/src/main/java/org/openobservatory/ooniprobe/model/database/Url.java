@@ -32,13 +32,29 @@ public class Url extends BaseModel implements Serializable {
 		this.country_code = "XX";
 	}
 
-	public void update(String categoryCode, String countryCode){
-		this.category_code = categoryCode;
-		this.country_code = countryCode;
+	public static Url getUrl(String input) {
+		return SQLite.select().from(Url.class).where(Url_Table.url.eq(input)).querySingle();
 	}
 
-	public static Url getUrl(String url) {
-		return SQLite.select().from(Url.class).where(Url_Table.url.eq(url)).querySingle();
+	public static Url checkExistingUrl(String input) {
+		return checkExistingUrl(input, "MISC", "XX");
+	}
+
+	public static Url checkExistingUrl(String input, String categoryCode, String countryCode) {
+		Url url =  Url.getUrl(input);
+		if (url == null){
+			url = new Url(input, categoryCode, countryCode);
+			//TODO serve?
+			url.save();
+		}
+		else if ((!url.category_code.equals(categoryCode) && !categoryCode.equals("MISC"))
+				|| (!url.country_code.equals(countryCode) && !countryCode.equals("XX"))){
+			url.category_code = categoryCode;
+			url.country_code = countryCode;
+			url.save();
+		}
+		return url;
+
 	}
 
 }

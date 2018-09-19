@@ -39,6 +39,8 @@ public class Network extends BaseModel implements Serializable {
 		Network network = SQLite.select().from(Network.class).where(Network_Table.network_name.eq(networkName), Network_Table.ip.eq(ip), Network_Table.asn.eq(asn), Network_Table.country_code.eq(countryCode), Network_Table.network_type.eq(networkType)).querySingle();
 		if (network == null){
 			network = new Network(networkName, ip, asn, countryCode, networkType);
+			//TODO serve?
+			network.save();
 		}
 		return network;
 	}
