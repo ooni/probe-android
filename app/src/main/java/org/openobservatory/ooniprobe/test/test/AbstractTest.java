@@ -23,6 +23,7 @@ import java.util.HashMap;
 import io.ooni.mk.Task;
 
 public abstract class AbstractTest {
+	public static final String UNUSED_KEY = "UNUSED_KEY";
 	private final String TAG = "MK_EVENT";
 	private String name;
 	private String mkName;
@@ -105,7 +106,8 @@ public abstract class AbstractTest {
 					setDataUsage(event.value, result);
 				} else if (event.key.equals("failure.startup")) {
 					//TODO What to do? Run next test
-				}
+				} else
+					Log.w(UNUSED_KEY, event.key);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
