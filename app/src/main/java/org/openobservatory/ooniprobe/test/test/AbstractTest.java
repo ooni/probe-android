@@ -67,7 +67,7 @@ public abstract class AbstractTest {
 					testCallback.onLog(event.value.message);
 				} else if (event.key.equals("status.progress")) {
 					testCallback.onProgress(Double.valueOf((index + event.value.percentage) * 100).intValue());
-				} else if (event.key.compareTo("measurement") == 0) {
+				} else if (event.key.equals("measurement")) {
 					Measurement measurement = measurements.get(event.value.idx);
 					if (measurement != null) {
 						JsonResult jr = gson.fromJson(event.value.json_str, JsonResult.class); // TODO check if is string or object
