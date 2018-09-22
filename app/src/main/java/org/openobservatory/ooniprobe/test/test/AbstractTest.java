@@ -3,6 +3,7 @@ package org.openobservatory.ooniprobe.test.test;
 import android.content.Context;
 import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -22,7 +23,7 @@ import java.util.HashMap;
 import io.ooni.mk.Task;
 
 public abstract class AbstractTest {
-	private final String TAG = "AbstractTest";
+	private final String TAG = "MK_EVENT";
 	private String name;
 	private String mkName;
 	private int labelResId;
@@ -45,8 +46,9 @@ public abstract class AbstractTest {
 		Task task = Task.startNettest(gson.toJson(settings));
 		while (!task.isDone()) {
 			try {
-				EventResult event = gson.fromJson(task.waitForNextEvent().serialize(), EventResult.class);
-				System.out.println("key " + event.key + " value " + event.value.toString());
+				String json = task.waitForNextEvent().serialize();
+				Log.d(TAG, json);
+				EventResult event = gson.fromJson(json, EventResult.class);
 				if (event.key.equals("status.started")) {
 					testCallback.onStart(c.getString(labelResId));
 					testCallback.onProgress(Double.valueOf(index * 100).intValue());
@@ -103,9 +105,6 @@ public abstract class AbstractTest {
 					setDataUsage(event.value, result);
 				} else if (event.key.equals("failure.startup")) {
 					//TODO What to do? Run next test
-				}
-				else {
-					System.out.println("unused event " + event.key + " " + event.value);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
