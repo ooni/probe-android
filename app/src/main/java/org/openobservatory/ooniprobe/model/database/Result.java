@@ -9,7 +9,6 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
@@ -33,7 +32,6 @@ public class Result extends BaseModel implements Serializable {
 	@Column public long data_usage_up;
 	@Column public long data_usage_down;
 	@ForeignKey(saveForeignKeyModel = true, deleteForeignKeyModel = true) public Network network;
-
 	// TODO log_file_path
 	protected List<Measurement> measurements;
 
@@ -90,10 +88,6 @@ public class Result extends BaseModel implements Serializable {
 
 	public String getFormattedDataUsageDown() {
 		return readableFileSize(this.data_usage_down);
-	}
-
-	public static String getLogFileName(int id, String name) {
-		return id + "-" + name + ".log";
 	}
 
 	public AbstractSuite getTestSuite() {

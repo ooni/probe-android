@@ -18,6 +18,7 @@ import org.openobservatory.ooniprobe.model.settings.Settings;
 import org.openobservatory.ooniprobe.utils.ConnectionState;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 
 import io.ooni.mk.Task;
@@ -45,73 +46,97 @@ public abstract class AbstractTest {
 		settings.name = mkName;
 		measurements = new HashMap<>();
 		Task task = Task.startNettest(gson.toJson(settings));
-		while (!task.isDone()) {
+		FileOutputStream logFOS = null;
+		while (!task.isDone())
 			try {
 				String json = task.waitForNextEvent().serialize();
 				Log.d(TAG, json);
 				EventResult event = gson.fromJson(json, EventResult.class);
-				if (event.key.equals("status.started")) {
-					testCallback.onStart(c.getString(labelResId));
-					testCallback.onProgress(Double.valueOf(index * 100).intValue());
-				} else if (event.key.equals("status.measurement_start")) {
-					Measurement measurement = new Measurement(result, name, reportId);
-					if (event.value.input.length() > 0)
-						measurement.url = Url.getUrl(event.value.input);
-					measurements.put(event.value.key, measurement);
-					measurement.save();
-				} else if (event.key.equals("status.geoip_lookup")) {
-					saveNetworkInfo(event.value, result, c);
-				} else if (event.key.equals("log")) {
-					//TODO-ALE write log line on disk file + "\n"
-					//new File(c.getFilesDir(), Result.getLogFileName(result.id, name)).getPath();
-					testCallback.onLog(event.value.message);
-				} else if (event.key.equals("status.progress")) {
-					testCallback.onProgress(Double.valueOf((index + event.value.percentage) * 100).intValue());
-				} else if (event.key.equals("measurement")) {
-					Measurement measurement = measurements.get(event.value.idx);
-					if (measurement != null) {
-						JsonResult jr = gson.fromJson(event.value.json_str, JsonResult.class); // TODO check if is string or object
-						if (jr == null)
-							measurement.is_failed = true;
-						else
-							onEntry(c, pm, jr, measurement);
+				switch (event.key) {
+					case "status.started":
+						testCallback.onStart(c.getString(labelResId));
+						testCallback.onProgress(Double.valueOf(index * 100).intValue());
+						break;
+					case "status.geoip_lookup":
+						saveNetworkInfo(event.value, result, c);
+						break;
+					case "status.report_create":
+						reportId = event.value.report_id;
+						break;
+					case "status.measurement_start":
+						Measurement measurement = new Measurement(result, name, reportId);
+						if (event.value.input.length() > 0)
+							measurement.url = Url.getUrl(event.value.input);
+						measurements.put(event.value.key, measurement);
 						measurement.save();
-						try {
-							FileOutputStream outputStream = c.openFileOutput(Measurement.getEntryFileName(measurement.id, measurement.test_name), Context.MODE_PRIVATE);
-							outputStream.write(event.value.json_str.getBytes());
-							outputStream.close();
-						} catch (Exception e) {
-							e.printStackTrace();
+						break;
+					case "log":
+						if (logFOS == null)
+							logFOS = c.openFileOutput(Measurement.getLogFileName(result.id, name), Context.MODE_APPEND);
+						logFOS.write(event.value.message.getBytes());
+						logFOS.write('\n');
+						testCallback.onLog(event.value.message);
+						break;
+					case "status.progress":
+						testCallback.onProgress(Double.valueOf((index + event.value.percentage) * 100).intValue());
+						break;
+					case "measurement":
+						Measurement m = measurements.get(event.value.idx);
+						if (m != null) {
+							JsonResult jr = gson.fromJson(event.value.json_str, JsonResult.class);
+							if (jr == null)
+								m.is_failed = true;
+							else
+								onEntry(c, pm, jr, m);
+							m.save();
+							try {
+								FileOutputStream outputStream = c.openFileOutput(Measurement.getEntryFileName(m.id, m.test_name), Context.MODE_PRIVATE);
+								outputStream.write(event.value.json_str.getBytes());
+								outputStream.close();
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
 						}
-					}
-				} else if (event.key.equals("status.report_create")) {
-					//The report id is created before running measurements
-					reportId = event.value.report_id;
-				} else if (event.key.equals("failure.report_create")) {
-			   /* //TODO FUTURE
-				every measure should be resubmitted
-				int mk_submit_report(const char *report_as_json);
-				"value": {"failure": "<failure_string>"}
-				*/
-				} else if (event.key.equals("status.measurement_submission")) {
-					setUploaded(true, event.value);
-				} else if (event.key.equals("failure.measurement_submission")) {
-					setUploaded(false, event.value);
-				} else if (event.key.equals("failure.measurement")) {
-					//TODO idx missing https://github.com/measurement-kit/measurement-kit/issues/1657
-					//setFailed(false, value);
-				} else if (event.key.equals("status.measurement_done")) {
-					setDone(event.value);
-				} else if (event.key.equals("status.end")) {
-					setDataUsage(event.value, result);
-				} else if (event.key.equals("failure.startup")) {
-					//TODO What to do? Run next test
-				} else
-					Log.w(UNUSED_KEY, event.key);
+						break;
+					case "failure.report_create":
+					   /* //TODO FUTURE
+						every measure should be resubmitted
+						int mk_submit_report(const char *report_as_json);
+						"value": {"failure": "<failure_string>"}
+						*/
+						break;
+					case "status.measurement_submission":
+						setUploaded(true, event.value);
+						break;
+					case "failure.measurement_submission":
+						setUploaded(false, event.value);
+						break;
+					case "failure.measurement":
+						//TODO idx missing https://github.com/measurement-kit/measurement-kit/issues/1657
+						//setFailed(false, value);
+						break;
+					case "status.measurement_done":
+						setDone(event.value);
+						break;
+					case "status.end":
+						setDataUsage(event.value, result);
+						break;
+					case "failure.startup":
+						//TODO What to do? Run next test
+						break;
+					default:
+						Log.w(UNUSED_KEY, event.key);
+						break;
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		if (logFOS != null)
+			try {
+				logFOS.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 	}
 
 	@CallSuper void onEntry(Context c, PreferenceManager pm, @NonNull JsonResult json, Measurement measurement) {

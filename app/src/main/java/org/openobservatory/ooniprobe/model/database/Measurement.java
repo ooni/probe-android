@@ -58,18 +58,12 @@ public class Measurement extends BaseModel implements Serializable {
 		start_time = new java.util.Date();
 	}
 
-
-	public static String getEntryFileName(int id, String test_name) {
-		//JSON: measurementID_test_name.log
-		return id + "_" + test_name + ".json";
+	public static String getEntryFileName(int measurementId, String test_name) {
+		return measurementId + "_" + test_name + ".json";
 	}
 
-	public static String getLogFileName(int id, String name) {
-		//LOGS: resultID_test_name.log
-		//TODO-ALE non posso usare result.id perchè non è static
-		// return Result.getLogFileName(result.id, name);
-		return id + "-" + name + ".log";
-
+	public static String getLogFileName(int resultId, String test_name) {
+		return resultId + "_" + test_name + ".log";
 	}
 
 	public AbstractTest getTest() {
