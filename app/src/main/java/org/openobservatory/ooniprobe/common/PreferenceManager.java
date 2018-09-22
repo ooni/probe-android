@@ -69,8 +69,8 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.upload_results), true);
 	}
 
-	public String getNoUploadResults() {
-		return isUploadResults() ? "0" : "1";
+	public Integer getNoUploadResults() {
+		return isUploadResults() ? 0 : 1;
 	}
 
 	public boolean isIncludeIp() {

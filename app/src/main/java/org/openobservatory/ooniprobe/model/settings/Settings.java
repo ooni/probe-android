@@ -51,10 +51,10 @@ public class Settings {
         @SerializedName("geoip_country_path")
         public String geoip_country_path;
         @SerializedName("max_runtime")
-        public int max_runtime;
+        public Integer max_runtime;
         @SerializedName("no_collector")
         //TODO make it bool
-        public String no_collector;
+        public Integer no_collector;
         @SerializedName("save_real_probe_asn")
         //TODO make it bool
         public String save_real_probe_asn;
@@ -71,9 +71,9 @@ public class Settings {
         @SerializedName("server")
         public String server;
         @SerializedName("port")
-        public int port;
+        public Integer port;
         @SerializedName("all_endpoints")
-        public int all_endpoints;
+        public Integer all_endpoints;
 
         public Options(Context c, PreferenceManager pm) {
             geoip_asn_path = c.getFilesDir() + "/GeoIP.dat";

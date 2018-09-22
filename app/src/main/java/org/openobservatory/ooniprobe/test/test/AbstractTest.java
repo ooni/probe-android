@@ -55,8 +55,8 @@ public abstract class AbstractTest {
 					testCallback.onProgress(Double.valueOf(index * 100).intValue());
 				} else if (event.key.equals("status.measurement_start")) {
 					Measurement measurement = new Measurement(result, name, reportId);
-					if (event.input.length() > 0)
-						measurement.url = Url.getUrl(event.input);
+					if (event.value.input.length() > 0)
+						measurement.url = Url.getUrl(event.value.input);
 					measurements.put(event.value.key, measurement);
 					measurement.save();
 				} else if (event.key.equals("status.geoip_lookup")) {

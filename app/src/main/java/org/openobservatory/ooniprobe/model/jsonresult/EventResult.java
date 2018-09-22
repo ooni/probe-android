@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class EventResult implements Serializable {
 	public String key;
-	public String input;
 	public Value value;
 
 	public class Value implements Serializable {
@@ -21,5 +20,6 @@ public class EventResult implements Serializable {
 		public String reason;
 		public double downloaded_kb;
 		public double uploaded_kb;
+		public String input;
 	}
 }
