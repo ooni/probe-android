@@ -46,7 +46,7 @@ public abstract class AbstractTest {
 		while (!task.isDone()) {
 			try {
 				EventResult event = gson.fromJson(task.waitForNextEvent().serialize(), EventResult.class);
-				System.err.println("key " + event.key);
+				System.out.println("key " + event.key + " value " + event.value.toString());
 				if (event.key.equals("status.started")) {
 					testCallback.onStart(c.getString(labelResId));
 					testCallback.onProgress(Double.valueOf(index * 100).intValue());
@@ -103,6 +103,9 @@ public abstract class AbstractTest {
 					setDataUsage(event.value, result);
 				} else if (event.key.equals("failure.startup")) {
 					//TODO What to do? Run next test
+				}
+				else {
+					System.out.println("unused event " + event.key + " " + event.value);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
