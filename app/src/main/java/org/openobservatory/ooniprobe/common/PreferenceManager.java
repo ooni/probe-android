@@ -25,7 +25,7 @@ public class PreferenceManager {
 		return sp.getString(r.getString(R.string.ndt_server), null);
 	}
 
-	public int getndtServerPort() {
+	public Integer getndtServerPort() {
 		return sp.getInt(r.getString(R.string.ndt_server_port), 3001);
 	}
 
@@ -33,11 +33,11 @@ public class PreferenceManager {
 		return sp.getString(r.getString(R.string.dash_server), null);
 	}
 
-	public int getdashServerPort() {
+	public Integer getdashServerPort() {
 		return sp.getInt(r.getString(R.string.dash_server_port), 80);
 	}
 
-	public int getMaxRuntime() {
+	public Integer getMaxRuntime() {
 		return sp.getInt(r.getString(R.string.max_runtime), 90);
 	}
 
