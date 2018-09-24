@@ -41,7 +41,11 @@ public class PreferenceManager {
 	}
 
 	public Integer getMaxRuntime() {
-		return sp.getInt(r.getString(R.string.max_runtime), 90);
+		try {
+			return sp.getInt(r.getString(R.string.max_runtime), 90);
+		} catch (ClassCastException e) {
+			return 90;
+		}
 	}
 
 	public boolean isSendCrash() {
