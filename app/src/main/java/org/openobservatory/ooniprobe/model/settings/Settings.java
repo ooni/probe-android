@@ -73,8 +73,8 @@ public class Settings {
 		public Integer all_endpoints;
 
 		public Options(Context c, PreferenceManager pm) {
-			geoip_asn_path = c.getCacheDir() + "/" + Application.GEO_IP;
-			geoip_country_path = c.getCacheDir() + "/" + Application.GEO_IPASNUM;
+			geoip_asn_path = c.getCacheDir() + "/" + Application.GEO_IPASNUM;
+			geoip_country_path = c.getCacheDir() + "/" + Application.GEO_IP;
 			no_collector = pm.getNoUploadResults();
 			save_real_probe_asn = pm.getIncludeAsn();
 			save_real_probe_cc = pm.getIncludeCc();
