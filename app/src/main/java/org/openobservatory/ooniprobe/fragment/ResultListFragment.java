@@ -23,7 +23,6 @@ import com.raizlabs.android.dbflow.sql.language.Method;
 import com.raizlabs.android.dbflow.sql.language.SQLOperator;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
-import org.apache.commons.io.FileUtils;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
 import org.openobservatory.ooniprobe.item.DateItem;
@@ -32,6 +31,7 @@ import org.openobservatory.ooniprobe.item.MiddleboxesItem;
 import org.openobservatory.ooniprobe.item.PerformanceItem;
 import org.openobservatory.ooniprobe.item.WebsiteItem;
 import org.openobservatory.ooniprobe.model.database.Measurement;
+import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
@@ -159,21 +159,11 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 	@Override public void onConfirmation(Serializable serializable, int i) {
 		if (i == DialogInterface.BUTTON_POSITIVE) {
 			if (serializable == null) {
-				try {
-					FileUtils.cleanDirectory(getActivity().getFilesDir());
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
 				Delete.tables(Measurement.class, Result.class);
 			} else {
 				Result result = (Result) serializable;
 				for (Measurement m : result.getMeasurements())
-					try {
-						new File(getActivity().getFilesDir(), Measurement.getEntryFileName(m.id, m.test_name)).delete();
-						new File(getActivity().getFilesDir(), Measurement.getLogFileName(result.id, m.test_name)).delete();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
+					m.deleteObj(getActivity());
 				result.delete();
 			}
 			queryList();
