@@ -37,7 +37,7 @@ public class Settings {
 	public Settings(Context c, PreferenceManager pm) {
 		this.annotations = new HashMap<>();
 		this.annotations.put("network_type", ConnectionState.getInstance(c).getNetworkType());
-		this.disabled_events = new ArrayList<>(Arrays.asList("status.queued", "failure.report_close"));
+		this.disabled_events = new ArrayList<>(Arrays.asList("status.queued", "status.update.websites", "failure.report_close"));
 		this.log_level = BuildConfig.DEBUG ? "DEBUG" : "INFO";
 		this.options = new Options(c, pm);
 	}
