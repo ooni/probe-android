@@ -18,9 +18,9 @@ public class Settings {
 	@SerializedName("annotations")
 	public HashMap<String, String> annotations;
 	@SerializedName("disabled_events")
-	public ArrayList disabled_events;
+	public ArrayList<String> disabled_events;
 	@SerializedName("inputs")
-	public ArrayList inputs;
+	public ArrayList<String> inputs;
 	//TODO not used
 	@SerializedName("log_filepath")
 	public String log_filepath;
