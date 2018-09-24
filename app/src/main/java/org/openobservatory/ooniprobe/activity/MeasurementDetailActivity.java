@@ -95,6 +95,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
 				break;
 		}
 		measurement.result.load();
+		//TODO-NETWORK manage the case network is null inside result
 		getFragmentManager().beginTransaction()
 				.replace(R.id.head, ResultHeaderDetailFragment.newInstance(null, null, measurement.start_time, measurement.runtime, false, measurement.result.network.country_code, measurement.result.network.toString(this, 3)))
 				.replace(R.id.body, detail)

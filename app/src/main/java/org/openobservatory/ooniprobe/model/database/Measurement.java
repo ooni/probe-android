@@ -19,6 +19,7 @@ import org.openobservatory.ooniprobe.test.test.Telegram;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -98,7 +99,11 @@ public class Measurement extends BaseModel implements Serializable {
 	}
 
 	@Override public boolean delete() {
-		//TODO delete logFile and jsonFile
+		//TODO how to get context?
+		File jsonFile = new File(context.getFilesDir(), Measurement.getEntryFileName(this.id, this.test_name));
+		File logFile = new File(context.getFilesDir(), Measurement.getLogFileName(this.result.id, this.test_name));
+		jsonFile.delete();
+		logFile.delete();
 		return super.delete();
 	}
 }

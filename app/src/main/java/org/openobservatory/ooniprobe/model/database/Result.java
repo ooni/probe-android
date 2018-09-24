@@ -106,7 +106,10 @@ public class Result extends BaseModel implements Serializable {
 	}
 
 	@Override public boolean delete() {
-		//TODO delete logFile and jsonFile for every measurement and the measurements
+		for (Measurement measurement:measurements) {
+			measurement.delete();
+		}
+		this.network.delete();
 		return super.delete();
 	}
 }

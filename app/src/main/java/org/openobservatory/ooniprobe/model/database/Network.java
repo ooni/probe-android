@@ -14,6 +14,7 @@ import org.openobservatory.ooniprobe.common.Application;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 @Table(database = Application.class)
 public class Network extends BaseModel implements Serializable {
@@ -90,4 +91,12 @@ public class Network extends BaseModel implements Serializable {
 			return network.country_code;
 		return context.getString(R.string.TestResults_UnknownASN);
 	}
+
+	@Override public boolean delete() {
+		//Delete Network only if it's used in one or less Result
+		if (SQLite.select().from(Result.class).where(Result_Table.network_id.eq(id)).queryList().size() > 1)
+			return false;
+		return super.delete();
+	}
+
 }

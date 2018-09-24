@@ -41,6 +41,7 @@ public class PerformanceItem extends HeterogeneousRecyclerItem<Result, Performan
 		viewHolder.itemView.setOnClickListener(onClickListener);
 		viewHolder.itemView.setOnLongClickListener(onLongClickListener);
 		viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(c, extra.is_viewed ? android.R.color.transparent : R.color.color_yellow0));
+		//TODO-NETWORK manage the case network is null inside result
 		viewHolder.asnName.setText(Html.fromHtml(extra.network.toString(viewHolder.asnName.getContext(), 1)));
 		viewHolder.startTime.setText(DateFormat.getDateFormat(c).format(extra.start_time));
 		Measurement dashM = extra.getMeasurement(Dash.NAME);

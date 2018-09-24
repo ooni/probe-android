@@ -42,7 +42,7 @@ public class MainActivity extends AbstractActivity {
 		/* please don't remove
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		if (!preferences.getBoolean("cleanup_unused_files", false)) {
-			TestStorage.removeUnusedFiles(this);
+			OldTestStorage.removeUnusedFiles(this);
 			PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("cleanup_unused_files", true).apply();
 		}*/
 		checkInformedConsent();
