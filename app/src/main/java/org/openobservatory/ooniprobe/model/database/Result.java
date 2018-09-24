@@ -51,16 +51,19 @@ public class Result extends BaseModel implements Serializable {
 	}
 
 	public List<Measurement> getMeasurements() {
+		//TODO  AND is_rerun = 0 AND is_done = 1
 		if (measurements == null)
 			measurements = SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id)).queryList();
 		return measurements;
 	}
 
 	public Measurement getMeasurement(String name) {
+		//TODO  AND is_rerun = 0
 		return SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.test_name.eq(name)).querySingle();
 	}
 
 	public Measurement getMeasurement() {
+		//TODO unused?
 		if (measurements == null)
 			return SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id)).querySingle();
 		else
@@ -68,6 +71,14 @@ public class Result extends BaseModel implements Serializable {
 	}
 
 	public long countMeasurement(Boolean anomaly, Boolean failed) {
+		//TODO AND is_rerun = 0
+		/*
+		iOS queries:
+		totalMeasurements : result_id = ? AND is_rerun = 0
+		failedMeasurements : result_id = ? AND is_rerun = 0 AND is_done = 1 AND is_failed = 1
+		okMeasurements : result_id = ? AND is_rerun = 0 AND is_done = 1 AND is_failed = 0 AND is_anomaly = 0
+		anomalousMeasurements : result_id = ? AND is_rerun = 0 AND is_done = 1 AND is_failed = 0 AND is_anomaly = 1
+		 */
 		ArrayList<SQLOperator> sqlOperators = new ArrayList<>();
 		sqlOperators.add(Measurement_Table.result_id.eq(id));
 		sqlOperators.add(Measurement_Table.is_done.eq(true));
