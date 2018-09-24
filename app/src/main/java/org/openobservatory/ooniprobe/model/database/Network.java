@@ -14,7 +14,6 @@ import org.openobservatory.ooniprobe.common.Application;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 @Table(database = Application.class)
 public class Network extends BaseModel implements Serializable {
@@ -38,14 +37,28 @@ public class Network extends BaseModel implements Serializable {
 
 	public static Network checkExistingNetwork(String networkName, String ip, String asn, String countryCode, String networkType) {
 		Network network = SQLite.select().from(Network.class).where(Network_Table.network_name.eq(networkName), Network_Table.ip.eq(ip), Network_Table.asn.eq(asn), Network_Table.country_code.eq(countryCode), Network_Table.network_type.eq(networkType)).querySingle();
-		if (network == null){
+		if (network == null)
 			network = new Network(networkName, ip, asn, countryCode, networkType);
-			//TODO serve?
-			network.save();
-		}
 		return network;
 	}
 
+	public static String getAsn(Context context, Network network) {
+		if (network != null && network.asn != null)
+			return network.asn;
+		return context.getString(R.string.TestResults_UnknownASN);
+	}
+
+	public static String getAsnName(Context context, Network network) {
+		if (network != null && network.network_name != null)
+			return network.network_name;
+		return context.getString(R.string.TestResults_UnknownASN);
+	}
+
+	public static String getCountry(Context context, Network network) {
+		if (network != null && network.country_code != null)
+			return network.country_code;
+		return context.getString(R.string.TestResults_UnknownASN);
+	}
 
 	public String getLocalizedNetworkType(Context context) {
 		switch (network_type) {
@@ -74,29 +87,8 @@ public class Network extends BaseModel implements Serializable {
 		return TextUtils.join(" ", parts);
 	}
 
-	public static String getAsn(Context context, Network network) {
-		if (network != null && network.asn != null)
-			return network.asn;
-		return context.getString(R.string.TestResults_UnknownASN);
-	}
-
-	public static String getAsnName(Context context, Network network) {
-		if (network != null && network.network_name != null)
-			return network.network_name;
-		return context.getString(R.string.TestResults_UnknownASN);
-	}
-
-	public static String getCountry(Context context, Network network) {
-		if (network != null && network.country_code != null)
-			return network.country_code;
-		return context.getString(R.string.TestResults_UnknownASN);
-	}
-
 	@Override public boolean delete() {
 		//Delete Network only if it's used in one or less Result
-		if (SQLite.select().from(Result.class).where(Result_Table.network_id.eq(id)).queryList().size() > 1)
-			return false;
-		return super.delete();
+		return SQLite.select().from(Result.class).where(Result_Table.network_id.eq(id)).queryList().isEmpty() && super.delete();
 	}
-
 }

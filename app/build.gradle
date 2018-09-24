@@ -33,7 +33,7 @@ dependencies {
 	implementation 'com.android.support:cardview-v7:27.1.1'
 	implementation 'com.android.support:preference-v7:27.1.1'
 
-	implementation 'com.google.firebase:firebase-messaging:17.3.1'
+	implementation 'com.google.firebase:firebase-messaging:17.3.2'
 	implementation 'com.google.firebase:firebase-core:16.0.3'
 
 	annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:4.2.4"
@@ -52,6 +52,8 @@ dependencies {
 	implementation 'com.google.code.gson:gson:2.8.5'
 	implementation 'com.github.tiagohm.MarkdownView:library:0.19.0'
 	implementation 'com.samskivert:jmustache:1.14'
+	implementation 'commons-io:commons-io:2.6'
+
 }
 
 apply plugin: 'com.google.gms.google-services'

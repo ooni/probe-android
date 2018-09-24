@@ -106,10 +106,9 @@ public class Result extends BaseModel implements Serializable {
 	}
 
 	@Override public boolean delete() {
-		for (Measurement measurement:measurements) {
+		for (Measurement measurement : measurements)
 			measurement.delete();
-		}
-		this.network.delete();
+		network.delete();
 		return super.delete();
 	}
 }

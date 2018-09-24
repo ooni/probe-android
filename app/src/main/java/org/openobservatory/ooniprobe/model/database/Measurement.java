@@ -19,7 +19,6 @@ import org.openobservatory.ooniprobe.test.test.Telegram;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -96,14 +95,5 @@ public class Measurement extends BaseModel implements Serializable {
 
 	public void setTestKeys(TestKeys testKeys) {
 		test_keys = new Gson().toJson(testKeys);
-	}
-
-	@Override public boolean delete() {
-		//TODO how to get context?
-		File jsonFile = new File(context.getFilesDir(), Measurement.getEntryFileName(this.id, this.test_name));
-		File logFile = new File(context.getFilesDir(), Measurement.getLogFileName(this.result.id, this.test_name));
-		jsonFile.delete();
-		logFile.delete();
-		return super.delete();
 	}
 }
