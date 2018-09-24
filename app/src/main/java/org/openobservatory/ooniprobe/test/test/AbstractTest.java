@@ -113,7 +113,7 @@ public abstract class AbstractTest {
 						break;
 					case "failure.measurement":
 						//TODO idx missing https://github.com/measurement-kit/measurement-kit/issues/1657
-						//setFailed(false, value);
+						//setFailed(false, event.value);
 						break;
 					case "status.measurement_done":
 						setDone(event.value);
@@ -162,9 +162,9 @@ public abstract class AbstractTest {
 		Measurement measurement = measurements.get(value.idx);
 		if (measurement != null) {
 			measurement.is_uploaded = uploaded;
-			String reason = value.reason;
-			if (reason != null)
-				measurement.upload_failure_msg = reason;
+			String failure = value.failure;
+			if (failure != null)
+				measurement.upload_failure_msg = failure;
 			measurement.save();
 		}
 	}
@@ -173,9 +173,9 @@ public abstract class AbstractTest {
 		Measurement measurement = measurements.get(value.idx);
 		if (measurement != null) {
 			measurement.is_failed = failed;
-			String reason = value.reason;
-			if (reason != null)
-				measurement.failure_msg = reason;
+			String failure = value.failure;
+			if (failure != null)
+				measurement.failure_msg = failure;
 			measurement.save();
 		}
 	}
