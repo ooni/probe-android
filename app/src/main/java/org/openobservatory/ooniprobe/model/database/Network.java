@@ -89,6 +89,6 @@ public class Network extends BaseModel implements Serializable {
 
 	@Override public boolean delete() {
 		//Delete Network only if it's used in one or less Result
-		return SQLite.select().from(Result.class).where(Result_Table.network_id.eq(id)).queryList().isEmpty() && super.delete();
+		return SQLite.select().from(Result.class).where(Result_Table.network_id.eq(id)).queryList().size() > 1 && super.delete();
 	}
 }

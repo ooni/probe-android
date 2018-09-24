@@ -1,7 +1,5 @@
 package org.openobservatory.ooniprobe.model.database;
 
-import android.content.Context;
-
 import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.ForeignKey;
@@ -21,7 +19,6 @@ import org.openobservatory.ooniprobe.test.test.Telegram;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -98,15 +95,5 @@ public class Measurement extends BaseModel implements Serializable {
 
 	public void setTestKeys(TestKeys testKeys) {
 		test_keys = new Gson().toJson(testKeys);
-	}
-
-	public void deleteObj(Context c) {
-		try {
-			new File(c.getFilesDir(), Measurement.getEntryFileName(this.id, this.test_name)).delete();
-			new File(c.getFilesDir(), Measurement.getLogFileName(this.result.id, this.test_name)).delete();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		super.delete();
 	}
 }

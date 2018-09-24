@@ -1,13 +1,17 @@
 package org.openobservatory.ooniprobe.model.database;
 
+import android.content.Context;
+
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.ForeignKey;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.sql.language.Delete;
 import com.raizlabs.android.dbflow.sql.language.SQLOperator;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
+import org.apache.commons.io.FileUtils;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
@@ -15,6 +19,7 @@ import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
+import java.io.File;
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -48,6 +53,15 @@ public class Result extends BaseModel implements Serializable {
 		final String[] units = new String[]{"B", "kB", "MB", "GB", "TB"};
 		int digitGroups = (int) (Math.log10(size) / Math.log10(1024));
 		return new DecimalFormat("#,##0.#").format(size / Math.pow(1024, digitGroups)) + " " + units[digitGroups];
+	}
+
+	public static void deleteAll(Context c) {
+		try {
+			FileUtils.cleanDirectory(c.getFilesDir());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Delete.tables(Measurement.class, Result.class);
 	}
 
 	public List<Measurement> getMeasurements() {
@@ -116,10 +130,17 @@ public class Result extends BaseModel implements Serializable {
 		}
 	}
 
-	@Override public boolean delete() {
-		for (Measurement measurement : measurements)
+	public boolean delete(Context c) {
+		for (Measurement measurement : measurements) {
+			try {
+				new File(c.getFilesDir(), Measurement.getEntryFileName(measurement.id, measurement.test_name)).delete();
+				new File(c.getFilesDir(), Measurement.getLogFileName(id, measurement.test_name)).delete();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			measurement.delete();
+		}
 		network.delete();
-		return super.delete();
+		return delete();
 	}
 }
