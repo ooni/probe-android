@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 
 import butterknife.BindView;
@@ -35,8 +36,7 @@ public class InstantMessagingItem extends HeterogeneousRecyclerItem<Result, Inst
 		viewHolder.itemView.setOnClickListener(onClickListener);
 		viewHolder.itemView.setOnLongClickListener(onLongClickListener);
 		viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(viewHolder.itemView.getContext(), extra.is_viewed ? android.R.color.transparent : R.color.color_yellow0));
-		//TODO-NETWORK manage the case network is null inside result
-		viewHolder.asnName.setText(Html.fromHtml(extra.network.toString(viewHolder.asnName.getContext(), 1)));
+		viewHolder.asnName.setText(Html.fromHtml(Network.toString(viewHolder.asnName.getContext(), extra.network, 1)));
 		viewHolder.startTime.setText(DateFormat.getDateFormat(viewHolder.startTime.getContext()).format(extra.start_time));
 		long blocked = extra.countMeasurement(true, false);
 		long available = extra.countMeasurement(false, false);

@@ -94,8 +94,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 		@Override public Fragment getItem(int position) {
 			if (position == 1) {
 				Network network = result.network;
-				//TODO-NETWORK manage the case network is null inside result
-				return ResultHeaderDetailFragment.newInstance(0L, 0L, null, result.runtime, true, network.country_code, network.toString(ResultDetailActivity.this, 2));
+				return ResultHeaderDetailFragment.newInstance(0L, 0L, null, result.runtime, true, network.country_code, Network.toString(ResultDetailActivity.this, network, 2));
 			} else switch (result.test_group_name) {
 				case WebsitesSuite.NAME:
 					return ResultHeaderTBAFragment.newInstance(result, R.plurals.TestResults_Summary_Websites_Hero_Sites);

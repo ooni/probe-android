@@ -60,6 +60,25 @@ public class Network extends BaseModel implements Serializable {
 		return context.getString(R.string.TestResults_UnknownASN);
 	}
 
+	public static String toString(Context c, Network n, int size) {
+		ArrayList<String> parts = new ArrayList<>();
+		if (n == null)
+			parts.add(c.getString(R.string.TestResults_UnknownASN));
+		else {
+			if (n.network_name != null)
+				parts.add(c.getString(R.string.bold, n.network_name));
+			else if (n.asn != null)
+				parts.add(c.getString(R.string.bold, n.asn));
+			else
+				parts.add(c.getString(R.string.TestResults_UnknownASN));
+			if (size > 1 && n.network_type != null)
+				parts.add(c.getString(R.string.brackets, n.getLocalizedNetworkType(c)));
+			if (size > 2 && n.asn != null)
+				parts.add(c.getString(R.string.seg, n.asn));
+		}
+		return TextUtils.join(" ", parts);
+	}
+
 	public String getLocalizedNetworkType(Context context) {
 		switch (network_type) {
 			case "wifi":
@@ -70,21 +89,6 @@ public class Network extends BaseModel implements Serializable {
 				return context.getString(R.string.TestResults_Summary_Hero_NoInternet);
 		}
 		return "";
-	}
-
-	public String toString(Context c, int size) {
-		ArrayList<String> parts = new ArrayList<>();
-		if (network_name != null)
-			parts.add(c.getString(R.string.bold, network_name));
-		else if (asn != null)
-			parts.add(c.getString(R.string.bold, asn));
-		else
-			parts.add(c.getString(R.string.TestResults_UnknownASN));
-		if (size > 1 && network_type != null)
-			parts.add(c.getString(R.string.brackets, getLocalizedNetworkType(c)));
-		if (size > 2 && asn != null)
-			parts.add(c.getString(R.string.seg, asn));
-		return TextUtils.join(" ", parts);
 	}
 
 	@Override public boolean delete() {

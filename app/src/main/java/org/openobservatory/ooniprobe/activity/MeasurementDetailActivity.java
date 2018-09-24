@@ -25,6 +25,7 @@ import org.openobservatory.ooniprobe.fragment.measurement.WhatsappFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Measurement_Table;
+import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.test.test.Dash;
 import org.openobservatory.ooniprobe.test.test.FacebookMessenger;
 import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
@@ -95,9 +96,8 @@ public class MeasurementDetailActivity extends AbstractActivity {
 				break;
 		}
 		measurement.result.load();
-		//TODO-NETWORK manage the case network is null inside result
 		getFragmentManager().beginTransaction()
-				.replace(R.id.head, ResultHeaderDetailFragment.newInstance(null, null, measurement.start_time, measurement.runtime, false, measurement.result.network.country_code, measurement.result.network.toString(this, 3)))
+				.replace(R.id.head, ResultHeaderDetailFragment.newInstance(null, null, measurement.start_time, measurement.runtime, false, measurement.result.network.country_code, Network.toString(this, measurement.result.network, 3)))
 				.replace(R.id.body, detail)
 				.commit();
 	}
