@@ -14,14 +14,17 @@ import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.Date;
 
 import io.fabric.sdk.android.Fabric;
 
 @Database(name = "v2", version = 1, foreignKeyConstraintsEnforced = true)
 public class Application extends android.app.Application {
+	public static final String GEO_IPASNUM = "GeoIPASNum.dat";
+	public static final String GEO_IP = "GeoIP.dat";
+
 	static {
 		System.loadLibrary("measurement_kit");
 	}
@@ -39,24 +42,20 @@ public class Application extends android.app.Application {
 		FirebaseApp.initializeApp(this);
 		if (BuildConfig.DEBUG)
 			FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
-		copyResources(R.raw.geoipasnum, "GeoIPASNum.dat");
-		copyResources(R.raw.geoip, "GeoIP.dat");
+		copyResources(R.raw.geoipasnum, GEO_IPASNUM);
+		copyResources(R.raw.geoip, GEO_IP);
 		//TODO remove before release
 		copyResources(R.raw.global, "global.txt");
 	}
 
 	private void copyResources(int id, String filename) {
-		try {
-			openFileInput(filename).close();
-		} catch (FileNotFoundException e) {
+		File f = new File(getCacheDir(), filename);
+		if (!f.exists())
 			try {
-				IOUtils.copyStream(getResources().openRawResource(id), openFileOutput(filename, MODE_PRIVATE), true);
+				IOUtils.copyStream(getResources().openRawResource(id), new FileOutputStream(f), true);
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	public PreferenceManager getPreferenceManager() {

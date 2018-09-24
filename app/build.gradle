@@ -53,7 +53,6 @@ dependencies {
 	implementation 'com.github.tiagohm.MarkdownView:library:0.19.0'
 	implementation 'com.samskivert:jmustache:1.14'
 	implementation 'commons-io:commons-io:2.6'
-
 }
 
 apply plugin: 'com.google.gms.google-services'

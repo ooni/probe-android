@@ -9,6 +9,7 @@ import org.openobservatory.measurement_kit.common.LogSeverity;
 import org.openobservatory.measurement_kit.swig.Error;
 import org.openobservatory.measurement_kit.swig.OrchestrateAuth;
 import org.openobservatory.measurement_kit.swig.OrchestrateClient;
+import org.openobservatory.ooniprobe.common.Application;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,8 +38,8 @@ public class NotificationService {
 		if (instance == null) {
 			context = c;
 			instance = new NotificationService();
-			geoip_asn_path = c.getFilesDir() + "/GeoIPASNum.dat";
-			geoip_country_path = c.getFilesDir() + "/GeoIP.dat";
+			geoip_asn_path = c.getCacheDir() + "/" + Application.GEO_IPASNUM;
+			geoip_country_path = c.getCacheDir() + "/" + Application.GEO_IP;
 			platform = "android";
 			software_name = "ooniprobe-android";
 			software_version = VersionUtils.get_software_version();
