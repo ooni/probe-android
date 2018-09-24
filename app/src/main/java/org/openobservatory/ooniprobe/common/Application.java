@@ -44,8 +44,6 @@ public class Application extends android.app.Application {
 			FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
 		copyResources(R.raw.geoipasnum, GEO_IPASNUM);
 		copyResources(R.raw.geoip, GEO_IP);
-		//TODO remove before release
-		copyResources(R.raw.global, "global.txt");
 	}
 
 	private void copyResources(int id, String filename) {
