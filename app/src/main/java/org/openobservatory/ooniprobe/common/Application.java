@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.common;
 
+import android.util.Log;
+
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
 import com.google.android.gms.common.util.IOUtils;
@@ -24,6 +26,7 @@ import io.fabric.sdk.android.Fabric;
 public class Application extends android.app.Application {
 	public static final String GEO_IPASNUM = "GeoIPASNum.dat";
 	public static final String GEO_IP = "GeoIP.dat";
+	private static final int GEO_VER = 1;
 
 	static {
 		System.loadLibrary("measurement_kit");
@@ -48,9 +51,11 @@ public class Application extends android.app.Application {
 
 	private void copyResources(int id, String filename) {
 		File f = new File(getCacheDir(), filename);
-		if (!f.exists())
+		if (!f.exists() || preferenceManager.getGeoVer() != GEO_VER)
 			try {
+				Log.d(PreferenceManager.GEO_VER, Integer.toString(GEO_VER));
 				IOUtils.copyStream(getResources().openRawResource(id), new FileOutputStream(f), true);
+				preferenceManager.setGeoVer(GEO_VER);
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}

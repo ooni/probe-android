@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class PreferenceManager {
 	private static final String SHOW_INTRO = "first_run";
+	public static final String GEO_VER = "geo_ver";
 	private SharedPreferences sp;
 	private Resources r;
 
@@ -22,6 +23,14 @@ public class PreferenceManager {
 		android.support.v7.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_websites, true);
 		sp = android.support.v7.preference.PreferenceManager.getDefaultSharedPreferences(context);
 		r = context.getResources();
+	}
+
+	public int getGeoVer() {
+		return sp.getInt(GEO_VER, 0);
+	}
+
+	public void setGeoVer(int geoVer) {
+		sp.edit().putInt(GEO_VER, geoVer).apply();
 	}
 
 	public String getndtServer() {
