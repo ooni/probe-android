@@ -65,17 +65,19 @@ public class Network extends BaseModel implements Serializable {
 		if (n == null)
 			parts.add(c.getString(R.string.TestResults_UnknownASN));
 		else {
-			if (n.network_name != null && n.network_name.length() > 0)
-				parts.add(c.getString(R.string.bold, n.network_name));
-			else if (n.asn != null && n.asn.length() > 0)
-				parts.add(c.getString(R.string.bold, n.asn));
-			else //TODO questo anhce bold
-				parts.add(c.getString(R.string.TestResults_UnknownASN));
-
-			if (size > 1 && n.network_type != null && n.network_type.length() > 0)
+			String first;
+			boolean asnUsed = false;
+			if (n.network_name != null && !n.network_name.isEmpty())
+				first = n.network_name;
+			else if (n.asn != null && !n.asn.isEmpty()) {
+				first = n.asn;
+				asnUsed = true;
+			} else
+				first = c.getString(R.string.TestResults_UnknownASN);
+			parts.add(c.getString(R.string.bold, first));
+			if (size > 1 && n.network_type != null && !n.network_type.isEmpty())
 				parts.add(c.getString(R.string.brackets, n.getLocalizedNetworkType(c)));
-			//questo non deve essere aggiunto se la prima parte è già asn, vedi caso 3
-			if (size > 2 && n.asn != null && n.asn.length() > 0)
+			if (size > 2 && !asnUsed && n.asn != null && !n.asn.isEmpty())
 				parts.add(c.getString(R.string.seg, n.asn));
 		}
 		return TextUtils.join(" ", parts);
