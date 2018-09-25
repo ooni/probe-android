@@ -21,16 +21,10 @@ public class Settings {
 	public ArrayList<String> disabled_events;
 	@SerializedName("inputs")
 	public ArrayList<String> inputs;
-	//TODO not used
-	@SerializedName("log_filepath")
-	public String log_filepath;
 	@SerializedName("log_level")
 	public String log_level;
 	@SerializedName("name")
 	public String name;
-	//TODO not used
-	@SerializedName("output_filepath")
-	public String output_filepath;
 	@SerializedName("options")
 	public Options options;
 
@@ -48,18 +42,14 @@ public class Settings {
 		@SerializedName("geoip_country_path")
 		public String geoip_country_path;
 		@SerializedName("max_runtime")
-		public Integer max_runtime;
+		public Double max_runtime;
 		@SerializedName("no_collector")
-		//TODO make it bool
 		public Integer no_collector;
 		@SerializedName("save_real_probe_asn")
-		//TODO make it bool
 		public String save_real_probe_asn;
 		@SerializedName("save_real_probe_cc")
-		//TODO make it bool
 		public String save_real_probe_cc;
 		@SerializedName("save_real_probe_ip")
-		//TODO make it bool
 		public String save_real_probe_ip;
 		@SerializedName("software_name")
 		public String software_name;
