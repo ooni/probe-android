@@ -49,11 +49,11 @@ public class PreferenceManager {
 		return sp.getInt(r.getString(R.string.dash_server_port), 80);
 	}
 
-	public Integer getMaxRuntime() {
+	public Float getMaxRuntime() {
 		try {
-			return sp.getInt(r.getString(R.string.max_runtime), 90);
+			return sp.getFloat(r.getString(R.string.max_runtime), 90);
 		} catch (ClassCastException e) {
-			return 90;
+			return 90f;
 		}
 	}
 
@@ -93,16 +93,16 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.include_ip), true);
 	}
 
-	public String getIncludeIp() {
-		return isIncludeIp() ? "1" : "0";
+	public Integer getIncludeIp() {
+		return isIncludeIp() ? 1 : 0;
 	}
 
 	public boolean isIncludeAsn() {
 		return sp.getBoolean(r.getString(R.string.include_asn), true);
 	}
 
-	public String getIncludeAsn() {
-		return isIncludeAsn() ? "1" : "0";
+	public Integer getIncludeAsn() {
+		return isIncludeAsn() ? 1 : 0;
 	}
 
 	public boolean isKeepScreenOn() {
@@ -117,8 +117,8 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.include_cc), true);
 	}
 
-	public String getIncludeCc() {
-		return isIncludeCc() ? "1" : "0";
+	public Integer getIncludeCc() {
+		return isIncludeCc() ? 1 : 0;
 	}
 
 	public boolean isTestWhatsapp() {
