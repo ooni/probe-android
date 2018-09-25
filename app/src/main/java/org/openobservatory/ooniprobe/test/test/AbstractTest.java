@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.util.SparseArray;
 
 import com.google.gson.Gson;
 
@@ -30,7 +31,7 @@ public abstract class AbstractTest {
 	private String mkName;
 	private int labelResId;
 	private int iconResId;
-	private HashMap<Double, Measurement> measurements;
+	private SparseArray<Measurement> measurements;
 	private String reportId;
 
 	public AbstractTest(String name, String mkName, int labelResId, int iconResId) {
@@ -44,7 +45,7 @@ public abstract class AbstractTest {
 
 	protected void run(Context c, PreferenceManager pm, Gson gson, Settings settings, Result result, int index, TestCallback testCallback) {
 		settings.name = mkName;
-		measurements = new HashMap<>();
+		measurements = new SparseArray<>();
 		Task task = Task.startNettest(gson.toJson(settings));
 		FileOutputStream logFOS = null;
 		while (!task.isDone())
@@ -67,7 +68,7 @@ public abstract class AbstractTest {
 						Measurement measurement = new Measurement(result, name, reportId);
 						if (event.value.input.length() > 0)
 							measurement.url = Url.getUrl(event.value.input);
-						measurements.put(event.value.key, measurement);
+						measurements.put(event.value.idx, measurement);
 						measurement.save();
 						break;
 					case "log":

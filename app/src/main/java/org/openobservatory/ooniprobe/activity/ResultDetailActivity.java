@@ -101,7 +101,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 				case InstantMessagingSuite.NAME:
 					return ResultHeaderTBAFragment.newInstance(result, R.plurals.TestResults_Summary_InstantMessaging_Hero_Apps);
 				case MiddleBoxesSuite.NAME:
-					return ResultHeaderMiddleboxFragment.newInstance(result.countMeasurement(true, null) > 0);
+					return ResultHeaderMiddleboxFragment.newInstance(result.countAnomalousMeasurements() > 0);
 				case PerformanceSuite.NAME:
 					return ResultHeaderPerformanceFragment.newInstance(result);
 				default:

@@ -7,7 +7,6 @@ import com.raizlabs.android.dbflow.annotation.ForeignKey;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.sql.language.Delete;
-import com.raizlabs.android.dbflow.sql.language.SQLOperator;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
@@ -22,7 +21,6 @@ import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import java.io.File;
 import java.io.Serializable;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -76,31 +74,20 @@ public class Result extends BaseModel implements Serializable {
 		return SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.test_name.eq(name)).querySingle();
 	}
 
-	public Measurement getMeasurement() {
-		//TODO unused?
-		if (measurements == null)
-			return SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id)).querySingle();
-		else
-			return measurements.get(0);
+	public long countTotalMeasurements() {
+		return SQLite.selectCountOf().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false), Measurement_Table.is_done.eq(true)).count();
 	}
 
-	public long countMeasurement(Boolean anomaly, Boolean failed) {
-		//TODO AND is_rerun = 0
-		/*
-		iOS queries:
-		totalMeasurements : result_id = ? AND is_rerun = 0
-		failedMeasurements : result_id = ? AND is_rerun = 0 AND is_done = 1 AND is_failed = 1
-		okMeasurements : result_id = ? AND is_rerun = 0 AND is_done = 1 AND is_failed = 0 AND is_anomaly = 0
-		anomalousMeasurements : result_id = ? AND is_rerun = 0 AND is_done = 1 AND is_failed = 0 AND is_anomaly = 1
-		 */
-		ArrayList<SQLOperator> sqlOperators = new ArrayList<>();
-		sqlOperators.add(Measurement_Table.result_id.eq(id));
-		sqlOperators.add(Measurement_Table.is_done.eq(true));
-		if (failed != null)
-			sqlOperators.add(Measurement_Table.is_failed.eq(failed));
-		if (anomaly != null)
-			sqlOperators.add(Measurement_Table.is_anomaly.eq(anomaly));
-		return SQLite.selectCountOf().from(Measurement.class).where(sqlOperators.toArray(new SQLOperator[sqlOperators.size()])).count();
+	public long countCompletedMeasurements() {
+		return SQLite.selectCountOf().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false), Measurement_Table.is_done.eq(true), Measurement_Table.is_failed.eq(false)).count();
+	}
+
+	public long countOkMeasurements() {
+		return SQLite.selectCountOf().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false), Measurement_Table.is_done.eq(true), Measurement_Table.is_failed.eq(false), Measurement_Table.is_anomaly.eq(false)).count();
+	}
+
+	public long countAnomalousMeasurements() {
+		return SQLite.selectCountOf().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false), Measurement_Table.is_done.eq(true), Measurement_Table.is_failed.eq(false), Measurement_Table.is_anomaly.eq(true)).count();
 	}
 
 	public void addDuration(double value) {
