@@ -42,7 +42,7 @@ public class Settings {
 		@SerializedName("geoip_country_path")
 		public String geoip_country_path;
 		@SerializedName("max_runtime")
-		public Double max_runtime;
+		public Integer max_runtime;
 		@SerializedName("no_collector")
 		public Integer no_collector;
 		@SerializedName("save_real_probe_asn")
