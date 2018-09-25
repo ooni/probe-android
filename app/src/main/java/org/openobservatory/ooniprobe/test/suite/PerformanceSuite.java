@@ -1,7 +1,6 @@
 package org.openobservatory.ooniprobe.test.suite;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.Dash;
@@ -26,12 +25,11 @@ public class PerformanceSuite extends AbstractSuite {
 				"anim/performance.json");
 	}
 
-	@Override public AbstractTest[] getTestList(AbstractActivity activity) {
-		PreferenceManager preferenceManager = activity.getPreferenceManager();
+	@Override public AbstractTest[] getTestList(PreferenceManager pm) {
 		ArrayList<AbstractTest> list = new ArrayList<>();
-		if (preferenceManager.isRunNdt())
+		if (pm.isRunNdt())
 			list.add(new Ndt());
-		if (preferenceManager.isRunDash())
+		if (pm.isRunDash())
 			list.add(new Dash());
 		return list.toArray(new AbstractTest[list.size()]);
 	}

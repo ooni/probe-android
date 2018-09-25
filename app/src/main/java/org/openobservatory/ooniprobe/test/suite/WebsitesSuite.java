@@ -1,7 +1,7 @@
 package org.openobservatory.ooniprobe.test.suite;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.activity.AbstractActivity;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
@@ -22,7 +22,7 @@ public class WebsitesSuite extends AbstractSuite {
 				"anim/websites.json");
 	}
 
-	@Override public AbstractTest[] getTestList(AbstractActivity activity) {
+	@Override public AbstractTest[] getTestList(PreferenceManager pm) {
 		return new AbstractTest[]{new WebConnectivity()};
 	}
 }

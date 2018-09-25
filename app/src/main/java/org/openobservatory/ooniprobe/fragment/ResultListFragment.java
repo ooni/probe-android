@@ -18,7 +18,6 @@ import android.view.ViewGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.raizlabs.android.dbflow.sql.language.Delete;
 import com.raizlabs.android.dbflow.sql.language.Method;
 import com.raizlabs.android.dbflow.sql.language.SQLOperator;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
@@ -30,11 +29,9 @@ import org.openobservatory.ooniprobe.item.InstantMessagingItem;
 import org.openobservatory.ooniprobe.item.MiddleboxesItem;
 import org.openobservatory.ooniprobe.item.PerformanceItem;
 import org.openobservatory.ooniprobe.item.WebsiteItem;
-import org.openobservatory.ooniprobe.model.Measurement;
-import org.openobservatory.ooniprobe.model.Measurement_Table;
-import org.openobservatory.ooniprobe.model.Network;
-import org.openobservatory.ooniprobe.model.Result;
-import org.openobservatory.ooniprobe.model.Result_Table;
+import org.openobservatory.ooniprobe.model.database.Network;
+import org.openobservatory.ooniprobe.model.database.Result;
+import org.openobservatory.ooniprobe.model.database.Result_Table;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
@@ -72,8 +69,8 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 		getActivity().setTitle(R.string.TestResults_Overview_Title);
 		tests.setText(getString(R.string.d, SQLite.selectCountOf().from(Result.class).longValue()));
 		networks.setText(getString(R.string.d, SQLite.selectCountOf().from(Network.class).longValue()));
-		upload.setText(getString(R.string.d, SQLite.select(Method.sum(Result_Table.data_usage_up)).from(Result.class).longValue()));
-		download.setText(getString(R.string.d, SQLite.select(Method.sum(Result_Table.data_usage_down)).from(Result.class).longValue()));
+		upload.setText(Result.readableFileSize(SQLite.select(Method.sum(Result_Table.data_usage_up)).from(Result.class).longValue()));
+		download.setText(Result.readableFileSize(SQLite.select(Method.sum(Result_Table.data_usage_down)).from(Result.class).longValue()));
 		LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
 		recycler.setLayoutManager(layoutManager);
 		recycler.addItemDecoration(new DividerItemDecoration(getActivity(), layoutManager.getOrientation()));
@@ -158,11 +155,9 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 	@Override public void onConfirmation(Serializable serializable, int i) {
 		if (i == DialogInterface.BUTTON_POSITIVE) {
 			if (serializable == null) {
-				Delete.tables(Measurement.class, Result.class);
+				Result.deleteAll(getActivity());
 			} else {
-				Result result = (Result) serializable;
-				SQLite.delete().from(Measurement.class).where(Measurement_Table.result_id.eq(result.id)).execute();
-				result.delete();
+				((Result) serializable).delete(getActivity());
 			}
 			queryList();
 		}

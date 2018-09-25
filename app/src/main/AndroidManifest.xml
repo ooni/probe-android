@@ -102,36 +102,35 @@
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
 		</activity>
+		<activity
+			android:name=".activity.OoniRunActivity"
+			android:label="@string/General_AppName"
+			android:launchMode="singleInstance">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<action android:name="org.openobservatory.ooniprobe.nettest" />
+				<data android:scheme="https"
+					android:host="run.ooni.io"
+					android:pathPrefix="/nettest" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<action android:name="org.openobservatory.ooniprobe.nettest" />
+				<data android:scheme="http"
+					android:host="run.ooni.io"
+					android:pathPrefix="/nettest" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<data android:scheme="ooni"
+					android:host="nettest" />
+			</intent-filter>
+		</activity>
 	</application>
-</manifest>    <!--- THIS IS FOR URI SCHEME
-	<activity
-		android:name=".activity.RunTestActivity"
-		android:label="@string/General_AppName"
-		android:launchMode="singleInstance">
-		<intent-filter>
-			<action android:name="android.intent.action.VIEW" />
-			<category android:name="android.intent.category.DEFAULT" />
-			<category android:name="android.intent.category.BROWSABLE" />
-			<action android:name="org.openobservatory.ooniprobe.nettest" />
-			<data android:scheme="https"
-				android:host="run.ooni.io"
-				android:pathPrefix="/nettest" />
-		</intent-filter>
-		<intent-filter>
-			<action android:name="android.intent.action.VIEW" />
-			<category android:name="android.intent.category.DEFAULT" />
-			<category android:name="android.intent.category.BROWSABLE" />
-			<action android:name="org.openobservatory.ooniprobe.nettest" />
-			<data android:scheme="http"
-				android:host="run.ooni.io"
-				android:pathPrefix="/nettest" />
-		</intent-filter>
-		<intent-filter>
-			<action android:name="android.intent.action.VIEW" />
-			<category android:name="android.intent.category.DEFAULT" />
-			<category android:name="android.intent.category.BROWSABLE" />
-			<data android:scheme="ooni"
-				android:host="nettest" />
-		</intent-filter>
-	</activity>
--->
+</manifest>

@@ -3,7 +3,7 @@ package org.openobservatory.ooniprobe.test;
 import android.os.AsyncTask;
 
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
-import org.openobservatory.ooniprobe.model.Result;
+import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
 import java.lang.ref.WeakReference;
@@ -25,7 +25,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 		for (int i = 0; i < tests.length; i++) {
 			ACT act = ref.get();
 			if (act != null && !act.isFinishing())
-				tests[i].run(ref.get(), result, i, this);
+				tests[i].run(act, act.getPreferenceManager(), act.getGson(), result, i, this);
 		}
 		return null;
 	}

@@ -3,7 +3,7 @@ apply plugin: 'io.fabric'
 
 android {
 	compileSdkVersion 27
-	buildToolsVersion "28.0.2"
+	buildToolsVersion '28.0.3'
 
 	compileOptions {
 		sourceCompatibility JavaVersion.VERSION_1_8
@@ -11,10 +11,10 @@ android {
 	}
 
 	defaultConfig {
-		applicationId "org.openobservatory.ooniprobe"
+		applicationId 'org.openobservatory.ooniprobe'
 		minSdkVersion 18
 		targetSdkVersion 27
-		versionName "2.0.0-alpha.6"
+		versionName '2.0.0-alpha.6'
 		versionCode 32
 	}
 
@@ -33,18 +33,21 @@ dependencies {
 	implementation 'com.android.support:cardview-v7:27.1.1'
 	implementation 'com.android.support:preference-v7:27.1.1'
 
-	implementation 'com.google.firebase:firebase-messaging:17.3.1'
+	implementation 'com.google.firebase:firebase-messaging:17.3.2'
 	implementation 'com.google.firebase:firebase-core:16.0.3'
 
-	annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:4.2.4"
-	implementation "com.github.Raizlabs.DBFlow:dbflow-core:4.2.4"
-	implementation "com.github.Raizlabs.DBFlow:dbflow:4.2.4"
+	annotationProcessor 'com.github.Raizlabs.DBFlow:dbflow-processor:4.2.4'
+	implementation 'com.github.Raizlabs.DBFlow:dbflow-core:4.2.4'
+	implementation 'com.github.Raizlabs.DBFlow:dbflow:4.2.4'
+
+	implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+	implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 
 	annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 	implementation 'com.jakewharton:butterknife:8.8.1'
 
 	implementation('com.crashlytics.sdk.android:crashlytics:2.9.3@aar') { transitive = true }
-	implementation 'org.openobservatory.measurement_kit:android-libs:0.8.3-1'
+	implementation 'org.openobservatory.measurement_kit:android-libs:0.9.0-alpha.9-1-android.2'
 	implementation 'com.github.xanscale.LocalhostToolkit:app:b1cbb84c43'
 	implementation 'pub.devrel:easypermissions:1.3.0'
 	implementation 'com.airbnb.android:lottie:2.5.6'
@@ -52,6 +55,7 @@ dependencies {
 	implementation 'com.google.code.gson:gson:2.8.5'
 	implementation 'com.github.tiagohm.MarkdownView:library:0.19.0'
 	implementation 'com.samskivert:jmustache:1.14'
+	implementation 'commons-io:commons-io:2.6'
 }
 
 apply plugin: 'com.google.gms.google-services'

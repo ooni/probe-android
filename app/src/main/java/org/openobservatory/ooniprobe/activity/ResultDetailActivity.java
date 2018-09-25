@@ -25,10 +25,10 @@ import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderPerforman
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderTBAFragment;
 import org.openobservatory.ooniprobe.item.MeasurementItem;
 import org.openobservatory.ooniprobe.item.MeasurementPerfItem;
-import org.openobservatory.ooniprobe.model.Measurement;
-import org.openobservatory.ooniprobe.model.Network;
-import org.openobservatory.ooniprobe.model.Result;
-import org.openobservatory.ooniprobe.model.Result_Table;
+import org.openobservatory.ooniprobe.model.database.Measurement;
+import org.openobservatory.ooniprobe.model.database.Network;
+import org.openobservatory.ooniprobe.model.database.Result;
+import org.openobservatory.ooniprobe.model.database.Result_Table;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
@@ -94,14 +94,14 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 		@Override public Fragment getItem(int position) {
 			if (position == 1) {
 				Network network = result.network;
-				return ResultHeaderDetailFragment.newInstance(0L, 0L, null, result.runtime, true, network.country_code, network.toString(ResultDetailActivity.this, 2));
+				return ResultHeaderDetailFragment.newInstance(result.getFormattedDataUsageUp(), result.getFormattedDataUsageDown(), null, result.runtime, true, network.country_code, Network.toString(ResultDetailActivity.this, network, 2));
 			} else switch (result.test_group_name) {
 				case WebsitesSuite.NAME:
 					return ResultHeaderTBAFragment.newInstance(result, R.plurals.TestResults_Summary_Websites_Hero_Sites);
 				case InstantMessagingSuite.NAME:
 					return ResultHeaderTBAFragment.newInstance(result, R.plurals.TestResults_Summary_InstantMessaging_Hero_Apps);
 				case MiddleBoxesSuite.NAME:
-					return ResultHeaderMiddleboxFragment.newInstance(result.countMeasurement(true, null) > 0);
+					return ResultHeaderMiddleboxFragment.newInstance(result.countAnomalousMeasurements() > 0);
 				case PerformanceSuite.NAME:
 					return ResultHeaderPerformanceFragment.newInstance(result);
 				default:

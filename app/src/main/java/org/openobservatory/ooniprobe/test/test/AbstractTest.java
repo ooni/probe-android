@@ -4,71 +4,143 @@ import android.content.Context;
 import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.util.SparseArray;
 
-import org.openobservatory.measurement_kit.common.LogSeverity;
-import org.openobservatory.measurement_kit.nettests.BaseTest;
-import org.openobservatory.ooniprobe.BuildConfig;
-import org.openobservatory.ooniprobe.activity.AbstractActivity;
-import org.openobservatory.ooniprobe.model.JsonResult;
-import org.openobservatory.ooniprobe.model.Measurement;
-import org.openobservatory.ooniprobe.model.Network;
-import org.openobservatory.ooniprobe.model.Result;
+import com.google.gson.Gson;
+
+import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.model.database.Measurement;
+import org.openobservatory.ooniprobe.model.database.Network;
+import org.openobservatory.ooniprobe.model.database.Result;
+import org.openobservatory.ooniprobe.model.database.Url;
+import org.openobservatory.ooniprobe.model.jsonresult.EventResult;
+import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
+import org.openobservatory.ooniprobe.model.settings.Settings;
 import org.openobservatory.ooniprobe.utils.ConnectionState;
-import org.openobservatory.ooniprobe.utils.VersionUtils;
 
-import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.HashMap;
+
+import io.ooni.mk.Task;
 
 public abstract class AbstractTest {
+	public static final String UNUSED_KEY = "UNUSED_KEY";
+	private final String TAG = "MK_EVENT";
 	private String name;
+	private String mkName;
 	private int labelResId;
 	private int iconResId;
+	private SparseArray<Measurement> measurements;
+	private String reportId;
 
-	public AbstractTest(String name, int labelResId, int iconResId) {
+	public AbstractTest(String name, String mkName, int labelResId, int iconResId) {
 		this.name = name;
+		this.mkName = mkName;
 		this.labelResId = labelResId;
 		this.iconResId = iconResId;
 	}
 
-	public abstract void run(AbstractActivity activity, Result result, int index, TestCallback testCallback);
+	public abstract void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback);
 
-	protected void run(AbstractActivity activity, BaseTest test, Result result, int index, TestCallback testCallback) {
-		test.use_logcat();
-		test.set_error_filepath(new File(activity.getFilesDir(), Measurement.getLogFileName(result.id, name)).getPath());
-		test.set_verbosity(BuildConfig.DEBUG ? LogSeverity.LOG_DEBUG2 : LogSeverity.LOG_INFO);
-		test.set_option("geoip_country_path", activity.getFilesDir() + "/GeoIP.dat");
-		test.set_option("geoip_asn_path", activity.getFilesDir() + "/GeoIPASNum.dat");
-		test.set_option("save_real_probe_ip", activity.getPreferenceManager().getIncludeIp());
-		test.set_option("save_real_probe_asn", activity.getPreferenceManager().getIncludeAsn());
-		test.set_option("save_real_probe_cc", activity.getPreferenceManager().getIncludeCc());
-		test.set_option("no_collector", activity.getPreferenceManager().getNoUploadResults());
-		test.set_option("software_name", "ooniprobe-android");
-		test.set_option("software_version", VersionUtils.get_software_version());
-		testCallback.onStart(activity.getString(labelResId));
-		testCallback.onProgress(Double.valueOf(index * 100).intValue());
-		test.on_progress((v, s) -> testCallback.onProgress(Double.valueOf((index + v) * 100).intValue()));
-		test.on_log((l, s) -> testCallback.onLog(s));
-		test.on_entry(entry -> {
-			Log.d("entry", entry);
-			Measurement measurement = new Measurement(result, name);
-			JsonResult jr = activity.getGson().fromJson(entry, JsonResult.class);
-			if (jr == null)
-				measurement.is_failed = true;
-			else
-				onEntry(activity, jr, measurement);
-			measurement.save();
+	protected void run(Context c, PreferenceManager pm, Gson gson, Settings settings, Result result, int index, TestCallback testCallback) {
+		settings.name = mkName;
+		measurements = new SparseArray<>();
+		Task task = Task.startNettest(gson.toJson(settings));
+		FileOutputStream logFOS = null;
+		while (!task.isDone())
 			try {
-				FileOutputStream outputStream = activity.openFileOutput(Measurement.getEntryFileName(measurement.id, measurement.test_name), Context.MODE_PRIVATE);
-				outputStream.write(entry.getBytes());
-				outputStream.close();
+				String json = task.waitForNextEvent().serialize();
+				Log.d(TAG, json);
+				EventResult event = gson.fromJson(json, EventResult.class);
+				switch (event.key) {
+					case "status.started":
+						testCallback.onStart(c.getString(labelResId));
+						testCallback.onProgress(Double.valueOf(index * 100).intValue());
+						break;
+					case "status.geoip_lookup":
+						saveNetworkInfo(event.value, result, c);
+						break;
+					case "status.report_create":
+						reportId = event.value.report_id;
+						break;
+					case "status.measurement_start":
+						Measurement measurement = new Measurement(result, name, reportId);
+						if (event.value.input.length() > 0)
+							measurement.url = Url.getUrl(event.value.input);
+						measurements.put(event.value.idx, measurement);
+						measurement.save();
+						break;
+					case "log":
+						if (logFOS == null)
+							logFOS = c.openFileOutput(Measurement.getLogFileName(result.id, name), Context.MODE_APPEND);
+						logFOS.write(event.value.message.getBytes());
+						logFOS.write('\n');
+						testCallback.onLog(event.value.message);
+						break;
+					case "status.progress":
+						testCallback.onProgress(Double.valueOf((index + event.value.percentage) * 100).intValue());
+						break;
+					case "measurement":
+						Measurement m = measurements.get(event.value.idx);
+						if (m != null) {
+							JsonResult jr = gson.fromJson(event.value.json_str, JsonResult.class);
+							if (jr == null)
+								m.is_failed = true;
+							else
+								onEntry(c, pm, jr, m);
+							m.save();
+							try {
+								FileOutputStream outputStream = c.openFileOutput(Measurement.getEntryFileName(m.id, m.test_name), Context.MODE_PRIVATE);
+								outputStream.write(event.value.json_str.getBytes());
+								outputStream.close();
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+						break;
+					case "failure.report_create":
+					   /* //TODO FUTURE
+						every measure should be resubmitted
+						int mk_submit_report(const char *report_as_json);
+						"value": {"failure": "<failure_string>"}
+						*/
+						break;
+					case "status.measurement_submission":
+						setUploaded(true, event.value);
+						break;
+					case "failure.measurement_submission":
+						setUploaded(false, event.value);
+						break;
+					case "failure.measurement":
+						//TODO idx missing https://github.com/measurement-kit/measurement-kit/issues/1657
+						//setFailed(false, event.value);
+						break;
+					case "status.measurement_done":
+						setDone(event.value);
+						break;
+					case "status.end":
+						setDataUsage(event.value, result);
+						break;
+					case "failure.startup":
+						//TODO What to do? Run next test
+						break;
+					default:
+						Log.w(UNUSED_KEY, event.key);
+						break;
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		});
-		test.run();
+		if (logFOS != null)
+			try {
+				logFOS.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 	}
 
-	@CallSuper void onEntry(AbstractActivity activity, @NonNull JsonResult json, Measurement measurement) {
+	@CallSuper void onEntry(Context c, PreferenceManager pm, @NonNull JsonResult json, Measurement measurement) {
 		if (json.test_start_time != null)
 			measurement.result.start_time = json.test_start_time;
 		if (json.measurement_start_time != null)
@@ -77,22 +149,50 @@ public abstract class AbstractTest {
 			measurement.runtime = json.test_runtime;
 			measurement.result.addDuration(json.test_runtime);
 		}
-		if (json.report_id != null)
-			measurement.report_id = json.report_id;
 		measurement.setTestKeys(json.test_keys);
-		if (measurement.result.network == null) {
-			measurement.result.network = new Network();
-			//TODO need context
-			measurement.result.network.network_type = ConnectionState.getInstance(activity).getNetworkType();
-			if (json.probe_asn != null && activity.getPreferenceManager().isIncludeAsn()) {
-				measurement.result.network.asn = json.probe_asn; //TODO-SBS asn name
-				measurement.result.network.network_name = "Vodafone";
-			}
-			if (json.probe_cc != null && activity.getPreferenceManager().isIncludeCc())
-				measurement.result.network.country_code = json.probe_cc;
-			if (json.probe_ip != null && activity.getPreferenceManager().isIncludeIp())
-				measurement.result.network.ip = json.probe_ip;
+	}
+
+	private void saveNetworkInfo(EventResult.Value value, Result result, Context c) {
+		if (result != null && result.network == null) {
+			result.network = Network.checkExistingNetwork(value.probe_network_name, value.probe_ip, value.probe_asn, value.probe_cc, ConnectionState.getInstance(c).getNetworkType());
+			result.save();
 		}
+	}
+
+	private void setUploaded(Boolean uploaded, EventResult.Value value) {
+		Measurement measurement = measurements.get(value.idx);
+		if (measurement != null) {
+			measurement.is_uploaded = uploaded;
+			String failure = value.failure;
+			if (failure != null)
+				measurement.upload_failure_msg = failure;
+			measurement.save();
+		}
+	}
+
+	private void setFailed(Boolean failed, EventResult.Value value) {
+		Measurement measurement = measurements.get(value.idx);
+		if (measurement != null) {
+			measurement.is_failed = failed;
+			String failure = value.failure;
+			if (failure != null)
+				measurement.failure_msg = failure;
+			measurement.save();
+		}
+	}
+
+	private void setDone(EventResult.Value value) {
+		Measurement measurement = measurements.get(value.idx);
+		if (measurement != null) {
+			measurement.is_done = true;
+			measurement.save();
+		}
+	}
+
+	private void setDataUsage(EventResult.Value value, Result result) {
+		result.data_usage_down = result.data_usage_down + Double.valueOf(value.downloaded_kb).longValue();
+		result.data_usage_up = result.data_usage_up + Double.valueOf(value.uploaded_kb).longValue();
+		result.save();
 	}
 
 	public int getLabelResId() {

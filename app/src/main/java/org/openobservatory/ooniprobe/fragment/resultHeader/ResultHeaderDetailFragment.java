@@ -37,11 +37,11 @@ public class ResultHeaderDetailFragment extends Fragment {
 	@BindView(R.id.country) TextView country;
 	@BindView(R.id.network) TextView network;
 
-	public static ResultHeaderDetailFragment newInstance(Long data_usage_up, Long data_usage_down, Date start_time, double runtime, boolean isTotalRuntime, String country_code, String network_name) {
+	public static ResultHeaderDetailFragment newInstance(String data_usage_up, String data_usage_down, Date start_time, double runtime, boolean isTotalRuntime, String country_code, String network_name) {
 		Bundle args = new Bundle();
 		if (data_usage_up != null && data_usage_down != null) {
-			args.putLong(DATA_USAGE_UP, data_usage_up);
-			args.putLong(DATA_USAGE_DOWN, data_usage_down);
+			args.putString(DATA_USAGE_UP, data_usage_up);
+			args.putString(DATA_USAGE_DOWN, data_usage_down);
 		}
 		if (start_time != null)
 			args.putSerializable(START_TIME, start_time);
@@ -58,8 +58,8 @@ public class ResultHeaderDetailFragment extends Fragment {
 		View v = inflater.inflate(R.layout.fragment_result_head_detail, container, false);
 		ButterKnife.bind(this, v);
 		if (getArguments().containsKey(DATA_USAGE_DOWN) && getArguments().containsKey(DATA_USAGE_UP)) {
-			download.setText(getArguments().getLong(DATA_USAGE_DOWN) + "");
-			upload.setText(getArguments().getLong(DATA_USAGE_UP) + "");
+			download.setText(getArguments().getString(DATA_USAGE_DOWN));
+			upload.setText(getArguments().getString(DATA_USAGE_UP));
 		} else
 			dataUsage.setVisibility(View.GONE);
 		if (getArguments().containsKey(START_TIME))

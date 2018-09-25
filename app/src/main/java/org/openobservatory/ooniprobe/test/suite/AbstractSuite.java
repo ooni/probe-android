@@ -6,7 +6,7 @@ import android.support.annotation.StringRes;
 import android.support.annotation.StyleRes;
 import android.support.annotation.XmlRes;
 
-import org.openobservatory.ooniprobe.activity.AbstractActivity;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
 import java.io.Serializable;
@@ -38,7 +38,7 @@ public abstract class AbstractSuite implements Serializable {
 		this.name = name;
 	}
 
-	public abstract AbstractTest[] getTestList(AbstractActivity activity);
+	public abstract AbstractTest[] getTestList(PreferenceManager pm);
 
 	public int getTitle() {
 		return title;

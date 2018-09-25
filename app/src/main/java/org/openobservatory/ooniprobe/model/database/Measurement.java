@@ -1,4 +1,4 @@
-package org.openobservatory.ooniprobe.model;
+package org.openobservatory.ooniprobe.model.database;
 
 import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.annotation.Column;
@@ -8,6 +8,7 @@ import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.Dash;
 import org.openobservatory.ooniprobe.test.test.FacebookMessenger;
@@ -40,7 +41,6 @@ public class Measurement extends BaseModel implements Serializable {
 	@Column public String test_keys;
 	@ForeignKey(saveForeignKeyModel = true, deleteForeignKeyModel = true) public Url url;
 	@ForeignKey(saveForeignKeyModel = true, deleteForeignKeyModel = true, stubbedRelationship = true) public Result result;
-// TODO report_file_path
 
 	public Measurement() {
 	}
@@ -51,12 +51,19 @@ public class Measurement extends BaseModel implements Serializable {
 		start_time = new java.util.Date();
 	}
 
-	public static String getEntryFileName(int id, String test_name) {
-		return id + "_" + test_name + ".json";
+	public Measurement(Result result, String test_name, String report_id) {
+		this.result = result;
+		this.test_name = test_name;
+		this.report_id = report_id;
+		start_time = new java.util.Date();
 	}
 
-	public static String getLogFileName(int id, String name) {
-		return id + "-" + name + ".log";
+	public static String getEntryFileName(int measurementId, String test_name) {
+		return measurementId + "_" + test_name + ".json";
+	}
+
+	public static String getLogFileName(int resultId, String test_name) {
+		return resultId + "_" + test_name + ".log";
 	}
 
 	public AbstractTest getTest() {
@@ -88,10 +95,5 @@ public class Measurement extends BaseModel implements Serializable {
 
 	public void setTestKeys(TestKeys testKeys) {
 		test_keys = new Gson().toJson(testKeys);
-	}
-
-	@Override public boolean delete() {
-		//TODO delete logFile and jsonFile
-		return super.delete();
 	}
 }

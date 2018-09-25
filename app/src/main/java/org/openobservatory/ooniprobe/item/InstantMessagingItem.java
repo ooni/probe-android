@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.model.Network;
-import org.openobservatory.ooniprobe.model.Result;
+import org.openobservatory.ooniprobe.model.database.Network;
+import org.openobservatory.ooniprobe.model.database.Result;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,10 +36,10 @@ public class InstantMessagingItem extends HeterogeneousRecyclerItem<Result, Inst
 		viewHolder.itemView.setOnClickListener(onClickListener);
 		viewHolder.itemView.setOnLongClickListener(onLongClickListener);
 		viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(viewHolder.itemView.getContext(), extra.is_viewed ? android.R.color.transparent : R.color.color_yellow0));
-		viewHolder.asnName.setText(Html.fromHtml(extra.network.toString(viewHolder.asnName.getContext(), 1)));
+		viewHolder.asnName.setText(Html.fromHtml(Network.toString(viewHolder.asnName.getContext(), extra.network, 1)));
 		viewHolder.startTime.setText(DateFormat.getDateFormat(viewHolder.startTime.getContext()).format(extra.start_time));
-		long blocked = extra.countMeasurement(true, false);
-		long available = extra.countMeasurement(false, false);
+		long blocked = extra.countAnomalousMeasurements();
+		long available = extra.countOkMeasurements();
 		viewHolder.failedMeasurements.setText(viewHolder.failedMeasurements.getContext().getString(R.string.d, blocked) + " " + viewHolder.failedMeasurements.getContext().getResources().getQuantityString(R.plurals.TestResults_Overview_InstantMessaging_Blocked, (int) blocked));
 		viewHolder.okMeasurements.setText(viewHolder.okMeasurements.getContext().getString(R.string.d, available) + " " + viewHolder.failedMeasurements.getContext().getResources().getQuantityString(R.plurals.TestResults_Overview_InstantMessaging_Available, (int) blocked));
 	}

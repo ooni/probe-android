@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.model.Result;
+import org.openobservatory.ooniprobe.model.database.Result;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,9 +41,9 @@ public class ResultHeaderTBAFragment extends Fragment {
 		ButterKnife.bind(this, v);
 		Result result = (Result) getArguments().getSerializable(RESULT);
 		assert result != null;
-		long testedCount = result.countMeasurement(null, false);
-		long blockedCount = result.countMeasurement(true, false);
-		long availableCount = result.countMeasurement(false, false);
+		long testedCount = result.countTotalMeasurements();
+		long blockedCount = result.countAnomalousMeasurements();
+		long availableCount = result.countOkMeasurements();
 		tested.setText(getString(R.string.d, testedCount));
 		blocked.setText(getString(R.string.d, blockedCount));
 		available.setText(getString(R.string.d, availableCount));

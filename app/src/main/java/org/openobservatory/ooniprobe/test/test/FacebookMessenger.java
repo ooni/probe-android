@@ -1,30 +1,32 @@
 package org.openobservatory.ooniprobe.test.test;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.google.gson.Gson;
+
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
-import org.openobservatory.ooniprobe.model.JsonResult;
-import org.openobservatory.ooniprobe.model.Measurement;
-import org.openobservatory.ooniprobe.model.Result;
+import org.openobservatory.ooniprobe.model.database.Measurement;
+import org.openobservatory.ooniprobe.model.database.Result;
+import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
+import org.openobservatory.ooniprobe.model.settings.Settings;
 
 public class FacebookMessenger extends AbstractTest {
 	public static final String NAME = "facebook_messenger";
+	public static final String MK_NAME = "FacebookMessenger";
 
 	public FacebookMessenger() {
-		super(NAME, R.string.Test_FacebookMessenger_Fullname, R.drawable.test_facebook_messenger);
+		super(NAME, MK_NAME, R.string.Test_FacebookMessenger_Fullname, R.drawable.test_facebook_messenger);
 	}
 
-	@Override public void run(AbstractActivity activity, Result result, int index, TestCallback testCallback) {
-		run(activity, new org.openobservatory.measurement_kit.nettests.FacebookMessengerTest(), result, index, testCallback);
+	@Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback) {
+		Settings settings = new Settings(c, pm);
+		run(c, pm, gson, settings, result, index, testCallback);
 	}
 
-	/*	if "facebook_tcp_blocking", "facebook_dns_blocking" are null => failed
-		if "facebook_tcp_blocking" or "facebook_dns_blocking" are true => anomalous */
-	@Override public void onEntry(AbstractActivity activity, @NonNull JsonResult json, Measurement measurement) {
-		super.onEntry(activity, json, measurement);
-		measurement.is_done = true;
+	@Override public void onEntry(Context c, PreferenceManager pm, @NonNull JsonResult json, Measurement measurement) {
+		super.onEntry(c, pm, json, measurement);
 		if (json.test_keys.facebook_tcp_blocking == null || json.test_keys.facebook_dns_blocking == null)
 			measurement.is_failed = true;
 		else

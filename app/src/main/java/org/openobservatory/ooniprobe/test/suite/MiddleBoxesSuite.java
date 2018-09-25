@@ -1,7 +1,6 @@
 package org.openobservatory.ooniprobe.test.suite;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
@@ -26,12 +25,11 @@ public class MiddleBoxesSuite extends AbstractSuite {
 				"anim/middle_boxes.json");
 	}
 
-	@Override public AbstractTest[] getTestList(AbstractActivity activity) {
-		PreferenceManager preferenceManager = activity.getPreferenceManager();
+	@Override public AbstractTest[] getTestList(PreferenceManager pm) {
 		ArrayList<AbstractTest> list = new ArrayList<>();
-		if (preferenceManager.isRunHttpHeaderFieldManipulation())
+		if (pm.isRunHttpHeaderFieldManipulation())
 			list.add(new HttpHeaderFieldManipulation());
-		if (preferenceManager.isRunHttpInvalidRequestLine())
+		if (pm.isRunHttpInvalidRequestLine())
 			list.add(new HttpInvalidRequestLine());
 		return list.toArray(new AbstractTest[list.size()]);
 	}
