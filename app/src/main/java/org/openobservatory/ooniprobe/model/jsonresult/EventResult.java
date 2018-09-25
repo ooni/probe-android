@@ -11,7 +11,7 @@ public class EventResult implements Serializable {
 		public String message;
 		public double percentage;
 		public String json_str;
-		public double idx;
+		public int idx;
 		public String report_id;
 		public String probe_ip;
 		public String probe_asn;

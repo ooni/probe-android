@@ -29,7 +29,6 @@ public class Whatsapp extends AbstractTest {
 
 	@Override public void onEntry(Context c, PreferenceManager pm, @NonNull JsonResult json, Measurement measurement) {
 		super.onEntry(c, pm, json, measurement);
-		measurement.is_done = true;
 		if (json.test_keys.whatsapp_endpoints_status == null || json.test_keys.whatsapp_web_status == null || json.test_keys.registration_server_status == null)
 			measurement.is_failed = true;
 		else

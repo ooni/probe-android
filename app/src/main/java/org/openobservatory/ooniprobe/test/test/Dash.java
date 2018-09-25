@@ -31,7 +31,6 @@ public class Dash extends AbstractTest {
 
 	@Override public void onEntry(Context c, PreferenceManager pm, @NonNull JsonResult json, Measurement measurement) {
 		super.onEntry(c, pm, json, measurement);
-		measurement.is_done = true;
 		measurement.is_failed = json.test_keys.failure != null;
 	}
 }
