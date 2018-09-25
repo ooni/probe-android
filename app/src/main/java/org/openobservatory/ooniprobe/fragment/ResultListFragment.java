@@ -69,8 +69,8 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 		getActivity().setTitle(R.string.TestResults_Overview_Title);
 		tests.setText(getString(R.string.d, SQLite.selectCountOf().from(Result.class).longValue()));
 		networks.setText(getString(R.string.d, SQLite.selectCountOf().from(Network.class).longValue()));
-		upload.setText(getString(R.string.d, SQLite.select(Method.sum(Result_Table.data_usage_up)).from(Result.class).longValue()));
-		download.setText(getString(R.string.d, SQLite.select(Method.sum(Result_Table.data_usage_down)).from(Result.class).longValue()));
+		upload.setText(Result.readableFileSize(SQLite.select(Method.sum(Result_Table.data_usage_up)).from(Result.class).longValue()));
+		download.setText(Result.readableFileSize(SQLite.select(Method.sum(Result_Table.data_usage_down)).from(Result.class).longValue()));
 		LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
 		recycler.setLayoutManager(layoutManager);
 		recycler.addItemDecoration(new DividerItemDecoration(getActivity(), layoutManager.getOrientation()));
