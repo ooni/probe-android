@@ -35,7 +35,6 @@ public class Result extends BaseModel implements Serializable {
 	@Column public long data_usage_up;
 	@Column public long data_usage_down;
 	@ForeignKey(saveForeignKeyModel = true, deleteForeignKeyModel = true) public Network network;
-	// TODO log_file_path
 	protected List<Measurement> measurements;
 
 	public Result() {
@@ -63,15 +62,17 @@ public class Result extends BaseModel implements Serializable {
 	}
 
 	public List<Measurement> getMeasurements() {
-		//TODO  AND is_rerun = 0 AND is_done = 1
 		if (measurements == null)
-			measurements = SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id)).queryList();
+			measurements = SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false), Measurement_Table.is_done.eq(true)).queryList();
 		return measurements;
 	}
 
+	public List<Measurement> getAllMeasurements() {
+		return SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id)).queryList();
+	}
+
 	public Measurement getMeasurement(String name) {
-		//TODO  AND is_rerun = 0
-		return SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.test_name.eq(name)).querySingle();
+		return SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.test_name.eq(name), Measurement_Table.is_rerun.eq(false)).querySingle();
 	}
 
 	public long countTotalMeasurements() {
@@ -118,7 +119,7 @@ public class Result extends BaseModel implements Serializable {
 	}
 
 	public boolean delete(Context c) {
-		for (Measurement measurement : measurements) {
+		for (Measurement measurement : getAllMeasurements()) {
 			try {
 				new File(c.getFilesDir(), Measurement.getEntryFileName(measurement.id, measurement.test_name)).delete();
 				new File(c.getFilesDir(), Measurement.getLogFileName(id, measurement.test_name)).delete();
