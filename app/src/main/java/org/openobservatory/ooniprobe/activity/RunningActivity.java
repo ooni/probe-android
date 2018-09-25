@@ -76,6 +76,7 @@ public class RunningActivity extends AbstractActivity {
 								if (abstractTest instanceof WebConnectivity) {
 									WebConnectivity wc = (WebConnectivity) abstractTest;
 									wc.setInputs(inputs);
+									wc.setMax_runtime(getPreferenceManager().getMaxRuntime());
 								}
 							run(testList);
 						}

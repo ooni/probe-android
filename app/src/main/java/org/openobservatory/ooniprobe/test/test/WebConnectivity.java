@@ -26,7 +26,7 @@ public class WebConnectivity extends AbstractTest {
 
 	@Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback) {
 		Settings settings = new Settings(c, pm);
-		settings.options.max_runtime = max_runtime == null ? pm.getMaxRuntime() : max_runtime;
+		settings.options.max_runtime = max_runtime;
 		settings.inputs = inputs;
 		run(c, pm, gson, settings, result, index, testCallback);
 	}
