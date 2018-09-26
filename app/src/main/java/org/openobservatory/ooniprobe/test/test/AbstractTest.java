@@ -1,8 +1,8 @@
 package org.openobservatory.ooniprobe.test.test;
 
 import android.content.Context;
-import android.support.annotation.CallSuper;
-import android.support.annotation.NonNull;
+import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
 import android.util.Log;
 import android.util.SparseArray;
 

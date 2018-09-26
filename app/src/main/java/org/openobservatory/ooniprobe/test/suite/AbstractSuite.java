@@ -1,10 +1,10 @@
 package org.openobservatory.ooniprobe.test.suite;
 
-import android.support.annotation.ColorRes;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.StringRes;
-import android.support.annotation.StyleRes;
-import android.support.annotation.XmlRes;
+import androidx.annotation.ColorRes;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.StringRes;
+import androidx.annotation.StyleRes;
+import androidx.annotation.XmlRes;
 
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;

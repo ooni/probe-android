@@ -2,9 +2,9 @@ package org.openobservatory.ooniprobe.fragment;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.preference.EditTextPreference;
-import android.support.v7.preference.Preference;
-import android.support.v7.preference.PreferenceScreen;
+import androidx.preference.EditTextPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceScreen;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;

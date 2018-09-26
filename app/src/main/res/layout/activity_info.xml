@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 
-	<android.support.design.widget.AppBarLayout
+	<com.google.android.material.appbar.AppBarLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:theme="@style/Theme.AppCompat.NoActionBar.App">
 
-		<android.support.design.widget.CollapsingToolbarLayout
+		<com.google.android.material.appbar.CollapsingToolbarLayout
 			android:id="@+id/collapsingToolbarLayout"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
@@ -38,14 +38,14 @@
 					android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 			</LinearLayout>
 
-			<android.support.v7.widget.Toolbar
+			<androidx.appcompat.widget.Toolbar
 				android:id="@+id/toolbar"
 				android:layout_width="match_parent"
 				android:layout_height="?attr/actionBarSize"
 				app:layout_collapseMode="pin"
 				app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-		</android.support.design.widget.CollapsingToolbarLayout>
-	</android.support.design.widget.AppBarLayout>
+		</com.google.android.material.appbar.CollapsingToolbarLayout>
+	</com.google.android.material.appbar.AppBarLayout>
 
 	<LinearLayout
 		android:layout_width="match_parent"
@@ -90,4 +90,4 @@
 			android:textAppearance="@style/TextAppearance.AppCompat.Medium"
 			android:textStyle="bold" />
 	</LinearLayout>
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

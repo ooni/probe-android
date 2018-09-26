@@ -1,6 +1,6 @@
 package org.openobservatory.ooniprobe.activity;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 
