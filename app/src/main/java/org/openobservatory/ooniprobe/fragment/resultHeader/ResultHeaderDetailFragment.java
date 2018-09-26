@@ -2,7 +2,7 @@ package org.openobservatory.ooniprobe.fragment.resultHeader;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.text.Html;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;

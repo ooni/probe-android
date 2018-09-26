@@ -4,6 +4,7 @@ buildscript {
 		jcenter()
 		mavenCentral()
 		maven { url 'https://maven.fabric.io/public' }
+		maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 
 	}
 	dependencies {
@@ -20,6 +21,7 @@ allprojects {
 		mavenCentral()
 		maven { url "https://jitpack.io" }
 		maven { url 'https://maven.fabric.io/public' }
+		maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 	}
 }
 

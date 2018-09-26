@@ -3,8 +3,8 @@ package org.openobservatory.ooniprobe.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.annotation.XmlRes;
+import androidx.annotation.Nullable;
+import androidx.annotation.XmlRes;
 import android.view.MenuItem;
 
 import org.openobservatory.ooniprobe.fragment.PreferenceFragment;
