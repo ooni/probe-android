@@ -46,6 +46,7 @@ public class WebConnectivityFragment extends Fragment {
 			HashMap<String, String> data = new HashMap<>();
 			data.put("WebsiteURL", measurement.url.url);
 			data.put("BlockingReason", testKeys.getWebsiteBlocking(getActivity()));
+			//TODO-string add TestResults_Details_Websites_LikelyBlocked_Content_Paragraph_2 and 3
 			desc.setText(Mustache.compiler().compile(getString(R.string.TestResults_Details_Websites_LikelyBlocked_Content_Paragraph_1)).execute(data));
 		} else {
 			title.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.tick, 0, 0);
@@ -53,6 +54,7 @@ public class WebConnectivityFragment extends Fragment {
 			title.setText(R.string.TestResults_Details_Websites_Reachable_Hero_Title);
 			HashMap<String, String> data = new HashMap<>();
 			data.put("WebsiteURL", measurement.url.url);
+			//TODO-string add TestResults_Details_Websites_Reachable_Content_Paragraph_2 and 3 and 4
 			desc.setText(Mustache.compiler().compile(getString(R.string.TestResults_Details_Websites_Reachable_Content_Paragraph_1)).execute(data));
 		}
 		return v;
