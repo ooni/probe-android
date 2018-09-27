@@ -2,20 +2,31 @@ package org.openobservatory.ooniprobe.fragment;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.preference.EditTextPreference;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceScreen;
+import android.text.TextUtils;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 
+import java.util.Arrays;
+import java.util.List;
+
+import androidx.preference.EditTextPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceScreen;
+import localhost.toolkit.app.MessageDialogFragment;
 import localhost.toolkit.preference.ExtendedPreferenceFragment;
 
 public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFragment> implements SharedPreferences.OnSharedPreferenceChangeListener {
 	private String rootKey;
+	private List<String> intPref;
 
 	@Override public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
 		this.rootKey = rootKey;
+	}
+
+	@Override public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		intPref = Arrays.asList(getResources().getStringArray(R.array.integerPreferences));
 	}
 
 	@Override public void onResume() {
@@ -43,8 +54,19 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 		Preference preference = findPreference(key);
-		if (preference instanceof EditTextPreference)
-			preference.setSummary(sharedPreferences.getString(key, null));
+		if (preference instanceof EditTextPreference) {
+			String value = sharedPreferences.getString(key, null);
+			preference.setSummary(value);
+			if (intPref.contains(key) && value != null && !TextUtils.isDigitsOnly(value)) {
+				MessageDialogFragment.newInstance(getString(R.string.General_AppName), "missing string", false).show(getFragmentManager(), null);
+				sharedPreferences.edit().remove(key).apply();
+				ExtendedPreferenceFragment fragment = newInstance();
+				Bundle args = new Bundle();
+				args.putString(PreferenceFragment.ARG_PREFERENCE_ROOT, rootKey);
+				fragment.setArguments(args);
+				getFragmentManager().beginTransaction().replace(android.R.id.content, fragment).commit();
+			}
+		}
 	}
 
 	@Override protected PreferenceFragment newInstance() {

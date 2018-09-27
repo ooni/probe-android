@@ -71,6 +71,11 @@
 	<string name="bigNormal" translatable="false">&lt;font color=#0588cb>%1$s&lt;/font> &lt;small>%2$s&lt;/small></string>
 	<string name="twoParam" translatable="false">%1$s %2$s</string>
 	<string name="http" translatable="false">http://</string>
+	<string-array name="integerPreferences" translatable="false">
+		<item>@string/ndt_server_port</item>
+		<item>@string/dash_server_port</item>
+		<item>@string/max_runtime</item>
+	</string-array>
 	<string-array name="filterTests" translatable="false">
 		<item>@string/TestResults_Overview_FilterTests_AllTests</item>
 		<item>@string/TestResults_Overview_FilterTests_Websites</item>
