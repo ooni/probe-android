@@ -183,12 +183,12 @@ public class TestKeys {
 	}
 
 	public double getScaledValue(double value) {
-		if (value < 100)
+		if (value < 1000)
 			return value;
-		else if (value < 100000)
+		else if (value < 1000*1000)
 			return value / 1000;
 		else
-			return value / 1000000;
+			return value / 1000*1000;
 	}
 
 	public String setFractionalDigits(double value) {
@@ -200,9 +200,9 @@ public class TestKeys {
 
 	public String getUnit(double value, Context ctx) {
 		//We assume there is no Tbit/s (for now!)
-		if (value < 100)
+		if (value < 1000)
 			return ctx.getString(R.string.TestResults_Kbps);
-		else if (value < 100000)
+		else if (value < 1000*1000)
 			return ctx.getString(R.string.TestResults_Mbps);
 		else
 			return ctx.getString(R.string.TestResults_Gbps);
