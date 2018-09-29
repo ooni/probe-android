@@ -47,9 +47,10 @@ public class Result extends BaseModel implements Serializable {
 
 	public static String readableFileSize(long size) {
 		if (size <= 0) return "0";
+		long kbSize = size * 1024;
 		final String[] units = new String[]{"B", "kB", "MB", "GB", "TB"};
-		int digitGroups = (int) (Math.log10(size) / Math.log10(1024));
-		return new DecimalFormat("#,##0.#").format(size / Math.pow(1024, digitGroups)) + " " + units[digitGroups];
+		int digitGroups = (int) (Math.log10(kbSize) / Math.log10(1024));
+		return new DecimalFormat("#,##0.#").format(kbSize / Math.pow(1024, digitGroups)) + " " + units[digitGroups];
 	}
 
 	public static void deleteAll(Context c) {
