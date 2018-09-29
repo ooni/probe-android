@@ -58,7 +58,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 			String value = sharedPreferences.getString(key, null);
 			preference.setSummary(value);
 			if (intPref.contains(key) && value != null && !TextUtils.isDigitsOnly(value)) {
-				MessageDialogFragment.newInstance(getString(R.string.General_AppName), "missing string", false).show(getFragmentManager(), null);
+				MessageDialogFragment.newInstance(getString(R.string.Modal_Error), getString(R.string.General_AppName), false).show(getFragmentManager(), null);
 				sharedPreferences.edit().remove(key).apply();
 				ExtendedPreferenceFragment fragment = newInstance();
 				Bundle args = new Bundle();
