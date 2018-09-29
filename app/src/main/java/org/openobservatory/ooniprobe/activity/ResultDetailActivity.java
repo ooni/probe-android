@@ -39,6 +39,7 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import localhost.toolkit.app.ConfirmDialogFragment;
 import localhost.toolkit.widget.HeterogeneousRecyclerAdapter;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
@@ -83,7 +84,10 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 
 	@Override public void onClick(View v) {
 		Measurement measurement = (Measurement) v.getTag();
-		startActivity(MeasurementDetailActivity.newIntent(this, measurement.id));
+		if (!measurement.is_failed)
+			startActivity(MeasurementDetailActivity.newIntent(this, measurement.id));
+		//else
+			//ConfirmDialogFragment.newInstance(result, getString(R.string.Modal_ReRun_Title), getString(R.string.Modal_ReRun_Paragraph)).show(getChildFragmentManager(), null);
 	}
 
 	private class ResultHeaderAdapter extends FragmentPagerAdapter {
