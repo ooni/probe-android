@@ -47,10 +47,8 @@ public class NetworkMeasurement {
             test = new HttpHeaderFieldManipulationTest();
         else if (testName.compareTo(OONITests.WEB_CONNECTIVITY) == 0) {
             test = new WebConnectivityTest();
-            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-            String max_runtime = preferences.getString("max_runtime", OONITests.MAX_RUNTIME);
-            test.set_options("max_runtime", max_runtime);
             ArrayList<String> urls = TestLists.getInstance(context).getUrls();
+            setMaxRuntime(context);
             for (int i = 0; i < urls.size(); i++)
                 test.add_input(urls.get(i));
             System.out.println(urls);
@@ -82,6 +80,10 @@ public class NetworkMeasurement {
             test = new HttpHeaderFieldManipulationTest();
         else if (testName.compareTo(OONITests.WEB_CONNECTIVITY) == 0) {
             test = new WebConnectivityTest();
+            if (urls.size() == 0) {
+                setMaxRuntime(context);
+                urls = TestLists.getInstance(context).getUrls();
+            }
             for (int i = 0; i < urls.size(); i++)
                 test.add_input(urls.get(i));
         }
@@ -95,6 +97,12 @@ public class NetworkMeasurement {
             test = new TelegramTest();
         else if (testName.compareTo(OONITests.FACEBOOK_MESSENGER) == 0)
             test = new FacebookMessengerTest();
+    }
+
+    public void setMaxRuntime(Context context){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String max_runtime = preferences.getString("max_runtime", OONITests.MAX_RUNTIME);
+        test.set_options("max_runtime", max_runtime);
     }
 
     @NonNull
