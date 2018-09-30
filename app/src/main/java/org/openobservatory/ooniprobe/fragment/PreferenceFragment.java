@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.fragment;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -7,16 +8,18 @@ import android.text.TextUtils;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
 import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceScreen;
+import localhost.toolkit.app.ConfirmDialogFragment;
 import localhost.toolkit.app.MessageDialogFragment;
 import localhost.toolkit.preference.ExtendedPreferenceFragment;
 
-public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFragment> implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFragment> implements SharedPreferences.OnSharedPreferenceChangeListener, ConfirmDialogFragment.OnConfirmedListener {
 	private String rootKey;
 	private List<String> intPref;
 
@@ -54,11 +57,13 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 		Preference preference = findPreference(key);
-		if (preference instanceof EditTextPreference) {
+		if (key.equals(getString(R.string.include_cc)) && !sharedPreferences.getBoolean(key, true))
+			ConfirmDialogFragment.newInstance(key, getString(R.string.Settings_Sharing_IncludeCountryCode), getString(R.string.Settings_Sharing_IncludeCountryCode_PopUp)).show(getChildFragmentManager(), null);
+		else if (preference instanceof EditTextPreference) {
 			String value = sharedPreferences.getString(key, null);
 			preference.setSummary(value);
 			if (intPref.contains(key) && value != null && !TextUtils.isDigitsOnly(value)) {
-				MessageDialogFragment.newInstance(getString(R.string.Modal_Error), getString(R.string.General_AppName), false).show(getFragmentManager(), null);
+				MessageDialogFragment.newInstance(getString(R.string.Modal_Error), getString(R.string.Modal_OnlyDigits), false).show(getFragmentManager(), null);
 				sharedPreferences.edit().remove(key).apply();
 				ExtendedPreferenceFragment fragment = newInstance();
 				Bundle args = new Bundle();
@@ -71,5 +76,16 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 
 	@Override protected PreferenceFragment newInstance() {
 		return new PreferenceFragment();
+	}
+
+	@Override public void onConfirmation(Serializable serializable, int i) {
+		if (i == DialogInterface.BUTTON_POSITIVE && serializable.equals(getString(R.string.include_cc))) {
+			getPreferenceScreen().getSharedPreferences().edit().remove((String) serializable).apply();
+			ExtendedPreferenceFragment fragment = newInstance();
+			Bundle args = new Bundle();
+			args.putString(PreferenceFragment.ARG_PREFERENCE_ROOT, rootKey);
+			fragment.setArguments(args);
+			getFragmentManager().beginTransaction().replace(android.R.id.content, fragment).commit();
+		}
 	}
 }
