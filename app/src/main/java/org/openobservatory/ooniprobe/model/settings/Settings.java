@@ -61,6 +61,8 @@ public class Settings {
 		public Integer port;
 		@SerializedName("all_endpoints")
 		public Integer all_endpoints;
+		@SerializedName("randomize_input")
+		public Integer randomize_input;
 
 		public Options(Context c, PreferenceManager pm) {
 			geoip_asn_path = c.getCacheDir() + "/" + Application.GEO_IPASNUM;
@@ -71,6 +73,7 @@ public class Settings {
 			save_real_probe_ip = pm.getIncludeIp();
 			software_name = "ooniprobe-android";
 			software_version = VersionUtils.get_software_version();
+			randomize_input = 0;
 		}
 	}
 }
