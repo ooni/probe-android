@@ -79,7 +79,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 	}
 
 	@Override public void onConfirmation(Serializable serializable, int i) {
-		if (i == DialogInterface.BUTTON_POSITIVE && serializable.equals(getString(R.string.include_cc))) {
+		if (i == DialogInterface.BUTTON_NEGATIVE && serializable.equals(getString(R.string.include_cc))) {
 			getPreferenceScreen().getSharedPreferences().edit().remove((String) serializable).apply();
 			ExtendedPreferenceFragment fragment = newInstance();
 			Bundle args = new Bundle();
