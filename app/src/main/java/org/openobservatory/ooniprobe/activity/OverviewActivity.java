@@ -44,7 +44,8 @@ public class OverviewActivity extends AbstractActivity {
 		icon.setImageResource(testSuite.getIcon());
 		title.setText(testSuite.getTitle());
 		InternalStyleSheet css = new Github();
-		css.addFontFace("FiraSans", "regular", "italic", "normal", "url('firasans_regular_normal.otf')");
+		// TODO try https://github.com/noties/Markwon
+		css.addFontFace("Fira Sans", null, null, null, "url('https://fonts.googleapis.com/css?family=Fira+Sans')");
 		desc.addStyleSheet(css);
 		desc.loadMarkdown(getString(testSuite.getDesc1()) + "\n\n" + getString(testSuite.getDesc2()));
 	}
