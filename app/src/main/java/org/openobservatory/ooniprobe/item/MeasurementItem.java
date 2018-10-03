@@ -1,6 +1,5 @@
 package org.openobservatory.ooniprobe.item;
 
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,7 @@ import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
@@ -32,10 +32,10 @@ public class MeasurementItem extends HeterogeneousRecyclerItem<Measurement, Meas
 		AbstractTest test = extra.getTest();
 		if (extra.test_name.equals(WebConnectivity.NAME)) {
 			viewHolder.text.setText(extra.url.url);
-			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.category_aldr, 0, extra.is_failed ? R.drawable.cross : R.drawable.tick, 0);
+			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.category_aldr, 0, extra.is_anomaly ? R.drawable.cross : R.drawable.tick, 0);
 		} else {
 			viewHolder.text.setText(test.getLabelResId());
-			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(test.getIconResId(), 0, extra.is_failed ? R.drawable.cross : R.drawable.tick, 0);
+			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(test.getIconResId(), 0, extra.is_anomaly ? R.drawable.cross : R.drawable.tick, 0);
 		}
 	}
 

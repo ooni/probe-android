@@ -12,7 +12,7 @@
 		android:icon="@mipmap/ic_launcher"
 		android:label="@string/General_AppName"
 		android:supportsRtl="true"
-		android:theme="@style/Theme.AppCompat.Light.DarkActionBar.App"
+		android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App"
 		tools:replace="android:allowBackup, android:label">
 		<meta-data
 			android:name="io.fabric.ApiKey"
@@ -39,7 +39,7 @@
 			android:name=".activity.MainActivity"
 			android:launchMode="singleTop"
 			android:screenOrientation="portrait"
-			android:theme="@style/Theme.AppCompat.Light.DarkActionBar.App.NoActionBar">
+			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
@@ -47,7 +47,7 @@
 		</activity>
 		<activity
 			android:name=".activity.BrowserActivity"
-			android:theme="@style/Theme.AppCompat.Light.DarkActionBar.App.NoActionBar">
+			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
 			<intent-filter>
 				<action android:name="org.openobservatory.ooniprobe.OPEN_BROWSER" />
 				<category android:name="android.intent.category.DEFAULT" />
@@ -55,11 +55,11 @@
 		</activity>
 		<activity
 			android:name=".activity.NotificationDialogActivity"
-			android:theme="@style/Theme.AppCompat.Light.Transparent" />
+			android:theme="@style/Theme.MaterialComponents.Light.Transparent" />
 		<activity
 			android:name=".activity.InformedConsentActivity"
 			android:screenOrientation="portrait"
-			android:theme="@style/Theme.AppCompat.Light.DarkActionBar.App.NoActionBar" />
+			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar" />
 		<activity
 			android:name=".activity.PreferenceActivity"
 			android:launchMode="singleTop"
@@ -87,7 +87,7 @@
 			android:name=".activity.InfoActivity"
 			android:label="@string/Settings_About_Label"
 			android:parentActivityName=".activity.PreferenceActivity"
-			android:theme="@style/Theme.AppCompat.Light.DarkActionBar.App.NoActionBar">
+			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
 			<intent-filter>
 				<action android:name="org.openobservatory.ooniprobe.activity.InfoActivity" />
 				<category android:name="android.intent.category.DEFAULT" />

@@ -35,7 +35,7 @@ public class OverviewActivity extends AbstractActivity {
 	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		testSuite = (AbstractSuite) getIntent().getSerializableExtra(TEST);
-		setTheme(testSuite.getThemeLight());
+		setTheme(testSuite.getThemeDark());
 		setContentView(R.layout.activity_overview);
 		ButterKnife.bind(this);
 		setSupportActionBar(toolbar);

@@ -30,11 +30,10 @@ android {
 dependencies {
 	implementation 'androidx.appcompat:appcompat:1.0.0'
 	implementation 'androidx.legacy:legacy-support-v13:1.0.0'
-	implementation 'androidx.cardview:cardview:1.0.0'
 	implementation 'androidx.preference:preference:1.0.0'
 
-	implementation 'com.google.firebase:firebase-messaging:17.3.2'
-	implementation 'com.google.firebase:firebase-core:16.0.3'
+	implementation 'com.google.firebase:firebase-messaging:17.3.3'
+	implementation 'com.google.firebase:firebase-core:16.0.4'
 
 	annotationProcessor 'com.github.Raizlabs.DBFlow:dbflow-processor:4.2.4'
 	implementation 'com.github.Raizlabs.DBFlow:dbflow-core:4.2.4'

@@ -5,7 +5,7 @@
 	android:gravity="center_vertical"
 	android:orientation="vertical"
 	android:paddingHorizontal="16dp"
-	android:theme="@style/Theme.AppCompat.NoActionBar.App">
+	android:theme="@style/Theme.MaterialComponents.NoActionBar.App">
 
 	<LinearLayout
 		android:id="@+id/dataUsage"
@@ -17,23 +17,23 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:drawablePadding="4dp"
 			android:drawableStart="@drawable/data_usage"
+			android:drawablePadding="4dp"
 			android:text="@string/TestResults_Summary_Hero_DataUsage" />
 
 		<TextView
 			android:id="@+id/upload"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:drawablePadding="4dp"
-			android:drawableStart="@drawable/upload_white" />
+			android:drawableStart="@drawable/upload_white"
+			android:drawablePadding="4dp" />
 
 		<TextView
 			android:id="@+id/download"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:drawablePadding="4dp"
-			android:drawableStart="@drawable/download_white" />
+			android:drawableStart="@drawable/download_white"
+			android:drawablePadding="4dp" />
 	</LinearLayout>
 
 	<LinearLayout
@@ -46,8 +46,8 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:drawablePadding="4dp"
 			android:drawableStart="@drawable/date_and_time"
+			android:drawablePadding="4dp"
 			android:text="@string/TestResults_Summary_Hero_DateAndTime" />
 
 		<TextView
@@ -66,8 +66,8 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:drawablePadding="4dp"
-			android:drawableStart="@drawable/runtime" />
+			android:drawableStart="@drawable/runtime"
+			android:drawablePadding="4dp" />
 
 		<TextView
 			android:id="@+id/runtime"
@@ -84,8 +84,8 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:drawablePadding="4dp"
 			android:drawableStart="@drawable/globe_18dp"
+			android:drawablePadding="4dp"
 			android:text="@string/TestResults_Summary_Hero_Country" />
 
 		<TextView
@@ -103,8 +103,8 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:drawablePadding="4dp"
 			android:drawableStart="@drawable/network"
+			android:drawablePadding="4dp"
 			android:text="@string/TestResults_Summary_Hero_Network" />
 
 		<TextView

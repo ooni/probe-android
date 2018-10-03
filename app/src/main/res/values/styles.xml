@@ -1,6 +1,5 @@
 <resources>
-
-	<style name="Theme.AppCompat.Light.DarkActionBar.App">
+	<style name="Theme.MaterialComponents.Light.DarkActionBar.App">
 		<item name="colorPrimary">@color/color_base</item>
 		<item name="colorAccent">@color/color_base</item>
 		<item name="colorPrimaryDark">@color/color_blue6</item>
@@ -9,7 +8,7 @@
 		<item name="android:textColor">@color/color_gray9</item>
 	</style>
 
-	<style name="Theme.AppCompat.NoActionBar.App">
+	<style name="Theme.MaterialComponents.NoActionBar.App">
 		<item name="colorPrimary">@color/color_base</item>
 		<item name="colorPrimaryDark">@color/color_blue6</item>
 		<item name="colorAccent">@color/color_white</item>
@@ -18,56 +17,56 @@
 		<item name="android:textColor">@color/color_white</item>
 	</style>
 
-	<style name="Theme.AppCompat.Light.DarkActionBar.App.NoActionBar">
+	<style name="Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
 		<item name="windowActionBar">false</item>
 		<item name="windowNoTitle">true</item>
 	</style>
 
-	<style name="Theme.AppCompat.Light.DarkActionBar.App.NoActionBar.Websites">
+	<style name="Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar.Websites">
 		<item name="colorPrimary">@color/color_indigo6</item>
 		<item name="colorPrimaryDark">@color/color_indigo9</item>
 	</style>
 
-	<style name="Theme.AppCompat.Light.DarkActionBar.App.NoActionBar.InstantMessaging">
+	<style name="Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar.InstantMessaging">
 		<item name="colorPrimary">@color/color_cyan6</item>
 		<item name="colorPrimaryDark">@color/color_cyan9</item>
 	</style>
 
-	<style name="Theme.AppCompat.Light.DarkActionBar.App.NoActionBar.MiddleBoxes">
+	<style name="Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar.MiddleBoxes">
 		<item name="colorPrimary">@color/color_violet8</item>
 		<item name="colorPrimaryDark">@color/color_violet9</item>
 	</style>
 
-	<style name="Theme.AppCompat.Light.DarkActionBar.App.NoActionBar.Performance">
+	<style name="Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar.Performance">
 		<item name="colorPrimary">@color/color_fuchsia6</item>
 		<item name="colorPrimaryDark">@color/color_fuchsia9</item>
 	</style>
 
-	<style name="Theme.AppCompat.NoActionBar.App.Websites">
+	<style name="Theme.MaterialComponents.NoActionBar.App.Websites">
 		<item name="colorPrimary">@color/color_indigo6</item>
 		<item name="colorPrimaryDark">@color/color_indigo9</item>
 		<item name="android:windowBackground">@color/color_indigo6</item>
 	</style>
 
-	<style name="Theme.AppCompat.NoActionBar.App.InstantMessaging">
+	<style name="Theme.MaterialComponents.NoActionBar.App.InstantMessaging">
 		<item name="colorPrimary">@color/color_cyan6</item>
 		<item name="colorPrimaryDark">@color/color_cyan9</item>
 		<item name="android:windowBackground">@color/color_cyan6</item>
 	</style>
 
-	<style name="Theme.AppCompat.NoActionBar.App.MiddleBoxes">
+	<style name="Theme.MaterialComponents.NoActionBar.App.MiddleBoxes">
 		<item name="colorPrimary">@color/color_violet8</item>
 		<item name="colorPrimaryDark">@color/color_violet9</item>
 		<item name="android:windowBackground">@color/color_violet8</item>
 	</style>
 
-	<style name="Theme.AppCompat.NoActionBar.App.Performance">
+	<style name="Theme.MaterialComponents.NoActionBar.App.Performance">
 		<item name="colorPrimary">@color/color_fuchsia6</item>
 		<item name="colorPrimaryDark">@color/color_fuchsia9</item>
 		<item name="android:windowBackground">@color/color_fuchsia6</item>
 	</style>
 
-	<style name="Theme.AppCompat.Light.Transparent">
+	<style name="Theme.MaterialComponents.Light.Transparent">
 		<item name="android:windowIsTranslucent">true</item>
 		<item name="android:windowBackground">@android:color/transparent</item>
 		<item name="android:windowContentOverlay">@null</item>

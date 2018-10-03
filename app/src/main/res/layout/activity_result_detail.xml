@@ -25,9 +25,9 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			app:tabGravity="center"
+			app:tabIndicatorHeight="0dp"
 			app:tabPadding="0dp"
-			app:tabTextAppearance="@style/TextAppearance.AppCompat.Medium"
-			app:tabIndicatorHeight="0dp" />
+			app:tabTextAppearance="@style/TextAppearance.AppCompat.Medium" />
 	</com.google.android.material.appbar.AppBarLayout>
 
 	<androidx.recyclerview.widget.RecyclerView

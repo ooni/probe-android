@@ -42,18 +42,16 @@
 				android:layout_marginVertical="8dp"
 				android:background="@android:color/darker_gray" />
 
-			<Button
+			<com.google.android.material.button.MaterialButton
 				android:id="@+id/rawData"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
-				android:background="@drawable/rectangle_rounded_blue"
-				android:text="@string/TestResults_Details_RawData"
-				android:textColor="@color/color_white" />
+				android:text="@string/TestResults_Details_RawData" />
 
-			<Button
+			<com.google.android.material.button.MaterialButton
 				android:id="@+id/viewLog"
-				style="@style/Widget.AppCompat.Button.Borderless.Colored"
+				style="@style/Widget.MaterialComponents.Button.TextButton"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"

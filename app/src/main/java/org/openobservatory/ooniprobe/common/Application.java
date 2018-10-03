@@ -54,7 +54,7 @@ public class Application extends android.app.Application {
 		if (!f.exists() || preferenceManager.getGeoVer() != GEO_VER)
 			try {
 				Log.d(PreferenceManager.GEO_VER, Integer.toString(GEO_VER));
-				IOUtils.copyStream(getResources().openRawResource(id), new FileOutputStream(f), true);
+				IOUtils.copyStream(getResources().openRawResource(id), new FileOutputStream(f), true, 1024);
 				preferenceManager.setGeoVer(GEO_VER);
 			} catch (Exception e1) {
 				e1.printStackTrace();

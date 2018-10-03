@@ -8,9 +8,9 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center_vertical"
-		android:drawablePadding="8dp"
 		android:drawableTop="@drawable/test_middle_boxes_white"
+		android:drawablePadding="8dp"
 		android:gravity="center_horizontal"
 		android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-		android:theme="@style/Theme.AppCompat.NoActionBar.App" />
+		android:theme="@style/Theme.MaterialComponents.NoActionBar.App" />
 </FrameLayout>

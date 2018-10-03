@@ -8,7 +8,7 @@
 		android:layout_height="wrap_content"
 		android:orientation="vertical">
 
-		<androidx.cardview.widget.CardView
+		<com.google.android.material.card.MaterialCardView
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_margin="8dp">
@@ -22,20 +22,20 @@
 
 				<include layout="@layout/edittext_url"/>
 			</LinearLayout>
-		</androidx.cardview.widget.CardView>
+		</com.google.android.material.card.MaterialCardView>
 
-		<androidx.cardview.widget.CardView
+		<com.google.android.material.card.MaterialCardView
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_margin="8dp">
 
-			<Button
+			<com.google.android.material.button.MaterialButton
 				android:id="@+id/add"
-				style="@style/Widget.AppCompat.Button.Borderless"
+				style="@style/Widget.MaterialComponents.Button.TextButton"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="end"
 				android:text="add"/>
-		</androidx.cardview.widget.CardView>
+		</com.google.android.material.card.MaterialCardView>
 	</LinearLayout>
 </ScrollView>

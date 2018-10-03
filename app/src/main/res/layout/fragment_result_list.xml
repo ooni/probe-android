@@ -22,7 +22,7 @@
 			android:dividerPadding="8dp"
 			android:orientation="horizontal"
 			android:showDividers="middle"
-			android:theme="@style/Theme.AppCompat.NoActionBar.App">
+			android:theme="@style/Theme.MaterialComponents.NoActionBar.App">
 
 			<LinearLayout
 				android:layout_width="0dp"

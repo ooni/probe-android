@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical">
@@ -26,39 +27,35 @@
 			android:id="@+id/title"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textAppearance="@style/TextAppearance.AppCompat.Large"
-			android:theme="@style/Theme.AppCompat.NoActionBar.App" />
+			android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-		<Button
+		<com.google.android.material.button.MaterialButton
 			android:id="@+id/configure"
-			style="@style/Widget.AppCompat.Button.Borderless"
+			style="@style/Widget.MaterialComponents.Button.OutlinedButton"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:background="@drawable/rectangle_rounded_stroke"
 			android:text="@string/Dashboard_Card_Configure"
-			android:theme="@style/Theme.AppCompat.NoActionBar.App" />
+			app:strokeColor="@android:color/white" />
 
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"
-			android:text="2min"
-			android:theme="@style/Theme.AppCompat.NoActionBar.App" />
+			android:text="2min" />
 
-		<Button
+		<com.google.android.material.button.MaterialButton
 			android:id="@+id/run"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:background="@drawable/rectangle_rounded_white"
-			android:text="@string/Dashboard_Card_Run" />
+			android:text="@string/Dashboard_Card_Run"
+			android:textColor="?attr/colorPrimary" />
 
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"
 			android:layout_marginBottom="16dp"
-			android:text="2 settimane fa"
-			android:theme="@style/Theme.AppCompat.NoActionBar.App" />
+			android:text="2 settimane fa" />
 	</com.google.android.material.appbar.AppBarLayout>
 
 	<br.tiagohm.markdownview.MarkdownView
