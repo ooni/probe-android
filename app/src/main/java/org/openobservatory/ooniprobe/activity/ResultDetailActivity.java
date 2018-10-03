@@ -2,18 +2,12 @@ package org.openobservatory.ooniprobe.activity;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.legacy.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.ActionBar;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
 import android.text.format.DateFormat;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
@@ -34,16 +28,25 @@ import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
+import androidx.legacy.app.FragmentPagerAdapter;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import localhost.toolkit.app.ConfirmDialogFragment;
 import localhost.toolkit.widget.HeterogeneousRecyclerAdapter;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
-public class ResultDetailActivity extends AbstractActivity implements View.OnClickListener {
+public class ResultDetailActivity extends AbstractActivity implements View.OnClickListener, ConfirmDialogFragment.OnConfirmedListener {
 	public static final String ID = "id";
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.tabLayout) TabLayout tabLayout;
@@ -84,10 +87,16 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 
 	@Override public void onClick(View v) {
 		Measurement measurement = (Measurement) v.getTag();
-		if (!measurement.is_failed)
+		if (measurement.is_failed)
+			ConfirmDialogFragment.newInstance(measurement, getString(R.string.Modal_ReRun_Title), getString(R.string.Modal_ReRun_Paragraph)).show(getFragmentManager(), null);
+		else
 			startActivity(MeasurementDetailActivity.newIntent(this, measurement.id));
-		//else
-			//ConfirmDialogFragment.newInstance(result, getString(R.string.Modal_ReRun_Title), getString(R.string.Modal_ReRun_Paragraph)).show(getChildFragmentManager(), null);
+	}
+
+	@Override public void onConfirmation(Serializable serializable, int i) {
+		Measurement measurement = (Measurement) serializable;
+		if (i == DialogInterface.BUTTON_POSITIVE)
+			Toast.makeText(this, "RERUN", Toast.LENGTH_SHORT).show();
 	}
 
 	private class ResultHeaderAdapter extends FragmentPagerAdapter {

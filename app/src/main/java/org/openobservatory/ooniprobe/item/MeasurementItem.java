@@ -32,10 +32,10 @@ public class MeasurementItem extends HeterogeneousRecyclerItem<Measurement, Meas
 		AbstractTest test = extra.getTest();
 		if (extra.test_name.equals(WebConnectivity.NAME)) {
 			viewHolder.text.setText(extra.url.url);
-			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.category_aldr, 0, extra.is_anomaly ? R.drawable.cross : R.drawable.tick, 0);
+			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.category_aldr, 0, extra.is_anomaly ? R.drawable.cross : extra.is_failed ? R.drawable.reload : R.drawable.tick, 0);
 		} else {
 			viewHolder.text.setText(test.getLabelResId());
-			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(test.getIconResId(), 0, extra.is_anomaly ? R.drawable.cross : R.drawable.tick, 0);
+			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(test.getIconResId(), 0, extra.is_anomaly ? R.drawable.cross : extra.is_failed ? R.drawable.reload : R.drawable.tick, 0);
 		}
 	}
 
