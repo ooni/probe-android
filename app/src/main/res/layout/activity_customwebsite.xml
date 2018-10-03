@@ -20,7 +20,7 @@
 				android:layout_margin="8dp"
 				android:orientation="vertical">
 
-				<include layout="@layout/edittext_url"/>
+				<include layout="@layout/edittext_url" />
 			</LinearLayout>
 		</com.google.android.material.card.MaterialCardView>
 
@@ -29,13 +29,13 @@
 			android:layout_height="wrap_content"
 			android:layout_margin="8dp">
 
-			<com.google.android.material.button.MaterialButton
+			<Button
 				android:id="@+id/add"
 				style="@style/Widget.MaterialComponents.Button.TextButton"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="end"
-				android:text="add"/>
+				android:text="add" />
 		</com.google.android.material.card.MaterialCardView>
 	</LinearLayout>
 </ScrollView>

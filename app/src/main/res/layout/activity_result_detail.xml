@@ -24,10 +24,13 @@
 			android:id="@+id/tabLayout"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:background="?attr/colorPrimary"
 			app:tabGravity="center"
 			app:tabIndicatorHeight="0dp"
 			app:tabPadding="0dp"
-			app:tabTextAppearance="@style/TextAppearance.AppCompat.Medium" />
+			app:tabSelectedTextColor="@color/color_white"
+			app:tabTextAppearance="@style/TextAppearance.AppCompat.Medium"
+			app:tabTextColor="#55ffffff" />
 	</com.google.android.material.appbar.AppBarLayout>
 
 	<androidx.recyclerview.widget.RecyclerView

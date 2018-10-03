@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical">
@@ -42,14 +43,15 @@
 				android:layout_marginVertical="8dp"
 				android:background="@android:color/darker_gray" />
 
-			<com.google.android.material.button.MaterialButton
+			<Button
 				android:id="@+id/rawData"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
-				android:text="@string/TestResults_Details_RawData" />
+				android:text="@string/TestResults_Details_RawData"
+				app:cornerRadius="24dp" />
 
-			<com.google.android.material.button.MaterialButton
+			<Button
 				android:id="@+id/viewLog"
 				style="@style/Widget.MaterialComponents.Button.TextButton"
 				android:layout_width="wrap_content"

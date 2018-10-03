@@ -35,12 +35,13 @@
 				android:layout_height="wrap_content"
 				android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-			<com.google.android.material.button.MaterialButton
+			<Button
 				android:id="@+id/configure"
 				style="@style/Widget.MaterialComponents.Button.OutlinedButton"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@string/Dashboard_Card_Configure"
+				app:cornerRadius="24dp"
 				app:strokeColor="@android:color/white" />
 
 			<LinearLayout
@@ -61,13 +62,14 @@
 					android:layout_height="wrap_content"
 					android:orientation="vertical">
 
-					<com.google.android.material.button.MaterialButton
+					<Button
 						android:id="@+id/run"
 						style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="@string/Dashboard_Card_Run"
-						android:textColor="?attr/colorPrimary" />
+						android:textColor="?attr/colorPrimary"
+						app:cornerRadius="24dp" />
 
 					<TextView
 						android:layout_width="wrap_content"

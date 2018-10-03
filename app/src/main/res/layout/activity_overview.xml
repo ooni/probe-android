@@ -29,12 +29,13 @@
 			android:layout_height="wrap_content"
 			android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-		<com.google.android.material.button.MaterialButton
+		<Button
 			android:id="@+id/configure"
 			style="@style/Widget.MaterialComponents.Button.OutlinedButton"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="@string/Dashboard_Card_Configure"
+			app:cornerRadius="24dp"
 			app:strokeColor="@android:color/white" />
 
 		<TextView
@@ -43,12 +44,13 @@
 			android:layout_gravity="center_horizontal"
 			android:text="2min" />
 
-		<com.google.android.material.button.MaterialButton
+		<Button
 			android:id="@+id/run"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="@string/Dashboard_Card_Run"
-			android:textColor="?attr/colorPrimary" />
+			android:textColor="?attr/colorPrimary"
+			app:cornerRadius="24dp" />
 
 		<TextView
 			android:layout_width="wrap_content"
