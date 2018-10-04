@@ -13,11 +13,12 @@ import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
 import org.openobservatory.ooniprobe.model.settings.Settings;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class WebConnectivity extends AbstractTest {
 	public static final String NAME = "web_connectivity";
 	public static final String MK_NAME = "WebConnectivity";
-	private ArrayList<String> inputs;
+	private List<String> inputs;
 	private Float max_runtime;
 
 	public WebConnectivity() {
@@ -31,7 +32,7 @@ public class WebConnectivity extends AbstractTest {
 		run(c, pm, gson, settings, result, index, testCallback);
 	}
 
-	public void setInputs(ArrayList<String> inputs) {
+	public void setInputs(List<String> inputs) {
 		this.inputs = inputs;
 	}
 

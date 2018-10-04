@@ -3,7 +3,6 @@ package org.openobservatory.ooniprobe.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
 import android.view.animation.Animation;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -13,6 +12,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.OoniIOClient;
 import org.openobservatory.ooniprobe.model.RetrieveUrlResponse;
+import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
@@ -21,7 +21,9 @@ import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
+import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import localhost.toolkit.app.MessageDialogFragment;
@@ -33,29 +35,38 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RunningActivity extends AbstractActivity {
 	public static final String TEST = "test";
+	public static final String ID_MEASUREMENT = "idMeasurement";
 	@BindView(R.id.name) TextView name;
 	@BindView(R.id.log) TextView log;
 	@BindView(R.id.progress) ProgressBar progress;
 	@BindView(R.id.animation) LottieAnimationView animation;
-	private AbstractSuite testSuite;
+	private AbstractTest[] testList;
+	private Result result;
 
-	public static Intent newIntent(Context context, AbstractSuite testSuite) {
-		return new Intent(context, RunningActivity.class).putExtra(TEST, testSuite);
+	public static Intent newIntent(Context context, AbstractSuite testSuite, Integer idMeasurement) {
+		return new Intent(context, RunningActivity.class).putExtra(TEST, testSuite).putExtra(ID_MEASUREMENT, idMeasurement);
 	}
 
 	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		testSuite = (AbstractSuite) getIntent().getSerializableExtra(TEST);
-		setTheme(testSuite.getThemeDark());
-		setContentView(R.layout.activity_running);
-		ButterKnife.bind(this);
-		animation.setImageAssetsFolder("anim/");
-		animation.setAnimation(testSuite.getAnim());
-		animation.setRepeatCount(Animation.INFINITE);
-		animation.playAnimation();
-		AbstractTest[] testList = testSuite.getTestList(getPreferenceManager());
-		if (testList != null) {
-			progress.setMax(testList.length * 100);
+		AbstractSuite testSuite;
+		int idMeasurement = getIntent().getIntExtra(ID_MEASUREMENT, -1);
+		if (idMeasurement != -1) {
+			Measurement failedMeasurement = Measurement.querySingle(idMeasurement);
+			failedMeasurement.result.load();
+			testSuite = failedMeasurement.result.getTestSuite();
+			AbstractTest abstractTest = failedMeasurement.getTest();
+			if (abstractTest instanceof WebConnectivity)
+				((WebConnectivity) abstractTest).setInputs(Collections.singletonList(failedMeasurement.url.url));
+			testList = new AbstractTest[]{abstractTest};
+			result = failedMeasurement.result;
+			run(testList);
+			failedMeasurement.is_rerun = true;
+			failedMeasurement.save();
+		} else {
+			testSuite = (AbstractSuite) getIntent().getSerializableExtra(TEST);
+			testList = testSuite.getTestList(getPreferenceManager());
+			result = new Result(testSuite.getName());
 			boolean isWebConn = false;
 			for (AbstractTest abstractTest : testList)
 				if (abstractTest instanceof WebConnectivity) {
@@ -89,6 +100,14 @@ public class RunningActivity extends AbstractActivity {
 			} else
 				run(testList);
 		}
+		setTheme(testSuite.getThemeDark());
+		setContentView(R.layout.activity_running);
+		ButterKnife.bind(this);
+		animation.setImageAssetsFolder("anim/");
+		animation.setAnimation(testSuite.getAnim());
+		animation.setRepeatCount(Animation.INFINITE);
+		animation.playAnimation();
+		progress.setMax(testList.length * 100);
 	}
 
 	@Override public void onBackPressed() {
@@ -96,12 +115,12 @@ public class RunningActivity extends AbstractActivity {
 	}
 
 	private void run(AbstractTest[] testList) {
-		new TestAsyncTaskImpl(this, testSuite.getName()).execute(testList);
+		new TestAsyncTaskImpl(this, result).execute(testList);
 	}
 
 	private static class TestAsyncTaskImpl extends TestAsyncTask<RunningActivity> {
-		TestAsyncTaskImpl(RunningActivity activity, String name) {
-			super(activity, new Result(name));
+		public TestAsyncTaskImpl(RunningActivity activity, Result result) {
+			super(activity, result);
 		}
 
 		@Override protected void onProgressUpdate(String... values) {

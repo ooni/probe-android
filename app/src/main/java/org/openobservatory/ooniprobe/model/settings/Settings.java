@@ -10,17 +10,17 @@ import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.utils.ConnectionState;
 import org.openobservatory.ooniprobe.utils.VersionUtils;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class Settings {
 	@SerializedName("annotations")
 	public HashMap<String, String> annotations;
 	@SerializedName("disabled_events")
-	public ArrayList<String> disabled_events;
+	public List<String> disabled_events;
 	@SerializedName("inputs")
-	public ArrayList<String> inputs;
+	public List<String> inputs;
 	@SerializedName("log_level")
 	public String log_level;
 	@SerializedName("name")
@@ -31,7 +31,7 @@ public class Settings {
 	public Settings(Context c, PreferenceManager pm) {
 		this.annotations = new HashMap<>();
 		this.annotations.put("network_type", ConnectionState.getInstance(c).getNetworkType());
-		this.disabled_events = new ArrayList<>(Arrays.asList("status.queued", "status.update.websites", "failure.report_close"));
+		this.disabled_events = Arrays.asList("status.queued", "status.update.websites", "failure.report_close");
 		this.log_level = BuildConfig.DEBUG ? "DEBUG" : "INFO";
 		this.options = new Options(c, pm);
 	}

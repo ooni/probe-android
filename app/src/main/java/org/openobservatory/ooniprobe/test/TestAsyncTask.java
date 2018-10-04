@@ -18,6 +18,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 	public TestAsyncTask(ACT activity, Result result) {
 		this.ref = new WeakReference<>(activity);
 		this.result = result;
+		result.is_viewed = false;
 		result.save();
 	}
 

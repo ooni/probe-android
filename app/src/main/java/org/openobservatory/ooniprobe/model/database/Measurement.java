@@ -5,6 +5,7 @@ import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.ForeignKey;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.openobservatory.ooniprobe.common.Application;
@@ -64,6 +65,10 @@ public class Measurement extends BaseModel implements Serializable {
 
 	public static String getLogFileName(int resultId, String test_name) {
 		return resultId + "_" + test_name + ".log";
+	}
+
+	public static Measurement querySingle(int id) {
+		return SQLite.select().from(Measurement.class).where(Measurement_Table.id.eq(id)).querySingle();
 	}
 
 	public AbstractTest getTest() {

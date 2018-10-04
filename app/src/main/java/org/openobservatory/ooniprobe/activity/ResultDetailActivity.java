@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
@@ -94,9 +93,11 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 	}
 
 	@Override public void onConfirmation(Serializable serializable, int i) {
-		Measurement measurement = (Measurement) serializable;
-		if (i == DialogInterface.BUTTON_POSITIVE)
-			Toast.makeText(this, "RERUN", Toast.LENGTH_SHORT).show();
+		if (i == DialogInterface.BUTTON_POSITIVE) {
+			Measurement measurement = (Measurement) serializable;
+			startActivity(RunningActivity.newIntent(this, null, measurement.id));
+			finish();
+		}
 	}
 
 	private class ResultHeaderAdapter extends FragmentPagerAdapter {

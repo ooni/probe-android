@@ -34,6 +34,6 @@ public class InstantMessagingSuite extends AbstractSuite {
 			list.add(new Telegram());
 		if (pm.isTestFacebookMessenger())
 			list.add(new FacebookMessenger());
-		return list.toArray(new AbstractTest[list.size()]);
+		return list.toArray(new AbstractTest[0]);
 	}
 }
