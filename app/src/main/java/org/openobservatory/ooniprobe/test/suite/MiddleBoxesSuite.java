@@ -31,6 +31,6 @@ public class MiddleBoxesSuite extends AbstractSuite {
 			list.add(new HttpHeaderFieldManipulation());
 		if (pm.isRunHttpInvalidRequestLine())
 			list.add(new HttpInvalidRequestLine());
-		return list.toArray(new AbstractTest[list.size()]);
+		return list.toArray(new AbstractTest[0]);
 	}
 }

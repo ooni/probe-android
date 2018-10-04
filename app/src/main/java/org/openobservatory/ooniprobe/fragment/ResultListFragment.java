@@ -115,7 +115,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 		String filter = getResources().getStringArray(R.array.filterTestValues)[filterTests.getSelectedItemPosition()];
 		if (!filter.isEmpty())
 			where.add(Result_Table.test_group_name.is(filter));
-		for (Result result : SQLite.select().from(Result.class).where(where.toArray(new SQLOperator[where.size()])).orderBy(Result_Table.start_time, false).queryList()) {
+		for (Result result : SQLite.select().from(Result.class).where(where.toArray(new SQLOperator[0])).orderBy(Result_Table.start_time, false).queryList()) {
 			Calendar c = Calendar.getInstance();
 			c.setTime(result.start_time);
 			int key = c.get(Calendar.YEAR) * 100 + c.get(Calendar.MONTH);

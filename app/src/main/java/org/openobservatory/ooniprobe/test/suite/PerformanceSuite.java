@@ -31,6 +31,6 @@ public class PerformanceSuite extends AbstractSuite {
 			list.add(new Ndt());
 		if (pm.isRunDash())
 			list.add(new Dash());
-		return list.toArray(new AbstractTest[list.size()]);
+		return list.toArray(new AbstractTest[0]);
 	}
 }
