@@ -90,52 +90,118 @@
 		<item>middle_boxes</item>
 		<item>performance</item>
 	</string-array>
-	<plurals name="TestResults_Overview_Websites_Blocked">
+	<plurals name="TestResults_Overview_Websites_Blocked" translatable="false">
 		<item quantity="one">@string/TestResults_Overview_Websites_Blocked_Singular</item>
 		<item quantity="other">@string/TestResults_Overview_Websites_Blocked_Plural</item>
 	</plurals>
-	<plurals name="TestResults_Overview_Websites_Tested">
+	<plurals name="TestResults_Overview_Websites_Tested" translatable="false">
 		<item quantity="one">@string/TestResults_Overview_Websites_Tested_Singular</item>
 		<item quantity="other">@string/TestResults_Overview_Websites_Tested_Plural</item>
 	</plurals>
-	<plurals name="TestResults_Overview_InstantMessaging_Blocked">
+	<plurals name="TestResults_Overview_InstantMessaging_Blocked" translatable="false">
 		<item quantity="one">@string/TestResults_Overview_InstantMessaging_Blocked_Singular</item>
 		<item quantity="other">@string/TestResults_Overview_InstantMessaging_Blocked_Plural</item>
 	</plurals>
-	<plurals name="TestResults_Overview_InstantMessaging_Available">
+	<plurals name="TestResults_Overview_InstantMessaging_Available" translatable="false">
 		<item quantity="one">@string/TestResults_Overview_InstantMessaging_Available_Singular</item>
 		<item quantity="other">@string/TestResults_Overview_InstantMessaging_Available_Plural</item>
 	</plurals>
-	<plurals name="TestResults_Summary_Websites_Hero_Tested">
+	<plurals name="TestResults_Summary_Websites_Hero_Tested" translatable="false">
 		<item quantity="one">@string/TestResults_Summary_Websites_Hero_Tested_Singular</item>
 		<item quantity="other">@string/TestResults_Summary_Websites_Hero_Tested_Plural</item>
 	</plurals>
-	<plurals name="TestResults_Summary_Websites_Hero_Blocked">
+	<plurals name="TestResults_Summary_Websites_Hero_Blocked" translatable="false">
 		<item quantity="one">@string/TestResults_Summary_Websites_Hero_Blocked_Singular</item>
 		<item quantity="other">@string/TestResults_Summary_Websites_Hero_Blocked_Plural</item>
 	</plurals>
-	<plurals name="TestResults_Summary_Websites_Hero_Sites">
+	<plurals name="TestResults_Summary_Websites_Hero_Sites" translatable="false">
 		<item quantity="one">@string/TestResults_Summary_Websites_Hero_Sites_Singular</item>
 		<item quantity="other">@string/TestResults_Summary_Websites_Hero_Sites_Plural</item>
 	</plurals>
-	<plurals name="TestResults_Summary_Websites_Hero_Reachable">
+	<plurals name="TestResults_Summary_Websites_Hero_Reachable" translatable="false">
 		<item quantity="one">@string/TestResults_Summary_Websites_Hero_Reachable_Singular</item>
 		<item quantity="other">@string/TestResults_Summary_Websites_Hero_Reachable_Plural</item>
 	</plurals>
-	<plurals name="TestResults_Summary_InstantMessaging_Hero_Tested">
+	<plurals name="TestResults_Summary_InstantMessaging_Hero_Tested" translatable="false">
 		<item quantity="one">@string/TestResults_Summary_InstantMessaging_Hero_Tested_Singular</item>
 		<item quantity="other">@string/TestResults_Summary_InstantMessaging_Hero_Tested_Plural</item>
 	</plurals>
-	<plurals name="TestResults_Summary_InstantMessaging_Hero_Blocked">
+	<plurals name="TestResults_Summary_InstantMessaging_Hero_Blocked" translatable="false">
 		<item quantity="one">@string/TestResults_Summary_InstantMessaging_Hero_Blocked_Singular</item>
 		<item quantity="other">@string/TestResults_Summary_InstantMessaging_Hero_Blocked_Plural</item>
 	</plurals>
-	<plurals name="TestResults_Summary_InstantMessaging_Hero_Reachable">
+	<plurals name="TestResults_Summary_InstantMessaging_Hero_Reachable" translatable="false">
 		<item quantity="one">@string/TestResults_Summary_InstantMessaging_Hero_Reachable_Singular</item>
 		<item quantity="other">@string/TestResults_Summary_InstantMessaging_Hero_Reachable_Plural</item>
 	</plurals>
-	<plurals name="TestResults_Summary_InstantMessaging_Hero_Apps">
+	<plurals name="TestResults_Summary_InstantMessaging_Hero_Apps" translatable="false">
 		<item quantity="one">@string/TestResults_Summary_InstantMessaging_Hero_Apps_Singular</item>
 		<item quantity="other">@string/TestResults_Summary_InstantMessaging_Hero_Apps_Plural</item>
 	</plurals>
+	<string-array name="CategoryCodes" translatable="false">
+		<item>ALDR</item>
+		<item>REL</item>
+		<item>PORN</item>
+		<item>PROV</item>
+		<item>POLR</item>
+		<item>HUMR</item>
+		<item>ENV</item>
+		<item>MILX</item>
+		<item>HATE</item>
+		<item>NEWS</item>
+		<item>XED</item>
+		<item>PUBH</item>
+		<item>GMB</item>
+		<item>ANON</item>
+		<item>DATE</item>
+		<item>GRP</item>
+		<item>LGBT</item>
+		<item>FILE</item>
+		<item>HACK</item>
+		<item>COMT</item>
+		<item>MMED</item>
+		<item>HOST</item>
+		<item>SRCH</item>
+		<item>GAME</item>
+		<item>CULTR</item>
+		<item>ECON</item>
+		<item>GOVT</item>
+		<item>COMM</item>
+		<item>CTRL</item>
+		<item>IGO</item>
+		<item>MISC</item>
+	</string-array>
+	<array name="CategoryIcons" translatable="false">
+		<item>@drawable/category_aldr</item>
+		<item>@drawable/category_rel</item>
+		<item>@drawable/category_porn</item>
+		<item>@drawable/category_prov</item>
+		<item>@drawable/category_polr</item>
+		<item>@drawable/category_humr</item>
+		<item>@drawable/category_env</item>
+		<item>@drawable/category_milx</item>
+		<item>@drawable/category_hate</item>
+		<item>@drawable/category_news</item>
+		<item>@drawable/category_xed</item>
+		<item>@drawable/category_pubh</item>
+		<item>@drawable/category_gmb</item>
+		<item>@drawable/category_anon</item>
+		<item>@drawable/category_date</item>
+		<item>@drawable/category_grp</item>
+		<item>@drawable/category_lgbt</item>
+		<item>@drawable/category_file</item>
+		<item>@drawable/category_hack</item>
+		<item>@drawable/category_comm</item>
+		<item>@drawable/category_mmed</item>
+		<item>@drawable/category_host</item>
+		<item>@drawable/category_srch</item>
+		<item>@drawable/category_game</item>
+		<item>@drawable/category_cultr</item>
+		<item>@drawable/category_econ</item>
+		<item>@drawable/category_govt</item>
+		<item>@drawable/category_comm</item>
+		<item>@drawable/category_ctrl</item>
+		<item>@drawable/category_igo</item>
+		<item>@drawable/category_misc</item>
+	</array>
 </resources>

@@ -10,6 +10,7 @@ import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,15 +29,17 @@ public class MeasurementItem extends HeterogeneousRecyclerItem<Measurement, Meas
 	}
 
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
-		viewHolder.itemView.setTag(extra);
+		viewHolder.text.setTag(extra);
 		AbstractTest test = extra.getTest();
 		if (extra.test_name.equals(WebConnectivity.NAME)) {
 			viewHolder.text.setText(extra.url.url);
-			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.category_aldr, 0, extra.is_anomaly ? R.drawable.cross : extra.is_failed ? R.drawable.reload : R.drawable.tick, 0);
+			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(extra.url.getCategoryIcon(viewHolder.text.getContext()), 0, extra.is_anomaly ? R.drawable.cross : extra.is_failed ? R.drawable.reload : R.drawable.tick, 0);
 		} else {
 			viewHolder.text.setText(test.getLabelResId());
 			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(test.getIconResId(), 0, extra.is_anomaly ? R.drawable.cross : extra.is_failed ? R.drawable.reload : R.drawable.tick, 0);
 		}
+		viewHolder.text.setBackgroundColor(ContextCompat.getColor(viewHolder.text.getContext(), extra.is_failed ? R.color.color_gray1 : android.R.color.transparent));
+		viewHolder.text.setTextColor(ContextCompat.getColor(viewHolder.text.getContext(), extra.is_failed ? R.color.color_gray5 : R.color.color_gray9));
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {
@@ -45,7 +48,7 @@ public class MeasurementItem extends HeterogeneousRecyclerItem<Measurement, Meas
 		ViewHolder(View itemView) {
 			super(itemView);
 			ButterKnife.bind(this, itemView);
-			itemView.setOnClickListener(onClickListener);
+			text.setOnClickListener(onClickListener);
 		}
 	}
 }

@@ -1,14 +1,19 @@
 package org.openobservatory.ooniprobe.model.database;
 
+import android.content.Context;
+import android.content.res.TypedArray;
+
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
+import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 @Table(database = Application.class)
 public class Url extends BaseModel implements Serializable {
@@ -16,6 +21,7 @@ public class Url extends BaseModel implements Serializable {
 	@Column public String url;
 	@Column public String category_code;
 	@Column public String country_code;
+	private transient Integer categoryIcon;
 
 	public Url() {
 	}
@@ -41,20 +47,26 @@ public class Url extends BaseModel implements Serializable {
 	}
 
 	public static Url checkExistingUrl(String input, String categoryCode, String countryCode) {
-		Url url =  Url.getUrl(input);
-		if (url == null){
+		Url url = Url.getUrl(input);
+		if (url == null) {
 			url = new Url(input, categoryCode, countryCode);
 			//TODO serve?
 			url.save();
-		}
-		else if ((!url.category_code.equals(categoryCode) && !categoryCode.equals("MISC"))
-				|| (!url.country_code.equals(countryCode) && !countryCode.equals("XX"))){
+		} else if ((!url.category_code.equals(categoryCode) && !categoryCode.equals("MISC"))
+				|| (!url.country_code.equals(countryCode) && !countryCode.equals("XX"))) {
 			url.category_code = categoryCode;
 			url.country_code = countryCode;
 			url.save();
 		}
 		return url;
-
 	}
 
+	public int getCategoryIcon(Context c) {
+		if (categoryIcon == null) {
+			TypedArray categoryIcons = c.getResources().obtainTypedArray(R.array.CategoryIcons);
+			categoryIcon = categoryIcons.getResourceId(Arrays.asList(c.getResources().getStringArray(R.array.CategoryCodes)).indexOf(category_code), -1);
+			categoryIcons.recycle();
+		}
+		return categoryIcon;
+	}
 }
