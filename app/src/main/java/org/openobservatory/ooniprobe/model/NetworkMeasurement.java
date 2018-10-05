@@ -55,7 +55,6 @@ public class NetworkMeasurement {
             setMaxRuntime(context);
             for (int i = 0; i < urls.size(); i++)
                 test.add_input(urls.get(i));
-            System.out.println(urls);
         }
         else if (testName.compareTo(OONITests.NDT) == 0)
             test = new NdtTest();
