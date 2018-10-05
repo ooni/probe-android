@@ -33,9 +33,7 @@ public class Url extends BaseModel implements Serializable {
 	}
 
 	public Url(String url) {
-		this.url = url;
-		this.category_code = "MISC";
-		this.country_code = "XX";
+		this(url, "MISC", "XX");
 	}
 
 	public static Url getUrl(String input) {
