@@ -18,11 +18,8 @@ public class AlarmReceiver extends BroadcastReceiver {
         //System.out.println(DEBUG_TAG);
         NotificationHandler.sendNotification(context, context.getString(R.string.local_notifications_text));
         TestData.getInstance(context, null);
-        TestData.doNetworkMeasurements(context, new NetworkMeasurement(context, OONITests.WEB_CONNECTIVITY));
-        TestData.doNetworkMeasurements(context, new NetworkMeasurement(context, OONITests.HTTP_HEADER_FIELD_MANIPULATION));
-        TestData.doNetworkMeasurements(context, new NetworkMeasurement(context, OONITests.HTTP_INVALID_REQUEST_LINE));
-        TestData.doNetworkMeasurements(context, new NetworkMeasurement(context, OONITests.NDT));
-        TestData.doNetworkMeasurements(context, new NetworkMeasurement(context, OONITests.DASH));
+        TestData.doNetworkMeasurements(context, new NetworkMeasurement(context, OONITests.WEB_CONNECTIVITY, true));
+        TestData.doNetworkMeasurements(context, new NetworkMeasurement(context, OONITests.HTTP_HEADER_FIELD_MANIPULATION, true));
+        TestData.doNetworkMeasurements(context, new NetworkMeasurement(context, OONITests.HTTP_INVALID_REQUEST_LINE, true));
     }
-
 }

@@ -34,6 +34,10 @@ public class NetworkMeasurement {
     public transient BaseTest test;
 
     public NetworkMeasurement(Context context, String name) {
+        this(context, name, false);
+    }
+
+    public NetworkMeasurement(Context context, String name, Boolean annotation) {
         this.testName = name;
         this.test_id = System.currentTimeMillis();
         this.log_file = "/test-" + test_id + ".log";
@@ -63,6 +67,9 @@ public class NetworkMeasurement {
             test = new TelegramTest();
         else if (testName.compareTo(OONITests.FACEBOOK_MESSENGER) == 0)
             test = new FacebookMessengerTest();
+
+        if (annotation)
+            test.set_verbosity(OONITests.MK_VERBOSITY);
     }
 
     //Test ran from uri scheme screen
