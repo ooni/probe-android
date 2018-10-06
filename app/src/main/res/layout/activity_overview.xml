@@ -10,7 +10,7 @@
 		android:layout_height="wrap_content"
 		android:gravity="center_horizontal"
 		android:orientation="vertical"
-		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+		app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
 		<androidx.appcompat.widget.Toolbar
 			android:id="@+id/toolbar"
@@ -27,7 +27,8 @@
 			android:id="@+id/title"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+			android:textAppearance="@style/TextAppearance.AppCompat.Large"
+			android:textColor="@android:color/white" />
 
 		<Button
 			android:id="@+id/configure"
@@ -35,6 +36,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="@string/Dashboard_Card_Configure"
+			android:textColor="@android:color/white"
 			app:cornerRadius="24dp"
 			app:strokeColor="@android:color/white" />
 
@@ -42,14 +44,17 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"
-			android:text="2min" />
+			android:text="2min"
+			android:textColor="@android:color/white" />
 
 		<Button
 			android:id="@+id/run"
+			style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="@string/Dashboard_Card_Run"
 			android:textColor="?attr/colorPrimary"
+			app:backgroundTint="@android:color/white"
 			app:cornerRadius="24dp" />
 
 		<TextView
@@ -57,12 +62,19 @@
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"
 			android:layout_marginBottom="16dp"
-			android:text="2 settimane fa" />
+			android:text="2 settimane fa"
+			android:textColor="@android:color/white" />
 	</com.google.android.material.appbar.AppBarLayout>
 
-	<br.tiagohm.markdownview.MarkdownView
-		android:id="@+id/desc"
+	<ScrollView
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:gravity="center_horizontal" />
+		android:layout_height="match_parent">
+
+		<TextView
+			android:id="@+id/desc"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="32dp"
+			android:gravity="center_horizontal" />
+	</ScrollView>
 </LinearLayout>
