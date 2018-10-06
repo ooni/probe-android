@@ -1,6 +1,5 @@
 package org.openobservatory.ooniprobe.activity;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -34,7 +33,8 @@ import java.util.Locale;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
-import androidx.legacy.app.FragmentPagerAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -87,7 +87,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 	@Override public void onClick(View v) {
 		Measurement measurement = (Measurement) v.getTag();
 		if (measurement.is_failed)
-			ConfirmDialogFragment.newInstance(measurement, getString(R.string.Modal_ReRun_Title), getString(R.string.Modal_ReRun_Paragraph)).show(getFragmentManager(), null);
+			ConfirmDialogFragment.newInstance(measurement, getString(R.string.Modal_ReRun_Title), getString(R.string.Modal_ReRun_Paragraph)).show(getSupportFragmentManager(), null);
 		else
 			startActivity(MeasurementDetailActivity.newIntent(this, measurement.id));
 	}
@@ -102,7 +102,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 
 	private class ResultHeaderAdapter extends FragmentPagerAdapter {
 		ResultHeaderAdapter() {
-			super(getFragmentManager());
+			super(getSupportFragmentManager());
 		}
 
 		@Override public Fragment getItem(int position) {

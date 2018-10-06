@@ -1,9 +1,6 @@
 package org.openobservatory.ooniprobe.fragment.measurement;
 
-import android.app.Fragment;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +11,9 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -40,7 +40,8 @@ public class HttpInvalidRequestLineFragment extends Fragment {
 		ButterKnife.bind(this, v);
 		if (measurement.is_anomaly) {
 			title.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.exclamation_point, 0, 0);
-			title.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_yellow8));	title.setText(R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title);
+			title.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_yellow8));
+			title.setText(R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title);
 			desc1.setText(R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Content_Paragraph_1);
 			desc2.setText(R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Content_Paragraph_2);
 		} else {

@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.activity;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,10 +30,10 @@ public class MainActivity extends AbstractActivity {
 		bottomNavigation.setOnNavigationItemSelectedListener(item -> {
 			switch (item.getItemId()) {
 				case R.id.dashboard:
-					getFragmentManager().beginTransaction().replace(R.id.content, new DashboardFragment()).commit();
+					getSupportFragmentManager().beginTransaction().replace(R.id.content, new DashboardFragment()).commit();
 					return true;
 				case R.id.testResults:
-					getFragmentManager().beginTransaction().replace(R.id.content, new ResultListFragment()).commit();
+					getSupportFragmentManager().beginTransaction().replace(R.id.content, new ResultListFragment()).commit();
 					return true;
 				default:
 					return false;
@@ -48,6 +49,11 @@ public class MainActivity extends AbstractActivity {
 			PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("cleanup_unused_files", true).apply();
 		}*/
 		checkInformedConsent();
+		AlertDialog.Builder b = new AlertDialog.Builder(this);
+		b.setPositiveButton("ok", null);
+
+		b.show();
+
 	}
 
 	public void checkInformedConsent() {

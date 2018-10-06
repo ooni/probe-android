@@ -1,6 +1,5 @@
 package org.openobservatory.ooniprobe.activity;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -38,6 +37,7 @@ import org.openobservatory.ooniprobe.test.test.Whatsapp;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
+import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -96,7 +96,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
 				break;
 		}
 		measurement.result.load();
-		getFragmentManager().beginTransaction()
+		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.head, ResultHeaderDetailFragment.newInstance(null, null, measurement.start_time, measurement.runtime, false, measurement.result.network.country_code, Network.toString(this, measurement.result.network, 3)))
 				.replace(R.id.body, detail)
 				.commit();
