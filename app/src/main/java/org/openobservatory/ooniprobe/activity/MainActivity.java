@@ -1,6 +1,5 @@
 package org.openobservatory.ooniprobe.activity;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -49,11 +48,6 @@ public class MainActivity extends AbstractActivity {
 			PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("cleanup_unused_files", true).apply();
 		}*/
 		checkInformedConsent();
-		AlertDialog.Builder b = new AlertDialog.Builder(this);
-		b.setPositiveButton("ok", null);
-
-		b.show();
-
 	}
 
 	public void checkInformedConsent() {
