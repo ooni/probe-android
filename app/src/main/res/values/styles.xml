@@ -18,6 +18,11 @@
 		<item name="android:textColor">@color/color_white</item>
 	</style>
 
+	<style name="Theme.MaterialComponents.Light.NoActionBar.App">
+		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+		<item name="fontFamily">@font/firasans</item>
+	</style>
+
 	<style name="Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
 		<item name="windowActionBar">false</item>
 		<item name="windowNoTitle">true</item>

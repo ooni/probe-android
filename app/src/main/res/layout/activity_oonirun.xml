@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+
+	<com.google.android.material.appbar.AppBarLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/color_gray3"
+		android:orientation="vertical"
+		android:paddingBottom="48dp"
+		app:elevation="0dp">
+
+		<androidx.appcompat.widget.Toolbar
+			android:id="@+id/toolbar"
+			android:layout_width="match_parent"
+			android:layout_height="?android:attr/actionBarSize" />
+
+		<TextView
+			android:id="@+id/title"
+			style="@style/Base.TextAppearance.AppCompat.Display1"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center_horizontal"
+			android:text="@string/OONIRun_InvalidParameter" />
+
+		<View
+			android:layout_width="96dp"
+			android:layout_height="1dp"
+			android:layout_gravity="center_horizontal"
+			android:background="@color/color_gray6" />
+
+		<TextView
+			android:id="@+id/desc"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center_horizontal"
+			android:text="@string/OONIRun_YouAreAboutToRun" />
+	</com.google.android.material.appbar.AppBarLayout>
+
+	<Button
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal|bottom"
+		android:layout_marginTop="-24dp"
+		android:text="@string/OONIRun_Run"
+		app:backgroundTint="@color/color_gray7"
+		app:cornerRadius="24dp" />
+</LinearLayout>
