@@ -32,6 +32,7 @@ public class NetworkMeasurement {
     public boolean viewed = false;
     public int anomaly = 0;
     public transient BaseTest test;
+    public boolean annotation;
 
     public NetworkMeasurement(Context context, String name) {
         this(context, name, false);
@@ -45,6 +46,7 @@ public class NetworkMeasurement {
         this.running = true;
         this.viewed = false;
         this.anomaly = 0;
+        this.annotation = annotation;
         if (testName.compareTo(OONITests.HTTP_INVALID_REQUEST_LINE) == 0)
             test = new HttpInvalidRequestLineTest();
         else if (testName.compareTo(OONITests.HTTP_HEADER_FIELD_MANIPULATION) == 0)

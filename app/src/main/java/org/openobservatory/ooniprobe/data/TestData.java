@@ -24,6 +24,8 @@ import org.openobservatory.ooniprobe.model.OONITests;
 import org.openobservatory.ooniprobe.model.UnknownTest;
 import org.openobservatory.ooniprobe.utils.NotificationHandler;
 import org.openobservatory.ooniprobe.utils.VersionUtils;
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.CustomEvent;
 
 public class TestData extends Observable {
     private static final String TAG = "TestData";
@@ -129,6 +131,8 @@ public class TestData extends Observable {
                                             @Override
                                             public void callback(String entry) {
                                                 setAnomalyHirl(entry, currentTest);
+                                                if (currentTest.annotation)
+                                                    sendEvent(entry, currentTest.testName);
                                             }
                                         }).run();
                             }
@@ -138,6 +142,8 @@ public class TestData extends Observable {
                                             @Override
                                             public void callback(String entry) {
                                                 setAnomalyHhfm(entry, currentTest);
+                                                if (currentTest.annotation)
+                                                    sendEvent(entry, currentTest.testName);
                                             }
                                         })
                                         .run();
@@ -148,6 +154,9 @@ public class TestData extends Observable {
                                             @Override
                                             public void callback(String entry) {
                                                 setAnomalyWc(entry, currentTest);
+                                                if (currentTest.annotation) {
+                                                    sendEvent(entry, currentTest.testName);
+                                                }
                                             }
                                         }).run();
                             }
@@ -157,6 +166,8 @@ public class TestData extends Observable {
                                             @Override
                                             public void callback(String entry) {
                                                 setAnomalyNdt(entry, currentTest);
+                                                if (currentTest.annotation)
+                                                    sendEvent(entry, currentTest.testName);
                                             }
                                         })
                                         .run();
@@ -167,6 +178,8 @@ public class TestData extends Observable {
                                             @Override
                                             public void callback(String entry) {
                                                 setAnomalyNdt(entry, currentTest);
+                                                if (currentTest.annotation)
+                                                    sendEvent(entry, currentTest.testName);
                                             }
                                         })
                                         .run();
@@ -177,6 +190,8 @@ public class TestData extends Observable {
                                     @Override
                                     public void callback(String entry) {
                                         setAnomalyWhatsapp(entry, currentTest);
+                                        if (currentTest.annotation)
+                                            sendEvent(entry, currentTest.testName);
                                     }
                                 })
                                         .run();
@@ -187,6 +202,8 @@ public class TestData extends Observable {
                                     @Override
                                     public void callback(String entry) {
                                         setAnomalyTelegram(entry, currentTest);
+                                        if (currentTest.annotation)
+                                            sendEvent(entry, currentTest.testName);
                                     }
                                 })
                                         .run();
@@ -197,6 +214,8 @@ public class TestData extends Observable {
                                     @Override
                                     public void callback(String entry) {
                                         setAnomalyFacebookMessenger(entry, currentTest);
+                                        if (currentTest.annotation)
+                                            sendEvent(entry, currentTest.testName);
                                     }
                                 })
                                         .run();
@@ -228,6 +247,28 @@ public class TestData extends Observable {
                     }
                 }
         );
+    }
+
+    public static void sendEvent(String entry, String test_name){
+        Log.v(TAG, "sendEvent");
+        try {
+            Log.v(TAG, "sendEvent try");
+            JSONObject jsonObj = new JSONObject(entry);
+            Log.v(TAG, "sendEvent entry " + entry);
+            String report_id = jsonObj.getString("report_id");
+            String probe_cc = jsonObj.getString("probe_cc");
+            String probe_asn = jsonObj.getString("probe_asn");
+            Log.v(TAG, "sendEvent " + report_id);
+            Log.v(TAG, "sendEvent " + probe_cc);
+            Log.v(TAG, "sendEvent " + probe_asn);
+            Answers.getInstance().logCustom(new CustomEvent("Automatic test run finished")
+                    .putCustomAttribute("test_name", test_name)
+                    .putCustomAttribute("report_id", report_id)
+                    .putCustomAttribute("probe_cc", probe_cc)
+                    .putCustomAttribute("probe_asn", probe_asn));
+            }
+            catch (JSONException e) {
+        }
     }
 
     //TODO unify all these in an unique function that takes the test name.

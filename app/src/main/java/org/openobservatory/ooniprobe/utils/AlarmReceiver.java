@@ -8,6 +8,8 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.data.TestData;
 import org.openobservatory.ooniprobe.model.NetworkMeasurement;
 import org.openobservatory.ooniprobe.model.OONITests;
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.CustomEvent;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
@@ -16,6 +18,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         //System.out.println(DEBUG_TAG);
+        Answers.getInstance().logCustom(new CustomEvent("Automatic test run started"));
         NotificationHandler.sendNotification(context, context.getString(R.string.local_notifications_text));
         TestData.getInstance(context, null);
         TestData.doNetworkMeasurements(context, new NetworkMeasurement(context, OONITests.WEB_CONNECTIVITY, true));

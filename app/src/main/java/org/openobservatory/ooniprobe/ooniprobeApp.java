@@ -6,6 +6,8 @@ import android.preference.PreferenceManager;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.CustomEvent;
 import com.crashlytics.android.core.CrashlyticsCore;
 import com.google.firebase.FirebaseApp;
 
@@ -25,6 +27,10 @@ public class ooniprobeApp extends Application {
         final Boolean send_crash = preferences.getBoolean("send_crash", true);
         CrashlyticsCore core = new CrashlyticsCore.Builder().disabled(send_crash).build();
         Fabric.with(this, new Crashlytics.Builder().core(core).build());
+        Fabric.with(this, new Answers());
+
+        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("local_notifications", false))
+            Answers.getInstance().logCustom(new CustomEvent("Automatic test run enabled"));
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                 .setDefaultFontPath("webui/font-fira-sans-bold.5310ca5fb41a915987df5663660da770.otf")
