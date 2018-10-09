@@ -45,7 +45,7 @@ public class InformedConsentActivity extends AppIntro {
 	@Override
 	public void onSkipPressed(Fragment currentFragment) {
 		super.onSkipPressed(currentFragment);
-		//TODO open settings
+		//TODO-ALE close Informed Consent and open Settings over the dashboard
 		next();
 	}
 

@@ -113,7 +113,7 @@ public abstract class AbstractTest {
 						setUploaded(false, event.value);
 						break;
 					case "failure.measurement":
-						//TODO idx missing https://github.com/measurement-kit/measurement-kit/issues/1657
+						//TODO-LOR idx missing https://github.com/measurement-kit/measurement-kit/issues/1657
 						//setFailed(false, event.value);
 						break;
 					case "status.measurement_done":
@@ -123,7 +123,7 @@ public abstract class AbstractTest {
 						setDataUsage(event.value, result);
 						break;
 					case "failure.startup":
-						//TODO What to do? Run next test
+						//TODO-LOR What to do? Run next test
 						break;
 					default:
 						Log.w(UNUSED_KEY, event.key);

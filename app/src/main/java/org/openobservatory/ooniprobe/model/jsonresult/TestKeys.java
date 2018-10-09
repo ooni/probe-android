@@ -154,7 +154,7 @@ public class TestKeys {
 	}
 
 	public String getUpload(Context ctx) {
-		//TODO check this.simple.upload not null?
+		//TODO-ALE check this.simple.upload not null?
 		if (this.simple != null) {
 			return setFractionalDigits(getScaledValue(this.simple.upload));
 		}
@@ -268,7 +268,7 @@ public class TestKeys {
 
 	//Dash
 	public String getMedianBitrate(Context ctx) {
-		//TODO here in iOS I check for a null value
+		//TODO-ALE here in iOS I check for a null value
 		if (simple.median_bitrate != null) {
 			return setFractionalDigits(getScaledValue(simple.median_bitrate));
 		}

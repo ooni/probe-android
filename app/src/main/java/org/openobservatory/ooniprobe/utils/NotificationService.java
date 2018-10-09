@@ -31,7 +31,7 @@ public class NotificationService {
 	static String available_bandwidth;
 	static String device_token;
 	static String language;
-	//TODO handle these warnings
+	//TODO-ALE  handle these warnings (part of refector class)
 	private static NotificationService instance;
 
 	public static NotificationService getInstance(final Context c) {

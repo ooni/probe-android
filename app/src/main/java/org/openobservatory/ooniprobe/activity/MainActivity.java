@@ -41,7 +41,7 @@ public class MainActivity extends AbstractActivity {
 		bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
 
 		/*
-		//TODO
+		//TODO-LOR
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		if (!preferences.getBoolean("cleanup_unused_files", false)) {
 			OldTestStorage.removeUnusedFiles(this);

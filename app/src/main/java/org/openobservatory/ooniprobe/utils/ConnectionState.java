@@ -39,7 +39,7 @@ public class ConnectionState {
 
     public void updateNetworkType() {
         network_type = getNetworkTypeFromService();
-        //TODO
+        //TODO-ALE part of refactor class
         //if (!network_type.equals("no_internet"))
         //    NotificationService.getInstance(c).sendRegistrationToServer();
     }

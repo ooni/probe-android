@@ -48,7 +48,7 @@ public class Url extends BaseModel implements Serializable {
 		Url url = Url.getUrl(input);
 		if (url == null) {
 			url = new Url(input, categoryCode, countryCode);
-			//TODO serve?
+			//TODO-ALE serve? altrimenti rimuovi
 			url.save();
 		} else if ((!url.category_code.equals(categoryCode) && !categoryCode.equals("MISC"))
 				|| (!url.country_code.equals(countryCode) && !countryCode.equals("XX"))) {

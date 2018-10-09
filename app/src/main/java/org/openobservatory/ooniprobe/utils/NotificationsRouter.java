@@ -24,7 +24,7 @@ public class NotificationsRouter extends FirebaseMessagingService {
 		// Check if message contains a data payload.
 		if (remoteMessage.getData().size() > 0) {
 			try {
-				//TODO we can use click_action instead of type
+				//TODO-FUTURE we can use click_action instead of type
 				JSONObject data = new JSONObject(params.toString());
 				if (data.getString("type").equals("open_href")) {
 					Intent intent = new Intent(getApplicationContext(), NotificationDialogActivity.class);
