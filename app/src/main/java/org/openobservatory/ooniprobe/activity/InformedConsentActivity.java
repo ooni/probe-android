@@ -89,7 +89,7 @@ public class InformedConsentActivity extends AppIntro {
 	}
 
 	private void next() {
-		// TODO use app preference manager
+		//TODO-ALE use app preference manager
 		SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
 		editor.putBoolean("include_ip", false);
 		editor.putBoolean("include_asn", true);

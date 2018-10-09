@@ -111,7 +111,8 @@ public class RunningActivity extends AbstractActivity {
 	}
 
 	@Override public void onBackPressed() {
-		// TODO add toast to
+		//TODO-ALE add toast
+		//TODO-LOR add string for toast
 	}
 
 	private void run(AbstractTest[] testList) {
