@@ -118,7 +118,7 @@
 			android:layout_centerVertical="true"
 			android:layout_margin="5dp"
 			android:padding="5dp"
-			android:text="@string/OONIRun_TryMirror"
+			android:text="@string/OONIBrowser_TryMirror"
 			android:textAllCaps="false"
 			android:textColor="@color/color_white" />
 

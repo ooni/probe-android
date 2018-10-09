@@ -146,7 +146,7 @@ public class BrowserActivity extends AbstractActivity implements View.OnClickLis
 			webView.loadUrl(url);
 		else {
 			refresh.setVisibility(View.VISIBLE);
-			Toast.makeText(BrowserActivity.this, "There is no internet connection. Please enable your internet connection.", Toast.LENGTH_LONG).show();
+			Toast.makeText(BrowserActivity.this, getString(R.string.OONIBrowser_Error), Toast.LENGTH_LONG).show();
 		}
 	}
 
@@ -200,7 +200,7 @@ public class BrowserActivity extends AbstractActivity implements View.OnClickLis
 		public void onPageStarted(WebView view, String url, Bitmap favicon) {
 			super.onPageStarted(view, url, favicon);
 			refresh.setVisibility(View.GONE);
-			urlLabel.setText(getString(R.string.OONIRun_Loading));
+			urlLabel.setText(getString(R.string.OONIBrowser_Loading));
 			if (!webViewProgressBar.isShown())
 				webViewProgressBar.setVisibility(View.VISIBLE);
 		}
@@ -211,7 +211,6 @@ public class BrowserActivity extends AbstractActivity implements View.OnClickLis
 			refresh.setVisibility(View.VISIBLE);
 			if (webViewProgressBar.isShown())
 				webViewProgressBar.setVisibility(View.GONE);
-			System.out.println("Finished loading " + url);
 			if (url.substring(0, 5).equals("https"))
 				urlLabel.setText("\uD83D\uDD12 " + url);
 			else
@@ -219,14 +218,13 @@ public class BrowserActivity extends AbstractActivity implements View.OnClickLis
 			reloadButtons();
 		}
 
-		//TODO translate strings
 		@Override
 		public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
 			super.onReceivedError(view, request, error);
 			refresh.setVisibility(View.VISIBLE);
 			if (webViewProgressBar.isShown())
 				webViewProgressBar.setVisibility(View.GONE);
-			Toast.makeText(BrowserActivity.this, "Unexpected error occurred. Reload page again.", Toast.LENGTH_SHORT).show();
+			Toast.makeText(BrowserActivity.this, getString(R.string.OONIBrowser_Error), Toast.LENGTH_SHORT).show();
 		}
 
 		//TODO this should be removed includes error in internal frames
@@ -248,7 +246,7 @@ public class BrowserActivity extends AbstractActivity implements View.OnClickLis
 			refresh.setVisibility(View.VISIBLE);
 			if (webViewProgressBar.isShown())
 				webViewProgressBar.setVisibility(View.GONE);
-			Toast.makeText(BrowserActivity.this, "Unexpected SSL error occurred. Reload page again.", Toast.LENGTH_SHORT).show();
+			Toast.makeText(BrowserActivity.this, getString(R.string.OONIBrowser_Error), Toast.LENGTH_SHORT).show();
 		}
 	}
 }

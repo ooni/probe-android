@@ -298,8 +298,9 @@
 	<string name="Settings_Performance_DashServerAddress">DASH server</string>
 	<string name="Settings_Performance_DashServerPort">DASH server port</string>
 	<string name="Notification_FinishedRunning">Finished running</string>
-	<string name="OONIRun_TryMirror">Try mirror</string>
-	<string name="OONIRun_Loading">Loading...</string>
+	<string name="OONIBroweer_TryMirror">Try mirror</string>
+	<string name="OONIBrowser_Loading">Loading...</string>
+	<string name="OONIBrowser_Error">Unexpected error occurred. Reload page again</string>
 	<string name="OONIRun_YouAreAboutToRun">You are about to run an OONI Probe test.</string>
 	<string name="OONIRun_URLs">URLs</string>
 	<string name="OONIRun_TestName">Test Name</string>
