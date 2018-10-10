@@ -43,7 +43,7 @@
 			android:ellipsize="end"
 			android:maxLines="1"
 			android:padding="5dp"
-			android:text="@string/OONIRun_Loading"
+			android:text="@string/OONIBrowser_Loading"
 			android:textColor="#ffffff"
 			android:textSize="16sp" />
 
