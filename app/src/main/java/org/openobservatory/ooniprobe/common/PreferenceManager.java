@@ -33,22 +33,6 @@ public class PreferenceManager {
 		sp.edit().putInt(GEO_VER, geoVer).apply();
 	}
 
-	public String getndtServer() {
-		return sp.getString(r.getString(R.string.ndt_server), null);
-	}
-
-	public Integer getndtServerPort() {
-		return sp.getInt(r.getString(R.string.ndt_server_port), 3001);
-	}
-
-	public String getdashServer() {
-		return sp.getString(r.getString(R.string.dash_server), null);
-	}
-
-	public Integer getdashServerPort() {
-		return sp.getInt(r.getString(R.string.dash_server_port), 80);
-	}
-
 	public Float getMaxRuntime() {
 		try {
 			return sp.getFloat(r.getString(R.string.max_runtime), 90);
@@ -149,16 +133,8 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.run_ndt), true);
 	}
 
-	public boolean isNdtServerAuto() {
-		return sp.getBoolean(r.getString(R.string.ndt_server_auto), true);
-	}
-
 	public boolean isRunDash() {
 		return sp.getBoolean(r.getString(R.string.run_dash), true);
-	}
-
-	public boolean isDashServerAuto() {
-		return sp.getBoolean(r.getString(R.string.dash_server_auto), true);
 	}
 
 	public boolean isAllCategoryEnabled() {

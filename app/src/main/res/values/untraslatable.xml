@@ -23,13 +23,7 @@
 	<string name="test_telegram" translatable="false">test_telegram</string>
 	<string name="test_facebook_messenger" translatable="false">test_facebook_messenger</string>
 	<string name="run_ndt" translatable="false">run_ndt</string>
-	<string name="ndt_server_auto" translatable="false">ndt_server_auto</string>
-	<string name="ndt_server" translatable="false">ndt_server</string>
-	<string name="ndt_server_port" translatable="false">ndt_server_port</string>
 	<string name="run_dash" translatable="false">run_dash</string>
-	<string name="dash_server_auto" translatable="false">dash_server_auto</string>
-	<string name="dash_server" translatable="false">dash_server</string>
-	<string name="dash_server_port" translatable="false">dash_server_port</string>
 	<string name="max_runtime" translatable="false">max_runtime</string>
 	<string name="CategoryCode_ALDR_Key" translatable="false">ALDR</string>
 	<string name="CategoryCode_REL_Key" translatable="false">REL</string>
@@ -72,8 +66,6 @@
 	<string name="twoParam" translatable="false">%1$s %2$s</string>
 	<string name="http" translatable="false">http://</string>
 	<string-array name="integerPreferences" translatable="false">
-		<item>@string/ndt_server_port</item>
-		<item>@string/dash_server_port</item>
 		<item>@string/max_runtime</item>
 	</string-array>
 	<string-array name="filterTests" translatable="false">

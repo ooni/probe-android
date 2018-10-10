@@ -25,10 +25,6 @@ public class Ndt extends AbstractTest {
 	@Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback) {
 		countries = c.getResources().getStringArray(R.array.countries);
 		Settings settings = new Settings(c, pm);
-		if (!pm.isNdtServerAuto()) {
-			settings.options.server = pm.getndtServer();
-			settings.options.port = pm.getndtServerPort();
-		}
 		run(c, pm, gson, settings, result, index, testCallback);
 	}
 

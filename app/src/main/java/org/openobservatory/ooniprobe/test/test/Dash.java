@@ -22,10 +22,6 @@ public class Dash extends AbstractTest {
 
 	@Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback) {
 		Settings settings = new Settings(c, pm);
-		if (!pm.isDashServerAuto()) {
-			settings.options.server = pm.getdashServer();
-			settings.options.port = pm.getdashServerPort();
-		}
 		run(c, pm, gson, settings, result, index, testCallback);
 	}
 
