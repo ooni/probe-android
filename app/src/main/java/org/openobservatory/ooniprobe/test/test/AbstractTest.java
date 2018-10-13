@@ -203,6 +203,10 @@ public abstract class AbstractTest {
 		return iconResId;
 	}
 
+	public String getName() {
+		return name;
+	}
+
 	public interface TestCallback {
 		void onStart(String name);
 

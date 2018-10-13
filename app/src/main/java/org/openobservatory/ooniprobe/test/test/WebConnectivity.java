@@ -1,7 +1,6 @@
 package org.openobservatory.ooniprobe.test.test;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 
 import com.google.gson.Gson;
 
@@ -12,8 +11,9 @@ import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
 import org.openobservatory.ooniprobe.model.settings.Settings;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 public class WebConnectivity extends AbstractTest {
 	public static final String NAME = "web_connectivity";
@@ -33,7 +33,8 @@ public class WebConnectivity extends AbstractTest {
 	}
 
 	public void setInputs(List<String> inputs) {
-		this.inputs = inputs;
+		if (this.inputs == null)
+			this.inputs = inputs;
 	}
 
 	public void setMax_runtime(Float max_runtime) {

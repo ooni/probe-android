@@ -27,9 +27,9 @@ public class MiddleBoxesSuite extends AbstractSuite {
 
 	@Override public AbstractTest[] getTestList(PreferenceManager pm) {
 		ArrayList<AbstractTest> list = new ArrayList<>();
-		if (pm.isRunHttpHeaderFieldManipulation())
+		if ((pm.isRunHttpHeaderFieldManipulation() && getSingleTest() == null) || HttpHeaderFieldManipulation.NAME.equals(getSingleTest()))
 			list.add(new HttpHeaderFieldManipulation());
-		if (pm.isRunHttpInvalidRequestLine())
+		if ((pm.isRunHttpInvalidRequestLine() && getSingleTest() == null) || HttpInvalidRequestLine.NAME.equals(getSingleTest()))
 			list.add(new HttpInvalidRequestLine());
 		return list.toArray(new AbstractTest[0]);
 	}

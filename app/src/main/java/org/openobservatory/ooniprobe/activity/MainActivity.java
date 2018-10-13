@@ -48,8 +48,6 @@ public class MainActivity extends AbstractActivity {
 			PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("cleanup_unused_files", true).apply();
 		}*/
 		checkInformedConsent();
-
-		startActivity(new Intent(this, OoniRunActivity.class));
 	}
 
 	public void checkInformedConsent() {

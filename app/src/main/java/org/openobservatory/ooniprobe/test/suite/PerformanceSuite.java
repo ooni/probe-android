@@ -27,9 +27,9 @@ public class PerformanceSuite extends AbstractSuite {
 
 	@Override public AbstractTest[] getTestList(PreferenceManager pm) {
 		ArrayList<AbstractTest> list = new ArrayList<>();
-		if (pm.isRunNdt())
+		if ((pm.isRunNdt() && getSingleTest() == null) || Ndt.NAME.equals(getSingleTest()))
 			list.add(new Ndt());
-		if (pm.isRunDash())
+		if ((pm.isRunDash() && getSingleTest() == null) || Dash.NAME.equals(getSingleTest()))
 			list.add(new Dash());
 		return list.toArray(new AbstractTest[0]);
 	}

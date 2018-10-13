@@ -1,15 +1,15 @@
 package org.openobservatory.ooniprobe.test.suite;
 
+import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.test.test.AbstractTest;
+
+import java.io.Serializable;
+
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
 import androidx.annotation.XmlRes;
-
-import org.openobservatory.ooniprobe.common.PreferenceManager;
-import org.openobservatory.ooniprobe.test.test.AbstractTest;
-
-import java.io.Serializable;
 
 public abstract class AbstractSuite implements Serializable {
 	private int title;
@@ -23,6 +23,7 @@ public abstract class AbstractSuite implements Serializable {
 	private int pref;
 	private String anim;
 	private String name;
+	private String singleTest;
 
 	public AbstractSuite(String name, @StringRes int title, @StringRes int cardDesc, @DrawableRes int icon, @ColorRes int color, @StyleRes int themeLight, @StyleRes int themeDark, @StringRes int desc1, @StringRes int desc2, @XmlRes int pref, String anim) {
 		this.title = title;
@@ -39,6 +40,14 @@ public abstract class AbstractSuite implements Serializable {
 	}
 
 	public abstract AbstractTest[] getTestList(PreferenceManager pm);
+
+	public String getSingleTest() {
+		return singleTest;
+	}
+
+	public void setSingleTest(String singleTest) {
+		this.singleTest = singleTest;
+	}
 
 	public int getTitle() {
 		return title;

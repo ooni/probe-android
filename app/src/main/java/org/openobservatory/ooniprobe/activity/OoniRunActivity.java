@@ -3,20 +3,34 @@ package org.openobservatory.ooniprobe.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
 
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
+import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
+import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
+import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
+import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
+import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
-import androidx.appcompat.app.AppCompatActivity;
+import java.util.Arrays;
+import java.util.List;
+
 import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class OoniRunActivity extends AppCompatActivity {
+public class OoniRunActivity extends AbstractActivity {
+	public static final List<AbstractSuite> SUITES = Arrays.asList(new InstantMessagingSuite(), new MiddleBoxesSuite(), new MiddleBoxesSuite(), new PerformanceSuite(), new WebsitesSuite());
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.title) TextView title;
 	@BindView(R.id.desc) TextView desc;
+	@BindView(R.id.run) Button run;
 
 	/**
 	 * Compares two version strings.
@@ -76,52 +90,62 @@ public class OoniRunActivity extends AppCompatActivity {
 					String tn = uri.getQueryParameter("tn");
 					String ta = uri.getQueryParameter("ta");
 					String td = uri.getQueryParameter("td");
-
-					title.setText(tn);
-					desc.setText(td);
-
-
 					System.out.println("OONIRun test name " + tn);
 					System.out.println("OONIRun test arguments " + ta);
 					System.out.println("OONIRun test description " + td);
+					AbstractSuite suite = getSuite(tn);
+					if (suite != null) {
+						title.setText(suite.getTestList(getPreferenceManager())[0].getLabelResId());
+						desc.setText(td == null ? getString(R.string.OONIRun_YouAreAboutToRun) : td);
+						Attribute attribute = new Gson().fromJson(ta, Attribute.class);
+						run.setOnClickListener(v -> {
+							startActivity(RunningActivity.newIntent(OoniRunActivity.this, suite, null));
+							finish();
+						});
 
-                    /*
-                    Tn: è il nome del test
-                    if(controlla che esista quel test tra i supportati) {
-                    Td: Se è presente td mostralo nel campo descrizione, altrimenti mostra OONIRun.YouAreAboutToRun
-
+						/*
                     Ta: sono gli arguments per il test, per ora solo per web_connectivity, ed è una lista di url
                      {"urls":["http://www.google.it","http://www.google.com"]}
 
                     Se sono presenti mostra la lista, altrimenti mostra label OONIRun.RandomSamplingOfURLs
 
                     Bottone titolo OONIRun.Run
-                    }
-                    else {
-                    Titolo :OONIRun_InvalidParameter
-                    Descrizione: OONIRun_InvalidParameter_Msg
-                    Nessun bottone
-                    }
-
-                     */
+						* */
+					} else {
+						title.setText(R.string.OONIRun_InvalidParameter);
+						desc.setText(R.string.OONIRun_InvalidParameter_Msg);
+						run.setVisibility(View.GONE);
+					}
 				} else {
-                    /*
-                Show
-                Titolo: OONIRun_OONIProbeOutOfDate
-                Descrizione: OONIRun.OONIProbeNewerVersion
-                Bottone: OONIRun.Update con azione checkPlayStore()
-                */
+					title.setText(R.string.OONIRun_OONIProbeOutOfDate);
+					desc.setText(R.string.OONIRun_OONIProbeNewerVersion);
+					run.setOnClickListener(v -> {
+						startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName())));
+						finish();
+					});
 				}
 			} else {
-                /*
-                Show
-                OONIRun_InvalidParameter
-                OONIRun_InvalidParameter_Msg
-                Nessun bottone
-                */
+				title.setText(R.string.OONIRun_InvalidParameter);
+				desc.setText(R.string.OONIRun_InvalidParameter_Msg);
+				run.setVisibility(View.GONE);
 			}
 		}
 	}
+
+	public AbstractSuite getSuite(String tn) {
+		for (AbstractSuite suite : SUITES)
+			for (AbstractTest test : suite.getTestList(getPreferenceManager()))
+				if (test.getName().equals(tn)) {
+					suite.setSingleTest(tn);
+					return suite;
+				}
+		return null;
+	}
+
+	public static class Attribute {
+		public List<String> urls;
+	}
+
 
 	/*
 	//OLD CODE
@@ -181,9 +205,4 @@ public class OoniRunActivity extends AppCompatActivity {
 			testUrlList.setLayoutManager(layoutManager);
 		}
 	*/
-
-	public void checkPlayStore() {
-		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName())));
-		finish();
-	}
 }

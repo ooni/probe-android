@@ -28,11 +28,11 @@ public class InstantMessagingSuite extends AbstractSuite {
 
 	@Override public AbstractTest[] getTestList(PreferenceManager pm) {
 		ArrayList<AbstractTest> list = new ArrayList<>();
-		if (pm.isTestWhatsapp())
+		if ((pm.isTestWhatsapp() && getSingleTest() == null) || Whatsapp.NAME.equals(getSingleTest()))
 			list.add(new Whatsapp());
-		if (pm.isTestTelegram())
+		if ((pm.isTestTelegram() && getSingleTest() == null) || Telegram.NAME.equals(getSingleTest()))
 			list.add(new Telegram());
-		if (pm.isTestFacebookMessenger())
+		if ((pm.isTestFacebookMessenger() && getSingleTest() == null) || FacebookMessenger.NAME.equals(getSingleTest()))
 			list.add(new FacebookMessenger());
 		return list.toArray(new AbstractTest[0]);
 	}
