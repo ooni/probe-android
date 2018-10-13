@@ -255,9 +255,9 @@ public class TestData extends Observable {
             Log.v(TAG, "sendEvent try");
             JSONObject jsonObj = new JSONObject(entry);
             Log.v(TAG, "sendEvent entry " + entry);
-            String report_id = jsonObj.getString("report_id");
-            String probe_cc = jsonObj.getString("probe_cc");
-            String probe_asn = jsonObj.getString("probe_asn");
+            String report_id = jsonObj.optString("report_id");
+            String probe_cc = jsonObj.optString("probe_cc");
+            String probe_asn = jsonObj.optString("probe_asn");
             Log.v(TAG, "sendEvent " + report_id);
             Log.v(TAG, "sendEvent " + probe_cc);
             Log.v(TAG, "sendEvent " + probe_asn);

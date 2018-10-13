@@ -13,7 +13,7 @@ android {
     //TODO addConfig for f-droid
     defaultConfig {
         applicationId "org.openobservatory.ooniprobe"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 26
         versionCode 33
         versionName "1.3.2"
@@ -40,7 +40,7 @@ dependencies {
     compile('com.crashlytics.sdk.android:answers:1.4.3@aar') {
         transitive = true;
     }
-    compile 'org.openobservatory.measurement_kit:android-libs:0.8.3-1'
+    compile 'org.openobservatory.measurement_kit:android-libs:0.8.4-3'
     compile 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support:recyclerview-v7:26.1.0'
     compile 'com.android.support:design:26.1.0'

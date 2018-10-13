@@ -70,7 +70,7 @@ public class NetworkMeasurement {
             test = new FacebookMessengerTest();
 
         if (annotation)
-            test.set_verbosity(OONITests.MK_VERBOSITY);
+            test.add_annotation("automated_testing", "yes");
     }
 
     //Test ran from uri scheme screen
