@@ -112,10 +112,6 @@ public abstract class AbstractTest {
 					case "failure.measurement_submission":
 						setUploaded(false, event.value);
 						break;
-					case "failure.measurement":
-						//TODO-LOR idx missing https://github.com/measurement-kit/measurement-kit/issues/1657
-						//setFailed(false, event.value);
-						break;
 					case "status.measurement_done":
 						setDone(event.value);
 						break;
@@ -166,17 +162,6 @@ public abstract class AbstractTest {
 			String failure = value.failure;
 			if (failure != null)
 				measurement.upload_failure_msg = failure;
-			measurement.save();
-		}
-	}
-
-	private void setFailed(Boolean failed, EventResult.Value value) {
-		Measurement measurement = measurements.get(value.idx);
-		if (measurement != null) {
-			measurement.is_failed = failed;
-			String failure = value.failure;
-			if (failure != null)
-				measurement.failure_msg = failure;
 			measurement.save();
 		}
 	}
