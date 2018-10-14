@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:background="@color/color_blue5">
@@ -10,10 +11,10 @@
 		android:layout_height="104dp"
 		android:layout_centerHorizontal="true"
 		android:layout_marginLeft="32dp"
-		android:layout_marginRight="32dp"
 		android:layout_marginTop="8dp"
+		android:layout_marginRight="32dp"
 		android:padding="15dp"
-		android:src="@drawable/folder"/>
+		android:src="@drawable/folder" />
 
 	<TextView
 		android:id="@+id/things_to_know"
@@ -23,15 +24,15 @@
 		android:gravity="center"
 		android:text="@string/Onboarding_ThingsToKnow_Title"
 		android:textColor="@color/color_white"
-		android:textSize="30sp"/>
+		android:textSize="30sp" />
 
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_above="@+id/lnextButtonLayout"
-		android:layout_alignParentLeft="true"
-		android:layout_alignParentStart="true"
 		android:layout_below="@+id/things_to_know"
+		android:layout_alignParentStart="true"
+		android:layout_alignParentLeft="true"
 		android:orientation="vertical"
 		android:padding="15dp">
 
@@ -43,7 +44,7 @@
 			<View
 				android:layout_width="20dp"
 				android:layout_height="24dp"
-				android:background="@drawable/bulleticon"/>
+				android:background="@drawable/bulleticon" />
 
 			<TextView
 				android:layout_width="match_parent"
@@ -52,7 +53,7 @@
 				android:text="@string/Onboarding_ThingsToKnow_Bullet_1"
 				android:textColor="@color/color_white"
 				android:textSize="16sp"
-				android:textStyle="bold"/>
+				android:textStyle="bold" />
 		</LinearLayout>
 
 		<LinearLayout
@@ -63,7 +64,7 @@
 			<View
 				android:layout_width="20dp"
 				android:layout_height="24dp"
-				android:background="@drawable/bulleticon"/>
+				android:background="@drawable/bulleticon" />
 
 			<TextView
 				android:layout_width="match_parent"
@@ -72,7 +73,7 @@
 				android:text="@string/Onboarding_ThingsToKnow_Bullet_2"
 				android:textColor="@color/color_white"
 				android:textSize="16sp"
-				android:textStyle="bold"/>
+				android:textStyle="bold" />
 		</LinearLayout>
 
 		<LinearLayout
@@ -83,7 +84,7 @@
 			<View
 				android:layout_width="20dp"
 				android:layout_height="24dp"
-				android:background="@drawable/bulleticon"/>
+				android:background="@drawable/bulleticon" />
 
 			<TextView
 				android:layout_width="match_parent"
@@ -92,7 +93,7 @@
 				android:text="@string/Onboarding_ThingsToKnow_Bullet_3"
 				android:textColor="@color/color_white"
 				android:textSize="16sp"
-				android:textStyle="bold"/>
+				android:textStyle="bold" />
 		</LinearLayout>
 
 		<LinearLayout
@@ -103,7 +104,7 @@
 			<View
 				android:layout_width="20dp"
 				android:layout_height="24dp"
-				android:background="@drawable/bulleticon"/>
+				android:background="@drawable/bulleticon" />
 
 			<TextView
 				android:layout_width="match_parent"
@@ -112,7 +113,7 @@
 				android:text="@string/Onboarding_ThingsToKnow_Bullet_4"
 				android:textColor="@color/color_white"
 				android:textSize="16sp"
-				android:textStyle="bold"/>
+				android:textStyle="bold" />
 		</LinearLayout>
 	</LinearLayout>
 
@@ -120,8 +121,8 @@
 		android:id="@+id/lnextButtonLayout"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:layout_alignParentBottom="true"
 		android:layout_alignParentStart="true"
+		android:layout_alignParentBottom="true"
 		android:layout_marginBottom="70dp"
 		android:gravity="center_horizontal"
 		android:weightSum="1.0">
@@ -129,13 +130,10 @@
 		<Button
 			android:id="@+id/nextButton"
 			android:layout_width="0dp"
-			android:layout_height="55dp"
+			android:layout_height="wrap_content"
 			android:layout_weight="0.6"
-			android:background="@drawable/rectangle_rounded_white"
-			android:padding="10dp"
 			android:text="@string/Onboarding_ThingsToKnow_Button"
 			android:textColor="@color/color_blue5"
-			android:textSize="20sp"
-			android:textStyle="bold"/>
+			app:backgroundTint="@color/color_white" />
 	</LinearLayout>
 </RelativeLayout>
