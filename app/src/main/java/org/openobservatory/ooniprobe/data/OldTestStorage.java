@@ -4,20 +4,16 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
-import org.openobservatory.ooniprobe.activity.MainActivity;
-
 import java.io.File;
-import java.util.List;
 
 public class OldTestStorage {
     public static final String PREFS_NAME = "OONIPROBE_APP";
-    public static final String TESTS = "AbstractTest";
+    public static final String TESTS = "Test";
     public static final String NEW_TESTS = "new_tests";
 
     public static Boolean oldTestsDetected(Context context) {
         // used for retrieving arraylist from json formatted string
         SharedPreferences settings;
-        List tests;
         settings = context.getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
         if (!settings.contains(TESTS)) {
             return Boolean.FALSE;
@@ -32,7 +28,7 @@ public class OldTestStorage {
         editor = settings.edit();
         editor.remove(NEW_TESTS);
         editor.remove(TESTS);
-        editor.apply();
+        editor.commit();
         File dirFiles = context.getFilesDir();
         for (String strFile : dirFiles.list())
         {
