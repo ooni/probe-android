@@ -1,7 +1,15 @@
 package org.openobservatory.ooniprobe.activity;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.widget.ProgressBar;
@@ -25,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.FragmentActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,12 +47,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RunningActivity extends AbstractActivity {
 	public static final String TEST = "test";
 	public static final String ID_MEASUREMENT = "idMeasurement";
+	public static final String TEST_RUN = "TEST_RUN";
 	@BindView(R.id.name) TextView name;
 	@BindView(R.id.log) TextView log;
 	@BindView(R.id.progress) ProgressBar progress;
 	@BindView(R.id.animation) LottieAnimationView animation;
+	private AbstractSuite testSuite;
 	private AbstractTest[] testList;
 	private Result result;
+	private boolean background;
 
 	public static Intent newIntent(FragmentActivity context, AbstractSuite testSuite, Integer idMeasurement) {
 		if (ConnectionState.getInstance(context).getNetworkType().equals("no_internet")) {
@@ -55,7 +67,6 @@ public class RunningActivity extends AbstractActivity {
 
 	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		AbstractSuite testSuite;
 		int idMeasurement = getIntent().getIntExtra(ID_MEASUREMENT, -1);
 		if (idMeasurement != -1) {
 			Measurement failedMeasurement = Measurement.querySingle(idMeasurement);
@@ -116,6 +127,16 @@ public class RunningActivity extends AbstractActivity {
 		progress.setMax(testList.length * 100);
 	}
 
+	@Override protected void onResume() {
+		super.onResume();
+		background = false;
+	}
+
+	@Override protected void onPause() {
+		super.onPause();
+		background = true;
+	}
+
 	@Override public void onBackPressed() {
 		//TODO-ALE add toast
 		//TODO-LOR add string for toast
@@ -149,8 +170,31 @@ public class RunningActivity extends AbstractActivity {
 		@Override protected void onPostExecute(Void aVoid) {
 			super.onPostExecute(aVoid);
 			RunningActivity act = ref.get();
-			if (act != null && !act.isFinishing())
-				act.startActivity(MainActivity.newIntent(act, R.id.testResults));
+			if (act != null && !act.isFinishing()) {
+				if (act.background) {
+					NotificationManager notificationManager = (NotificationManager) act.getSystemService(Context.NOTIFICATION_SERVICE);
+					if (notificationManager != null) {
+						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+							notificationManager.createNotificationChannel(new NotificationChannel(TEST_RUN, "Channel human readable title", NotificationManager.IMPORTANCE_DEFAULT)); // TODO LOR add string
+						NotificationCompat.Builder b = new NotificationCompat.Builder(act, TEST_RUN);
+						b.setAutoCancel(true);
+						b.setDefaults(Notification.DEFAULT_ALL);
+						Drawable d = act.getResources().getDrawable(act.testSuite.getIcon());
+						Bitmap bitmap = Bitmap.createBitmap(d.getIntrinsicWidth(), d.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+						Canvas canvas = new Canvas(bitmap);
+						d.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+						d.draw(canvas);
+						b.setLargeIcon(bitmap);
+						b.setSmallIcon(R.drawable.notification_icon);
+						b.setContentTitle(act.getString(R.string.General_AppName));
+						b.setContentText(act.getString(act.testSuite.getTitle()) + " " + act.getString(R.string.Notification_FinishedRunning));
+						b.setContentIntent(PendingIntent.getActivity(act, 0, MainActivity.newIntent(act, R.id.testResults), PendingIntent.FLAG_UPDATE_CURRENT));
+						notificationManager.notify(1, b.build());
+					}
+					act.finish();
+				} else
+					act.startActivity(MainActivity.newIntent(act, R.id.testResults));
+			}
 		}
 	}
 }
