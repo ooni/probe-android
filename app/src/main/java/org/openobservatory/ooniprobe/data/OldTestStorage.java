@@ -32,34 +32,15 @@ public class OldTestStorage {
         editor = settings.edit();
         editor.remove(NEW_TESTS);
         editor.remove(TESTS);
-        editor.commit();
-
+        editor.apply();
         File dirFiles = context.getFilesDir();
         for (String strFile : dirFiles.list())
         {
-            System.out.println("oldTestsDetected FILEFOUND " + strFile);
-            /*
- hosts.txt
- GeoIPASNum.dat
- GeoIP.dat
- global.txt
- .Fabric
- orchestration_secret.json
- test-1527505390226.log
- test-1527505390777.log
- test-1527505391176.log
- test-1527505391726.log
- test-1527505390226.json
- test-1527505392610.log
- test-1527505393160.log
- test-1527505390777.json
- test-1527505391176.json
- test-1527505391726.json
- test-1527505392610.json
-             */
+            if (strFile.contains("test-") || strFile.equals("hosts.txt") || strFile.equals("GeoIPASNum.dat") || strFile.equals("GeoIP.dat") || strFile.equals("global.txt")){
+                File file = new File(dirFiles, strFile);
+                file.delete();
+            }
         }
-
     }
-
 }
 

@@ -7,12 +7,14 @@ import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.data.OldTestStorage;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
 
 import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import localhost.toolkit.app.MessageDialogFragment;
 
 public class MainActivity extends AbstractActivity {
 	public static final String RES_ITEM = "resItem";
@@ -40,13 +42,10 @@ public class MainActivity extends AbstractActivity {
 		});
 		bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
 
-		/*
-		//TODO-LOR
-		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-		if (!preferences.getBoolean("cleanup_unused_files", false)) {
-			OldTestStorage.removeUnusedFiles(this);
-			PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("cleanup_unused_files", true).apply();
-		}*/
+		if (!OldTestStorage.oldTestsDetected(this)) {
+			MessageDialogFragment.newInstance(getString(R.string.General_AppName), getString(R.string.Modal_OldTestsDetected), false).show(getSupportFragmentManager(), null);
+			OldTestStorage.removeAllTests(this);
+		}
 		checkInformedConsent();
 	}
 
