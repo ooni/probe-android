@@ -99,8 +99,11 @@ public class OoniRunActivity extends AbstractActivity {
 						desc.setText(td == null ? getString(R.string.OONIRun_YouAreAboutToRun) : td);
 						Attribute attribute = new Gson().fromJson(ta, Attribute.class);
 						run.setOnClickListener(v -> {
-							startActivity(RunningActivity.newIntent(OoniRunActivity.this, suite, null));
-							finish();
+							Intent runIntent = RunningActivity.newIntent(OoniRunActivity.this, suite, null);
+							if (runIntent != null) {
+								startActivity(runIntent);
+								finish();
+							}
 						});
 
 						/*

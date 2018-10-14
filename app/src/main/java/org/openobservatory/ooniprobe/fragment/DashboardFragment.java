@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -83,7 +84,9 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 				startActivity(PreferenceActivity.newIntent(getActivity(), testSuite.getPref()));
 				break;
 			case R.id.run:
-				startActivity(RunningActivity.newIntent(getActivity(), testSuite, null));
+				Intent intent = RunningActivity.newIntent(getActivity(), testSuite, null);
+				if (intent != null)
+					startActivity(intent);
 				break;
 			default:
 				startActivity(OverviewActivity.newIntent(getActivity(), testSuite));

@@ -19,11 +19,13 @@ import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
+import org.openobservatory.ooniprobe.utils.ConnectionState;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import localhost.toolkit.app.MessageDialogFragment;
@@ -43,8 +45,12 @@ public class RunningActivity extends AbstractActivity {
 	private AbstractTest[] testList;
 	private Result result;
 
-	public static Intent newIntent(Context context, AbstractSuite testSuite, Integer idMeasurement) {
-		return new Intent(context, RunningActivity.class).putExtra(TEST, testSuite).putExtra(ID_MEASUREMENT, idMeasurement);
+	public static Intent newIntent(FragmentActivity context, AbstractSuite testSuite, Integer idMeasurement) {
+		if (ConnectionState.getInstance(context).getNetworkType().equals("no_internet")) {
+			MessageDialogFragment.newInstance(context.getString(R.string.Modal_Error), context.getString(R.string.Modal_Error_NoInternet), false).show(context.getSupportFragmentManager(), null);
+			return null;
+		} else
+			return new Intent(context, RunningActivity.class).putExtra(TEST, testSuite).putExtra(ID_MEASUREMENT, idMeasurement);
 	}
 
 	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {

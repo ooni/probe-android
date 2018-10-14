@@ -95,8 +95,11 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 	@Override public void onConfirmation(Serializable serializable, int i) {
 		if (i == DialogInterface.BUTTON_POSITIVE) {
 			Measurement measurement = (Measurement) serializable;
-			startActivity(RunningActivity.newIntent(this, null, measurement.id));
-			finish();
+			Intent intent = RunningActivity.newIntent(this, null, measurement.id);
+			if (intent != null) {
+				startActivity(intent);
+				finish();
+			}
 		}
 	}
 

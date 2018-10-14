@@ -49,6 +49,8 @@ public class OverviewActivity extends AbstractActivity {
 	}
 
 	@OnClick(R.id.run) void onRunClick() {
-		startActivity(RunningActivity.newIntent(this, testSuite, null));
+		Intent intent = RunningActivity.newIntent(this, testSuite, null);
+		if (intent != null)
+			startActivity(intent);
 	}
 }
