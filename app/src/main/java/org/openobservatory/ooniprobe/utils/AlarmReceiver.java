@@ -29,7 +29,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         for (int i=0; i<testArray.length; i++)
         {
             String testName = testArray[i];
-            Answers.getInstance().logCustom(new CustomEvent("LORENZO: Automated testing run")
+            Answers.getInstance().logCustom(new CustomEvent("Automated testing run")
                     .putCustomAttribute("status", "started"));
         }
         NotificationHandler.sendNotification(context, context.getString(R.string.local_notifications_text));

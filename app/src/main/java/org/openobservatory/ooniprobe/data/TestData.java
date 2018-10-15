@@ -35,7 +35,7 @@ public class TestData extends Observable {
     public static LinkedHashMap<String, Boolean> availableTests;
     public static Activity activity;
     public static Context context;
-    public static String probe_cc;
+    public static String probe_cc = "";
 
     public static TestData getInstance(final Context c, final Activity a) {
         if (instance == null) {
