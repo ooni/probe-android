@@ -23,28 +23,21 @@ public class Url extends BaseModel implements Serializable {
 	@Column public String country_code;
 	private transient Integer categoryIcon;
 
-	public Url() {
+	Url() {
 	}
 
-	public Url(String url, String categoryCode, String countryCode) {
+	private Url(String url, String categoryCode, String countryCode) {
 		this.url = url;
 		this.category_code = categoryCode;
 		this.country_code = countryCode;
 	}
 
-	public Url(String url) {
-		this(url, "MISC", "XX");
-	}
 
 	public static Url getUrl(String input) {
 		return SQLite.select().from(Url.class).where(Url_Table.url.eq(input)).querySingle();
 	}
 
-	public static Url checkExistingUrl(String input) {
-		return checkExistingUrl(input, "MISC", "XX");
-	}
-
-	public static Url checkExistingUrl(String input, String categoryCode, String countryCode) {
+	public static Url checkExistingUrl(String input, String categoryCode, String countryCode) { // TODO we need to talk
 		Url url = Url.getUrl(input);
 		if (url == null) {
 			url = new Url(input, categoryCode, countryCode);

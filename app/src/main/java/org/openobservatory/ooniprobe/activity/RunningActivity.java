@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.animation.Animation;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 
@@ -138,8 +139,7 @@ public class RunningActivity extends AbstractActivity {
 	}
 
 	@Override public void onBackPressed() {
-		//TODO-ALE add toast
-		//TODO-LOR add string for toast
+		Toast.makeText(this, "TEMP: non puoi uscire", Toast.LENGTH_SHORT).show(); //TODO-LOR add string for toast
 	}
 
 	private void run(AbstractTest[] testList) {

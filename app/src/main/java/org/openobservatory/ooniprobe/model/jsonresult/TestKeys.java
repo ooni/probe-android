@@ -154,10 +154,8 @@ public class TestKeys {
 	}
 
 	public String getUpload(Context ctx) {
-		//TODO-ALE check this.simple.upload not null?
-		if (this.simple != null) {
+		if (this.simple != null)
 			return setFractionalDigits(getScaledValue(this.simple.upload));
-		}
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
@@ -185,10 +183,10 @@ public class TestKeys {
 	public double getScaledValue(double value) {
 		if (value < 1000)
 			return value;
-		else if (value < 1000*1000)
+		else if (value < 1000 * 1000)
 			return value / 1000;
 		else
-			return value / 1000*1000;
+			return value / 1000 * 1000;
 	}
 
 	public String setFractionalDigits(double value) {
@@ -202,7 +200,7 @@ public class TestKeys {
 		//We assume there is no Tbit/s (for now!)
 		if (value < 1000)
 			return ctx.getString(R.string.TestResults_Kbps);
-		else if (value < 1000*1000)
+		else if (value < 1000 * 1000)
 			return ctx.getString(R.string.TestResults_Mbps);
 		else
 			return ctx.getString(R.string.TestResults_Gbps);
@@ -268,10 +266,8 @@ public class TestKeys {
 
 	//Dash
 	public String getMedianBitrate(Context ctx) {
-		//TODO-ALE here in iOS I check for a null value
-		if (simple.median_bitrate != null) {
+		if (simple.median_bitrate != null)
 			return setFractionalDigits(getScaledValue(simple.median_bitrate));
-		}
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
