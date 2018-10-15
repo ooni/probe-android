@@ -25,6 +25,8 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.CustomEvent;
 import com.crashlytics.android.core.CrashlyticsCore;
 
 import io.fabric.sdk.android.Fabric;
@@ -192,6 +194,7 @@ public class SettingsFragment extends Fragment {
                     local_notifications_timeLayout.setVisibility(View.VISIBLE);
                     editor.putBoolean("local_notifications", true);
                     NotificationHandler.setRecurringAlarm(mActivity.getApplicationContext());
+                    Answers.getInstance().logCustom(new CustomEvent("Automated testing enabled"));
                 } else {
                     local_notifications_timeLayout.setVisibility(View.GONE);
                     editor.putBoolean("local_notifications", false);

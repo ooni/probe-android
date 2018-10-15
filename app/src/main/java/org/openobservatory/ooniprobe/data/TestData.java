@@ -35,6 +35,7 @@ public class TestData extends Observable {
     public static LinkedHashMap<String, Boolean> availableTests;
     public static Activity activity;
     public static Context context;
+    public static String probe_cc;
 
     public static TestData getInstance(final Context c, final Activity a) {
         if (instance == null) {
@@ -131,8 +132,6 @@ public class TestData extends Observable {
                                             @Override
                                             public void callback(String entry) {
                                                 setAnomalyHirl(entry, currentTest);
-                                                if (currentTest.annotation)
-                                                    sendEvent(entry, currentTest.testName);
                                             }
                                         }).run();
                             }
@@ -142,8 +141,6 @@ public class TestData extends Observable {
                                             @Override
                                             public void callback(String entry) {
                                                 setAnomalyHhfm(entry, currentTest);
-                                                if (currentTest.annotation)
-                                                    sendEvent(entry, currentTest.testName);
                                             }
                                         })
                                         .run();
@@ -154,9 +151,6 @@ public class TestData extends Observable {
                                             @Override
                                             public void callback(String entry) {
                                                 setAnomalyWc(entry, currentTest);
-                                                if (currentTest.annotation) {
-                                                    sendEvent(entry, currentTest.testName);
-                                                }
                                             }
                                         }).run();
                             }
@@ -166,8 +160,6 @@ public class TestData extends Observable {
                                             @Override
                                             public void callback(String entry) {
                                                 setAnomalyNdt(entry, currentTest);
-                                                if (currentTest.annotation)
-                                                    sendEvent(entry, currentTest.testName);
                                             }
                                         })
                                         .run();
@@ -178,8 +170,6 @@ public class TestData extends Observable {
                                             @Override
                                             public void callback(String entry) {
                                                 setAnomalyNdt(entry, currentTest);
-                                                if (currentTest.annotation)
-                                                    sendEvent(entry, currentTest.testName);
                                             }
                                         })
                                         .run();
@@ -190,8 +180,6 @@ public class TestData extends Observable {
                                     @Override
                                     public void callback(String entry) {
                                         setAnomalyWhatsapp(entry, currentTest);
-                                        if (currentTest.annotation)
-                                            sendEvent(entry, currentTest.testName);
                                     }
                                 })
                                         .run();
@@ -202,8 +190,6 @@ public class TestData extends Observable {
                                     @Override
                                     public void callback(String entry) {
                                         setAnomalyTelegram(entry, currentTest);
-                                        if (currentTest.annotation)
-                                            sendEvent(entry, currentTest.testName);
                                     }
                                 })
                                         .run();
@@ -214,8 +200,6 @@ public class TestData extends Observable {
                                     @Override
                                     public void callback(String entry) {
                                         setAnomalyFacebookMessenger(entry, currentTest);
-                                        if (currentTest.annotation)
-                                            sendEvent(entry, currentTest.testName);
                                     }
                                 })
                                         .run();
@@ -236,6 +220,8 @@ public class TestData extends Observable {
                     }
 
                     protected void onPostExecute(Boolean success) {
+                        if (currentTest.annotation)
+                            sendEvent(currentTest.testName);
                         TestStorage.setCompleted(ctx, currentTest);
                         currentTest.entry = true;
                         runningTests.remove(currentTest);
@@ -249,26 +235,11 @@ public class TestData extends Observable {
         );
     }
 
-    public static void sendEvent(String entry, String test_name){
-        Log.v(TAG, "sendEvent");
-        try {
-            Log.v(TAG, "sendEvent try");
-            JSONObject jsonObj = new JSONObject(entry);
-            Log.v(TAG, "sendEvent entry " + entry);
-            String report_id = jsonObj.optString("report_id");
-            String probe_cc = jsonObj.optString("probe_cc");
-            String probe_asn = jsonObj.optString("probe_asn");
-            Log.v(TAG, "sendEvent " + report_id);
-            Log.v(TAG, "sendEvent " + probe_cc);
-            Log.v(TAG, "sendEvent " + probe_asn);
-            Answers.getInstance().logCustom(new CustomEvent("Automatic test run finished")
-                    .putCustomAttribute("test_name", test_name)
-                    .putCustomAttribute("report_id", report_id)
-                    .putCustomAttribute("probe_cc", probe_cc)
-                    .putCustomAttribute("probe_asn", probe_asn));
-            }
-            catch (JSONException e) {
-        }
+    public static void sendEvent(String test_name){
+        Answers.getInstance().logCustom(new CustomEvent("Automated testing run")
+                .putCustomAttribute("status", "ended")
+                .putCustomAttribute("test_name", test_name)
+                .putCustomAttribute("probe_cc", probe_cc));
     }
 
     //TODO unify all these in an unique function that takes the test name.
@@ -280,6 +251,7 @@ public class TestData extends Observable {
         try {
             int anomaly = OONITests.ANOMALY_GREEN;
             JSONObject jsonObj = new JSONObject(entry);
+            probe_cc = jsonObj.optString("probe_cc");
             JSONObject test_keys = jsonObj.getJSONObject("test_keys");
             Object blocking = test_keys.get("blocking");
             if(blocking instanceof String)
@@ -309,6 +281,7 @@ public class TestData extends Observable {
         try {
             int anomaly = OONITests.ANOMALY_GREEN;
             JSONObject jsonObj = new JSONObject(entry);
+            probe_cc = jsonObj.optString("probe_cc");
             JSONObject test_keys = jsonObj.getJSONObject("test_keys");
             if (test_keys.has("tampering")) {
                 Boolean tampering = test_keys.getBoolean("tampering");
@@ -338,6 +311,7 @@ public class TestData extends Observable {
         try {
             int anomaly = OONITests.ANOMALY_GREEN;
             JSONObject jsonObj = new JSONObject(entry);
+            probe_cc = jsonObj.optString("probe_cc");
             JSONObject test_keys = jsonObj.getJSONObject("test_keys");
             Object failure = test_keys.get("failure");
             if(failure == null)
@@ -378,6 +352,7 @@ public class TestData extends Observable {
         try {
             int anomaly = OONITests.ANOMALY_GREEN;
             JSONObject jsonObj = new JSONObject(entry);
+            probe_cc = jsonObj.optString("probe_cc");
             JSONObject test_keys = jsonObj.getJSONObject("test_keys");
             if (test_keys.has("failure")) {
                 Object failure = test_keys.get("failure");
@@ -405,6 +380,7 @@ public class TestData extends Observable {
         try {
             int anomaly = OONITests.ANOMALY_GREEN;
             JSONObject jsonObj = new JSONObject(entry);
+            probe_cc = jsonObj.optString("probe_cc");
             JSONObject test_keys = jsonObj.getJSONObject("test_keys");
             String keys[] = {"whatsapp_endpoints_status",
                     "whatsapp_web_status",
@@ -439,6 +415,7 @@ public class TestData extends Observable {
         try {
             int anomaly = OONITests.ANOMALY_GREEN;
             JSONObject jsonObj = new JSONObject(entry);
+            probe_cc = jsonObj.optString("probe_cc");
             JSONObject test_keys = jsonObj.getJSONObject("test_keys");
             String keys[] = {"telegram_http_blocking",
                     "telegram_tcp_blocking"};
@@ -481,6 +458,7 @@ public class TestData extends Observable {
         try {
             int anomaly = OONITests.ANOMALY_GREEN;
             JSONObject jsonObj = new JSONObject(entry);
+            probe_cc = jsonObj.optString("probe_cc");
             JSONObject test_keys = jsonObj.getJSONObject("test_keys");
             String keys[] = {"facebook_tcp_blocking",
                     "facebook_dns_blocking"};

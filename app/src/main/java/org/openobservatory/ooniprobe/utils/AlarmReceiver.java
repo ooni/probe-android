@@ -18,11 +18,26 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         //System.out.println(DEBUG_TAG);
-        Answers.getInstance().logCustom(new CustomEvent("Automatic test run started"));
+        String[] testArray = {
+                OONITests.WEB_CONNECTIVITY,
+                OONITests.HTTP_HEADER_FIELD_MANIPULATION,
+                OONITests.HTTP_INVALID_REQUEST_LINE,
+                OONITests.WHATSAPP,
+                OONITests.TELEGRAM,
+                OONITests.FACEBOOK_MESSENGER
+        };
+        for (int i=0; i<testArray.length; i++)
+        {
+            String testName = testArray[i];
+            Answers.getInstance().logCustom(new CustomEvent("LORENZO: Automated testing run")
+                    .putCustomAttribute("status", "started"));
+        }
         NotificationHandler.sendNotification(context, context.getString(R.string.local_notifications_text));
         TestData.getInstance(context, null);
-        TestData.doNetworkMeasurements(context, new NetworkMeasurement(context, OONITests.WEB_CONNECTIVITY, true));
-        TestData.doNetworkMeasurements(context, new NetworkMeasurement(context, OONITests.HTTP_HEADER_FIELD_MANIPULATION, true));
-        TestData.doNetworkMeasurements(context, new NetworkMeasurement(context, OONITests.HTTP_INVALID_REQUEST_LINE, true));
+        for (int i=0; i<testArray.length; i++)
+        {
+            String testName = testArray[i];
+            TestData.doNetworkMeasurements(context, new NetworkMeasurement(context, testName, true));
+        }
     }
 }

@@ -30,7 +30,7 @@ public class ooniprobeApp extends Application {
         Fabric.with(this, new Answers());
 
         if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("local_notifications", false))
-            Answers.getInstance().logCustom(new CustomEvent("Automatic test run enabled"));
+            Answers.getInstance().logCustom(new CustomEvent("Automated testing enabled"));
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                 .setDefaultFontPath("webui/font-fira-sans-bold.5310ca5fb41a915987df5663660da770.otf")
