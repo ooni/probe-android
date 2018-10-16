@@ -40,11 +40,10 @@ public class Url extends BaseModel implements Serializable {
 		return checkExistingUrl(input, "MISC", "XX");
 	}
 
-	public static Url checkExistingUrl(String input, String categoryCode, String countryCode) { // TODO we need to talk
+	public static Url checkExistingUrl(String input, String categoryCode, String countryCode) {
 		Url url = Url.getUrl(input);
 		if (url == null) {
 			url = new Url(input, categoryCode, countryCode);
-			//TODO-ALE serve? altrimenti rimuovi
 			url.save();
 		} else if ((!url.category_code.equals(categoryCode) && !categoryCode.equals("MISC"))
 				|| (!url.country_code.equals(countryCode) && !countryCode.equals("XX"))) {

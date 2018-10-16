@@ -139,7 +139,7 @@ public class RunningActivity extends AbstractActivity {
 	}
 
 	@Override public void onBackPressed() {
-		Toast.makeText(this, "TEMP: non puoi uscire", Toast.LENGTH_SHORT).show(); //TODO-LOR add string for toast
+		Toast.makeText(this, getString(R.string.Modal_Error_CantCloseScreen), Toast.LENGTH_SHORT).show();
 	}
 
 	private void run(AbstractTest[] testList) {
@@ -175,7 +175,7 @@ public class RunningActivity extends AbstractActivity {
 					NotificationManager notificationManager = (NotificationManager) act.getSystemService(Context.NOTIFICATION_SERVICE);
 					if (notificationManager != null) {
 						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-							notificationManager.createNotificationChannel(new NotificationChannel(TEST_RUN, "Channel human readable title", NotificationManager.IMPORTANCE_DEFAULT)); // TODO LOR add string
+							notificationManager.createNotificationChannel(new NotificationChannel(TEST_RUN, act.getString(R.string.Settings_Notifications_OnTestCompletion), NotificationManager.IMPORTANCE_DEFAULT)); // TODO LOR add string
 						NotificationCompat.Builder b = new NotificationCompat.Builder(act, TEST_RUN);
 						b.setAutoCancel(true);
 						b.setDefaults(Notification.DEFAULT_ALL);

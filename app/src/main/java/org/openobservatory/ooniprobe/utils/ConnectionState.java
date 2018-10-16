@@ -39,9 +39,9 @@ public class ConnectionState {
 
     public void updateNetworkType() {
         network_type = getNetworkTypeFromService();
-        //TODO-ALE part of refactor class
-        //if (!network_type.equals("no_internet"))
-        //    NotificationService.getInstance(c).sendRegistrationToServer();
+        //TODO-PRERELEASE define better algo
+        if (!network_type.equals("no_internet"))
+            NotificationService.getInstance(context).sendRegistrationToServer();
     }
 
     public String getNetworkType() {

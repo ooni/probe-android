@@ -210,7 +210,8 @@
 	<string name="Modal_Cancel">Cancel</string>
 	<string name="Modal_Error">Error</string>
 	<string name="Modal_Error_NoInternet">Unable to run the test. Please check your internet connectivity.</string>
-	<string name="Modal_Error_CantDownloadURLs">Unable to get URLs list. Please try again.</string>
+	<string name="Modal_Error_CantDownloadURLs">Unable to get URLs list. Please try again.</string>s
+	<string name="Modal_Error_CantCloseScreen">You can\'t close this screen while a test is running.</string>
 	<string name="Modal_Error_NotificationNotEnabled">Notification permissions are required. Please enable them in the Settings of your phone, and then enable them in your OONI Probe app.</string>
 	<string name="Modal_Error_NotificationNotEnabled_GoToSettings">Go to the Settings</string>
 	<string name="Modal_ResultsNotUploaded_Title">Results not uploaded</string>
