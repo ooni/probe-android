@@ -16,9 +16,9 @@ public class OldTestStorage {
         SharedPreferences settings;
         settings = context.getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
         if (!settings.contains(TESTS)) {
-            return Boolean.FALSE;
+            return false;
         }
-        return Boolean.TRUE;
+        return true;
     }
 
     public static void removeAllTests(Context context) {
