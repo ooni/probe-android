@@ -1,11 +1,6 @@
 package org.openobservatory.ooniprobe.activity;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.github.paolorotolo.appintro.AppIntro;
 
@@ -15,6 +10,10 @@ import org.openobservatory.ooniprobe.fragment.consent.IConsentPage2Fragment;
 import org.openobservatory.ooniprobe.fragment.consent.IConsentPage3Fragment;
 import org.openobservatory.ooniprobe.fragment.consent.IConsentPage4Fragment;
 import org.openobservatory.ooniprobe.fragment.consent.IConsentQuizFragment;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 public class InformedConsentActivity extends AppIntro {
 	public static final int REQUEST_CODE = 1000;
@@ -89,13 +88,6 @@ public class InformedConsentActivity extends AppIntro {
 	}
 
 	private void next() {
-		//TODO-ALE use app preference manager
-		SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
-		editor.putBoolean("include_ip", false);
-		editor.putBoolean("include_asn", true);
-		editor.putBoolean("include_country", true);
-		editor.putBoolean("upload_results", true);
-		editor.apply();
 		setResult(RESULT_CODE_COMPLETED);
 		finish();
 	}

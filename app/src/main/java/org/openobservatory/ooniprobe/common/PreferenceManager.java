@@ -74,7 +74,7 @@ public class PreferenceManager {
 	}
 
 	public boolean isIncludeIp() {
-		return sp.getBoolean(r.getString(R.string.include_ip), true);
+		return sp.getBoolean(r.getString(R.string.include_ip), false);
 	}
 
 	public Integer getIncludeIp() {
