@@ -173,9 +173,9 @@ public class RunningActivity extends AbstractActivity {
 			if (act != null && !act.isFinishing()) {
 				if (act.background) {
 					NotificationManager notificationManager = (NotificationManager) act.getSystemService(Context.NOTIFICATION_SERVICE);
-					if (notificationManager != null) {
+					if (notificationManager != null && act.getPreferenceManager().isNotificationsCompletion()) {
 						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-							notificationManager.createNotificationChannel(new NotificationChannel(TEST_RUN, act.getString(R.string.Settings_Notifications_OnTestCompletion), NotificationManager.IMPORTANCE_DEFAULT)); // TODO LOR add string
+							notificationManager.createNotificationChannel(new NotificationChannel(TEST_RUN, act.getString(R.string.Settings_Notifications_OnTestCompletion), NotificationManager.IMPORTANCE_DEFAULT));
 						NotificationCompat.Builder b = new NotificationCompat.Builder(act, TEST_RUN);
 						b.setAutoCancel(true);
 						b.setDefaults(Notification.DEFAULT_ALL);

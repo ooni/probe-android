@@ -10,8 +10,8 @@ import org.openobservatory.ooniprobe.R;
 import java.util.ArrayList;
 
 public class PreferenceManager {
-	private static final String SHOW_INTRO = "first_run";
 	public static final String GEO_VER = "geo_ver";
+	private static final String SHOW_INTRO = "first_run";
 	private SharedPreferences sp;
 	private Resources r;
 
@@ -58,11 +58,11 @@ public class PreferenceManager {
 	}
 
 	public boolean isNotificationsCompletion() {
-		return sp.getBoolean(r.getString(R.string.notifications_completion), true);
+		return isNotifications() && sp.getBoolean(r.getString(R.string.notifications_completion), true);
 	}
 
 	public boolean isNotificationsNews() {
-		return sp.getBoolean(r.getString(R.string.notifications_news), true);
+		return isNotifications() && sp.getBoolean(r.getString(R.string.notifications_news), true);
 	}
 
 	public boolean isUploadResults() {
