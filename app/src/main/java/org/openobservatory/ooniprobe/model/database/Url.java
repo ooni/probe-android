@@ -23,7 +23,10 @@ public class Url extends BaseModel implements Serializable {
 	@Column public String country_code;
 	private transient Integer categoryIcon;
 
-	Url(String url) {
+	public Url(){
+	}
+
+	private Url(String url) {
 		this(url, "MISC", "XX");
 	}
 
