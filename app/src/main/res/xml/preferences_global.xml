@@ -24,24 +24,23 @@
 		android:icon="@drawable/sharing"
 		android:key="@string/sharing"
 		android:title="@string/Settings_Sharing_Label">
-		<PreferenceCategory android:title="@string/Settings_Sharing_Footer">
-			<androidx.preference.SwitchPreferenceCompat
-				android:defaultValue="true"
-				android:key="@string/upload_results"
-				android:title="@string/Settings_Sharing_UploadResults" />
-			<androidx.preference.SwitchPreferenceCompat
-				android:defaultValue="true"
-				android:key="@string/include_asn"
-				android:title="@string/Settings_Sharing_IncludeNetwork" />
-			<androidx.preference.SwitchPreferenceCompat
-				android:defaultValue="true"
-				android:key="@string/include_cc"
-				android:title="@string/Settings_Sharing_IncludeCountryCode" />
-			<androidx.preference.SwitchPreferenceCompat
-				android:defaultValue="false"
-				android:key="@string/include_ip"
-				android:title="@string/Settings_Sharing_IncludeIP" />
-		</PreferenceCategory>
+		<androidx.preference.SwitchPreferenceCompat
+			android:defaultValue="true"
+			android:key="@string/upload_results"
+			android:title="@string/Settings_Sharing_UploadResults" />
+		<androidx.preference.SwitchPreferenceCompat
+			android:defaultValue="true"
+			android:key="@string/include_asn"
+			android:title="@string/Settings_Sharing_IncludeNetwork" />
+		<androidx.preference.SwitchPreferenceCompat
+			android:defaultValue="true"
+			android:key="@string/include_cc"
+			android:title="@string/Settings_Sharing_IncludeCountryCode" />
+		<androidx.preference.SwitchPreferenceCompat
+			android:defaultValue="false"
+			android:key="@string/include_ip"
+			android:title="@string/Settings_Sharing_IncludeIP" />
+		<PreferenceCategory android:title="@string/Settings_Sharing_Footer" />
 	</PreferenceScreen>
 	<PreferenceScreen
 		android:icon="@drawable/advanced"
