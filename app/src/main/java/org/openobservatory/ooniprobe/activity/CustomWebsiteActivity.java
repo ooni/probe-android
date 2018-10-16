@@ -44,6 +44,7 @@ public class CustomWebsiteActivity extends AbstractActivity {
 					ArrayList<String> urls = new ArrayList<>(urlContainer.getChildCount());
 					for (int i = 0; i < urlContainer.getChildCount(); i++)
 						urls.add(((TextInputLayout) urlContainer.getChildAt(i)).getEditText().getText().toString());
+					//TODO-ALE run test
 					System.err.println(urls.toString());
 					Toast.makeText(this, "RUN TEST", Toast.LENGTH_SHORT).show();
 				}

@@ -23,7 +23,8 @@ public class Url extends BaseModel implements Serializable {
 	@Column public String country_code;
 	private transient Integer categoryIcon;
 
-	Url() {
+	Url(String url) {
+		this(url, "MISC", "XX");
 	}
 
 	private Url(String url, String categoryCode, String countryCode) {
@@ -31,7 +32,6 @@ public class Url extends BaseModel implements Serializable {
 		this.category_code = categoryCode;
 		this.country_code = countryCode;
 	}
-
 
 	public static Url getUrl(String input) {
 		return SQLite.select().from(Url.class).where(Url_Table.url.eq(input)).querySingle();
