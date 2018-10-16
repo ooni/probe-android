@@ -6,12 +6,12 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.annotation.XmlRes;
 import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceScreen;
@@ -34,7 +34,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 
 	@Override public void onResume() {
 		super.onResume();
-		setPreferencesFromResource(((PreferenceActivity) getActivity()).getPreference(), android.R.id.content, rootKey);
+		setPreferencesFromResource(((PreferenceInterface) getActivity()).getPreferenceResId(), android.R.id.content, rootKey);
 		getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 		getActivity().setTitle(getPreferenceScreen().getTitle());
 		for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++)
@@ -87,5 +87,9 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 			fragment.setArguments(args);
 			getFragmentManager().beginTransaction().replace(android.R.id.content, fragment).commit();
 		}
+	}
+
+	public interface PreferenceInterface {
+		@XmlRes int getPreferenceResId();
 	}
 }
