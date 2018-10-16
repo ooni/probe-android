@@ -3,9 +3,6 @@ package org.openobservatory.ooniprobe.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.common.util.IOUtils;
 import com.google.gson.GsonBuilder;
@@ -37,6 +34,9 @@ import org.openobservatory.ooniprobe.test.test.Whatsapp;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -104,7 +104,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
 
 	@OnClick(R.id.rawData) public void onRawDataClick() {
 		try {
-			FileInputStream is = openFileInput(Measurement.getEntryFileName(measurement.id, measurement.test_name));
+			FileInputStream is = new FileInputStream(Measurement.getEntryFile(this, measurement.id, measurement.test_name));
 			String json = new GsonBuilder().setPrettyPrinting().create().toJson(new JsonParser().parse(new InputStreamReader(is)).getAsJsonObject());
 			startActivity(TextActivity.newIntent(this, json));
 			is.close();
@@ -115,7 +115,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
 
 	@OnClick(R.id.viewLog) public void onViewLogClick() {
 		try {
-			FileInputStream is = openFileInput(Measurement.getLogFileName(measurement.result.id, measurement.test_name));
+			FileInputStream is = new FileInputStream(Measurement.getLogFile(this, measurement.result.id, measurement.test_name));
 			String log = new String(IOUtils.toByteArray(is));
 			startActivity(TextActivity.newIntent(this, log));
 			is.close();

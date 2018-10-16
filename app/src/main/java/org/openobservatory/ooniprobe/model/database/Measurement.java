@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.model.database;
 
+import android.content.Context;
+
 import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.ForeignKey;
@@ -20,6 +22,7 @@ import org.openobservatory.ooniprobe.test.test.Telegram;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -59,12 +62,18 @@ public class Measurement extends BaseModel implements Serializable {
 		start_time = new java.util.Date();
 	}
 
-	public static String getEntryFileName(int measurementId, String test_name) {
-		return measurementId + "_" + test_name + ".json";
+	public static File getEntryFile(Context c, int measurementId, String test_name) {
+		return new File(getMeasurementDir(c), measurementId + "_" + test_name + ".json");
 	}
 
-	public static String getLogFileName(int resultId, String test_name) {
-		return resultId + "_" + test_name + ".log";
+	public static File getLogFile(Context c, int resultId, String test_name) {
+		return new File(getMeasurementDir(c), resultId + "_" + test_name + ".log");
+	}
+
+	public static File getMeasurementDir(Context c) {
+		File dir = new File(c.getFilesDir(), Measurement.class.getSimpleName());
+		dir.mkdirs();
+		return dir;
 	}
 
 	public static Measurement querySingle(int id) {

@@ -18,7 +18,6 @@ import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
-import java.io.File;
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.Date;
@@ -55,7 +54,7 @@ public class Result extends BaseModel implements Serializable {
 
 	public static void deleteAll(Context c) {
 		try {
-			FileUtils.cleanDirectory(c.getFilesDir());
+			FileUtils.cleanDirectory(Measurement.getMeasurementDir(c));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -122,8 +121,8 @@ public class Result extends BaseModel implements Serializable {
 	public boolean delete(Context c) {
 		for (Measurement measurement : getAllMeasurements()) {
 			try {
-				new File(c.getFilesDir(), Measurement.getEntryFileName(measurement.id, measurement.test_name)).delete();
-				new File(c.getFilesDir(), Measurement.getLogFileName(id, measurement.test_name)).delete();
+				Measurement.getEntryFile(c, measurement.id, measurement.test_name).delete();
+				Measurement.getLogFile(c, id, measurement.test_name).delete();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

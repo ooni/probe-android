@@ -1,8 +1,6 @@
 package org.openobservatory.ooniprobe.test.test;
 
 import android.content.Context;
-import androidx.annotation.CallSuper;
-import androidx.annotation.NonNull;
 import android.util.Log;
 import android.util.SparseArray;
 
@@ -20,8 +18,9 @@ import org.openobservatory.ooniprobe.utils.ConnectionState;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
 
+import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
 import io.ooni.mk.Task;
 
 public abstract class AbstractTest {
@@ -73,7 +72,7 @@ public abstract class AbstractTest {
 						break;
 					case "log":
 						if (logFOS == null)
-							logFOS = c.openFileOutput(Measurement.getLogFileName(result.id, name), Context.MODE_APPEND);
+							logFOS = new FileOutputStream(Measurement.getEntryFile(c, result.id, name));
 						logFOS.write(event.value.message.getBytes());
 						logFOS.write('\n');
 						testCallback.onLog(event.value.message);
@@ -91,7 +90,7 @@ public abstract class AbstractTest {
 								onEntry(c, pm, jr, m);
 							m.save();
 							try {
-								FileOutputStream outputStream = c.openFileOutput(Measurement.getEntryFileName(m.id, m.test_name), Context.MODE_PRIVATE);
+								FileOutputStream outputStream = new FileOutputStream(Measurement.getEntryFile(c, m.id, m.test_name));
 								outputStream.write(event.value.json_str.getBytes());
 								outputStream.close();
 							} catch (Exception e) {
