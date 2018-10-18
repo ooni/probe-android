@@ -33,8 +33,8 @@
 		style="@style/Widget.AppCompat.ProgressBar.Horizontal"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginBottom="?attr/actionBarSize"
 		android:layout_marginHorizontal="32dp"
+		android:layout_marginBottom="?attr/actionBarSize"
 		android:progressDrawable="@drawable/progress" />
 
 	<TextView
@@ -44,11 +44,11 @@
 		android:text="@string/Dashboard_Running_EstimatedTimeLeft" />
 
 	<TextView
+		android:id="@+id/runtime"
 		style="@style/TextAppearance.AppCompat.Large"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:gravity="center_horizontal"
-		android:text="0 seconds"
 		android:textStyle="bold" />
 
 	<TextView

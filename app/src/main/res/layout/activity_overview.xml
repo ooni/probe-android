@@ -41,10 +41,10 @@
 			app:strokeColor="@android:color/white" />
 
 		<TextView
+			android:id="@+id/runtime"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"
-			android:text="2min"
 			android:textColor="@android:color/white" />
 
 		<Button
@@ -58,11 +58,11 @@
 			app:cornerRadius="24dp" />
 
 		<TextView
+			android:id="@+id/lastTime"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"
 			android:layout_marginBottom="16dp"
-			android:text="2 settimane fa"
 			android:textColor="@android:color/white" />
 	</com.google.android.material.appbar.AppBarLayout>
 

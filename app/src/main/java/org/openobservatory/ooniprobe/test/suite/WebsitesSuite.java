@@ -19,7 +19,8 @@ public class WebsitesSuite extends AbstractSuite {
 				R.string.Dashboard_Websites_Overview_Paragraph_1,
 				R.string.Dashboard_Websites_Overview_Paragraph_2,
 				R.xml.preferences_websites,
-				"anim/websites.json");
+				"anim/websites.json",
+				"~ 8 MB", 120);
 	}
 
 	@Override public AbstractTest[] getTestList(PreferenceManager pm) {

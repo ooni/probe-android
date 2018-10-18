@@ -33,7 +33,7 @@ public class Result extends BaseModel implements Serializable {
 	@Column public boolean is_done;
 	@Column public long data_usage_up;
 	@Column public long data_usage_down;
-	@ForeignKey(saveForeignKeyModel = true, deleteForeignKeyModel = true) public Network network;
+	@ForeignKey public Network network;
 	protected List<Measurement> measurements;
 
 	public Result() {
@@ -50,6 +50,10 @@ public class Result extends BaseModel implements Serializable {
 		final String[] units = new String[]{"B", "kB", "MB", "GB", "TB"};
 		int digitGroups = (int) (Math.log10(kbSize) / Math.log10(1024));
 		return new DecimalFormat("#,##0.#").format(kbSize / Math.pow(1024, digitGroups)) + " " + units[digitGroups];
+	}
+
+	public static Result getLastResult(String test_group_name) {
+		return SQLite.select().from(Result.class).where(Result_Table.test_group_name.eq(test_group_name)).orderBy(Result_Table.start_time, false).limit(1).querySingle();
 	}
 
 	public static void deleteAll(Context c) {
@@ -119,16 +123,17 @@ public class Result extends BaseModel implements Serializable {
 	}
 
 	public boolean delete(Context c) {
-		for (Measurement measurement : getAllMeasurements()) {
-			try {
-				Measurement.getEntryFile(c, measurement.id, measurement.test_name).delete();
-				Measurement.getLogFile(c, id, measurement.test_name).delete();
-			} catch (Exception e) {
-				e.printStackTrace();
+		boolean succ = delete();
+		if (succ)
+			for (Measurement measurement : getAllMeasurements()) {
+				try {
+					Measurement.getEntryFile(c, measurement.id, measurement.test_name).delete();
+					Measurement.getLogFile(c, id, measurement.test_name).delete();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				measurement.delete();
 			}
-			measurement.delete();
-		}
-		network.delete();
-		return delete();
+		return succ;
 	}
 }

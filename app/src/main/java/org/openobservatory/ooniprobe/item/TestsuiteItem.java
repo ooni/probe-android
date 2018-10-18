@@ -1,8 +1,6 @@
 package org.openobservatory.ooniprobe.item;
 
-import androidx.core.content.ContextCompat;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +11,9 @@ import android.widget.TextView;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
@@ -42,6 +43,7 @@ public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, Test
 		holder.configure.setTag(extra);
 		holder.run.setTag(extra);
 		holder.itemView.setTag(extra);
+		holder.runtime.setText(DateUtils.formatElapsedTime(extra.getRuntime()));
 	}
 
 	class ViewHolderImpl extends RecyclerView.ViewHolder {
@@ -51,6 +53,7 @@ public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, Test
 		@BindView(R.id.card) CardView card;
 		@BindView(R.id.configure) Button configure;
 		@BindView(R.id.run) Button run;
+		@BindView(R.id.runtime) TextView runtime;
 
 		ViewHolderImpl(View itemView) {
 			super(itemView);

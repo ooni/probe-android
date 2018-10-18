@@ -3,11 +3,13 @@ package org.openobservatory.ooniprobe.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
 import androidx.annotation.Nullable;
@@ -22,6 +24,8 @@ public class OverviewActivity extends AbstractActivity {
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.icon) ImageView icon;
 	@BindView(R.id.title) TextView title;
+	@BindView(R.id.runtime) TextView runtime;
+	@BindView(R.id.lastTime) TextView lastTime;
 	@BindView(R.id.configure) Button configure;
 	@BindView(R.id.desc) TextView desc;
 	private AbstractSuite testSuite;
@@ -41,7 +45,11 @@ public class OverviewActivity extends AbstractActivity {
 		getSupportActionBar().setDisplayShowTitleEnabled(false);
 		icon.setImageResource(testSuite.getIcon());
 		title.setText(testSuite.getTitle());
+		runtime.setText(testSuite.getDataUsage() + " " + DateUtils.formatElapsedTime(testSuite.getRuntime()));
 		Markwon.setMarkdown(desc, getString(testSuite.getDesc1()) + "\n\n" + getString(testSuite.getDesc2()));
+		Result lastResult = Result.getLastResult(testSuite.getName());
+		if (lastResult != null)
+			lastTime.setText(DateUtils.getRelativeTimeSpanString(lastResult.start_time.getTime()));
 	}
 
 	@OnClick(R.id.configure) void onConfigureClick() {

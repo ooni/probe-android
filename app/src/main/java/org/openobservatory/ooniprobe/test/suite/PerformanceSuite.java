@@ -22,7 +22,8 @@ public class PerformanceSuite extends AbstractSuite {
 				R.string.Dashboard_Performance_Overview_Paragraph_1,
 				R.string.Dashboard_Performance_Overview_Paragraph_2,
 				R.xml.preferences_performance,
-				"anim/performance.json");
+				"anim/performance.json",
+				"5 - 200 MB", 90);
 	}
 
 	@Override public AbstractTest[] getTestList(PreferenceManager pm) {

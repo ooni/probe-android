@@ -72,10 +72,10 @@
 						app:cornerRadius="24dp" />
 
 					<TextView
+						android:id="@+id/runtime"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:layout_gravity="center_horizontal"
-						android:text="2min" />
+						android:layout_gravity="center_horizontal" />
 				</LinearLayout>
 			</LinearLayout>
 		</LinearLayout>

@@ -23,7 +23,8 @@ public class InstantMessagingSuite extends AbstractSuite {
 				R.string.Dashboard_InstantMessaging_Overview_Paragraph_1,
 				R.string.Dashboard_InstantMessaging_Overview_Paragraph_2,
 				R.xml.preferences_instant_messaging,
-				"anim/instant_messaging.json");
+				"anim/instant_messaging.json",
+				"< 1 MB", 30);
 	}
 
 	@Override public AbstractTest[] getTestList(PreferenceManager pm) {

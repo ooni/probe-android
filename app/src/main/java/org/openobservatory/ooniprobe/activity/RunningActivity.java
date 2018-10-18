@@ -11,6 +11,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.view.animation.Animation;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -51,6 +52,7 @@ public class RunningActivity extends AbstractActivity {
 	public static final String TEST_RUN = "TEST_RUN";
 	@BindView(R.id.name) TextView name;
 	@BindView(R.id.log) TextView log;
+	@BindView(R.id.runtime) TextView runtime;
 	@BindView(R.id.progress) ProgressBar progress;
 	@BindView(R.id.animation) LottieAnimationView animation;
 	private AbstractSuite testSuite;
@@ -159,7 +161,9 @@ public class RunningActivity extends AbstractActivity {
 						act.name.setText(values[1]);
 						break;
 					case TestAsyncTask.PRG:
-						act.progress.setProgress(Integer.parseInt(values[1]));
+						int prgs = Integer.parseInt(values[1]);
+						act.progress.setProgress(prgs);
+						act.runtime.setText(DateUtils.formatElapsedTime(Math.round(act.testSuite.getRuntime() - ((double) prgs) / act.progress.getMax() * act.testSuite.getRuntime())));
 						break;
 					case TestAsyncTask.LOG:
 						act.log.setText(values[1]);
