@@ -4,7 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateUtils;
-import android.widget.Button;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,7 +27,6 @@ public class OverviewActivity extends AbstractActivity {
 	@BindView(R.id.title) TextView title;
 	@BindView(R.id.runtime) TextView runtime;
 	@BindView(R.id.lastTime) TextView lastTime;
-	@BindView(R.id.configure) Button configure;
 	@BindView(R.id.desc) TextView desc;
 	private AbstractSuite testSuite;
 
@@ -52,8 +52,19 @@ public class OverviewActivity extends AbstractActivity {
 			lastTime.setText(DateUtils.getRelativeTimeSpanString(lastResult.start_time.getTime()));
 	}
 
-	@OnClick(R.id.configure) void onConfigureClick() {
-		startActivity(PreferenceActivity.newIntent(this, testSuite.getPref()));
+	@Override public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.settings, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.settings:
+				startActivity(PreferenceActivity.newIntent(this, testSuite.getPref()));
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
 	}
 
 	@OnClick(R.id.run) void onRunClick() {

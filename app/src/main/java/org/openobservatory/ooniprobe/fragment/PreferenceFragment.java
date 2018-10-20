@@ -11,17 +11,27 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.annotation.IdRes;
 import androidx.annotation.XmlRes;
 import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
-import androidx.preference.PreferenceScreen;
 import localhost.toolkit.app.ConfirmDialogFragment;
 import localhost.toolkit.app.MessageDialogFragment;
 import localhost.toolkit.preference.ExtendedPreferenceFragment;
 
 public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFragment> implements SharedPreferences.OnSharedPreferenceChangeListener, ConfirmDialogFragment.OnConfirmedListener {
+	private static final String PREFERENCES_RES_ID = "preferencesResId";
+	private static final String PREFERENCES_CONTAINER_RES_ID = "preferencesContainerResId";
 	private String rootKey;
 	private List<String> intPref;
+
+	public static PreferenceFragment newInstance(@XmlRes int preferencesResId, @IdRes int preferencesContainerResId) {
+		PreferenceFragment fragment = new PreferenceFragment();
+		fragment.setArguments(new Bundle());
+		fragment.getArguments().putInt(PREFERENCES_RES_ID, preferencesResId);
+		fragment.getArguments().putInt(PREFERENCES_CONTAINER_RES_ID, preferencesContainerResId);
+		return fragment;
+	}
 
 	@Override public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
 		this.rootKey = rootKey;
@@ -34,7 +44,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 
 	@Override public void onResume() {
 		super.onResume();
-		setPreferencesFromResource(((PreferenceInterface) getActivity()).getPreferenceResId(), android.R.id.content, rootKey);
+		setPreferencesFromResource(getArguments().getInt(PREFERENCES_RES_ID), getArguments().getInt(PREFERENCES_CONTAINER_RES_ID), rootKey);
 		getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 		getActivity().setTitle(getPreferenceScreen().getTitle());
 		for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++)
@@ -42,12 +52,6 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 				EditTextPreference editTextPreference = (EditTextPreference) getPreferenceScreen().getPreference(i);
 				editTextPreference.setSummary(editTextPreference.getText());
 			}
-		if (getPreferenceScreen().getKey().equals(getString(R.string.Settings_AutomatedTesting_Categories_Label)))
-			for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++)
-				if (getPreferenceScreen().getPreference(i) instanceof PreferenceScreen) {
-					PreferenceScreen preferenceScreen = (PreferenceScreen) getPreferenceScreen().getPreference(i);
-					preferenceScreen.setSummary(preferenceScreen.getSharedPreferences().getBoolean(preferenceScreen.getKey(), false) ? R.string.Settings_Enabled : R.string.Settings_Disabled);
-				}
 	}
 
 	@Override public void onPause() {
@@ -65,31 +69,25 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 			if (intPref.contains(key) && value != null && !TextUtils.isDigitsOnly(value)) {
 				MessageDialogFragment.newInstance(getString(R.string.Modal_Error), getString(R.string.Modal_OnlyDigits), false).show(getFragmentManager(), null);
 				sharedPreferences.edit().remove(key).apply();
-				ExtendedPreferenceFragment fragment = newInstance();
-				Bundle args = new Bundle();
-				args.putString(PreferenceFragment.ARG_PREFERENCE_ROOT, rootKey);
-				fragment.setArguments(args);
+				ExtendedPreferenceFragment fragment = newConcreteInstance();
+				fragment.getArguments().putString(PreferenceFragment.ARG_PREFERENCE_ROOT, rootKey);
 				getFragmentManager().beginTransaction().replace(android.R.id.content, fragment).commit();
 			}
 		}
 	}
 
-	@Override protected PreferenceFragment newInstance() {
-		return new PreferenceFragment();
+	@Override protected PreferenceFragment newConcreteInstance() {
+		return PreferenceFragment.newInstance(getArguments().getInt(PREFERENCES_RES_ID), getArguments().getInt(PREFERENCES_CONTAINER_RES_ID));
 	}
 
 	@Override public void onConfirmation(Serializable serializable, int i) {
 		if (i == DialogInterface.BUTTON_NEGATIVE && serializable.equals(getString(R.string.include_cc))) {
 			getPreferenceScreen().getSharedPreferences().edit().remove((String) serializable).apply();
-			ExtendedPreferenceFragment fragment = newInstance();
+			ExtendedPreferenceFragment fragment = newConcreteInstance();
 			Bundle args = new Bundle();
 			args.putString(PreferenceFragment.ARG_PREFERENCE_ROOT, rootKey);
 			fragment.setArguments(args);
 			getFragmentManager().beginTransaction().replace(android.R.id.content, fragment).commit();
 		}
-	}
-
-	public interface PreferenceInterface {
-		@XmlRes int getPreferenceResId();
 	}
 }

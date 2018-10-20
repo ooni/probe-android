@@ -30,16 +30,6 @@
 			android:textAppearance="@style/TextAppearance.AppCompat.Large"
 			android:textColor="@android:color/white" />
 
-		<Button
-			android:id="@+id/configure"
-			style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/Dashboard_Card_Configure"
-			android:textColor="@android:color/white"
-			app:cornerRadius="24dp"
-			app:strokeColor="@android:color/white" />
-
 		<TextView
 			android:id="@+id/runtime"
 			android:layout_width="wrap_content"

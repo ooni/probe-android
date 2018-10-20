@@ -53,6 +53,13 @@ public class MainActivity extends AbstractActivity {
 		bottomNavigation.setSelectedItemId(intent.getIntExtra(RES_ITEM, R.id.dashboard));
 	}
 
+	@Override public void onBackPressed() {
+		if (bottomNavigation.getSelectedItemId() != R.id.dashboard)
+			bottomNavigation.setSelectedItemId(R.id.dashboard);
+		else
+			super.onBackPressed();
+	}
+
 	public void checkInformedConsent() {
 		if (getPreferenceManager().isShowIntro())
 			startActivityForResult(new Intent(MainActivity.this, InformedConsentActivity.class), InformedConsentActivity.REQUEST_CODE);
