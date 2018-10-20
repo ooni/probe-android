@@ -19,6 +19,7 @@ import org.openobservatory.ooniprobe.utils.ConnectionState;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
@@ -29,6 +30,8 @@ public abstract class AbstractTest implements Serializable {
 	private final String TAG = "MK_EVENT";
 	private String name;
 	private String mkName;
+	private List<String> inputs;
+	private Float max_runtime;
 	private int labelResId;
 	private int iconResId;
 	private SparseArray<Measurement> measurements;
@@ -45,6 +48,8 @@ public abstract class AbstractTest implements Serializable {
 
 	protected void run(Context c, PreferenceManager pm, Gson gson, Settings settings, Result result, int index, TestCallback testCallback) {
 		settings.name = mkName;
+		settings.inputs = inputs;
+		settings.options.max_runtime = max_runtime;
 		measurements = new SparseArray<>();
 		Task task = Task.startNettest(gson.toJson(settings));
 		FileOutputStream logFOS = null;
@@ -190,6 +195,18 @@ public abstract class AbstractTest implements Serializable {
 
 	public String getName() {
 		return name;
+	}
+
+	public List<String> getInputs() {
+		return inputs;
+	}
+
+	public void setInputs(List<String> inputs) {
+		this.inputs = inputs;
+	}
+
+	public void setMax_runtime(Float max_runtime) {
+		this.max_runtime = max_runtime;
 	}
 
 	public interface TestCallback {

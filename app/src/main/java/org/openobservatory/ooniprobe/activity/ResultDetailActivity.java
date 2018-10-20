@@ -27,7 +27,6 @@ import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
-import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -101,8 +100,8 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 			Measurement failedMeasurement = (Measurement) serializable;
 			failedMeasurement.result.load();
 			AbstractTest abstractTest = failedMeasurement.getTest();
-			if (abstractTest instanceof WebConnectivity)
-				((WebConnectivity) abstractTest).setInputs(Collections.singletonList(failedMeasurement.url.url));
+			if (failedMeasurement.url != null)
+				abstractTest.setInputs(Collections.singletonList(failedMeasurement.url.url));
 			AbstractSuite testSuite = failedMeasurement.result.getTestSuite();
 			testSuite.setTestList(abstractTest);
 			testSuite.setResult(failedMeasurement.result);

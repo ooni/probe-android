@@ -18,7 +18,6 @@ import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
-import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -149,8 +148,7 @@ public class OoniRunActivity extends AbstractActivity {
 		for (AbstractSuite suite : SUITES)
 			for (AbstractTest test : suite.getTestList(getPreferenceManager()))
 				if (test.getName().equals(tn)) {
-					if (test instanceof WebConnectivity)
-						((WebConnectivity) test).setInputs(urls);
+					test.setInputs(urls);
 					suite.setTestList(test);
 					return suite;
 				}

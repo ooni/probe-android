@@ -66,13 +66,13 @@ public class RunningActivity extends AbstractActivity {
 	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		testSuite = (AbstractSuite) getIntent().getSerializableExtra(TEST);
-		boolean isWebConn = false;
+		boolean downloadUrls = false;
 		for (AbstractTest abstractTest : testSuite.getTestList(getPreferenceManager()))
-			if (abstractTest instanceof WebConnectivity) {
-				isWebConn = true;
+			if (abstractTest instanceof WebConnectivity && abstractTest.getInputs() == null) {
+				downloadUrls = true;
 				break;
 			}
-		if (isWebConn) {
+		if (downloadUrls) {
 			Retrofit retrofit = new Retrofit.Builder().baseUrl("https://events.proteus.test.ooni.io/").addConverterFactory(GsonConverterFactory.create()).build();
 			retrofit.create(OoniIOClient.class).getUrls("IT", getPreferenceManager().isAllCategoryEnabled() ? null : getPreferenceManager().getEnabledCategory()).enqueue(new Callback<RetrieveUrlResponse>() {
 				@Override public void onResponse(Call<RetrieveUrlResponse> call, Response<RetrieveUrlResponse> response) {
@@ -80,12 +80,10 @@ public class RunningActivity extends AbstractActivity {
 						ArrayList<String> inputs = new ArrayList<>();
 						for (Url url : response.body().results)
 							inputs.add(Url.checkExistingUrl(url.url, url.category_code, url.country_code).url);
-						for (AbstractTest abstractTest : testSuite.getTestList(getPreferenceManager()))
-							if (abstractTest instanceof WebConnectivity) {
-								WebConnectivity wc = (WebConnectivity) abstractTest;
-								wc.setInputs(inputs);
-								wc.setMax_runtime(getPreferenceManager().getMaxRuntime());
-							}
+						for (AbstractTest abstractTest : testSuite.getTestList(getPreferenceManager())) {
+							abstractTest.setInputs(inputs);
+							abstractTest.setMax_runtime(getPreferenceManager().getMaxRuntime());
+						}
 						run();
 					}
 				}
