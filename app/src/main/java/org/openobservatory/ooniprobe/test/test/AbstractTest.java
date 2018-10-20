@@ -18,12 +18,13 @@ import org.openobservatory.ooniprobe.utils.ConnectionState;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
 
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import io.ooni.mk.Task;
 
-public abstract class AbstractTest {
+public abstract class AbstractTest implements Serializable {
 	public static final String UNUSED_KEY = "UNUSED_KEY";
 	private final String TAG = "MK_EVENT";
 	private String name;

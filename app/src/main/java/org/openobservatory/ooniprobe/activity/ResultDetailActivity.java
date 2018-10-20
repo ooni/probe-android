@@ -21,13 +21,17 @@ import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
+import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
+import org.openobservatory.ooniprobe.test.test.AbstractTest;
+import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Locale;
 
 import androidx.annotation.Nullable;
@@ -94,8 +98,17 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 
 	@Override public void onConfirmation(Serializable serializable, int i) {
 		if (i == DialogInterface.BUTTON_POSITIVE) {
-			Measurement measurement = (Measurement) serializable;
-			Intent intent = RunningActivity.newIntent(this, null, measurement.id);
+			Measurement failedMeasurement = (Measurement) serializable;
+			failedMeasurement.result.load();
+			AbstractTest abstractTest = failedMeasurement.getTest();
+			if (abstractTest instanceof WebConnectivity)
+				((WebConnectivity) abstractTest).setInputs(Collections.singletonList(failedMeasurement.url.url));
+			AbstractSuite testSuite = failedMeasurement.result.getTestSuite();
+			testSuite.setTestList(abstractTest);
+			testSuite.setResult(failedMeasurement.result);
+			failedMeasurement.is_rerun = true;
+			failedMeasurement.save();
+			Intent intent = RunningActivity.newIntent(this, testSuite);
 			if (intent != null) {
 				startActivity(intent);
 				finish();

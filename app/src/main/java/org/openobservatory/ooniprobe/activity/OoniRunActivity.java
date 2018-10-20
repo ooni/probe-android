@@ -11,19 +11,27 @@ import com.google.gson.Gson;
 
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.item.TextItem;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
+import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import localhost.toolkit.widget.HeterogeneousRecyclerAdapter;
+import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
 public class OoniRunActivity extends AbstractActivity {
 	public static final List<AbstractSuite> SUITES = Arrays.asList(new InstantMessagingSuite(), new MiddleBoxesSuite(), new MiddleBoxesSuite(), new PerformanceSuite(), new WebsitesSuite());
@@ -31,6 +39,9 @@ public class OoniRunActivity extends AbstractActivity {
 	@BindView(R.id.title) TextView title;
 	@BindView(R.id.desc) TextView desc;
 	@BindView(R.id.run) Button run;
+	@BindView(R.id.recycler) RecyclerView recycler;
+	private ArrayList<HeterogeneousRecyclerItem> items;
+	private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
 
 	/**
 	 * Compares two version strings.
@@ -70,6 +81,12 @@ public class OoniRunActivity extends AbstractActivity {
 		ButterKnife.bind(this);
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+		recycler.setLayoutManager(layoutManager);
+		recycler.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
+		items = new ArrayList<>();
+		adapter = new HeterogeneousRecyclerAdapter<>(this, items);
+		recycler.setAdapter(adapter);
 		gotIntent(getIntent());
 	}
 
@@ -82,38 +99,31 @@ public class OoniRunActivity extends AbstractActivity {
 	public void gotIntent(Intent intent) {
 		if (Intent.ACTION_VIEW.equals(intent.getAction())) {
 			Uri uri = intent.getData();
-			String mv = uri.getQueryParameter("mv");
+			String mv = uri == null ? null : uri.getQueryParameter("mv");
+			String tn = uri == null ? null : uri.getQueryParameter("tn");
+			String td = uri == null ? null : uri.getQueryParameter("td");
+			String ta = uri == null ? null : uri.getQueryParameter("ta");
 			String[] split = BuildConfig.VERSION_NAME.split("-");
 			String version_name = split[0];
-			if (mv != null) {
+			if (mv != null && tn != null) {
 				if (versionCompare(version_name, mv) >= 0) {
-					String tn = uri.getQueryParameter("tn");
-					String ta = uri.getQueryParameter("ta");
-					String td = uri.getQueryParameter("td");
-					System.out.println("OONIRun test name " + tn);
-					System.out.println("OONIRun test arguments " + ta);
-					System.out.println("OONIRun test description " + td);
-					AbstractSuite suite = getSuite(tn);
+					Attribute attribute = new Gson().fromJson(ta, Attribute.class);
+					AbstractSuite suite = getSuite(tn, attribute == null ? null : attribute.urls);
 					if (suite != null) {
 						title.setText(suite.getTestList(getPreferenceManager())[0].getLabelResId());
 						desc.setText(td == null ? getString(R.string.OONIRun_YouAreAboutToRun) : td);
-						Attribute attribute = new Gson().fromJson(ta, Attribute.class);
+						if (attribute != null && attribute.urls != null) {
+							for (String url : attribute.urls)
+								items.add(new TextItem(url));
+							adapter.notifyTypesChanged();
+						}
 						run.setOnClickListener(v -> {
-							Intent runIntent = RunningActivity.newIntent(OoniRunActivity.this, suite, null);
+							Intent runIntent = RunningActivity.newIntent(OoniRunActivity.this, suite);
 							if (runIntent != null) {
 								startActivity(runIntent);
 								finish();
 							}
 						});
-
-						/*
-                    Ta: sono gli arguments per il test, per ora solo per web_connectivity, ed è una lista di url
-                     {"urls":["http://www.google.it","http://www.google.com"]}
-
-                    Se sono presenti mostra la lista, altrimenti mostra label OONIRun.RandomSamplingOfURLs
-
-                    Bottone titolo OONIRun.Run
-						* */
 					} else {
 						title.setText(R.string.OONIRun_InvalidParameter);
 						desc.setText(R.string.OONIRun_InvalidParameter_Msg);
@@ -135,77 +145,19 @@ public class OoniRunActivity extends AbstractActivity {
 		}
 	}
 
-	public AbstractSuite getSuite(String tn) {
+	public AbstractSuite getSuite(String tn, List<String> urls) {
 		for (AbstractSuite suite : SUITES)
 			for (AbstractTest test : suite.getTestList(getPreferenceManager()))
 				if (test.getName().equals(tn)) {
-					suite.setSingleTest(tn);
+					if (test instanceof WebConnectivity)
+						((WebConnectivity) test).setInputs(urls);
+					suite.setTestList(test);
 					return suite;
 				}
 		return null;
 	}
 
 	public static class Attribute {
-		public List<String> urls;
+		List<String> urls;
 	}
-
-
-	/*
-	//OLD CODE
-		public void configureScreen(String td, String ta){
-			TestData.getInstance(this, this).addObserver(this);
-
-			if (td != null)
-				title.setText(td);
-			else
-				title.setText(getString(R.string.run_test_message));
-
-			String test = NetworkMeasurement.getTestName(this, test_name);
-			testTitle.setText(test);
-			testImage.setImageResource(NetworkMeasurement.getTestImageBig(test_name));
-
-			ArrayList<String> listItems = new ArrayList<>();
-			final ArrayList<String> urlItems = new ArrayList<>();
-			if (ta != null){
-				try {
-					JSONObject taJson = new JSONObject(ta);
-					JSONArray urls = taJson.getJSONArray("urls");
-					for (int i = 0; i < urls.length(); i++)
-						urlItems.add(urls.getString(i));
-				} catch (JSONException e) {
-					Alert.alertDialogWithAction(this, getString(R.string.invalid_parameter), getString(R.string.urls), new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							goToMainActivity();
-						}
-					});
-					e.printStackTrace();
-					return;
-				}
-				listItems.addAll(urlItems);
-			}
-
-			if (listItems.size() == 0 && test_name.equals("web_connectivity")){
-				listItems.add(getString(R.string.random_sampling_urls));
-				mUrlListAdapter = new UrlListAdapter(this, listItems, false);
-			}
-			else
-				mUrlListAdapter = new UrlListAdapter(this, listItems, true);
-
-			if (listItems.size() == 0)
-				urls.setVisibility(View.INVISIBLE);
-
-			runButton.setOnClickListener(
-					new ImageButton.OnClickListener() {
-						public void onClick(View v) {
-							TestData.doNetworkMeasurements(getApplicationContext(), new NetworkMeasurement(getApplicationContext(), test_name, urlItems));
-							goToMainActivity();
-						}
-					}
-			);
-
-			testUrlList.setAdapter(mUrlListAdapter);
-			LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-			testUrlList.setLayoutManager(layoutManager);
-		}
-	*/
 }

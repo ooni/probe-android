@@ -1,10 +1,12 @@
 package org.openobservatory.ooniprobe.test.suite;
 
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
 import java.io.Serializable;
 
+import androidx.annotation.CallSuper;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
@@ -23,9 +25,10 @@ public abstract class AbstractSuite implements Serializable {
 	private int pref;
 	private String anim;
 	private String name;
-	private String singleTest;
 	private String dataUsage;
 	private int runtime;
+	private AbstractTest[] testList;
+	private Result result;
 
 	public AbstractSuite(String name, @StringRes int title, @StringRes int cardDesc, @DrawableRes int icon, @ColorRes int color, @StyleRes int themeLight, @StyleRes int themeDark, @StringRes int desc1, @StringRes int desc2, @XmlRes int pref, String anim, String dataUsage, int runtime) {
 		this.title = title;
@@ -43,14 +46,22 @@ public abstract class AbstractSuite implements Serializable {
 		this.runtime = runtime;
 	}
 
-	public abstract AbstractTest[] getTestList(PreferenceManager pm);
-
-	public String getSingleTest() {
-		return singleTest;
+	@CallSuper public AbstractTest[] getTestList(PreferenceManager pm) {
+		return testList;
 	}
 
-	public void setSingleTest(String singleTest) {
-		this.singleTest = singleTest;
+	public void setTestList(AbstractTest... tests) {
+		this.testList = tests;
+	}
+
+	public Result getResult() {
+		if (result == null)
+			result = new Result(name);
+		return result;
+	}
+
+	public void setResult(Result result) {
+		this.result = result;
 	}
 
 	public int getTitle() {

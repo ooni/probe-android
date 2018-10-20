@@ -84,7 +84,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 				startActivity(PreferenceActivity.newIntent(getActivity(), testSuite.getPref()));
 				break;
 			case R.id.run:
-				Intent intent = RunningActivity.newIntent(getActivity(), testSuite, null);
+				Intent intent = RunningActivity.newIntent(getActivity(), testSuite);
 				if (intent != null)
 					startActivity(intent);
 				break;

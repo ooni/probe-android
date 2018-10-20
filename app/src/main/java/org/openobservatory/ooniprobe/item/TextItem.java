@@ -1,6 +1,5 @@
 package org.openobservatory.ooniprobe.item;
 
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,29 +7,22 @@ import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
-public class DateItem extends HeterogeneousRecyclerItem<Date, DateItem.ViewHolder> {
-	private SimpleDateFormat SDF;
-
-	public DateItem(Date extra) {
+public class TextItem extends HeterogeneousRecyclerItem<String, TextItem.ViewHolder> {
+	public TextItem(String extra) {
 		super(extra);
-		SDF = new SimpleDateFormat(DateFormat.getBestDateTimePattern(Locale.getDefault(), "MMMMyyyy"), Locale.getDefault());
 	}
 
 	@Override public ViewHolder onCreateViewHolder(LayoutInflater layoutInflater, ViewGroup viewGroup) {
-		return new ViewHolder(layoutInflater.inflate(R.layout.item_date, viewGroup, false));
+		return new ViewHolder(layoutInflater.inflate(R.layout.item_text, viewGroup, false));
 	}
 
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
-		viewHolder.textView.setText(SDF.format(extra));
+		viewHolder.textView.setText(extra);
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {

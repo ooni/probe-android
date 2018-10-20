@@ -27,11 +27,14 @@ public class MiddleBoxesSuite extends AbstractSuite {
 	}
 
 	@Override public AbstractTest[] getTestList(PreferenceManager pm) {
-		ArrayList<AbstractTest> list = new ArrayList<>();
-		if ((pm.isRunHttpHeaderFieldManipulation() && getSingleTest() == null) || HttpHeaderFieldManipulation.NAME.equals(getSingleTest()))
-			list.add(new HttpHeaderFieldManipulation());
-		if ((pm.isRunHttpInvalidRequestLine() && getSingleTest() == null) || HttpInvalidRequestLine.NAME.equals(getSingleTest()))
-			list.add(new HttpInvalidRequestLine());
-		return list.toArray(new AbstractTest[0]);
+		if (super.getTestList(pm) == null) {
+			ArrayList<AbstractTest> list = new ArrayList<>();
+			if (pm.isRunHttpHeaderFieldManipulation())
+				list.add(new HttpHeaderFieldManipulation());
+			if (pm.isRunHttpInvalidRequestLine())
+				list.add(new HttpInvalidRequestLine());
+			super.setTestList(list.toArray(new AbstractTest[0]));
+		}
+		return super.getTestList(pm);
 	}
 }

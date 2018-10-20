@@ -33,7 +33,7 @@ public class Result extends BaseModel implements Serializable {
 	@Column public boolean is_done;
 	@Column public long data_usage_up;
 	@Column public long data_usage_down;
-	@ForeignKey public Network network;
+	@ForeignKey(saveForeignKeyModel = true) public Network network;
 	protected List<Measurement> measurements;
 
 	public Result() {
