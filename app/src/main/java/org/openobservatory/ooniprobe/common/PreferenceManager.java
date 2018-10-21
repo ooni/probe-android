@@ -268,4 +268,71 @@ public class PreferenceManager {
 			list.add(misc);
 		return TextUtils.join(",", list);
 	}
+
+	public int countEnabledCategory() {
+		int count = 0;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_ALDR_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_REL_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_PORN_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_PROV_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_POLR_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_HUMR_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_ENV_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_MILX_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_HATE_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_NEWS_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_XED_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_PUBH_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_GMB_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_ANON_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_DATE_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_GRP_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_LGBT_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_FILE_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_HACK_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_COMT_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_MMED_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_HOST_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_SRCH_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_GAME_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_CULTR_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_ECON_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_GOVT_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_COMM_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_CTRL_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_IGO_Key), true))
+			count++;
+		if (sp.getBoolean(r.getString(R.string.CategoryCode_MISC_Key), true))
+			count++;
+		return count;
+	}
 }

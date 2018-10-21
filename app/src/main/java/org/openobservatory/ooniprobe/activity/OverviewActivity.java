@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.text.format.DateUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
+import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
@@ -28,6 +31,7 @@ public class OverviewActivity extends AbstractActivity {
 	@BindView(R.id.runtime) TextView runtime;
 	@BindView(R.id.lastTime) TextView lastTime;
 	@BindView(R.id.desc) TextView desc;
+	@BindView(R.id.customUrl) Button customUrl;
 	private AbstractSuite testSuite;
 
 	public static Intent newIntent(Context context, AbstractSuite testSuite) {
@@ -46,6 +50,7 @@ public class OverviewActivity extends AbstractActivity {
 		icon.setImageResource(testSuite.getIcon());
 		title.setText(testSuite.getTitle());
 		runtime.setText(testSuite.getDataUsage() + " " + DateUtils.formatElapsedTime(testSuite.getRuntime()));
+		customUrl.setVisibility(testSuite.getName().equals(WebsitesSuite.NAME) ? View.VISIBLE : View.GONE);
 		Markwon.setMarkdown(desc, getString(testSuite.getDesc1()) + "\n\n" + getString(testSuite.getDesc2()));
 		Result lastResult = Result.getLastResult(testSuite.getName());
 		if (lastResult != null)
@@ -71,5 +76,9 @@ public class OverviewActivity extends AbstractActivity {
 		Intent intent = RunningActivity.newIntent(this, testSuite);
 		if (intent != null)
 			startActivity(intent);
+	}
+
+	@OnClick(R.id.customUrl) void customUrlClick() {
+		startActivity(new Intent(this, CustomWebsiteActivity.class));
 	}
 }

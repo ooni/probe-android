@@ -6,36 +6,25 @@
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:layout_margin="8dp"
 		android:orientation="vertical">
 
-		<com.google.android.material.card.MaterialCardView
+		<LinearLayout
+			android:id="@+id/urlContainer"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_margin="8dp">
+			android:orientation="vertical">
 
-			<LinearLayout
-				android:id="@+id/urlContainer"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_margin="8dp"
-				android:orientation="vertical">
+			<include layout="@layout/edittext_url" />
+		</LinearLayout>
 
-				<include layout="@layout/edittext_url" />
-			</LinearLayout>
-		</com.google.android.material.card.MaterialCardView>
-
-		<com.google.android.material.card.MaterialCardView
-			android:layout_width="match_parent"
+		<Button
+			android:id="@+id/add"
+			style="@style/Widget.MaterialComponents.Button.TextButton"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_margin="8dp">
-
-			<Button
-				android:id="@+id/add"
-				style="@style/Widget.MaterialComponents.Button.TextButton"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="end"
-				android:text="add" />
-		</com.google.android.material.card.MaterialCardView>
+			android:layout_gravity="end"
+			android:layout_margin="8dp"
+			android:text="NEED STRING" />
 	</LinearLayout>
 </ScrollView>

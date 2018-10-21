@@ -54,6 +54,16 @@
 			android:layout_gravity="center_horizontal"
 			android:layout_marginBottom="16dp"
 			android:textColor="@android:color/white" />
+
+		<Button
+			android:id="@+id/customUrl"
+			style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="NEED STRING"
+			android:textColor="@color/color_white"
+			app:cornerRadius="24dp"
+			app:strokeColor="@android:color/white" />
 	</com.google.android.material.appbar.AppBarLayout>
 
 	<ScrollView

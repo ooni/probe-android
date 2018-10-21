@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.Application;
 
 import java.io.Serializable;
 
@@ -39,11 +40,16 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 		setPreferencesFromResource(getArguments().getInt(PREFERENCES_RES_ID), getArguments().getInt(PREFERENCES_CONTAINER_RES_ID), rootKey);
 		getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 		getActivity().setTitle(getPreferenceScreen().getTitle());
-		for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++)
+		for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++) {
 			if (getPreferenceScreen().getPreference(i) instanceof EditTextPreference) {
 				EditTextPreference editTextPreference = (EditTextPreference) getPreferenceScreen().getPreference(i);
 				editTextPreference.setSummary(editTextPreference.getText());
 			}
+			if (getPreferenceScreen().getPreference(i).getKey().equals(getString(R.string.Settings_AutomatedTesting_Categories_Label))) {
+				int enabledCategory = ((Application) getActivity().getApplication()).getPreferenceManager().countEnabledCategory();
+				getPreferenceScreen().getPreference(i).setSummary("" + enabledCategory);
+			}
+		}
 	}
 
 	@Override public void onPause() {
