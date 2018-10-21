@@ -17,27 +17,28 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:drawableStart="@drawable/data_usage"
-			android:drawablePadding="4dp"
-			android:text="@string/TestResults_Summary_Hero_DataUsage" />
+			android:text="@string/TestResults_Summary_Hero_DataUsage"
+			android:textStyle="bold" />
 
 		<TextView
 			android:id="@+id/upload"
-			android:layout_width="wrap_content"
+			android:layout_width="0dp"
 			android:layout_height="wrap_content"
+			android:layout_weight="1"
 			android:drawableStart="@drawable/upload_white"
 			android:drawablePadding="4dp" />
 
 		<TextView
 			android:id="@+id/download"
-			android:layout_width="wrap_content"
+			android:layout_width="0dp"
 			android:layout_height="wrap_content"
+			android:layout_weight="1"
 			android:drawableStart="@drawable/download_white"
 			android:drawablePadding="4dp" />
 	</LinearLayout>
 
 	<LinearLayout
-		android:id="@+id/dateTime"
+		android:id="@+id/startTimeBox"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="horizontal">
@@ -46,17 +47,18 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:drawableStart="@drawable/date_and_time"
-			android:drawablePadding="4dp"
-			android:text="@string/TestResults_Summary_Hero_DateAndTime" />
+			android:text="@string/TestResults_Summary_Hero_DateAndTime"
+			android:textStyle="bold" />
 
 		<TextView
 			android:id="@+id/startTime"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content" />
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="2" />
 	</LinearLayout>
 
 	<LinearLayout
+		android:id="@+id/runtimeBox"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="horizontal">
@@ -66,16 +68,17 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:drawableStart="@drawable/runtime"
-			android:drawablePadding="4dp" />
+			android:textStyle="bold" />
 
 		<TextView
 			android:id="@+id/runtime"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content" />
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="2" />
 	</LinearLayout>
 
 	<LinearLayout
+		android:id="@+id/countryBox"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="horizontal">
@@ -84,17 +87,18 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:drawableStart="@drawable/globe_18dp"
-			android:drawablePadding="4dp"
-			android:text="@string/TestResults_Summary_Hero_Country" />
+			android:text="@string/TestResults_Summary_Hero_Country"
+			android:textStyle="bold" />
 
 		<TextView
 			android:id="@+id/country"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content" />
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="2" />
 	</LinearLayout>
 
 	<LinearLayout
+		android:id="@+id/networkBox"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="horizontal">
@@ -103,13 +107,13 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:drawableStart="@drawable/network"
-			android:drawablePadding="4dp"
-			android:text="@string/TestResults_Summary_Hero_Network" />
+			android:text="@string/TestResults_Summary_Hero_Network"
+			android:textStyle="bold" />
 
 		<TextView
 			android:id="@+id/network"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content" />
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="2" />
 	</LinearLayout>
 </LinearLayout>
