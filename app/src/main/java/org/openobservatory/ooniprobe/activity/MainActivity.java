@@ -9,6 +9,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.data.OldTestStorage;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
+import org.openobservatory.ooniprobe.fragment.PreferenceGlobalFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
 
 import androidx.annotation.Nullable;
@@ -36,6 +37,9 @@ public class MainActivity extends AbstractActivity {
 				case R.id.testResults:
 					getSupportFragmentManager().beginTransaction().replace(R.id.content, new ResultListFragment()).commit();
 					return true;
+				case R.id.settings:
+					getSupportFragmentManager().beginTransaction().replace(R.id.content, new PreferenceGlobalFragment()).commit();
+					return true;
 				default:
 					return false;
 			}
@@ -51,13 +55,6 @@ public class MainActivity extends AbstractActivity {
 	@Override protected void onNewIntent(Intent intent) {
 		super.onNewIntent(intent);
 		bottomNavigation.setSelectedItemId(intent.getIntExtra(RES_ITEM, R.id.dashboard));
-	}
-
-	@Override public void onBackPressed() {
-		if (bottomNavigation.getSelectedItemId() != R.id.dashboard)
-			bottomNavigation.setSelectedItemId(R.id.dashboard);
-		else
-			super.onBackPressed();
 	}
 
 	public void checkInformedConsent() {

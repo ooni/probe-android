@@ -3,15 +3,11 @@ package org.openobservatory.ooniprobe.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.OverviewActivity;
-import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.item.TestsuiteItem;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
@@ -49,7 +45,6 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 			bar.setDisplayShowCustomEnabled(true);
 			bar.setCustomView(R.layout.logo);
 		}
-		setHasOptionsMenu(true);
 		items = new ArrayList<>();
 		items.add(new TestsuiteItem(new WebsitesSuite(), this));
 		items.add(new TestsuiteItem(new InstantMessagingSuite(), this));
@@ -62,27 +57,9 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		return v;
 	}
 
-	@Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		inflater.inflate(R.menu.settings, menu);
-		super.onCreateOptionsMenu(menu, inflater);
-	}
-
-	@Override public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-			case R.id.settings:
-				startActivity(PreferenceActivity.newIntent(getActivity(), R.xml.preferences_global));
-				return true;
-			default:
-				return super.onOptionsItemSelected(item);
-		}
-	}
-
 	@Override public void onClick(View v) {
 		AbstractSuite testSuite = (AbstractSuite) v.getTag();
 		switch (v.getId()) {
-			case R.id.configure:
-				startActivity(PreferenceActivity.newIntent(getActivity(), testSuite.getPref()));
-				break;
 			case R.id.run:
 				Intent intent = RunningActivity.newIntent(getActivity(), testSuite);
 				if (intent != null)
