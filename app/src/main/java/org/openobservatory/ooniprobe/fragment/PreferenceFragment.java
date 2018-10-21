@@ -8,8 +8,6 @@ import android.text.TextUtils;
 import org.openobservatory.ooniprobe.R;
 
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.List;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.XmlRes;
@@ -23,7 +21,6 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 	private static final String PREFERENCES_RES_ID = "preferencesResId";
 	private static final String PREFERENCES_CONTAINER_RES_ID = "preferencesContainerResId";
 	private String rootKey;
-	private List<String> intPref;
 
 	public static PreferenceFragment newInstance(@XmlRes int preferencesResId, @IdRes int preferencesContainerResId) {
 		PreferenceFragment fragment = new PreferenceFragment();
@@ -35,11 +32,6 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 
 	@Override public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
 		this.rootKey = rootKey;
-	}
-
-	@Override public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		intPref = Arrays.asList(getResources().getStringArray(R.array.integerPreferences));
 	}
 
 	@Override public void onResume() {
@@ -66,7 +58,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 		else if (preference instanceof EditTextPreference) {
 			String value = sharedPreferences.getString(key, null);
 			preference.setSummary(value);
-			if (intPref.contains(key) && value != null && !TextUtils.isDigitsOnly(value)) {
+			if (key.equals(getString(R.string.max_runtime)) && value != null && !TextUtils.isDigitsOnly(value)) {
 				MessageDialogFragment.newInstance(getString(R.string.Modal_Error), getString(R.string.Modal_OnlyDigits), false).show(getFragmentManager(), null);
 				sharedPreferences.edit().remove(key).apply();
 				ExtendedPreferenceFragment fragment = newConcreteInstance();
