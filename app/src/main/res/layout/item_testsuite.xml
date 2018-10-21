@@ -7,8 +7,7 @@
 	android:layout_marginHorizontal="16dp"
 	android:layout_marginVertical="8dp"
 	android:orientation="vertical"
-	android:theme="@style/Theme.MaterialComponents.NoActionBar.App"
-	app:cardCornerRadius="16dp">
+	android:theme="@style/Theme.MaterialComponents.NoActionBar.App">
 
 	<FrameLayout
 		android:layout_width="match_parent"
@@ -26,57 +25,50 @@
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_margin="16dp"
-			android:orientation="vertical">
-
-			<TextView
-				android:id="@+id/title"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-			<Button
-				android:id="@+id/configure"
-				style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="@string/Dashboard_Card_Configure"
-				app:cornerRadius="24dp"
-				app:strokeColor="@android:color/white" />
+			android:orientation="horizontal">
 
 			<LinearLayout
-				android:layout_width="match_parent"
+				android:layout_width="0dp"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="32dp"
-				android:orientation="horizontal">
+				android:layout_margin="16dp"
+				android:layout_weight="1"
+				android:orientation="vertical">
+
+				<TextView
+					android:id="@+id/title"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 
 				<TextView
 					android:id="@+id/desc"
-					android:layout_width="0dp"
+					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_gravity="center_vertical"
-					android:layout_weight="1" />
+					android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
+			</LinearLayout>
 
-				<LinearLayout
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginHorizontal="16dp"
+				android:layout_marginTop="108dp"
+				android:layout_marginBottom="8dp"
+				android:orientation="vertical">
+
+				<Button
+					android:id="@+id/run"
+					style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:orientation="vertical">
+					android:text="@string/Dashboard_Card_Run"
+					android:textColor="?attr/colorPrimary"
+					app:cornerRadius="24dp" />
 
-					<Button
-						android:id="@+id/run"
-						style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:text="@string/Dashboard_Card_Run"
-						android:textColor="?attr/colorPrimary"
-						app:cornerRadius="24dp" />
-
-					<TextView
-						android:id="@+id/runtime"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_gravity="center_horizontal" />
-				</LinearLayout>
+				<TextView
+					android:id="@+id/runtime"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal" />
 			</LinearLayout>
 		</LinearLayout>
 	</FrameLayout>

@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
@@ -27,9 +28,9 @@ public class OverviewActivity extends AbstractActivity {
 	public static final String TEST = "test";
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.icon) ImageView icon;
-	@BindView(R.id.title) TextView title;
 	@BindView(R.id.runtime) TextView runtime;
 	@BindView(R.id.lastTime) TextView lastTime;
+	@BindView(R.id.lastTimeBox) LinearLayout lastTimeBox;
 	@BindView(R.id.desc) TextView desc;
 	@BindView(R.id.customUrl) Button customUrl;
 	private AbstractSuite testSuite;
@@ -46,14 +47,15 @@ public class OverviewActivity extends AbstractActivity {
 		ButterKnife.bind(this);
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		getSupportActionBar().setDisplayShowTitleEnabled(false);
+		setTitle(testSuite.getTitle());
 		icon.setImageResource(testSuite.getIcon());
-		title.setText(testSuite.getTitle());
 		runtime.setText(testSuite.getDataUsage() + " " + DateUtils.formatElapsedTime(testSuite.getRuntime()));
 		customUrl.setVisibility(testSuite.getName().equals(WebsitesSuite.NAME) ? View.VISIBLE : View.GONE);
 		Markwon.setMarkdown(desc, getString(testSuite.getDesc1()) + "\n\n" + getString(testSuite.getDesc2()));
 		Result lastResult = Result.getLastResult(testSuite.getName());
-		if (lastResult != null)
+		if (lastResult == null)
+			lastTimeBox.setVisibility(View.GONE);
+		else
 			lastTime.setText(DateUtils.getRelativeTimeSpanString(lastResult.start_time.getTime()));
 	}
 

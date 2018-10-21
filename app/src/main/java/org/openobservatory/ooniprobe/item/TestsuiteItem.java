@@ -37,10 +37,8 @@ public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, Test
 		int color = ContextCompat.getColor(holder.card.getContext(), extra.getColor());
 		holder.card.setCardBackgroundColor(color);
 		holder.run.setTextColor(color);
-		holder.configure.setOnClickListener(onClickListener);
 		holder.run.setOnClickListener(onClickListener);
 		holder.itemView.setOnClickListener(onClickListener);
-		holder.configure.setTag(extra);
 		holder.run.setTag(extra);
 		holder.itemView.setTag(extra);
 		holder.runtime.setText(DateUtils.formatElapsedTime(extra.getRuntime()));
@@ -51,7 +49,6 @@ public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, Test
 		@BindView(R.id.desc) TextView desc;
 		@BindView(R.id.icon) ImageView icon;
 		@BindView(R.id.card) CardView card;
-		@BindView(R.id.configure) Button configure;
 		@BindView(R.id.run) Button run;
 		@BindView(R.id.runtime) TextView runtime;
 
