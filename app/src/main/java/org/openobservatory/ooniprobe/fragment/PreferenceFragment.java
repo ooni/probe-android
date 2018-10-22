@@ -5,10 +5,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 
+import com.samskivert.mustache.Mustache;
+
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.XmlRes;
@@ -46,8 +49,9 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 				editTextPreference.setSummary(editTextPreference.getText());
 			}
 			if (getPreferenceScreen().getPreference(i).getKey().equals(getString(R.string.Settings_AutomatedTesting_Categories_Label))) {
-				int enabledCategory = ((Application) getActivity().getApplication()).getPreferenceManager().countEnabledCategory();
-				getPreferenceScreen().getPreference(i).setSummary("" + enabledCategory);
+				HashMap<String, String> data = new HashMap<>();
+				data.put("Count", ((Application) getActivity().getApplication()).getPreferenceManager().countEnabledCategory().toString());
+				getPreferenceScreen().getPreference(i).setSummary(Mustache.compiler().compile(getString(R.string.Settings_AutomatedTesting_Categories_Subtitle)).execute(data));
 			}
 		}
 	}

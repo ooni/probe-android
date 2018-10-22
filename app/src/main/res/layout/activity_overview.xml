@@ -49,7 +49,6 @@
 			</LinearLayout>
 
 			<LinearLayout
-				android:id="@+id/lastTimeBox"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginStart="16dp"
@@ -101,7 +100,6 @@
 			android:id="@+id/desc"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_margin="32dp"
-			android:gravity="center_horizontal" />
+			android:layout_margin="32dp" />
 	</ScrollView>
 </LinearLayout>

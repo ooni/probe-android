@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
@@ -30,7 +29,6 @@ public class OverviewActivity extends AbstractActivity {
 	@BindView(R.id.icon) ImageView icon;
 	@BindView(R.id.runtime) TextView runtime;
 	@BindView(R.id.lastTime) TextView lastTime;
-	@BindView(R.id.lastTimeBox) LinearLayout lastTimeBox;
 	@BindView(R.id.desc) TextView desc;
 	@BindView(R.id.customUrl) Button customUrl;
 	private AbstractSuite testSuite;
@@ -54,7 +52,7 @@ public class OverviewActivity extends AbstractActivity {
 		Markwon.setMarkdown(desc, getString(testSuite.getDesc1()) + "\n\n" + getString(testSuite.getDesc2()));
 		Result lastResult = Result.getLastResult(testSuite.getName());
 		if (lastResult == null)
-			lastTimeBox.setVisibility(View.GONE);
+			lastTime.setText(R.string.Dashboard_Overview_LastRun_Never);
 		else
 			lastTime.setText(DateUtils.getRelativeTimeSpanString(lastResult.start_time.getTime()));
 	}

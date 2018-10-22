@@ -375,4 +375,6 @@
 	<string name="CategoryCode_CTRL_Description">Benign or innocuous content used as a control.</string>
 	<string name="CategoryCode_IGO_Description">Sites of intergovernmental organizations, such as the United Nations.</string>
 	<string name="CategoryCode_MISC_Description">Sites that haven\'t been categorized yet.</string>
+	<string name="Settings_Websites_CustomURL_Add">temp string</string>
+	<string name="Settings_AutomatedTesting_Categories_Subtitle">{{Count}} temp string</string>
 </resources>

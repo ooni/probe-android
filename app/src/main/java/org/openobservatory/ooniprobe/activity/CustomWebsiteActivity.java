@@ -5,11 +5,11 @@ import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
 import java.util.ArrayList;
 
@@ -40,18 +40,22 @@ public class CustomWebsiteActivity extends AbstractActivity {
 
 	@Override public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-			case R.id.run:
-				if (errorListenerList.matches()) {
-					ArrayList<String> urls = new ArrayList<>(urlContainer.getChildCount());
-					for (int i = 0; i < urlContainer.getChildCount(); i++)
-						urls.add(((TextInputLayout) urlContainer.getChildAt(i)).getEditText().getText().toString());
-					//TODO-ALE run test
-					System.err.println(urls.toString());
-					Toast.makeText(this, "RUN TEST", Toast.LENGTH_SHORT).show();
-				}
+			case R.id.help:
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
+		}
+	}
+
+	@OnClick(R.id.run) void runClick() {
+		if (errorListenerList.matches()) {
+			ArrayList<String> urls = new ArrayList<>(urlContainer.getChildCount());
+			for (int i = 0; i < urlContainer.getChildCount(); i++)
+				urls.add(((TextInputLayout) urlContainer.getChildAt(i)).getEditText().getText().toString());
+			WebsitesSuite suite = new WebsitesSuite();
+			suite.getTestList(getPreferenceManager())[0].setInputs(urls);
+			startActivity(RunningActivity.newIntent(this, suite));
+			finish();
 		}
 	}
 

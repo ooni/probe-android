@@ -269,7 +269,7 @@ public class PreferenceManager {
 		return TextUtils.join(",", list);
 	}
 
-	public int countEnabledCategory() {
+	public Integer countEnabledCategory() {
 		int count = 0;
 		if (sp.getBoolean(r.getString(R.string.CategoryCode_ALDR_Key), true))
 			count++;
