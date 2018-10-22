@@ -59,7 +59,7 @@ public class NotificationService {
 
             final IntentFilter mIFNetwork = new IntentFilter();
             mIFNetwork.addAction(android.net.ConnectivityManager.CONNECTIVITY_ACTION);
-            c.registerReceiver(new ConnectionStateMonitor(), mIFNetwork);
+            c.getApplicationContext().registerReceiver(new ConnectionStateMonitor(), mIFNetwork);
         }
         return instance;
     }
