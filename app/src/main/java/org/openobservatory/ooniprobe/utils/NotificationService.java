@@ -50,9 +50,6 @@ public class NotificationService {
 				device_token = FirebaseInstanceId.getInstance().getToken();
 			else
 				device_token = null;
-			final IntentFilter mIFNetwork = new IntentFilter();
-			mIFNetwork.addAction(android.net.ConnectivityManager.CONNECTIVITY_ACTION);
-			c.registerReceiver(new ConnectionStateMonitor(), mIFNetwork);
 		}
 		return instance;
 	}
