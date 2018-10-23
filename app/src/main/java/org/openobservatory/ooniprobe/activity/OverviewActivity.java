@@ -65,7 +65,7 @@ public class OverviewActivity extends AbstractActivity {
 	@Override public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.settings:
-				startActivity(PreferenceActivity.newIntent(this, testSuite.getPref()));
+				startActivity(PreferenceActivity.newIntent(this, testSuite.getPref(), null));
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);

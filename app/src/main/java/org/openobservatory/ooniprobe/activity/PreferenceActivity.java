@@ -11,15 +11,13 @@ import androidx.annotation.Nullable;
 import androidx.annotation.XmlRes;
 
 public class PreferenceActivity extends AbstractActivity {
-	private static final String PREFERENCE_RES_ID = "preferenceResId";
-
-	public static Intent newIntent(Context context, @XmlRes int preferenceResId) {
-		return new Intent(context, PreferenceActivity.class).putExtra(PREFERENCE_RES_ID, preferenceResId);
+	public static Intent newIntent(Context context, @XmlRes int preferenceResId, String rootKey) {
+		return new Intent(context, PreferenceActivity.class).putExtra(PreferenceFragment.ARG_PREFERENCES_RES_ID, preferenceResId).putExtra(PreferenceFragment.ARG_PREFERENCE_ROOT, rootKey);
 	}
 
 	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		getSupportFragmentManager().beginTransaction().replace(android.R.id.content, PreferenceFragment.newInstance(getIntent().getIntExtra(PREFERENCE_RES_ID, 0), android.R.id.content)).commit();
+		getSupportFragmentManager().beginTransaction().replace(android.R.id.content, PreferenceFragment.newInstance(getIntent().getIntExtra(PreferenceFragment.ARG_PREFERENCES_RES_ID, 0), android.R.id.content, getIntent().getStringExtra(PreferenceFragment.ARG_PREFERENCE_ROOT))).commit();
 	}
 
 	@Override

@@ -8,6 +8,8 @@ import android.text.TextUtils;
 import com.samskivert.mustache.Mustache;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.MainActivity;
+import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.common.Application;
 
 import java.io.Serializable;
@@ -17,20 +19,23 @@ import androidx.annotation.IdRes;
 import androidx.annotation.XmlRes;
 import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceScreen;
 import localhost.toolkit.app.ConfirmDialogFragment;
 import localhost.toolkit.app.MessageDialogFragment;
 import localhost.toolkit.preference.ExtendedPreferenceFragment;
 
 public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFragment> implements SharedPreferences.OnSharedPreferenceChangeListener, ConfirmDialogFragment.OnConfirmedListener {
-	private static final String PREFERENCES_RES_ID = "preferencesResId";
-	private static final String PREFERENCES_CONTAINER_RES_ID = "preferencesContainerResId";
+	public static final String ARG_PREFERENCES_RES_ID = "org.openobservatory.ooniprobe.fragment.PreferenceFragment.PREF_RES_ID";
+	public static final String ARG_CONTAINER_RES_ID = "org.openobservatory.ooniprobe.fragment.PreferenceFragment.CONTAINER_VIEW_ID";
 	private String rootKey;
 
-	public static PreferenceFragment newInstance(@XmlRes int preferencesResId, @IdRes int preferencesContainerResId) {
+	public static PreferenceFragment newInstance(@XmlRes int preferencesResId, @IdRes int preferencesContainerResId, String rootKey) {
 		PreferenceFragment fragment = new PreferenceFragment();
 		fragment.setArguments(new Bundle());
-		fragment.getArguments().putInt(PREFERENCES_RES_ID, preferencesResId);
-		fragment.getArguments().putInt(PREFERENCES_CONTAINER_RES_ID, preferencesContainerResId);
+		fragment.getArguments().putInt(ARG_PREFERENCES_RES_ID, preferencesResId);
+		fragment.getArguments().putInt(ARG_CONTAINER_RES_ID, preferencesContainerResId);
+		fragment.getArguments().putString(ARG_PREFERENCE_ROOT, rootKey);
 		return fragment;
 	}
 
@@ -40,7 +45,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 
 	@Override public void onResume() {
 		super.onResume();
-		setPreferencesFromResource(getArguments().getInt(PREFERENCES_RES_ID), getArguments().getInt(PREFERENCES_CONTAINER_RES_ID), rootKey);
+		setPreferencesFromResource(getArguments().getInt(ARG_PREFERENCES_RES_ID), getArguments().getInt(ARG_CONTAINER_RES_ID), getArguments().getString(ARG_PREFERENCE_ROOT));
 		getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 		getActivity().setTitle(getPreferenceScreen().getTitle());
 		for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++) {
@@ -48,7 +53,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 				EditTextPreference editTextPreference = (EditTextPreference) getPreferenceScreen().getPreference(i);
 				editTextPreference.setSummary(editTextPreference.getText());
 			}
-			if (getPreferenceScreen().getPreference(i).getKey().equals(getString(R.string.Settings_AutomatedTesting_Categories_Label))) {
+			if (getString(R.string.Settings_AutomatedTesting_Categories_Label).equals(getPreferenceScreen().getPreference(i).getKey())) {
 				HashMap<String, String> data = new HashMap<>();
 				data.put("Count", ((Application) getActivity().getApplication()).getPreferenceManager().countEnabledCategory().toString());
 				getPreferenceScreen().getPreference(i).setSummary(Mustache.compiler().compile(getString(R.string.Settings_AutomatedTesting_Categories_Subtitle)).execute(data));
@@ -61,6 +66,14 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 		getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
 	}
 
+	@Override public boolean onPreferenceStartScreen(PreferenceFragmentCompat preferenceFragmentCompat, PreferenceScreen preferenceScreen) {
+		if (getActivity() instanceof MainActivity) {
+			startActivity(PreferenceActivity.newIntent(getActivity(), getArguments().getInt(ARG_PREFERENCES_RES_ID), preferenceScreen.getKey()));
+			return true;
+		} else
+			return super.onPreferenceStartScreen(preferenceFragmentCompat, preferenceScreen);
+	}
+
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 		Preference preference = findPreference(key);
 		if (key.equals(getString(R.string.include_cc)) && !sharedPreferences.getBoolean(key, true))
@@ -71,25 +84,19 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 			if (key.equals(getString(R.string.max_runtime)) && value != null && !TextUtils.isDigitsOnly(value)) {
 				MessageDialogFragment.newInstance(getString(R.string.Modal_Error), getString(R.string.Modal_OnlyDigits), false).show(getFragmentManager(), null);
 				sharedPreferences.edit().remove(key).apply();
-				ExtendedPreferenceFragment fragment = newConcreteInstance();
-				fragment.getArguments().putString(PreferenceFragment.ARG_PREFERENCE_ROOT, rootKey);
-				getFragmentManager().beginTransaction().replace(android.R.id.content, fragment).commit();
+				getFragmentManager().beginTransaction().replace(android.R.id.content, newConcreteInstance(rootKey)).commit();
 			}
 		}
 	}
 
-	@Override protected PreferenceFragment newConcreteInstance() {
-		return PreferenceFragment.newInstance(getArguments().getInt(PREFERENCES_RES_ID), getArguments().getInt(PREFERENCES_CONTAINER_RES_ID));
+	@Override protected PreferenceFragment newConcreteInstance(String rootKey) {
+		return PreferenceFragment.newInstance(getArguments().getInt(ARG_PREFERENCES_RES_ID), getArguments().getInt(ARG_CONTAINER_RES_ID), rootKey);
 	}
 
 	@Override public void onConfirmation(Serializable serializable, int i) {
 		if (i == DialogInterface.BUTTON_NEGATIVE && serializable.equals(getString(R.string.include_cc))) {
 			getPreferenceScreen().getSharedPreferences().edit().remove((String) serializable).apply();
-			ExtendedPreferenceFragment fragment = newConcreteInstance();
-			Bundle args = new Bundle();
-			args.putString(PreferenceFragment.ARG_PREFERENCE_ROOT, rootKey);
-			fragment.setArguments(args);
-			getFragmentManager().beginTransaction().replace(android.R.id.content, fragment).commit();
+			getFragmentManager().beginTransaction().replace(android.R.id.content, newConcreteInstance(rootKey)).commit();
 		}
 	}
 }
