@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
 import java.util.ArrayList;
@@ -50,8 +51,11 @@ public class CustomWebsiteActivity extends AbstractActivity {
 	@OnClick(R.id.run) void runClick() {
 		if (errorListenerList.matches()) {
 			ArrayList<String> urls = new ArrayList<>(urlContainer.getChildCount());
-			for (int i = 0; i < urlContainer.getChildCount(); i++)
-				urls.add(((TextInputLayout) urlContainer.getChildAt(i)).getEditText().getText().toString());
+			for (int i = 0; i < urlContainer.getChildCount(); i++) {
+				String url = ((TextInputLayout) urlContainer.getChildAt(i)).getEditText().getText().toString();
+				Url.checkExistingUrl(url);
+				urls.add(url);
+			}
 			WebsitesSuite suite = new WebsitesSuite();
 			suite.getTestList(getPreferenceManager())[0].setInputs(urls);
 			startActivity(RunningActivity.newIntent(this, suite));
