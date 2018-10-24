@@ -53,9 +53,10 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 				EditTextPreference editTextPreference = (EditTextPreference) getPreferenceScreen().getPreference(i);
 				editTextPreference.setSummary(editTextPreference.getText());
 			}
-			if (getString(R.string.Settings_AutomatedTesting_Categories_Label).equals(getPreferenceScreen().getPreference(i).getKey())) {
+			if (getString(R.string.Settings_Websites_Categories_Label).equals(getPreferenceScreen().getPreference(i).getKey())) {
 				HashMap<String, String> data = new HashMap<>();
 				data.put("Count", ((Application) getActivity().getApplication()).getPreferenceManager().countEnabledCategory().toString());
+				//TODO mustache Settings.Websites.Categories.Description
 				getPreferenceScreen().getPreference(i).setSummary(Mustache.compiler().compile(getString(R.string.Settings_AutomatedTesting_Categories_Subtitle)).execute(data));
 			}
 		}

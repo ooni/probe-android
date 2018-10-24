@@ -42,13 +42,13 @@ public class HttpInvalidRequestLineFragment extends Fragment {
 			title.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.exclamation_point, 0, 0);
 			title.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_yellow8));
 			title.setText(R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title);
-			desc1.setText(R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Content_Paragraph_1);
-			desc2.setText(R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Content_Paragraph_2);
+			desc1.setText(R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Content_Paragraph);
+			desc2.setText(R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Content_Paragraph);
 		} else {
 			title.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.tick, 0, 0);
 			title.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_green7));
 			title.setText(R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title);
-			desc1.setText(R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Content_Paragraph_1);
+			desc1.setText(R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Content_Paragraph);
 		}
 		TestKeys testKeys = measurement.getTestKeys();
 		if (testKeys != null) {

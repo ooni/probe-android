@@ -101,7 +101,7 @@
 		</activity>
 		<activity
 			android:name=".activity.CustomWebsiteActivity"
-			android:label="@string/Settings_Websites_CustomURL"
+			android:label="@string/Settings_Websites_CustomURL_Title"
 			android:parentActivityName=".activity.PreferenceActivity">
 			<intent-filter>
 				<action android:name="org.openobservatory.ooniprobe.activity.CustomWebsiteActivity" />

@@ -46,7 +46,7 @@ public class TelegramFragment extends Fragment {
 			title.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.tick, 0, 0);
 			title.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_green7));
 			title.setText(R.string.TestResults_Details_InstantMessaging_Telegram_Reachable_Hero_Title);
-			desc.setText(R.string.TestResults_Details_InstantMessaging_Telegram_Reachable_Content_Paragraph_1);
+			desc.setText(R.string.TestResults_Details_InstantMessaging_Telegram_Reachable_Content_Paragraph);
 		}
 		if (testKeys != null) {
 			application.setText(testKeys.getTelegramEndpointStatus(getActivity()));

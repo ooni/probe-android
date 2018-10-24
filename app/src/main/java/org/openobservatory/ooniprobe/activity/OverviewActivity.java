@@ -49,7 +49,7 @@ public class OverviewActivity extends AbstractActivity {
 		icon.setImageResource(testSuite.getIcon());
 		runtime.setText(testSuite.getDataUsage() + " " + DateUtils.formatElapsedTime(testSuite.getRuntime()));
 		customUrl.setVisibility(testSuite.getName().equals(WebsitesSuite.NAME) ? View.VISIBLE : View.GONE);
-		Markwon.setMarkdown(desc, getString(testSuite.getDesc1()) + "\n\n" + getString(testSuite.getDesc2()));
+		Markwon.setMarkdown(desc, getString(testSuite.getDesc1()));
 		Result lastResult = Result.getLastResult(testSuite.getName());
 		if (lastResult == null)
 			lastTime.setText(R.string.Dashboard_Overview_LastRun_Never);

@@ -46,14 +46,14 @@ public class WebConnectivityFragment extends Fragment {
 			HashMap<String, String> data = new HashMap<>();
 			data.put("WebsiteURL", measurement.url.url);
 			data.put("BlockingReason", testKeys.getWebsiteBlocking(getActivity()));
-			desc.setText(Mustache.compiler().compile(getString(R.string.TestResults_Details_Websites_LikelyBlocked_Content_Paragraph_1)).execute(data));
+			desc.setText(Mustache.compiler().compile(getString(R.string.TestResults_Details_Websites_LikelyBlocked_Content_Paragraph)).execute(data));
 		} else {
 			title.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.tick, 0, 0);
 			title.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_green7));
 			title.setText(R.string.TestResults_Details_Websites_Reachable_Hero_Title);
 			HashMap<String, String> data = new HashMap<>();
 			data.put("WebsiteURL", measurement.url.url);
-			desc.setText(Mustache.compiler().compile(getString(R.string.TestResults_Details_Websites_Reachable_Content_Paragraph_1)).execute(data));
+			desc.setText(Mustache.compiler().compile(getString(R.string.TestResults_Details_Websites_Reachable_Content_Paragraph)).execute(data));
 		}
 		return v;
 	}

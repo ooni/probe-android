@@ -59,14 +59,14 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
-			android:text="@string/Settings_About_Content_Paragraph_1"
+			android:text="@string/Settings_About_Content_Paragraph"
 			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
 		<TextView
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
-			android:text="@string/Settings_About_Content_Paragraph_2"
+			android:text="@string/Settings_About_Content_Paragraph"
 			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
 		<Button

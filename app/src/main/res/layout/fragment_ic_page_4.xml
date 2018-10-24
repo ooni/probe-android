@@ -104,7 +104,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="10dp"
-			android:text="@string/Onboarding_DefaultSettings_Header_2"
+			android:text="@string/Onboarding_DefaultSettings_Paragraph"
 			android:textColor="@color/color_white"
 			android:textSize="16sp"
 			android:textStyle="bold"/>
@@ -123,7 +123,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="10dp"
-				android:text="@string/Onboarding_DefaultSettings_Bullet_4"
+				android:text="REMOVE"
 				android:textColor="@color/color_white"
 				android:textSize="16sp"/>
 		</LinearLayout>

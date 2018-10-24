@@ -19,8 +19,7 @@ public class PerformanceSuite extends AbstractSuite {
 				R.color.color_fuchsia6,
 				R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Performance,
 				R.style.Theme_MaterialComponents_NoActionBar_App_Performance,
-				R.string.Dashboard_Performance_Overview_Paragraph_1,
-				R.string.Dashboard_Performance_Overview_Paragraph_2,
+				R.string.Dashboard_Performance_Overview_Paragraph,
 				R.xml.preferences_performance,
 				"anim/performance.json",
 				"5 - 200 MB", 90);

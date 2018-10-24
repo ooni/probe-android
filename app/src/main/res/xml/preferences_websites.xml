@@ -2,8 +2,8 @@
 	android:key="@string/Test_Websites_Fullname"
 	android:title="@string/Test_Websites_Fullname">
 	<PreferenceScreen
-		android:key="@string/Settings_AutomatedTesting_Categories_Label"
-		android:title="@string/Settings_AutomatedTesting_Categories_Label">
+		android:key="@string/Settings_Websites_Categories_Label"
+		android:title="@string/Settings_Websites_Categories_Label">
 		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:icon="@drawable/category_anon"

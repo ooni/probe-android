@@ -21,7 +21,6 @@ public abstract class AbstractSuite implements Serializable {
 	private int themeLight;
 	private int themeDark;
 	private int desc1;
-	private int desc2;
 	private int pref;
 	private String anim;
 	private String name;
@@ -30,7 +29,7 @@ public abstract class AbstractSuite implements Serializable {
 	private AbstractTest[] testList;
 	private Result result;
 
-	public AbstractSuite(String name, @StringRes int title, @StringRes int cardDesc, @DrawableRes int icon, @ColorRes int color, @StyleRes int themeLight, @StyleRes int themeDark, @StringRes int desc1, @StringRes int desc2, @XmlRes int pref, String anim, String dataUsage, int runtime) {
+	public AbstractSuite(String name, @StringRes int title, @StringRes int cardDesc, @DrawableRes int icon, @ColorRes int color, @StyleRes int themeLight, @StyleRes int themeDark, @StringRes int desc1, @XmlRes int pref, String anim, String dataUsage, int runtime) {
 		this.title = title;
 		this.cardDesc = cardDesc;
 		this.icon = icon;
@@ -38,7 +37,6 @@ public abstract class AbstractSuite implements Serializable {
 		this.themeLight = themeLight;
 		this.themeDark = themeDark;
 		this.desc1 = desc1;
-		this.desc2 = desc2;
 		this.pref = pref;
 		this.anim = anim;
 		this.name = name;
@@ -94,10 +92,6 @@ public abstract class AbstractSuite implements Serializable {
 
 	public int getDesc1() {
 		return desc1;
-	}
-
-	public int getDesc2() {
-		return desc2;
 	}
 
 	public int getPref() {
