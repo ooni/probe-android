@@ -43,8 +43,8 @@ public class Measurement extends BaseModel implements Serializable {
 	@Column public Integer measurement_id;
 	@Column public boolean is_anomaly;
 	@Column public String test_keys;
-	@ForeignKey(saveForeignKeyModel = true, deleteForeignKeyModel = true) public Url url;
-	@ForeignKey(saveForeignKeyModel = true, deleteForeignKeyModel = true, stubbedRelationship = true) public Result result;
+	@ForeignKey(saveForeignKeyModel = true) public Url url;
+	@ForeignKey(saveForeignKeyModel = true, stubbedRelationship = true) public Result result;
 
 	public Measurement() {
 	}

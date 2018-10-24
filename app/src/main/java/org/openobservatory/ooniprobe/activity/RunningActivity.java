@@ -11,7 +11,6 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.format.DateUtils;
 import android.view.animation.Animation;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -137,7 +136,8 @@ public class RunningActivity extends AbstractActivity {
 					case TestAsyncTask.PRG:
 						int prgs = Integer.parseInt(values[1]);
 						act.progress.setProgress(prgs);
-						act.runtime.setText(DateUtils.formatElapsedTime(Math.round(act.testSuite.getRuntime() - ((double) prgs) / act.progress.getMax() * act.testSuite.getRuntime())));
+						String sec = String.valueOf(Math.round(act.testSuite.getRuntime() - ((double) prgs) / act.progress.getMax() * act.testSuite.getRuntime()));
+						act.runtime.setText(act.getString(R.string.Dashboard_Running_Seconds, sec));
 						break;
 					case TestAsyncTask.LOG:
 						act.log.setText(values[1]);

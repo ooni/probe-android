@@ -25,7 +25,7 @@ public abstract class AbstractSuite implements Serializable {
 	private String anim;
 	private String name;
 	private String dataUsage;
-	private int runtime;
+	private Integer runtime;
 	private AbstractTest[] testList;
 	private Result result;
 
@@ -106,7 +106,7 @@ public abstract class AbstractSuite implements Serializable {
 		return dataUsage;
 	}
 
-	public int getRuntime() {
+	public Integer getRuntime() {
 		return runtime;
 	}
 }

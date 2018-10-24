@@ -1,6 +1,5 @@
 package org.openobservatory.ooniprobe.item;
 
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +40,7 @@ public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, Test
 		holder.itemView.setOnClickListener(onClickListener);
 		holder.run.setTag(extra);
 		holder.itemView.setTag(extra);
-		holder.runtime.setText(DateUtils.formatElapsedTime(extra.getRuntime()));
+		holder.runtime.setText(holder.runtime.getContext().getString(R.string.Dashboard_Card_Seconds, extra.getRuntime().toString()));
 	}
 
 	class ViewHolderImpl extends RecyclerView.ViewHolder {

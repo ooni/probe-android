@@ -123,17 +123,15 @@ public class Result extends BaseModel implements Serializable {
 	}
 
 	public boolean delete(Context c) {
-		boolean succ = delete();
-		if (succ)
-			for (Measurement measurement : getAllMeasurements()) {
-				try {
-					Measurement.getEntryFile(c, measurement.id, measurement.test_name).delete();
-					Measurement.getLogFile(c, id, measurement.test_name).delete();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				measurement.delete();
+		for (Measurement measurement : getAllMeasurements()) {
+			try {
+				Measurement.getEntryFile(c, measurement.id, measurement.test_name).delete();
+				Measurement.getLogFile(c, id, measurement.test_name).delete();
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-		return succ;
+			measurement.delete();
+		}
+		return delete();
 	}
 }
