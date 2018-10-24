@@ -51,7 +51,6 @@ dependencies {
 	implementation 'com.github.apl-devs:appintro:v4.2.3'
 	implementation 'com.google.code.gson:gson:2.8.5'
 	implementation 'ru.noties:markwon:2.0.0'
-	implementation 'com.samskivert:jmustache:1.14'
 	implementation 'commons-io:commons-io:2.6'
 }
 

@@ -5,15 +5,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 
-import com.samskivert.mustache.Mustache;
-
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.common.Application;
 
 import java.io.Serializable;
-import java.util.HashMap;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.XmlRes;
@@ -54,10 +51,8 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 				editTextPreference.setSummary(editTextPreference.getText());
 			}
 			if (getString(R.string.Settings_Websites_Categories_Label).equals(getPreferenceScreen().getPreference(i).getKey())) {
-				HashMap<String, String> data = new HashMap<>();
-				data.put("Count", ((Application) getActivity().getApplication()).getPreferenceManager().countEnabledCategory().toString());
-				//TODO mustache Settings.Websites.Categories.Description
-				getPreferenceScreen().getPreference(i).setSummary(Mustache.compiler().compile(getString(R.string.Settings_AutomatedTesting_Categories_Subtitle)).execute(data));
+				String count = ((Application) getActivity().getApplication()).getPreferenceManager().countEnabledCategory().toString();
+				getPreferenceScreen().getPreference(i).setSummary(getString(R.string.Settings_Websites_Categories_Description, count));
 			}
 		}
 	}
