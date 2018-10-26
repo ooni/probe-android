@@ -7,6 +7,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface OoniIOClient {
-	@GET("api/v1/urls")
+	@GET("api/v1/test-list/urls")
 	Call<RetrieveUrlResponse> getUrls(@Query("country_code") String country_code, @Query("category_codes") String category_codes);
 }
