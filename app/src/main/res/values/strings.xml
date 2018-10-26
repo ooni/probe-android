@@ -282,7 +282,7 @@
 	<string name="OONIBrowser_Loading">Loading...</string>
 	<string name="OONIBrowser_Error">Unexpected error occurred. Reload page again</string>
 	<string name="OONIRun_YouAreAboutToRun">You are about to run an OONI Probe test.</string>
-	<string name="OONIRun_URLs">URLs</string>
+	<string name="OONIRun_URLs">%1$s URLs</string>
 	<string name="OONIRun_TestName">Test Name</string>
 	<string name="OONIRun_TestDetails">Test Details</string>
 	<string name="OONIRun_Run">Run</string>
