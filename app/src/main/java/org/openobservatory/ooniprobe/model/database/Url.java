@@ -23,7 +23,7 @@ public class Url extends BaseModel implements Serializable {
 	@Column public String country_code;
 	private transient Integer categoryIcon;
 
-	public Url(){
+	public Url() {
 	}
 
 	private Url(String url, String categoryCode, String countryCode) {
@@ -61,5 +61,9 @@ public class Url extends BaseModel implements Serializable {
 			categoryIcons.recycle();
 		}
 		return categoryIcon;
+	}
+
+	@Override public String toString() {
+		return url;
 	}
 }

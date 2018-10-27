@@ -3,7 +3,7 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 	<item
 		android:id="@+id/delete"
-		android:icon="@drawable/delete_forever"
+		android:icon="@drawable/delete_forever_white"
 		android:title="@string/Modal_DoYouWantToDeleteAllTests"
 		app:showAsAction="ifRoom"/>
 </menu>

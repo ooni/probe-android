@@ -4,9 +4,10 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
-
-import com.google.android.material.textfield.TextInputLayout;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Url;
@@ -18,6 +19,7 @@ import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import localhost.toolkit.text.ErrorListenerInterface;
 import localhost.toolkit.text.ErrorListenerList;
 import localhost.toolkit.text.ErrorRegexListener;
 
@@ -25,13 +27,12 @@ public class CustomWebsiteActivity extends AbstractActivity {
 	@BindView(R.id.urlContainer) LinearLayout urlContainer;
 	private ErrorListenerList errorListenerList;
 
-	// TODO ALE add in overview
 	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_customwebsite);
 		ButterKnife.bind(this);
 		errorListenerList = new ErrorListenerList();
-		errorListenerList.add(new ErrorRegexListener(((TextInputLayout) urlContainer.getChildAt(0)).getEditText(), Patterns.WEB_URL, "is not a valid url"));
+		add();
 	}
 
 	@Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -50,12 +51,9 @@ public class CustomWebsiteActivity extends AbstractActivity {
 
 	@OnClick(R.id.run) void runClick() {
 		if (errorListenerList.matches()) {
-			ArrayList<String> urls = new ArrayList<>(urlContainer.getChildCount());
-			for (int i = 0; i < urlContainer.getChildCount(); i++) {
-				String url = ((TextInputLayout) urlContainer.getChildAt(i)).getEditText().getText().toString();
-				Url.checkExistingUrl(url);
-				urls.add(url);
-			}
+			ArrayList<String> urls = new ArrayList<>(errorListenerList.size());
+			for (ErrorListenerInterface eli : errorListenerList)
+				urls.add(Url.checkExistingUrl(eli.getValue()).toString());
 			WebsitesSuite suite = new WebsitesSuite();
 			suite.getTestList(getPreferenceManager())[0].setInputs(urls);
 			startActivity(RunningActivity.newIntent(this, suite));
@@ -64,8 +62,17 @@ public class CustomWebsiteActivity extends AbstractActivity {
 	}
 
 	@OnClick(R.id.add) void add() {
-		TextInputLayout textInputLayout = (TextInputLayout) getLayoutInflater().inflate(R.layout.edittext_url, urlContainer, false);
-		errorListenerList.add(new ErrorRegexListener(textInputLayout.getEditText(), Patterns.WEB_URL, "is not a valid url"));
-		urlContainer.addView(textInputLayout);
+		LinearLayout urlBox = (LinearLayout) getLayoutInflater().inflate(R.layout.edittext_url, urlContainer, false);
+		EditText editText = urlBox.findViewById(R.id.editText);
+		ImageButton delete = urlBox.findViewById(R.id.delete);
+		ErrorRegexListener errorRegexListener = new ErrorRegexListener(editText, Patterns.WEB_URL, "NEED STRING");
+		errorListenerList.add(errorRegexListener);
+		urlContainer.addView(urlBox);
+		delete.setTag(errorRegexListener);
+		delete.setOnClickListener(v -> {
+			ErrorRegexListener tag = (ErrorRegexListener) v.getTag();
+			((View) v.getParent()).setVisibility(View.GONE);
+			errorListenerList.remove(tag);
+		});
 	}
 }

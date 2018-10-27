@@ -18,10 +18,8 @@
 				android:id="@+id/urlContainer"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:orientation="vertical">
-
-				<include layout="@layout/edittext_url" />
-			</LinearLayout>
+				android:animateLayoutChanges="true"
+				android:orientation="vertical" />
 
 			<Button
 				android:id="@+id/add"

@@ -33,10 +33,10 @@ public class MeasurementItem extends HeterogeneousRecyclerItem<Measurement, Meas
 		AbstractTest test = extra.getTest();
 		if (extra.test_name.equals(WebConnectivity.NAME)) {
 			viewHolder.text.setText(extra.url.url);
-			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(extra.url.getCategoryIcon(viewHolder.text.getContext()), 0, extra.is_anomaly ? R.drawable.cross : extra.is_failed ? R.drawable.reload : R.drawable.tick, 0);
+			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(extra.url.getCategoryIcon(viewHolder.text.getContext()), 0, extra.is_anomaly ? R.drawable.exclamation_point : extra.is_failed ? R.drawable.reload : R.drawable.tick, 0);
 		} else {
 			viewHolder.text.setText(test.getLabelResId());
-			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(test.getIconResId(), 0, extra.is_anomaly ? R.drawable.cross : extra.is_failed ? R.drawable.reload : R.drawable.tick, 0);
+			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(test.getIconResId(), 0, extra.is_anomaly ? R.drawable.exclamation_point : extra.is_failed ? R.drawable.reload : R.drawable.tick, 0);
 		}
 		viewHolder.text.setBackgroundColor(ContextCompat.getColor(viewHolder.text.getContext(), extra.is_failed ? R.color.color_gray1 : android.R.color.transparent));
 		viewHolder.text.setTextColor(ContextCompat.getColor(viewHolder.text.getContext(), extra.is_failed ? R.color.color_gray5 : R.color.color_gray9));
