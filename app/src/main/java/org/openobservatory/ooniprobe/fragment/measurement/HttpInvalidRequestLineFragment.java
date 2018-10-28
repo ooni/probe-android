@@ -40,7 +40,7 @@ public class HttpInvalidRequestLineFragment extends Fragment {
 		ButterKnife.bind(this, v);
 		if (measurement.is_anomaly) {
 			title.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.exclamation_point, 0, 0);
-			title.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_yellow8));
+			title.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_yellow9));
 			title.setText(R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title);
 			desc1.setText(R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Content_Paragraph);
 			desc2.setText(R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Content_Paragraph);
