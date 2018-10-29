@@ -18,7 +18,10 @@
 		<item name="android:textColor">@color/color_white</item>
 	</style>
 
-	<style name="Theme.MaterialComponents.Light.NoActionBar.App">
+	<style name="Theme.MaterialComponents.Light.App">
+		<item name="colorPrimary">@color/color_gray4</item>
+		<item name="colorAccent">@color/color_base</item>
+		<item name="colorPrimaryDark">@color/color_gray6</item>
 		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 		<item name="fontFamily">@font/firasans</item>
 	</style>

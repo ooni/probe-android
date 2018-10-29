@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -23,7 +24,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,7 +34,8 @@ import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
 public class OoniRunActivity extends AbstractActivity {
 	public static final List<AbstractSuite> SUITES = Arrays.asList(new InstantMessagingSuite(), new MiddleBoxesSuite(), new MiddleBoxesSuite(), new PerformanceSuite(), new WebsitesSuite());
-	@BindView(R.id.toolbar) Toolbar toolbar;
+	@BindView(R.id.icon) ImageView icon;
+	@BindView(R.id.iconBig) ImageView iconBig;
 	@BindView(R.id.title) TextView title;
 	@BindView(R.id.desc) TextView desc;
 	@BindView(R.id.run) Button run;
@@ -78,24 +79,22 @@ public class OoniRunActivity extends AbstractActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_oonirun);
 		ButterKnife.bind(this);
-		setSupportActionBar(toolbar);
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 		recycler.setLayoutManager(layoutManager);
 		recycler.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
 		items = new ArrayList<>();
 		adapter = new HeterogeneousRecyclerAdapter<>(this, items);
 		recycler.setAdapter(adapter);
-		gotIntent(getIntent());
+		manageIntent(getIntent());
 	}
 
 	@Override
 	protected void onNewIntent(Intent intent) {
 		super.onNewIntent(intent);
-		gotIntent(intent);
+		manageIntent(intent);
 	}
 
-	public void gotIntent(Intent intent) {
+	public void manageIntent(Intent intent) {
 		if (Intent.ACTION_VIEW.equals(intent.getAction())) {
 			Uri uri = intent.getData();
 			String mv = uri == null ? null : uri.getQueryParameter("mv");
@@ -109,13 +108,16 @@ public class OoniRunActivity extends AbstractActivity {
 					Attribute attribute = new Gson().fromJson(ta, Attribute.class);
 					AbstractSuite suite = getSuite(tn, attribute == null ? null : attribute.urls);
 					if (suite != null) {
+						icon.setImageResource(suite.getIcon());
 						title.setText(suite.getTestList(getPreferenceManager())[0].getLabelResId());
 						desc.setText(td == null ? getString(R.string.OONIRun_YouAreAboutToRun) : td);
 						if (attribute != null && attribute.urls != null) {
 							for (String url : attribute.urls)
 								items.add(new TextItem(url));
 							adapter.notifyTypesChanged();
-						}
+							iconBig.setVisibility(View.GONE);
+						} else
+							iconBig.setImageResource(suite.getIcon());
 						run.setOnClickListener(v -> {
 							Intent runIntent = RunningActivity.newIntent(OoniRunActivity.this, suite);
 							if (runIntent != null) {
@@ -126,11 +128,13 @@ public class OoniRunActivity extends AbstractActivity {
 					} else {
 						title.setText(R.string.OONIRun_InvalidParameter);
 						desc.setText(R.string.OONIRun_InvalidParameter_Msg);
+						iconBig.setImageResource(R.drawable.question_mark);
 						run.setVisibility(View.GONE);
 					}
 				} else {
 					title.setText(R.string.OONIRun_OONIProbeOutOfDate);
 					desc.setText(R.string.OONIRun_OONIProbeNewerVersion);
+					iconBig.setImageResource(R.drawable.update);
 					run.setOnClickListener(v -> {
 						startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName())));
 						finish();
@@ -139,6 +143,7 @@ public class OoniRunActivity extends AbstractActivity {
 			} else {
 				title.setText(R.string.OONIRun_InvalidParameter);
 				desc.setText(R.string.OONIRun_InvalidParameter_Msg);
+				iconBig.setImageResource(R.drawable.question_mark);
 				run.setVisibility(View.GONE);
 			}
 		}
