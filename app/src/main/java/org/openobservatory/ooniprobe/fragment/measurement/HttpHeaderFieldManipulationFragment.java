@@ -35,7 +35,7 @@ public class HttpHeaderFieldManipulationFragment extends Fragment {
 		View v = inflater.inflate(R.layout.fragment_measurement_httpheaderfieldmanipulation, container, false);
 		ButterKnife.bind(this, v);
 		if (measurement.is_anomaly) {
-			title.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.cross, 0, 0);
+			title.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.question_mark, 0, 0);
 			title.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_red8));
 			title.setText(R.string.TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_Found_Hero_Title);
 			desc1.setText(R.string.TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_Found_Content_Paragraph);

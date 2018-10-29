@@ -14,7 +14,7 @@
 		android:layout_marginTop="8dp"
 		android:layout_marginRight="32dp"
 		android:padding="15dp"
-		android:src="@drawable/folder" />
+		android:src="@drawable/about_ooni" />
 
 	<TextView
 		android:id="@+id/things_to_know"

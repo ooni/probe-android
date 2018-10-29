@@ -36,7 +36,7 @@ public class WebConnectivityFragment extends Fragment {
 		ButterKnife.bind(this, v);
 		TestKeys testKeys = measurement.getTestKeys();
 		if (measurement.is_anomaly) {
-			title.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.cross, 0, 0);
+			title.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.question_mark, 0, 0);
 			title.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_red8));
 			title.setText(R.string.TestResults_Details_Websites_LikelyBlocked_Hero_Title);
 			/* TODO strings

@@ -11,7 +11,7 @@
 		android:layout_centerHorizontal="true"
 		android:layout_marginTop="15dp"
 		android:padding="30dp"
-		android:src="@drawable/octopus_shark"/>
+		android:src="@drawable/about_ooni"/>
 
 	<TextView
 		android:id="@+id/what_is_ooniprobe"

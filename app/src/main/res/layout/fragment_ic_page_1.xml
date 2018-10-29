@@ -30,7 +30,7 @@
 			android:layout_height="wrap_content"
 			android:layout_weight="0.7"
 			android:adjustViewBounds="true"
-			android:src="@drawable/ooniprobe_logo"/>
+			android:src="@drawable/about_ooni"/>
 	</LinearLayout>
 
 	<ImageView
@@ -42,5 +42,5 @@
 		android:layout_marginBottom="60dp"
 		android:adjustViewBounds="true"
 		android:padding="30dp"
-		android:src="@drawable/octopus"/>
+		android:src="@drawable/about_ooni"/>
 </RelativeLayout>
