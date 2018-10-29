@@ -116,8 +116,10 @@ public class OoniRunActivity extends AbstractActivity {
 								items.add(new TextItem(url));
 							adapter.notifyTypesChanged();
 							iconBig.setVisibility(View.GONE);
-						} else
+						} else {
 							iconBig.setImageResource(suite.getIcon());
+							iconBig.setVisibility(View.VISIBLE);
+						}
 						run.setOnClickListener(v -> {
 							Intent runIntent = RunningActivity.newIntent(OoniRunActivity.this, suite);
 							if (runIntent != null) {
@@ -129,12 +131,14 @@ public class OoniRunActivity extends AbstractActivity {
 						title.setText(R.string.OONIRun_InvalidParameter);
 						desc.setText(R.string.OONIRun_InvalidParameter_Msg);
 						iconBig.setImageResource(R.drawable.question_mark);
+						iconBig.setVisibility(View.VISIBLE);
 						run.setVisibility(View.GONE);
 					}
 				} else {
 					title.setText(R.string.OONIRun_OONIProbeOutOfDate);
 					desc.setText(R.string.OONIRun_OONIProbeNewerVersion);
 					iconBig.setImageResource(R.drawable.update);
+					iconBig.setVisibility(View.VISIBLE);
 					run.setOnClickListener(v -> {
 						startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName())));
 						finish();
@@ -144,6 +148,7 @@ public class OoniRunActivity extends AbstractActivity {
 				title.setText(R.string.OONIRun_InvalidParameter);
 				desc.setText(R.string.OONIRun_InvalidParameter_Msg);
 				iconBig.setImageResource(R.drawable.question_mark);
+				iconBig.setVisibility(View.VISIBLE);
 				run.setVisibility(View.GONE);
 			}
 		}
