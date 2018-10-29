@@ -39,7 +39,7 @@ public class MeasurementItem extends HeterogeneousRecyclerItem<Measurement, Meas
 			viewHolder.text.setText(test.getLabelResId());
 			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(test.getIconResId(), 0, extra.is_anomaly ? R.drawable.exclamation_point : extra.is_failed ? R.drawable.reload : R.drawable.tick, 0);
 		}
-		DrawableCompat.setTint(DrawableCompat.wrap(viewHolder.text.getCompoundDrawablesRelative()[0]).mutate(), ContextCompat.getColor(viewHolder.text.getContext(), extra.is_anomaly ? R.color.color_gray5 : R.color.color_gray7));
+		DrawableCompat.setTint(DrawableCompat.wrap(viewHolder.text.getCompoundDrawablesRelative()[0]).mutate(), ContextCompat.getColor(viewHolder.text.getContext(), extra.is_failed ? R.color.color_gray5 : R.color.color_gray7));
 		viewHolder.text.setBackgroundColor(ContextCompat.getColor(viewHolder.text.getContext(), extra.is_failed ? R.color.color_gray1 : android.R.color.transparent));
 		viewHolder.text.setTextColor(ContextCompat.getColor(viewHolder.text.getContext(), extra.is_failed ? R.color.color_gray5 : R.color.color_gray9));
 	}
