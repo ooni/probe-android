@@ -68,7 +68,7 @@
 				android:text="@string/Onboarding_PopQuiz_True"
 				android:textColor="@color/color_white"
 				android:textStyle="bold"
-				app:backgroundTint="@color/color_teal5" />
+				app:backgroundTint="@color/color_green8" />
 
 			<Button
 				android:id="@+id/falseButton"
@@ -78,7 +78,7 @@
 				android:text="@string/Onboarding_PopQuiz_False"
 				android:textColor="@color/color_white"
 				android:textStyle="bold"
-				app:backgroundTint="@color/color_red6" />
+				app:backgroundTint="@color/color_red8" />
 		</LinearLayout>
 	</LinearLayout>
 

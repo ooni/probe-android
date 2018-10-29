@@ -9,7 +9,7 @@
         <path
             android:name="path"
             android:pathData="M 2.286 14.605 L 6.424 10.46 L 11.642 15.69 L 22.825 4.508 L 26.986 8.677 L 11.666 23.992 Z"
-            android:fillColor="#37b24d"
+            android:fillColor="#2f9e44"
             android:strokeWidth="1"/>
     </group>
 </vector>

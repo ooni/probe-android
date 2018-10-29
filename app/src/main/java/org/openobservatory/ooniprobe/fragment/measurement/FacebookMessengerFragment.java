@@ -44,7 +44,7 @@ public class FacebookMessengerFragment extends Fragment {
 			desc.setText(testKeys.getFacebookMessengerBlocking(getActivity()));
 		} else {
 			title.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.tick, 0, 0);
-			title.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_green7));
+			title.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_green8));
 			title.setText(R.string.TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Hero_Title);
 			desc.setText(R.string.TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Content_Paragraph);
 		}

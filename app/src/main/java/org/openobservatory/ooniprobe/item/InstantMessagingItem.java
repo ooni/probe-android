@@ -1,7 +1,5 @@
 package org.openobservatory.ooniprobe.item;
 
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.Html;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
@@ -13,6 +11,8 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
@@ -38,10 +38,10 @@ public class InstantMessagingItem extends HeterogeneousRecyclerItem<Result, Inst
 		viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(viewHolder.itemView.getContext(), extra.is_viewed ? android.R.color.transparent : R.color.color_yellow0));
 		viewHolder.asnName.setText(Html.fromHtml(Network.toString(viewHolder.asnName.getContext(), extra.network, 1)));
 		viewHolder.startTime.setText(DateFormat.getDateFormat(viewHolder.startTime.getContext()).format(extra.start_time));
-		long blocked = extra.countAnomalousMeasurements();
-		long available = extra.countOkMeasurements();
-		viewHolder.failedMeasurements.setText(viewHolder.failedMeasurements.getContext().getString(R.string.d, blocked) + " " + viewHolder.failedMeasurements.getContext().getResources().getQuantityString(R.plurals.TestResults_Overview_InstantMessaging_Blocked, (int) blocked));
-		viewHolder.okMeasurements.setText(viewHolder.okMeasurements.getContext().getString(R.string.d, available) + " " + viewHolder.failedMeasurements.getContext().getResources().getQuantityString(R.plurals.TestResults_Overview_InstantMessaging_Available, (int) blocked));
+		Long blocked = extra.countAnomalousMeasurements();
+		Long available = extra.countOkMeasurements();
+		viewHolder.failedMeasurements.setText(viewHolder.failedMeasurements.getContext().getResources().getQuantityString(R.plurals.TestResults_Overview_InstantMessaging_Blocked, blocked.intValue(), blocked.toString()));
+		viewHolder.okMeasurements.setText(viewHolder.failedMeasurements.getContext().getResources().getQuantityString(R.plurals.TestResults_Overview_InstantMessaging_Available, available.intValue(), available.toString()));
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {

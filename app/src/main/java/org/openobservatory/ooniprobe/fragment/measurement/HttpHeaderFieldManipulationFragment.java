@@ -42,7 +42,7 @@ public class HttpHeaderFieldManipulationFragment extends Fragment {
 			desc2.setText(R.string.TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_Found_Content_Paragraph);
 		} else {
 			title.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.tick, 0, 0);
-			title.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_green7));
+			title.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_green8));
 			title.setText(R.string.TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_NotFound_Hero_Title);
 			desc1.setText(R.string.TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_NotFound_Content_Paragraph);
 		}

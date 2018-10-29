@@ -47,7 +47,7 @@ public class WebConnectivityFragment extends Fragment {
 			*/
 		} else {
 			title.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.tick, 0, 0);
-			title.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_green7));
+			title.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_green8));
 			title.setText(R.string.TestResults_Details_Websites_Reachable_Hero_Title);
 			/* TODO strings
 			HashMap<String, String> data = new HashMap<>();

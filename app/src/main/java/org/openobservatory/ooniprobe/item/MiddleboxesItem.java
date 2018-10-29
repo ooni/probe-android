@@ -40,13 +40,13 @@ public class MiddleboxesItem extends HeterogeneousRecyclerItem<Result, Middlebox
 		viewHolder.startTime.setText(DateFormat.getDateFormat(viewHolder.startTime.getContext()).format(extra.start_time));
 		if (extra.countAnomalousMeasurements() > 0) {
 			viewHolder.status.setText(R.string.TestResults_Overview_MiddleBoxes_Found);
-			viewHolder.status.setTextColor(ContextCompat.getColor(viewHolder.status.getContext(), R.color.color_orange8)); //TODO-LOR
+			viewHolder.status.setTextColor(ContextCompat.getColor(viewHolder.status.getContext(), R.color.color_yellow9)); //TODO-LOR
 		} else if (extra.countCompletedMeasurements() == 0) {
 			viewHolder.status.setText(R.string.TestResults_Overview_MiddleBoxes_Failed);
-			viewHolder.status.setTextColor(ContextCompat.getColor(viewHolder.status.getContext(), R.color.color_orange8)); //TODO-LOR
+			viewHolder.status.setTextColor(ContextCompat.getColor(viewHolder.status.getContext(), R.color.color_yellow9)); //TODO-LOR
 		} else {
 			viewHolder.status.setText(R.string.TestResults_Overview_MiddleBoxes_NotFound);
-			viewHolder.status.setTextColor(ContextCompat.getColor(viewHolder.status.getContext(), R.color.color_orange8)); //TODO-LOR
+			viewHolder.status.setTextColor(ContextCompat.getColor(viewHolder.status.getContext(), R.color.color_yellow9)); //TODO-LOR
 		}
 	}
 

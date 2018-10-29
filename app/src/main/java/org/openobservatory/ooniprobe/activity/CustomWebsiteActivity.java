@@ -19,19 +19,16 @@ import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import localhost.toolkit.text.ErrorListenerInterface;
-import localhost.toolkit.text.ErrorListenerList;
-import localhost.toolkit.text.ErrorRegexListener;
 
 public class CustomWebsiteActivity extends AbstractActivity {
 	@BindView(R.id.urlContainer) LinearLayout urlContainer;
-	private ErrorListenerList errorListenerList;
+	private ArrayList<EditText> editTexts;
 
 	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_customwebsite);
 		ButterKnife.bind(this);
-		errorListenerList = new ErrorListenerList();
+		editTexts = new ArrayList<>();
 		add();
 	}
 
@@ -50,29 +47,29 @@ public class CustomWebsiteActivity extends AbstractActivity {
 	}
 
 	@OnClick(R.id.run) void runClick() {
-		if (errorListenerList.matches()) {
-			ArrayList<String> urls = new ArrayList<>(errorListenerList.size());
-			for (ErrorListenerInterface eli : errorListenerList)
-				urls.add(Url.checkExistingUrl(eli.getValue()).toString());
-			WebsitesSuite suite = new WebsitesSuite();
-			suite.getTestList(getPreferenceManager())[0].setInputs(urls);
-			startActivity(RunningActivity.newIntent(this, suite));
-			finish();
+		ArrayList<String> urls = new ArrayList<>(editTexts.size());
+		for (EditText editText : editTexts) {
+			String value = editText.getText().toString();
+			if (Patterns.WEB_URL.matcher(value).matches())
+				urls.add(Url.checkExistingUrl(value).toString());
 		}
+		WebsitesSuite suite = new WebsitesSuite();
+		suite.getTestList(getPreferenceManager())[0].setInputs(urls);
+		startActivity(RunningActivity.newIntent(this, suite));
+		finish();
 	}
 
 	@OnClick(R.id.add) void add() {
 		LinearLayout urlBox = (LinearLayout) getLayoutInflater().inflate(R.layout.edittext_url, urlContainer, false);
 		EditText editText = urlBox.findViewById(R.id.editText);
 		ImageButton delete = urlBox.findViewById(R.id.delete);
-		ErrorRegexListener errorRegexListener = new ErrorRegexListener(editText, Patterns.WEB_URL, "NEED STRING");
-		errorListenerList.add(errorRegexListener);
+		editTexts.add(editText);
 		urlContainer.addView(urlBox);
-		delete.setTag(errorRegexListener);
+		delete.setTag(editText);
 		delete.setOnClickListener(v -> {
-			ErrorRegexListener tag = (ErrorRegexListener) v.getTag();
+			EditText tag = (EditText) v.getTag();
 			((View) v.getParent()).setVisibility(View.GONE);
-			errorListenerList.remove(tag);
+			editTexts.remove(tag);
 		});
 	}
 }
