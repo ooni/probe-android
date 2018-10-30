@@ -3,6 +3,8 @@ package org.openobservatory.ooniprobe.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.google.android.gms.common.util.IOUtils;
 import com.google.gson.GsonBuilder;
@@ -15,6 +17,7 @@ import org.openobservatory.ooniprobe.fragment.measurement.FacebookMessengerFragm
 import org.openobservatory.ooniprobe.fragment.measurement.HttpHeaderFieldManipulationFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.HttpInvalidRequestLineFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.NdtFragment;
+import org.openobservatory.ooniprobe.fragment.measurement.OutcomeFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.TelegramFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.WebConnectivityFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.WhatsappFragment;
@@ -40,7 +43,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class MeasurementDetailActivity extends AbstractActivity {
 	public static final String ID = "id";
@@ -66,61 +68,82 @@ public class MeasurementDetailActivity extends AbstractActivity {
 			bar.setTitle(measurement.getTest().getLabelResId());
 		}
 		Fragment detail;
+		OutcomeFragment head;
+		boolean anomaly = measurement.is_anomaly;
 		switch (measurement.test_name) {
 			case Dash.NAME:
+				head = OutcomeFragment.newInstance(null, getString(R.string.outcomeHeader, measurement.getTestKeys().getVideoQuality(this, true), "need string")); // TODO res
 				detail = DashFragment.newInstance(measurement);
 				break;
 			case FacebookMessenger.NAME:
+				head = OutcomeFragment.newInstance(!anomaly, getString(R.string.bold, getString(anomaly ? R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed : R.string.TestResults_Details_InstantMessaging_WhatsApp_Reachable_Hero_Title)));
 				detail = FacebookMessengerFragment.newInstance(measurement);
 				break;
 			case HttpHeaderFieldManipulation.NAME:
+				head = OutcomeFragment.newInstance(!anomaly, getString(R.string.bold, anomaly ? "Everything seems okay" : "Everything seems okay")); // TODO res
 				detail = HttpHeaderFieldManipulationFragment.newInstance(measurement);
 				break;
 			case HttpInvalidRequestLine.NAME:
+				head = OutcomeFragment.newInstance(!anomaly, getString(R.string.bold, anomaly ? "Everything seems okay" : "Everything seems okay")); // TODO res
 				detail = HttpInvalidRequestLineFragment.newInstance(measurement);
 				break;
 			case Ndt.NAME:
+				head = OutcomeFragment.newInstance(!anomaly, "");
 				detail = NdtFragment.newInstance(measurement);
 				break;
 			case Telegram.NAME:
+				head = OutcomeFragment.newInstance(!anomaly, getString(R.string.bold, getString(anomaly ? R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed : R.string.TestResults_Details_InstantMessaging_WhatsApp_Reachable_Hero_Title)));
 				detail = TelegramFragment.newInstance(measurement);
 				break;
 			case WebConnectivity.NAME:
+				head = OutcomeFragment.newInstance(!anomaly, getString(R.string.outcomeHeader, measurement.url.url, anomaly ? "anomaly" : "accessible")); // TODO res
 				detail = WebConnectivityFragment.newInstance(measurement);
 				break;
 			case Whatsapp.NAME:
+				head = OutcomeFragment.newInstance(!anomaly, getString(R.string.bold, getString(anomaly ? R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed : R.string.TestResults_Details_InstantMessaging_WhatsApp_Reachable_Hero_Title)));
 				detail = WhatsappFragment.newInstance(measurement);
 				break;
 			default:
+				head = null;
 				detail = null;
 				break;
 		}
-		measurement.result.load();
 		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.head, ResultHeaderDetailFragment.newInstance(null, null, measurement.start_time, measurement.runtime, false, measurement.result.network.country_code, Network.toString(this, measurement.result.network, 3)))
+				.replace(R.id.footer, ResultHeaderDetailFragment.newInstance(null, null, measurement.start_time, measurement.runtime, false, measurement.result.network.country_code, Network.toString(this, measurement.result.network, 3)))
 				.replace(R.id.body, detail)
+				.replace(R.id.head, head)
 				.commit();
 	}
 
-	@OnClick(R.id.rawData) public void onRawDataClick() {
-		try {
-			FileInputStream is = new FileInputStream(Measurement.getEntryFile(this, measurement.id, measurement.test_name));
-			String json = new GsonBuilder().setPrettyPrinting().create().toJson(new JsonParser().parse(new InputStreamReader(is)).getAsJsonObject());
-			startActivity(TextActivity.newIntent(this, json));
-			is.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	@Override public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.measurement, menu);
+		return super.onCreateOptionsMenu(menu);
 	}
 
-	@OnClick(R.id.viewLog) public void onViewLogClick() {
-		try {
-			FileInputStream is = new FileInputStream(Measurement.getLogFile(this, measurement.result.id, measurement.test_name));
-			String log = new String(IOUtils.toByteArray(is));
-			startActivity(TextActivity.newIntent(this, log));
-			is.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+	@Override public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.rawData:
+				try {
+					FileInputStream is = new FileInputStream(Measurement.getEntryFile(this, measurement.id, measurement.test_name));
+					String json = new GsonBuilder().setPrettyPrinting().create().toJson(new JsonParser().parse(new InputStreamReader(is)).getAsJsonObject());
+					startActivity(TextActivity.newIntent(this, json));
+					is.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return true;
+			case R.id.viewLog:
+				try {
+					FileInputStream is = new FileInputStream(Measurement.getLogFile(this, measurement.result.id, measurement.test_name));
+					String log = new String(IOUtils.toByteArray(is));
+					startActivity(TextActivity.newIntent(this, log));
+					is.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
 		}
 	}
 }

@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.item;
 
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,12 +35,14 @@ public class MeasurementItem extends HeterogeneousRecyclerItem<Measurement, Meas
 		AbstractTest test = extra.getTest();
 		if (extra.test_name.equals(WebConnectivity.NAME)) {
 			viewHolder.text.setText(extra.url.url);
-			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(extra.url.getCategoryIcon(viewHolder.text.getContext()), 0, extra.is_anomaly ? R.drawable.exclamation_point : extra.is_failed ? R.drawable.reload : R.drawable.tick, 0);
+			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(extra.url.getCategoryIcon(viewHolder.text.getContext()), 0, extra.is_anomaly ? R.drawable.exclamation : extra.is_failed ? R.drawable.reload : R.drawable.tick, 0);
 		} else {
 			viewHolder.text.setText(test.getLabelResId());
-			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(test.getIconResId(), 0, extra.is_anomaly ? R.drawable.exclamation_point : extra.is_failed ? R.drawable.reload : R.drawable.tick, 0);
+			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(test.getIconResId(), 0, extra.is_anomaly ? R.drawable.exclamation : extra.is_failed ? R.drawable.reload : R.drawable.tick, 0);
 		}
-		DrawableCompat.setTint(DrawableCompat.wrap(viewHolder.text.getCompoundDrawablesRelative()[0]).mutate(), ContextCompat.getColor(viewHolder.text.getContext(), extra.is_failed ? R.color.color_gray5 : R.color.color_gray7));
+		Drawable drawable = viewHolder.text.getCompoundDrawablesRelative()[0];
+		if (drawable != null)
+			DrawableCompat.setTint(DrawableCompat.wrap(drawable).mutate(), ContextCompat.getColor(viewHolder.text.getContext(), extra.is_failed ? R.color.color_gray5 : R.color.color_gray7));
 		viewHolder.text.setBackgroundColor(ContextCompat.getColor(viewHolder.text.getContext(), extra.is_failed ? R.color.color_gray1 : android.R.color.transparent));
 		viewHolder.text.setTextColor(ContextCompat.getColor(viewHolder.text.getContext(), extra.is_failed ? R.color.color_gray5 : R.color.color_gray9));
 	}

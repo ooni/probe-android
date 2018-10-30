@@ -8,18 +8,19 @@
 	<com.google.android.material.appbar.AppBarLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+		app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
 		<androidx.appcompat.widget.Toolbar
 			android:id="@+id/toolbar"
 			android:layout_width="match_parent"
-			android:layout_height="?attr/actionBarSize" />
+			android:layout_height="?attr/actionBarSize"
+			app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
 		<FrameLayout
 			android:id="@+id/head"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_marginVertical="16dp" />
+			android:layout_margin="16dp" />
 	</com.google.android.material.appbar.AppBarLayout>
 
 	<ScrollView
@@ -34,30 +35,14 @@
 			<FrameLayout
 				android:id="@+id/body"
 				android:layout_width="match_parent"
-				android:layout_height="match_parent" />
+				android:layout_height="wrap_content" />
 
-			<View
+			<FrameLayout
+				android:id="@+id/footer"
 				android:layout_width="match_parent"
-				android:layout_height="1dp"
-				android:layout_marginHorizontal="32dp"
-				android:layout_marginVertical="8dp"
-				android:background="@android:color/darker_gray" />
-
-			<Button
-				android:id="@+id/rawData"
-				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_gravity="center_horizontal"
-				android:text="@string/TestResults_Details_RawData"
-				app:cornerRadius="24dp" />
-
-			<Button
-				android:id="@+id/viewLog"
-				style="@style/Widget.MaterialComponents.Button.TextButton"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center_horizontal"
-				android:text="@string/TestResults_Details_ViewLog" />
+				android:background="@color/color_gray1"
+				android:padding="8dp" />
 		</LinearLayout>
 	</ScrollView>
 </LinearLayout>

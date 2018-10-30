@@ -11,14 +11,12 @@ import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class FacebookMessengerFragment extends Fragment {
 	public static final String MEASUREMENT = "measurement";
-	@BindView(R.id.title) TextView title;
 	@BindView(R.id.desc) TextView desc;
 	@BindView(R.id.tcp) TextView tcp;
 	@BindView(R.id.dns) TextView dns;
@@ -38,14 +36,8 @@ public class FacebookMessengerFragment extends Fragment {
 		ButterKnife.bind(this, v);
 		TestKeys testKeys = measurement.getTestKeys();
 		if (measurement.is_anomaly) {
-			title.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.question_mark, 0, 0);
-			title.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_red8));
-			title.setText(R.string.TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Hero_Title);
 			desc.setText(testKeys.getFacebookMessengerBlocking(getActivity()));
 		} else {
-			title.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.tick, 0, 0);
-			title.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_green8));
-			title.setText(R.string.TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Hero_Title);
 			desc.setText(R.string.TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Content_Paragraph);
 		}
 		if (testKeys != null) {

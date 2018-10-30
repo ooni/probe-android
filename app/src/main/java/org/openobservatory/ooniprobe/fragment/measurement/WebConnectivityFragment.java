@@ -11,14 +11,12 @@ import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class WebConnectivityFragment extends Fragment {
 	public static final String MEASUREMENT = "measurement";
-	@BindView(R.id.title) TextView title;
 	@BindView(R.id.desc) TextView desc;
 
 	public static WebConnectivityFragment newInstance(Measurement measurement) {
@@ -36,24 +34,9 @@ public class WebConnectivityFragment extends Fragment {
 		ButterKnife.bind(this, v);
 		TestKeys testKeys = measurement.getTestKeys();
 		if (measurement.is_anomaly) {
-			title.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.question_mark, 0, 0);
-			title.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_red8));
-			title.setText(R.string.TestResults_Details_Websites_LikelyBlocked_Hero_Title);
-			/* TODO strings
-			HashMap<String, String> data = new HashMap<>();
-			data.put("WebsiteURL", measurement.url.url);
-			data.put("BlockingReason", testKeys.getWebsiteBlocking(getActivity()));
-			desc.setText(Mustache.compiler().compile(getString(R.string.TestResults_Details_Websites_LikelyBlocked_Content_Paragraph)).execute(data));
-			*/
+			desc.setText(getString(R.string.TestResults_Details_Websites_LikelyBlocked_Content_Paragraph, measurement.url.url, testKeys.getWebsiteBlocking(getActivity())));
 		} else {
-			title.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.tick, 0, 0);
-			title.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_green8));
-			title.setText(R.string.TestResults_Details_Websites_Reachable_Hero_Title);
-			/* TODO strings
-			HashMap<String, String> data = new HashMap<>();
-			data.put("WebsiteURL", measurement.url.url);
-			desc.setText(Mustache.compiler().compile(getString(R.string.TestResults_Details_Websites_Reachable_Content_Paragraph)).execute(data));
-			*/
+			desc.setText(getString(R.string.TestResults_Details_Websites_Reachable_Content_Paragraph, measurement.url.url));
 		}
 		return v;
 	}

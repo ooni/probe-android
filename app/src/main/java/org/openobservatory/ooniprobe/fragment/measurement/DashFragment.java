@@ -18,8 +18,6 @@ import butterknife.ButterKnife;
 
 public class DashFragment extends Fragment {
 	public static final String MEASUREMENT = "measurement";
-	@BindView(R.id.title) TextView title;
-	@BindView(R.id.desc) TextView desc;
 	@BindView(R.id.medianBitrate) TextView medianBitrate;
 	@BindView(R.id.playoutDelay) TextView playoutDelay;
 
@@ -37,14 +35,8 @@ public class DashFragment extends Fragment {
 		ButterKnife.bind(this, v);
 		TestKeys testKeys = measurement.getTestKeys();
 		if (testKeys != null) {
-			title.setText(testKeys.getVideoQuality(getActivity(), true));
-			/* TODO strings
-			HashMap<String, String> data = new HashMap<>();
-			data.put("VideoQuality", testKeys.getVideoQuality(getActivity(), false));
-			desc.setText(Mustache.compiler().compile(getString(R.string.TestResults_Details_Performance_Dash_VideoWithoutBuffering)).execute(data));
 			medianBitrate.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.getMedianBitrate(getActivity()), testKeys.getMedianBitrateUnit(getActivity()))));
 			playoutDelay.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.getPlayoutDelay(getActivity()), "s")));
-			*/
 		}
 		return v;
 	}
