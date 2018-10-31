@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.item;
 
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import android.text.Html;
 import android.text.format.DateFormat;
@@ -40,14 +41,15 @@ public class MiddleboxesItem extends HeterogeneousRecyclerItem<Result, Middlebox
 		viewHolder.startTime.setText(DateFormat.getDateFormat(viewHolder.startTime.getContext()).format(extra.start_time));
 		if (extra.countAnomalousMeasurements() > 0) {
 			viewHolder.status.setText(R.string.TestResults_Overview_MiddleBoxes_Found);
-			viewHolder.status.setTextColor(ContextCompat.getColor(viewHolder.status.getContext(), R.color.color_yellow9)); //TODO-LOR
+			viewHolder.status.setTextColor(ContextCompat.getColor(viewHolder.status.getContext(), R.color.color_yellow9));
 		} else if (extra.countCompletedMeasurements() == 0) {
 			viewHolder.status.setText(R.string.TestResults_Overview_MiddleBoxes_Failed);
-			viewHolder.status.setTextColor(ContextCompat.getColor(viewHolder.status.getContext(), R.color.color_yellow9)); //TODO-LOR
+			viewHolder.status.setTextColor(ContextCompat.getColor(viewHolder.status.getContext(), R.color.color_gray9));
 		} else {
 			viewHolder.status.setText(R.string.TestResults_Overview_MiddleBoxes_NotFound);
-			viewHolder.status.setTextColor(ContextCompat.getColor(viewHolder.status.getContext(), R.color.color_yellow9)); //TODO-LOR
+			viewHolder.status.setTextColor(ContextCompat.getColor(viewHolder.status.getContext(), R.color.color_black));
 		}
+		DrawableCompat.setTint(DrawableCompat.wrap(viewHolder.status.getCompoundDrawablesRelative()[0]).mutate(), ContextCompat.getColor(viewHolder.status.getContext(), extra.countAnomalousMeasurements() > 0 ? R.color.color_yellow9 : R.color.color_black));
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {
