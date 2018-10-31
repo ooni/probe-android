@@ -91,14 +91,14 @@
 							android:id="@+id/upload"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
-							android:drawableStart="@drawable/upload_nopad"
+							android:drawableStart="@drawable/upload_white"
 							android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
 						<TextView
 							android:id="@+id/download"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
-							android:drawableStart="@drawable/download_nopad"
+							android:drawableStart="@drawable/download_white"
 							android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 					</LinearLayout>
 				</LinearLayout>
