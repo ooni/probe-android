@@ -72,7 +72,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
 		boolean anomaly = measurement.is_anomaly;
 		switch (measurement.test_name) {
 			case Dash.NAME:
-				head = OutcomeFragment.newInstance(null, getString(R.string.outcomeHeader, measurement.getTestKeys().getVideoQuality(this, true), "need string")); // TODO res
+				head = OutcomeFragment.newInstance(null, getString(R.string.outcomeHeader, measurement.getTestKeys().getVideoQuality(this, true), getString(R.string.TestResults_Details_Performance_Dash_VideoWithoutBuffering, measurement.getTestKeys().getVideoQuality(this, false))));
 				detail = DashFragment.newInstance(measurement);
 				break;
 			case FacebookMessenger.NAME:
@@ -80,11 +80,11 @@ public class MeasurementDetailActivity extends AbstractActivity {
 				detail = FacebookMessengerFragment.newInstance(measurement);
 				break;
 			case HttpHeaderFieldManipulation.NAME:
-				head = OutcomeFragment.newInstance(!anomaly, getString(R.string.bold, anomaly ? "Everything seems okay" : "Everything seems okay")); // TODO res
+				head = OutcomeFragment.newInstance(!anomaly, getString(R.string.bold, anomaly ? getString(R.string.TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_Found_Hero_Title) : getString(R.string.TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_NotFound_Hero_Title)));
 				detail = HttpHeaderFieldManipulationFragment.newInstance(measurement);
 				break;
 			case HttpInvalidRequestLine.NAME:
-				head = OutcomeFragment.newInstance(!anomaly, getString(R.string.bold, anomaly ? "Everything seems okay" : "Everything seems okay")); // TODO res
+				head = OutcomeFragment.newInstance(!anomaly, getString(R.string.bold, anomaly ? getString(R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title) : getString(R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title)));
 				detail = HttpInvalidRequestLineFragment.newInstance(measurement);
 				break;
 			case Ndt.NAME:
@@ -96,7 +96,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
 				detail = TelegramFragment.newInstance(measurement);
 				break;
 			case WebConnectivity.NAME:
-				head = OutcomeFragment.newInstance(!anomaly, getString(R.string.outcomeHeader, measurement.url.url, anomaly ? "anomaly" : "accessible")); // TODO res
+				head = OutcomeFragment.newInstance(!anomaly, getString(R.string.outcomeHeader, measurement.url.url, anomaly ? getString(R.string.TestResults_Details_Websites_LikelyBlocked_Hero_Title) : getString(R.string.TestResults_Details_Websites_Reachable_Hero_Title)));
 				detail = WebConnectivityFragment.newInstance(measurement);
 				break;
 			case Whatsapp.NAME:
