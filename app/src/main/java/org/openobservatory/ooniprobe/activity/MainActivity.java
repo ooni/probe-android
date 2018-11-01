@@ -54,7 +54,8 @@ public class MainActivity extends AbstractActivity {
 
 	@Override protected void onNewIntent(Intent intent) {
 		super.onNewIntent(intent);
-		bottomNavigation.setSelectedItemId(intent.getIntExtra(RES_ITEM, R.id.dashboard));
+		if (intent.getExtras() != null && intent.getExtras().containsKey(RES_ITEM))
+			bottomNavigation.setSelectedItemId(intent.getIntExtra(RES_ITEM, R.id.dashboard));
 	}
 
 	public void checkInformedConsent() {
