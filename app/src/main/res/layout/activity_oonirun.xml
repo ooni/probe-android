@@ -6,6 +6,11 @@
 	android:background="@color/color_gray2"
 	android:orientation="vertical">
 
+	<androidx.appcompat.widget.Toolbar
+		android:id="@+id/toolbar"
+		android:layout_width="match_parent"
+		android:layout_height="?attr/actionBarSize" />
+
 	<ImageView
 		android:id="@+id/icon"
 		android:layout_width="48dp"
@@ -26,32 +31,35 @@
 		android:id="@+id/desc"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginBottom="32dp"
 		android:gravity="center_horizontal"
 		android:text="@string/OONIRun_YouAreAboutToRun" />
 
-	<androidx.recyclerview.widget.RecyclerView
-		android:id="@+id/recycler"
+	<FrameLayout
 		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:layout_weight="1" />
+		android:layout_height="match_parent">
 
-	<ImageView
-		android:id="@+id/iconBig"
-		android:layout_width="192dp"
-		android:layout_height="192dp"
-		android:layout_gravity="end"
-		android:layout_marginTop="32dp"
-		android:layout_marginEnd="-64dp"
-		android:scaleType="fitCenter"
-		android:tint="@color/color_gray4" />
+		<ImageView
+			android:id="@+id/iconBig"
+			android:layout_width="192dp"
+			android:layout_height="192dp"
+			android:layout_gravity="end|bottom"
+			android:layout_marginEnd="-64dp"
+			android:layout_marginBottom="64dp"
+			android:scaleType="fitCenter"
+			android:tint="@color/color_gray4" />
 
-	<Button
-		android:id="@+id/run"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center_horizontal|bottom"
-		android:layout_margin="16dp"
-		android:text="@string/OONIRun_Run"
-		app:cornerRadius="24dp" />
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/recycler"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent" />
+
+		<Button
+			android:id="@+id/run"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal|bottom"
+			android:layout_margin="16dp"
+			android:text="@string/OONIRun_Run"
+			app:cornerRadius="24dp" />
+	</FrameLayout>
 </LinearLayout>

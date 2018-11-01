@@ -124,7 +124,7 @@
 			android:launchMode="singleTop"
 			android:parentActivityName=".activity.MainActivity"
 			android:screenOrientation="userPortrait"
-			android:theme="@style/Theme.MaterialComponents.Light.App">
+			android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.App">
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW" />
 

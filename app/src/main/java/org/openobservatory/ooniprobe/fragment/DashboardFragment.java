@@ -27,8 +27,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import localhost.toolkit.widget.FirstLastSpacesItemDecoration;
 import localhost.toolkit.widget.HeterogeneousRecyclerAdapter;
+import localhost.toolkit.widget.StartEndSpacesItemDecoration;
 
 public class DashboardFragment extends Fragment implements View.OnClickListener {
 	@BindView(R.id.recycler) RecyclerView recycler;
@@ -53,7 +53,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
 		recycler.setAdapter(adapter);
 		recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
-		recycler.addItemDecoration(new FirstLastSpacesItemDecoration(getActivity(), RecyclerView.VERTICAL, 8));
+		recycler.addItemDecoration(new StartEndSpacesItemDecoration(getActivity(), RecyclerView.VERTICAL, 8, 8));
 		return v;
 	}
 

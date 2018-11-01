@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,9 +33,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import localhost.toolkit.widget.HeterogeneousRecyclerAdapter;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
+import localhost.toolkit.widget.StartEndSpacesItemDecoration;
 
 public class OoniRunActivity extends AbstractActivity {
 	public static final List<AbstractSuite> SUITES = Arrays.asList(new InstantMessagingSuite(), new MiddleBoxesSuite(), new MiddleBoxesSuite(), new PerformanceSuite(), new WebsitesSuite());
+	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.icon) ImageView icon;
 	@BindView(R.id.iconBig) ImageView iconBig;
 	@BindView(R.id.title) TextView title;
@@ -80,9 +83,13 @@ public class OoniRunActivity extends AbstractActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_oonirun);
 		ButterKnife.bind(this);
+		setSupportActionBar(toolbar);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setDisplayShowHomeEnabled(true);
 		LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 		recycler.setLayoutManager(layoutManager);
 		recycler.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
+		recycler.addItemDecoration(new StartEndSpacesItemDecoration(this, layoutManager.getOrientation(), 32, 64));
 		items = new ArrayList<>();
 		adapter = new HeterogeneousRecyclerAdapter<>(this, items);
 		recycler.setAdapter(adapter);
@@ -134,6 +141,7 @@ public class OoniRunActivity extends AbstractActivity {
 					} else {
 						title.setText(R.string.OONIRun_InvalidParameter);
 						desc.setText(R.string.OONIRun_InvalidParameter_Msg);
+						run.setText(R.string.OONIRun_Close);
 						iconBig.setImageResource(R.drawable.question_mark);
 						iconBig.setVisibility(View.VISIBLE);
 						run.setVisibility(View.GONE);
@@ -141,6 +149,7 @@ public class OoniRunActivity extends AbstractActivity {
 				} else {
 					title.setText(R.string.OONIRun_OONIProbeOutOfDate);
 					desc.setText(R.string.OONIRun_OONIProbeNewerVersion);
+					run.setText(R.string.OONIRun_Update);
 					iconBig.setImageResource(R.drawable.update);
 					iconBig.setVisibility(View.VISIBLE);
 					run.setOnClickListener(v -> {
@@ -151,6 +160,7 @@ public class OoniRunActivity extends AbstractActivity {
 			} else {
 				title.setText(R.string.OONIRun_InvalidParameter);
 				desc.setText(R.string.OONIRun_InvalidParameter_Msg);
+				run.setText(R.string.OONIRun_Close);
 				iconBig.setImageResource(R.drawable.question_mark);
 				iconBig.setVisibility(View.VISIBLE);
 				run.setVisibility(View.GONE);
