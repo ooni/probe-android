@@ -23,13 +23,25 @@ import butterknife.OnClick;
 public class CustomWebsiteActivity extends AbstractActivity {
 	@BindView(R.id.urlContainer) LinearLayout urlContainer;
 	private ArrayList<EditText> editTexts;
+	private ArrayList<ImageButton> deletes;
 
 	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_customwebsite);
 		ButterKnife.bind(this);
 		editTexts = new ArrayList<>();
-		add();
+		deletes = new ArrayList<>();
+		if (getCustomUrl().isEmpty())
+			add();
+		else for (String url : getCustomUrl())
+			add(url);
+	}
+
+	@Override protected void onStop() {
+		getCustomUrl().clear();
+		for (EditText editText : editTexts)
+			getCustomUrl().add(editText.getText().toString());
+		super.onStop();
 	}
 
 	@Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -60,16 +72,30 @@ public class CustomWebsiteActivity extends AbstractActivity {
 	}
 
 	@OnClick(R.id.add) void add() {
+		add(null);
+	}
+
+	private void add(String url) {
 		LinearLayout urlBox = (LinearLayout) getLayoutInflater().inflate(R.layout.edittext_url, urlContainer, false);
 		EditText editText = urlBox.findViewById(R.id.editText);
-		ImageButton delete = urlBox.findViewById(R.id.delete);
+		editText.setText(url);
 		editTexts.add(editText);
 		urlContainer.addView(urlBox);
+		ImageButton delete = urlBox.findViewById(R.id.delete);
+		deletes.add(delete);
 		delete.setTag(editText);
 		delete.setOnClickListener(v -> {
 			EditText tag = (EditText) v.getTag();
 			((View) v.getParent()).setVisibility(View.GONE);
 			editTexts.remove(tag);
+			deletes.remove(v);
+			setVisibilityDelete();
 		});
+		setVisibilityDelete();
+	}
+
+	private void setVisibilityDelete() {
+		for (ImageButton delete : deletes)
+			delete.setVisibility(deletes.size() > 1 ? View.VISIBLE : View.INVISIBLE);
 	}
 }

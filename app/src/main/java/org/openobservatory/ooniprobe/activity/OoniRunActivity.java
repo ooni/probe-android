@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -95,7 +96,10 @@ public class OoniRunActivity extends AbstractActivity {
 	}
 
 	public void manageIntent(Intent intent) {
-		if (Intent.ACTION_VIEW.equals(intent.getAction())) {
+		if (isTestRunning()) {
+			Toast.makeText(this, "NEED STRING", Toast.LENGTH_LONG).show(); // TODO LOR
+			finish();
+		} else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
 			Uri uri = intent.getData();
 			String mv = uri == null ? null : uri.getQueryParameter("mv");
 			String tn = uri == null ? null : uri.getQueryParameter("tn");

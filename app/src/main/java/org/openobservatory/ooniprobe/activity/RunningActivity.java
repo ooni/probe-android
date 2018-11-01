@@ -101,6 +101,7 @@ public class RunningActivity extends AbstractActivity {
 		animation.setRepeatCount(Animation.INFINITE);
 		animation.playAnimation();
 		progress.setMax(testSuite.getTestList(getPreferenceManager()).length * 100);
+		setTestRunning(true);
 	}
 
 	@Override protected void onResume() {
@@ -109,8 +110,13 @@ public class RunningActivity extends AbstractActivity {
 	}
 
 	@Override protected void onPause() {
-		super.onPause();
 		background = true;
+		super.onPause();
+	}
+
+	@Override protected void onDestroy() {
+		setTestRunning(false);
+		super.onDestroy();
 	}
 
 	@Override public void onBackPressed() {

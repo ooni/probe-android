@@ -18,6 +18,7 @@ import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 
 import io.fabric.sdk.android.Fabric;
@@ -32,8 +33,10 @@ public class Application extends android.app.Application {
 		System.loadLibrary("measurement_kit");
 	}
 
+	private ArrayList<String> customUrl;
 	private PreferenceManager preferenceManager;
 	private Gson gson;
+	private boolean testRunning;
 
 	@Override public void onCreate() {
 		super.onCreate();
@@ -67,5 +70,19 @@ public class Application extends android.app.Application {
 
 	public Gson getGson() {
 		return gson;
+	}
+
+	public ArrayList<String> getCustomUrl() {
+		if (customUrl == null)
+			customUrl = new ArrayList<>();
+		return customUrl;
+	}
+
+	public boolean isTestRunning() {
+		return testRunning;
+	}
+
+	public void setTestRunning(boolean testRunning) {
+		this.testRunning = testRunning;
 	}
 }
