@@ -121,24 +121,22 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 		}
 
 		@Override public Fragment getItem(int position) {
-			if (position == 1) {
-				Network network = result.network;
-				return ResultHeaderDetailFragment.newInstance(result.getFormattedDataUsageUp(), result.getFormattedDataUsageDown(), result.start_time, result.runtime, true, null, null);
-			} else if (position == 2) {
-				Network network = result.network;
-				return ResultHeaderDetailFragment.newInstance(null, null, null, null, null, Network.getCountry(ResultDetailActivity.this, network), Network.toString(ResultDetailActivity.this, network, 2));
-			} else switch (result.test_group_name) {
-				case WebsitesSuite.NAME:
-					return ResultHeaderTBAFragment.newInstance(result);
-				case InstantMessagingSuite.NAME:
-					return ResultHeaderTBAFragment.newInstance(result);
-				case MiddleBoxesSuite.NAME:
-					return ResultHeaderMiddleboxFragment.newInstance(result.countAnomalousMeasurements() > 0);
-				case PerformanceSuite.NAME:
-					return ResultHeaderPerformanceFragment.newInstance(result);
-				default:
-					return null;
-			}
+			if (position == 1)
+				return ResultHeaderDetailFragment.newInstance(false, result.getFormattedDataUsageUp(), result.getFormattedDataUsageDown(), result.start_time, result.runtime, true, null, null);
+			else if (position == 2)
+				return ResultHeaderDetailFragment.newInstance(false, null, null, null, null, null, Network.getCountry(ResultDetailActivity.this, result.network), Network.toString(ResultDetailActivity.this, result.network, 2));
+			else switch (result.test_group_name) {
+					case WebsitesSuite.NAME:
+						return ResultHeaderTBAFragment.newInstance(result);
+					case InstantMessagingSuite.NAME:
+						return ResultHeaderTBAFragment.newInstance(result);
+					case MiddleBoxesSuite.NAME:
+						return ResultHeaderMiddleboxFragment.newInstance(result.countAnomalousMeasurements() > 0);
+					case PerformanceSuite.NAME:
+						return ResultHeaderPerformanceFragment.newInstance(result);
+					default:
+						return null;
+				}
 		}
 
 		@Override public int getCount() {

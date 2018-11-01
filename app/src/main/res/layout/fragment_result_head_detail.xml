@@ -19,21 +19,26 @@
 			android:text="@string/TestResults_Summary_Hero_DataUsage"
 			android:textStyle="bold" />
 
-		<TextView
-			android:id="@+id/upload"
+		<LinearLayout
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_weight="1.5"
-			android:drawableStart="@drawable/upload_white"
-			android:drawablePadding="4dp" />
+			android:layout_weight="3"
+			android:orientation="horizontal">
 
-		<TextView
-			android:id="@+id/download"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1.5"
-			android:drawableStart="@drawable/download_white"
-			android:drawablePadding="4dp" />
+			<TextView
+				android:id="@+id/upload"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:drawableStart="@drawable/upload_white"
+				android:drawablePadding="4dp" />
+
+			<TextView
+				android:id="@+id/download"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:drawableStart="@drawable/download_white"
+				android:drawablePadding="4dp" />
+		</LinearLayout>
 	</LinearLayout>
 
 	<LinearLayout

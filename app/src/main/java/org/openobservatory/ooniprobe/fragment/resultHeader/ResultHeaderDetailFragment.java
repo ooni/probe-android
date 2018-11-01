@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,6 +28,7 @@ public class ResultHeaderDetailFragment extends Fragment {
 	public static final String DATA_USAGE_UP = "data_usage_up";
 	public static final String START_TIME = "start_time";
 	public static final String IS_TOTAL_RUNTIME = "isTotalRuntime";
+	public static final String LIGHT_THEME = "lightTheme";
 	@BindView(R.id.dataUsage) LinearLayout dataUsage;
 	@BindView(R.id.startTimeBox) LinearLayout startTimeBox;
 	@BindView(R.id.runtimeBox) LinearLayout runtimeBox;
@@ -40,8 +42,9 @@ public class ResultHeaderDetailFragment extends Fragment {
 	@BindView(R.id.country) TextView country;
 	@BindView(R.id.network) TextView network;
 
-	public static ResultHeaderDetailFragment newInstance(String data_usage_up, String data_usage_down, Date start_time, Double runtime, Boolean isTotalRuntime, String country_code, String network_name) {
+	public static ResultHeaderDetailFragment newInstance(boolean lightTheme, String data_usage_up, String data_usage_down, Date start_time, Double runtime, Boolean isTotalRuntime, String country_code, String network_name) {
 		Bundle args = new Bundle();
+		args.putBoolean(LIGHT_THEME, lightTheme);
 		if (data_usage_up != null && data_usage_down != null) {
 			args.putString(DATA_USAGE_UP, data_usage_up);
 			args.putString(DATA_USAGE_DOWN, data_usage_down);
@@ -62,7 +65,8 @@ public class ResultHeaderDetailFragment extends Fragment {
 	}
 
 	@Nullable @Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_result_head_detail, container, false);
+		View v = inflater.cloneInContext(new ContextThemeWrapper(getActivity(),
+				getArguments().getBoolean(LIGHT_THEME) ? R.style.Theme_MaterialComponents_Light_NoActionBar_App : R.style.Theme_MaterialComponents_NoActionBar_App)).inflate(R.layout.fragment_result_head_detail, container, false);
 		ButterKnife.bind(this, v);
 		if (getArguments().containsKey(DATA_USAGE_DOWN) && getArguments().containsKey(DATA_USAGE_UP)) {
 			download.setText(getArguments().getString(DATA_USAGE_DOWN));
