@@ -142,6 +142,7 @@ public class OoniRunActivity extends AbstractActivity {
 						title.setText(R.string.OONIRun_InvalidParameter);
 						desc.setText(R.string.OONIRun_InvalidParameter_Msg);
 						run.setText(R.string.OONIRun_Close);
+						icon.setImageResource(R.drawable.question_mark);
 						iconBig.setImageResource(R.drawable.question_mark);
 						iconBig.setVisibility(View.VISIBLE);
 						run.setVisibility(View.GONE);
@@ -150,6 +151,7 @@ public class OoniRunActivity extends AbstractActivity {
 					title.setText(R.string.OONIRun_OONIProbeOutOfDate);
 					desc.setText(R.string.OONIRun_OONIProbeNewerVersion);
 					run.setText(R.string.OONIRun_Update);
+					icon.setImageResource(R.drawable.update);
 					iconBig.setImageResource(R.drawable.update);
 					iconBig.setVisibility(View.VISIBLE);
 					run.setOnClickListener(v -> {
@@ -161,6 +163,7 @@ public class OoniRunActivity extends AbstractActivity {
 				title.setText(R.string.OONIRun_InvalidParameter);
 				desc.setText(R.string.OONIRun_InvalidParameter_Msg);
 				run.setText(R.string.OONIRun_Close);
+				icon.setImageResource(R.drawable.question_mark);
 				iconBig.setImageResource(R.drawable.question_mark);
 				iconBig.setVisibility(View.VISIBLE);
 				run.setVisibility(View.GONE);
