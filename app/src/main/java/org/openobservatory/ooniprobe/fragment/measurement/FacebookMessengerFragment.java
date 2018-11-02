@@ -37,10 +37,10 @@ public class FacebookMessengerFragment extends Fragment {
 		TestKeys testKeys = measurement.getTestKeys();
 		if (testKeys != null) {
 			dns.setText(testKeys.getFacebookMessengerDns());
-			if (Boolean.FALSE.equals(testKeys.facebook_dns_blocking))
+			if (Boolean.TRUE.equals(testKeys.facebook_dns_blocking))
 				dns.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_yellow9));
 			tcp.setText(testKeys.getFacebookMessengerTcp());
-			if (Boolean.FALSE.equals(testKeys.facebook_tcp_blocking))
+			if (Boolean.TRUE.equals(testKeys.facebook_tcp_blocking))
 				tcp.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_yellow9));
 		}
 		return v;
