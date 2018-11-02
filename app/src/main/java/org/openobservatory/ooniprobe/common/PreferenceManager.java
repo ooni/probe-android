@@ -138,201 +138,25 @@ public class PreferenceManager {
 	}
 
 	public boolean isAllCategoryEnabled() {
-		return sp.getBoolean(r.getString(R.string.CategoryCode_ALDR_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_REL_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_PORN_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_PROV_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_POLR_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_HUMR_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_ENV_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_MILX_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_HATE_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_NEWS_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_XED_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_PUBH_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_GMB_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_ANON_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_DATE_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_GRP_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_LGBT_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_FILE_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_HACK_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_COMT_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_MMED_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_HOST_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_SRCH_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_GAME_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_CULTR_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_ECON_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_GOVT_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_COMM_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_CTRL_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_IGO_Key), true) &&
-				sp.getBoolean(r.getString(R.string.CategoryCode_MISC_Key), true);
+		boolean out = true;
+		for (String key : r.getStringArray(R.array.CategoryCodes))
+			out = out && sp.getBoolean(key, true);
+		return out;
 	}
 
 	public String getEnabledCategory() {
 		ArrayList<String> list = new ArrayList<>(31);
-		String aldr = r.getString(R.string.CategoryCode_ALDR_Key);
-		if (sp.getBoolean(aldr, true))
-			list.add(aldr);
-		String rel = r.getString(R.string.CategoryCode_REL_Key);
-		if (sp.getBoolean(rel, true))
-			list.add(rel);
-		String porn = r.getString(R.string.CategoryCode_PORN_Key);
-		if (sp.getBoolean(porn, true))
-			list.add(porn);
-		String prov = r.getString(R.string.CategoryCode_PROV_Key);
-		if (sp.getBoolean(prov, true))
-			list.add(prov);
-		String polr = r.getString(R.string.CategoryCode_POLR_Key);
-		if (sp.getBoolean(polr, true))
-			list.add(polr);
-		String humr = r.getString(R.string.CategoryCode_HUMR_Key);
-		if (sp.getBoolean(humr, true))
-			list.add(humr);
-		String env = r.getString(R.string.CategoryCode_ENV_Key);
-		if (sp.getBoolean(env, true))
-			list.add(env);
-		String milx = r.getString(R.string.CategoryCode_MILX_Key);
-		if (sp.getBoolean(milx, true))
-			list.add(milx);
-		String hate = r.getString(R.string.CategoryCode_HATE_Key);
-		if (sp.getBoolean(hate, true))
-			list.add(hate);
-		String news = r.getString(R.string.CategoryCode_NEWS_Key);
-		if (sp.getBoolean(news, true))
-			list.add(news);
-		String xed = r.getString(R.string.CategoryCode_XED_Key);
-		if (sp.getBoolean(xed, true))
-			list.add(xed);
-		String pubh = r.getString(R.string.CategoryCode_PUBH_Key);
-		if (sp.getBoolean(pubh, true))
-			list.add(pubh);
-		String gmb = r.getString(R.string.CategoryCode_GMB_Key);
-		if (sp.getBoolean(gmb, true))
-			list.add(gmb);
-		String anon = r.getString(R.string.CategoryCode_ANON_Key);
-		if (sp.getBoolean(anon, true))
-			list.add(anon);
-		String date = r.getString(R.string.CategoryCode_DATE_Key);
-		if (sp.getBoolean(date, true))
-			list.add(date);
-		String grp = r.getString(R.string.CategoryCode_GRP_Key);
-		if (sp.getBoolean(grp, true))
-			list.add(grp);
-		String lgbt = r.getString(R.string.CategoryCode_LGBT_Key);
-		if (sp.getBoolean(lgbt, true))
-			list.add(lgbt);
-		String file = r.getString(R.string.CategoryCode_FILE_Key);
-		if (sp.getBoolean(file, true))
-			list.add(file);
-		String hack = r.getString(R.string.CategoryCode_HACK_Key);
-		if (sp.getBoolean(hack, true))
-			list.add(hack);
-		String comt = r.getString(R.string.CategoryCode_COMT_Key);
-		if (sp.getBoolean(comt, true))
-			list.add(comt);
-		String mmed = r.getString(R.string.CategoryCode_MMED_Key);
-		if (sp.getBoolean(mmed, true))
-			list.add(mmed);
-		String host = r.getString(R.string.CategoryCode_HOST_Key);
-		if (sp.getBoolean(host, true))
-			list.add(host);
-		String srch = r.getString(R.string.CategoryCode_SRCH_Key);
-		if (sp.getBoolean(srch, true))
-			list.add(srch);
-		String game = r.getString(R.string.CategoryCode_GAME_Key);
-		if (sp.getBoolean(game, true))
-			list.add(game);
-		String cultr = r.getString(R.string.CategoryCode_CULTR_Key);
-		if (sp.getBoolean(cultr, true))
-			list.add(cultr);
-		String econ = r.getString(R.string.CategoryCode_ECON_Key);
-		if (sp.getBoolean(econ, true))
-			list.add(econ);
-		String govt = r.getString(R.string.CategoryCode_GOVT_Key);
-		if (sp.getBoolean(govt, true))
-			list.add(govt);
-		String comm = r.getString(R.string.CategoryCode_COMM_Key);
-		if (sp.getBoolean(comm, true))
-			list.add(comm);
-		String ctrl = r.getString(R.string.CategoryCode_CTRL_Key);
-		if (sp.getBoolean(ctrl, true))
-			list.add(ctrl);
-		String igo = r.getString(R.string.CategoryCode_IGO_Key);
-		if (sp.getBoolean(igo, true))
-			list.add(igo);
-		String misc = r.getString(R.string.CategoryCode_MISC_Key);
-		if (sp.getBoolean(misc, true))
-			list.add(misc);
+		for (String key : r.getStringArray(R.array.CategoryCodes))
+			if (sp.getBoolean(key, true))
+				list.add(key);
 		return TextUtils.join(",", list);
 	}
 
 	public Integer countEnabledCategory() {
 		int count = 0;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_ALDR_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_REL_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_PORN_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_PROV_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_POLR_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_HUMR_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_ENV_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_MILX_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_HATE_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_NEWS_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_XED_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_PUBH_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_GMB_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_ANON_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_DATE_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_GRP_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_LGBT_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_FILE_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_HACK_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_COMT_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_MMED_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_HOST_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_SRCH_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_GAME_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_CULTR_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_ECON_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_GOVT_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_COMM_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_CTRL_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_IGO_Key), true))
-			count++;
-		if (sp.getBoolean(r.getString(R.string.CategoryCode_MISC_Key), true))
-			count++;
+		for (String key : r.getStringArray(R.array.CategoryCodes))
+			if (sp.getBoolean(key, true))
+				count++;
 		return count;
 	}
 }

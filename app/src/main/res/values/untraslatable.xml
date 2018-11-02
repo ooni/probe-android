@@ -25,37 +25,6 @@
 	<string name="run_ndt" translatable="false">run_ndt</string>
 	<string name="run_dash" translatable="false">run_dash</string>
 	<string name="max_runtime" translatable="false">max_runtime</string>
-	<string name="CategoryCode_ALDR_Key" translatable="false">ALDR</string>
-	<string name="CategoryCode_REL_Key" translatable="false">REL</string>
-	<string name="CategoryCode_PORN_Key" translatable="false">PORN</string>
-	<string name="CategoryCode_PROV_Key" translatable="false">PROV</string>
-	<string name="CategoryCode_POLR_Key" translatable="false">POLR</string>
-	<string name="CategoryCode_HUMR_Key" translatable="false">HUMR</string>
-	<string name="CategoryCode_ENV_Key" translatable="false">ENV</string>
-	<string name="CategoryCode_MILX_Key" translatable="false">MILX</string>
-	<string name="CategoryCode_HATE_Key" translatable="false">HATE</string>
-	<string name="CategoryCode_NEWS_Key" translatable="false">NEWS</string>
-	<string name="CategoryCode_XED_Key" translatable="false">XED</string>
-	<string name="CategoryCode_PUBH_Key" translatable="false">PUBH</string>
-	<string name="CategoryCode_GMB_Key" translatable="false">GMB</string>
-	<string name="CategoryCode_ANON_Key" translatable="false">ANON</string>
-	<string name="CategoryCode_DATE_Key" translatable="false">DATE</string>
-	<string name="CategoryCode_GRP_Key" translatable="false">GRP</string>
-	<string name="CategoryCode_LGBT_Key" translatable="false">LGBT</string>
-	<string name="CategoryCode_FILE_Key" translatable="false">FILE</string>
-	<string name="CategoryCode_HACK_Key" translatable="false">HACK</string>
-	<string name="CategoryCode_COMT_Key" translatable="false">COMT</string>
-	<string name="CategoryCode_MMED_Key" translatable="false">MMED</string>
-	<string name="CategoryCode_HOST_Key" translatable="false">HOST</string>
-	<string name="CategoryCode_SRCH_Key" translatable="false">SRCH</string>
-	<string name="CategoryCode_GAME_Key" translatable="false">GAME</string>
-	<string name="CategoryCode_CULTR_Key" translatable="false">CULTR</string>
-	<string name="CategoryCode_ECON_Key" translatable="false">ECON</string>
-	<string name="CategoryCode_GOVT_Key" translatable="false">GOVT</string>
-	<string name="CategoryCode_COMM_Key" translatable="false">COMM</string>
-	<string name="CategoryCode_CTRL_Key" translatable="false">CTRL</string>
-	<string name="CategoryCode_IGO_Key" translatable="false">IGO</string>
-	<string name="CategoryCode_MISC_Key" translatable="false">MISC</string>
 	<string name="d" translatable="false">%1$d</string>
 	<string name="f" translatable="false">%1$.2f</string>
 	<string name="bold" translatable="false">&lt;b>%1$s&lt;/b></string>
@@ -128,38 +97,69 @@
 		<item quantity="one">@string/TestResults_Summary_InstantMessaging_Hero_Apps_Singular</item>
 		<item quantity="other">@string/TestResults_Summary_InstantMessaging_Hero_Apps_Plural</item>
 	</plurals>
+	<string name="CategoryCode_ALDR_Key" translatable="false">ALDR</string>
+	<string name="CategoryCode_REL_Key" translatable="false">REL</string>
+	<string name="CategoryCode_PORN_Key" translatable="false">PORN</string>
+	<string name="CategoryCode_PROV_Key" translatable="false">PROV</string>
+	<string name="CategoryCode_POLR_Key" translatable="false">POLR</string>
+	<string name="CategoryCode_HUMR_Key" translatable="false">HUMR</string>
+	<string name="CategoryCode_ENV_Key" translatable="false">ENV</string>
+	<string name="CategoryCode_MILX_Key" translatable="false">MILX</string>
+	<string name="CategoryCode_HATE_Key" translatable="false">HATE</string>
+	<string name="CategoryCode_NEWS_Key" translatable="false">NEWS</string>
+	<string name="CategoryCode_XED_Key" translatable="false">XED</string>
+	<string name="CategoryCode_PUBH_Key" translatable="false">PUBH</string>
+	<string name="CategoryCode_GMB_Key" translatable="false">GMB</string>
+	<string name="CategoryCode_ANON_Key" translatable="false">ANON</string>
+	<string name="CategoryCode_DATE_Key" translatable="false">DATE</string>
+	<string name="CategoryCode_GRP_Key" translatable="false">GRP</string>
+	<string name="CategoryCode_LGBT_Key" translatable="false">LGBT</string>
+	<string name="CategoryCode_FILE_Key" translatable="false">FILE</string>
+	<string name="CategoryCode_HACK_Key" translatable="false">HACK</string>
+	<string name="CategoryCode_COMT_Key" translatable="false">COMT</string>
+	<string name="CategoryCode_MMED_Key" translatable="false">MMED</string>
+	<string name="CategoryCode_HOST_Key" translatable="false">HOST</string>
+	<string name="CategoryCode_SRCH_Key" translatable="false">SRCH</string>
+	<string name="CategoryCode_GAME_Key" translatable="false">GAME</string>
+	<string name="CategoryCode_CULTR_Key" translatable="false">CULTR</string>
+	<string name="CategoryCode_ECON_Key" translatable="false">ECON</string>
+	<string name="CategoryCode_GOVT_Key" translatable="false">GOVT</string>
+	<string name="CategoryCode_COMM_Key" translatable="false">COMM</string>
+	<string name="CategoryCode_CTRL_Key" translatable="false">CTRL</string>
+	<string name="CategoryCode_IGO_Key" translatable="false">IGO</string>
+	<string name="CategoryCode_MISC_Key" translatable="false">MISC</string>
 	<string-array name="CategoryCodes" translatable="false">
-		<item>ALDR</item>
-		<item>REL</item>
-		<item>PORN</item>
-		<item>PROV</item>
-		<item>POLR</item>
-		<item>HUMR</item>
-		<item>ENV</item>
-		<item>MILX</item>
-		<item>HATE</item>
-		<item>NEWS</item>
-		<item>XED</item>
-		<item>PUBH</item>
-		<item>GMB</item>
-		<item>ANON</item>
-		<item>DATE</item>
-		<item>GRP</item>
-		<item>LGBT</item>
-		<item>FILE</item>
-		<item>HACK</item>
-		<item>COMT</item>
-		<item>MMED</item>
-		<item>HOST</item>
-		<item>SRCH</item>
-		<item>GAME</item>
-		<item>CULTR</item>
-		<item>ECON</item>
-		<item>GOVT</item>
-		<item>COMM</item>
-		<item>CTRL</item>
-		<item>IGO</item>
-		<item>MISC</item>
+		<item>@string/CategoryCode_ALDR_Key</item>
+		<item>@string/CategoryCode_REL_Key</item>
+		<item>@string/CategoryCode_PORN_Key</item>
+		<item>@string/CategoryCode_PROV_Key</item>
+		<item>@string/CategoryCode_POLR_Key</item>
+		<item>@string/CategoryCode_HUMR_Key</item>
+		<item>@string/CategoryCode_ENV_Key</item>
+		<item>@string/CategoryCode_MILX_Key</item>
+		<item>@string/CategoryCode_HATE_Key</item>
+		<item>@string/CategoryCode_NEWS_Key</item>
+		<item>@string/CategoryCode_XED_Key</item>
+		<item>@string/CategoryCode_PUBH_Key</item>
+		<item>@string/CategoryCode_GMB_Key</item>
+		<item>@string/CategoryCode_ANON_Key</item>
+		<item>@string/CategoryCode_DATE_Key</item>
+		<item>@string/CategoryCode_GRP_Key</item>
+		<item>@string/CategoryCode_LGBT_Key</item>
+		<item>@string/CategoryCode_FILE_Key</item>
+		<item>@string/CategoryCode_HACK_Key</item>
+		<item>@string/CategoryCode_COMT_Key</item>
+		<item>@string/CategoryCode_MMED_Key</item>
+		<item>@string/CategoryCode_HOST_Key</item>
+		<item>@string/CategoryCode_SRCH_Key</item>
+		<item>@string/CategoryCode_GAME_Key</item>
+		<item>@string/CategoryCode_CULTR_Key</item>
+		<item>@string/CategoryCode_ECON_Key</item>
+		<item>@string/CategoryCode_GOVT_Key</item>
+		<item>@string/CategoryCode_COMM_Key</item>
+		<item>@string/CategoryCode_CTRL_Key</item>
+		<item>@string/CategoryCode_IGO_Key</item>
+		<item>@string/CategoryCode_MISC_Key</item>
 	</string-array>
 	<array name="CategoryIcons" translatable="false">
 		<item>@drawable/category_aldr</item>
