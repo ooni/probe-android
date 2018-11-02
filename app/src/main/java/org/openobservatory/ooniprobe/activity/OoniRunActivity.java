@@ -104,7 +104,7 @@ public class OoniRunActivity extends AbstractActivity {
 
 	public void manageIntent(Intent intent) {
 		if (isTestRunning()) {
-			Toast.makeText(this, "NEED STRING", Toast.LENGTH_LONG).show(); // TODO LOR
+			Toast.makeText(this, getString(R.string.OONIRun_TestRunningError), Toast.LENGTH_LONG).show();
 			finish();
 		} else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
 			Uri uri = intent.getData();
