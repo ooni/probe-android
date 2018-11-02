@@ -78,7 +78,8 @@ public class CustomWebsiteActivity extends AbstractActivity {
 	private void add(String url) {
 		LinearLayout urlBox = (LinearLayout) getLayoutInflater().inflate(R.layout.edittext_url, urlContainer, false);
 		EditText editText = urlBox.findViewById(R.id.editText);
-		editText.setText(url);
+		if (url != null)
+			editText.setText(url);
 		editTexts.add(editText);
 		urlContainer.addView(urlBox);
 		ImageButton delete = urlBox.findViewById(R.id.delete);
