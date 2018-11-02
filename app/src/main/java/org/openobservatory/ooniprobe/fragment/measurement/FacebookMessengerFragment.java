@@ -11,6 +11,7 @@ import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,7 +37,11 @@ public class FacebookMessengerFragment extends Fragment {
 		TestKeys testKeys = measurement.getTestKeys();
 		if (testKeys != null) {
 			dns.setText(testKeys.getFacebookMessengerDns());
+			if (Boolean.FALSE.equals(testKeys.facebook_dns_blocking))
+				dns.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_yellow9));
 			tcp.setText(testKeys.getFacebookMessengerTcp());
+			if (Boolean.FALSE.equals(testKeys.facebook_tcp_blocking))
+				tcp.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_yellow9));
 		}
 		return v;
 	}

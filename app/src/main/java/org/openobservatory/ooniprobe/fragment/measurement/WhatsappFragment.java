@@ -11,6 +11,7 @@ import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,8 +44,14 @@ public class WhatsappFragment extends Fragment {
 		}
 		if (testKeys != null) {
 			application.setText(testKeys.getWhatsappEndpointStatus());
+			if (TestKeys.BLOCKED.equals(testKeys.whatsapp_endpoints_status))
+				application.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_yellow9));
 			webApp.setText(testKeys.getWhatsappWebStatus());
+			if (TestKeys.BLOCKED.equals(testKeys.whatsapp_web_status))
+				webApp.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_yellow9));
 			registrations.setText(testKeys.getWhatsappRegistrationStatus());
+			if (TestKeys.BLOCKED.equals(testKeys.registration_server_status))
+				registrations.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_yellow9));
 		}
 		return v;
 	}

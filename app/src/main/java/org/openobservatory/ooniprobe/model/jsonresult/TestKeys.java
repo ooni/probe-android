@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class TestKeys {
+	public static final String BLOCKED = "blocked";
 	@SerializedName("blocking")
 	public String blocking;
 	@SerializedName("accessible")
@@ -67,7 +68,7 @@ public class TestKeys {
 
 	public int getWhatsappEndpointStatus() {
 		if (this.whatsapp_endpoints_status != null) {
-			if (this.whatsapp_endpoints_status.equals("blocked"))
+			if (this.whatsapp_endpoints_status.equals(BLOCKED))
 				return R.string.TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Failed;
 			return R.string.TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Okay;
 		}
@@ -76,7 +77,7 @@ public class TestKeys {
 
 	public int getWhatsappWebStatus() {
 		if (this.whatsapp_web_status != null) {
-			if (this.whatsapp_web_status.equals("blocked"))
+			if (this.whatsapp_web_status.equals(BLOCKED))
 				return R.string.TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Failed;
 			return R.string.TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Okay;
 		}
@@ -85,7 +86,7 @@ public class TestKeys {
 
 	public int getWhatsappRegistrationStatus() {
 		if (this.registration_server_status != null) {
-			if (this.registration_server_status.equals("blocked"))
+			if (this.registration_server_status.equals(BLOCKED))
 				return R.string.TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Failed;
 			return R.string.TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Okay;
 		}
@@ -104,7 +105,7 @@ public class TestKeys {
 
 	public int getTelegramWebStatus(Context ctx) {
 		if (this.telegram_web_status != null) {
-			if (this.telegram_web_status.equals("blocked"))
+			if (this.telegram_web_status.equals(BLOCKED))
 				return R.string.TestResults_Details_InstantMessaging_Telegram_Application_Label_Failed;
 			return R.string.TestResults_Details_InstantMessaging_Telegram_Application_Label_Okay;
 		}

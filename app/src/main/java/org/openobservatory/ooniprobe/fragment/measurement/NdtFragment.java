@@ -18,10 +18,6 @@ import butterknife.ButterKnife;
 
 public class NdtFragment extends Fragment {
 	public static final String MEASUREMENT = "measurement";
-	@BindView(R.id.download) TextView download;
-	@BindView(R.id.upload) TextView upload;
-	@BindView(R.id.ping) TextView ping;
-	@BindView(R.id.server) TextView server;
 	@BindView(R.id.packetLoss) TextView packetLoss;
 	@BindView(R.id.outOfOrder) TextView outOfOrder;
 	@BindView(R.id.averagePing) TextView averagePing;
@@ -44,10 +40,6 @@ public class NdtFragment extends Fragment {
 		ButterKnife.bind(this, v);
 		TestKeys testKeys = measurement.getTestKeys();
 		if (testKeys != null) {
-			download.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.getDownload(getActivity()), getString(testKeys.getDownloadUnit()))));
-			upload.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.getUpload(getActivity()), getString(testKeys.getUploadUnit()))));
-			ping.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.getPing(getActivity()), "ms")));
-			server.setText(testKeys.getServer(getActivity()));
 			packetLoss.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.getPacketLoss(getActivity()), "%")));
 			outOfOrder.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.getOutOfOrder(getActivity()), "%")));
 			averagePing.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.getAveragePing(getActivity()), "ms")));

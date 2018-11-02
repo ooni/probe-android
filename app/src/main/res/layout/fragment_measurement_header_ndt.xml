@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:orientation="vertical">
+	android:orientation="vertical"
+	android:theme="@style/Theme.MaterialComponents.NoActionBar.App">
 
 	<LinearLayout
 		android:layout_width="match_parent"
@@ -13,13 +14,13 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:text="@string/TestResults_Details_Performance_NDT_PacketLoss" />
+			android:text="@string/TestResults_Details_Performance_NDT_Download" />
 
 		<TextView
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:text="@string/TestResults_Details_Performance_NDT_OutOfOrder" />
+			android:text="@string/TestResults_Details_Performance_NDT_Upload" />
 	</LinearLayout>
 
 	<LinearLayout
@@ -28,52 +29,14 @@
 		android:orientation="horizontal">
 
 		<TextView
-			android:id="@+id/packetLoss"
+			android:id="@+id/download"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4" />
 
 		<TextView
-			android:id="@+id/outOfOrder"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4" />
-	</LinearLayout>
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal">
-
-		<TextView
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:text="@string/TestResults_Details_Performance_NDT_AveragePing" />
-
-		<TextView
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:text="@string/TestResults_Details_Performance_NDT_MaxPing" />
-	</LinearLayout>
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal">
-
-		<TextView
-			android:id="@+id/averagePing"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4" />
-
-		<TextView
-			android:id="@+id/maxPing"
+			android:id="@+id/upload"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
@@ -89,13 +52,13 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:text="@string/TestResults_Details_Performance_NDT_MSS" />
+			android:text="@string/TestResults_Details_Performance_NDT_Ping" />
 
 		<TextView
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:text="@string/TestResults_Details_Performance_NDT_Timeouts" />
+			android:text="@string/TestResults_Details_Performance_NDT_Server" />
 	</LinearLayout>
 
 	<LinearLayout
@@ -104,14 +67,14 @@
 		android:orientation="horizontal">
 
 		<TextView
-			android:id="@+id/mss"
+			android:id="@+id/ping"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4" />
 
 		<TextView
-			android:id="@+id/timeouts"
+			android:id="@+id/server"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
