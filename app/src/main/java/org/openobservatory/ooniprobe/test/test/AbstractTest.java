@@ -78,7 +78,7 @@ public abstract class AbstractTest implements Serializable {
 						break;
 					case "log":
 						if (logFOS == null)
-							logFOS = new FileOutputStream(Measurement.getEntryFile(c, result.id, name));
+							logFOS = new FileOutputStream(Measurement.getLogFile(c, result.id, name));
 						logFOS.write(event.value.message.getBytes());
 						logFOS.write('\n');
 						testCallback.onLog(event.value.message);
