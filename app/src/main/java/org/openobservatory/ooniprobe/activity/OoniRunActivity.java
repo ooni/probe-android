@@ -145,7 +145,7 @@ public class OoniRunActivity extends AbstractActivity {
 						icon.setImageResource(R.drawable.question_mark);
 						iconBig.setImageResource(R.drawable.question_mark);
 						iconBig.setVisibility(View.VISIBLE);
-						run.setVisibility(View.GONE);
+						run.setOnClickListener(v -> finish());
 					}
 				} else {
 					title.setText(R.string.OONIRun_OONIProbeOutOfDate);
@@ -166,7 +166,7 @@ public class OoniRunActivity extends AbstractActivity {
 				icon.setImageResource(R.drawable.question_mark);
 				iconBig.setImageResource(R.drawable.question_mark);
 				iconBig.setVisibility(View.VISIBLE);
-				run.setVisibility(View.GONE);
+				run.setOnClickListener(v -> finish());
 			}
 		}
 	}
