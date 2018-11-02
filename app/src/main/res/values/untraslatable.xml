@@ -31,10 +31,21 @@
 	<string name="brackets" translatable="false">(%1$s)</string>
 	<string name="seg" translatable="false">- %1$s</string>
 	<string name="normalBold" translatable="false">%1$s &lt;b>%2$s&lt;/b></string>
-	<string name="bigNormal" translatable="false">&lt;font color=#0588cb>%1$s&lt;/font> &lt;small>%2$s&lt;/small></string>
+	<string name="bigNormal" translatable="false">%1$s&lt;small>&lt;small>&lt;small>%2$s&lt;/small>&lt;/small>&lt;/small></string>
 	<string name="twoParam" translatable="false">%1$s %2$s</string>
 	<string name="outcomeHeader" translatable="false">&lt;b>%1$s&lt;/b>&lt;br>&lt;small>%2$s&lt;/small></string>
 	<string name="http" translatable="false">http://</string>
+	<string name="r240p" translatable="false">240p</string>
+	<string name="r360p" translatable="false">360p</string>
+	<string name="r480p" translatable="false">480p</string>
+	<string name="r720p" translatable="false">720p</string>
+	<string name="r720p_ext" translatable="false">720p (HD)</string>
+	<string name="r1080p" translatable="false">1080p</string>
+	<string name="r1080p_ext" translatable="false">1080p (full HD)</string>
+	<string name="r1440p" translatable="false">1440p</string>
+	<string name="r1440p_ext" translatable="false">1440p (2k)</string>
+	<string name="r2160p" translatable="false">2160p</string>
+	<string name="r2160p_ext" translatable="false">2160p (4k)</string>
 	<string-array name="filterTests" translatable="false">
 		<item>@string/TestResults_Overview_FilterTests_AllTests</item>
 		<item>@string/TestResults_Overview_FilterTests_Websites</item>

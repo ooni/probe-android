@@ -42,9 +42,9 @@ public class WhatsappFragment extends Fragment {
 			desc.setText(R.string.TestResults_Details_InstantMessaging_WhatsApp_Reachable_Content_Paragraph);
 		}
 		if (testKeys != null) {
-			application.setText(testKeys.getWhatsappEndpointStatus(getActivity()));
-			webApp.setText(testKeys.getWhatsappWebStatus(getActivity()));
-			registrations.setText(testKeys.getWhatsappRegistrationStatus(getActivity()));
+			application.setText(testKeys.getWhatsappEndpointStatus());
+			webApp.setText(testKeys.getWhatsappWebStatus());
+			registrations.setText(testKeys.getWhatsappRegistrationStatus());
 		}
 		return v;
 	}

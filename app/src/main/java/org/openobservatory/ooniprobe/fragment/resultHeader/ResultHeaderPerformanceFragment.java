@@ -1,8 +1,6 @@
 package org.openobservatory.ooniprobe.fragment.resultHeader;
 
-import androidx.fragment.app.Fragment;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +13,8 @@ import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 import org.openobservatory.ooniprobe.test.test.Dash;
 import org.openobservatory.ooniprobe.test.test.Ndt;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -44,14 +44,14 @@ public class ResultHeaderPerformanceFragment extends Fragment {
 		Measurement ndtM = result.getMeasurement(Ndt.NAME);
 		if (dashM != null) {
 			TestKeys dashTK = dashM.getTestKeys();
-			video.setText(dashTK.getVideoQuality(getActivity(), false));
+			video.setText(dashTK.getVideoQuality(false));
 		}
 		if (ndtM != null) {
 			TestKeys ndtTK = ndtM.getTestKeys();
 			upload.setText(ndtTK.getUpload(getActivity()));
-			uploadUnit.setText(ndtTK.getUploadUnit(getActivity()));
+			uploadUnit.setText(ndtTK.getUploadUnit());
 			download.setText(ndtTK.getDownload(getActivity()));
-			downloadUnit.setText(ndtTK.getDownloadUnit(getActivity()));
+			downloadUnit.setText(ndtTK.getDownloadUnit());
 			ping.setText(ndtTK.getPing(getActivity()));
 		}
 		return v;

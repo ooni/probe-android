@@ -35,7 +35,8 @@
 			<FrameLayout
 				android:id="@+id/body"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content" />
+				android:layout_height="wrap_content"
+				android:layout_margin="32dp" />
 
 			<FrameLayout
 				android:id="@+id/footer"

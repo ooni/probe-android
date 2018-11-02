@@ -51,6 +51,16 @@
 		<item name="colorPrimaryDark">@color/color_fuchsia9</item>
 	</style>
 
+	<style name="Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar.Success">
+		<item name="colorPrimary">@color/color_green8</item>
+		<item name="colorPrimaryDark">@color/color_green9</item>
+	</style>
+
+	<style name="Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar.Failure">
+		<item name="colorPrimary">@color/color_yellow9</item>
+		<item name="colorPrimaryDark">@color/color_orange9</item>
+	</style>
+
 	<style name="Theme.MaterialComponents.NoActionBar.App.Websites">
 		<item name="colorPrimary">@color/color_indigo6</item>
 		<item name="colorPrimaryDark">@color/color_indigo9</item>

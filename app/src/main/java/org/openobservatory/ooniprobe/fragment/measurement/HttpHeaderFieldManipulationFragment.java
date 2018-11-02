@@ -15,9 +15,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class HttpHeaderFieldManipulationFragment extends Fragment {
-	public static final String MEASUREMENT = "measurement";
-	@BindView(R.id.desc1) TextView desc1;
-	@BindView(R.id.desc2) TextView desc2;
+	private static final String MEASUREMENT = "measurement";
+	@BindView(R.id.desc) TextView desc;
 
 	public static HttpHeaderFieldManipulationFragment newInstance(Measurement measurement) {
 		Bundle args = new Bundle();
@@ -32,12 +31,7 @@ public class HttpHeaderFieldManipulationFragment extends Fragment {
 		assert measurement != null;
 		View v = inflater.inflate(R.layout.fragment_measurement_httpheaderfieldmanipulation, container, false);
 		ButterKnife.bind(this, v);
-		if (measurement.is_anomaly) {
-			desc1.setText(R.string.TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_Found_Content_Paragraph);
-			desc2.setText(R.string.TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_Found_Content_Paragraph);
-		} else {
-			desc1.setText(R.string.TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_NotFound_Content_Paragraph);
-		}
+		desc.setText(measurement.is_anomaly ? R.string.TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_Found_Content_Paragraph : R.string.TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_NotFound_Content_Paragraph);
 		return v;
 	}
 }

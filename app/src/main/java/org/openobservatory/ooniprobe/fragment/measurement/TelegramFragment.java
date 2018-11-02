@@ -35,13 +35,12 @@ public class TelegramFragment extends Fragment {
 		View v = inflater.inflate(R.layout.fragment_measurement_telegram, container, false);
 		ButterKnife.bind(this, v);
 		TestKeys testKeys = measurement.getTestKeys();
-		if (measurement.is_anomaly) {
+		if (measurement.is_anomaly)
 			desc.setText(testKeys.getTelegramBlocking(getActivity()));
-		} else {
+		else
 			desc.setText(R.string.TestResults_Details_InstantMessaging_Telegram_Reachable_Content_Paragraph);
-		}
 		if (testKeys != null) {
-			application.setText(testKeys.getTelegramEndpointStatus(getActivity()));
+			application.setText(testKeys.getTelegramEndpointStatus());
 			webApp.setText(testKeys.getTelegramWebStatus(getActivity()));
 		}
 		return v;

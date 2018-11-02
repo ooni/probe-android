@@ -48,14 +48,14 @@ public class PerformanceItem extends HeterogeneousRecyclerItem<Result, Performan
 		Measurement ndtM = extra.getMeasurement(Ndt.NAME);
 		if (dashM != null) {
 			TestKeys dashTK = dashM.getTestKeys();
-			viewHolder.quality.setText(dashTK.getVideoQuality(c, false));
+			viewHolder.quality.setText(dashTK.getVideoQuality(false));
 		} else {
 			viewHolder.quality.setText(null);
 		}
 		if (ndtM != null) {
 			TestKeys ndtTK = ndtM.getTestKeys();
-			viewHolder.upload.setText(c.getString(R.string.twoParam, ndtTK.getUpload(c), ndtTK.getUploadUnit(c)));
-			viewHolder.download.setText(c.getString(R.string.twoParam, ndtTK.getDownload(c), ndtTK.getDownloadUnit(c)));
+			viewHolder.upload.setText(c.getString(R.string.twoParam, ndtTK.getUpload(c), c.getString(ndtTK.getUploadUnit())));
+			viewHolder.download.setText(c.getString(R.string.twoParam, ndtTK.getDownload(c), c.getString(ndtTK.getDownloadUnit())));
 		} else {
 			viewHolder.upload.setText(null);
 			viewHolder.download.setText(null);

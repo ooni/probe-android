@@ -4,14 +4,6 @@
 	android:layout_height="wrap_content"
 	android:orientation="vertical">
 
-	<TextView
-		android:id="@+id/desc"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginHorizontal="32dp"
-		android:layout_marginBottom="32dp"
-		android:gravity="center_horizontal" />
-
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
@@ -21,14 +13,12 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:gravity="center_horizontal"
 			android:text="@string/TestResults_Details_InstantMessaging_Telegram_Application_Label_Title" />
 
 		<TextView
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:gravity="center_horizontal"
 			android:text="@string/TestResults_Details_InstantMessaging_Telegram_WebApp_Label_Title" />
 	</LinearLayout>
 
@@ -42,17 +32,18 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:gravity="center_horizontal"
-			android:textAppearance="@style/TextAppearance.AppCompat.Large"
-			android:textColor="@color/color_base" />
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4" />
 
 		<TextView
 			android:id="@+id/webApp"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:gravity="center_horizontal"
-			android:textAppearance="@style/TextAppearance.AppCompat.Large"
-			android:textColor="@color/color_base" />
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4" />
 	</LinearLayout>
+
+	<TextView
+		android:id="@+id/desc"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
 </LinearLayout>

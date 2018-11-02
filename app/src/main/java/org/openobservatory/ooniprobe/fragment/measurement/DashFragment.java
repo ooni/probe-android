@@ -35,7 +35,7 @@ public class DashFragment extends Fragment {
 		ButterKnife.bind(this, v);
 		TestKeys testKeys = measurement.getTestKeys();
 		if (testKeys != null) {
-			medianBitrate.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.getMedianBitrate(getActivity()), testKeys.getMedianBitrateUnit(getActivity()))));
+			medianBitrate.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.getMedianBitrate(getActivity()), getString(testKeys.getMedianBitrateUnit()))));
 			playoutDelay.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.getPlayoutDelay(getActivity()), "s")));
 		}
 		return v;

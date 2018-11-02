@@ -25,6 +25,7 @@ import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFra
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 import org.openobservatory.ooniprobe.model.database.Network;
+import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.test.Dash;
 import org.openobservatory.ooniprobe.test.test.FacebookMessenger;
 import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
@@ -58,7 +59,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
 		measurement = SQLite.select().from(Measurement.class).where(Measurement_Table.id.eq(getIntent().getIntExtra(ID, 0))).querySingle();
 		assert measurement != null;
 		measurement.result.load();
-		setTheme(measurement.result.getTestSuite().getThemeLight());
+		setTheme(measurement.result.test_group_name.equals(PerformanceSuite.NAME) ? measurement.result.getTestSuite().getThemeLight() : measurement.is_anomaly ? R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Failure : R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Success);
 		setContentView(R.layout.activity_measurement_detail);
 		ButterKnife.bind(this);
 		setSupportActionBar(toolbar);
@@ -72,7 +73,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
 		boolean anomaly = measurement.is_anomaly;
 		switch (measurement.test_name) {
 			case Dash.NAME:
-				head = OutcomeFragment.newInstance(null, getString(R.string.outcomeHeader, measurement.getTestKeys().getVideoQuality(this, true), getString(R.string.TestResults_Details_Performance_Dash_VideoWithoutBuffering, measurement.getTestKeys().getVideoQuality(this, false))));
+				head = OutcomeFragment.newInstance(null, getString(R.string.outcomeHeader, getString(measurement.getTestKeys().getVideoQuality(true)), getString(R.string.TestResults_Details_Performance_Dash_VideoWithoutBuffering, getString(measurement.getTestKeys().getVideoQuality(false)))));
 				detail = DashFragment.newInstance(measurement);
 				break;
 			case FacebookMessenger.NAME:

@@ -41,8 +41,8 @@ public class FacebookMessengerFragment extends Fragment {
 			desc.setText(R.string.TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Content_Paragraph);
 		}
 		if (testKeys != null) {
-			dns.setText(testKeys.getFacebookMessengerDns(getActivity()));
-			tcp.setText(testKeys.getFacebookMessengerTcp(getActivity()));
+			dns.setText(testKeys.getFacebookMessengerDns());
+			tcp.setText(testKeys.getFacebookMessengerTcp());
 		}
 		return v;
 	}

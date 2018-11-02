@@ -13,14 +13,12 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:gravity="center_horizontal"
 			android:text="@string/TestResults_Details_Performance_Dash_MedianBitrate" />
 
 		<TextView
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:gravity="center_horizontal"
 			android:text="@string/TestResults_Details_Performance_Dash_PlayoutDelay" />
 	</LinearLayout>
 
@@ -34,15 +32,13 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:gravity="center_horizontal"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4" />
 
 		<TextView
 			android:id="@+id/playoutDelay"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:gravity="center_horizontal"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4" />
 	</LinearLayout>
 </LinearLayout>

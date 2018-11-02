@@ -34,7 +34,7 @@ public class WebConnectivityFragment extends Fragment {
 		ButterKnife.bind(this, v);
 		TestKeys testKeys = measurement.getTestKeys();
 		if (measurement.is_anomaly) {
-			desc.setText(getString(R.string.TestResults_Details_Websites_LikelyBlocked_Content_Paragraph, measurement.url.url, testKeys.getWebsiteBlocking(getActivity())));
+			desc.setText(getString(R.string.TestResults_Details_Websites_LikelyBlocked_Content_Paragraph, measurement.url.url, getString(testKeys.getWebsiteBlocking())));
 		} else {
 			desc.setText(getString(R.string.TestResults_Details_Websites_Reachable_Content_Paragraph, measurement.url.url));
 		}
