@@ -17,7 +17,6 @@ import butterknife.ButterKnife;
 
 public class TelegramFragment extends Fragment {
 	public static final String MEASUREMENT = "measurement";
-	@BindView(R.id.desc) TextView desc;
 	@BindView(R.id.application) TextView application;
 	@BindView(R.id.webApp) TextView webApp;
 
@@ -35,10 +34,6 @@ public class TelegramFragment extends Fragment {
 		View v = inflater.inflate(R.layout.fragment_measurement_telegram, container, false);
 		ButterKnife.bind(this, v);
 		TestKeys testKeys = measurement.getTestKeys();
-		if (measurement.is_anomaly)
-			desc.setText(testKeys.getTelegramBlocking(getActivity()));
-		else
-			desc.setText(R.string.TestResults_Details_InstantMessaging_Telegram_Reachable_Content_Paragraph);
 		if (testKeys != null) {
 			application.setText(testKeys.getTelegramEndpointStatus());
 			webApp.setText(testKeys.getTelegramWebStatus(getActivity()));

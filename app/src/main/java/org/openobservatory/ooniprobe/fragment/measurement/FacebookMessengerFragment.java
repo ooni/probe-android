@@ -17,7 +17,6 @@ import butterknife.ButterKnife;
 
 public class FacebookMessengerFragment extends Fragment {
 	public static final String MEASUREMENT = "measurement";
-	@BindView(R.id.desc) TextView desc;
 	@BindView(R.id.tcp) TextView tcp;
 	@BindView(R.id.dns) TextView dns;
 
@@ -35,11 +34,6 @@ public class FacebookMessengerFragment extends Fragment {
 		View v = inflater.inflate(R.layout.fragment_measurement_facebookmessenger, container, false);
 		ButterKnife.bind(this, v);
 		TestKeys testKeys = measurement.getTestKeys();
-		if (measurement.is_anomaly) {
-			desc.setText(testKeys.getFacebookMessengerBlocking(getActivity()));
-		} else {
-			desc.setText(R.string.TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Content_Paragraph);
-		}
 		if (testKeys != null) {
 			dns.setText(testKeys.getFacebookMessengerDns());
 			tcp.setText(testKeys.getFacebookMessengerTcp());

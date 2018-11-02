@@ -111,21 +111,6 @@ public class TestKeys {
 		return R.string.TestResults_NotAvailable;
 	}
 
-	public int getTelegramBlocking(Context ctx) {
-		//TODO this is unused to remove
-	/*
-		if (this.telegram_http_blocking != null && this.telegram_tcp_blocking != null) {
-			if (this.telegram_http_blocking && this.telegram_tcp_blocking)
-				return ctx.getString(R.string.TestResults_Details_InstantMessaging_Telegram_LikelyBlocked_Content_Paragraph_HTTPandTCPIP);
-			else if (this.telegram_http_blocking)
-				return ctx.getString(R.string.TestResults_Details_InstantMessaging_Telegram_LikelyBlocked_Content_Paragraph_HTTPOnly);
-			else if (this.telegram_tcp_blocking)
-				return ctx.getString(R.string.TestResults_Details_InstantMessaging_Telegram_LikelyBlocked_Content_Paragraph_TCPIPOnly);
-		}
-		*/
-		return R.string.TestResults_NotAvailable;
-	}
-
 	public int getFacebookMessengerDns() {
 		if (this.facebook_dns_blocking != null) {
 			if (this.facebook_dns_blocking)
@@ -143,19 +128,6 @@ public class TestKeys {
 			else
 				return R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Okay;
 		}
-		return R.string.TestResults_NotAvailable;
-	}
-
-	public int getFacebookMessengerBlocking(Context ctx) {
-		//TODO this is unused to remove
-		/*if (this.facebook_dns_blocking != null && this.facebook_tcp_blocking != null) {
-			if (this.facebook_dns_blocking && this.facebook_tcp_blocking)
-				return ctx.getString(R.string.TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_BlockingReason_DNSandTCPIP);
-			else if (this.facebook_dns_blocking)
-				return ctx.getString(R.string.TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_BlockingReason_DNSOnly);
-			else if (this.facebook_tcp_blocking)
-				return ctx.getString(R.string.TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_BlockingReason_TCPIPOnly);
-		}*/
 		return R.string.TestResults_NotAvailable;
 	}
 
