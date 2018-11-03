@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class PreferenceManager {
 	public static final String GEO_VER = "geo_ver";
-	private static final String SHOW_INTRO = "first_run";
+	private static final String SHOW_ONBOARDING = "first_run";
 	private SharedPreferences sp;
 	private Resources r;
 
@@ -45,12 +45,12 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.send_crash), true);
 	}
 
-	public boolean isShowIntro() {
-		return sp.getBoolean(SHOW_INTRO, true);
+	public boolean isShowOnboarding() {
+		return sp.getBoolean(SHOW_ONBOARDING, true);
 	}
 
-	public void setShowIntro(boolean showIntro) {
-		sp.edit().putBoolean(SHOW_INTRO, showIntro).apply();
+	public void setShowOnboarding(boolean showIntro) {
+		sp.edit().putBoolean(SHOW_ONBOARDING, showIntro).apply();
 	}
 
 	public boolean isNotifications() {

@@ -1,4 +1,4 @@
-package org.openobservatory.ooniprobe.fragment.consent;
+package org.openobservatory.ooniprobe.fragment.consent_OLD;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.activity.InformedConsentActivity;
+import org.openobservatory.ooniprobe.activity.InformedConsentActivity_OLD;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,8 +21,8 @@ public class IConsentPage3Fragment extends Fragment {
 		View v = inflater.inflate(R.layout.fragment_ic_page_3, container, false);
 		ButterKnife.bind(this, v);
 		nextButton.setOnClickListener(v1 -> {
-			if (((InformedConsentActivity) getActivity()).QUESTION_NUMBER < 3) {
-				((InformedConsentActivity) getActivity()).loadQuizFragment();
+			if (((InformedConsentActivity_OLD) getActivity()).QUESTION_NUMBER < 3) {
+				((InformedConsentActivity_OLD) getActivity()).loadQuizFragment();
 			}
 		});
 		return v;

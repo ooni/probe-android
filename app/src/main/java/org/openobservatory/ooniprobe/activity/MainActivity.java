@@ -27,51 +27,38 @@ public class MainActivity extends AbstractActivity {
 
 	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		ButterKnife.bind(this);
-		bottomNavigation.setOnNavigationItemSelectedListener(item -> {
-			switch (item.getItemId()) {
-				case R.id.dashboard:
-					getSupportFragmentManager().beginTransaction().replace(R.id.content, new DashboardFragment()).commit();
-					return true;
-				case R.id.testResults:
-					getSupportFragmentManager().beginTransaction().replace(R.id.content, new ResultListFragment()).commit();
-					return true;
-				case R.id.settings:
-					getSupportFragmentManager().beginTransaction().replace(R.id.content, new PreferenceGlobalFragment()).commit();
-					return true;
-				default:
-					return false;
+		if (getPreferenceManager().isShowOnboarding()) {
+			startActivity(new Intent(MainActivity.this, OnboardingActivity.class));
+			finish();
+		} else {
+			setContentView(R.layout.activity_main);
+			ButterKnife.bind(this);
+			bottomNavigation.setOnNavigationItemSelectedListener(item -> {
+				switch (item.getItemId()) {
+					case R.id.dashboard:
+						getSupportFragmentManager().beginTransaction().replace(R.id.content, new DashboardFragment()).commit();
+						return true;
+					case R.id.testResults:
+						getSupportFragmentManager().beginTransaction().replace(R.id.content, new ResultListFragment()).commit();
+						return true;
+					case R.id.settings:
+						getSupportFragmentManager().beginTransaction().replace(R.id.content, new PreferenceGlobalFragment()).commit();
+						return true;
+					default:
+						return false;
+				}
+			});
+			bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
+			if (OldTestStorage.oldTestsDetected(this)) {
+				MessageDialogFragment.newInstance(getString(R.string.General_AppName), getString(R.string.Modal_OldTestsDetected), false).show(getSupportFragmentManager(), null);
+				OldTestStorage.removeAllTests(this);
 			}
-		});
-		bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
-		if (OldTestStorage.oldTestsDetected(this)) {
-			MessageDialogFragment.newInstance(getString(R.string.General_AppName), getString(R.string.Modal_OldTestsDetected), false).show(getSupportFragmentManager(), null);
-			OldTestStorage.removeAllTests(this);
 		}
-		checkInformedConsent();
 	}
 
 	@Override protected void onNewIntent(Intent intent) {
 		super.onNewIntent(intent);
 		if (intent.getExtras() != null && intent.getExtras().containsKey(RES_ITEM))
 			bottomNavigation.setSelectedItemId(intent.getIntExtra(RES_ITEM, R.id.dashboard));
-	}
-
-	public void checkInformedConsent() {
-		if (getPreferenceManager().isShowIntro())
-			startActivityForResult(new Intent(MainActivity.this, InformedConsentActivity.class), InformedConsentActivity.REQUEST_CODE);
-	}
-
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		if (requestCode == InformedConsentActivity.REQUEST_CODE) {
-			if (resultCode != InformedConsentActivity.RESULT_CODE_COMPLETED) {
-				finish();
-			} else {
-				getPreferenceManager().setShowIntro(false);
-			}
-		}
 	}
 }

@@ -5,17 +5,17 @@ import android.os.Bundle;
 import com.github.paolorotolo.appintro.AppIntro;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.fragment.consent.IConsentPage1Fragment;
-import org.openobservatory.ooniprobe.fragment.consent.IConsentPage2Fragment;
-import org.openobservatory.ooniprobe.fragment.consent.IConsentPage3Fragment;
-import org.openobservatory.ooniprobe.fragment.consent.IConsentPage4Fragment;
-import org.openobservatory.ooniprobe.fragment.consent.IConsentQuizFragment;
+import org.openobservatory.ooniprobe.fragment.consent_OLD.IConsentPage1Fragment;
+import org.openobservatory.ooniprobe.fragment.consent_OLD.IConsentPage2Fragment;
+import org.openobservatory.ooniprobe.fragment.consent_OLD.IConsentPage3Fragment;
+import org.openobservatory.ooniprobe.fragment.consent_OLD.IConsentPage4Fragment;
+import org.openobservatory.ooniprobe.fragment.consent_OLD.IConsentQuizFragment;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-public class InformedConsentActivity extends AppIntro {
+public class InformedConsentActivity_OLD extends AppIntro {
 	public static final int REQUEST_CODE = 1000;
 	public static final int RESULT_CODE_COMPLETED = 1;
 	public int QUESTION_NUMBER = 1;

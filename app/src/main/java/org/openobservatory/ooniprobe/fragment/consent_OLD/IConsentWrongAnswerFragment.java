@@ -1,4 +1,4 @@
-package org.openobservatory.ooniprobe.fragment.consent;
+package org.openobservatory.ooniprobe.fragment.consent_OLD;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -13,10 +13,10 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.activity.InformedConsentActivity;
+import org.openobservatory.ooniprobe.activity.InformedConsentActivity_OLD;
 
 public class IConsentWrongAnswerFragment extends DialogFragment {
-	public InformedConsentActivity mActivity;
+	public InformedConsentActivity_OLD mActivity;
 	public IConsentQuizFragment quizFragment;
 	private AppCompatButton continueButton;
 	private AppCompatButton backButton;

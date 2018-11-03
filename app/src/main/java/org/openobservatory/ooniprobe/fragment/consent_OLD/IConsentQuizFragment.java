@@ -1,4 +1,4 @@
-package org.openobservatory.ooniprobe.fragment.consent;
+package org.openobservatory.ooniprobe.fragment.consent_OLD;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -19,10 +19,10 @@ import android.widget.TextView;
 import com.airbnb.lottie.LottieAnimationView;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.activity.InformedConsentActivity;
+import org.openobservatory.ooniprobe.activity.InformedConsentActivity_OLD;
 
 public class IConsentQuizFragment extends DialogFragment {
-	public InformedConsentActivity mActivity;
+	public InformedConsentActivity_OLD mActivity;
 	private Button trueButton;
 	private Button falseButton;
 	private TextView questionNumber;

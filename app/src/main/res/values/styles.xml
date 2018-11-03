@@ -98,4 +98,10 @@
 	<style name="TextAppearance.AppCompat.Small.Transparent">
 		<item name="android:textColor">@android:color/transparent</item>
 	</style>
+
+	<style name="Theme.MaterialComponents.NoActionBar.Onboarding">
+		<item name="android:windowTranslucentStatus">true</item>
+		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+		<item name="fontFamily">@font/firasans</item>
+	</style>
 </resources>

@@ -1,4 +1,4 @@
-package org.openobservatory.ooniprobe.fragment.consent;
+package org.openobservatory.ooniprobe.fragment.consent_OLD;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
