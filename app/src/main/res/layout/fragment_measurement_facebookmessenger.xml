@@ -41,4 +41,9 @@
 			android:layout_weight="1"
 			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4" />
 	</LinearLayout>
+
+	<TextView
+		android:id="@+id/desc"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
 </LinearLayout>

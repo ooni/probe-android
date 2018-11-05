@@ -20,6 +20,7 @@ public class FacebookMessengerFragment extends Fragment {
 	public static final String MEASUREMENT = "measurement";
 	@BindView(R.id.tcp) TextView tcp;
 	@BindView(R.id.dns) TextView dns;
+	@BindView(R.id.desc) TextView desc;
 
 	public static FacebookMessengerFragment newInstance(Measurement measurement) {
 		Bundle args = new Bundle();
@@ -36,6 +37,11 @@ public class FacebookMessengerFragment extends Fragment {
 		ButterKnife.bind(this, v);
 		TestKeys testKeys = measurement.getTestKeys();
 		if (testKeys != null) {
+			if (measurement.is_anomaly) {
+				desc.setText(R.string.TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Content_Paragraph);
+			} else {
+				desc.setText(R.string.TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Content_Paragraph);
+			}
 			dns.setText(testKeys.getFacebookMessengerDns());
 			if (Boolean.TRUE.equals(testKeys.facebook_dns_blocking))
 				dns.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_yellow9));

@@ -20,6 +20,7 @@ public class TelegramFragment extends Fragment {
 	public static final String MEASUREMENT = "measurement";
 	@BindView(R.id.application) TextView application;
 	@BindView(R.id.webApp) TextView webApp;
+	@BindView(R.id.desc) TextView desc;
 
 	public static TelegramFragment newInstance(Measurement measurement) {
 		Bundle args = new Bundle();
@@ -36,6 +37,11 @@ public class TelegramFragment extends Fragment {
 		ButterKnife.bind(this, v);
 		TestKeys testKeys = measurement.getTestKeys();
 		if (testKeys != null) {
+			if (measurement.is_anomaly) {
+				desc.setText(R.string.TestResults_Details_InstantMessaging_Telegram_LikelyBlocked_Content_Paragraph);
+			} else {
+				desc.setText(R.string.TestResults_Details_InstantMessaging_Telegram_Reachable_Content_Paragraph);
+			}
 			application.setText(testKeys.getTelegramEndpointStatus());
 			if (Boolean.TRUE.equals(testKeys.telegram_http_blocking) || Boolean.TRUE.equals(testKeys.telegram_tcp_blocking))
 				application.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_yellow9));
