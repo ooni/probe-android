@@ -54,6 +54,14 @@
 				android:layout_marginHorizontal="32dp"
 				android:text="@string/Onboarding_DefaultSettings_Bullet_2"
 				android:textColor="@color/color_white" />
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginHorizontal="32dp"
+				android:text="@string/Onboarding_DefaultSettings_Paragraph"
+				android:textColor="@color/color_white" />
+
 		</LinearLayout>
 	</ScrollView>
 
