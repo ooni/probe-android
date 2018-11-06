@@ -19,6 +19,7 @@
 		style="@style/TextAppearance.AppCompat.Large"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:text="@string/Dashboard_Running_PreparingTest"
 		android:layout_marginHorizontal="32dp"
 		android:gravity="center_horizontal" />
 
