@@ -36,6 +36,8 @@ import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.FragmentActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.ooni.mk.MKGeoIPLookupResults;
+import io.ooni.mk.MKGeoIPLookupSettings;
 import localhost.toolkit.app.MessageDialogFragment;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -72,8 +74,14 @@ public class RunningActivity extends AbstractActivity {
 				break;
 			}
 		if (downloadUrls) {
+			MKGeoIPLookupSettings settings = new MKGeoIPLookupSettings();
+			settings.setTimeout(17);
+			MKGeoIPLookupResults results = settings.perform();
+			String probe_cc = "XX";
+			if (results.good())
+				probe_cc = results.getProbeCC();
 			Retrofit retrofit = new Retrofit.Builder().baseUrl("https://orchestrate.ooni.io/").addConverterFactory(GsonConverterFactory.create()).build();
-			retrofit.create(OoniIOClient.class).getUrls("IT", getPreferenceManager().isAllCategoryEnabled() ? null : getPreferenceManager().getEnabledCategory()).enqueue(new Callback<RetrieveUrlResponse>() {
+			retrofit.create(OoniIOClient.class).getUrls(probe_cc, getPreferenceManager().isAllCategoryEnabled() ? null : getPreferenceManager().getEnabledCategory()).enqueue(new Callback<RetrieveUrlResponse>() {
 				@Override public void onResponse(Call<RetrieveUrlResponse> call, Response<RetrieveUrlResponse> response) {
 					if (response.isSuccessful() && response.body() != null && response.body().results != null) {
 						ArrayList<String> inputs = new ArrayList<>();

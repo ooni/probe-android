@@ -91,6 +91,10 @@ public class NotificationService {
 		client.set_language(language);
 		client.set_device_token(device_token);
 		client.set_registry_url(NOTIFICATION_SERVER);
+		//TODO-LOR add timezone
+		//client.set_probe_timezone
+
+		//TODO-FUTURE
 		//client.set_available_bandwidth();
 		client.find_location(
 				(error, probe_asn, probe_cc) -> {
