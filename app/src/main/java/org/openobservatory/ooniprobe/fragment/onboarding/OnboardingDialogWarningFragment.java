@@ -1,9 +1,12 @@
 package org.openobservatory.ooniprobe.fragment.onboarding;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -31,6 +34,16 @@ public class OnboardingDialogWarningFragment extends DialogFragment {
 		OnboardingDialogWarningFragment fragment = new OnboardingDialogWarningFragment();
 		fragment.setArguments(args);
 		return fragment;
+	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+		WindowManager.LayoutParams windowParams = getDialog().getWindow().getAttributes();
+		windowParams.dimAmount = 0.90f;
+		windowParams.flags |= WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+		getDialog().getWindow().setAttributes(windowParams);
 	}
 
 	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
