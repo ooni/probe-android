@@ -10,8 +10,6 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.airbnb.lottie.LottieAnimationView;
-
 import org.openobservatory.ooniprobe.R;
 
 import androidx.annotation.NonNull;
@@ -26,7 +24,6 @@ public class OnboardingDialogWarningFragment extends DialogFragment {
 	@BindView(R.id.title) @Nullable TextView title;
 	@BindView(R.id.question) TextView question;
 	@BindView(R.id.dialog) LinearLayout dialog;
-	@BindView(R.id.animation) LottieAnimationView animation;
 
 	public static OnboardingDialogWarningFragment newInstance(int questionResId) {
 		Bundle args = new Bundle();

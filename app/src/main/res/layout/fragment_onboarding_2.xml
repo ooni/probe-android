@@ -56,6 +56,7 @@
 		android:layout_height="64dp"
 		android:layout_marginHorizontal="64dp"
 		android:text="@string/Onboarding_ThingsToKnow_Button"
+		android:textAllCaps="false"
 		android:textColor="#002B54"
 		app:backgroundTint="@color/color_white"
 		app:cornerRadius="32dp" />
@@ -66,6 +67,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:text="@string/Onboarding_ThingsToKnow_LearnMore"
+		android:textAllCaps="false"
 		android:textColor="@color/color_white" />
 
 	<ImageView
