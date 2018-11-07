@@ -208,7 +208,7 @@
 	<string name="Modal_OnlyDigits">Please insert only digits in this field.</string>
 	<string name="Modal_ReRun_Title">Re-run test</string>
 	<string name="Modal_ReRun_Paragraph">This test has failed. Re-run the test?</string>
-	<string name="Modal_CustomURL_NotSaved">Leaving this screen will not save the url you entered. Do you want to leave this screen?</string>
+	<string name="Modal_CustomURL_NotSaved">Your URLs will not be saved when you leave this screen. Are you sure you want to leave this screen?</string>
 	<string name="Toast_CopiedToClipboard">Copied into clipboard</string>
 	<string name="Snackbar_ResultsNotUploaded_Text">Not uploaded</string>
 	<string name="Snackbar_ResultsNotUploaded_Upload">Upload</string>
