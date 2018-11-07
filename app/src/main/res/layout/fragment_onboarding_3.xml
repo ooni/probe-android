@@ -44,6 +44,7 @@
 			<TextView
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				android:id="@+id/bullet1"
 				android:layout_marginHorizontal="32dp"
 				android:text="@string/Onboarding_DefaultSettings_Bullet_1"
 				android:textColor="@color/color_white" />
@@ -51,6 +52,7 @@
 			<TextView
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				android:id="@+id/bullet2"
 				android:layout_marginHorizontal="32dp"
 				android:text="@string/Onboarding_DefaultSettings_Bullet_2"
 				android:textColor="@color/color_white" />
@@ -58,6 +60,15 @@
 			<TextView
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				android:id="@+id/bullet3"
+				android:layout_marginHorizontal="32dp"
+				android:text="@string/Onboarding_DefaultSettings_Bullet_3"
+				android:textColor="@color/color_white" />
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:id="@+id/paragraph"
 				android:layout_marginHorizontal="32dp"
 				android:text="@string/Onboarding_DefaultSettings_Paragraph"
 				android:textColor="@color/color_white" />
