@@ -34,7 +34,7 @@
 	<string name="Onboarding_DefaultSettings_Button_Change">Change defaults</string>
 	<string name="Dashboard_Tab_Label">Dashboard</string>
 	<string name="Dashboard_Card_Run">Run</string>
-	<string name="Dashboard_Overview_LastRun_Never">No tests run so far</string>
+	<string name="Dashboard_Overview_LastRun_Never">N/A</string>
 	<string name="Dashboard_Overview_Run">Run</string>
 	<string name="Dashboard_Overview_LatestTest">Last test:</string>
 	<string name="Dashboard_Overview_Estimated">Estimated:</string>
@@ -208,6 +208,7 @@
 	<string name="Modal_OnlyDigits">Please insert only digits in this field.</string>
 	<string name="Modal_ReRun_Title">Re-run test</string>
 	<string name="Modal_ReRun_Paragraph">This test has failed. Re-run the test?</string>
+	<string name="Modal_CustomURL_NotSaved">Leaving this screen will not save the url you entered. Do you want to leave this screen?</string>
 	<string name="Toast_CopiedToClipboard">Copied into clipboard</string>
 	<string name="Snackbar_ResultsNotUploaded_Text">Not uploaded</string>
 	<string name="Snackbar_ResultsNotUploaded_Upload">Upload</string>
