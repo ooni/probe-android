@@ -53,12 +53,14 @@
 				</LinearLayout>
 
 				<TextView
+					style="@style/TextAppearance.MaterialComponents.Caption"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_gravity="bottom"
 					android:layout_marginHorizontal="16dp"
 					android:layout_marginBottom="8dp"
-					android:text="@string/Dashboard_Card_Subtitle" />
+					android:text="@string/Dashboard_Card_Subtitle"
+					android:textStyle="italic" />
 			</FrameLayout>
 
 			<LinearLayout

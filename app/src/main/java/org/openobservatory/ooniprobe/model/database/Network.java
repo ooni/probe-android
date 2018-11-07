@@ -74,9 +74,9 @@ public class Network extends BaseModel implements Serializable {
 				asnUsed = true;
 			} else
 				first = c.getString(R.string.TestResults_UnknownASN);
-			parts.add(first);
+			parts.add(c.getString(R.string.bold, first));
 			if (size > 1 && n.network_type != null && !n.network_type.isEmpty())
-				parts.add(c.getString(R.string.brackets, n.getLocalizedNetworkType(c)));
+				parts.add(c.getString(R.string.brackets, getCountry(c, n)));
 			if (size > 2 && !asnUsed && n.asn != null && !n.asn.isEmpty())
 				parts.add(c.getString(R.string.seg, n.asn));
 		}
