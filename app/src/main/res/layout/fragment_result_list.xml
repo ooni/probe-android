@@ -127,6 +127,18 @@
 			android:textAlignment="center" />
 	</FrameLayout>
 
+	<TextView
+		android:id="@+id/emptyState"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_marginTop="64dp"
+		android:drawableTop="@drawable/ooni_empty_state"
+		android:drawablePadding="16dp"
+		android:gravity="center_horizontal"
+		android:text="@string/TestResults_Overview_NoTestsHaveBeenRun"
+		android:textColor="@color/color_gray5"
+		android:visibility="gone" />
+
 	<androidx.recyclerview.widget.RecyclerView
 		android:id="@+id/recycler"
 		android:layout_width="match_parent"
