@@ -42,7 +42,7 @@
 	<string name="Dashboard_Running_Running">Running:</string>
 	<string name="Dashboard_Running_EstimatedTimeLeft">Estimated time left:</string>
 	<string name="Dashboard_Running_Seconds">%1$s seconds</string>
-	<string name="Dashboard_Running_PreparingTest">preparing test</string>
+	<string name="Dashboard_Running_PreparingTest">Preparing test</string>
 	<string name="Dashboard_Card_Subtitle">Tap card for more options.</string>
 	<string name="Dashboard_Card_Seconds">~%1$ss</string>
 	<string name="Dashboard_Websites_Card_Description">Test the blocking of websites.</string>

@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ru.noties.markwon.Markwon;
 
 public class WebConnectivityFragment extends Fragment {
 	public static final String MEASUREMENT = "measurement";
@@ -34,9 +35,9 @@ public class WebConnectivityFragment extends Fragment {
 		ButterKnife.bind(this, v);
 		TestKeys testKeys = measurement.getTestKeys();
 		if (measurement.is_anomaly) {
-			desc.setText(getString(R.string.TestResults_Details_Websites_LikelyBlocked_Content_Paragraph, measurement.url.url, getString(testKeys.getWebsiteBlocking())));
+			Markwon.setMarkdown(desc, getString(R.string.TestResults_Details_Websites_LikelyBlocked_Content_Paragraph, measurement.url.url, getString(testKeys.getWebsiteBlocking())));
 		} else {
-			desc.setText(getString(R.string.TestResults_Details_Websites_Reachable_Content_Paragraph, measurement.url.url));
+			Markwon.setMarkdown(desc, getString(R.string.TestResults_Details_Websites_Reachable_Content_Paragraph, measurement.url.url));
 		}
 		return v;
 	}
