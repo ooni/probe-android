@@ -7,6 +7,7 @@ import com.google.firebase.messaging.RemoteMessage;
 
 import org.json.JSONObject;
 import org.openobservatory.ooniprobe.activity.NotificationDialogActivity;
+import org.openobservatory.ooniprobe.common.Application;
 
 import java.util.Map;
 
@@ -39,7 +40,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 	}
 
 	@Override public void onNewToken(String token) {
-		NotificationService.getInstance(getApplicationContext()).setDevice_token(token);
-		NotificationService.getInstance(getApplicationContext()).sendRegistrationToServer();
+		((Application) getApplicationContext()).getPreferenceManager().setToken(token);
+		NotificationService.sendRegistrationToServer((Application) getApplicationContext());
 	}
 }

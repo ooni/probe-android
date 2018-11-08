@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.activity.OverviewActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.item.TestsuiteItem;
@@ -61,7 +62,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		AbstractSuite testSuite = (AbstractSuite) v.getTag();
 		switch (v.getId()) {
 			case R.id.run:
-				Intent intent = RunningActivity.newIntent(getActivity(), testSuite);
+				Intent intent = RunningActivity.newIntent((AbstractActivity) getActivity(), testSuite);
 				if (intent != null)
 					startActivity(intent);
 				break;

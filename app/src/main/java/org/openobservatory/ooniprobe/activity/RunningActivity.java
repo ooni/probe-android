@@ -28,14 +28,12 @@ import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
-import org.openobservatory.ooniprobe.utils.ConnectionState;
 import org.openobservatory.ooniprobe.utils.NotificationService;
 
 import java.util.ArrayList;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-import androidx.fragment.app.FragmentActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.ooni.mk.MKGeoIPLookupResults;
@@ -58,8 +56,8 @@ public class RunningActivity extends AbstractActivity {
 	private AbstractSuite testSuite;
 	private boolean background;
 
-	public static Intent newIntent(FragmentActivity context, AbstractSuite testSuite) {
-		if (ConnectionState.getInstance(context).getNetworkType().equals(NotificationService.NO_INTERNET)) {
+	public static Intent newIntent(AbstractActivity context, AbstractSuite testSuite) {
+		if (context.getPreferenceManager().getNetworkType().equals(NotificationService.NO_INTERNET)) {
 			MessageDialogFragment.newInstance(context.getString(R.string.Modal_Error), context.getString(R.string.Modal_Error_NoInternet), false).show(context.getSupportFragmentManager(), null);
 			return null;
 		} else

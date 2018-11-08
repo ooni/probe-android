@@ -7,7 +7,6 @@ import com.google.gson.annotations.SerializedName;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
-import org.openobservatory.ooniprobe.utils.ConnectionState;
 import org.openobservatory.ooniprobe.utils.VersionUtils;
 
 import java.util.Arrays;
@@ -30,7 +29,7 @@ public class Settings {
 
 	public Settings(Context c, PreferenceManager pm) {
 		this.annotations = new HashMap<>();
-		this.annotations.put("network_type", ConnectionState.getInstance(c).getNetworkType());
+		this.annotations.put("network_type", pm.getNetworkType());
 		this.disabled_events = Arrays.asList("status.queued", "status.update.websites", "failure.report_close");
 		this.log_level = BuildConfig.DEBUG ? "DEBUG" : "INFO";
 		this.options = new Options(c, pm);

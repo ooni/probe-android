@@ -14,7 +14,6 @@ import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.model.jsonresult.EventResult;
 import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
 import org.openobservatory.ooniprobe.model.settings.Settings;
-import org.openobservatory.ooniprobe.utils.ConnectionState;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -64,7 +63,7 @@ public abstract class AbstractTest implements Serializable {
 						testCallback.onProgress(Double.valueOf(index * 100).intValue());
 						break;
 					case "status.geoip_lookup":
-						saveNetworkInfo(event.value, result, c);
+						saveNetworkInfo(event.value, result, pm);
 						break;
 					case "status.report_create":
 						reportId = event.value.report_id;
@@ -153,9 +152,9 @@ public abstract class AbstractTest implements Serializable {
 		measurement.setTestKeys(json.test_keys);
 	}
 
-	private void saveNetworkInfo(EventResult.Value value, Result result, Context c) {
+	private void saveNetworkInfo(EventResult.Value value, Result result, PreferenceManager pm) {
 		if (result != null && result.network == null) {
-			result.network = Network.checkExistingNetwork(value.probe_network_name, value.probe_ip, value.probe_asn, value.probe_cc, ConnectionState.getInstance(c).getNetworkType());
+			result.network = Network.checkExistingNetwork(value.probe_network_name, value.probe_ip, value.probe_asn, value.probe_cc, pm.getNetworkType());
 			result.save();
 		}
 	}

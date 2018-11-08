@@ -29,7 +29,7 @@
 				<action android:name="com.google.firebase.MESSAGING_EVENT" />
 			</intent-filter>
 		</service>
-		<receiver android:name=".utils.ConnectionStateMonitor">
+		<receiver android:name=".utils.ConnectivityChangeReceiver">
 			<intent-filter>
 				<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
 			</intent-filter>
