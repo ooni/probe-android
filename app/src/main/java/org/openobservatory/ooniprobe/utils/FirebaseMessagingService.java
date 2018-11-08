@@ -3,7 +3,6 @@ package org.openobservatory.ooniprobe.utils;
 import android.content.Intent;
 import android.util.Log;
 
-import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import org.json.JSONObject;
@@ -11,8 +10,8 @@ import org.openobservatory.ooniprobe.activity.NotificationDialogActivity;
 
 import java.util.Map;
 
-public class NotificationsRouter extends FirebaseMessagingService {
-	private final String TAG = "NotificationsRouter";
+public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
+	private static final String TAG = "FCM";
 
 	@Override
 	public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -39,7 +38,8 @@ public class NotificationsRouter extends FirebaseMessagingService {
 		}
 	}
 
-	@Override
-	public void onDeletedMessages() {
+	@Override public void onNewToken(String token) {
+		NotificationService.getInstance(getApplicationContext()).setDevice_token(token);
+		NotificationService.getInstance(getApplicationContext()).sendRegistrationToServer();
 	}
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.common.Application;
 
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class NotificationService {
 			geoip_country_path = c.getCacheDir() + "/" + Application.COUNTRY_MMDB;
 			platform = "android";
 			software_name = "ooniprobe-android";
-			software_version = VersionUtils.get_software_version();
+			software_version = BuildConfig.VERSION_NAME;
 			supported_tests = new ArrayList<>();
 			network_type = ConnectionState.getInstance(c).getNetworkType();
 			language = Locale.getDefault().getLanguage();

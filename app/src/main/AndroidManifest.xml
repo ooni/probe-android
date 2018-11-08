@@ -24,17 +24,11 @@
 			android:name="com.google.firebase.messaging.default_notification_color"
 			android:resource="@color/color_base" />
 
-		<service android:name=".utils.NotificationRegister">
-			<intent-filter>
-				<action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-			</intent-filter>
-		</service>
-		<service android:name=".utils.NotificationsRouter">
+		<service android:name=".utils.FirebaseMessagingService">
 			<intent-filter>
 				<action android:name="com.google.firebase.MESSAGING_EVENT" />
 			</intent-filter>
 		</service>
-
 		<receiver android:name=".utils.ConnectionStateMonitor">
 			<intent-filter>
 				<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
