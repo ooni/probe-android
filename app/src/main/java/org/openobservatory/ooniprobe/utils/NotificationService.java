@@ -89,8 +89,6 @@ public class NotificationService {
 		client.setLanguage(language);
 		client.setNetworkType(network_type);
 		client.setPlatform("android");
-		//TODO what to add here?
-		//client.setProbeFamily(String value);
 		client.setProbeTimezone(TimeZone.getDefault().getDisplayName(true, TimeZone.SHORT));
 		client.setRegistryURL(NOTIFICATION_SERVER);
 		client.setSecretsFile(auth_secret_file);
