@@ -49,6 +49,11 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
 			super.onBackPressed();
 	}
 
+	@Override public boolean onSupportNavigateUp() {
+		onBackPressed();
+		return true;
+	}
+
 	@OnClick(R.id.run) void runClick() {
 		ArrayList<String> urls = new ArrayList<>(editTexts.size());
 		for (EditText editText : editTexts) {

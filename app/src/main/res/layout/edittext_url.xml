@@ -27,5 +27,6 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:minWidth="0dp"
-		android:src="@drawable/ic_baseline_remove_circle_24px" />
+		android:src="@drawable/ic_baseline_remove_circle_24px"
+		android:tint="@color/color_red8" />
 </LinearLayout>
