@@ -23,7 +23,7 @@ import java.util.List;
 
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
-import io.ooni.mk.Task;
+import io.ooni.mk.MKTask;
 
 public abstract class AbstractTest implements Serializable {
 	public static final String UNUSED_KEY = "UNUSED_KEY";
@@ -51,7 +51,7 @@ public abstract class AbstractTest implements Serializable {
 		settings.inputs = inputs;
 		settings.options.max_runtime = max_runtime;
 		measurements = new SparseArray<>();
-		Task task = Task.startNettest(gson.toJson(settings));
+		MKTask task = MKTask.startNettest(gson.toJson(settings));
 		FileOutputStream logFOS = null;
 		while (!task.isDone())
 			try {
