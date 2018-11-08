@@ -69,24 +69,12 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.upload_results), true);
 	}
 
-	public Integer getNoUploadResults() {
-		return isUploadResults() ? 0 : 1;
-	}
-
 	public boolean isIncludeIp() {
 		return sp.getBoolean(r.getString(R.string.include_ip), false);
 	}
 
-	public Integer getIncludeIp() {
-		return isIncludeIp() ? 1 : 0;
-	}
-
 	public boolean isIncludeAsn() {
 		return sp.getBoolean(r.getString(R.string.include_asn), true);
-	}
-
-	public Integer getIncludeAsn() {
-		return isIncludeAsn() ? 1 : 0;
 	}
 
 	public boolean isKeepScreenOn() {
@@ -99,10 +87,6 @@ public class PreferenceManager {
 
 	public boolean isIncludeCc() {
 		return sp.getBoolean(r.getString(R.string.include_cc), true);
-	}
-
-	public Integer getIncludeCc() {
-		return isIncludeCc() ? 1 : 0;
 	}
 
 	public boolean isTestWhatsapp() {

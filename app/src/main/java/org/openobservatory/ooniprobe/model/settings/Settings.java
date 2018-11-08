@@ -37,6 +37,8 @@ public class Settings {
 	}
 
 	public static class Options {
+		@SerializedName("net/ca_bundle_path")
+		public String ca_bundle_path;
 		@SerializedName("geoip_asn_path")
 		public String geoip_asn_path;
 		@SerializedName("geoip_country_path")
@@ -44,13 +46,13 @@ public class Settings {
 		@SerializedName("max_runtime")
 		public Float max_runtime;
 		@SerializedName("no_collector")
-		public Integer no_collector;
+		public boolean no_collector;
 		@SerializedName("save_real_probe_asn")
-		public Integer save_real_probe_asn;
+		public boolean save_real_probe_asn;
 		@SerializedName("save_real_probe_cc")
-		public Integer save_real_probe_cc;
+		public boolean save_real_probe_cc;
 		@SerializedName("save_real_probe_ip")
-		public Integer save_real_probe_ip;
+		public boolean save_real_probe_ip;
 		@SerializedName("software_name")
 		public String software_name;
 		@SerializedName("software_version")
@@ -62,18 +64,19 @@ public class Settings {
 		@SerializedName("all_endpoints")
 		public Integer all_endpoints;
 		@SerializedName("randomize_input")
-		public Integer randomize_input;
+		public boolean randomize_input;
 
 		public Options(Context c, PreferenceManager pm) {
-			geoip_asn_path = c.getCacheDir() + "/" + Application.GEO_IPASNUM;
-			geoip_country_path = c.getCacheDir() + "/" + Application.GEO_IP;
-			no_collector = pm.getNoUploadResults();
-			save_real_probe_asn = pm.getIncludeAsn();
-			save_real_probe_cc = pm.getIncludeCc();
-			save_real_probe_ip = pm.getIncludeIp();
+			ca_bundle_path = c.getCacheDir() + "/" + Application.CA_BUNDLE;
+			geoip_asn_path = c.getCacheDir() + "/" + Application.ASN_MMDB;
+			geoip_country_path = c.getCacheDir() + "/" + Application.COUNTRY_MMDB;
+			no_collector = pm.isUploadResults();
+			save_real_probe_asn = pm.isIncludeAsn();
+			save_real_probe_cc = pm.isIncludeCc();
+			save_real_probe_ip = pm.isIncludeIp();
 			software_name = "ooniprobe-android";
 			software_version = VersionUtils.get_software_version();
-			randomize_input = 0;
+			randomize_input = false;
 		}
 	}
 }

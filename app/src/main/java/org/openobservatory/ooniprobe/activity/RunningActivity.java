@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.airbnb.lottie.LottieAnimationView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.OoniIOClient;
 import org.openobservatory.ooniprobe.model.RetrieveUrlResponse;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -76,6 +77,9 @@ public class RunningActivity extends AbstractActivity {
 		if (downloadUrls) {
 			MKGeoIPLookupSettings settings = new MKGeoIPLookupSettings();
 			settings.setTimeout(17);
+			settings.setCABundlePath(getCacheDir() + "/" + Application.CA_BUNDLE);
+			settings.setCountryDBPath(getCacheDir() + "/" + Application.COUNTRY_MMDB);
+			settings.setASNDBPath(getCacheDir() + "/" + Application.ASN_MMDB);
 			MKGeoIPLookupResults results = settings.perform();
 			String probe_cc = "XX";
 			if (results.good())
