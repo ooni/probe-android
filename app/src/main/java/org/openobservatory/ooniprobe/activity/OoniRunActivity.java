@@ -14,15 +14,11 @@ import com.google.gson.Gson;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.item.TextItem;
+import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
-import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
-import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
-import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
-import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import androidx.appcompat.widget.Toolbar;
@@ -36,7 +32,6 @@ import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 import localhost.toolkit.widget.StartEndSpacesItemDecoration;
 
 public class OoniRunActivity extends AbstractActivity {
-	public static final List<AbstractSuite> SUITES = Arrays.asList(new InstantMessagingSuite(), new MiddleBoxesSuite(), new MiddleBoxesSuite(), new PerformanceSuite(), new WebsitesSuite());
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.icon) ImageView icon;
 	@BindView(R.id.iconBig) ImageView iconBig;
@@ -172,7 +167,7 @@ public class OoniRunActivity extends AbstractActivity {
 	}
 
 	public AbstractSuite getSuite(String tn, List<String> urls) {
-		for (AbstractSuite suite : SUITES)
+		for (AbstractSuite suite : TestAsyncTask.SUITES)
 			for (AbstractTest test : suite.getTestList(getPreferenceManager()))
 				if (test.getName().equals(tn)) {
 					test.setInputs(urls);

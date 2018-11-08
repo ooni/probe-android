@@ -4,11 +4,19 @@ import android.os.AsyncTask;
 
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.model.database.Result;
+import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
+import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
+import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
+import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
+import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
 import java.lang.ref.WeakReference;
+import java.util.Arrays;
+import java.util.List;
 
 public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<AbstractTest, String, Void> implements AbstractTest.TestCallback {
+	public static final List<AbstractSuite> SUITES = Arrays.asList(new InstantMessagingSuite(), new MiddleBoxesSuite(), new MiddleBoxesSuite(), new PerformanceSuite(), new WebsitesSuite());
 	public static final String PRG = "PRG";
 	public static final String LOG = "LOG";
 	public static final String RUN = "RUN";

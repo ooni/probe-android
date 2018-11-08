@@ -9,6 +9,8 @@ import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
 import java.util.ArrayList;
 
+import androidx.annotation.Nullable;
+
 public class InstantMessagingSuite extends AbstractSuite {
 	public static final String NAME = "instant_messaging";
 
@@ -26,14 +28,14 @@ public class InstantMessagingSuite extends AbstractSuite {
 				"< 1 MB", 30);
 	}
 
-	@Override public AbstractTest[] getTestList(PreferenceManager pm) {
+	@Override public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
 		if (super.getTestList(pm) == null) {
 			ArrayList<AbstractTest> list = new ArrayList<>();
-			if (pm.isTestWhatsapp())
+			if (pm == null || pm.isTestWhatsapp())
 				list.add(new Whatsapp());
-			if (pm.isTestTelegram())
+			if (pm == null || pm.isTestTelegram())
 				list.add(new Telegram());
-			if (pm.isTestFacebookMessenger())
+			if (pm == null || pm.isTestFacebookMessenger())
 				list.add(new FacebookMessenger());
 			super.setTestList(list.toArray(new AbstractTest[0]));
 		}

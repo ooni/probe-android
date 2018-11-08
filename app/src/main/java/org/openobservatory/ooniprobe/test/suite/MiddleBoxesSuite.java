@@ -8,6 +8,8 @@ import org.openobservatory.ooniprobe.test.test.HttpInvalidRequestLine;
 
 import java.util.ArrayList;
 
+import androidx.annotation.Nullable;
+
 public class MiddleBoxesSuite extends AbstractSuite {
 	public static final String NAME = "middle_boxes";
 
@@ -25,12 +27,12 @@ public class MiddleBoxesSuite extends AbstractSuite {
 				"< 1 MB", 15);
 	}
 
-	@Override public AbstractTest[] getTestList(PreferenceManager pm) {
+	@Override public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
 		if (super.getTestList(pm) == null) {
 			ArrayList<AbstractTest> list = new ArrayList<>();
-			if (pm.isRunHttpHeaderFieldManipulation())
+			if (pm == null || pm.isRunHttpHeaderFieldManipulation())
 				list.add(new HttpHeaderFieldManipulation());
-			if (pm.isRunHttpInvalidRequestLine())
+			if (pm == null || pm.isRunHttpInvalidRequestLine())
 				list.add(new HttpInvalidRequestLine());
 			super.setTestList(list.toArray(new AbstractTest[0]));
 		}

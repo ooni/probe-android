@@ -5,6 +5,8 @@ import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
+import androidx.annotation.Nullable;
+
 public class WebsitesSuite extends AbstractSuite {
 	public static final String NAME = "websites";
 
@@ -22,7 +24,7 @@ public class WebsitesSuite extends AbstractSuite {
 				"~ 8 MB", 120);
 	}
 
-	@Override public AbstractTest[] getTestList(PreferenceManager pm) {
+	@Override public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
 		if (super.getTestList(pm) == null)
 			super.setTestList(new WebConnectivity());
 		return super.getTestList(pm);

@@ -4,8 +4,10 @@ import android.content.Context;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
-import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.test.TestAsyncTask;
+import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
+import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,10 +96,10 @@ public class NotificationService {
 		client.setSecretsFile(auth_secret_file);
 		client.setSoftwareName(software_name);
 		client.setSoftwareVersion(software_version);
-		//TODO-ALE add @"web_connectivity", @"whatsapp", @"telegram", @"facebook_messenger", @"ndt", @"dash", @"http_invalid_request_line", @"http_header_field_manipulation"
-		//client.addSupportedTest();
+		for (AbstractSuite suite : TestAsyncTask.SUITES)
+			for (AbstractTest test : suite.getTestList(null))
+				client.addSupportedTest(test.getName());
 		client.setTimeout(17);
 		client.sync();
-
 	}
 }
