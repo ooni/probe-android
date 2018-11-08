@@ -16,7 +16,7 @@ public class NotificationService {
 	public static final String MOBILE = "mobile";
 	public static final String NO_INTERNET = "no_internet";
 
-	static void sendRegistrationToServer(Application app) {
+	synchronized static void sendRegistrationToServer(Application app) {
 		if (app.getPreferenceManager().getToken() != null) {
 			MKOrchestraClient client = new MKOrchestraClient();
 			//client.setAvailableBandwidth(String value); TODO-2.1
