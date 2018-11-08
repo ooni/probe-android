@@ -8,6 +8,7 @@ import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.utils.ConnectionState;
+import org.openobservatory.ooniprobe.utils.VersionUtils;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -74,7 +75,7 @@ public class Settings {
 			save_real_probe_cc = pm.isIncludeCc();
 			save_real_probe_ip = pm.isIncludeIp();
 			software_name = "ooniprobe-android";
-			software_version = BuildConfig.VERSION_NAME;
+			software_version = VersionUtils.get_software_version();
 			randomize_input = false;
 		}
 	}

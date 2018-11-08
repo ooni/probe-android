@@ -43,7 +43,7 @@ public class NotificationService {
 			geoip_country_path = c.getCacheDir() + "/" + Application.COUNTRY_MMDB;
 			platform = "android";
 			software_name = "ooniprobe-android";
-			software_version = BuildConfig.VERSION_NAME;
+			software_version = VersionUtils.get_software_version();
 			supported_tests = new ArrayList<>();
 			network_type = ConnectionState.getInstance(c).getNetworkType();
 			language = Locale.getDefault().getLanguage();
@@ -96,7 +96,7 @@ public class NotificationService {
 		client.setSecretsFile(auth_secret_file);
 		client.setSoftwareName(software_name);
 		client.setSoftwareVersion(software_version);
-		//TODO add @"web_connectivity", @"whatsapp", @"telegram", @"facebook_messenger", @"ndt", @"dash", @"http_invalid_request_line", @"http_header_field_manipulation"
+		//TODO-ALE add @"web_connectivity", @"whatsapp", @"telegram", @"facebook_messenger", @"ndt", @"dash", @"http_invalid_request_line", @"http_header_field_manipulation"
 		//client.addSupportedTest();
 		client.setTimeout(17);
 		client.sync();
