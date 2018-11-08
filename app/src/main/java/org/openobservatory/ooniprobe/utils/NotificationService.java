@@ -1,26 +1,25 @@
 package org.openobservatory.ooniprobe.utils;
 
 import android.content.Context;
-import android.content.IntentFilter;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
-import org.openobservatory.measurement_kit.common.LogSeverity;
-import org.openobservatory.measurement_kit.swig.Error;
-import org.openobservatory.measurement_kit.swig.OrchestrateAuth;
-import org.openobservatory.measurement_kit.swig.OrchestrateClient;
 import org.openobservatory.ooniprobe.common.Application;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
+
+import io.ooni.mk.MKOrchestraClient;
 
 public class NotificationService {
 	public static final String NOTIFICATION_SERVER_DEV = "https://registry.proteus.test.ooni.io";
 	private static final String TAG = "NotificationService";
 	private static final String NOTIFICATION_SERVER_PROD = "https://registry.proteus.ooni.io";
-	private static final String NOTIFICATION_SERVER = NOTIFICATION_SERVER_PROD;
+	private static final String NOTIFICATION_SERVER = NOTIFICATION_SERVER_DEV;
 	public static Context context;
+	static String ca_bundle_path;
 	static String geoip_country_path;
 	static String geoip_asn_path;
 	static String platform;
@@ -38,8 +37,9 @@ public class NotificationService {
 		if (instance == null) {
 			context = c;
 			instance = new NotificationService();
-			geoip_asn_path = c.getCacheDir() + "/" + Application.GEO_IPASNUM;
-			geoip_country_path = c.getCacheDir() + "/" + Application.GEO_IP;
+			ca_bundle_path = c.getCacheDir() + "/" + Application.CA_BUNDLE;
+			geoip_asn_path = c.getCacheDir() + "/" + Application.ASN_MMDB;
+			geoip_country_path = c.getCacheDir() + "/" + Application.COUNTRY_MMDB;
 			platform = "android";
 			software_name = "ooniprobe-android";
 			software_version = VersionUtils.get_software_version();
@@ -78,60 +78,27 @@ public class NotificationService {
         */
 		//if device_token is null the user hasn't enabled push notifications
 		if (device_token == null) return;
-		final OrchestrateClient client = new OrchestrateClient();
-		client.set_verbosity(LogSeverity.LOG_DEBUG);
-		client.use_logcat();
-		client.set_geoip_country_path(geoip_country_path);
-		client.set_geoip_asn_path(geoip_asn_path);
-		client.set_platform(platform);
-		client.set_software_name(software_name);
-		client.set_software_version(software_version);
-		client.set_supported_tests(supported_tests);
-		client.set_network_type(network_type);
-		client.set_language(language);
-		client.set_device_token(device_token);
-		client.set_registry_url(NOTIFICATION_SERVER);
-		//TODO-LOR add timezone
-		//client.set_probe_timezone
+		MKOrchestraClient client = new MKOrchestraClient();
+		//TODO-2.1
+		//client.setAvailableBandwidth(String value);
+		client.setDeviceToken(device_token);
+		client.setCABundlePath(ca_bundle_path);
+		client.setGeoIPCountryPath(geoip_country_path);
+		client.setGeoIPASNPath(geoip_asn_path);
+		client.setLanguage(language);
+		client.setNetworkType(network_type);
+		client.setPlatform("android");
+		//TODO what to add here?
+		//client.setProbeFamily(String value);
+		client.setProbeTimezone(TimeZone.getDefault().getDisplayName(true, TimeZone.SHORT));
+		client.setRegistryURL(NOTIFICATION_SERVER);
+		client.setSecretsFile(auth_secret_file);
+		client.setSoftwareName(software_name);
+		client.setSoftwareVersion(software_version);
+		//TODO add @"web_connectivity", @"whatsapp", @"telegram", @"facebook_messenger", @"ndt", @"dash", @"http_invalid_request_line", @"http_header_field_manipulation"
+		//client.addSupportedTest();
+		client.setTimeout(17);
+		client.sync();
 
-		//TODO-FUTURE
-		//client.set_available_bandwidth();
-		client.find_location(
-				(error, probe_asn, probe_cc) -> {
-					if (error.as_bool()) {
-						System.out.println(error.reason());
-						return;
-					}
-					System.out.println("ASN: " + probe_asn);
-					System.out.println("CC: " + probe_cc);
-					OrchestrateAuth auth = new OrchestrateAuth();
-					client.set_probe_asn(probe_asn);
-					client.set_probe_cc(probe_cc);
-					Error err = auth.load(auth_secret_file);
-					if (err.as_bool()) {
-						client.register_probe(
-								OrchestrateAuth.make_password(),
-								(error1, auth1) -> {
-									if (error1.as_bool()) {
-										System.out.println(error1.reason());
-										return;
-									}
-									Error err1 = auth1.dump(auth_secret_file);
-									System.out.println(
-											"Error: " + err1.reason());
-								});
-						return;
-					}
-					client.update(
-							auth,
-							(error12, auth12) -> {
-								if (error12.as_bool()) {
-									System.out.println(error12.reason());
-									return;
-								}
-								Error err12 = auth12.dump(auth_secret_file);
-								System.out.println("Error: " + err12.reason());
-							});
-				});
 	}
 }
