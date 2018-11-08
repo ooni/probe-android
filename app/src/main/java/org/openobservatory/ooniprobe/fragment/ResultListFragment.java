@@ -34,6 +34,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
+import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -57,6 +58,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 	@BindView(R.id.download) TextView download;
 	@BindView(R.id.filterTests) Spinner filterTests;
 	@BindView(R.id.recycler) RecyclerView recycler;
+	@BindView(R.id.emptyState) TextView emptyState;
 	private ArrayList<HeterogeneousRecyclerItem> items;
 	private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
 	private boolean refresh;
@@ -115,30 +117,38 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 		String filter = getResources().getStringArray(R.array.filterTestValues)[filterTests.getSelectedItemPosition()];
 		if (!filter.isEmpty())
 			where.add(Result_Table.test_group_name.is(filter));
-		for (Result result : SQLite.select().from(Result.class).where(where.toArray(new SQLOperator[0])).orderBy(Result_Table.start_time, false).queryList()) {
-			Calendar c = Calendar.getInstance();
-			c.setTime(result.start_time);
-			int key = c.get(Calendar.YEAR) * 100 + c.get(Calendar.MONTH);
-			if (!set.contains(key)) {
-				items.add(new DateItem(result.start_time));
-				set.add(key);
+		List<Result> list = SQLite.select().from(Result.class).where(where.toArray(new SQLOperator[0])).orderBy(Result_Table.start_time, false).queryList();
+		if (list.isEmpty()) {
+			emptyState.setVisibility(View.VISIBLE);
+			recycler.setVisibility(View.GONE);
+		} else {
+			emptyState.setVisibility(View.GONE);
+			recycler.setVisibility(View.VISIBLE);
+			for (Result result : list) {
+				Calendar c = Calendar.getInstance();
+				c.setTime(result.start_time);
+				int key = c.get(Calendar.YEAR) * 100 + c.get(Calendar.MONTH);
+				if (!set.contains(key)) {
+					items.add(new DateItem(result.start_time));
+					set.add(key);
+				}
+				switch (result.test_group_name) {
+					case WebsitesSuite.NAME:
+						items.add(new WebsiteItem(result, this, this));
+						break;
+					case InstantMessagingSuite.NAME:
+						items.add(new InstantMessagingItem(result, this, this));
+						break;
+					case MiddleBoxesSuite.NAME:
+						items.add(new MiddleboxesItem(result, this, this));
+						break;
+					case PerformanceSuite.NAME:
+						items.add(new PerformanceItem(result, this, this));
+						break;
+				}
 			}
-			switch (result.test_group_name) {
-				case WebsitesSuite.NAME:
-					items.add(new WebsiteItem(result, this, this));
-					break;
-				case InstantMessagingSuite.NAME:
-					items.add(new InstantMessagingItem(result, this, this));
-					break;
-				case MiddleBoxesSuite.NAME:
-					items.add(new MiddleboxesItem(result, this, this));
-					break;
-				case PerformanceSuite.NAME:
-					items.add(new PerformanceItem(result, this, this));
-					break;
-			}
+			adapter.notifyTypesChanged();
 		}
-		adapter.notifyTypesChanged();
 	}
 
 	@Override public void onClick(View v) {

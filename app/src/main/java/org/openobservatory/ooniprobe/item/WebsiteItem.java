@@ -11,6 +11,8 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 
+import java.util.Locale;
+
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,7 +40,7 @@ public class WebsiteItem extends HeterogeneousRecyclerItem<Result, WebsiteItem.V
 		viewHolder.itemView.setOnLongClickListener(onLongClickListener);
 		viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(viewHolder.itemView.getContext(), extra.is_viewed ? android.R.color.transparent : R.color.color_yellow0));
 		viewHolder.asnName.setText(Html.fromHtml(Network.toString(viewHolder.asnName.getContext(), extra.network, 1)));
-		viewHolder.startTime.setText(DateFormat.getDateFormat(viewHolder.startTime.getContext()).format(extra.start_time));
+		viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), extra.start_time));
 		Long blocked = extra.countAnomalousMeasurements();
 		Long available = extra.countOkMeasurements();
 		viewHolder.failedMeasurements.setText(viewHolder.failedMeasurements.getContext().getResources().getQuantityString(R.plurals.TestResults_Overview_Websites_Blocked, blocked.intValue(), blocked.toString()));

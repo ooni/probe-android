@@ -10,7 +10,6 @@
 		android:theme="@style/Theme.MaterialComponents.NoActionBar.App">
 
 		<com.google.android.material.appbar.CollapsingToolbarLayout
-			android:id="@+id/collapsingToolbarLayout"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			app:contentScrim="?attr/colorPrimary"
@@ -54,13 +53,6 @@
 		android:gravity="center_horizontal"
 		android:orientation="vertical"
 		app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:gravity="center_horizontal"
-			android:text="@string/Settings_About_Content_Paragraph"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
 		<TextView
 			android:layout_width="match_parent"

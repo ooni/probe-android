@@ -1,9 +1,8 @@
 package org.openobservatory.ooniprobe.activity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Patterns;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -13,14 +12,16 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import localhost.toolkit.app.ConfirmDialogFragment;
 
-public class CustomWebsiteActivity extends AbstractActivity {
+public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
 	@BindView(R.id.urlContainer) LinearLayout urlContainer;
 	private ArrayList<EditText> editTexts;
 	private ArrayList<ImageButton> deletes;
@@ -31,17 +32,26 @@ public class CustomWebsiteActivity extends AbstractActivity {
 		ButterKnife.bind(this);
 		editTexts = new ArrayList<>();
 		deletes = new ArrayList<>();
-		if (getCustomUrl().isEmpty())
-			add();
-		else for (String url : getCustomUrl())
-			add(url);
+		add();
 	}
 
-	@Override protected void onStop() {
-		getCustomUrl().clear();
+	@Override public void onBackPressed() {
+		String base = getString(R.string.http);
+		boolean edited = false;
 		for (EditText editText : editTexts)
-			getCustomUrl().add(editText.getText().toString());
-		super.onStop();
+			if (!editText.getText().toString().equals(base)) {
+				edited = true;
+				break;
+			}
+		if (edited)
+			ConfirmDialogFragment.newInstance(null, getString(R.string.General_AppName), getString(R.string.Modal_CustomURL_NotSaved)).show(getSupportFragmentManager(), null);
+		else
+			super.onBackPressed();
+	}
+
+	@Override public boolean onSupportNavigateUp() {
+		onBackPressed();
+		return true;
 	}
 
 	@OnClick(R.id.run) void runClick() {
@@ -84,5 +94,10 @@ public class CustomWebsiteActivity extends AbstractActivity {
 	private void setVisibilityDelete() {
 		for (ImageButton delete : deletes)
 			delete.setVisibility(deletes.size() > 1 ? View.VISIBLE : View.INVISIBLE);
+	}
+
+	@Override public void onConfirmation(Serializable serializable, int i) {
+		if (i == DialogInterface.BUTTON_POSITIVE)
+			super.onBackPressed();
 	}
 }

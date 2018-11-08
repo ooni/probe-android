@@ -11,4 +11,10 @@ public class OnboardingActivity extends AbstractActivity {
 		super.onCreate(savedInstanceState);
 		getSupportFragmentManager().beginTransaction().replace(android.R.id.content, new Onboarding1Fragment()).commit();
 	}
+
+	@Override
+	public void onBackPressed()
+	{
+
+	}
 }

@@ -32,7 +32,8 @@
 			android:id="@+id/startTime"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+			android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+			android:textColor="@color/color_gray7" />
 	</LinearLayout>
 
 	<LinearLayout
