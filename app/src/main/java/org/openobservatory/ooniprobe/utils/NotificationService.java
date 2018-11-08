@@ -21,6 +21,9 @@ public class NotificationService {
 	private static final String TAG = "NotificationService";
 	private static final String NOTIFICATION_SERVER_PROD = "https://registry.proteus.ooni.io";
 	private static final String NOTIFICATION_SERVER = NOTIFICATION_SERVER_DEV;
+	public static final String WIFI = "wifi";
+	public static final String MOBILE = "mobile";
+	public static final String NO_INTERNET = "no_internet";
 	public static Context context;
 	static String ca_bundle_path;
 	static String geoip_country_path;

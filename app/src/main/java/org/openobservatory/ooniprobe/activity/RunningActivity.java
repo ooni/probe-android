@@ -29,6 +29,7 @@ import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 import org.openobservatory.ooniprobe.utils.ConnectionState;
+import org.openobservatory.ooniprobe.utils.NotificationService;
 
 import java.util.ArrayList;
 
@@ -58,7 +59,7 @@ public class RunningActivity extends AbstractActivity {
 	private boolean background;
 
 	public static Intent newIntent(FragmentActivity context, AbstractSuite testSuite) {
-		if (ConnectionState.getInstance(context).getNetworkType().equals("no_internet")) {
+		if (ConnectionState.getInstance(context).getNetworkType().equals(NotificationService.NO_INTERNET)) {
 			MessageDialogFragment.newInstance(context.getString(R.string.Modal_Error), context.getString(R.string.Modal_Error_NoInternet), false).show(context.getSupportFragmentManager(), null);
 			return null;
 		} else
