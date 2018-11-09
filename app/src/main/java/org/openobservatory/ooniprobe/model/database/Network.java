@@ -61,7 +61,45 @@ public class Network extends BaseModel implements Serializable {
 		return context.getString(R.string.TestResults_UnknownASN);
 	}
 
-	public static String toString(Context c, Network n, int size) {
+	public static String toStringCountry(Context c, Network n) {
+		ArrayList<String> parts = new ArrayList<>();
+		if (n == null)
+			parts.add(c.getString(R.string.TestResults_UnknownASN));
+		else {
+			String first;
+			if (n.network_name != null && !n.network_name.isEmpty())
+				first = n.network_name;
+			else if (n.asn != null && !n.asn.isEmpty())
+				first = n.asn;
+			else
+				first = c.getString(R.string.TestResults_UnknownASN);
+			parts.add(c.getString(R.string.bold, first));
+			if (n.network_type != null && !n.network_type.isEmpty())
+				parts.add(c.getString(R.string.brackets, getCountry(c, n)));
+		}
+		return TextUtils.join(" ", parts);
+	}
+
+	public static String toString(Context c, Network n) {
+		ArrayList<String> parts = new ArrayList<>();
+		if (n == null)
+			parts.add(c.getString(R.string.TestResults_UnknownASN));
+		else {
+			String first;
+			if (n.network_name != null && !n.network_name.isEmpty())
+				first = n.network_name;
+			else if (n.asn != null && !n.asn.isEmpty())
+				first = n.asn;
+			else
+				first = c.getString(R.string.TestResults_UnknownASN);
+			parts.add(c.getString(R.string.bold, first));
+			if (n.network_type != null && !n.network_type.isEmpty())
+				parts.add(c.getString(R.string.brackets, n.getLocalizedNetworkType(c)));
+		}
+		return TextUtils.join(" ", parts);
+	}
+
+	public static String toLongString(Context c, Network n) {
 		ArrayList<String> parts = new ArrayList<>();
 		if (n == null)
 			parts.add(c.getString(R.string.TestResults_UnknownASN));
@@ -76,9 +114,9 @@ public class Network extends BaseModel implements Serializable {
 			} else
 				first = c.getString(R.string.TestResults_UnknownASN);
 			parts.add(c.getString(R.string.bold, first));
-			if (size > 1 && n.network_type != null && !n.network_type.isEmpty())
-				parts.add(c.getString(R.string.brackets, getCountry(c, n)));
-			if (size > 2 && !asnUsed && n.asn != null && !n.asn.isEmpty())
+			if (n.network_type != null && !n.network_type.isEmpty())
+				parts.add(c.getString(R.string.brackets, n.getLocalizedNetworkType(c)));
+			if (!asnUsed && n.asn != null && !n.asn.isEmpty())
 				parts.add(c.getString(R.string.seg, n.asn));
 		}
 		return TextUtils.join(" ", parts);

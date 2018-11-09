@@ -111,7 +111,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
 				break;
 		}
 		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.footer, ResultHeaderDetailFragment.newInstance(true, null, null, measurement.start_time, measurement.runtime, false, measurement.result.network.country_code, Network.toString(this, measurement.result.network, 3)))
+				.replace(R.id.footer, ResultHeaderDetailFragment.newInstance(true, null, null, measurement.start_time, measurement.runtime, false, measurement.result.network.country_code, Network.toLongString(this, measurement.result.network)))
 				.replace(R.id.body, detail)
 				.replace(R.id.head, head)
 				.commit();
