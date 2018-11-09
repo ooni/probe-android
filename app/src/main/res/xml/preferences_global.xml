@@ -47,10 +47,6 @@
 		android:key="@string/advanced"
 		android:title="@string/Settings_Advanced_Label">
 		<androidx.preference.SwitchPreferenceCompat
-			android:defaultValue="false"
-			android:key="@string/keep_screen_on"
-			android:title="@string/Settings_Advanced_KeepScreenOn" />
-		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="@string/send_crash"
 			android:title="@string/Settings_Advanced_SendCrashReports" />

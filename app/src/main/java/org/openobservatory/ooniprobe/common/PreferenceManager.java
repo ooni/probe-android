@@ -89,10 +89,6 @@ public class PreferenceManager {
 		return isIncludeAsn() ? 1 : 0;
 	}
 
-	public boolean isKeepScreenOn() {
-		return sp.getBoolean(r.getString(R.string.keep_screen_on), true);
-	}
-
 	public boolean isDebugLogs() {
 		return sp.getBoolean(r.getString(R.string.debugLogs), true);
 	}

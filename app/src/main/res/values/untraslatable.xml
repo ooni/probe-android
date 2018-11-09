@@ -12,7 +12,6 @@
 	<string name="include_ip" translatable="false">include_ip</string>
 	<string name="include_asn" translatable="false">include_asn</string>
 	<string name="debugLogs" translatable="false">debugLogs</string>
-	<string name="keep_screen_on" translatable="false">keep_screen_on</string>
 	<string name="send_crash" translatable="false">send_crash</string>
 	<string name="debug_logs" translatable="false">debug_logs</string>
 	<string name="include_cc" translatable="false">include_cc</string>
