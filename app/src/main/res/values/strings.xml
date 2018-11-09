@@ -253,7 +253,6 @@
 	<string name="Settings_Sharing_Footer">By publishing results, you are increasing transparency of network interference and supporting the OONI community. Network information (i.e. Autonomous System Number) is required for identifying Internet Service Providers.</string>
 	<string name="Settings_Advanced_Label">Advanced</string>
 	<string name="Settings_Advanced_SendCrashReports">Send crash reports</string>
-	<string name="Settings_Advanced_KeepScreenOn">Keep screen on</string>
 	<string name="Settings_Advanced_DebugLogs">Debug logs</string>
 	<string name="Settings_Advanced_UseDomainFronting">Always use domain fronting</string>
 	<string name="Settings_Websites_MaxRuntime">Test duration</string>
