@@ -3,6 +3,7 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 	<item
 		android:id="@+id/clipboard"
+		android:icon="@drawable/ic_content_copy_white"
 		android:title="@string/TestResults_Details_CopyToClipboard"
 		app:showAsAction="ifRoom" />
 </menu>

@@ -42,7 +42,7 @@ public class MeasurementItem extends HeterogeneousRecyclerItem<Measurement, Meas
 		}
 		Drawable drawable = viewHolder.text.getCompoundDrawablesRelative()[0];
 		if (drawable != null)
-			DrawableCompat.setTint(DrawableCompat.wrap(drawable).mutate(), ContextCompat.getColor(viewHolder.text.getContext(), extra.is_failed ? R.color.color_gray5 : R.color.color_gray7));
+			DrawableCompat.setTint(DrawableCompat.wrap(drawable).mutate(), ContextCompat.getColor(viewHolder.text.getContext(), extra.is_failed ? R.color.color_gray5 : R.color.color_gray9));
 		viewHolder.text.setBackgroundColor(ContextCompat.getColor(viewHolder.text.getContext(), extra.is_failed ? R.color.color_gray1 : android.R.color.transparent));
 		viewHolder.text.setTextColor(ContextCompat.getColor(viewHolder.text.getContext(), extra.is_failed ? R.color.color_gray5 : R.color.color_gray9));
 	}

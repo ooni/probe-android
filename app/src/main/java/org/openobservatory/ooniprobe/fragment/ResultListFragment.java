@@ -103,7 +103,8 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 	@Override public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.delete:
-				ConfirmDialogFragment.newInstance(null, getString(R.string.General_AppName), getString(R.string.Modal_DoYouWantToDeleteAllTests)).show(getChildFragmentManager(), null);
+				ConfirmDialogFragment.newInstance(null, getString(R.string.General_AppName), getString(R.string.Modal_DoYouWantToDeleteAllTests),
+						null, "delete", null, null).show(getChildFragmentManager(), null); // TODO LOR string
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);

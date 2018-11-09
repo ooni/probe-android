@@ -77,6 +77,7 @@
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="@string/Dashboard_Card_Run"
+					android:textAllCaps="false"
 					android:textColor="?attr/colorPrimary"
 					app:cornerRadius="24dp" />
 

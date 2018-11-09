@@ -60,6 +60,7 @@
 			android:layout_gravity="center_horizontal|bottom"
 			android:layout_margin="16dp"
 			android:text="@string/OONIRun_Run"
+			android:textAllCaps="false"
 			app:cornerRadius="24dp" />
 	</FrameLayout>
 </LinearLayout>

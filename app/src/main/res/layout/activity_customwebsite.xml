@@ -23,7 +23,8 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="end"
-			android:text="@string/Settings_Websites_CustomURL_Add" />
+			android:text="@string/Settings_Websites_CustomURL_Add"
+			android:textAllCaps="false" />
 
 		<Button
 			android:id="@+id/run"
@@ -32,6 +33,7 @@
 			android:layout_gravity="bottom|center_horizontal"
 			android:layout_marginBottom="16dp"
 			android:text="@string/OONIRun_Run"
+			android:textAllCaps="false"
 			app:cornerRadius="24dp" />
 	</LinearLayout>
 </ScrollView>

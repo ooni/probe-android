@@ -77,6 +77,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="@string/Dashboard_Card_Run"
+			android:textAllCaps="false"
 			android:textColor="?attr/colorPrimary"
 			app:backgroundTint="@android:color/white"
 			app:cornerRadius="24dp" />
@@ -87,6 +88,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="@string/Dashboard_Overview_ChooseWebsites"
+			android:textAllCaps="false"
 			android:textColor="@color/color_white"
 			app:cornerRadius="24dp"
 			app:strokeColor="@android:color/white" />

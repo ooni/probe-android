@@ -26,7 +26,7 @@
 
 				<ImageView
 					android:layout_width="wrap_content"
-					android:layout_height="48dp"
+					android:layout_height="72dp"
 					android:src="@drawable/ooni_logo" />
 
 				<TextView
@@ -34,7 +34,7 @@
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:layout_marginTop="8dp"
-					android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+					android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
 			</LinearLayout>
 
 			<androidx.appcompat.widget.Toolbar
@@ -57,9 +57,7 @@
 		<TextView
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:gravity="center_horizontal"
-			android:text="@string/Settings_About_Content_Paragraph"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+			android:text="@string/Settings_About_Content_Paragraph" />
 
 		<Button
 			android:id="@+id/learnMore"
@@ -67,6 +65,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginTop="16dp"
 			android:text="@string/Settings_About_Content_LearnMore"
+			android:textAllCaps="false"
 			app:cornerRadius="24dp" />
 
 		<Button
@@ -74,6 +73,7 @@
 			style="@style/Widget.MaterialComponents.Button.TextButton"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="@string/Settings_About_Content_DataPolicy" />
+			android:text="@string/Settings_About_Content_DataPolicy"
+			android:textAllCaps="false" />
 	</LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
