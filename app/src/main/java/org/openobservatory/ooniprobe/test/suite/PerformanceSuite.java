@@ -8,6 +8,8 @@ import org.openobservatory.ooniprobe.test.test.Ndt;
 
 import java.util.ArrayList;
 
+import androidx.annotation.Nullable;
+
 public class PerformanceSuite extends AbstractSuite {
 	public static final String NAME = "performance";
 
@@ -25,12 +27,12 @@ public class PerformanceSuite extends AbstractSuite {
 				"5 - 200 MB", 90);
 	}
 
-	@Override public AbstractTest[] getTestList(PreferenceManager pm) {
+	@Override public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
 		if (super.getTestList(pm) == null) {
 			ArrayList<AbstractTest> list = new ArrayList<>();
-			if (pm.isRunNdt())
+			if (pm == null || pm.isRunNdt())
 				list.add(new Ndt());
-			if (pm.isRunDash())
+			if (pm == null || pm.isRunDash())
 				list.add(new Dash());
 			super.setTestList(list.toArray(new AbstractTest[0]));
 		}

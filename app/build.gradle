@@ -19,16 +19,20 @@ android {
 	}
 
 	buildTypes {
+		debug {
+			buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://registry.proteus.test.ooni.io"'
+		}
+
 		release {
 			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+			buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://registry.proteus.ooni.io"'
 		}
 	}
 }
 
 dependencies {
-	implementation 'androidx.appcompat:appcompat:1.0.0'
-	implementation 'androidx.preference:preference:1.0.0'
+	implementation 'androidx.appcompat:appcompat:1.0.2'
 
 	implementation 'com.google.firebase:firebase-messaging:17.3.4'
 	implementation 'com.google.firebase:firebase-core:16.0.5'
@@ -40,15 +44,14 @@ dependencies {
 	implementation 'com.squareup.retrofit2:retrofit:2.4.0'
 	implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 
-	annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-SNAPSHOT'
-	implementation 'com.jakewharton:butterknife:9.0.0-SNAPSHOT'
+	implementation 'com.jakewharton:butterknife:9.0.0-rc1'
+	annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
 
 	implementation('com.crashlytics.sdk.android:crashlytics:2.9.5@aar') { transitive = true }
-	implementation 'org.openobservatory.measurement_kit:android-libs:0.9.0-alpha.9-1-android.2'
+	implementation 'org.openobservatory.measurement_kit:android-libs:0.9.0-beta-android.4'
 	implementation 'com.github.xanscale.LocalhostToolkit:app:6a6214d255'
-	implementation 'pub.devrel:easypermissions:1.3.0'
-	implementation 'com.airbnb.android:lottie:2.5.6'
-	implementation 'com.github.apl-devs:appintro:v4.2.3'
+	implementation 'pub.devrel:easypermissions:2.0.0'
+	implementation 'com.airbnb.android:lottie:2.8.0'
 	implementation 'com.google.code.gson:gson:2.8.5'
 	implementation 'ru.noties:markwon:2.0.0'
 	implementation 'commons-io:commons-io:2.6'

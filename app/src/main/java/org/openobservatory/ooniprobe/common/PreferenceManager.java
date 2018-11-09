@@ -3,17 +3,22 @@ package org.openobservatory.ooniprobe.common;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.text.TextUtils;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.utils.NotificationService;
 
 import java.util.ArrayList;
 
 public class PreferenceManager {
 	public static final String GEO_VER = "geo_ver";
+	public static final String TOKEN = "token";
 	private static final String SHOW_ONBOARDING = "first_run";
 	private SharedPreferences sp;
 	private Resources r;
+	private ConnectivityManager connectivityManager;
 
 	PreferenceManager(Context context) {
 		androidx.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_global, true);
@@ -23,6 +28,25 @@ public class PreferenceManager {
 		androidx.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_websites, true);
 		sp = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context);
 		r = context.getResources();
+		connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+	}
+
+	public String getNetworkType() {
+		NetworkInfo info = connectivityManager.getActiveNetworkInfo();
+		if (info != null && info.getType() == ConnectivityManager.TYPE_WIFI)
+			return NotificationService.WIFI;
+		else if (info != null && info.getType() == ConnectivityManager.TYPE_MOBILE)
+			return NotificationService.MOBILE;
+		else
+			return NotificationService.NO_INTERNET;
+	}
+
+	public String getToken() {
+		return sp.getString(TOKEN, null);
+	}
+
+	public void setToken(String token) {
+		sp.edit().putString(TOKEN, token).apply();
 	}
 
 	public int getGeoVer() {
@@ -69,24 +93,12 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.upload_results), true);
 	}
 
-	public Integer getNoUploadResults() {
-		return isUploadResults() ? 0 : 1;
-	}
-
 	public boolean isIncludeIp() {
 		return sp.getBoolean(r.getString(R.string.include_ip), false);
 	}
 
-	public Integer getIncludeIp() {
-		return isIncludeIp() ? 1 : 0;
-	}
-
 	public boolean isIncludeAsn() {
 		return sp.getBoolean(r.getString(R.string.include_asn), true);
-	}
-
-	public Integer getIncludeAsn() {
-		return isIncludeAsn() ? 1 : 0;
 	}
 
 	public boolean isDebugLogs() {
@@ -95,10 +107,6 @@ public class PreferenceManager {
 
 	public boolean isIncludeCc() {
 		return sp.getBoolean(r.getString(R.string.include_cc), true);
-	}
-
-	public Integer getIncludeCc() {
-		return isIncludeCc() ? 1 : 0;
 	}
 
 	public boolean isTestWhatsapp() {

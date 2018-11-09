@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.airbnb.lottie.LottieAnimationView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.OoniIOClient;
 import org.openobservatory.ooniprobe.model.RetrieveUrlResponse;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -27,15 +28,16 @@ import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
-import org.openobservatory.ooniprobe.utils.ConnectionState;
+import org.openobservatory.ooniprobe.utils.NotificationService;
 
 import java.util.ArrayList;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-import androidx.fragment.app.FragmentActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.ooni.mk.MKGeoIPLookupResults;
+import io.ooni.mk.MKGeoIPLookupSettings;
 import localhost.toolkit.app.MessageDialogFragment;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -54,8 +56,8 @@ public class RunningActivity extends AbstractActivity {
 	private AbstractSuite testSuite;
 	private boolean background;
 
-	public static Intent newIntent(FragmentActivity context, AbstractSuite testSuite) {
-		if (ConnectionState.getInstance(context).getNetworkType().equals("no_internet")) {
+	public static Intent newIntent(AbstractActivity context, AbstractSuite testSuite) {
+		if (context.getPreferenceManager().getNetworkType().equals(NotificationService.NO_INTERNET)) {
 			MessageDialogFragment.newInstance(context.getString(R.string.Modal_Error), context.getString(R.string.Modal_Error_NoInternet), false).show(context.getSupportFragmentManager(), null);
 			return null;
 		} else
@@ -72,8 +74,17 @@ public class RunningActivity extends AbstractActivity {
 				break;
 			}
 		if (downloadUrls) {
+			MKGeoIPLookupSettings settings = new MKGeoIPLookupSettings();
+			settings.setTimeout(17);
+			settings.setCABundlePath(getCacheDir() + "/" + Application.CA_BUNDLE);
+			settings.setCountryDBPath(getCacheDir() + "/" + Application.COUNTRY_MMDB);
+			settings.setASNDBPath(getCacheDir() + "/" + Application.ASN_MMDB);
+			MKGeoIPLookupResults results = settings.perform();
+			String probe_cc = "XX";
+			if (results.good())
+				probe_cc = results.getProbeCC();
 			Retrofit retrofit = new Retrofit.Builder().baseUrl("https://orchestrate.ooni.io/").addConverterFactory(GsonConverterFactory.create()).build();
-			retrofit.create(OoniIOClient.class).getUrls("IT", getPreferenceManager().isAllCategoryEnabled() ? null : getPreferenceManager().getEnabledCategory()).enqueue(new Callback<RetrieveUrlResponse>() {
+			retrofit.create(OoniIOClient.class).getUrls(probe_cc, getPreferenceManager().isAllCategoryEnabled() ? null : getPreferenceManager().getEnabledCategory()).enqueue(new Callback<RetrieveUrlResponse>() {
 				@Override public void onResponse(Call<RetrieveUrlResponse> call, Response<RetrieveUrlResponse> response) {
 					if (response.isSuccessful() && response.body() != null && response.body().results != null) {
 						ArrayList<String> inputs = new ArrayList<>();

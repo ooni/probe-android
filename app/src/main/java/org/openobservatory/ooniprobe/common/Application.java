@@ -24,8 +24,9 @@ import io.fabric.sdk.android.Fabric;
 
 @Database(name = "v2", version = 1, foreignKeyConstraintsEnforced = true)
 public class Application extends android.app.Application {
-	public static final String GEO_IPASNUM = "GeoIPASNum.dat";
-	public static final String GEO_IP = "GeoIP.dat";
+	public static final String CA_BUNDLE = "ca_bundle.pem";
+	public static final String COUNTRY_MMDB = "country.mmdb";
+	public static final String ASN_MMDB = "asn.mmdb";
 	private static final int GEO_VER = 1;
 
 	static {
@@ -46,8 +47,9 @@ public class Application extends android.app.Application {
 		FirebaseApp.initializeApp(this);
 		if (BuildConfig.DEBUG)
 			FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
-		copyResources(R.raw.geoipasnum, GEO_IPASNUM);
-		copyResources(R.raw.geoip, GEO_IP);
+		copyResources(R.raw.ca_bundle, CA_BUNDLE);
+		copyResources(R.raw.asn, ASN_MMDB);
+		copyResources(R.raw.country, COUNTRY_MMDB);
 	}
 
 	private void copyResources(int id, String filename) {

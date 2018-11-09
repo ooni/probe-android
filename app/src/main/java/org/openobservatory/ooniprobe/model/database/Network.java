@@ -11,6 +11,7 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.utils.NotificationService;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -85,11 +86,11 @@ public class Network extends BaseModel implements Serializable {
 
 	public String getLocalizedNetworkType(Context context) {
 		switch (network_type) {
-			case "wifi":
+			case NotificationService.WIFI:
 				return context.getString(R.string.TestResults_Summary_Hero_WiFi);
-			case "mobile":
+			case NotificationService.MOBILE:
 				return context.getString(R.string.TestResults_Summary_Hero_Mobile);
-			case "no_internet":
+			case NotificationService.NO_INTERNET:
 				return context.getString(R.string.TestResults_Summary_Hero_NoInternet);
 		}
 		return "";

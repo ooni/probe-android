@@ -9,6 +9,7 @@ import java.io.Serializable;
 import androidx.annotation.CallSuper;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
 import androidx.annotation.XmlRes;
@@ -44,7 +45,7 @@ public abstract class AbstractSuite implements Serializable {
 		this.runtime = runtime;
 	}
 
-	@CallSuper public AbstractTest[] getTestList(PreferenceManager pm) {
+	@CallSuper public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
 		return testList;
 	}
 
