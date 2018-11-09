@@ -27,6 +27,7 @@ public class NotificationService {
 			client.setLanguage(Locale.getDefault().getLanguage());
 			client.setNetworkType(app.getPreferenceManager().getNetworkType());
 			client.setPlatform("android");
+			//TODO-2.1
 			client.setProbeTimezone(TimeZone.getDefault().getDisplayName(true, TimeZone.SHORT));
 			client.setRegistryURL(BuildConfig.NOTIFICATION_SERVER);
 			client.setSecretsFile(app.getFilesDir() + "/orchestration_secret.json");
