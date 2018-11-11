@@ -21,6 +21,6 @@ public class Onboarding1Fragment extends Fragment {
 	}
 
 	@OnClick(R.id.master) void masterClick() {
-		getFragmentManager().beginTransaction().replace(android.R.id.content, new Onboarding2Fragment()).addToBackStack(null).commit();
+		getFragmentManager().beginTransaction().replace(android.R.id.content, new Onboarding2Fragment()).commit();
 	}
 }
