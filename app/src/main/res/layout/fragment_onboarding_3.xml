@@ -84,7 +84,6 @@
 			android:text="@string/Onboarding_DefaultSettings_Button_Go"
 			android:textAllCaps="false"
 			android:textColor="#002B54"
-			app:backgroundTint="@color/color_white"
 			app:cornerRadius="32dp" />
 
 		<Button
