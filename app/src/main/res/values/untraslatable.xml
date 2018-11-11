@@ -45,6 +45,7 @@
 	<string name="r1440p_ext" translatable="false">1440p (2k)</string>
 	<string name="r2160p" translatable="false">2160p</string>
 	<string name="r2160p_ext" translatable="false">2160p (4k)</string>
+	<string name="bullet" translatable="false">• %1$s</string>
 	<string-array name="filterTests" translatable="false">
 		<item>@string/TestResults_Overview_FilterTests_AllTests</item>
 		<item>@string/TestResults_Overview_FilterTests_Websites</item>

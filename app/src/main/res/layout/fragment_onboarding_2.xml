@@ -25,6 +25,7 @@
 			android:textColor="@color/color_white" />
 
 		<TextView
+			android:id="@+id/bullet1"
 			style="@style/TextAppearance.MaterialComponents.Body1"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
@@ -34,6 +35,7 @@
 			android:textColor="@color/color_white" />
 
 		<TextView
+			android:id="@+id/bullet2"
 			style="@style/TextAppearance.MaterialComponents.Body1"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
