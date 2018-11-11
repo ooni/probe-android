@@ -80,7 +80,8 @@
 			android:textAllCaps="false"
 			android:textColor="?attr/colorPrimary"
 			app:backgroundTint="@android:color/white"
-			app:cornerRadius="24dp" />
+			app:cornerRadius="24dp"
+			app:rippleColor="@color/ripple_material_light" />
 
 		<Button
 			android:id="@+id/customUrl"
@@ -91,6 +92,7 @@
 			android:textAllCaps="false"
 			android:textColor="@color/color_white"
 			app:cornerRadius="24dp"
+			app:rippleColor="@color/ripple_material_light"
 			app:strokeColor="@android:color/white" />
 	</com.google.android.material.appbar.AppBarLayout>
 

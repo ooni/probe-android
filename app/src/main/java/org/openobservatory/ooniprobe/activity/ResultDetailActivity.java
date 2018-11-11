@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.format.DateFormat;
 import android.view.View;
 
 import com.google.android.material.tabs.TabLayout;
@@ -31,7 +30,6 @@ import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Locale;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -71,7 +69,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 		ActionBar bar = getSupportActionBar();
 		if (bar != null) {
 			bar.setDisplayHomeAsUpEnabled(true);
-			bar.setTitle(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), result.start_time));
+			bar.setTitle(result.getTestSuite().getTitle());
 		}
 		pager.setAdapter(new ResultHeaderAdapter());
 		tabLayout.setupWithViewPager(pager);

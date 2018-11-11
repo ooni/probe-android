@@ -63,8 +63,8 @@
 			android:layout_marginHorizontal="64dp"
 			android:text="@string/Onboarding_ThingsToKnow_Button"
 			android:textAllCaps="false"
-			android:textColor="#002B54"
 			app:backgroundTint="@color/color_white"
+			android:textColor="#002B54"
 			app:cornerRadius="32dp" />
 
 		<Button

@@ -27,9 +27,9 @@ public class Onboarding3Fragment extends Fragment {
 	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_onboarding_3, container, false);
 		ButterKnife.bind(this, v);
-		bullet1.setText("• " + getString(R.string.Onboarding_DefaultSettings_Bullet_1));
-		bullet2.setText("• " + getString(R.string.Onboarding_DefaultSettings_Bullet_2));
-		bullet3.setText("• " + getString(R.string.Onboarding_DefaultSettings_Bullet_3));
+		bullet1.setText(getString(R.string.bullet, getString(R.string.Onboarding_DefaultSettings_Bullet_1)));
+		bullet2.setText(getString(R.string.bullet, getString(R.string.Onboarding_DefaultSettings_Bullet_2)));
+		bullet3.setText(getString(R.string.bullet, getString(R.string.Onboarding_DefaultSettings_Bullet_3)));
 		Markwon.setMarkdown(paragraph, getString(R.string.Onboarding_DefaultSettings_Paragraph));
 		return v;
 	}
