@@ -25,21 +25,27 @@
 			android:textColor="@color/color_white" />
 
 		<TextView
-			style="@style/TextAppearance.MaterialComponents.Body1"
+			android:id="@+id/bullet1"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginHorizontal="32dp"
-			android:layout_marginTop="16dp"
 			android:text="@string/Onboarding_ThingsToKnow_Bullet_1"
 			android:textColor="@color/color_white" />
 
 		<TextView
-			style="@style/TextAppearance.MaterialComponents.Body1"
+			android:id="@+id/bullet2"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginHorizontal="32dp"
-			android:layout_marginTop="16dp"
 			android:text="@string/Onboarding_ThingsToKnow_Bullet_2"
+			android:textColor="@color/color_white" />
+
+		<TextView
+			android:id="@+id/bullet3"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginHorizontal="32dp"
+			android:text="@string/Onboarding_ThingsToKnow_Bullet_3"
 			android:textColor="@color/color_white" />
 	</LinearLayout>
 

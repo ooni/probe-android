@@ -32,7 +32,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginHorizontal="32dp"
 			android:layout_marginTop="6dp"
-			android:text="@string/Onboarding_DefaultSettings_Header_1"
+			android:text="@string/Onboarding_DefaultSettings_Header"
 			android:textColor="@color/color_white"
 			android:textStyle="bold" />
 

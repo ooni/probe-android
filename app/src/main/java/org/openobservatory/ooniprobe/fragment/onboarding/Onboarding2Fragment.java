@@ -6,19 +6,29 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class Onboarding2Fragment extends Fragment implements OnboardingDialogPopquizFragment.OnboardingPopquizInterface, OnboardingDialogWarningFragment.OnboardingWarningInterface {
+	@BindView(R.id.paragraph)
+	@BindView(R.id.bullet1) TextView bullet1;
+	@BindView(R.id.bullet2) TextView bullet2;
+	@BindView(R.id.bullet3) TextView bullet3;
+
 	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_onboarding_2, container, false);
 		ButterKnife.bind(this, v);
+		bullet1.setText("• " + getString(R.string.Onboarding_DefaultSettings_Bullet_1));
+		bullet2.setText("• " + getString(R.string.Onboarding_DefaultSettings_Bullet_2));
+		bullet3.setText("• " + getString(R.string.Onboarding_DefaultSettings_Bullet_3));
 		return v;
 	}
 
