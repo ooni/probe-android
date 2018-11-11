@@ -11,7 +11,8 @@
 
 	<FrameLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="wrap_content"
+		android:foreground="?attr/selectableItemBackgroundBorderless">
 
 		<ImageView
 			android:id="@+id/icon"
@@ -79,7 +80,8 @@
 					android:text="@string/Dashboard_Card_Run"
 					android:textAllCaps="false"
 					android:textColor="?attr/colorPrimary"
-					app:cornerRadius="24dp" />
+					app:cornerRadius="24dp"
+					app:rippleColor="@color/ripple_material_light" />
 
 				<TextView
 					android:id="@+id/runtime"
