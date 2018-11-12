@@ -87,7 +87,7 @@ public class ResultHeaderDetailFragment extends Fragment {
 		else
 			countryBox.setVisibility(View.GONE);
 		if (getArguments().containsKey(NETWORK_NAME))
-			network.setText(Html.fromHtml(getArguments().getString(NETWORK_NAME)));
+			network.setText(getArguments().getString(NETWORK_NAME));
 		else
 			networkBox.setVisibility(View.GONE);
 		return v;

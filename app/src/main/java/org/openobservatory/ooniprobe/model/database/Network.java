@@ -1,7 +1,6 @@
 package org.openobservatory.ooniprobe.model.database;
 
 import android.content.Context;
-import android.text.TextUtils;
 
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
@@ -14,7 +13,6 @@ import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.utils.NotificationService;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 @Table(database = Application.class)
 public class Network extends BaseModel implements Serializable {
@@ -43,95 +41,43 @@ public class Network extends BaseModel implements Serializable {
 		return network;
 	}
 
-	public static String getAsn(Context context, Network network) {
+	public static String getAsn(Context c, Network network) {
 		if (network != null && network.asn != null)
 			return network.asn;
-		return context.getString(R.string.TestResults_UnknownASN);
+		return c.getString(R.string.TestResults_UnknownASN);
 	}
 
-	public static String getAsnName(Context context, Network network) {
+	public static String getName(Context c, Network network) {
 		if (network != null && network.network_name != null)
 			return network.network_name;
-		return context.getString(R.string.TestResults_UnknownASN);
+		return c.getString(R.string.TestResults_UnknownASN);
 	}
 
-	public static String getCountry(Context context, Network network) {
+	public static String getCountry(Context c, Network network) {
 		if (network != null && network.country_code != null)
 			return network.country_code;
-		return context.getString(R.string.TestResults_UnknownASN);
-	}
-
-	public static String toStringCountry(Context c, Network n) {
-		ArrayList<String> parts = new ArrayList<>();
-		if (n == null)
-			parts.add(c.getString(R.string.TestResults_UnknownASN));
-		else {
-			String first;
-			if (n.network_name != null && !n.network_name.isEmpty())
-				first = n.network_name;
-			else if (n.asn != null && !n.asn.isEmpty())
-				first = n.asn;
-			else
-				first = c.getString(R.string.TestResults_UnknownASN);
-			parts.add(c.getString(R.string.bold, first));
-			if (n.network_type != null && !n.network_type.isEmpty())
-				parts.add(c.getString(R.string.brackets, getCountry(c, n)));
-		}
-		return TextUtils.join(" ", parts);
+		return c.getString(R.string.TestResults_UnknownASN);
 	}
 
 	public static String toString(Context c, Network n) {
-		ArrayList<String> parts = new ArrayList<>();
-		if (n == null)
-			parts.add(c.getString(R.string.TestResults_UnknownASN));
-		else {
-			String first;
-			if (n.network_name != null && !n.network_name.isEmpty())
-				first = n.network_name;
-			else if (n.asn != null && !n.asn.isEmpty())
-				first = n.asn;
-			else
-				first = c.getString(R.string.TestResults_UnknownASN);
-			parts.add(c.getString(R.string.bold, first));
-			if (n.network_type != null && !n.network_type.isEmpty())
-				parts.add(c.getString(R.string.brackets, n.getLocalizedNetworkType(c)));
-		}
-		return TextUtils.join(" ", parts);
+		return getAsn(c, n) + " - " + getName(c, n);
 	}
 
 	public static String toLongString(Context c, Network n) {
-		ArrayList<String> parts = new ArrayList<>();
-		if (n == null)
-			parts.add(c.getString(R.string.TestResults_UnknownASN));
-		else {
-			String first;
-			boolean asnUsed = false;
-			if (n.network_name != null && !n.network_name.isEmpty())
-				first = n.network_name;
-			else if (n.asn != null && !n.asn.isEmpty()) {
-				first = n.asn;
-				asnUsed = true;
-			} else
-				first = c.getString(R.string.TestResults_UnknownASN);
-			parts.add(c.getString(R.string.bold, first));
-			if (n.network_type != null && !n.network_type.isEmpty())
-				parts.add(c.getString(R.string.brackets, n.getLocalizedNetworkType(c)));
-			if (!asnUsed && n.asn != null && !n.asn.isEmpty())
-				parts.add(c.getString(R.string.seg, n.asn));
-		}
-		return TextUtils.join(" ", parts);
+		return getName(c, n) + "\n" + getAsn(c, n) + " (" + getLocalizedNetworkType(c, n) + ")";
 	}
 
-	public String getLocalizedNetworkType(Context context) {
-		switch (network_type) {
+	public static String getLocalizedNetworkType(Context c, Network n) {
+		switch (n.network_type) {
 			case NotificationService.WIFI:
-				return context.getString(R.string.TestResults_Summary_Hero_WiFi);
+				return c.getString(R.string.TestResults_Summary_Hero_WiFi);
 			case NotificationService.MOBILE:
-				return context.getString(R.string.TestResults_Summary_Hero_Mobile);
+				return c.getString(R.string.TestResults_Summary_Hero_Mobile);
 			case NotificationService.NO_INTERNET:
-				return context.getString(R.string.TestResults_Summary_Hero_NoInternet);
+				return c.getString(R.string.TestResults_Summary_Hero_NoInternet);
+			default:
+				return "";
 		}
-		return "";
 	}
 
 	@Override public boolean delete() {

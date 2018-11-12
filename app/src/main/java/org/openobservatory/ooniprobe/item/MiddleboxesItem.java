@@ -1,6 +1,5 @@
 package org.openobservatory.ooniprobe.item;
 
-import android.text.Html;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +38,7 @@ public class MiddleboxesItem extends HeterogeneousRecyclerItem<Result, Middlebox
 		viewHolder.itemView.setOnClickListener(onClickListener);
 		viewHolder.itemView.setOnLongClickListener(onLongClickListener);
 		viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(viewHolder.itemView.getContext(), extra.is_viewed ? android.R.color.transparent : R.color.color_yellow0));
-		viewHolder.asnName.setText(Html.fromHtml(Network.toStringCountry(viewHolder.asnName.getContext(), extra.network)));
+		viewHolder.asnName.setText(Network.toString(viewHolder.asnName.getContext(), extra.network));
 		viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), extra.start_time));
 		if (extra.countAnomalousMeasurements() > 0) {
 			viewHolder.status.setText(R.string.TestResults_Overview_MiddleBoxes_Found);
