@@ -84,7 +84,7 @@ public class OoniRunActivity extends AbstractActivity {
 		LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 		recycler.setLayoutManager(layoutManager);
 		recycler.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
-		recycler.addItemDecoration(new StartEndSpacesItemDecoration(this, layoutManager.getOrientation(), 32, 64));
+		recycler.addItemDecoration(new StartEndSpacesItemDecoration(this, layoutManager.getOrientation(), 0, 64));
 		items = new ArrayList<>();
 		adapter = new HeterogeneousRecyclerAdapter<>(this, items);
 		recycler.setAdapter(adapter);

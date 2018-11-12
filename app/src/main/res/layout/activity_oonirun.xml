@@ -1,66 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:background="@color/color_gray2"
-	android:orientation="vertical">
+	android:layout_height="match_parent">
 
-	<androidx.appcompat.widget.Toolbar
-		android:id="@+id/toolbar"
+	<com.google.android.material.appbar.AppBarLayout
 		android:layout_width="match_parent"
-		android:layout_height="?attr/actionBarSize" />
+		android:layout_height="wrap_content">
+
+		<com.google.android.material.appbar.CollapsingToolbarLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			app:contentScrim="?attr/colorPrimary"
+			app:titleEnabled="false">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="?attr/actionBarSize"
+				android:layout_marginBottom="16dp"
+				android:orientation="vertical"
+				app:layout_collapseMode="parallax">
+
+				<ImageView
+					android:id="@+id/icon"
+					android:layout_width="48dp"
+					android:layout_height="48dp"
+					android:layout_gravity="center_horizontal"
+					android:tint="@color/color_gray9" />
+
+				<TextView
+					android:id="@+id/title"
+					style="@style/TextAppearance.MaterialComponents.Headline6"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:gravity="center_horizontal"
+					android:text="@string/OONIRun_InvalidParameter" />
+
+				<TextView
+					android:id="@+id/desc"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:gravity="center_horizontal"
+					android:text="@string/OONIRun_YouAreAboutToRun" />
+			</LinearLayout>
+
+			<androidx.appcompat.widget.Toolbar
+				android:id="@+id/toolbar"
+				android:layout_width="match_parent"
+				android:layout_height="?attr/actionBarSize"
+				app:layout_collapseMode="pin" />
+		</com.google.android.material.appbar.CollapsingToolbarLayout>
+	</com.google.android.material.appbar.AppBarLayout>
 
 	<ImageView
-		android:id="@+id/icon"
-		android:layout_width="48dp"
-		android:layout_height="48dp"
-		android:layout_gravity="center_horizontal"
-		android:layout_marginTop="32dp"
-		android:tint="@color/color_gray9" />
+		android:id="@+id/iconBig"
+		android:layout_width="192dp"
+		android:layout_height="192dp"
+		android:layout_gravity="end|bottom"
+		android:layout_marginEnd="-64dp"
+		android:layout_marginBottom="64dp"
+		android:scaleType="fitCenter"
+		android:tint="@color/color_gray4" />
 
-	<TextView
-		android:id="@+id/title"
-		style="@style/TextAppearance.MaterialComponents.Headline6"
+	<androidx.recyclerview.widget.RecyclerView
+		android:id="@+id/recycler"
 		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+	<Button
+		android:id="@+id/run"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:gravity="center_horizontal"
-		android:text="@string/OONIRun_InvalidParameter" />
-
-	<TextView
-		android:id="@+id/desc"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:gravity="center_horizontal"
-		android:text="@string/OONIRun_YouAreAboutToRun" />
-
-	<FrameLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent">
-
-		<ImageView
-			android:id="@+id/iconBig"
-			android:layout_width="192dp"
-			android:layout_height="192dp"
-			android:layout_gravity="end|bottom"
-			android:layout_marginEnd="-64dp"
-			android:layout_marginBottom="64dp"
-			android:scaleType="fitCenter"
-			android:tint="@color/color_gray4" />
-
-		<androidx.recyclerview.widget.RecyclerView
-			android:id="@+id/recycler"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent" />
-
-		<Button
-			android:id="@+id/run"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center_horizontal|bottom"
-			android:layout_margin="16dp"
-			android:text="@string/OONIRun_Run"
-			android:textAllCaps="false"
-			app:cornerRadius="24dp" />
-	</FrameLayout>
-</LinearLayout>
+		android:layout_gravity="center_horizontal|bottom"
+		android:layout_margin="16dp"
+		android:text="@string/OONIRun_Run"
+		android:textAllCaps="false"
+		app:cornerRadius="24dp" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
