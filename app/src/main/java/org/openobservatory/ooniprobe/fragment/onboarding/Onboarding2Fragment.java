@@ -21,12 +21,13 @@ public class Onboarding2Fragment extends Fragment implements OnboardingDialogPop
 	@BindView(R.id.bullet1) TextView bullet1;
 	@BindView(R.id.bullet2) TextView bullet2;
 	@BindView(R.id.bullet3) TextView bullet3;
+
 	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_onboarding_2, container, false);
 		ButterKnife.bind(this, v);
-		bullet1.setText("• " + getString(R.string.Onboarding_ThingsToKnow_Bullet_1));
-		bullet2.setText("• " + getString(R.string.Onboarding_ThingsToKnow_Bullet_2));
-		bullet3.setText("• " + getString(R.string.Onboarding_ThingsToKnow_Bullet_3));
+		bullet1.setText(getString(R.string.bullet, getString(R.string.Onboarding_ThingsToKnow_Bullet_1)));
+		bullet2.setText(getString(R.string.bullet, getString(R.string.Onboarding_ThingsToKnow_Bullet_2)));
+		bullet3.setText(getString(R.string.bullet, getString(R.string.Onboarding_ThingsToKnow_Bullet_3)));
 		return v;
 	}
 
