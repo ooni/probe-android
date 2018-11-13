@@ -11,24 +11,28 @@
 		android:gravity="center_horizontal"
 		android:orientation="vertical"
 		android:paddingBottom="16dp"
+		android:transitionName="@string/transitionNameCard"
 		app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
 		<androidx.appcompat.widget.Toolbar
 			android:id="@+id/toolbar"
 			android:layout_width="match_parent"
-			android:layout_height="?attr/actionBarSize" />
+			android:layout_height="?attr/actionBarSize"
+			android:transitionName="@string/transitionNameTitle" />
 
 		<ImageView
 			android:id="@+id/icon"
 			android:layout_width="96dp"
 			android:layout_height="96dp"
-			android:tint="@color/color_white" />
+			android:tint="@color/color_white"
+			android:transitionName="@string/transitionNameIcon" />
 
 		<LinearLayout
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_margin="8dp"
-			android:orientation="horizontal">
+			android:orientation="horizontal"
+			android:transitionName="@string/transitionNameRuntime">
 
 			<LinearLayout
 				android:layout_width="wrap_content"
@@ -79,6 +83,7 @@
 			android:text="@string/Dashboard_Card_Run"
 			android:textAllCaps="false"
 			android:textColor="?attr/colorPrimary"
+			android:transitionName="@string/transitionNameRun"
 			app:backgroundTint="@android:color/white"
 			app:cornerRadius="24dp"
 			app:rippleColor="@color/ripple_material_light" />
