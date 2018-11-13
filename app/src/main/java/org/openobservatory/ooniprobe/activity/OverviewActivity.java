@@ -18,6 +18,8 @@ import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -47,7 +49,7 @@ public class OverviewActivity extends AbstractActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		setTitle(testSuite.getTitle());
 		icon.setImageResource(testSuite.getIcon());
-		runtime.setText(testSuite.getDataUsage() + " " + getString(R.string.Dashboard_Card_Seconds, testSuite.getRuntime().toString()));
+		runtime.setText(getString(R.string.twoParam, testSuite.getDataUsage(), getString(R.string.Dashboard_Card_Seconds, testSuite.getRuntime().toString())));
 		customUrl.setVisibility(testSuite.getName().equals(WebsitesSuite.NAME) ? View.VISIBLE : View.GONE);
 		Markwon.setMarkdown(desc, getString(testSuite.getDesc1()));
 		Result lastResult = Result.getLastResult(testSuite.getName());
@@ -72,10 +74,10 @@ public class OverviewActivity extends AbstractActivity {
 		}
 	}
 
-	@OnClick(R.id.run) void onRunClick() {
+	@OnClick(R.id.run) void onRunClick(View v) {
 		Intent intent = RunningActivity.newIntent(this, testSuite);
 		if (intent != null)
-			startActivity(intent);
+			ActivityCompat.startActivity(this, intent, ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, 0, 0).toBundle());
 	}
 
 	@OnClick(R.id.customUrl) void customUrlClick() {

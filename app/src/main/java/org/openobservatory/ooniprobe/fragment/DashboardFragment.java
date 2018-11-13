@@ -67,7 +67,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 			case R.id.run:
 				Intent intent = RunningActivity.newIntent((AbstractActivity) getActivity(), testSuite);
 				if (intent != null)
-					startActivity(intent);
+					ActivityCompat.startActivity(getActivity(), intent, ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, 0, 0).toBundle());
 				break;
 			default:
 				ActivityCompat.startActivity(getActivity(), OverviewActivity.newIntent(getActivity(), testSuite), ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),

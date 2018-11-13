@@ -34,6 +34,8 @@ import java.util.Collections;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -90,7 +92,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 		if (measurement.is_failed)
 			ConfirmDialogFragment.newInstance(measurement, getString(R.string.Modal_ReRun_Title), getString(R.string.Modal_ReRun_Paragraph)).show(getSupportFragmentManager(), null);
 		else
-			startActivity(MeasurementDetailActivity.newIntent(this, measurement.id));
+			ActivityCompat.startActivity(this, MeasurementDetailActivity.newIntent(this, measurement.id), ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, 0, 0).toBundle());
 	}
 
 	@Override public void onConfirmation(Serializable serializable, int i) {

@@ -39,6 +39,8 @@ import java.util.List;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -111,7 +113,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 		}
 	}
 
-	@OnItemSelected(R.id.filterTests) public void queryList() {
+	@OnItemSelected(R.id.filterTests) void queryList() {
 		HashSet<Integer> set = new HashSet<>();
 		items.clear();
 		ArrayList<SQLOperator> where = new ArrayList<>();
@@ -154,7 +156,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 
 	@Override public void onClick(View v) {
 		Result result = (Result) v.getTag();
-		startActivity(ResultDetailActivity.newIntent(getActivity(), result.id));
+		ActivityCompat.startActivity(getActivity(), ResultDetailActivity.newIntent(getActivity(), result.id), ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, 0, 0).toBundle());
 	}
 
 	@Override public boolean onLongClick(View v) {

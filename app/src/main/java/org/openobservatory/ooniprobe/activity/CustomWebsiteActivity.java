@@ -16,6 +16,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -54,7 +56,7 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
 		return true;
 	}
 
-	@OnClick(R.id.run) void runClick() {
+	@OnClick(R.id.run) void runClick(View v) {
 		ArrayList<String> urls = new ArrayList<>(editTexts.size());
 		for (EditText editText : editTexts) {
 			String value = editText.getText().toString();
@@ -63,7 +65,7 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
 		}
 		WebsitesSuite suite = new WebsitesSuite();
 		suite.getTestList(getPreferenceManager())[0].setInputs(urls);
-		startActivity(RunningActivity.newIntent(this, suite));
+		ActivityCompat.startActivity(this, RunningActivity.newIntent(this, suite), ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, 0, 0).toBundle());
 		finish();
 	}
 
