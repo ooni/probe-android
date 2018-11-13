@@ -23,6 +23,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.util.Pair;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -67,7 +70,13 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 					startActivity(intent);
 				break;
 			default:
-				startActivity(OverviewActivity.newIntent(getActivity(), testSuite));
+				ActivityCompat.startActivity(getActivity(), OverviewActivity.newIntent(getActivity(), testSuite), ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
+						Pair.create(v, getString(R.string.transitionNameCard)),
+						Pair.create(v.findViewById(R.id.icon), getString(R.string.transitionNameIcon)),
+						Pair.create(v.findViewById(R.id.title), getString(R.string.transitionNameTitle)),
+						Pair.create(v.findViewById(R.id.runtime), getString(R.string.transitionNameRuntime)),
+						Pair.create(v.findViewById(R.id.run), getString(R.string.transitionNameRun))
+				).toBundle());
 				break;
 		}
 	}

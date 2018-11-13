@@ -46,6 +46,11 @@
 	<string name="r2160p" translatable="false">2160p</string>
 	<string name="r2160p_ext" translatable="false">2160p (4k)</string>
 	<string name="bullet" translatable="false">• %1$s</string>
+	<string name="transitionNameCard" translatable="false">card</string>
+	<string name="transitionNameRun" translatable="false">run</string>
+	<string name="transitionNameIcon" translatable="false">icon</string>
+	<string name="transitionNameTitle" translatable="false">title</string>
+	<string name="transitionNameRuntime" translatable="false">runtime</string>
 	<string-array name="filterTests" translatable="false">
 		<item>@string/TestResults_Overview_FilterTests_AllTests</item>
 		<item>@string/TestResults_Overview_FilterTests_Websites</item>
