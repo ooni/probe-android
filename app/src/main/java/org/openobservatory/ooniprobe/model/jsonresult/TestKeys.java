@@ -230,19 +230,19 @@ public class TestKeys {
 	}
 
 	public String getMedianBitrate(Context ctx) {
-		if (simple.median_bitrate != null)
+		if (this.simple != null && simple.median_bitrate != null)
 			return setFractionalDigits(getScaledValue(simple.median_bitrate));
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public int getMedianBitrateUnit() {
-		if (simple.median_bitrate != null)
+		if (this.simple != null && simple.median_bitrate != null)
 			return getUnit(simple.median_bitrate);
 		return R.string.TestResults_NotAvailable;
 	}
 
 	public int getVideoQuality(Boolean extended) {
-		if (simple.median_bitrate != null)
+		if (this.simple != null && simple.median_bitrate != null)
 			return minimumBitrateForVideo(simple.median_bitrate, extended);
 		return R.string.TestResults_NotAvailable;
 	}
@@ -265,7 +265,7 @@ public class TestKeys {
 	}
 
 	public String getPlayoutDelay(Context ctx) {
-		if (simple.min_playout_delay != null)
+		if (this.simple != null && simple.min_playout_delay != null)
 			return String.format(Locale.getDefault(), "%.2f", simple.min_playout_delay);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}

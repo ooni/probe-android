@@ -8,8 +8,8 @@
     <group android:name="group">
         <path
             android:name="path"
-            android:pathData="M 12.15 4.932 L 12.15 10.151 L 14.5 10.151 L 9.6 15.051 L 4.7 10.151 L 7.136 10.151 L 7.136 4.929 Z"
-            android:fillColor="#000000"
+            android:pathData="M 13.664 1.529 L 13.664 10.051 L 17.5 10.051 L 9.5 18.051 L 1.5 10.051 L 5.476 10.051 L 5.476 1.526 Z"
+            android:fillColor="#000"
             android:strokeWidth="1"/>
     </group>
 </vector>
