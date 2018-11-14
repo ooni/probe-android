@@ -7,6 +7,26 @@
 	android:paddingHorizontal="16dp">
 
 	<LinearLayout
+		android:id="@+id/startTimeBox"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="2"
+			android:text="@string/TestResults_Summary_Hero_DateAndTime"
+			android:textStyle="bold" />
+
+		<TextView
+			android:id="@+id/startTime"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="3" />
+	</LinearLayout>
+
+	<LinearLayout
 		android:id="@+id/dataUsage"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
@@ -41,26 +61,6 @@
 				android:drawableStart="@drawable/download_white"
 				android:drawablePadding="4dp" />
 		</LinearLayout>
-	</LinearLayout>
-
-	<LinearLayout
-		android:id="@+id/startTimeBox"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal">
-
-		<TextView
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="2"
-			android:text="@string/TestResults_Summary_Hero_DateAndTime"
-			android:textStyle="bold" />
-
-		<TextView
-			android:id="@+id/startTime"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="3" />
 	</LinearLayout>
 
 	<LinearLayout
