@@ -57,11 +57,11 @@ public class PreferenceManager {
 		sp.edit().putInt(GEO_VER, geoVer).apply();
 	}
 
-	public Float getMaxRuntime() {
+	public Integer getMaxRuntime() {
 		try {
-			return sp.getFloat(r.getString(R.string.max_runtime), 90);
-		} catch (ClassCastException e) {
-			return 90f;
+			return sp.getInt(r.getString(R.string.max_runtime), 90);
+		} catch (Exception e) {
+			return 90;
 		}
 	}
 

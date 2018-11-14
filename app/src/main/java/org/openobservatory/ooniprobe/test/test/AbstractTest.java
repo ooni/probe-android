@@ -30,7 +30,7 @@ public abstract class AbstractTest implements Serializable {
 	private String name;
 	private String mkName;
 	private List<String> inputs;
-	private Float max_runtime;
+	private Integer max_runtime;
 	private int labelResId;
 	private int iconResId;
 	private SparseArray<Measurement> measurements;
@@ -204,7 +204,7 @@ public abstract class AbstractTest implements Serializable {
 		this.inputs = inputs;
 	}
 
-	public void setMax_runtime(Float max_runtime) {
+	public void setMax_runtime(Integer max_runtime) {
 		this.max_runtime = max_runtime;
 	}
 
