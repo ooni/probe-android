@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
 import androidx.cardview.widget.CardView;
@@ -19,9 +20,11 @@ import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
 public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, TestsuiteItem.ViewHolderImpl> {
 	private View.OnClickListener onClickListener;
+	private PreferenceManager pm;
 
-	public TestsuiteItem(AbstractSuite extra, View.OnClickListener onClickListener) {
+	public TestsuiteItem(AbstractSuite extra, PreferenceManager pm, View.OnClickListener onClickListener) {
 		super(extra);
+		this.pm = pm;
 		this.onClickListener = onClickListener;
 	}
 
@@ -40,7 +43,7 @@ public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, Test
 		holder.itemView.setOnClickListener(onClickListener);
 		holder.run.setTag(extra);
 		holder.itemView.setTag(extra);
-		holder.runtime.setText(holder.runtime.getContext().getString(R.string.Dashboard_Card_Seconds, extra.getRuntime().toString()));
+		holder.runtime.setText(holder.runtime.getContext().getString(R.string.Dashboard_Card_Seconds, extra.getRuntime(pm).toString()));
 	}
 
 	class ViewHolderImpl extends RecyclerView.ViewHolder {

@@ -49,7 +49,7 @@ public class OverviewActivity extends AbstractActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		setTitle(testSuite.getTitle());
 		icon.setImageResource(testSuite.getIcon());
-		runtime.setText(getString(R.string.twoParam, testSuite.getDataUsage(), getString(R.string.Dashboard_Card_Seconds, testSuite.getRuntime().toString())));
+		runtime.setText(getString(R.string.twoParam, testSuite.getDataUsage(), getString(R.string.Dashboard_Card_Seconds, testSuite.getRuntime(getPreferenceManager()).toString())));
 		customUrl.setVisibility(testSuite.getName().equals(WebsitesSuite.NAME) ? View.VISIBLE : View.GONE);
 		Markwon.setMarkdown(desc, getString(testSuite.getDesc1()));
 		Result lastResult = Result.getLastResult(testSuite.getName());

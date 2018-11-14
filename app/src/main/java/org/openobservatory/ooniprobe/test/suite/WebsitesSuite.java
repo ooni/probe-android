@@ -21,12 +21,16 @@ public class WebsitesSuite extends AbstractSuite {
 				R.string.Dashboard_Websites_Overview_Paragraph,
 				R.xml.preferences_websites,
 				"anim/websites.json",
-				"~ 8 MB", 120);
+				"~ 8 MB", 30);
 	}
 
 	@Override public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
 		if (super.getTestList(pm) == null)
 			super.setTestList(new WebConnectivity());
 		return super.getTestList(pm);
+	}
+
+	@Override public Integer getRuntime(@Nullable PreferenceManager pm) {
+		return super.getRuntime(pm) + pm.getMaxRuntime();
 	}
 }

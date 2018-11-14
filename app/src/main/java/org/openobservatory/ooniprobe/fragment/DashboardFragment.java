@@ -10,6 +10,8 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.activity.OverviewActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
+import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.item.TestsuiteItem;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
@@ -50,10 +52,11 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 			bar.setCustomView(R.layout.logo);
 		}
 		items = new ArrayList<>();
-		items.add(new TestsuiteItem(new WebsitesSuite(), this));
-		items.add(new TestsuiteItem(new InstantMessagingSuite(), this));
-		items.add(new TestsuiteItem(new PerformanceSuite(), this));
-		items.add(new TestsuiteItem(new MiddleBoxesSuite(), this));
+		PreferenceManager pm = ((Application) getActivity().getApplication()).getPreferenceManager();
+		items.add(new TestsuiteItem(new WebsitesSuite(), pm, this));
+		items.add(new TestsuiteItem(new InstantMessagingSuite(), pm, this));
+		items.add(new TestsuiteItem(new PerformanceSuite(), pm, this));
+		items.add(new TestsuiteItem(new MiddleBoxesSuite(), pm, this));
 		adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
 		recycler.setAdapter(adapter);
 		recycler.setLayoutManager(new LinearLayoutManager(getActivity()));

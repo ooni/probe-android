@@ -107,7 +107,7 @@ public abstract class AbstractSuite implements Serializable {
 		return dataUsage;
 	}
 
-	public Integer getRuntime() {
+	public Integer getRuntime(@Nullable PreferenceManager pm) {
 		return runtime;
 	}
 }
