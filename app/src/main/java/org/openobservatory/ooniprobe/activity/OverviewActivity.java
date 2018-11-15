@@ -83,7 +83,7 @@ public class OverviewActivity extends AbstractActivity {
 	@OnClick(R.id.run) void onRunClick(View v) {
 		Intent intent = RunningActivity.newIntent(this, testSuite);
 		if (intent != null)
-			ActivityCompat.startActivity(this, intent, ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, 0, 0).toBundle());
+			ActivityCompat.startActivity(this, intent, ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, v.getWidth(), v.getHeight()).toBundle());
 	}
 
 	@OnClick(R.id.customUrl) void customUrlClick() {

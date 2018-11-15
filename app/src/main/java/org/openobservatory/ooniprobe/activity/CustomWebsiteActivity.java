@@ -65,7 +65,7 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
 		}
 		WebsitesSuite suite = new WebsitesSuite();
 		suite.getTestList(getPreferenceManager())[0].setInputs(urls);
-		ActivityCompat.startActivity(this, RunningActivity.newIntent(this, suite), ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, 0, 0).toBundle());
+		ActivityCompat.startActivity(this, RunningActivity.newIntent(this, suite), ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, v.getWidth(), v.getHeight()).toBundle());
 		finish();
 	}
 

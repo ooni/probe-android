@@ -155,7 +155,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 
 	@Override public void onClick(View v) {
 		Result result = (Result) v.getTag();
-		ActivityCompat.startActivity(getActivity(), ResultDetailActivity.newIntent(getActivity(), result.id), ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, 0, 0).toBundle());
+		ActivityCompat.startActivity(getActivity(), ResultDetailActivity.newIntent(getActivity(), result.id), ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, v.getWidth(), v.getHeight()).toBundle());
 	}
 
 	@Override public boolean onLongClick(View v) {

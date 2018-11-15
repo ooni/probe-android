@@ -92,7 +92,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 		if (measurement.is_failed)
 			ConfirmDialogFragment.newInstance(measurement, getString(R.string.Modal_ReRun_Title), getString(R.string.Modal_ReRun_Paragraph)).show(getSupportFragmentManager(), null);
 		else
-			ActivityCompat.startActivity(this, MeasurementDetailActivity.newIntent(this, measurement.id), ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, 0, 0).toBundle());
+			ActivityCompat.startActivity(this, MeasurementDetailActivity.newIntent(this, measurement.id), ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, v.getWidth(), v.getHeight()).toBundle());
 	}
 
 	@Override public void onConfirmation(Serializable serializable, int i) {
