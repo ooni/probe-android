@@ -105,8 +105,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 	@Override public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.delete:
-				ConfirmDialogFragment.newInstance(null, getString(R.string.General_AppName), getString(R.string.Modal_DoYouWantToDeleteAllTests),
-						null, getString(R.string.Modal_Delete), null, null).show(getChildFragmentManager(), null);
+				ConfirmDialogFragment.newInstance(null, getString(R.string.General_AppName), getString(R.string.Modal_DoYouWantToDeleteAllTests), null, getString(R.string.Modal_Delete), null, null).show(getChildFragmentManager(), null);
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
@@ -161,7 +160,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 
 	@Override public boolean onLongClick(View v) {
 		Result result = (Result) v.getTag();
-		ConfirmDialogFragment.newInstance(result, getString(R.string.General_AppName), getString(R.string.Modal_DoYouWantToDeleteThisTest)).show(getChildFragmentManager(), null);
+		ConfirmDialogFragment.newInstance(result, getString(R.string.General_AppName), getString(R.string.Modal_DoYouWantToDeleteThisTest), null, getString(R.string.Modal_Delete), null, null).show(getChildFragmentManager(), null);
 		return true;
 	}
 
