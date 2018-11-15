@@ -106,7 +106,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 		switch (item.getItemId()) {
 			case R.id.delete:
 				ConfirmDialogFragment.newInstance(null, getString(R.string.General_AppName), getString(R.string.Modal_DoYouWantToDeleteAllTests),
-						null, "delete", null, null).show(getChildFragmentManager(), null); // TODO LOR string
+						null, getString(R.string.Modal_Delete), null, null).show(getChildFragmentManager(), null);
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
