@@ -30,18 +30,9 @@
 			android:layout_height="wrap_content"
 			android:layout_marginHorizontal="32dp"
 			android:layout_marginTop="16dp"
-			android:text="OONI Probe is free and open source software that enables you to examine internet censorship in your network."
-			android:textColor="@color/color_white"
-			android:textStyle="bold" />
-
-		<TextView
-			style="@style/TextAppearance.MaterialComponents.Body1"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginHorizontal="32dp"
-			android:layout_marginTop="16dp"
-			android:text="The data that you can collect through this app can serve as evidence of censorship events."
+			android:text="@string/Onboarding_WhatIsOONIProbe_Paragraph"
 			android:textColor="@color/color_white" />
+
 	</LinearLayout>
 
 	<LinearLayout
