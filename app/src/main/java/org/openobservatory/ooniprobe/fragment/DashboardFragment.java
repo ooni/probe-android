@@ -76,7 +76,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 				ActivityCompat.startActivity(getActivity(), OverviewActivity.newIntent(getActivity(), testSuite), ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
 						Pair.create(v, getString(R.string.transitionNameCard)),
 						Pair.create(v.findViewById(R.id.icon), getString(R.string.transitionNameIcon)),
-						Pair.create(v.findViewById(R.id.title), getString(R.string.transitionNameTitle)),
+					//	Pair.create(v.findViewById(R.id.title), getString(R.string.transitionNameTitle)),
 						Pair.create(v.findViewById(R.id.runtime), getString(R.string.transitionNameRuntime)),
 						Pair.create(v.findViewById(R.id.run), getString(R.string.transitionNameRun))
 				).toBundle());
