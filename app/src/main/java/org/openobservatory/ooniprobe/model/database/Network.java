@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.model.database;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
@@ -41,20 +42,20 @@ public class Network extends BaseModel implements Serializable {
 		return network;
 	}
 
-	public static String getAsn(Context c, Network network) {
-		if (network != null && network.asn != null)
+	private static String getAsn(Context c, Network network) {
+		if (network != null && !TextUtils.isEmpty(network.asn))
 			return network.asn;
 		return c.getString(R.string.TestResults_UnknownASN);
 	}
 
-	public static String getName(Context c, Network network) {
-		if (network != null && network.network_name != null)
+	private static String getName(Context c, Network network) {
+		if (network != null && !TextUtils.isEmpty(network.network_name))
 			return network.network_name;
 		return c.getString(R.string.TestResults_UnknownASN);
 	}
 
 	public static String getCountry(Context c, Network network) {
-		if (network != null && network.country_code != null)
+		if (network != null && !TextUtils.isEmpty(network.country_code))
 			return network.country_code;
 		return c.getString(R.string.TestResults_UnknownASN);
 	}
@@ -67,7 +68,7 @@ public class Network extends BaseModel implements Serializable {
 		return getName(c, n) + "\n" + getAsn(c, n) + " (" + getLocalizedNetworkType(c, n) + ")";
 	}
 
-	public static String getLocalizedNetworkType(Context c, Network n) {
+	private static String getLocalizedNetworkType(Context c, Network n) {
 		switch (n.network_type) {
 			case NotificationService.WIFI:
 				return c.getString(R.string.TestResults_Summary_Hero_WiFi);
