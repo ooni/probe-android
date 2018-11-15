@@ -123,7 +123,7 @@ public abstract class AbstractTest implements Serializable {
 						setDataUsage(event.value, result);
 						break;
 					case "failure.startup":
-						//TODO-LOR What to do? Run next test
+						//Run next test
 						break;
 					default:
 						Log.w(UNUSED_KEY, event.key);
