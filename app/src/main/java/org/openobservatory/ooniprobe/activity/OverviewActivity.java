@@ -59,6 +59,12 @@ public class OverviewActivity extends AbstractActivity {
 			lastTime.setText(DateUtils.getRelativeTimeSpanString(lastResult.start_time.getTime()));
 	}
 
+	@Override
+	public boolean onSupportNavigateUp() {
+		onBackPressed();
+		return true;
+	}
+
 	@Override public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.settings, menu);
 		return super.onCreateOptionsMenu(menu);
