@@ -31,7 +31,7 @@
 	<string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nLearn more through [OONI\'s Data Policy](https://ooni.io/about/data-policy/).</string>
 	<string name="Onboarding_DefaultSettings_Button_Go">Let\'s go</string>
 	<string name="Onboarding_DefaultSettings_Button_Change">Change defaults</string>
-	<string name="Dashboard_Tab_Label">Run Tests</string>
+	<string name="Dashboard_Tab_Label">Dashboard</string>
 	<string name="Dashboard_Card_Run">Run</string>
 	<string name="Dashboard_Overview_LastRun_Never">N/A</string>
 	<string name="Dashboard_Overview_Run">Run</string>
