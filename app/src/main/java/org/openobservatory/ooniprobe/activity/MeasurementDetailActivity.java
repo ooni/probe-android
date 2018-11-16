@@ -126,7 +126,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
 			case R.id.rawData:
 				try {
 					FileInputStream is = new FileInputStream(Measurement.getEntryFile(this, measurement.id, measurement.test_name));
-					String json = new GsonBuilder().setPrettyPrinting().create().toJson(new JsonParser().parse(new InputStreamReader(is)).getAsJsonObject());
+					String json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(new JsonParser().parse(new InputStreamReader(is)).getAsJsonObject());
 					startActivity(TextActivity.newIntent(this, json));
 					is.close();
 				} catch (Exception e) {
