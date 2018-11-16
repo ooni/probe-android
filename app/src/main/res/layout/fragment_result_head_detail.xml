@@ -116,10 +116,24 @@
 			android:text="@string/TestResults_Summary_Hero_Network"
 			android:textStyle="bold" />
 
-		<TextView
-			android:id="@+id/network"
+		<LinearLayout
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_weight="3" />
+			android:layout_weight="3"
+			android:orientation="vertical">
+
+			<TextView
+				android:id="@+id/networkName"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:ellipsize="end"
+				android:maxLines="1" />
+
+			<TextView
+				android:id="@+id/networkDetail"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:maxLines="1" />
+		</LinearLayout>
 	</LinearLayout>
 </LinearLayout>

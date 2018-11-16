@@ -1,7 +1,6 @@
 package org.openobservatory.ooniprobe.fragment.resultHeader;
 
 import android.os.Bundle;
-import android.text.Html;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.model.database.Network;
 
 import java.util.Date;
 import java.util.Locale;
@@ -21,7 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ResultHeaderDetailFragment extends Fragment {
-	public static final String NETWORK_NAME = "network_name";
+	public static final String NETWORK = "network";
 	public static final String COUNTRY_CODE = "country_code";
 	public static final String RUNTIME = "runtime";
 	public static final String DATA_USAGE_DOWN = "data_usage_down";
@@ -40,9 +40,10 @@ public class ResultHeaderDetailFragment extends Fragment {
 	@BindView(R.id.runtime) TextView runtime;
 	@BindView(R.id.runtimeLabel) TextView runtimeLabel;
 	@BindView(R.id.country) TextView country;
-	@BindView(R.id.network) TextView network;
+	@BindView(R.id.networkName) TextView networkName;
+	@BindView(R.id.networkDetail) TextView networkDetail;
 
-	public static ResultHeaderDetailFragment newInstance(boolean lightTheme, String data_usage_up, String data_usage_down, Date start_time, Double runtime, Boolean isTotalRuntime, String country_code, String network_name) {
+	public static ResultHeaderDetailFragment newInstance(boolean lightTheme, String data_usage_up, String data_usage_down, Date start_time, Double runtime, Boolean isTotalRuntime, String country_code, Network network) {
 		Bundle args = new Bundle();
 		args.putBoolean(LIGHT_THEME, lightTheme);
 		if (data_usage_up != null && data_usage_down != null) {
@@ -57,16 +58,16 @@ public class ResultHeaderDetailFragment extends Fragment {
 			args.putBoolean(IS_TOTAL_RUNTIME, isTotalRuntime);
 		if (country_code != null)
 			args.putString(COUNTRY_CODE, country_code);
-		if (network_name != null)
-			args.putString(NETWORK_NAME, network_name);
+		if (network != null)
+			args.putSerializable(NETWORK, network);
 		ResultHeaderDetailFragment fragment = new ResultHeaderDetailFragment();
 		fragment.setArguments(args);
 		return fragment;
 	}
 
 	@Nullable @Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.cloneInContext(new ContextThemeWrapper(getActivity(),
-				getArguments().getBoolean(LIGHT_THEME) ? R.style.Theme_MaterialComponents_Light_NoActionBar_App : R.style.Theme_MaterialComponents_NoActionBar_App)).inflate(R.layout.fragment_result_head_detail, container, false);
+		int themeResId = getArguments().getBoolean(LIGHT_THEME) ? R.style.Theme_MaterialComponents_Light_NoActionBar_App : R.style.Theme_MaterialComponents_NoActionBar_App;
+		View v = inflater.cloneInContext(new ContextThemeWrapper(getActivity(), themeResId)).inflate(R.layout.fragment_result_head_detail, container, false);
 		ButterKnife.bind(this, v);
 		if (getArguments().containsKey(DATA_USAGE_DOWN) && getArguments().containsKey(DATA_USAGE_UP)) {
 			download.setText(getArguments().getString(DATA_USAGE_DOWN));
@@ -86,9 +87,11 @@ public class ResultHeaderDetailFragment extends Fragment {
 			country.setText(getArguments().getString(COUNTRY_CODE));
 		else
 			countryBox.setVisibility(View.GONE);
-		if (getArguments().containsKey(NETWORK_NAME))
-			network.setText(getArguments().getString(NETWORK_NAME));
-		else
+		if (getArguments().containsKey(NETWORK)) {
+			Network n = (Network) getArguments().getSerializable(NETWORK);
+			networkName.setText(Network.getName(networkName.getContext(), n));
+			networkDetail.setText(networkDetail.getContext().getString(R.string.twoParamWithBrackets, Network.getAsn(networkDetail.getContext(), n), Network.getLocalizedNetworkType(networkDetail.getContext(), n)));
+		} else
 			networkBox.setVisibility(View.GONE);
 		return v;
 	}

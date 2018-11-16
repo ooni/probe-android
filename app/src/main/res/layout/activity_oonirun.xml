@@ -11,7 +11,6 @@
 		<com.google.android.material.appbar.CollapsingToolbarLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			app:layout_scrollFlags="scroll|exitUntilCollapsed"
 			app:contentScrim="?attr/colorPrimary"
 			app:titleEnabled="false">
 
@@ -80,3 +79,5 @@
 		android:textAllCaps="false"
 		app:cornerRadius="24dp" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+<!-- app:layout_scrollFlags="scroll|exitUntilCollapsed|snap" -->

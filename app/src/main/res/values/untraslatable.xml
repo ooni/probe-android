@@ -13,7 +13,6 @@
 	<string name="include_asn" translatable="false">include_asn</string>
 	<string name="debugLogs" translatable="false">debugLogs</string>
 	<string name="send_crash" translatable="false">send_crash</string>
-	<string name="debug_logs" translatable="false">debug_logs</string>
 	<string name="include_cc" translatable="false">include_cc</string>
 	<string name="run_http_invalid_request_line" translatable="false">run_http_invalid_request_line</string>
 	<string name="run_http_header_field_manipulation" translatable="false">run_http_header_field_manipulation</string>
@@ -27,11 +26,10 @@
 	<string name="d" translatable="false">%1$d</string>
 	<string name="f" translatable="false">%1$.2f</string>
 	<string name="bold" translatable="false">&lt;b>%1$s&lt;/b></string>
-	<string name="brackets" translatable="false">(%1$s)</string>
-	<string name="seg" translatable="false">- %1$s</string>
 	<string name="normalBold" translatable="false">%1$s &lt;b>%2$s&lt;/b></string>
 	<string name="bigNormal" translatable="false">%1$s&lt;small>&lt;small>&lt;small>%2$s&lt;/small>&lt;/small>&lt;/small></string>
 	<string name="twoParam" translatable="false">%1$s %2$s</string>
+	<string name="twoParamWithBrackets" translatable="false">%1$s (%2$s)</string>
 	<string name="outcomeHeader" translatable="false">&lt;b>%1$s&lt;/b>&lt;br>&lt;small>%2$s&lt;/small></string>
 	<string name="http" translatable="false">http://</string>
 	<string name="r240p" translatable="false">240p</string>
@@ -89,29 +87,9 @@
 		<item quantity="one">@string/TestResults_Summary_Websites_Hero_Blocked_Singular</item>
 		<item quantity="other">@string/TestResults_Summary_Websites_Hero_Blocked_Plural</item>
 	</plurals>
-	<plurals name="TestResults_Summary_Websites_Hero_Sites" translatable="false">
-		<item quantity="one">@string/TestResults_Summary_Websites_Hero_Sites_Singular</item>
-		<item quantity="other">@string/TestResults_Summary_Websites_Hero_Sites_Plural</item>
-	</plurals>
 	<plurals name="TestResults_Summary_Websites_Hero_Reachable" translatable="false">
 		<item quantity="one">@string/TestResults_Summary_Websites_Hero_Reachable_Singular</item>
 		<item quantity="other">@string/TestResults_Summary_Websites_Hero_Reachable_Plural</item>
-	</plurals>
-	<plurals name="TestResults_Summary_InstantMessaging_Hero_Tested" translatable="false">
-		<item quantity="one">@string/TestResults_Summary_InstantMessaging_Hero_Tested_Singular</item>
-		<item quantity="other">@string/TestResults_Summary_InstantMessaging_Hero_Tested_Plural</item>
-	</plurals>
-	<plurals name="TestResults_Summary_InstantMessaging_Hero_Blocked" translatable="false">
-		<item quantity="one">@string/TestResults_Summary_InstantMessaging_Hero_Blocked_Singular</item>
-		<item quantity="other">@string/TestResults_Summary_InstantMessaging_Hero_Blocked_Plural</item>
-	</plurals>
-	<plurals name="TestResults_Summary_InstantMessaging_Hero_Reachable" translatable="false">
-		<item quantity="one">@string/TestResults_Summary_InstantMessaging_Hero_Reachable_Singular</item>
-		<item quantity="other">@string/TestResults_Summary_InstantMessaging_Hero_Reachable_Plural</item>
-	</plurals>
-	<plurals name="TestResults_Summary_InstantMessaging_Hero_Apps" translatable="false">
-		<item quantity="one">@string/TestResults_Summary_InstantMessaging_Hero_Apps_Singular</item>
-		<item quantity="other">@string/TestResults_Summary_InstantMessaging_Hero_Apps_Plural</item>
 	</plurals>
 	<string name="CategoryCode_ALDR_Key" translatable="false">ALDR</string>
 	<string name="CategoryCode_REL_Key" translatable="false">REL</string>

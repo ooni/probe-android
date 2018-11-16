@@ -92,7 +92,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 		if (measurement.is_failed)
 			ConfirmDialogFragment.newInstance(measurement, getString(R.string.Modal_ReRun_Title), getString(R.string.Modal_ReRun_Paragraph)).show(getSupportFragmentManager(), null);
 		else
-			ActivityCompat.startActivity(this, MeasurementDetailActivity.newIntent(this, measurement.id), ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, v.getWidth(), v.getHeight()).toBundle());
+			ActivityCompat.startActivity(this, MeasurementDetailActivity.newIntent(this, measurement.id), null /*ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, v.getWidth(), v.getHeight()).toBundle()*/);
 	}
 
 	@Override public void onConfirmation(Serializable serializable, int i) {
@@ -124,7 +124,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 			if (position == 1)
 				return ResultHeaderDetailFragment.newInstance(false, result.getFormattedDataUsageUp(), result.getFormattedDataUsageDown(), result.start_time, result.runtime, true, null, null);
 			else if (position == 2)
-				return ResultHeaderDetailFragment.newInstance(false, null, null, null, null, null, Network.getCountry(ResultDetailActivity.this, result.network), Network.toLongString(ResultDetailActivity.this, result.network));
+				return ResultHeaderDetailFragment.newInstance(false, null, null, null, null, null, Network.getCountry(ResultDetailActivity.this, result.network), result.network);
 			else switch (result.test_group_name) {
 					case WebsitesSuite.NAME:
 						return ResultHeaderTBAFragment.newInstance(result);

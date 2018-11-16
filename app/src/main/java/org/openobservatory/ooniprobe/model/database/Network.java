@@ -42,13 +42,13 @@ public class Network extends BaseModel implements Serializable {
 		return network;
 	}
 
-	private static String getAsn(Context c, Network network) {
+	public static String getAsn(Context c, Network network) {
 		if (network != null && !TextUtils.isEmpty(network.asn))
 			return network.asn;
 		return c.getString(R.string.TestResults_UnknownASN);
 	}
 
-	private static String getName(Context c, Network network) {
+	public static String getName(Context c, Network network) {
 		if (network != null && !TextUtils.isEmpty(network.network_name))
 			return network.network_name;
 		return c.getString(R.string.TestResults_UnknownASN);
@@ -64,21 +64,20 @@ public class Network extends BaseModel implements Serializable {
 		return getAsn(c, n) + " - " + getName(c, n);
 	}
 
-	public static String toLongString(Context c, Network n) {
-		return getName(c, n) + "\n" + getAsn(c, n) + " (" + getLocalizedNetworkType(c, n) + ")";
-	}
-
-	private static String getLocalizedNetworkType(Context c, Network n) {
-		switch (n.network_type) {
-			case NotificationService.WIFI:
-				return c.getString(R.string.TestResults_Summary_Hero_WiFi);
-			case NotificationService.MOBILE:
-				return c.getString(R.string.TestResults_Summary_Hero_Mobile);
-			case NotificationService.NO_INTERNET:
-				return c.getString(R.string.TestResults_Summary_Hero_NoInternet);
-			default:
-				return "";
-		}
+	public static String getLocalizedNetworkType(Context c, Network n) {
+		if (n == null)
+			return c.getString(R.string.TestResults_UnknownASN);
+		else
+			switch (n.network_type) {
+				case NotificationService.WIFI:
+					return c.getString(R.string.TestResults_Summary_Hero_WiFi);
+				case NotificationService.MOBILE:
+					return c.getString(R.string.TestResults_Summary_Hero_Mobile);
+				case NotificationService.NO_INTERNET:
+					return c.getString(R.string.TestResults_Summary_Hero_NoInternet);
+				default:
+					return c.getString(R.string.TestResults_UnknownASN);
+			}
 	}
 
 	@Override public boolean delete() {

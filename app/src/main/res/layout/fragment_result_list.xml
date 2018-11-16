@@ -13,7 +13,6 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			app:contentScrim="?attr/colorPrimary"
-			app:layout_scrollFlags="scroll|exitUntilCollapsed"
 			app:titleEnabled="false">
 
 			<LinearLayout
@@ -163,3 +162,5 @@
 			android:layout_height="match_parent" />
 	</LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+	<!-- app:layout_scrollFlags="scroll|exitUntilCollapsed|snap" -->

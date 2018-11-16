@@ -25,7 +25,6 @@ import org.openobservatory.ooniprobe.fragment.measurement.WhatsappFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Measurement_Table;
-import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.test.Dash;
 import org.openobservatory.ooniprobe.test.test.FacebookMessenger;
@@ -111,7 +110,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
 				break;
 		}
 		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.footer, ResultHeaderDetailFragment.newInstance(true, null, null, measurement.start_time, measurement.runtime, false, measurement.result.network.country_code, Network.toLongString(this, measurement.result.network)))
+				.replace(R.id.footer, ResultHeaderDetailFragment.newInstance(true, null, null, measurement.start_time, measurement.runtime, false, measurement.result.network.country_code, measurement.result.network))
 				.replace(R.id.body, detail)
 				.replace(R.id.head, head)
 				.commit();
