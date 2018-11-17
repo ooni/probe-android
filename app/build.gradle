@@ -15,7 +15,7 @@ android {
 		minSdkVersion 19
 		targetSdkVersion 28
 		versionName '2.0.0-beta.1'
-		versionCode 38
+		versionCode 39
 	}
 
 	buildTypes {
