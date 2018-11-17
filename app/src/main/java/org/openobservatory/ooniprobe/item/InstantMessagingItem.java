@@ -44,8 +44,8 @@ public class InstantMessagingItem extends HeterogeneousRecyclerItem<Result, Inst
 		Long available = extra.countOkMeasurements();
 		viewHolder.failedMeasurements.setText(viewHolder.failedMeasurements.getContext().getResources().getQuantityString(R.plurals.TestResults_Overview_InstantMessaging_Blocked, blocked.intValue(), blocked.toString()));
 		viewHolder.okMeasurements.setText(viewHolder.failedMeasurements.getContext().getResources().getQuantityString(R.plurals.TestResults_Overview_InstantMessaging_Available, available.intValue(), available.toString()));
-		viewHolder.failedMeasurements.setTextColor(ContextCompat.getColor(viewHolder.failedMeasurements.getContext(), blocked == 0 ? R.color.color_black : R.color.color_yellow9));
-		DrawableCompat.setTint(DrawableCompat.wrap(viewHolder.failedMeasurements.getCompoundDrawablesRelative()[0]).mutate(), ContextCompat.getColor(viewHolder.failedMeasurements.getContext(), blocked == 0 ? R.color.color_black : R.color.color_yellow9));
+		viewHolder.failedMeasurements.setTextColor(ContextCompat.getColor(viewHolder.failedMeasurements.getContext(), blocked == 0 ? R.color.color_gray9 : R.color.color_yellow9));
+		DrawableCompat.setTint(DrawableCompat.wrap(viewHolder.failedMeasurements.getCompoundDrawablesRelative()[0]).mutate(), ContextCompat.getColor(viewHolder.failedMeasurements.getContext(), blocked == 0 ? R.color.color_gray9 : R.color.color_yellow9));
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {

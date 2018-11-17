@@ -47,11 +47,11 @@ public class MiddleboxesItem extends HeterogeneousRecyclerItem<Result, Middlebox
 		} else if (extra.countCompletedMeasurements() == 0) {
 			viewHolder.status.setText(R.string.TestResults_Overview_MiddleBoxes_Failed);
 			viewHolder.status.setTextColor(ContextCompat.getColor(viewHolder.status.getContext(), R.color.color_gray9));
-			DrawableCompat.setTint(DrawableCompat.wrap(viewHolder.status.getCompoundDrawablesRelative()[0]).mutate(), ContextCompat.getColor(viewHolder.status.getContext(), R.color.color_black));
+			DrawableCompat.setTint(DrawableCompat.wrap(viewHolder.status.getCompoundDrawablesRelative()[0]).mutate(), ContextCompat.getColor(viewHolder.status.getContext(), R.color.color_gray9));
 		} else {
 			viewHolder.status.setText(R.string.TestResults_Overview_MiddleBoxes_NotFound);
-			viewHolder.status.setTextColor(ContextCompat.getColor(viewHolder.status.getContext(), R.color.color_black));
-			DrawableCompat.setTint(DrawableCompat.wrap(viewHolder.status.getCompoundDrawablesRelative()[0]).mutate(), ContextCompat.getColor(viewHolder.status.getContext(), R.color.color_black));
+			viewHolder.status.setTextColor(ContextCompat.getColor(viewHolder.status.getContext(), R.color.color_gray9));
+			DrawableCompat.setTint(DrawableCompat.wrap(viewHolder.status.getCompoundDrawablesRelative()[0]).mutate(), ContextCompat.getColor(viewHolder.status.getContext(), R.color.color_gray9));
 		}
 	}
 
