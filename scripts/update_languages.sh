@@ -14,7 +14,7 @@ if [ ! -d ../translations/probe-mobile ];then
 fi
 
 cd ../translations
-#./update-translations.sh
+./update-translations.sh
 for dir in probe-mobile/*/;do
     lang=$(basename ${dir} | tr '_' '-')
     dst_path="${TOPDIR}/app/src/main/res/values-${lang}/"
