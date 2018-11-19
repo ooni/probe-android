@@ -1,8 +1,25 @@
-#! /bin/bash -u
-tx pull -f
-tx pull -f -l zh_CN
-tx pull -f -l zh_TW
-cp app/src/main/res/values-zh_CN/strings.xml app/src/main/res/values-zh-rCN/strings.xml 
-cp app/src/main/res/values-zh_TW/strings.xml app/src/main/res/values-zh-rTW/strings.xml 
-rm -Rf app/src/main/res/values-zh_CN app/src/main/res/values-zh_TW
-python scripts/fix-strings.py
+#!/bin/bash
+set -e
+
+PWD=$(pwd)
+
+if [ ! -d app/src/main/res/ ];then
+    echo "script must be run from the root of the repo"
+    exit 1
+fi
+
+if [ ! -d ../translations/probe-mobile ];then
+    echo "error: you should clone https://github.com/ooni/translations in ../"
+    exit 1
+fi
+
+cd ../translations
+./update-translations.sh
+for dir in probe-mobile/*/;do
+    lang=$(basename ${dir} | tr '_' '-')
+    dst_path="${PWD}/app/src/main/res/values-${lang}/"
+    mkdir -p $dst_path
+    cp ${dir}strings.xml $dst_path
+done
+echo "Translations have been updated"
+echo "Remember to commit the changes made to ooni/translations!"
