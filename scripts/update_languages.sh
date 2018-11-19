@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-PWD=$(pwd)
+TOPDIR=$(cd $(dirname $0)/.. && pwd -P)
 
 if [ ! -d app/src/main/res/ ];then
     echo "script must be run from the root of the repo"
@@ -14,10 +14,10 @@ if [ ! -d ../translations/probe-mobile ];then
 fi
 
 cd ../translations
-./update-translations.sh
+#./update-translations.sh
 for dir in probe-mobile/*/;do
     lang=$(basename ${dir} | tr '_' '-')
-    dst_path="${PWD}/app/src/main/res/values-${lang}/"
+    dst_path="${TOPDIR}/app/src/main/res/values-${lang}/"
     mkdir -p $dst_path
     cp ${dir}strings.xml $dst_path
 done
