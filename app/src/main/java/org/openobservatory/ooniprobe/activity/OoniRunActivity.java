@@ -29,7 +29,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import localhost.toolkit.widget.HeterogeneousRecyclerAdapter;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
-import localhost.toolkit.widget.StartEndSpacesItemDecoration;
 
 public class OoniRunActivity extends AbstractActivity {
 	@BindView(R.id.toolbar) Toolbar toolbar;
@@ -84,7 +83,6 @@ public class OoniRunActivity extends AbstractActivity {
 		LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 		recycler.setLayoutManager(layoutManager);
 		recycler.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
-		recycler.addItemDecoration(new StartEndSpacesItemDecoration(this, layoutManager.getOrientation(), 0, 64));
 		items = new ArrayList<>();
 		adapter = new HeterogeneousRecyclerAdapter<>(this, items);
 		recycler.setAdapter(adapter);

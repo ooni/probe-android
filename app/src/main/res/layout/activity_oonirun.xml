@@ -67,6 +67,8 @@
 		android:id="@+id/recycler"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		android:paddingBottom="64dp"
+		android:clipToPadding="false"
 		app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 	<Button
@@ -78,6 +80,4 @@
 		android:text="@string/OONIRun_Run"
 		android:textAllCaps="false"
 		app:cornerRadius="24dp" />
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-<!-- app:layout_scrollFlags="scroll|exitUntilCollapsed|snap" -->
+</androidx.coordinatorlayout.widget.CoordinatorLayout><!-- app:layout_scrollFlags="scroll|exitUntilCollapsed|snap" -->

@@ -21,6 +21,7 @@ import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,15 +33,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import localhost.toolkit.widget.HeterogeneousRecyclerAdapter;
-import localhost.toolkit.widget.StartEndSpacesItemDecoration;
 
 public class DashboardFragment extends Fragment implements View.OnClickListener {
 	@BindView(R.id.recycler) RecyclerView recycler;
 	@BindView(R.id.toolbar) Toolbar toolbar;
-	private ArrayList<TestsuiteItem> items;
-	private HeterogeneousRecyclerAdapter<TestsuiteItem> adapter;
 
-	@Nullable @Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_dashboard, container, false);
 		ButterKnife.bind(this, v);
 		((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
@@ -49,16 +47,15 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 			bar.setDisplayShowCustomEnabled(true);
 			bar.setCustomView(R.layout.logo);
 		}
-		items = new ArrayList<>();
+		ArrayList<TestsuiteItem> items = new ArrayList<>();
 		PreferenceManager pm = ((Application) getActivity().getApplication()).getPreferenceManager();
 		items.add(new TestsuiteItem(new WebsitesSuite(), pm, this));
 		items.add(new TestsuiteItem(new InstantMessagingSuite(), pm, this));
 		items.add(new TestsuiteItem(new PerformanceSuite(), pm, this));
 		items.add(new TestsuiteItem(new MiddleBoxesSuite(), pm, this));
-		adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
+		HeterogeneousRecyclerAdapter<TestsuiteItem> adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
 		recycler.setAdapter(adapter);
 		recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
-		recycler.addItemDecoration(new StartEndSpacesItemDecoration(getActivity(), RecyclerView.VERTICAL, 8, 8));
 		return v;
 	}
 
