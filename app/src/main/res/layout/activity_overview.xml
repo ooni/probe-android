@@ -97,7 +97,7 @@
 			android:textAllCaps="false"
 			android:textColor="@color/color_white"
 			app:cornerRadius="24dp"
-			app:rippleColor="@color/ripple_material_light"
+			app:rippleColor="@color/ripple_material_dark"
 			app:strokeColor="@android:color/white" />
 	</com.google.android.material.appbar.AppBarLayout>
 
@@ -109,6 +109,6 @@
 			android:id="@+id/desc"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_margin="32dp" />
+			android:padding="32dp" />
 	</ScrollView>
 </LinearLayout>

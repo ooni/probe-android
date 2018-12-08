@@ -19,7 +19,6 @@ import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
-import androidx.core.app.ActivityOptionsCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -80,7 +79,7 @@ public class OverviewActivity extends AbstractActivity {
 		}
 	}
 
-	@OnClick(R.id.run) void onRunClick(View v) {
+	@OnClick(R.id.run) void onRunClick() {
 		Intent intent = RunningActivity.newIntent(this, testSuite);
 		if (intent != null)
 			ActivityCompat.startActivity(this, intent, null /*ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, v.getWidth(), v.getHeight()).toBundle()*/);
