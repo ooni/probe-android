@@ -6,11 +6,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.google.android.gms.common.util.IOUtils;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
+import org.apache.commons.io.IOUtils;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.measurement.DashFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.FacebookMessengerFragment;
