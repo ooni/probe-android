@@ -32,16 +32,16 @@ android {
 
 	flavorDimensions 'license'
 	productFlavors {
-		free { dimension 'license' }
-		clos { dimension 'license' }
+		fdroid { dimension 'license' }
+		full { dimension 'license' }
 	}
 }
 
 dependencies {
 	implementation 'androidx.appcompat:appcompat:1.0.2'
 
-	closImplementation 'com.google.firebase:firebase-messaging:17.3.4'
-	closImplementation 'com.google.firebase:firebase-core:16.0.6'
+	fullImplementation 'com.google.firebase:firebase-messaging:17.3.4'
+	fullImplementation 'com.google.firebase:firebase-core:16.0.6'
 
 	annotationProcessor 'com.github.Raizlabs.DBFlow:dbflow-processor:4.2.4'
 	implementation 'com.github.Raizlabs.DBFlow:dbflow-core:4.2.4'
@@ -53,7 +53,7 @@ dependencies {
 	implementation 'com.jakewharton:butterknife:9.0.0-rc2'
 	annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc2'
 
-	closImplementation('com.crashlytics.sdk.android:crashlytics:2.9.7@aar') { transitive = true }
+	fullImplementation('com.crashlytics.sdk.android:crashlytics:2.9.7@aar') { transitive = true }
 	implementation 'org.openobservatory.measurement_kit:android-libs:0.9.0-beta-android.4'
 	implementation 'com.github.xanscale.LocalhostToolkit:app:0f80dba55e'
 	implementation 'pub.devrel:easypermissions:2.0.0'

@@ -28,11 +28,12 @@ public class Settings {
 	public Options options;
 
 	public Settings(Context c, PreferenceManager pm) {
-		this.annotations = new HashMap<>();
-		this.annotations.put("network_type", pm.getNetworkType());
-		this.disabled_events = Arrays.asList("status.queued", "status.update.websites", "failure.report_close");
-		this.log_level = BuildConfig.DEBUG ? "DEBUG2" : "INFO";
-		this.options = new Options(c, pm);
+		annotations = new HashMap<>();
+		annotations.put("network_type", pm.getNetworkType());
+		annotations.put("flavor", BuildConfig.FLAVOR);
+		disabled_events = Arrays.asList("status.queued", "status.update.websites", "failure.report_close");
+		log_level = BuildConfig.DEBUG ? "DEBUG2" : "INFO";
+		options = new Options(c, pm);
 	}
 
 	public static class Options {
