@@ -32,7 +32,7 @@ public class Settings {
 		annotations.put("network_type", pm.getNetworkType());
 		annotations.put("flavor", BuildConfig.FLAVOR);
 		disabled_events = Arrays.asList("status.queued", "status.update.websites", "failure.report_close");
-		log_level = BuildConfig.DEBUG ? "DEBUG2" : "INFO";
+		log_level = BuildConfig.DEBUG || pm.isDebugLogs() ? "DEBUG2" : "INFO";
 		options = new Options(c, pm);
 	}
 
