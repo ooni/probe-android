@@ -102,7 +102,7 @@ public class PreferenceManager {
 	}
 
 	public boolean isDebugLogs() {
-		return sp.getBoolean(r.getString(R.string.debugLogs), true);
+		return sp.getBoolean(r.getString(R.string.debugLogs), false);
 	}
 
 	public boolean isIncludeCc() {
