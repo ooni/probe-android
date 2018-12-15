@@ -1,7 +1,6 @@
 package org.openobservatory.ooniprobe.test.test;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 
 import com.google.gson.Gson;
 
@@ -12,12 +11,14 @@ import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
 import org.openobservatory.ooniprobe.model.settings.Settings;
 
+import androidx.annotation.NonNull;
+
 public class HttpHeaderFieldManipulation extends AbstractTest {
 	public static final String NAME = "http_header_field_manipulation";
 	public static final String MK_NAME = "HttpHeaderFieldManipulation";
 
 	public HttpHeaderFieldManipulation() {
-		super(NAME, MK_NAME, R.string.Test_HTTPHeaderFieldManipulation_Fullname, 0);
+		super(NAME, MK_NAME, R.string.Test_HTTPHeaderFieldManipulation_Fullname, 0, 5);
 	}
 
 	@Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback) {

@@ -35,12 +35,14 @@ public abstract class AbstractTest implements Serializable {
 	private int iconResId;
 	private SparseArray<Measurement> measurements;
 	private String reportId;
+	private int runtime;
 
-	public AbstractTest(String name, String mkName, int labelResId, int iconResId) {
+	public AbstractTest(String name, String mkName, int labelResId, int iconResId, int runtime) {
 		this.name = name;
 		this.mkName = mkName;
 		this.labelResId = labelResId;
 		this.iconResId = iconResId;
+		this.runtime = runtime;
 	}
 
 	public abstract void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback);
@@ -204,8 +206,16 @@ public abstract class AbstractTest implements Serializable {
 		this.inputs = inputs;
 	}
 
+	public Integer getMax_runtime() {
+		return max_runtime;
+	}
+
 	public void setMax_runtime(Integer max_runtime) {
 		this.max_runtime = max_runtime;
+	}
+
+	public int getRuntime(PreferenceManager pm) {
+		return runtime;
 	}
 
 	public interface TestCallback {
