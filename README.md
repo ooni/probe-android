@@ -18,36 +18,19 @@ https://bintray.com/measurement-kit/android/android-libs).
 
 ## Building an apk
 
-Ensure you have Android Studio and gradle installed.
-
-On macOS you can do:
+Ensure you have Android Studio and Android SDK installed. Build `fullRelease` variant using Android Studio or this command line:
 
 ```
-brew cask install android-studio
+./gradlew assembleFullRelease
 ```
-
-Then you should open the project in Android Studio and click on build.
-
-The built apk will end up inside of `app/build/outputs/apk/`.
-
-If you wish to test the apk inside of an emulator this can be done with
-(assuming you have created an emulator named
-`Nexus_5_API_23_marshmallow_6.0`):
-
-```
-~/Library/Android/sdk/tools/emulator -avd Nexus_5_API_23_marshmallow_6.0
-~/Library/Android/sdk/platform-tools/adb install app/build/outputs/apk/app-debug.apk
-```
-
-The app should then be installed inside of the emulator `Nexus_5_API_23_marshmallow_6.0`.
 
 ## Building the app for f-droid
 
-Just use the `f-droid` branch rather than the `master` branch. We periodically merge
-`master` into `f-droid` and tag releases with the `-fdroid` suffix.
+Instead to build the app to stay compliant to F-Droid use `fdroidRelease`, contains small tweaks required to have the app accepted by [f-droid](https://f-droid.org/).
 
-Compared to `master`, the `f-droid` branch contains small tweaks required to have
-the app accepted by [f-droid](https://f-droid.org/).
+```
+./gradlew assembleFdroidRelease
+```
 
 ## Managing translations
 
