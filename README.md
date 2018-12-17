@@ -34,46 +34,12 @@ Instead to build the app to stay compliant to F-Droid use `fdroidRelease`, conta
 
 ## Managing translations
 
-To manage translations ensure you have installed the [transifex command line
-tools](https://docs.transifex.com/client/installing-the-client).
+To manage translations check out our [translation repo](https://github.com/ooni/translations) and follow the instructions there.
 
-### Pushing source text
+## Contributing
 
-To push the source of the translation run:
+* Write some code
 
-```
-tx push -s
-```
+* Open a pull request
 
-### Pulling translations
-
-To pull in translations run:
-
-```
-tx pull
-```
-
-or
-
-```
-tx pull -l [lang_code]
-```
-
-to pull only a specific language
-
-
-### Generating descriptions for market
-
-To generate translated descriptions for the markets run:
-
-```
-python scripts/gen-descriptions.py [lang_code]
-```
-
-Where `lang_code` is the language code for the description you want to
-generate.
-
-This will print to standard output the translated text that you can then copy
-and paste into the market descriptions.
-
-If a string is not translated it will print the source for the text.
+* Have fun!
