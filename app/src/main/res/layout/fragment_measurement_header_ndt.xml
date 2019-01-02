@@ -33,14 +33,14 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4" />
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 
 		<TextView
 			android:id="@+id/upload"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4" />
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 	</LinearLayout>
 
 	<LinearLayout
@@ -71,13 +71,13 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4" />
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 
 		<TextView
 			android:id="@+id/server"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4" />
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 	</LinearLayout>
 </LinearLayout>

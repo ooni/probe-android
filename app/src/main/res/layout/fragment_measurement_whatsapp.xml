@@ -38,21 +38,21 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4" />
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 
 		<TextView
 			android:id="@+id/webApp"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4" />
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 
 		<TextView
 			android:id="@+id/registrations"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4" />
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 	</LinearLayout>
 
 	<TextView
