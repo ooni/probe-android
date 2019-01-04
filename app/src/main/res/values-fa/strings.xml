@@ -282,7 +282,7 @@
   <string name="OONIBrowser_TryMirror">سرورهای آینه را امتحان کنید</string>
   <string name="OONIBrowser_Loading">در حال بارگذاری...</string>
   <string name="OONIBrowser_Error">یک خطا غیرمنتظره رخ داده است. لطفا صفحه را بارگذاری مجدد کنید.</string>
-  <string name="OONIRun_YouAreAboutToRun">شما در حال اجرای تست Probe OONI هستید.</string>
+  <string name="OONIRun_YouAreAboutToRun">شما در شرف اجرای تست OONI Probe هستید.</string>
   <string name="OONIRun_URLs">%1$s آدرس اینترنتی</string>
   <string name="OONIRun_TestName">نام تست</string>
   <string name="OONIRun_TestDetails">جزئیات تست</string>
