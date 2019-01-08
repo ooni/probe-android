@@ -1,3 +1,17 @@
 language: android
+jdk: oraclejdk8
+env:
+  global:
+    - ANDROID_TARGET=android-20
+    - ANDROID_ABI=armeabi-v7a
+android:
+  components:
+  - tools
+  - platform-tools
+  - build-tools-23.0.3
+  - android-23
+  - extra-android-m2repository
+  - sys-img-${ANDROID_ABI}-${ANDROID_TARGET}
 script:
   - ./gradlew build check
+
