@@ -21,5 +21,5 @@ before_install:
   - echo 'count=0' > /home/travis/.android/repositories.cfg # Avoid warning
   - echo yes | sdkmanager "platforms;android-28"
 script:
-  - ./gradlew clean build
-
+  - ./gradlew clean assembleFullRelease
+  - ./gradlew clean assembleFdroidRelease
