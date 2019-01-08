@@ -49,8 +49,8 @@ public class TestKeys {
 	public Tampering tampering;
 
 	public int getWebsiteBlocking() {
-		if (this.blocking != null) {
-			switch (this.blocking) {
+		if (blocking != null) {
+			switch (blocking) {
 				case "dns":
 					return R.string.TestResults_Details_Websites_LikelyBlocked_BlockingReason_DNS;
 				case "tcp_ip":
@@ -67,8 +67,8 @@ public class TestKeys {
 	}
 
 	public int getWhatsappEndpointStatus() {
-		if (this.whatsapp_endpoints_status != null) {
-			if (this.whatsapp_endpoints_status.equals(BLOCKED))
+		if (whatsapp_endpoints_status != null) {
+			if (whatsapp_endpoints_status.equals(BLOCKED))
 				return R.string.TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Failed;
 			return R.string.TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Okay;
 		}
@@ -76,8 +76,8 @@ public class TestKeys {
 	}
 
 	public int getWhatsappWebStatus() {
-		if (this.whatsapp_web_status != null) {
-			if (this.whatsapp_web_status.equals(BLOCKED))
+		if (whatsapp_web_status != null) {
+			if (whatsapp_web_status.equals(BLOCKED))
 				return R.string.TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Failed;
 			return R.string.TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Okay;
 		}
@@ -85,8 +85,8 @@ public class TestKeys {
 	}
 
 	public int getWhatsappRegistrationStatus() {
-		if (this.registration_server_status != null) {
-			if (this.registration_server_status.equals(BLOCKED))
+		if (registration_server_status != null) {
+			if (registration_server_status.equals(BLOCKED))
 				return R.string.TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Failed;
 			return R.string.TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Okay;
 		}
@@ -94,8 +94,8 @@ public class TestKeys {
 	}
 
 	public int getTelegramEndpointStatus() {
-		if (this.telegram_http_blocking != null && this.telegram_tcp_blocking != null) {
-			if (this.telegram_http_blocking || this.telegram_tcp_blocking)
+		if (telegram_http_blocking != null && telegram_tcp_blocking != null) {
+			if (telegram_http_blocking || telegram_tcp_blocking)
 				return R.string.TestResults_Details_InstantMessaging_Telegram_Application_Label_Failed;
 			else
 				return R.string.TestResults_Details_InstantMessaging_Telegram_Application_Label_Okay;
@@ -104,8 +104,8 @@ public class TestKeys {
 	}
 
 	public int getTelegramWebStatus(Context ctx) {
-		if (this.telegram_web_status != null) {
-			if (this.telegram_web_status.equals(BLOCKED))
+		if (telegram_web_status != null) {
+			if (telegram_web_status.equals(BLOCKED))
 				return R.string.TestResults_Details_InstantMessaging_Telegram_Application_Label_Failed;
 			return R.string.TestResults_Details_InstantMessaging_Telegram_Application_Label_Okay;
 		}
@@ -113,8 +113,8 @@ public class TestKeys {
 	}
 
 	public int getFacebookMessengerDns() {
-		if (this.facebook_dns_blocking != null) {
-			if (this.facebook_dns_blocking)
+		if (facebook_dns_blocking != null) {
+			if (facebook_dns_blocking)
 				return R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed;
 			else
 				return R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Okay;
@@ -123,8 +123,8 @@ public class TestKeys {
 	}
 
 	public int getFacebookMessengerTcp() {
-		if (this.facebook_tcp_blocking != null) {
-			if (this.facebook_tcp_blocking)
+		if (facebook_tcp_blocking != null) {
+			if (facebook_tcp_blocking)
 				return R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed;
 			else
 				return R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Okay;
@@ -133,28 +133,26 @@ public class TestKeys {
 	}
 
 	public String getUpload(Context ctx) {
-		if (this.simple != null)
-			return setFractionalDigits(getScaledValue(this.simple.upload));
+		if (simple != null && simple.upload != null)
+			return setFractionalDigits(getScaledValue(simple.upload));
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public int getUploadUnit() {
-		if (this.simple != null)
-			return getUnit(this.simple.upload);
+		if (simple != null && simple.upload != null)
+			return getUnit(simple.upload);
 		return R.string.TestResults_NotAvailable;
 	}
 
 	public String getDownload(Context ctx) {
-		if (this.simple != null) {
-			return setFractionalDigits(getScaledValue(this.simple.download));
-		}
+		if (simple != null && simple.download != null)
+			return setFractionalDigits(getScaledValue(simple.download));
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public int getDownloadUnit() {
-		if (this.simple != null) {
-			return getUnit(this.simple.download);
-		}
+		if (simple != null && simple.download != null)
+			return getUnit(simple.download);
 		return R.string.TestResults_NotAvailable;
 	}
 
@@ -182,67 +180,67 @@ public class TestKeys {
 	}
 
 	public String getPing(Context ctx) {
-		if (this.simple != null)
-			return String.format(Locale.getDefault(), "%.1f", this.simple.ping);
+		if (simple != null)
+			return String.format(Locale.getDefault(), "%.1f", simple.ping);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public String getServer(Context ctx) {
-		if (this.server_name != null && this.server_country != null)
-			return this.server_name + " - " + this.server_country;
+		if (server_name != null && server_country != null)
+			return server_name + " - " + server_country;
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public String getPacketLoss(Context ctx) {
-		if (this.advanced != null)
+		if (advanced != null && advanced.packet_loss != null)
 			return String.format(Locale.getDefault(), "%.3f", advanced.packet_loss * 100);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public String getOutOfOrder(Context ctx) {
-		if (this.advanced != null)
+		if (advanced != null && advanced.out_of_order != null)
 			return String.format(Locale.getDefault(), "%.1f", advanced.out_of_order * 100);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public String getAveragePing(Context ctx) {
-		if (this.advanced != null)
+		if (advanced != null && advanced.avg_rtt != null)
 			return String.format(Locale.getDefault(), "%.1f", advanced.avg_rtt);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public String getMaxPing(Context ctx) {
-		if (this.advanced != null)
+		if (advanced != null && advanced.max_rtt != null)
 			return String.format(Locale.getDefault(), "%.1f", advanced.max_rtt);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public String getMSS(Context ctx) {
-		if (this.advanced != null)
-			return String.format(Locale.getDefault(), "%.0f", this.advanced.mss);
+		if (advanced != null && advanced.mss != null)
+			return String.format(Locale.getDefault(), "%.0f", advanced.mss);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public String getTimeouts(Context ctx) {
-		if (this.advanced != null)
-			return String.format(Locale.getDefault(), "%.0f", this.advanced.timeouts);
+		if (advanced != null && advanced.timeouts != null)
+			return String.format(Locale.getDefault(), "%.0f", advanced.timeouts);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public String getMedianBitrate(Context ctx) {
-		if (this.simple != null && simple.median_bitrate != null)
+		if (simple != null && simple.median_bitrate != null)
 			return setFractionalDigits(getScaledValue(simple.median_bitrate));
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public int getMedianBitrateUnit() {
-		if (this.simple != null && simple.median_bitrate != null)
+		if (simple != null && simple.median_bitrate != null)
 			return getUnit(simple.median_bitrate);
 		return R.string.TestResults_NotAvailable;
 	}
 
 	public int getVideoQuality(Boolean extended) {
-		if (this.simple != null && simple.median_bitrate != null)
+		if (simple != null && simple.median_bitrate != null)
 			return minimumBitrateForVideo(simple.median_bitrate, extended);
 		return R.string.TestResults_NotAvailable;
 	}
@@ -265,7 +263,7 @@ public class TestKeys {
 	}
 
 	public String getPlayoutDelay(Context ctx) {
-		if (this.simple != null && simple.min_playout_delay != null)
+		if (simple != null && simple.min_playout_delay != null)
 			return String.format(Locale.getDefault(), "%.2f", simple.min_playout_delay);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}

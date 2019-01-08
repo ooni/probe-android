@@ -14,8 +14,8 @@ android {
 		applicationId 'org.openobservatory.ooniprobe'
 		minSdkVersion 19
 		targetSdkVersion 28
-		versionName '2.0.0-beta.1'
-		versionCode 39
+		versionName '2.0.0-beta.2'
+		versionCode 40
 	}
 
 	buildTypes {
@@ -29,13 +29,19 @@ android {
 			buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://registry.proteus.ooni.io"'
 		}
 	}
+
+	flavorDimensions 'license'
+	productFlavors {
+		fdroid { dimension 'license' }
+		full { dimension 'license' }
+	}
 }
 
 dependencies {
 	implementation 'androidx.appcompat:appcompat:1.0.2'
 
-	implementation 'com.google.firebase:firebase-messaging:17.3.4'
-	implementation 'com.google.firebase:firebase-core:16.0.5'
+	fullImplementation 'com.google.firebase:firebase-messaging:17.3.4'
+	fullImplementation 'com.google.firebase:firebase-core:16.0.6'
 
 	annotationProcessor 'com.github.Raizlabs.DBFlow:dbflow-processor:4.2.4'
 	implementation 'com.github.Raizlabs.DBFlow:dbflow-core:4.2.4'
@@ -47,9 +53,9 @@ dependencies {
 	implementation 'com.jakewharton:butterknife:9.0.0-rc2'
 	annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc2'
 
-	implementation('com.crashlytics.sdk.android:crashlytics:2.9.6@aar') { transitive = true }
-	implementation 'org.openobservatory.measurement_kit:android-libs:0.9.0-beta-android.4'
-	implementation 'com.github.xanscale.LocalhostToolkit:app:1bbe24f5f0'
+	fullImplementation('com.crashlytics.sdk.android:crashlytics:2.9.7@aar') { transitive = true }
+	implementation 'org.openobservatory.measurement_kit:android-libs:0.9.1-android.1'
+	implementation 'com.github.xanscale.LocalhostToolkit:app:0f80dba55e'
 	implementation 'pub.devrel:easypermissions:2.0.0'
 	implementation 'com.airbnb.android:lottie:2.8.0'
 	implementation 'com.google.code.gson:gson:2.8.5'

@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.item.TextItem;
+import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
@@ -168,6 +169,8 @@ public class OoniRunActivity extends AbstractActivity {
 		for (AbstractSuite suite : TestAsyncTask.SUITES)
 			for (AbstractTest test : suite.getTestList(getPreferenceManager()))
 				if (test.getName().equals(tn)) {
+					for (String url : urls)
+						Url.checkExistingUrl(url);
 					test.setInputs(urls);
 					suite.setTestList(test);
 					return suite;

@@ -2,25 +2,21 @@ package org.openobservatory.ooniprobe.common;
 
 import android.util.Log;
 
-import com.crashlytics.android.Crashlytics;
-import com.crashlytics.android.core.CrashlyticsCore;
-import com.google.android.gms.common.util.IOUtils;
-import com.google.firebase.FirebaseApp;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.raizlabs.android.dbflow.annotation.Database;
 import com.raizlabs.android.dbflow.config.FlowLog;
 import com.raizlabs.android.dbflow.config.FlowManager;
 
+import org.apache.commons.io.IOUtils;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.Date;
-
-import io.fabric.sdk.android.Fabric;
 
 @Database(name = "v2", version = 1, foreignKeyConstraintsEnforced = true)
 public class Application extends android.app.Application {
@@ -42,9 +38,7 @@ public class Application extends android.app.Application {
 		FlowManager.init(this);
 		preferenceManager = new PreferenceManager(this);
 		gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateJsonDeserializer()).registerTypeAdapter(TestKeys.Tampering.class, new TamperingJsonDeserializer()).create();
-		CrashlyticsCore core = new CrashlyticsCore.Builder().disabled(preferenceManager.isSendCrash()).build();
-		Fabric.with(this, new Crashlytics.Builder().core(core).build());
-		FirebaseApp.initializeApp(this);
+		FlavorApplication.onCreate(this, preferenceManager.isSendCrash());
 		if (BuildConfig.DEBUG)
 			FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
 		copyResources(R.raw.ca_bundle, CA_BUNDLE);
@@ -57,10 +51,14 @@ public class Application extends android.app.Application {
 		if (!f.exists() || preferenceManager.getGeoVer() != GEO_VER)
 			try {
 				Log.d(PreferenceManager.GEO_VER, Integer.toString(GEO_VER));
-				IOUtils.copyStream(getResources().openRawResource(id), new FileOutputStream(f), true, 1024);
+				InputStream input = getResources().openRawResource(id);
+				FileOutputStream output = new FileOutputStream(f);
+				IOUtils.copy(input, output);
+				input.close();
+				output.close();
 				preferenceManager.setGeoVer(GEO_VER);
-			} catch (Exception e1) {
-				e1.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 	}
 

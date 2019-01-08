@@ -1,0 +1,22 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	package="org.openobservatory.ooniprobe">
+
+	<application tools:ignore="GoogleAppIndexingWarning">
+		<meta-data
+			android:name="io.fabric.ApiKey"
+			android:value="529a3ff33bd5359fe86c53f6252035178bdb03a1" />
+		<meta-data
+			android:name="com.google.firebase.messaging.default_notification_icon"
+			android:resource="@drawable/ic_notification" />
+		<meta-data
+			android:name="com.google.firebase.messaging.default_notification_color"
+			android:resource="@color/color_base" />
+
+		<service android:name=".common.FirebaseMessagingService">
+			<intent-filter>
+				<action android:name="com.google.firebase.MESSAGING_EVENT" />
+			</intent-filter>
+		</service>
+	</application>
+</manifest>

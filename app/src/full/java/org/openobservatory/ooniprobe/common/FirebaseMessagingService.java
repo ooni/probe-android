@@ -1,4 +1,4 @@
-package org.openobservatory.ooniprobe.utils;
+package org.openobservatory.ooniprobe.common;
 
 import android.content.Intent;
 import android.util.Log;
@@ -7,7 +7,7 @@ import com.google.firebase.messaging.RemoteMessage;
 
 import org.json.JSONObject;
 import org.openobservatory.ooniprobe.activity.NotificationDialogActivity;
-import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.utils.NotificationService;
 
 import java.util.Map;
 

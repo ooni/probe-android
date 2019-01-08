@@ -7,11 +7,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.http.SslError;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.webkit.SslErrorHandler;
-import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
@@ -219,8 +217,8 @@ public class BrowserActivity extends AbstractActivity implements View.OnClickLis
 		}
 
 		@Override
-		public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
-			super.onReceivedError(view, request, error);
+		public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+			super.onReceivedError(view, errorCode, description, failingUrl);
 			refresh.setVisibility(View.VISIBLE);
 			if (webViewProgressBar.isShown())
 				webViewProgressBar.setVisibility(View.GONE);

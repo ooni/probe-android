@@ -14,21 +14,6 @@
 		android:supportsRtl="true"
 		android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App"
 		tools:replace="android:allowBackup, android:label">
-		<meta-data
-			android:name="io.fabric.ApiKey"
-			android:value="529a3ff33bd5359fe86c53f6252035178bdb03a1" />
-		<meta-data
-			android:name="com.google.firebase.messaging.default_notification_icon"
-			android:resource="@drawable/ic_notification" />
-		<meta-data
-			android:name="com.google.firebase.messaging.default_notification_color"
-			android:resource="@color/color_base" />
-
-		<service android:name=".utils.FirebaseMessagingService">
-			<intent-filter>
-				<action android:name="com.google.firebase.MESSAGING_EVENT" />
-			</intent-filter>
-		</service>
 		<receiver android:name=".utils.ConnectivityChangeReceiver">
 			<intent-filter>
 				<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
