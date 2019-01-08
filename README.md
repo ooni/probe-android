@@ -8,15 +8,11 @@ censorship and other forms of network interference.
 <div align="left">
 
 <a href="https://f-droid.org/packages/org.openobservatory.ooniprobe/" target="_blank">
-<img src="assets/F-Droid-badge.png" alt="Get it on F-Droid" height="50px"/>
-</a>
-
-<a href='https://play.google.com/store/apps/details?id=org.openobservatory.ooniprobe'>
-<img alt='Get it on Google Play' src='assets/play-store-badge.png' height="50px"/>
+<img src="assets/F-Droid-badge.png" alt="Get it on F-Droid" height="60px"/>
 </a>
 
 <a href="https://play.google.com/store/apps/details?id=org.openobservatory.ooniprobe" target="_blank">
-<img src="assets/Google-Play-badge.png" alt="Get it on Google Play" height="50px"/>
+<img src="assets/Google-Play-badge.png" alt="Get it on Google Play" height="60px"/>
 </a>
 
 </div>
