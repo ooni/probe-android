@@ -2,7 +2,7 @@
 <resources>
   <string name="General_AppName">OONI Probe</string>
   <string name="Onboarding_WhatIsOONIProbe_Title">Què és OONI Probe?</string>
-  <string name="Onboarding_WhatIsOONIProbe_Paragraph">La vostra aplicació per mesurar la censura d\'Internet. \n\nEls llocs web estan blocats i les aplicacions de xarxes socials? La vostra connexió a internet és inusualment lenta?\n\nExecuteu OONI Probe per esbrinar-ho!!</string>
+  <string name="Onboarding_WhatIsOONIProbe_Paragraph">La vostra aplicació per mesurar la censura d\'Internet. \n\nEls llocs web i les aplicacions de xarxes socials estan blocats? La vostra connexió a internet és inusualment lenta?\n\nExecuteu OONI Probe per esbrinar-ho!!</string>
   <string name="Onboarding_WhatIsOONIProbe_GotIt">Entesos</string>
   <string name="Onboarding_ThingsToKnow_Title">Alerta!</string>
   <string name="Onboarding_ThingsToKnow_Bullet_1">Les dades d\'OONI es publiquen obertament i inclouran la informació de la vostra xarxa.</string>
@@ -32,9 +32,9 @@
   <string name="Onboarding_DefaultSettings_Button_Go">Som-hi</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Canvia valors</string>
   <string name="Dashboard_Tab_Label">Tauler</string>
-  <string name="Dashboard_Card_Run">Executa</string>
+  <string name="Dashboard_Card_Run">Inicia</string>
   <string name="Dashboard_Overview_LastRun_Never">N/D</string>
-  <string name="Dashboard_Overview_Run">Executa</string>
+  <string name="Dashboard_Overview_Run">Inicia</string>
   <string name="Dashboard_Overview_LatestTest">Última prova:</string>
   <string name="Dashboard_Overview_Estimated">Estimat:</string>
   <string name="Dashboard_Overview_ChooseWebsites">Trieu llocs web</string>
@@ -45,7 +45,7 @@
   <string name="Dashboard_Card_Subtitle">Toqueu la targeta per obtenir més informació</string>
   <string name="Dashboard_Card_Seconds">~%1$s s</string>
   <string name="Dashboard_Websites_Card_Description">Prova el blocatge de llocs web</string>
-  <string name="Dashboard_Websites_Overview_Paragraph">Comproveu si els llocs web estan blocats mitjançant la [prova la connexió web](https://ooni.io/nettest/web-connectivity/) d\'OONI.\n\nCada vegada que premeu Executa, proveu diferents llocs web inclosos en las llistes de proves de Citizen Lab [global](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) i [específiques per al país](https://github.com/citizenlab/test-lists/tree/master/lists).\n\nPer provar els llocs de la seva elecció, toqueu el botó Tria llocs web o seleccioneu categories de llocs a través de la configuració d\'aquesta targeta. \n\nAquesta prova mesura si els llocs web estan blocats mitjançant la manipulació DNS, el bloqueig TCP/IP o mitjançant un intermediari HTTP transparent.\n\nEls vostres resultats seran publicats a l\'[OONI Explorer](https://explorer.ooni.io/world/) i a l\'[API d\'OONI](https://api.ooni.io/).</string>
+  <string name="Dashboard_Websites_Overview_Paragraph">Comproveu si els llocs web estan blocats mitjançant la [prova la connexió web](https://ooni.io/nettest/web-connectivity/) d\'OONI.\n\nCada vegada que premeu Inicia, proveu diferents llocs web inclosos en las llistes de proves de Citizen Lab [global](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) i [específiques per al país](https://github.com/citizenlab/test-lists/tree/master/lists).\n\nPer provar els llocs de la seva elecció, toqueu el botó Tria llocs web o seleccioneu categories de llocs a través de la configuració d\'aquesta targeta. \n\nAquesta prova mesura si els llocs web estan blocats mitjançant la manipulació DNS, el bloqueig TCP/IP o mitjançant un intermediari HTTP transparent.\n\nEls vostres resultats seran publicats a l\'[OONI Explorer](https://explorer.ooni.io/world/) i a l\'[API d\'OONI](https://api.ooni.io/).</string>
   <string name="Dashboard_Performance_Card_Description">Proveu la velocitat i el rendiment de la xarxa</string>
   <string name="Dashboard_Performance_Overview_Paragraph">Mesureu la velocitat i el rendiment de la vostra xarxa mitjançant la prova [NDT](https://ooni.io/nettest/ndt/).\n\nMesureu el rendiment de la transmissió de vídeo amb la prova [DASH](https://ooni.io/nettest/dash/).\n\nAquestes proves consumeixen dades segons la velocitat de la vostra xarxa.\n\nEls vostres resultats es publicaran a l\'[OONI Explorer](https://explorer.ooni.io/world/) i a l\'[API d\'OONI](https://api.ooni.io/).\n\nAdvertiment: aquestes proves es basen en servidors de tercers. Per tant, no podem garantir que la vostra adreça IP no sigui recopilada.</string>
   <string name="Dashboard_Middleboxes_Card_Description">Detecta «middleboxes» de la vostra xarxa</string>
@@ -262,7 +262,7 @@
   <string name="Settings_Websites_CustomURL_Title">Trieu llocs web per provar</string>
   <string name="Settings_Websites_CustomURL_URL">URL</string>
   <string name="Settings_Websites_CustomURL_NoURLEntered">No s\'ha introduït cap URL</string>
-  <string name="Settings_Websites_CustomURL_Run">Executa</string>
+  <string name="Settings_Websites_CustomURL_Run">Inicia</string>
   <string name="Settings_Websites_CustomURL_Add">Afegeix lloc web</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">Prova el WhatsApp</string>
   <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">Prova tots els punts finals de WhatsApp</string>
@@ -286,7 +286,7 @@
   <string name="OONIRun_URLs">%1$s URL</string>
   <string name="OONIRun_TestName">Nom de la prova</string>
   <string name="OONIRun_TestDetails">Detalls de la prova</string>
-  <string name="OONIRun_Run">Executa</string>
+  <string name="OONIRun_Run">Inicia</string>
   <string name="OONIRun_OONIProbeOutOfDate">Obsolet</string>
   <string name="OONIRun_OONIProbeNewerVersion">Necessiteu una versió més recent d\'OONI Probe per executar aquesta prova.</string>
   <string name="OONIRun_Update">Actualitza</string>
