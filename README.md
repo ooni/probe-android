@@ -1,13 +1,31 @@
-[![ooniprobe android](assets/title.png)](https://ooni.torproject.org/)
+# OONI Probe Android [![Slack Channel](https://slack.openobservatory.org/badge.svg)](https://slack.openobservatory.org/) [![Build Status](http://img.shields.io/travis/ooni/probe-android.svg)](https://travis-ci.org/ooni/probe-android)
 
-[![Slack Channel](https://slack.openobservatory.org/badge.svg)](https://slack.openobservatory.org/)
+OONI Probe is free and open source software designed to measure internet
+censorship and other forms of network interference.
 
-This is the android version of [ooniprobe](https://ooni.torproject.org/).
+[![OONI Probe Android](assets/OONIProbeLogo.png)](https://ooni.io)
+
+<div align="left">
 
 <a href="https://f-droid.org/packages/org.openobservatory.ooniprobe/" target="_blank">
-<img src="https://raw.githubusercontent.com/TheTorProject/ooniprobe-android/master/assets/F-Droid-badge.png" alt="Get it on F-Droid" height="90"/></a>
+<img src="assets/F-Droid-badge.png" alt="Get it on F-Droid" height="50px"/>
+</a>
+
+<a href='https://play.google.com/store/apps/details?id=org.openobservatory.ooniprobe'>
+<img alt='Get it on Google Play' src='assets/play-store-badge.png' height="50px"/>
+</a>
+
 <a href="https://play.google.com/store/apps/details?id=org.openobservatory.ooniprobe" target="_blank">
-<img src="https://raw.githubusercontent.com/TheTorProject/ooniprobe-android/master/assets/Google-Play-badge.png" alt="Get it on Google Play" height="90"/></a>
+<img src="assets/Google-Play-badge.png" alt="Get it on Google Play" height="50px"/>
+</a>
+
+</div>
+
+[Click here to report a bug](https://github.com/ooni/probe-android/issues/new)
+
+Other supported platforms: [iOS](https://github.com/ooni/probe-ios), [Desktop](https://github.com/ooni/probe-desktop), [CLI](https://github.com/ooni/probe-cli)
+
+## Developer information
 
 This application requires Android Studio. We use gradle and, as part of the
 initial gradle sync, Android studio will download all the required
