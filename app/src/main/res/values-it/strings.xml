@@ -252,7 +252,7 @@
   <string name="Settings_Sharing_IncludeCountryCode">Includi il codice del paese</string>
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Queste informazioni (es. IT per Italia) sono necessarie per determinare il paese a cui le misure si riferiscono. Sei sicuro di voler disabilitare questa opzione?</string>
   <string name="Settings_Sharing_Footer">Pubblicando i risultati, stai aumentando la trasparenza sulle interferenze di rete e supportando la community OONI.\n\nInformazioni sulla rete (i.e. l\'Autonomous System Number) è necessario per poter identificare i provider di servizi internet (ISP).</string>
-  <string name="Settings_Advanced_Label">Avanzate</string>
+  <string name="Settings_Advanced_Label">Avanzato</string>
   <string name="Settings_Advanced_SendCrashReports">Manda rapporto sui crash</string>
   <string name="Settings_Advanced_DebugLogs">Log di debug</string>
   <string name="Settings_Advanced_UseDomainFronting">Usa sempre il domain fronting</string>

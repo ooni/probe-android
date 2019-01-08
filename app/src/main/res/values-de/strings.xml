@@ -42,7 +42,7 @@
   <string name="Dashboard_Running_EstimatedTimeLeft">Voraussichtliche Restzeit:</string>
   <string name="Dashboard_Running_Seconds">%1$s Sekunden</string>
   <string name="Dashboard_Running_PreparingTest">Bereite Test vor</string>
-  <string name="Dashboard_Card_Subtitle">Tippe auf die Schaltfläche, um mehr zu erfahren</string>
+  <string name="Dashboard_Card_Subtitle">Tippe auf die Karte, um mehr zu erfahren</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">Teste die Blockierung von Webseiten</string>
   <string name="Dashboard_Websites_Overview_Paragraph">Überprüfe mit Hilfe des [Web-Connectivity-Tests](https://ooni.io/nettest/web-connectivity/) von OONI, ob Webseiten blockiert werden\n\nJedes Mal, wenn du „Ausführen“ auswählst, testest du verschiedene Webseiten von Citizen Labs\' [globalen](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) und [länderspezifischen](https://github.com/citizenlab/test-lists/tree/master/lists) Testlisten.\n\nUm Webseiten deiner Wahl zu testen, tippe auf die \"Webseiten\"-Schaltfläche oder wähle Kategorien von Webseiten üausführenber die Einstellungen dieser Karte.\n\nDieser Test misst, ob Webseiten durch DNS-Manipulation, TCP/IP-Blockierung oder einen transparenten HTTP-Proxy blockiert werden.\n\nDeine Ergebnisse werden auf dem [OONI Explorer](https://explorer.ooni.io/world/) und der [OONI API](https://api.ooni.io/) veröffentlicht.</string>
@@ -120,7 +120,7 @@
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Zugänglich</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s ist zugänglich.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Wahrscheinlich blockiert</string>
-  <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">%1$s ist wahrscheinlich blockiert wegen %2$s.\n\nHinweis: Falsch positive Ergebnisse können auftreten. Erfahre [hier](https://ooni.io/nettest/web-connectivity/) mehr dazu.</string>
+  <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">%1$s ist wahrscheinlich blockiert wegen %2$s.\n\nHinweis: Falsch positive können auftreten. Erfahre [hier](https://ooni.io/nettest/web-connectivity/) mehr dazu.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Content_LearnToCircumvent">Zensurumgehung</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_DNS">**DNS-Manipulation**</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_TCPIP">**TCP/IP basiertes Blocken**</string>
@@ -237,10 +237,10 @@
   <string name="Settings_Notifications_OnTestCompletion">Benachrichtigung nach Abschluss des Tests</string>
   <string name="Settings_Notifications_OnNews">Neuigkeiten</string>
   <string name="Settings_AutomatedTesting_Label">Regelmäßige Testerinnerung</string>
-  <string name="Settings_AutomatedTesting_Enabled">Aktiv</string>
+  <string name="Settings_AutomatedTesting_Enabled">&amp;Aktiv</string>
   <string name="Settings_AutomatedTesting_EnabledTests">Aktivierte Tests</string>
   <string name="Settings_AutomatedTesting_Categories_Label">Kategorien</string>
-  <string name="Settings_AutomatedTesting_Categories_Title">Zu testende Webseiten-Kategorien</string>
+  <string name="Settings_AutomatedTesting_Categories_Title">Zu testende Website Kategorien</string>
   <string name="Settings_AutomatedTesting_Categories_Subtitle">%1$s aktivierte Kategorien</string>
   <string name="Settings_AutomatedTesting_MonthlyMobileAllowance">Monatliches mobiles Datenvolumen</string>
   <string name="Settings_AutomatedTesting_MonthlyWiFiAllowance">Monatliches WLAN Datenvolumen</string>
@@ -257,7 +257,7 @@
   <string name="Settings_Advanced_DebugLogs">Fehlerprotokolle</string>
   <string name="Settings_Advanced_UseDomainFronting">Immer Domain Fronting benutzen</string>
   <string name="Settings_Websites_MaxRuntime">Testdauer</string>
-  <string name="Settings_Websites_Categories_Label">Zu testende Webseiten-Kategorien</string>
+  <string name="Settings_Websites_Categories_Label">Zu testende Website Kategorien</string>
   <string name="Settings_Websites_Categories_Description">%1$s aktivierte Kategorien</string>
   <string name="Settings_Websites_CustomURL_Title">Wähle Webseiten zum testen aus</string>
   <string name="Settings_Websites_CustomURL_URL">URL</string>
@@ -289,7 +289,7 @@
   <string name="OONIRun_Run">Ausführen</string>
   <string name="OONIRun_OONIProbeOutOfDate">Veraltet</string>
   <string name="OONIRun_OONIProbeNewerVersion">Du brauchst eine neuere Version von OONI Probe um diesen Test auszuführen.</string>
-  <string name="OONIRun_Update">Update</string>
+  <string name="OONIRun_Update">Speichern</string>
   <string name="OONIRun_Close">Schließen</string>
   <string name="OONIRun_InvalidParameter">Ungültiger Parameter</string>
   <string name="OONIRun_InvalidParameter_Msg">Der OONI Run-Link ist entweder fehlerhaft oder deine App ist veraltet.</string>
@@ -323,7 +323,7 @@
   <string name="CategoryCode_ECON_Name">Wirtschaft</string>
   <string name="CategoryCode_GOVT_Name">Regierung</string>
   <string name="CategoryCode_COMM_Name">E-Commerce</string>
-  <string name="CategoryCode_CTRL_Name">Kontroll-Inhalte</string>
+  <string name="CategoryCode_CTRL_Name">Inhaltskontrolle</string>
   <string name="CategoryCode_IGO_Name">Zwischenstaatliche Organisationen</string>
   <string name="CategoryCode_MISC_Name">Sonstige Inhalte</string>
   <string name="CategoryCode_ALDR_Description">Gebrauch und Verkauf von Drogen und Alkohol</string>
