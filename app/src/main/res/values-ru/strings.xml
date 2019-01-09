@@ -4,7 +4,7 @@
   <string name="Onboarding_WhatIsOONIProbe_Title">Что такое OONI Probe?</string>
   <string name="Onboarding_WhatIsOONIProbe_Paragraph">Приложение для анализа интернет-цензуры. \n\nЗаблокирован веб-сайт или приложение соцсети? Интернет тормозит больше обычного?\n\nНайдите ответ с помощью OONI Probe!</string>
   <string name="Onboarding_WhatIsOONIProbe_GotIt">ОК</string>
-  <string name="Onboarding_ThingsToKnow_Title">Предупреждение!</string>
+  <string name="Onboarding_ThingsToKnow_Title">Обратите внимание!</string>
   <string name="Onboarding_ThingsToKnow_Bullet_1">Данные OONI публикуются открыто и будут включать информацию о вашей сети.</string>
   <string name="Onboarding_ThingsToKnow_Bullet_2">Тот, кто может отслеживать ваши действия в сети (например, правительство или провайдер доступа к интернету), будет видеть, что вы используете OONI Probe.</string>
   <string name="Onboarding_ThingsToKnow_Bullet_3">Вы можете тестировать запрещенные сайты (а можете выбрать категории сайтов для тестирования).</string>
@@ -124,7 +124,7 @@
   <string name="TestResults_Details_Websites_LikelyBlocked_Content_LearnToCircumvent">Обход цензуры</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_DNS">**Поддельные DNS**</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_TCPIP">**Блокировки на основе TCP/IP**</string>
-  <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_HTTPDiff">**HTTP blocking (a blockpage might be served)**</string>
+  <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_HTTPDiff">**HTTP-блокировка (м.б. со страницей блокировки)**</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_HTTPFailure">**Блокируется HTTP (ошибка HTTP-запросов)**</string>
   <string name="TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Title">Мобильное приложение</string>
   <string name="TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Okay">OK</string>
@@ -268,8 +268,8 @@
   <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">Тестировать все конечные точки WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Тестировать Telegram</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">Тестировать Facebook Messenger</string>
-  <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">Run the HTTP Invalid Request Line Test</string>
-  <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">Run the HTTP Header Field Manipulation Test</string>
+  <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">Начать тест HTTP Invalid Request Line</string>
+  <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">Начать тест HTTP Header Field Manipulation</string>
   <string name="Settings_Performance_TestNDT">Запустить тест скорости NDT</string>
   <string name="Settings_Performance_NDTAutomaticServerSelection">Автоматический выбор сервера NDT</string>
   <string name="Settings_Performance_NDTServerAddress">Адрес сервера NDT</string>
