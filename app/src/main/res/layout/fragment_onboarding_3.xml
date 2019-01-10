@@ -5,21 +5,20 @@
 	android:layout_height="match_parent"
 	android:background="#001A33">
 
-	<ImageView
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:adjustViewBounds="true"
-		android:background="#002B54"
-		android:src="@drawable/onboarding_3" />
-
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_gravity="bottom"
 		android:orientation="vertical">
 
+		<ImageView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:adjustViewBounds="true"
+			android:background="#002B54"
+			android:src="@drawable/onboarding_3" />
+
 		<TextView
-			style="@style/TextAppearance.MaterialComponents.Headline4"
+			style="@style/TextAppearance.MaterialComponents.Headline6"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
@@ -27,11 +26,10 @@
 			android:textColor="@color/color_white" />
 
 		<TextView
-			style="@style/TextAppearance.MaterialComponents.Body1"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginHorizontal="16dp"
-			android:layout_marginTop="16dp"
+			android:layout_marginTop="8dp"
 			android:text="@string/Onboarding_DefaultSettings_Header"
 			android:textColor="@color/color_white"
 			android:textStyle="bold" />
@@ -65,9 +63,15 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginHorizontal="16dp"
-			android:layout_marginBottom="16dp"
 			android:text="@string/Onboarding_DefaultSettings_Paragraph"
 			android:textColor="@color/color_white" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="bottom"
+		android:orientation="vertical">
 
 		<Button
 			android:id="@+id/master"
