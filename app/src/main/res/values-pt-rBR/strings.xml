@@ -178,7 +178,7 @@
   <string name="TestResults_Details_Performance_NDT_AveragePing">Ping Médio</string>
   <string name="TestResults_Details_Performance_NDT_MaxPing">Ping Máximo</string>
   <string name="TestResults_Details_Performance_NDT_MSS">MSS</string>
-  <string name="TestResults_Details_Performance_NDT_Timeouts">Tempo esgotados</string>
+  <string name="TestResults_Details_Performance_NDT_Timeouts">Tempo excedido</string>
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Você pode transmitir até %1$s sem usar a memória temporária.</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">Taxa média de bits</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">Atraso de Playout</string>
