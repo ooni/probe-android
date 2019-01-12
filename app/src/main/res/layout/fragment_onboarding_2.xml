@@ -1,87 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="#0F3E74">
+	android:background="#0F3E74"
+	android:orientation="vertical">
 
-	<LinearLayout
+	<ImageView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:orientation="vertical">
+		android:adjustViewBounds="true"
+		android:src="@drawable/onboarding_2" />
 
-		<ImageView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:adjustViewBounds="true"
-			android:src="@drawable/onboarding_2" />
-
-		<TextView
-			style="@style/TextAppearance.MaterialComponents.Headline6"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:gravity="center_horizontal"
-			android:text="@string/Onboarding_ThingsToKnow_Title"
-			android:textColor="@color/color_white" />
-
-		<TextView
-			android:id="@+id/bullet1"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginHorizontal="16dp"
-			android:layout_marginTop="8dp"
-			android:text="@string/Onboarding_ThingsToKnow_Bullet_1"
-			android:textColor="@color/color_white" />
-
-		<TextView
-			android:id="@+id/bullet2"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginHorizontal="16dp"
-			android:text="@string/Onboarding_ThingsToKnow_Bullet_2"
-			android:textColor="@color/color_white" />
-
-		<TextView
-			android:id="@+id/bullet3"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginHorizontal="16dp"
-			android:text="@string/Onboarding_ThingsToKnow_Bullet_3"
-			android:textColor="@color/color_white" />
-	</LinearLayout>
-
-	<LinearLayout
+	<TextView
+		style="@style/TextAppearance.MaterialComponents.Headline6"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_gravity="bottom"
-		android:orientation="vertical">
+		android:gravity="center_horizontal"
+		android:text="@string/Onboarding_ThingsToKnow_Title"
+		android:textColor="@color/color_white" />
 
-		<Button
-			android:id="@+id/master"
-			style="@style/TextAppearance.MaterialComponents.Body1"
-			android:layout_width="match_parent"
-			android:layout_height="64dp"
-			android:layout_marginHorizontal="64dp"
-			android:text="@string/Onboarding_ThingsToKnow_Button"
-			android:textAllCaps="false"
-			android:textColor="#002B54"
-			app:backgroundTint="@color/color_white"
-			app:cornerRadius="32dp" />
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_marginHorizontal="16dp"
+		android:layout_marginVertical="8dp"
+		android:layout_weight="1">
 
-		<Button
-			android:id="@+id/slave"
-			style="@style/Widget.MaterialComponents.Button.TextButton"
+		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/Onboarding_ThingsToKnow_LearnMore"
-			android:textAllCaps="false"
-			android:textColor="@color/color_white" />
+			android:orientation="vertical">
 
-		<ImageView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center_horizontal"
-			android:layout_marginBottom="16dp"
-			android:src="@drawable/dots_2" />
-	</LinearLayout>
-</FrameLayout>
+			<TextView
+				android:id="@+id/bullet1"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/Onboarding_ThingsToKnow_Bullet_1"
+				android:textColor="@color/color_white" />
+
+			<TextView
+				android:id="@+id/bullet2"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/Onboarding_ThingsToKnow_Bullet_2"
+				android:textColor="@color/color_white" />
+
+			<TextView
+				android:id="@+id/bullet3"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/Onboarding_ThingsToKnow_Bullet_3"
+				android:textColor="@color/color_white" />
+		</LinearLayout>
+	</ScrollView>
+
+	<Button
+		android:id="@+id/master"
+		style="@style/TextAppearance.MaterialComponents.Body1"
+		android:layout_width="match_parent"
+		android:layout_height="64dp"
+		android:layout_marginHorizontal="64dp"
+		android:text="@string/Onboarding_ThingsToKnow_Button"
+		android:textAllCaps="false"
+		android:textColor="#002B54"
+		app:backgroundTint="@color/color_white"
+		app:cornerRadius="32dp" />
+
+	<Button
+		android:id="@+id/slave"
+		style="@style/Widget.MaterialComponents.Button.TextButton"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/Onboarding_ThingsToKnow_LearnMore"
+		android:textAllCaps="false"
+		android:textColor="@color/color_white" />
+
+	<ImageView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:layout_marginBottom="16dp"
+		android:src="@drawable/dots_2" />
+</LinearLayout>
