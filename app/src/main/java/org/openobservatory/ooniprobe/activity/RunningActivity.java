@@ -50,12 +50,12 @@ public class RunningActivity extends AbstractActivity {
 	public static final String TEST_RUN = "TEST_RUN";
 	@BindView(R.id.name) TextView name;
 	@BindView(R.id.log) TextView log;
-	@BindView(R.id.runtime) TextView runtime;
+	@BindView(R.id.eta) TextView eta;
 	@BindView(R.id.progress) ProgressBar progress;
 	@BindView(R.id.animation) LottieAnimationView animation;
 	private AbstractSuite testSuite;
 	private boolean background;
-	private int currentMaxRuntime;
+	private Integer runtime;
 
 	public static Intent newIntent(AbstractActivity context, AbstractSuite testSuite) {
 		if (context.getPreferenceManager().getNetworkType().equals(NotificationService.NO_INTERNET)) {
@@ -68,14 +68,12 @@ public class RunningActivity extends AbstractActivity {
 	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		testSuite = (AbstractSuite) getIntent().getSerializableExtra(TEST);
-		currentMaxRuntime = testSuite.getRuntime(getPreferenceManager());
+		runtime = testSuite.getRuntime(getPreferenceManager());
 		boolean downloadUrls = false;
 		for (AbstractTest abstractTest : testSuite.getTestList(getPreferenceManager()))
 			if (abstractTest instanceof WebConnectivity) {
 				if (abstractTest.getInputs() == null)
 					downloadUrls = true;
-				else
-					currentMaxRuntime = 30 + abstractTest.getInputs().size() * 5;
 				break;
 			}
 		if (downloadUrls) {
@@ -158,8 +156,7 @@ public class RunningActivity extends AbstractActivity {
 					case TestAsyncTask.PRG:
 						int prgs = Integer.parseInt(values[1]);
 						act.progress.setProgress(prgs);
-						String sec = String.valueOf(Math.round(act.currentMaxRuntime - ((double) prgs) / act.progress.getMax() * act.currentMaxRuntime));
-						act.runtime.setText(act.getString(R.string.Dashboard_Running_Seconds, sec));
+						act.eta.setText(act.getString(R.string.Dashboard_Running_Seconds, String.valueOf(Math.round(act.runtime - ((double) prgs) / act.progress.getMax() * act.runtime))));
 						break;
 					case TestAsyncTask.LOG:
 						act.log.setText(values[1]);

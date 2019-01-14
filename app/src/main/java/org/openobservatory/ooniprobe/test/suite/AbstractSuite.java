@@ -26,11 +26,10 @@ public abstract class AbstractSuite implements Serializable {
 	private String anim;
 	private String name;
 	private String dataUsage;
-	private Integer runtime;
 	private AbstractTest[] testList;
 	private Result result;
 
-	public AbstractSuite(String name, @StringRes int title, @StringRes int cardDesc, @DrawableRes int icon, @ColorRes int color, @StyleRes int themeLight, @StyleRes int themeDark, @StringRes int desc1, @XmlRes int pref, String anim, String dataUsage, int runtime) {
+	public AbstractSuite(String name, @StringRes int title, @StringRes int cardDesc, @DrawableRes int icon, @ColorRes int color, @StyleRes int themeLight, @StyleRes int themeDark, @StringRes int desc1, @XmlRes int pref, String anim, String dataUsage) {
 		this.title = title;
 		this.cardDesc = cardDesc;
 		this.icon = icon;
@@ -42,7 +41,6 @@ public abstract class AbstractSuite implements Serializable {
 		this.anim = anim;
 		this.name = name;
 		this.dataUsage = dataUsage;
-		this.runtime = runtime;
 	}
 
 	@CallSuper public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
@@ -107,7 +105,10 @@ public abstract class AbstractSuite implements Serializable {
 		return dataUsage;
 	}
 
-	public Integer getRuntime(@Nullable PreferenceManager pm) {
+	public Integer getRuntime(PreferenceManager pm) {
+		int runtime = 0;
+		for (AbstractTest test : getTestList(pm))
+			runtime += test.getRuntime(pm);
 		return runtime;
 	}
 }
