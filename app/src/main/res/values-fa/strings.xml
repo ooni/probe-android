@@ -45,11 +45,11 @@
   <string name="Dashboard_Card_Subtitle">برای اطلاعات بیشتر کارت را بفشارید</string>
   <string name="Dashboard_Card_Seconds">~%1$s</string>
   <string name="Dashboard_Websites_Card_Description">تست مسدودیت وبسایت‌ها</string>
-  <string name="Dashboard_Websites_Overview_Paragraph">وبسایت‌های مسدود را با استفاده از[Web Connectivity test](https://ooni.io/nettest/web-connectivity/) OONI بررسی کنید.\n\nدر بار که گزینه اجرا را می فشارید، وبسایت‌های مختلفی از لیست‌های تست [جهانی](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) و [کشوری](https://github.com/citizenlab/test-lists/tree/master/lists) از Citizen Lab را تست می‌کنید.\n\nبرای تست سایت‌‌های انتخابی خودتان، گزینه‌ی انتخاب وبسایت‌ها را انتخاب و یا دسته‌بندی سایت‌ها را با تنظیمات این کارت انتخاب کنید.\n\nاین تست سایت‌های مسدود را با دستکاری DNS، مسدودیت TCP/IP و یا پروکسی HTTP اندازه‌گیری می‌کند.\n\nنتایج شما بر روی [OONI Explorer](https://explorer.ooni.io/world/) و [OONI API](https://api.ooni.io/) منتشر می‌شود.</string>
+  <string name="Dashboard_Websites_Overview_Paragraph">وبسایت‌های مسدود را با استفاده از[Web Connectivity test](https://ooni.io/nettest/web-connectivity/) OONI بررسی کنید.\n\n هر بار که گزینه اجرا را می فشارید، وبسایت‌های مختلفی از لیست‌های تست [جهانی](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) و [کشوری](https://github.com/citizenlab/test-lists/tree/master/lists) از Citizen Lab را تست می‌کنید.\n\nبرای تست سایت‌‌های انتخابی خودتان، گزینه‌ی انتخاب وبسایت‌ها را انتخاب و یا دسته‌بندی سایت‌ها را با تنظیمات این کارت انتخاب کنید.\n\nاین تست سایت‌های مسدود را با دستکاری DNS، مسدودیت TCP/IP و یا پروکسی HTTP اندازه‌گیری می‌کند.\n\nنتایج شما بر روی [OONI Explorer](https://explorer.ooni.io/world/) و [OONI API](https://api.ooni.io/) منتشر می‌شود.</string>
   <string name="Dashboard_Performance_Card_Description">تست سرعت و کارایی شبکه شما</string>
   <string name="Dashboard_Performance_Overview_Paragraph">سرعت و کارایی شبکه خود را با استفاده از تست [NDT](https://ooni.io/nettest/ndt/) test بررسی کنید.\n\nکارایی پخش زنده ویدیویی را با استفاده از تست [DASH](https://ooni.io/nettest/dash/) بررسی کنید.\n\nاین تست‌‌ها با توجه به سرعت شبکه‌ی  شما، داده مصرف می‌کنند.\n\nنتایج  شما بر روی [OONI Explorer](https://explorer.ooni.io/world/) و [OONI API](https://api.ooni.io/) منتشر می‌شود.\n\nسلب مسئولیت: این تست‌ها وابسته به سرورهای ثالث هستند. بنابر این ما تضمینی بر عدم جمع‌آوری آدرس IP شما را نمی‌دهیم.</string>
   <string name="Dashboard_Middleboxes_Card_Description">شناسایی middlebox در شبکه شما</string>
-  <string name="Dashboard_Middleboxes_Overview_Paragraph">سرویس‌دهنده‌های اینترنت اغلب از (middleboxes) شبکه برای اهداف مختلف (مانند گرفتن کش) استفاده می‌کنند. گاهی اوقات این middleboxها برای سانسور و/یا نظارت بر اینترنت استفاده می‌شوند.\n\nبا استفاده از تست‌های [خط درخواست نامعتبر HTTP](https://ooni.io/nettest/http-invalid-request-line/) و [دستکاری فیلد هدر HTTP](https://ooni.io/nettest/http-header-field-manipulation/) می‌توانید middleboxها در شبکه‌ی خود را بیابید.\n\nنتایج شما بر روی [OONI Explorer](https://explorer.ooni.io/world/) و [OONI API](https://api.ooni.io/) منتشر می‌شود.</string>
+  <string name="Dashboard_Middleboxes_Overview_Paragraph">سرویس‌دهنده‌های اینترنت اغلب از (middlebox) های شبکه برای اهداف مختلف (مانند گرفتن کش) استفاده می‌کنند. گاهی اوقات این middleboxها برای سانسور و/یا نظارت بر اینترنت استفاده می‌شوند.\n\nبا استفاده از تست‌های [خط درخواست نامعتبر HTTP](https://ooni.io/nettest/http-invalid-request-line/) و [دستکاری فیلد هدر HTTP](https://ooni.io/nettest/http-header-field-manipulation/) می‌توانید middleboxها در شبکه‌ی خود را بیابید.\n\nنتایج شما بر روی [OONI Explorer](https://explorer.ooni.io/world/) و [OONI API](https://api.ooni.io/) منتشر می‌شود.</string>
   <string name="Dashboard_InstantMessaging_Card_Description">تست مسدودیت پیام‌رسان‌ها</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">مسدود بودن [واتس‌اپ](https://ooni.io/nettest/whatsapp/)، [پیام‌رسان فیسبوک](https://ooni.io/nettest/facebook-messenger/) و [تلگرام](https://ooni.ionettest/telegram/) را بررسی کنید.\n\nنتایج شما بر روی [OONI Explorer](https://explorer.ooni.io/world/) و [OONI API](https://api.ooni.io/) منتشر می‌شود.</string>
   <string name="TestResults_Gbps">Gbps</string>
@@ -120,7 +120,7 @@
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">در دسترس</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s در دسترس است.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">احتمالا مسدود</string>
-  <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">%1$s احتمالا به عنوان %2$s مسدود شده.\n\nنکته: خطای مثبت ممکن است. الطلاعات بیشتر در [اینجا](https://ooni.io/nettest/web-connectivity/).</string>
+  <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">%1$s احتمالا به خاطر %2$s مسدود شده.\n\nنکته: امکان رخ دادن مثبت کاذب وجود دارد. اطلاعات بیشتر در [اینجا](https://ooni.io/nettest/web-connectivity/).</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Content_LearnToCircumvent">دور زدن سانسور</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_DNS">**دستکاری DNS**</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_TCPIP">**مسدودیت بر اساس TCP/IP**</string>
@@ -136,7 +136,7 @@
   <string name="TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Okay">باشه</string>
   <string name="TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed">ناموفق</string>
   <string name="TestResults_Details_InstantMessaging_WhatsApp_Reachable_Hero_Title">کار میکنه</string>
-  <string name="TestResults_Details_InstantMessaging_WhatsApp_Reachable_Content_Paragraph">این تست با موفقیت به نقاط پایان واتس‌اپ، سرویس عضویت و رابط  وب (web.whatsapp.com) متصل شد.</string>
+  <string name="TestResults_Details_InstantMessaging_WhatsApp_Reachable_Content_Paragraph">این تست با موفقیت به اندپوینت های واتس‌اپ، سرویس عضویت و رابط  وب (web.whatsapp.com) متصل شد.</string>
   <string name="TestResults_Details_InstantMessaging_WhatsApp_LikelyBlocked_Hero_Title">احتمالا مسدود</string>
   <string name="TestResults_Details_InstantMessaging_WhatsApp_LikelyBlocked_Content_Paragraph">واتس‌اپ به  نظر مسدود می‌‌رسد.</string>
   <string name="TestResults_Details_InstantMessaging_Telegram_Application_Label_Title">نرم افزار موبایل</string>
@@ -288,7 +288,7 @@
   <string name="OONIRun_TestDetails">جزئیات تست</string>
   <string name="OONIRun_Run">اجرا</string>
   <string name="OONIRun_OONIProbeOutOfDate">قدیمی</string>
-  <string name="OONIRun_OONIProbeNewerVersion">برای اجرای این تست نیاز به نسخه‌ی جدیدتر Probe OONI دارید.</string>
+  <string name="OONIRun_OONIProbeNewerVersion">برای اجرای این تست نیاز به نسخه‌ی جدیدتر OONI Probe دارید.</string>
   <string name="OONIRun_Update">به روز رسانی</string>
   <string name="OONIRun_Close">بستن</string>
   <string name="OONIRun_InvalidParameter">پارامتر نامعتبر است</string>

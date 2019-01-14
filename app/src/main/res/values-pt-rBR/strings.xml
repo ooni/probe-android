@@ -174,11 +174,11 @@
   <string name="TestResults_Details_Performance_NDT_Ping">Ping</string>
   <string name="TestResults_Details_Performance_NDT_Server">Servidor</string>
   <string name="TestResults_Details_Performance_NDT_PacketLoss">Perda de Pacotes</string>
-  <string name="TestResults_Details_Performance_NDT_OutOfOrder">Fora de Serviço</string>
+  <string name="TestResults_Details_Performance_NDT_OutOfOrder">Fora de Ordem</string>
   <string name="TestResults_Details_Performance_NDT_AveragePing">Ping Médio</string>
   <string name="TestResults_Details_Performance_NDT_MaxPing">Ping Máximo</string>
   <string name="TestResults_Details_Performance_NDT_MSS">MSS</string>
-  <string name="TestResults_Details_Performance_NDT_Timeouts">Tempo esgotados</string>
+  <string name="TestResults_Details_Performance_NDT_Timeouts">Tempo excedido</string>
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Você pode transmitir até %1$s sem usar a memória temporária.</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">Taxa média de bits</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">Atraso de Playout</string>
@@ -191,7 +191,7 @@
   <string name="Modal_Error_NoInternet">Não foi possível executar o teste. Por favor, verifique sua conexão com a Internet.</string>
   <string name="Modal_Error_CantDownloadURLs">Não foi possível baixar a lista de URL\'s. Por favor, tente novamente.</string>
   <string name="Modal_Error_NotificationNotEnabled">Permissões de notificação são necessárias. Por favor, habilite-as nas Configurações do seu telefone e, em seguida, habilite-as em seu aplicativo OONI Probe.</string>
-  <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Ir para as Configurações</string>
+  <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Abrir Configurações</string>
   <string name="Modal_Error_CantCloseScreen">Esta tela é bloqueada enquanto um teste é executado.</string>
   <string name="Modal_ResultsNotUploaded_Title">Resultados não enviados</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">Alguns dos seus resultados de teste não foram enviados para servidores da OONI. Se você quiser contribuir com o banco de dados da OONI, carregue-os.</string>
@@ -204,7 +204,7 @@
   <string name="Modal_OldTestsDetected">Os resultados antigos serão excluídos. Não se preocupe, você sempre pode encontrá-los no OONI Explorer e no OONI API.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Deseja apagar todos os resultados do teste?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Você deseja apagar este teste?</string>
-  <string name="Modal_CantDeactivate">Não pode desativar</string>
+  <string name="Modal_CantDeactivate">Não pode ser desabilitada</string>
   <string name="Modal_OnlyDigits">Por favor, insira apenas dígitos neste campo.</string>
   <string name="Modal_ReRun_Title">Repetir o teste</string>
   <string name="Modal_ReRun_Paragraph">Este teste falhou. Você deseja fazer um outro teste?</string>
@@ -294,7 +294,7 @@
   <string name="OONIRun_InvalidParameter">Parâmetro inválido</string>
   <string name="OONIRun_InvalidParameter_Msg">O link OONI Run está malformado ou seu aplicativo está desatualizado.</string>
   <string name="OONIRun_RandomSamplingOfURLs">Você testará uma amostra aleatória de sites.</string>
-  <string name="OONIRun_TestRunningError">Por favor, aguarde que o término da execução do teste antes de abrir o OONI Run.</string>
+  <string name="OONIRun_TestRunningError">Por favor, aguarde o término da execução do teste antes de abrir o OONI Run.</string>
   <string name="CategoryCode_ALDR_Name">Drogas e Álcool</string>
   <string name="CategoryCode_REL_Name">Religião</string>
   <string name="CategoryCode_PORN_Name">Pornografia</string>
@@ -311,7 +311,7 @@
   <string name="CategoryCode_ANON_Name">Ferramentas para driblar censura</string>
   <string name="CategoryCode_DATE_Name">Namoro virtual</string>
   <string name="CategoryCode_GRP_Name">Rede social</string>
-  <string name="CategoryCode_LGBT_Name">LGBT</string>
+  <string name="CategoryCode_LGBT_Name">LGBT+</string>
   <string name="CategoryCode_FILE_Name">Compartilhamento de arquivos</string>
   <string name="CategoryCode_HACK_Name">Ferramentas de Hacking</string>
   <string name="CategoryCode_COMT_Name">Ferramentas de comunicação</string>
@@ -342,7 +342,7 @@
   <string name="CategoryCode_ANON_Description">Anonimização, driblagem de censura e criptografia</string>
   <string name="CategoryCode_DATE_Description">Sites de namoro online</string>
   <string name="CategoryCode_GRP_Description">Ferramentas e plataformas de redes sociais online</string>
-  <string name="CategoryCode_LGBT_Description">Comunidades relacionadas a LGBTQI discutindo questões afins (excluindo pornografia)</string>
+  <string name="CategoryCode_LGBT_Description">Comunidades relacionadas a LGBTQ+ discutindo questões afins (excluindo pornografia)</string>
   <string name="CategoryCode_FILE_Description">Compartilhamento de arquivos, incluindo armazenamento de arquivos em servidores em nuvens, torrents e P2P</string>
   <string name="CategoryCode_HACK_Description">Ferramentas de segurança da informática e notícias</string>
   <string name="CategoryCode_COMT_Description">Ferramentas de comunicação individuais e em grupo, incluindo VoIP, mensagens e webmail</string>

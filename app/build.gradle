@@ -14,8 +14,8 @@ android {
 		applicationId 'org.openobservatory.ooniprobe'
 		minSdkVersion 19
 		targetSdkVersion 28
-		versionName '2.0.0-beta.2'
-		versionCode 40
+		versionName '2.0.0'
+		versionCode 41
 	}
 
 	buildTypes {
@@ -50,8 +50,8 @@ dependencies {
 	implementation 'com.squareup.retrofit2:retrofit:2.5.0'
 	implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
 
-	implementation 'com.jakewharton:butterknife:9.0.0-rc2'
-	annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc2'
+	implementation 'com.jakewharton:butterknife:10.0.0'
+	annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
 
 	fullImplementation('com.crashlytics.sdk.android:crashlytics:2.9.7@aar') { transitive = true }
 	implementation 'org.openobservatory.measurement_kit:android-libs:0.9.1-android.1'
