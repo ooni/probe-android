@@ -165,6 +165,10 @@ public abstract class AbstractTest implements Serializable {
 		Measurement measurement = measurements.get(value.idx);
 		if (measurement != null) {
 			measurement.is_uploaded = uploaded;
+			if (!uploaded){
+				measurement.report_id = "";
+				measurement.is_upload_failed = true;
+			}
 			String failure = value.failure;
 			if (failure != null)
 				measurement.upload_failure_msg = failure;

@@ -32,7 +32,7 @@ public class Settings {
 		annotations.put("network_type", pm.getNetworkType());
 		annotations.put("flavor", BuildConfig.FLAVOR);
 		disabled_events = Arrays.asList("status.queued", "status.update.websites", "failure.report_close");
-		log_level = BuildConfig.DEBUG ? "DEBUG2" : "INFO";
+		log_level = pm.isDebugLogs() ? "DEBUG2" : "INFO";
 		options = new Options(c, pm);
 	}
 
@@ -65,6 +65,8 @@ public class Settings {
 		public Integer all_endpoints;
 		@SerializedName("randomize_input")
 		public boolean randomize_input;
+		@SerializedName("no_file_report")
+		public boolean no_file_report;
 
 		public Options(Context c, PreferenceManager pm) {
 			ca_bundle_path = c.getCacheDir() + "/" + Application.CA_BUNDLE;
@@ -77,6 +79,7 @@ public class Settings {
 			software_name = "ooniprobe-android";
 			software_version = VersionUtils.get_software_version();
 			randomize_input = false;
+			no_file_report = true;
 		}
 	}
 }

@@ -188,9 +188,9 @@ public class RunningActivity extends AbstractActivity {
 						b.setContentIntent(PendingIntent.getActivity(act, 0, MainActivity.newIntent(act, R.id.testResults), PendingIntent.FLAG_UPDATE_CURRENT));
 						notificationManager.notify(1, b.build());
 					}
-					act.finish();
 				} else
 					act.startActivity(MainActivity.newIntent(act, R.id.testResults));
+				act.finish();
 			}
 		}
 	}
