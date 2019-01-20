@@ -19,8 +19,8 @@ import butterknife.ButterKnife;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
 public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, TestsuiteItem.ViewHolderImpl> {
-	private View.OnClickListener onClickListener;
-	private PreferenceManager pm;
+	private final View.OnClickListener onClickListener;
+	private final PreferenceManager pm;
 
 	public TestsuiteItem(AbstractSuite extra, PreferenceManager pm, View.OnClickListener onClickListener) {
 		super(extra);

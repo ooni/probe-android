@@ -18,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class WhatsappFragment extends Fragment {
-	public static final String MEASUREMENT = "measurement";
+	private static final String MEASUREMENT = "measurement";
 	@BindView(R.id.desc) TextView desc;
 	@BindView(R.id.application) TextView application;
 	@BindView(R.id.webApp) TextView webApp;

@@ -19,7 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ResultHeaderPerformanceFragment extends Fragment {
-	public static final String RESULT = "result";
+	private static final String RESULT = "result";
 	@BindView(R.id.video) TextView video;
 	@BindView(R.id.upload) TextView upload;
 	@BindView(R.id.uploadUnit) TextView uploadUnit;

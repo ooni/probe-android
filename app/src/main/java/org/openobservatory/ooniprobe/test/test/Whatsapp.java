@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 
 public class Whatsapp extends AbstractTest {
 	public static final String NAME = "whatsapp";
-	public static final String MK_NAME = "Whatsapp";
+	private static final String MK_NAME = "Whatsapp";
 
 	public Whatsapp() {
 		super(NAME, MK_NAME, R.string.Test_WhatsApp_Fullname, R.drawable.test_whatsapp, 10);

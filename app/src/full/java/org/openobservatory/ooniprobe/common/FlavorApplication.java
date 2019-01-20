@@ -8,7 +8,7 @@ import com.google.firebase.FirebaseApp;
 
 import io.fabric.sdk.android.Fabric;
 
-public class FlavorApplication {
+class FlavorApplication {
 	public static void onCreate(Context context, boolean sendCrash) {
 		CrashlyticsCore core = new CrashlyticsCore.Builder().disabled(sendCrash).build();
 		Fabric.with(context, new Crashlytics.Builder().core(core).build());

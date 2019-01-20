@@ -17,7 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class FacebookMessengerFragment extends Fragment {
-	public static final String MEASUREMENT = "measurement";
+	private static final String MEASUREMENT = "measurement";
 	@BindView(R.id.tcp) TextView tcp;
 	@BindView(R.id.dns) TextView dns;
 	@BindView(R.id.desc) TextView desc;

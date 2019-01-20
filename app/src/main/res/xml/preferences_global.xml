@@ -1,7 +1,7 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
 	android:key="@string/preferences"
 	android:title="@string/Settings_Title">
-	<PreferenceScreen
+	<androidx.preference.PreferenceScreen
 		android:icon="@drawable/notifications"
 		android:key="@string/notifications"
 		android:title="@string/Settings_Notifications_Label">
@@ -19,8 +19,8 @@
 			android:dependency="@string/notifications_enabled"
 			android:key="@string/notifications_news"
 			android:title="@string/Settings_Notifications_OnNews" /> -->
-	</PreferenceScreen>
-	<PreferenceScreen
+	</androidx.preference.PreferenceScreen>
+	<androidx.preference.PreferenceScreen
 		android:icon="@drawable/sharing"
 		android:key="@string/sharing"
 		android:title="@string/Settings_Sharing_Label">
@@ -40,9 +40,9 @@
 			android:defaultValue="false"
 			android:key="@string/include_ip"
 			android:title="@string/Settings_Sharing_IncludeIP" />
-		<PreferenceCategory android:title="@string/Settings_Sharing_Footer" />
-	</PreferenceScreen>
-	<PreferenceScreen
+		<androidx.preference.PreferenceCategory android:title="@string/Settings_Sharing_Footer" />
+	</androidx.preference.PreferenceScreen>
+	<androidx.preference.PreferenceScreen
 		android:icon="@drawable/advanced"
 		android:key="@string/advanced"
 		android:title="@string/Settings_Advanced_Label">
@@ -54,11 +54,11 @@
 			android:defaultValue="false"
 			android:key="@string/debugLogs"
 			android:title="@string/Settings_Advanced_DebugLogs" />
-	</PreferenceScreen>
-	<PreferenceScreen
+	</androidx.preference.PreferenceScreen>
+	<androidx.preference.PreferenceScreen
 		android:icon="@drawable/about_ooni"
 		android:key="@string/about_ooni"
 		android:title="@string/Settings_About_Label">
 		<intent android:action="org.openobservatory.ooniprobe.activity.InfoActivity" />
-	</PreferenceScreen>
-</PreferenceScreen>
+	</androidx.preference.PreferenceScreen>
+</androidx.preference.PreferenceScreen>

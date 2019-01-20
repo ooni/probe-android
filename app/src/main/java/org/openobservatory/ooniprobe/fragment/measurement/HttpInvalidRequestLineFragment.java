@@ -16,7 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class HttpInvalidRequestLineFragment extends Fragment {
-	public static final String MEASUREMENT = "measurement";
+	private static final String MEASUREMENT = "measurement";
 	@BindView(R.id.desc) TextView desc;
 
 	public static HttpInvalidRequestLineFragment newInstance(Measurement measurement) {

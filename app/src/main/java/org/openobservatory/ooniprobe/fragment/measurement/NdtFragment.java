@@ -17,7 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class NdtFragment extends Fragment {
-	public static final String MEASUREMENT = "measurement";
+	private static final String MEASUREMENT = "measurement";
 	@BindView(R.id.packetLoss) TextView packetLoss;
 	@BindView(R.id.outOfOrder) TextView outOfOrder;
 	@BindView(R.id.averagePing) TextView averagePing;

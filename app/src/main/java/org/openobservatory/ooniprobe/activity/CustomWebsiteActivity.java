@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -64,19 +65,16 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
 		}
 		WebsitesSuite suite = new WebsitesSuite();
 		suite.getTestList(getPreferenceManager())[0].setInputs(urls);
-		ActivityCompat.startActivity(this, RunningActivity.newIntent(this, suite), null /*ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, v.getWidth(), v.getHeight()).toBundle()*/);
-		finish();
+		Intent intent = RunningActivity.newIntent(this, suite);
+		if (intent != null) {
+			ActivityCompat.startActivity(this, intent, null /*ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, v.getWidth(), v.getHeight()).toBundle()*/);
+			finish();
+		}
 	}
 
 	@OnClick(R.id.add) void add() {
-		add(null);
-	}
-
-	private void add(String url) {
 		LinearLayout urlBox = (LinearLayout) getLayoutInflater().inflate(R.layout.edittext_url, urlContainer, false);
 		EditText editText = urlBox.findViewById(R.id.editText);
-		if (url != null)
-			editText.setText(url);
 		editTexts.add(editText);
 		urlContainer.addView(urlBox);
 		ImageButton delete = urlBox.findViewById(R.id.delete);

@@ -22,14 +22,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ResultHeaderDetailFragment extends Fragment {
-	public static final String NETWORK = "network";
-	public static final String COUNTRY_CODE = "country_code";
-	public static final String RUNTIME = "runtime";
-	public static final String DATA_USAGE_DOWN = "data_usage_down";
-	public static final String DATA_USAGE_UP = "data_usage_up";
-	public static final String START_TIME = "start_time";
-	public static final String IS_TOTAL_RUNTIME = "isTotalRuntime";
-	public static final String LIGHT_THEME = "lightTheme";
+	private static final String NETWORK = "network";
+	private static final String COUNTRY_CODE = "country_code";
+	private static final String RUNTIME = "runtime";
+	private static final String DATA_USAGE_DOWN = "data_usage_down";
+	private static final String DATA_USAGE_UP = "data_usage_up";
+	private static final String START_TIME = "start_time";
+	private static final String IS_TOTAL_RUNTIME = "isTotalRuntime";
+	private static final String LIGHT_THEME = "lightTheme";
 	@BindView(R.id.dataUsage) LinearLayout dataUsage;
 	@BindView(R.id.startTimeBox) LinearLayout startTimeBox;
 	@BindView(R.id.runtimeBox) LinearLayout runtimeBox;

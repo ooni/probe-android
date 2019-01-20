@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
 public class MeasurementPerfItem extends HeterogeneousRecyclerItem<Measurement, MeasurementPerfItem.ViewHolder> {
-	private View.OnClickListener onClickListener;
+	private final View.OnClickListener onClickListener;
 
 	public MeasurementPerfItem(Measurement extra, View.OnClickListener onClickListener) {
 		super(extra);

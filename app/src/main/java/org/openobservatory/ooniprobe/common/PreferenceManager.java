@@ -14,11 +14,11 @@ import java.util.ArrayList;
 
 public class PreferenceManager {
 	public static final String GEO_VER = "geo_ver";
-	public static final String TOKEN = "token";
+	private static final String TOKEN = "token";
 	private static final String SHOW_ONBOARDING = "first_run";
-	private SharedPreferences sp;
-	private Resources r;
-	private ConnectivityManager connectivityManager;
+	private final SharedPreferences sp;
+	private final Resources r;
+	private final ConnectivityManager connectivityManager;
 
 	PreferenceManager(Context context) {
 		androidx.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_global, true);
@@ -77,7 +77,7 @@ public class PreferenceManager {
 		sp.edit().putBoolean(SHOW_ONBOARDING, showIntro).apply();
 	}
 
-	public boolean isNotifications() {
+	private boolean isNotifications() {
 		return sp.getBoolean(r.getString(R.string.notifications_enabled), true);
 	}
 

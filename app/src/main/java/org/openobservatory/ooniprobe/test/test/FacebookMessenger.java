@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 
 public class FacebookMessenger extends AbstractTest {
 	public static final String NAME = "facebook_messenger";
-	public static final String MK_NAME = "FacebookMessenger";
+	private static final String MK_NAME = "FacebookMessenger";
 
 	public FacebookMessenger() {
 		super(NAME, MK_NAME, R.string.Test_FacebookMessenger_Fullname, R.drawable.test_facebook_messenger, 10);

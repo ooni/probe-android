@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 import ru.noties.markwon.Markwon;
 
 public class WebConnectivityFragment extends Fragment {
-	public static final String MEASUREMENT = "measurement";
+	private static final String MEASUREMENT = "measurement";
 	@BindView(R.id.desc) TextView desc;
 
 	public static WebConnectivityFragment newInstance(Measurement measurement) {

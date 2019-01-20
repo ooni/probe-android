@@ -96,7 +96,7 @@ public class BrowserActivity extends AbstractActivity implements View.OnClickLis
 		try_mirror.setOnClickListener(this);
 	}
 
-	void reloadButtons() {
+	private void reloadButtons() {
 		if (webView.canGoBack()) {
 			back.setAlpha(1.0f);
 			back.setClickable(true);
@@ -179,7 +179,7 @@ public class BrowserActivity extends AbstractActivity implements View.OnClickLis
 			webView.goBack();
 	}
 
-	public boolean isInternetConnected() {
+	private boolean isInternetConnected() {
 		// At activity startup we manually check the internet status and change
 		// the text status
 		ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

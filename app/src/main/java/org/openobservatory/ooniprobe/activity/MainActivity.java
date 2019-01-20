@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 import localhost.toolkit.app.MessageDialogFragment;
 
 public class MainActivity extends AbstractActivity {
-	public static final String RES_ITEM = "resItem";
+	private static final String RES_ITEM = "resItem";
 	@BindView(R.id.bottomNavigation) BottomNavigationView bottomNavigation;
 
 	public static Intent newIntent(Context context, int resItem) {

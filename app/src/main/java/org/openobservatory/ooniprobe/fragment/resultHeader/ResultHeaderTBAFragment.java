@@ -16,7 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ResultHeaderTBAFragment extends Fragment {
-	public static final String RESULT = "result";
+	private static final String RESULT = "result";
 	@BindView(R.id.tested) TextView tested;
 	@BindView(R.id.blocked) TextView blocked;
 	@BindView(R.id.available) TextView available;

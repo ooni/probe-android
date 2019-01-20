@@ -14,7 +14,7 @@ import org.openobservatory.ooniprobe.model.settings.Settings;
 
 public class Dash extends AbstractTest {
 	public static final String NAME = "dash";
-	public static final String MK_NAME = "Dash";
+	private static final String MK_NAME = "Dash";
 
 	public Dash() {
 		super(NAME, MK_NAME, R.string.Test_Dash_Fullname, 0, 45);

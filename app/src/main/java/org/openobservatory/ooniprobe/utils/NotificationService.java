@@ -32,7 +32,7 @@ public class NotificationService {
 			client.setRegistryURL(BuildConfig.NOTIFICATION_SERVER);
 			client.setSecretsFile(app.getFilesDir() + "/orchestration_secret.json");
 			client.setSoftwareName("ooniprobe-android");
-			client.setSoftwareVersion(VersionUtils.get_software_version());
+			client.setSoftwareVersion(BuildConfig.VERSION_NAME);
 			for (AbstractSuite suite : TestAsyncTask.SUITES)
 				for (AbstractTest test : suite.getTestList(null))
 					client.addSupportedTest(test.getName());

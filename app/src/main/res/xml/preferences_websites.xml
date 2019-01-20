@@ -1,7 +1,7 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
 	android:key="@string/Test_Websites_Fullname"
 	android:title="@string/Test_Websites_Fullname">
-	<PreferenceScreen
+	<androidx.preference.PreferenceScreen
 		android:key="@string/Settings_Websites_Categories_Label"
 		android:title="@string/Settings_Websites_Categories_Label">
 		<androidx.preference.SwitchPreferenceCompat
@@ -190,9 +190,9 @@
 			android:key="@string/CategoryCode_MILX_Key"
 			android:summary="@string/CategoryCode_MILX_Description"
 			android:title="@string/CategoryCode_MILX_Name" />
-	</PreferenceScreen>
+	</androidx.preference.PreferenceScreen>
 	<EditTextPreference
 		android:defaultValue="90"
 		android:key="@string/max_runtime"
 		android:title="@string/Settings_Websites_MaxRuntime" />
-</PreferenceScreen>
+</androidx.preference.PreferenceScreen>

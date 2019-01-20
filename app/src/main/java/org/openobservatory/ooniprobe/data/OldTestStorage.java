@@ -7,9 +7,9 @@ import android.content.SharedPreferences.Editor;
 import java.io.File;
 
 public class OldTestStorage {
-	public static final String PREFS_NAME = "OONIPROBE_APP";
-	public static final String TESTS = "Test";
-	public static final String NEW_TESTS = "new_tests";
+	private static final String PREFS_NAME = "OONIPROBE_APP";
+	private static final String TESTS = "Test";
+	private static final String NEW_TESTS = "new_tests";
 
 	public static Boolean oldTestsDetected(Context context) {
 		// used for retrieving arraylist from json formatted string

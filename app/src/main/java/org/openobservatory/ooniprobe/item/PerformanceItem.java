@@ -23,8 +23,8 @@ import butterknife.ButterKnife;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
 public class PerformanceItem extends HeterogeneousRecyclerItem<Result, PerformanceItem.ViewHolder> {
-	private View.OnClickListener onClickListener;
-	private View.OnLongClickListener onLongClickListener;
+	private final View.OnClickListener onClickListener;
+	private final View.OnLongClickListener onLongClickListener;
 
 	public PerformanceItem(Result extra, View.OnClickListener onClickListener, View.OnLongClickListener onLongClickListener) {
 		super(extra);

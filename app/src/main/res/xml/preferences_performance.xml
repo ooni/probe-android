@@ -1,4 +1,4 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
 	android:key="@string/Test_Performance_Fullname"
 	android:title="@string/Test_Performance_Fullname">
 	<androidx.preference.SwitchPreferenceCompat
@@ -9,4 +9,4 @@
 		android:defaultValue="true"
 		android:key="@string/run_dash"
 		android:title="@string/Settings_Performance_TestDash"/>
-</PreferenceScreen>
+</androidx.preference.PreferenceScreen>

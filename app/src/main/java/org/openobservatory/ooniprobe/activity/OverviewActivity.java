@@ -25,7 +25,7 @@ import butterknife.OnClick;
 import ru.noties.markwon.Markwon;
 
 public class OverviewActivity extends AbstractActivity {
-	public static final String TEST = "test";
+	private static final String TEST = "test";
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.icon) ImageView icon;
 	@BindView(R.id.runtime) TextView runtime;

@@ -17,7 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class TextActivity extends AbstractActivity {
-	public static final String TEXT = "text";
+	private static final String TEXT = "text";
 	@BindView(R.id.textView) TextView textView;
 
 	public static Intent newIntent(Context context, String text) {

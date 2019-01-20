@@ -17,7 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class DashFragment extends Fragment {
-	public static final String MEASUREMENT = "measurement";
+	private static final String MEASUREMENT = "measurement";
 	@BindView(R.id.medianBitrate) TextView medianBitrate;
 	@BindView(R.id.playoutDelay) TextView playoutDelay;
 

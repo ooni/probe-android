@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 
 public class HttpHeaderFieldManipulation extends AbstractTest {
 	public static final String NAME = "http_header_field_manipulation";
-	public static final String MK_NAME = "HttpHeaderFieldManipulation";
+	private static final String MK_NAME = "HttpHeaderFieldManipulation";
 
 	public HttpHeaderFieldManipulation() {
 		super(NAME, MK_NAME, R.string.Test_HTTPHeaderFieldManipulation_Fullname, 0, 5);

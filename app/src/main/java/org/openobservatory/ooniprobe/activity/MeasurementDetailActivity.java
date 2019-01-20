@@ -46,8 +46,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MeasurementDetailActivity extends AbstractActivity {
-	public static final String ID = "id";
-	public Measurement measurement;
+	private static final String ID = "id";
+	private Measurement measurement;
 	@BindView(R.id.toolbar) Toolbar toolbar;
 
 	public static Intent newIntent(Context context, int id) {

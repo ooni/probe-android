@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 
 public class WebConnectivity extends AbstractTest {
 	public static final String NAME = "web_connectivity";
-	public static final String MK_NAME = "WebConnectivity";
+	private static final String MK_NAME = "WebConnectivity";
 
 	public WebConnectivity() {
 		super(NAME, MK_NAME, R.string.Test_WebConnectivity_Fullname, 0, 5);

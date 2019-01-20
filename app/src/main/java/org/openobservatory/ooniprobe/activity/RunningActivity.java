@@ -46,8 +46,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RunningActivity extends AbstractActivity {
-	public static final String TEST = "test";
-	public static final String TEST_RUN = "TEST_RUN";
+	private static final String TEST = "test";
+	private static final String TEST_RUN = "TEST_RUN";
 	@BindView(R.id.name) TextView name;
 	@BindView(R.id.log) TextView log;
 	@BindView(R.id.eta) TextView eta;

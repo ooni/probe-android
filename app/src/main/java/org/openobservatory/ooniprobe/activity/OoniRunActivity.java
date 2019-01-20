@@ -55,7 +55,7 @@ public class OoniRunActivity extends AbstractActivity {
 	 * The result is zero if the strings are _numerically_ equal.
 	 * @note It does not work if "1.10" is supposed to be equal to "1.10.0".
 	 */
-	public static int versionCompare(String str1, String str2) {
+	private static int versionCompare(String str1, String str2) {
 		String[] vals1 = str1.split("\\.");
 		String[] vals2 = str2.split("\\.");
 		int i = 0;
@@ -96,7 +96,7 @@ public class OoniRunActivity extends AbstractActivity {
 		manageIntent(intent);
 	}
 
-	public void manageIntent(Intent intent) {
+	private void manageIntent(Intent intent) {
 		if (isTestRunning()) {
 			Toast.makeText(this, getString(R.string.OONIRun_TestRunningError), Toast.LENGTH_LONG).show();
 			finish();
@@ -165,7 +165,7 @@ public class OoniRunActivity extends AbstractActivity {
 		}
 	}
 
-	public AbstractSuite getSuite(String tn, List<String> urls) {
+	private AbstractSuite getSuite(String tn, List<String> urls) {
 		for (AbstractSuite suite : TestAsyncTask.SUITES)
 			for (AbstractTest test : suite.getTestList(getPreferenceManager()))
 				if (test.getName().equals(tn)) {
@@ -178,7 +178,7 @@ public class OoniRunActivity extends AbstractActivity {
 		return null;
 	}
 
-	public static class Attribute {
+	static class Attribute {
 		List<String> urls;
 	}
 }

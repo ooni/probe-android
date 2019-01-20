@@ -25,19 +25,19 @@ import androidx.annotation.NonNull;
 import io.ooni.mk.MKTask;
 
 public abstract class AbstractTest implements Serializable {
-	public static final String UNUSED_KEY = "UNUSED_KEY";
-	private final String TAG = "MK_EVENT";
-	private String name;
-	private String mkName;
+	private static final String UNUSED_KEY = "UNUSED_KEY";
+	private static final String TAG = "MK_EVENT";
+	private final String name;
+	private final String mkName;
 	private List<String> inputs;
 	private Integer max_runtime;
-	private int labelResId;
-	private int iconResId;
+	private final int labelResId;
+	private final int iconResId;
 	private SparseArray<Measurement> measurements;
 	private String reportId;
-	private int runtime;
+	private final int runtime;
 
-	public AbstractTest(String name, String mkName, int labelResId, int iconResId, int runtime) {
+	AbstractTest(String name, String mkName, int labelResId, int iconResId, int runtime) {
 		this.name = name;
 		this.mkName = mkName;
 		this.labelResId = labelResId;
@@ -47,7 +47,7 @@ public abstract class AbstractTest implements Serializable {
 
 	public abstract void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback);
 
-	protected void run(Context c, PreferenceManager pm, Gson gson, Settings settings, Result result, int index, TestCallback testCallback) {
+	void run(Context c, PreferenceManager pm, Gson gson, Settings settings, Result result, int index, TestCallback testCallback) {
 		settings.name = mkName;
 		settings.inputs = inputs;
 		settings.options.max_runtime = max_runtime;
@@ -210,7 +210,7 @@ public abstract class AbstractTest implements Serializable {
 		this.inputs = inputs;
 	}
 
-	public Integer getMax_runtime() {
+	Integer getMax_runtime() {
 		return max_runtime;
 	}
 

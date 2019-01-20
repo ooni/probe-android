@@ -1,4 +1,4 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
 	android:key="@string/Test_InstantMessaging_Fullname"
 	android:title="@string/Test_InstantMessaging_Fullname">
 	<androidx.preference.SwitchPreferenceCompat
@@ -18,4 +18,4 @@
 		android:defaultValue="true"
 		android:key="@string/test_facebook_messenger"
 		android:title="@string/Settings_InstantMessaging_TestFacebookMessenger"/>
-</PreferenceScreen>
+</androidx.preference.PreferenceScreen>

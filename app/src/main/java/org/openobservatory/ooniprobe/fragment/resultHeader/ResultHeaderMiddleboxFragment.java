@@ -16,7 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ResultHeaderMiddleboxFragment extends Fragment {
-	public static final String ANOMALY = "anomaly";
+	private static final String ANOMALY = "anomaly";
 	@BindView(R.id.text) TextView text;
 
 	public static ResultHeaderMiddleboxFragment newInstance(boolean anomaly) {
