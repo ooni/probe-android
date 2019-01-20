@@ -36,6 +36,7 @@ import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -65,7 +66,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 	private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
 	private boolean refresh;
 
-	@Nullable @Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_result_list, container, false);
 		ButterKnife.bind(this, v);
 		((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);

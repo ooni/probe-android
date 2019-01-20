@@ -7,7 +7,6 @@ import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.ForeignKey;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
-import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.openobservatory.ooniprobe.common.Application;
@@ -25,6 +24,8 @@ import org.openobservatory.ooniprobe.test.test.Whatsapp;
 import java.io.File;
 import java.io.Serializable;
 import java.util.Date;
+
+import androidx.annotation.NonNull;
 
 @Table(database = Application.class)
 public class Measurement extends BaseModel implements Serializable {
@@ -45,6 +46,7 @@ public class Measurement extends BaseModel implements Serializable {
 	@Column public String test_keys;
 	@ForeignKey(saveForeignKeyModel = true) public Url url;
 	@ForeignKey(saveForeignKeyModel = true, stubbedRelationship = true) public Result result;
+	private transient TestKeys testKeys;
 
 	public Measurement() {
 	}
@@ -70,14 +72,10 @@ public class Measurement extends BaseModel implements Serializable {
 		return new File(getMeasurementDir(c), resultId + "_" + test_name + ".log");
 	}
 
-	public static File getMeasurementDir(Context c) {
+	static File getMeasurementDir(Context c) {
 		File dir = new File(c.getFilesDir(), Measurement.class.getSimpleName());
 		dir.mkdirs();
 		return dir;
-	}
-
-	public static Measurement querySingle(int id) {
-		return SQLite.select().from(Measurement.class).where(Measurement_Table.id.eq(id)).querySingle();
 	}
 
 	public AbstractTest getTest() {
@@ -103,8 +101,10 @@ public class Measurement extends BaseModel implements Serializable {
 		}
 	}
 
-	public TestKeys getTestKeys() {
-		return new Gson().fromJson(test_keys, TestKeys.class);
+	@NonNull public TestKeys getTestKeys() {
+		if (testKeys == null)
+			testKeys = test_keys == null ? new TestKeys() : new Gson().fromJson(test_keys, TestKeys.class);
+		return testKeys;
 	}
 
 	public void setTestKeys(TestKeys testKeys) {

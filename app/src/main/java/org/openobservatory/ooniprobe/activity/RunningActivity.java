@@ -102,7 +102,8 @@ public class RunningActivity extends AbstractActivity {
 				}
 
 				@Override public void onFailure(Call<RetrieveUrlResponse> call, Throwable t) {
-					MessageDialogFragment.newInstance(getString(R.string.Modal_Error), getString(R.string.Modal_Error_CantDownloadURLs), true).show(getSupportFragmentManager(), null);
+					Toast.makeText(RunningActivity.this, R.string.Modal_Error_CantDownloadURLs, Toast.LENGTH_SHORT).show();
+					finish();
 				}
 			});
 		} else

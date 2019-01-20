@@ -11,7 +11,6 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
-import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 import org.openobservatory.ooniprobe.test.test.Dash;
 import org.openobservatory.ooniprobe.test.test.Ndt;
 
@@ -47,16 +46,13 @@ public class PerformanceItem extends HeterogeneousRecyclerItem<Result, Performan
 		viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), extra.start_time));
 		Measurement dashM = extra.getMeasurement(Dash.NAME);
 		Measurement ndtM = extra.getMeasurement(Ndt.NAME);
-		if (dashM != null) {
-			TestKeys dashTK = dashM.getTestKeys();
-			viewHolder.quality.setText(dashTK.getVideoQuality(false));
-		} else {
+		if (dashM != null)
+			viewHolder.quality.setText(dashM.getTestKeys().getVideoQuality(false));
+		else
 			viewHolder.quality.setText(null);
-		}
 		if (ndtM != null) {
-			TestKeys ndtTK = ndtM.getTestKeys();
-			viewHolder.upload.setText(c.getString(R.string.twoParam, ndtTK.getUpload(c), c.getString(ndtTK.getUploadUnit())));
-			viewHolder.download.setText(c.getString(R.string.twoParam, ndtTK.getDownload(c), c.getString(ndtTK.getDownloadUnit())));
+			viewHolder.upload.setText(c.getString(R.string.twoParam, ndtM.getTestKeys().getUpload(c), c.getString(ndtM.getTestKeys().getUploadUnit())));
+			viewHolder.download.setText(c.getString(R.string.twoParam, ndtM.getTestKeys().getDownload(c), c.getString(ndtM.getTestKeys().getDownloadUnit())));
 		} else {
 			viewHolder.upload.setText(null);
 			viewHolder.download.setText(null);

@@ -14,6 +14,7 @@ import org.openobservatory.ooniprobe.model.database.Network;
 import java.util.Date;
 import java.util.Locale;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.fragment.app.Fragment;
@@ -65,7 +66,8 @@ public class ResultHeaderDetailFragment extends Fragment {
 		return fragment;
 	}
 
-	@Nullable @Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+		assert getArguments() != null;
 		int themeResId = getArguments().getBoolean(LIGHT_THEME) ? R.style.Theme_MaterialComponents_Light_NoActionBar_App : R.style.Theme_MaterialComponents_NoActionBar_App;
 		View v = inflater.cloneInContext(new ContextThemeWrapper(getActivity(), themeResId)).inflate(R.layout.fragment_result_head_detail, container, false);
 		ButterKnife.bind(this, v);

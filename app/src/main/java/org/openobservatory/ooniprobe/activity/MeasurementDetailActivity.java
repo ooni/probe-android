@@ -109,6 +109,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
 				detail = null;
 				break;
 		}
+		assert detail != null && head != null;
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.footer, ResultHeaderDetailFragment.newInstance(true, null, null, measurement.start_time, measurement.runtime, false, measurement.result.network.country_code, measurement.result.network))
 				.replace(R.id.body, detail)

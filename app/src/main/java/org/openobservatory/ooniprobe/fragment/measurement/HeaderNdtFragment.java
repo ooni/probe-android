@@ -11,6 +11,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
@@ -31,18 +32,16 @@ public class HeaderNdtFragment extends Fragment {
 		return fragment;
 	}
 
-	@Nullable @Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+		assert getArguments() != null;
 		Measurement measurement = (Measurement) getArguments().getSerializable(MEASUREMENT);
 		assert measurement != null;
 		View v = inflater.inflate(R.layout.fragment_measurement_header_ndt, container, false);
 		ButterKnife.bind(this, v);
-		TestKeys testKeys = measurement.getTestKeys();
-		if (testKeys != null) {
-			download.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.getDownload(getActivity()), getString(testKeys.getDownloadUnit()))));
-			upload.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.getUpload(getActivity()), getString(testKeys.getUploadUnit()))));
-			ping.setText(Html.fromHtml(getString(R.string.bigNormal, testKeys.getPing(getActivity()), "ms")));
-			server.setText(testKeys.getServer(getActivity()));
-		}
+		download.setText(Html.fromHtml(getString(R.string.bigNormal, measurement.getTestKeys().getDownload(getActivity()), getString(measurement.getTestKeys().getDownloadUnit()))));
+		upload.setText(Html.fromHtml(getString(R.string.bigNormal, measurement.getTestKeys().getUpload(getActivity()), getString(measurement.getTestKeys().getUploadUnit()))));
+		ping.setText(Html.fromHtml(getString(R.string.bigNormal, measurement.getTestKeys().getPing(getActivity()), "ms")));
+		server.setText(measurement.getTestKeys().getServer(getActivity()));
 		return v;
 	}
 }

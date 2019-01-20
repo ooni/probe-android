@@ -44,6 +44,7 @@ public class OnboardingDialogWarningFragment extends DialogFragment {
 	}
 
 	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+		assert getArguments() != null;
 		View v = inflater.inflate(R.layout.fragment_onboarding_dialog_warning, container, false);
 		ButterKnife.bind(this, v);
 		question.setText(getArguments().getInt(QUESTION_RES_ID));

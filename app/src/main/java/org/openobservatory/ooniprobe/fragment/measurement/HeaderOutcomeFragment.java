@@ -31,6 +31,7 @@ public class HeaderOutcomeFragment extends Fragment {
 	}
 
 	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+		assert getArguments() != null;
 		View v = inflater.inflate(R.layout.fragment_measurement_header_outcome, container, false);
 		ButterKnife.bind(this, v);
 		outcome.setText(Html.fromHtml(getArguments().getString(DESC)));

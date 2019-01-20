@@ -51,6 +51,7 @@ public class OnboardingDialogPopquizFragment extends DialogFragment {
 	}
 
 	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+		assert getArguments() != null;
 		View v = inflater.inflate(R.layout.fragment_onboarding_dialog_popquiz, container, false);
 		ButterKnife.bind(this, v);
 		if (title != null)

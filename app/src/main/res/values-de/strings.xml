@@ -179,7 +179,7 @@
   <string name="TestResults_Details_Performance_NDT_MaxPing">Max Ping</string>
   <string name="TestResults_Details_Performance_NDT_MSS">MSS</string>
   <string name="TestResults_Details_Performance_NDT_Timeouts">Timeouts</string>
-  <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Du kannst ohne Pufferung bis zu {Video Quality} streamen.</string>
+  <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Du kannst ohne Pufferung bis zu %1$s streamen.</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">Mittlere Bitrate</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">Abspiel-Verzögerung</string>
   <string name="Feed_Tab_Label">Feed</string>

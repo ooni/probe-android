@@ -30,19 +30,18 @@ public class MeasurementPerfItem extends HeterogeneousRecyclerItem<Measurement, 
 
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
 		viewHolder.itemView.setTag(extra);
-		TestKeys testKeys = extra.getTestKeys();
 		Context c = viewHolder.text.getContext();
 		viewHolder.text.setText(extra.getTest().getLabelResId());
 		if (extra.test_name.equals(Dash.NAME)) {
 			viewHolder.data1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.video_quality, 0, 0, 0);
-			viewHolder.data1.setText(testKeys.getVideoQuality(true));
+			viewHolder.data1.setText(extra.getTestKeys().getVideoQuality(true));
 			viewHolder.data2.setVisibility(View.GONE);
 		} else {
 			viewHolder.data1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.download_black, 0, 0, 0);
-			viewHolder.data1.setText(c.getString(R.string.twoParam, testKeys.getDownload(c), c.getString(testKeys.getDownloadUnit())));
+			viewHolder.data1.setText(c.getString(R.string.twoParam, extra.getTestKeys().getDownload(c), c.getString(extra.getTestKeys().getDownloadUnit())));
 			viewHolder.data2.setVisibility(View.VISIBLE);
 			viewHolder.data2.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.upload_black, 0, 0, 0);
-			viewHolder.data2.setText(c.getString(R.string.twoParam, testKeys.getUpload(c), c.getString(testKeys.getUploadUnit())));
+			viewHolder.data2.setText(c.getString(R.string.twoParam, extra.getTestKeys().getUpload(c), c.getString(extra.getTestKeys().getUploadUnit())));
 		}
 	}
 
