@@ -24,7 +24,7 @@ public class MiddleBoxesSuite extends AbstractSuite {
 				R.string.Dashboard_Middleboxes_Overview_Paragraph,
 				R.xml.preferences_middleboxes,
 				"anim/middle_boxes.json",
-				"< 1 MB", 15);
+				"< 1 MB");
 	}
 
 	@Override public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
