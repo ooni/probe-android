@@ -24,7 +24,8 @@
 				android:dividerPadding="8dp"
 				android:orientation="horizontal"
 				android:showDividers="middle"
-				app:layout_collapseMode="parallax">
+				app:layout_collapseMode="parallax"
+				android:baselineAligned="false">
 
 				<LinearLayout
 					android:layout_width="0dp"

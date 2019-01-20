@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
 	<style name="Theme.MaterialComponents.Light.DarkActionBar.App">
 		<item name="colorPrimary">@color/color_base</item>
@@ -24,7 +24,7 @@
 		<item name="colorPrimaryDark">@color/color_gray4</item>
 		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 		<item name="fontFamily">@font/firasans</item>
-		<item name="android:colorEdgeEffect">@color/color_gray6</item>
+		<item name="android:colorEdgeEffect" tools:targetApi="lollipop">@color/color_gray6</item>
 	</style>
 
 	<style name="Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
