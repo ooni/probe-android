@@ -39,7 +39,7 @@
   <string name="Dashboard_Overview_Estimated">Tempo stimato:</string>
   <string name="Dashboard_Overview_ChooseWebsites">Scegli i siti</string>
   <string name="Dashboard_Running_Running">Eseguendo:</string>
-  <string name="Dashboard_Running_EstimatedTimeLeft">Tempo trascorso:</string>
+  <string name="Dashboard_Running_EstimatedTimeLeft">Tempo rimanente:</string>
   <string name="Dashboard_Running_Seconds">%1$s secondi</string>
   <string name="Dashboard_Running_PreparingTest">Preparando test</string>
   <string name="Dashboard_Card_Subtitle">Fai tap sulla card per più informazioni</string>
@@ -85,7 +85,7 @@
   <string name="TestResults_Summary_Hero_Network">Rete</string>
   <string name="TestResults_Summary_Hero_Country">Paese</string>
   <string name="TestResults_Summary_Hero_DataUsage">Utilizzo dati</string>
-  <string name="TestResults_Summary_Hero_Runtime">Tempo Totale</string>
+  <string name="TestResults_Summary_Hero_Runtime">Tempo di esecuzione</string>
   <string name="TestResults_Summary_Hero_WiFi">WiFi</string>
   <string name="TestResults_Summary_Hero_Mobile">Traffico Dati Mobile</string>
   <string name="TestResults_Summary_Hero_NoInternet">Internet assente</string>
