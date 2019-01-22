@@ -19,7 +19,7 @@ public class NotificationService {
 	synchronized public static void sendRegistrationToServer(Application app) {
 		if (app.getPreferenceManager().getToken() != null) {
 			MKOrchestraClient client = new MKOrchestraClient();
-			//TODO-2.1
+			//TODO ORCHESTRATE
 			//client.setAvailableBandwidth(String value);
 			//what happens when token is nil? should register anyway with empry string
 			client.setDeviceToken(app.getPreferenceManager().getToken());
@@ -29,7 +29,7 @@ public class NotificationService {
 			client.setLanguage(Locale.getDefault().getLanguage());
 			client.setNetworkType(app.getPreferenceManager().getNetworkType());
 			client.setPlatform("android");
-			//TODO-2.1
+			//TODO ORCHESTRATE - TIMEZONE
 			//client.setProbeTimezone(TimeZone.getDefault().getDisplayName(true, TimeZone.SHORT));
 			client.setRegistryURL(BuildConfig.NOTIFICATION_SERVER);
 			client.setSecretsFile(app.getFilesDir() + "/orchestration_secret.json");
