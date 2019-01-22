@@ -19,7 +19,9 @@ public class NotificationService {
 	synchronized public static void sendRegistrationToServer(Application app) {
 		if (app.getPreferenceManager().getToken() != null) {
 			MKOrchestraClient client = new MKOrchestraClient();
-			//client.setAvailableBandwidth(String value); TODO-2.1
+			//TODO-2.1
+			//client.setAvailableBandwidth(String value);
+			//what happens when token is nil? should register anyway with empry string
 			client.setDeviceToken(app.getPreferenceManager().getToken());
 			client.setCABundlePath(app.getCacheDir() + "/" + Application.CA_BUNDLE);
 			client.setGeoIPCountryPath(app.getCacheDir() + "/" + Application.COUNTRY_MMDB);
