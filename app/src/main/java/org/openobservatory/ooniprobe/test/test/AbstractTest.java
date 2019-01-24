@@ -127,6 +127,20 @@ public abstract class AbstractTest implements Serializable {
 					case "failure.startup":
 						//Run next test
 						break;
+					case "bug.json_dump":
+						//TODO
+						/*
+						We need to log this Exception
+						as explained here: https://docs.fabric.io/android/crashlytics/caught-exceptions.html
+						Ideally we want to send the value.failure and value.orig_key to crashlytics
+						"key": "bug.json_dump",
+  						"value": {
+    						"failure": "<failure_string>",
+    						"orig_key": "<orig_key>",
+  						}
+						 */
+						//Crashlytics.logException(new Exception("My custom error message"));
+						break;
 					default:
 						Log.w(UNUSED_KEY, event.key);
 						break;

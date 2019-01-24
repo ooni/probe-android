@@ -21,5 +21,6 @@ public class EventResult implements Serializable {
 		public double uploaded_kb;
 		public String input;
 		public String failure;
+		public String orig_key;
 	}
 }
