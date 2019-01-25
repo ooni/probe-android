@@ -4,8 +4,10 @@ import android.content.Context;
 import android.util.Log;
 import android.util.SparseArray;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 
+import org.openobservatory.ooniprobe.common.MKException;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
@@ -29,13 +31,13 @@ public abstract class AbstractTest implements Serializable {
 	private static final String TAG = "MK_EVENT";
 	private final String name;
 	private final String mkName;
-	private List<String> inputs;
-	private Integer max_runtime;
 	private final int labelResId;
 	private final int iconResId;
+	private final int runtime;
+	private List<String> inputs;
+	private Integer max_runtime;
 	private SparseArray<Measurement> measurements;
 	private String reportId;
-	private final int runtime;
 
 	AbstractTest(String name, String mkName, int labelResId, int iconResId, int runtime) {
 		this.name = name;
@@ -128,18 +130,7 @@ public abstract class AbstractTest implements Serializable {
 						//Run next test
 						break;
 					case "bug.json_dump":
-						//TODO
-						/*
-						We need to log this Exception
-						as explained here: https://docs.fabric.io/android/crashlytics/caught-exceptions.html
-						Ideally we want to send the value.failure and value.orig_key to crashlytics
-						"key": "bug.json_dump",
-  						"value": {
-    						"failure": "<failure_string>",
-    						"orig_key": "<orig_key>",
-  						}
-						 */
-						//Crashlytics.logException(new Exception("My custom error message"));
+						Crashlytics.logException(new MKException(event));
 						break;
 					default:
 						Log.w(UNUSED_KEY, event.key);
@@ -147,6 +138,7 @@ public abstract class AbstractTest implements Serializable {
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
+				Crashlytics.logException(e);
 			}
 		if (logFOS != null)
 			try {
@@ -179,7 +171,7 @@ public abstract class AbstractTest implements Serializable {
 		Measurement measurement = measurements.get(value.idx);
 		if (measurement != null) {
 			measurement.is_uploaded = uploaded;
-			if (!uploaded){
+			if (!uploaded) {
 				measurement.report_id = "";
 				measurement.is_upload_failed = true;
 			}
