@@ -4,9 +4,9 @@ import android.content.Context;
 import android.util.Log;
 import android.util.SparseArray;
 
-import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 
+import org.openobservatory.ooniprobe.common.Crashlytics;
 import org.openobservatory.ooniprobe.common.MKException;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.database.Measurement;
