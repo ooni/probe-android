@@ -9,6 +9,7 @@ import android.widget.TextView;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
@@ -26,7 +27,8 @@ public class HttpHeaderFieldManipulationFragment extends Fragment {
 		return fragment;
 	}
 
-	@Nullable @Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+		assert getArguments() != null;
 		Measurement measurement = (Measurement) getArguments().getSerializable(MEASUREMENT);
 		assert measurement != null;
 		View v = inflater.inflate(R.layout.fragment_measurement_httpheaderfieldmanipulation, container, false);

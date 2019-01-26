@@ -14,6 +14,7 @@ import org.openobservatory.ooniprobe.model.database.Network;
 import java.util.Date;
 import java.util.Locale;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.fragment.app.Fragment;
@@ -21,14 +22,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ResultHeaderDetailFragment extends Fragment {
-	public static final String NETWORK = "network";
-	public static final String COUNTRY_CODE = "country_code";
-	public static final String RUNTIME = "runtime";
-	public static final String DATA_USAGE_DOWN = "data_usage_down";
-	public static final String DATA_USAGE_UP = "data_usage_up";
-	public static final String START_TIME = "start_time";
-	public static final String IS_TOTAL_RUNTIME = "isTotalRuntime";
-	public static final String LIGHT_THEME = "lightTheme";
+	private static final String NETWORK = "network";
+	private static final String COUNTRY_CODE = "country_code";
+	private static final String RUNTIME = "runtime";
+	private static final String DATA_USAGE_DOWN = "data_usage_down";
+	private static final String DATA_USAGE_UP = "data_usage_up";
+	private static final String START_TIME = "start_time";
+	private static final String IS_TOTAL_RUNTIME = "isTotalRuntime";
+	private static final String LIGHT_THEME = "lightTheme";
 	@BindView(R.id.dataUsage) LinearLayout dataUsage;
 	@BindView(R.id.startTimeBox) LinearLayout startTimeBox;
 	@BindView(R.id.runtimeBox) LinearLayout runtimeBox;
@@ -65,7 +66,8 @@ public class ResultHeaderDetailFragment extends Fragment {
 		return fragment;
 	}
 
-	@Nullable @Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+		assert getArguments() != null;
 		int themeResId = getArguments().getBoolean(LIGHT_THEME) ? R.style.Theme_MaterialComponents_Light_NoActionBar_App : R.style.Theme_MaterialComponents_NoActionBar_App;
 		View v = inflater.cloneInContext(new ContextThemeWrapper(getActivity(), themeResId)).inflate(R.layout.fragment_result_head_detail, container, false);
 		ButterKnife.bind(this, v);

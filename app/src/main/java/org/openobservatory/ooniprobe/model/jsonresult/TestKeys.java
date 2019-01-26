@@ -297,7 +297,7 @@ public class TestKeys {
 	}
 
 	public static class Tampering {
-		public boolean value;
+		public final boolean value;
 
 		public Tampering(boolean value) {
 			this.value = value;

@@ -19,7 +19,9 @@ public class NotificationService {
 	synchronized public static void sendRegistrationToServer(Application app) {
 		if (app.getPreferenceManager().getToken() != null) {
 			MKOrchestraClient client = new MKOrchestraClient();
-			//client.setAvailableBandwidth(String value); TODO-2.1
+			//TODO ORCHESTRATE
+			//client.setAvailableBandwidth(String value);
+			//what happens when token is nil? should register anyway with empry string
 			client.setDeviceToken(app.getPreferenceManager().getToken());
 			client.setCABundlePath(app.getCacheDir() + "/" + Application.CA_BUNDLE);
 			client.setGeoIPCountryPath(app.getCacheDir() + "/" + Application.COUNTRY_MMDB);
@@ -27,12 +29,12 @@ public class NotificationService {
 			client.setLanguage(Locale.getDefault().getLanguage());
 			client.setNetworkType(app.getPreferenceManager().getNetworkType());
 			client.setPlatform("android");
-			//TODO-2.1
-			client.setProbeTimezone(TimeZone.getDefault().getDisplayName(true, TimeZone.SHORT));
+			//TODO ORCHESTRATE - TIMEZONE
+			//client.setProbeTimezone(TimeZone.getDefault().getDisplayName(true, TimeZone.SHORT));
 			client.setRegistryURL(BuildConfig.NOTIFICATION_SERVER);
 			client.setSecretsFile(app.getFilesDir() + "/orchestration_secret.json");
 			client.setSoftwareName("ooniprobe-android");
-			client.setSoftwareVersion(VersionUtils.get_software_version());
+			client.setSoftwareVersion(BuildConfig.VERSION_NAME);
 			for (AbstractSuite suite : TestAsyncTask.SUITES)
 				for (AbstractTest test : suite.getTestList(null))
 					client.addSupportedTest(test.getName());

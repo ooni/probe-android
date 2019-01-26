@@ -34,7 +34,7 @@ public class Result extends BaseModel implements Serializable {
 	@Column public long data_usage_up;
 	@Column public long data_usage_down;
 	@ForeignKey(saveForeignKeyModel = true) public Network network;
-	protected List<Measurement> measurements;
+	private List<Measurement> measurements;
 
 	public Result() {
 	}
@@ -71,7 +71,7 @@ public class Result extends BaseModel implements Serializable {
 		return measurements;
 	}
 
-	public List<Measurement> getAllMeasurements() {
+	private List<Measurement> getAllMeasurements() {
 		return SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id)).queryList();
 	}
 
@@ -122,7 +122,7 @@ public class Result extends BaseModel implements Serializable {
 		}
 	}
 
-	public boolean delete(Context c) {
+	public void delete(Context c) {
 		for (Measurement measurement : getAllMeasurements()) {
 			try {
 				Measurement.getEntryFile(c, measurement.id, measurement.test_name).delete();
@@ -132,6 +132,6 @@ public class Result extends BaseModel implements Serializable {
 			}
 			measurement.delete();
 		}
-		return delete();
+		delete();
 	}
 }

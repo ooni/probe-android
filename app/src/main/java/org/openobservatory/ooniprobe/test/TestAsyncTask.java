@@ -20,10 +20,10 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 	public static final String PRG = "PRG";
 	public static final String LOG = "LOG";
 	public static final String RUN = "RUN";
-	protected WeakReference<ACT> ref;
-	private Result result;
+	protected final WeakReference<ACT> ref;
+	private final Result result;
 
-	public TestAsyncTask(ACT activity, Result result) {
+	protected TestAsyncTask(ACT activity, Result result) {
 		this.ref = new WeakReference<>(activity);
 		this.result = result;
 		result.is_viewed = false;

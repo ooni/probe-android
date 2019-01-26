@@ -1,4 +1,4 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
 	android:key="@string/Test_Middleboxes_Fullname"
 	android:title="@string/Test_Middleboxes_Fullname">
 	<androidx.preference.SwitchPreferenceCompat
@@ -9,4 +9,4 @@
 		android:defaultValue="true"
 		android:key="@string/run_http_header_field_manipulation"
 		android:title="@string/Settings_Middleboxes_TestHTTPHeaderFieldManipulation"/>
-</PreferenceScreen>
+</androidx.preference.PreferenceScreen>

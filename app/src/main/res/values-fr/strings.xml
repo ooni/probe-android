@@ -4,7 +4,7 @@
   <string name="Onboarding_WhatIsOONIProbe_Title">Qu’est-ce qu’OONI Probe ?</string>
   <string name="Onboarding_WhatIsOONIProbe_Paragraph">Votre appli pour mesurer la censure d’Internet. \n\nLes sites Web et les applis de médias sociaux sont-ils bloqués ? Votre connexion Internet est-elle anormalement lente ?\n\nLancez OONI Probe pour le savoir !</string>
   <string name="Onboarding_WhatIsOONIProbe_GotIt">D’accord</string>
-  <string name="Onboarding_ThingsToKnow_Title">Préviens !</string>
+  <string name="Onboarding_ThingsToKnow_Title">À savoir !</string>
   <string name="Onboarding_ThingsToKnow_Bullet_1">Les données de l’OONI sont publiées ouvertement et comprendront les informations relatives à votre réseau.</string>
   <string name="Onboarding_ThingsToKnow_Bullet_2">Quiconque surveille votre activité sur Internet (p. ex. un gouvernement ou un FAI) verra que vous utilisez OONI Probe.</string>
   <string name="Onboarding_ThingsToKnow_Bullet_3">Vous pourriez tester des sites Web interdits (mais vous pouvez choisir quels sites tester).</string>
@@ -192,7 +192,7 @@
   <string name="Modal_Error_CantDownloadURLs">Impossible de télécharger la liste des URL. Veuillez ressayer.</string>
   <string name="Modal_Error_NotificationNotEnabled">Les autorisations de notification sont nécessaires. Veuillez les activer dans les paramètres de votre téléphone, puis les activer dans votre appli OONI Probe.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Aller dans les Paramètres</string>
-  <string name="Modal_Error_CantCloseScreen">Cet écran est verrouillé alors qu’un test est en cours.</string>
+  <string name="Modal_Error_CantCloseScreen">Cet écran est verrouillé pendant qu’un test est en cours.</string>
   <string name="Modal_ResultsNotUploaded_Title">Les résultats n’ont pas été téléversés</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">Certains de vos résultats de test n’ont pas été téléversés vers les serveurs de l’OONI. Si vous souhaitez contribuer à l’ensemble de données de l’OONI, veuillez les téléverser.</string>
   <string name="Modal_ResultsNotUploaded_Button_Cancel">Annuler</string>
@@ -251,7 +251,7 @@
   <string name="Settings_Sharing_IncludeIP">Inclure mon adresse IP</string>
   <string name="Settings_Sharing_IncludeCountryCode">Inclure le code de pays</string>
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Ces renseignements (p. ex. IT pour Italie) sont nécessaires pour identifier le pays d’origine des mesures recueillies. Voulez-vous vraiment désactiver cette option ?</string>
-  <string name="Settings_Sharing_Footer">En publiant les résultats, vous augmentez la transparence des interférences réseau et soutenez la communauté de l’OONI. \n\nLes renseignements sur le réseau (c.-à-d. le numéro de système autonome) est nécessaire pour identifier les fournisseurs d’accès à Internet.</string>
+  <string name="Settings_Sharing_Footer">En publiant les résultats, vous augmentez la transparence des interférences réseau et soutenez la communauté de l’OONI. \n\nLe renseignement sur le réseau (c.-à-d. le numéro de système autonome) est nécessaire pour identifier les fournisseurs d’accès à Internet.</string>
   <string name="Settings_Advanced_Label">Avancés</string>
   <string name="Settings_Advanced_SendCrashReports">Envoyer des rapports de plantage</string>
   <string name="Settings_Advanced_DebugLogs">Journaux de débogage</string>
@@ -300,7 +300,7 @@
   <string name="CategoryCode_PORN_Name">Pornographie</string>
   <string name="CategoryCode_PROV_Name">Tenues provocantes</string>
   <string name="CategoryCode_POLR_Name">Critiques politiques</string>
-  <string name="CategoryCode_HUMR_Name">Questions relatives aux droits de la personne</string>
+  <string name="CategoryCode_HUMR_Name">Droits de la personne</string>
   <string name="CategoryCode_ENV_Name">Environnement</string>
   <string name="CategoryCode_MILX_Name">Terrorisme et militants</string>
   <string name="CategoryCode_HATE_Name">Discours haineux </string>
@@ -313,7 +313,7 @@
   <string name="CategoryCode_GRP_Name">Réseautage social</string>
   <string name="CategoryCode_LGBT_Name">LGBTQ+</string>
   <string name="CategoryCode_FILE_Name">Partage de fichiers</string>
-  <string name="CategoryCode_HACK_Name">Outils de piratage</string>
+  <string name="CategoryCode_HACK_Name">Outils de bidouillage</string>
   <string name="CategoryCode_COMT_Name">Outils de communication</string>
   <string name="CategoryCode_MMED_Name">Partage multimédia</string>
   <string name="CategoryCode_HOST_Name">Hébergement et blogage</string>
@@ -329,7 +329,7 @@
   <string name="CategoryCode_ALDR_Description">Consommation et vente de drogues et d’alcool</string>
   <string name="CategoryCode_REL_Description">Questions religieuses, à la fois favorables et défavorables</string>
   <string name="CategoryCode_PORN_Description">Pornographie dure et douce</string>
-  <string name="CategoryCode_PROV_Description">Tenues provocatrices et représentation de femmes en petites tenues</string>
+  <string name="CategoryCode_PROV_Description">Tenues provocantes et représentation de femmes en petites tenues</string>
   <string name="CategoryCode_POLR_Description">Points de vue politiques critiques</string>
   <string name="CategoryCode_HUMR_Description">Questions relatives aux droits de la personne</string>
   <string name="CategoryCode_ENV_Description">Discussions sur les questions environnementales</string>
@@ -342,7 +342,7 @@
   <string name="CategoryCode_ANON_Description">Anonymisation, contournement de la censure et chiffrement</string>
   <string name="CategoryCode_DATE_Description">Sites de rencontre en ligne</string>
   <string name="CategoryCode_GRP_Description">Outils et plateformes de réseautage social en ligne</string>
-  <string name="CategoryCode_LGBT_Description">Communautés relatives à la cause LGBTQ+ qui discutent de questions connexes (sans pornographie)</string>
+  <string name="CategoryCode_LGBT_Description">Communautés reliées à la cause LGBTQ+ qui discutent de questions connexes (sans pornographie)</string>
   <string name="CategoryCode_FILE_Description">Partage de fichiers, dont le stockage nuagique de fichiers, les torrents et le pair à pair</string>
   <string name="CategoryCode_HACK_Description">Outils de sécurité informatique et nouvelles connexes</string>
   <string name="CategoryCode_COMT_Description">Outils de communication individuelle et de groupe, dont la voix sur IP, les messageries et le courriel Web</string>

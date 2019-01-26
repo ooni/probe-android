@@ -24,7 +24,7 @@ import localhost.toolkit.preference.ExtendedPreferenceFragment;
 
 public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFragment> implements SharedPreferences.OnSharedPreferenceChangeListener, ConfirmDialogFragment.OnConfirmedListener {
 	public static final String ARG_PREFERENCES_RES_ID = "org.openobservatory.ooniprobe.fragment.PreferenceFragment.PREF_RES_ID";
-	public static final String ARG_CONTAINER_RES_ID = "org.openobservatory.ooniprobe.fragment.PreferenceFragment.CONTAINER_VIEW_ID";
+	private static final String ARG_CONTAINER_RES_ID = "org.openobservatory.ooniprobe.fragment.PreferenceFragment.CONTAINER_VIEW_ID";
 	private String rootKey;
 
 	public static PreferenceFragment newInstance(@XmlRes int preferencesResId, @IdRes int preferencesContainerResId, String rootKey) {
@@ -41,6 +41,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 	}
 
 	@Override public void onResume() {
+		assert getArguments() != null;
 		super.onResume();
 		setPreferencesFromResource(getArguments().getInt(ARG_PREFERENCES_RES_ID), getArguments().getInt(ARG_CONTAINER_RES_ID), getArguments().getString(ARG_PREFERENCE_ROOT));
 		getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);

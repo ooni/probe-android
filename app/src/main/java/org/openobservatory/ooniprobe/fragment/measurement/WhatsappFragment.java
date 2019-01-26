@@ -10,6 +10,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -17,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class WhatsappFragment extends Fragment {
-	public static final String MEASUREMENT = "measurement";
+	private static final String MEASUREMENT = "measurement";
 	@BindView(R.id.desc) TextView desc;
 	@BindView(R.id.application) TextView application;
 	@BindView(R.id.webApp) TextView webApp;
@@ -31,28 +32,22 @@ public class WhatsappFragment extends Fragment {
 		return fragment;
 	}
 
-	@Nullable @Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+		assert getArguments() != null;
 		Measurement measurement = (Measurement) getArguments().getSerializable(MEASUREMENT);
 		assert measurement != null;
 		View v = inflater.inflate(R.layout.fragment_measurement_whatsapp, container, false);
 		ButterKnife.bind(this, v);
-		TestKeys testKeys = measurement.getTestKeys();
-		if (measurement.is_anomaly) {
-			desc.setText(R.string.TestResults_Details_InstantMessaging_WhatsApp_LikelyBlocked_Content_Paragraph);
-		} else {
-			desc.setText(R.string.TestResults_Details_InstantMessaging_WhatsApp_Reachable_Content_Paragraph);
-		}
-		if (testKeys != null) {
-			application.setText(testKeys.getWhatsappEndpointStatus());
-			if (TestKeys.BLOCKED.equals(testKeys.whatsapp_endpoints_status))
-				application.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_yellow9));
-			webApp.setText(testKeys.getWhatsappWebStatus());
-			if (TestKeys.BLOCKED.equals(testKeys.whatsapp_web_status))
-				webApp.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_yellow9));
-			registrations.setText(testKeys.getWhatsappRegistrationStatus());
-			if (TestKeys.BLOCKED.equals(testKeys.registration_server_status))
-				registrations.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_yellow9));
-		}
+		desc.setText(measurement.is_anomaly ? R.string.TestResults_Details_InstantMessaging_WhatsApp_LikelyBlocked_Content_Paragraph : R.string.TestResults_Details_InstantMessaging_WhatsApp_Reachable_Content_Paragraph);
+		application.setText(measurement.getTestKeys().getWhatsappEndpointStatus());
+		if (TestKeys.BLOCKED.equals(measurement.getTestKeys().whatsapp_endpoints_status))
+			application.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_yellow9));
+		webApp.setText(measurement.getTestKeys().getWhatsappWebStatus());
+		if (TestKeys.BLOCKED.equals(measurement.getTestKeys().whatsapp_web_status))
+			webApp.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_yellow9));
+		registrations.setText(measurement.getTestKeys().getWhatsappRegistrationStatus());
+		if (TestKeys.BLOCKED.equals(measurement.getTestKeys().registration_server_status))
+			registrations.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_yellow9));
 		return v;
 	}
 }

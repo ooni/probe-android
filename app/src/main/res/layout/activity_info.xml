@@ -15,27 +15,17 @@
 			app:contentScrim="?attr/colorPrimary"
 			app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Small.Transparent">
 
-			<LinearLayout
+			<TextView
+				android:id="@+id/version"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginTop="?attr/actionBarSize"
 				android:layout_marginBottom="16dp"
+				android:drawableTop="@drawable/ooni_logo"
+				android:drawablePadding="8dp"
 				android:gravity="center_horizontal"
-				android:orientation="vertical"
-				app:layout_collapseMode="parallax">
-
-				<ImageView
-					android:layout_width="wrap_content"
-					android:layout_height="72dp"
-					android:src="@drawable/ooni_logo" />
-
-				<TextView
-					android:id="@+id/version"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_marginTop="8dp"
-					android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
-			</LinearLayout>
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+				app:layout_collapseMode="parallax" />
 
 			<androidx.appcompat.widget.Toolbar
 				android:id="@+id/toolbar"

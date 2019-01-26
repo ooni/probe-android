@@ -16,11 +16,11 @@ public abstract class AbstractActivity extends AppCompatActivity {
 		return ((Application) getApplication()).getGson();
 	}
 
-	public boolean isTestRunning() {
+	boolean isTestRunning() {
 		return ((Application) getApplication()).isTestRunning();
 	}
 
-	public void setTestRunning(boolean testRunning) {
+	void setTestRunning(boolean testRunning) {
 		((Application) getApplication()).setTestRunning(testRunning);
 	}
 }

@@ -20,8 +20,8 @@ import butterknife.ButterKnife;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
 public class WebsiteItem extends HeterogeneousRecyclerItem<Result, WebsiteItem.ViewHolder> {
-	private View.OnClickListener onClickListener;
-	private View.OnLongClickListener onLongClickListener;
+	private final View.OnClickListener onClickListener;
+	private final View.OnLongClickListener onLongClickListener;
 
 	public WebsiteItem(Result extra, View.OnClickListener onClickListener, View.OnLongClickListener onLongClickListener) {
 		super(extra);

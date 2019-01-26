@@ -15,22 +15,21 @@ import androidx.annotation.StyleRes;
 import androidx.annotation.XmlRes;
 
 public abstract class AbstractSuite implements Serializable {
-	private int title;
-	private int cardDesc;
-	private int icon;
-	private int color;
-	private int themeLight;
-	private int themeDark;
-	private int desc1;
-	private int pref;
-	private String anim;
-	private String name;
-	private String dataUsage;
-	private Integer runtime;
+	private final int title;
+	private final int cardDesc;
+	private final int icon;
+	private final int color;
+	private final int themeLight;
+	private final int themeDark;
+	private final int desc1;
+	private final int pref;
+	private final String anim;
+	private final String name;
+	private final String dataUsage;
 	private AbstractTest[] testList;
 	private Result result;
 
-	public AbstractSuite(String name, @StringRes int title, @StringRes int cardDesc, @DrawableRes int icon, @ColorRes int color, @StyleRes int themeLight, @StyleRes int themeDark, @StringRes int desc1, @XmlRes int pref, String anim, String dataUsage, int runtime) {
+	AbstractSuite(String name, @StringRes int title, @StringRes int cardDesc, @DrawableRes int icon, @ColorRes int color, @StyleRes int themeLight, @StyleRes int themeDark, @StringRes int desc1, @XmlRes int pref, String anim, String dataUsage) {
 		this.title = title;
 		this.cardDesc = cardDesc;
 		this.icon = icon;
@@ -42,7 +41,6 @@ public abstract class AbstractSuite implements Serializable {
 		this.anim = anim;
 		this.name = name;
 		this.dataUsage = dataUsage;
-		this.runtime = runtime;
 	}
 
 	@CallSuper public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
@@ -107,7 +105,10 @@ public abstract class AbstractSuite implements Serializable {
 		return dataUsage;
 	}
 
-	public Integer getRuntime(@Nullable PreferenceManager pm) {
+	public Integer getRuntime(PreferenceManager pm) {
+		int runtime = 0;
+		for (AbstractTest test : getTestList(pm))
+			runtime += test.getRuntime(pm);
 		return runtime;
 	}
 }

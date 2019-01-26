@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
 public class DateItem extends HeterogeneousRecyclerItem<Date, DateItem.ViewHolder> {
-	private SimpleDateFormat SDF;
+	private final SimpleDateFormat SDF;
 
 	public DateItem(Date extra) {
 		super(extra);

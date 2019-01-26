@@ -46,8 +46,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MeasurementDetailActivity extends AbstractActivity {
-	public static final String ID = "id";
-	public Measurement measurement;
+	private static final String ID = "id";
+	private Measurement measurement;
 	@BindView(R.id.toolbar) Toolbar toolbar;
 
 	public static Intent newIntent(Context context, int id) {
@@ -109,6 +109,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
 				detail = null;
 				break;
 		}
+		assert detail != null && head != null;
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.footer, ResultHeaderDetailFragment.newInstance(true, null, null, measurement.start_time, measurement.runtime, false, measurement.result.network.country_code, measurement.result.network))
 				.replace(R.id.body, detail)

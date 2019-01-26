@@ -15,10 +15,10 @@ import androidx.annotation.NonNull;
 
 public class WebConnectivity extends AbstractTest {
 	public static final String NAME = "web_connectivity";
-	public static final String MK_NAME = "WebConnectivity";
+	private static final String MK_NAME = "WebConnectivity";
 
 	public WebConnectivity() {
-		super(NAME, MK_NAME, R.string.Test_WebConnectivity_Fullname, 0);
+		super(NAME, MK_NAME, R.string.Test_WebConnectivity_Fullname, 0, 5);
 	}
 
 	@Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback) {
@@ -32,5 +32,14 @@ public class WebConnectivity extends AbstractTest {
 			measurement.is_failed = true;
 		else
 			measurement.is_anomaly = !json.test_keys.blocking.equals("false");
+	}
+
+	@Override public int getRuntime(PreferenceManager pm) {
+		if (getMax_runtime() != null)
+			return 30 + getMax_runtime();
+		else if (getInputs() != null)
+			return 30 + getInputs().size() * super.getRuntime(pm);
+		else
+			return 30 + pm.getMaxRuntime();
 	}
 }

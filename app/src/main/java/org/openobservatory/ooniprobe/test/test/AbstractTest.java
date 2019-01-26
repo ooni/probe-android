@@ -4,8 +4,10 @@ import android.content.Context;
 import android.util.Log;
 import android.util.SparseArray;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 
+import org.openobservatory.ooniprobe.common.MKException;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
@@ -25,27 +27,29 @@ import androidx.annotation.NonNull;
 import io.ooni.mk.MKTask;
 
 public abstract class AbstractTest implements Serializable {
-	public static final String UNUSED_KEY = "UNUSED_KEY";
-	private final String TAG = "MK_EVENT";
-	private String name;
-	private String mkName;
+	private static final String UNUSED_KEY = "UNUSED_KEY";
+	private static final String TAG = "MK_EVENT";
+	private final String name;
+	private final String mkName;
+	private final int labelResId;
+	private final int iconResId;
+	private final int runtime;
 	private List<String> inputs;
 	private Integer max_runtime;
-	private int labelResId;
-	private int iconResId;
 	private SparseArray<Measurement> measurements;
 	private String reportId;
 
-	public AbstractTest(String name, String mkName, int labelResId, int iconResId) {
+	AbstractTest(String name, String mkName, int labelResId, int iconResId, int runtime) {
 		this.name = name;
 		this.mkName = mkName;
 		this.labelResId = labelResId;
 		this.iconResId = iconResId;
+		this.runtime = runtime;
 	}
 
 	public abstract void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback);
 
-	protected void run(Context c, PreferenceManager pm, Gson gson, Settings settings, Result result, int index, TestCallback testCallback) {
+	void run(Context c, PreferenceManager pm, Gson gson, Settings settings, Result result, int index, TestCallback testCallback) {
 		settings.name = mkName;
 		settings.inputs = inputs;
 		settings.options.max_runtime = max_runtime;
@@ -125,12 +129,16 @@ public abstract class AbstractTest implements Serializable {
 					case "failure.startup":
 						//Run next test
 						break;
+					case "bug.json_dump":
+						Crashlytics.logException(new MKException(event));
+						break;
 					default:
 						Log.w(UNUSED_KEY, event.key);
 						break;
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
+				Crashlytics.logException(e);
 			}
 		if (logFOS != null)
 			try {
@@ -163,7 +171,7 @@ public abstract class AbstractTest implements Serializable {
 		Measurement measurement = measurements.get(value.idx);
 		if (measurement != null) {
 			measurement.is_uploaded = uploaded;
-			if (!uploaded){
+			if (!uploaded) {
 				measurement.report_id = "";
 				measurement.is_upload_failed = true;
 			}
@@ -208,8 +216,16 @@ public abstract class AbstractTest implements Serializable {
 		this.inputs = inputs;
 	}
 
+	Integer getMax_runtime() {
+		return max_runtime;
+	}
+
 	public void setMax_runtime(Integer max_runtime) {
 		this.max_runtime = max_runtime;
+	}
+
+	public int getRuntime(PreferenceManager pm) {
+		return runtime;
 	}
 
 	public interface TestCallback {

@@ -15,6 +15,8 @@ import org.openobservatory.ooniprobe.common.Application;
 import java.io.Serializable;
 import java.util.Arrays;
 
+import androidx.annotation.NonNull;
+
 @Table(database = Application.class)
 public class Url extends BaseModel implements Serializable {
 	@PrimaryKey(autoincrement = true) public int id;
@@ -63,7 +65,7 @@ public class Url extends BaseModel implements Serializable {
 		return categoryIcon;
 	}
 
-	@Override public String toString() {
+	@NonNull @Override public String toString() {
 		return url;
 	}
 }

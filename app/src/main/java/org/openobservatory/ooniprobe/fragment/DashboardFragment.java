@@ -23,7 +23,6 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -42,11 +41,6 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		View v = inflater.inflate(R.layout.fragment_dashboard, container, false);
 		ButterKnife.bind(this, v);
 		((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-		ActionBar bar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-		if (bar != null) {
-			bar.setDisplayShowCustomEnabled(true);
-			bar.setCustomView(R.layout.logo);
-		}
 		ArrayList<TestsuiteItem> items = new ArrayList<>();
 		PreferenceManager pm = ((Application) getActivity().getApplication()).getPreferenceManager();
 		items.add(new TestsuiteItem(new WebsitesSuite(), pm, this));
