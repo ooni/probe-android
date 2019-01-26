@@ -15,6 +15,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
+import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
@@ -48,7 +49,6 @@ public class OverviewActivity extends AbstractActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		setTitle(testSuite.getTitle());
 		icon.setImageResource(testSuite.getIcon());
-		runtime.setText(getString(R.string.twoParam, testSuite.getDataUsage(), getString(R.string.Dashboard_Card_Seconds, testSuite.getRuntime(getPreferenceManager()).toString())));
 		customUrl.setVisibility(testSuite.getName().equals(WebsitesSuite.NAME) ? View.VISIBLE : View.GONE);
 		Markwon.setMarkdown(desc, getString(testSuite.getDesc1()));
 		Result lastResult = Result.getLastResult(testSuite.getName());
@@ -56,6 +56,13 @@ public class OverviewActivity extends AbstractActivity {
 			lastTime.setText(R.string.Dashboard_Overview_LastRun_Never);
 		else
 			lastTime.setText(DateUtils.getRelativeTimeSpanString(lastResult.start_time.getTime()));
+	}
+
+	@Override protected void onResume() {
+		super.onResume();
+		testSuite.setTestList((AbstractTest[]) null);
+		testSuite.getTestList(getPreferenceManager());
+		runtime.setText(getString(R.string.twoParam, testSuite.getDataUsage(), getString(R.string.Dashboard_Card_Seconds, testSuite.getRuntime(getPreferenceManager()).toString())));
 	}
 
 	@Override
