@@ -149,11 +149,15 @@ public class PreferenceManager {
 	}
 
 	public String getEnabledCategory() {
-		ArrayList<String> list = new ArrayList<>(31);
-		for (String key : r.getStringArray(R.array.CategoryCodes))
-			if (sp.getBoolean(key, true))
-				list.add(key);
-		return TextUtils.join(",", list);
+		if (isAllCategoryEnabled())
+			return null;
+		else {
+			ArrayList<String> list = new ArrayList<>(31);
+			for (String key : r.getStringArray(R.array.CategoryCodes))
+				if (sp.getBoolean(key, true))
+					list.add(key);
+			return TextUtils.join(",", list);
+		}
 	}
 
 	public Integer countEnabledCategory() {

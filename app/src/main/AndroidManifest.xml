@@ -1,5 +1,4 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
 	package="org.openobservatory.ooniprobe">
 
 	<uses-permission android:name="android.permission.INTERNET" />
@@ -12,8 +11,7 @@
 		android:icon="@mipmap/ic_launcher"
 		android:label="@string/General_AppName"
 		android:supportsRtl="true"
-		android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App"
-		tools:replace="android:allowBackup, android:label">
+		android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App">
 		<receiver android:name=".utils.ConnectivityChangeReceiver">
 			<intent-filter>
 				<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />

@@ -19,31 +19,16 @@ import android.widget.Toast;
 import com.airbnb.lottie.LottieAnimationView;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.OoniIOClient;
-import org.openobservatory.ooniprobe.model.RetrieveUrlResponse;
 import org.openobservatory.ooniprobe.model.database.Result;
-import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
-import org.openobservatory.ooniprobe.test.test.AbstractTest;
-import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 import org.openobservatory.ooniprobe.utils.NotificationService;
-
-import java.util.ArrayList;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.ooni.mk.MKGeoIPLookupResults;
-import io.ooni.mk.MKGeoIPLookupSettings;
 import localhost.toolkit.app.MessageDialogFragment;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RunningActivity extends AbstractActivity {
 	private static final String TEST = "test";
@@ -69,45 +54,6 @@ public class RunningActivity extends AbstractActivity {
 		super.onCreate(savedInstanceState);
 		testSuite = (AbstractSuite) getIntent().getSerializableExtra(TEST);
 		runtime = testSuite.getRuntime(getPreferenceManager());
-		boolean downloadUrls = false;
-		for (AbstractTest abstractTest : testSuite.getTestList(getPreferenceManager()))
-			if (abstractTest instanceof WebConnectivity) {
-				if (abstractTest.getInputs() == null)
-					downloadUrls = true;
-				break;
-			}
-		if (downloadUrls) {
-			MKGeoIPLookupSettings settings = new MKGeoIPLookupSettings();
-			settings.setTimeout(17);
-			settings.setCABundlePath(getCacheDir() + "/" + Application.CA_BUNDLE);
-			settings.setCountryDBPath(getCacheDir() + "/" + Application.COUNTRY_MMDB);
-			settings.setASNDBPath(getCacheDir() + "/" + Application.ASN_MMDB);
-			MKGeoIPLookupResults results = settings.perform();
-			String probe_cc = "XX";
-			if (results.good())
-				probe_cc = results.getProbeCC();
-			Retrofit retrofit = new Retrofit.Builder().baseUrl("https://orchestrate.ooni.io/").addConverterFactory(GsonConverterFactory.create()).build();
-			retrofit.create(OoniIOClient.class).getUrls(probe_cc, getPreferenceManager().isAllCategoryEnabled() ? null : getPreferenceManager().getEnabledCategory()).enqueue(new Callback<RetrieveUrlResponse>() {
-				@Override public void onResponse(Call<RetrieveUrlResponse> call, Response<RetrieveUrlResponse> response) {
-					if (response.isSuccessful() && response.body() != null && response.body().results != null) {
-						ArrayList<String> inputs = new ArrayList<>();
-						for (Url url : response.body().results)
-							inputs.add(Url.checkExistingUrl(url.url, url.category_code, url.country_code).url);
-						for (AbstractTest abstractTest : testSuite.getTestList(getPreferenceManager())) {
-							abstractTest.setInputs(inputs);
-							abstractTest.setMax_runtime(getPreferenceManager().getMaxRuntime());
-						}
-						run();
-					}
-				}
-
-				@Override public void onFailure(Call<RetrieveUrlResponse> call, Throwable t) {
-					Toast.makeText(RunningActivity.this, R.string.Modal_Error_CantDownloadURLs, Toast.LENGTH_SHORT).show();
-					finish();
-				}
-			});
-		} else
-			run();
 		setTheme(testSuite.getThemeDark());
 		setContentView(R.layout.activity_running);
 		ButterKnife.bind(this);
@@ -117,6 +63,7 @@ public class RunningActivity extends AbstractActivity {
 		animation.playAnimation();
 		progress.setMax(testSuite.getTestList(getPreferenceManager()).length * 100);
 		setTestRunning(true);
+		new TestAsyncTaskImpl(this, testSuite.getResult()).execute(testSuite.getTestList(getPreferenceManager()));
 	}
 
 	@Override protected void onResume() {
@@ -138,10 +85,6 @@ public class RunningActivity extends AbstractActivity {
 		Toast.makeText(this, getString(R.string.Modal_Error_CantCloseScreen), Toast.LENGTH_SHORT).show();
 	}
 
-	private void run() {
-		new TestAsyncTaskImpl(this, testSuite.getResult()).execute(testSuite.getTestList(getPreferenceManager()));
-	}
-
 	private static class TestAsyncTaskImpl extends TestAsyncTask<RunningActivity> {
 		TestAsyncTaskImpl(RunningActivity activity, Result result) {
 			super(activity, result);
@@ -151,16 +94,20 @@ public class RunningActivity extends AbstractActivity {
 			RunningActivity act = ref.get();
 			if (act != null && !act.isFinishing())
 				switch (values[0]) {
-					case TestAsyncTask.RUN:
+					case RUN:
 						act.name.setText(values[1]);
 						break;
-					case TestAsyncTask.PRG:
+					case PRG:
 						int prgs = Integer.parseInt(values[1]);
 						act.progress.setProgress(prgs);
 						act.eta.setText(act.getString(R.string.Dashboard_Running_Seconds, String.valueOf(Math.round(act.runtime - ((double) prgs) / act.progress.getMax() * act.runtime))));
 						break;
-					case TestAsyncTask.LOG:
+					case LOG:
 						act.log.setText(values[1]);
+						break;
+					case ERR:
+						Toast.makeText(act, values[1], Toast.LENGTH_SHORT).show();
+						act.finish();
 						break;
 				}
 		}
