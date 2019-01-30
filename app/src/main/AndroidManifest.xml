@@ -12,12 +12,6 @@
 		android:label="@string/General_AppName"
 		android:supportsRtl="true"
 		android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App">
-		<receiver android:name=".utils.ConnectivityChangeReceiver">
-			<intent-filter>
-				<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-			</intent-filter>
-		</receiver>
-
 		<activity
 			android:name=".activity.MainActivity"
 			android:launchMode="singleTop"
