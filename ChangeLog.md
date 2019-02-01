@@ -11,7 +11,7 @@ New features:
 * This new version includes a major UI overhaul.
 * An overview screen for all test results
 * Enhanced website testing: you can test a website of your choice, pick categories of sites to test and test country-specific lists
-* Data usage tracking on a test by test basis (edited) 
+* Data usage tracking on a test by test basis
 --
 measurement-kit version: android-libs: 0.9.1-android.1
 
