@@ -71,7 +71,7 @@ public class Settings {
 			ca_bundle_path = c.getCacheDir() + "/" + Application.CA_BUNDLE;
 			geoip_asn_path = c.getCacheDir() + "/" + Application.ASN_MMDB;
 			geoip_country_path = c.getCacheDir() + "/" + Application.COUNTRY_MMDB;
-			no_collector = pm.isUploadResults();
+			no_collector = !pm.isUploadResults();
 			save_real_probe_asn = pm.isIncludeAsn();
 			save_real_probe_cc = pm.isIncludeCc();
 			save_real_probe_ip = pm.isIncludeIp();
