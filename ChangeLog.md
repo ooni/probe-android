@@ -1,3 +1,20 @@
+# OONI Probe Android 2.0.1+42 [2019-02-01]
+
+Fixes:
+
+* Bug in measurement upload: https://github.com/ooni/probe-android/issues/188
+
+# OONI Probe Android 2.0.0+41 [2019-01-13]
+
+New features:
+
+* This new version includes a major UI overhaul.
+* An overview screen for all test results
+* Enhanced website testing: you can test a website of your choice, pick categories of sites to test and test country-specific lists
+* Data usage tracking on a test by test basis
+--
+measurement-kit version: android-libs: 0.9.1-android.1
+
 # ooniprobe-android 1.2.3+17 [2017-10-08]
 
 New features:
