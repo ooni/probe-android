@@ -1,3 +1,15 @@
+# OONI Probe Android 2.0.2+43 [2019-02-04]
+
+Fixes:
+
+* IllegalArgumentException in FragmentManagerImpl.moveToState: https://github.com/ooni/probe-android/issues/184
+* IllegalStateException in RunningActivity.onFailure: https://github.com/ooni/probe-android/issues/183
+* NullPointerException in PerformanceItem.onBindViewHolder: https://github.com/ooni/probe-android/issues/182
+* Input dispatching timed out: https://github.com/ooni/probe-android/issues/181
+* Hotfix ANR Broadcast of Intent CONNECTIVITY_CHANGE: https://github.com/ooni/probe-android/issues/180
+* Memory corruption issues on Android devices: https://github.com/measurement-kit/measurement-kit/issues/1739
+
+
 # OONI Probe Android 2.0.1+42 [2019-02-01]
 
 Fixes:

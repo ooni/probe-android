@@ -11,7 +11,7 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.utils.NotificationService;
+import org.openobservatory.ooniprobe.common.MKOrchestraClient;
 
 import java.io.Serializable;
 
@@ -69,11 +69,11 @@ public class Network extends BaseModel implements Serializable {
 			return c.getString(R.string.TestResults_UnknownASN);
 		else
 			switch (n.network_type) {
-				case NotificationService.WIFI:
+				case MKOrchestraClient.WIFI:
 					return c.getString(R.string.TestResults_Summary_Hero_WiFi);
-				case NotificationService.MOBILE:
+				case MKOrchestraClient.MOBILE:
 					return c.getString(R.string.TestResults_Summary_Hero_Mobile);
-				case NotificationService.NO_INTERNET:
+				case MKOrchestraClient.NO_INTERNET:
 					return c.getString(R.string.TestResults_Summary_Hero_NoInternet);
 				default:
 					return c.getString(R.string.TestResults_UnknownASN);

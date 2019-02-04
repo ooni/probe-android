@@ -3,12 +3,9 @@ package org.openobservatory.ooniprobe.common;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.text.TextUtils;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.utils.NotificationService;
 
 import java.util.ArrayList;
 
@@ -18,7 +15,6 @@ public class PreferenceManager {
 	private static final String SHOW_ONBOARDING = "first_run";
 	private final SharedPreferences sp;
 	private final Resources r;
-	private final ConnectivityManager connectivityManager;
 
 	PreferenceManager(Context context) {
 		androidx.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_global, true);
@@ -28,18 +24,9 @@ public class PreferenceManager {
 		androidx.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_websites, true);
 		sp = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context);
 		r = context.getResources();
-		connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 	}
 
-	public String getNetworkType() {
-		NetworkInfo info = connectivityManager.getActiveNetworkInfo();
-		if (info != null && info.getType() == ConnectivityManager.TYPE_WIFI)
-			return NotificationService.WIFI;
-		else if (info != null && info.getType() == ConnectivityManager.TYPE_MOBILE)
-			return NotificationService.MOBILE;
-		else
-			return NotificationService.NO_INTERNET;
-	}
+
 
 	public String getToken() {
 		return sp.getString(TOKEN, null);
@@ -149,11 +136,15 @@ public class PreferenceManager {
 	}
 
 	public String getEnabledCategory() {
-		ArrayList<String> list = new ArrayList<>(31);
-		for (String key : r.getStringArray(R.array.CategoryCodes))
-			if (sp.getBoolean(key, true))
-				list.add(key);
-		return TextUtils.join(",", list);
+		if (isAllCategoryEnabled())
+			return null;
+		else {
+			ArrayList<String> list = new ArrayList<>(31);
+			for (String key : r.getStringArray(R.array.CategoryCodes))
+				if (sp.getBoolean(key, true))
+					list.add(key);
+			return TextUtils.join(",", list);
+		}
 	}
 
 	public Integer countEnabledCategory() {

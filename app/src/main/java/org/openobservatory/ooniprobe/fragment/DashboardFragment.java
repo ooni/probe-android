@@ -36,21 +36,29 @@ import localhost.toolkit.widget.HeterogeneousRecyclerAdapter;
 public class DashboardFragment extends Fragment implements View.OnClickListener {
 	@BindView(R.id.recycler) RecyclerView recycler;
 	@BindView(R.id.toolbar) Toolbar toolbar;
+	private ArrayList<TestsuiteItem> items;
+	private HeterogeneousRecyclerAdapter<TestsuiteItem> adapter;
 
 	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_dashboard, container, false);
 		ButterKnife.bind(this, v);
 		((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-		ArrayList<TestsuiteItem> items = new ArrayList<>();
+		items = new ArrayList<>();
+		adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
+		recycler.setAdapter(adapter);
+		recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+		return v;
+	}
+
+	@Override public void onResume() {
+		super.onResume();
 		PreferenceManager pm = ((Application) getActivity().getApplication()).getPreferenceManager();
+		items.clear();
 		items.add(new TestsuiteItem(new WebsitesSuite(), pm, this));
 		items.add(new TestsuiteItem(new InstantMessagingSuite(), pm, this));
 		items.add(new TestsuiteItem(new PerformanceSuite(), pm, this));
 		items.add(new TestsuiteItem(new MiddleBoxesSuite(), pm, this));
-		HeterogeneousRecyclerAdapter<TestsuiteItem> adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
-		recycler.setAdapter(adapter);
-		recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
-		return v;
+		adapter.notifyTypesChanged();
 	}
 
 	@Override public void onClick(View v) {

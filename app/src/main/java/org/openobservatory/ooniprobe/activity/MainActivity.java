@@ -7,10 +7,12 @@ import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.data.OldTestStorage;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
 import org.openobservatory.ooniprobe.fragment.PreferenceGlobalFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
+import org.openobservatory.ooniprobe.common.MKOrchestraClient;
 
 import androidx.annotation.Nullable;
 import butterknife.BindView;
@@ -54,6 +56,11 @@ public class MainActivity extends AbstractActivity {
 				OldTestStorage.removeAllTests(this);
 			}
 		}
+	}
+
+	@Override protected void onResume() {
+		super.onResume();
+		new MKOrchestraClient((Application) getApplication()).execute();
 	}
 
 	@Override protected void onNewIntent(Intent intent) {
