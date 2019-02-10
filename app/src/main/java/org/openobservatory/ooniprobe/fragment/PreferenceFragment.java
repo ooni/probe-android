@@ -2,9 +2,11 @@ package org.openobservatory.ooniprobe.fragment;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 
+import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
@@ -14,6 +16,7 @@ import java.io.Serializable;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.XmlRes;
+import androidx.core.app.ShareCompat;
 import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
@@ -56,6 +59,32 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 				getPreferenceScreen().getPreference(i).setSummary(getString(R.string.Settings_Websites_Categories_Description, count));
 			}
 		}
+		findPreference(getString(R.string.send_email)).setOnPreferenceClickListener(preference -> {
+			String text = "\nBOARD: " + Build.BOARD +
+					"\nBOOTLOADER: " + Build.BOOTLOADER +
+					"\nBRAND: " + Build.BRAND +
+					"\nDEVICE: " + Build.DEVICE +
+					"\nDISPLAY: " + Build.DISPLAY +
+					"\nFINGERPRINT: " + Build.FINGERPRINT +
+					"\nHARDWARE: " + Build.HARDWARE +
+					"\nHOST: " + Build.HOST +
+					"\nID: " + Build.ID +
+					"\nMANUFACTURER: " + Build.MANUFACTURER +
+					"\nMODEL: " + Build.MODEL +
+					"\nPRODUCT: " + Build.PRODUCT +
+					"\nTAGS: " + Build.TAGS +
+					"\nTIME: " + Build.TIME +
+					"\nTYPE: " + Build.TYPE +
+					"\nUSER: " + Build.USER +
+					"\nRADIO_VERSION: " + Build.getRadioVersion();
+			ShareCompat.IntentBuilder.from(getActivity())
+					.setType(getString(R.string.shareType))
+					.addEmailTo(getString(R.string.shareEmailTo))
+					.setSubject(getString(R.string.shareSubject, BuildConfig.VERSION_NAME))
+					.setText(text)
+					.startChooser();
+			return true;
+		});
 	}
 
 	@Override public void onPause() {

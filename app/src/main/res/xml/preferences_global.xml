@@ -56,6 +56,10 @@
 			android:title="@string/Settings_Advanced_DebugLogs" />
 	</androidx.preference.PreferenceScreen>
 	<androidx.preference.PreferenceScreen
+		android:icon="@drawable/send_email"
+		android:key="@string/send_email"
+		android:title="@string/Settings_SendEmail_Label" />
+	<androidx.preference.PreferenceScreen
 		android:icon="@drawable/about_ooni"
 		android:key="@string/about_ooni"
 		android:title="@string/Settings_About_Label">
