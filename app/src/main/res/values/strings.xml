@@ -278,6 +278,8 @@
 	<string name="Settings_Performance_DashAutomaticServerSelection">Automatic DASH server selection</string>
 	<string name="Settings_Performance_DashServerAddress">DASH server</string>
 	<string name="Settings_Performance_DashServerPort">DASH server port</string>
+	<string name="Settings_SendEmail_Label">Send email to support</string>
+	<string name="Settings_SendEmail_Error">No email clients configured on your device</string>
 	<string name="Notification_FinishedRunning">Finished running</string>
 	<string name="OONIBrowser_TryMirror">Try mirror</string>
 	<string name="OONIBrowser_Loading">Loading...</string>
@@ -357,5 +359,4 @@
 	<string name="CategoryCode_CTRL_Description">Benign or innocuous content used for control</string>
 	<string name="CategoryCode_IGO_Description">Intergovernmental organizations including The United Nations</string>
 	<string name="CategoryCode_MISC_Description">Sites that haven\'t been categorized yet.</string>
-	<string name="Settings_SendEmail_Label">NEED STRING</string>
 </resources>
