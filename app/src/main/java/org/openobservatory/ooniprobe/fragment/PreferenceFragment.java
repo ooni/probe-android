@@ -1,7 +1,9 @@
 package org.openobservatory.ooniprobe.fragment;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,7 +18,6 @@ import java.io.Serializable;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.XmlRes;
-import androidx.core.app.ShareCompat;
 import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
@@ -77,12 +78,10 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 					"\nTYPE: " + Build.TYPE +
 					"\nUSER: " + Build.USER +
 					"\nRADIO_VERSION: " + Build.getRadioVersion();
-			ShareCompat.IntentBuilder.from(getActivity())
-					.setType(getString(R.string.shareType))
-					.addEmailTo(getString(R.string.shareEmailTo))
-					.setSubject(getString(R.string.shareSubject, BuildConfig.VERSION_NAME))
-					.setText(text)
-					.startChooser();
+			Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse(getString(R.string.shareEmailTo)));
+			emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.shareSubject, BuildConfig.VERSION_NAME));
+			emailIntent.putExtra(Intent.EXTRA_TEXT, text);
+			startActivity(Intent.createChooser(emailIntent, getString(R.string.Settings_SendEmail_Label)));
 			return true;
 		});
 	}

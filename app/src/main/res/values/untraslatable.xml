@@ -50,8 +50,7 @@
 	<string name="transitionNameIcon" translatable="false">icon</string>
 	<string name="transitionNameTitle" translatable="false">title</string>
 	<string name="transitionNameRuntime" translatable="false">runtime</string>
-	<string name="shareType" translatable="false">message/rfc822</string>
-	<string name="shareEmailTo" translatable="false">contact@openobservatory.org</string>
+	<string name="shareEmailTo" translatable="false">mailto:contact@openobservatory.org</string>
 	<string name="shareSubject" translatable="false">[bug-report] OONI Probe Android %1$s</string>
 	<string-array name="filterTests" translatable="false">
 		<item>@string/TestResults_Overview_FilterTests_AllTests</item>
