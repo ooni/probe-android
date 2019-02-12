@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
@@ -81,7 +82,11 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 			Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse(getString(R.string.shareEmailTo)));
 			emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.shareSubject, BuildConfig.VERSION_NAME));
 			emailIntent.putExtra(Intent.EXTRA_TEXT, text);
-			startActivity(Intent.createChooser(emailIntent, getString(R.string.Settings_SendEmail_Label)));
+			try {
+				startActivity(Intent.createChooser(emailIntent, getString(R.string.Settings_SendEmail_Label)));
+			} catch (Exception e) {
+				Toast.makeText(getActivity(), R.string.Settings_SendEmail_Error, Toast.LENGTH_SHORT).show();
+			}
 			return true;
 		});
 	}
