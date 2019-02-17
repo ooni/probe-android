@@ -28,7 +28,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">Le code de pays (p. ex. IT pour Italie)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">Des renseignements sur le réseau (dont le numéro de système autonome)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">L’estampille temporelle du test</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">Nous faisons de notre mieux pour ne pas publier votre adresse IP ou toute autre information nominative.\n\nApprenez-en davantage dans la [Politique sur les données de l’OONI] (https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">Nous faisons de notre mieux pour ne pas publier votre adresse IP ou toute autre information nominative.\n\nApprenez-en davantage dans la [Politique sur les données de l’OONI](https://ooni.io/about/data-policy/).</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Allons-y</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Modifier les paramètres</string>
   <string name="Dashboard_Tab_Label">Tableau de bord</string>
@@ -51,7 +51,7 @@
   <string name="Dashboard_Middleboxes_Card_Description">Détecter les boîtiers intermédiaires dans votre réseau</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">Les fournisseurs d’accès à Internet utilisent souvent des appareils réseau (des boîtiers intermédiaires) pour diverses tâches propres au réseau (telles que la mise en cache). Ces boîtiers intermédiaires sont parfois utilisés pour censurer ou surveiller Internet.\n\nTrouvez des boîtiers intermédiaires dans votre réseau grâce aux tests de l’OONI [HTTP Ligne de requête invalide](https://ooni.io/nettest/http-invalid-request-line/) et [HTTP Manipulation du champ d’en-tête](https://ooni.io/nettest/http-header-field-manipulation/).\n\nVos résultats seront publiés dans l’[explorateur de l’OONI](https://explorer.ooni.io/world/) et l’[API de l’OONI](https://api.ooni.io/).</string>
   <string name="Dashboard_InstantMessaging_Card_Description">Testez le blocage des applis de messagerie instantanée</string>
-  <string name="Dashboard_InstantMessaging_Overview_Paragraph">Vérifiez si [WhatsApp](https://ooni.io/nettest/whatsapp/), le [messager Facebook](https://ooni.io/nettest/facebook-messenger/) et [Telegram](https://ooni.ionettest/telegram/) sont bloqués.\n\nVos résultats seront publiés dans l’[explorateur de l’OONI](https://explorer.ooni.io/world/) et l’[API de l’OONI](https://api.ooni.io/).</string>
+  <string name="Dashboard_InstantMessaging_Overview_Paragraph">Vérifiez si [WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) et [Telegram](https://ooni.ionettest/telegram/) sont bloqués.\n\nVos résultats seront publiés dans l’[explorateur de l’OONI](https://explorer.ooni.io/world/) et l’[API de l’OONI](https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">Gbps</string>
   <string name="TestResults_Mbps">Mbps</string>
   <string name="TestResults_Kbps">Kbps</string>
@@ -158,7 +158,7 @@
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Hero_Title">En cours</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Content_Paragraph">Ce test s’est connecté avec succès aux extrémités de Facebook et a été résolu avec des adresses IP de Facebook.</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Hero_Title">Probablement bloqué</string>
-  <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Content_Paragraph">Le Messager Facebook semble être bloqué.</string>
+  <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Content_Paragraph">Facebook Messenger semble être bloqué.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title">Aucun boîtier intermédiaire n’a été détecté</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Content_Paragraph">Aucune anomalie réseau n’a été détectée lors de la communication avec nos serveurs.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title">Manipulation du réseau</string>
@@ -225,7 +225,7 @@
   <string name="Test_Dash_Fullname">Test de diffusion en continu DASH</string>
   <string name="Test_WhatsApp_Fullname">Test de WhatsApp</string>
   <string name="Test_Telegram_Fullname">Test de Telegram</string>
-  <string name="Test_FacebookMessenger_Fullname">Test du Messager Facebook</string>
+  <string name="Test_FacebookMessenger_Fullname">Test de Facebook Messenger</string>
   <string name="Settings_Title">Paramètres</string>
   <string name="Settings_Error_TestDurationTooLow">La durée de test que vous avez définie est trop courte.</string>
   <string name="Settings_About_Label">À propos de l’OONI</string>
@@ -255,7 +255,7 @@
   <string name="Settings_Advanced_Label">Avancés</string>
   <string name="Settings_Advanced_SendCrashReports">Envoyer des rapports de plantage</string>
   <string name="Settings_Advanced_DebugLogs">Journaux de débogage</string>
-  <string name="Settings_Advanced_UseDomainFronting">Toujours utiliser la dissimulation du domaine</string>
+  <string name="Settings_Advanced_UseDomainFronting">Toujours utiliser un domaine-écran</string>
   <string name="Settings_Websites_MaxRuntime">Durée du test</string>
   <string name="Settings_Websites_Categories_Label">Catégories de sites Web à tester</string>
   <string name="Settings_Websites_Categories_Description">%1$s catégories sont activées</string>
@@ -267,7 +267,7 @@
   <string name="Settings_InstantMessaging_TestWhatsApp">Tester WhatsApp</string>
   <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">Tester toutes les extrémités de WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Tester Telegram</string>
-  <string name="Settings_InstantMessaging_TestFacebookMessenger">Tester le Messager Facebook</string>
+  <string name="Settings_InstantMessaging_TestFacebookMessenger">Tester Facebook Messenger</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">Exécutez le test HTTP Ligne de requête invalide</string>
   <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">Exécutez le test HTTP Manipulation du champ d’en-tête</string>
   <string name="Settings_Performance_TestNDT">Exécutez le test de vitesse NDT</string>
