@@ -118,7 +118,7 @@
   <string name="TestResults_Details_RawData">Dati</string>
   <string name="TestResults_Details_CopyToClipboard">Copia sugli Appunti</string>
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Accessibile</string>
-  <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s non è accessibile</string>
+  <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s è accessibile</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Probabilmente bloccato</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">%1$s è probabilmente bloccato per mezzo di %2$s.\n\nNota bene: Possono esserci falsi positivi. [Per saperne di più](https://ooni.io/nettest/web-connectivity/).</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Content_LearnToCircumvent">Aggirare la censura</string>
