@@ -201,7 +201,6 @@
   <string name="Modal_EnableNotifications_News">قم بإعطاء تصريح التنبيهات للحصول على آخر الأخبار.</string>
   <string name="Modal_EnableNotifications_Any">قم بإعطاء تصريح التنبيهات لإستقبال التنبيهات المدفوعة (Push Notifications)</string>
   <string name="Modal_EnableGPS">التطبيق بجاجة إلى تصريح GPS لتحسين دقة الاختبارات. سيقوم OONI بالحصول على موقع GPS التقريبي الخاص بك.</string>
-  <string name="Modal_OldTestsDetected">النتائج القديمة سيتم حذفها. لا تقلق بإمكانك العثور عليها في أي وقت في متصفح OONI و في OONI API.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">هل تريد حذف جميع نتائج الإختبارات؟</string>
   <string name="Modal_DoYouWantToDeleteThisTest">هل تريد حذف هذا الإختبار؟</string>
   <string name="Modal_CantDeactivate">لا يستطيع التطبيق وقف التفعيل</string>

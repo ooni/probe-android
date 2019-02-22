@@ -201,7 +201,6 @@
   <string name="Modal_EnableNotifications_News">समाचार अद्यतन प्राप्त करने के लिए अधिसूचना अनुमति सक्षम करें।</string>
   <string name="Modal_EnableNotifications_Any">पुश सूचनाएँ प्राप्त करने के लिए अधिसूचना अनुमतियां सक्षम करें।</string>
   <string name="Modal_EnableGPS">परीक्षणों की सटीकता में सुधार करने के लिए, हमें GPS अनुमतियों की आवश्यकता है। OONI केवल आपके GPS स्थिति का एक अनुमान एकत्र करेगा।</string>
-  <string name="Modal_OldTestsDetected">पुराने परिणाम हटा दिए जाएंगे। चिंता न करें, आप उन्हें हमेशा OONI एक्सप्लोरर और OONI API में पा सकते हैं।</string>
   <string name="Modal_DoYouWantToDeleteAllTests">क्या आप सभी परीक्षण परिणामों को हटाना चाहते हैं?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">क्या आप इस परीक्षा को मिटाना चाहते हैं?</string>
   <string name="Modal_CantDeactivate">निष्क्रिय नहीं कर सकता</string>

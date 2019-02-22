@@ -201,7 +201,6 @@
   <string name="Modal_EnableNotifications_News">Aktivizo të drejtat e njoftimeve që të marrësh lajme të reja.</string>
   <string name="Modal_EnableNotifications_Any">Aktivizo të drejtat e njoftimeve që të marrësh njoftime.</string>
   <string name="Modal_EnableGPS">Që të përmirësuar saktësinë e testimeve, na duhen të drejta tek GPS. OONI do të ruaj pozicionin tend të GPS vetëm me përafërsi.</string>
-  <string name="Modal_OldTestsDetected">Rezultatet e vjetra do te fshihen. Pa merak, gjithmonë mund t\'i gjesh ato tek OONI Explorer dhe tek OONI API.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Doni që të fshihen të gjitha rezultatet e testimeve?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Doni të fshini këtë testim?</string>
   <string name="Modal_CantDeactivate">Nuk mund të çaktivizohet</string>

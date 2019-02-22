@@ -201,7 +201,6 @@
   <string name="Modal_EnableNotifications_News">اجازه‌ی اعلان را فعال کنید تا اخبار بروز رسانی را دریافت کنید.</string>
   <string name="Modal_EnableNotifications_Any">اجازه‌ی اعلان را فعال کنید تا اعلان های ضروری را دریافت کنید.</string>
   <string name="Modal_EnableGPS">برای بهبود دقت تست‌ها نیاز به اجازه‌ی GPS داریم. OONi تنها اطلاعات تقریبی مکان GPS شما را جمع‌آوری می‌کند.</string>
-  <string name="Modal_OldTestsDetected">نتایج قدیمی حذف خواهند شد. نگران نباشید، شما  همیشه می‌توانید آن‌ها را در مرورگر OONI و در OONI API پیدا کنید. </string>
   <string name="Modal_DoYouWantToDeleteAllTests">آیا مایلید که تمام آزمایش‌های قبلی را پاک کنید؟</string>
   <string name="Modal_DoYouWantToDeleteThisTest">آیا می‌خواهید این تست را حذف کنید؟</string>
   <string name="Modal_CantDeactivate">امکان غیرفعالسازی وجود نداشت</string>
