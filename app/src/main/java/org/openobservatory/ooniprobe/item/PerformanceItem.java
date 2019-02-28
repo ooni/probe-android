@@ -46,17 +46,12 @@ public class PerformanceItem extends HeterogeneousRecyclerItem<Result, Performan
 		viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), extra.start_time));
 		Measurement dashM = extra.getMeasurement(Dash.NAME);
 		Measurement ndtM = extra.getMeasurement(Ndt.NAME);
-		if (dashM != null)
-			viewHolder.quality.setText(dashM.getTestKeys().getVideoQuality(false));
-		else
-			viewHolder.quality.setText(null);
-		if (ndtM != null) {
-			viewHolder.upload.setText(c.getString(R.string.twoParam, ndtM.getTestKeys().getUpload(c), c.getString(ndtM.getTestKeys().getUploadUnit())));
-			viewHolder.download.setText(c.getString(R.string.twoParam, ndtM.getTestKeys().getDownload(c), c.getString(ndtM.getTestKeys().getDownloadUnit())));
-		} else {
-			viewHolder.upload.setText(null);
-			viewHolder.download.setText(null);
-		}
+		viewHolder.quality.setText(dashM == null ? R.string.General_AppName : dashM.getTestKeys().getVideoQuality(false));
+		viewHolder.quality.setVisibility(dashM == null ? View.GONE : View.VISIBLE);
+		viewHolder.upload.setText(ndtM == null ? null : c.getString(R.string.twoParam, ndtM.getTestKeys().getUpload(c), c.getString(ndtM.getTestKeys().getUploadUnit())));
+		viewHolder.upload.setVisibility(ndtM == null ? View.GONE : View.VISIBLE);
+		viewHolder.download.setText(ndtM == null ? null : c.getString(R.string.twoParam, ndtM.getTestKeys().getDownload(c), c.getString(ndtM.getTestKeys().getDownloadUnit())));
+		viewHolder.download.setVisibility(ndtM == null ? View.GONE : View.VISIBLE);
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {
