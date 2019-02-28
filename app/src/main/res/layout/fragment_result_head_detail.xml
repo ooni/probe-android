@@ -46,19 +46,19 @@
 			android:orientation="horizontal">
 
 			<TextView
-				android:id="@+id/upload"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginStart="-1dp"
-				android:drawableStart="@drawable/upload_white"
-				android:drawablePadding="4dp" />
-
-			<TextView
 				android:id="@+id/download"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_marginStart="8dp"
+				android:layout_marginStart="-1dp"
 				android:drawableStart="@drawable/download_white"
+				android:drawablePadding="4dp" />
+
+			<TextView
+				android:id="@+id/upload"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="8dp"
+				android:drawableStart="@drawable/upload_white"
 				android:drawablePadding="4dp" />
 		</LinearLayout>
 	</LinearLayout>

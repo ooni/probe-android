@@ -47,17 +47,17 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
-			android:text="@string/TestResults_Summary_Performance_Hero_Upload" />
+			android:text="@string/TestResults_Summary_Performance_Hero_Download" />
 
 		<TextView
-			android:id="@+id/upload"
+			android:id="@+id/download"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
 			android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
 		<TextView
-			android:id="@+id/uploadUnit"
+			android:id="@+id/downloadUnit"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal" />
@@ -73,17 +73,17 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
-			android:text="@string/TestResults_Summary_Performance_Hero_Download" />
+			android:text="@string/TestResults_Summary_Performance_Hero_Upload" />
 
 		<TextView
-			android:id="@+id/download"
+			android:id="@+id/upload"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
 			android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
 		<TextView
-			android:id="@+id/downloadUnit"
+			android:id="@+id/uploadUnit"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal" />
