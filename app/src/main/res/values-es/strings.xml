@@ -204,7 +204,7 @@
   <string name="Modal_OldTestsDetected">Los viejos resultados serán borrados. No te preocupes, siempre puedes encontrarlos en el Explorador OONI y en la API OONI.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">¿Deseas eliminar todos los resultados de las pruebas?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">¿Deseas eliminar esta prueba?</string>
-  <string name="Modal_CantDeactivate">No se puede desactivar</string>
+  <string name="Modal_CantDeactivate">Can\'t disable</string>
   <string name="Modal_OnlyDigits">Por favor inserte sólo dígitos en este campo.</string>
   <string name="Modal_ReRun_Title">Volver a ejecutar prueba</string>
   <string name="Modal_ReRun_Paragraph">Esta prueba ha fallado. ¿Volver a ejecutarla?</string>
@@ -278,6 +278,8 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">Selección automática del servidor DASH</string>
   <string name="Settings_Performance_DashServerAddress">Servidor DASH</string>
   <string name="Settings_Performance_DashServerPort">Puerto del servidor DASH</string>
+  <string name="Settings_SendEmail_Label">Send email to support</string>
+  <string name="Settings_SendEmail_Error">No email clients configured on your device</string>
   <string name="Notification_FinishedRunning">Finalizó la ejecución</string>
   <string name="OONIBrowser_TryMirror">Intentar servidor réplica</string>
   <string name="OONIBrowser_Loading">Cargando...</string>
@@ -294,7 +296,7 @@
   <string name="OONIRun_InvalidParameter">Parámetro inválido</string>
   <string name="OONIRun_InvalidParameter_Msg">El enlace OONI Run está malformado o bien tu aplicación está desactualizada.</string>
   <string name="OONIRun_RandomSamplingOfURLs">Probarás una muestra aleatoria de sitios web.</string>
-  <string name="OONIRun_TestRunningError">Por favor espera hasta que la prueba termine su ejecución antes de abrir OONI Run.</string>
+  <string name="OONIRun_TestRunningError">Please wait for the test to finish running before tapping on an OONI Run link.</string>
   <string name="CategoryCode_ALDR_Name">Drogas y alcohol</string>
   <string name="CategoryCode_REL_Name">Religión</string>
   <string name="CategoryCode_PORN_Name">Pornografía</string>
@@ -311,7 +313,7 @@
   <string name="CategoryCode_ANON_Name">Herramientas de elusión</string>
   <string name="CategoryCode_DATE_Name">Citas en línea</string>
   <string name="CategoryCode_GRP_Name">Redes sociales</string>
-  <string name="CategoryCode_LGBT_Name">LGBT</string>
+  <string name="CategoryCode_LGBT_Name">LGBTQ+</string>
   <string name="CategoryCode_FILE_Name">Intercambio de archivos</string>
   <string name="CategoryCode_HACK_Name">Herramientas de hackeo</string>
   <string name="CategoryCode_COMT_Name">Herramientas de comunicación</string>
@@ -342,7 +344,7 @@
   <string name="CategoryCode_ANON_Description">Anonimización, elusión de censura y cifrado</string>
   <string name="CategoryCode_DATE_Description">Sitios de citas en línea</string>
   <string name="CategoryCode_GRP_Description">Herramientas y plataformas de redes sociales en línea</string>
-  <string name="CategoryCode_LGBT_Description">Comunidades relacionadas a LGBTQI discutiendo cuestiones relacionadas (excluyendo pornografía)</string>
+  <string name="CategoryCode_LGBT_Description">LGBTQ+ communities discussing related issues (excluding pornography)</string>
   <string name="CategoryCode_FILE_Description">Compartición de archivos incluyendo almacenamiento de archivos en la nube, torrentes y P2P</string>
   <string name="CategoryCode_HACK_Description">Herramientas y noticias de seguridad informática</string>
   <string name="CategoryCode_COMT_Description">Herramientas de comunicaciones individuales y grupales, incluyendo VoIP, mensajería y correo electrónico web</string>

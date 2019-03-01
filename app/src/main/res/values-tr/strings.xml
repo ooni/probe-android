@@ -204,7 +204,7 @@
   <string name="Modal_OldTestsDetected">Eski sonuçlar silinecek. Endişelenmeyin bu sonuçları her zaman OONI Explorer ve OONI API üzerinde bulabilirsiniz.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Tüm sınama sonuçlarını silmek ister misiniz?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Bu sınamayı silmek ister misiniz?</string>
-  <string name="Modal_CantDeactivate">Devre dışı bırakılamıyor</string>
+  <string name="Modal_CantDeactivate">Can\'t disable</string>
   <string name="Modal_OnlyDigits">Lütfen bu alana sadece sayı girin.</string>
   <string name="Modal_ReRun_Title">Sınamayı yinele</string>
   <string name="Modal_ReRun_Paragraph">Bu sınama tamamlanamadı. Yeniden sınamak ister misiniz?</string>
@@ -278,6 +278,8 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">DASH sunucusu otomatik olarak seçilsin</string>
   <string name="Settings_Performance_DashServerAddress">DASH sunucusu</string>
   <string name="Settings_Performance_DashServerPort">DASH sunucusu bağlantı noktası</string>
+  <string name="Settings_SendEmail_Label">Send email to support</string>
+  <string name="Settings_SendEmail_Error">No email clients configured on your device</string>
   <string name="Notification_FinishedRunning">Çalışmayı tamamladı</string>
   <string name="OONIBrowser_TryMirror">Kopyası denensin</string>
   <string name="OONIBrowser_Loading">Yükleniyor...</string>
@@ -294,7 +296,7 @@
   <string name="OONIRun_InvalidParameter">Geçersiz parametre</string>
   <string name="OONIRun_InvalidParameter_Msg">OONI Yürüt bağlantısı bozuk ya da uygulamanız eski.</string>
   <string name="OONIRun_RandomSamplingOfURLs">Örnek web siteleri üzerinde rastgele bir sınama yapılacak.</string>
-  <string name="OONIRun_TestRunningError">Lütfen OONI Çalıştır bağlantısını açmadan önce yürütülmekte olan sınamanın tamamlanmasını bekleyin.</string>
+  <string name="OONIRun_TestRunningError">Please wait for the test to finish running before tapping on an OONI Run link.</string>
   <string name="CategoryCode_ALDR_Name">Uyuşturucu ve Alkol</string>
   <string name="CategoryCode_REL_Name">Din</string>
   <string name="CategoryCode_PORN_Name">Porno</string>
@@ -311,7 +313,7 @@
   <string name="CategoryCode_ANON_Name">Atlatma araçları</string>
   <string name="CategoryCode_DATE_Name">Çevrimiçi Arkadaşlık</string>
   <string name="CategoryCode_GRP_Name">Sosyal Ağ</string>
-  <string name="CategoryCode_LGBT_Name">LGBT</string>
+  <string name="CategoryCode_LGBT_Name">LGBTQ+</string>
   <string name="CategoryCode_FILE_Name">Dosya paylaşımı</string>
   <string name="CategoryCode_HACK_Name">Bilgisayar Korsanlığı Araçları</string>
   <string name="CategoryCode_COMT_Name">İletişim Araçları</string>
@@ -342,7 +344,7 @@
   <string name="CategoryCode_ANON_Description">Anonimleşme, sansür atlatma ve şifreleme</string>
   <string name="CategoryCode_DATE_Description">Çevrimiçi arkadaşlık siteleri</string>
   <string name="CategoryCode_GRP_Description">Çevrimiçi sosyal ağ araç ve platformları</string>
-  <string name="CategoryCode_LGBT_Description">LGBTQI ile ilgili konuları tartışma toplulukları (pornografi dışında)</string>
+  <string name="CategoryCode_LGBT_Description">LGBTQ+ communities discussing related issues (excluding pornography)</string>
   <string name="CategoryCode_FILE_Description">Bulut tabanlı dosya depolama, torrentler ve P2P gibi dosya paylaşımı</string>
   <string name="CategoryCode_HACK_Description">Bilgisayar güvenliği araçları ve haberler</string>
   <string name="CategoryCode_COMT_Description">VoIP, mesajlaşma ve eposta gibilerini içeren kişisel veya toplu iletişim araçları</string>

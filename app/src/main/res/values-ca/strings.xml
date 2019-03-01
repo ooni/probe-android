@@ -204,7 +204,7 @@
   <string name="Modal_OldTestsDetected">Els resultats anteriors s\'eliminaran. No us preocupeu, sempre podeu trobar-los en l\'OONI Explorer i en l\'API d\'OONI.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Voleu eliminar tots els resultats de la prova?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Voleu eliminar aquesta prova?</string>
-  <string name="Modal_CantDeactivate">No es pot desactivar</string>
+  <string name="Modal_CantDeactivate">Can\'t disable</string>
   <string name="Modal_OnlyDigits">Introduïu només dígits en aquest camp.</string>
   <string name="Modal_ReRun_Title">Torna a executar la prova</string>
   <string name="Modal_ReRun_Paragraph">Aquesta prova ha fallat. Voleu tornar a executar la prova?</string>
@@ -278,6 +278,8 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">Selecció automàtica del servidor DASH</string>
   <string name="Settings_Performance_DashServerAddress">Servidor DASH</string>
   <string name="Settings_Performance_DashServerPort">Port del servidor DASH</string>
+  <string name="Settings_SendEmail_Label">Send email to support</string>
+  <string name="Settings_SendEmail_Error">No email clients configured on your device</string>
   <string name="Notification_FinishedRunning">Ha finalitzat l\'execució</string>
   <string name="OONIBrowser_TryMirror">Prova un mirall</string>
   <string name="OONIBrowser_Loading">S\'està carregant...</string>
@@ -294,7 +296,7 @@
   <string name="OONIRun_InvalidParameter">Paràmetre no vàlid</string>
   <string name="OONIRun_InvalidParameter_Msg">L\'enllaç OONI Run és incorrecte o la vostra aplicació no està actualitzada.</string>
   <string name="OONIRun_RandomSamplingOfURLs">Aneu a provar una mostra aleatòria de llocs web.</string>
-  <string name="OONIRun_TestRunningError">Espereu que la prova acabi d\'executar-se abans d\'obrir OONI Run.</string>
+  <string name="OONIRun_TestRunningError">Please wait for the test to finish running before tapping on an OONI Run link.</string>
   <string name="CategoryCode_ALDR_Name">Drogues i alcohol</string>
   <string name="CategoryCode_REL_Name">Religió</string>
   <string name="CategoryCode_PORN_Name">Pornografia</string>
@@ -311,7 +313,7 @@
   <string name="CategoryCode_ANON_Name">Eines d\'elusió</string>
   <string name="CategoryCode_DATE_Name">Cites en línia</string>
   <string name="CategoryCode_GRP_Name">Xarxes socials</string>
-  <string name="CategoryCode_LGBT_Name">LGBT</string>
+  <string name="CategoryCode_LGBT_Name">LGBTQ+</string>
   <string name="CategoryCode_FILE_Name">Compartició de fitxers</string>
   <string name="CategoryCode_HACK_Name">Eines de hacking</string>
   <string name="CategoryCode_COMT_Name">Eines de comunicació</string>
@@ -342,7 +344,7 @@
   <string name="CategoryCode_ANON_Description">Anonimització, elusió de la censura i xifratge</string>
   <string name="CategoryCode_DATE_Description">Llocs de cites en línia</string>
   <string name="CategoryCode_GRP_Description">Eines i plataformes de xarxes socials en línia</string>
-  <string name="CategoryCode_LGBT_Description">Comunitats relacionades amb LGBTQI discutint qüestions relacionades (excloent pornografia)</string>
+  <string name="CategoryCode_LGBT_Description">LGBTQ+ communities discussing related issues (excluding pornography)</string>
   <string name="CategoryCode_FILE_Description">Compartició de fitxers que inclou emmagatzematge de fitxers basat en el núvol, torrents i P2P</string>
   <string name="CategoryCode_HACK_Description">Eines de seguretat informàtica i notícies</string>
   <string name="CategoryCode_COMT_Description">Eines de comunicació individual i grupal que inclouen VoIP, missatgeria i correu web</string>

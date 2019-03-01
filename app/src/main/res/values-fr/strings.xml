@@ -120,7 +120,7 @@
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Accessible</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s est accessible.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Probablement bloqué</string>
-  <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">%1$s est probablement bloqué au moyen de %2$s.\n\nNote : De faux positifs peuvent se produire. Apprenez-en davantage [ici] (https://ooni.io/nettest/web-connectivity/).</string>
+  <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">%1$s est probablement bloqué au moyen de %2$s.\n\nNote : De faux positifs peuvent se produire. Apprenez-en davantage [ici](https://ooni.io/nettest/web-connectivity/).</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Content_LearnToCircumvent">Contournement de la censure</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_DNS">**Manipulation DNS**</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_TCPIP">**Blocage basé sur le TCP/IP**</string>
@@ -204,7 +204,7 @@
   <string name="Modal_OldTestsDetected">Les anciens résultats seront supprimés. Ne vous inquiétez pas, vous pouvez toujours les trouver dans l’Explorateur et dans l’API de l’OONI.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Voulez-vous supprimer tous les résultats de test ?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Voulez-vous supprimer ce test ?</string>
-  <string name="Modal_CantDeactivate">Impossible de désactiver</string>
+  <string name="Modal_CantDeactivate">Impossible de désactiver cette option</string>
   <string name="Modal_OnlyDigits">Veuillez ne saisir que des chiffres dans ce champ.</string>
   <string name="Modal_ReRun_Title">Relancer le test</string>
   <string name="Modal_ReRun_Paragraph">Ce test a échoué. Relancer le test ?</string>
@@ -278,6 +278,8 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">Sélection automatique du serveur DASH</string>
   <string name="Settings_Performance_DashServerAddress">Serveur DASH</string>
   <string name="Settings_Performance_DashServerPort">Port du serveur DASH</string>
+  <string name="Settings_SendEmail_Label">Envoyer un courriel à l’assistance</string>
+  <string name="Settings_SendEmail_Error">Aucun client de courriel n’est configuré sur votre appareil</string>
   <string name="Notification_FinishedRunning">Le test est terminé.</string>
   <string name="OONIBrowser_TryMirror">Essayer un miroir</string>
   <string name="OONIBrowser_Loading">Chargement…</string>
@@ -294,7 +296,7 @@
   <string name="OONIRun_InvalidParameter">Un paramètre est invalide</string>
   <string name="OONIRun_InvalidParameter_Msg">Soit le lien OONI Run est mal formé soit votre appli n’est pas à jour.</string>
   <string name="OONIRun_RandomSamplingOfURLs">Vous testerez un échantillon aléatoire de sites Web.</string>
-  <string name="OONIRun_TestRunningError">Veuillez attendre la fin du test avant d’ouvrir OONI Run.</string>
+  <string name="OONIRun_TestRunningError">Veuillez attendre la fin du test avant d’ouvrir un lien OONI Run.</string>
   <string name="CategoryCode_ALDR_Name">Drogues et alcool</string>
   <string name="CategoryCode_REL_Name">Religion</string>
   <string name="CategoryCode_PORN_Name">Pornographie</string>
@@ -342,7 +344,7 @@
   <string name="CategoryCode_ANON_Description">Anonymisation, contournement de la censure et chiffrement</string>
   <string name="CategoryCode_DATE_Description">Sites de rencontre en ligne</string>
   <string name="CategoryCode_GRP_Description">Outils et plateformes de réseautage social en ligne</string>
-  <string name="CategoryCode_LGBT_Description">Communautés reliées à la cause LGBTQ+ qui discutent de questions connexes (sans pornographie)</string>
+  <string name="CategoryCode_LGBT_Description">Communautés reliées à la cause LGBTQ+, qui discutent de questions connexes (sans pornographie)</string>
   <string name="CategoryCode_FILE_Description">Partage de fichiers, dont le stockage nuagique de fichiers, les torrents et le pair à pair</string>
   <string name="CategoryCode_HACK_Description">Outils de sécurité informatique et nouvelles connexes</string>
   <string name="CategoryCode_COMT_Description">Outils de communication individuelle et de groupe, dont la voix sur IP, les messageries et le courriel Web</string>

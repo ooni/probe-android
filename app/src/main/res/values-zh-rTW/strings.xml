@@ -204,7 +204,7 @@
   <string name="Modal_OldTestsDetected">舊的結果會被刪除，但別擔心，仍然可在 OONI Explorer 和 OONI API 找到這些資料。</string>
   <string name="Modal_DoYouWantToDeleteAllTests">你要刪除所有過去的測試結果嗎？</string>
   <string name="Modal_DoYouWantToDeleteThisTest">你要刪除這次的測試嗎？</string>
-  <string name="Modal_CantDeactivate">無法停用</string>
+  <string name="Modal_CantDeactivate">Can\'t disable</string>
   <string name="Modal_OnlyDigits">本欄位只能填入數字</string>
   <string name="Modal_ReRun_Title">重新執行測試</string>
   <string name="Modal_ReRun_Paragraph">本次測試失敗，重新執執測試？</string>
@@ -278,6 +278,8 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">自動的 DASH 伺服器選取</string>
   <string name="Settings_Performance_DashServerAddress">DASH 伺服器</string>
   <string name="Settings_Performance_DashServerPort">DASH 伺服器端口</string>
+  <string name="Settings_SendEmail_Label">Send email to support</string>
+  <string name="Settings_SendEmail_Error">No email clients configured on your device</string>
   <string name="Notification_FinishedRunning">已完成的執行</string>
   <string name="OONIBrowser_TryMirror">試試鏡像站</string>
   <string name="OONIBrowser_Loading">載入中…</string>
@@ -294,7 +296,7 @@
   <string name="OONIRun_InvalidParameter">無效的參數</string>
   <string name="OONIRun_InvalidParameter_Msg">OONI 執行的連結異常或是使用的應用程式太老舊。</string>
   <string name="OONIRun_RandomSamplingOfURLs">將隨機測試一組網站樣本</string>
-  <string name="OONIRun_TestRunningError">請等待測試結束執行再啟動 OONI 執行。</string>
+  <string name="OONIRun_TestRunningError">Please wait for the test to finish running before tapping on an OONI Run link.</string>
   <string name="CategoryCode_ALDR_Name">藥物 &amp; 酒精</string>
   <string name="CategoryCode_REL_Name">宗教</string>
   <string name="CategoryCode_PORN_Name">色情</string>
@@ -311,7 +313,7 @@
   <string name="CategoryCode_ANON_Name">規避工具</string>
   <string name="CategoryCode_DATE_Name">線上約會</string>
   <string name="CategoryCode_GRP_Name">社交網路</string>
-  <string name="CategoryCode_LGBT_Name">LGBT 同志</string>
+  <string name="CategoryCode_LGBT_Name">LGBTQ+</string>
   <string name="CategoryCode_FILE_Name">檔案分享</string>
   <string name="CategoryCode_HACK_Name">駭侵工具</string>
   <string name="CategoryCode_COMT_Name">通訊工具</string>
@@ -342,7 +344,7 @@
   <string name="CategoryCode_ANON_Description">匿名化，審查規避和加密</string>
   <string name="CategoryCode_DATE_Description">線上約會網站</string>
   <string name="CategoryCode_GRP_Description">線上社交網路工具與平台</string>
-  <string name="CategoryCode_LGBT_Description">同志 LGBTQI 社群所討論的相關議題（不包含色情）</string>
+  <string name="CategoryCode_LGBT_Description">LGBTQ+ communities discussing related issues (excluding pornography)</string>
   <string name="CategoryCode_FILE_Description">檔案分享包括雲端檔案儲存, BT 與點對點分享</string>
   <string name="CategoryCode_HACK_Description">電腦安全工具與新聞</string>
   <string name="CategoryCode_COMT_Description">個人或群組通訊工具，包含網路電話 VOIP, 通訊軟體和網頁郵件</string>

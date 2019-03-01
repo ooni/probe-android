@@ -204,7 +204,7 @@
   <string name="Modal_OldTestsDetected">Τα παλιά αποτελέσματα θα διαγραφούν. Μην ανησυχείς, μπορείς να τα βρεις στο OONI Explorer και στο OONI API.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Θέλεις να διαγράψεις όλα τα αποτελέσματα των δοκιμών σου;</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Θέλεις να διαγράψεις αυτή τη δοκιμή;</string>
-  <string name="Modal_CantDeactivate">Δεν είναι δυνατή η απενεργοποίηση</string>
+  <string name="Modal_CantDeactivate">Can\'t disable</string>
   <string name="Modal_OnlyDigits">Παρακαλώ γράψε μόνο ψηφία σε αυτό το πεδίο.</string>
   <string name="Modal_ReRun_Title">Επανεκτέλεση δοκιμής</string>
   <string name="Modal_ReRun_Paragraph">Αυτή η δοκιμή απέτυχε. Επανεκτέλεση δοκιμής;</string>
@@ -278,6 +278,8 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">Αυτόματη επιλογή διακομιστή DASH </string>
   <string name="Settings_Performance_DashServerAddress">Διακομιστή DASH</string>
   <string name="Settings_Performance_DashServerPort">Θύρα διακομιστή DASH</string>
+  <string name="Settings_SendEmail_Label">Send email to support</string>
+  <string name="Settings_SendEmail_Error">No email clients configured on your device</string>
   <string name="Notification_FinishedRunning">Οι δοκιμές εκτελέστηκαν</string>
   <string name="OONIBrowser_TryMirror">Δοκίμασε mirror</string>
   <string name="OONIBrowser_Loading">Φορτώνεται...</string>
@@ -294,7 +296,7 @@
   <string name="OONIRun_InvalidParameter">Μη έγκυρη παράμετρος</string>
   <string name="OONIRun_InvalidParameter_Msg">Ο σύνδεσμος του OONI Run έχει παραμορφωθεί ή η εφαρμογή σου δεν είναι ενημερωμένη.</string>
   <string name="OONIRun_RandomSamplingOfURLs">Θα δοκιμάσεις ένα τυχαίο δείγμα ιστοσελιδών.</string>
-  <string name="OONIRun_TestRunningError">Παρακαλώ περίμενε να τελειώσει η δοκιμή πριν ανοίξεις το OONI Run.</string>
+  <string name="OONIRun_TestRunningError">Please wait for the test to finish running before tapping on an OONI Run link.</string>
   <string name="CategoryCode_ALDR_Name">Ναρκωτικά &amp; Αλκοόλ</string>
   <string name="CategoryCode_REL_Name">Θρησκεία</string>
   <string name="CategoryCode_PORN_Name">Πορνογραφία</string>
@@ -311,7 +313,7 @@
   <string name="CategoryCode_ANON_Name">Εργαλεία Παράκαμψης Λογοκρισίας</string>
   <string name="CategoryCode_DATE_Name">Προσωπικές Γνωριμίες μέσω Διαδικτύου</string>
   <string name="CategoryCode_GRP_Name">Κοινωνική Δικτύωση</string>
-  <string name="CategoryCode_LGBT_Name">ΛΟΑΤ (LGBT)</string>
+  <string name="CategoryCode_LGBT_Name">LGBTQ+</string>
   <string name="CategoryCode_FILE_Name">Κοινή Χρήση Αρχείων</string>
   <string name="CategoryCode_HACK_Name">Εργαλεία Hacking</string>
   <string name="CategoryCode_COMT_Name">Εργαλεία Επικοινωνίας</string>
@@ -342,7 +344,7 @@
   <string name="CategoryCode_ANON_Description">Εργαλεία για την παράκαμψη της λογοκρισίας, την κρυπτογράφηση και την ανωνυμία στο διαδίκτυο</string>
   <string name="CategoryCode_DATE_Description">Ιστοσελίδες για προσωπικές γνωριμίες και σχέσεις</string>
   <string name="CategoryCode_GRP_Description">Πλατφόρμες κοινωνικής δικτύωσης</string>
-  <string name="CategoryCode_LGBT_Description">Θέματα σχετικά με τις ΛΟΑΤ (LGBTQI) (Λεσβίες, Ομοφυλόφιλοι, Αμφιφυλόφιλοι, Τρανς) κοινότητες</string>
+  <string name="CategoryCode_LGBT_Description">LGBTQ+ communities discussing related issues (excluding pornography)</string>
   <string name="CategoryCode_FILE_Description">Κοινή χρήση αρχείων, συμπεριλαμβανομένης της αποθήκευσης αρχείων στο cloud, torrents και P2P</string>
   <string name="CategoryCode_HACK_Description">Εργαλεία ασφάλειας υπολογιστών και ανάλογες ειδήσεις</string>
   <string name="CategoryCode_COMT_Description">Ατομικά και ομαδικά εργαλεία επικοινωνίας, όπως VoIP, μηνύματα και webmail</string>

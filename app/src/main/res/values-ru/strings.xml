@@ -204,7 +204,7 @@
   <string name="Modal_OldTestsDetected">Старые результаты будут удалены. Не беспокойтесь, вы всегда сможете найти их в OONI Explorer и OONI API.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Удалить все результаты теста?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Хотите удалить этот тест?</string>
-  <string name="Modal_CantDeactivate">Ошибка деактивации</string>
+  <string name="Modal_CantDeactivate">Can\'t disable</string>
   <string name="Modal_OnlyDigits">В этом поле только цифры, пожалуйста.</string>
   <string name="Modal_ReRun_Title">Повторить тест</string>
   <string name="Modal_ReRun_Paragraph">Тест неудачен. Повторить?</string>
@@ -278,6 +278,8 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">Автоматический выбор сервера DASH</string>
   <string name="Settings_Performance_DashServerAddress">Сервер DASH</string>
   <string name="Settings_Performance_DashServerPort">Порт сервера DASH</string>
+  <string name="Settings_SendEmail_Label">Send email to support</string>
+  <string name="Settings_SendEmail_Error">No email clients configured on your device</string>
   <string name="Notification_FinishedRunning">Завершено</string>
   <string name="OONIBrowser_TryMirror">Попробуйте зеркало</string>
   <string name="OONIBrowser_Loading">Загрузка...</string>
@@ -294,7 +296,7 @@
   <string name="OONIRun_InvalidParameter">Неверный параметр</string>
   <string name="OONIRun_InvalidParameter_Msg">Или ваша ссылка OONI Run содержит ошибку, или ваше приложение устарело.</string>
   <string name="OONIRun_RandomSamplingOfURLs">Вы протестируете произвольный набор сайтов.</string>
-  <string name="OONIRun_TestRunningError">Пожалуйста, подождите окончания теста перед запуском OONI Run.</string>
+  <string name="OONIRun_TestRunningError">Please wait for the test to finish running before tapping on an OONI Run link.</string>
   <string name="CategoryCode_ALDR_Name">Наркотики и алкоголь</string>
   <string name="CategoryCode_REL_Name">Религия</string>
   <string name="CategoryCode_PORN_Name">Порнография</string>
@@ -311,7 +313,7 @@
   <string name="CategoryCode_ANON_Name">Средства обхода цензуры</string>
   <string name="CategoryCode_DATE_Name">Знакомства онлайн</string>
   <string name="CategoryCode_GRP_Name">Социальные сети</string>
-  <string name="CategoryCode_LGBT_Name">ЛГБТ</string>
+  <string name="CategoryCode_LGBT_Name">LGBTQ+</string>
   <string name="CategoryCode_FILE_Name">Файлообменные сети</string>
   <string name="CategoryCode_HACK_Name">Хакерские инструменты</string>
   <string name="CategoryCode_COMT_Name">Средства коммуникаций</string>
@@ -342,7 +344,7 @@
   <string name="CategoryCode_ANON_Description">Обеспечение анонимности, обход цензуры, шифрование</string>
   <string name="CategoryCode_DATE_Description">Сайты для знакомств по интернету</string>
   <string name="CategoryCode_GRP_Description">Инструменты социальных сетей и платформ</string>
-  <string name="CategoryCode_LGBT_Description">Обсуждения, связанные с ЛГБТ+ (не порнография) </string>
+  <string name="CategoryCode_LGBT_Description">LGBTQ+ communities discussing related issues (excluding pornography)</string>
   <string name="CategoryCode_FILE_Description">Обмен файлами, включая облачные хранилища, торренты и P2P</string>
   <string name="CategoryCode_HACK_Description">Инструменты и новости по теме цифровой безопасности</string>
   <string name="CategoryCode_COMT_Description">Индивидуальные и групповые коммуникации: VoIP, мессенджеры, веб-почта и др.</string>

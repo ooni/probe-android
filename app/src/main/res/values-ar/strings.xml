@@ -204,7 +204,7 @@
   <string name="Modal_OldTestsDetected">النتائج القديمة سيتم حذفها. لا تقلق بإمكانك العثور عليها في أي وقت في متصفح OONI و في OONI API.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">هل تريد حذف جميع نتائج الإختبارات؟</string>
   <string name="Modal_DoYouWantToDeleteThisTest">هل تريد حذف هذا الإختبار؟</string>
-  <string name="Modal_CantDeactivate">لا يستطيع التطبيق وقف التفعيل</string>
+  <string name="Modal_CantDeactivate">Can\'t disable</string>
   <string name="Modal_OnlyDigits">يرجى إدخال الأرقام فقط في هذا الحقل.</string>
   <string name="Modal_ReRun_Title">إعادة إجراء الاختبار</string>
   <string name="Modal_ReRun_Paragraph">لقد فشل هذا الإختبار. هل تريد إعادة إجراء الاختبار؟</string>
@@ -278,6 +278,8 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">إختيار خادم DASH اوتوماتيكيًا</string>
   <string name="Settings_Performance_DashServerAddress">خادم DASH</string>
   <string name="Settings_Performance_DashServerPort">منفذ خادم DASH</string>
+  <string name="Settings_SendEmail_Label">Send email to support</string>
+  <string name="Settings_SendEmail_Error">No email clients configured on your device</string>
   <string name="Notification_FinishedRunning">انتهى التشغيل</string>
   <string name="OONIBrowser_TryMirror">تجربة خادم بديل</string>
   <string name="OONIBrowser_Loading">جاري التحميل...</string>
@@ -294,7 +296,7 @@
   <string name="OONIRun_InvalidParameter">مُعطى خاطئ</string>
   <string name="OONIRun_InvalidParameter_Msg">رابط تشغيل OONI غير صحيح أو لديك اصدار قديم من التطبيق.</string>
   <string name="OONIRun_RandomSamplingOfURLs">ستقوم بإختبار عينة عشوائية من المواقع.</string>
-  <string name="OONIRun_TestRunningError">من فضلك إنتظر حتى إنتهاء الإختبار قبل بدء تشغيل OONI.</string>
+  <string name="OONIRun_TestRunningError">Please wait for the test to finish running before tapping on an OONI Run link.</string>
   <string name="CategoryCode_ALDR_Name">المخدرات والكحول</string>
   <string name="CategoryCode_REL_Name">الدين</string>
   <string name="CategoryCode_PORN_Name">المواد الإباحية</string>
@@ -311,7 +313,7 @@
   <string name="CategoryCode_ANON_Name">أدوات تجاوز الحجب</string>
   <string name="CategoryCode_DATE_Name">المواعدة على النت</string>
   <string name="CategoryCode_GRP_Name">التواصل الاجتماعي</string>
-  <string name="CategoryCode_LGBT_Name">مجتمع الميم</string>
+  <string name="CategoryCode_LGBT_Name">LGBTQ+</string>
   <string name="CategoryCode_FILE_Name">مشاركة الملفّات</string>
   <string name="CategoryCode_HACK_Name">أدوات اختراق</string>
   <string name="CategoryCode_COMT_Name">أدوات اتصال</string>
@@ -342,7 +344,7 @@
   <string name="CategoryCode_ANON_Description">أدوات مجهوليّة، تجاوز رقابة وتعمية </string>
   <string name="CategoryCode_DATE_Description">مواقع المواعدة على النت</string>
   <string name="CategoryCode_GRP_Description">منصّات ووسائل التشابك الاجتماعي على النت</string>
-  <string name="CategoryCode_LGBT_Description">قضايا للنقاش ذات صلة تخص مجتمع الميم (ماعدا الإباحيّة) </string>
+  <string name="CategoryCode_LGBT_Description">LGBTQ+ communities discussing related issues (excluding pornography)</string>
   <string name="CategoryCode_FILE_Description">مشاركة الملفّات بما في ذلك نظم التخزين السحابي، والتورنت، ومشاركة النّد-للنّد</string>
   <string name="CategoryCode_HACK_Description">أخبار وأدوات أمن الحاسوب</string>
   <string name="CategoryCode_COMT_Description">أدوات اتصال فردي وجماعي مثل الاتصال عبر الانترنت، الدردشة وبريد الويب</string>

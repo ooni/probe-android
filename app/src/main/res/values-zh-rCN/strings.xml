@@ -204,7 +204,7 @@
   <string name="Modal_OldTestsDetected">旧的结果将被删除。别担心，您可以在 OONI Explorer 和 OONI API 中找到它们。</string>
   <string name="Modal_DoYouWantToDeleteAllTests">您要删除所有测试结果吗？</string>
   <string name="Modal_DoYouWantToDeleteThisTest">确认删除此测试？</string>
-  <string name="Modal_CantDeactivate">无法停用</string>
+  <string name="Modal_CantDeactivate">Can\'t disable</string>
   <string name="Modal_OnlyDigits">此栏中仅支持数字。</string>
   <string name="Modal_ReRun_Title">重新运行测试</string>
   <string name="Modal_ReRun_Paragraph">此测试已失败。重新运行此测试？</string>
@@ -278,6 +278,8 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">自动选择 DASH 服务器</string>
   <string name="Settings_Performance_DashServerAddress">DASH 服务器</string>
   <string name="Settings_Performance_DashServerPort">DASH 服务器端口</string>
+  <string name="Settings_SendEmail_Label">Send email to support</string>
+  <string name="Settings_SendEmail_Error">No email clients configured on your device</string>
   <string name="Notification_FinishedRunning">运行完成</string>
   <string name="OONIBrowser_TryMirror">试试镜像站</string>
   <string name="OONIBrowser_Loading">载入中....</string>
@@ -294,7 +296,7 @@
   <string name="OONIRun_InvalidParameter">无效的参数</string>
   <string name="OONIRun_InvalidParameter_Msg">OONI 运行链接的格式有误，或者您的应用已过时。</string>
   <string name="OONIRun_RandomSamplingOfURLs">您将测试一组随机的网站样本。</string>
-  <string name="OONIRun_TestRunningError">打开 OONI Run 前，请等待测试完成。</string>
+  <string name="OONIRun_TestRunningError">Please wait for the test to finish running before tapping on an OONI Run link.</string>
   <string name="CategoryCode_ALDR_Name">药物和酒精</string>
   <string name="CategoryCode_REL_Name">宗教</string>
   <string name="CategoryCode_PORN_Name">色情</string>
@@ -311,7 +313,7 @@
   <string name="CategoryCode_ANON_Name">反审查工具</string>
   <string name="CategoryCode_DATE_Name">在线约会</string>
   <string name="CategoryCode_GRP_Name">社交网络</string>
-  <string name="CategoryCode_LGBT_Name">LGBT</string>
+  <string name="CategoryCode_LGBT_Name">LGBTQ+</string>
   <string name="CategoryCode_FILE_Name">文件分享</string>
   <string name="CategoryCode_HACK_Name">黑客工具</string>
   <string name="CategoryCode_COMT_Name">通信工具</string>
@@ -342,7 +344,7 @@
   <string name="CategoryCode_ANON_Description">匿名化、审查规避和加密</string>
   <string name="CategoryCode_DATE_Description">在线约会网站</string>
   <string name="CategoryCode_GRP_Description">在线社交网络之工具与平台</string>
-  <string name="CategoryCode_LGBT_Description">LGBTQI 相关社区讨论相关问题（不含色情内容）</string>
+  <string name="CategoryCode_LGBT_Description">LGBTQ+ communities discussing related issues (excluding pornography)</string>
   <string name="CategoryCode_FILE_Description">文件分享，包括基于云服务的文件存储、BT 种子以及 P2P</string>
   <string name="CategoryCode_HACK_Description">计算机安全工具和资讯</string>
   <string name="CategoryCode_COMT_Description">个人或群组的通信工具，包括 VoIP、消息和网络邮件</string>

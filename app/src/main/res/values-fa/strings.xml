@@ -204,7 +204,7 @@
   <string name="Modal_OldTestsDetected">نتایج قدیمی حذف خواهند شد. نگران نباشید، شما  همیشه می‌توانید آن‌ها را در مرورگر OONI و در OONI API پیدا کنید. </string>
   <string name="Modal_DoYouWantToDeleteAllTests">آیا مایلید که تمام آزمایش‌های قبلی را پاک کنید؟</string>
   <string name="Modal_DoYouWantToDeleteThisTest">آیا می‌خواهید این تست را حذف کنید؟</string>
-  <string name="Modal_CantDeactivate">امکان غیرفعالسازی وجود نداشت</string>
+  <string name="Modal_CantDeactivate">Can\'t disable</string>
   <string name="Modal_OnlyDigits">لطفا تنها از اعداد در فیلد استفاده کنید</string>
   <string name="Modal_ReRun_Title">اجرای دوباره تست</string>
   <string name="Modal_ReRun_Paragraph">این تست ناموفق بود. آیا دوباره اجرا شود؟</string>
@@ -278,6 +278,8 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">انتخاب خودکار سرور DASH</string>
   <string name="Settings_Performance_DashServerAddress">سرور DASH</string>
   <string name="Settings_Performance_DashServerPort">درگاه سرور DASH</string>
+  <string name="Settings_SendEmail_Label">Send email to support</string>
+  <string name="Settings_SendEmail_Error">No email clients configured on your device</string>
   <string name="Notification_FinishedRunning">اجرا به پایان رسید</string>
   <string name="OONIBrowser_TryMirror">سرورهای آینه را امتحان کنید</string>
   <string name="OONIBrowser_Loading">در حال بارگذاری...</string>
@@ -294,7 +296,7 @@
   <string name="OONIRun_InvalidParameter">پارامتر نامعتبر است</string>
   <string name="OONIRun_InvalidParameter_Msg">لینک اجرای OONI یا ناقص است و یا نرم افزار شما قدیمی است.</string>
   <string name="OONIRun_RandomSamplingOfURLs">شما نمونه‌ای تصادفی از وبسایت‌ها را تست خواهید کرد.</string>
-  <string name="OONIRun_TestRunningError">لطفا قبل از اجرای OONI صبر کنید تا اجرای تست پایان یابد.</string>
+  <string name="OONIRun_TestRunningError">Please wait for the test to finish running before tapping on an OONI Run link.</string>
   <string name="CategoryCode_ALDR_Name">الکل و مواد مخدر</string>
   <string name="CategoryCode_REL_Name">دین</string>
   <string name="CategoryCode_PORN_Name">پورنوگرافی</string>
@@ -311,7 +313,7 @@
   <string name="CategoryCode_ANON_Name">ابزارهای دور زدن</string>
   <string name="CategoryCode_DATE_Name">دوستیابی آنلاین</string>
   <string name="CategoryCode_GRP_Name">شبکه اجتماعی</string>
-  <string name="CategoryCode_LGBT_Name">دگرباشی</string>
+  <string name="CategoryCode_LGBT_Name">LGBTQ+</string>
   <string name="CategoryCode_FILE_Name">اشتراک فایل</string>
   <string name="CategoryCode_HACK_Name">ابزارهای هک</string>
   <string name="CategoryCode_COMT_Name">ابزارهای ارتباطی</string>
@@ -342,7 +344,7 @@
   <string name="CategoryCode_ANON_Description">گمنام‌سازی، دور زدن سانسور و رمزگذاری</string>
   <string name="CategoryCode_DATE_Description">سایت‌‌های دوستیابی آنلاین</string>
   <string name="CategoryCode_GRP_Description">ابزارها و پلتفرم‌های شبکه‌های اجتماعی آنلاین</string>
-  <string name="CategoryCode_LGBT_Description">مسائل مربوط به جامعه‌ی دگرباشی (به غیر از پورنوگرافی)</string>
+  <string name="CategoryCode_LGBT_Description">LGBTQ+ communities discussing related issues (excluding pornography)</string>
   <string name="CategoryCode_FILE_Description">اشتراک فایل شامل ذخیره‌‌ی ابری فایل، تورنت و P2P</string>
   <string name="CategoryCode_HACK_Description">ابزارها و اخبار امنیت رایانه</string>
   <string name="CategoryCode_COMT_Description">ابزارهای ارتباط فردی و جمعی شامل VoIP، پیام‌رسانی و ایمیل</string>
