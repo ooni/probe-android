@@ -48,6 +48,10 @@ public class TestKeys {
 	@SerializedName("tampering")
 	public Tampering tampering;
 
+	private static String setFractionalDigits(double value) {
+		return String.format(Locale.getDefault(), value < 10 ? "%.2f" : "%.1f", value);
+	}
+
 	public int getWebsiteBlocking() {
 		if (blocking != null) {
 			switch (blocking) {
@@ -78,8 +82,8 @@ public class TestKeys {
 	public int getWhatsappWebStatus() {
 		if (whatsapp_web_status != null) {
 			if (whatsapp_web_status.equals(BLOCKED))
-				return R.string.TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Failed;
-			return R.string.TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Okay;
+				return R.string.TestResults_Details_InstantMessaging_WhatsApp_WebApp_Label_Failed;
+			return R.string.TestResults_Details_InstantMessaging_WhatsApp_WebApp_Label_Okay;
 		}
 		return R.string.TestResults_NotAvailable;
 	}
@@ -87,8 +91,8 @@ public class TestKeys {
 	public int getWhatsappRegistrationStatus() {
 		if (registration_server_status != null) {
 			if (registration_server_status.equals(BLOCKED))
-				return R.string.TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Failed;
-			return R.string.TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Okay;
+				return R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed;
+			return R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Okay;
 		}
 		return R.string.TestResults_NotAvailable;
 	}
@@ -103,11 +107,11 @@ public class TestKeys {
 		return R.string.TestResults_NotAvailable;
 	}
 
-	public int getTelegramWebStatus(Context ctx) {
+	public int getTelegramWebStatus() {
 		if (telegram_web_status != null) {
 			if (telegram_web_status.equals(BLOCKED))
-				return R.string.TestResults_Details_InstantMessaging_Telegram_Application_Label_Failed;
-			return R.string.TestResults_Details_InstantMessaging_Telegram_Application_Label_Okay;
+				return R.string.TestResults_Details_InstantMessaging_Telegram_WebApp_Label_Failed;
+			return R.string.TestResults_Details_InstantMessaging_Telegram_WebApp_Label_Okay;
 		}
 		return R.string.TestResults_NotAvailable;
 	}
@@ -115,9 +119,9 @@ public class TestKeys {
 	public int getFacebookMessengerDns() {
 		if (facebook_dns_blocking != null) {
 			if (facebook_dns_blocking)
-				return R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed;
+				return R.string.TestResults_Details_InstantMessaging_FacebookMessenger_DNS_Label_Failed;
 			else
-				return R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Okay;
+				return R.string.TestResults_Details_InstantMessaging_FacebookMessenger_DNS_Label_Okay;
 		}
 		return R.string.TestResults_NotAvailable;
 	}
@@ -125,9 +129,9 @@ public class TestKeys {
 	public int getFacebookMessengerTcp() {
 		if (facebook_tcp_blocking != null) {
 			if (facebook_tcp_blocking)
-				return R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed;
+				return R.string.TestResults_Details_InstantMessaging_FacebookMessenger_TCP_Label_Failed;
 			else
-				return R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Okay;
+				return R.string.TestResults_Details_InstantMessaging_FacebookMessenger_TCP_Label_Okay;
 		}
 		return R.string.TestResults_NotAvailable;
 	}
@@ -165,10 +169,6 @@ public class TestKeys {
 			return value / 1000 * 1000;
 	}
 
-	private String setFractionalDigits(double value) {
-		return String.format(Locale.getDefault(), value < 10 ? "%.2f" : "%.1f", value);
-	}
-
 	private int getUnit(double value) {
 		//We assume there is no Tbit/s (for now!)
 		if (value < 1000)
@@ -180,7 +180,7 @@ public class TestKeys {
 	}
 
 	public String getPing(Context ctx) {
-		if (simple != null)
+		if (simple != null && simple.ping != null)
 			return String.format(Locale.getDefault(), "%.1f", simple.ping);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
