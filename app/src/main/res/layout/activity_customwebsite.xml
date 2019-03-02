@@ -13,7 +13,7 @@
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_margin="8dp"
+			android:padding="8dp"
 			android:orientation="vertical">
 
 			<LinearLayout
@@ -34,18 +34,15 @@
 		</LinearLayout>
 	</ScrollView>
 
-	<View
+	<com.google.android.material.appbar.AppBarLayout
 		android:layout_width="match_parent"
-		android:layout_height="1dp"
-		android:background="?android:attr/listDivider" />
-
-	<Button
-		android:id="@+id/run"
-		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_gravity="bottom|center_horizontal"
-		android:layout_margin="16dp"
-		android:text="@string/OONIRun_Run"
-		android:textAllCaps="false"
-		app:cornerRadius="24dp" />
+		android:theme="@style/Theme.MaterialComponents.NoActionBar.App">
+
+		<androidx.appcompat.widget.Toolbar
+			android:id="@+id/bottomBar"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			app:title="@string/OONIRun_URLs" />
+	</com.google.android.material.appbar.AppBarLayout>
 </LinearLayout>
