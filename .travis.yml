@@ -13,7 +13,7 @@ android:
   - sys-img-armeabi-v7a-android-22
 
 before_install:
-- yes | sdkmanager --licenses
+- yes | sdkmanager "platforms;android-28"
 
 before_script:
 - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
