@@ -46,12 +46,12 @@ public class PerformanceItem extends HeterogeneousRecyclerItem<Result, Performan
 		viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), extra.start_time));
 		Measurement dashM = extra.getMeasurement(Dash.NAME);
 		Measurement ndtM = extra.getMeasurement(Ndt.NAME);
-		viewHolder.quality.setText(dashM == null ? R.string.General_AppName : dashM.getTestKeys().getVideoQuality(false));
-		viewHolder.quality.setVisibility(dashM == null ? View.GONE : View.VISIBLE);
-		viewHolder.upload.setText(ndtM == null ? null : c.getString(R.string.twoParam, ndtM.getTestKeys().getUpload(c), c.getString(ndtM.getTestKeys().getUploadUnit())));
-		viewHolder.upload.setVisibility(ndtM == null ? View.GONE : View.VISIBLE);
-		viewHolder.download.setText(ndtM == null ? null : c.getString(R.string.twoParam, ndtM.getTestKeys().getDownload(c), c.getString(ndtM.getTestKeys().getDownloadUnit())));
-		viewHolder.download.setVisibility(ndtM == null ? View.GONE : View.VISIBLE);
+		viewHolder.quality.setText(dashM == null ? R.string.TestResults_NotAvailable : dashM.getTestKeys().getVideoQuality(false));
+		viewHolder.upload.setText(ndtM == null ? c.getString(R.string.TestResults_NotAvailable) : c.getString(R.string.twoParam, ndtM.getTestKeys().getUpload(c), c.getString(ndtM.getTestKeys().getUploadUnit())));
+		viewHolder.download.setText(ndtM == null ? c.getString(R.string.TestResults_NotAvailable) : c.getString(R.string.twoParam, ndtM.getTestKeys().getDownload(c), c.getString(ndtM.getTestKeys().getDownloadUnit())));
+		viewHolder.quality.setAlpha(dashM == null ? 0.5f : 1);
+		viewHolder.upload.setAlpha(ndtM == null ? 0.5f : 1);
+		viewHolder.download.setAlpha(ndtM == null ? 0.5f : 1);
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {
