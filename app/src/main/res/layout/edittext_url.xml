@@ -28,6 +28,6 @@
 		android:layout_gravity="end|bottom"
 		android:layout_marginVertical="8dp"
 		android:minWidth="0dp"
-		android:src="@drawable/ic_baseline_remove_circle_24px"
+		android:src="@drawable/ic_baseline_remove_circle_24"
 		android:tint="@color/color_red8" />
 </FrameLayout>
