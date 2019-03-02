@@ -87,9 +87,9 @@ import androidx.test.filters.SmallTest;
 		testKeys.simple = new TestKeys.Simple();
 		Assert.assertEquals(testKeys.getUpload(c), c.getString(R.string.TestResults_NotAvailable));
 		testKeys.simple.upload = 0d;
-		Assert.assertEquals(testKeys.getUpload(c), "0,00");
+		Assert.assertEquals(testKeys.getUpload(c), "0.00");
 		testKeys.simple.upload = 10d;
-		Assert.assertEquals(testKeys.getUpload(c), "10,0");
+		Assert.assertEquals(testKeys.getUpload(c), "10.0");
 	}
 
 	@Test public void uploadUnit() {
@@ -111,9 +111,9 @@ import androidx.test.filters.SmallTest;
 		testKeys.simple = new TestKeys.Simple();
 		Assert.assertEquals(testKeys.getDownload(c), c.getString(R.string.TestResults_NotAvailable));
 		testKeys.simple.download = 0d;
-		Assert.assertEquals(testKeys.getDownload(c), "0,00");
+		Assert.assertEquals(testKeys.getDownload(c), "0.00");
 		testKeys.simple.download = 10d;
-		Assert.assertEquals(testKeys.getDownload(c), "10,0");
+		Assert.assertEquals(testKeys.getDownload(c), "10.0");
 	}
 
 	@Test public void downloadUnit() {
@@ -135,7 +135,7 @@ import androidx.test.filters.SmallTest;
 		testKeys.simple = new TestKeys.Simple();
 		Assert.assertEquals(testKeys.getPing(c), c.getString(R.string.TestResults_NotAvailable));
 		testKeys.simple.ping = 0d;
-		Assert.assertEquals(testKeys.getPing(c), "0,0");
+		Assert.assertEquals(testKeys.getPing(c), "0.0");
 	}
 
 	@Test public void server() {
@@ -158,9 +158,9 @@ import androidx.test.filters.SmallTest;
 		testKeys.advanced = new TestKeys.Advanced();
 		Assert.assertEquals(testKeys.getPacketLoss(c), c.getString(R.string.TestResults_NotAvailable));
 		testKeys.advanced.packet_loss = 0d;
-		Assert.assertEquals(testKeys.getPacketLoss(c), "0,000");
+		Assert.assertEquals(testKeys.getPacketLoss(c), "0.000");
 		testKeys.advanced.packet_loss = 1d;
-		Assert.assertEquals(testKeys.getPacketLoss(c), "100,000");
+		Assert.assertEquals(testKeys.getPacketLoss(c), "100.000");
 	}
 
 	@Test public void outOfOrder() {
@@ -169,9 +169,9 @@ import androidx.test.filters.SmallTest;
 		testKeys.advanced = new TestKeys.Advanced();
 		Assert.assertEquals(testKeys.getOutOfOrder(c), c.getString(R.string.TestResults_NotAvailable));
 		testKeys.advanced.out_of_order = 0d;
-		Assert.assertEquals(testKeys.getOutOfOrder(c), "0,0");
+		Assert.assertEquals(testKeys.getOutOfOrder(c), "0.0");
 		testKeys.advanced.out_of_order = 1d;
-		Assert.assertEquals(testKeys.getOutOfOrder(c), "100,0");
+		Assert.assertEquals(testKeys.getOutOfOrder(c), "100.0");
 	}
 
 	@Test public void averagePing() {
@@ -180,7 +180,7 @@ import androidx.test.filters.SmallTest;
 		testKeys.advanced = new TestKeys.Advanced();
 		Assert.assertEquals(testKeys.getAveragePing(c), c.getString(R.string.TestResults_NotAvailable));
 		testKeys.advanced.avg_rtt = 0d;
-		Assert.assertEquals(testKeys.getAveragePing(c), "0,0");
+		Assert.assertEquals(testKeys.getAveragePing(c), "0.0");
 	}
 
 	@Test public void maxPing() {
@@ -189,7 +189,7 @@ import androidx.test.filters.SmallTest;
 		testKeys.advanced = new TestKeys.Advanced();
 		Assert.assertEquals(testKeys.getMaxPing(c), c.getString(R.string.TestResults_NotAvailable));
 		testKeys.advanced.max_rtt = 0d;
-		Assert.assertEquals(testKeys.getMaxPing(c), "0,0");
+		Assert.assertEquals(testKeys.getMaxPing(c), "0.0");
 	}
 
 	@Test public void mss() {
@@ -216,9 +216,9 @@ import androidx.test.filters.SmallTest;
 		testKeys.simple = new TestKeys.Simple();
 		Assert.assertEquals(testKeys.getMedianBitrate(c), c.getString(R.string.TestResults_NotAvailable));
 		testKeys.simple.median_bitrate = 0d;
-		Assert.assertEquals(testKeys.getMedianBitrate(c), "0,00");
+		Assert.assertEquals(testKeys.getMedianBitrate(c), "0.00");
 		testKeys.simple.median_bitrate = 10d;
-		Assert.assertEquals(testKeys.getMedianBitrate(c), "10,0");
+		Assert.assertEquals(testKeys.getMedianBitrate(c), "10.0");
 	}
 
 	@Test public void medianBitrateUnit() {
@@ -249,6 +249,6 @@ import androidx.test.filters.SmallTest;
 		testKeys.simple = new TestKeys.Simple();
 		Assert.assertEquals(testKeys.getPlayoutDelay(c), c.getString(R.string.TestResults_NotAvailable));
 		testKeys.simple.min_playout_delay = 0d;
-		Assert.assertEquals(testKeys.getPlayoutDelay(c), "0,00");
+		Assert.assertEquals(testKeys.getPlayoutDelay(c), "0.00");
 	}
 }
