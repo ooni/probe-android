@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderPerformanceFragment;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -49,9 +50,9 @@ public class PerformanceItem extends HeterogeneousRecyclerItem<Result, Performan
 		viewHolder.quality.setText(dashM == null ? R.string.TestResults_NotAvailable : dashM.getTestKeys().getVideoQuality(false));
 		viewHolder.upload.setText(ndtM == null ? c.getString(R.string.TestResults_NotAvailable) : c.getString(R.string.twoParam, ndtM.getTestKeys().getUpload(c), c.getString(ndtM.getTestKeys().getUploadUnit())));
 		viewHolder.download.setText(ndtM == null ? c.getString(R.string.TestResults_NotAvailable) : c.getString(R.string.twoParam, ndtM.getTestKeys().getDownload(c), c.getString(ndtM.getTestKeys().getDownloadUnit())));
-		viewHolder.quality.setAlpha(dashM == null ? 0.5f : 1);
-		viewHolder.upload.setAlpha(ndtM == null ? 0.5f : 1);
-		viewHolder.download.setAlpha(ndtM == null ? 0.5f : 1);
+		viewHolder.quality.setAlpha(dashM == null ? ResultHeaderPerformanceFragment.ALPHA_DIS : ResultHeaderPerformanceFragment.ALPHA_ENA);
+		viewHolder.upload.setAlpha(ndtM == null ? ResultHeaderPerformanceFragment.ALPHA_DIS : ResultHeaderPerformanceFragment.ALPHA_ENA);
+		viewHolder.download.setAlpha(ndtM == null ? ResultHeaderPerformanceFragment.ALPHA_DIS : ResultHeaderPerformanceFragment.ALPHA_ENA);
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {

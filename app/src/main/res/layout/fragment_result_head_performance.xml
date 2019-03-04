@@ -18,6 +18,7 @@
 		android:orientation="vertical">
 
 		<TextView
+			android:id="@+id/videoLabel"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
@@ -31,6 +32,7 @@
 			android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
 		<TextView
+			android:id="@+id/videoUnit"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
@@ -44,6 +46,7 @@
 		android:orientation="vertical">
 
 		<TextView
+			android:id="@+id/downloadLabel"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
@@ -70,6 +73,7 @@
 		android:orientation="vertical">
 
 		<TextView
+			android:id="@+id/uploadLabel"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
@@ -96,6 +100,7 @@
 		android:orientation="vertical">
 
 		<TextView
+			android:id="@+id/pingLabel"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
@@ -109,6 +114,7 @@
 			android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
 		<TextView
+			android:id="@+id/pingUnit"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
