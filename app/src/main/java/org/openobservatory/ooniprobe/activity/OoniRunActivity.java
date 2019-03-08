@@ -22,7 +22,6 @@ import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -166,15 +165,13 @@ public class OoniRunActivity extends AbstractActivity {
 		}
 	}
 
-	private AbstractSuite getSuite(String tn, @Nullable List<String> urls) {
+	private AbstractSuite getSuite(String tn, List<String> urls) {
 		for (AbstractSuite suite : TestAsyncTask.SUITES)
 			for (AbstractTest test : suite.getTestList(getPreferenceManager()))
 				if (test.getName().equals(tn)) {
-					if (urls != null)
-						for (String url : urls)
-							Url.checkExistingUrl(url);
+					for (String url : urls)
+						Url.checkExistingUrl(url);
 					test.setInputs(urls);
-					test.setOrigin("ooni-run");
 					suite.setTestList(test);
 					return suite;
 				}
