@@ -204,7 +204,7 @@
   <string name="Modal_OldTestsDetected">Rezultatet e vjetra do te fshihen. Pa merak, gjithmonë mund t\'i gjesh ato tek OONI Explorer dhe tek OONI API.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Doni që të fshihen të gjitha rezultatet e testimeve?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Doni të fshini këtë testim?</string>
-  <string name="Modal_CantDeactivate">Can\'t disable</string>
+  <string name="Modal_EnableAtLeastOneTest">Can\'t disable</string>
   <string name="Modal_OnlyDigits">Ju lutem vendosni vetëm shifra në këtë fushë.</string>
   <string name="Modal_ReRun_Title">Kryej testimin përsëri</string>
   <string name="Modal_ReRun_Paragraph">Ky testim dështoi. Doni t\'a kryeni përsëri?</string>

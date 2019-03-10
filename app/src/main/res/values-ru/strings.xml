@@ -204,7 +204,7 @@
   <string name="Modal_OldTestsDetected">Старые результаты будут удалены. Не беспокойтесь, вы всегда сможете найти их в OONI Explorer и OONI API.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Удалить все результаты теста?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Хотите удалить этот тест?</string>
-  <string name="Modal_CantDeactivate">Can\'t disable</string>
+  <string name="Modal_EnableAtLeastOneTest">Can\'t disable</string>
   <string name="Modal_OnlyDigits">В этом поле только цифры, пожалуйста.</string>
   <string name="Modal_ReRun_Title">Повторить тест</string>
   <string name="Modal_ReRun_Paragraph">Тест неудачен. Повторить?</string>

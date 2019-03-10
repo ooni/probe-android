@@ -204,7 +204,7 @@
   <string name="Modal_OldTestsDetected">النتائج القديمة سيتم حذفها. لا تقلق بإمكانك العثور عليها في أي وقت في متصفح OONI و في OONI API.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">هل تريد حذف جميع نتائج الإختبارات؟</string>
   <string name="Modal_DoYouWantToDeleteThisTest">هل تريد حذف هذا الإختبار؟</string>
-  <string name="Modal_CantDeactivate">Can\'t disable</string>
+  <string name="Modal_EnableAtLeastOneTest">Can\'t disable</string>
   <string name="Modal_OnlyDigits">يرجى إدخال الأرقام فقط في هذا الحقل.</string>
   <string name="Modal_ReRun_Title">إعادة إجراء الاختبار</string>
   <string name="Modal_ReRun_Paragraph">لقد فشل هذا الإختبار. هل تريد إعادة إجراء الاختبار؟</string>

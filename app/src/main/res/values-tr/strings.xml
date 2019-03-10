@@ -204,7 +204,7 @@
   <string name="Modal_OldTestsDetected">Eski sonuçlar silinecek. Endişelenmeyin bu sonuçları her zaman OONI Explorer ve OONI API üzerinde bulabilirsiniz.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Tüm sınama sonuçlarını silmek ister misiniz?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Bu sınamayı silmek ister misiniz?</string>
-  <string name="Modal_CantDeactivate">Can\'t disable</string>
+  <string name="Modal_EnableAtLeastOneTest">Can\'t disable</string>
   <string name="Modal_OnlyDigits">Lütfen bu alana sadece sayı girin.</string>
   <string name="Modal_ReRun_Title">Sınamayı yinele</string>
   <string name="Modal_ReRun_Paragraph">Bu sınama tamamlanamadı. Yeniden sınamak ister misiniz?</string>

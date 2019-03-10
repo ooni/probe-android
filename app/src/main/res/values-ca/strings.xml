@@ -204,7 +204,7 @@
   <string name="Modal_OldTestsDetected">Els resultats anteriors s\'eliminaran. No us preocupeu, sempre podeu trobar-los en l\'OONI Explorer i en l\'API d\'OONI.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Voleu eliminar tots els resultats de la prova?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Voleu eliminar aquesta prova?</string>
-  <string name="Modal_CantDeactivate">Can\'t disable</string>
+  <string name="Modal_EnableAtLeastOneTest">Can\'t disable</string>
   <string name="Modal_OnlyDigits">Introduïu només dígits en aquest camp.</string>
   <string name="Modal_ReRun_Title">Torna a executar la prova</string>
   <string name="Modal_ReRun_Paragraph">Aquesta prova ha fallat. Voleu tornar a executar la prova?</string>

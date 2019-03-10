@@ -204,7 +204,7 @@
   <string name="Modal_OldTestsDetected">Os resultados antigos serão excluídos. Não se preocupe, você sempre pode encontrá-los no OONI Explorer e no OONI API.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Deseja apagar todos os resultados do teste?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Você deseja apagar este teste?</string>
-  <string name="Modal_CantDeactivate">Não pode desativar</string>
+  <string name="Modal_EnableAtLeastOneTest">Não pode desativar</string>
   <string name="Modal_OnlyDigits">Por favor, insira apenas dígitos neste campo.</string>
   <string name="Modal_ReRun_Title">Repetir o teste</string>
   <string name="Modal_ReRun_Paragraph">Este teste falhou. Você deseja fazer um outro teste?</string>
