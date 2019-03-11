@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 
 public class ResultHeaderPerformanceFragment extends Fragment {
 	private static final String RESULT = "result";
-	public static final float ALPHA_DIS = 0.5f;
+	public static final float ALPHA_DIS = 0.3f;
 	public static final int ALPHA_ENA = 1;
 	@BindView(R.id.video) TextView video;
 	@BindView(R.id.upload) TextView upload;

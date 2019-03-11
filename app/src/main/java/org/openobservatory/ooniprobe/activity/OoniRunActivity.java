@@ -111,29 +111,39 @@ public class OoniRunActivity extends AbstractActivity {
 			String version_name = split[0];
 			if (mv != null && tn != null) {
 				if (versionCompare(version_name, mv) >= 0) {
-					Attribute attribute = new Gson().fromJson(ta, Attribute.class);
-					AbstractSuite suite = getSuite(tn, attribute == null ? null : attribute.urls);
-					if (suite != null) {
-						icon.setImageResource(suite.getIcon());
-						title.setText(suite.getTestList(getPreferenceManager())[0].getLabelResId());
-						desc.setText(td == null ? getString(R.string.OONIRun_YouAreAboutToRun) : td);
-						if (attribute != null && attribute.urls != null) {
-							for (String url : attribute.urls)
-								items.add(new TextItem(url));
-							adapter.notifyTypesChanged();
-							iconBig.setVisibility(View.GONE);
-						} else {
-							iconBig.setImageResource(suite.getIcon());
-							iconBig.setVisibility(View.VISIBLE);
-						}
-						run.setOnClickListener(v -> {
-							Intent runIntent = RunningActivity.newIntent(OoniRunActivity.this, suite);
-							if (runIntent != null) {
-								startActivity(runIntent);
-								finish();
+					try {
+						Attribute attribute = new Gson().fromJson(ta, Attribute.class);
+						AbstractSuite suite = getSuite(tn, attribute == null ? null : attribute.urls);
+						if (suite != null) {
+							icon.setImageResource(suite.getIcon());
+							title.setText(suite.getTestList(getPreferenceManager())[0].getLabelResId());
+							desc.setText(td == null ? getString(R.string.OONIRun_YouAreAboutToRun) : td);
+							if (attribute != null && attribute.urls != null) {
+								for (String url : attribute.urls)
+									items.add(new TextItem(url));
+								adapter.notifyTypesChanged();
+								iconBig.setVisibility(View.GONE);
+							} else {
+								iconBig.setImageResource(suite.getIcon());
+								iconBig.setVisibility(View.VISIBLE);
 							}
-						});
-					} else {
+							run.setOnClickListener(v -> {
+								Intent runIntent = RunningActivity.newIntent(OoniRunActivity.this, suite);
+								if (runIntent != null) {
+									startActivity(runIntent);
+									finish();
+								}
+							});
+						} else {
+							title.setText(R.string.OONIRun_InvalidParameter);
+							desc.setText(R.string.OONIRun_InvalidParameter_Msg);
+							run.setText(R.string.OONIRun_Close);
+							icon.setImageResource(R.drawable.question_mark);
+							iconBig.setImageResource(R.drawable.question_mark);
+							iconBig.setVisibility(View.VISIBLE);
+							run.setOnClickListener(v -> finish());
+						}
+					} catch (Exception e) {
 						title.setText(R.string.OONIRun_InvalidParameter);
 						desc.setText(R.string.OONIRun_InvalidParameter_Msg);
 						run.setText(R.string.OONIRun_Close);
