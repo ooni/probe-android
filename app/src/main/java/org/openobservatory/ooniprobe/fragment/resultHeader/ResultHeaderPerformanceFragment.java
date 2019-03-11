@@ -20,12 +20,20 @@ import butterknife.ButterKnife;
 
 public class ResultHeaderPerformanceFragment extends Fragment {
 	private static final String RESULT = "result";
+	public static final float ALPHA_DIS = 0.5f;
+	public static final int ALPHA_ENA = 1;
 	@BindView(R.id.video) TextView video;
 	@BindView(R.id.upload) TextView upload;
-	@BindView(R.id.uploadUnit) TextView uploadUnit;
 	@BindView(R.id.download) TextView download;
-	@BindView(R.id.downloadUnit) TextView downloadUnit;
 	@BindView(R.id.ping) TextView ping;
+	@BindView(R.id.videoLabel) TextView videoLabel;
+	@BindView(R.id.downloadLabel) TextView downloadLabel;
+	@BindView(R.id.uploadLabel) TextView uploadLabel;
+	@BindView(R.id.pingLabel) TextView pingLabel;
+	@BindView(R.id.videoUnit) TextView videoUnit;
+	@BindView(R.id.downloadUnit) TextView downloadUnit;
+	@BindView(R.id.uploadUnit) TextView uploadUnit;
+	@BindView(R.id.pingUnit) TextView pingUnit;
 
 	public static ResultHeaderPerformanceFragment newInstance(Result result) {
 		Bundle args = new Bundle();
@@ -43,15 +51,24 @@ public class ResultHeaderPerformanceFragment extends Fragment {
 		assert result != null;
 		Measurement dashM = result.getMeasurement(Dash.NAME);
 		Measurement ndtM = result.getMeasurement(Ndt.NAME);
-		if (dashM != null)
-			video.setText(dashM.getTestKeys().getVideoQuality(false));
-		if (ndtM != null) {
-			upload.setText(ndtM.getTestKeys().getUpload(getActivity()));
-			uploadUnit.setText(ndtM.getTestKeys().getUploadUnit());
-			download.setText(ndtM.getTestKeys().getDownload(getActivity()));
-			downloadUnit.setText(ndtM.getTestKeys().getDownloadUnit());
-			ping.setText(ndtM.getTestKeys().getPing(getActivity()));
-		}
+		video.setText(dashM == null ? R.string.TestResults_NotAvailable : dashM.getTestKeys().getVideoQuality(false));
+		upload.setText(ndtM == null ? getString(R.string.TestResults_NotAvailable) : ndtM.getTestKeys().getUpload(getActivity()));
+		uploadUnit.setText(ndtM == null ? R.string.TestResults_NotAvailable : ndtM.getTestKeys().getUploadUnit());
+		download.setText(ndtM == null ? getString(R.string.TestResults_NotAvailable) : ndtM.getTestKeys().getDownload(getActivity()));
+		downloadUnit.setText(ndtM == null ? R.string.TestResults_NotAvailable : ndtM.getTestKeys().getDownloadUnit());
+		ping.setText(ndtM == null ? getString(R.string.TestResults_NotAvailable) : ndtM.getTestKeys().getPing(getActivity()));
+		videoLabel.setAlpha(dashM == null ? ALPHA_DIS : ALPHA_ENA);
+		downloadLabel.setAlpha(ndtM == null ? ALPHA_DIS : ALPHA_ENA);
+		uploadLabel.setAlpha(ndtM == null ? ALPHA_DIS : ALPHA_ENA);
+		pingLabel.setAlpha(ndtM == null ? ALPHA_DIS : ALPHA_ENA);
+		video.setAlpha(dashM == null ? ALPHA_DIS : ALPHA_ENA);
+		download.setAlpha(ndtM == null ? ALPHA_DIS : ALPHA_ENA);
+		upload.setAlpha(ndtM == null ? ALPHA_DIS : ALPHA_ENA);
+		ping.setAlpha(ndtM == null ? ALPHA_DIS : ALPHA_ENA);
+		videoUnit.setAlpha(dashM == null ? ALPHA_DIS : ALPHA_ENA);
+		downloadUnit.setAlpha(ndtM == null ? ALPHA_DIS : ALPHA_ENA);
+		uploadUnit.setAlpha(ndtM == null ? ALPHA_DIS : ALPHA_ENA);
+		pingUnit.setAlpha(ndtM == null ? ALPHA_DIS : ALPHA_ENA);
 		return v;
 	}
 }
