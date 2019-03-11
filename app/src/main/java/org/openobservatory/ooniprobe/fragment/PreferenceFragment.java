@@ -18,6 +18,7 @@ import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceScreen;
+import androidx.preference.SwitchPreferenceCompat;
 import localhost.toolkit.app.ConfirmDialogFragment;
 import localhost.toolkit.app.MessageDialogFragment;
 import localhost.toolkit.preference.ExtendedPreferenceFragment;
@@ -80,6 +81,16 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 			preference.setSummary(value);
 			if (key.equals(getString(R.string.max_runtime)) && value != null && !TextUtils.isDigitsOnly(value)) {
 				MessageDialogFragment.newInstance(getString(R.string.Modal_Error), getString(R.string.Modal_OnlyDigits), false).show(getFragmentManager(), null);
+				sharedPreferences.edit().remove(key).apply();
+				getFragmentManager().beginTransaction().replace(android.R.id.content, newConcreteInstance(rootKey)).commit();
+			}
+		} else if (preference instanceof SwitchPreferenceCompat) {
+			boolean found = false;
+			for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++)
+				if (getPreferenceScreen().getPreference(i) instanceof SwitchPreferenceCompat && !getPreferenceScreen().getPreference(i).getKey().equals(getString(R.string.test_whatsapp_extensive)))
+					found = found || sharedPreferences.getBoolean(getPreferenceScreen().getPreference(i).getKey(), true);
+			if (!found) {
+				MessageDialogFragment.newInstance(getString(R.string.General_AppName), getString(R.string.Modal_CantDeactivate), false).show(getFragmentManager(), null);
 				sharedPreferences.edit().remove(key).apply();
 				getFragmentManager().beginTransaction().replace(android.R.id.content, newConcreteInstance(rootKey)).commit();
 			}
