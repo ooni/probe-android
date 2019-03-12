@@ -90,7 +90,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 				if (getPreferenceScreen().getPreference(i) instanceof SwitchPreferenceCompat && !getPreferenceScreen().getPreference(i).getKey().equals(getString(R.string.test_whatsapp_extensive)))
 					found = found || sharedPreferences.getBoolean(getPreferenceScreen().getPreference(i).getKey(), true);
 			if (!found) {
-				MessageDialogFragment.newInstance(null, getString(R.string.Modal_CantDeactivate), false).show(getFragmentManager(), null);
+				MessageDialogFragment.newInstance(null, getString(R.string.Modal_EnableAtLeastOneTest), false).show(getFragmentManager(), null);
 				sharedPreferences.edit().remove(key).apply();
 				getFragmentManager().beginTransaction().replace(android.R.id.content, newConcreteInstance(rootKey)).commit();
 			}
