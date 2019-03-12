@@ -39,6 +39,7 @@ public abstract class AbstractTest implements Serializable {
 	private Integer max_runtime;
 	private SparseArray<Measurement> measurements;
 	private String reportId;
+	private String origin;
 
 	AbstractTest(String name, String mkName, int labelResId, int iconResId, int runtime) {
 		this.name = name;
@@ -54,6 +55,7 @@ public abstract class AbstractTest implements Serializable {
 		settings.name = mkName;
 		settings.inputs = inputs;
 		settings.options.max_runtime = max_runtime;
+		settings.annotations.origin = origin;
 		measurements = new SparseArray<>();
 		MKTask task = MKTask.startNettest(gson.toJson(settings));
 		FileOutputStream logFOS = null;
@@ -227,6 +229,9 @@ public abstract class AbstractTest implements Serializable {
 
 	public int getRuntime(PreferenceManager pm) {
 		return runtime;
+	}
+	public void setOrigin(String origin) {
+		this.origin = origin;
 	}
 
 	public interface TestCallback {
