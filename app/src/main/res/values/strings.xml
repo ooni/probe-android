@@ -278,6 +278,8 @@
 	<string name="Settings_Performance_DashAutomaticServerSelection">Automatic DASH server selection</string>
 	<string name="Settings_Performance_DashServerAddress">DASH server</string>
 	<string name="Settings_Performance_DashServerPort">DASH server port</string>
+	<string name="Settings_SendEmail_Label">Send email to support</string>
+	<string name="Settings_SendEmail_Error">No email clients configured on your device</string>
 	<string name="Notification_FinishedRunning">Finished running</string>
 	<string name="OONIBrowser_TryMirror">Try mirror</string>
 	<string name="OONIBrowser_Loading">Loading...</string>
