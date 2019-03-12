@@ -66,7 +66,7 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
 				break;
 			}
 		if (edited)
-			ConfirmDialogFragment.newInstance(null, getString(R.string.General_AppName), getString(R.string.Modal_CustomURL_NotSaved)).show(getSupportFragmentManager(), null);
+			ConfirmDialogFragment.newInstance(null, null, getString(R.string.Modal_CustomURL_NotSaved)).show(getSupportFragmentManager(), null);
 		else
 			super.onBackPressed();
 	}

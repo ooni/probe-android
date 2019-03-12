@@ -52,7 +52,7 @@ public class MainActivity extends AbstractActivity {
 			});
 			bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
 			if (OldTestStorage.oldTestsDetected(this)) {
-				MessageDialogFragment.newInstance(getString(R.string.General_AppName), getString(R.string.Modal_OldTestsDetected), false).show(getSupportFragmentManager(), null);
+				MessageDialogFragment.newInstance(null, getString(R.string.Modal_OldTestsDetected), false).show(getSupportFragmentManager(), null);
 				OldTestStorage.removeAllTests(this);
 			}
 		}
