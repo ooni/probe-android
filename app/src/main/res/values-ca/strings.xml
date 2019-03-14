@@ -89,6 +89,7 @@
   <string name="TestResults_Summary_Hero_WiFi">Wi-Fi</string>
   <string name="TestResults_Summary_Hero_Mobile">Dades mòbils</string>
   <string name="TestResults_Summary_Hero_NoInternet">Sense Internet</string>
+  <string name="TestResults_Summary_Failed">Ha fallat</string>
   <string name="TestResults_Summary_Websites_Hero_Tested_Singular">Provat</string>
   <string name="TestResults_Summary_Websites_Hero_Tested_Plural">Provats</string>
   <string name="TestResults_Summary_Websites_Hero_Blocked_Singular">Blocat</string>
@@ -117,6 +118,9 @@
   <string name="TestResults_Details_ViewLog">Mostra els registre</string>
   <string name="TestResults_Details_RawData">Dades</string>
   <string name="TestResults_Details_CopyToClipboard">Copia al porta-retalls</string>
+  <string name="TestResults_Details_Failed_Title">Ha fallat</string>
+  <string name="TestResults_Details_Failed_Paragraph">You can try to run this test again</string>
+  <string name="TestResults_Details_Failed_TryAgain">Torna-ho a provar</string>
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Accessible</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s és accessible.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Probablement bloquejat</string>
@@ -195,7 +199,6 @@
   <string name="Modal_Error_CantCloseScreen">Aquesta pantalla està bloquejada mentre s\'està executant una prova.</string>
   <string name="Modal_ResultsNotUploaded_Title">Els resultats no s\'han pujat</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">Alguns dels resultats de les vostres proves no s\'han pujat als servidors d\'OONI. Si desitgeu contribuir al conjunt de dades d\'OONI, pugueu-los.</string>
-  <string name="Modal_ResultsNotUploaded_Button_Cancel">Cancel·la</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Pujada</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Activeu els permisos de notificació per executar les proves automàticament.</string>
   <string name="Modal_EnableNotifications_News">Activeu els permisos de notificació per rebre actualitzacions de notícies.</string>
@@ -204,11 +207,15 @@
   <string name="Modal_OldTestsDetected">Els resultats anteriors s\'eliminaran. No us preocupeu, sempre podeu trobar-los en l\'OONI Explorer i en l\'API d\'OONI.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Voleu eliminar tots els resultats de la prova?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Voleu eliminar aquesta prova?</string>
-  <string name="Modal_EnableAtLeastOneTest">Can\'t disable</string>
+  <string name="Modal_EnableAtLeastOneTest">Please enable at least one test</string>
   <string name="Modal_OnlyDigits">Introduïu només dígits en aquest camp.</string>
   <string name="Modal_ReRun_Title">Torna a executar la prova</string>
   <string name="Modal_ReRun_Paragraph">Aquesta prova ha fallat. Voleu tornar a executar la prova?</string>
   <string name="Modal_CustomURL_NotSaved">Les vostres URL no es desaran quan surti d\'aquesta pantalla. Esteu segur de voler sortir d\'aquesta pantalla?</string>
+  <string name="Modal_ManualUpload_Title">Enable Manual Upload?</string>
+  <string name="Modal_ManualUpload_Paragraph">This setting allows you to manually re-upload unpublished measurements.</string>
+  <string name="Modal_ManualUpload_Enable">Habilitar</string>
+  <string name="Modal_ManualUpload_Disable">No, thanks</string>
   <string name="Toast_CopiedToClipboard">Copiat al porta-retalls</string>
   <string name="Snackbar_ResultsNotUploaded_Text">No s\'ha pujat</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Pujada</string>
@@ -245,7 +252,8 @@
   <string name="Settings_AutomatedTesting_MonthlyMobileAllowance">Quota mensual de dades mòbils</string>
   <string name="Settings_AutomatedTesting_MonthlyWiFiAllowance">Quota mensual de Wi-Fi</string>
   <string name="Settings_Sharing_Label">Comparteix</string>
-  <string name="Settings_Sharing_UploadResults">Publica els resultats</string>
+  <string name="Settings_Sharing_UploadResults">Automatically Publish Results</string>
+  <string name="Settings_Sharing_UploadResultsManually">Manual Result Upload</string>
   <string name="Settings_Sharing_IncludeNetwork">Inclou informació de la xarxa</string>
   <string name="Settings_Sharing_GPS">Inclou geolocalització aproximada</string>
   <string name="Settings_Sharing_IncludeIP">Inclou la meva adreça IP</string>

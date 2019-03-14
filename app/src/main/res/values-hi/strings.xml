@@ -89,6 +89,7 @@
   <string name="TestResults_Summary_Hero_WiFi">वाईफ़ाई</string>
   <string name="TestResults_Summary_Hero_Mobile">मोबाइल डेटा</string>
   <string name="TestResults_Summary_Hero_NoInternet">कोई इंटरनेट नहीं</string>
+  <string name="TestResults_Summary_Failed">विफ़ल</string>
   <string name="TestResults_Summary_Websites_Hero_Tested_Singular">परीक्षण</string>
   <string name="TestResults_Summary_Websites_Hero_Tested_Plural">परीक्षण</string>
   <string name="TestResults_Summary_Websites_Hero_Blocked_Singular">अवरुद्ध</string>
@@ -117,6 +118,9 @@
   <string name="TestResults_Details_ViewLog">लॉग देखें</string>
   <string name="TestResults_Details_RawData">डेटा</string>
   <string name="TestResults_Details_CopyToClipboard">क्लिपबोर्ड पर कॉपी करें</string>
+  <string name="TestResults_Details_Failed_Title">विफ़ल</string>
+  <string name="TestResults_Details_Failed_Paragraph">You can try to run this test again</string>
+  <string name="TestResults_Details_Failed_TryAgain">पुनः प्रयास करें</string>
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">सुलभ</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s सुलभ है</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">शायद अवरुद्ध</string>
@@ -195,7 +199,6 @@
   <string name="Modal_Error_CantCloseScreen">एक परीक्षण चल रहा है, जबकि यह स्क्रीन लॉक है।</string>
   <string name="Modal_ResultsNotUploaded_Title">परिणाम अपलोड नहीं किए गए</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">आपके कुछ परीक्षा परिणाम OONI सर्वर पर अपलोड नहीं किए गए हैं। यदि आप OONI के डेटासेट में योगदान करना चाहते हैं, तो कृपया उन्हें अपलोड करें।</string>
-  <string name="Modal_ResultsNotUploaded_Button_Cancel">रद्द करें </string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">अपलोड करें</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">स्वचालित रूप से परीक्षण चलाने के लिए अधिसूचना अनुमतियां सक्षम करें।</string>
   <string name="Modal_EnableNotifications_News">समाचार अद्यतन प्राप्त करने के लिए अधिसूचना अनुमति सक्षम करें।</string>
@@ -204,11 +207,15 @@
   <string name="Modal_OldTestsDetected">पुराने परिणाम हटा दिए जाएंगे। चिंता न करें, आप उन्हें हमेशा OONI एक्सप्लोरर और OONI API में पा सकते हैं।</string>
   <string name="Modal_DoYouWantToDeleteAllTests">क्या आप सभी परीक्षण परिणामों को हटाना चाहते हैं?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">क्या आप इस परीक्षा को मिटाना चाहते हैं?</string>
-  <string name="Modal_EnableAtLeastOneTest">Can\'t disable</string>
+  <string name="Modal_EnableAtLeastOneTest">Please enable at least one test</string>
   <string name="Modal_OnlyDigits">कृपया इस क्षेत्र में केवल अंक डालें।</string>
   <string name="Modal_ReRun_Title">परीक्षण फिर से चलाएं</string>
   <string name="Modal_ReRun_Paragraph">यह परीक्षण विफल रहा है। परीक्षण फिर से चलाएं?</string>
   <string name="Modal_CustomURL_NotSaved">जब आप यह स्क्रीन छोड़ते हैं तो आपके URL सहेजे नहीं जाएंगे। क्या आप वाकई इस स्क्रीन को छोड़ना चाहते हैं?</string>
+  <string name="Modal_ManualUpload_Title">Enable Manual Upload?</string>
+  <string name="Modal_ManualUpload_Paragraph">This setting allows you to manually re-upload unpublished measurements.</string>
+  <string name="Modal_ManualUpload_Enable">सक्षम करें</string>
+  <string name="Modal_ManualUpload_Disable">No, thanks</string>
   <string name="Toast_CopiedToClipboard">क्लिपबोर्ड में नकल</string>
   <string name="Snackbar_ResultsNotUploaded_Text">अपलोड नहीं किया गया</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">अपलोड करें</string>
@@ -245,7 +252,8 @@
   <string name="Settings_AutomatedTesting_MonthlyMobileAllowance">मासिक मोबाइल भत्ता</string>
   <string name="Settings_AutomatedTesting_MonthlyWiFiAllowance">मासिक वाईफाई भत्ता</string>
   <string name="Settings_Sharing_Label">सहभाजन</string>
-  <string name="Settings_Sharing_UploadResults">परिणाम प्रकाशित करें</string>
+  <string name="Settings_Sharing_UploadResults">Automatically Publish Results</string>
+  <string name="Settings_Sharing_UploadResultsManually">Manual Result Upload</string>
   <string name="Settings_Sharing_IncludeNetwork">नेटवर्क जानकारी शामिल करें</string>
   <string name="Settings_Sharing_GPS">अनुमानित भू-स्थान शामिल करें</string>
   <string name="Settings_Sharing_IncludeIP">मेरा आईपी पता शामिल करें</string>

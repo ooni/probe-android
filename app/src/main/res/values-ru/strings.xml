@@ -89,6 +89,7 @@
   <string name="TestResults_Summary_Hero_WiFi">Wi-fi</string>
   <string name="TestResults_Summary_Hero_Mobile">Мобильные данные</string>
   <string name="TestResults_Summary_Hero_NoInternet">Нет связи с интернетом</string>
+  <string name="TestResults_Summary_Failed">Ошибка</string>
   <string name="TestResults_Summary_Websites_Hero_Tested_Singular">Протестировано</string>
   <string name="TestResults_Summary_Websites_Hero_Tested_Plural">Протестировано</string>
   <string name="TestResults_Summary_Websites_Hero_Blocked_Singular">Блокировано</string>
@@ -117,6 +118,9 @@
   <string name="TestResults_Details_ViewLog">Посмотреть лог</string>
   <string name="TestResults_Details_RawData">Данные</string>
   <string name="TestResults_Details_CopyToClipboard">Скопировать в буфер обмена</string>
+  <string name="TestResults_Details_Failed_Title">Ошибка</string>
+  <string name="TestResults_Details_Failed_Paragraph">You can try to run this test again</string>
+  <string name="TestResults_Details_Failed_TryAgain">Попробовать снова</string>
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Доступно</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">Сайт %1$s доступен.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Похоже, заблокировано</string>
@@ -195,7 +199,6 @@
   <string name="Modal_Error_CantCloseScreen">На время теста этот экран заблокирован.</string>
   <string name="Modal_ResultsNotUploaded_Title">Результаты не загружены</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">Некоторые из ваших результатов теста не были загружены на серверы OONI. Если вы хотите помочь проекту OONI с исследовательскими данными, пожалуйста, загрузите результаты на сервер.</string>
-  <string name="Modal_ResultsNotUploaded_Button_Cancel">Отмена</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Загрузить</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Разрешить уведомления для автоматических тестов.</string>
   <string name="Modal_EnableNotifications_News">Разрешить новостные уведомления.</string>
@@ -204,11 +207,15 @@
   <string name="Modal_OldTestsDetected">Старые результаты будут удалены. Не беспокойтесь, вы всегда сможете найти их в OONI Explorer и OONI API.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Удалить все результаты теста?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Хотите удалить этот тест?</string>
-  <string name="Modal_EnableAtLeastOneTest">Can\'t disable</string>
+  <string name="Modal_EnableAtLeastOneTest">Please enable at least one test</string>
   <string name="Modal_OnlyDigits">В этом поле только цифры, пожалуйста.</string>
   <string name="Modal_ReRun_Title">Повторить тест</string>
   <string name="Modal_ReRun_Paragraph">Тест неудачен. Повторить?</string>
   <string name="Modal_CustomURL_NotSaved">Если вы закроете этот экран, адреса не сохранятся. Хотите выйти?</string>
+  <string name="Modal_ManualUpload_Title">Enable Manual Upload?</string>
+  <string name="Modal_ManualUpload_Paragraph">This setting allows you to manually re-upload unpublished measurements.</string>
+  <string name="Modal_ManualUpload_Enable">Включить</string>
+  <string name="Modal_ManualUpload_Disable">Нет, спасибо</string>
   <string name="Toast_CopiedToClipboard">Скопировано в буфер обмена</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Не загружено</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Загрузить</string>
@@ -245,7 +252,8 @@
   <string name="Settings_AutomatedTesting_MonthlyMobileAllowance">Monthly mobile allowance</string>
   <string name="Settings_AutomatedTesting_MonthlyWiFiAllowance">Monthly WiFi allowance</string>
   <string name="Settings_Sharing_Label">Обмен</string>
-  <string name="Settings_Sharing_UploadResults">Публиковать результаты</string>
+  <string name="Settings_Sharing_UploadResults">Automatically Publish Results</string>
+  <string name="Settings_Sharing_UploadResultsManually">Manual Result Upload</string>
   <string name="Settings_Sharing_IncludeNetwork">Включать сетевые данные</string>
   <string name="Settings_Sharing_GPS">Включать примерное местонахождение</string>
   <string name="Settings_Sharing_IncludeIP">Включать мой IP-адрес</string>
