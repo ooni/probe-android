@@ -204,7 +204,6 @@
   <string name="Modal_EnableNotifications_News">Enable notification permissions to receive news updates.</string>
   <string name="Modal_EnableNotifications_Any">Enable notification permissions to receive push notifications.</string>
   <string name="Modal_EnableGPS">To improve the accuracy of tests, we need GPS permissions. OONI will only collect an approximation of your GPS position.</string>
-  <string name="Modal_OldTestsDetected">The old results will be deleted. Don\'t worry, you can always find them in OONI Explorer and in the OONI API.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Do you want to delete all test results?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Do you want to delete this test?</string>
   <string name="Modal_EnableAtLeastOneTest">Please enable at least one test</string>

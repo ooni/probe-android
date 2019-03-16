@@ -119,7 +119,7 @@
   <string name="TestResults_Details_RawData">Datos</string>
   <string name="TestResults_Details_CopyToClipboard">Copiar al portapapeles</string>
   <string name="TestResults_Details_Failed_Title">Falló</string>
-  <string name="TestResults_Details_Failed_Paragraph">You can try to run this test again</string>
+  <string name="TestResults_Details_Failed_Paragraph">Puedes tratar de ejecutar esta prueba de nuevo</string>
   <string name="TestResults_Details_Failed_TryAgain">Prueba de nuevo</string>
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Accesible</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s es accesible.</string>
@@ -206,13 +206,13 @@
   <string name="Modal_EnableGPS">Para mejorar la precisión de las pruebas, necesitamos permisos para GPS. OONI sólo recopilará una aproximación de tu posición GPS.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">¿Deseas eliminar todos los resultados de las pruebas?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">¿Deseas eliminar esta prueba?</string>
-  <string name="Modal_EnableAtLeastOneTest">Please enable at least one test</string>
+  <string name="Modal_EnableAtLeastOneTest">Por favor habilita al menos una prueba</string>
   <string name="Modal_OnlyDigits">Por favor inserte sólo dígitos en este campo.</string>
   <string name="Modal_ReRun_Title">Volver a ejecutar prueba</string>
   <string name="Modal_ReRun_Paragraph">Esta prueba ha fallado. ¿Volver a ejecutarla?</string>
   <string name="Modal_CustomURL_NotSaved">Tus URLs no serán guardadas cuando dejes esta pantalla. ¿Estás seguro de que quieres dejarla?</string>
-  <string name="Modal_ManualUpload_Title">Enable Manual Upload?</string>
-  <string name="Modal_ManualUpload_Paragraph">This setting allows you to manually re-upload unpublished measurements.</string>
+  <string name="Modal_ManualUpload_Title">¿Habilitar Subida Manual?</string>
+  <string name="Modal_ManualUpload_Paragraph">Esta configuración te permite volver a subir manualmente mediciones no publicadas.</string>
   <string name="Modal_ManualUpload_Enable">Habilitar</string>
   <string name="Modal_ManualUpload_Disable">No, gracias!</string>
   <string name="Toast_CopiedToClipboard">Se copió al portapapeles</string>
@@ -252,7 +252,7 @@
   <string name="Settings_AutomatedTesting_MonthlyWiFiAllowance">Cuota mensual de WiFi</string>
   <string name="Settings_Sharing_Label">Compartir</string>
   <string name="Settings_Sharing_UploadResults">Publicar resultados automáticamente</string>
-  <string name="Settings_Sharing_UploadResultsManually">Manual Result Upload</string>
+  <string name="Settings_Sharing_UploadResultsManually">Subida Manual de Resultado</string>
   <string name="Settings_Sharing_IncludeNetwork">Incluir información de red</string>
   <string name="Settings_Sharing_GPS">Incluir geolocalización aproximada</string>
   <string name="Settings_Sharing_IncludeIP">Incluir mi dirección IP</string>
@@ -285,8 +285,8 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">Selección automática del servidor DASH</string>
   <string name="Settings_Performance_DashServerAddress">Servidor DASH</string>
   <string name="Settings_Performance_DashServerPort">Puerto del servidor DASH</string>
-  <string name="Settings_SendEmail_Label">Send email to support</string>
-  <string name="Settings_SendEmail_Error">No email clients configured on your device</string>
+  <string name="Settings_SendEmail_Label">Enviar correo electrónico al soporte</string>
+  <string name="Settings_SendEmail_Error">No hay clientes de correo electrónico configurados en tu dispositivo</string>
   <string name="Notification_FinishedRunning">Finalizó la ejecución</string>
   <string name="OONIBrowser_TryMirror">Intentar servidor réplica</string>
   <string name="OONIBrowser_Loading">Cargando...</string>
@@ -351,7 +351,7 @@
   <string name="CategoryCode_ANON_Description">Anonimización, elusión de censura y cifrado</string>
   <string name="CategoryCode_DATE_Description">Sitios de citas en línea</string>
   <string name="CategoryCode_GRP_Description">Herramientas y plataformas de redes sociales en línea</string>
-  <string name="CategoryCode_LGBT_Description">LGBTQ+ communities discussing related issues (excluding pornography)</string>
+  <string name="CategoryCode_LGBT_Description">Comunidades LGBTQ+ discutiendo cuestiones relacionadas (excluyendo pornografía)</string>
   <string name="CategoryCode_FILE_Description">Compartición de archivos incluyendo almacenamiento de archivos en la nube, torrentes y P2P</string>
   <string name="CategoryCode_HACK_Description">Herramientas y noticias de seguridad informática</string>
   <string name="CategoryCode_COMT_Description">Herramientas de comunicaciones individuales y grupales, incluyendo VoIP, mensajería y correo electrónico web</string>
