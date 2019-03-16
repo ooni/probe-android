@@ -62,6 +62,11 @@
 		<item name="colorPrimaryDark">@color/color_orange9</item>
 	</style>
 
+	<style name="Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar.Failed">
+		<item name="colorPrimary">@color/color_yellow5</item>
+		<item name="colorPrimaryDark">@color/color_yellow7</item>
+	</style>
+
 	<style name="Theme.MaterialComponents.NoActionBar.App.Websites">
 		<item name="colorPrimary">@color/color_indigo6</item>
 		<item name="colorPrimaryDark">@color/color_indigo9</item>
