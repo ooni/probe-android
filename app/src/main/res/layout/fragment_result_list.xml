@@ -20,12 +20,12 @@
 				android:layout_height="wrap_content"
 				android:layout_marginTop="?attr/actionBarSize"
 				android:layout_marginBottom="16dp"
+				android:baselineAligned="false"
 				android:divider="@drawable/divider"
 				android:dividerPadding="8dp"
 				android:orientation="horizontal"
 				android:showDividers="middle"
-				app:layout_collapseMode="parallax"
-				android:baselineAligned="false">
+				app:layout_collapseMode="parallax">
 
 				<LinearLayout
 					android:layout_width="0dp"
@@ -91,18 +91,18 @@
 							android:orientation="vertical">
 
 							<TextView
-								android:id="@+id/upload"
-								android:layout_width="wrap_content"
-								android:layout_height="wrap_content"
-								android:drawableStart="@drawable/upload_white"
-								android:drawablePadding="4dp"
-								android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-							<TextView
 								android:id="@+id/download"
 								android:layout_width="wrap_content"
 								android:layout_height="wrap_content"
 								android:drawableStart="@drawable/download_white"
+								android:drawablePadding="4dp"
+								android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+							<TextView
+								android:id="@+id/upload"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:drawableStart="@drawable/upload_white"
 								android:drawablePadding="4dp"
 								android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 						</LinearLayout>
@@ -162,6 +162,4 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent" />
 	</LinearLayout>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-	<!-- app:layout_scrollFlags="scroll|exitUntilCollapsed|snap" -->
+</androidx.coordinatorlayout.widget.CoordinatorLayout>	<!-- app:layout_scrollFlags="scroll|exitUntilCollapsed|snap" -->

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -17,6 +18,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +27,7 @@ import localhost.toolkit.app.ConfirmDialogFragment;
 
 public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
 	@BindView(R.id.urlContainer) LinearLayout urlContainer;
+	@BindView(R.id.bottomBar) Toolbar bottomBar;
 	private ArrayList<EditText> editTexts;
 	private ArrayList<ImageButton> deletes;
 
@@ -34,6 +37,23 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
 		ButterKnife.bind(this);
 		editTexts = new ArrayList<>();
 		deletes = new ArrayList<>();
+		bottomBar.inflateMenu(R.menu.run);
+		bottomBar.setOnMenuItemClickListener(item -> {
+			ArrayList<String> urls = new ArrayList<>(editTexts.size());
+			for (EditText editText : editTexts) {
+				String value = editText.getText().toString();
+				if (Patterns.WEB_URL.matcher(value).matches() && value.length() < 2084)
+					urls.add(Url.checkExistingUrl(value).toString());
+			}
+			WebsitesSuite suite = new WebsitesSuite();
+			suite.getTestList(getPreferenceManager())[0].setInputs(urls);
+			Intent intent = RunningActivity.newIntent(CustomWebsiteActivity.this, suite);
+			if (intent != null) {
+				ActivityCompat.startActivity(CustomWebsiteActivity.this, intent, null);
+				finish();
+			}
+			return true;
+		});
 		add();
 	}
 
@@ -46,7 +66,7 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
 				break;
 			}
 		if (edited)
-			ConfirmDialogFragment.newInstance(null, getString(R.string.General_AppName), getString(R.string.Modal_CustomURL_NotSaved)).show(getSupportFragmentManager(), null);
+			ConfirmDialogFragment.newInstance(null, null, getString(R.string.Modal_CustomURL_NotSaved)).show(getSupportFragmentManager(), null);
 		else
 			super.onBackPressed();
 	}
@@ -56,24 +76,8 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
 		return true;
 	}
 
-	@OnClick(R.id.run) void runClick(View v) {
-		ArrayList<String> urls = new ArrayList<>(editTexts.size());
-		for (EditText editText : editTexts) {
-			String value = editText.getText().toString();
-			if (Patterns.WEB_URL.matcher(value).matches())
-				urls.add(Url.checkExistingUrl(value).toString());
-		}
-		WebsitesSuite suite = new WebsitesSuite();
-		suite.getTestList(getPreferenceManager())[0].setInputs(urls);
-		Intent intent = RunningActivity.newIntent(this, suite);
-		if (intent != null) {
-			ActivityCompat.startActivity(this, intent, null /*ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, v.getWidth(), v.getHeight()).toBundle()*/);
-			finish();
-		}
-	}
-
 	@OnClick(R.id.add) void add() {
-		LinearLayout urlBox = (LinearLayout) getLayoutInflater().inflate(R.layout.edittext_url, urlContainer, false);
+		ViewGroup urlBox = (ViewGroup) getLayoutInflater().inflate(R.layout.edittext_url, urlContainer, false);
 		EditText editText = urlBox.findViewById(R.id.editText);
 		editTexts.add(editText);
 		urlContainer.addView(urlBox);
@@ -88,6 +92,7 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
 			setVisibilityDelete();
 		});
 		setVisibilityDelete();
+		bottomBar.setTitle(getString(R.string.OONIRun_URLs, Integer.toString(editTexts.size())));
 	}
 
 	private void setVisibilityDelete() {

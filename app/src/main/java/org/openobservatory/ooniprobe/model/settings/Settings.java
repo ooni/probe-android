@@ -6,16 +6,15 @@ import com.google.gson.annotations.SerializedName;
 
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.MKOrchestraClient;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 public class Settings {
 	@SerializedName("annotations")
-	public final HashMap<String, String> annotations;
+	public final Annotations annotations;
 	@SerializedName("disabled_events")
 	public final List<String> disabled_events;
 	@SerializedName("log_level")
@@ -28,12 +27,24 @@ public class Settings {
 	public String name;
 
 	public Settings(Context c, PreferenceManager pm) {
-		annotations = new HashMap<>();
-		annotations.put("network_type", MKOrchestraClient.getNetworkType(c));
-		annotations.put("flavor", BuildConfig.FLAVOR);
+		annotations = new Annotations(c);
 		disabled_events = Arrays.asList("status.queued", "status.update.websites", "failure.report_close");
 		log_level = pm.isDebugLogs() ? "DEBUG2" : "INFO";
 		options = new Options(c, pm);
+	}
+
+	public static class Annotations {
+		@SerializedName("network_type")
+		public final String network_type;
+		@SerializedName("flavor")
+		public final String flavor;
+		@SerializedName("origin")
+		public String origin;
+
+		public Annotations(Context c) {
+			this.network_type = MKOrchestraClient.getNetworkType(c);
+			this.flavor = BuildConfig.FLAVOR;
+		}
 	}
 
 	public static class Options {

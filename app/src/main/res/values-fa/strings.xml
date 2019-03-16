@@ -89,6 +89,7 @@
   <string name="TestResults_Summary_Hero_WiFi">وای فای</string>
   <string name="TestResults_Summary_Hero_Mobile">داده موبایل</string>
   <string name="TestResults_Summary_Hero_NoInternet">بدون اینترنت</string>
+  <string name="TestResults_Summary_Failed">ناموفق</string>
   <string name="TestResults_Summary_Websites_Hero_Tested_Singular">تست شده</string>
   <string name="TestResults_Summary_Websites_Hero_Tested_Plural">تست شده</string>
   <string name="TestResults_Summary_Websites_Hero_Blocked_Singular">بسته شده</string>
@@ -117,6 +118,9 @@
   <string name="TestResults_Details_ViewLog">نمایش لاگ</string>
   <string name="TestResults_Details_RawData">داده‌‌ها</string>
   <string name="TestResults_Details_CopyToClipboard">به حافظه کوتاه مدت کپی کن</string>
+  <string name="TestResults_Details_Failed_Title">ناموفق</string>
+  <string name="TestResults_Details_Failed_Paragraph">You can try to run this test again</string>
+  <string name="TestResults_Details_Failed_TryAgain">دوباره سعی کنید</string>
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">در دسترس</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s در دسترس است.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">احتمالا مسدود</string>
@@ -195,7 +199,6 @@
   <string name="Modal_Error_CantCloseScreen">این صفحه در زمان اجرای تست قفل است.</string>
   <string name="Modal_ResultsNotUploaded_Title">نتایج بارگذاری نشده‌اند</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">بعضی از نتایج تست‌ها به سرورهای OONI  بارگذاری نشده‌اند. اگر مایل به مشارکت در مجموع داده‌‌های OONI هستید، لطفا آن‌ها را بارگذاری کنید.</string>
-  <string name="Modal_ResultsNotUploaded_Button_Cancel">لغو</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">آپلود</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">اجازه‌ی اعلان را فعال کنید تا تست‌ها به صورت خودکار اجرا شوند.</string>
   <string name="Modal_EnableNotifications_News">اجازه‌ی اعلان را فعال کنید تا اخبار بروز رسانی را دریافت کنید.</string>
@@ -203,11 +206,15 @@
   <string name="Modal_EnableGPS">برای بهبود دقت تست‌ها نیاز به اجازه‌ی GPS داریم. OONi تنها اطلاعات تقریبی مکان GPS شما را جمع‌آوری می‌کند.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">آیا مایلید که تمام آزمایش‌های قبلی را پاک کنید؟</string>
   <string name="Modal_DoYouWantToDeleteThisTest">آیا می‌خواهید این تست را حذف کنید؟</string>
-  <string name="Modal_CantDeactivate">امکان غیرفعالسازی وجود نداشت</string>
+  <string name="Modal_EnableAtLeastOneTest">Please enable at least one test</string>
   <string name="Modal_OnlyDigits">لطفا تنها از اعداد در فیلد استفاده کنید</string>
   <string name="Modal_ReRun_Title">اجرای دوباره تست</string>
   <string name="Modal_ReRun_Paragraph">این تست ناموفق بود. آیا دوباره اجرا شود؟</string>
   <string name="Modal_CustomURL_NotSaved">آدرس‌های شما با ترک این صفحه، ذخیره نخواهند شد. آیا مطمئنید که می‌خواهید این صفحه را ترک کنید؟</string>
+  <string name="Modal_ManualUpload_Title">Enable Manual Upload?</string>
+  <string name="Modal_ManualUpload_Paragraph">This setting allows you to manually re-upload unpublished measurements.</string>
+  <string name="Modal_ManualUpload_Enable">فعال کن</string>
+  <string name="Modal_ManualUpload_Disable">No, thanks</string>
   <string name="Toast_CopiedToClipboard">به حافظه کوتاه مدت کپی شد</string>
   <string name="Snackbar_ResultsNotUploaded_Text">بارگذاری نشدند</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">آپلود</string>
@@ -244,7 +251,8 @@
   <string name="Settings_AutomatedTesting_MonthlyMobileAllowance">خرج ماهانه‌ی موبایل</string>
   <string name="Settings_AutomatedTesting_MonthlyWiFiAllowance">خرج  ماهانه‌ی WiFi</string>
   <string name="Settings_Sharing_Label">به اشتراک گذاری</string>
-  <string name="Settings_Sharing_UploadResults">انتشار نتایج</string>
+  <string name="Settings_Sharing_UploadResults">Automatically Publish Results</string>
+  <string name="Settings_Sharing_UploadResultsManually">Manual Result Upload</string>
   <string name="Settings_Sharing_IncludeNetwork">شامل اطلاعات شبکه باشد</string>
   <string name="Settings_Sharing_GPS">شامل موقعیت جغرافیایی تقریبی باشد</string>
   <string name="Settings_Sharing_IncludeIP">شامل آدرس IP من باشد</string>
@@ -277,6 +285,8 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">انتخاب خودکار سرور DASH</string>
   <string name="Settings_Performance_DashServerAddress">سرور DASH</string>
   <string name="Settings_Performance_DashServerPort">درگاه سرور DASH</string>
+  <string name="Settings_SendEmail_Label">Send email to support</string>
+  <string name="Settings_SendEmail_Error">No email clients configured on your device</string>
   <string name="Notification_FinishedRunning">اجرا به پایان رسید</string>
   <string name="OONIBrowser_TryMirror">سرورهای آینه را امتحان کنید</string>
   <string name="OONIBrowser_Loading">در حال بارگذاری...</string>
@@ -293,7 +303,7 @@
   <string name="OONIRun_InvalidParameter">پارامتر نامعتبر است</string>
   <string name="OONIRun_InvalidParameter_Msg">لینک اجرای OONI یا ناقص است و یا نرم افزار شما قدیمی است.</string>
   <string name="OONIRun_RandomSamplingOfURLs">شما نمونه‌ای تصادفی از وبسایت‌ها را تست خواهید کرد.</string>
-  <string name="OONIRun_TestRunningError">لطفا قبل از اجرای OONI صبر کنید تا اجرای تست پایان یابد.</string>
+  <string name="OONIRun_TestRunningError">Please wait for the test to finish running before tapping on an OONI Run link.</string>
   <string name="CategoryCode_ALDR_Name">الکل و مواد مخدر</string>
   <string name="CategoryCode_REL_Name">دین</string>
   <string name="CategoryCode_PORN_Name">پورنوگرافی</string>
@@ -310,7 +320,7 @@
   <string name="CategoryCode_ANON_Name">ابزارهای دور زدن</string>
   <string name="CategoryCode_DATE_Name">دوستیابی آنلاین</string>
   <string name="CategoryCode_GRP_Name">شبکه اجتماعی</string>
-  <string name="CategoryCode_LGBT_Name">دگرباشی</string>
+  <string name="CategoryCode_LGBT_Name">LGBTQ+</string>
   <string name="CategoryCode_FILE_Name">اشتراک فایل</string>
   <string name="CategoryCode_HACK_Name">ابزارهای هک</string>
   <string name="CategoryCode_COMT_Name">ابزارهای ارتباطی</string>
@@ -341,7 +351,7 @@
   <string name="CategoryCode_ANON_Description">گمنام‌سازی، دور زدن سانسور و رمزگذاری</string>
   <string name="CategoryCode_DATE_Description">سایت‌‌های دوستیابی آنلاین</string>
   <string name="CategoryCode_GRP_Description">ابزارها و پلتفرم‌های شبکه‌های اجتماعی آنلاین</string>
-  <string name="CategoryCode_LGBT_Description">مسائل مربوط به جامعه‌ی دگرباشی (به غیر از پورنوگرافی)</string>
+  <string name="CategoryCode_LGBT_Description">LGBTQ+ communities discussing related issues (excluding pornography)</string>
   <string name="CategoryCode_FILE_Description">اشتراک فایل شامل ذخیره‌‌ی ابری فایل، تورنت و P2P</string>
   <string name="CategoryCode_HACK_Description">ابزارها و اخبار امنیت رایانه</string>
   <string name="CategoryCode_COMT_Description">ابزارهای ارتباط فردی و جمعی شامل VoIP، پیام‌رسانی و ایمیل</string>

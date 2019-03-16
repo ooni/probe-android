@@ -28,7 +28,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">Ländercode (z. B. DE für Deutschland)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">Netzwerkinformationen (einschließlich der Autonomous System Number, ASN)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">Zeit &amp; Datum des Tests</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">Wir geben unser Bestes, deine IP-Adresse oder andere möglicherweise personenbezogene Daten nicht zu veröffentlichen.\n\nWeitere Informationen findest du in [OONI\'s Datenrichtlinie] (https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">Wir geben unser Bestes, deine IP-Adresse oder andere möglicherweise personenbezogene Daten nicht zu veröffentlichen.\n\nWeitere Informationen findest du in [OONI\'s Datenrichtlinie](https://ooni.io/about/data-policy/).</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Auf geht\'s</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Defaults ändern</string>
   <string name="Dashboard_Tab_Label">Übersicht</string>
@@ -47,7 +47,7 @@
   <string name="Dashboard_Websites_Card_Description">Teste die Blockierung von Webseiten</string>
   <string name="Dashboard_Websites_Overview_Paragraph">Überprüfe mit Hilfe des [Web-Connectivity-Tests](https://ooni.io/nettest/web-connectivity/) von OONI, ob Webseiten blockiert werden\n\nJedes Mal, wenn du „Ausführen“ auswählst, testest du verschiedene Webseiten von Citizen Labs\' [globalen](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) und [länderspezifischen](https://github.com/citizenlab/test-lists/tree/master/lists) Testlisten.\n\nUm Webseiten deiner Wahl zu testen, tippe auf die \"Webseiten\"-Schaltfläche oder wähle Kategorien von Webseiten üausführenber die Einstellungen dieser Karte.\n\nDieser Test misst, ob Webseiten durch DNS-Manipulation, TCP/IP-Blockierung oder einen transparenten HTTP-Proxy blockiert werden.\n\nDeine Ergebnisse werden auf dem [OONI Explorer](https://explorer.ooni.io/world/) und der [OONI API](https://api.ooni.io/) veröffentlicht.</string>
   <string name="Dashboard_Performance_Card_Description">Teste die Geschwindigkeit und Performance deines Netzwerks</string>
-  <string name="Dashboard_Performance_Overview_Paragraph">Messe die Geschwindigkeit und Leistung deines Netzwerks mit dem [NDT] (https://ooni.io/nettest/ndt/) Test.\n\nMesse Video-Streaming Perfomance mit dem [DASH] (https://ooni.io/nettest/dash/) Test.\n\nDiese Tests verbrauchen Datenvolumen basierend auf deiner Netzwerkgeschwindigkeit.\n\nDeine Ergebnisse werden auf dem [OONI Explorer] (https://explorer.ooni.io/world/) und der [OONI API] (https://api.ooni.io/) veröffentlicht.\n\nHaftungsausschluss: Diese Tests basieren auf Servern von Drittanbietern. Wir können daher nicht garantieren, dass deine IP-Adresse nicht erfasst wird.</string>
+  <string name="Dashboard_Performance_Overview_Paragraph">Messe die Geschwindigkeit und Leistung deines Netzwerks mit dem [NDT](https://ooni.io/nettest/ndt/) Test.\n\nMesse Video-Streaming Perfomance mit dem [DASH](https://ooni.io/nettest/dash/) Test.\n\nDiese Tests verbrauchen Datenvolumen basierend auf deiner Netzwerkgeschwindigkeit.\n\nDeine Ergebnisse werden auf dem [OONI Explorer](https://explorer.ooni.io/world/) und der [OONI API](https://api.ooni.io/) veröffentlicht.\n\nHaftungsausschluss: Diese Tests basieren auf Servern von Drittanbietern. Wir können daher nicht garantieren, dass deine IP-Adresse nicht erfasst wird.</string>
   <string name="Dashboard_Middleboxes_Card_Description">Entdecke Middleboxen in deinem Netzwerk</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">Internetanbieter nutzen oft Netwerkgeräte (Middleboxen) für verschiedene Anwendungen (z. B. Caching). Manchmal werden diese aber auch für Internetzensur und/oder Überwachung eingesetzt.\n\nDu kannst Middleboxes in deinem Netzwerk mit OONIs [HTTP Invalid Request Line](https://ooni.io/nettest/http-invalid-request-line/) und [HTTP Header Field Manipulation](https://ooni.io/nettest/http-header-field-manipulation/) Tests finden.\n\nDeine Ergebnisse werden auf [OONI Explorer](https://explorer.ooni.io/world/) und [OONI API](https://api.ooni.io/) veröffentlicht.</string>
   <string name="Dashboard_InstantMessaging_Card_Description">Teste das Blockieren von Instant Messaging-Apps</string>
@@ -89,6 +89,7 @@
   <string name="TestResults_Summary_Hero_WiFi">WLAN</string>
   <string name="TestResults_Summary_Hero_Mobile">Mobile Daten</string>
   <string name="TestResults_Summary_Hero_NoInternet">Kein Internet</string>
+  <string name="TestResults_Summary_Failed">Fehlgeschlagen</string>
   <string name="TestResults_Summary_Websites_Hero_Tested_Singular">Getestet</string>
   <string name="TestResults_Summary_Websites_Hero_Tested_Plural">Getestet</string>
   <string name="TestResults_Summary_Websites_Hero_Blocked_Singular">Gesperrt</string>
@@ -117,6 +118,9 @@
   <string name="TestResults_Details_ViewLog">Log ansehen</string>
   <string name="TestResults_Details_RawData">Daten</string>
   <string name="TestResults_Details_CopyToClipboard">In die Zwischenablage kopieren</string>
+  <string name="TestResults_Details_Failed_Title">Fehlgeschlagen</string>
+  <string name="TestResults_Details_Failed_Paragraph">You can try to run this test again</string>
+  <string name="TestResults_Details_Failed_TryAgain">Noch einmal versuchen</string>
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Zugänglich</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s ist zugänglich.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Wahrscheinlich blockiert</string>
@@ -195,7 +199,6 @@
   <string name="Modal_Error_CantCloseScreen">Dieser Bildschirm ist gesperrt, während ein Test ausgeführt wird.</string>
   <string name="Modal_ResultsNotUploaded_Title">Ergebnisse nicht hochgeladen</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">Manche deiner Testergebnisse wurden nicht auf OONI-Server hochgeladen. Wenn du zu OONIs Datensatz beitragen möchtest, lade sie bitte hoch.</string>
-  <string name="Modal_ResultsNotUploaded_Button_Cancel">Abbrechen</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Hochladen</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Erlaube Benachrichtigungen um diese Tests automatisch auszuführen.</string>
   <string name="Modal_EnableNotifications_News">Erlaube Benachrichtigungen um Neuigkeiten automatisch zu erhalten.</string>
@@ -203,11 +206,15 @@
   <string name="Modal_EnableGPS">Um die Genauigkeit von Tests zu verbessern brauchen wir Berechtigung für GPS. OONI wird nur eine ungefähre Position aufnehmen.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Möchtest du alle Testergebnisse löschen?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Möchtest du diesen Test löschen?</string>
-  <string name="Modal_CantDeactivate">Kann nicht deaktiviert werden</string>
+  <string name="Modal_EnableAtLeastOneTest">Bitte aktiviere mindestens einen Test</string>
   <string name="Modal_OnlyDigits">Bitte gib nur Ziffern in dieses Feld ein.</string>
   <string name="Modal_ReRun_Title">Wiederhole Test</string>
   <string name="Modal_ReRun_Paragraph">Dieser Test ist fehlgeschlagen. Erneut ausführen?</string>
   <string name="Modal_CustomURL_NotSaved">Deine URLs werden nicht gespeichert, wenn du diesen Bildschirm verlässt. Möchtest du diesen Bildschirm wirklich verlassen?</string>
+  <string name="Modal_ManualUpload_Title">Enable Manual Upload?</string>
+  <string name="Modal_ManualUpload_Paragraph">This setting allows you to manually re-upload unpublished measurements.</string>
+  <string name="Modal_ManualUpload_Enable">Aktivieren</string>
+  <string name="Modal_ManualUpload_Disable">Nein, danke</string>
   <string name="Toast_CopiedToClipboard">In die Zwischenablage kopiert</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Nicht hochgeladen</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Hochladen</string>
@@ -244,7 +251,8 @@
   <string name="Settings_AutomatedTesting_MonthlyMobileAllowance">Monatliches mobiles Datenvolumen</string>
   <string name="Settings_AutomatedTesting_MonthlyWiFiAllowance">Monatliches WLAN Datenvolumen</string>
   <string name="Settings_Sharing_Label">Beteiligung</string>
-  <string name="Settings_Sharing_UploadResults">Ergebnisse veröffentlichen</string>
+  <string name="Settings_Sharing_UploadResults">Ergebnisse automatisch veröffentlichen</string>
+  <string name="Settings_Sharing_UploadResultsManually">Manueller Ergebnis-Upload</string>
   <string name="Settings_Sharing_IncludeNetwork">Netzwerkinformationen einbeziehen</string>
   <string name="Settings_Sharing_GPS">Ungefähren Standort einbeziehen</string>
   <string name="Settings_Sharing_IncludeIP">IP-Addresse einbeziehen</string>
@@ -277,6 +285,8 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">Automatische DASH Serverauswahl</string>
   <string name="Settings_Performance_DashServerAddress">DASH-Server</string>
   <string name="Settings_Performance_DashServerPort">DASH-Serverport</string>
+  <string name="Settings_SendEmail_Label">E-Mail an den Support senden</string>
+  <string name="Settings_SendEmail_Error">Auf Ihrem Gerät sind keine E-Mail-Clients konfiguriert</string>
   <string name="Notification_FinishedRunning">Vollständig ausgeführt</string>
   <string name="OONIBrowser_TryMirror">Versuche Mirror</string>
   <string name="OONIBrowser_Loading">Lade...</string>
@@ -293,7 +303,7 @@
   <string name="OONIRun_InvalidParameter">Ungültiger Parameter</string>
   <string name="OONIRun_InvalidParameter_Msg">Der OONI Run-Link ist entweder fehlerhaft oder deine App ist veraltet.</string>
   <string name="OONIRun_RandomSamplingOfURLs">Du wirst eine zufällige Auswahl von Webseiten testen.</string>
-  <string name="OONIRun_TestRunningError">Bitte warte, bis der Test abgeschlossen ist, bevor du OONI Run öffnest.\n</string>
+  <string name="OONIRun_TestRunningError">Bitte warten Sie, bis der Test beendet ist, bevor Sie auf einen OONI Run-Link tippen.</string>
   <string name="CategoryCode_ALDR_Name">Drogen &amp; Alkohol</string>
   <string name="CategoryCode_REL_Name">Religion</string>
   <string name="CategoryCode_PORN_Name">Pornografie</string>
@@ -310,7 +320,7 @@
   <string name="CategoryCode_ANON_Name">Umgehungswerkzeuge</string>
   <string name="CategoryCode_DATE_Name">Online-Dating</string>
   <string name="CategoryCode_GRP_Name">Soziale Netzwerke</string>
-  <string name="CategoryCode_LGBT_Name">LGBT</string>
+  <string name="CategoryCode_LGBT_Name">LGBTQ+</string>
   <string name="CategoryCode_FILE_Name">Datenaustausch</string>
   <string name="CategoryCode_HACK_Name">Hacking-Werkzeuge</string>
   <string name="CategoryCode_COMT_Name">Kommunikations-Werkzeuge</string>
@@ -341,7 +351,7 @@
   <string name="CategoryCode_ANON_Description">Anonymisierung, Zensurumgehung und Verschlüsselung</string>
   <string name="CategoryCode_DATE_Description">Online-Dating-Seiten</string>
   <string name="CategoryCode_GRP_Description">Online-Tools für soziale Netzwerke und Plattformen</string>
-  <string name="CategoryCode_LGBT_Description">Gemeinschaften um LGBTQI, welche thematisch verwandte Themen (außer Pornografie) diskutieren</string>
+  <string name="CategoryCode_LGBT_Description">LGBTQ+ Communities, die verwandte Themen diskutieren (außer Pornografie).</string>
   <string name="CategoryCode_FILE_Description">Datentausch inklusive Cloud-basierter Dateispeicherung, Torrents und P2P</string>
   <string name="CategoryCode_HACK_Description">Tools und Neuigkeiten im Bezug auf Computersicherheit </string>
   <string name="CategoryCode_COMT_Description">Kommunikationswerkzeuge für Einzelpersonen und Gruppen, inklusive VoIP, Messaging und Webmail</string>

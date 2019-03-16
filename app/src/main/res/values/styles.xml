@@ -107,4 +107,8 @@
 		<item name="colorAccent">@color/color_white</item>
 		<item name="colorControlHighlight">@color/ripple_material_light</item>
 	</style>
+
+	<style name="TextAppearance.Widget.AppCompat.Toolbar.Title.App">
+		<item name="android:textSize">12sp</item>
+	</style>
 </resources>

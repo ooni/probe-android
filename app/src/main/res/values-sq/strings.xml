@@ -89,6 +89,7 @@
   <string name="TestResults_Summary_Hero_WiFi">WiFi</string>
   <string name="TestResults_Summary_Hero_Mobile">Të dhëna celulare</string>
   <string name="TestResults_Summary_Hero_NoInternet">S\'ka internet</string>
+  <string name="TestResults_Summary_Failed">Dështoi</string>
   <string name="TestResults_Summary_Websites_Hero_Tested_Singular">Testuar</string>
   <string name="TestResults_Summary_Websites_Hero_Tested_Plural">Testuar</string>
   <string name="TestResults_Summary_Websites_Hero_Blocked_Singular">Bllokuar</string>
@@ -117,6 +118,9 @@
   <string name="TestResults_Details_ViewLog">Shiko detajet</string>
   <string name="TestResults_Details_RawData">Të dhëna</string>
   <string name="TestResults_Details_CopyToClipboard">Kopjo</string>
+  <string name="TestResults_Details_Failed_Title">Dështoi</string>
+  <string name="TestResults_Details_Failed_Paragraph">You can try to run this test again</string>
+  <string name="TestResults_Details_Failed_TryAgain">Riprovoni</string>
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Aksesueshëm</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s është i aksesueshëm</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Mundësisht i bllokuar</string>
@@ -195,7 +199,6 @@
   <string name="Modal_Error_CantCloseScreen">Ky ekran është i kyçur ndërkohë që po kryhet testimi.</string>
   <string name="Modal_ResultsNotUploaded_Title">Rezultatet nuk u ngarkuan</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">Disa nga testimet e tua nuk janë të ngarkuara tek serverat e OONI. Nëse dëshiron të kontribuosh tek baza e të dhënave te OONI, ju lutem ngarkojini ato.\n</string>
-  <string name="Modal_ResultsNotUploaded_Button_Cancel">Anulo</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Ngarkoni</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Aktivizo të drejtat e njoftimeve që të kryesh testime automatikisht.</string>
   <string name="Modal_EnableNotifications_News">Aktivizo të drejtat e njoftimeve që të marrësh lajme të reja.</string>
@@ -203,11 +206,15 @@
   <string name="Modal_EnableGPS">Që të përmirësuar saktësinë e testimeve, na duhen të drejta tek GPS. OONI do të ruaj pozicionin tend të GPS vetëm me përafërsi.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Doni që të fshihen të gjitha rezultatet e testimeve?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Doni të fshini këtë testim?</string>
-  <string name="Modal_CantDeactivate">Nuk mund të çaktivizohet</string>
+  <string name="Modal_EnableAtLeastOneTest">Please enable at least one test</string>
   <string name="Modal_OnlyDigits">Ju lutem vendosni vetëm shifra në këtë fushë.</string>
   <string name="Modal_ReRun_Title">Kryej testimin përsëri</string>
   <string name="Modal_ReRun_Paragraph">Ky testim dështoi. Doni t\'a kryeni përsëri?</string>
   <string name="Modal_CustomURL_NotSaved">URL-të nuk do ruhen pasi të largoheni nga ky ekran. Jeni të sigurt që doni të largoheni nga ky ekran?</string>
+  <string name="Modal_ManualUpload_Title">Enable Manual Upload?</string>
+  <string name="Modal_ManualUpload_Paragraph">This setting allows you to manually re-upload unpublished measurements.</string>
+  <string name="Modal_ManualUpload_Enable">Aktivizoje</string>
+  <string name="Modal_ManualUpload_Disable">No, thanks</string>
   <string name="Toast_CopiedToClipboard">U kopjua</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Nuk është ngarkuar</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Ngarkoni</string>
@@ -244,7 +251,8 @@
   <string name="Settings_AutomatedTesting_MonthlyMobileAllowance">Lejim mujor në celular</string>
   <string name="Settings_AutomatedTesting_MonthlyWiFiAllowance">Lejim mujor WiFi</string>
   <string name="Settings_Sharing_Label">Ndajë</string>
-  <string name="Settings_Sharing_UploadResults">Publiko rezultatet</string>
+  <string name="Settings_Sharing_UploadResults">Automatically Publish Results</string>
+  <string name="Settings_Sharing_UploadResultsManually">Manual Result Upload</string>
   <string name="Settings_Sharing_IncludeNetwork">Përfshi informacion të rrjetit</string>
   <string name="Settings_Sharing_GPS">Përfshi gjelokacionin me përafërsi</string>
   <string name="Settings_Sharing_IncludeIP">Përfshi adresën time IP</string>
@@ -277,6 +285,8 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">Përzgjedhje automatike e serverit DASH</string>
   <string name="Settings_Performance_DashServerAddress">Serveri DASH</string>
   <string name="Settings_Performance_DashServerPort">Porta e serverit NDT</string>
+  <string name="Settings_SendEmail_Label">Send email to support</string>
+  <string name="Settings_SendEmail_Error">No email clients configured on your device</string>
   <string name="Notification_FinishedRunning">Mbaroi së ekzekutuari</string>
   <string name="OONIBrowser_TryMirror">Përvo mirror</string>
   <string name="OONIBrowser_Loading">Duke u ngarkuar</string>
@@ -293,7 +303,7 @@
   <string name="OONIRun_InvalidParameter">Parametër i pavlefshëm</string>
   <string name="OONIRun_InvalidParameter_Msg">Ndërlidhja e OONI Run ose është i gabuar ose aplikacioni juaj nuk është përditësuar.</string>
   <string name="OONIRun_RandomSamplingOfURLs">Ju do të testoni një mostër të rastësishme faqesh.</string>
-  <string name="OONIRun_TestRunningError">Ju lutem prisni sa të mbarojë testimi përpara se të hapni OONI Run.</string>
+  <string name="OONIRun_TestRunningError">Please wait for the test to finish running before tapping on an OONI Run link.</string>
   <string name="CategoryCode_ALDR_Name">Drogë &amp; alkool</string>
   <string name="CategoryCode_REL_Name">Fe</string>
   <string name="CategoryCode_PORN_Name">Fotografi</string>
@@ -310,7 +320,7 @@
   <string name="CategoryCode_ANON_Name">Mjete mashtimi</string>
   <string name="CategoryCode_DATE_Name">Lidhje në internet</string>
   <string name="CategoryCode_GRP_Name">Lidhje sociale</string>
-  <string name="CategoryCode_LGBT_Name">LGBT</string>
+  <string name="CategoryCode_LGBT_Name">LGBTQ+</string>
   <string name="CategoryCode_FILE_Name">Ndarje skedarësh</string>
   <string name="CategoryCode_HACK_Name">Mjete për hakim</string>
   <string name="CategoryCode_COMT_Name">Mjete komunikimi</string>
@@ -341,7 +351,7 @@
   <string name="CategoryCode_ANON_Description">Anonimitet, shkelje të censurimit dhe enkriptim</string>
   <string name="CategoryCode_DATE_Description">Faqe lidhjesh në internet</string>
   <string name="CategoryCode_GRP_Description">Platforma dhe mjete lidhjesh sociale në internet</string>
-  <string name="CategoryCode_LGBT_Description">Komunitete rreth LGBTQI që diskutojnë çështje të tilla (përjashtohet pornografia)</string>
+  <string name="CategoryCode_LGBT_Description">LGBTQ+ communities discussing related issues (excluding pornography)</string>
   <string name="CategoryCode_FILE_Description">Ndarje skedarësh përfshirë ruajtje skedarësh të bazuara në shërbimin cloud, torrente dhe P2P</string>
   <string name="CategoryCode_HACK_Description">Mjete sigurie për kompjutera dhe lajme</string>
   <string name="CategoryCode_COMT_Description">Mjete komunikime individuale ose në grup duke përfshirë thirrje zanore, mesazhe dhe postë elektronike</string>
