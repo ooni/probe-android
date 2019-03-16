@@ -119,7 +119,7 @@
   <string name="TestResults_Details_RawData">Dados</string>
   <string name="TestResults_Details_CopyToClipboard">Copiar para área de transferência</string>
   <string name="TestResults_Details_Failed_Title">Falhou</string>
-  <string name="TestResults_Details_Failed_Paragraph">You can try to run this test again</string>
+  <string name="TestResults_Details_Failed_Paragraph">Você pode tentar executar este teste novamente</string>
   <string name="TestResults_Details_Failed_TryAgain">Tentar Novamente</string>
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Acessível</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s está acessível.</string>
@@ -212,8 +212,8 @@
   <string name="Modal_ReRun_Title">Repetir o teste</string>
   <string name="Modal_ReRun_Paragraph">Este teste falhou. Você deseja fazer um outro teste?</string>
   <string name="Modal_CustomURL_NotSaved">Suas URLs não serão salvas quando você sair desta tela. Tem certeza de que deseja sair desta tela?</string>
-  <string name="Modal_ManualUpload_Title">Enable Manual Upload?</string>
-  <string name="Modal_ManualUpload_Paragraph">This setting allows you to manually re-upload unpublished measurements.</string>
+  <string name="Modal_ManualUpload_Title">Ativar carregamento manual?</string>
+  <string name="Modal_ManualUpload_Paragraph">Essa configuração permite que você carregue manualmente as medidas não publicadas.</string>
   <string name="Modal_ManualUpload_Enable">Ativar</string>
   <string name="Modal_ManualUpload_Disable">Não, obrigado</string>
   <string name="Toast_CopiedToClipboard">Copiado na área de transferência</string>
