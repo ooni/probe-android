@@ -62,26 +62,9 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 			}
 		}
 		findPreference(getString(R.string.send_email)).setOnPreferenceClickListener(preference -> {
-			String text = "\nBOARD: " + Build.BOARD +
-					"\nBOOTLOADER: " + Build.BOOTLOADER +
-					"\nBRAND: " + Build.BRAND +
-					"\nDEVICE: " + Build.DEVICE +
-					"\nDISPLAY: " + Build.DISPLAY +
-					"\nFINGERPRINT: " + Build.FINGERPRINT +
-					"\nHARDWARE: " + Build.HARDWARE +
-					"\nHOST: " + Build.HOST +
-					"\nID: " + Build.ID +
-					"\nMANUFACTURER: " + Build.MANUFACTURER +
-					"\nMODEL: " + Build.MODEL +
-					"\nPRODUCT: " + Build.PRODUCT +
-					"\nTAGS: " + Build.TAGS +
-					"\nTIME: " + Build.TIME +
-					"\nTYPE: " + Build.TYPE +
-					"\nUSER: " + Build.USER +
-					"\nRADIO_VERSION: " + Build.getRadioVersion();
 			Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse(getString(R.string.shareEmailTo)));
 			emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.shareSubject, BuildConfig.VERSION_NAME));
-			emailIntent.putExtra(Intent.EXTRA_TEXT, text);
+			emailIntent.putExtra(Intent.EXTRA_TEXT, "\nMANUFACTURER: " + Build.MANUFACTURER + "\nMODEL: " + Build.MODEL + "\nBOARD: " + Build.BOARD + "\nTIME: " + Build.TIME);
 			try {
 				startActivity(Intent.createChooser(emailIntent, getString(R.string.Settings_SendEmail_Label)));
 			} catch (Exception e) {
