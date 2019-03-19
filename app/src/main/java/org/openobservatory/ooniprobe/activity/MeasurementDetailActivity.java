@@ -60,7 +60,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
 		measurement = SQLite.select().from(Measurement.class).where(Measurement_Table.id.eq(getIntent().getIntExtra(ID, 0))).querySingle();
 		assert measurement != null;
 		measurement.result.load();
-		setTheme(measurement.result.test_group_name.equals(PerformanceSuite.NAME) ? measurement.result.getTestSuite().getThemeLight() : measurement.is_failed ? R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Failed : measurement.is_anomaly ? R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Failure : R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Success);
+		setTheme(measurement.is_failed ? R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Failed : measurement.result.test_group_name.equals(PerformanceSuite.NAME) ? measurement.result.getTestSuite().getThemeLight() : measurement.is_anomaly ? R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Failure : R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Success);
 		setContentView(R.layout.activity_measurement_detail);
 		ButterKnife.bind(this);
 		setSupportActionBar(toolbar);

@@ -74,7 +74,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 		ArrayList<HeterogeneousRecyclerItem> items = new ArrayList<>();
 		boolean isPerf = result.test_group_name.equals(PerformanceSuite.NAME);
 		for (Measurement measurement : result.getMeasurements())
-			items.add(isPerf ? new MeasurementPerfItem(measurement, this) : new MeasurementItem(measurement, this));
+			items.add(isPerf && !measurement.is_failed ? new MeasurementPerfItem(measurement, this) : new MeasurementItem(measurement, this));
 		recycler.setAdapter(new HeterogeneousRecyclerAdapter<>(this, items));
 		result.is_viewed = true;
 		result.save();

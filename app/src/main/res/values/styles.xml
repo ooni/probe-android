@@ -63,8 +63,8 @@
 	</style>
 
 	<style name="Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar.Failed">
-		<item name="colorPrimary">@color/color_yellow5</item>
-		<item name="colorPrimaryDark">@color/color_yellow7</item>
+		<item name="colorPrimary">@color/color_gray7</item>
+		<item name="colorPrimaryDark">@color/color_gray9</item>
 	</style>
 
 	<style name="Theme.MaterialComponents.NoActionBar.App.Websites">
