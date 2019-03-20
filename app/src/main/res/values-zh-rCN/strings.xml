@@ -204,7 +204,6 @@
   <string name="Modal_EnableNotifications_News">启用通知权限以接收资讯更新。</string>
   <string name="Modal_EnableNotifications_Any">启用通知权限以接收推送通知。</string>
   <string name="Modal_EnableGPS">为提高测试的准确性，我们需要 GPS 权限。 OONI 只会收集大致的 GPS 位置。</string>
-  <string name="Modal_OldTestsDetected">旧的结果将被删除。别担心，您可以在 OONI Explorer 和 OONI API 中找到它们。</string>
   <string name="Modal_DoYouWantToDeleteAllTests">您要删除所有测试结果吗？</string>
   <string name="Modal_DoYouWantToDeleteThisTest">确认删除此测试？</string>
   <string name="Modal_EnableAtLeastOneTest">请启用至少一个测试</string>

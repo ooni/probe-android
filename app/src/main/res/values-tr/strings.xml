@@ -204,7 +204,6 @@
   <string name="Modal_EnableNotifications_News">Yeni güncellemelere dair haber alınması için bildirim izinleri verilsin.</string>
   <string name="Modal_EnableNotifications_Any">Anlık iletilerin alınması için bildirim izinleri verilsin.</string>
   <string name="Modal_EnableGPS">Sınamaların ayrıntısını arttırmak için GPS izinlerine gerek duyulur. OONI yalnızca yaklaşık GPS konumunuzu kullanır.</string>
-  <string name="Modal_OldTestsDetected">Eski sonuçlar silinecek. Endişelenmeyin bu sonuçları her zaman OONI Explorer ve OONI API üzerinde bulabilirsiniz.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Tüm sınama sonuçlarını silmek ister misiniz?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Bu sınamayı silmek ister misiniz?</string>
   <string name="Modal_EnableAtLeastOneTest">Please enable at least one test</string>

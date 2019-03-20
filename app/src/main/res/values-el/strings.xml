@@ -204,7 +204,6 @@
   <string name="Modal_EnableNotifications_News">Ενεργοποίησε την άδεια ειδοποιήσεων για να λαμβάνεις ενημερώσεις.</string>
   <string name="Modal_EnableNotifications_Any">Ενεργοποίησε την άδεια ειδοποιήσεων για να λαμβάνεις ειδοποιήσεις push.</string>
   <string name="Modal_EnableGPS">Για να βελτιώσουμε την ακρίβεια των δοκιμών, χρειαζόμαστε δικαιώματα GPS. Το OONI συλλέγει τη θέση σου (GPS) μόνο κατά προσέγγιση.</string>
-  <string name="Modal_OldTestsDetected">Τα παλιά αποτελέσματα θα διαγραφούν. Μην ανησυχείς, μπορείς να τα βρεις στο OONI Explorer και στο OONI API.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Θέλεις να διαγράψεις όλα τα αποτελέσματα των δοκιμών σου;</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Θέλεις να διαγράψεις αυτή τη δοκιμή;</string>
   <string name="Modal_EnableAtLeastOneTest">Ενεργοποίησε τουλάχιστον μία δοκιμή</string>

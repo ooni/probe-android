@@ -119,7 +119,7 @@
   <string name="TestResults_Details_RawData">Daten</string>
   <string name="TestResults_Details_CopyToClipboard">In die Zwischenablage kopieren</string>
   <string name="TestResults_Details_Failed_Title">Fehlgeschlagen</string>
-  <string name="TestResults_Details_Failed_Paragraph">You can try to run this test again</string>
+  <string name="TestResults_Details_Failed_Paragraph">Du kannst versuchen, diesen Test erneut auszuführen</string>
   <string name="TestResults_Details_Failed_TryAgain">Noch einmal versuchen</string>
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Zugänglich</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s ist zugänglich.</string>
@@ -204,7 +204,6 @@
   <string name="Modal_EnableNotifications_News">Erlaube Benachrichtigungen um Neuigkeiten automatisch zu erhalten.</string>
   <string name="Modal_EnableNotifications_Any">Erlaube Benachrichtigungen um Push-Benachrichtigungen zu erhalten.</string>
   <string name="Modal_EnableGPS">Um die Genauigkeit von Tests zu verbessern brauchen wir Berechtigung für GPS. OONI wird nur eine ungefähre Position aufnehmen.</string>
-  <string name="Modal_OldTestsDetected">Alte Ergebnisse werden gelöscht. Keine Sorge, du kannst diese jederzeit im OONI Explorer und der OONI API finden.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Möchtest du alle Testergebnisse löschen?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Möchtest du diesen Test löschen?</string>
   <string name="Modal_EnableAtLeastOneTest">Bitte aktiviere mindestens einen Test</string>
@@ -212,8 +211,8 @@
   <string name="Modal_ReRun_Title">Wiederhole Test</string>
   <string name="Modal_ReRun_Paragraph">Dieser Test ist fehlgeschlagen. Erneut ausführen?</string>
   <string name="Modal_CustomURL_NotSaved">Deine URLs werden nicht gespeichert, wenn du diesen Bildschirm verlässt. Möchtest du diesen Bildschirm wirklich verlassen?</string>
-  <string name="Modal_ManualUpload_Title">Enable Manual Upload?</string>
-  <string name="Modal_ManualUpload_Paragraph">This setting allows you to manually re-upload unpublished measurements.</string>
+  <string name="Modal_ManualUpload_Title">Manuellen Upload aktivieren?</string>
+  <string name="Modal_ManualUpload_Paragraph">Mit dieser Einstellung kannst du unveröffentlichte Messungen manuell erneut hochladen.</string>
   <string name="Modal_ManualUpload_Enable">Aktivieren</string>
   <string name="Modal_ManualUpload_Disable">Nein, danke</string>
   <string name="Toast_CopiedToClipboard">In die Zwischenablage kopiert</string>
