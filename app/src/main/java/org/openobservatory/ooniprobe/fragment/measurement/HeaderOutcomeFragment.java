@@ -16,14 +16,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class HeaderOutcomeFragment extends Fragment {
+	public static final String ICON_RES = "iconRes";
 	private static final String DESC = "desc";
-	private static final String SUCCESS = "success";
 	@BindView(R.id.outcome) TextView outcome;
 
-	public static HeaderOutcomeFragment newInstance(Boolean success, String desc) {
+	public static HeaderOutcomeFragment newInstance(Integer iconRes, String desc) {
 		Bundle args = new Bundle();
-		if (success != null)
-			args.putBoolean(SUCCESS, success);
+		if (iconRes != null)
+			args.putInt(ICON_RES, iconRes);
 		args.putString(DESC, desc);
 		HeaderOutcomeFragment fragment = new HeaderOutcomeFragment();
 		fragment.setArguments(args);
@@ -35,8 +35,8 @@ public class HeaderOutcomeFragment extends Fragment {
 		View v = inflater.inflate(R.layout.fragment_measurement_header_outcome, container, false);
 		ButterKnife.bind(this, v);
 		outcome.setText(Html.fromHtml(getArguments().getString(DESC)));
-		if (getArguments().containsKey(SUCCESS))
-			outcome.setCompoundDrawablesRelativeWithIntrinsicBounds(0, getArguments().getBoolean(SUCCESS) ? R.drawable.tick_white_48dp : R.drawable.exclamation_white_48dp, 0, 0);
+		if (getArguments().containsKey(ICON_RES))
+			outcome.setCompoundDrawablesRelativeWithIntrinsicBounds(0, getArguments().getInt(ICON_RES), 0, 0);
 		return v;
 	}
 }

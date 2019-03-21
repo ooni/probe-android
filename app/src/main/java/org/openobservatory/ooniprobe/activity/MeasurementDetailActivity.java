@@ -72,25 +72,25 @@ public class MeasurementDetailActivity extends AbstractActivity {
 		Fragment detail = null;
 		Fragment head = null;
 		if (measurement.is_failed) {
-			head = HeaderOutcomeFragment.newInstance(null, getString(R.string.bold, getString(R.string.outcomeHeader, getString(R.string.TestResults_Details_Failed_Title), getString(R.string.TestResults_Details_Failed_Paragraph))));
+			head = HeaderOutcomeFragment.newInstance(R.drawable.error_48dp, getString(R.string.bold, getString(R.string.outcomeHeader, getString(R.string.TestResults_Details_Failed_Title), getString(R.string.TestResults_Details_Failed_Paragraph))));
 			detail = FailedFragment.newInstance(measurement);
 		} else {
-			boolean anomaly = measurement.is_anomaly;
+			int iconRes = measurement.is_anomaly ? R.drawable.exclamation_white_48dp : R.drawable.tick_white_48dp;
 			switch (measurement.test_name) {
 				case Dash.NAME:
 					head = HeaderOutcomeFragment.newInstance(null, getString(R.string.outcomeHeader, getString(measurement.getTestKeys().getVideoQuality(true)), getString(R.string.TestResults_Details_Performance_Dash_VideoWithoutBuffering, getString(measurement.getTestKeys().getVideoQuality(false)))));
 					detail = DashFragment.newInstance(measurement);
 					break;
 				case FacebookMessenger.NAME:
-					head = HeaderOutcomeFragment.newInstance(!anomaly, getString(R.string.bold, getString(anomaly ? R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed : R.string.TestResults_Details_InstantMessaging_WhatsApp_Reachable_Hero_Title)));
+					head = HeaderOutcomeFragment.newInstance(iconRes, getString(R.string.bold, getString(measurement.is_anomaly ? R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed : R.string.TestResults_Details_InstantMessaging_WhatsApp_Reachable_Hero_Title)));
 					detail = FacebookMessengerFragment.newInstance(measurement);
 					break;
 				case HttpHeaderFieldManipulation.NAME:
-					head = HeaderOutcomeFragment.newInstance(!anomaly, getString(R.string.bold, getString(anomaly ? R.string.TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_Found_Hero_Title : R.string.TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_NotFound_Hero_Title)));
+					head = HeaderOutcomeFragment.newInstance(iconRes, getString(R.string.bold, getString(measurement.is_anomaly ? R.string.TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_Found_Hero_Title : R.string.TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_NotFound_Hero_Title)));
 					detail = HttpHeaderFieldManipulationFragment.newInstance(measurement);
 					break;
 				case HttpInvalidRequestLine.NAME:
-					head = HeaderOutcomeFragment.newInstance(!anomaly, getString(R.string.bold, getString(anomaly ? R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title : R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title)));
+					head = HeaderOutcomeFragment.newInstance(iconRes, getString(R.string.bold, getString(measurement.is_anomaly ? R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title : R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title)));
 					detail = HttpInvalidRequestLineFragment.newInstance(measurement);
 					break;
 				case Ndt.NAME:
@@ -98,15 +98,15 @@ public class MeasurementDetailActivity extends AbstractActivity {
 					detail = NdtFragment.newInstance(measurement);
 					break;
 				case Telegram.NAME:
-					head = HeaderOutcomeFragment.newInstance(!anomaly, getString(R.string.bold, getString(anomaly ? R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed : R.string.TestResults_Details_InstantMessaging_WhatsApp_Reachable_Hero_Title)));
+					head = HeaderOutcomeFragment.newInstance(iconRes, getString(R.string.bold, getString(measurement.is_anomaly ? R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed : R.string.TestResults_Details_InstantMessaging_WhatsApp_Reachable_Hero_Title)));
 					detail = TelegramFragment.newInstance(measurement);
 					break;
 				case WebConnectivity.NAME:
-					head = HeaderOutcomeFragment.newInstance(!anomaly, getString(R.string.outcomeHeader, measurement.url.url, getString(anomaly ? R.string.TestResults_Details_Websites_LikelyBlocked_Hero_Title : R.string.TestResults_Details_Websites_Reachable_Hero_Title)));
+					head = HeaderOutcomeFragment.newInstance(iconRes, getString(R.string.outcomeHeader, measurement.url.url, getString(measurement.is_anomaly ? R.string.TestResults_Details_Websites_LikelyBlocked_Hero_Title : R.string.TestResults_Details_Websites_Reachable_Hero_Title)));
 					detail = WebConnectivityFragment.newInstance(measurement);
 					break;
 				case Whatsapp.NAME:
-					head = HeaderOutcomeFragment.newInstance(!anomaly, getString(R.string.bold, getString(anomaly ? R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed : R.string.TestResults_Details_InstantMessaging_WhatsApp_Reachable_Hero_Title)));
+					head = HeaderOutcomeFragment.newInstance(iconRes, getString(R.string.bold, getString(measurement.is_anomaly ? R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed : R.string.TestResults_Details_InstantMessaging_WhatsApp_Reachable_Hero_Title)));
 					detail = WhatsappFragment.newInstance(measurement);
 					break;
 			}
