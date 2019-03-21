@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
@@ -42,12 +43,14 @@ import java.io.InputStreamReader;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MeasurementDetailActivity extends AbstractActivity {
 	private static final String ID = "id";
+	@BindView(R.id.coordinatorLayout) CoordinatorLayout coordinatorLayout;
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	private Measurement measurement;
 
@@ -117,6 +120,10 @@ public class MeasurementDetailActivity extends AbstractActivity {
 				.replace(R.id.body, detail)
 				.replace(R.id.head, head)
 				.commit();
+		if (!measurement.is_failed && !measurement.is_uploaded)
+			Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsNotUploaded_Text, Snackbar.LENGTH_INDEFINITE).setAction(R.string.Snackbar_ResultsNotUploaded_Upload, v1 -> {
+				// TODO add MK call
+			}).show();
 	}
 
 	@Override public boolean onCreateOptionsMenu(Menu menu) {

@@ -26,8 +26,6 @@ public class PreferenceManager {
 		r = context.getResources();
 	}
 
-
-
 	public String getToken() {
 		return sp.getString(TOKEN, null);
 	}
@@ -78,6 +76,10 @@ public class PreferenceManager {
 
 	public boolean isUploadResults() {
 		return sp.getBoolean(r.getString(R.string.upload_results), true);
+	}
+
+	public boolean isManualUploadResults() {
+		return sp.getBoolean(r.getString(R.string.upload_results_manual), true);
 	}
 
 	public boolean isIncludeIp() {

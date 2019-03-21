@@ -30,6 +30,10 @@
 			android:title="@string/Settings_Sharing_UploadResults" />
 		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
+			android:key="@string/upload_results_manual"
+			android:title="@string/Settings_Sharing_UploadResultsManually" />
+		<androidx.preference.SwitchPreferenceCompat
+			android:defaultValue="true"
 			android:key="@string/include_asn"
 			android:title="@string/Settings_Sharing_IncludeNetwork" />
 		<androidx.preference.SwitchPreferenceCompat

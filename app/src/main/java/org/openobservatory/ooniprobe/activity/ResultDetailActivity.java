@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
@@ -16,6 +17,7 @@ import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderTBAFragme
 import org.openobservatory.ooniprobe.item.MeasurementItem;
 import org.openobservatory.ooniprobe.item.MeasurementPerfItem;
 import org.openobservatory.ooniprobe.model.database.Measurement;
+import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
@@ -29,6 +31,7 @@ import java.util.ArrayList;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -43,6 +46,7 @@ import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
 public class ResultDetailActivity extends AbstractActivity implements View.OnClickListener {
 	private static final String ID = "id";
+	@BindView(R.id.coordinatorLayout) CoordinatorLayout coordinatorLayout;
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.tabLayout) TabLayout tabLayout;
 	@BindView(R.id.pager) ViewPager pager;
@@ -78,6 +82,10 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 		recycler.setAdapter(new HeterogeneousRecyclerAdapter<>(this, items));
 		result.is_viewed = true;
 		result.save();
+		if (SQLite.selectCountOf().from(Measurement.class).where(Measurement_Table.is_uploaded.eq(false), Measurement_Table.is_failed.eq(false), Measurement_Table.result_id.eq(result.id)).longValue() != 0)
+			Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsSomeNotUploaded_Text, Snackbar.LENGTH_INDEFINITE).setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll, v1 -> {
+				// TODO add MK call
+			}).show();
 	}
 
 	@Override public void onClick(View v) {

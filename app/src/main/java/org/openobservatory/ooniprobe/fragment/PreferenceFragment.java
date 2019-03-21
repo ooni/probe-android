@@ -62,17 +62,19 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 				getPreferenceScreen().getPreference(i).setSummary(getString(R.string.Settings_Websites_Categories_Description, count));
 			}
 		}
-		findPreference(getString(R.string.send_email)).setOnPreferenceClickListener(preference -> {
-			Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse(getString(R.string.shareEmailTo)));
-			emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.shareSubject, BuildConfig.VERSION_NAME));
-			emailIntent.putExtra(Intent.EXTRA_TEXT, "\nMANUFACTURER: " + Build.MANUFACTURER + "\nMODEL: " + Build.MODEL + "\nBOARD: " + Build.BOARD + "\nTIME: " + Build.TIME);
-			try {
-				startActivity(Intent.createChooser(emailIntent, getString(R.string.Settings_SendEmail_Label)));
-			} catch (Exception e) {
-				Toast.makeText(getActivity(), R.string.Settings_SendEmail_Error, Toast.LENGTH_SHORT).show();
-			}
-			return true;
-		});
+		Preference pref = findPreference(getString(R.string.send_email));
+		if (pref != null)
+			pref.setOnPreferenceClickListener(preference -> {
+				Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse(getString(R.string.shareEmailTo)));
+				emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.shareSubject, BuildConfig.VERSION_NAME));
+				emailIntent.putExtra(Intent.EXTRA_TEXT, "\nMANUFACTURER: " + Build.MANUFACTURER + "\nMODEL: " + Build.MODEL + "\nBOARD: " + Build.BOARD + "\nTIME: " + Build.TIME);
+				try {
+					startActivity(Intent.createChooser(emailIntent, getString(R.string.Settings_SendEmail_Label)));
+				} catch (Exception e) {
+					Toast.makeText(getActivity(), R.string.Settings_SendEmail_Error, Toast.LENGTH_SHORT).show();
+				}
+				return true;
+			});
 	}
 
 	@Override public void onPause() {

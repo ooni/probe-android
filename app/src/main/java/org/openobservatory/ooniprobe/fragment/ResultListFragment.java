@@ -11,17 +11,21 @@ import android.view.ViewGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.raizlabs.android.dbflow.sql.language.Method;
 import com.raizlabs.android.dbflow.sql.language.SQLOperator;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
+import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.item.DateItem;
 import org.openobservatory.ooniprobe.item.InstantMessagingItem;
 import org.openobservatory.ooniprobe.item.MiddleboxesItem;
 import org.openobservatory.ooniprobe.item.PerformanceItem;
 import org.openobservatory.ooniprobe.item.WebsiteItem;
+import org.openobservatory.ooniprobe.model.database.Measurement;
+import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
@@ -40,6 +44,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -53,6 +58,7 @@ import localhost.toolkit.widget.HeterogeneousRecyclerAdapter;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
 public class ResultListFragment extends Fragment implements View.OnClickListener, View.OnLongClickListener, ConfirmDialogFragment.OnConfirmedListener {
+	@BindView(R.id.coordinatorLayout) CoordinatorLayout coordinatorLayout;
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.tests) TextView tests;
 	@BindView(R.id.networks) TextView networks;
@@ -64,6 +70,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 	private ArrayList<HeterogeneousRecyclerItem> items;
 	private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
 	private boolean refresh;
+	private Snackbar snackbar;
 
 	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_result_list, container, false);
@@ -81,6 +88,9 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 		items = new ArrayList<>();
 		adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
 		recycler.setAdapter(adapter);
+		snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsSomeNotUploaded_Text, Snackbar.LENGTH_INDEFINITE).setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll, v1 -> {
+			// TODO add MK call
+		});
 		return v;
 	}
 
@@ -113,6 +123,10 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 	}
 
 	@OnItemSelected(R.id.filterTests) void queryList() {
+		if (((Application) getActivity().getApplication()).getPreferenceManager().isManualUploadResults() && SQLite.selectCountOf().from(Measurement.class).where(Measurement_Table.is_uploaded.eq(false), Measurement_Table.is_failed.eq(false)).longValue() != 0)
+			snackbar.show();
+		else
+			snackbar.dismiss();
 		HashSet<Integer> set = new HashSet<>();
 		items.clear();
 		ArrayList<SQLOperator> where = new ArrayList<>();
@@ -155,7 +169,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 
 	@Override public void onClick(View v) {
 		Result result = (Result) v.getTag();
-		ActivityCompat.startActivity(getActivity(), ResultDetailActivity.newIntent(getActivity(), result.id),null /* ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, v.getWidth(), v.getHeight()).toBundle()*/);
+		ActivityCompat.startActivity(getActivity(), ResultDetailActivity.newIntent(getActivity(), result.id), null /* ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, v.getWidth(), v.getHeight()).toBundle()*/);
 	}
 
 	@Override public boolean onLongClick(View v) {
