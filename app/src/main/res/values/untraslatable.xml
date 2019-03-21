@@ -31,7 +31,7 @@
 	<string name="bigNormal" translatable="false">%1$s&lt;small>&lt;small>&lt;small>%2$s&lt;/small>&lt;/small>&lt;/small></string>
 	<string name="twoParam" translatable="false">%1$s %2$s</string>
 	<string name="twoParamWithBrackets" translatable="false">%1$s (%2$s)</string>
-	<string name="outcomeHeader" translatable="false">&lt;b>%1$s&lt;/b>&lt;br>&lt;small>%2$s&lt;/small></string>
+	<string name="outcomeHeader" translatable="false">&lt;big>&lt;b>%1$s&lt;/b>&lt;/big>&lt;br>&lt;small>%2$s&lt;/small></string>
 	<string name="http" translatable="false">http://</string>
 	<string name="r240p" translatable="false">240p</string>
 	<string name="r360p" translatable="false">360p</string>

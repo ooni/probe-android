@@ -1,7 +1,6 @@
 package org.openobservatory.ooniprobe.activity;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,16 +19,12 @@ import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
-import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
-import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -43,11 +38,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import localhost.toolkit.app.ConfirmDialogFragment;
 import localhost.toolkit.widget.HeterogeneousRecyclerAdapter;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
-public class ResultDetailActivity extends AbstractActivity implements View.OnClickListener, ConfirmDialogFragment.OnConfirmedListener {
+public class ResultDetailActivity extends AbstractActivity implements View.OnClickListener {
 	private static final String ID = "id";
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.tabLayout) TabLayout tabLayout;
@@ -80,7 +74,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 		ArrayList<HeterogeneousRecyclerItem> items = new ArrayList<>();
 		boolean isPerf = result.test_group_name.equals(PerformanceSuite.NAME);
 		for (Measurement measurement : result.getMeasurements())
-			items.add(isPerf ? new MeasurementPerfItem(measurement, this) : new MeasurementItem(measurement, this));
+			items.add(isPerf && !measurement.is_failed ? new MeasurementPerfItem(measurement, this) : new MeasurementItem(measurement, this));
 		recycler.setAdapter(new HeterogeneousRecyclerAdapter<>(this, items));
 		result.is_viewed = true;
 		result.save();
@@ -88,30 +82,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 
 	@Override public void onClick(View v) {
 		Measurement measurement = (Measurement) v.getTag();
-		if (measurement.is_failed)
-			ConfirmDialogFragment.newInstance(measurement, getString(R.string.Modal_ReRun_Title), getString(R.string.Modal_ReRun_Paragraph)).show(getSupportFragmentManager(), null);
-		else
-			ActivityCompat.startActivity(this, MeasurementDetailActivity.newIntent(this, measurement.id), null /*ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, v.getWidth(), v.getHeight()).toBundle()*/);
-	}
-
-	@Override public void onConfirmation(Serializable serializable, int i) {
-		if (i == DialogInterface.BUTTON_POSITIVE) {
-			Measurement failedMeasurement = (Measurement) serializable;
-			failedMeasurement.result.load();
-			AbstractTest abstractTest = failedMeasurement.getTest();
-			if (failedMeasurement.url != null)
-				abstractTest.setInputs(Collections.singletonList(failedMeasurement.url.url));
-			AbstractSuite testSuite = failedMeasurement.result.getTestSuite();
-			testSuite.setTestList(abstractTest);
-			testSuite.setResult(failedMeasurement.result);
-			failedMeasurement.is_rerun = true;
-			failedMeasurement.save();
-			Intent intent = RunningActivity.newIntent(this, testSuite);
-			if (intent != null) {
-				startActivity(intent);
-				finish();
-			}
-		}
+		ActivityCompat.startActivity(this, MeasurementDetailActivity.newIntent(this, measurement.id), null /*ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, v.getWidth(), v.getHeight()).toBundle()*/);
 	}
 
 	private class ResultHeaderAdapter extends FragmentPagerAdapter {
