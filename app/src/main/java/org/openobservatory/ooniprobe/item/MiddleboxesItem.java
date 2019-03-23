@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 
@@ -53,6 +54,10 @@ public class MiddleboxesItem extends HeterogeneousRecyclerItem<Result, Middlebox
 			viewHolder.status.setTextColor(ContextCompat.getColor(viewHolder.status.getContext(), R.color.color_gray9));
 			DrawableCompat.setTint(DrawableCompat.wrap(viewHolder.status.getCompoundDrawablesRelative()[0]).mutate(), ContextCompat.getColor(viewHolder.status.getContext(), R.color.color_gray9));
 		}
+		boolean allUploaded = true;
+		for (Measurement m : extra.getMeasurements())
+			allUploaded = allUploaded && (m.is_uploaded || m.is_failed);
+		viewHolder.startTime.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, allUploaded ? 0 : R.drawable.cloudoff, 0);
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {
