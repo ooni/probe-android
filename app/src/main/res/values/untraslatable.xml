@@ -4,6 +4,7 @@
 	<string name="notifications" translatable="false">notifications</string>
 	<string name="sharing" translatable="false">sharing</string>
 	<string name="advanced" translatable="false">advanced</string>
+	<string name="send_email" translatable="false">send_email</string>
 	<string name="about_ooni" translatable="false">about_ooni</string>
 	<string name="notifications_enabled" translatable="false">notifications_enabled</string>
 	<string name="notifications_completion" translatable="false">notifications_completion</string>
@@ -30,7 +31,7 @@
 	<string name="bigNormal" translatable="false">%1$s&lt;small>&lt;small>&lt;small>%2$s&lt;/small>&lt;/small>&lt;/small></string>
 	<string name="twoParam" translatable="false">%1$s %2$s</string>
 	<string name="twoParamWithBrackets" translatable="false">%1$s (%2$s)</string>
-	<string name="outcomeHeader" translatable="false">&lt;b>%1$s&lt;/b>&lt;br>&lt;small>%2$s&lt;/small></string>
+	<string name="outcomeHeader" translatable="false">&lt;big>&lt;b>%1$s&lt;/b>&lt;/big>&lt;br>&lt;small>%2$s&lt;/small></string>
 	<string name="http" translatable="false">http://</string>
 	<string name="r240p" translatable="false">240p</string>
 	<string name="r360p" translatable="false">360p</string>
@@ -49,6 +50,8 @@
 	<string name="transitionNameIcon" translatable="false">icon</string>
 	<string name="transitionNameTitle" translatable="false">title</string>
 	<string name="transitionNameRuntime" translatable="false">runtime</string>
+	<string name="shareEmailTo" translatable="false">mailto:contact@openobservatory.org</string>
+	<string name="shareSubject" translatable="false">[bug-report] OONI Probe Android %1$s</string>
 	<string-array name="filterTests" translatable="false">
 		<item>@string/TestResults_Overview_FilterTests_AllTests</item>
 		<item>@string/TestResults_Overview_FilterTests_Websites</item>

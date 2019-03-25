@@ -1,10 +1,15 @@
 package org.openobservatory.ooniprobe.fragment;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.widget.Toast;
 
+import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
@@ -18,6 +23,7 @@ import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceScreen;
+import androidx.preference.SwitchPreferenceCompat;
 import localhost.toolkit.app.ConfirmDialogFragment;
 import localhost.toolkit.app.MessageDialogFragment;
 import localhost.toolkit.preference.ExtendedPreferenceFragment;
@@ -56,6 +62,17 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 				getPreferenceScreen().getPreference(i).setSummary(getString(R.string.Settings_Websites_Categories_Description, count));
 			}
 		}
+		findPreference(getString(R.string.send_email)).setOnPreferenceClickListener(preference -> {
+			Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse(getString(R.string.shareEmailTo)));
+			emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.shareSubject, BuildConfig.VERSION_NAME));
+			emailIntent.putExtra(Intent.EXTRA_TEXT, "\nMANUFACTURER: " + Build.MANUFACTURER + "\nMODEL: " + Build.MODEL + "\nBOARD: " + Build.BOARD + "\nTIME: " + Build.TIME);
+			try {
+				startActivity(Intent.createChooser(emailIntent, getString(R.string.Settings_SendEmail_Label)));
+			} catch (Exception e) {
+				Toast.makeText(getActivity(), R.string.Settings_SendEmail_Error, Toast.LENGTH_SHORT).show();
+			}
+			return true;
+		});
 	}
 
 	@Override public void onPause() {
@@ -80,6 +97,16 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 			preference.setSummary(value);
 			if (key.equals(getString(R.string.max_runtime)) && value != null && !TextUtils.isDigitsOnly(value)) {
 				MessageDialogFragment.newInstance(getString(R.string.Modal_Error), getString(R.string.Modal_OnlyDigits), false).show(getFragmentManager(), null);
+				sharedPreferences.edit().remove(key).apply();
+				getFragmentManager().beginTransaction().replace(android.R.id.content, newConcreteInstance(rootKey)).commit();
+			}
+		} else if (preference instanceof SwitchPreferenceCompat) {
+			boolean found = false;
+			for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++)
+				if (getPreferenceScreen().getPreference(i) instanceof SwitchPreferenceCompat && !getPreferenceScreen().getPreference(i).getKey().equals(getString(R.string.test_whatsapp_extensive)))
+					found = found || sharedPreferences.getBoolean(getPreferenceScreen().getPreference(i).getKey(), true);
+			if (!found) {
+				MessageDialogFragment.newInstance(null, getString(R.string.Modal_EnableAtLeastOneTest), false).show(getFragmentManager(), null);
 				sharedPreferences.edit().remove(key).apply();
 				getFragmentManager().beginTransaction().replace(android.R.id.content, newConcreteInstance(rootKey)).commit();
 			}

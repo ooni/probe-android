@@ -35,10 +35,10 @@ public class MeasurementItem extends HeterogeneousRecyclerItem<Measurement, Meas
 		AbstractTest test = extra.getTest();
 		if (extra.test_name.equals(WebConnectivity.NAME)) {
 			viewHolder.text.setText(extra.url.url);
-			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(extra.url.getCategoryIcon(viewHolder.text.getContext()), 0, extra.is_anomaly ? R.drawable.exclamation : extra.is_failed ? R.drawable.reload : R.drawable.tick_green_24dp, 0);
+			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(extra.url.getCategoryIcon(viewHolder.text.getContext()), 0, extra.is_anomaly ? R.drawable.exclamation_24dp : extra.is_failed ? R.drawable.error_24dp : R.drawable.tick_green_24dp, 0);
 		} else {
 			viewHolder.text.setText(test.getLabelResId());
-			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(test.getIconResId(), 0, extra.is_anomaly ? R.drawable.exclamation : extra.is_failed ? R.drawable.reload : R.drawable.tick_green_24dp, 0);
+			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(test.getIconResId(), 0, extra.is_anomaly ? R.drawable.exclamation_24dp : extra.is_failed ? R.drawable.error_24dp : R.drawable.tick_green_24dp, 0);
 		}
 		Drawable drawable = viewHolder.text.getCompoundDrawablesRelative()[0];
 		if (drawable != null)

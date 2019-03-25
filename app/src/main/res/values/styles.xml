@@ -62,6 +62,11 @@
 		<item name="colorPrimaryDark">@color/color_orange9</item>
 	</style>
 
+	<style name="Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar.Failed">
+		<item name="colorPrimary">@color/color_gray7</item>
+		<item name="colorPrimaryDark">@color/color_gray9</item>
+	</style>
+
 	<style name="Theme.MaterialComponents.NoActionBar.App.Websites">
 		<item name="colorPrimary">@color/color_indigo6</item>
 		<item name="colorPrimaryDark">@color/color_indigo9</item>
@@ -106,5 +111,9 @@
 		<item name="fontFamily">@font/firasans</item>
 		<item name="colorAccent">@color/color_white</item>
 		<item name="colorControlHighlight">@color/ripple_material_light</item>
+	</style>
+
+	<style name="TextAppearance.Widget.AppCompat.Toolbar.Title.App">
+		<item name="android:textSize">12sp</item>
 	</style>
 </resources>

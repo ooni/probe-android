@@ -8,7 +8,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.data.OldTestStorage;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
 import org.openobservatory.ooniprobe.fragment.PreferenceGlobalFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
@@ -17,7 +16,6 @@ import org.openobservatory.ooniprobe.common.MKOrchestraClient;
 import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import localhost.toolkit.app.MessageDialogFragment;
 
 public class MainActivity extends AbstractActivity {
 	private static final String RES_ITEM = "resItem";
@@ -51,10 +49,6 @@ public class MainActivity extends AbstractActivity {
 				}
 			});
 			bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
-			if (OldTestStorage.oldTestsDetected(this)) {
-				MessageDialogFragment.newInstance(getString(R.string.General_AppName), getString(R.string.Modal_OldTestsDetected), false).show(getSupportFragmentManager(), null);
-				OldTestStorage.removeAllTests(this);
-			}
 		}
 	}
 
