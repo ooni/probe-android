@@ -1,5 +1,8 @@
 package org.openobservatory.ooniprobe.model.database;
 
+import com.raizlabs.android.dbflow.sql.language.Delete;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.openobservatory.ooniprobe.AbstractTest;
@@ -41,5 +44,21 @@ import androidx.test.filters.SmallTest;
 		Assert.assertEquals(Network.getCountry(c, n), c.getString(R.string.TestResults_UnknownASN));
 		n.country_code = COUNTRY_CODE;
 		Assert.assertEquals(Network.getCountry(c, n), COUNTRY_CODE);
+	}
+
+	@Test public void getNetwork() {
+		Delete.table(Network.class);
+		Assert.assertEquals(SQLite.selectCountOf().from(Network.class).longValue(), 0);
+		Network n = Network.getNetwork(BLANK, BLANK, BLANK, BLANK, BLANK);
+		n.save();
+		Assert.assertEquals(SQLite.selectCountOf().from(Network.class).longValue(), 1);
+		n = Network.getNetwork(BLANK, BLANK, BLANK, BLANK, BLANK);
+		n.save();
+		Assert.assertEquals(SQLite.selectCountOf().from(Network.class).longValue(), 1);
+		n = Network.getNetwork("networkName", "ip", "asn", "countryCode", "networkType");
+		n.save();
+		Assert.assertEquals(SQLite.selectCountOf().from(Network.class).longValue(), 2);
+		Delete.table(Network.class);
+		Assert.assertEquals(SQLite.selectCountOf().from(Network.class).longValue(), 0);
 	}
 }

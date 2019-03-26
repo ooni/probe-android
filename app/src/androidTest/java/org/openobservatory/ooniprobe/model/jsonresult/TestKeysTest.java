@@ -5,10 +5,19 @@ import org.junit.Test;
 import org.openobservatory.ooniprobe.AbstractTest;
 import org.openobservatory.ooniprobe.R;
 
+import java.util.Locale;
+
 import androidx.test.filters.SmallTest;
 
 @SmallTest public class TestKeysTest extends AbstractTest {
 	private static final String BLANK = "";
+	private static final String ZERO_ZERO = String.format(Locale.getDefault(), "%.0f", 0f);
+	private static final String ZERO_ONE = String.format(Locale.getDefault(), "%.1f", 0f);
+	private static final String ZERO_TWO = String.format(Locale.getDefault(), "%.2f", 0f);
+	private static final String ZERO_THREE = String.format(Locale.getDefault(), "%.3f", 0f);
+	private static final String TEN_ONE = String.format(Locale.getDefault(), "%.1f", 10f);
+	private static final String HUNDRED_ONE = String.format(Locale.getDefault(), "%.1f", 100f);
+	private static final String HUNDRED_THREE = String.format(Locale.getDefault(), "%.3f", 100f);
 
 	@Test public void whatsappEndpointStatus() {
 		TestKeys testKeys = new TestKeys();
@@ -87,9 +96,9 @@ import androidx.test.filters.SmallTest;
 		testKeys.simple = new TestKeys.Simple();
 		Assert.assertEquals(testKeys.getUpload(c), c.getString(R.string.TestResults_NotAvailable));
 		testKeys.simple.upload = 0d;
-		Assert.assertEquals(testKeys.getUpload(c), "0.00");
+		Assert.assertEquals(testKeys.getUpload(c), ZERO_TWO);
 		testKeys.simple.upload = 10d;
-		Assert.assertEquals(testKeys.getUpload(c), "10.0");
+		Assert.assertEquals(testKeys.getUpload(c), TEN_ONE);
 	}
 
 	@Test public void uploadUnit() {
@@ -111,9 +120,9 @@ import androidx.test.filters.SmallTest;
 		testKeys.simple = new TestKeys.Simple();
 		Assert.assertEquals(testKeys.getDownload(c), c.getString(R.string.TestResults_NotAvailable));
 		testKeys.simple.download = 0d;
-		Assert.assertEquals(testKeys.getDownload(c), "0.00");
+		Assert.assertEquals(testKeys.getDownload(c), ZERO_TWO);
 		testKeys.simple.download = 10d;
-		Assert.assertEquals(testKeys.getDownload(c), "10.0");
+		Assert.assertEquals(testKeys.getDownload(c), TEN_ONE);
 	}
 
 	@Test public void downloadUnit() {
@@ -135,7 +144,7 @@ import androidx.test.filters.SmallTest;
 		testKeys.simple = new TestKeys.Simple();
 		Assert.assertEquals(testKeys.getPing(c), c.getString(R.string.TestResults_NotAvailable));
 		testKeys.simple.ping = 0d;
-		Assert.assertEquals(testKeys.getPing(c), "0.0");
+		Assert.assertEquals(testKeys.getPing(c), ZERO_ONE);
 	}
 
 	@Test public void server() {
@@ -158,9 +167,9 @@ import androidx.test.filters.SmallTest;
 		testKeys.advanced = new TestKeys.Advanced();
 		Assert.assertEquals(testKeys.getPacketLoss(c), c.getString(R.string.TestResults_NotAvailable));
 		testKeys.advanced.packet_loss = 0d;
-		Assert.assertEquals(testKeys.getPacketLoss(c), "0.000");
+		Assert.assertEquals(testKeys.getPacketLoss(c), ZERO_THREE);
 		testKeys.advanced.packet_loss = 1d;
-		Assert.assertEquals(testKeys.getPacketLoss(c), "100.000");
+		Assert.assertEquals(testKeys.getPacketLoss(c), HUNDRED_THREE);
 	}
 
 	@Test public void outOfOrder() {
@@ -169,9 +178,9 @@ import androidx.test.filters.SmallTest;
 		testKeys.advanced = new TestKeys.Advanced();
 		Assert.assertEquals(testKeys.getOutOfOrder(c), c.getString(R.string.TestResults_NotAvailable));
 		testKeys.advanced.out_of_order = 0d;
-		Assert.assertEquals(testKeys.getOutOfOrder(c), "0.0");
+		Assert.assertEquals(testKeys.getOutOfOrder(c), ZERO_ONE);
 		testKeys.advanced.out_of_order = 1d;
-		Assert.assertEquals(testKeys.getOutOfOrder(c), "100.0");
+		Assert.assertEquals(testKeys.getOutOfOrder(c), HUNDRED_ONE);
 	}
 
 	@Test public void averagePing() {
@@ -180,7 +189,7 @@ import androidx.test.filters.SmallTest;
 		testKeys.advanced = new TestKeys.Advanced();
 		Assert.assertEquals(testKeys.getAveragePing(c), c.getString(R.string.TestResults_NotAvailable));
 		testKeys.advanced.avg_rtt = 0d;
-		Assert.assertEquals(testKeys.getAveragePing(c), "0.0");
+		Assert.assertEquals(testKeys.getAveragePing(c), ZERO_ONE);
 	}
 
 	@Test public void maxPing() {
@@ -189,7 +198,7 @@ import androidx.test.filters.SmallTest;
 		testKeys.advanced = new TestKeys.Advanced();
 		Assert.assertEquals(testKeys.getMaxPing(c), c.getString(R.string.TestResults_NotAvailable));
 		testKeys.advanced.max_rtt = 0d;
-		Assert.assertEquals(testKeys.getMaxPing(c), "0.0");
+		Assert.assertEquals(testKeys.getMaxPing(c), ZERO_ONE);
 	}
 
 	@Test public void mss() {
@@ -198,7 +207,7 @@ import androidx.test.filters.SmallTest;
 		testKeys.advanced = new TestKeys.Advanced();
 		Assert.assertEquals(testKeys.getMSS(c), c.getString(R.string.TestResults_NotAvailable));
 		testKeys.advanced.mss = 0d;
-		Assert.assertEquals(testKeys.getMSS(c), "0");
+		Assert.assertEquals(testKeys.getMSS(c), ZERO_ZERO);
 	}
 
 	@Test public void timeouts() {
@@ -207,7 +216,7 @@ import androidx.test.filters.SmallTest;
 		testKeys.advanced = new TestKeys.Advanced();
 		Assert.assertEquals(testKeys.getTimeouts(c), c.getString(R.string.TestResults_NotAvailable));
 		testKeys.advanced.timeouts = 0d;
-		Assert.assertEquals(testKeys.getTimeouts(c), "0");
+		Assert.assertEquals(testKeys.getTimeouts(c), ZERO_ZERO);
 	}
 
 	@Test public void medianBitrate() {
@@ -216,9 +225,9 @@ import androidx.test.filters.SmallTest;
 		testKeys.simple = new TestKeys.Simple();
 		Assert.assertEquals(testKeys.getMedianBitrate(c), c.getString(R.string.TestResults_NotAvailable));
 		testKeys.simple.median_bitrate = 0d;
-		Assert.assertEquals(testKeys.getMedianBitrate(c), "0.00");
+		Assert.assertEquals(testKeys.getMedianBitrate(c), ZERO_TWO);
 		testKeys.simple.median_bitrate = 10d;
-		Assert.assertEquals(testKeys.getMedianBitrate(c), "10.0");
+		Assert.assertEquals(testKeys.getMedianBitrate(c), TEN_ONE);
 	}
 
 	@Test public void medianBitrateUnit() {
@@ -249,6 +258,6 @@ import androidx.test.filters.SmallTest;
 		testKeys.simple = new TestKeys.Simple();
 		Assert.assertEquals(testKeys.getPlayoutDelay(c), c.getString(R.string.TestResults_NotAvailable));
 		testKeys.simple.min_playout_delay = 0d;
-		Assert.assertEquals(testKeys.getPlayoutDelay(c), "0.00");
+		Assert.assertEquals(testKeys.getPlayoutDelay(c), ZERO_TWO);
 	}
 }
