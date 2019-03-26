@@ -41,7 +41,7 @@ public class TelegramFragment extends Fragment {
 		application.setText(measurement.getTestKeys().getTelegramEndpointStatus());
 		if (Boolean.TRUE.equals(measurement.getTestKeys().telegram_http_blocking) || Boolean.TRUE.equals(measurement.getTestKeys().telegram_tcp_blocking))
 			application.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_yellow9));
-		webApp.setText(measurement.getTestKeys().getTelegramWebStatus(getActivity()));
+		webApp.setText(measurement.getTestKeys().getTelegramWebStatus());
 		if (TestKeys.BLOCKED.equals(measurement.getTestKeys().telegram_web_status))
 			webApp.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_yellow9));
 		return v;
