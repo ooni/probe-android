@@ -105,7 +105,6 @@ public class OoniRunActivity extends AbstractActivity {
 			Uri uri = intent.getData();
 			String mv = uri == null ? null : uri.getQueryParameter("mv");
 			String tn = uri == null ? null : uri.getQueryParameter("tn");
-			String td = uri == null ? null : uri.getQueryParameter("td");
 			String ta = uri == null ? null : uri.getQueryParameter("ta");
 			String[] split = BuildConfig.VERSION_NAME.split("-");
 			String version_name = split[0];
@@ -117,7 +116,7 @@ public class OoniRunActivity extends AbstractActivity {
 						if (suite != null) {
 							icon.setImageResource(suite.getIcon());
 							title.setText(suite.getTestList(getPreferenceManager())[0].getLabelResId());
-							desc.setText(td == null ? getString(R.string.OONIRun_YouAreAboutToRun) : td);
+							desc.setText(getString(R.string.OONIRun_YouAreAboutToRun));
 							if (attribute != null && attribute.urls != null) {
 								for (String url : attribute.urls)
 									items.add(new TextItem(url));
