@@ -1,7 +1,6 @@
 package org.openobservatory.ooniprobe.test.test;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 
 import com.google.gson.Gson;
 
@@ -12,12 +11,14 @@ import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
 import org.openobservatory.ooniprobe.model.settings.Settings;
 
+import androidx.annotation.NonNull;
+
 public class Dash extends AbstractTest {
 	public static final String NAME = "dash";
 	private static final String MK_NAME = "Dash";
 
 	public Dash() {
-		super(NAME, MK_NAME, R.string.Test_Dash_Fullname, 0, 45);
+		super(NAME, MK_NAME, R.string.Test_Dash_Fullname, 0, R.string.urlTestDas, 45);
 	}
 
 	@Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback) {

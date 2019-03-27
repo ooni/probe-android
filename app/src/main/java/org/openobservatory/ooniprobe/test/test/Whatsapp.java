@@ -18,7 +18,7 @@ public class Whatsapp extends AbstractTest {
 	private static final String MK_NAME = "Whatsapp";
 
 	public Whatsapp() {
-		super(NAME, MK_NAME, R.string.Test_WhatsApp_Fullname, R.drawable.test_whatsapp, 10);
+		super(NAME, MK_NAME, R.string.Test_WhatsApp_Fullname, R.drawable.test_whatsapp, R.string.urlTestWap, 10);
 	}
 
 	@Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback) {

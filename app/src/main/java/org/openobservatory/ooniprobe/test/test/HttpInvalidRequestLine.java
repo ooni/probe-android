@@ -18,7 +18,7 @@ public class HttpInvalidRequestLine extends AbstractTest {
 	private static final String MK_NAME = "HttpInvalidRequestLine";
 
 	public HttpInvalidRequestLine() {
-		super(NAME, MK_NAME, R.string.Test_HTTPInvalidRequestLine_Fullname, 0, 10);
+		super(NAME, MK_NAME, R.string.Test_HTTPInvalidRequestLine_Fullname, 0, R.string.urlTestIrl, 10);
 	}
 
 	@Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback) {
