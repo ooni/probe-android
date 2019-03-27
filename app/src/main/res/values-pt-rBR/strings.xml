@@ -115,6 +115,7 @@
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">Aplicativo</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">Aplicativos</string>
   <string name="TestResults_Details_Hero_Runtime">Tempo de Execução</string>
+  <string name="TestResults_Details_Methodology">Methodology</string>
   <string name="TestResults_Details_ViewLog">Ver log</string>
   <string name="TestResults_Details_RawData">Dados</string>
   <string name="TestResults_Details_CopyToClipboard">Copiar para área de transferência</string>
@@ -285,9 +286,6 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">Seleção automática do servidor DASH</string>
   <string name="Settings_Performance_DashServerAddress">Servidor DASH</string>
   <string name="Settings_Performance_DashServerPort">Porta do servidor DASH</string>
-  <string name="Settings_MoreInformation">Informações adicionais</string>
-  <string name="Settings_Methodology_Title">Methodology</string>
-  <string name="Settings_Methodology_Label">Methodology used for this test</string>
   <string name="Settings_SendEmail_Label">Enviar e-mail para suporte</string>
   <string name="Settings_SendEmail_Error">Nenhum cliente de e-mail configurado no seu aparelho</string>
   <string name="Notification_FinishedRunning">Execução concluída</string>

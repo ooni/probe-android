@@ -115,6 +115,7 @@
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">برنامه</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">برنامه‌ها</string>
   <string name="TestResults_Details_Hero_Runtime">زمان اجرا</string>
+  <string name="TestResults_Details_Methodology">Methodology</string>
   <string name="TestResults_Details_ViewLog">نمایش لاگ</string>
   <string name="TestResults_Details_RawData">داده‌‌ها</string>
   <string name="TestResults_Details_CopyToClipboard">به حافظه کوتاه مدت کپی کن</string>
@@ -285,9 +286,6 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">انتخاب خودکار سرور DASH</string>
   <string name="Settings_Performance_DashServerAddress">سرور DASH</string>
   <string name="Settings_Performance_DashServerPort">درگاه سرور DASH</string>
-  <string name="Settings_MoreInformation">اطلاعات بیشتر</string>
-  <string name="Settings_Methodology_Title">Methodology</string>
-  <string name="Settings_Methodology_Label">Methodology used for this test</string>
   <string name="Settings_SendEmail_Label">Send email to support</string>
   <string name="Settings_SendEmail_Error">No email clients configured on your device</string>
   <string name="Notification_FinishedRunning">اجرا به پایان رسید</string>

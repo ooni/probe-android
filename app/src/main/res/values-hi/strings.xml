@@ -115,6 +115,7 @@
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">ऐप</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">एप्लिकेशन</string>
   <string name="TestResults_Details_Hero_Runtime">रनटाइम</string>
+  <string name="TestResults_Details_Methodology">Methodology</string>
   <string name="TestResults_Details_ViewLog">लॉग देखें</string>
   <string name="TestResults_Details_RawData">डेटा</string>
   <string name="TestResults_Details_CopyToClipboard">क्लिपबोर्ड पर कॉपी करें</string>
@@ -285,9 +286,6 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">स्वचालित DASH सर्वर चयन</string>
   <string name="Settings_Performance_DashServerAddress">DASH सर्वर</string>
   <string name="Settings_Performance_DashServerPort">DASH server port</string>
-  <string name="Settings_MoreInformation">अधिक जानकारी</string>
-  <string name="Settings_Methodology_Title">Methodology</string>
-  <string name="Settings_Methodology_Label">Methodology used for this test</string>
   <string name="Settings_SendEmail_Label">Send email to support</string>
   <string name="Settings_SendEmail_Error">No email clients configured on your device</string>
   <string name="Notification_FinishedRunning">समाप्त हो रहा है</string>

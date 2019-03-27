@@ -115,6 +115,7 @@
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">Aplikacion</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">Aplikacione</string>
   <string name="TestResults_Details_Hero_Runtime">Kohëzgjatja</string>
+  <string name="TestResults_Details_Methodology">Methodology</string>
   <string name="TestResults_Details_ViewLog">Shiko detajet</string>
   <string name="TestResults_Details_RawData">Të dhëna</string>
   <string name="TestResults_Details_CopyToClipboard">Kopjo</string>
@@ -285,9 +286,6 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">Përzgjedhje automatike e serverit DASH</string>
   <string name="Settings_Performance_DashServerAddress">Serveri DASH</string>
   <string name="Settings_Performance_DashServerPort">Porta e serverit NDT</string>
-  <string name="Settings_MoreInformation">Më Tepër të Dhëna</string>
-  <string name="Settings_Methodology_Title">Methodology</string>
-  <string name="Settings_Methodology_Label">Methodology used for this test</string>
   <string name="Settings_SendEmail_Label">Dërgo email tek ndihmuesi</string>
   <string name="Settings_SendEmail_Error">Nuk ka asnjë klient email të konfiguruar në paisjen tuaj</string>
   <string name="Notification_FinishedRunning">Mbaroi së ekzekutuari</string>
