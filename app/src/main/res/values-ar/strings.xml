@@ -285,6 +285,9 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">إختيار خادم DASH اوتوماتيكيًا</string>
   <string name="Settings_Performance_DashServerAddress">خادم DASH</string>
   <string name="Settings_Performance_DashServerPort">منفذ خادم DASH</string>
+  <string name="Settings_MoreInformation">معلومات أكثر</string>
+  <string name="Settings_Methodology_Title">Methodology</string>
+  <string name="Settings_Methodology_Label">Methodology used for this test</string>
   <string name="Settings_SendEmail_Label">إرسال إيميل لفريق الدعم </string>
   <string name="Settings_SendEmail_Error">لم يتم إعداد عملاء إيميل على جهازك</string>
   <string name="Notification_FinishedRunning">انتهى التشغيل</string>

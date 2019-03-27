@@ -285,6 +285,9 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">Αυτόματη επιλογή διακομιστή DASH </string>
   <string name="Settings_Performance_DashServerAddress">Διακομιστή DASH</string>
   <string name="Settings_Performance_DashServerPort">Θύρα διακομιστή DASH</string>
+  <string name="Settings_MoreInformation">Περισσότερες πληροφορίες</string>
+  <string name="Settings_Methodology_Title">Methodology</string>
+  <string name="Settings_Methodology_Label">Methodology used for this test</string>
   <string name="Settings_SendEmail_Label">Υποστήριξη Email</string>
   <string name="Settings_SendEmail_Error">Δεν έχει ρυθμιστεί email στη συσκευή σου</string>
   <string name="Notification_FinishedRunning">Οι δοκιμές εκτελέστηκαν</string>

@@ -285,6 +285,9 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">स्वचालित DASH सर्वर चयन</string>
   <string name="Settings_Performance_DashServerAddress">DASH सर्वर</string>
   <string name="Settings_Performance_DashServerPort">DASH server port</string>
+  <string name="Settings_MoreInformation">अधिक जानकारी</string>
+  <string name="Settings_Methodology_Title">Methodology</string>
+  <string name="Settings_Methodology_Label">Methodology used for this test</string>
   <string name="Settings_SendEmail_Label">Send email to support</string>
   <string name="Settings_SendEmail_Error">No email clients configured on your device</string>
   <string name="Notification_FinishedRunning">समाप्त हो रहा है</string>

@@ -285,6 +285,9 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">Automatische DASH Serverauswahl</string>
   <string name="Settings_Performance_DashServerAddress">DASH-Server</string>
   <string name="Settings_Performance_DashServerPort">DASH-Serverport</string>
+  <string name="Settings_MoreInformation">Weitere Informationen</string>
+  <string name="Settings_Methodology_Title">Methodology</string>
+  <string name="Settings_Methodology_Label">Methodology used for this test</string>
   <string name="Settings_SendEmail_Label">E-Mail an den Support senden</string>
   <string name="Settings_SendEmail_Error">Auf Ihrem Gerät sind keine E-Mail-Clients konfiguriert</string>
   <string name="Notification_FinishedRunning">Vollständig ausgeführt</string>

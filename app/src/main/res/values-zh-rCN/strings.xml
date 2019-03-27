@@ -285,6 +285,9 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">自动选择 DASH 服务器</string>
   <string name="Settings_Performance_DashServerAddress">DASH 服务器</string>
   <string name="Settings_Performance_DashServerPort">DASH 服务器端口</string>
+  <string name="Settings_MoreInformation">More Information</string>
+  <string name="Settings_Methodology_Title">Methodology</string>
+  <string name="Settings_Methodology_Label">Methodology used for this test</string>
   <string name="Settings_SendEmail_Label">发送邮件给支持团队</string>
   <string name="Settings_SendEmail_Error">设备中没有配置邮件客户端</string>
   <string name="Notification_FinishedRunning">运行完成</string>
