@@ -16,7 +16,7 @@ import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.model.jsonresult.EventResult;
 import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
 import org.openobservatory.ooniprobe.model.settings.Settings;
-import org.openobservatory.ooniprobe.common.MKOrchestraClient;
+import org.openobservatory.ooniprobe.common.MKOrchestraSettings;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -57,11 +57,11 @@ public abstract class AbstractTest implements Serializable {
 		settings.options.max_runtime = max_runtime;
 		settings.annotations.origin = origin;
 		measurements = new SparseArray<>();
-		MKTask task = MKTask.startNettest(gson.toJson(settings));
+		MKTask task = MKTask.start(gson.toJson(settings));
 		FileOutputStream logFOS = null;
 		while (!task.isDone())
 			try {
-				String json = task.waitForNextEvent().serialize();
+				String json = task.waitForNextEvent();
 				Log.d(TAG, json);
 				EventResult event = gson.fromJson(json, EventResult.class);
 				switch (event.key) {
@@ -165,7 +165,7 @@ public abstract class AbstractTest implements Serializable {
 
 	private void saveNetworkInfo(EventResult.Value value, Result result, Context c) {
 		if (result != null && result.network == null) {
-			result.network = Network.checkExistingNetwork(value.probe_network_name, value.probe_ip, value.probe_asn, value.probe_cc, MKOrchestraClient.getNetworkType(c));
+			result.network = Network.checkExistingNetwork(value.probe_network_name, value.probe_ip, value.probe_asn, value.probe_cc, MKOrchestraSettings.getNetworkType(c));
 			result.save();
 		}
 	}

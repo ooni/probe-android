@@ -88,7 +88,7 @@ public class PreferenceManager {
 	}
 
 	public void setManualUploadResults(boolean manualUpload) {
-		sp.edit().putBoolean(r.getString(R.string.upload_results_manual), manualUpload).apply();
+		sp.edit().putBoolean(IS_MANUAL_UPLOAD_DIALOG, false).putBoolean(r.getString(R.string.upload_results_manual), manualUpload).apply();
 	}
 
 	public boolean isIncludeIp() {

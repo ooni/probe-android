@@ -12,19 +12,19 @@ import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
 import java.util.Locale;
 
-public class MKOrchestraClient extends AsyncTask<Void, Void, Void> {
+public class MKOrchestraSettings extends AsyncTask<Void, Void, Void> {
 	public static final String WIFI = "wifi";
 	public static final String MOBILE = "mobile";
 	public static final String NO_INTERNET = "no_internet";
 	private Application app;
 
-	public MKOrchestraClient(Application app) {
+	public MKOrchestraSettings(Application app) {
 		this.app = app;
 	}
 
 	public static void sync(Application app) {
 		if (app.getPreferenceManager().getToken() != null) {
-			io.ooni.mk.MKOrchestraClient client = new io.ooni.mk.MKOrchestraClient();
+			io.ooni.mk.MKOrchestraSettings client = new io.ooni.mk.MKOrchestraSettings();
 			//TODO ORCHESTRATE
 			//client.setAvailableBandwidth(String value);
 			//what happens when token is nil? should register anyway with empry string
@@ -45,7 +45,7 @@ public class MKOrchestraClient extends AsyncTask<Void, Void, Void> {
 				for (AbstractTest test : suite.getTestList(null))
 					client.addSupportedTest(test.getName());
 			client.setTimeout(17);
-			client.sync();
+			client.updateOrRegister();
 		}
 	}
 
