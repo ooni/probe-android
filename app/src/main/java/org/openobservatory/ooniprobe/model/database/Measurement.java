@@ -41,7 +41,6 @@ public class Measurement extends BaseModel implements Serializable {
 	@Column public String upload_failure_msg;
 	@Column public boolean is_rerun;
 	@Column public String report_id;
-	@Column public Integer measurement_id;
 	@Column public boolean is_anomaly;
 	@Column public String test_keys;
 	@ForeignKey(saveForeignKeyModel = true) public Url url;

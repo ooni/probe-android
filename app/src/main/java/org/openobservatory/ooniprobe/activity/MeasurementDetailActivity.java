@@ -13,6 +13,7 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.apache.commons.io.IOUtils;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.MKCollectorResubmitSettings;
 import org.openobservatory.ooniprobe.fragment.measurement.DashFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.FacebookMessengerFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.FailedFragment;
@@ -122,7 +123,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
 				.commit();
 		if (!measurement.is_failed && !measurement.is_uploaded)
 			Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsNotUploaded_Text, Snackbar.LENGTH_INDEFINITE).setAction(R.string.Snackbar_ResultsNotUploaded_Upload, v1 -> {
-				// TODO add MK call
+				new MKCollectorResubmitSettings(this).execute(null, measurement.id);
 			}).show();
 	}
 
@@ -136,7 +137,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
 			case R.id.rawData:
 				try {
 					FileInputStream is = new FileInputStream(Measurement.getEntryFile(this, measurement.id, measurement.test_name));
-					String json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(new JsonParser().parse(new InputStreamReader(is)).getAsJsonObject());
+					String json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(new JsonParser().parse(new InputStreamReader(is)));
 					startActivity(TextActivity.newIntent(this, json));
 					is.close();
 				} catch (Exception e) {

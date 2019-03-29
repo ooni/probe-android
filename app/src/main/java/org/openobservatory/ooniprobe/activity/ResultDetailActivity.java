@@ -10,6 +10,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.MKCollectorResubmitSettings;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderMiddleboxFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderPerformanceFragment;
@@ -84,7 +85,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 		result.save();
 		if (SQLite.selectCountOf().from(Measurement.class).where(Measurement_Table.is_uploaded.eq(false), Measurement_Table.is_failed.eq(false), Measurement_Table.result_id.eq(result.id)).longValue() != 0)
 			Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsSomeNotUploaded_Text, Snackbar.LENGTH_INDEFINITE).setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll, v1 -> {
-				// TODO add MK call
+				new MKCollectorResubmitSettings(this).execute(result.id, null);
 			}).show();
 	}
 
