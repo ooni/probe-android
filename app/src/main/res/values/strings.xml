@@ -115,6 +115,7 @@
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">App</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">Apps</string>
   <string name="TestResults_Details_Hero_Runtime">Runtime</string>
+  <string name="TestResults_Details_Methodology">Methodology</string>
   <string name="TestResults_Details_ViewLog">View log</string>
   <string name="TestResults_Details_RawData">Data</string>
   <string name="TestResults_Details_CopyToClipboard">Copy to clipboard</string>

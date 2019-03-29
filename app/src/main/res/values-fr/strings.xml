@@ -5,7 +5,7 @@
   <string name="Onboarding_WhatIsOONIProbe_Paragraph">Votre appli pour mesurer la censure d’Internet. \n\nLes sites Web et les applis de médias sociaux sont-ils bloqués ? Votre connexion Internet est-elle anormalement lente ?\n\nLancez OONI Probe pour le savoir !</string>
   <string name="Onboarding_WhatIsOONIProbe_GotIt">D’accord</string>
   <string name="Onboarding_ThingsToKnow_Title">À savoir !</string>
-  <string name="Onboarding_ThingsToKnow_Bullet_1">Les données de l’OONI sont publiées ouvertement et comprendront les informations relatives à votre réseau.</string>
+  <string name="Onboarding_ThingsToKnow_Bullet_1">Les données de l’OONI sont publiées ouvertement et comprendront les renseignements relatifs à votre réseau.</string>
   <string name="Onboarding_ThingsToKnow_Bullet_2">Quiconque surveille votre activité sur Internet (p. ex. un gouvernement ou un FAI) verra que vous utilisez OONI Probe.</string>
   <string name="Onboarding_ThingsToKnow_Bullet_3">Vous pourriez tester des sites Web interdits (mais vous pouvez choisir quels sites tester).</string>
   <string name="Onboarding_ThingsToKnow_Button">Je comprends</string>
@@ -18,7 +18,7 @@
   <string name="Onboarding_PopQuiz_1_Title">Question 1 de 2</string>
   <string name="Onboarding_PopQuiz_1_Question">Si quelqu’un surveille mon activité sur Internet, il verra que j’exécute OONI Probe.</string>
   <string name="Onboarding_PopQuiz_1_Wrong_Title">Avertissement</string>
-  <string name="Onboarding_PopQuiz_1_Wrong_Paragraph">OONI Probe n’est pas un outil de protection des informations. Quiconque surveille votre activité sur Internet verra quel logiciel vous utilisez.</string>
+  <string name="Onboarding_PopQuiz_1_Wrong_Paragraph">OONI Probe n’est pas un outil de protection des données personnelles. Quiconque surveille votre activité sur Internet verra quel logiciel vous utilisez.</string>
   <string name="Onboarding_PopQuiz_2_Title">Question 2 de 2</string>
   <string name="Onboarding_PopQuiz_2_Question">Chaque fois que j’exécute OONI Probe, les données réseau que je recueille seront publiées automatiquement.</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Title">Avertissement</string>
@@ -28,7 +28,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">Le code de pays (p. ex. IT pour Italie)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">Des renseignements sur le réseau (dont le numéro de système autonome)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">L’estampille temporelle du test</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">Nous faisons de notre mieux pour ne pas publier votre adresse IP ou toute autre information nominative.\n\nApprenez-en davantage dans la [Politique sur les données de l’OONI](https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">Nous faisons de notre mieux pour ne pas publier votre adresse IP ou tout autre renseignement nominatif.\n\nApprenez-en davantage dans la [Politique sur les données de l’OONI](https://ooni.io/about/data-policy/).</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Allons-y</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Modifier les paramètres</string>
   <string name="Dashboard_Tab_Label">Tableau de bord</string>
@@ -115,6 +115,7 @@
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">Appli</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">Applis</string>
   <string name="TestResults_Details_Hero_Runtime">Temps d’exécution</string>
+  <string name="TestResults_Details_Methodology">Méthodologie</string>
   <string name="TestResults_Details_ViewLog">Visualiser le journal</string>
   <string name="TestResults_Details_RawData">Données</string>
   <string name="TestResults_Details_CopyToClipboard">Copier dans le presse-papiers</string>

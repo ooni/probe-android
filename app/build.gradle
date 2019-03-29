@@ -16,6 +16,7 @@ android {
 		targetSdkVersion 28
 		versionName '2.0.3'
 		versionCode 44
+		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 	}
 
 	buildTypes {
@@ -61,6 +62,9 @@ dependencies {
 	implementation 'com.google.code.gson:gson:2.8.5'
 	implementation 'ru.noties:markwon:2.0.1'
 	implementation 'commons-io:commons-io:2.6'
+
+	androidTestImplementation 'androidx.test:runner:1.1.1'
+	androidTestImplementation 'androidx.test:rules:1.1.1'
 }
 
 apply plugin: 'com.google.gms.google-services'

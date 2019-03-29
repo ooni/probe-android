@@ -115,6 +115,7 @@
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">Uygulama</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">Uygulama</string>
   <string name="TestResults_Details_Hero_Runtime">Çalışan Dosya</string>
+  <string name="TestResults_Details_Methodology">Methodology</string>
   <string name="TestResults_Details_ViewLog">Günlüğü görüntüle</string>
   <string name="TestResults_Details_RawData">Veri</string>
   <string name="TestResults_Details_CopyToClipboard">Panoya kopyala</string>

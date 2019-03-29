@@ -115,6 +115,7 @@
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">برنامه</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">برنامه‌ها</string>
   <string name="TestResults_Details_Hero_Runtime">زمان اجرا</string>
+  <string name="TestResults_Details_Methodology">Methodology</string>
   <string name="TestResults_Details_ViewLog">نمایش لاگ</string>
   <string name="TestResults_Details_RawData">داده‌‌ها</string>
   <string name="TestResults_Details_CopyToClipboard">به حافظه کوتاه مدت کپی کن</string>

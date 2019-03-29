@@ -115,6 +115,7 @@
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">Aplicación</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">Aplicaciones</string>
   <string name="TestResults_Details_Hero_Runtime">Tiempo de ejecución</string>
+  <string name="TestResults_Details_Methodology">Methodology</string>
   <string name="TestResults_Details_ViewLog">Ver registro</string>
   <string name="TestResults_Details_RawData">Datos</string>
   <string name="TestResults_Details_CopyToClipboard">Copiar al portapapeles</string>

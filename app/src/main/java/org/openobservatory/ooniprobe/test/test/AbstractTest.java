@@ -165,7 +165,7 @@ public abstract class AbstractTest implements Serializable {
 
 	private void saveNetworkInfo(EventResult.Value value, Result result, Context c) {
 		if (result != null && result.network == null) {
-			result.network = Network.checkExistingNetwork(value.probe_network_name, value.probe_ip, value.probe_asn, value.probe_cc, MKOrchestraSettings.getNetworkType(c));
+			result.network = Network.getNetwork(value.probe_network_name, value.probe_ip, value.probe_asn, value.probe_cc, MKOrchestraSettings.getNetworkType(c));
 			result.save();
 		}
 	}

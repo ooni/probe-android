@@ -115,6 +115,7 @@
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">Приложение</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">Приложения</string>
   <string name="TestResults_Details_Hero_Runtime">Время теста</string>
+  <string name="TestResults_Details_Methodology">Methodology</string>
   <string name="TestResults_Details_ViewLog">Посмотреть лог</string>
   <string name="TestResults_Details_RawData">Данные</string>
   <string name="TestResults_Details_CopyToClipboard">Скопировать в буфер обмена</string>

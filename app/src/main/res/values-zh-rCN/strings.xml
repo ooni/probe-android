@@ -115,6 +115,7 @@
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">应用</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">应用程序</string>
   <string name="TestResults_Details_Hero_Runtime">执行时间</string>
+  <string name="TestResults_Details_Methodology">Methodology</string>
   <string name="TestResults_Details_ViewLog">查看日志</string>
   <string name="TestResults_Details_RawData">数据</string>
   <string name="TestResults_Details_CopyToClipboard">复制到剪贴板</string>
