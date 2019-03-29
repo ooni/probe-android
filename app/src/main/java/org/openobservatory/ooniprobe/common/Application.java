@@ -37,7 +37,7 @@ public class Application extends android.app.Application {
 		super.onCreate();
 		FlowManager.init(this);
 		preferenceManager = new PreferenceManager(this);
-		gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateJsonDeserializer()).registerTypeAdapter(TestKeys.Tampering.class, new TamperingJsonDeserializer()).create();
+		gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateAdapter()).registerTypeAdapter(TestKeys.Tampering.class, new TamperingJsonDeserializer()).create();
 		FlavorApplication.onCreate(this, preferenceManager.isSendCrash());
 		if (BuildConfig.DEBUG)
 			FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
