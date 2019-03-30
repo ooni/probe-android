@@ -90,9 +90,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 		items = new ArrayList<>();
 		adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
 		recycler.setAdapter(adapter);
-		snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsSomeNotUploaded_Text, Snackbar.LENGTH_INDEFINITE).setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll, v1 -> {
-			new MKCollectorResubmitSettingsAsyncTask(this).execute(null, null);
-		});
+		snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsSomeNotUploaded_Text, Snackbar.LENGTH_INDEFINITE).setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll, v1 -> ConfirmDialogFragment.newInstance(R.string.Modal_ResultsNotUploaded_Title, getString(R.string.Modal_ResultsNotUploaded_Title), getString(R.string.Modal_ResultsNotUploaded_Paragraph), null, getString(R.string.Modal_ResultsNotUploaded_Button_Upload), null, null).show(getChildFragmentManager(), null));
 		return v;
 	}
 
@@ -117,7 +115,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 	@Override public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.delete:
-				ConfirmDialogFragment.newInstance(null, null, getString(R.string.Modal_DoYouWantToDeleteAllTests), null, getString(R.string.Modal_Delete), null, null).show(getChildFragmentManager(), null);
+				ConfirmDialogFragment.newInstance(R.id.delete, null, getString(R.string.Modal_DoYouWantToDeleteAllTests), null, getString(R.string.Modal_Delete), null, null).show(getChildFragmentManager(), null);
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
@@ -181,12 +179,16 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 	}
 
 	@Override public void onConfirmation(Serializable serializable, int i) {
-		if (i == DialogInterface.BUTTON_POSITIVE) {
-			if (serializable == null) {
-				Result.deleteAll(getActivity());
-			} else {
+		if (serializable.equals(R.string.Modal_ResultsNotUploaded_Title)) {
+			if (i == DialogInterface.BUTTON_POSITIVE)
+				new MKCollectorResubmitSettingsAsyncTask(this).execute(null, null);
+			else
+				snackbar.show();
+		} else if (i == DialogInterface.BUTTON_POSITIVE) {
+			if (serializable instanceof Result)
 				((Result) serializable).delete(getActivity());
-			}
+			else if (serializable.equals(R.id.delete))
+				Result.deleteAll(getActivity());
 			queryList();
 		}
 	}
