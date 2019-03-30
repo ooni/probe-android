@@ -54,6 +54,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
 	@BindView(R.id.coordinatorLayout) CoordinatorLayout coordinatorLayout;
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	private Measurement measurement;
+	private Snackbar snackbar;
 
 	public static Intent newIntent(Context context, int id) {
 		return new Intent(context, MeasurementDetailActivity.class).putExtra(ID, id);
@@ -121,10 +122,15 @@ public class MeasurementDetailActivity extends AbstractActivity {
 				.replace(R.id.body, detail)
 				.replace(R.id.head, head)
 				.commit();
+		snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsNotUploaded_Text, Snackbar.LENGTH_INDEFINITE).setAction(R.string.Snackbar_ResultsNotUploaded_Upload, v1 -> new MKCollectorResubmitSettingsAsyncTask(this).execute(null, measurement.id));
+		load();
+	}
+
+	private void load() {
 		if (!measurement.is_failed && !measurement.is_uploaded)
-			Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsNotUploaded_Text, Snackbar.LENGTH_INDEFINITE).setAction(R.string.Snackbar_ResultsNotUploaded_Upload, v1 -> {
-				new MKCollectorResubmitSettings<>(this).execute(null, measurement.id);
-			}).show();
+			snackbar.show();
+		else
+			snackbar.dismiss();
 	}
 
 	@Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -156,6 +162,20 @@ public class MeasurementDetailActivity extends AbstractActivity {
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
+		}
+	}
+
+	private static class MKCollectorResubmitSettingsAsyncTask extends MKCollectorResubmitSettings<MeasurementDetailActivity> {
+		MKCollectorResubmitSettingsAsyncTask(MeasurementDetailActivity activity) {
+			super(activity);
+		}
+
+		@Override protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			if (getActivity() != null) {
+				getActivity().measurement = SQLite.select().from(Measurement.class).where(Measurement_Table.id.eq(getActivity().measurement.id)).querySingle();
+				getActivity().load();
+			}
 		}
 	}
 }

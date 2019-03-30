@@ -36,6 +36,7 @@ import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
 import java.io.Serializable;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
@@ -90,7 +91,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 		adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
 		recycler.setAdapter(adapter);
 		snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsSomeNotUploaded_Text, Snackbar.LENGTH_INDEFINITE).setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll, v1 -> {
-			new MKCollectorResubmitSettings<>((AppCompatActivity) getActivity()).execute(null, null);
+			new MKCollectorResubmitSettingsAsyncTask(this).execute(null, null);
 		});
 		return v;
 	}
@@ -187,6 +188,22 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 				((Result) serializable).delete(getActivity());
 			}
 			queryList();
+		}
+	}
+
+	private static class MKCollectorResubmitSettingsAsyncTask extends MKCollectorResubmitSettings<AppCompatActivity> {
+		private WeakReference<ResultListFragment> wf;
+
+		MKCollectorResubmitSettingsAsyncTask(ResultListFragment f) {
+			super((AppCompatActivity) f.getActivity());
+			this.wf = new WeakReference<>(f);
+		}
+
+		@Override protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			ResultListFragment f = wf.get();
+			if (getActivity() != null && f != null)
+				f.queryList();
 		}
 	}
 }

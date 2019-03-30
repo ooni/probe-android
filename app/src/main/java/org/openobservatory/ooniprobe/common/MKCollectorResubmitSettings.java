@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.common;
 
 import android.util.Log;
+import android.view.WindowManager;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
@@ -26,6 +27,12 @@ import localhost.toolkit.os.NetworkProgressAsyncTask;
 public class MKCollectorResubmitSettings<A extends AppCompatActivity> extends NetworkProgressAsyncTask<A, Integer, Void> {
 	public MKCollectorResubmitSettings(A activity) {
 		super(activity, true, false);
+	}
+
+	@Override protected void onPreExecute() {
+		super.onPreExecute();
+		if (getActivity() != null)
+			getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
 
 	@Override protected Void doInBackground(Integer... params) {
@@ -67,5 +74,11 @@ public class MKCollectorResubmitSettings<A extends AppCompatActivity> extends Ne
 					e.printStackTrace();
 				}
 		return null;
+	}
+
+	@Override protected void onPostExecute(Void result) {
+		super.onPostExecute(result);
+		if (getActivity() != null)
+			getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
 }
