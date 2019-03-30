@@ -39,9 +39,10 @@ public class MKCollectorResubmitSettings extends NetworkProgressAsyncTask<Intege
 		if (params[1] != null)
 			where.add(Measurement_Table.id.eq(params[1]));
 		List<Measurement> measurements = SQLite.select().from(Measurement.class).where(where.toArray(new SQLOperator[0])).queryList();
-		for (int i = 0; i < measurements.size(); i++) {
-			Measurement m = measurements.get(i);
+		for (int i = 0; i < measurements.size(); i++)
 			try {
+				Measurement m = measurements.get(i);
+				m.result.load();
 				publishProgress("uploading " + (i + 1) + " of " + measurements.size());
 				FileInputStream is = new FileInputStream(Measurement.getEntryFile(activity, m.id, m.test_name));
 				String input = new GsonBuilder().disableHtmlEscaping().create().toJson(new JsonParser().parse(new InputStreamReader(is)));
@@ -64,7 +65,6 @@ public class MKCollectorResubmitSettings extends NetworkProgressAsyncTask<Intege
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
 		return null;
 	}
 }
