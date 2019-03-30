@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/desc"
 	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:orientation="vertical">
+	android:layout_height="wrap_content" />
 
-	<TextView
-		android:id="@+id/desc"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginHorizontal="32dp"
-		android:layout_marginBottom="32dp" />
-</LinearLayout>
