@@ -85,7 +85,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 		result.save();
 		if (SQLite.selectCountOf().from(Measurement.class).where(Measurement_Table.is_uploaded.eq(false), Measurement_Table.is_failed.eq(false), Measurement_Table.result_id.eq(result.id)).longValue() != 0)
 			Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsSomeNotUploaded_Text, Snackbar.LENGTH_INDEFINITE).setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll, v1 -> {
-				new MKCollectorResubmitSettings(this).execute(result.id, null);
+				new MKCollectorResubmitSettings<>(this).execute(result.id, null);
 			}).show();
 	}
 

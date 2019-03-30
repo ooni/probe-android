@@ -90,7 +90,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 		adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
 		recycler.setAdapter(adapter);
 		snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsSomeNotUploaded_Text, Snackbar.LENGTH_INDEFINITE).setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll, v1 -> {
-			new MKCollectorResubmitSettings((AppCompatActivity) getActivity()).execute(null, null);
+			new MKCollectorResubmitSettings<>((AppCompatActivity) getActivity()).execute(null, null);
 		});
 		return v;
 	}

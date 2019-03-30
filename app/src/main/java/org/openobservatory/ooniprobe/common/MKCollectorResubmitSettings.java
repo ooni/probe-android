@@ -23,8 +23,8 @@ import localhost.toolkit.os.NetworkProgressAsyncTask;
 /**
  * new MKCollectorResubmitSettings(activity).execute(result_id, measurement_id);
  */
-public class MKCollectorResubmitSettings extends NetworkProgressAsyncTask<Integer, Void> {
-	public MKCollectorResubmitSettings(AppCompatActivity activity) {
+public class MKCollectorResubmitSettings<A extends AppCompatActivity> extends NetworkProgressAsyncTask<A, Integer, Void> {
+	public MKCollectorResubmitSettings(A activity) {
 		super(activity, true, false);
 	}
 
@@ -40,31 +40,32 @@ public class MKCollectorResubmitSettings extends NetworkProgressAsyncTask<Intege
 			where.add(Measurement_Table.id.eq(params[1]));
 		List<Measurement> measurements = SQLite.select().from(Measurement.class).where(where.toArray(new SQLOperator[0])).queryList();
 		for (int i = 0; i < measurements.size(); i++)
-			try {
-				Measurement m = measurements.get(i);
-				m.result.load();
-				publishProgress("uploading " + (i + 1) + " of " + measurements.size());
-				FileInputStream is = new FileInputStream(Measurement.getEntryFile(activity, m.id, m.test_name));
-				String input = new GsonBuilder().disableHtmlEscaping().create().toJson(new JsonParser().parse(new InputStreamReader(is)));
-				is.close();
-				io.ooni.mk.MKCollectorResubmitSettings settings = new io.ooni.mk.MKCollectorResubmitSettings();
-				settings.setTimeout(14);
-				settings.setCABundlePath(activity.getCacheDir() + "/" + Application.CA_BUNDLE);
-				settings.setSerializedMeasurement(input);
-				MKCollectorResubmitResults results = settings.perform();
-				if (results.isGood()) {
-					Log.i(io.ooni.mk.MKCollectorResubmitSettings.class.getSimpleName(), results.getLogs());
-					String output = results.getUpdatedSerializedMeasurement();
-					FileOutputStream os = new FileOutputStream(Measurement.getEntryFile(activity, m.id, m.test_name));
-					os.write(output.getBytes());
-					os.close();
-					m.is_uploaded = true;
-					m.is_upload_failed = false;
-					m.save();
+			if (getActivity() != null)
+				try {
+					Measurement m = measurements.get(i);
+					m.result.load();
+					publishProgress("uploading " + (i + 1) + " of " + measurements.size());
+					FileInputStream is = new FileInputStream(Measurement.getEntryFile(getActivity(), m.id, m.test_name));
+					String input = new GsonBuilder().disableHtmlEscaping().create().toJson(new JsonParser().parse(new InputStreamReader(is)));
+					is.close();
+					io.ooni.mk.MKCollectorResubmitSettings settings = new io.ooni.mk.MKCollectorResubmitSettings();
+					settings.setTimeout(14);
+					settings.setCABundlePath(getActivity().getCacheDir() + "/" + Application.CA_BUNDLE);
+					settings.setSerializedMeasurement(input);
+					MKCollectorResubmitResults results = settings.perform();
+					if (results.isGood()) {
+						Log.i(io.ooni.mk.MKCollectorResubmitSettings.class.getSimpleName(), results.getLogs());
+						String output = results.getUpdatedSerializedMeasurement();
+						FileOutputStream os = new FileOutputStream(Measurement.getEntryFile(getActivity(), m.id, m.test_name));
+						os.write(output.getBytes());
+						os.close();
+						m.is_uploaded = true;
+						m.is_upload_failed = false;
+						m.save();
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		return null;
 	}
 }

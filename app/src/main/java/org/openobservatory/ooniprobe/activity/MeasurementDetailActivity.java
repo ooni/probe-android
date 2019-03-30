@@ -123,7 +123,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
 				.commit();
 		if (!measurement.is_failed && !measurement.is_uploaded)
 			Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsNotUploaded_Text, Snackbar.LENGTH_INDEFINITE).setAction(R.string.Snackbar_ResultsNotUploaded_Upload, v1 -> {
-				new MKCollectorResubmitSettings(this).execute(null, measurement.id);
+				new MKCollectorResubmitSettings<>(this).execute(null, measurement.id);
 			}).show();
 	}
 
