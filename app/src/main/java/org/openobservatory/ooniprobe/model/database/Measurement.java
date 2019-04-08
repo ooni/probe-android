@@ -47,6 +47,7 @@ public class Measurement extends BaseModel implements Serializable {
 	@ForeignKey(saveForeignKeyModel = true) public Url url;
 	@ForeignKey(saveForeignKeyModel = true, stubbedRelationship = true) public Result result;
 	private transient TestKeys testKeys;
+	private transient AbstractTest test;
 
 	public Measurement() {
 	}
@@ -79,26 +80,34 @@ public class Measurement extends BaseModel implements Serializable {
 	}
 
 	public AbstractTest getTest() {
-		switch (test_name) {
-			case FacebookMessenger.NAME:
-				return new FacebookMessenger();
-			case Telegram.NAME:
-				return new Telegram();
-			case Whatsapp.NAME:
-				return new Whatsapp();
-			case HttpHeaderFieldManipulation.NAME:
-				return new HttpHeaderFieldManipulation();
-			case HttpInvalidRequestLine.NAME:
-				return new HttpInvalidRequestLine();
-			case WebConnectivity.NAME:
-				return new WebConnectivity();
-			case Ndt.NAME:
-				return new Ndt();
-			case Dash.NAME:
-				return new Dash();
-			default:
-				return null;
-		}
+		if (test == null)
+			switch (test_name) {
+				case FacebookMessenger.NAME:
+					test = new FacebookMessenger();
+					break;
+				case Telegram.NAME:
+					test = new Telegram();
+					break;
+				case Whatsapp.NAME:
+					test = new Whatsapp();
+					break;
+				case HttpHeaderFieldManipulation.NAME:
+					test = new HttpHeaderFieldManipulation();
+					break;
+				case HttpInvalidRequestLine.NAME:
+					test = new HttpInvalidRequestLine();
+					break;
+				case WebConnectivity.NAME:
+					test = new WebConnectivity();
+					break;
+				case Ndt.NAME:
+					test = new Ndt();
+					break;
+				case Dash.NAME:
+					test = new Dash();
+					break;
+			}
+		return test;
 	}
 
 	@NonNull public TestKeys getTestKeys() {

@@ -18,7 +18,7 @@ public class HttpHeaderFieldManipulation extends AbstractTest {
 	private static final String MK_NAME = "HttpHeaderFieldManipulation";
 
 	public HttpHeaderFieldManipulation() {
-		super(NAME, MK_NAME, R.string.Test_HTTPHeaderFieldManipulation_Fullname, 0, 5);
+		super(NAME, MK_NAME, R.string.Test_HTTPHeaderFieldManipulation_Fullname, 0, R.string.urlTestHfm, 5);
 	}
 
 	@Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback) {

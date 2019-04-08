@@ -2,6 +2,7 @@ package org.openobservatory.ooniprobe.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,6 +46,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MeasurementDetailActivity extends AbstractActivity {
 	private static final String ID = "id";
@@ -149,5 +151,9 @@ public class MeasurementDetailActivity extends AbstractActivity {
 			default:
 				return super.onOptionsItemSelected(item);
 		}
+	}
+
+	@OnClick(R.id.methodology) void methodologyClick() {
+		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(measurement.getTest().getUrlResId()))));
 	}
 }
