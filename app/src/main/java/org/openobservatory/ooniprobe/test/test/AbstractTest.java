@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 
 import org.openobservatory.ooniprobe.common.Crashlytics;
 import org.openobservatory.ooniprobe.common.MKException;
+import org.openobservatory.ooniprobe.common.MKOrchestraClient;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
@@ -16,7 +17,7 @@ import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.model.jsonresult.EventResult;
 import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
 import org.openobservatory.ooniprobe.model.settings.Settings;
-import org.openobservatory.ooniprobe.common.MKOrchestraSettings;
+import org.openobservatory.ooniprobe.common.MKOrchestraClient;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -24,7 +25,9 @@ import java.io.Serializable;
 import java.util.List;
 
 import androidx.annotation.CallSuper;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import io.ooni.mk.MKTask;
 
 public abstract class AbstractTest implements Serializable {
@@ -34,6 +37,7 @@ public abstract class AbstractTest implements Serializable {
 	private final String mkName;
 	private final int labelResId;
 	private final int iconResId;
+	private final int urlResId;
 	private final int runtime;
 	private List<String> inputs;
 	private Integer max_runtime;
@@ -41,11 +45,12 @@ public abstract class AbstractTest implements Serializable {
 	private String reportId;
 	private String origin;
 
-	AbstractTest(String name, String mkName, int labelResId, int iconResId, int runtime) {
+	AbstractTest(String name, String mkName, @StringRes int labelResId, @DrawableRes int iconResId, @StringRes int urlResId, int runtime) {
 		this.name = name;
 		this.mkName = mkName;
 		this.labelResId = labelResId;
 		this.iconResId = iconResId;
+		this.urlResId = urlResId;
 		this.runtime = runtime;
 	}
 
@@ -207,6 +212,10 @@ public abstract class AbstractTest implements Serializable {
 		return iconResId;
 	}
 
+	public int getUrlResId() {
+		return urlResId;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -230,6 +239,7 @@ public abstract class AbstractTest implements Serializable {
 	public int getRuntime(PreferenceManager pm) {
 		return runtime;
 	}
+
 	public void setOrigin(String origin) {
 		this.origin = origin;
 	}

@@ -20,7 +20,7 @@ public class Ndt extends AbstractTest {
 	private String[] countries;
 
 	public Ndt() {
-		super(NAME, MK_NAME, R.string.Test_NDT_Fullname, 0, 45);
+		super(NAME, MK_NAME, R.string.Test_NDT_Fullname, 0, R.string.urlTestNdt, 45);
 	}
 
 	@Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback) {
