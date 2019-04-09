@@ -115,7 +115,7 @@
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">تطبيق</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">تطبيقات</string>
   <string name="TestResults_Details_Hero_Runtime">زمن التشغيل</string>
-  <string name="TestResults_Details_Methodology">Methodology</string>
+  <string name="TestResults_Details_Methodology">الطريقة</string>
   <string name="TestResults_Details_ViewLog">عرض السجل</string>
   <string name="TestResults_Details_RawData">بيانات</string>
   <string name="TestResults_Details_CopyToClipboard">نسخ إلى الحافظة</string>
@@ -201,6 +201,7 @@
   <string name="Modal_ResultsNotUploaded_Title">النتائج لم يتمّ رفعها</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">بعض نتائج الاختبارات الخاصة بك لم يتمّ رفعها إلى خوادم OONI. من فضلك قم برفعها اذا كنت ترغب بالمساهمة في تجميع بيانات OONI.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">رفع</string>
+  <string name="Modal_ResultsNotUploaded_Uploading">Uploading %1$s ...</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">قم بإعطاء تصريح التنبيهات لإجراء الاختبارات اوتوماتيكيًا.</string>
   <string name="Modal_EnableNotifications_News">قم بإعطاء تصريح التنبيهات للحصول على آخر الأخبار.</string>
   <string name="Modal_EnableNotifications_Any">قم بإعطاء تصريح التنبيهات لإستقبال التنبيهات المدفوعة (Push Notifications)</string>

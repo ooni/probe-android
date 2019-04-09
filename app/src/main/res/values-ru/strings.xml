@@ -201,6 +201,7 @@
   <string name="Modal_ResultsNotUploaded_Title">Результаты не загружены</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">Некоторые из ваших результатов теста не были загружены на серверы OONI. Если вы хотите помочь проекту OONI с исследовательскими данными, пожалуйста, загрузите результаты на сервер.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Загрузить</string>
+  <string name="Modal_ResultsNotUploaded_Uploading">Uploading %1$s ...</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Разрешить уведомления для автоматических тестов.</string>
   <string name="Modal_EnableNotifications_News">Разрешить новостные уведомления.</string>
   <string name="Modal_EnableNotifications_Any">Разрешить push-уведомления.</string>

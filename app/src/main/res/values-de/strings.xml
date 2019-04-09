@@ -115,7 +115,7 @@
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">App</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">Apps</string>
   <string name="TestResults_Details_Hero_Runtime">Laufzeit</string>
-  <string name="TestResults_Details_Methodology">Methodology</string>
+  <string name="TestResults_Details_Methodology">Methodik</string>
   <string name="TestResults_Details_ViewLog">Log ansehen</string>
   <string name="TestResults_Details_RawData">Daten</string>
   <string name="TestResults_Details_CopyToClipboard">In die Zwischenablage kopieren</string>
@@ -201,6 +201,7 @@
   <string name="Modal_ResultsNotUploaded_Title">Ergebnisse nicht hochgeladen</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">Manche deiner Testergebnisse wurden nicht auf OONI-Server hochgeladen. Wenn du zu OONIs Datensatz beitragen möchtest, lade sie bitte hoch.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Hochladen</string>
+  <string name="Modal_ResultsNotUploaded_Uploading">Uploading %1$s ...</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Erlaube Benachrichtigungen um diese Tests automatisch auszuführen.</string>
   <string name="Modal_EnableNotifications_News">Erlaube Benachrichtigungen um Neuigkeiten automatisch zu erhalten.</string>
   <string name="Modal_EnableNotifications_Any">Erlaube Benachrichtigungen um Push-Benachrichtigungen zu erhalten.</string>
