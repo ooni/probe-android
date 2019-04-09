@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.raizlabs.android.dbflow.sql.language.Method;
+import com.raizlabs.android.dbflow.sql.language.OperatorGroup;
 import com.raizlabs.android.dbflow.sql.language.SQLOperator;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
@@ -123,7 +124,9 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 	}
 
 	@OnItemSelected(R.id.filterTests) void queryList() {
-		if (((Application) getActivity().getApplication()).getPreferenceManager().isManualUploadResults() && SQLite.selectCountOf().from(Measurement.class).where(Measurement_Table.is_uploaded.eq(false), Measurement_Table.is_failed.eq(false)).longValue() != 0)
+		if (((Application) getActivity().getApplication()).getPreferenceManager().isManualUploadResults() && SQLite.selectCountOf().from(Measurement.class).where(
+				Measurement_Table.is_uploaded.eq(false), OperatorGroup.clause().or(Measurement_Table.is_failed.eq(false)).or(Measurement_Table.report_id.isNull())
+		).longValue() != 0)
 			snackbar.show();
 		else
 			snackbar.dismiss();

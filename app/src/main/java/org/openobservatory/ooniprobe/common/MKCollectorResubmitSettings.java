@@ -5,6 +5,7 @@ import android.view.WindowManager;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
+import com.raizlabs.android.dbflow.sql.language.OperatorGroup;
 import com.raizlabs.android.dbflow.sql.language.SQLOperator;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
@@ -39,7 +40,7 @@ public class MKCollectorResubmitSettings<A extends AppCompatActivity> extends Ne
 	@Override protected Void doInBackground(Integer... params) {
 		ArrayList<SQLOperator> where = new ArrayList<>();
 		where.add(Measurement_Table.is_uploaded.eq(false));
-		where.add(Measurement_Table.is_failed.eq(false));
+		where.add(OperatorGroup.clause().or(Measurement_Table.is_failed.eq(false)).or(Measurement_Table.report_id.isNull()));
 		if (params.length != 2)
 			throw new IllegalArgumentException("MKCollectorResubmitSettings require 2 nullable params: result_id, measurement_id");
 		if (params[0] != null)

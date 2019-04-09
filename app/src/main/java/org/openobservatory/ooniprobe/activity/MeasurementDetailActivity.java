@@ -129,7 +129,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
 	}
 
 	private void load() {
-		if (!measurement.is_failed && !measurement.is_uploaded)
+		if (!measurement.is_failed && (!measurement.is_uploaded || measurement.report_id == null))
 			snackbar.show();
 		else
 			snackbar.dismiss();
