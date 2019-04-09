@@ -8,7 +8,7 @@ import com.google.gson.Gson;
 
 import org.openobservatory.ooniprobe.common.Crashlytics;
 import org.openobservatory.ooniprobe.common.MKException;
-import org.openobservatory.ooniprobe.common.MKOrchestraClient;
+import org.openobservatory.ooniprobe.common.MKOrchestraSettings;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
@@ -17,7 +17,6 @@ import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.model.jsonresult.EventResult;
 import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
 import org.openobservatory.ooniprobe.model.settings.Settings;
-import org.openobservatory.ooniprobe.common.MKOrchestraClient;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
