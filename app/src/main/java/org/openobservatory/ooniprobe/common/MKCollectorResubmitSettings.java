@@ -8,6 +8,7 @@ import com.google.gson.JsonParser;
 import com.raizlabs.android.dbflow.sql.language.SQLOperator;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
+import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 
@@ -51,7 +52,7 @@ public class MKCollectorResubmitSettings<A extends AppCompatActivity> extends Ne
 				try {
 					Measurement m = measurements.get(i);
 					m.result.load();
-					publishProgress("uploading " + (i + 1) + " of " + measurements.size());
+					publishProgress(getActivity().getString(R.string.Modal_ResultsNotUploaded_Uploading, getActivity().getString(R.string.paramOfParam, Integer.toString(i + 1), Integer.toString(measurements.size()))));
 					FileInputStream is = new FileInputStream(Measurement.getEntryFile(getActivity(), m.id, m.test_name));
 					String input = new GsonBuilder().disableHtmlEscaping().create().toJson(new JsonParser().parse(new InputStreamReader(is)));
 					is.close();
