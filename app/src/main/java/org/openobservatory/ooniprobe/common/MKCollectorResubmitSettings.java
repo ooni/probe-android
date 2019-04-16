@@ -68,6 +68,7 @@ public class MKCollectorResubmitSettings<A extends AppCompatActivity> extends Ne
 						FileOutputStream os = new FileOutputStream(Measurement.getEntryFile(getActivity(), m.id, m.test_name));
 						os.write(output.getBytes());
 						os.close();
+						m.report_id = results.getUpdatedReportID();
 						m.is_uploaded = true;
 						m.is_upload_failed = false;
 						m.save();
