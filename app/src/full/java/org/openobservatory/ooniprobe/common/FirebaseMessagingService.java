@@ -40,6 +40,6 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
 	@Override public void onNewToken(String token) {
 		((Application) getApplicationContext()).getPreferenceManager().setToken(token);
-		MKOrchestraClient.sync((Application) getApplicationContext());
+		MKOrchestraSettings.sync((Application) getApplicationContext());
 	}
 }
