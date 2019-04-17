@@ -201,7 +201,7 @@
   <string name="Modal_ResultsNotUploaded_Title">Ergebnisse nicht hochgeladen</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">Manche deiner Testergebnisse wurden nicht auf OONI-Server hochgeladen. Wenn du zu OONIs Datensatz beitragen möchtest, lade sie bitte hoch.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Hochladen</string>
-  <string name="Modal_ResultsNotUploaded_Uploading">Uploading %1$s ...</string>
+  <string name="Modal_ResultsNotUploaded_Uploading">Hochladen von %1$s ...</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Erlaube Benachrichtigungen um diese Tests automatisch auszuführen.</string>
   <string name="Modal_EnableNotifications_News">Erlaube Benachrichtigungen um Neuigkeiten automatisch zu erhalten.</string>
   <string name="Modal_EnableNotifications_Any">Erlaube Benachrichtigungen um Push-Benachrichtigungen zu erhalten.</string>

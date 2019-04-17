@@ -201,7 +201,7 @@
   <string name="Modal_ResultsNotUploaded_Title">Resultados não enviados</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">Alguns dos seus resultados de teste não foram enviados para servidores da OONI. Se você quiser contribuir com o banco de dados da OONI, carregue-os.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Carregar</string>
-  <string name="Modal_ResultsNotUploaded_Uploading">Uploading %1$s ...</string>
+  <string name="Modal_ResultsNotUploaded_Uploading">Fazendo upload de %1$s ...</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Habilite as permissões de notificação para executar testes automaticamente.</string>
   <string name="Modal_EnableNotifications_News">Habilite as permissões de notificação para receber atualizações de notícias.</string>
   <string name="Modal_EnableNotifications_Any">Habilite as permissões de notificação para receber notificações não solicitadas.</string>
