@@ -201,6 +201,7 @@
   <string name="Modal_ResultsNotUploaded_Title">結果未上傳</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">部份的測試結果尚未上傳到 ONNI 伺服器，若願意提交 OONI  數據組，請上傳之。</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">上傳</string>
+  <string name="Modal_ResultsNotUploaded_Uploading">Uploading %1$s ...</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">啟用通知授權以便自動執行測試。</string>
   <string name="Modal_EnableNotifications_News">啟用通知授權以便接收新聞更新。</string>
   <string name="Modal_EnableNotifications_Any">啟用通知授權以便接收推送的通知。 </string>
