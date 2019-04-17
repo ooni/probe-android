@@ -13,8 +13,8 @@ import org.openobservatory.ooniprobe.common.MKOrchestraSettings;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
 import org.openobservatory.ooniprobe.fragment.PreferenceGlobalFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
-
 import java.io.Serializable;
+import org.openobservatory.ooniprobe.common.MKOrchestraSettings;
 
 import androidx.annotation.Nullable;
 import butterknife.BindView;
