@@ -13,9 +13,9 @@ import java.util.Date;
 
 class DateAdapter extends TypeAdapter<Date> {
 	@Override public void write(JsonWriter out, Date value) throws IOException {
-		if (value == null)
+		if (value == null) {
 			out.nullValue();
-		else {
+		} else {
 			String formatted = ISO8601Utils.format(value);
 			out.value(formatted.replace('T', ' ').substring(0, formatted.length() - 1));
 		}
@@ -26,12 +26,13 @@ class DateAdapter extends TypeAdapter<Date> {
 		if (in.peek() == JsonToken.NULL) {
 			in.nextNull();
 			out = null;
-		} else
+		} else {
 			try {
 				out = ISO8601Utils.parse(in.nextString().replace(' ', 'T') + "Z", new ParsePosition(0));
 			} catch (ParseException e) {
 				throw new IOException(e);
 			}
+		}
 		return out;
 	}
 }
