@@ -11,7 +11,7 @@ import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
 import org.openobservatory.ooniprobe.fragment.PreferenceGlobalFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
-import org.openobservatory.ooniprobe.common.MKOrchestraClient;
+import org.openobservatory.ooniprobe.common.MKOrchestraSettings;
 
 import androidx.annotation.Nullable;
 import butterknife.BindView;
@@ -54,7 +54,7 @@ public class MainActivity extends AbstractActivity {
 
 	@Override protected void onResume() {
 		super.onResume();
-		new MKOrchestraClient((Application) getApplication()).execute();
+		new MKOrchestraSettings((Application) getApplication()).execute();
 	}
 
 	@Override protected void onNewIntent(Intent intent) {

@@ -61,7 +61,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 					geoIPLookup.setCountryDBPath(act.getCacheDir() + "/" + Application.COUNTRY_MMDB);
 					geoIPLookup.setASNDBPath(act.getCacheDir() + "/" + Application.ASN_MMDB);
 					MKGeoIPLookupResults results = geoIPLookup.perform();
-					String probeCC = results.good() ? results.getProbeCC() : "XX";
+					String probeCC = results.isGood() ? results.getProbeCC() : "XX";
 					Retrofit retrofit = new Retrofit.Builder().baseUrl("https://orchestrate.ooni.io/").addConverterFactory(GsonConverterFactory.create()).build();
 					Response<RetrieveUrlResponse> response = retrofit.create(OoniIOClient.class).getUrls(probeCC, act.getPreferenceManager().getEnabledCategory()).execute();
 					if (response.isSuccessful() && response.body() != null && response.body().results != null) {
