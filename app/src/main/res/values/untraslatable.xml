@@ -29,6 +29,7 @@
 	<string name="bold" translatable="false">&lt;b>%1$s&lt;/b></string>
 	<string name="normalBold" translatable="false">%1$s &lt;b>%2$s&lt;/b></string>
 	<string name="bigNormal" translatable="false">%1$s&lt;small>&lt;small>&lt;small>%2$s&lt;/small>&lt;/small>&lt;/small></string>
+	<string name="paramOfParam" translatable="false">%1$s / %2$s</string>
 	<string name="twoParam" translatable="false">%1$s %2$s</string>
 	<string name="twoParamWithBrackets" translatable="false">%1$s (%2$s)</string>
 	<string name="outcomeHeader" translatable="false">&lt;big>&lt;b>%1$s&lt;/b>&lt;/big>&lt;br>&lt;small>%2$s&lt;/small></string>
