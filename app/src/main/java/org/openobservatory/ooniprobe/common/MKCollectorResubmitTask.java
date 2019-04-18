@@ -1,22 +1,20 @@
 package org.openobservatory.ooniprobe.common;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.WindowManager;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
-import com.raizlabs.android.dbflow.sql.language.OperatorGroup;
-import com.raizlabs.android.dbflow.sql.language.SQLOperator;
-import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.dao.MeasurementDao;
 import org.openobservatory.ooniprobe.model.database.Measurement;
-import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +32,28 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
 		super(activity, true, false);
 	}
 
+	private static void perform(Context c, Measurement m) throws IOException {
+		FileInputStream is = new FileInputStream(Measurement.getEntryFile(c, m.id, m.test_name));
+		String input = new GsonBuilder().disableHtmlEscaping().create().toJson(new JsonParser().parse(new InputStreamReader(is)));
+		is.close();
+		MKCollectorResubmitSettings settings = new MKCollectorResubmitSettings();
+		settings.setTimeout(14);
+		settings.setCABundlePath(c.getCacheDir() + "/" + Application.CA_BUNDLE);
+		settings.setSerializedMeasurement(input);
+		MKCollectorResubmitResults results = settings.perform();
+		if (results.isGood()) {
+			Log.i(io.ooni.mk.MKCollectorResubmitSettings.class.getSimpleName(), results.getLogs());
+			String output = results.getUpdatedSerializedMeasurement();
+			FileOutputStream os = new FileOutputStream(Measurement.getEntryFile(c, m.id, m.test_name));
+			os.write(output.getBytes());
+			os.close();
+			m.report_id = results.getUpdatedReportID();
+			m.is_uploaded = true;
+			m.is_upload_failed = false;
+			m.save();
+		}
+	}
+
 	@Override protected void onPreExecute() {
 		super.onPreExecute();
 		if (getActivity() != null)
@@ -41,43 +61,19 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
 	}
 
 	@Override protected Void doInBackground(Integer... params) {
-		ArrayList<SQLOperator> where = new ArrayList<>();
-		where.add(Measurement_Table.is_uploaded.eq(false));
-		where.add(OperatorGroup.clause().or(Measurement_Table.is_failed.eq(false)).or(Measurement_Table.report_id.isNull()));
 		if (params.length != 2)
 			throw new IllegalArgumentException("MKCollectorResubmitTask require 2 nullable params: result_id, measurement_id");
-		if (params[0] != null)
-			where.add(Measurement_Table.result_id.eq(params[0]));
-		if (params[1] != null)
-			where.add(Measurement_Table.id.eq(params[1]));
-		List<Measurement> measurements = SQLite.select().from(Measurement.class).where(where.toArray(new SQLOperator[0])).queryList();
-		for (int i = 0; i < measurements.size() && getActivity() != null; i++)
+		List<Measurement> measurements = MeasurementDao.queryList(params[0], params[1], false, false);
+		for (int i = 0; i < measurements.size() && getActivity() != null; i++) {
+			publishProgress(getActivity().getString(R.string.Modal_ResultsNotUploaded_Uploading, getActivity().getString(R.string.paramOfParam, Integer.toString(i + 1), Integer.toString(measurements.size()))));
+			Measurement m = measurements.get(i);
+			m.result.load();
 			try {
-				Measurement m = measurements.get(i);
-				m.result.load();
-				publishProgress(getActivity().getString(R.string.Modal_ResultsNotUploaded_Uploading, getActivity().getString(R.string.paramOfParam, Integer.toString(i + 1), Integer.toString(measurements.size()))));
-				FileInputStream is = new FileInputStream(Measurement.getEntryFile(getActivity(), m.id, m.test_name));
-				String input = new GsonBuilder().disableHtmlEscaping().create().toJson(new JsonParser().parse(new InputStreamReader(is)));
-				is.close();
-				MKCollectorResubmitSettings settings = new MKCollectorResubmitSettings();
-				settings.setTimeout(14);
-				settings.setCABundlePath(getActivity().getCacheDir() + "/" + Application.CA_BUNDLE);
-				settings.setSerializedMeasurement(input);
-				MKCollectorResubmitResults results = settings.perform();
-				if (results.isGood()) {
-					Log.i(io.ooni.mk.MKCollectorResubmitSettings.class.getSimpleName(), results.getLogs());
-					String output = results.getUpdatedSerializedMeasurement();
-					FileOutputStream os = new FileOutputStream(Measurement.getEntryFile(getActivity(), m.id, m.test_name));
-					os.write(output.getBytes());
-					os.close();
-					m.report_id = results.getUpdatedReportID();
-					m.is_uploaded = true;
-					m.is_upload_failed = false;
-					m.save();
-				}
-			} catch (Exception e) {
+				perform(getActivity(), m);
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
 		return null;
 	}
 
