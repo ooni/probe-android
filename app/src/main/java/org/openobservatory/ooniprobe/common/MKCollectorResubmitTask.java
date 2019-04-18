@@ -21,12 +21,15 @@ import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import io.ooni.mk.MKCollectorResubmitResults;
+import io.ooni.mk.MKCollectorResubmitSettings;
 import localhost.toolkit.os.NetworkProgressAsyncTask;
 
-/**
- * new MKCollectorResubmitTask(activity).execute(result_id, measurement_id);
- */
 public class MKCollectorResubmitTask<A extends AppCompatActivity> extends NetworkProgressAsyncTask<A, Integer, Void> {
+	/**
+	 * {@code new MKCollectorResubmitTask(activity).execute(result_id, measurement_id);}
+	 *
+	 * @param activity from this task are executed
+	 */
 	public MKCollectorResubmitTask(A activity) {
 		super(activity, true, false);
 	}
@@ -56,7 +59,7 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
 				FileInputStream is = new FileInputStream(Measurement.getEntryFile(getActivity(), m.id, m.test_name));
 				String input = new GsonBuilder().disableHtmlEscaping().create().toJson(new JsonParser().parse(new InputStreamReader(is)));
 				is.close();
-				io.ooni.mk.MKCollectorResubmitSettings settings = new io.ooni.mk.MKCollectorResubmitSettings();
+				MKCollectorResubmitSettings settings = new MKCollectorResubmitSettings();
 				settings.setTimeout(14);
 				settings.setCABundlePath(getActivity().getCacheDir() + "/" + Application.CA_BUNDLE);
 				settings.setSerializedMeasurement(input);

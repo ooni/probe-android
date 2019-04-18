@@ -8,7 +8,7 @@ import com.google.gson.Gson;
 
 import org.openobservatory.ooniprobe.common.Crashlytics;
 import org.openobservatory.ooniprobe.common.MKException;
-import org.openobservatory.ooniprobe.common.MKOrchestraSettings;
+import org.openobservatory.ooniprobe.common.MKOrchestraTask;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
@@ -169,7 +169,7 @@ public abstract class AbstractTest implements Serializable {
 
 	private void saveNetworkInfo(EventResult.Value value, Result result, Context c) {
 		if (result != null && result.network == null) {
-			result.network = Network.getNetwork(value.probe_network_name, value.probe_ip, value.probe_asn, value.probe_cc, MKOrchestraSettings.getNetworkType(c));
+			result.network = Network.getNetwork(value.probe_network_name, value.probe_ip, value.probe_asn, value.probe_cc, MKOrchestraTask.getNetworkType(c));
 			result.save();
 		}
 	}
