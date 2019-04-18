@@ -42,7 +42,6 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
 		settings.setSerializedMeasurement(input);
 		MKCollectorResubmitResults results = settings.perform();
 		if (results.isGood()) {
-			Log.i(io.ooni.mk.MKCollectorResubmitSettings.class.getSimpleName(), results.getLogs());
 			String output = results.getUpdatedSerializedMeasurement();
 			FileOutputStream os = new FileOutputStream(Measurement.getEntryFile(c, m.id, m.test_name));
 			os.write(output.getBytes());
@@ -51,6 +50,9 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
 			m.is_uploaded = true;
 			m.is_upload_failed = false;
 			m.save();
+		} else {
+			Log.w(MKCollectorResubmitSettings.class.getSimpleName(), results.getLogs());
+			// TODO check what to do with logs
 		}
 	}
 
