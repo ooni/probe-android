@@ -52,7 +52,7 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
 			m.save();
 		} else {
 			Log.w(MKCollectorResubmitSettings.class.getSimpleName(), results.getLogs());
-			// TODO decide what to do with logs
+			// TODO decide what to do with logs (append on log file?)
 		}
 	}
 
