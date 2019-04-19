@@ -4,17 +4,14 @@ import android.content.Context;
 import android.util.Log;
 import android.view.WindowManager;
 
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonParser;
-
+import org.apache.commons.io.FileUtils;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.dao.MeasurementDao;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,9 +30,7 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
 	}
 
 	private static void perform(Context c, Measurement m) throws IOException {
-		FileInputStream is = new FileInputStream(Measurement.getEntryFile(c, m.id, m.test_name));
-		String input = new GsonBuilder().disableHtmlEscaping().create().toJson(new JsonParser().parse(new InputStreamReader(is)));
-		is.close();
+		String input = FileUtils.readFileToString(Measurement.getEntryFile(c, m.id, m.test_name), StandardCharsets.UTF_8);
 		MKCollectorResubmitSettings settings = new MKCollectorResubmitSettings();
 		settings.setTimeout(14);
 		settings.setCABundlePath(c.getCacheDir() + "/" + Application.CA_BUNDLE);
