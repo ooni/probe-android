@@ -50,22 +50,26 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
 
 	@Override protected void onPreExecute() {
 		super.onPreExecute();
-		if (getActivity() != null)
-			getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		A activity = getActivity();
+		if (activity != null)
+			activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
 
 	@Override protected Void doInBackground(Integer... params) {
 		if (params.length != 2)
 			throw new IllegalArgumentException("MKCollectorResubmitTask requires 2 nullable params: result_id, measurement_id");
 		List<Measurement> measurements = MeasurementDao.queryList(params[0], params[1], false, false);
-		for (int i = 0; i < measurements.size() && getActivity() != null; i++) {
-			publishProgress(getActivity().getString(R.string.Modal_ResultsNotUploaded_Uploading, getActivity().getString(R.string.paramOfParam, Integer.toString(i + 1), Integer.toString(measurements.size()))));
-			Measurement m = measurements.get(i);
-			m.result.load();
-			try {
-				perform(getActivity(), m);
-			} catch (IOException e) {
-				e.printStackTrace();
+		for (int i = 0; i < measurements.size(); i++) {
+			A activity = getActivity();
+			if (activity != null) {
+				publishProgress(activity.getString(R.string.Modal_ResultsNotUploaded_Uploading, activity.getString(R.string.paramOfParam, Integer.toString(i + 1), Integer.toString(measurements.size()))));
+				Measurement m = measurements.get(i);
+				m.result.load();
+				try {
+					perform(activity, m);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return null;
@@ -73,7 +77,8 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
 
 	@Override protected void onPostExecute(Void result) {
 		super.onPostExecute(result);
-		if (getActivity() != null)
-			getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		A activity = getActivity();
+		if (activity != null)
+			activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
 }
