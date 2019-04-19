@@ -11,7 +11,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
-import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.FileUtils;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.measurement.DashFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.FacebookMessengerFragment;
@@ -37,8 +37,7 @@ import org.openobservatory.ooniprobe.test.test.Telegram;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -130,20 +129,17 @@ public class MeasurementDetailActivity extends AbstractActivity {
 		switch (item.getItemId()) {
 			case R.id.rawData:
 				try {
-					FileInputStream is = new FileInputStream(Measurement.getEntryFile(this, measurement.id, measurement.test_name));
-					String json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(new JsonParser().parse(new InputStreamReader(is)).getAsJsonObject());
+					String json = FileUtils.readFileToString(Measurement.getEntryFile(this, measurement.id, measurement.test_name), StandardCharsets.UTF_8);
+					json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(new JsonParser().parse(json).getAsJsonObject());
 					startActivity(TextActivity.newIntent(this, json));
-					is.close();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return true;
 			case R.id.viewLog:
 				try {
-					FileInputStream is = new FileInputStream(Measurement.getLogFile(this, measurement.result.id, measurement.test_name));
-					String log = new String(IOUtils.toByteArray(is));
+					String log = FileUtils.readFileToString(Measurement.getLogFile(this, measurement.result.id, measurement.test_name), StandardCharsets.UTF_8);
 					startActivity(TextActivity.newIntent(this, log));
-					is.close();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

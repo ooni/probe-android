@@ -9,7 +9,6 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.dao.MeasurementDao;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -38,9 +37,7 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
 		MKCollectorResubmitResults results = settings.perform();
 		if (results.isGood()) {
 			String output = results.getUpdatedSerializedMeasurement();
-			FileOutputStream os = new FileOutputStream(Measurement.getEntryFile(c, m.id, m.test_name));
-			os.write(output.getBytes());
-			os.close();
+			FileUtils.writeStringToFile(Measurement.getEntryFile(c, m.id, m.test_name), output, StandardCharsets.UTF_8);
 			m.report_id = results.getUpdatedReportID();
 			m.is_uploaded = true;
 			m.is_upload_failed = false;
