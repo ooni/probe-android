@@ -26,7 +26,7 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
 	/**
 	 * {@code new MKCollectorResubmitTask(activity).execute(result_id, measurement_id);}
 	 *
-	 * @param activity from this task are executed
+	 * @param activity from which this task are executed
 	 */
 	public MKCollectorResubmitTask(A activity) {
 		super(activity, true, false);
@@ -52,7 +52,7 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
 			m.save();
 		} else {
 			Log.w(MKCollectorResubmitSettings.class.getSimpleName(), results.getLogs());
-			// TODO check what to do with logs
+			// TODO decide what to do with logs
 		}
 	}
 
@@ -64,7 +64,7 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
 
 	@Override protected Void doInBackground(Integer... params) {
 		if (params.length != 2)
-			throw new IllegalArgumentException("MKCollectorResubmitTask require 2 nullable params: result_id, measurement_id");
+			throw new IllegalArgumentException("MKCollectorResubmitTask requires 2 nullable params: result_id, measurement_id");
 		List<Measurement> measurements = MeasurementDao.queryList(params[0], params[1], false, false);
 		for (int i = 0; i < measurements.size() && getActivity() != null; i++) {
 			publishProgress(getActivity().getString(R.string.Modal_ResultsNotUploaded_Uploading, getActivity().getString(R.string.paramOfParam, Integer.toString(i + 1), Integer.toString(measurements.size()))));
