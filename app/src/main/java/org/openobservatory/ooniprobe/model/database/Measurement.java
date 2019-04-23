@@ -66,14 +66,14 @@ public class Measurement extends BaseModel implements Serializable {
 	}
 
 	public static File getEntryFile(Context c, int measurementId, String test_name) {
-		return new File(getMeasurementDir(c), measurementId + "_" + test_name + ".json");
+		return new File(createMeasurementDir(c), measurementId + "_" + test_name + ".json");
 	}
 
 	public static File getLogFile(Context c, int resultId, String test_name) {
-		return new File(getMeasurementDir(c), resultId + "_" + test_name + ".log");
+		return new File(createMeasurementDir(c), resultId + "_" + test_name + ".log");
 	}
 
-	static File getMeasurementDir(Context c) {
+	static File createMeasurementDir(Context c) {
 		File dir = new File(c.getFilesDir(), Measurement.class.getSimpleName());
 		dir.mkdirs();
 		return dir;

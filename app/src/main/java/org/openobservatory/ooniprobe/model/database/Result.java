@@ -58,7 +58,7 @@ public class Result extends BaseModel implements Serializable {
 
 	public static void deleteAll(Context c) {
 		try {
-			FileUtils.cleanDirectory(Measurement.getMeasurementDir(c));
+			FileUtils.cleanDirectory(Measurement.createMeasurementDir(c));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
