@@ -86,7 +86,11 @@ public abstract class AbstractTest implements Serializable {
 						measurement.save();
 						break;
 					case "log":
-						FileUtils.writeStringToFile(Measurement.getLogFile(c, result.id, name), event.value.message + "\n", StandardCharsets.UTF_8, true);
+						FileUtils.writeStringToFile(
+								Measurement.getLogFile(c, result.id, name),
+								event.value.message + "\n",
+								StandardCharsets.UTF_8,
+								true); // true = append
 						testCallback.onLog(event.value.message);
 						break;
 					case "status.progress":
@@ -101,7 +105,10 @@ public abstract class AbstractTest implements Serializable {
 							else
 								onEntry(c, pm, jr, m);
 							m.save();
-							FileUtils.writeStringToFile(Measurement.getEntryFile(c, m.id, m.test_name), event.value.json_str, StandardCharsets.UTF_8);
+							FileUtils.writeStringToFile(
+									Measurement.getEntryFile(c, m.id, m.test_name),
+									event.value.json_str,
+									StandardCharsets.UTF_8);
 						}
 						break;
 					case "failure.report_create":
