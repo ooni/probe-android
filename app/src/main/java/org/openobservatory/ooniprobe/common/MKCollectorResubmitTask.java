@@ -4,13 +4,18 @@ import android.content.Context;
 import android.util.Log;
 import android.view.WindowManager;
 
+import com.raizlabs.android.dbflow.sql.language.OperatorGroup;
+import com.raizlabs.android.dbflow.sql.language.SQLOperator;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
+
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.dao.MeasurementDao;
 import org.openobservatory.ooniprobe.model.database.Measurement;
+import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -58,7 +63,14 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
 	@Override protected Void doInBackground(Integer... params) {
 		if (params.length != 2)
 			throw new IllegalArgumentException("MKCollectorResubmitTask requires 2 nullable params: result_id, measurement_id");
-		List<Measurement> measurements = MeasurementDao.queryList(params[0], params[1], false, false);
+		ArrayList<SQLOperator> where = new ArrayList<>();
+		if (params[0] != null)
+			where.add(Measurement_Table.result_id.eq(params[0]));
+		if (params[1] != null)
+			where.add(Measurement_Table.id.eq(params[1]));
+		where.add(OperatorGroup.clause().or(Measurement_Table.is_uploaded.eq(false)).or(Measurement_Table.report_id.isNull()));
+		where.add(Measurement_Table.is_failed.eq(false));
+		List<Measurement> measurements = SQLite.select().from(Measurement.class).where(where.toArray(new SQLOperator[0])).queryList();
 		for (int i = 0; i < measurements.size(); i++) {
 			A activity = getActivity();
 			if (activity != null) {
