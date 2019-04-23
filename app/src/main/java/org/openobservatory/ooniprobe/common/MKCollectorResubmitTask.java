@@ -73,16 +73,16 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
 		List<Measurement> measurements = SQLite.select().from(Measurement.class).where(where.toArray(new SQLOperator[0])).queryList();
 		for (int i = 0; i < measurements.size(); i++) {
 			A activity = getActivity();
-			if (activity != null) {
-				String paramOfParam = activity.getString(R.string.paramOfParam, Integer.toString(i + 1), Integer.toString(measurements.size()));
-				publishProgress(activity.getString(R.string.Modal_ResultsNotUploaded_Uploading, paramOfParam));
-				Measurement m = measurements.get(i);
-				m.result.load();
-				try {
-					perform(activity, m);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+			if (activity == null)
+				break;
+			String paramOfParam = activity.getString(R.string.paramOfParam, Integer.toString(i + 1), Integer.toString(measurements.size()));
+			publishProgress(activity.getString(R.string.Modal_ResultsNotUploaded_Uploading, paramOfParam));
+			Measurement m = measurements.get(i);
+			m.result.load();
+			try {
+				perform(activity, m);
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
 		return null;
