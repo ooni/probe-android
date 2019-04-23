@@ -25,7 +25,8 @@ import localhost.toolkit.os.NetworkProgressAsyncTask;
 
 public class MKCollectorResubmitTask<A extends AppCompatActivity> extends NetworkProgressAsyncTask<A, Integer, Void> {
 	/**
-	 * {@code new MKCollectorResubmitTask(activity).execute(result_id, measurement_id);}
+	 * Use this class to resubmit a measurement, use result_id and measurement_id to filter list of value
+	 * {@code new MKCollectorResubmitTask(activity).execute(@Nullable result_id, @Nullable measurement_id);}
 	 *
 	 * @param activity from which this task are executed
 	 */
