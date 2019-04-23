@@ -74,7 +74,8 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
 		for (int i = 0; i < measurements.size(); i++) {
 			A activity = getActivity();
 			if (activity != null) {
-				publishProgress(activity.getString(R.string.Modal_ResultsNotUploaded_Uploading, activity.getString(R.string.paramOfParam, Integer.toString(i + 1), Integer.toString(measurements.size()))));
+				String paramOfParam = activity.getString(R.string.paramOfParam, Integer.toString(i + 1), Integer.toString(measurements.size()));
+				publishProgress(activity.getString(R.string.Modal_ResultsNotUploaded_Uploading, paramOfParam));
 				Measurement m = measurements.get(i);
 				m.result.load();
 				try {
