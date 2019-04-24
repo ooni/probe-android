@@ -60,6 +60,13 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
 			activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
 
+	/**
+	 * this method is invoked when the {@code execute()} method is called
+	 *
+	 * @param params [0] is result_id. is nullable and is used to restrict measurement retrieve on a specific result.
+	 *               [1] is measurement_id. is nullable and is used to restrict measurement retrieve on a specific measurement.
+	 * @return there is no return
+	 */
 	@Override protected Void doInBackground(Integer... params) {
 		if (params.length != 2)
 			throw new IllegalArgumentException("MKCollectorResubmitTask requires 2 nullable params: result_id, measurement_id");
