@@ -19,6 +19,7 @@ import org.openobservatory.ooniprobe.model.jsonresult.EventResult;
 import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
 import org.openobservatory.ooniprobe.model.settings.Settings;
 
+import java.io.File;
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -86,8 +87,10 @@ public abstract class AbstractTest implements Serializable {
 						measurement.save();
 						break;
 					case "log":
+						File logFile = Measurement.getLogFile(c, result.id, name);
+						logFile.mkdirs();
 						FileUtils.writeStringToFile(
-								Measurement.getLogFile(c, result.id, name),
+								logFile,
 								event.value.message + "\n",
 								StandardCharsets.UTF_8,
 								true); // true = append
@@ -105,8 +108,10 @@ public abstract class AbstractTest implements Serializable {
 							else
 								onEntry(c, pm, jr, m);
 							m.save();
+							File entryFile = Measurement.getEntryFile(c, m.id, m.test_name);
+							entryFile.mkdirs();
 							FileUtils.writeStringToFile(
-									Measurement.getEntryFile(c, m.id, m.test_name),
+									entryFile,
 									event.value.json_str,
 									StandardCharsets.UTF_8);
 						}

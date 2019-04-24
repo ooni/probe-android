@@ -13,6 +13,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -34,7 +35,9 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
 	}
 
 	private static void perform(Context c, Measurement m) throws IOException {
-		String input = FileUtils.readFileToString(Measurement.getEntryFile(c, m.id, m.test_name), StandardCharsets.UTF_8);
+		File file = Measurement.getEntryFile(c, m.id, m.test_name);
+		file.mkdirs();
+		String input = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
 		MKCollectorResubmitSettings settings = new MKCollectorResubmitSettings();
 		settings.setTimeout(14);
 		settings.setCABundlePath(c.getCacheDir() + "/" + Application.CA_BUNDLE);
@@ -42,7 +45,7 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
 		MKCollectorResubmitResults results = settings.perform();
 		if (results.isGood()) {
 			String output = results.getUpdatedSerializedMeasurement();
-			FileUtils.writeStringToFile(Measurement.getEntryFile(c, m.id, m.test_name), output, StandardCharsets.UTF_8);
+			FileUtils.writeStringToFile(file, output, StandardCharsets.UTF_8);
 			m.report_id = results.getUpdatedReportID();
 			m.is_uploaded = true;
 			m.is_upload_failed = false;

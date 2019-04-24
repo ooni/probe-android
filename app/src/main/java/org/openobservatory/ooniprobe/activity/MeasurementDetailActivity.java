@@ -37,6 +37,7 @@ import org.openobservatory.ooniprobe.test.test.Telegram;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
+import java.io.File;
 import java.nio.charset.StandardCharsets;
 
 import androidx.annotation.Nullable;
@@ -129,7 +130,9 @@ public class MeasurementDetailActivity extends AbstractActivity {
 		switch (item.getItemId()) {
 			case R.id.rawData:
 				try {
-					String json = FileUtils.readFileToString(Measurement.getEntryFile(this, measurement.id, measurement.test_name), StandardCharsets.UTF_8);
+					File entryFile = Measurement.getEntryFile(this, measurement.id, measurement.test_name);
+					entryFile.mkdirs();
+					String json = FileUtils.readFileToString(entryFile, StandardCharsets.UTF_8);
 					json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(new JsonParser().parse(json).getAsJsonObject());
 					startActivity(TextActivity.newIntent(this, json));
 				} catch (Exception e) {
@@ -138,7 +141,9 @@ public class MeasurementDetailActivity extends AbstractActivity {
 				return true;
 			case R.id.viewLog:
 				try {
-					String log = FileUtils.readFileToString(Measurement.getLogFile(this, measurement.result.id, measurement.test_name), StandardCharsets.UTF_8);
+					File logFile = Measurement.getLogFile(this, measurement.result.id, measurement.test_name);
+					logFile.mkdirs();
+					String log = FileUtils.readFileToString(logFile, StandardCharsets.UTF_8);
 					startActivity(TextActivity.newIntent(this, log));
 				} catch (Exception e) {
 					e.printStackTrace();

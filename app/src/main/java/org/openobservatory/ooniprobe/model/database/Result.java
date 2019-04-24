@@ -58,7 +58,7 @@ public class Result extends BaseModel implements Serializable {
 
 	public static void deleteAll(Context c) {
 		try {
-			FileUtils.cleanDirectory(Measurement.createMeasurementDir(c));
+			FileUtils.cleanDirectory(Measurement.getMeasurementDir(c));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -126,6 +126,10 @@ public class Result extends BaseModel implements Serializable {
 		for (Measurement measurement : getAllMeasurements()) {
 			try {
 				Measurement.getEntryFile(c, measurement.id, measurement.test_name).delete();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			try {
 				Measurement.getLogFile(c, id, measurement.test_name).delete();
 			} catch (Exception e) {
 				e.printStackTrace();
