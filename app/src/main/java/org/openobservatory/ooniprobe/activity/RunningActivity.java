@@ -22,7 +22,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
-import org.openobservatory.ooniprobe.common.MKOrchestraSettings;
+import org.openobservatory.ooniprobe.common.MKOrchestraTask;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
@@ -43,7 +43,7 @@ public class RunningActivity extends AbstractActivity {
 	private Integer runtime;
 
 	public static Intent newIntent(AbstractActivity context, AbstractSuite testSuite) {
-		if (MKOrchestraSettings.getNetworkType(context).equals(MKOrchestraSettings.NO_INTERNET)) {
+		if (MKOrchestraTask.getNetworkType(context).equals(MKOrchestraTask.NO_INTERNET)) {
 			MessageDialogFragment.newInstance(context.getString(R.string.Modal_Error), context.getString(R.string.Modal_Error_NoInternet), false).show(context.getSupportFragmentManager(), null);
 			return null;
 		} else

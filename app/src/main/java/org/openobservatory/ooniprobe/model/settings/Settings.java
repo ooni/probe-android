@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.MKOrchestraSettings;
+import org.openobservatory.ooniprobe.common.MKOrchestraTask;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 
 import java.util.Arrays;
@@ -42,7 +42,7 @@ public class Settings {
 		public String origin;
 
 		public Annotations(Context c) {
-			this.network_type = MKOrchestraSettings.getNetworkType(c);
+			this.network_type = MKOrchestraTask.getNetworkType(c);
 			this.flavor = BuildConfig.FLAVOR;
 		}
 	}

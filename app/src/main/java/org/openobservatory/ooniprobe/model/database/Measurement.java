@@ -74,9 +74,7 @@ public class Measurement extends BaseModel implements Serializable {
 	}
 
 	static File getMeasurementDir(Context c) {
-		File dir = new File(c.getFilesDir(), Measurement.class.getSimpleName());
-		dir.mkdirs();
-		return dir;
+		return new File(c.getFilesDir(), Measurement.class.getSimpleName());
 	}
 
 	public AbstractTest getTest() {

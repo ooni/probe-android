@@ -6,9 +6,10 @@ import android.util.SparseArray;
 
 import com.google.gson.Gson;
 
+import org.apache.commons.io.FileUtils;
 import org.openobservatory.ooniprobe.common.Crashlytics;
 import org.openobservatory.ooniprobe.common.MKException;
-import org.openobservatory.ooniprobe.common.MKOrchestraSettings;
+import org.openobservatory.ooniprobe.common.MKOrchestraTask;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
@@ -18,9 +19,9 @@ import org.openobservatory.ooniprobe.model.jsonresult.EventResult;
 import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
 import org.openobservatory.ooniprobe.model.settings.Settings;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.File;
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import androidx.annotation.CallSuper;
@@ -62,7 +63,6 @@ public abstract class AbstractTest implements Serializable {
 		settings.annotations.origin = origin;
 		measurements = new SparseArray<>();
 		MKTask task = MKTask.start(gson.toJson(settings));
-		FileOutputStream logFOS = null;
 		while (!task.isDone())
 			try {
 				String json = task.waitForNextEvent();
@@ -87,10 +87,13 @@ public abstract class AbstractTest implements Serializable {
 						measurement.save();
 						break;
 					case "log":
-						if (logFOS == null)
-							logFOS = new FileOutputStream(Measurement.getLogFile(c, result.id, name));
-						logFOS.write(event.value.message.getBytes());
-						logFOS.write('\n');
+						File logFile = Measurement.getLogFile(c, result.id, name);
+						logFile.mkdirs();
+						FileUtils.writeStringToFile(
+								logFile,
+								event.value.message + "\n",
+								StandardCharsets.UTF_8,
+								true); // true = append
 						testCallback.onLog(event.value.message);
 						break;
 					case "status.progress":
@@ -105,13 +108,12 @@ public abstract class AbstractTest implements Serializable {
 							else
 								onEntry(c, pm, jr, m);
 							m.save();
-							try {
-								FileOutputStream outputStream = new FileOutputStream(Measurement.getEntryFile(c, m.id, m.test_name));
-								outputStream.write(event.value.json_str.getBytes());
-								outputStream.close();
-							} catch (Exception e) {
-								e.printStackTrace();
-							}
+							File entryFile = Measurement.getEntryFile(c, m.id, m.test_name);
+							entryFile.mkdirs();
+							FileUtils.writeStringToFile(
+									entryFile,
+									event.value.json_str,
+									StandardCharsets.UTF_8);
 						}
 						break;
 					case "failure.report_create":
@@ -147,12 +149,6 @@ public abstract class AbstractTest implements Serializable {
 				e.printStackTrace();
 				Crashlytics.logException(e);
 			}
-		if (logFOS != null)
-			try {
-				logFOS.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 	}
 
 	@CallSuper void onEntry(Context c, PreferenceManager pm, @NonNull JsonResult json, Measurement measurement) {
@@ -169,7 +165,7 @@ public abstract class AbstractTest implements Serializable {
 
 	private void saveNetworkInfo(EventResult.Value value, Result result, Context c) {
 		if (result != null && result.network == null) {
-			result.network = Network.getNetwork(value.probe_network_name, value.probe_ip, value.probe_asn, value.probe_cc, MKOrchestraSettings.getNetworkType(c));
+			result.network = Network.getNetwork(value.probe_network_name, value.probe_ip, value.probe_asn, value.probe_cc, MKOrchestraTask.getNetworkType(c));
 			result.save();
 		}
 	}
