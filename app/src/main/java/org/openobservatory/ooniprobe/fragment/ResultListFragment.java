@@ -20,7 +20,7 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.MKCollectorResubmitSettings;
+import org.openobservatory.ooniprobe.common.MKCollectorResubmitTask;
 import org.openobservatory.ooniprobe.item.DateItem;
 import org.openobservatory.ooniprobe.item.InstantMessagingItem;
 import org.openobservatory.ooniprobe.item.MiddleboxesItem;
@@ -196,7 +196,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 		}
 	}
 
-	private static class MKCollectorResubmitSettingsAsyncTask extends MKCollectorResubmitSettings<AppCompatActivity> {
+	private static class MKCollectorResubmitSettingsAsyncTask extends MKCollectorResubmitTask<AppCompatActivity> {
 		private WeakReference<ResultListFragment> wf;
 
 		MKCollectorResubmitSettingsAsyncTask(ResultListFragment f) {

@@ -14,7 +14,7 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.common.MKCollectorResubmitSettings;
+import org.openobservatory.ooniprobe.common.MKCollectorResubmitTask;
 import org.openobservatory.ooniprobe.fragment.measurement.DashFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.FacebookMessengerFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.FailedFragment;
@@ -170,7 +170,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
 		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(measurement.getTest().getUrlResId()))));
 	}
 
-	private static class MKCollectorResubmitSettingsAsyncTask extends MKCollectorResubmitSettings<MeasurementDetailActivity> {
+	private static class MKCollectorResubmitSettingsAsyncTask extends MKCollectorResubmitTask<MeasurementDetailActivity> {
 		MKCollectorResubmitSettingsAsyncTask(MeasurementDetailActivity activity) {
 			super(activity);
 		}

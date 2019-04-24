@@ -11,7 +11,7 @@ import com.raizlabs.android.dbflow.sql.language.OperatorGroup;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.common.MKCollectorResubmitSettings;
+import org.openobservatory.ooniprobe.common.MKCollectorResubmitTask;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderMiddleboxFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderPerformanceFragment;
@@ -110,7 +110,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 		ActivityCompat.startActivity(this, MeasurementDetailActivity.newIntent(this, measurement.id), null /*ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, v.getWidth(), v.getHeight()).toBundle()*/);
 	}
 
-	private static class MKCollectorResubmitSettingsAsyncTask extends MKCollectorResubmitSettings<ResultDetailActivity> {
+	private static class MKCollectorResubmitSettingsAsyncTask extends MKCollectorResubmitTask<ResultDetailActivity> {
 		MKCollectorResubmitSettingsAsyncTask(ResultDetailActivity activity) {
 			super(activity);
 		}
