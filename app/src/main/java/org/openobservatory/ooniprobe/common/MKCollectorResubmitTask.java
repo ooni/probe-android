@@ -36,7 +36,6 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
 
 	private static void perform(Context c, Measurement m) throws IOException {
 		File file = Measurement.getEntryFile(c, m.id, m.test_name);
-		file.mkdirs();
 		String input = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
 		MKCollectorResubmitSettings settings = new MKCollectorResubmitSettings();
 		settings.setTimeout(14);

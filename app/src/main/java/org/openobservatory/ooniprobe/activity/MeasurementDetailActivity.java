@@ -131,7 +131,6 @@ public class MeasurementDetailActivity extends AbstractActivity {
 			case R.id.rawData:
 				try {
 					File entryFile = Measurement.getEntryFile(this, measurement.id, measurement.test_name);
-					entryFile.mkdirs();
 					String json = FileUtils.readFileToString(entryFile, StandardCharsets.UTF_8);
 					json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(new JsonParser().parse(json).getAsJsonObject());
 					startActivity(TextActivity.newIntent(this, json));
@@ -142,7 +141,6 @@ public class MeasurementDetailActivity extends AbstractActivity {
 			case R.id.viewLog:
 				try {
 					File logFile = Measurement.getLogFile(this, measurement.result.id, measurement.test_name);
-					logFile.mkdirs();
 					String log = FileUtils.readFileToString(logFile, StandardCharsets.UTF_8);
 					startActivity(TextActivity.newIntent(this, log));
 				} catch (Exception e) {
