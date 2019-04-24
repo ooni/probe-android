@@ -9,11 +9,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.MKOrchestraTask;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
 import org.openobservatory.ooniprobe.fragment.PreferenceGlobalFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
+
 import java.io.Serializable;
-import org.openobservatory.ooniprobe.common.MKOrchestraTask;
 
 import androidx.annotation.Nullable;
 import butterknife.BindView;
@@ -53,7 +54,15 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
 			});
 			bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
 			if (getPreferenceManager().isManualUploadDialog())
-				ConfirmDialogFragment.newInstance(null, getString(R.string.Modal_ManualUpload_Title), getString(R.string.Modal_ManualUpload_Paragraph), null, getString(R.string.Modal_ManualUpload_Enable), getString(R.string.Modal_ManualUpload_Disable), null).show(getSupportFragmentManager(), null);
+				ConfirmDialogFragment.newInstance(
+						null,
+						getString(R.string.Modal_ManualUpload_Title),
+						getString(R.string.Modal_ManualUpload_Paragraph),
+						null,
+						getString(R.string.Modal_ManualUpload_Enable),
+						getString(R.string.Modal_ManualUpload_Disable),
+						null
+				).show(getSupportFragmentManager(), null);
 		}
 	}
 

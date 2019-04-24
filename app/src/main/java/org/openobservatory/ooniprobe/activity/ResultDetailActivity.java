@@ -85,7 +85,9 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 		items = new ArrayList<>();
 		adapter = new HeterogeneousRecyclerAdapter<>(this, items);
 		recycler.setAdapter(adapter);
-		snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsSomeNotUploaded_Text, Snackbar.LENGTH_INDEFINITE).setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll, v1 -> new MKCollectorResubmitSettingsAsyncTask(this).execute(result.id, null));
+		snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsSomeNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
+				.setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll, v1 ->
+						new MKCollectorResubmitSettingsAsyncTask(this).execute(result.id, null));
 	}
 
 	@Override protected void onResume() {

@@ -124,7 +124,9 @@ public class MeasurementDetailActivity extends AbstractActivity {
 				.replace(R.id.body, detail)
 				.replace(R.id.head, head)
 				.commit();
-		snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsNotUploaded_Text, Snackbar.LENGTH_INDEFINITE).setAction(R.string.Snackbar_ResultsNotUploaded_Upload, v1 -> new MKCollectorResubmitSettingsAsyncTask(this).execute(null, measurement.id));
+		snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
+				.setAction(R.string.Snackbar_ResultsNotUploaded_Upload, v1 ->
+						new MKCollectorResubmitSettingsAsyncTask(this).execute(null, measurement.id));
 		load();
 	}
 

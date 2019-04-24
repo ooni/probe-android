@@ -91,7 +91,18 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 		items = new ArrayList<>();
 		adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
 		recycler.setAdapter(adapter);
-		snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsSomeNotUploaded_Text, Snackbar.LENGTH_INDEFINITE).setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll, v1 -> ConfirmDialogFragment.newInstance(R.string.Modal_ResultsNotUploaded_Title, getString(R.string.Modal_ResultsNotUploaded_Title), getString(R.string.Modal_ResultsNotUploaded_Paragraph), null, getString(R.string.Modal_ResultsNotUploaded_Button_Upload), null, null).show(getChildFragmentManager(), null));
+		snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsSomeNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
+				.setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll, v1 ->
+						ConfirmDialogFragment.newInstance(
+								R.string.Modal_ResultsNotUploaded_Title,
+								getString(R.string.Modal_ResultsNotUploaded_Title),
+								getString(R.string.Modal_ResultsNotUploaded_Paragraph),
+								null,
+								getString(R.string.Modal_ResultsNotUploaded_Button_Upload),
+								null,
+								null
+						).show(getChildFragmentManager(), null)
+				);
 		return v;
 	}
 
