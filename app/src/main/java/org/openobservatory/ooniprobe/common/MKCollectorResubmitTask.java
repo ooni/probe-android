@@ -5,8 +5,8 @@ import android.util.Log;
 import android.view.WindowManager;
 
 import com.raizlabs.android.dbflow.sql.language.OperatorGroup;
-import com.raizlabs.android.dbflow.sql.language.SQLOperator;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
+import com.raizlabs.android.dbflow.sql.language.Where;
 
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.ooniprobe.R;
@@ -15,7 +15,6 @@ import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -64,14 +63,22 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
 	@Override protected Void doInBackground(Integer... params) {
 		if (params.length != 2)
 			throw new IllegalArgumentException("MKCollectorResubmitTask requires 2 nullable params: result_id, measurement_id");
-		ArrayList<SQLOperator> where = new ArrayList<>();
-		if (params[0] != null)
-			where.add(Measurement_Table.result_id.eq(params[0]));
-		if (params[1] != null)
-			where.add(Measurement_Table.id.eq(params[1]));
-		where.add(OperatorGroup.clause().or(Measurement_Table.is_uploaded.eq(false)).or(Measurement_Table.report_id.isNull()));
-		where.add(Measurement_Table.is_failed.eq(false));
-		List<Measurement> measurements = SQLite.select().from(Measurement.class).where(where.toArray(new SQLOperator[0])).queryList();
+		Where<Measurement> msmQuery = SQLite.select().from(Measurement.class)
+				.where(Measurement_Table.is_failed.eq(false))
+				// We check on both the report_id and is_uploaded as we
+				// may have some unuploaded measurements which are marked
+				// as is_uploaded = true, but we always know that those with
+				// report_id set to null are not uploaded
+				.and(OperatorGroup.clause()
+						.or(Measurement_Table.is_uploaded.eq(false))
+						.or(Measurement_Table.report_id.isNull()));
+		if (params[0] != null) {
+			msmQuery.and(Measurement_Table.result_id.eq(params[0]));
+		}
+		if (params[1] != null) {
+			msmQuery.and(Measurement_Table.id.eq(params[1]));
+		}
+		List<Measurement> measurements = msmQuery.queryList();
 		for (int i = 0; i < measurements.size(); i++) {
 			A activity = getActivity();
 			if (activity == null)
