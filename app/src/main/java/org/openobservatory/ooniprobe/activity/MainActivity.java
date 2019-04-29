@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -8,16 +9,19 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.MKOrchestraTask;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
 import org.openobservatory.ooniprobe.fragment.PreferenceGlobalFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
-import org.openobservatory.ooniprobe.common.MKOrchestraTask;
+
+import java.io.Serializable;
 
 import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import localhost.toolkit.app.ConfirmDialogFragment;
 
-public class MainActivity extends AbstractActivity {
+public class MainActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
 	private static final String RES_ITEM = "resItem";
 	@BindView(R.id.bottomNavigation) BottomNavigationView bottomNavigation;
 
@@ -49,6 +53,16 @@ public class MainActivity extends AbstractActivity {
 				}
 			});
 			bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
+			if (getPreferenceManager().isManualUploadDialog())
+				ConfirmDialogFragment.newInstance(
+						null,
+						getString(R.string.Modal_ManualUpload_Title),
+						getString(R.string.Modal_ManualUpload_Paragraph),
+						null,
+						getString(R.string.Modal_ManualUpload_Enable),
+						getString(R.string.Modal_ManualUpload_Disable),
+						null
+				).show(getSupportFragmentManager(), null);
 		}
 	}
 
@@ -61,5 +75,9 @@ public class MainActivity extends AbstractActivity {
 		super.onNewIntent(intent);
 		if (intent.getExtras() != null && intent.getExtras().containsKey(RES_ITEM))
 			bottomNavigation.setSelectedItemId(intent.getIntExtra(RES_ITEM, R.id.dashboard));
+	}
+
+	@Override public void onConfirmation(Serializable serializable, int i) {
+		getPreferenceManager().setManualUploadResults(i == DialogInterface.BUTTON_POSITIVE);
 	}
 }

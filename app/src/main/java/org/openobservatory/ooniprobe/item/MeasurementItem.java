@@ -33,12 +33,23 @@ public class MeasurementItem extends HeterogeneousRecyclerItem<Measurement, Meas
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
 		viewHolder.text.setTag(extra);
 		AbstractTest test = extra.getTest();
+		int endDrawable;
+		if (extra.is_failed)
+			endDrawable = R.drawable.error_24dp;
+		else if (extra.is_anomaly && extra.is_uploaded)
+			endDrawable = R.drawable.exclamation_24dp;
+		else if (extra.is_anomaly)
+			endDrawable = R.drawable.exclamation_cloudoff;
+		else if (extra.is_uploaded)
+			endDrawable = R.drawable.tick_green_24dp;
+		else
+			endDrawable = R.drawable.tick_green_cloudoff;
 		if (extra.test_name.equals(WebConnectivity.NAME)) {
 			viewHolder.text.setText(extra.url.url);
-			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(extra.url.getCategoryIcon(viewHolder.text.getContext()), 0, extra.is_anomaly ? R.drawable.exclamation_24dp : extra.is_failed ? R.drawable.error_24dp : R.drawable.tick_green_24dp, 0);
+			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(extra.url.getCategoryIcon(viewHolder.text.getContext()), 0, endDrawable, 0);
 		} else {
 			viewHolder.text.setText(test.getLabelResId());
-			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(test.getIconResId(), 0, extra.is_anomaly ? R.drawable.exclamation_24dp : extra.is_failed ? R.drawable.error_24dp : R.drawable.tick_green_24dp, 0);
+			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(test.getIconResId(), 0, endDrawable, 0);
 		}
 		Drawable drawable = viewHolder.text.getCompoundDrawablesRelative()[0];
 		if (drawable != null)

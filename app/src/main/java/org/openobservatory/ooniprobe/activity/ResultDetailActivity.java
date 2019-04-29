@@ -5,10 +5,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
+import com.raizlabs.android.dbflow.sql.language.OperatorGroup;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.MKCollectorResubmitTask;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderMiddleboxFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderPerformanceFragment;
@@ -16,6 +31,7 @@ import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderTBAFragme
 import org.openobservatory.ooniprobe.item.MeasurementItem;
 import org.openobservatory.ooniprobe.item.MeasurementPerfItem;
 import org.openobservatory.ooniprobe.model.database.Measurement;
+import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
@@ -26,95 +42,148 @@ import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
 import java.util.ArrayList;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import localhost.toolkit.widget.HeterogeneousRecyclerAdapter;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
 public class ResultDetailActivity extends AbstractActivity implements View.OnClickListener {
-	private static final String ID = "id";
-	@BindView(R.id.toolbar) Toolbar toolbar;
-	@BindView(R.id.tabLayout) TabLayout tabLayout;
-	@BindView(R.id.pager) ViewPager pager;
-	@BindView(R.id.recyclerView) RecyclerView recycler;
-	private Result result;
+    private static final String ID = "id";
+    @BindView(R.id.coordinatorLayout)
+    CoordinatorLayout coordinatorLayout;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.tabLayout)
+    TabLayout tabLayout;
+    @BindView(R.id.pager)
+    ViewPager pager;
+    @BindView(R.id.recyclerView)
+    RecyclerView recycler;
+    private ArrayList<HeterogeneousRecyclerItem> items;
+    private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
+    private Result result;
+    private Snackbar snackbar;
 
-	public static Intent newIntent(Context context, int id) {
-		return new Intent(context, ResultDetailActivity.class).putExtra(ID, id);
-	}
+    public static Intent newIntent(Context context, int id) {
+        return new Intent(context, ResultDetailActivity.class).putExtra(ID, id);
+    }
 
-	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		result = SQLite.select().from(Result.class).where(Result_Table.id.eq(getIntent().getIntExtra(ID, 0))).querySingle();
-		assert result != null;
-		setTheme(result.getTestSuite().getThemeLight());
-		setContentView(R.layout.activity_result_detail);
-		ButterKnife.bind(this);
-		setSupportActionBar(toolbar);
-		ActionBar bar = getSupportActionBar();
-		if (bar != null) {
-			bar.setDisplayHomeAsUpEnabled(true);
-			bar.setTitle(result.getTestSuite().getTitle());
-		}
-		pager.setAdapter(new ResultHeaderAdapter());
-		tabLayout.setupWithViewPager(pager);
-		LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-		recycler.setLayoutManager(layoutManager);
-		recycler.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
-		ArrayList<HeterogeneousRecyclerItem> items = new ArrayList<>();
-		boolean isPerf = result.test_group_name.equals(PerformanceSuite.NAME);
-		for (Measurement measurement : result.getMeasurements())
-			items.add(isPerf && !measurement.is_failed ? new MeasurementPerfItem(measurement, this) : new MeasurementItem(measurement, this));
-		recycler.setAdapter(new HeterogeneousRecyclerAdapter<>(this, items));
-		result.is_viewed = true;
-		result.save();
-	}
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        result = SQLite.select().from(Result.class)
+                .where(Result_Table.id.eq(getIntent().getIntExtra(ID, 0))).querySingle();
+        assert result != null;
+        setTheme(result.getTestSuite().getThemeLight());
+        setContentView(R.layout.activity_result_detail);
+        ButterKnife.bind(this);
+        setSupportActionBar(toolbar);
+        ActionBar bar = getSupportActionBar();
+        if (bar != null) {
+            bar.setDisplayHomeAsUpEnabled(true);
+            bar.setTitle(result.getTestSuite().getTitle());
+        }
+        pager.setAdapter(new ResultHeaderAdapter());
+        tabLayout.setupWithViewPager(pager);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recycler.setLayoutManager(layoutManager);
+        recycler.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
+        result.is_viewed = true;
+        result.save();
+        items = new ArrayList<>();
+        adapter = new HeterogeneousRecyclerAdapter<>(this, items);
+        recycler.setAdapter(adapter);
+        snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsSomeNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
+                .setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll, v1 -> runMKCollectorResubmitSettingsAsyncTask());
+    }
 
-	@Override public void onClick(View v) {
-		Measurement measurement = (Measurement) v.getTag();
-		ActivityCompat.startActivity(this, MeasurementDetailActivity.newIntent(this, measurement.id), null /*ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, v.getWidth(), v.getHeight()).toBundle()*/);
-	}
+    @Override
+    protected void onResume() {
+        super.onResume();
+        load();
+    }
 
-	private class ResultHeaderAdapter extends FragmentPagerAdapter {
-		ResultHeaderAdapter() {
-			super(getSupportFragmentManager());
-		}
+    private void runMKCollectorResubmitSettingsAsyncTask() {
+        new MKCollectorResubmitSettingsAsyncTask(this).execute(result.id, null);
+    }
 
-		@Override public Fragment getItem(int position) {
-			if (position == 1)
-				return ResultHeaderDetailFragment.newInstance(false, result.getFormattedDataUsageUp(), result.getFormattedDataUsageDown(), result.start_time, result.runtime, true, null, null);
-			else if (position == 2)
-				return ResultHeaderDetailFragment.newInstance(false, null, null, null, null, null, Network.getCountry(ResultDetailActivity.this, result.network), result.network);
-			else switch (result.test_group_name) {
-					case WebsitesSuite.NAME:
-						return ResultHeaderTBAFragment.newInstance(result);
-					case InstantMessagingSuite.NAME:
-						return ResultHeaderTBAFragment.newInstance(result);
-					case MiddleBoxesSuite.NAME:
-						return ResultHeaderMiddleboxFragment.newInstance(result.countAnomalousMeasurements() > 0);
-					case PerformanceSuite.NAME:
-						return ResultHeaderPerformanceFragment.newInstance(result);
-					default:
-						return null;
-				}
-		}
+    private void load() {
+        result = SQLite.select().from(Result.class).where(Result_Table.id.eq(result.id)).querySingle();
+        assert result != null;
+        boolean isPerf = result.test_group_name.equals(PerformanceSuite.NAME);
+        items.clear();
+        for (Measurement measurement : result.getMeasurements())
+            items.add(isPerf && !measurement.is_failed ?
+                    new MeasurementPerfItem(measurement, this) :
+                    new MeasurementItem(measurement, this));
+        adapter.notifyTypesChanged();
+        if (SQLite.selectCountOf().from(Measurement.class).where(
+                Measurement_Table.is_failed.eq(false),
+                OperatorGroup.clause()
+                        .or(Measurement_Table.is_uploaded.eq(false))
+                        .or(Measurement_Table.report_id.isNull()),
+                Measurement_Table.result_id.eq(result.id)).longValue() != 0)
+            snackbar.show();
+        else
+            snackbar.dismiss();
+    }
 
-		@Override public int getCount() {
-			return 3;
-		}
+    @Override
+    public void onClick(View v) {
+        Measurement measurement = (Measurement) v.getTag();
+        ActivityCompat.startActivity(this, MeasurementDetailActivity.newIntent(this, measurement.id), null);
+    }
 
-		@Nullable @Override public CharSequence getPageTitle(int position) {
-			return "●";
-		}
-	}
+    private static class MKCollectorResubmitSettingsAsyncTask extends MKCollectorResubmitTask<ResultDetailActivity> {
+        MKCollectorResubmitSettingsAsyncTask(ResultDetailActivity activity) {
+            super(activity);
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            if (getActivity() != null) {
+                getActivity().result = SQLite.select().from(Result.class)
+                        .where(Result_Table.id.eq(getActivity().result.id)).querySingle();
+                getActivity().load();
+            }
+        }
+    }
+
+    private class ResultHeaderAdapter extends FragmentPagerAdapter {
+        ResultHeaderAdapter() {
+            super(getSupportFragmentManager());
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            if (position == 1)
+                return ResultHeaderDetailFragment.newInstance(false, result.getFormattedDataUsageUp(), result.getFormattedDataUsageDown(), result.start_time, result.runtime, true, null, null);
+            else if (position == 2)
+                return ResultHeaderDetailFragment.newInstance(false, null, null, null, null, null, Network.getCountry(ResultDetailActivity.this, result.network), result.network);
+            else switch (result.test_group_name) {
+                    case WebsitesSuite.NAME:
+                        return ResultHeaderTBAFragment.newInstance(result);
+                    case InstantMessagingSuite.NAME:
+                        return ResultHeaderTBAFragment.newInstance(result);
+                    case MiddleBoxesSuite.NAME:
+                        return ResultHeaderMiddleboxFragment.newInstance(result.countAnomalousMeasurements() > 0);
+                    case PerformanceSuite.NAME:
+                        return ResultHeaderPerformanceFragment.newInstance(result);
+                    default:
+                        return null;
+                }
+        }
+
+        @Override
+        public int getCount() {
+            return 3;
+        }
+
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return "●";
+        }
+    }
 }

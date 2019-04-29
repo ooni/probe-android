@@ -10,7 +10,8 @@ import org.openobservatory.ooniprobe.R;
 import java.util.ArrayList;
 
 public class PreferenceManager {
-	public static final String GEO_VER = "geo_ver";
+	static final String GEO_VER = "geo_ver";
+	private static final String IS_MANUAL_UPLOAD_DIALOG = "isManualUploadDialog";
 	private static final String TOKEN = "token";
 	private static final String SHOW_ONBOARDING = "first_run";
 	private final SharedPreferences sp;
@@ -25,8 +26,6 @@ public class PreferenceManager {
 		sp = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context);
 		r = context.getResources();
 	}
-
-
 
 	public String getToken() {
 		return sp.getString(TOKEN, null);
@@ -61,7 +60,11 @@ public class PreferenceManager {
 	}
 
 	public void setShowOnboarding(boolean showIntro) {
-		sp.edit().putBoolean(SHOW_ONBOARDING, showIntro).apply();
+		sp.edit().putBoolean(SHOW_ONBOARDING, showIntro).putBoolean(IS_MANUAL_UPLOAD_DIALOG, showIntro).apply();
+	}
+
+	public boolean isManualUploadDialog() {
+		return sp.getBoolean(IS_MANUAL_UPLOAD_DIALOG, true);
 	}
 
 	private boolean isNotifications() {
@@ -78,6 +81,14 @@ public class PreferenceManager {
 
 	public boolean isUploadResults() {
 		return sp.getBoolean(r.getString(R.string.upload_results), true);
+	}
+
+	public boolean isManualUploadResults() {
+		return sp.getBoolean(r.getString(R.string.upload_results_manual), true);
+	}
+
+	public void setManualUploadResults(boolean manualUpload) {
+		sp.edit().putBoolean(IS_MANUAL_UPLOAD_DIALOG, false).putBoolean(r.getString(R.string.upload_results_manual), manualUpload).apply();
 	}
 
 	public boolean isIncludeIp() {

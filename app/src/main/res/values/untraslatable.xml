@@ -10,6 +10,7 @@
 	<string name="notifications_completion" translatable="false">notifications_completion</string>
 	<string name="notifications_news" translatable="false">notifications_news</string>
 	<string name="upload_results" translatable="false">upload_results</string>
+	<string name="upload_results_manual" translatable="false">upload_results_manual</string>
 	<string name="include_ip" translatable="false">include_ip</string>
 	<string name="include_asn" translatable="false">include_asn</string>
 	<string name="debugLogs" translatable="false">debugLogs</string>
