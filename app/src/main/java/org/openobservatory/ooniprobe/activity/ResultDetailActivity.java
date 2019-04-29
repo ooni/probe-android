@@ -116,9 +116,9 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
                     new MeasurementItem(measurement, this));
         adapter.notifyTypesChanged();
         if (SQLite.selectCountOf().from(Measurement.class).where(
-                Measurement_Table.is_uploaded.eq(false),
+                Measurement_Table.is_failed.eq(false),
                 OperatorGroup.clause()
-                        .or(Measurement_Table.is_failed.eq(false))
+                        .or(Measurement_Table.is_uploaded.eq(false))
                         .or(Measurement_Table.report_id.isNull()),
                 Measurement_Table.result_id.eq(result.id)).longValue() != 0)
             snackbar.show();
@@ -129,7 +129,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         Measurement measurement = (Measurement) v.getTag();
-        ActivityCompat.startActivity(this, MeasurementDetailActivity.newIntent(this, measurement.id), null /*ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, v.getWidth(), v.getHeight()).toBundle()*/);
+        ActivityCompat.startActivity(this, MeasurementDetailActivity.newIntent(this, measurement.id), null);
     }
 
     private static class MKCollectorResubmitSettingsAsyncTask extends MKCollectorResubmitTask<ResultDetailActivity> {

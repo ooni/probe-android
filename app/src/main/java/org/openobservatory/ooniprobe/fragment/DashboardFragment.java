@@ -67,16 +67,10 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 			case R.id.run:
 				Intent intent = RunningActivity.newIntent((AbstractActivity) getActivity(), testSuite);
 				if (intent != null)
-					ActivityCompat.startActivity(getActivity(), intent, null /*ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, v.getWidth(), v.getHeight()).toBundle()*/);
+					ActivityCompat.startActivity(getActivity(), intent, null);
 				break;
 			default:
-				ActivityCompat.startActivity(getActivity(), OverviewActivity.newIntent(getActivity(), testSuite), null /*ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
-						Pair.create(v, getString(R.string.transitionNameCard)),
-						Pair.create(v.findViewById(R.id.icon), getString(R.string.transitionNameIcon)),
-						//	Pair.create(v.findViewById(R.id.title), getString(R.string.transitionNameTitle)),
-						Pair.create(v.findViewById(R.id.runtime), getString(R.string.transitionNameRuntime)),
-						Pair.create(v.findViewById(R.id.run), getString(R.string.transitionNameRun))
-				).toBundle()*/);
+				ActivityCompat.startActivity(getActivity(), OverviewActivity.newIntent(getActivity(), testSuite), null);
 				break;
 		}
 	}

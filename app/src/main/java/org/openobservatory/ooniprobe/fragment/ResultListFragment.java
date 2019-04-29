@@ -162,9 +162,9 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     void queryList() {
         if (((Application) getActivity().getApplication()).getPreferenceManager().isManualUploadResults() &&
                 SQLite.selectCountOf().from(Measurement.class).where(
-                        Measurement_Table.is_uploaded.eq(false),
+                        Measurement_Table.is_failed.eq(false),
                         OperatorGroup.clause().
-                                or(Measurement_Table.is_failed.eq(false))
+                                or(Measurement_Table.is_uploaded.eq(false))
                                 .or(Measurement_Table.report_id.isNull())
                 ).longValue() != 0
         )
@@ -215,7 +215,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
         Result result = (Result) v.getTag();
-        ActivityCompat.startActivity(getActivity(), ResultDetailActivity.newIntent(getActivity(), result.id), null /* ActivityOptionsCompat.makeClipRevealAnimation(v, 0, 0, v.getWidth(), v.getHeight()).toBundle()*/);
+        ActivityCompat.startActivity(getActivity(), ResultDetailActivity.newIntent(getActivity(), result.id), null);
     }
 
     @Override
