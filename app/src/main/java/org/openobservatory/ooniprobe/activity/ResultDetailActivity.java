@@ -108,6 +108,8 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
     }
 
     private void load() {
+        result = SQLite.select().from(Result.class).where(Result_Table.id.eq(result.id)).querySingle();
+        assert result != null;
         boolean isPerf = result.test_group_name.equals(PerformanceSuite.NAME);
         items.clear();
         for (Measurement measurement : result.getMeasurements())
