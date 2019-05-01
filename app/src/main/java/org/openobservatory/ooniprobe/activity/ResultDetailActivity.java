@@ -44,8 +44,8 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import localhost.toolkit.widget.HeterogeneousRecyclerAdapter;
-import localhost.toolkit.widget.HeterogeneousRecyclerItem;
+import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerAdapter;
+import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
 public class ResultDetailActivity extends AbstractActivity implements View.OnClickListener {
     private static final String ID = "id";

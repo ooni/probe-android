@@ -31,7 +31,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import localhost.toolkit.widget.HeterogeneousRecyclerAdapter;
+import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerAdapter;
 
 public class DashboardFragment extends Fragment implements View.OnClickListener {
 	@BindView(R.id.recycler) RecyclerView recycler;

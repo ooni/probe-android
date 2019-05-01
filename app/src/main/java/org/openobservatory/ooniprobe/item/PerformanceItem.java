@@ -21,7 +21,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import localhost.toolkit.widget.HeterogeneousRecyclerItem;
+import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
 public class PerformanceItem extends HeterogeneousRecyclerItem<Result, PerformanceItem.ViewHolder> {
 	private final View.OnClickListener onClickListener;

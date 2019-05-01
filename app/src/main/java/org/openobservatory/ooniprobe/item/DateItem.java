@@ -15,7 +15,7 @@ import java.util.Locale;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import localhost.toolkit.widget.HeterogeneousRecyclerItem;
+import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
 public class DateItem extends HeterogeneousRecyclerItem<Date, DateItem.ViewHolder> {
 	private final SimpleDateFormat SDF;
