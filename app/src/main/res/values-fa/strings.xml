@@ -201,7 +201,7 @@
   <string name="Modal_ResultsNotUploaded_Title">نتایج بارگذاری نشده‌اند</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">بعضی از نتایج تست‌ها به سرورهای OONI  بارگذاری نشده‌اند. اگر مایل به مشارکت در مجموع داده‌‌های OONI هستید، لطفا آن‌ها را بارگذاری کنید.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">آپلود</string>
-  <string name="Modal_ResultsNotUploaded_Uploading">Uploading %1$s ...</string>
+  <string name="Modal_ResultsNotUploaded_Uploading">بارگذاری %1$s ...</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">اجازه‌ی اعلان را فعال کنید تا تست‌ها به صورت خودکار اجرا شوند.</string>
   <string name="Modal_EnableNotifications_News">اجازه‌ی اعلان را فعال کنید تا اخبار بروز رسانی را دریافت کنید.</string>
   <string name="Modal_EnableNotifications_Any">اجازه‌ی اعلان را فعال کنید تا اعلان های ضروری را دریافت کنید.</string>
