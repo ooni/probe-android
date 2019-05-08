@@ -5,6 +5,7 @@ import android.content.Context;
 import com.google.gson.annotations.SerializedName;
 
 import org.openobservatory.ooniprobe.BuildConfig;
+import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.MKOrchestraTask;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
@@ -87,7 +88,7 @@ public class Settings {
 			save_real_probe_asn = pm.isIncludeAsn();
 			save_real_probe_cc = pm.isIncludeCc();
 			save_real_probe_ip = pm.isIncludeIp();
-			software_name = "ooniprobe-android";
+			software_name = c.getString(R.string.software_name);
 			software_version = BuildConfig.VERSION_NAME;
 			randomize_input = false;
 			no_file_report = true;
