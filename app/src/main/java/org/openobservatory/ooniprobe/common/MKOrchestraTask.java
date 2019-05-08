@@ -6,6 +6,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 
 import org.openobservatory.ooniprobe.BuildConfig;
+import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
@@ -41,7 +42,7 @@ public class MKOrchestraTask extends AsyncTask<Void, Void, Void> {
 			//client.setProbeTimezone(TimeZone.getDefault().getDisplayName(true, TimeZone.SHORT));
 			client.setRegistryURL(BuildConfig.NOTIFICATION_SERVER);
 			client.setSecretsFile(app.getFilesDir() + "/orchestration_secret.json");
-			client.setSoftwareName("ooniprobe-android");
+			client.setSoftwareName(app.getString(R.string.software_name));
 			client.setSoftwareVersion(BuildConfig.VERSION_NAME);
 			for (AbstractSuite suite : TestAsyncTask.SUITES)
 				for (AbstractTest test : suite.getTestList(null))

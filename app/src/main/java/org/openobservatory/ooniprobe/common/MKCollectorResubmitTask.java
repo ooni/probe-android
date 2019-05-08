@@ -9,6 +9,7 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.sql.language.Where;
 
 import org.apache.commons.io.FileUtils;
+import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Measurement_Table;
@@ -41,6 +42,8 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
 		settings.setTimeout(14);
 		settings.setCABundlePath(c.getCacheDir() + "/" + Application.CA_BUNDLE);
 		settings.setSerializedMeasurement(input);
+		settings.setSoftwareName(c.getString(R.string.software_name));
+		settings.setSoftwareVersion(BuildConfig.VERSION_NAME);
 		MKCollectorResubmitResults results = settings.perform();
 		if (results.isGood()) {
 			String output = results.getUpdatedSerializedMeasurement();
