@@ -56,7 +56,7 @@ public class MiddleboxesItem extends HeterogeneousRecyclerItem<Result, Middlebox
 		}
 		boolean allUploaded = true;
 		for (Measurement m : extra.getMeasurements())
-			allUploaded = allUploaded && (m.is_uploaded || m.is_failed);
+			allUploaded = allUploaded && ((m.is_uploaded && m.report_id != null) || m.is_failed);
 		viewHolder.startTime.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, allUploaded ? 0 : R.drawable.cloudoff, 0);
 	}
 
