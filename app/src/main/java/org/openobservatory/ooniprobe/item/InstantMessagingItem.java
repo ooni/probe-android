@@ -49,7 +49,7 @@ public class InstantMessagingItem extends HeterogeneousRecyclerItem<Result, Inst
 		DrawableCompat.setTint(DrawableCompat.wrap(viewHolder.failedMeasurements.getCompoundDrawablesRelative()[0]).mutate(), ContextCompat.getColor(viewHolder.failedMeasurements.getContext(), blocked == 0 ? R.color.color_gray9 : R.color.color_yellow9));
 		boolean allUploaded = true;
 		for (Measurement m : extra.getMeasurements())
-			allUploaded = allUploaded && ((m.is_uploaded && m.report_id != null) || m.is_failed);
+			allUploaded = allUploaded && (m.isUploaded() || m.is_failed);
 		viewHolder.startTime.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, allUploaded ? 0 : R.drawable.cloudoff, 0);
 	}
 
