@@ -113,6 +113,10 @@ public class Measurement extends BaseModel implements Serializable {
 		return testKeys;
 	}
 
+	public boolean isUploaded() {
+		return is_uploaded && report_id != null;
+	}
+
 	public void setTestKeys(TestKeys testKeys) {
 		test_keys = new Gson().toJson(testKeys);
 	}
