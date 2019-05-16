@@ -193,6 +193,7 @@
   <string name="Modal_Cancel">取消</string>
   <string name="Modal_Delete">删除</string>
   <string name="Modal_Error">错误</string>
+  <string name="Modal_Retry">重试</string>
   <string name="Modal_Error_NoInternet">无法运行测试。请复查您的互联网连接。</string>
   <string name="Modal_Error_CantDownloadURLs">无法下载网址名单。请重试。</string>
   <string name="Modal_Error_NotificationNotEnabled">需要通知权限。请在手机设置中启用，然后在 OONI Probe 应用中启用。</string>
@@ -217,6 +218,8 @@
   <string name="Modal_ManualUpload_Paragraph">该设置允许您手动重新上传尚未发布的测量结果。</string>
   <string name="Modal_ManualUpload_Enable">启用</string>
   <string name="Modal_ManualUpload_Disable">不要，谢谢</string>
+  <string name="Modal_UploadFailed_Title">上传失败</string>
+  <string name="Modal_UploadFailed_Paragraph">Would you like to retry or cancel?</string>
   <string name="Toast_CopiedToClipboard">已复制到剪贴板</string>
   <string name="Snackbar_ResultsNotUploaded_Text">未上传</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">上传</string>
@@ -288,7 +291,7 @@
   <string name="Settings_Performance_DashServerAddress">DASH 服务器</string>
   <string name="Settings_Performance_DashServerPort">DASH 服务器端口</string>
   <string name="Settings_SendEmail_Label">发送邮件给支持团队</string>
-  <string name="Settings_SendEmail_Error">设备中没有配置邮件客户端</string>
+  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap copy to clipboard below to copy our email address.</string>
   <string name="Notification_FinishedRunning">运行完成</string>
   <string name="OONIBrowser_TryMirror">试试镜像站</string>
   <string name="OONIBrowser_Loading">载入中....</string>

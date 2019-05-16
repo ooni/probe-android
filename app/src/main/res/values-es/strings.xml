@@ -193,6 +193,7 @@
   <string name="Modal_Cancel">Cancelar</string>
   <string name="Modal_Delete">Borrar</string>
   <string name="Modal_Error">Error</string>
+  <string name="Modal_Retry">Intentar de nuevo</string>
   <string name="Modal_Error_NoInternet">Incapaz de ejecutar la prueba. Por favor comprueba tu conectividad de Internet.</string>
   <string name="Modal_Error_CantDownloadURLs">Incapaz de descargar la lista de URL. Por favor intenta de nuevo.</string>
   <string name="Modal_Error_NotificationNotEnabled">Son requeridos permisos de notificación. Por favor habilítalos en las Configuraciones de tu teléfono y luego en tu aplicación OONI Probe.</string>
@@ -217,6 +218,8 @@
   <string name="Modal_ManualUpload_Paragraph">Esta configuración te permite volver a subir manualmente mediciones no publicadas.</string>
   <string name="Modal_ManualUpload_Enable">Habilitar</string>
   <string name="Modal_ManualUpload_Disable">No, gracias!</string>
+  <string name="Modal_UploadFailed_Title">La subida falló</string>
+  <string name="Modal_UploadFailed_Paragraph">Would you like to retry or cancel?</string>
   <string name="Toast_CopiedToClipboard">Se copió al portapapeles</string>
   <string name="Snackbar_ResultsNotUploaded_Text">No subido</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Subir</string>
@@ -288,7 +291,7 @@
   <string name="Settings_Performance_DashServerAddress">Servidor DASH</string>
   <string name="Settings_Performance_DashServerPort">Puerto del servidor DASH</string>
   <string name="Settings_SendEmail_Label">Enviar correo electrónico al soporte</string>
-  <string name="Settings_SendEmail_Error">No hay clientes de correo electrónico configurados en tu dispositivo</string>
+  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap copy to clipboard below to copy our email address.</string>
   <string name="Notification_FinishedRunning">Finalizó la ejecución</string>
   <string name="OONIBrowser_TryMirror">Intentar servidor réplica</string>
   <string name="OONIBrowser_Loading">Cargando...</string>

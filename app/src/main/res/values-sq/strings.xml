@@ -115,7 +115,7 @@
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">Aplikacion</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">Aplikacione</string>
   <string name="TestResults_Details_Hero_Runtime">Kohëzgjatja</string>
-  <string name="TestResults_Details_Methodology">Methodology</string>
+  <string name="TestResults_Details_Methodology">Metodologjia</string>
   <string name="TestResults_Details_ViewLog">Shiko detajet</string>
   <string name="TestResults_Details_RawData">Të dhëna</string>
   <string name="TestResults_Details_CopyToClipboard">Kopjo</string>
@@ -193,6 +193,7 @@
   <string name="Modal_Cancel">Anulo</string>
   <string name="Modal_Delete">Fshije</string>
   <string name="Modal_Error">Gabim</string>
+  <string name="Modal_Retry">Riprovo</string>
   <string name="Modal_Error_NoInternet">E pamundur për t\'u bërë testi. Ju lutem kontrolli lidhjen tuaj të internetit.</string>
   <string name="Modal_Error_CantDownloadURLs">E pamundur për të shkarkuar listën e URL. Ju lutem përvoni përsëri.</string>
   <string name="Modal_Error_NotificationNotEnabled">Nevojitet të drejta njoftimesh. Ju lutem aktivizojini ato tek Rregullimit e telefonit tuaj dhe më pas aktivizojini tek tek aplikacioni juaj OONI Probe.</string>
@@ -201,7 +202,7 @@
   <string name="Modal_ResultsNotUploaded_Title">Rezultatet nuk u ngarkuan</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">Disa nga testimet e tua nuk janë të ngarkuara tek serverat e OONI. Nëse dëshiron të kontribuosh tek baza e të dhënave te OONI, ju lutem ngarkojini ato.\n</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Ngarkoni</string>
-  <string name="Modal_ResultsNotUploaded_Uploading">Uploading %1$s ...</string>
+  <string name="Modal_ResultsNotUploaded_Uploading">Në ngarkim %1$s ...</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Aktivizo të drejtat e njoftimeve që të kryesh testime automatikisht.</string>
   <string name="Modal_EnableNotifications_News">Aktivizo të drejtat e njoftimeve që të marrësh lajme të reja.</string>
   <string name="Modal_EnableNotifications_Any">Aktivizo të drejtat e njoftimeve që të marrësh njoftime.</string>
@@ -217,6 +218,8 @@
   <string name="Modal_ManualUpload_Paragraph">Ky opsion të mundëson ty që të ngarkosh sërish matjet e pa publikuara.</string>
   <string name="Modal_ManualUpload_Enable">Aktivizoje</string>
   <string name="Modal_ManualUpload_Disable">Jo, faleminderit</string>
+  <string name="Modal_UploadFailed_Title">Upload failed</string>
+  <string name="Modal_UploadFailed_Paragraph">Would you like to retry or cancel?</string>
   <string name="Toast_CopiedToClipboard">U kopjua</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Nuk është ngarkuar</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Ngarkoni</string>
@@ -288,7 +291,7 @@
   <string name="Settings_Performance_DashServerAddress">Serveri DASH</string>
   <string name="Settings_Performance_DashServerPort">Porta e serverit NDT</string>
   <string name="Settings_SendEmail_Label">Dërgo email tek ndihmuesi</string>
-  <string name="Settings_SendEmail_Error">Nuk ka asnjë klient email të konfiguruar në paisjen tuaj</string>
+  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap copy to clipboard below to copy our email address.</string>
   <string name="Notification_FinishedRunning">Mbaroi së ekzekutuari</string>
   <string name="OONIBrowser_TryMirror">Përvo mirror</string>
   <string name="OONIBrowser_Loading">Duke u ngarkuar</string>

@@ -193,6 +193,7 @@
   <string name="Modal_Cancel">لغو</string>
   <string name="Modal_Delete">حذف</string>
   <string name="Modal_Error">خطا</string>
+  <string name="Modal_Retry">تلاش دوباره</string>
   <string name="Modal_Error_NoInternet">اجرای تست امکان‌پذیر نبود. لطفا ارتباط اینترنت خود را چک کنید.</string>
   <string name="Modal_Error_CantDownloadURLs">بارگیری لیست آدرس اینترنتی امکان‌پذیر نبود. لطفا  دوباره تلاش کنید.</string>
   <string name="Modal_Error_NotificationNotEnabled">اجازه‌ی اعلان ضروری است. لطفا در تنظیمات تلفن خود و سپس در اپ OONIProbe آن را فعال کنید.</string>
@@ -217,6 +218,8 @@
   <string name="Modal_ManualUpload_Paragraph">با استفاده از این تنظیم می‌توانید اندازه‌گیری‌های منتشر نشده را دوباره به صورت دستی بارگذاری کنید.</string>
   <string name="Modal_ManualUpload_Enable">فعال کن</string>
   <string name="Modal_ManualUpload_Disable">نه، ممنون</string>
+  <string name="Modal_UploadFailed_Title">آپلود ناموفق بود</string>
+  <string name="Modal_UploadFailed_Paragraph">Would you like to retry or cancel?</string>
   <string name="Toast_CopiedToClipboard">به حافظه کوتاه مدت کپی شد</string>
   <string name="Snackbar_ResultsNotUploaded_Text">بارگذاری نشدند</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">آپلود</string>
@@ -288,7 +291,7 @@
   <string name="Settings_Performance_DashServerAddress">سرور DASH</string>
   <string name="Settings_Performance_DashServerPort">درگاه سرور DASH</string>
   <string name="Settings_SendEmail_Label">ارسال ایمیل به پشتیبانی</string>
-  <string name="Settings_SendEmail_Error">هیچ کلاینت ایمیلی بر روی دستگاه شما تنظیم نشده</string>
+  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap copy to clipboard below to copy our email address.</string>
   <string name="Notification_FinishedRunning">اجرا به پایان رسید</string>
   <string name="OONIBrowser_TryMirror">سرورهای آینه را امتحان کنید</string>
   <string name="OONIBrowser_Loading">در حال بارگذاری...</string>

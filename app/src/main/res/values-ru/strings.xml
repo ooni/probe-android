@@ -193,6 +193,7 @@
   <string name="Modal_Cancel">Отмена</string>
   <string name="Modal_Delete">Удалить</string>
   <string name="Modal_Error">Ошибка</string>
+  <string name="Modal_Retry">Повторить</string>
   <string name="Modal_Error_NoInternet">Ошибка теста. Пожалуйста, проверьте подключение к интернету.</string>
   <string name="Modal_Error_CantDownloadURLs">Ошибка скачивания списка адресов. Пожалуйста, попробуйте снова.</string>
   <string name="Modal_Error_NotificationNotEnabled">Нужно разрешить уведомления. Пожалуйста, включите их в настройках телефона, а затем в приложении OONI Probe.</string>
@@ -217,6 +218,8 @@
   <string name="Modal_ManualUpload_Paragraph">This setting allows you to manually re-upload unpublished measurements.</string>
   <string name="Modal_ManualUpload_Enable">Включить</string>
   <string name="Modal_ManualUpload_Disable">Нет, спасибо</string>
+  <string name="Modal_UploadFailed_Title">Загрузка не удалась</string>
+  <string name="Modal_UploadFailed_Paragraph">Would you like to retry or cancel?</string>
   <string name="Toast_CopiedToClipboard">Скопировано в буфер обмена</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Не загружено</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Загрузить</string>
@@ -288,7 +291,7 @@
   <string name="Settings_Performance_DashServerAddress">Сервер DASH</string>
   <string name="Settings_Performance_DashServerPort">Порт сервера DASH</string>
   <string name="Settings_SendEmail_Label">Send email to support</string>
-  <string name="Settings_SendEmail_Error">No email clients configured on your device</string>
+  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap copy to clipboard below to copy our email address.</string>
   <string name="Notification_FinishedRunning">Завершено</string>
   <string name="OONIBrowser_TryMirror">Попробуйте зеркало</string>
   <string name="OONIBrowser_Loading">Загрузка...</string>

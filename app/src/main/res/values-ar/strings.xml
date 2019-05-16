@@ -193,6 +193,7 @@
   <string name="Modal_Cancel">إلغاء</string>
   <string name="Modal_Delete">حذف</string>
   <string name="Modal_Error">خطأ</string>
+  <string name="Modal_Retry">حاول مجددا</string>
   <string name="Modal_Error_NoInternet">التطبيق غير قادر على إجراء الاختبار. من فضلك تحقق من اتصال الإنترنت.</string>
   <string name="Modal_Error_CantDownloadURLs">التطبيق غير قادر على تحميل قائمة المواقع. من فضلك حاول مرة أخرى.</string>
   <string name="Modal_Error_NotificationNotEnabled">التطبيق بحاجة الى تصريح التنبيهات. من فضلك قم بإعطاء التطبيق تصريح التنبيهات من خلال إعدادات هاتفك ثم اسمح بها في تطبيق OONI Probe.</string>
@@ -217,6 +218,8 @@
   <string name="Modal_ManualUpload_Paragraph">هذا الإعداد يمكّن من إعادة رفع القياسات الغير منشورة يدويّاً </string>
   <string name="Modal_ManualUpload_Enable">تمكين</string>
   <string name="Modal_ManualUpload_Disable">لا، شكراً</string>
+  <string name="Modal_UploadFailed_Title">فَشِلتْ عملية الرفع</string>
+  <string name="Modal_UploadFailed_Paragraph">Would you like to retry or cancel?</string>
   <string name="Toast_CopiedToClipboard">تم النسخ إلى الحافظة</string>
   <string name="Snackbar_ResultsNotUploaded_Text">لم يتمّ الرفع</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">رفع</string>
@@ -288,7 +291,7 @@
   <string name="Settings_Performance_DashServerAddress">خادم DASH</string>
   <string name="Settings_Performance_DashServerPort">منفذ خادم DASH</string>
   <string name="Settings_SendEmail_Label">إرسال إيميل لفريق الدعم </string>
-  <string name="Settings_SendEmail_Error">لم يتم إعداد عملاء إيميل على جهازك</string>
+  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap copy to clipboard below to copy our email address.</string>
   <string name="Notification_FinishedRunning">انتهى التشغيل</string>
   <string name="OONIBrowser_TryMirror">تجربة خادم بديل</string>
   <string name="OONIBrowser_Loading">جاري التحميل...</string>

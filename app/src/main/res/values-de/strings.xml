@@ -193,6 +193,7 @@
   <string name="Modal_Cancel">Abbrechen</string>
   <string name="Modal_Delete">Entfernen</string>
   <string name="Modal_Error">Fehler</string>
+  <string name="Modal_Retry">Versuche erneut</string>
   <string name="Modal_Error_NoInternet">Test konnte nicht ausgeführt werden. Bitte überprüfe deine Internetverbindung.</string>
   <string name="Modal_Error_CantDownloadURLs">URL-Liste kann nicht heruntergeladen werden. Bitte versuche es erneut.</string>
   <string name="Modal_Error_NotificationNotEnabled">Benachrichtigungsberechtigungen sind erforderlich. Bitte aktiviere sie in den Einstellungen deines Telefons und anschließend in deiner OONI Probe App.</string>
@@ -217,6 +218,8 @@
   <string name="Modal_ManualUpload_Paragraph">Mit dieser Einstellung kannst du unveröffentlichte Messungen manuell erneut hochladen.</string>
   <string name="Modal_ManualUpload_Enable">Aktivieren</string>
   <string name="Modal_ManualUpload_Disable">Nein, danke</string>
+  <string name="Modal_UploadFailed_Title">Hochladen fehlgeschlagen</string>
+  <string name="Modal_UploadFailed_Paragraph">Would you like to retry or cancel?</string>
   <string name="Toast_CopiedToClipboard">In die Zwischenablage kopiert</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Nicht hochgeladen</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Hochladen</string>
@@ -288,7 +291,7 @@
   <string name="Settings_Performance_DashServerAddress">DASH-Server</string>
   <string name="Settings_Performance_DashServerPort">DASH-Serverport</string>
   <string name="Settings_SendEmail_Label">E-Mail an den Support senden</string>
-  <string name="Settings_SendEmail_Error">Auf Ihrem Gerät sind keine E-Mail-Clients konfiguriert</string>
+  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap copy to clipboard below to copy our email address.</string>
   <string name="Notification_FinishedRunning">Vollständig ausgeführt</string>
   <string name="OONIBrowser_TryMirror">Versuche Mirror</string>
   <string name="OONIBrowser_Loading">Lade...</string>

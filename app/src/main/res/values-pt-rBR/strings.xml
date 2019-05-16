@@ -193,6 +193,7 @@
   <string name="Modal_Cancel">Cancelar</string>
   <string name="Modal_Delete">Apagar</string>
   <string name="Modal_Error">Erro</string>
+  <string name="Modal_Retry">Tentar novamente</string>
   <string name="Modal_Error_NoInternet">Não foi possível executar o teste. Por favor, verifique sua conexão com a Internet.</string>
   <string name="Modal_Error_CantDownloadURLs">Não foi possível baixar a lista de URL\'s. Por favor, tente novamente.</string>
   <string name="Modal_Error_NotificationNotEnabled">Permissões de notificação são necessárias. Por favor, habilite-as nas Configurações do seu telefone e, em seguida, habilite-as em seu aplicativo OONI Probe.</string>
@@ -217,6 +218,8 @@
   <string name="Modal_ManualUpload_Paragraph">Essa configuração permite que você carregue manualmente as medidas não publicadas.</string>
   <string name="Modal_ManualUpload_Enable">Habilitar</string>
   <string name="Modal_ManualUpload_Disable">Não, agradeço</string>
+  <string name="Modal_UploadFailed_Title">Envio falhou</string>
+  <string name="Modal_UploadFailed_Paragraph">Would you like to retry or cancel?</string>
   <string name="Toast_CopiedToClipboard">Copiado na área de transferência</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Não Carregado</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Carregar</string>
@@ -288,7 +291,7 @@
   <string name="Settings_Performance_DashServerAddress">Servidor DASH</string>
   <string name="Settings_Performance_DashServerPort">Porta do servidor DASH</string>
   <string name="Settings_SendEmail_Label">Enviar e-mail para suporte</string>
-  <string name="Settings_SendEmail_Error">Nenhum cliente de e-mail configurado no seu aparelho</string>
+  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap copy to clipboard below to copy our email address.</string>
   <string name="Notification_FinishedRunning">Execução concluída</string>
   <string name="OONIBrowser_TryMirror">Tentar espelho</string>
   <string name="OONIBrowser_Loading">Carregando...</string>
