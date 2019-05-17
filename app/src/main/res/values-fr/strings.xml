@@ -193,7 +193,7 @@
   <string name="Modal_Cancel">Annuler</string>
   <string name="Modal_Delete">Supprimer</string>
   <string name="Modal_Error">Erreur</string>
-  <string name="Modal_Retry">Réessayer</string>
+  <string name="Modal_Retry">Ressayer</string>
   <string name="Modal_Error_NoInternet">Impossible d’effectuer le test. Veuillez vérifier votre connexion à Internet.</string>
   <string name="Modal_Error_CantDownloadURLs">Impossible de télécharger la liste des URL. Veuillez ressayer.</string>
   <string name="Modal_Error_NotificationNotEnabled">Les autorisations de notification sont nécessaires. Veuillez les activer dans les paramètres de votre téléphone, puis les activer dans votre appli OONI Probe.</string>
@@ -219,8 +219,8 @@
   <string name="Modal_ManualUpload_Enable">Activer</string>
   <string name="Modal_ManualUpload_Disable">Non, merci</string>
   <string name="Modal_UploadFailed_Title">Échec de téléversement</string>
-  <string name="Modal_UploadFailed_Paragraph">Would you like to retry or cancel?</string>
-  <string name="Toast_CopiedToClipboard">A été copié dans le presse-papiers</string>
+  <string name="Modal_UploadFailed_Paragraph">Souhaitez-vous ressayer ou annuler ?</string>
+  <string name="Toast_CopiedToClipboard">Copié dans le presse-papiers</string>
   <string name="Snackbar_ResultsNotUploaded_Text">N’a pas été téléversé</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Téléversement</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Tout n’a pas été téléversé</string>
@@ -291,7 +291,7 @@
   <string name="Settings_Performance_DashServerAddress">Serveur DASH</string>
   <string name="Settings_Performance_DashServerPort">Port du serveur DASH</string>
   <string name="Settings_SendEmail_Label">Envoyer un courriel à l’assistance</string>
-  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap copy to clipboard below to copy our email address.</string>
+  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap \"Copy to clipboard\" below to copy our email address.</string>
   <string name="Notification_FinishedRunning">Le test est terminé.</string>
   <string name="OONIBrowser_TryMirror">Essayer un miroir</string>
   <string name="OONIBrowser_Loading">Chargement…</string>

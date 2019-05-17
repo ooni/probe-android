@@ -220,7 +220,7 @@
   <string name="Modal_ManualUpload_Disable">不用，謝謝</string>
   <string name="Modal_UploadFailed_Title">上傳失敗</string>
   <string name="Modal_UploadFailed_Paragraph">Would you like to retry or cancel?</string>
-  <string name="Toast_CopiedToClipboard">已複製到剪貼簿</string>
+  <string name="Toast_CopiedToClipboard">Copied to clipboard</string>
   <string name="Snackbar_ResultsNotUploaded_Text">未上傳的</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">上傳</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">部份未上傳的</string>
@@ -291,7 +291,7 @@
   <string name="Settings_Performance_DashServerAddress">DASH 伺服器</string>
   <string name="Settings_Performance_DashServerPort">DASH 伺服器端口</string>
   <string name="Settings_SendEmail_Label">Send email to support</string>
-  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap copy to clipboard below to copy our email address.</string>
+  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap \"Copy to clipboard\" below to copy our email address.</string>
   <string name="Notification_FinishedRunning">已完成的執行</string>
   <string name="OONIBrowser_TryMirror">試試鏡像站</string>
   <string name="OONIBrowser_Loading">載入中…</string>

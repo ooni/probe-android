@@ -220,7 +220,7 @@
   <string name="Modal_ManualUpload_Disable">لا، شكراً</string>
   <string name="Modal_UploadFailed_Title">فَشِلتْ عملية الرفع</string>
   <string name="Modal_UploadFailed_Paragraph">Would you like to retry or cancel?</string>
-  <string name="Toast_CopiedToClipboard">تم النسخ إلى الحافظة</string>
+  <string name="Toast_CopiedToClipboard">نسخ إلى الحافظة</string>
   <string name="Snackbar_ResultsNotUploaded_Text">لم يتمّ الرفع</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">رفع</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">لم يتمّ رفع البعض</string>
@@ -291,7 +291,7 @@
   <string name="Settings_Performance_DashServerAddress">خادم DASH</string>
   <string name="Settings_Performance_DashServerPort">منفذ خادم DASH</string>
   <string name="Settings_SendEmail_Label">إرسال إيميل لفريق الدعم </string>
-  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap copy to clipboard below to copy our email address.</string>
+  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap \"Copy to clipboard\" below to copy our email address.</string>
   <string name="Notification_FinishedRunning">انتهى التشغيل</string>
   <string name="OONIBrowser_TryMirror">تجربة خادم بديل</string>
   <string name="OONIBrowser_Loading">جاري التحميل...</string>

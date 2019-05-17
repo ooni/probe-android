@@ -220,7 +220,7 @@
   <string name="Modal_ManualUpload_Disable">No, grazie</string>
   <string name="Modal_UploadFailed_Title">Invio fallito</string>
   <string name="Modal_UploadFailed_Paragraph">Would you like to retry or cancel?</string>
-  <string name="Toast_CopiedToClipboard">Copiato negli Appunti</string>
+  <string name="Toast_CopiedToClipboard">Copiato negli appunti</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Non caricati</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Carica</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Alcuni non caricati</string>
@@ -291,7 +291,7 @@
   <string name="Settings_Performance_DashServerAddress">Server DASH</string>
   <string name="Settings_Performance_DashServerPort">Porta server DASH</string>
   <string name="Settings_SendEmail_Label">Invia email a supporto</string>
-  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap copy to clipboard below to copy our email address.</string>
+  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap \"Copy to clipboard\" below to copy our email address.</string>
   <string name="Notification_FinishedRunning">Esecuzione conclusa</string>
   <string name="OONIBrowser_TryMirror">Prova un mirror</string>
   <string name="OONIBrowser_Loading">Caricamento...</string>

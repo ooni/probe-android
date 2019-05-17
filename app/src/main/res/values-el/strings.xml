@@ -291,7 +291,7 @@
   <string name="Settings_Performance_DashServerAddress">Διακομιστής DASH</string>
   <string name="Settings_Performance_DashServerPort">Θύρα διακομιστή DASH</string>
   <string name="Settings_SendEmail_Label">Αποστολή email στην υποστήριξη</string>
-  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap copy to clipboard below to copy our email address.</string>
+  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap \"Copy to clipboard\" below to copy our email address.</string>
   <string name="Notification_FinishedRunning">Οι δοκιμές εκτελέστηκαν</string>
   <string name="OONIBrowser_TryMirror">Δοκίμασε mirror</string>
   <string name="OONIBrowser_Loading">Φορτώνεται...</string>

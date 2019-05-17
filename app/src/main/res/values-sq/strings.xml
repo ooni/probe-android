@@ -220,7 +220,7 @@
   <string name="Modal_ManualUpload_Disable">Jo, faleminderit</string>
   <string name="Modal_UploadFailed_Title">Upload failed</string>
   <string name="Modal_UploadFailed_Paragraph">Would you like to retry or cancel?</string>
-  <string name="Toast_CopiedToClipboard">U kopjua</string>
+  <string name="Toast_CopiedToClipboard">Copied to clipboard</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Nuk është ngarkuar</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Ngarkoni</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Disa nuk janë ngarkuar</string>
@@ -291,7 +291,7 @@
   <string name="Settings_Performance_DashServerAddress">Serveri DASH</string>
   <string name="Settings_Performance_DashServerPort">Porta e serverit NDT</string>
   <string name="Settings_SendEmail_Label">Dërgo email tek ndihmuesi</string>
-  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap copy to clipboard below to copy our email address.</string>
+  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap \"Copy to clipboard\" below to copy our email address.</string>
   <string name="Notification_FinishedRunning">Mbaroi së ekzekutuari</string>
   <string name="OONIBrowser_TryMirror">Përvo mirror</string>
   <string name="OONIBrowser_Loading">Duke u ngarkuar</string>

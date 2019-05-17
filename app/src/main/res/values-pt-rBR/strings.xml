@@ -219,8 +219,8 @@
   <string name="Modal_ManualUpload_Enable">Habilitar</string>
   <string name="Modal_ManualUpload_Disable">Não, agradeço</string>
   <string name="Modal_UploadFailed_Title">Envio falhou</string>
-  <string name="Modal_UploadFailed_Paragraph">Would you like to retry or cancel?</string>
-  <string name="Toast_CopiedToClipboard">Copiado na área de transferência</string>
+  <string name="Modal_UploadFailed_Paragraph">Você gostaria de repetir ou cancelar?</string>
+  <string name="Toast_CopiedToClipboard">Copiado para a área de transferência</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Não Carregado</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Carregar</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Alguns items não carregaram</string>
@@ -291,7 +291,7 @@
   <string name="Settings_Performance_DashServerAddress">Servidor DASH</string>
   <string name="Settings_Performance_DashServerPort">Porta do servidor DASH</string>
   <string name="Settings_SendEmail_Label">Enviar e-mail para suporte</string>
-  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap copy to clipboard below to copy our email address.</string>
+  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap \"Copy to clipboard\" below to copy our email address.</string>
   <string name="Notification_FinishedRunning">Execução concluída</string>
   <string name="OONIBrowser_TryMirror">Tentar espelho</string>
   <string name="OONIBrowser_Loading">Carregando...</string>
