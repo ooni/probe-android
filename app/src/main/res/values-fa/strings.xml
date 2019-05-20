@@ -219,8 +219,8 @@
   <string name="Modal_ManualUpload_Enable">فعال کن</string>
   <string name="Modal_ManualUpload_Disable">نه، ممنون</string>
   <string name="Modal_UploadFailed_Title">آپلود ناموفق بود</string>
-  <string name="Modal_UploadFailed_Paragraph">Would you like to retry or cancel?</string>
-  <string name="Toast_CopiedToClipboard">Copied to clipboard</string>
+  <string name="Modal_UploadFailed_Paragraph">آیا می‌خواهید دوباره تلاش کنید یا لغو کنید؟</string>
+  <string name="Toast_CopiedToClipboard">در حافظه‌ی موقت کپی شد</string>
   <string name="Snackbar_ResultsNotUploaded_Text">بارگذاری نشدند</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">آپلود</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">برخی بارگذاری نشدند</string>
@@ -291,7 +291,7 @@
   <string name="Settings_Performance_DashServerAddress">سرور DASH</string>
   <string name="Settings_Performance_DashServerPort">درگاه سرور DASH</string>
   <string name="Settings_SendEmail_Label">ارسال ایمیل به پشتیبانی</string>
-  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap \"Copy to clipboard\" below to copy our email address.</string>
+  <string name="Settings_SendEmail_Error">لطفا یک ایمیل به bugs@openobservatory.org همراه با اطلاعات برنامه و نسخه‌ی iOS ارسال کنید. بر روی «کپی در حافظه‌ی موقت» در پایین بزنید تا آدرس ایمیل کپی شود.</string>
   <string name="Notification_FinishedRunning">اجرا به پایان رسید</string>
   <string name="OONIBrowser_TryMirror">سرورهای آینه را امتحان کنید</string>
   <string name="OONIBrowser_Loading">در حال بارگذاری...</string>

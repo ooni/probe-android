@@ -219,8 +219,8 @@
   <string name="Modal_ManualUpload_Enable">Etkinleştir</string>
   <string name="Modal_ManualUpload_Disable">Hayır, teşekkürler</string>
   <string name="Modal_UploadFailed_Title">Yükleme başarısız</string>
-  <string name="Modal_UploadFailed_Paragraph">Would you like to retry or cancel?</string>
-  <string name="Toast_CopiedToClipboard">Copied to clipboard</string>
+  <string name="Modal_UploadFailed_Paragraph">Yeniden denemek ya da iptal etmek ister misiniz?</string>
+  <string name="Toast_CopiedToClipboard">Panoya kopyalandı</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Yüklenmemiş</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Yükle</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Bazıları yüklenmemiş</string>
@@ -291,7 +291,7 @@
   <string name="Settings_Performance_DashServerAddress">DASH sunucusu</string>
   <string name="Settings_Performance_DashServerPort">DASH sunucusu bağlantı noktası</string>
   <string name="Settings_SendEmail_Label">Destek ekibine e-posta gönderin</string>
-  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap \"Copy to clipboard\" below to copy our email address.</string>
+  <string name="Settings_SendEmail_Error">Lütfen uygulama hakkındaki bilgiler ve iOS sürümünü yazarak bugs@openobservatory.org adresine bir e-posta gönderin. E-posta adresimizi kopyalamak için aşağıdaki \"Panoya kopyala\" üzerine dokunun.</string>
   <string name="Notification_FinishedRunning">Çalışmayı tamamladı</string>
   <string name="OONIBrowser_TryMirror">Kopyası denensin</string>
   <string name="OONIBrowser_Loading">Yükleniyor...</string>
