@@ -84,6 +84,8 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
             throw new IllegalArgumentException("MKCollectorResubmitTask requires 2 nullable params: result_id, measurement_id");
         Where<Measurement> msmQuery = SQLite.select().from(Measurement.class)
                 .where(Measurement_Table.is_failed.eq(false))
+                .and(Measurement_Table.is_rerun.eq(false))
+                .and(Measurement_Table.is_done.eq(true))
                 // We check on both the report_id and is_uploaded as we
                 // may have some unuploaded measurements which are marked
                 // as is_uploaded = true, but we always know that those with

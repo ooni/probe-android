@@ -119,6 +119,8 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
         adapter.notifyTypesChanged();
         if (SQLite.selectCountOf().from(Measurement.class).where(
                 Measurement_Table.is_failed.eq(false),
+                Measurement_Table.is_rerun.eq(false),
+                Measurement_Table.is_done.eq(true),
                 OperatorGroup.clause()
                         .or(Measurement_Table.is_uploaded.eq(false))
                         .or(Measurement_Table.report_id.isNull()),
