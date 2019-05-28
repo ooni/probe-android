@@ -19,10 +19,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
-import com.raizlabs.android.dbflow.sql.language.OperatorGroup;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.MKCollectorResubmitTask;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderMiddleboxFragment;
@@ -31,7 +31,6 @@ import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderTBAFragme
 import org.openobservatory.ooniprobe.item.MeasurementItem;
 import org.openobservatory.ooniprobe.item.MeasurementPerfItem;
 import org.openobservatory.ooniprobe.model.database.Measurement;
-import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
@@ -117,14 +116,8 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
                     new MeasurementPerfItem(measurement, this) :
                     new MeasurementItem(measurement, this));
         adapter.notifyTypesChanged();
-        if (SQLite.selectCountOf().from(Measurement.class).where(
-                Measurement_Table.is_failed.eq(false),
-                Measurement_Table.is_rerun.eq(false),
-                Measurement_Table.is_done.eq(true),
-                OperatorGroup.clause()
-                        .or(Measurement_Table.is_uploaded.eq(false))
-                        .or(Measurement_Table.report_id.isNull()),
-                Measurement_Table.result_id.eq(result.id)).longValue() != 0)
+        if (((Application) getApplication()).getPreferenceManager().isManualUploadResults() &&
+                Measurement.countNotUploaded(result.id) != 0)
             snackbar.show();
         else
             snackbar.dismiss();

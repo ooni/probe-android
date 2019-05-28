@@ -7,6 +7,9 @@ import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.ForeignKey;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.sql.language.OperatorGroup;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
+import com.raizlabs.android.dbflow.sql.language.Where;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.openobservatory.ooniprobe.common.Application;
@@ -26,6 +29,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 @Table(database = Application.class)
 public class Measurement extends BaseModel implements Serializable {
@@ -63,6 +67,21 @@ public class Measurement extends BaseModel implements Serializable {
 		this.report_id = report_id;
 		start_time = new java.util.Date();
 	}
+
+    public static long countNotUploaded(@Nullable Integer resultId) {
+        Where<Measurement> where = SQLite.selectCountOf().from(Measurement.class)
+                .where(Measurement_Table.is_failed.eq(false))
+                .and(Measurement_Table.is_rerun.eq(false))
+                .and(Measurement_Table.is_done.eq(true))
+                .and(OperatorGroup.clause()
+                        .or(Measurement_Table.is_uploaded.eq(false))
+                        .or(Measurement_Table.report_id.isNull())
+                );
+        if (resultId != null) {
+            where.and(Measurement_Table.result_id.eq(resultId));
+        }
+        return where.longValue();
+    }
 
 	public static File getEntryFile(Context c, int measurementId, String test_name) {
 		return new File(getMeasurementDir(c), measurementId + "_" + test_name + ".json");
