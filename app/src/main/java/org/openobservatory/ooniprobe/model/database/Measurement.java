@@ -68,20 +68,16 @@ public class Measurement extends BaseModel implements Serializable {
 		start_time = new java.util.Date();
 	}
 
-    public static long countNotUploaded(@Nullable Integer resultId) {
-        Where<Measurement> where = SQLite.selectCountOf().from(Measurement.class)
-                .where(Measurement_Table.is_failed.eq(false))
-                .and(Measurement_Table.is_rerun.eq(false))
-                .and(Measurement_Table.is_done.eq(true))
-                .and(OperatorGroup.clause()
-                        .or(Measurement_Table.is_uploaded.eq(false))
-                        .or(Measurement_Table.report_id.isNull())
-                );
-        if (resultId != null) {
-            where.and(Measurement_Table.result_id.eq(resultId));
-        }
-        return where.longValue();
-    }
+	public static Where<Measurement> selectUploadable() {
+		return SQLite.select().from(Measurement.class)
+				.where(Measurement_Table.is_failed.eq(false))
+				.and(Measurement_Table.is_rerun.eq(false))
+				.and(Measurement_Table.is_done.eq(true))
+				.and(OperatorGroup.clause()
+						.or(Measurement_Table.is_uploaded.eq(false))
+						.or(Measurement_Table.report_id.isNull())
+				);
+	}
 
 	public static File getEntryFile(Context c, int measurementId, String test_name) {
 		return new File(getMeasurementDir(c), measurementId + "_" + test_name + ".json");
