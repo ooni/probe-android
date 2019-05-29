@@ -79,6 +79,10 @@ public class Measurement extends BaseModel implements Serializable {
 				);
 	}
 
+	public static Where<Measurement> selectUploadableWithResultId(int resultId) {
+		return Measurement.selectUploadable().and(Measurement_Table.result_id.eq(resultId));
+	}
+
 	public static File getEntryFile(Context c, int measurementId, String test_name) {
 		return new File(getMeasurementDir(c), measurementId + "_" + test_name + ".json");
 	}

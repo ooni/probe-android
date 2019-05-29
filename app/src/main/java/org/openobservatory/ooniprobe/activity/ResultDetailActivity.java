@@ -118,7 +118,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
                     new MeasurementItem(measurement, this));
         adapter.notifyTypesChanged();
         if (((Application) getApplication()).getPreferenceManager().isManualUploadResults() &&
-                Measurement.selectUploadable().and(Measurement_Table.result_id.eq(result.id)).count() != 0)
+                Measurement.selectUploadableWithResultId(result.id).count() != 0)
             snackbar.show();
         else
             snackbar.dismiss();
