@@ -7,6 +7,9 @@ import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.ForeignKey;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.sql.language.OperatorGroup;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
+import com.raizlabs.android.dbflow.sql.language.Where;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.openobservatory.ooniprobe.common.Application;
@@ -62,6 +65,25 @@ public class Measurement extends BaseModel implements Serializable {
 		this.test_name = test_name;
 		this.report_id = report_id;
 		start_time = new java.util.Date();
+	}
+
+	public static Where<Measurement> selectUploadable() {
+		// We check on both the report_id and is_uploaded as we
+		// may have some unuploaded measurements which are marked
+		// as is_uploaded = true, but we always know that those with
+		// report_id set to null are not uploaded
+		return SQLite.select().from(Measurement.class)
+				.where(Measurement_Table.is_failed.eq(false))
+				.and(Measurement_Table.is_rerun.eq(false))
+				.and(Measurement_Table.is_done.eq(true))
+				.and(OperatorGroup.clause()
+						.or(Measurement_Table.is_uploaded.eq(false))
+						.or(Measurement_Table.report_id.isNull())
+				);
+	}
+
+	public static Where<Measurement> selectUploadableWithResultId(int resultId) {
+		return Measurement.selectUploadable().and(Measurement_Table.result_id.eq(resultId));
 	}
 
 	public static File getEntryFile(Context c, int measurementId, String test_name) {
