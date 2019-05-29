@@ -56,7 +56,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 					}
 				if (downloadUrls) {
 					MKGeoIPLookupSettings geoIPLookup = new MKGeoIPLookupSettings();
-					geoIPLookup.setTimeout(17);
+					geoIPLookup.setTimeout(act.getResources().getInteger(R.integer.default_timeout));
 					geoIPLookup.setCABundlePath(act.getCacheDir() + "/" + Application.CA_BUNDLE);
 					geoIPLookup.setCountryDBPath(act.getCacheDir() + "/" + Application.COUNTRY_MMDB);
 					geoIPLookup.setASNDBPath(act.getCacheDir() + "/" + Application.ASN_MMDB);

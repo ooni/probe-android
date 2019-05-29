@@ -47,7 +47,7 @@ public class MKOrchestraTask extends AsyncTask<Void, Void, Void> {
 			for (AbstractSuite suite : TestAsyncTask.SUITES)
 				for (AbstractTest test : suite.getTestList(null))
 					client.addSupportedTest(test.getName());
-			client.setTimeout(17);
+			client.setTimeout(app.getResources().getInteger(R.integer.default_timeout));
 			client.updateOrRegister();
 		}
 	}
