@@ -29,7 +29,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 @Table(database = Application.class)
 public class Measurement extends BaseModel implements Serializable {
@@ -69,6 +68,10 @@ public class Measurement extends BaseModel implements Serializable {
 	}
 
 	public static Where<Measurement> selectUploadable() {
+		// We check on both the report_id and is_uploaded as we
+		// may have some unuploaded measurements which are marked
+		// as is_uploaded = true, but we always know that those with
+		// report_id set to null are not uploaded
 		return SQLite.select().from(Measurement.class)
 				.where(Measurement_Table.is_failed.eq(false))
 				.and(Measurement_Table.is_rerun.eq(false))
