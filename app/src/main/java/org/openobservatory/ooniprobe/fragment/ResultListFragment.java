@@ -252,11 +252,18 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         }
 
         @Override
-        protected void onPostExecute(Void result) {
+        protected void onPostExecute(Boolean result) {
             super.onPostExecute(result);
             ResultListFragment f = wf.get();
-            if (getActivity() != null && f != null)
+            if (getActivity() != null && f != null) {
                 f.queryList();
+                if (!result)
+                    ConfirmDialogFragment.newInstance(R.string.Modal_ResultsNotUploaded_Title,
+                            getActivity().getString(R.string.Modal_UploadFailed_Title),
+                            getActivity().getString(R.string.Modal_UploadFailed_Paragraph), null,
+                            getActivity().getString(R.string.Modal_Retry), null, null
+                    ).show(f.getChildFragmentManager(), null);
+            }
         }
     }
 }
