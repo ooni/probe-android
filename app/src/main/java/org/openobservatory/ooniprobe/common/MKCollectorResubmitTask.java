@@ -25,7 +25,7 @@ import io.ooni.mk.MKCollectorResubmitResults;
 import io.ooni.mk.MKCollectorResubmitSettings;
 import localhost.toolkit.os.NetworkProgressAsyncTask;
 
-public class MKCollectorResubmitTask<A extends AppCompatActivity> extends NetworkProgressAsyncTask<A, Integer, Void> {
+public class MKCollectorResubmitTask<A extends AppCompatActivity> extends NetworkProgressAsyncTask<A, Integer, Boolean> {
     /**
      * Use this class to resubmit a measurement, use result_id and measurement_id to filter list of value
      * {@code new MKCollectorResubmitTask(activity).execute(@Nullable result_id, @Nullable measurement_id);}
@@ -36,7 +36,7 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
         super(activity, true, false);
     }
 
-    private static void perform(Context c, Measurement m) throws IOException {
+    private static boolean perform(Context c, Measurement m) throws IOException {
         File file = Measurement.getEntryFile(c, m.id, m.test_name);
         String input = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
         MKCollectorResubmitSettings settings = new MKCollectorResubmitSettings();
@@ -57,6 +57,7 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
             Log.w(MKCollectorResubmitSettings.class.getSimpleName(), results.getLogs());
             // TODO decide what to do with logs (append on log file?)
         }
+        return results.isGood();
     }
 
     public static long getTimeout(long length) {
@@ -76,10 +77,10 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
      *
      * @param params [0] is result_id. is nullable and is used to restrict measurement retrieve on a specific result.
      *               [1] is measurement_id. is nullable and is used to restrict measurement retrieve on a specific measurement.
-     * @return there is no return
+     * @return true if success, false otherwise
      */
     @Override
-    protected Void doInBackground(Integer... params) {
+    protected Boolean doInBackground(Integer... params) {
         if (params.length != 2)
             throw new IllegalArgumentException("MKCollectorResubmitTask requires 2 nullable params: result_id, measurement_id");
         Where<Measurement> msmQuery = Measurement.selectUploadable();
@@ -99,16 +100,18 @@ public class MKCollectorResubmitTask<A extends AppCompatActivity> extends Networ
             Measurement m = measurements.get(i);
             m.result.load();
             try {
-                perform(activity, m);
+                if (!perform(activity, m))
+                    return false;
             } catch (IOException e) {
                 e.printStackTrace();
+                return false;
             }
         }
-        return null;
+        return true;
     }
 
     @Override
-    protected void onPostExecute(Void result) {
+    protected void onPostExecute(Boolean result) {
         super.onPostExecute(result);
         A activity = getActivity();
         if (activity != null)

@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -46,13 +47,15 @@ import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
 import java.io.File;
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import localhost.toolkit.app.ConfirmDialogFragment;
 
-public class MeasurementDetailActivity extends AbstractActivity {
+public class MeasurementDetailActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String ID = "id";
     @BindView(R.id.coordinatorLayout)
     CoordinatorLayout coordinatorLayout;
@@ -218,19 +221,30 @@ public class MeasurementDetailActivity extends AbstractActivity {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(measurement.getTest().getUrlResId()))));
     }
 
+    @Override
+    public void onConfirmation(Serializable extra, int buttonClicked) {
+        if (buttonClicked == DialogInterface.BUTTON_POSITIVE)
+            runMKCollectorResubmitSettingsAsyncTask();
+    }
+
     private static class MKCollectorResubmitSettingsAsyncTask extends MKCollectorResubmitTask<MeasurementDetailActivity> {
         MKCollectorResubmitSettingsAsyncTask(MeasurementDetailActivity activity) {
             super(activity);
         }
 
         @Override
-        protected void onPostExecute(Void result) {
+        protected void onPostExecute(Boolean result) {
             super.onPostExecute(result);
             MeasurementDetailActivity activity = getActivity();
             if (activity != null) {
                 activity.measurement = SQLite.select().from(Measurement.class)
                         .where(Measurement_Table.id.eq(activity.measurement.id)).querySingle();
                 activity.load();
+                if (!result)
+                    ConfirmDialogFragment.newInstance(null, activity.getString(R.string.Modal_UploadFailed_Title),
+                            activity.getString(R.string.Modal_UploadFailed_Paragraph), null,
+                            activity.getString(R.string.Modal_Retry), null, null
+                    ).show(activity.getSupportFragmentManager(), null);
             }
         }
     }

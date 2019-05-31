@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -40,14 +41,16 @@ import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import localhost.toolkit.app.ConfirmDialogFragment;
 import localhost.toolkit.widget.HeterogeneousRecyclerAdapter;
 import localhost.toolkit.widget.HeterogeneousRecyclerItem;
 
-public class ResultDetailActivity extends AbstractActivity implements View.OnClickListener {
+public class ResultDetailActivity extends AbstractActivity implements View.OnClickListener, ConfirmDialogFragment.OnConfirmedListener {
     private static final String ID = "id";
     @BindView(R.id.coordinatorLayout)
     CoordinatorLayout coordinatorLayout;
@@ -130,18 +133,29 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
         ActivityCompat.startActivity(this, MeasurementDetailActivity.newIntent(this, measurement.id), null);
     }
 
+    @Override
+    public void onConfirmation(Serializable extra, int buttonClicked) {
+        if (buttonClicked == DialogInterface.BUTTON_POSITIVE)
+            runMKCollectorResubmitSettingsAsyncTask();
+    }
+
     private static class MKCollectorResubmitSettingsAsyncTask extends MKCollectorResubmitTask<ResultDetailActivity> {
         MKCollectorResubmitSettingsAsyncTask(ResultDetailActivity activity) {
             super(activity);
         }
 
         @Override
-        protected void onPostExecute(Void result) {
+        protected void onPostExecute(Boolean result) {
             super.onPostExecute(result);
             if (getActivity() != null) {
                 getActivity().result = SQLite.select().from(Result.class)
                         .where(Result_Table.id.eq(getActivity().result.id)).querySingle();
                 getActivity().load();
+                if (!result)
+                    ConfirmDialogFragment.newInstance(null, getActivity().getString(R.string.Modal_UploadFailed_Title),
+                            getActivity().getString(R.string.Modal_UploadFailed_Paragraph), null,
+                            getActivity().getString(R.string.Modal_Retry), null, null
+                    ).show(getActivity().getSupportFragmentManager(), null);
             }
         }
     }
