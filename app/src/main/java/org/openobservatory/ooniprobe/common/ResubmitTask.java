@@ -39,7 +39,10 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
     private static boolean perform(Context c, Measurement m) throws IOException {
         File file = Measurement.getEntryFile(c, m.id, m.test_name);
         String input = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
-        MKCollectorResubmitTask task = new MKCollectorResubmitTask(input, c.getString(R.string.software_name), BuildConfig.VERSION_NAME);
+        MKCollectorResubmitTask task = new MKCollectorResubmitTask(
+                input,
+                c.getString(R.string.software_name),
+                BuildConfig.VERSION_NAME);
         task.setTimeout(getTimeout(file.length()));
         task.setCABundlePath(c.getCacheDir() + "/" + Application.CA_BUNDLE);
         MKCollectorResubmitResults results = task.perform();
