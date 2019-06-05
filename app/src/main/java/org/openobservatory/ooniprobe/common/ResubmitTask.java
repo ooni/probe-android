@@ -25,14 +25,14 @@ import io.ooni.mk.MKCollectorResubmitResults;
 import io.ooni.mk.MKCollectorResubmitSettings;
 import localhost.toolkit.os.NetworkProgressAsyncTask;
 
-public class MKCollectorResubmitTask<A extends AppCompatActivity> extends NetworkProgressAsyncTask<A, Integer, Boolean> {
+public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAsyncTask<A, Integer, Boolean> {
     /**
      * Use this class to resubmit a measurement, use result_id and measurement_id to filter list of value
      * {@code new MKCollectorResubmitTask(activity).execute(@Nullable result_id, @Nullable measurement_id);}
      *
      * @param activity from which this task are executed
      */
-    public MKCollectorResubmitTask(A activity) {
+    public ResubmitTask(A activity) {
         super(activity, true, false);
     }
 

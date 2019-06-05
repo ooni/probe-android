@@ -24,21 +24,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.raizlabs.android.dbflow.sql.language.Method;
-import com.raizlabs.android.dbflow.sql.language.OperatorGroup;
 import com.raizlabs.android.dbflow.sql.language.SQLOperator;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.MKCollectorResubmitTask;
+import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.item.DateItem;
 import org.openobservatory.ooniprobe.item.InstantMessagingItem;
 import org.openobservatory.ooniprobe.item.MiddleboxesItem;
 import org.openobservatory.ooniprobe.item.PerformanceItem;
 import org.openobservatory.ooniprobe.item.WebsiteItem;
 import org.openobservatory.ooniprobe.model.database.Measurement;
-import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
@@ -231,7 +229,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     public void onConfirmation(Serializable serializable, int i) {
         if (serializable.equals(R.string.Modal_ResultsNotUploaded_Title)) {
             if (i == DialogInterface.BUTTON_POSITIVE)
-                new MKCollectorResubmitSettingsAsyncTask(this).execute(null, null);
+                new ResubmitSettingsAsyncTask(this).execute(null, null);
             else
                 snackbar.show();
         } else if (i == DialogInterface.BUTTON_POSITIVE) {
@@ -243,10 +241,10 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         }
     }
 
-    private static class MKCollectorResubmitSettingsAsyncTask extends MKCollectorResubmitTask<AppCompatActivity> {
+    private static class ResubmitSettingsAsyncTask extends ResubmitTask<AppCompatActivity> {
         private WeakReference<ResultListFragment> wf;
 
-        MKCollectorResubmitSettingsAsyncTask(ResultListFragment f) {
+        ResubmitSettingsAsyncTask(ResultListFragment f) {
             super((AppCompatActivity) f.getActivity());
             this.wf = new WeakReference<>(f);
         }

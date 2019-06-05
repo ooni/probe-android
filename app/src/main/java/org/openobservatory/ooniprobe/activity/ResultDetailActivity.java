@@ -24,7 +24,7 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.MKCollectorResubmitTask;
+import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderMiddleboxFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderPerformanceFragment;
@@ -32,7 +32,6 @@ import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderTBAFragme
 import org.openobservatory.ooniprobe.item.MeasurementItem;
 import org.openobservatory.ooniprobe.item.MeasurementPerfItem;
 import org.openobservatory.ooniprobe.model.database.Measurement;
-import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
@@ -107,7 +106,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
     }
 
     private void runMKCollectorResubmitSettingsAsyncTask() {
-        new MKCollectorResubmitSettingsAsyncTask(this).execute(result.id, null);
+        new ResubmitSettingsAsyncTask(this).execute(result.id, null);
     }
 
     private void load() {
@@ -139,8 +138,8 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
             runMKCollectorResubmitSettingsAsyncTask();
     }
 
-    private static class MKCollectorResubmitSettingsAsyncTask extends MKCollectorResubmitTask<ResultDetailActivity> {
-        MKCollectorResubmitSettingsAsyncTask(ResultDetailActivity activity) {
+    private static class ResubmitSettingsAsyncTask extends ResubmitTask<ResultDetailActivity> {
+        ResubmitSettingsAsyncTask(ResultDetailActivity activity) {
             super(activity);
         }
 
