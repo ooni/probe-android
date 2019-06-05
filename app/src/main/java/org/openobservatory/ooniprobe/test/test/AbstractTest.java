@@ -29,7 +29,7 @@ import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-import io.ooni.mk.MKTask;
+import io.ooni.mk.MKAsyncTask;
 
 public abstract class AbstractTest implements Serializable {
     private static final String UNUSED_KEY = "UNUSED_KEY";
@@ -63,7 +63,7 @@ public abstract class AbstractTest implements Serializable {
         settings.options.max_runtime = max_runtime;
         settings.annotations.origin = origin;
         measurements = new SparseArray<>();
-        MKTask task = MKTask.start(gson.toJson(settings));
+        MKAsyncTask task = MKAsyncTask.start(gson.toJson(settings));
         while (!task.isDone())
             try {
                 String json = task.waitForNextEvent();
