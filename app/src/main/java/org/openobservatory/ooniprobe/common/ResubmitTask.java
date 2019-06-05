@@ -22,7 +22,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import io.ooni.mk.MKCollectorResubmitResults;
-import io.ooni.mk.MKCollectorResubmitSettings;
+import io.ooni.mk.MKCollectorResubmitTask;
 import localhost.toolkit.os.NetworkProgressAsyncTask;
 
 public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAsyncTask<A, Integer, Boolean> {
@@ -39,13 +39,13 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
     private static boolean perform(Context c, Measurement m) throws IOException {
         File file = Measurement.getEntryFile(c, m.id, m.test_name);
         String input = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
-        MKCollectorResubmitSettings settings = new MKCollectorResubmitSettings();
-        settings.setTimeout(getTimeout(file.length()));
-        settings.setCABundlePath(c.getCacheDir() + "/" + Application.CA_BUNDLE);
-        settings.setSerializedMeasurement(input);
-        settings.setSoftwareName(c.getString(R.string.software_name));
-        settings.setSoftwareVersion(BuildConfig.VERSION_NAME);
-        MKCollectorResubmitResults results = settings.perform();
+        MKCollectorResubmitTask task = new MKCollectorResubmitTask(
+                input,
+                c.getString(R.string.software_name),
+                BuildConfig.VERSION_NAME);
+        task.setTimeout(getTimeout(file.length()));
+        task.setCABundlePath(c.getCacheDir() + "/" + Application.CA_BUNDLE);
+        MKCollectorResubmitResults results = task.perform();
         if (results.isGood()) {
             String output = results.getUpdatedSerializedMeasurement();
             FileUtils.writeStringToFile(file, output, StandardCharsets.UTF_8);
@@ -54,7 +54,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
             m.is_upload_failed = false;
             m.save();
         } else {
-            Log.w(MKCollectorResubmitSettings.class.getSimpleName(), results.getLogs());
+            Log.w(MKCollectorResubmitTask.class.getSimpleName(), results.getLogs());
             // TODO decide what to do with logs (append on log file?)
         }
         return results.isGood();
