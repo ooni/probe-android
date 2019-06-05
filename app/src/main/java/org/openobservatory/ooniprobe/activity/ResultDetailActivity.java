@@ -96,7 +96,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
         adapter = new HeterogeneousRecyclerAdapter<>(this, items);
         recycler.setAdapter(adapter);
         snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsSomeNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
-                .setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll, v1 -> runMKCollectorResubmitSettingsAsyncTask());
+                .setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll, v1 -> runAsyncTask());
     }
 
     @Override
@@ -105,8 +105,8 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
         load();
     }
 
-    private void runMKCollectorResubmitSettingsAsyncTask() {
-        new ResubmitSettingsAsyncTask(this).execute(result.id, null);
+    private void runAsyncTask() {
+        new ResubmitAsyncTask(this).execute(result.id, null);
     }
 
     private void load() {
@@ -135,11 +135,11 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
     @Override
     public void onConfirmation(Serializable extra, int buttonClicked) {
         if (buttonClicked == DialogInterface.BUTTON_POSITIVE)
-            runMKCollectorResubmitSettingsAsyncTask();
+            runAsyncTask();
     }
 
-    private static class ResubmitSettingsAsyncTask extends ResubmitTask<ResultDetailActivity> {
-        ResubmitSettingsAsyncTask(ResultDetailActivity activity) {
+    private static class ResubmitAsyncTask extends ResubmitTask<ResultDetailActivity> {
+        ResubmitAsyncTask(ResultDetailActivity activity) {
             super(activity);
         }
 

@@ -168,12 +168,12 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                 .replace(R.id.head, head)
                 .commit();
         snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
-                .setAction(R.string.Snackbar_ResultsNotUploaded_Upload, v1 -> runMKCollectorResubmitSettingsAsyncTask());
+                .setAction(R.string.Snackbar_ResultsNotUploaded_Upload, v1 -> runAsyncTask());
         load();
     }
 
-    private void runMKCollectorResubmitSettingsAsyncTask() {
-        new ResubmitSettingsAsyncTask(this).execute(null, measurement.id);
+    private void runAsyncTask() {
+        new ResubmitAsyncTask(this).execute(null, measurement.id);
     }
 
     private void load() {
@@ -224,11 +224,11 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     @Override
     public void onConfirmation(Serializable extra, int buttonClicked) {
         if (buttonClicked == DialogInterface.BUTTON_POSITIVE)
-            runMKCollectorResubmitSettingsAsyncTask();
+            runAsyncTask();
     }
 
-    private static class ResubmitSettingsAsyncTask extends ResubmitTask<MeasurementDetailActivity> {
-        ResubmitSettingsAsyncTask(MeasurementDetailActivity activity) {
+    private static class ResubmitAsyncTask extends ResubmitTask<MeasurementDetailActivity> {
+        ResubmitAsyncTask(MeasurementDetailActivity activity) {
             super(activity);
         }
 

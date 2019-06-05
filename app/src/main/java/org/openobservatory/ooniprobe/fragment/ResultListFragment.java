@@ -229,7 +229,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     public void onConfirmation(Serializable serializable, int i) {
         if (serializable.equals(R.string.Modal_ResultsNotUploaded_Title)) {
             if (i == DialogInterface.BUTTON_POSITIVE)
-                new ResubmitSettingsAsyncTask(this).execute(null, null);
+                new ResubmitAsyncTask(this).execute(null, null);
             else
                 snackbar.show();
         } else if (i == DialogInterface.BUTTON_POSITIVE) {
@@ -241,10 +241,10 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         }
     }
 
-    private static class ResubmitSettingsAsyncTask extends ResubmitTask<AppCompatActivity> {
+    private static class ResubmitAsyncTask extends ResubmitTask<AppCompatActivity> {
         private WeakReference<ResultListFragment> wf;
 
-        ResubmitSettingsAsyncTask(ResultListFragment f) {
+        ResubmitAsyncTask(ResultListFragment f) {
             super((AppCompatActivity) f.getActivity());
             this.wf = new WeakReference<>(f);
         }
