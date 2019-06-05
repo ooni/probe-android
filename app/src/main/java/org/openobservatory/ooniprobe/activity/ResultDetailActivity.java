@@ -24,7 +24,7 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.MKCollectorResubmitTask;
+import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderMiddleboxFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderPerformanceFragment;
@@ -32,7 +32,6 @@ import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderTBAFragme
 import org.openobservatory.ooniprobe.item.MeasurementItem;
 import org.openobservatory.ooniprobe.item.MeasurementPerfItem;
 import org.openobservatory.ooniprobe.model.database.Measurement;
-import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
@@ -97,7 +96,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
         adapter = new HeterogeneousRecyclerAdapter<>(this, items);
         recycler.setAdapter(adapter);
         snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsSomeNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
-                .setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll, v1 -> runMKCollectorResubmitSettingsAsyncTask());
+                .setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll, v1 -> runAsyncTask());
     }
 
     @Override
@@ -106,8 +105,8 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
         load();
     }
 
-    private void runMKCollectorResubmitSettingsAsyncTask() {
-        new MKCollectorResubmitSettingsAsyncTask(this).execute(result.id, null);
+    private void runAsyncTask() {
+        new ResubmitAsyncTask(this).execute(result.id, null);
     }
 
     private void load() {
@@ -136,11 +135,11 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
     @Override
     public void onConfirmation(Serializable extra, int buttonClicked) {
         if (buttonClicked == DialogInterface.BUTTON_POSITIVE)
-            runMKCollectorResubmitSettingsAsyncTask();
+            runAsyncTask();
     }
 
-    private static class MKCollectorResubmitSettingsAsyncTask extends MKCollectorResubmitTask<ResultDetailActivity> {
-        MKCollectorResubmitSettingsAsyncTask(ResultDetailActivity activity) {
+    private static class ResubmitAsyncTask extends ResubmitTask<ResultDetailActivity> {
+        ResubmitAsyncTask(ResultDetailActivity activity) {
             super(activity);
         }
 
