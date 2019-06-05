@@ -26,7 +26,7 @@ import org.openobservatory.ooniprobe.model.settings.Settings;
 
 import java.io.File;
 import java.io.Serializable;
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
 import java.util.List;
 
 import io.ooni.mk.MKAsyncTask;
@@ -93,7 +93,7 @@ public abstract class AbstractTest implements Serializable {
                         FileUtils.writeStringToFile(
                                 logFile,
                                 event.value.message + "\n",
-                                StandardCharsets.UTF_8,
+                                Charset.forName("UTF-8"),
                                 /*append*/true
                         );
                         testCallback.onLog(event.value.message);
@@ -115,7 +115,7 @@ public abstract class AbstractTest implements Serializable {
                             FileUtils.writeStringToFile(
                                     entryFile,
                                     event.value.json_str,
-                                    StandardCharsets.UTF_8
+                                    Charset.forName("UTF-8")
                             );
                         }
                         break;

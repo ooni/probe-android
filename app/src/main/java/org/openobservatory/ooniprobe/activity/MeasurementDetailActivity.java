@@ -48,7 +48,7 @@ import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
 import java.io.File;
 import java.io.Serializable;
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -195,7 +195,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
             case R.id.rawData:
                 try {
                     File entryFile = Measurement.getEntryFile(this, measurement.id, measurement.test_name);
-                    String json = FileUtils.readFileToString(entryFile, StandardCharsets.UTF_8);
+                    String json = FileUtils.readFileToString(entryFile, Charset.forName("UTF-8"));
                     json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(new JsonParser().parse(json));
                     startActivity(TextActivity.newIntent(this, json));
                 } catch (Exception e) {
@@ -205,7 +205,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
             case R.id.viewLog:
                 try {
                     File logFile = Measurement.getLogFile(this, measurement.result.id, measurement.test_name);
-                    String log = FileUtils.readFileToString(logFile, StandardCharsets.UTF_8);
+                    String log = FileUtils.readFileToString(logFile, Charset.forName("UTF-8"));
                     startActivity(TextActivity.newIntent(this, log));
                 } catch (Exception e) {
                     e.printStackTrace();
