@@ -12,26 +12,31 @@ import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
 import java.util.Locale;
+import java.util.Vector;
 
-import io.ooni.mk.MKOrchestraSettings;
+import io.ooni.mk.MKOrchestraTask;
 
-public class MKOrchestraTask extends AsyncTask<Void, Void, Void> {
+public class OrchestraTask extends AsyncTask<Void, Void, Void> {
 	public static final String WIFI = "wifi";
 	public static final String MOBILE = "mobile";
 	public static final String NO_INTERNET = "no_internet";
 	private Application app;
 
-	public MKOrchestraTask(Application app) {
+	public OrchestraTask(Application app) {
 		this.app = app;
 	}
 
 	public static void sync(Application app) {
 		if (app.getPreferenceManager().getToken() != null) {
-			MKOrchestraSettings client = new MKOrchestraSettings();
+			MKOrchestraTask client = new MKOrchestraTask(
+					app.getString(R.string.software_name),
+					BuildConfig.VERSION_NAME,
+					getSupportedTests(),
+					app.getPreferenceManager().getToken(),
+					app.getFilesDir() + "/orchestration_secret.json") ;
 			//TODO ORCHESTRATE
 			//client.setAvailableBandwidth(String value);
 			//what happens when token is nil? should register anyway with empry string
-			client.setDeviceToken(app.getPreferenceManager().getToken());
 			client.setCABundlePath(app.getCacheDir() + "/" + Application.CA_BUNDLE);
 			client.setGeoIPCountryPath(app.getCacheDir() + "/" + Application.COUNTRY_MMDB);
 			client.setGeoIPASNPath(app.getCacheDir() + "/" + Application.ASN_MMDB);
@@ -42,14 +47,18 @@ public class MKOrchestraTask extends AsyncTask<Void, Void, Void> {
 			//client.setProbeTimezone(TimeZone.getDefault().getDisplayName(true, TimeZone.SHORT));
 			client.setRegistryURL(BuildConfig.NOTIFICATION_SERVER);
 			client.setSecretsFile(app.getFilesDir() + "/orchestration_secret.json");
-			client.setSoftwareName(app.getString(R.string.software_name));
 			client.setSoftwareVersion(BuildConfig.VERSION_NAME);
-			for (AbstractSuite suite : TestAsyncTask.SUITES)
-				for (AbstractTest test : suite.getTestList(null))
-					client.addSupportedTest(test.getName());
 			client.setTimeout(app.getResources().getInteger(R.integer.default_timeout));
 			client.updateOrRegister();
 		}
+	}
+
+	public static Vector<String> getSupportedTests() {
+		Vector<String> supportedTest = new Vector<>();
+		for (AbstractSuite suite : TestAsyncTask.SUITES)
+			for (AbstractTest test : suite.getTestList(null))
+				supportedTest.add(test.getName());
+		return supportedTest;
 	}
 
 	public static String getNetworkType(Context context) {
