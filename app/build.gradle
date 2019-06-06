@@ -14,8 +14,8 @@ android {
 		applicationId 'org.openobservatory.ooniprobe'
 		minSdkVersion 17
 		targetSdkVersion 28
-		versionName '2.1.0-beta.3'
-		versionCode 47
+		versionName '2.1.0-beta.4'
+		versionCode 48
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 	}
 
@@ -55,7 +55,7 @@ dependencies {
 	annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
 
 	fullImplementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
-	implementation 'org.openobservatory.measurement_kit:android-libs:0.10.4-2-android.2'
+	implementation 'org.openobservatory.measurement_kit:android-libs:0.10.4-2-android.3'
 	implementation 'com.github.xanscale.LocalhostToolkit:app:19.04.17'
 	implementation 'pub.devrel:easypermissions:3.0.0'
 	implementation 'com.airbnb.android:lottie:2.8.0'
