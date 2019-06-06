@@ -23,7 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import io.ooni.mk.MKGeoIPLookupResults;
-import io.ooni.mk.MKGeoIPLookupSettings;
+import io.ooni.mk.MKGeoIPLookupTask;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -55,7 +55,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 						break;
 					}
 				if (downloadUrls) {
-					MKGeoIPLookupSettings geoIPLookup = new MKGeoIPLookupSettings();
+					MKGeoIPLookupTask geoIPLookup = new MKGeoIPLookupTask();
 					geoIPLookup.setTimeout(act.getResources().getInteger(R.integer.default_timeout));
 					geoIPLookup.setCABundlePath(act.getCacheDir() + "/" + Application.CA_BUNDLE);
 					geoIPLookup.setCountryDBPath(act.getCacheDir() + "/" + Application.COUNTRY_MMDB);
