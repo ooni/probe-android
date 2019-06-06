@@ -18,7 +18,7 @@ import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
 import java.util.List;
 
 import io.ooni.mk.MKCollectorResubmitResults;
@@ -38,7 +38,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
 
     private static boolean perform(Context c, Measurement m) throws IOException {
         File file = Measurement.getEntryFile(c, m.id, m.test_name);
-        String input = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+        String input = FileUtils.readFileToString(file, Charset.forName("UTF-8"));
         MKCollectorResubmitTask task = new MKCollectorResubmitTask(
                 input,
                 c.getString(R.string.software_name),
@@ -48,7 +48,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
         MKCollectorResubmitResults results = task.perform();
         if (results.isGood()) {
             String output = results.getUpdatedSerializedMeasurement();
-            FileUtils.writeStringToFile(file, output, StandardCharsets.UTF_8);
+            FileUtils.writeStringToFile(file, output, Charset.forName("UTF-8"));
             m.report_id = results.getUpdatedReportID();
             m.is_uploaded = true;
             m.is_upload_failed = false;
