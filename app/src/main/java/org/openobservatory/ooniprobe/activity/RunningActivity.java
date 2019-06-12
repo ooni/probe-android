@@ -22,7 +22,6 @@ import androidx.core.app.NotificationCompat;
 import com.airbnb.lottie.LottieAnimationView;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.common.MKOrchestraTask;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
@@ -50,7 +49,7 @@ public class RunningActivity extends AbstractActivity {
     private Integer runtime;
 
     public static Intent newIntent(AbstractActivity context, AbstractSuite testSuite) {
-        if (MKOrchestraTask.getNetworkType(context).equals(MKOrchestraTask.NO_INTERNET)) {
+        if (OrchestraTask.getNetworkType(context).equals(OrchestraTask.NO_INTERNET)) {
             new MessageDialogFragment.Builder()
                     .withTitle(context.getString(R.string.Modal_Error))
                     .withMessage(context.getString(R.string.Modal_Error_NoInternet))

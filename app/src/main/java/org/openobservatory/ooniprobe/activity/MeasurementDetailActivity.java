@@ -53,7 +53,7 @@ import java.nio.charset.Charset;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import localhost.toolkit.app.ConfirmDialogFragment;
+import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 
 public class MeasurementDetailActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String ID = "id";

@@ -45,7 +45,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import localhost.toolkit.app.ConfirmDialogFragment;
+import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerAdapter;
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
