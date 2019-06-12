@@ -193,6 +193,7 @@
   <string name="Modal_Cancel">Annulla</string>
   <string name="Modal_Delete">Canc</string>
   <string name="Modal_Error">Errore</string>
+  <string name="Modal_Retry">Riprova</string>
   <string name="Modal_Error_NoInternet">Non è stato possibile eseguire il test. Controlla la tua connessione internet.</string>
   <string name="Modal_Error_CantDownloadURLs">Non è stato possibile scaricare la lista di URL. Riprova.</string>
   <string name="Modal_Error_NotificationNotEnabled">Servono i permessi di notifiche. Per favore attivali nelle impostazioni del tuo telefono e poi abilita le notifiche dentro alla app OONI Probe.</string>
@@ -217,7 +218,9 @@
   <string name="Modal_ManualUpload_Paragraph">Questa impostazione ti permette di ricaricare manualmente le misurazioni non pubblicate.</string>
   <string name="Modal_ManualUpload_Enable">Abilità</string>
   <string name="Modal_ManualUpload_Disable">No, grazie</string>
-  <string name="Toast_CopiedToClipboard">Copiato negli Appunti</string>
+  <string name="Modal_UploadFailed_Title">Invio fallito</string>
+  <string name="Modal_UploadFailed_Paragraph">Would you like to retry or cancel?</string>
+  <string name="Toast_CopiedToClipboard">Copiato negli appunti</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Non caricati</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Carica</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Alcuni non caricati</string>
@@ -237,7 +240,7 @@
   <string name="Settings_Title">Impostazioni</string>
   <string name="Settings_Error_TestDurationTooLow">Il tempo di esecuzione che hai scelto è troppo basso. </string>
   <string name="Settings_About_Label">Informazioni su OONI</string>
-  <string name="Settings_About_Content_Paragraph">L\'Osservatorio Libero dell\'Interferenza di Rete (Open Observatory of Network Interference, OONI) è un progetto di software libero del Progetto Tor che punta a incrementare la trasparenza della censura di Internet in tutto il mondo.\n\nDal 2012, la community globale di OONI ha raccolto misure di rete in più di 200 paesi. Alcune di queste misure sono servite come prove di censura internet.</string>
+  <string name="Settings_About_Content_Paragraph">Il Libero Osservatorio per l’Interferenza di Rete (Open Observatory of Network Interference, OONI) è un progetto di software libero di Tor Project che si propone di incrementare la trasparenza nell’ambito della censura internet in tutto il mondo.\n\nDal 2012, la comunità globale di OONI ha raccolto misurazioni di rete in oltre 200 Paesi. In alcuni casi, questi dati sono stati utilizzati per dimostrare la deliberata censura su internet.</string>
   <string name="Settings_About_Content_LearnMore">Per saperne di più</string>
   <string name="Settings_About_Content_DataPolicy">La Policy sui dati di OONI</string>
   <string name="Settings_Notifications_Label">Notifiche</string>
@@ -288,7 +291,7 @@
   <string name="Settings_Performance_DashServerAddress">Server DASH</string>
   <string name="Settings_Performance_DashServerPort">Porta server DASH</string>
   <string name="Settings_SendEmail_Label">Invia email a supporto</string>
-  <string name="Settings_SendEmail_Error">Nessun client e-mail configurato nel tuo dispositivo</string>
+  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap \"Copy to clipboard\" below to copy our email address.</string>
   <string name="Notification_FinishedRunning">Esecuzione conclusa</string>
   <string name="OONIBrowser_TryMirror">Prova un mirror</string>
   <string name="OONIBrowser_Loading">Caricamento...</string>

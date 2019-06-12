@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,11 +20,11 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
-import com.raizlabs.android.dbflow.sql.language.OperatorGroup;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.common.MKCollectorResubmitTask;
+import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderMiddleboxFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderPerformanceFragment;
@@ -31,7 +32,6 @@ import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderTBAFragme
 import org.openobservatory.ooniprobe.item.MeasurementItem;
 import org.openobservatory.ooniprobe.item.MeasurementPerfItem;
 import org.openobservatory.ooniprobe.model.database.Measurement;
-import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
@@ -40,14 +40,16 @@ import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import localhost.toolkit.app.ConfirmDialogFragment;
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerAdapter;
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
-public class ResultDetailActivity extends AbstractActivity implements View.OnClickListener {
+public class ResultDetailActivity extends AbstractActivity implements View.OnClickListener, ConfirmDialogFragment.OnConfirmedListener {
     private static final String ID = "id";
     @BindView(R.id.coordinatorLayout)
     CoordinatorLayout coordinatorLayout;
@@ -94,7 +96,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
         adapter = new HeterogeneousRecyclerAdapter<>(this, items);
         recycler.setAdapter(adapter);
         snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsSomeNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
-                .setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll, v1 -> runMKCollectorResubmitSettingsAsyncTask());
+                .setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll, v1 -> runAsyncTask());
     }
 
     @Override
@@ -103,8 +105,8 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
         load();
     }
 
-    private void runMKCollectorResubmitSettingsAsyncTask() {
-        new MKCollectorResubmitSettingsAsyncTask(this).execute(result.id, null);
+    private void runAsyncTask() {
+        new ResubmitAsyncTask(this).execute(result.id, null);
     }
 
     private void load() {
@@ -117,12 +119,8 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
                     new MeasurementPerfItem(measurement, this) :
                     new MeasurementItem(measurement, this));
         adapter.notifyTypesChanged();
-        if (SQLite.selectCountOf().from(Measurement.class).where(
-                Measurement_Table.is_failed.eq(false),
-                OperatorGroup.clause()
-                        .or(Measurement_Table.is_uploaded.eq(false))
-                        .or(Measurement_Table.report_id.isNull()),
-                Measurement_Table.result_id.eq(result.id)).longValue() != 0)
+        if (((Application) getApplication()).getPreferenceManager().isManualUploadResults() &&
+                Measurement.selectUploadableWithResultId(result.id).count() != 0)
             snackbar.show();
         else
             snackbar.dismiss();
@@ -134,18 +132,29 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
         ActivityCompat.startActivity(this, MeasurementDetailActivity.newIntent(this, measurement.id), null);
     }
 
-    private static class MKCollectorResubmitSettingsAsyncTask extends MKCollectorResubmitTask<ResultDetailActivity> {
-        MKCollectorResubmitSettingsAsyncTask(ResultDetailActivity activity) {
+    @Override
+    public void onConfirmation(Serializable extra, int buttonClicked) {
+        if (buttonClicked == DialogInterface.BUTTON_POSITIVE)
+            runAsyncTask();
+    }
+
+    private static class ResubmitAsyncTask extends ResubmitTask<ResultDetailActivity> {
+        ResubmitAsyncTask(ResultDetailActivity activity) {
             super(activity);
         }
 
         @Override
-        protected void onPostExecute(Void result) {
+        protected void onPostExecute(Boolean result) {
             super.onPostExecute(result);
             if (getActivity() != null) {
                 getActivity().result = SQLite.select().from(Result.class)
                         .where(Result_Table.id.eq(getActivity().result.id)).querySingle();
                 getActivity().load();
+                if (!result)
+                    ConfirmDialogFragment.newInstance(null, getActivity().getString(R.string.Modal_UploadFailed_Title),
+                            getActivity().getString(R.string.Modal_UploadFailed_Paragraph), null,
+                            getActivity().getString(R.string.Modal_Retry), null, null
+                    ).show(getActivity().getSupportFragmentManager(), null);
             }
         }
     }

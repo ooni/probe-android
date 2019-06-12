@@ -26,6 +26,7 @@ import org.openobservatory.ooniprobe.common.MKOrchestraTask;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
+import org.openobservatory.ooniprobe.common.OrchestraTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

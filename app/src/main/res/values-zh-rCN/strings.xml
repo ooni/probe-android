@@ -18,7 +18,7 @@
   <string name="Onboarding_PopQuiz_1_Title">问题 1/2</string>
   <string name="Onboarding_PopQuiz_1_Question">如果有人在监控我的互联网活动，他们将会知道我在运行 OONI Probe。</string>
   <string name="Onboarding_PopQuiz_1_Wrong_Title">警告</string>
-  <string name="Onboarding_PopQuiz_1_Wrong_Paragraph">OONI Probe 不是隐私工具。任何监控您的互联网活动的人或机构都能知道您运行的软件。</string>
+  <string name="Onboarding_PopQuiz_1_Wrong_Paragraph">OONI Probe 不是隐私工具。任何监控您的互联网活动的人或机构都能知道您在运行何种软件。</string>
   <string name="Onboarding_PopQuiz_2_Title">问题 2/2</string>
   <string name="Onboarding_PopQuiz_2_Question">每当我运行 OONI Probe，我收集的网络数据都将会被自动发布。</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Title">警告</string>
@@ -26,9 +26,9 @@
   <string name="Onboarding_DefaultSettings_Title">默认设置</string>
   <string name="Onboarding_DefaultSettings_Header">我们收集并发布：</string>
   <string name="Onboarding_DefaultSettings_Bullet_1">国家代码（例如，IT 指代意大利）</string>
-  <string name="Onboarding_DefaultSettings_Bullet_2">网络信息（包括自治系统号码，即 AS 号码）</string>
+  <string name="Onboarding_DefaultSettings_Bullet_2">网络信息（包括自治化系统号码）</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">测试的时间和日期</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">我们尽最大努力遮蔽您的 IP 地址或任何潜在的个人身份信息。\n\n更多细节请了解 [OONI 数据政策](https://ooni.io/about/data-policy/)。</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">我们尽最大努力遮蔽您的 IP 地址或任何潜在的可用于识别个人身份的信息。\n\n更多细节请了解 [OONI 数据政策](https://ooni.io/about/data-policy/)。</string>
   <string name="Onboarding_DefaultSettings_Button_Go">开始</string>
   <string name="Onboarding_DefaultSettings_Button_Change">更改默认值</string>
   <string name="Dashboard_Tab_Label">面板</string>
@@ -47,7 +47,7 @@
   <string name="Dashboard_Websites_Card_Description">测试封锁网站的情况</string>
   <string name="Dashboard_Websites_Overview_Paragraph">使用 OONI 的 [Web Connectivity 测试](https://ooni.io/nettest/web-connectivity/) 检查网站是否被屏蔽。\n\n每次点按运行时，您将测试取自 Citizen Lab 的[全球](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv)和[特定区域](https://github.com/citizenlab/test-lists/tree/master/lists)测试名单中的不同网站。\n\n要测试自选的网站，请点击选择网站按钮，或在此卡片的设置中选择网站类别。\n\n此测试测量的内容包括 DNS 篡改、TCP/IP 拦截，以及透明的 HTTP 代理。\n\n您的测试结果将发布在 [OONI Explorer](https://explorer.ooni.io/world/) 和 [OONI API](https://api.ooni.io/)。</string>
   <string name="Dashboard_Performance_Card_Description">测试您的网络速度和性能</string>
-  <string name="Dashboard_Performance_Overview_Paragraph">使用 [NDT](https://ooni.io/nettest/ndt/) 测试测量您的网络速度和性能。\n\n使用 [DASH](https://ooni.io/nettest/dash/) 测试测量视频流媒体性能。\n\n这些测试会根据您的网络速度（带宽）不同而消耗一定量的数据流量。\n\n您的结果将发布在 [OONI Explorer](https://explorer.ooni.io/world/) 和 [OONI API](https://api.ooni.io/)。\n\n免责声明：这些测试依赖于第三方服务器。因此，我们无法保证您的 IP 地址不被收集。</string>
+  <string name="Dashboard_Performance_Overview_Paragraph">使用 [NDT](https://ooni.io/nettest/ndt/) 测试测量您的网络速度和性能。\n\n使用 [DASH](https://ooni.io/nettest/dash/) 测试测量视频流媒体性能。\n\n这些测试会根据您的网络速度（带宽）不同而消耗一定量的数据流量。\n\n测试结果将发布在 [OONI Explorer](https://explorer.ooni.io/world/) 和 [OONI API](https://api.ooni.io/)。\n\n免责声明：这些测试依赖于第三方服务器。因此，我们无法保证您的 IP 地址不被收集。</string>
   <string name="Dashboard_Middleboxes_Card_Description">探测您网络中的 middleboxes</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">互联网服务提供商（ISP）通常使用中间式的网络设备为各类网络连接与目的提供功能（例如缓存）。有时候，这些中间设备用于实施互联网审查和/或监视。\n\n使用 OONI 的 [HTTP 无效请求行](https://ooni.io/nettest/http-invalid-request-line/)和 [HTTP 标头操作](https://ooni.io/nettest/http-header-field-manipulation/)测试查找您的网络中的中间设备。\n\n您的测试结果将发布在 [OONI Explorer](https://explorer.ooni.io/world/) 和 [OONI API](https://api.ooni.io/)。</string>
   <string name="Dashboard_InstantMessaging_Card_Description">测试封锁即时消息应用的情况</string>
@@ -193,6 +193,7 @@
   <string name="Modal_Cancel">取消</string>
   <string name="Modal_Delete">删除</string>
   <string name="Modal_Error">错误</string>
+  <string name="Modal_Retry">重试</string>
   <string name="Modal_Error_NoInternet">无法运行测试。请复查您的互联网连接。</string>
   <string name="Modal_Error_CantDownloadURLs">无法下载网址名单。请重试。</string>
   <string name="Modal_Error_NotificationNotEnabled">需要通知权限。请在手机设置中启用，然后在 OONI Probe 应用中启用。</string>
@@ -201,7 +202,7 @@
   <string name="Modal_ResultsNotUploaded_Title">结果未上传</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">您的部分测试结果尚未上传到 OONI 服务器。如果您想为 OONI 数据集做出贡献，请上传它们。</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">上传</string>
-  <string name="Modal_ResultsNotUploaded_Uploading">Uploading %1$s ...</string>
+  <string name="Modal_ResultsNotUploaded_Uploading">正在上传测试 %1$s ...</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">启用通知权限以自动运行测试。</string>
   <string name="Modal_EnableNotifications_News">启用通知权限以接收资讯更新。</string>
   <string name="Modal_EnableNotifications_Any">启用通知权限以接收推送通知。</string>
@@ -217,6 +218,8 @@
   <string name="Modal_ManualUpload_Paragraph">该设置允许您手动重新上传尚未发布的测量结果。</string>
   <string name="Modal_ManualUpload_Enable">启用</string>
   <string name="Modal_ManualUpload_Disable">不要，谢谢</string>
+  <string name="Modal_UploadFailed_Title">上传失败</string>
+  <string name="Modal_UploadFailed_Paragraph">您想重试还是取消？</string>
   <string name="Toast_CopiedToClipboard">已复制到剪贴板</string>
   <string name="Snackbar_ResultsNotUploaded_Text">未上传</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">上传</string>
@@ -288,7 +291,7 @@
   <string name="Settings_Performance_DashServerAddress">DASH 服务器</string>
   <string name="Settings_Performance_DashServerPort">DASH 服务器端口</string>
   <string name="Settings_SendEmail_Label">发送邮件给支持团队</string>
-  <string name="Settings_SendEmail_Error">设备中没有配置邮件客户端</string>
+  <string name="Settings_SendEmail_Error">请将应用信息和iOS版本号通过邮件发送至bugs@openobservatory.org。轻触下方的“复制到剪贴板”来复制我们的邮箱地址。</string>
   <string name="Notification_FinishedRunning">运行完成</string>
   <string name="OONIBrowser_TryMirror">试试镜像站</string>
   <string name="OONIBrowser_Loading">载入中....</string>

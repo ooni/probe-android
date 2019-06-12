@@ -193,6 +193,7 @@
   <string name="Modal_Cancel">İptal</string>
   <string name="Modal_Delete">Sil</string>
   <string name="Modal_Error">Hata</string>
+  <string name="Modal_Retry">Yeniden Dene</string>
   <string name="Modal_Error_NoInternet">Sınama yapılamadı. Lütfen İnternet bağlantınızı denetleyin.</string>
   <string name="Modal_Error_CantDownloadURLs">Adres listesi indirilemedi. Lütfen yeniden deneyin.</string>
   <string name="Modal_Error_NotificationNotEnabled">Bildirim izinleri gerekli. Lütfen telefonunuzun ayarlar bölümünden gerekli izinleri verdikten sonra OONI Probe uygulamanızdan etkinleştirin.</string>
@@ -201,7 +202,7 @@
   <string name="Modal_ResultsNotUploaded_Title">Sonuçlar yüklenmemiş</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">Bazı sınama sonuçları OONI sunucularına yüklenmemiş. OONU veri kümesine katkıda bulunmak isterseniz bu sonuçları yükleyin.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Yükle</string>
-  <string name="Modal_ResultsNotUploaded_Uploading">Yükleniyor %1$s ...</string>
+  <string name="Modal_ResultsNotUploaded_Uploading">%1$s yükleniyor...</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Sınamaların otomatik yapılması için bildirim izinleri verilsin.</string>
   <string name="Modal_EnableNotifications_News">Yeni güncellemelere dair haber alınması için bildirim izinleri verilsin.</string>
   <string name="Modal_EnableNotifications_Any">Anlık iletilerin alınması için bildirim izinleri verilsin.</string>
@@ -217,6 +218,8 @@
   <string name="Modal_ManualUpload_Paragraph">Bu seçenek etkinleştirildiğinde, yayınlanmamış ölçümler el ile yeniden yüklenebilir.</string>
   <string name="Modal_ManualUpload_Enable">Etkinleştir</string>
   <string name="Modal_ManualUpload_Disable">Hayır, teşekkürler</string>
+  <string name="Modal_UploadFailed_Title">Yükleme başarısız</string>
+  <string name="Modal_UploadFailed_Paragraph">Yeniden denemek ya da iptal etmek ister misiniz?</string>
   <string name="Toast_CopiedToClipboard">Panoya kopyalandı</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Yüklenmemiş</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Yükle</string>
@@ -288,7 +291,7 @@
   <string name="Settings_Performance_DashServerAddress">DASH sunucusu</string>
   <string name="Settings_Performance_DashServerPort">DASH sunucusu bağlantı noktası</string>
   <string name="Settings_SendEmail_Label">Destek ekibine e-posta gönderin</string>
-  <string name="Settings_SendEmail_Error">Cihazınızda bir e-posta uygulaması yapılandırılmamış</string>
+  <string name="Settings_SendEmail_Error">Lütfen uygulama hakkındaki bilgiler ve iOS sürümünü yazarak bugs@openobservatory.org adresine bir e-posta gönderin. E-posta adresimizi kopyalamak için aşağıdaki \"Panoya kopyala\" üzerine dokunun.</string>
   <string name="Notification_FinishedRunning">Çalışmayı tamamladı</string>
   <string name="OONIBrowser_TryMirror">Kopyası denensin</string>
   <string name="OONIBrowser_Loading">Yükleniyor...</string>

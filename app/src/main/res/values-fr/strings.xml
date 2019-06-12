@@ -193,6 +193,7 @@
   <string name="Modal_Cancel">Annuler</string>
   <string name="Modal_Delete">Supprimer</string>
   <string name="Modal_Error">Erreur</string>
+  <string name="Modal_Retry">Ressayer</string>
   <string name="Modal_Error_NoInternet">Impossible d’effectuer le test. Veuillez vérifier votre connexion à Internet.</string>
   <string name="Modal_Error_CantDownloadURLs">Impossible de télécharger la liste des URL. Veuillez ressayer.</string>
   <string name="Modal_Error_NotificationNotEnabled">Les autorisations de notification sont nécessaires. Veuillez les activer dans les paramètres de votre téléphone, puis les activer dans votre appli OONI Probe.</string>
@@ -201,7 +202,7 @@
   <string name="Modal_ResultsNotUploaded_Title">Les résultats n’ont pas été téléversés</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">Certains de vos résultats de test n’ont pas été téléversés vers les serveurs de l’OONI. Si vous souhaitez contribuer à l’ensemble de données de l’OONI, veuillez les téléverser.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Téléversement</string>
-  <string name="Modal_ResultsNotUploaded_Uploading">Téléversement %1$s ...</string>
+  <string name="Modal_ResultsNotUploaded_Uploading">Téléversement de %1$s…</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Autoriser les notifications pour lancer des tests automatiquement.</string>
   <string name="Modal_EnableNotifications_News">Autoriser les notifications pour recevoir des nouvelles.</string>
   <string name="Modal_EnableNotifications_Any">Autoriser les notifications pour recevoir des notifications poussées.</string>
@@ -217,7 +218,9 @@
   <string name="Modal_ManualUpload_Paragraph">Ce paramètre vous permet de retéléverser manuellement les mesures non publiées.</string>
   <string name="Modal_ManualUpload_Enable">Activer</string>
   <string name="Modal_ManualUpload_Disable">Non, merci</string>
-  <string name="Toast_CopiedToClipboard">A été copié dans le presse-papiers</string>
+  <string name="Modal_UploadFailed_Title">Échec de téléversement</string>
+  <string name="Modal_UploadFailed_Paragraph">Souhaitez-vous ressayer ou annuler ?</string>
+  <string name="Toast_CopiedToClipboard">Copié dans le presse-papiers</string>
   <string name="Snackbar_ResultsNotUploaded_Text">N’a pas été téléversé</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Téléversement</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Tout n’a pas été téléversé</string>
@@ -288,7 +291,7 @@
   <string name="Settings_Performance_DashServerAddress">Serveur DASH</string>
   <string name="Settings_Performance_DashServerPort">Port du serveur DASH</string>
   <string name="Settings_SendEmail_Label">Envoyer un courriel à l’assistance</string>
-  <string name="Settings_SendEmail_Error">Aucun client de courriel n’est configuré sur votre appareil</string>
+  <string name="Settings_SendEmail_Error">Veuillez envoyer un courriel à bugs@openobservatory.org avec des renseignements sur la version de l’appli et d’iOS. Touchez « Copier dans le presse-papiers » ci-dessous pour copier votre adresse courriel.</string>
   <string name="Notification_FinishedRunning">Le test est terminé.</string>
   <string name="OONIBrowser_TryMirror">Essayer un miroir</string>
   <string name="OONIBrowser_Loading">Chargement…</string>

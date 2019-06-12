@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,7 +21,7 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.common.MKCollectorResubmitTask;
+import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.fragment.measurement.DashFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.FacebookMessengerFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.FailedFragment;
@@ -46,13 +47,15 @@ import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
 import java.io.File;
-import java.nio.charset.StandardCharsets;
+import java.io.Serializable;
+import java.nio.charset.Charset;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import localhost.toolkit.app.ConfirmDialogFragment;
 
-public class MeasurementDetailActivity extends AbstractActivity {
+public class MeasurementDetailActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String ID = "id";
     @BindView(R.id.coordinatorLayout)
     CoordinatorLayout coordinatorLayout;
@@ -165,12 +168,12 @@ public class MeasurementDetailActivity extends AbstractActivity {
                 .replace(R.id.head, head)
                 .commit();
         snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
-                .setAction(R.string.Snackbar_ResultsNotUploaded_Upload, v1 -> runMKCollectorResubmitSettingsAsyncTask());
+                .setAction(R.string.Snackbar_ResultsNotUploaded_Upload, v1 -> runAsyncTask());
         load();
     }
 
-    private void runMKCollectorResubmitSettingsAsyncTask() {
-        new MKCollectorResubmitSettingsAsyncTask(this).execute(null, measurement.id);
+    private void runAsyncTask() {
+        new ResubmitAsyncTask(this).execute(null, measurement.id);
     }
 
     private void load() {
@@ -192,7 +195,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
             case R.id.rawData:
                 try {
                     File entryFile = Measurement.getEntryFile(this, measurement.id, measurement.test_name);
-                    String json = FileUtils.readFileToString(entryFile, StandardCharsets.UTF_8);
+                    String json = FileUtils.readFileToString(entryFile, Charset.forName("UTF-8"));
                     json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(new JsonParser().parse(json));
                     startActivity(TextActivity.newIntent(this, json));
                 } catch (Exception e) {
@@ -202,7 +205,7 @@ public class MeasurementDetailActivity extends AbstractActivity {
             case R.id.viewLog:
                 try {
                     File logFile = Measurement.getLogFile(this, measurement.result.id, measurement.test_name);
-                    String log = FileUtils.readFileToString(logFile, StandardCharsets.UTF_8);
+                    String log = FileUtils.readFileToString(logFile, Charset.forName("UTF-8"));
                     startActivity(TextActivity.newIntent(this, log));
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -218,19 +221,30 @@ public class MeasurementDetailActivity extends AbstractActivity {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(measurement.getTest().getUrlResId()))));
     }
 
-    private static class MKCollectorResubmitSettingsAsyncTask extends MKCollectorResubmitTask<MeasurementDetailActivity> {
-        MKCollectorResubmitSettingsAsyncTask(MeasurementDetailActivity activity) {
+    @Override
+    public void onConfirmation(Serializable extra, int buttonClicked) {
+        if (buttonClicked == DialogInterface.BUTTON_POSITIVE)
+            runAsyncTask();
+    }
+
+    private static class ResubmitAsyncTask extends ResubmitTask<MeasurementDetailActivity> {
+        ResubmitAsyncTask(MeasurementDetailActivity activity) {
             super(activity);
         }
 
         @Override
-        protected void onPostExecute(Void result) {
+        protected void onPostExecute(Boolean result) {
             super.onPostExecute(result);
             MeasurementDetailActivity activity = getActivity();
             if (activity != null) {
                 activity.measurement = SQLite.select().from(Measurement.class)
                         .where(Measurement_Table.id.eq(activity.measurement.id)).querySingle();
                 activity.load();
+                if (!result)
+                    ConfirmDialogFragment.newInstance(null, activity.getString(R.string.Modal_UploadFailed_Title),
+                            activity.getString(R.string.Modal_UploadFailed_Paragraph), null,
+                            activity.getString(R.string.Modal_Retry), null, null
+                    ).show(activity.getSupportFragmentManager(), null);
             }
         }
     }

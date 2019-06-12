@@ -193,6 +193,7 @@
   <string name="Modal_Cancel">لغو</string>
   <string name="Modal_Delete">حذف</string>
   <string name="Modal_Error">خطا</string>
+  <string name="Modal_Retry">تلاش دوباره</string>
   <string name="Modal_Error_NoInternet">اجرای تست امکان‌پذیر نبود. لطفا ارتباط اینترنت خود را چک کنید.</string>
   <string name="Modal_Error_CantDownloadURLs">بارگیری لیست آدرس اینترنتی امکان‌پذیر نبود. لطفا  دوباره تلاش کنید.</string>
   <string name="Modal_Error_NotificationNotEnabled">اجازه‌ی اعلان ضروری است. لطفا در تنظیمات تلفن خود و سپس در اپ OONIProbe آن را فعال کنید.</string>
@@ -201,7 +202,7 @@
   <string name="Modal_ResultsNotUploaded_Title">نتایج بارگذاری نشده‌اند</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">بعضی از نتایج تست‌ها به سرورهای OONI  بارگذاری نشده‌اند. اگر مایل به مشارکت در مجموع داده‌‌های OONI هستید، لطفا آن‌ها را بارگذاری کنید.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">آپلود</string>
-  <string name="Modal_ResultsNotUploaded_Uploading">Uploading %1$s ...</string>
+  <string name="Modal_ResultsNotUploaded_Uploading">بارگذاری %1$s ...</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">اجازه‌ی اعلان را فعال کنید تا تست‌ها به صورت خودکار اجرا شوند.</string>
   <string name="Modal_EnableNotifications_News">اجازه‌ی اعلان را فعال کنید تا اخبار بروز رسانی را دریافت کنید.</string>
   <string name="Modal_EnableNotifications_Any">اجازه‌ی اعلان را فعال کنید تا اعلان های ضروری را دریافت کنید.</string>
@@ -217,7 +218,9 @@
   <string name="Modal_ManualUpload_Paragraph">با استفاده از این تنظیم می‌توانید اندازه‌گیری‌های منتشر نشده را دوباره به صورت دستی بارگذاری کنید.</string>
   <string name="Modal_ManualUpload_Enable">فعال کن</string>
   <string name="Modal_ManualUpload_Disable">نه، ممنون</string>
-  <string name="Toast_CopiedToClipboard">به حافظه کوتاه مدت کپی شد</string>
+  <string name="Modal_UploadFailed_Title">آپلود ناموفق بود</string>
+  <string name="Modal_UploadFailed_Paragraph">آیا می‌خواهید دوباره تلاش کنید یا لغو کنید؟</string>
+  <string name="Toast_CopiedToClipboard">در حافظه‌ی موقت کپی شد</string>
   <string name="Snackbar_ResultsNotUploaded_Text">بارگذاری نشدند</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">آپلود</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">برخی بارگذاری نشدند</string>
@@ -288,7 +291,7 @@
   <string name="Settings_Performance_DashServerAddress">سرور DASH</string>
   <string name="Settings_Performance_DashServerPort">درگاه سرور DASH</string>
   <string name="Settings_SendEmail_Label">ارسال ایمیل به پشتیبانی</string>
-  <string name="Settings_SendEmail_Error">هیچ کلاینت ایمیلی بر روی دستگاه شما تنظیم نشده</string>
+  <string name="Settings_SendEmail_Error">لطفا یک ایمیل به bugs@openobservatory.org همراه با اطلاعات برنامه و نسخه‌ی iOS ارسال کنید. بر روی «کپی در حافظه‌ی موقت» در پایین بزنید تا آدرس ایمیل کپی شود.</string>
   <string name="Notification_FinishedRunning">اجرا به پایان رسید</string>
   <string name="OONIBrowser_TryMirror">سرورهای آینه را امتحان کنید</string>
   <string name="OONIBrowser_Loading">در حال بارگذاری...</string>

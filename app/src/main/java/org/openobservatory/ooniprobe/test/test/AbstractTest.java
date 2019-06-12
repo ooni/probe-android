@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.ooniprobe.common.Crashlytics;
 import org.openobservatory.ooniprobe.common.MKException;
-import org.openobservatory.ooniprobe.common.MKOrchestraTask;
+import org.openobservatory.ooniprobe.common.OrchestraTask;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
@@ -26,10 +26,10 @@ import org.openobservatory.ooniprobe.model.settings.Settings;
 
 import java.io.File;
 import java.io.Serializable;
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
 import java.util.List;
 
-import io.ooni.mk.MKTask;
+import io.ooni.mk.MKAsyncTask;
 
 public abstract class AbstractTest implements Serializable {
     private static final String UNUSED_KEY = "UNUSED_KEY";
@@ -63,7 +63,7 @@ public abstract class AbstractTest implements Serializable {
         settings.options.max_runtime = max_runtime;
         settings.annotations.origin = origin;
         measurements = new SparseArray<>();
-        MKTask task = MKTask.start(gson.toJson(settings));
+        MKAsyncTask task = MKAsyncTask.start(gson.toJson(settings));
         while (!task.isDone())
             try {
                 String json = task.waitForNextEvent();
@@ -93,7 +93,7 @@ public abstract class AbstractTest implements Serializable {
                         FileUtils.writeStringToFile(
                                 logFile,
                                 event.value.message + "\n",
-                                StandardCharsets.UTF_8,
+                                Charset.forName("UTF-8"),
                                 /*append*/true
                         );
                         testCallback.onLog(event.value.message);
@@ -115,7 +115,7 @@ public abstract class AbstractTest implements Serializable {
                             FileUtils.writeStringToFile(
                                     entryFile,
                                     event.value.json_str,
-                                    StandardCharsets.UTF_8
+                                    Charset.forName("UTF-8")
                             );
                         }
                         break;
@@ -169,7 +169,7 @@ public abstract class AbstractTest implements Serializable {
 
     private void saveNetworkInfo(EventResult.Value value, Result result, Context c) {
         if (result != null && result.network == null) {
-            result.network = Network.getNetwork(value.probe_network_name, value.probe_ip, value.probe_asn, value.probe_cc, MKOrchestraTask.getNetworkType(c));
+            result.network = Network.getNetwork(value.probe_network_name, value.probe_ip, value.probe_asn, value.probe_cc, OrchestraTask.getNetworkType(c));
             result.save();
         }
     }

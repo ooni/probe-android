@@ -31,7 +31,7 @@ public class MeasurementPerfItem extends HeterogeneousRecyclerItem<Measurement, 
 		viewHolder.itemView.setTag(extra);
 		Context c = viewHolder.text.getContext();
 		viewHolder.text.setText(extra.getTest().getLabelResId());
-		viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, extra.is_failed || extra.is_uploaded ? 0 : R.drawable.cloudoff, 0);
+		viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, extra.is_failed || extra.isUploaded() ? 0 : R.drawable.cloudoff, 0);
 		if (extra.test_name.equals(Dash.NAME)) {
 			viewHolder.data1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.video_quality, 0, 0, 0);
 			viewHolder.data1.setText(extra.getTestKeys().getVideoQuality(true));

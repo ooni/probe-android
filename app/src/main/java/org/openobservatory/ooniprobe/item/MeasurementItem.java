@@ -36,11 +36,11 @@ public class MeasurementItem extends HeterogeneousRecyclerItem<Measurement, Meas
 		int endDrawable;
 		if (extra.is_failed)
 			endDrawable = R.drawable.error_24dp;
-		else if (extra.is_anomaly && extra.is_uploaded)
+		else if (extra.is_anomaly && extra.isUploaded())
 			endDrawable = R.drawable.exclamation_24dp;
 		else if (extra.is_anomaly)
 			endDrawable = R.drawable.exclamation_cloudoff;
-		else if (extra.is_uploaded)
+		else if (extra.isUploaded())
 			endDrawable = R.drawable.tick_green_24dp;
 		else
 			endDrawable = R.drawable.tick_green_cloudoff;

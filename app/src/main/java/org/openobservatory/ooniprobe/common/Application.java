@@ -23,7 +23,7 @@ public class Application extends android.app.Application {
 	public static final String CA_BUNDLE = "ca_bundle.pem";
 	public static final String COUNTRY_MMDB = "country.mmdb";
 	public static final String ASN_MMDB = "asn.mmdb";
-	private static final int GEO_VER = 1;
+	private static final int GEO_VER = 2;
 
 	static {
 		System.loadLibrary("measurement_kit");

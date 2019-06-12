@@ -193,6 +193,7 @@
   <string name="Modal_Cancel">रद्द करें </string>
   <string name="Modal_Delete">हटाना</string>
   <string name="Modal_Error">त्रुटि</string>
+  <string name="Modal_Retry">पुन: प्रयास करें</string>
   <string name="Modal_Error_NoInternet">परीक्षण चलाने में असमर्थ। कृपया अपनी इंटरनेट कनेक्टिविटी की जांच करें।</string>
   <string name="Modal_Error_CantDownloadURLs">यूआरएल सूची डाउनलोड करने में असमर्थ। कृपया पुन: प्रयास करें।</string>
   <string name="Modal_Error_NotificationNotEnabled">अधिसूचना की अनुमति आवश्यक है। कृपया उन्हें अपने फ़ोन की सेटिंग में सक्षम करें और फिर उन्हें अपने OONI जांच ऐप में सक्षम करें।</string>
@@ -201,7 +202,7 @@
   <string name="Modal_ResultsNotUploaded_Title">परिणाम अपलोड नहीं किए गए</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">आपके कुछ परीक्षा परिणाम OONI सर्वर पर अपलोड नहीं किए गए हैं। यदि आप OONI के डेटासेट में योगदान करना चाहते हैं, तो कृपया उन्हें अपलोड करें।</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">अपलोड करें</string>
-  <string name="Modal_ResultsNotUploaded_Uploading">Uploading %1$s ...</string>
+  <string name="Modal_ResultsNotUploaded_Uploading">अपलोड कर रहे हें %1$s ...</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">स्वचालित रूप से परीक्षण चलाने के लिए अधिसूचना अनुमतियां सक्षम करें।</string>
   <string name="Modal_EnableNotifications_News">समाचार अद्यतन प्राप्त करने के लिए अधिसूचना अनुमति सक्षम करें।</string>
   <string name="Modal_EnableNotifications_Any">पुश सूचनाएँ प्राप्त करने के लिए अधिसूचना अनुमतियां सक्षम करें।</string>
@@ -217,7 +218,9 @@
   <string name="Modal_ManualUpload_Paragraph">यह सेटिंग आपको अप्रकाशित माप को मैन्युअल रूप से पुनः अपलोड करने की अनुमति देती है।</string>
   <string name="Modal_ManualUpload_Enable">सक्षम करें</string>
   <string name="Modal_ManualUpload_Disable">जी नहीं, धन्यवाद</string>
-  <string name="Toast_CopiedToClipboard">क्लिपबोर्ड में नकल</string>
+  <string name="Modal_UploadFailed_Title">Upload failed</string>
+  <string name="Modal_UploadFailed_Paragraph">Would you like to retry or cancel?</string>
+  <string name="Toast_CopiedToClipboard">Copied to clipboard</string>
   <string name="Snackbar_ResultsNotUploaded_Text">अपलोड नहीं किया गया</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">अपलोड करें</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">कुछ अपलोड नहीं किए गए</string>
@@ -288,7 +291,7 @@
   <string name="Settings_Performance_DashServerAddress">DASH सर्वर</string>
   <string name="Settings_Performance_DashServerPort">DASH server port</string>
   <string name="Settings_SendEmail_Label">Send email to support</string>
-  <string name="Settings_SendEmail_Error">कोई ईमेल क्लाइंट आपके डिवाइस पर कॉन्फ़िगर नहीं किया गया है</string>
+  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap \"Copy to clipboard\" below to copy our email address.</string>
   <string name="Notification_FinishedRunning">समाप्त हो रहा है</string>
   <string name="OONIBrowser_TryMirror">दर्पण की कोशिश करो</string>
   <string name="OONIBrowser_Loading">लोड हो रहा है ...</string>

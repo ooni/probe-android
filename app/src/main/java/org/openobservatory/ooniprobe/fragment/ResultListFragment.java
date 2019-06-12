@@ -24,21 +24,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.raizlabs.android.dbflow.sql.language.Method;
-import com.raizlabs.android.dbflow.sql.language.OperatorGroup;
 import com.raizlabs.android.dbflow.sql.language.SQLOperator;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.MKCollectorResubmitTask;
+import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.item.DateItem;
 import org.openobservatory.ooniprobe.item.InstantMessagingItem;
 import org.openobservatory.ooniprobe.item.MiddleboxesItem;
 import org.openobservatory.ooniprobe.item.PerformanceItem;
 import org.openobservatory.ooniprobe.item.WebsiteItem;
 import org.openobservatory.ooniprobe.model.database.Measurement;
-import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
@@ -154,13 +152,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     @OnItemSelected(R.id.filterTests)
     void queryList() {
         if (((Application) getActivity().getApplication()).getPreferenceManager().isManualUploadResults() &&
-                SQLite.selectCountOf().from(Measurement.class).where(
-                        Measurement_Table.is_failed.eq(false),
-                        OperatorGroup.clause().
-                                or(Measurement_Table.is_uploaded.eq(false))
-                                .or(Measurement_Table.report_id.isNull())
-                ).longValue() != 0
-        )
+                Measurement.selectUploadable().count() != 0)
             snackbar.show();
         else
             snackbar.dismiss();
@@ -226,7 +218,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     public void onConfirmation(Serializable serializable, int i) {
         if (serializable.equals(R.string.Modal_ResultsNotUploaded_Title)) {
             if (i == DialogInterface.BUTTON_POSITIVE)
-                new MKCollectorResubmitSettingsAsyncTask(this).execute(null, null);
+                new ResubmitAsyncTask(this).execute(null, null);
             else
                 snackbar.show();
         } else if (i == DialogInterface.BUTTON_POSITIVE) {
@@ -238,20 +230,27 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         }
     }
 
-    private static class MKCollectorResubmitSettingsAsyncTask extends MKCollectorResubmitTask<AppCompatActivity> {
+    private static class ResubmitAsyncTask extends ResubmitTask<AppCompatActivity> {
         private WeakReference<ResultListFragment> wf;
 
-        MKCollectorResubmitSettingsAsyncTask(ResultListFragment f) {
+        ResubmitAsyncTask(ResultListFragment f) {
             super((AppCompatActivity) f.getActivity());
             this.wf = new WeakReference<>(f);
         }
 
         @Override
-        protected void onPostExecute(Void result) {
+        protected void onPostExecute(Boolean result) {
             super.onPostExecute(result);
             ResultListFragment f = wf.get();
-            if (getActivity() != null && f != null)
+            if (getActivity() != null && f != null) {
                 f.queryList();
+                if (!result)
+                    ConfirmDialogFragment.newInstance(R.string.Modal_ResultsNotUploaded_Title,
+                            getActivity().getString(R.string.Modal_UploadFailed_Title),
+                            getActivity().getString(R.string.Modal_UploadFailed_Paragraph), null,
+                            getActivity().getString(R.string.Modal_Retry), null, null
+                    ).show(f.getChildFragmentManager(), null);
+            }
         }
     }
 }
