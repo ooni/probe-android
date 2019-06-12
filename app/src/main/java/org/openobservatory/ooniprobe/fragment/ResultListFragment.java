@@ -245,11 +245,11 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
             if (getActivity() != null && f != null) {
                 f.queryList();
                 if (!result)
-                    ConfirmDialogFragment.newInstance(R.string.Modal_ResultsNotUploaded_Title,
-                            getActivity().getString(R.string.Modal_UploadFailed_Title),
-                            getActivity().getString(R.string.Modal_UploadFailed_Paragraph), null,
-                            getActivity().getString(R.string.Modal_Retry), null, null
-                    ).show(f.getChildFragmentManager(), null);
+                    new ConfirmDialogFragment.Builder()
+                            .withTitle(getActivity().getString(R.string.Modal_UploadFailed_Title))
+                            .withMessage(getActivity().getString(R.string.Modal_UploadFailed_Paragraph))
+                            .withPositiveButton(getActivity().getString(R.string.Modal_Retry))
+                            .build().show(getActivity().getSupportFragmentManager(), null);
             }
         }
     }
