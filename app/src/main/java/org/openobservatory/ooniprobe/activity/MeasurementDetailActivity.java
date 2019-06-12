@@ -241,10 +241,11 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                         .where(Measurement_Table.id.eq(activity.measurement.id)).querySingle();
                 activity.load();
                 if (!result)
-                    ConfirmDialogFragment.newInstance(null, activity.getString(R.string.Modal_UploadFailed_Title),
-                            activity.getString(R.string.Modal_UploadFailed_Paragraph), null,
-                            activity.getString(R.string.Modal_Retry), null, null
-                    ).show(activity.getSupportFragmentManager(), null);
+                    new ConfirmDialogFragment.Builder()
+                            .withTitle(activity.getString(R.string.Modal_UploadFailed_Title))
+                            .withMessage(activity.getString(R.string.Modal_UploadFailed_Paragraph))
+                            .withPositiveButton(activity.getString(R.string.Modal_Retry))
+                            .build().show(activity.getSupportFragmentManager(), null);
             }
         }
     }

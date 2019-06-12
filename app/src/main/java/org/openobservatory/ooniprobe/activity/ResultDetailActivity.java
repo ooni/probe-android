@@ -151,10 +151,11 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
                         .where(Result_Table.id.eq(getActivity().result.id)).querySingle();
                 getActivity().load();
                 if (!result)
-                    ConfirmDialogFragment.newInstance(null, getActivity().getString(R.string.Modal_UploadFailed_Title),
-                            getActivity().getString(R.string.Modal_UploadFailed_Paragraph), null,
-                            getActivity().getString(R.string.Modal_Retry), null, null
-                    ).show(getActivity().getSupportFragmentManager(), null);
+                    new ConfirmDialogFragment.Builder()
+                            .withTitle(getActivity().getString(R.string.Modal_UploadFailed_Title))
+                            .withMessage(getActivity().getString(R.string.Modal_UploadFailed_Paragraph))
+                            .withPositiveButton(getActivity().getString(R.string.Modal_Retry))
+                            .build().show(getActivity().getSupportFragmentManager(), null);
             }
         }
     }
