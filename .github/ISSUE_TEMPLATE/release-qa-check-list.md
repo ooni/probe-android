@@ -26,6 +26,7 @@ assignees: ''
     - [ ] make sure you did only actually test these categories
 - [ ] run the test with a very short test runtime
 - [ ] run the test without uploading measurements and then perform a background upload
+    - [ ] make sure that the upload counter behaves properly
 - [ ] results analysis of all the above
     - [ ] check that the summary shows some number blocked some accessible
     - [ ] check that the blocked sites are displayed first
@@ -56,7 +57,7 @@ assignees: ''
     - [ ] check that the total runtime shows a sane number, ex. 2.16s
     - [ ] check specific measurements
         - [ ] check that everything is displayed properly in this screen
-        - [x] check that the runtime is sane ex 2.71s
+        - [ ] check that the runtime is sane ex 2.71s
         - [ ] check that the data makes sense
         - [ ] check that the logs make sense
 
