@@ -55,9 +55,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnItemSelected;
-import localhost.toolkit.app.ConfirmDialogFragment;
-import localhost.toolkit.widget.HeterogeneousRecyclerAdapter;
-import localhost.toolkit.widget.HeterogeneousRecyclerItem;
+import localhost.toolkit.app.fragment.ConfirmDialogFragment;
+import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerAdapter;
+import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
 public class ResultListFragment extends Fragment implements View.OnClickListener, View.OnLongClickListener, ConfirmDialogFragment.OnConfirmedListener {
     @BindView(R.id.coordinatorLayout)
@@ -103,15 +103,12 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         recycler.setAdapter(adapter);
         snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsSomeNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll, v1 ->
-                        ConfirmDialogFragment.newInstance(
-                                R.string.Modal_ResultsNotUploaded_Title,
-                                getString(R.string.Modal_ResultsNotUploaded_Title),
-                                getString(R.string.Modal_ResultsNotUploaded_Paragraph),
-                                null,
-                                getString(R.string.Modal_ResultsNotUploaded_Button_Upload),
-                                null,
-                                null
-                        ).show(getChildFragmentManager(), null)
+                        new ConfirmDialogFragment.Builder()
+                                .withExtra(R.string.Modal_ResultsNotUploaded_Title)
+                                .withTitle(getString(R.string.Modal_ResultsNotUploaded_Title))
+                                .withMessage(getString(R.string.Modal_ResultsNotUploaded_Paragraph))
+                                .withPositiveButton(getString(R.string.Modal_ResultsNotUploaded_Button_Upload))
+                                .build().show(getChildFragmentManager(), null)
                 );
         return v;
     }
@@ -141,15 +138,11 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.delete:
-                ConfirmDialogFragment.newInstance(
-                        R.id.delete,
-                        null,
-                        getString(R.string.Modal_DoYouWantToDeleteAllTests),
-                        null,
-                        getString(R.string.Modal_Delete),
-                        null,
-                        null
-                ).show(getChildFragmentManager(), null);
+                new ConfirmDialogFragment.Builder()
+                        .withExtra(R.id.delete)
+                        .withMessage(getString(R.string.Modal_DoYouWantToDeleteAllTests))
+                        .withPositiveButton(getString(R.string.Modal_Delete))
+                        .build().show(getChildFragmentManager(), null);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -213,15 +206,11 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     @Override
     public boolean onLongClick(View v) {
         Result result = (Result) v.getTag();
-        ConfirmDialogFragment.newInstance(
-                result,
-                null,
-                getString(R.string.Modal_DoYouWantToDeleteThisTest),
-                null,
-                getString(R.string.Modal_Delete),
-                null,
-                null
-        ).show(getChildFragmentManager(), null);
+        new ConfirmDialogFragment.Builder()
+                .withExtra(result)
+                .withMessage(getString(R.string.Modal_DoYouWantToDeleteThisTest))
+                .withPositiveButton(getString(R.string.Modal_Delete))
+                .build().show(getChildFragmentManager(), null);
         return true;
     }
 
@@ -256,11 +245,11 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
             if (getActivity() != null && f != null) {
                 f.queryList();
                 if (!result)
-                    ConfirmDialogFragment.newInstance(R.string.Modal_ResultsNotUploaded_Title,
-                            getActivity().getString(R.string.Modal_UploadFailed_Title),
-                            getActivity().getString(R.string.Modal_UploadFailed_Paragraph), null,
-                            getActivity().getString(R.string.Modal_Retry), null, null
-                    ).show(f.getChildFragmentManager(), null);
+                    new ConfirmDialogFragment.Builder()
+                            .withTitle(getActivity().getString(R.string.Modal_UploadFailed_Title))
+                            .withMessage(getActivity().getString(R.string.Modal_UploadFailed_Paragraph))
+                            .withPositiveButton(getActivity().getString(R.string.Modal_Retry))
+                            .build().show(getActivity().getSupportFragmentManager(), null);
             }
         }
     }

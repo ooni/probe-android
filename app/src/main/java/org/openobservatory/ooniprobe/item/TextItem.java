@@ -10,7 +10,7 @@ import org.openobservatory.ooniprobe.R;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import localhost.toolkit.widget.HeterogeneousRecyclerItem;
+import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
 public class TextItem extends HeterogeneousRecyclerItem<String, TextItem.ViewHolder> {
 	public TextItem(String extra) {

@@ -16,7 +16,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import localhost.toolkit.widget.HeterogeneousRecyclerItem;
+import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
 public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, TestsuiteItem.ViewHolderImpl> {
 	private final View.OnClickListener onClickListener;

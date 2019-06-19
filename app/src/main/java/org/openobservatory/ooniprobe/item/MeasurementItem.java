@@ -16,7 +16,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import localhost.toolkit.widget.HeterogeneousRecyclerItem;
+import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
 public class MeasurementItem extends HeterogeneousRecyclerItem<Measurement, MeasurementItem.ViewHolder> {
 	private final View.OnClickListener onClickListener;
