@@ -203,7 +203,7 @@
   <string name="Modal_ResultsNotUploaded_Paragraph">Μερικά από τα αποτελέσματά σου δεν έχουν ανέβει στους διακομιστές του OONI. Αν θέλεις να συνεισφέρεις στη βάση δεδομένων του OONI, παρακαλούμε να τα ανεβάσεις.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Ανέβασμα</string>
   <string name="Modal_ResultsNotUploaded_Uploading">Ανεβαίνει %1$s ...</string>
-  <string name="Modal_ResultsUploaded_Title">Upload successful</string>
+  <string name="Toast_ResultsUploaded">Upload successful</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Ενεργοποίησε τα δικαιώματα ειδοποιήσεων για την αυτόματη εκτέλεση δοκιμών.</string>
   <string name="Modal_EnableNotifications_News">Ενεργοποίησε τα δικαιώματα ειδοποιήσεων για να λαμβάνεις ενημερώσεις.</string>
   <string name="Modal_EnableNotifications_Any">Ενεργοποίησε τα δικαιώματα ειδοποιήσεων για να λαμβάνεις ειδοποιήσεις push.</string>

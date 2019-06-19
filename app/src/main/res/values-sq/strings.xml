@@ -203,7 +203,7 @@
   <string name="Modal_ResultsNotUploaded_Paragraph">Disa nga testimet e tua nuk janë të ngarkuara tek serverat e OONI. Nëse dëshiron të kontribuosh tek baza e të dhënave te OONI, ju lutem ngarkojini ato.\n</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Ngarkoni</string>
   <string name="Modal_ResultsNotUploaded_Uploading">Në ngarkim %1$s ...</string>
-  <string name="Modal_ResultsUploaded_Title">Upload successful</string>
+  <string name="Toast_ResultsUploaded">Upload successful</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Aktivizo të drejtat e njoftimeve që të kryesh testime automatikisht.</string>
   <string name="Modal_EnableNotifications_News">Aktivizo të drejtat e njoftimeve që të marrësh lajme të reja.</string>
   <string name="Modal_EnableNotifications_Any">Aktivizo të drejtat e njoftimeve që të marrësh njoftime.</string>

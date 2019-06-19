@@ -203,7 +203,7 @@
   <string name="Modal_ResultsNotUploaded_Paragraph">Alcuni risultati dei tuoi test non sono stati caricati sui server di OONI. Se vuoi contribuire alla banca dati di OONI, per favore caricali.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Carica</string>
   <string name="Modal_ResultsNotUploaded_Uploading">Uploading %1$s ...</string>
-  <string name="Modal_ResultsUploaded_Title">Upload successful</string>
+  <string name="Toast_ResultsUploaded">Upload successful</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Attiva i permessi di notifica per eseguire i test automaticamente.</string>
   <string name="Modal_EnableNotifications_News">Attiva i permessi di notifica per ricevere notizie.</string>
   <string name="Modal_EnableNotifications_Any">Attiva i permessi di notifica per ricevere notifiche push.</string>
