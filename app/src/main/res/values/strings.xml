@@ -203,6 +203,7 @@
   <string name="Modal_ResultsNotUploaded_Paragraph">Some of your test results have not been uploaded to OONI servers. If you\'d like to contribute to OONI\'s dataset, please upload them.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Upload</string>
   <string name="Modal_ResultsNotUploaded_Uploading">Uploading %1$s ...</string>
+  <string name="Modal_ResultsUploaded_Title">Upload successful</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Enable notification permissions to run tests automatically.</string>
   <string name="Modal_EnableNotifications_News">Enable notification permissions to receive news updates.</string>
   <string name="Modal_EnableNotifications_Any">Enable notification permissions to receive push notifications.</string>

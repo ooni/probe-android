@@ -203,6 +203,7 @@
   <string name="Modal_ResultsNotUploaded_Paragraph">您的部分测试结果尚未上传到 OONI 服务器。如果您想为 OONI 数据集做出贡献，请上传它们。</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">上传</string>
   <string name="Modal_ResultsNotUploaded_Uploading">正在上传测试 %1$s ...</string>
+  <string name="Modal_ResultsUploaded_Title">Upload successful</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">启用通知权限以自动运行测试。</string>
   <string name="Modal_EnableNotifications_News">启用通知权限以接收资讯更新。</string>
   <string name="Modal_EnableNotifications_Any">启用通知权限以接收推送通知。</string>

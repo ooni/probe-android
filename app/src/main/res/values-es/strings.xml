@@ -203,6 +203,7 @@
   <string name="Modal_ResultsNotUploaded_Paragraph">Algunos de los resultados de tus pruebas no han sido subidos a los servidores OONI. Si te gustaría contribuir al conjunto de datos de OONI, por favor súbelos.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Subir</string>
   <string name="Modal_ResultsNotUploaded_Uploading">Subiendo %1$s ...</string>
+  <string name="Modal_ResultsUploaded_Title">Upload successful</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Habilita permisos de notificación para ejecutar pruebas automáticamente.</string>
   <string name="Modal_EnableNotifications_News">Habilita permisos de notificación para recibir actualizaciones de noticias.</string>
   <string name="Modal_EnableNotifications_Any">Habilita permisos de notificación para recibir notificaciones \'push\'.</string>
@@ -219,7 +220,7 @@
   <string name="Modal_ManualUpload_Enable">Habilitar</string>
   <string name="Modal_ManualUpload_Disable">No, gracias!</string>
   <string name="Modal_UploadFailed_Title">La subida falló</string>
-  <string name="Modal_UploadFailed_Paragraph">Would you like to retry or cancel?</string>
+  <string name="Modal_UploadFailed_Paragraph">¿Desea reintentar o cancelar?</string>
   <string name="Toast_CopiedToClipboard">Se ha copiado al portapapeles</string>
   <string name="Snackbar_ResultsNotUploaded_Text">No subido</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Subir</string>
@@ -291,7 +292,7 @@
   <string name="Settings_Performance_DashServerAddress">Servidor DASH</string>
   <string name="Settings_Performance_DashServerPort">Puerto del servidor DASH</string>
   <string name="Settings_SendEmail_Label">Enviar correo electrónico al soporte</string>
-  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap \"Copy to clipboard\" below to copy our email address.</string>
+  <string name="Settings_SendEmail_Error">Por favor envíe un correo electrónico a bugs@openobservatory.org con información sobre la aplicación y versió de iOS. Pulse \"Copiar al portapapeles\" abajo para copiar nuestro correo electrónico.</string>
   <string name="Notification_FinishedRunning">Finalizó la ejecución</string>
   <string name="OONIBrowser_TryMirror">Intentar servidor réplica</string>
   <string name="OONIBrowser_Loading">Cargando...</string>

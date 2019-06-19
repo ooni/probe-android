@@ -203,6 +203,7 @@
   <string name="Modal_ResultsNotUploaded_Paragraph">आपके कुछ परीक्षा परिणाम OONI सर्वर पर अपलोड नहीं किए गए हैं। यदि आप OONI के डेटासेट में योगदान करना चाहते हैं, तो कृपया उन्हें अपलोड करें।</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">अपलोड करें</string>
   <string name="Modal_ResultsNotUploaded_Uploading">अपलोड कर रहे हें %1$s ...</string>
+  <string name="Modal_ResultsUploaded_Title">Upload successful</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">स्वचालित रूप से परीक्षण चलाने के लिए अधिसूचना अनुमतियां सक्षम करें।</string>
   <string name="Modal_EnableNotifications_News">समाचार अद्यतन प्राप्त करने के लिए अधिसूचना अनुमति सक्षम करें।</string>
   <string name="Modal_EnableNotifications_Any">पुश सूचनाएँ प्राप्त करने के लिए अधिसूचना अनुमतियां सक्षम करें।</string>

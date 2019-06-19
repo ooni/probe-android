@@ -203,6 +203,7 @@
   <string name="Modal_ResultsNotUploaded_Paragraph">Alguns dels resultats de les vostres proves no s\'han pujat als servidors d\'OONI. Si desitgeu contribuir al conjunt de dades d\'OONI, pugueu-los.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Pujada</string>
   <string name="Modal_ResultsNotUploaded_Uploading">Uploading %1$s ...</string>
+  <string name="Modal_ResultsUploaded_Title">Upload successful</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Activeu els permisos de notificació per executar les proves automàticament.</string>
   <string name="Modal_EnableNotifications_News">Activeu els permisos de notificació per rebre actualitzacions de notícies.</string>
   <string name="Modal_EnableNotifications_Any">Activeu els permisos de notificació per rebre notificacions de tramesa automàtica.</string>
