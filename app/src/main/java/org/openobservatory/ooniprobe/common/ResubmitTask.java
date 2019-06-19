@@ -3,6 +3,7 @@ package org.openobservatory.ooniprobe.common;
 import android.content.Context;
 import android.util.Log;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -114,7 +115,9 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
     protected void onPostExecute(Boolean result) {
         super.onPostExecute(result);
         A activity = getActivity();
-        if (activity != null)
+        if (activity != null) {
+            Toast.makeText(activity, activity.getString(R.string.Toast_ResultsUploaded), Toast.LENGTH_SHORT).show();
             activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
     }
 }
