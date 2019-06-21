@@ -203,7 +203,7 @@
   <string name="Modal_ResultsNotUploaded_Paragraph">Bazı sınama sonuçları OONI sunucularına yüklenmemiş. OONU veri kümesine katkıda bulunmak isterseniz bu sonuçları yükleyin.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Yükle</string>
   <string name="Modal_ResultsNotUploaded_Uploading">%1$s yükleniyor...</string>
-  <string name="Toast_ResultsUploaded">Upload successful</string>
+  <string name="Toast_ResultsUploaded">Yüklendi</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Sınamaların otomatik yapılması için bildirim izinleri verilsin.</string>
   <string name="Modal_EnableNotifications_News">Yeni güncellemelere dair haber alınması için bildirim izinleri verilsin.</string>
   <string name="Modal_EnableNotifications_Any">Anlık iletilerin alınması için bildirim izinleri verilsin.</string>

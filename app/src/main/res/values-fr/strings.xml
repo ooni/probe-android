@@ -203,7 +203,7 @@
   <string name="Modal_ResultsNotUploaded_Paragraph">Certains de vos résultats de test n’ont pas été téléversés vers les serveurs de l’OONI. Si vous souhaitez contribuer à l’ensemble de données de l’OONI, veuillez les téléverser.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Téléversement</string>
   <string name="Modal_ResultsNotUploaded_Uploading">Téléversement de %1$s…</string>
-  <string name="Toast_ResultsUploaded">Upload successful</string>
+  <string name="Toast_ResultsUploaded">Téléversement réussi</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Autoriser les notifications pour lancer des tests automatiquement.</string>
   <string name="Modal_EnableNotifications_News">Autoriser les notifications pour recevoir des nouvelles.</string>
   <string name="Modal_EnableNotifications_Any">Autoriser les notifications pour recevoir des notifications poussées.</string>
