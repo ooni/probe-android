@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.OoniIOClient;
+import org.openobservatory.ooniprobe.common.TestListsClient;
 import org.openobservatory.ooniprobe.model.RetrieveUrlResponse;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Url;
@@ -63,7 +63,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 					MKGeoIPLookupResults results = geoIPLookup.perform();
 					String probeCC = results.isGood() ? results.getProbeCC() : "XX";
 					Retrofit retrofit = new Retrofit.Builder().baseUrl("https://orchestrate.ooni.io/").addConverterFactory(GsonConverterFactory.create()).build();
-					Response<RetrieveUrlResponse> response = retrofit.create(OoniIOClient.class).getUrls(probeCC, act.getPreferenceManager().getEnabledCategory()).execute();
+					Response<RetrieveUrlResponse> response = retrofit.create(TestListsClient.class).getUrls(probeCC, act.getPreferenceManager().getEnabledCategory()).execute();
 					if (response.isSuccessful() && response.body() != null && response.body().results != null) {
 						ArrayList<String> inputs = new ArrayList<>();
 						for (Url url : response.body().results)
