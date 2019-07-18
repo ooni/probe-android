@@ -221,6 +221,9 @@
   <string name="Modal_ManualUpload_Disable">Non, merci</string>
   <string name="Modal_UploadFailed_Title">Échec de téléversement</string>
   <string name="Modal_UploadFailed_Paragraph">Souhaitez-vous ressayer ou annuler ?</string>
+  <string name="Modal_Error_LogNotFound">Log file not found</string>
+  <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
+  <string name="Modal_Error_JsonEmpty">JSON empty</string>
   <string name="Toast_CopiedToClipboard">Copié dans le presse-papiers</string>
   <string name="Snackbar_ResultsNotUploaded_Text">N’a pas été téléversé</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Téléversement</string>

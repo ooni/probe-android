@@ -221,6 +221,9 @@
   <string name="Modal_ManualUpload_Disable">No, gracias!</string>
   <string name="Modal_UploadFailed_Title">La subida falló</string>
   <string name="Modal_UploadFailed_Paragraph">¿Desea reintentar o cancelar?</string>
+  <string name="Modal_Error_LogNotFound">Log file not found</string>
+  <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
+  <string name="Modal_Error_JsonEmpty">JSON empty</string>
   <string name="Toast_CopiedToClipboard">Se ha copiado al portapapeles</string>
   <string name="Snackbar_ResultsNotUploaded_Text">No subido</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Subir</string>

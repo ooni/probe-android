@@ -221,6 +221,9 @@
   <string name="Modal_ManualUpload_Disable">لا، شكراً</string>
   <string name="Modal_UploadFailed_Title">فَشِلتْ عملية الرفع</string>
   <string name="Modal_UploadFailed_Paragraph">Would you like to retry or cancel?</string>
+  <string name="Modal_Error_LogNotFound">Log file not found</string>
+  <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
+  <string name="Modal_Error_JsonEmpty">JSON empty</string>
   <string name="Toast_CopiedToClipboard">نسخ إلى الحافظة</string>
   <string name="Snackbar_ResultsNotUploaded_Text">لم يتمّ الرفع</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">رفع</string>
