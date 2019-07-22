@@ -6,7 +6,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.TestListsClient;
-import org.openobservatory.ooniprobe.model.RetrieveUrlResponse;
+import org.openobservatory.ooniprobe.model.api.RetrieveUrlResponse;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;

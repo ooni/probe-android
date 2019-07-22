@@ -1,6 +1,6 @@
 package org.openobservatory.ooniprobe.common;
 
-import org.openobservatory.ooniprobe.model.RetrieveUrlResponse;
+import org.openobservatory.ooniprobe.model.api.RetrieveUrlResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
