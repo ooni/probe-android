@@ -2,6 +2,8 @@ package org.openobservatory.ooniprobe.model.database;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.ForeignKey;
@@ -12,13 +14,7 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.sql.language.Where;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
-import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.MeasurementsClient;
-import org.openobservatory.ooniprobe.common.TestListsClient;
-import org.openobservatory.ooniprobe.model.api.ExplorerUrlResponse;
-import org.openobservatory.ooniprobe.model.api.RetrieveUrlResponse;
-import org.openobservatory.ooniprobe.model.api.MeasurementsResults;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.Dash;
@@ -32,16 +28,7 @@ import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
 import java.io.File;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
-import androidx.annotation.NonNull;
-
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 @Table(database = Application.class)
 public class Measurement extends BaseModel implements Serializable {
@@ -156,36 +143,5 @@ public class Measurement extends BaseModel implements Serializable {
 		test_keys = new Gson().toJson(testKeys);
 	}
 
-	public void getExplorerUrl(){
-		try {
-			Retrofit retrofit = new Retrofit.Builder().baseUrl("https://api.ooni.io/").addConverterFactory(GsonConverterFactory.create()).build();
-			//TODO not send url.url when is not web_connectivity
-			Response<ExplorerUrlResponse> response = retrofit.create(MeasurementsClient.class).getMeasurementUrl(report_id, url.url).execute();
-			if (response.isSuccessful() && response.body() != null && response.body().responseObject != null) {
-				List<MeasurementsResults> results = response.body().responseObject.get("results");
-				    /*
-     					Checking if the array is longer than 1.
-				    	https://github.com/ooni/probe-ios/pull/293#discussion_r302136014
-     				*/
-				/*
-				Check array different from 1 and measurement_url exists
-				otherwise emit error
 
-				NSArray *resultsArray = [dic objectForKey:@"results"];
-				if ([resultsArray count] != 1 ||
-						![[resultsArray objectAtIndex:0] objectForKey:@"measurement_url"]) {
-					errorcb([NSError errorWithDomain:@"io.ooni.api"
-					code:ERR_JSON_EMPTY
-					userInfo:@{NSLocalizedDescriptionKey:@"Modal.Error.JsonEmpty"
-					}]);
-					return;
-				}
-				successcb([[resultsArray objectAtIndex:0] objectForKey:@"measurement_url"]);
-			*/
-			}
-		}
-		catch (Exception e) {
-			//publishProgress(ERR, act.getString(R.string.Modal_Error_CantDownloadURLs));
-		}
-	}
 }

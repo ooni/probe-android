@@ -11,12 +11,19 @@ import com.raizlabs.android.dbflow.config.FlowManager;
 import org.apache.commons.io.IOUtils;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.client.ApiClient;
+import org.openobservatory.ooniprobe.client.OrchestrateClient;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.Date;
+
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 @Database(name = "v2", version = 1, foreignKeyConstraintsEnforced = true)
 public class Application extends android.app.Application {
@@ -32,6 +39,9 @@ public class Application extends android.app.Application {
 	private PreferenceManager preferenceManager;
 	private Gson gson;
 	private boolean testRunning;
+	private OkHttpClient okHttpClient;
+	private OrchestrateClient orchestrateClient;
+	private ApiClient apiClient;
 
 	@Override public void onCreate() {
 		super.onCreate();
@@ -60,6 +70,37 @@ public class Application extends android.app.Application {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+	}
+
+	private OkHttpClient getOkHttpClient() {
+		if (okHttpClient == null) {
+			HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+			logging.level(BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.BASIC);
+			okHttpClient = new OkHttpClient.Builder().addInterceptor(logging).build();
+		}
+		return okHttpClient;
+	}
+
+	public OrchestrateClient getOrchestrateClient() {
+		if (orchestrateClient == null) {
+			orchestrateClient = new Retrofit.Builder()
+					.baseUrl(BuildConfig.ORCHESTRATE_URL)
+					.addConverterFactory(GsonConverterFactory.create())
+					.client(getOkHttpClient())
+					.build().create(OrchestrateClient.class);
+		}
+		return orchestrateClient;
+	}
+
+	public ApiClient getApiClient() {
+		if (apiClient == null) {
+			apiClient = new Retrofit.Builder()
+					.baseUrl(BuildConfig.API_URL)
+					.addConverterFactory(GsonConverterFactory.create())
+					.client(getOkHttpClient())
+					.build().create(ApiClient.class);
+		}
+		return apiClient;
 	}
 
 	public PreferenceManager getPreferenceManager() {
