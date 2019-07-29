@@ -22,16 +22,16 @@ android {
 	buildTypes {
 		debug {
 			buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://registry.proteus.test.ooni.io"'
-			buildConfigField 'String', 'ORCHESTRATE_URL', '"https://orchestrate.ooni.io/"'
-			buildConfigField 'String', 'API_URL', '"https://api.ooni.io/"'
+			buildConfigField 'String', 'OONI_ORCHESTRATE_BASE_URL', '"https://orchestrate.ooni.io/"'
+			buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 		}
 
 		release {
 			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 			buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://registry.proteus.ooni.io"'
-			buildConfigField 'String', 'ORCHESTRATE_URL', '"https://orchestrate.ooni.io/"'
-			buildConfigField 'String', 'API_URL', '"https://api.ooni.io/"'
+			buildConfigField 'String', 'OONI_ORCHESTRATE_BASE_URL', '"https://orchestrate.ooni.io/"'
+			buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 		}
 	}
 

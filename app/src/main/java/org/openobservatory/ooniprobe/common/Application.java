@@ -84,7 +84,7 @@ public class Application extends android.app.Application {
 	public OrchestrateClient getOrchestrateClient() {
 		if (orchestrateClient == null) {
 			orchestrateClient = new Retrofit.Builder()
-					.baseUrl(BuildConfig.ORCHESTRATE_URL)
+					.baseUrl(BuildConfig.OONI_ORCHESTRATE_BASE_URL)
 					.addConverterFactory(GsonConverterFactory.create())
 					.client(getOkHttpClient())
 					.build().create(OrchestrateClient.class);
@@ -95,7 +95,7 @@ public class Application extends android.app.Application {
 	public ApiClient getApiClient() {
 		if (apiClient == null) {
 			apiClient = new Retrofit.Builder()
-					.baseUrl(BuildConfig.API_URL)
+					.baseUrl(BuildConfig.OONI_API_BASE_URL)
 					.addConverterFactory(GsonConverterFactory.create())
 					.client(getOkHttpClient())
 					.build().create(ApiClient.class);
