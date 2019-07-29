@@ -59,7 +59,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 					geoIPLookup.setASNDBPath(act.getCacheDir() + "/" + Application.ASN_MMDB);
 					MKGeoIPLookupResults results = geoIPLookup.perform();
 					String probeCC = results.isGood() ? results.getProbeCC() : "XX";
-					Response<UrlList> response = act.getOrchestrateClient().getUrls(probeCC, act.getPreferenceManager().getEnabledCategory()).execute();
+					Response<UrlList> response = act.getOrchestraClient().getUrls(probeCC, act.getPreferenceManager().getEnabledCategory()).execute();
 					if (response.isSuccessful() && response.body() != null && response.body().results != null) {
 						ArrayList<String> inputs = new ArrayList<>();
 						for (Url url : response.body().results)

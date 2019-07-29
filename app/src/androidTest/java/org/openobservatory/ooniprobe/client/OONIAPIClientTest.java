@@ -9,7 +9,7 @@ import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-public class ApiClientTest extends AbstractTest {
+public class OONIAPIClientTest extends AbstractTest {
     private static final String EXISTING_REPORT_ID = "20190113T202156Z_AS327931_CgoC3KbgM6zKajvIIt1AxxybJ1HbjwwWJjsJnlxy9rpcGY54VH";
     private static final String EXISTING_REPORT_ID_2 = "20190702T000027Z_AS5413_6FT78sjp5qnESDVWlFlm6bfxxwOEqR08ySAwigTF6C8PFCbMsM";
     private static final String NONEXISTING_REPORT_ID = "EMPTY";

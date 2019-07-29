@@ -11,8 +11,8 @@ import com.raizlabs.android.dbflow.config.FlowManager;
 import org.apache.commons.io.IOUtils;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.client.ApiClient;
-import org.openobservatory.ooniprobe.client.OrchestrateClient;
+import org.openobservatory.ooniprobe.client.OONIAPIClient;
+import org.openobservatory.ooniprobe.client.OONIOrchestraClient;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
 import java.io.File;
@@ -40,8 +40,8 @@ public class Application extends android.app.Application {
 	private Gson gson;
 	private boolean testRunning;
 	private OkHttpClient okHttpClient;
-	private OrchestrateClient orchestrateClient;
-	private ApiClient apiClient;
+	private OONIOrchestraClient orchestraClient;
+	private OONIAPIClient apiClient;
 
 	@Override public void onCreate() {
 		super.onCreate();
@@ -81,24 +81,24 @@ public class Application extends android.app.Application {
 		return okHttpClient;
 	}
 
-	public OrchestrateClient getOrchestrateClient() {
-		if (orchestrateClient == null) {
-			orchestrateClient = new Retrofit.Builder()
+	public OONIOrchestraClient getOrchestraClient() {
+		if (orchestraClient == null) {
+			orchestraClient = new Retrofit.Builder()
 					.baseUrl(BuildConfig.OONI_ORCHESTRATE_BASE_URL)
 					.addConverterFactory(GsonConverterFactory.create())
 					.client(getOkHttpClient())
-					.build().create(OrchestrateClient.class);
+					.build().create(OONIOrchestraClient.class);
 		}
-		return orchestrateClient;
+		return orchestraClient;
 	}
 
-	public ApiClient getApiClient() {
+	public OONIAPIClient getApiClient() {
 		if (apiClient == null) {
 			apiClient = new Retrofit.Builder()
 					.baseUrl(BuildConfig.OONI_API_BASE_URL)
 					.addConverterFactory(GsonConverterFactory.create())
 					.client(getOkHttpClient())
-					.build().create(ApiClient.class);
+					.build().create(OONIAPIClient.class);
 		}
 		return apiClient;
 	}

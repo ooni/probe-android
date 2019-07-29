@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 
-import org.openobservatory.ooniprobe.client.ApiClient;
-import org.openobservatory.ooniprobe.client.OrchestrateClient;
+import org.openobservatory.ooniprobe.client.OONIAPIClient;
+import org.openobservatory.ooniprobe.client.OONIOrchestraClient;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 
@@ -26,11 +26,11 @@ public abstract class AbstractActivity extends AppCompatActivity {
 		((Application) getApplication()).setTestRunning(testRunning);
 	}
 
-	public OrchestrateClient getOrchestrateClient() {
-		return ((Application) getApplication()).getOrchestrateClient();
+	public OONIOrchestraClient getOrchestraClient() {
+		return ((Application) getApplication()).getOrchestraClient();
 	}
 
-	public ApiClient getApiClient() {
+	public OONIAPIClient getApiClient() {
 		return ((Application) getApplication()).getApiClient();
 	}
 }

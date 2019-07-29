@@ -12,11 +12,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class OrchestrateClientTest extends AbstractTest {
+public class OONIOrchestraClientTest extends AbstractTest {
     @Test
     public void getUrlsSuccess() {
         final CountDownLatch signal = new CountDownLatch(1);
-        a.getOrchestrateClient().getUrls("XX", null).enqueue(new Callback<UrlList>() {
+        a.getOrchestraClient().getUrls("XX", null).enqueue(new Callback<UrlList>() {
             @Override
             public void onResponse(Call<UrlList> call, Response<UrlList> response) {
                 if (!response.isSuccessful())
