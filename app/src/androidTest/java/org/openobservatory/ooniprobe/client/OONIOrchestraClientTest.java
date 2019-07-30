@@ -16,11 +16,10 @@ public class OONIOrchestraClientTest extends AbstractTest {
     @Test
     public void getUrlsSuccess() {
         final CountDownLatch signal = new CountDownLatch(1);
-        a.getOrchestraClient().getUrls("XX", null).enqueue(new Callback<UrlList>() {
+        application.getOrchestraClient().getUrls("XX", null).enqueue(new Callback<UrlList>() {
             @Override
             public void onResponse(Call<UrlList> call, Response<UrlList> response) {
-                if (!response.isSuccessful())
-                    Assert.fail();
+                Assert.assertTrue(response.isSuccessful());
                 signal.countDown();
             }
 
@@ -34,6 +33,7 @@ public class OONIOrchestraClientTest extends AbstractTest {
             signal.await(1, TimeUnit.MINUTES);
         } catch (InterruptedException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 }
