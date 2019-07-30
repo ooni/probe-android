@@ -19,7 +19,7 @@ public class OONIAPIClientTest extends AbstractTest {
     @Test
     public void getMeasurementSuccess() {
         final CountDownLatch signal = new CountDownLatch(1);
-        application.getApiClient().getMeasurement(EXISTING_REPORT_ID, null).enqueue(new GetMeasurementsCallback() {
+        a.getApiClient().getMeasurement(EXISTING_REPORT_ID, null).enqueue(new GetMeasurementsCallback() {
             @Override
             public void onSuccess(ApiMeasurement.Result result) {
                 Assert.assertNotNull(result);
@@ -43,7 +43,7 @@ public class OONIAPIClientTest extends AbstractTest {
     @Test
     public void getMeasurementError() {
         final CountDownLatch signal = new CountDownLatch(1);
-        application.getApiClient().getMeasurement(NONEXISTING_REPORT_ID, null).enqueue(new GetMeasurementsCallback() {
+        a.getApiClient().getMeasurement(NONEXISTING_REPORT_ID, null).enqueue(new GetMeasurementsCallback() {
             @Override
             public void onSuccess(ApiMeasurement.Result result) {
                 Assert.fail();

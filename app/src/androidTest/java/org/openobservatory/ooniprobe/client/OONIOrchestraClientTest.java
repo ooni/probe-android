@@ -16,7 +16,7 @@ public class OONIOrchestraClientTest extends AbstractTest {
     @Test
     public void getUrlsSuccess() {
         final CountDownLatch signal = new CountDownLatch(1);
-        application.getOrchestraClient().getUrls("XX", null).enqueue(new Callback<UrlList>() {
+        a.getOrchestraClient().getUrls("XX", null).enqueue(new Callback<UrlList>() {
             @Override
             public void onResponse(Call<UrlList> call, Response<UrlList> response) {
                 Assert.assertTrue(response.isSuccessful());

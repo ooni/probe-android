@@ -8,11 +8,11 @@ import org.openobservatory.ooniprobe.common.Application;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 public class AbstractTest {
-	protected Context context;
-	protected Application application;
+	protected Context c;
+	protected Application a;
 
 	@Before public void before() {
-		context = InstrumentationRegistry.getInstrumentation().getTargetContext();
-		application = (Application) context.getApplicationContext();
+		c = InstrumentationRegistry.getInstrumentation().getTargetContext();
+		a = (Application) context.getApplicationContext();
 	}
 }
