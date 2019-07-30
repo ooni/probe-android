@@ -13,6 +13,6 @@ public class AbstractTest {
 
 	@Before public void before() {
 		c = InstrumentationRegistry.getInstrumentation().getTargetContext();
-		a = (Application) context.getApplicationContext();
+		a = (Application) c.getApplicationContext();
 	}
 }
