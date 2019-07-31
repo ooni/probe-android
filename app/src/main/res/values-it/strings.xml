@@ -221,6 +221,9 @@
   <string name="Modal_ManualUpload_Disable">No, grazie</string>
   <string name="Modal_UploadFailed_Title">Invio fallito</string>
   <string name="Modal_UploadFailed_Paragraph">Vuoi riprovare o annullare?</string>
+  <string name="Modal_Error_LogNotFound">Log file not found</string>
+  <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
+  <string name="Modal_Error_JsonEmpty">JSON empty</string>
   <string name="Toast_CopiedToClipboard">Copiato negli appunti</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Non caricati</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Carica</string>

@@ -221,6 +221,9 @@
   <string name="Modal_ManualUpload_Disable">No, thanks</string>
   <string name="Modal_UploadFailed_Title">Upload failed</string>
   <string name="Modal_UploadFailed_Paragraph">Would you like to retry or cancel?</string>
+  <string name="Modal_Error_LogNotFound">Log file not found</string>
+  <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
+  <string name="Modal_Error_JsonEmpty">JSON empty</string>
   <string name="Toast_CopiedToClipboard">Copied to clipboard</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Not uploaded</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Upload</string>

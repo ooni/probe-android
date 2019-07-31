@@ -28,7 +28,9 @@ import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
 import java.io.File;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Table(database = Application.class)
 public class Measurement extends BaseModel implements Serializable {
@@ -82,8 +84,30 @@ public class Measurement extends BaseModel implements Serializable {
 				);
 	}
 
+	public static Where<Measurement> selectUploaded() {
+		return SQLite.select().from(Measurement.class)
+				.where(Measurement_Table.is_failed.eq(false))
+				.and(Measurement_Table.is_rerun.eq(false))
+				.and(Measurement_Table.is_done.eq(true))
+				.and(OperatorGroup.clause()
+						.or(Measurement_Table.is_uploaded.eq(true))
+						.or(Measurement_Table.report_id.isNotNull())
+				);
+	}
+
 	public static Where<Measurement> selectUploadableWithResultId(int resultId) {
 		return Measurement.selectUploadable().and(Measurement_Table.result_id.eq(resultId));
+	}
+
+	public static List<Measurement> selectMeasurementsWithJson(Context c) {
+		Where<Measurement> msmQuery = Measurement.selectUploaded();
+		List<Measurement> measurementsJson = new ArrayList<>();
+		List<Measurement> measurements = msmQuery.queryList();
+		for (Measurement measurement : measurements){
+			if (Measurement.getEntryFile(c, measurement.id, measurement.test_name).exists())
+				measurementsJson.add(measurement);
+		}
+		return measurementsJson;
 	}
 
 	public static File getEntryFile(Context c, int measurementId, String test_name) {

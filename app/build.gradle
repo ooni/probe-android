@@ -63,7 +63,7 @@ dependencies {
 	implementation 'org.openobservatory.measurement_kit:android-libs:0.10.4-2-android.3'
 	implementation 'com.github.xanscale.LocalhostToolkit:app:19.05.01'
 	implementation 'pub.devrel:easypermissions:3.0.0'
-	implementation 'com.airbnb.android:lottie:3.0.1'
+	implementation 'com.airbnb.android:lottie:3.0.7'
 	implementation 'com.google.code.gson:gson:2.8.5'
 	implementation 'ru.noties:markwon:2.0.1'
 	implementation 'commons-io:commons-io:2.6'

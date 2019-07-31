@@ -221,6 +221,9 @@
   <string name="Modal_ManualUpload_Disable">Non, merci</string>
   <string name="Modal_UploadFailed_Title">Échec de téléversement</string>
   <string name="Modal_UploadFailed_Paragraph">Souhaitez-vous ressayer ou annuler ?</string>
+  <string name="Modal_Error_LogNotFound">Le fichier journal est introuvable</string>
+  <string name="Modal_Error_NoValidUrls">Aucune URL valide n’a été trouvée</string>
+  <string name="Modal_Error_JsonEmpty">Le JSON est vide</string>
   <string name="Toast_CopiedToClipboard">Copié dans le presse-papiers</string>
   <string name="Snackbar_ResultsNotUploaded_Text">N’a pas été téléversé</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Téléversement</string>
