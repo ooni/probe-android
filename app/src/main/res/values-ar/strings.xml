@@ -202,8 +202,8 @@
   <string name="Modal_ResultsNotUploaded_Title">النتائج لم يتمّ رفعها</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">بعض نتائج الاختبارات الخاصة بك لم يتمّ رفعها إلى خوادم OONI. من فضلك قم برفعها اذا كنت ترغب بالمساهمة في تجميع بيانات OONI.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">رفع</string>
-  <string name="Modal_ResultsNotUploaded_Uploading">Uploading %1$s ...</string>
-  <string name="Toast_ResultsUploaded">Upload successful</string>
+  <string name="Modal_ResultsNotUploaded_Uploading">جارٍ تحميل %1$s ...</string>
+  <string name="Toast_ResultsUploaded">تم التحميل بنجاح</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">قم بإعطاء تصريح التنبيهات لإجراء الاختبارات اوتوماتيكيًا.</string>
   <string name="Modal_EnableNotifications_News">قم بإعطاء تصريح التنبيهات للحصول على آخر الأخبار.</string>
   <string name="Modal_EnableNotifications_Any">قم بإعطاء تصريح التنبيهات لإستقبال التنبيهات المدفوعة (Push Notifications)</string>
@@ -220,8 +220,8 @@
   <string name="Modal_ManualUpload_Enable">تمكين</string>
   <string name="Modal_ManualUpload_Disable">لا، شكراً</string>
   <string name="Modal_UploadFailed_Title">فَشِلتْ عملية الرفع</string>
-  <string name="Modal_UploadFailed_Paragraph">Would you like to retry or cancel?</string>
-  <string name="Modal_Error_LogNotFound">Log file not found</string>
+  <string name="Modal_UploadFailed_Paragraph">هل ترغب في إعادة المحاولة أو الإلغاء؟</string>
+  <string name="Modal_Error_LogNotFound">ملف السجلّ غير موجود</string>
   <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
   <string name="Modal_Error_JsonEmpty">JSON empty</string>
   <string name="Toast_CopiedToClipboard">نسخ إلى الحافظة</string>

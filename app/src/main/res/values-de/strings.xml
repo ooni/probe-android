@@ -221,9 +221,9 @@
   <string name="Modal_ManualUpload_Disable">Nein, danke</string>
   <string name="Modal_UploadFailed_Title">Hochladen fehlgeschlagen</string>
   <string name="Modal_UploadFailed_Paragraph">Möchten Sie es erneut versuchen oder abbrechen?</string>
-  <string name="Modal_Error_LogNotFound">Log file not found</string>
-  <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
-  <string name="Modal_Error_JsonEmpty">JSON empty</string>
+  <string name="Modal_Error_LogNotFound">Protokolldatei nicht gefunden</string>
+  <string name="Modal_Error_NoValidUrls">Keine gültigen URLs gefunden</string>
+  <string name="Modal_Error_JsonEmpty">JSON ist leer</string>
   <string name="Toast_CopiedToClipboard">In Zwischenablage kopiert</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Nicht hochgeladen</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Hochladen</string>

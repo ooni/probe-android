@@ -203,7 +203,7 @@
   <string name="Modal_ResultsNotUploaded_Paragraph">您的部分测试结果尚未上传到 OONI 服务器。如果您想为 OONI 数据集做出贡献，请上传它们。</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">上传</string>
   <string name="Modal_ResultsNotUploaded_Uploading">正在上传测试 %1$s ...</string>
-  <string name="Toast_ResultsUploaded">Upload successful</string>
+  <string name="Toast_ResultsUploaded">上传成功</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">启用通知权限以自动运行测试。</string>
   <string name="Modal_EnableNotifications_News">启用通知权限以接收资讯更新。</string>
   <string name="Modal_EnableNotifications_Any">启用通知权限以接收推送通知。</string>
@@ -221,9 +221,9 @@
   <string name="Modal_ManualUpload_Disable">不要，谢谢</string>
   <string name="Modal_UploadFailed_Title">上传失败</string>
   <string name="Modal_UploadFailed_Paragraph">您想重试还是取消？</string>
-  <string name="Modal_Error_LogNotFound">Log file not found</string>
-  <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
-  <string name="Modal_Error_JsonEmpty">JSON empty</string>
+  <string name="Modal_Error_LogNotFound">未找到日志文件</string>
+  <string name="Modal_Error_NoValidUrls">未找到有效 URL</string>
+  <string name="Modal_Error_JsonEmpty">空的 JSON</string>
   <string name="Toast_CopiedToClipboard">已复制到剪贴板</string>
   <string name="Snackbar_ResultsNotUploaded_Text">未上传</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">上传</string>

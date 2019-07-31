@@ -221,9 +221,9 @@
   <string name="Modal_ManualUpload_Disable">Hayır, teşekkürler</string>
   <string name="Modal_UploadFailed_Title">Yükleme başarısız</string>
   <string name="Modal_UploadFailed_Paragraph">Yeniden denemek ya da iptal etmek ister misiniz?</string>
-  <string name="Modal_Error_LogNotFound">Log file not found</string>
-  <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
-  <string name="Modal_Error_JsonEmpty">JSON empty</string>
+  <string name="Modal_Error_LogNotFound">Günlük dosyası bulunamadı</string>
+  <string name="Modal_Error_NoValidUrls">Geçerli bir adres bulunamadı</string>
+  <string name="Modal_Error_JsonEmpty">JSON boş</string>
   <string name="Toast_CopiedToClipboard">Panoya kopyalandı</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Yüklenmemiş</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Yükle</string>
