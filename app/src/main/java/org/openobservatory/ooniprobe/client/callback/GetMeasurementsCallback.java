@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.client.callback;
 
+import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
 
 import retrofit2.Call;
@@ -16,7 +17,7 @@ public abstract class GetMeasurementsCallback implements Callback<ApiMeasurement
                 response.body().results.get(0).measurement_url != null) {
             onSuccess(response.body().results.get(0));
         } else {
-            onError(Integer.toString(response.code()));
+            onError(Integer.toString(R.string.Modal_Error_JsonEmpty));
         }
     }
 
