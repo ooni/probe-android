@@ -5,8 +5,7 @@ import android.os.AsyncTask;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.OoniIOClient;
-import org.openobservatory.ooniprobe.model.RetrieveUrlResponse;
+import org.openobservatory.ooniprobe.model.api.UrlList;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
@@ -25,8 +24,6 @@ import java.util.List;
 import io.ooni.mk.MKGeoIPLookupResults;
 import io.ooni.mk.MKGeoIPLookupTask;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<AbstractTest, String, Void> implements AbstractTest.TestCallback {
 	public static final List<AbstractSuite> SUITES = Arrays.asList(new InstantMessagingSuite(), new MiddleBoxesSuite(), new PerformanceSuite(), new WebsitesSuite());
@@ -62,8 +59,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 					geoIPLookup.setASNDBPath(act.getCacheDir() + "/" + Application.ASN_MMDB);
 					MKGeoIPLookupResults results = geoIPLookup.perform();
 					String probeCC = results.isGood() ? results.getProbeCC() : "XX";
-					Retrofit retrofit = new Retrofit.Builder().baseUrl("https://orchestrate.ooni.io/").addConverterFactory(GsonConverterFactory.create()).build();
-					Response<RetrieveUrlResponse> response = retrofit.create(OoniIOClient.class).getUrls(probeCC, act.getPreferenceManager().getEnabledCategory()).execute();
+					Response<UrlList> response = act.getOrchestraClient().getUrls(probeCC, act.getPreferenceManager().getEnabledCategory()).execute();
 					if (response.isSuccessful() && response.body() != null && response.body().results != null) {
 						ArrayList<String> inputs = new ArrayList<>();
 						for (Url url : response.body().results)

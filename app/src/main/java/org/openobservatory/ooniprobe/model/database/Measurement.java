@@ -2,6 +2,8 @@ package org.openobservatory.ooniprobe.model.database;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.ForeignKey;
@@ -29,8 +31,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import androidx.annotation.NonNull;
 
 @Table(database = Application.class)
 public class Measurement extends BaseModel implements Serializable {
@@ -166,4 +166,5 @@ public class Measurement extends BaseModel implements Serializable {
 	public void setTestKeys(TestKeys testKeys) {
 		test_keys = new Gson().toJson(testKeys);
 	}
+
 }

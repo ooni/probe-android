@@ -22,12 +22,16 @@ android {
 	buildTypes {
 		debug {
 			buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://registry.proteus.test.ooni.io"'
+			buildConfigField 'String', 'OONI_ORCHESTRATE_BASE_URL', '"https://orchestrate.ooni.io/"'
+			buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 		}
 
 		release {
 			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 			buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://registry.proteus.ooni.io"'
+			buildConfigField 'String', 'OONI_ORCHESTRATE_BASE_URL', '"https://orchestrate.ooni.io/"'
+			buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 		}
 	}
 
@@ -48,8 +52,9 @@ dependencies {
 	implementation 'com.github.Raizlabs.DBFlow:dbflow-core:4.2.4'
 	implementation 'com.github.Raizlabs.DBFlow:dbflow:4.2.4'
 
-	implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-	implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+	implementation 'com.squareup.retrofit2:retrofit:2.6.0'
+	implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
+	implementation 'com.squareup.okhttp3:logging-interceptor:4.0.1'
 
 	implementation 'com.jakewharton:butterknife:10.1.0'
 	annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'

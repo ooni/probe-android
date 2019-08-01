@@ -1,11 +1,13 @@
 package org.openobservatory.ooniprobe.activity;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.gson.Gson;
 
+import org.openobservatory.ooniprobe.client.OONIAPIClient;
+import org.openobservatory.ooniprobe.client.OONIOrchestraClient;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 public abstract class AbstractActivity extends AppCompatActivity {
 	public PreferenceManager getPreferenceManager() {
@@ -22,5 +24,13 @@ public abstract class AbstractActivity extends AppCompatActivity {
 
 	void setTestRunning(boolean testRunning) {
 		((Application) getApplication()).setTestRunning(testRunning);
+	}
+
+	public OONIOrchestraClient getOrchestraClient() {
+		return ((Application) getApplication()).getOrchestraClient();
+	}
+
+	public OONIAPIClient getApiClient() {
+		return ((Application) getApplication()).getApiClient();
 	}
 }
