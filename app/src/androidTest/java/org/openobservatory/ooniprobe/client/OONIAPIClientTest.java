@@ -1,11 +1,18 @@
 package org.openobservatory.ooniprobe.client;
 
+import com.raizlabs.android.dbflow.sql.language.Delete;
+
+import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openobservatory.ooniprobe.AbstractTest;
 import org.openobservatory.ooniprobe.client.callback.GetMeasurementsCallback;
 import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
+import org.openobservatory.ooniprobe.model.database.Measurement;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -65,5 +72,37 @@ public class OONIAPIClientTest extends AbstractTest {
 
     @Test
     public void testDeleteJsons() {
+        Delete.table(Measurement.class);
+        addMeasurement(EXISTING_REPORT_ID, true);
+        addMeasurement(EXISTING_REPORT_ID_2, true);
+        addMeasurement(NONEXISTING_REPORT_ID, true);
+        addMeasurement(NONEXISTING_REPORT_ID, true);
+        //Measurement.deleteUploadedJsons();
+        //HOW to check that it has deleted the first two?
+        //In iOS we use a success callback
     }
+
+    public Measurement addMeasurement(String report_id, Boolean write_file) {
+        //Simulating measurement done and uploaded
+        Measurement measurement = new Measurement();
+        measurement.report_id = report_id;
+        measurement.is_done = true;
+        measurement.is_uploaded = true;
+        measurement.save();
+        if (write_file){
+            File entryFile = Measurement.getEntryFile(c, measurement.id, measurement.test_name);
+            entryFile.getParentFile().mkdirs();
+            try {
+                FileUtils.writeStringToFile(
+                        entryFile,
+                        "",
+                        Charset.forName("UTF-8")
+                );
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return measurement;
+    }
+
 }
