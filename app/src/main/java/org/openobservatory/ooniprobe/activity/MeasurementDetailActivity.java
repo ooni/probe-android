@@ -54,6 +54,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
+import localhost.toolkit.app.fragment.MessageDialogFragment;
 
 public class MeasurementDetailActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String ID = "id";
@@ -193,6 +194,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.rawData:
+                //Try to open file, if it doesn't exist dont show Error dialog immediately but try to download the json from internet
                 try {
                     File entryFile = Measurement.getEntryFile(this, measurement.id, measurement.test_name);
                     String json = FileUtils.readFileToString(entryFile, Charset.forName("UTF-8"));
@@ -200,6 +202,10 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                     startActivity(TextActivity.newIntent(this, json));
                 } catch (Exception e) {
                     e.printStackTrace();
+                    new MessageDialogFragment.Builder()
+                            .withTitle(getString(R.string.Modal_Error))
+                            .withMessage(getString(R.string.Modal_Error))
+                            .build().show(getSupportFragmentManager(), null);
                 }
                 return true;
             case R.id.viewLog:
@@ -209,6 +215,9 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                     startActivity(TextActivity.newIntent(this, log));
                 } catch (Exception e) {
                     e.printStackTrace();
+                    new MessageDialogFragment.Builder()
+                            .withTitle(getString(R.string.Modal_Error_LogNotFound))
+                            .build().show(getSupportFragmentManager(), null);
                 }
                 return true;
             default:
