@@ -98,7 +98,7 @@ public class OONIAPIClientTest extends AbstractTest {
     @Test
     public void getMeasurementJsonError() {
         final CountDownLatch signal = new CountDownLatch(1);
-        new OkHttpClient().newCall(new Request.Builder().url(JSON_URL).build()).enqueue(new GetMeasurementCallback() {
+        new OkHttpClient().newCall(new Request.Builder().url(NON_PARSABLE_URL).build()).enqueue(new GetMeasurementCallback() {
             @Override
             public void onSuccess(String json) {
                 Assert.fail();
