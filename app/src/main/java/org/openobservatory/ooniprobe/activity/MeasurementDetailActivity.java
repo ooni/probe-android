@@ -21,6 +21,8 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.client.callback.GetMeasurementCallback;
+import org.openobservatory.ooniprobe.client.callback.GetMeasurementsCallback;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.fragment.measurement.DashFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.FacebookMessengerFragment;
@@ -34,6 +36,7 @@ import org.openobservatory.ooniprobe.fragment.measurement.TelegramFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.WebConnectivityFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.WhatsappFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment;
+import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
@@ -55,6 +58,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 import localhost.toolkit.app.fragment.MessageDialogFragment;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 
 public class MeasurementDetailActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String ID = "id";
@@ -201,11 +206,32 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                     json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(new JsonParser().parse(json));
                     startActivity(TextActivity.newIntent(this, json));
                 } catch (Exception e) {
-                    e.printStackTrace();
-                    new MessageDialogFragment.Builder()
-                            .withTitle(getString(R.string.Modal_Error))
-                            .withMessage(getString(R.string.Modal_Error))
-                            .build().show(getSupportFragmentManager(), null);
+                    getApiClient().getMeasurement(measurement.report_id, null).enqueue(new GetMeasurementsCallback() {
+                        @Override
+                        public void onSuccess(ApiMeasurement.Result result) {
+                            new OkHttpClient().newCall(new Request.Builder().url(result.measurement_url).build()).enqueue(new GetMeasurementCallback() {
+                                @Override
+                                public void onSuccess(String json) {
+                                    startActivity(TextActivity.newIntent(MeasurementDetailActivity.this, json));
+                                }
+
+                                @Override
+                                public void onError(String msg) {
+                                    new MessageDialogFragment.Builder()
+                                            .withTitle(getString(R.string.Modal_Error))
+                                            .withMessage(msg)
+                                            .build().show(getSupportFragmentManager(), null);
+                                }
+                            });
+                        }
+                        @Override
+                        public void onError(String msg) {
+                            new MessageDialogFragment.Builder()
+                                    .withTitle(getString(R.string.Modal_Error))
+                                    .withMessage(msg)
+                                    .build().show(getSupportFragmentManager(), null);
+                        }
+                    });
                 }
                 return true;
             case R.id.viewLog:
