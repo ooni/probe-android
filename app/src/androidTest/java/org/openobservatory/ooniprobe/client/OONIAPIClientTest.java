@@ -13,6 +13,7 @@ import org.openobservatory.ooniprobe.model.database.Measurement;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -71,18 +72,31 @@ public class OONIAPIClientTest extends AbstractTest {
     }
 
     @Test
-    public void testDeleteJsons() {
+    public void testSelectMeasurementsWithJson() {
         Delete.table(Measurement.class);
         addMeasurement(EXISTING_REPORT_ID, true);
         addMeasurement(EXISTING_REPORT_ID_2, true);
         addMeasurement(NONEXISTING_REPORT_ID, true);
         addMeasurement(NONEXISTING_REPORT_ID, true);
-        //Measurement.deleteUploadedJsons();
-        //HOW to check that it has deleted the first two?
-        //In iOS we use a success callback
+        List<Measurement> measurements = Measurement.selectMeasurementsWithJson(a);
+        if (measurements.size() == 2 &&
+                containsMeasurement(measurements, EXISTING_REPORT_ID) &&
+                containsMeasurement(measurements, EXISTING_REPORT_ID))
+            Assert.assertTrue(true);
+
+        Assert.fail();
     }
 
-    public Measurement addMeasurement(String report_id, Boolean write_file) {
+    private Boolean containsMeasurement(List<Measurement> measurements, String report_id){
+        for (int i = 0; i < measurements.size(); i++) {
+            Measurement measurement = measurements.get(i);
+            if (measurement.report_id.equals(report_id))
+                return true;
+        }
+        return false;
+    }
+
+    private Measurement addMeasurement(String report_id, Boolean write_file) {
         //Simulating measurement done and uploaded
         Measurement measurement = new Measurement();
         measurement.report_id = report_id;
