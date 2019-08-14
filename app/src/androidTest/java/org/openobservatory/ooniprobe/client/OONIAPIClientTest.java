@@ -81,7 +81,7 @@ public class OONIAPIClientTest extends AbstractTest {
         List<Measurement> measurements = Measurement.selectMeasurementsWithJson(a);
         if (measurements.size() == 2 &&
                 containsMeasurement(measurements, EXISTING_REPORT_ID) &&
-                containsMeasurement(measurements, EXISTING_REPORT_ID))
+                containsMeasurement(measurements, EXISTING_REPORT_ID_2))
             Assert.assertTrue(true);
 
         Assert.fail();
