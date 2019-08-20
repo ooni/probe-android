@@ -118,6 +118,7 @@
   <string name="TestResults_Details_Methodology">क्रियाविधि</string>
   <string name="TestResults_Details_ViewLog">लॉग देखें</string>
   <string name="TestResults_Details_RawData">डेटा</string>
+  <string name="TestResults_Details_CopyExplorerURL">Copy Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">क्लिपबोर्ड पर कॉपी करें</string>
   <string name="TestResults_Details_Failed_Title">विफ़ल</string>
   <string name="TestResults_Details_Failed_Paragraph">आप इस परीक्षण को फिर से चलाने का प्रयास कर सकते हैं</string>
@@ -225,6 +226,7 @@
   <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
   <string name="Modal_Error_JsonEmpty">JSON empty</string>
   <string name="Toast_CopiedToClipboard">Copied to clipboard</string>
+  <string name="Toast_WillBeAvailable">Will be available within 24h</string>
   <string name="Snackbar_ResultsNotUploaded_Text">अपलोड नहीं किया गया</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">अपलोड करें</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">कुछ अपलोड नहीं किए गए</string>

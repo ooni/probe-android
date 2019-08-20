@@ -118,6 +118,7 @@
   <string name="TestResults_Details_Methodology">Methodology</string>
   <string name="TestResults_Details_ViewLog">Посмотреть лог</string>
   <string name="TestResults_Details_RawData">Данные</string>
+  <string name="TestResults_Details_CopyExplorerURL">Copy Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">Скопировать в буфер обмена</string>
   <string name="TestResults_Details_Failed_Title">Ошибка</string>
   <string name="TestResults_Details_Failed_Paragraph">You can try to run this test again</string>
@@ -225,6 +226,7 @@
   <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
   <string name="Modal_Error_JsonEmpty">JSON empty</string>
   <string name="Toast_CopiedToClipboard">Скопировано в буфер обмена</string>
+  <string name="Toast_WillBeAvailable">Will be available within 24h</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Не загружено</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Загрузить</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Загружено частично</string>
