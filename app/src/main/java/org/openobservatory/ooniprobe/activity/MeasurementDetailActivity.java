@@ -21,7 +21,7 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.client.callback.GetMeasurementCallback;
+import org.openobservatory.ooniprobe.client.callback.GetMeasurementJsonCallback;
 import org.openobservatory.ooniprobe.client.callback.GetMeasurementsCallback;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.fragment.measurement.DashFragment;
@@ -208,7 +208,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                     getApiClient().getMeasurement(measurement.report_id, null).enqueue(new GetMeasurementsCallback() {
                         @Override
                         public void onSuccess(ApiMeasurement.Result result) {
-                            getOkHttpClient().newCall(new Request.Builder().url(result.measurement_url).build()).enqueue(new GetMeasurementCallback() {
+                            getOkHttpClient().newCall(new Request.Builder().url(result.measurement_url).build()).enqueue(new GetMeasurementJsonCallback() {
                                 @Override
                                 public void onSuccess(String json) {
                                     startActivity(TextActivity.newIntent(MeasurementDetailActivity.this, json));

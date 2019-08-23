@@ -3,7 +3,7 @@ package org.openobservatory.ooniprobe.client;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openobservatory.ooniprobe.AbstractTest;
-import org.openobservatory.ooniprobe.client.callback.GetMeasurementCallback;
+import org.openobservatory.ooniprobe.client.callback.GetMeasurementJsonCallback;
 import org.openobservatory.ooniprobe.client.callback.GetMeasurementsCallback;
 import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
 
@@ -73,7 +73,7 @@ public class OONIAPIClientTest extends AbstractTest {
     @Test
     public void getMeasurementJsonSuccess() {
         final CountDownLatch signal = new CountDownLatch(1);
-        a.getOkHttpClient().newCall(new Request.Builder().url(JSON_URL).build()).enqueue(new GetMeasurementCallback() {
+        a.getOkHttpClient().newCall(new Request.Builder().url(JSON_URL).build()).enqueue(new GetMeasurementJsonCallback() {
             @Override
             public void onSuccess(String json) {
                 Assert.assertNotNull(json);
@@ -97,7 +97,7 @@ public class OONIAPIClientTest extends AbstractTest {
     @Test
     public void getMeasurementJsonError() {
         final CountDownLatch signal = new CountDownLatch(1);
-        a.getOkHttpClient().newCall(new Request.Builder().url(NON_PARSABLE_URL).build()).enqueue(new GetMeasurementCallback() {
+        a.getOkHttpClient().newCall(new Request.Builder().url(NON_PARSABLE_URL).build()).enqueue(new GetMeasurementJsonCallback() {
             @Override
             public void onSuccess(String json) {
                 Assert.fail();

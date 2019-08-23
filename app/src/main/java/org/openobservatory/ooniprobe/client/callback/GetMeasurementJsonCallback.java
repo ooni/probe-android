@@ -11,7 +11,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public abstract class GetMeasurementCallback implements Callback {
+public abstract class GetMeasurementJsonCallback implements Callback {
     @Override
     public void onResponse(@NotNull Call call, @NotNull Response response) {
         String json;
