@@ -10,14 +10,13 @@ import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
 public class OONIAPIClientTest extends AbstractTest {
     private static final String EXISTING_REPORT_ID = "20190113T202156Z_AS327931_CgoC3KbgM6zKajvIIt1AxxybJ1HbjwwWJjsJnlxy9rpcGY54VH";
     private static final String EXISTING_REPORT_ID_2 = "20190702T000027Z_AS5413_6FT78sjp5qnESDVWlFlm6bfxxwOEqR08ySAwigTF6C8PFCbMsM";
     private static final String NONEXISTING_REPORT_ID = "EMPTY";
-    private static final String NON_PARSABLE_URL = "https://\t";
+    private static final String NON_PARSABLE_URL = "https://api.ooni.io/api/v1/measurement/nonexistent-measurement-url";
     private static final String JSON_URL = "https://api.ooni.io/api/v1/measurement/temp-id-263478291";
 
     @Test
@@ -74,7 +73,7 @@ public class OONIAPIClientTest extends AbstractTest {
     @Test
     public void getMeasurementJsonSuccess() {
         final CountDownLatch signal = new CountDownLatch(1);
-        new OkHttpClient().newCall(new Request.Builder().url(JSON_URL).build()).enqueue(new GetMeasurementCallback() {
+        a.getOkHttpClient().newCall(new Request.Builder().url(JSON_URL).build()).enqueue(new GetMeasurementCallback() {
             @Override
             public void onSuccess(String json) {
                 Assert.assertNotNull(json);
@@ -98,7 +97,7 @@ public class OONIAPIClientTest extends AbstractTest {
     @Test
     public void getMeasurementJsonError() {
         final CountDownLatch signal = new CountDownLatch(1);
-        new OkHttpClient().newCall(new Request.Builder().url(NON_PARSABLE_URL).build()).enqueue(new GetMeasurementCallback() {
+        a.getOkHttpClient().newCall(new Request.Builder().url(NON_PARSABLE_URL).build()).enqueue(new GetMeasurementCallback() {
             @Override
             public void onSuccess(String json) {
                 Assert.fail();

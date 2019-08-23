@@ -14,12 +14,15 @@ import okhttp3.Response;
 public abstract class GetMeasurementCallback implements Callback {
     @Override
     public void onResponse(@NotNull Call call, @NotNull Response response) {
+        String json;
         try {
-            onSuccess(new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create()
-                    .toJson(new JsonParser().parse(response.body().string())));
+            json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create()
+                    .toJson(new JsonParser().parse(response.body().string()));
         } catch (Exception e) {
             onError(e.getMessage());
+            return;
         }
+        onSuccess(json);
     }
 
     @Override

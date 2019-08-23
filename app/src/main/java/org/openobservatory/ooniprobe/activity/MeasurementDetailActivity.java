@@ -58,7 +58,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 import localhost.toolkit.app.fragment.MessageDialogFragment;
-import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
 public class MeasurementDetailActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
@@ -209,7 +208,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                     getApiClient().getMeasurement(measurement.report_id, null).enqueue(new GetMeasurementsCallback() {
                         @Override
                         public void onSuccess(ApiMeasurement.Result result) {
-                            new OkHttpClient().newCall(new Request.Builder().url(result.measurement_url).build()).enqueue(new GetMeasurementCallback() {
+                            getOkHttpClient().newCall(new Request.Builder().url(result.measurement_url).build()).enqueue(new GetMeasurementCallback() {
                                 @Override
                                 public void onSuccess(String json) {
                                     startActivity(TextActivity.newIntent(MeasurementDetailActivity.this, json));
