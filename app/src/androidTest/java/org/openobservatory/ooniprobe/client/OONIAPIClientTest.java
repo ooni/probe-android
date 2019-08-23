@@ -74,17 +74,14 @@ public class OONIAPIClientTest extends AbstractTest {
     @Test
     public void testSelectMeasurementsWithJson() throws IOException {
         Delete.table(Measurement.class);
-        addMeasurement(EXISTING_REPORT_ID, true);
+        addMeasurement(EXISTING_REPORT_ID, false);
         addMeasurement(EXISTING_REPORT_ID_2, true);
         addMeasurement(NONEXISTING_REPORT_ID, true);
-        addMeasurement(NONEXISTING_REPORT_ID, true);
         List<Measurement> measurements = Measurement.selectMeasurementsWithJson(a);
-        if (measurements.size() == 2 &&
-                containsMeasurement(measurements, EXISTING_REPORT_ID) &&
-                containsMeasurement(measurements, EXISTING_REPORT_ID_2))
-            Assert.assertTrue(true);
-
-        Assert.fail();
+        //I create 3 measurement and only two of them have a file on disk
+        Assert.assertTrue(measurements.size() == 2 &&
+            containsMeasurement(measurements, NONEXISTING_REPORT_ID) &&
+            containsMeasurement(measurements, EXISTING_REPORT_ID_2));
     }
 
     private Boolean containsMeasurement(List<Measurement> measurements, String report_id){
@@ -98,7 +95,6 @@ public class OONIAPIClientTest extends AbstractTest {
 
     private Measurement addMeasurement(String report_id, Boolean write_file) throws IOException {
         //Simulating measurement done and uploaded
-        //write_file is added just for consistency with iOS, here we always set it to true
         Measurement measurement = new Measurement();
         measurement.report_id = report_id;
         measurement.is_done = true;
