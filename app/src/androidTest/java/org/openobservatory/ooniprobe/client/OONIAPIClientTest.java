@@ -98,6 +98,7 @@ public class OONIAPIClientTest extends AbstractTest {
 
     private Measurement addMeasurement(String report_id, Boolean write_file) {
         //Simulating measurement done and uploaded
+        //write_file is added just for consistency with iOS, here we always set it to true
         Measurement measurement = new Measurement();
         measurement.report_id = report_id;
         measurement.is_done = true;
