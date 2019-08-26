@@ -71,7 +71,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     Toolbar toolbar;
     private Measurement measurement;
     private Snackbar snackbar;
-
+    private Boolean isInExplorer;
     public static Intent newIntent(Context context, int id) {
         return new Intent(context, MeasurementDetailActivity.class).putExtra(ID, id);
     }
@@ -178,12 +178,14 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
         snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.Snackbar_ResultsNotUploaded_Upload, v1 -> runAsyncTask());
         Context c = this;
+        isInExplorer = !measurement.hasReportFile(c);
         if (measurement.hasReportFile(c)){
             getApiClient().getMeasurement(measurement.report_id, null).enqueue(new GetMeasurementsCallback() {
                 @Override
                 public void onSuccess(ApiMeasurement.Result result) {
                     measurement.deleteEntryFile(c);
                     measurement.deleteLogFile(c);
+                    isInExplorer = true;
                 }
                 @Override
                 public void onError(String msg) {/* NOTHING */}
