@@ -1,12 +1,20 @@
 package org.openobservatory.ooniprobe.client;
 
+import com.raizlabs.android.dbflow.sql.language.Delete;
+
+import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openobservatory.ooniprobe.AbstractTest;
 import org.openobservatory.ooniprobe.client.callback.GetMeasurementJsonCallback;
 import org.openobservatory.ooniprobe.client.callback.GetMeasurementsCallback;
 import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
+import org.openobservatory.ooniprobe.model.database.Measurement;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -67,7 +75,25 @@ public class OONIAPIClientTest extends AbstractTest {
     }
 
     @Test
-    public void testDeleteJsons() {
+    public void testSelectMeasurementsWithJson() throws IOException {
+        Delete.table(Measurement.class);
+        addMeasurement(EXISTING_REPORT_ID, false);
+        addMeasurement(EXISTING_REPORT_ID_2, true);
+        addMeasurement(NONEXISTING_REPORT_ID, true);
+        List<Measurement> measurements = Measurement.selectMeasurementsWithJson(a);
+        //I create 3 measurement and only two of them have a file on disk
+        Assert.assertTrue(measurements.size() == 2 &&
+            containsMeasurement(measurements, NONEXISTING_REPORT_ID) &&
+            containsMeasurement(measurements, EXISTING_REPORT_ID_2));
+    }
+
+    private Boolean containsMeasurement(List<Measurement> measurements, String report_id){
+        for (int i = 0; i < measurements.size(); i++) {
+            Measurement measurement = measurements.get(i);
+            if (measurement.report_id.equals(report_id))
+                return true;
+        }
+        return false;
     }
 
     @Test
@@ -115,5 +141,23 @@ public class OONIAPIClientTest extends AbstractTest {
             e.printStackTrace();
             Assert.fail();
         }
+    }
+    private Measurement addMeasurement(String report_id, Boolean write_file) throws IOException {
+        //Simulating measurement done and uploaded
+        Measurement measurement = new Measurement();
+        measurement.report_id = report_id;
+        measurement.is_done = true;
+        measurement.is_uploaded = true;
+        measurement.save();
+        if (write_file){
+            File entryFile = Measurement.getEntryFile(c, measurement.id, measurement.test_name);
+            entryFile.getParentFile().mkdirs();
+            FileUtils.writeStringToFile(
+                    entryFile,
+                    "",
+                    Charset.forName("UTF-8")
+            );
+        }
+        return measurement;
     }
 }

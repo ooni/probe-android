@@ -118,6 +118,7 @@
   <string name="TestResults_Details_Methodology">Yöntem</string>
   <string name="TestResults_Details_ViewLog">Günlüğü görüntüle</string>
   <string name="TestResults_Details_RawData">Veri</string>
+  <string name="TestResults_Details_CopyExplorerURL">Copy Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">Panoya kopyala</string>
   <string name="TestResults_Details_Failed_Title">Başarısız</string>
   <string name="TestResults_Details_Failed_Paragraph"> Bu sınamayı yeniden çalıştırmayı deneyebilirsiniz</string>
@@ -225,6 +226,7 @@
   <string name="Modal_Error_NoValidUrls">Geçerli bir adres bulunamadı</string>
   <string name="Modal_Error_JsonEmpty">JSON boş</string>
   <string name="Toast_CopiedToClipboard">Panoya kopyalandı</string>
+  <string name="Toast_WillBeAvailable">Will be available within 24h</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Yüklenmemiş</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Yükle</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Bazıları yüklenmemiş</string>

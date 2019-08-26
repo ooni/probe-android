@@ -118,6 +118,7 @@
   <string name="TestResults_Details_Methodology">Methodology</string>
   <string name="TestResults_Details_ViewLog">Mostra els registre</string>
   <string name="TestResults_Details_RawData">Dades</string>
+  <string name="TestResults_Details_CopyExplorerURL">Copy Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">Copia al porta-retalls</string>
   <string name="TestResults_Details_Failed_Title">Ha fallat</string>
   <string name="TestResults_Details_Failed_Paragraph">Podeu tornar a provar aquesta prova</string>
@@ -225,6 +226,7 @@
   <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
   <string name="Modal_Error_JsonEmpty">JSON empty</string>
   <string name="Toast_CopiedToClipboard">Copied to clipboard</string>
+  <string name="Toast_WillBeAvailable">Will be available within 24h</string>
   <string name="Snackbar_ResultsNotUploaded_Text">No s\'ha pujat</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Pujada</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Alguns no s\'han pujat</string>
