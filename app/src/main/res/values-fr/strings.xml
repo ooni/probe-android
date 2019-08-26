@@ -118,7 +118,7 @@
   <string name="TestResults_Details_Methodology">Méthodologie</string>
   <string name="TestResults_Details_ViewLog">Visualiser le journal</string>
   <string name="TestResults_Details_RawData">Données</string>
-  <string name="TestResults_Details_CopyExplorerURL">Copy Explorer URL</string>
+  <string name="TestResults_Details_CopyExplorerURL">Copier l’URL de l’explorateur</string>
   <string name="TestResults_Details_CopyToClipboard">Copier dans le presse-papiers</string>
   <string name="TestResults_Details_Failed_Title">Échec</string>
   <string name="TestResults_Details_Failed_Paragraph">Vous pouvez essayer de relancer ce test</string>
@@ -226,7 +226,7 @@
   <string name="Modal_Error_NoValidUrls">Aucune URL valide n’a été trouvée</string>
   <string name="Modal_Error_JsonEmpty">Le JSON est vide</string>
   <string name="Toast_CopiedToClipboard">Copié dans le presse-papiers</string>
-  <string name="Toast_WillBeAvailable">Will be available within 24h</string>
+  <string name="Toast_WillBeAvailable">Sera disponible d’ici 24 h</string>
   <string name="Snackbar_ResultsNotUploaded_Text">N’a pas été téléversé</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Téléversement</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Tout n’a pas été téléversé</string>

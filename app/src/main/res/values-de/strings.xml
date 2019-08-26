@@ -118,7 +118,7 @@
   <string name="TestResults_Details_Methodology">Methodik</string>
   <string name="TestResults_Details_ViewLog">Log ansehen</string>
   <string name="TestResults_Details_RawData">Daten</string>
-  <string name="TestResults_Details_CopyExplorerURL">Copy Explorer URL</string>
+  <string name="TestResults_Details_CopyExplorerURL">Explorer URL kopieren</string>
   <string name="TestResults_Details_CopyToClipboard">In die Zwischenablage kopieren</string>
   <string name="TestResults_Details_Failed_Title">Fehlgeschlagen</string>
   <string name="TestResults_Details_Failed_Paragraph">Du kannst versuchen, diesen Test erneut auszuführen</string>
@@ -226,7 +226,7 @@
   <string name="Modal_Error_NoValidUrls">Keine gültigen URLs gefunden</string>
   <string name="Modal_Error_JsonEmpty">JSON ist leer</string>
   <string name="Toast_CopiedToClipboard">In Zwischenablage kopiert</string>
-  <string name="Toast_WillBeAvailable">Will be available within 24h</string>
+  <string name="Toast_WillBeAvailable">Wird in 24h verfügbar sein</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Nicht hochgeladen</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Hochladen</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Manche nicht hochgeladen</string>
