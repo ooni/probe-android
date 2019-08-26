@@ -21,6 +21,8 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.client.callback.GetMeasurementJsonCallback;
+import org.openobservatory.ooniprobe.client.callback.GetMeasurementsCallback;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.fragment.measurement.DashFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.FacebookMessengerFragment;
@@ -34,6 +36,7 @@ import org.openobservatory.ooniprobe.fragment.measurement.TelegramFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.WebConnectivityFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.WhatsappFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment;
+import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
@@ -54,6 +57,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
+import localhost.toolkit.app.fragment.MessageDialogFragment;
+import okhttp3.Request;
 
 public class MeasurementDetailActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String ID = "id";
@@ -193,13 +198,39 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.rawData:
+                //Try to open file, if it doesn't exist dont show Error dialog immediately but try to download the json from internet
                 try {
                     File entryFile = Measurement.getEntryFile(this, measurement.id, measurement.test_name);
                     String json = FileUtils.readFileToString(entryFile, Charset.forName("UTF-8"));
                     json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(new JsonParser().parse(json));
                     startActivity(TextActivity.newIntent(this, json));
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    getApiClient().getMeasurement(measurement.report_id, null).enqueue(new GetMeasurementsCallback() {
+                        @Override
+                        public void onSuccess(ApiMeasurement.Result result) {
+                            getOkHttpClient().newCall(new Request.Builder().url(result.measurement_url).build()).enqueue(new GetMeasurementJsonCallback() {
+                                @Override
+                                public void onSuccess(String json) {
+                                    startActivity(TextActivity.newIntent(MeasurementDetailActivity.this, json));
+                                }
+
+                                @Override
+                                public void onError(String msg) {
+                                    new MessageDialogFragment.Builder()
+                                            .withTitle(getString(R.string.Modal_Error))
+                                            .withMessage(msg)
+                                            .build().show(getSupportFragmentManager(), null);
+                                }
+                            });
+                        }
+                        @Override
+                        public void onError(String msg) {
+                            new MessageDialogFragment.Builder()
+                                    .withTitle(getString(R.string.Modal_Error))
+                                    .withMessage(msg)
+                                    .build().show(getSupportFragmentManager(), null);
+                        }
+                    });
                 }
                 return true;
             case R.id.viewLog:
@@ -209,6 +240,9 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                     startActivity(TextActivity.newIntent(this, log));
                 } catch (Exception e) {
                     e.printStackTrace();
+                    new MessageDialogFragment.Builder()
+                            .withTitle(getString(R.string.Modal_Error_LogNotFound))
+                            .build().show(getSupportFragmentManager(), null);
                 }
                 return true;
             default:
