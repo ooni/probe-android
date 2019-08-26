@@ -177,6 +177,18 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                 .commit();
         snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.Snackbar_ResultsNotUploaded_Upload, v1 -> runAsyncTask());
+        Context c = this;
+        if (measurement.hasReportFile(c)){
+            getApiClient().getMeasurement(measurement.report_id, null).enqueue(new GetMeasurementsCallback() {
+                @Override
+                public void onSuccess(ApiMeasurement.Result result) {
+                    measurement.deleteEntryFile(c);
+                    measurement.deleteLogFile(c);
+                }
+                @Override
+                public void onError(String msg) {/* NOTHING */}
+            });
+        }
         load();
     }
 
