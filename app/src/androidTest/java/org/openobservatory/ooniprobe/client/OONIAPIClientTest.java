@@ -6,6 +6,7 @@ import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openobservatory.ooniprobe.AbstractTest;
+import org.openobservatory.ooniprobe.client.callback.GetMeasurementJsonCallback;
 import org.openobservatory.ooniprobe.client.callback.GetMeasurementsCallback;
 import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
 import org.openobservatory.ooniprobe.model.database.Measurement;
@@ -17,11 +18,13 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Request;
+
 public class OONIAPIClientTest extends AbstractTest {
     private static final String EXISTING_REPORT_ID = "20190113T202156Z_AS327931_CgoC3KbgM6zKajvIIt1AxxybJ1HbjwwWJjsJnlxy9rpcGY54VH";
     private static final String EXISTING_REPORT_ID_2 = "20190702T000027Z_AS5413_6FT78sjp5qnESDVWlFlm6bfxxwOEqR08ySAwigTF6C8PFCbMsM";
     private static final String NONEXISTING_REPORT_ID = "EMPTY";
-    private static final String NON_PARSABLE_URL = "https://\t";
+    private static final String NON_EXISTING_MEASUREMENT_URL = "https://api.ooni.io/api/v1/measurement/nonexistent-measurement-url";
     private static final String JSON_URL = "https://api.ooni.io/api/v1/measurement/temp-id-263478291";
 
     @Test
@@ -93,6 +96,52 @@ public class OONIAPIClientTest extends AbstractTest {
         return false;
     }
 
+    @Test
+    public void getMeasurementJsonSuccess() {
+        final CountDownLatch signal = new CountDownLatch(1);
+        a.getOkHttpClient().newCall(new Request.Builder().url(JSON_URL).build()).enqueue(new GetMeasurementJsonCallback() {
+            @Override
+            public void onSuccess(String json) {
+                Assert.assertNotNull(json);
+                signal.countDown();
+            }
+
+            @Override
+            public void onError(String msg) {
+                Assert.fail();
+                signal.countDown();
+            }
+        });
+        try {
+            signal.await(1, TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void getMeasurementJsonError() {
+        final CountDownLatch signal = new CountDownLatch(1);
+        a.getOkHttpClient().newCall(new Request.Builder().url(NON_EXISTING_MEASUREMENT_URL).build()).enqueue(new GetMeasurementJsonCallback() {
+            @Override
+            public void onSuccess(String json) {
+                Assert.fail();
+                signal.countDown();
+            }
+
+            @Override
+            public void onError(String msg) {
+                signal.countDown();
+            }
+        });
+        try {
+            signal.await(1, TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
     private Measurement addMeasurement(String report_id, Boolean write_file) throws IOException {
         //Simulating measurement done and uploaded
         Measurement measurement = new Measurement();
@@ -111,5 +160,4 @@ public class OONIAPIClientTest extends AbstractTest {
         }
         return measurement;
     }
-
 }

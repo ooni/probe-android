@@ -72,7 +72,7 @@ public class Application extends android.app.Application {
 			}
 	}
 
-	private OkHttpClient getOkHttpClient() {
+	public OkHttpClient getOkHttpClient() {
 		if (okHttpClient == null) {
 			HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
 			logging.level(BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.BASIC);

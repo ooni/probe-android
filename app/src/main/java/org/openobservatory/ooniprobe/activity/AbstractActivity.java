@@ -9,6 +9,8 @@ import org.openobservatory.ooniprobe.client.OONIOrchestraClient;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 
+import okhttp3.OkHttpClient;
+
 public abstract class AbstractActivity extends AppCompatActivity {
 	public PreferenceManager getPreferenceManager() {
 		return ((Application) getApplication()).getPreferenceManager();
@@ -32,5 +34,9 @@ public abstract class AbstractActivity extends AppCompatActivity {
 
 	public OONIAPIClient getApiClient() {
 		return ((Application) getApplication()).getApiClient();
+	}
+
+	public OkHttpClient getOkHttpClient() {
+		return ((Application) getApplication()).getOkHttpClient();
 	}
 }
