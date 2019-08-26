@@ -188,7 +188,9 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                     isInExplorer = true;
                 }
                 @Override
-                public void onError(String msg) {/* NOTHING */}
+                public void onError(String msg) {
+                    isInExplorer = false;
+                }
             });
         }
         load();
@@ -267,6 +269,13 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                 if (measurement.test_name.equals("web_connectivity"))
                     link = link + "?input=" + measurement.url.url;
                 ((ClipboardManager) getSystemService(CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText(getString(R.string.General_AppName), link));
+                if (isInExplorer)
+                    Toast.makeText(this, R.string.Toast_CopiedToClipboard, Toast.LENGTH_SHORT).show();
+                else {
+                    String toastStr = getString(R.string.Toast_CopiedToClipboard) + "\n" + getString(R.string.Toast_WillBeAvailable);
+                    Toast.makeText(this, toastStr, Toast.LENGTH_SHORT).show();
+
+                }
                 Toast.makeText(this, R.string.Toast_CopiedToClipboard, Toast.LENGTH_SHORT).show();
                 return true;
             default:
