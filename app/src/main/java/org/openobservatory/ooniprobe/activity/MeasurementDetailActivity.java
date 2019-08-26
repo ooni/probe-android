@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.activity;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -244,6 +247,13 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                             .withTitle(getString(R.string.Modal_Error_LogNotFound))
                             .build().show(getSupportFragmentManager(), null);
                 }
+                return true;
+            case R.id.copyExplorerUrl:
+                String link = "https://explorer.ooni.io/measurement/" + measurement.report_id;
+                if (measurement.test_name.equals("web_connectivity"))
+                    link = link + "?input=" + measurement.url.url;
+                ((ClipboardManager) getSystemService(CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText(getString(R.string.General_AppName), link));
+                Toast.makeText(this, R.string.Toast_CopiedToClipboard, Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
