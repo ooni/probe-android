@@ -72,6 +72,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     private Measurement measurement;
     private Snackbar snackbar;
     private Boolean isInExplorer;
+
     public static Intent newIntent(Context context, int id) {
         return new Intent(context, MeasurementDetailActivity.class).putExtra(ID, id);
     }
