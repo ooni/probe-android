@@ -118,6 +118,7 @@
   <string name="TestResults_Details_Methodology">Metodologia</string>
   <string name="TestResults_Details_ViewLog">Ver log</string>
   <string name="TestResults_Details_RawData">Dados</string>
+  <string name="TestResults_Details_CopyExplorerURL">Copiar URL do Explorer</string>
   <string name="TestResults_Details_CopyToClipboard">Copiar para área de transferência</string>
   <string name="TestResults_Details_Failed_Title">Falhou</string>
   <string name="TestResults_Details_Failed_Paragraph">Você pode tentar executar este teste novamente</string>
@@ -221,10 +222,11 @@
   <string name="Modal_ManualUpload_Disable">Não, agradeço</string>
   <string name="Modal_UploadFailed_Title">Envio falhou</string>
   <string name="Modal_UploadFailed_Paragraph">Você gostaria de repetir ou cancelar?</string>
-  <string name="Modal_Error_LogNotFound">Log file not found</string>
-  <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
-  <string name="Modal_Error_JsonEmpty">JSON empty</string>
+  <string name="Modal_Error_LogNotFound">Arquivo de log não encontrado</string>
+  <string name="Modal_Error_NoValidUrls">Nenhuma URL válida encontrado</string>
+  <string name="Modal_Error_JsonEmpty">JSON vazio</string>
   <string name="Toast_CopiedToClipboard">Copiado para a área de transferência</string>
+  <string name="Toast_WillBeAvailable">Estará disponível dentro de 24h</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Não Carregado</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Carregar</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Alguns items não carregaram</string>

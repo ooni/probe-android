@@ -118,6 +118,7 @@
   <string name="TestResults_Details_Methodology">Metodología</string>
   <string name="TestResults_Details_ViewLog">Ver registro</string>
   <string name="TestResults_Details_RawData">Datos</string>
+  <string name="TestResults_Details_CopyExplorerURL">Copy Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">Copiar al portapapeles</string>
   <string name="TestResults_Details_Failed_Title">Falló</string>
   <string name="TestResults_Details_Failed_Paragraph">Puedes ejecutar esta prueba de nuevo</string>
@@ -225,6 +226,7 @@
   <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
   <string name="Modal_Error_JsonEmpty">JSON empty</string>
   <string name="Toast_CopiedToClipboard">Se ha copiado al portapapeles</string>
+  <string name="Toast_WillBeAvailable">Will be available within 24h</string>
   <string name="Snackbar_ResultsNotUploaded_Text">No subido</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Subir</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Algunos no subidos</string>

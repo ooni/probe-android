@@ -118,6 +118,7 @@
   <string name="TestResults_Details_Methodology">Metodologjia</string>
   <string name="TestResults_Details_ViewLog">Shiko detajet</string>
   <string name="TestResults_Details_RawData">Të dhëna</string>
+  <string name="TestResults_Details_CopyExplorerURL">Copy Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">Kopjo</string>
   <string name="TestResults_Details_Failed_Title">Dështoi</string>
   <string name="TestResults_Details_Failed_Paragraph">Ju mund të provoni të bëni sërish këtë test </string>
@@ -225,6 +226,7 @@
   <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
   <string name="Modal_Error_JsonEmpty">JSON empty</string>
   <string name="Toast_CopiedToClipboard">U kopjua në tabelën-mbledhëse</string>
+  <string name="Toast_WillBeAvailable">Will be available within 24h</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Nuk është ngarkuar</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Ngarkoni</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Disa nuk janë ngarkuar</string>

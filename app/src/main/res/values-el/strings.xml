@@ -118,6 +118,7 @@
   <string name="TestResults_Details_Methodology">Μεθοδολογία</string>
   <string name="TestResults_Details_ViewLog">Προβολή αρχείου καταγραφής</string>
   <string name="TestResults_Details_RawData">Δεδομένα</string>
+  <string name="TestResults_Details_CopyExplorerURL">Copy Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">Αντιγραφή στο πρόχειρο</string>
   <string name="TestResults_Details_Failed_Title">Απέτυχε</string>
   <string name="TestResults_Details_Failed_Paragraph">Μπορείς να επανεκτελέσεις αυτή την δοκιμή</string>
@@ -203,7 +204,7 @@
   <string name="Modal_ResultsNotUploaded_Paragraph">Μερικά από τα αποτελέσματά σου δεν έχουν ανέβει στους διακομιστές του OONI. Αν θέλεις να συνεισφέρεις στη βάση δεδομένων του OONI, παρακαλούμε να τα ανεβάσεις.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Ανέβασμα</string>
   <string name="Modal_ResultsNotUploaded_Uploading">Ανεβαίνει %1$s ...</string>
-  <string name="Toast_ResultsUploaded">Upload successful</string>
+  <string name="Toast_ResultsUploaded">Επιτυχής μεταφόρτωση</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Ενεργοποίησε τα δικαιώματα ειδοποιήσεων για την αυτόματη εκτέλεση δοκιμών.</string>
   <string name="Modal_EnableNotifications_News">Ενεργοποίησε τα δικαιώματα ειδοποιήσεων για να λαμβάνεις ενημερώσεις.</string>
   <string name="Modal_EnableNotifications_Any">Ενεργοποίησε τα δικαιώματα ειδοποιήσεων για να λαμβάνεις ειδοποιήσεις push.</string>
@@ -219,12 +220,13 @@
   <string name="Modal_ManualUpload_Paragraph">Με αυτή τη ρύθμιση μπορείς να ανεβάσεις χειροκίνητα τις μη δημοσιευμένες μετρήσεις σου.</string>
   <string name="Modal_ManualUpload_Enable">Ενεργοποίηση</string>
   <string name="Modal_ManualUpload_Disable">Όχι, ευχαριστώ</string>
-  <string name="Modal_UploadFailed_Title">Upload failed</string>
-  <string name="Modal_UploadFailed_Paragraph">Would you like to retry or cancel?</string>
-  <string name="Modal_Error_LogNotFound">Log file not found</string>
-  <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
+  <string name="Modal_UploadFailed_Title">Αποτυχία μεταφόρτωσης</string>
+  <string name="Modal_UploadFailed_Paragraph">Θα θέλατε να προσπαθήσετε ξανά ή να ακυρώσετε;</string>
+  <string name="Modal_Error_LogNotFound">Δεν βρέθηκε αρχείο καταγραφής</string>
+  <string name="Modal_Error_NoValidUrls">Δεν βρέθηκαν έγκυρα URL</string>
   <string name="Modal_Error_JsonEmpty">JSON empty</string>
   <string name="Toast_CopiedToClipboard">Αντιγράφηκε στο πρόχειρο</string>
+  <string name="Toast_WillBeAvailable">Will be available within 24h</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Δεν ανέβηκαν</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Ανέβασμα</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Μερικά δεν ανέβηκαν</string>
@@ -295,7 +297,7 @@
   <string name="Settings_Performance_DashServerAddress">Διακομιστής DASH</string>
   <string name="Settings_Performance_DashServerPort">Θύρα διακομιστή DASH</string>
   <string name="Settings_SendEmail_Label">Αποστολή email στην υποστήριξη</string>
-  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap \"Copy to clipboard\" below to copy our email address.</string>
+  <string name="Settings_SendEmail_Error">Παρακαλούμε στείλτε ένα email στη διεύθυνση bugs@openobservatory.org με πληροφορίες σχετικά με την έκδοση της εφαρμογής και του iOS. Πατήστε \"Αντιγραφή στο πρόχειρο\" παρακάτω για να αντιγράψετε τη διεύθυνση email μας.</string>
   <string name="Notification_FinishedRunning">Οι δοκιμές εκτελέστηκαν</string>
   <string name="OONIBrowser_TryMirror">Δοκίμασε mirror</string>
   <string name="OONIBrowser_Loading">Φορτώνεται...</string>

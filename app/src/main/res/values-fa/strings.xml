@@ -118,6 +118,7 @@
   <string name="TestResults_Details_Methodology">روش‌شناسی</string>
   <string name="TestResults_Details_ViewLog">نمایش لاگ</string>
   <string name="TestResults_Details_RawData">داده‌‌ها</string>
+  <string name="TestResults_Details_CopyExplorerURL">Copy Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">به حافظه کوتاه مدت کپی کن</string>
   <string name="TestResults_Details_Failed_Title">ناموفق</string>
   <string name="TestResults_Details_Failed_Paragraph">می‌توانید این تست را دوباره انجام دهید</string>
@@ -225,6 +226,7 @@
   <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
   <string name="Modal_Error_JsonEmpty">JSON empty</string>
   <string name="Toast_CopiedToClipboard">در حافظه‌ی موقت کپی شد</string>
+  <string name="Toast_WillBeAvailable">Will be available within 24h</string>
   <string name="Snackbar_ResultsNotUploaded_Text">بارگذاری نشدند</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">آپلود</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">برخی بارگذاری نشدند</string>

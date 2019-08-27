@@ -118,6 +118,7 @@
   <string name="TestResults_Details_Methodology">Methodik</string>
   <string name="TestResults_Details_ViewLog">Log ansehen</string>
   <string name="TestResults_Details_RawData">Daten</string>
+  <string name="TestResults_Details_CopyExplorerURL">Explorer URL kopieren</string>
   <string name="TestResults_Details_CopyToClipboard">In die Zwischenablage kopieren</string>
   <string name="TestResults_Details_Failed_Title">Fehlgeschlagen</string>
   <string name="TestResults_Details_Failed_Paragraph">Du kannst versuchen, diesen Test erneut auszuführen</string>
@@ -221,10 +222,11 @@
   <string name="Modal_ManualUpload_Disable">Nein, danke</string>
   <string name="Modal_UploadFailed_Title">Hochladen fehlgeschlagen</string>
   <string name="Modal_UploadFailed_Paragraph">Möchten Sie es erneut versuchen oder abbrechen?</string>
-  <string name="Modal_Error_LogNotFound">Log file not found</string>
-  <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
-  <string name="Modal_Error_JsonEmpty">JSON empty</string>
+  <string name="Modal_Error_LogNotFound">Protokolldatei nicht gefunden</string>
+  <string name="Modal_Error_NoValidUrls">Keine gültigen URLs gefunden</string>
+  <string name="Modal_Error_JsonEmpty">JSON ist leer</string>
   <string name="Toast_CopiedToClipboard">In Zwischenablage kopiert</string>
+  <string name="Toast_WillBeAvailable">Wird in 24h verfügbar sein</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Nicht hochgeladen</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Hochladen</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Manche nicht hochgeladen</string>

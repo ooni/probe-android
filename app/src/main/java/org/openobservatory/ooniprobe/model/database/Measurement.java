@@ -2,6 +2,8 @@ package org.openobservatory.ooniprobe.model.database;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.ForeignKey;
@@ -12,7 +14,9 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.sql.language.Where;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
+import org.openobservatory.ooniprobe.client.callback.GetMeasurementsCallback;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.Dash;
@@ -29,8 +33,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import androidx.annotation.NonNull;
 
 @Table(database = Application.class)
 public class Measurement extends BaseModel implements Serializable {
@@ -114,8 +116,24 @@ public class Measurement extends BaseModel implements Serializable {
 		return new File(getMeasurementDir(c), measurementId + "_" + test_name + ".json");
 	}
 
+	public void deleteEntryFile(Context c){
+		try {
+			Measurement.getEntryFile(c, this.id, this.test_name).delete();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public static File getLogFile(Context c, int resultId, String test_name) {
 		return new File(getMeasurementDir(c), resultId + "_" + test_name + ".log");
+	}
+
+	public void deleteLogFile(Context c){
+		try {
+			Measurement.getLogFile(c, this.result.id, this.test_name).delete();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	static File getMeasurementDir(Context c) {
@@ -165,5 +183,24 @@ public class Measurement extends BaseModel implements Serializable {
 
 	public void setTestKeys(TestKeys testKeys) {
 		test_keys = new Gson().toJson(testKeys);
+	}
+
+	public void deleteUploadedJsons(Application a){
+		List<Measurement> measurements = Measurement.selectMeasurementsWithJson(a);
+		for (int i = 0; i < measurements.size(); i++) {
+			Measurement measurement = measurements.get(i);
+			a.getApiClient().getMeasurement(measurement.report_id, null).enqueue(new GetMeasurementsCallback() {
+				@Override
+				public void onSuccess(ApiMeasurement.Result result) {
+					measurement.deleteEntryFile(a);
+					measurement.deleteLogFile(a);
+				}
+
+				@Override
+				public void onError(String msg) {
+					/* NOTHING */
+				}
+			});
+		}
 	}
 }
