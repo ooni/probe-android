@@ -47,7 +47,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
         File file = Measurement.getEntryFile(c, m.id, m.test_name);
         String input = FileUtils.readFileToString(file, Charset.forName("UTF-8"));
         long uploadTimeout = getTimeout(file.length());
-        MKReporterResults results = task.submit(input, uploadTimeout);
+        MKReporterResults results = task.maybeDiscoverAndSubmit(input, uploadTimeout);
         if (results.isGood()) {
             String output = results.getUpdatedSerializedMeasurement();
             FileUtils.writeStringToFile(file, output, Charset.forName("UTF-8"));

@@ -60,7 +60,7 @@ dependencies {
 	annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
 
 	fullImplementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
-	implementation 'org.openobservatory.measurement_kit:android-libs:0.10.4-2-android.4'
+	implementation 'org.openobservatory.measurement_kit:android-libs:0.10.6-android.1'
 	implementation 'com.github.xanscale.LocalhostToolkit:app:19.05.01'
 	implementation 'pub.devrel:easypermissions:3.0.0'
 	implementation 'com.airbnb.android:lottie:3.0.7'
