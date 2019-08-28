@@ -106,7 +106,7 @@ public class Measurement extends BaseModel implements Serializable {
 		List<Measurement> measurementsJson = new ArrayList<>();
 		List<Measurement> measurements = msmQuery.queryList();
 		for (Measurement measurement : measurements){
-			if (Measurement.getEntryFile(c, measurement.id, measurement.test_name).exists())
+			if (measurement.hasReportFile(c))
 				measurementsJson.add(measurement);
 		}
 		return measurementsJson;
@@ -122,6 +122,10 @@ public class Measurement extends BaseModel implements Serializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public Boolean hasReportFile(Context c){
+		return Measurement.getEntryFile(c, this.id, this.test_name).exists();
 	}
 
 	public static File getLogFile(Context c, int resultId, String test_name) {

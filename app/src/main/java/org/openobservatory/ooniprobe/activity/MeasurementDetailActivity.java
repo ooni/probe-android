@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.activity;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -68,6 +71,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     Toolbar toolbar;
     private Measurement measurement;
     private Snackbar snackbar;
+    private Boolean isInExplorer;
 
     public static Intent newIntent(Context context, int id) {
         return new Intent(context, MeasurementDetailActivity.class).putExtra(ID, id);
@@ -174,6 +178,22 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                 .commit();
         snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.Snackbar_ResultsNotUploaded_Upload, v1 -> runAsyncTask());
+        Context c = this;
+        isInExplorer = !measurement.hasReportFile(c);
+        if (measurement.hasReportFile(c)){
+            getApiClient().getMeasurement(measurement.report_id, null).enqueue(new GetMeasurementsCallback() {
+                @Override
+                public void onSuccess(ApiMeasurement.Result result) {
+                    measurement.deleteEntryFile(c);
+                    measurement.deleteLogFile(c);
+                    isInExplorer = true;
+                }
+                @Override
+                public void onError(String msg) {
+                    isInExplorer = false;
+                }
+            });
+        }
         load();
     }
 
@@ -244,6 +264,20 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                             .withTitle(getString(R.string.Modal_Error_LogNotFound))
                             .build().show(getSupportFragmentManager(), null);
                 }
+                return true;
+            case R.id.copyExplorerUrl:
+                String link = "https://explorer.ooni.io/measurement/" + measurement.report_id;
+                if (measurement.test_name.equals("web_connectivity"))
+                    link = link + "?input=" + measurement.url.url;
+                ((ClipboardManager) getSystemService(CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText(getString(R.string.General_AppName), link));
+                if (isInExplorer)
+                    Toast.makeText(this, R.string.Toast_CopiedToClipboard, Toast.LENGTH_SHORT).show();
+                else {
+                    String toastStr = getString(R.string.Toast_CopiedToClipboard) + "\n" + getString(R.string.Toast_WillBeAvailable);
+                    Toast.makeText(this, toastStr, Toast.LENGTH_SHORT).show();
+
+                }
+                Toast.makeText(this, R.string.Toast_CopiedToClipboard, Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
