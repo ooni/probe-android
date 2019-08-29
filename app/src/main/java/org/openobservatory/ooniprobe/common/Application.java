@@ -27,10 +27,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Database(name = "v2", version = 1, foreignKeyConstraintsEnforced = true)
 public class Application extends android.app.Application {
-	public static final String CA_BUNDLE = "ca_bundle.pem";
-	public static final String COUNTRY_MMDB = "country.mmdb";
-	public static final String ASN_MMDB = "asn.mmdb";
-	private static final int GEO_VER = 2;
 
 	static {
 		System.loadLibrary("measurement_kit");
@@ -51,25 +47,6 @@ public class Application extends android.app.Application {
 		FlavorApplication.onCreate(this, preferenceManager.isSendCrash());
 		if (BuildConfig.DEBUG)
 			FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
-		copyResources(R.raw.ca_bundle, CA_BUNDLE);
-		copyResources(R.raw.asn, ASN_MMDB);
-		copyResources(R.raw.country, COUNTRY_MMDB);
-	}
-
-	private void copyResources(int id, String filename) {
-		File f = new File(getCacheDir(), filename);
-		if (!f.exists() || preferenceManager.getGeoVer() != GEO_VER)
-			try {
-				Log.d(PreferenceManager.GEO_VER, Integer.toString(GEO_VER));
-				InputStream input = getResources().openRawResource(id);
-				FileOutputStream output = new FileOutputStream(f);
-				IOUtils.copy(input, output);
-				input.close();
-				output.close();
-				preferenceManager.setGeoVer(GEO_VER);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 	}
 
 	public OkHttpClient getOkHttpClient() {
