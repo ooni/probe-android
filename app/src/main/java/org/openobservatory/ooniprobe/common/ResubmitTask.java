@@ -33,7 +33,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
      *
      * @param activity from which this task are executed
      */
-    public ResubmitTask( A activity) {
+    public ResubmitTask(A activity) {
         super(activity, true, false);
         // FIXME: we should use MKResources.
         task = new MKReporterTask(
