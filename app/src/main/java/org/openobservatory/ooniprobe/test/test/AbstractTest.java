@@ -30,6 +30,7 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 import io.ooni.mk.MKAsyncTask;
+import io.ooni.mk.MKResourcesManager;
 
 public abstract class AbstractTest implements Serializable {
     private static final String UNUSED_KEY = "UNUSED_KEY";
@@ -58,6 +59,17 @@ public abstract class AbstractTest implements Serializable {
     public abstract void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback);
 
     void run(Context c, PreferenceManager pm, Gson gson, Settings settings, Result result, int index, TestCallback testCallback) {
+        //Checking for resources before running any test
+        try {
+            boolean okay = MKResourcesManager.maybeUpdateResources(c);
+            if (!okay) {
+                throw new Exception("MKResourcesManager didn't find resources");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Crashlytics.logException(e);
+            return;
+        }
         settings.name = mkName;
         settings.inputs = inputs;
         settings.options.max_runtime = max_runtime;
