@@ -13,6 +13,8 @@ import org.openobservatory.ooniprobe.common.PreferenceManager;
 import java.util.Arrays;
 import java.util.List;
 
+import io.ooni.mk.MKResourcesManager;
+
 public class Settings {
 	@SerializedName("annotations")
 	public final Annotations annotations;
@@ -81,9 +83,10 @@ public class Settings {
 		public Integer all_endpoints;
 
 		public Options(Context c, PreferenceManager pm) {
-			ca_bundle_path = c.getCacheDir() + "/" + Application.CA_BUNDLE;
-			geoip_asn_path = c.getCacheDir() + "/" + Application.ASN_MMDB;
-			geoip_country_path = c.getCacheDir() + "/" + Application.COUNTRY_MMDB;
+			//TODO where to check these are not null?
+			ca_bundle_path = MKResourcesManager.getCABundlePath(c);
+			geoip_country_path = MKResourcesManager.getCountryDBPath(c);
+			geoip_asn_path = MKResourcesManager.getASNDBPath(c);
 			no_collector = !pm.isUploadResults();
 			save_real_probe_asn = pm.isIncludeAsn();
 			save_real_probe_cc = pm.isIncludeCc();

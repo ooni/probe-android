@@ -24,6 +24,7 @@ import java.util.List;
 
 import io.ooni.mk.MKCollectorResubmitResults;
 import io.ooni.mk.MKCollectorResubmitTask;
+import io.ooni.mk.MKResourcesManager;
 import localhost.toolkit.os.NetworkProgressAsyncTask;
 
 public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAsyncTask<A, Integer, Boolean> {
@@ -45,7 +46,12 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
                 c.getString(R.string.software_name),
                 BuildConfig.VERSION_NAME);
         task.setTimeout(getTimeout(file.length()));
-        task.setCABundlePath(c.getCacheDir() + "/" + Application.CA_BUNDLE);
+        boolean okay = MKResourcesManager.maybeUpdateResources(c);
+        if (!okay) {
+            Crashlytics.logException(new Exception("MKResourcesManager didn't find resources"));
+            return false;
+        }
+        task.setCABundlePath(MKResourcesManager.getCABundlePath(c));
         MKCollectorResubmitResults results = task.perform();
         if (results.isGood()) {
             String output = results.getUpdatedSerializedMeasurement();

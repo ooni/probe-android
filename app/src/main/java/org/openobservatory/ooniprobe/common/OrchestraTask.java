@@ -15,6 +15,7 @@ import java.util.Locale;
 import java.util.Vector;
 
 import io.ooni.mk.MKOrchestraTask;
+import io.ooni.mk.MKResourcesManager;
 
 public class OrchestraTask extends AsyncTask<Void, Void, Void> {
 	public static final String WIFI = "wifi";
@@ -36,10 +37,15 @@ public class OrchestraTask extends AsyncTask<Void, Void, Void> {
 					app.getFilesDir() + "/orchestration_secret.json") ;
 			//TODO ORCHESTRATE
 			//client.setAvailableBandwidth(String value);
-			//what happens when token is nil? should register anyway with empry string
-			client.setCABundlePath(app.getCacheDir() + "/" + Application.CA_BUNDLE);
-			client.setGeoIPCountryPath(app.getCacheDir() + "/" + Application.COUNTRY_MMDB);
-			client.setGeoIPASNPath(app.getCacheDir() + "/" + Application.ASN_MMDB);
+			//what happens when token is nil? should register anyway with empty string
+			boolean okay = MKResourcesManager.maybeUpdateResources(app);
+			if (!okay) {
+				Crashlytics.logException(new Exception("MKResourcesManager didn't find resources"));
+				return;
+			}
+			client.setCABundlePath(MKResourcesManager.getCABundlePath(app));
+			client.setGeoIPCountryPath(MKResourcesManager.getCountryDBPath(app));
+			client.setGeoIPASNPath(MKResourcesManager.getASNDBPath(app));
 			client.setLanguage(Locale.getDefault().getLanguage());
 			client.setNetworkType(getNetworkType(app));
 			client.setPlatform("android");
