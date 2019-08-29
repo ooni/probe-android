@@ -35,7 +35,6 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
      */
     public ResubmitTask(A activity) {
         super(activity, true, false);
-        // FIXME: we should use MKResources.
         task = new MKReporterTask(
                 activity.getString(R.string.software_name),
                 BuildConfig.VERSION_NAME,
