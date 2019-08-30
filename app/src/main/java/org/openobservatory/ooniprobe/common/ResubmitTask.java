@@ -7,8 +7,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.raizlabs.android.dbflow.sql.language.OperatorGroup;
-import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.sql.language.Where;
 
 import org.apache.commons.io.FileUtils;
@@ -22,12 +20,15 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
 
-import io.ooni.mk.MKCollectorResubmitResults;
-import io.ooni.mk.MKCollectorResubmitTask;
+import io.ooni.mk.MKReporterResults;
+import io.ooni.mk.MKReporterTask;
 import io.ooni.mk.MKResourcesManager;
+
 import localhost.toolkit.os.NetworkProgressAsyncTask;
 
 public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAsyncTask<A, Integer, Boolean> {
+    private MKReporterTask task;
+
     /**
      * Use this class to resubmit a measurement, use result_id and measurement_id to filter list of value
      * {@code new MKCollectorResubmitTask(activity).execute(@Nullable result_id, @Nullable measurement_id);}
@@ -36,23 +37,23 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
      */
     public ResubmitTask(A activity) {
         super(activity, true, false);
+        task = new MKReporterTask(
+                activity.getString(R.string.software_name),
+                BuildConfig.VERSION_NAME,
+                MKResourcesManager.getCABundlePath(activity)
+        );
     }
 
-    private static boolean perform(Context c, Measurement m) throws IOException {
+    private boolean perform(Context c, Measurement m) throws IOException {
         File file = Measurement.getEntryFile(c, m.id, m.test_name);
         String input = FileUtils.readFileToString(file, Charset.forName("UTF-8"));
-        MKCollectorResubmitTask task = new MKCollectorResubmitTask(
-                input,
-                c.getString(R.string.software_name),
-                BuildConfig.VERSION_NAME);
-        task.setTimeout(getTimeout(file.length()));
         boolean okay = MKResourcesManager.maybeUpdateResources(c);
         if (!okay) {
             Crashlytics.logException(new Exception("MKResourcesManager didn't find resources"));
             return false;
         }
-        task.setCABundlePath(MKResourcesManager.getCABundlePath(c));
-        MKCollectorResubmitResults results = task.perform();
+        long uploadTimeout = getTimeout(file.length());
+        MKReporterResults results = task.maybeDiscoverAndSubmit(input, uploadTimeout);
         if (results.isGood()) {
             String output = results.getUpdatedSerializedMeasurement();
             FileUtils.writeStringToFile(file, output, Charset.forName("UTF-8"));
@@ -61,7 +62,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
             m.is_upload_failed = false;
             m.save();
         } else {
-            Log.w(MKCollectorResubmitTask.class.getSimpleName(), results.getLogs());
+            Log.w(MKReporterTask.class.getSimpleName(), results.getLogs());
             // TODO decide what to do with logs (append on log file?)
         }
         return results.isGood();
