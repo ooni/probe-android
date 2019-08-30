@@ -83,7 +83,6 @@ public class Settings {
 		public Integer all_endpoints;
 
 		public Options(Context c, PreferenceManager pm) {
-			//TODO where to check these are not null?
 			ca_bundle_path = MKResourcesManager.getCABundlePath(c);
 			geoip_country_path = MKResourcesManager.getCountryDBPath(c);
 			geoip_asn_path = MKResourcesManager.getASNDBPath(c);
