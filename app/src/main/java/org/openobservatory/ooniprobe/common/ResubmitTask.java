@@ -22,6 +22,8 @@ import java.util.List;
 
 import io.ooni.mk.MKReporterResults;
 import io.ooni.mk.MKReporterTask;
+import io.ooni.mk.MKResourcesManager;
+
 import localhost.toolkit.os.NetworkProgressAsyncTask;
 
 public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAsyncTask<A, Integer, Boolean> {
@@ -38,13 +40,18 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
         task = new MKReporterTask(
                 activity.getString(R.string.software_name),
                 BuildConfig.VERSION_NAME,
-                activity.getCacheDir() + "/" + Application.CA_BUNDLE
+                MKResourcesManager.getCABundlePath(activity)
         );
     }
 
     private boolean perform(Context c, Measurement m) throws IOException {
         File file = Measurement.getEntryFile(c, m.id, m.test_name);
         String input = FileUtils.readFileToString(file, Charset.forName("UTF-8"));
+        boolean okay = MKResourcesManager.maybeUpdateResources(c);
+        if (!okay) {
+            Crashlytics.logException(new Exception("MKResourcesManager didn't find resources"));
+            return false;
+        }
         long uploadTimeout = getTimeout(file.length());
         MKReporterResults results = task.maybeDiscoverAndSubmit(input, uploadTimeout);
         if (results.isGood()) {
