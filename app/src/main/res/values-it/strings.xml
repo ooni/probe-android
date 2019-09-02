@@ -118,7 +118,7 @@
   <string name="TestResults_Details_Methodology">Metodologia</string>
   <string name="TestResults_Details_ViewLog">Vedi log</string>
   <string name="TestResults_Details_RawData">Dati</string>
-  <string name="TestResults_Details_CopyExplorerURL">Copy Explorer URL</string>
+  <string name="TestResults_Details_CopyExplorerURL">Copia URL Explorer</string>
   <string name="TestResults_Details_CopyToClipboard">Copia sugli Appunti</string>
   <string name="TestResults_Details_Failed_Title">Fallito</string>
   <string name="TestResults_Details_Failed_Paragraph">Puoi provare ad effettuare di nuovo il test</string>
@@ -222,11 +222,11 @@
   <string name="Modal_ManualUpload_Disable">No, grazie</string>
   <string name="Modal_UploadFailed_Title">Invio fallito</string>
   <string name="Modal_UploadFailed_Paragraph">Vuoi riprovare o annullare?</string>
-  <string name="Modal_Error_LogNotFound">Log file not found</string>
-  <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
-  <string name="Modal_Error_JsonEmpty">JSON empty</string>
+  <string name="Modal_Error_LogNotFound">File di log non trovato</string>
+  <string name="Modal_Error_NoValidUrls">Nessun URL valido trovato</string>
+  <string name="Modal_Error_JsonEmpty">JSON vuoto</string>
   <string name="Toast_CopiedToClipboard">Copiato negli appunti</string>
-  <string name="Toast_WillBeAvailable">Will be available within 24h</string>
+  <string name="Toast_WillBeAvailable">Sarà disponibile entro 24 ore</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Non caricati</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Carica</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Alcuni non caricati</string>
@@ -297,7 +297,7 @@
   <string name="Settings_Performance_DashServerAddress">Server DASH</string>
   <string name="Settings_Performance_DashServerPort">Porta server DASH</string>
   <string name="Settings_SendEmail_Label">Invia email a supporto</string>
-  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap \"Copy to clipboard\" below to copy our email address.</string>
+  <string name="Settings_SendEmail_Error">Per favore manda un email a bugs@openobservatory.org con i la versione dell\'app e iOS. Tappa su \"Copia nella clipboard\" per copiare il nostro indirizzo email.</string>
   <string name="Notification_FinishedRunning">Esecuzione conclusa</string>
   <string name="OONIBrowser_TryMirror">Prova un mirror</string>
   <string name="OONIBrowser_Loading">Caricamento...</string>

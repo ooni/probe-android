@@ -118,7 +118,7 @@
   <string name="TestResults_Details_Methodology">Μεθοδολογία</string>
   <string name="TestResults_Details_ViewLog">Προβολή αρχείου καταγραφής</string>
   <string name="TestResults_Details_RawData">Δεδομένα</string>
-  <string name="TestResults_Details_CopyExplorerURL">Copy Explorer URL</string>
+  <string name="TestResults_Details_CopyExplorerURL">Αντιγραφή URL του OONI Explorer</string>
   <string name="TestResults_Details_CopyToClipboard">Αντιγραφή στο πρόχειρο</string>
   <string name="TestResults_Details_Failed_Title">Απέτυχε</string>
   <string name="TestResults_Details_Failed_Paragraph">Μπορείς να επανεκτελέσεις αυτή την δοκιμή</string>
@@ -226,7 +226,7 @@
   <string name="Modal_Error_NoValidUrls">Δεν βρέθηκαν έγκυρα URL</string>
   <string name="Modal_Error_JsonEmpty">JSON empty</string>
   <string name="Toast_CopiedToClipboard">Αντιγράφηκε στο πρόχειρο</string>
-  <string name="Toast_WillBeAvailable">Will be available within 24h</string>
+  <string name="Toast_WillBeAvailable">Θα είναι διαθέσιμο εντός 24 ωρών</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Δεν ανέβηκαν</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Ανέβασμα</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Μερικά δεν ανέβηκαν</string>

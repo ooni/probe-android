@@ -224,9 +224,9 @@
   <string name="Modal_UploadFailed_Paragraph">هل ترغب في إعادة المحاولة أو الإلغاء؟</string>
   <string name="Modal_Error_LogNotFound">ملف السجلّ غير موجود</string>
   <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
-  <string name="Modal_Error_JsonEmpty">JSON empty</string>
+  <string name="Modal_Error_JsonEmpty">JSON فارغ</string>
   <string name="Toast_CopiedToClipboard">نسخ إلى الحافظة</string>
-  <string name="Toast_WillBeAvailable">Will be available within 24h</string>
+  <string name="Toast_WillBeAvailable">سوف يكون متوفرا خلال 24سا</string>
   <string name="Snackbar_ResultsNotUploaded_Text">لم يتمّ الرفع</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">رفع</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">لم يتمّ رفع البعض</string>
