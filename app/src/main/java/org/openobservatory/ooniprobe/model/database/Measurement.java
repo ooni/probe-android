@@ -128,6 +128,10 @@ public class Measurement extends BaseModel implements Serializable {
 		return Measurement.getEntryFile(c, this.id, this.test_name).exists();
 	}
 
+	public Boolean hasLogFile(Context c){
+		Measurement.getLogFile(c, this.result.id, this.test_name).exists();
+	}
+
 	public static File getLogFile(Context c, int resultId, String test_name) {
 		return new File(getMeasurementDir(c), resultId + "_" + test_name + ".log");
 	}
