@@ -275,9 +275,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                 else {
                     String toastStr = getString(R.string.Toast_CopiedToClipboard) + "\n" + getString(R.string.Toast_WillBeAvailable);
                     Toast.makeText(this, toastStr, Toast.LENGTH_SHORT).show();
-
                 }
-                Toast.makeText(this, R.string.Toast_CopiedToClipboard, Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
