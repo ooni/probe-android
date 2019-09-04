@@ -200,6 +200,7 @@
   <string name="Modal_Error_NotificationNotEnabled">需要通知权限。请在手机设置中启用，然后在 OONI Probe 应用中启用。</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">转到设置页面</string>
   <string name="Modal_Error_CantCloseScreen">有测试运行时，此屏幕将被锁定。</string>
+  <string name="Modal_Error_RawDataNoInternet">You need to be connected to the internet to download the raw measurement data.</string>
   <string name="Modal_ResultsNotUploaded_Title">结果未上传</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">您的部分测试结果尚未上传到 OONI 服务器。如果您想为 OONI 数据集做出贡献，请上传它们。</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">上传</string>
@@ -253,9 +254,12 @@
   <string name="Settings_Notifications_Enabled">启用</string>
   <string name="Settings_Notifications_OnTestCompletion">测试完成后通知</string>
   <string name="Settings_Notifications_OnNews">新闻订阅</string>
-  <string name="Settings_AutomatedTesting_Label">定期测试提醒</string>
-  <string name="Settings_AutomatedTesting_Enabled">启用</string>
-  <string name="Settings_AutomatedTesting_EnabledTests">启用的测试</string>
+  <string name="Settings_AutomatedTesting_Label">Automated Testing</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically">Run Tests Automatically</string>
+  <string name="Settings_AutomatedTesting_Reminder">Receive Test Reminder</string>
+  <string name="Settings_AutomatedTesting_EnabledTests">Enabled Tests</string>
+  <string name="Settings_AutomatedTesting_Reminder_Time">时间</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_TimesPerDay">Repetition per day</string>
   <string name="Settings_AutomatedTesting_Categories_Label">分类</string>
   <string name="Settings_AutomatedTesting_Categories_Title">要测试的网站类别</string>
   <string name="Settings_AutomatedTesting_Categories_Subtitle">已启用 %1$s 个分类</string>
@@ -299,6 +303,8 @@
   <string name="Settings_SendEmail_Label">发送邮件给支持团队</string>
   <string name="Settings_SendEmail_Error">请将应用信息和iOS版本号通过邮件发送至bugs@openobservatory.org。轻触下方的“复制到剪贴板”来复制我们的邮箱地址。</string>
   <string name="Notification_FinishedRunning">运行完成</string>
+  <string name="Notification_RunTestReminder">Friendly Reminder: Run OONI Probe tests</string>
+  <string name="Notification_RunAutomatically">Running OONI Probe tests (automated testing enabled)</string>
   <string name="OONIBrowser_TryMirror">试试镜像站</string>
   <string name="OONIBrowser_Loading">载入中....</string>
   <string name="OONIBrowser_Error">发生意外错误。请刷新此页面。</string>

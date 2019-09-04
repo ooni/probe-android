@@ -200,6 +200,7 @@
   <string name="Modal_Error_NotificationNotEnabled">Benachrichtigungsberechtigungen sind erforderlich. Bitte aktiviere sie in den Einstellungen deines Telefons und anschließend in deiner OONI Probe App.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Gehe zu Einstellungen</string>
   <string name="Modal_Error_CantCloseScreen">Dieser Bildschirm ist gesperrt, während ein Test ausgeführt wird.</string>
+  <string name="Modal_Error_RawDataNoInternet">You need to be connected to the internet to download the raw measurement data.</string>
   <string name="Modal_ResultsNotUploaded_Title">Ergebnisse nicht hochgeladen</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">Manche deiner Testergebnisse wurden nicht auf OONI-Server hochgeladen. Wenn du zu OONIs Datensatz beitragen möchtest, lade sie bitte hoch.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Hochladen</string>
@@ -253,9 +254,12 @@
   <string name="Settings_Notifications_Enabled">Aktiviert</string>
   <string name="Settings_Notifications_OnTestCompletion">Benachrichtigung nach Abschluss des Tests</string>
   <string name="Settings_Notifications_OnNews">Neuigkeiten</string>
-  <string name="Settings_AutomatedTesting_Label">Regelmäßige Testerinnerung</string>
-  <string name="Settings_AutomatedTesting_Enabled">Aktiv</string>
-  <string name="Settings_AutomatedTesting_EnabledTests">Aktivierte Tests</string>
+  <string name="Settings_AutomatedTesting_Label">Automated Testing</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically">Run Tests Automatically</string>
+  <string name="Settings_AutomatedTesting_Reminder">Receive Test Reminder</string>
+  <string name="Settings_AutomatedTesting_EnabledTests">Enabled Tests</string>
+  <string name="Settings_AutomatedTesting_Reminder_Time">Zeit</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_TimesPerDay">Repetition per day</string>
   <string name="Settings_AutomatedTesting_Categories_Label">Kategorien</string>
   <string name="Settings_AutomatedTesting_Categories_Title">Zu testende Webseiten-Kategorien</string>
   <string name="Settings_AutomatedTesting_Categories_Subtitle">%1$s aktivierte Kategorien</string>
@@ -299,6 +303,8 @@
   <string name="Settings_SendEmail_Label">E-Mail an den Support senden</string>
   <string name="Settings_SendEmail_Error">Bitte senden Sie eine E-Mail an bugs@openobservatory.org mit Informationen zur App und iOS-Version. Tippen Sie unten auf \"In die Zwischenablage kopieren\", um unsere E-Mail Adresse zu kopieren.</string>
   <string name="Notification_FinishedRunning">Vollständig ausgeführt</string>
+  <string name="Notification_RunTestReminder">Friendly Reminder: Run OONI Probe tests</string>
+  <string name="Notification_RunAutomatically">Running OONI Probe tests (automated testing enabled)</string>
   <string name="OONIBrowser_TryMirror">Versuche Mirror</string>
   <string name="OONIBrowser_Loading">Lade...</string>
   <string name="OONIBrowser_Error">Ein unerwarteter Fehler ist aufgetreten. Bitte lade diese Seite erneut.</string>
