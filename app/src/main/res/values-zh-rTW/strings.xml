@@ -200,6 +200,7 @@
   <string name="Modal_Error_NotificationNotEnabled">需通知許可授權。請在手機設定處啟動授權後再至 OONI Probe 應用程式下啟動通知功能。</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">到設定區</string>
   <string name="Modal_Error_CantCloseScreen">執行測試時畫面會鎖住靜止</string>
+  <string name="Modal_Error_RawDataNoInternet">You need to be connected to the internet to download the raw measurement data.</string>
   <string name="Modal_ResultsNotUploaded_Title">結果未上傳</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">部份的測試結果尚未上傳到 ONNI 伺服器，若願意提交 OONI  數據組，請上傳之。</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">上傳</string>
@@ -253,9 +254,12 @@
   <string name="Settings_Notifications_Enabled">啟用</string>
   <string name="Settings_Notifications_OnTestCompletion">通知測試已完成</string>
   <string name="Settings_Notifications_OnNews">新聞來源訂閱</string>
-  <string name="Settings_AutomatedTesting_Label">固定的測試提醒</string>
-  <string name="Settings_AutomatedTesting_Enabled">啟用</string>
-  <string name="Settings_AutomatedTesting_EnabledTests">啟用的測試</string>
+  <string name="Settings_AutomatedTesting_Label">Automated Testing</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically">Run Tests Automatically</string>
+  <string name="Settings_AutomatedTesting_Reminder">Receive Test Reminder</string>
+  <string name="Settings_AutomatedTesting_EnabledTests">Enabled Tests</string>
+  <string name="Settings_AutomatedTesting_Reminder_Time">時間</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_TimesPerDay">Repetition per day</string>
   <string name="Settings_AutomatedTesting_Categories_Label">目錄</string>
   <string name="Settings_AutomatedTesting_Categories_Title">測試的網站類別</string>
   <string name="Settings_AutomatedTesting_Categories_Subtitle">%1$s 啟用的分類</string>
@@ -299,6 +303,8 @@
   <string name="Settings_SendEmail_Label">Send email to support</string>
   <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap \"Copy to clipboard\" below to copy our email address.</string>
   <string name="Notification_FinishedRunning">已完成的執行</string>
+  <string name="Notification_RunTestReminder">Friendly Reminder: Run OONI Probe tests</string>
+  <string name="Notification_RunAutomatically">Running OONI Probe tests (automated testing enabled)</string>
   <string name="OONIBrowser_TryMirror">試試鏡像站</string>
   <string name="OONIBrowser_Loading">載入中…</string>
   <string name="OONIBrowser_Error">出現未預期的錯誤，請重新載入本頁。</string>

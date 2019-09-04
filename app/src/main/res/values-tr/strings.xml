@@ -200,6 +200,7 @@
   <string name="Modal_Error_NotificationNotEnabled">Bildirim izinleri gerekli. Lütfen telefonunuzun ayarlar bölümünden gerekli izinleri verdikten sonra OONI Probe uygulamanızdan etkinleştirin.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Ayarlar Bölümüne Gidin</string>
   <string name="Modal_Error_CantCloseScreen">Bu ekran sınama sırasında kilitlidir.</string>
+  <string name="Modal_Error_RawDataNoInternet">You need to be connected to the internet to download the raw measurement data.</string>
   <string name="Modal_ResultsNotUploaded_Title">Sonuçlar yüklenmemiş</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">Bazı sınama sonuçları OONI sunucularına yüklenmemiş. OONU veri kümesine katkıda bulunmak isterseniz bu sonuçları yükleyin.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Yükle</string>
@@ -253,9 +254,12 @@
   <string name="Settings_Notifications_Enabled">Etkin</string>
   <string name="Settings_Notifications_OnTestCompletion">Sınamanın tamamlandığı bildirilsin</string>
   <string name="Settings_Notifications_OnNews">Haber Akışı</string>
-  <string name="Settings_AutomatedTesting_Label">Normal sınama anımsatıcı</string>
-  <string name="Settings_AutomatedTesting_Enabled">Etkin</string>
-  <string name="Settings_AutomatedTesting_EnabledTests">Etkinleştirilmiş sınamalar</string>
+  <string name="Settings_AutomatedTesting_Label">Automated Testing</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically">Run Tests Automatically</string>
+  <string name="Settings_AutomatedTesting_Reminder">Receive Test Reminder</string>
+  <string name="Settings_AutomatedTesting_EnabledTests">Enabled Tests</string>
+  <string name="Settings_AutomatedTesting_Reminder_Time">Zaman</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_TimesPerDay">Repetition per day</string>
   <string name="Settings_AutomatedTesting_Categories_Label">Kategoriler</string>
   <string name="Settings_AutomatedTesting_Categories_Title">Sınanacak web sitesi kategorileri</string>
   <string name="Settings_AutomatedTesting_Categories_Subtitle">%1$s kategori etkin</string>
@@ -299,6 +303,8 @@
   <string name="Settings_SendEmail_Label">Destek ekibine e-posta gönderin</string>
   <string name="Settings_SendEmail_Error">Lütfen uygulama hakkındaki bilgiler ve iOS sürümünü yazarak bugs@openobservatory.org adresine bir e-posta gönderin. E-posta adresimizi kopyalamak için aşağıdaki \"Panoya kopyala\" üzerine dokunun.</string>
   <string name="Notification_FinishedRunning">Çalışmayı tamamladı</string>
+  <string name="Notification_RunTestReminder">Friendly Reminder: Run OONI Probe tests</string>
+  <string name="Notification_RunAutomatically">Running OONI Probe tests (automated testing enabled)</string>
   <string name="OONIBrowser_TryMirror">Kopyası denensin</string>
   <string name="OONIBrowser_Loading">Yükleniyor...</string>
   <string name="OONIBrowser_Error">Bilinmeyen bir sorun çıktı. Lütfen bu sayfayı yeniden yükleyin.</string>

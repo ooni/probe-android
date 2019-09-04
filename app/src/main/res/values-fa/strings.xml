@@ -200,6 +200,7 @@
   <string name="Modal_Error_NotificationNotEnabled">اجازه‌ی اعلان ضروری است. لطفا در تنظیمات تلفن خود و سپس در اپ OONIProbe آن را فعال کنید.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">به تنظیمات بروید</string>
   <string name="Modal_Error_CantCloseScreen">این صفحه در زمان اجرای تست قفل است.</string>
+  <string name="Modal_Error_RawDataNoInternet">You need to be connected to the internet to download the raw measurement data.</string>
   <string name="Modal_ResultsNotUploaded_Title">نتایج بارگذاری نشده‌اند</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">بعضی از نتایج تست‌ها به سرورهای OONI  بارگذاری نشده‌اند. اگر مایل به مشارکت در مجموع داده‌‌های OONI هستید، لطفا آن‌ها را بارگذاری کنید.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">آپلود</string>
@@ -253,9 +254,12 @@
   <string name="Settings_Notifications_Enabled">فعال است</string>
   <string name="Settings_Notifications_OnTestCompletion">پایان تست را اعلام کن</string>
   <string name="Settings_Notifications_OnNews">خوراک خبری</string>
-  <string name="Settings_AutomatedTesting_Label">یادآوری تست منظم</string>
-  <string name="Settings_AutomatedTesting_Enabled">فعال است</string>
-  <string name="Settings_AutomatedTesting_EnabledTests">تست‌های فعال</string>
+  <string name="Settings_AutomatedTesting_Label">Automated Testing</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically">Run Tests Automatically</string>
+  <string name="Settings_AutomatedTesting_Reminder">Receive Test Reminder</string>
+  <string name="Settings_AutomatedTesting_EnabledTests">Enabled Tests</string>
+  <string name="Settings_AutomatedTesting_Reminder_Time">زمان</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_TimesPerDay">Repetition per day</string>
   <string name="Settings_AutomatedTesting_Categories_Label">دسته‌بندی‌ها</string>
   <string name="Settings_AutomatedTesting_Categories_Title">دسته‌بندی‌های وبسایت برای تست</string>
   <string name="Settings_AutomatedTesting_Categories_Subtitle">%1$s دسته بندی فعال است</string>
@@ -299,6 +303,8 @@
   <string name="Settings_SendEmail_Label">ارسال ایمیل به پشتیبانی</string>
   <string name="Settings_SendEmail_Error">لطفا یک ایمیل به bugs@openobservatory.org همراه با اطلاعات برنامه و نسخه‌ی iOS ارسال کنید. بر روی «کپی در حافظه‌ی موقت» در پایین بزنید تا آدرس ایمیل کپی شود.</string>
   <string name="Notification_FinishedRunning">اجرا به پایان رسید</string>
+  <string name="Notification_RunTestReminder">Friendly Reminder: Run OONI Probe tests</string>
+  <string name="Notification_RunAutomatically">Running OONI Probe tests (automated testing enabled)</string>
   <string name="OONIBrowser_TryMirror">سرورهای آینه را امتحان کنید</string>
   <string name="OONIBrowser_Loading">در حال بارگذاری...</string>
   <string name="OONIBrowser_Error">یک خطا غیرمنتظره رخ داده است. لطفا صفحه را بارگذاری مجدد کنید.</string>
