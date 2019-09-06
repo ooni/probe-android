@@ -129,7 +129,7 @@ public class Measurement extends BaseModel implements Serializable {
 	}
 
 	public Boolean hasLogFile(Context c){
-		Measurement.getLogFile(c, this.result.id, this.test_name).exists();
+		return Measurement.getLogFile(c, this.result.id, this.test_name).exists();
 	}
 
 	public static File getLogFile(Context c, int resultId, String test_name) {
