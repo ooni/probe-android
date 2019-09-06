@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-	<item
-		android:id="@+id/rawData"
-		android:title="@string/TestResults_Details_RawData" />
-	<item
-		android:id="@+id/copyExplorerUrl"
-		android:title="@string/TestResults_Details_CopyExplorerURL" />
-</menu>

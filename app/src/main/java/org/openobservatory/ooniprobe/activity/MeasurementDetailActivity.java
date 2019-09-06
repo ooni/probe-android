@@ -220,6 +220,14 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        invalidateOptionsMenu();
+        if (measurement.hasLogFile(this))
+                menu.findItem(R.id.viewLog).setVisible(false);
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.rawData:
