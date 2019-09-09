@@ -254,12 +254,12 @@
   <string name="Settings_Notifications_Enabled">啟用</string>
   <string name="Settings_Notifications_OnTestCompletion">通知測試已完成</string>
   <string name="Settings_Notifications_OnNews">新聞來源訂閱</string>
-  <string name="Settings_AutomatedTesting_Label">Automated Testing</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically">Run Tests Automatically</string>
-  <string name="Settings_AutomatedTesting_Reminder">Receive Test Reminder</string>
-  <string name="Settings_AutomatedTesting_EnabledTests">Enabled Tests</string>
+  <string name="Settings_AutomatedTesting_Label">Automated testing</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
+  <string name="Settings_AutomatedTesting_Reminder">Remind me to run tests</string>
+  <string name="Settings_AutomatedTesting_EnabledTests">啟用的測試</string>
   <string name="Settings_AutomatedTesting_Reminder_Time">時間</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_TimesPerDay">Repetition per day</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_TimesPerDay">Test runs per day</string>
   <string name="Settings_AutomatedTesting_Categories_Label">目錄</string>
   <string name="Settings_AutomatedTesting_Categories_Title">測試的網站類別</string>
   <string name="Settings_AutomatedTesting_Categories_Subtitle">%1$s 啟用的分類</string>
@@ -303,7 +303,7 @@
   <string name="Settings_SendEmail_Label">Send email to support</string>
   <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap \"Copy to clipboard\" below to copy our email address.</string>
   <string name="Notification_FinishedRunning">已完成的執行</string>
-  <string name="Notification_RunTestReminder">Friendly Reminder: Run OONI Probe tests</string>
+  <string name="Notification_RunTestReminder">Hey, it\'s time to run OONI Probe!</string>
   <string name="Notification_RunAutomatically">Running OONI Probe tests (automated testing enabled)</string>
   <string name="OONIBrowser_TryMirror">試試鏡像站</string>
   <string name="OONIBrowser_Loading">載入中…</string>

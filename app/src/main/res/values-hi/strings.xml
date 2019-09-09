@@ -254,12 +254,12 @@
   <string name="Settings_Notifications_Enabled">सक्षम</string>
   <string name="Settings_Notifications_OnTestCompletion">परीक्षण पूरा होने पर अधिसूचित करें</string>
   <string name="Settings_Notifications_OnNews">समाचार फ़ीड</string>
-  <string name="Settings_AutomatedTesting_Label">Automated Testing</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically">Run Tests Automatically</string>
-  <string name="Settings_AutomatedTesting_Reminder">Receive Test Reminder</string>
-  <string name="Settings_AutomatedTesting_EnabledTests">Enabled Tests</string>
+  <string name="Settings_AutomatedTesting_Label">Automated testing</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
+  <string name="Settings_AutomatedTesting_Reminder">Remind me to run tests</string>
+  <string name="Settings_AutomatedTesting_EnabledTests">सक्षम परीक्षण</string>
   <string name="Settings_AutomatedTesting_Reminder_Time">पहर</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_TimesPerDay">Repetition per day</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_TimesPerDay">Test runs per day</string>
   <string name="Settings_AutomatedTesting_Categories_Label">श्रेणियाँ</string>
   <string name="Settings_AutomatedTesting_Categories_Title">परीक्षण करने के लिए वेबसाइट श्रेणियां</string>
   <string name="Settings_AutomatedTesting_Categories_Subtitle">%1$s श्रेणियां सक्षम</string>
@@ -303,7 +303,7 @@
   <string name="Settings_SendEmail_Label">Send email to support</string>
   <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap \"Copy to clipboard\" below to copy our email address.</string>
   <string name="Notification_FinishedRunning">समाप्त हो रहा है</string>
-  <string name="Notification_RunTestReminder">Friendly Reminder: Run OONI Probe tests</string>
+  <string name="Notification_RunTestReminder">Hey, it\'s time to run OONI Probe!</string>
   <string name="Notification_RunAutomatically">Running OONI Probe tests (automated testing enabled)</string>
   <string name="OONIBrowser_TryMirror">दर्पण की कोशिश करो</string>
   <string name="OONIBrowser_Loading">लोड हो रहा है ...</string>
