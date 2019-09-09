@@ -211,12 +211,18 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (measurement.hasLogFile(this))
-            getMenuInflater().inflate(R.menu.measurement, menu);
-        else
-            getMenuInflater().inflate(R.menu.measurement_nolog, menu);
-
+        getMenuInflater().inflate(R.menu.measurement, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        invalidateOptionsMenu();
+        if (!measurement.hasLogFile(this))
+                menu.findItem(R.id.viewLog).setVisible(false);
+        if (measurement.report_id == null || measurement.report_id.isEmpty())
+            menu.findItem(R.id.copyExplorerUrl).setVisible(false);
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
