@@ -254,17 +254,6 @@
   <string name="Settings_Notifications_Enabled">Etkin</string>
   <string name="Settings_Notifications_OnTestCompletion">Sınamanın tamamlandığı bildirilsin</string>
   <string name="Settings_Notifications_OnNews">Haber Akışı</string>
-  <string name="Settings_AutomatedTesting_Label">Automated testing</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
-  <string name="Settings_AutomatedTesting_Reminder">Remind me to run tests</string>
-  <string name="Settings_AutomatedTesting_EnabledTests">Etkinleştirilmiş sınamalar</string>
-  <string name="Settings_AutomatedTesting_Reminder_Time">Zaman</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_TimesPerDay">Test runs per day</string>
-  <string name="Settings_AutomatedTesting_Categories_Label">Kategoriler</string>
-  <string name="Settings_AutomatedTesting_Categories_Title">Sınanacak web sitesi kategorileri</string>
-  <string name="Settings_AutomatedTesting_Categories_Subtitle">%1$s kategori etkin</string>
-  <string name="Settings_AutomatedTesting_MonthlyMobileAllowance">Aylık mobil veri izni</string>
-  <string name="Settings_AutomatedTesting_MonthlyWiFiAllowance">Aylık WiFi veri izni</string>
   <string name="Settings_Sharing_Label">Paylaşım</string>
   <string name="Settings_Sharing_UploadResults">Sonuçlar Otomatik Olarak Yayınlansın</string>
   <string name="Settings_Sharing_UploadResultsManually">Sonuçları El ile Yükle </string>
@@ -303,8 +292,6 @@
   <string name="Settings_SendEmail_Label">Destek ekibine e-posta gönderin</string>
   <string name="Settings_SendEmail_Error">Lütfen uygulama hakkındaki bilgiler ve iOS sürümünü yazarak bugs@openobservatory.org adresine bir e-posta gönderin. E-posta adresimizi kopyalamak için aşağıdaki \"Panoya kopyala\" üzerine dokunun.</string>
   <string name="Notification_FinishedRunning">Çalışmayı tamamladı</string>
-  <string name="Notification_RunTestReminder">Hey, it\'s time to run OONI Probe!</string>
-  <string name="Notification_RunAutomatically">OONI Probe sınamaları çalıştırılıyor (otomatik sınama etkin)</string>
   <string name="OONIBrowser_TryMirror">Kopyası denensin</string>
   <string name="OONIBrowser_Loading">Yükleniyor...</string>
   <string name="OONIBrowser_Error">Bilinmeyen bir sorun çıktı. Lütfen bu sayfayı yeniden yükleyin.</string>

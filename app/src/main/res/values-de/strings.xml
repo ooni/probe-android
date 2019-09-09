@@ -254,17 +254,6 @@
   <string name="Settings_Notifications_Enabled">Aktiviert</string>
   <string name="Settings_Notifications_OnTestCompletion">Benachrichtigung nach Abschluss des Tests</string>
   <string name="Settings_Notifications_OnNews">Neuigkeiten</string>
-  <string name="Settings_AutomatedTesting_Label">Automated testing</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
-  <string name="Settings_AutomatedTesting_Reminder">Remind me to run tests</string>
-  <string name="Settings_AutomatedTesting_EnabledTests">Aktivierte Tests</string>
-  <string name="Settings_AutomatedTesting_Reminder_Time">Zeit</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_TimesPerDay">Test runs per day</string>
-  <string name="Settings_AutomatedTesting_Categories_Label">Kategorien</string>
-  <string name="Settings_AutomatedTesting_Categories_Title">Zu testende Webseiten-Kategorien</string>
-  <string name="Settings_AutomatedTesting_Categories_Subtitle">%1$s aktivierte Kategorien</string>
-  <string name="Settings_AutomatedTesting_MonthlyMobileAllowance">Monatliches mobiles Datenvolumen</string>
-  <string name="Settings_AutomatedTesting_MonthlyWiFiAllowance">Monatliches WLAN Datenvolumen</string>
   <string name="Settings_Sharing_Label">Beteiligung</string>
   <string name="Settings_Sharing_UploadResults">Ergebnisse automatisch veröffentlichen</string>
   <string name="Settings_Sharing_UploadResultsManually">Manueller Ergebnis-Upload</string>
@@ -303,8 +292,6 @@
   <string name="Settings_SendEmail_Label">E-Mail an den Support senden</string>
   <string name="Settings_SendEmail_Error">Bitte senden Sie eine E-Mail an bugs@openobservatory.org mit Informationen zur App und iOS-Version. Tippen Sie unten auf \"In die Zwischenablage kopieren\", um unsere E-Mail Adresse zu kopieren.</string>
   <string name="Notification_FinishedRunning">Vollständig ausgeführt</string>
-  <string name="Notification_RunTestReminder">Hey, it\'s time to run OONI Probe!</string>
-  <string name="Notification_RunAutomatically">Running OONI Probe tests (automated testing enabled)</string>
   <string name="OONIBrowser_TryMirror">Versuche Mirror</string>
   <string name="OONIBrowser_Loading">Lade...</string>
   <string name="OONIBrowser_Error">Ein unerwarteter Fehler ist aufgetreten. Bitte lade diese Seite erneut.</string>

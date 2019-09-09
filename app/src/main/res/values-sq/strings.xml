@@ -254,17 +254,6 @@
   <string name="Settings_Notifications_Enabled">Mundësuar</string>
   <string name="Settings_Notifications_OnTestCompletion">Nofto pasi të kryet testimi</string>
   <string name="Settings_Notifications_OnNews">Kryefaqja</string>
-  <string name="Settings_AutomatedTesting_Label">Automated testing</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
-  <string name="Settings_AutomatedTesting_Reminder">Remind me to run tests</string>
-  <string name="Settings_AutomatedTesting_EnabledTests">Testime të aktivizuara</string>
-  <string name="Settings_AutomatedTesting_Reminder_Time">Koha</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_TimesPerDay">Test runs per day</string>
-  <string name="Settings_AutomatedTesting_Categories_Label">Kategoritë</string>
-  <string name="Settings_AutomatedTesting_Categories_Title">Kategori faqjesh për të testuar</string>
-  <string name="Settings_AutomatedTesting_Categories_Subtitle">%1$s shtete të aktivizuara</string>
-  <string name="Settings_AutomatedTesting_MonthlyMobileAllowance">Lejim mujor në celular</string>
-  <string name="Settings_AutomatedTesting_MonthlyWiFiAllowance">Lejim mujor WiFi</string>
   <string name="Settings_Sharing_Label">Ndajë</string>
   <string name="Settings_Sharing_UploadResults">Publiko rezultatet automatikisht</string>
   <string name="Settings_Sharing_UploadResultsManually">Ngarkim Muanual i Rezultateve</string>
@@ -303,8 +292,6 @@
   <string name="Settings_SendEmail_Label">Dërgo email tek ndihmuesi</string>
   <string name="Settings_SendEmail_Error">Ju lutem dërgoni email tek bugs@openobservatory.org me informacionin e app dhe versionin e iOS. Zgjidh \"Kopjo në tabelën-mbledhëse\" më poshtë për të kopjuar adresën tonë të email.</string>
   <string name="Notification_FinishedRunning">Mbaroi së ekzekutuari</string>
-  <string name="Notification_RunTestReminder">Hey, it\'s time to run OONI Probe!</string>
-  <string name="Notification_RunAutomatically">Running OONI Probe tests (automated testing enabled)</string>
   <string name="OONIBrowser_TryMirror">Përvo mirror</string>
   <string name="OONIBrowser_Loading">Duke u ngarkuar</string>
   <string name="OONIBrowser_Error">Ndodhi një gabim i papritur. Ju lutem ringarkoni këtë faqe.</string>

@@ -254,17 +254,6 @@
   <string name="Settings_Notifications_Enabled">‮مُفعّل</string>
   <string name="Settings_Notifications_OnTestCompletion">إجراء تنبيه عند إنتهاء الاختبار</string>
   <string name="Settings_Notifications_OnNews">شريط الأخبار</string>
-  <string name="Settings_AutomatedTesting_Label">Automated testing</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
-  <string name="Settings_AutomatedTesting_Reminder">Remind me to run tests</string>
-  <string name="Settings_AutomatedTesting_EnabledTests">الاختبارات المفعلّة</string>
-  <string name="Settings_AutomatedTesting_Reminder_Time">الوقت</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_TimesPerDay">Test runs per day</string>
-  <string name="Settings_AutomatedTesting_Categories_Label">الأقسام</string>
-  <string name="Settings_AutomatedTesting_Categories_Title">أقسام المواقع للاختبار</string>
-  <string name="Settings_AutomatedTesting_Categories_Subtitle">%1$s قسمًا مفعل</string>
-  <string name="Settings_AutomatedTesting_MonthlyMobileAllowance">حجم الاستخدام لشبكة الخلوي المسموح به شهريًا</string>
-  <string name="Settings_AutomatedTesting_MonthlyWiFiAllowance">حجم الاستخدام لشبكة WiFi المسموح به شهريًا</string>
   <string name="Settings_Sharing_Label">المشاركة</string>
   <string name="Settings_Sharing_UploadResults">نشر النتائج أوتوماتيكيّاً </string>
   <string name="Settings_Sharing_UploadResultsManually">رفع النتائج يدويّاً </string>
@@ -303,8 +292,6 @@
   <string name="Settings_SendEmail_Label">إرسال إيميل لفريق الدعم </string>
   <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap \"Copy to clipboard\" below to copy our email address.</string>
   <string name="Notification_FinishedRunning">انتهى التشغيل</string>
-  <string name="Notification_RunTestReminder">Hey, it\'s time to run OONI Probe!</string>
-  <string name="Notification_RunAutomatically">Running OONI Probe tests (automated testing enabled)</string>
   <string name="OONIBrowser_TryMirror">تجربة خادم بديل</string>
   <string name="OONIBrowser_Loading">جاري التحميل...</string>
   <string name="OONIBrowser_Error">حدث خطأ غير متوقع. من فضلك أعد تحميل الصفحة.</string>

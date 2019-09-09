@@ -254,17 +254,6 @@
   <string name="Settings_Notifications_Enabled">Ενεργοποιημένο</string>
   <string name="Settings_Notifications_OnTestCompletion">Ειδοποίηση ολοκλήρωσης της δοκιμής</string>
   <string name="Settings_Notifications_OnNews">Ενημέρωσεις</string>
-  <string name="Settings_AutomatedTesting_Label">Automated testing</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
-  <string name="Settings_AutomatedTesting_Reminder">Remind me to run tests</string>
-  <string name="Settings_AutomatedTesting_EnabledTests">Ενεργοποιημένες δοκιμές</string>
-  <string name="Settings_AutomatedTesting_Reminder_Time">Χρόνος</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_TimesPerDay">Test runs per day</string>
-  <string name="Settings_AutomatedTesting_Categories_Label">Κατηγορίες</string>
-  <string name="Settings_AutomatedTesting_Categories_Title">Κατηγορίες ιστοσελιδών για δοκιμή</string>
-  <string name="Settings_AutomatedTesting_Categories_Subtitle">%1$s ενεργοποιημένες κατηγορίες</string>
-  <string name="Settings_AutomatedTesting_MonthlyMobileAllowance">Μηνιαίο όγκος χρήσης δεδομένων κινητής τηλεφωνίας</string>
-  <string name="Settings_AutomatedTesting_MonthlyWiFiAllowance">Μηνιαίο όγκος χρήσης δεδομένων WiFi</string>
   <string name="Settings_Sharing_Label">Κοινή χρήση</string>
   <string name="Settings_Sharing_UploadResults">Αυτόματη δημοσίευση αποτελεσμάτων</string>
   <string name="Settings_Sharing_UploadResultsManually">Χειροκίνητο ανέβασμα αποτελεσμάτων</string>
@@ -303,8 +292,6 @@
   <string name="Settings_SendEmail_Label">Αποστολή email στην υποστήριξη</string>
   <string name="Settings_SendEmail_Error">Παρακαλούμε στείλτε ένα email στη διεύθυνση bugs@openobservatory.org με πληροφορίες σχετικά με την έκδοση της εφαρμογής και του iOS. Πατήστε \"Αντιγραφή στο πρόχειρο\" παρακάτω για να αντιγράψετε τη διεύθυνση email μας.</string>
   <string name="Notification_FinishedRunning">Οι δοκιμές εκτελέστηκαν</string>
-  <string name="Notification_RunTestReminder">Hey, it\'s time to run OONI Probe!</string>
-  <string name="Notification_RunAutomatically">Running OONI Probe tests (automated testing enabled)</string>
   <string name="OONIBrowser_TryMirror">Δοκίμασε mirror</string>
   <string name="OONIBrowser_Loading">Φορτώνεται...</string>
   <string name="OONIBrowser_Error">Προέκυψε ένα μη αναμενόμενο σφάλμα. Παρακαλούμε ξαναφόρτωσε αυτήν τη σελίδα.</string>

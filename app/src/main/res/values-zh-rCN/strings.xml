@@ -254,17 +254,6 @@
   <string name="Settings_Notifications_Enabled">启用</string>
   <string name="Settings_Notifications_OnTestCompletion">测试完成后通知</string>
   <string name="Settings_Notifications_OnNews">新闻订阅</string>
-  <string name="Settings_AutomatedTesting_Label">Automated testing</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
-  <string name="Settings_AutomatedTesting_Reminder">Remind me to run tests</string>
-  <string name="Settings_AutomatedTesting_EnabledTests">启用的测试</string>
-  <string name="Settings_AutomatedTesting_Reminder_Time">时间</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_TimesPerDay">Test runs per day</string>
-  <string name="Settings_AutomatedTesting_Categories_Label">分类</string>
-  <string name="Settings_AutomatedTesting_Categories_Title">要测试的网站类别</string>
-  <string name="Settings_AutomatedTesting_Categories_Subtitle">已启用 %1$s 个分类</string>
-  <string name="Settings_AutomatedTesting_MonthlyMobileAllowance">每月移动流量</string>
-  <string name="Settings_AutomatedTesting_MonthlyWiFiAllowance">每月 WiFi 流量</string>
   <string name="Settings_Sharing_Label">分享</string>
   <string name="Settings_Sharing_UploadResults">自动发布结果</string>
   <string name="Settings_Sharing_UploadResultsManually">手动上传结果</string>
@@ -303,8 +292,6 @@
   <string name="Settings_SendEmail_Label">发送邮件给支持团队</string>
   <string name="Settings_SendEmail_Error">请将应用信息和iOS版本号通过邮件发送至bugs@openobservatory.org。轻触下方的“复制到剪贴板”来复制我们的邮箱地址。</string>
   <string name="Notification_FinishedRunning">运行完成</string>
-  <string name="Notification_RunTestReminder">Hey, it\'s time to run OONI Probe!</string>
-  <string name="Notification_RunAutomatically">Running OONI Probe tests (automated testing enabled)</string>
   <string name="OONIBrowser_TryMirror">试试镜像站</string>
   <string name="OONIBrowser_Loading">载入中....</string>
   <string name="OONIBrowser_Error">发生意外错误。请刷新此页面。</string>

@@ -254,17 +254,6 @@
   <string name="Settings_Notifications_Enabled">فعال است</string>
   <string name="Settings_Notifications_OnTestCompletion">پایان تست را اعلام کن</string>
   <string name="Settings_Notifications_OnNews">خوراک خبری</string>
-  <string name="Settings_AutomatedTesting_Label">Automated testing</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
-  <string name="Settings_AutomatedTesting_Reminder">Remind me to run tests</string>
-  <string name="Settings_AutomatedTesting_EnabledTests">تست‌های فعال</string>
-  <string name="Settings_AutomatedTesting_Reminder_Time">زمان</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_TimesPerDay">Test runs per day</string>
-  <string name="Settings_AutomatedTesting_Categories_Label">دسته‌بندی‌ها</string>
-  <string name="Settings_AutomatedTesting_Categories_Title">دسته‌بندی‌های وبسایت برای تست</string>
-  <string name="Settings_AutomatedTesting_Categories_Subtitle">%1$s دسته بندی فعال است</string>
-  <string name="Settings_AutomatedTesting_MonthlyMobileAllowance">خرج ماهانه‌ی موبایل</string>
-  <string name="Settings_AutomatedTesting_MonthlyWiFiAllowance">خرج  ماهانه‌ی WiFi</string>
   <string name="Settings_Sharing_Label">به اشتراک گذاری</string>
   <string name="Settings_Sharing_UploadResults">انتشار خودکار نتایج</string>
   <string name="Settings_Sharing_UploadResultsManually">بارگذاری دستی نتایج</string>
@@ -303,8 +292,6 @@
   <string name="Settings_SendEmail_Label">ارسال ایمیل به پشتیبانی</string>
   <string name="Settings_SendEmail_Error">لطفا یک ایمیل به bugs@openobservatory.org همراه با اطلاعات برنامه و نسخه‌ی iOS ارسال کنید. بر روی «کپی در حافظه‌ی موقت» در پایین بزنید تا آدرس ایمیل کپی شود.</string>
   <string name="Notification_FinishedRunning">اجرا به پایان رسید</string>
-  <string name="Notification_RunTestReminder">Hey, it\'s time to run OONI Probe!</string>
-  <string name="Notification_RunAutomatically">Running OONI Probe tests (automated testing enabled)</string>
   <string name="OONIBrowser_TryMirror">سرورهای آینه را امتحان کنید</string>
   <string name="OONIBrowser_Loading">در حال بارگذاری...</string>
   <string name="OONIBrowser_Error">یک خطا غیرمنتظره رخ داده است. لطفا صفحه را بارگذاری مجدد کنید.</string>
