@@ -218,7 +218,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         invalidateOptionsMenu();
-        if (measurement.hasLogFile(this))
+        if (!measurement.hasLogFile(this))
                 menu.findItem(R.id.viewLog).setVisible(false);
         if (measurement.report_id == null || measurement.report_id.isEmpty())
             menu.findItem(R.id.copyExplorerUrl).setVisible(false);
