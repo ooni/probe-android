@@ -200,7 +200,7 @@
   <string name="Modal_Error_NotificationNotEnabled">Benachrichtigungsberechtigungen sind erforderlich. Bitte aktiviere sie in den Einstellungen deines Telefons und anschließend in deiner OONI Probe App.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Gehe zu Einstellungen</string>
   <string name="Modal_Error_CantCloseScreen">Dieser Bildschirm ist gesperrt, während ein Test ausgeführt wird.</string>
-  <string name="Modal_Error_RawDataNoInternet">You need to be connected to the internet to download the raw measurement data.</string>
+  <string name="Modal_Error_RawDataNoInternet">Um die rohen Messdaten herunterladen zu können, müssen Sie mit dem Internet verbunden sein.</string>
   <string name="Modal_ResultsNotUploaded_Title">Ergebnisse nicht hochgeladen</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">Manche deiner Testergebnisse wurden nicht auf OONI-Server hochgeladen. Wenn du zu OONIs Datensatz beitragen möchtest, lade sie bitte hoch.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Hochladen</string>
