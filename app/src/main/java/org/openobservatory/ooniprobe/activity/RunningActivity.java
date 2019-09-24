@@ -22,6 +22,7 @@ import androidx.core.app.NotificationCompat;
 import com.airbnb.lottie.LottieAnimationView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
@@ -49,7 +50,7 @@ public class RunningActivity extends AbstractActivity {
     private Integer runtime;
 
     public static Intent newIntent(AbstractActivity context, AbstractSuite testSuite) {
-        if (OrchestraTask.getNetworkType(context).equals(OrchestraTask.NO_INTERNET)) {
+        if (ReachabilityManager.getNetworkType(context).equals(ReachabilityManager.NO_INTERNET)) {
             new MessageDialogFragment.Builder()
                     .withTitle(context.getString(R.string.Modal_Error))
                     .withMessage(context.getString(R.string.Modal_Error_NoInternet))

@@ -9,6 +9,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.OrchestraTask;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.common.ReachabilityManager;
 
 import java.util.Arrays;
 import java.util.List;
@@ -45,7 +46,7 @@ public class Settings {
 		public String origin;
 
 		public Annotations(Context c) {
-			this.network_type = OrchestraTask.getNetworkType(c);
+			this.network_type = ReachabilityManager.getNetworkType(c);
 			this.flavor = BuildConfig.FLAVOR;
 		}
 	}
