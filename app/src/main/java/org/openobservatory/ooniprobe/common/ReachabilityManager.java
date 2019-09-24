@@ -24,4 +24,8 @@ public class ReachabilityManager {
         }
     }
 
+    public Boolean noInternetAccess(Context context){
+        return getNetworkType(context).equals(NO_INTERNET);
+    }
+
 }
