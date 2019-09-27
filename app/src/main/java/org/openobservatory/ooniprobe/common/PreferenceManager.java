@@ -45,7 +45,7 @@ public class PreferenceManager {
 
 	public Integer getMaxRuntime() {
 		try {
-			return sp.getInt(r.getString(R.string.max_runtime), 90);
+			return Integer.parseInt(sp.getString(r.getString(R.string.max_runtime), "90"));
 		} catch (Exception e) {
 			return 90;
 		}
