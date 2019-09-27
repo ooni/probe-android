@@ -51,7 +51,7 @@
   <string name="Dashboard_Middleboxes_Card_Description">在你的網路環境偵測中間盒</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">因各種情況（如為了緩存），網路連線服務商經常會使用一些網路用具 (如中間盒) 。但有時候，中間盒被會用來作網路審查與監控。\n\n使用 OONI\'s [HTTP  無效請求列](https://ooni.io/nettest/http-invalid-request-line/) 和 [HTTP 表頭欄位操控](https://ooni.io/nettest/http-header-field-manipulation/) 測試來找出網路中是否存在中間盒。\n\n測試結果會發佈在 [OONI Explorer](https://explorer.ooni.io/world/) 和 [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_InstantMessaging_Card_Description">測試遭封鎖的即時通訊應用</string>
-  <string name="Dashboard_InstantMessaging_Overview_Paragraph">檢查是否[WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) 和 [Telegram](https://ooni.ionettest/telegram/) 已被封鎖。\n\n其結果會發佈在 [OONI Explorer](https://explorer.ooni.io/world/) 與 [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_InstantMessaging_Overview_Paragraph">檢查是否[WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) 和 [Telegram](https://ooni.io/nettest/telegram/) 已被封鎖。\n\n其結果會發佈在 [OONI Explorer](https://explorer.ooni.io/world/) 與 [OONI API](https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">Gbps</string>
   <string name="TestResults_Mbps">Mbps</string>
   <string name="TestResults_Kbps">Kbps</string>
