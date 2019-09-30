@@ -21,6 +21,15 @@
 			android:title="@string/Settings_Notifications_OnNews" /> -->
 	</androidx.preference.PreferenceScreen>
 	<androidx.preference.PreferenceScreen
+		android:icon="@drawable/automated_testing"
+		android:key="@string/automated_testing"
+		android:title="@string/Settings_AutomatedTesting_Label">
+		<androidx.preference.SwitchPreferenceCompat
+			android:defaultValue="false"
+			android:key="@string/automated_testing_enabled"
+			android:title="@string/Settings_AutomatedTesting_RunAutomatically" />
+	</androidx.preference.PreferenceScreen>
+	<androidx.preference.PreferenceScreen
 		android:icon="@drawable/sharing"
 		android:key="@string/sharing"
 		android:title="@string/Settings_Sharing_Label">
