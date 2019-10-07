@@ -1,6 +1,6 @@
 package org.openobservatory.ooniprobe.common;
 
-import android.util.Log;
+import androidx.multidex.MultiDexApplication;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -8,16 +8,12 @@ import com.raizlabs.android.dbflow.annotation.Database;
 import com.raizlabs.android.dbflow.config.FlowLog;
 import com.raizlabs.android.dbflow.config.FlowManager;
 
-import org.apache.commons.io.IOUtils;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.client.OONIAPIClient;
 import org.openobservatory.ooniprobe.client.OONIOrchestraClient;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.util.Date;
 
 import okhttp3.OkHttpClient;
@@ -26,7 +22,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Database(name = "v2", version = 1, foreignKeyConstraintsEnforced = true)
-public class Application extends android.app.Application {
+public class Application extends MultiDexApplication {
 
 	static {
 		System.loadLibrary("measurement_kit");
