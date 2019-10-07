@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
 	package="org.openobservatory.ooniprobe">
 
 	<uses-permission android:name="android.permission.INTERNET" />
@@ -11,7 +12,8 @@
 		android:icon="@mipmap/ic_launcher"
 		android:label="@string/General_AppName"
 		android:supportsRtl="true"
-		android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App">
+		android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App"
+		android:usesCleartextTraffic="true" tools:targetApi="28" >
 		<activity
 			android:name=".activity.MainActivity"
 			android:launchMode="singleTop"
@@ -73,7 +75,7 @@
 			android:label="@string/Settings_About_Label"
 			android:parentActivityName=".activity.PreferenceActivity"
 			android:screenOrientation="userPortrait"
-			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
+			android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 			<intent-filter>
 				<action android:name="org.openobservatory.ooniprobe.activity.InfoActivity" />
 				<category android:name="android.intent.category.DEFAULT" />

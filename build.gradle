@@ -15,6 +15,15 @@ buildscript {
 
 allprojects {
 	repositories {
+		maven {
+			// All of React Native (JS, Android binaries) is installed from npm
+			url "$rootDir/react-native/node_modules/react-native/android"
+		}
+		maven {
+			// Android JSC is installed from npm
+			url("$rootDir/react-native/node_modules/jsc-android/dist")
+		}
+
 		google()
 		jcenter()
 		mavenCentral()
