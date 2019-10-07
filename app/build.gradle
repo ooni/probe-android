@@ -21,6 +21,7 @@ android {
 		targetSdkVersion 28
 		versionName '2.2.0-beta.3'
 		versionCode 53
+		multiDexEnabled true
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 	}
 
@@ -49,6 +50,8 @@ android {
 
 dependencies {
 	implementation 'androidx.appcompat:appcompat:1.1.0'
+
+	implementation 'androidx.multidex:multidex:2.0.1'
 
 	fullImplementation 'com.google.firebase:firebase-messaging:20.0.0'
 	fullImplementation 'com.google.firebase:firebase-core:17.2.0'
