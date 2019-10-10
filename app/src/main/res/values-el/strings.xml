@@ -200,7 +200,7 @@
   <string name="Modal_Error_NotificationNotEnabled">Χρειάζονται δικαιώματα ειδοποιήσεων. Ενεργοποίησέ τα στις Ρυθμίσεις του τηλεφώνου σου και στην εφαρμογή του OONI Probe.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Πήγαινε στις Ρυθμίσεις</string>
   <string name="Modal_Error_CantCloseScreen">Αυτή η οθόνη είναι κλειδωμένη όσο εκτελείται κάποια δοκιμή.</string>
-  <string name="Modal_Error_RawDataNoInternet">You need to be connected to the internet to download the raw measurement data.</string>
+  <string name="Modal_Error_RawDataNoInternet">Πρέπει να συνδεθείς στο διαδίκτυο για να κατεβάσεις τα ακατέργαστα δεδομένα μέτρησης.</string>
   <string name="Modal_ResultsNotUploaded_Title">Τα αποτελέσματα δεν ανέβηκαν</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">Μερικά από τα αποτελέσματά σου δεν έχουν ανέβει στους διακομιστές του OONI. Αν θέλεις να συνεισφέρεις στη βάση δεδομένων του OONI, παρακαλούμε να τα ανεβάσεις.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Ανέβασμα</string>

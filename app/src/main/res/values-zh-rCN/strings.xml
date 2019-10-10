@@ -51,7 +51,7 @@
   <string name="Dashboard_Middleboxes_Card_Description">探测您网络中的 middleboxes</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">互联网服务提供商（ISP）通常使用中间式的网络设备为各类网络连接与目的提供功能（例如缓存）。有时候，这些中间设备用于实施互联网审查和/或监视。\n\n使用 OONI 的 [HTTP 无效请求行](https://ooni.io/nettest/http-invalid-request-line/)和 [HTTP 标头操作](https://ooni.io/nettest/http-header-field-manipulation/)测试查找您的网络中的中间设备。\n\n您的测试结果将发布在 [OONI Explorer](https://explorer.ooni.io/world/) 和 [OONI API](https://api.ooni.io/)。</string>
   <string name="Dashboard_InstantMessaging_Card_Description">测试封锁即时消息应用的情况</string>
-  <string name="Dashboard_InstantMessaging_Overview_Paragraph">检查 [WhatsApp](https://ooni.io/nettest/whatsapp/)、[Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) 和 [Telegram](https://ooni.io/nettest/telegram/) 是否被屏蔽。\n\n您的结果将在 [OONI Explorer](https://explorer.ooni.io/world/) 和 [OONI API](https://api.ooni.io/) 上公布。</string>
+  <string name="Dashboard_InstantMessaging_Overview_Paragraph">检查 [WhatsApp](https://ooni.io/nettest/whatsapp/)、[Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) 和 [Telegram](https://ooni.io/nettest/telegram/) 是否被屏蔽。\n\n您的结果将会发布在 [OONI Explorer](https://explorer.ooni.io/world/) 和 [OONI API](https://api.ooni.io/) 上。</string>
   <string name="TestResults_Gbps">Gbps</string>
   <string name="TestResults_Mbps">Mbps</string>
   <string name="TestResults_Kbps">Kbps</string>
@@ -118,7 +118,7 @@
   <string name="TestResults_Details_Methodology">推理能力</string>
   <string name="TestResults_Details_ViewLog">查看日志</string>
   <string name="TestResults_Details_RawData">数据</string>
-  <string name="TestResults_Details_CopyExplorerURL">Copy Explorer URL</string>
+  <string name="TestResults_Details_CopyExplorerURL">复制 Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">复制到剪贴板</string>
   <string name="TestResults_Details_Failed_Title">失败</string>
   <string name="TestResults_Details_Failed_Paragraph">您可以尝试再次运行这个测试</string>
@@ -200,7 +200,7 @@
   <string name="Modal_Error_NotificationNotEnabled">需要通知权限。请在手机设置中启用，然后在 OONI Probe 应用中启用。</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">转到设置页面</string>
   <string name="Modal_Error_CantCloseScreen">有测试运行时，此屏幕将被锁定。</string>
-  <string name="Modal_Error_RawDataNoInternet">You need to be connected to the internet to download the raw measurement data.</string>
+  <string name="Modal_Error_RawDataNoInternet">您需要连接到互联网来下载原始测量数据。</string>
   <string name="Modal_ResultsNotUploaded_Title">结果未上传</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">您的部分测试结果尚未上传到 OONI 服务器。如果您想为 OONI 数据集做出贡献，请上传它们。</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">上传</string>
@@ -227,7 +227,7 @@
   <string name="Modal_Error_NoValidUrls">未找到有效 URL</string>
   <string name="Modal_Error_JsonEmpty">空的 JSON</string>
   <string name="Toast_CopiedToClipboard">已复制到剪贴板</string>
-  <string name="Toast_WillBeAvailable">Will be available within 24h</string>
+  <string name="Toast_WillBeAvailable">将于 24 小时内可用</string>
   <string name="Snackbar_ResultsNotUploaded_Text">未上传</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">上传</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">部分未上传</string>
