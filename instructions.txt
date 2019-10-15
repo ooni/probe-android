@@ -1,4 +1,5 @@
 git clone https://github.com/ooni/probe-react-native.git
+cd probe-react-native
 yarn add react-native (or npm install)
 npm start
 react-native bundle --platform android --dev false --entry-file index.js --bundle-output ../app/src/main/assets/index.android.bundle --assets-dest ../app/src/main/res/
