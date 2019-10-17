@@ -18,6 +18,8 @@ import com.facebook.soloader.SoLoader;
 
 import org.openobservatory.ooniprobe.BuildConfig;
 
+import io.ooni.mk.MKVersion;
+
 public class InfoActivity extends Activity implements DefaultHardwareBackBtnHandler {
 	private ReactRootView mReactRootView;
 	private ReactInstanceManager mReactInstanceManager;
@@ -39,7 +41,10 @@ public class InfoActivity extends Activity implements DefaultHardwareBackBtnHand
 				.build();
 		// The string here (e.g. "MyReactNativeApp") has to match
 		// the string in AppRegistry.registerComponent() in index.js
-		mReactRootView.startReactApplication(mReactInstanceManager, "HelloWorld", null);
+		Bundle initialProps = new Bundle();
+		initialProps.putString("ooniprobeVersion", BuildConfig.VERSION_NAME);
+		initialProps.putString("mkVersion", MKVersion.getVersionMK());
+		mReactRootView.startReactApplication(mReactInstanceManager, "About", null);
 
 		setContentView(mReactRootView);
 
