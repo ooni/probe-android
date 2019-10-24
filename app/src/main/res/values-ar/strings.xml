@@ -51,7 +51,7 @@
   <string name="Dashboard_Middleboxes_Card_Description">البحث عن اختبارات تفتيش في شبكتك</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">عادة ما تقوم الشركات المزودة لخدمة الإنترنت بإستخدام أجهزة تسمى middleboxes لإستخدامات مختلفة في الشبكة (مثل تسريع الخدمة عن طريق تقديم نسخة مسجلة من المواقع). أحيانًا ما تستخدم middleboxes لتنفيذ الحجب أو مراقبة الإنترنت.\n\nاعثر على middleboxes في شبكتك بإستخدام اختبارات [عدم صلاحية طلب الHTTP](https://ooni.io/nettest/http-invalid-request-line/) و [التلاعب بخانة رأس صفحة الHTTP](https://ooni.io/nettest/http-header-field-manipulation/).\nنتائج اختبارك ستنشر على [متصفح OONI](https://explorer.ooni.io/world/) و على [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_InstantMessaging_Card_Description">اختبار حجب برامج المراسلة الفورية</string>
-  <string name="Dashboard_InstantMessaging_Overview_Paragraph">تحقق من حجب [واتساب](https://ooni.io/nettest/whatsapp/)و [ماسنجر الفيسبوك](https://ooni.io/nettest/facebook-messenger/) و [تيليجرام](https://ooni.ionettest/telegram/)\n\nنتائج اختبارك ستنشر على [متصفح OONI](https://explorer.ooni.io/world/) و على [OONI API](https://api.ooni.io/)</string>
+  <string name="Dashboard_InstantMessaging_Overview_Paragraph">تحقق من حجب [واتساب](https://ooni.io/nettest/whatsapp/)و [ماسنجر الفيسبوك](https://ooni.io/nettest/facebook-messenger/) و [تيليجرام](https://ooni.io/nettest/telegram/)\n\nنتائج اختبارك ستنشر على [متصفح OONI](https://explorer.ooni.io/world/) و على [OONI API](https://api.ooni.io/)</string>
   <string name="TestResults_Gbps">Gbps</string>
   <string name="TestResults_Mbps">Mbps</string>
   <string name="TestResults_Kbps">Kbps</string>
@@ -118,7 +118,7 @@
   <string name="TestResults_Details_Methodology">المنهجية</string>
   <string name="TestResults_Details_ViewLog">عرض السجل</string>
   <string name="TestResults_Details_RawData">بيانات</string>
-  <string name="TestResults_Details_CopyExplorerURL">Copy Explorer URL</string>
+  <string name="TestResults_Details_CopyExplorerURL">نسخ رابط المتصفح</string>
   <string name="TestResults_Details_CopyToClipboard">نسخ إلى الحافظة</string>
   <string name="TestResults_Details_Failed_Title">فشل</string>
   <string name="TestResults_Details_Failed_Paragraph">باستطاعتك إجراء هذا الاختبار من جديد </string>
@@ -200,7 +200,7 @@
   <string name="Modal_Error_NotificationNotEnabled">التطبيق بحاجة الى تصريح التنبيهات. من فضلك قم بإعطاء التطبيق تصريح التنبيهات من خلال إعدادات هاتفك ثم اسمح بها في تطبيق OONI Probe.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">اذهب إلى الإعدادات</string>
   <string name="Modal_Error_CantCloseScreen">هذه الواجهة مغلقة لحين الإنتهاء من الاختبار.</string>
-  <string name="Modal_Error_RawDataNoInternet">You need to be connected to the internet to download the raw measurement data.</string>
+  <string name="Modal_Error_RawDataNoInternet">لا بد أن تكون متصلا بالانترنت لتحميل بيانات القياسات الأولية.</string>
   <string name="Modal_ResultsNotUploaded_Title">النتائج لم يتمّ رفعها</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">بعض نتائج الاختبارات الخاصة بك لم يتمّ رفعها إلى خوادم OONI. من فضلك قم برفعها اذا كنت ترغب بالمساهمة في تجميع بيانات OONI.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">رفع</string>
@@ -224,7 +224,7 @@
   <string name="Modal_UploadFailed_Title">فَشِلتْ عملية الرفع</string>
   <string name="Modal_UploadFailed_Paragraph">هل ترغب في إعادة المحاولة أو الإلغاء؟</string>
   <string name="Modal_Error_LogNotFound">ملف السجلّ غير موجود</string>
-  <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
+  <string name="Modal_Error_NoValidUrls">لم يتم العثور على روابط صحيحة</string>
   <string name="Modal_Error_JsonEmpty">JSON فارغ</string>
   <string name="Toast_CopiedToClipboard">نسخ إلى الحافظة</string>
   <string name="Toast_WillBeAvailable">سوف يكون متوفرا خلال 24سا</string>
@@ -290,7 +290,7 @@
   <string name="Settings_Performance_DashServerAddress">خادم DASH</string>
   <string name="Settings_Performance_DashServerPort">منفذ خادم DASH</string>
   <string name="Settings_SendEmail_Label">إرسال إيميل لفريق الدعم </string>
-  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap \"Copy to clipboard\" below to copy our email address.</string>
+  <string name="Settings_SendEmail_Error">من فضلك أرسل ايميل الى bugs@openobservatory.org يحتوى على معلومات عن اصدار البرنامج وإصدار iOS. اضغط على \"نسخ إلى الحافظة\" فى الأسفل لنسخ عنوان البريد الإلكتروني الخاص بنا.</string>
   <string name="Notification_FinishedRunning">انتهى التشغيل</string>
   <string name="OONIBrowser_TryMirror">تجربة خادم بديل</string>
   <string name="OONIBrowser_Loading">جاري التحميل...</string>

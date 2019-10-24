@@ -23,7 +23,8 @@ import com.airbnb.lottie.LottieAnimationView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
-import org.openobservatory.ooniprobe.model.database.Result;
+import org.openobservatory.ooniprobe.common.NotificationService;
+ìimport org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.common.OrchestraTask;
@@ -34,7 +35,6 @@ import localhost.toolkit.app.fragment.MessageDialogFragment;
 
 public class RunningActivity extends AbstractActivity {
     private static final String TEST = "test";
-    private static final String TEST_RUN = "TEST_RUN";
     @BindView(R.id.name)
     TextView name;
     @BindView(R.id.log)
@@ -134,24 +134,8 @@ public class RunningActivity extends AbstractActivity {
             RunningActivity act = ref.get();
             if (act != null && !act.isFinishing()) {
                 if (act.background) {
-                    NotificationManager notificationManager = (NotificationManager) act.getSystemService(Context.NOTIFICATION_SERVICE);
-                    if (notificationManager != null && act.getPreferenceManager().isNotificationsCompletion()) {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                            notificationManager.createNotificationChannel(new NotificationChannel(TEST_RUN, act.getString(R.string.Settings_Notifications_OnTestCompletion), NotificationManager.IMPORTANCE_DEFAULT));
-                        NotificationCompat.Builder b = new NotificationCompat.Builder(act, TEST_RUN);
-                        b.setAutoCancel(true);
-                        b.setDefaults(Notification.DEFAULT_ALL);
-                        Drawable d = act.getResources().getDrawable(act.testSuite.getIcon());
-                        Bitmap bitmap = Bitmap.createBitmap(d.getIntrinsicWidth(), d.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-                        Canvas canvas = new Canvas(bitmap);
-                        d.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-                        d.draw(canvas);
-                        b.setLargeIcon(bitmap);
-                        b.setSmallIcon(R.drawable.notification_icon);
-                        b.setContentTitle(act.getString(R.string.General_AppName));
-                        b.setContentText(act.getString(act.testSuite.getTitle()) + " " + act.getString(R.string.Notification_FinishedRunning));
-                        b.setContentIntent(PendingIntent.getActivity(act, 0, MainActivity.newIntent(act, R.id.testResults), PendingIntent.FLAG_UPDATE_CURRENT));
-                        notificationManager.notify(1, b.build());
+                    if(act.getPreferenceManager().isNotificationsCompletion()) {
+                        NotificationService.notifyTestEnded(act, act.testSuite);
                     }
                 } else
                     act.startActivity(MainActivity.newIntent(act, R.id.testResults));
