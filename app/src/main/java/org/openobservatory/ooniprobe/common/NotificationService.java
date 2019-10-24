@@ -27,8 +27,11 @@ public class NotificationService {
         NotificationManager notificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
         if (notificationManager == null)
             return;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-            notificationManager.createNotificationChannel(new NotificationChannel(TEST_RUN, c.getString(R.string.Settings_Notifications_OnTestCompletion), NotificationManager.IMPORTANCE_DEFAULT));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            notificationManager.createNotificationChannel(
+                    new NotificationChannel(TEST_RUN, c.getString(R.string.Settings_Notifications_OnTestCompletion), NotificationManager.IMPORTANCE_DEFAULT)
+            );
+        }
         NotificationCompat.Builder b = new NotificationCompat.Builder(c, TEST_RUN);
         b.setAutoCancel(true);
         b.setDefaults(Notification.DEFAULT_ALL);
