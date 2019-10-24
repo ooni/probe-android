@@ -24,7 +24,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.NotificationService;
-ìimport org.openobservatory.ooniprobe.model.database.Result;
+import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.common.OrchestraTask;
