@@ -10,6 +10,8 @@ android:
   - sys-img-armeabi-v7a-android-22
 
 before_install:
+- git clone https://github.com/ooni/probe-react-native.git
+- cd probe-react-native && yarn add react-native
 - yes | sdkmanager "platforms;android-29"
 
 before_script:
