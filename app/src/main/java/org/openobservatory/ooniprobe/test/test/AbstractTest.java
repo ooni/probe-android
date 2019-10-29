@@ -16,6 +16,7 @@ import org.openobservatory.ooniprobe.common.Crashlytics;
 import org.openobservatory.ooniprobe.common.MKException;
 import org.openobservatory.ooniprobe.common.OrchestraTask;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -181,7 +182,7 @@ public abstract class AbstractTest implements Serializable {
 
     private void saveNetworkInfo(EventResult.Value value, Result result, Context c) {
         if (result != null && result.network == null) {
-            result.network = Network.getNetwork(value.probe_network_name, value.probe_ip, value.probe_asn, value.probe_cc, OrchestraTask.getNetworkType(c));
+            result.network = Network.getNetwork(value.probe_network_name, value.probe_ip, value.probe_asn, value.probe_cc, ReachabilityManager.getNetworkType(c));
             result.save();
         }
     }

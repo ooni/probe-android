@@ -27,6 +27,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.client.callback.GetMeasurementJsonCallback;
 import org.openobservatory.ooniprobe.client.callback.GetMeasurementsCallback;
 import org.openobservatory.ooniprobe.common.OrchestraTask;
+import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.fragment.measurement.DashFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.FacebookMessengerFragment;
@@ -236,7 +237,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                     json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(new JsonParser().parse(json));
                     startActivity(TextActivity.newIntent(this, json));
                 } catch (Exception e) {
-                    if (OrchestraTask.getNetworkType(this).equals(OrchestraTask.NO_INTERNET)) {
+                    if (ReachabilityManager.getNetworkType(this).equals(ReachabilityManager.NO_INTERNET)) {
                         new MessageDialogFragment.Builder()
                                 .withTitle(getString(R.string.Modal_Error))
                                 .withMessage(getString(R.string.Modal_Error_RawDataNoInternet))

@@ -7,7 +7,7 @@ project.ext.react = [
 ]
 
 android {
-	compileSdkVersion 28
+	compileSdkVersion 29
 	buildToolsVersion '28.0.3'
 
 	compileOptions {
@@ -18,10 +18,10 @@ android {
 	defaultConfig {
 		applicationId 'org.openobservatory.ooniprobe'
 		minSdkVersion 17
-		targetSdkVersion 28
-		versionName '2.2.0-beta.3'
-		versionCode 53
 		multiDexEnabled true
+		targetSdkVersion 29
+		versionName '2.2.0'
+		versionCode 54
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 	}
 
