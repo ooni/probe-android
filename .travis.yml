@@ -1,4 +1,5 @@
 language: android
+language: node_js
 
 android:
   components:
@@ -8,6 +9,9 @@ android:
   - android-22
   - android-28
   - sys-img-armeabi-v7a-android-22
+
+node_js:
+  - 12.10
 
 before_install:
 - git clone https://github.com/ooni/probe-react-native.git
