@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
+def enableProguardInReleaseBuilds = true
 
 project.ext.react = [
 		entryFile: "index.js",
@@ -20,8 +21,8 @@ android {
 		minSdkVersion 17
 		multiDexEnabled true
 		targetSdkVersion 29
-		versionName '2.2.0'
-		versionCode 54
+		versionName '2.2.1-alpha01'
+		versionCode 55
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 	}
 
@@ -33,7 +34,7 @@ android {
 		}
 
 		release {
-			minifyEnabled false
+			minifyEnabled enableProguardInReleaseBuilds
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 			buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://registry.proteus.ooni.io"'
 			buildConfigField 'String', 'OONI_ORCHESTRATE_BASE_URL', '"https://orchestrate.ooni.io/"'
@@ -46,6 +47,29 @@ android {
 		fdroid { dimension 'license' }
 		full { dimension 'license' }
 	}
+
+	//Remove to disable splitted APKs
+	splits {
+		// Configures multiple APKs based on ABI.
+		abi {
+
+			// Enables building multiple APKs per ABI.
+			enable true
+
+			// By default all ABIs are included, so use reset() and include to specify that we only
+			// want APKs for x86 and x86_64.
+
+			// Resets the list of ABIs that Gradle should create APKs for to none.
+			reset()
+
+			// Specifies a list of ABIs that Gradle should create APKs for.
+			include "x86", "armeabi-v7a", "arm64-v8a", "x86_64"
+
+			// Specifies that we do not want to also generate a universal APK that includes all ABIs.
+			universalApk false
+		}
+	}
+
 }
 
 dependencies {
