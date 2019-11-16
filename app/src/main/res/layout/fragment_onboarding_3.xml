@@ -14,6 +14,7 @@
 		android:src="@drawable/onboarding_3" />
 
 	<TextView
+		android:id="@+id/default_settings_title"
 		style="@style/TextAppearance.MaterialComponents.Headline6"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
