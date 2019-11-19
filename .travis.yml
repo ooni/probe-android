@@ -10,12 +10,15 @@ android:
   - sys-img-armeabi-v7a-android-22
 
 before_install:
-- yes | sdkmanager "platforms;android-29"
+  - yes | sdkmanager "platforms;android-29"
 
 before_script:
-- echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
-- emulator -avd test -no-audio -no-window &
-- android-wait-for-emulator
+  - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
+  - emulator -avd test -no-audio -no-window &
+  - android-wait-for-emulator
 - adb shell input keyevent 82 &
+  - git clone https://github.com/ooni/probe-mobile-appium.git
+script: 
+  - ./gradlew connectedAndroidTest
+  - cd probe-mobile-appium && gradle androidRegression
 
-script: ./gradlew connectedAndroidTest
