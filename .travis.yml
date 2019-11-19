@@ -9,6 +9,9 @@ android:
   - android-28
   - sys-img-armeabi-v7a-android-22
 
+env:
+  - NODE_VERSION="12.13"
+
 before_install:
   - yes | sdkmanager "platforms;android-29"
 
@@ -18,6 +21,7 @@ before_script:
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
   - git clone https://github.com/ooni/probe-mobile-appium.git
+
 script: 
   - ./gradlew connectedAndroidTest
   - cd probe-mobile-appium && gradle androidRegression
