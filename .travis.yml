@@ -25,4 +25,5 @@ before_script:
 
 script: 
   - ./gradlew connectedAndroidTest
+  - ./gradlew assembleDebug
   - cd probe-mobile-appium && gradle androidRegression
