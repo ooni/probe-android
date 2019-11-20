@@ -28,3 +28,5 @@ script:
   - ./gradlew assembleDebug
   - adb devices
   - cd probe-mobile-appium && gradle androidRegression
+
+
