@@ -11,6 +11,8 @@ android:
 
 env:
   - NODE_VERSION="12.13"
+  - JAVA_HOME=$(/usr/libexec/java_home)
+  - PATH=${JAVA_HOME}/bin:$PATH
 
 before_install:
   - yes | sdkmanager "platforms;android-29"
@@ -18,6 +20,8 @@ before_install:
 before_script:
   - nvm install $NODE_VERSION
   - npm install appium-doctor -g
+  - npm i -g opencv4nodejs
+  - 
   - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a
   - emulator -avd test -no-window &
   - android-wait-for-emulator
@@ -30,5 +34,3 @@ script:
   - adb devices
   - appium-doctor --android
   - cd probe-mobile-appium && gradle androidRegression
-
-
