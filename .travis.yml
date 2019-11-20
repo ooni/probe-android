@@ -17,6 +17,7 @@ before_install:
 
 before_script:
   - nvm install $NODE_VERSION
+  - npm install appium-doctor
   - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a
   - emulator -avd test -no-window &
   - android-wait-for-emulator
@@ -27,6 +28,7 @@ script:
   - ./gradlew connectedAndroidTest
   - ./gradlew assembleDebug
   - adb devices
+  - appium-doctor
   - cd probe-mobile-appium && gradle androidRegression
 
 
