@@ -28,7 +28,7 @@ script:
   - ./gradlew connectedAndroidTest
   - ./gradlew assembleDebug
   - adb devices
-  - appium-doctor
+  - appium-doctor --android
   - cd probe-mobile-appium && gradle androidRegression
 
 
