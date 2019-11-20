@@ -7,7 +7,7 @@ android:
   - build-tools-28.0.3
   - android-22
   - android-28
-  - sys-img-armeabi-v7a-android-28
+  - sys-img-armeabi-v7a-google_apis-28
 
 env:
   - NODE_VERSION="12.13"
@@ -17,7 +17,7 @@ before_install:
 
 before_script:
   - nvm install $NODE_VERSION
-  - echo no | android create avd --force -n test -t android-28 --abi google_apis/armeabi-v7a
+  - echo no | android create avd --force -n test -t android-28 --abi armeabi-v7a --tag google_apis
   - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
