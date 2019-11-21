@@ -13,6 +13,7 @@ env:
   global:
     - JAVA_HOME=/usr/lib/jvm/java-8-oracle
     - NODE_VERSION="12.13"
+    - PATH=${JAVA_HOME}/bin:$PATH
 
 before_install:
   - yes | sdkmanager "platforms;android-29"
@@ -21,7 +22,7 @@ before_script:
   - nvm install $NODE_VERSION
   - npm install -g appium
   - npm install appium-doctor -g
-  - npm i -g opencv4nodejs
+  #- npm i -g opencv4nodejs
   - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a
   - emulator -avd test -no-window &
   - android-wait-for-emulator
