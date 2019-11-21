@@ -19,6 +19,7 @@ before_install:
 
 before_script:
   - nvm install $NODE_VERSION
+  - npm install -g appium
   - npm install appium-doctor -g
   - npm i -g opencv4nodejs
   - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a
