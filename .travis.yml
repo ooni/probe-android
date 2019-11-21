@@ -27,17 +27,16 @@ before_script:
   - emulator -avd test -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
-  - appium --log-level info > $HOME/appium_log.txt &
+#  - appium --log-level info > $HOME/appium_log.txt &
   - git clone https://github.com/ooni/probe-mobile-appium.git
 
 script: 
-#  - ./gradlew connectedAndroidTest
+  - ./gradlew connectedAndroidTest
   - ./gradlew assembleDebug
 #  - adb devices
 #  - appium-doctor --android
   - pwd
-  - ls  
-  - ls ./app/build/outputs/apk/fdroid/debug/
+  - ls  /home/travis/build/ooni/probe-android/app/build/outputs/apk/fdroid/debug/
   - cd probe-mobile-appium && gradle androidRegression
-  - cat $HOME/appium_log.txt
+#  - cat $HOME/appium_log.txt
   - cat /home/travis/build/ooni/probe-android/probe-mobile-appium/build/reports/tests/androidRegression/classes/probe.mobile.appium.runners.LandingPageRunner.html
