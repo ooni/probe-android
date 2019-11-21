@@ -1,5 +1,7 @@
 language: android
 jdk: oraclejdk8
+node_js:
+  - '10'
 
 android:
   components:
@@ -13,14 +15,15 @@ android:
 env:
   global:
     - JAVA_HOME=/usr/lib/jvm/java-8-oracle
-    - NODE_VERSION="12.13"
+#    - NODE_VERSION="12.13"
     - PATH=${JAVA_HOME}/bin:$PATH
 
 before_install:
   - yes | sdkmanager "platforms;android-29"
 
 before_script:
-  - nvm install $NODE_VERSION
+#  - nvm install $NODE_VERSION
+  - node -v
   - npm install -g appium
   - npm install -g appium-doctor
   - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a
