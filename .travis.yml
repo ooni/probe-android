@@ -20,12 +20,9 @@ before_install:
   - yes | sdkmanager "platforms;android-29"
 
 before_script:
-  - echo $JAVA_HOME
-  - ls $JAVA_HOME
-  - java -version
   - nvm install $NODE_VERSION
   - npm install -g appium
-  - npm install appium-doctor -g
+#  - npm install appium-doctor -g
   #- npm i -g opencv4nodejs
   - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a
   - emulator -avd test -no-window &
@@ -36,7 +33,8 @@ before_script:
 script: 
   - ./gradlew connectedAndroidTest
   - ./gradlew assembleDebug
-  - adb devices
-  - appium-doctor --android
+#  - adb devices
+#  - appium-doctor --android
+  - ls ../app/build/outputs/apk/fdroid/debug/
   - cd probe-mobile-appium && gradle androidRegression
   - cat /home/travis/build/ooni/probe-android/probe-mobile-appium/build/reports/tests/androidRegression/classes/probe.mobile.appium.runners.LandingPageRunner.html
