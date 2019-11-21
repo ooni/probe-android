@@ -10,14 +10,14 @@ android:
   - sys-img-armeabi-v7a-android-24
 
 env:
-  - NODE_VERSION="12.13"
+  global:
+    - JAVA_HOME=/usr/lib/jvm/java-8-oracle
+    - NODE_VERSION="12.13"
 
 before_install:
   - yes | sdkmanager "platforms;android-29"
 
 before_script:
-  - export JAVA_HOME=$(/usr/libexec/java_home)
-  - export PATH=${JAVA_HOME}/bin:$PATH
   - nvm install $NODE_VERSION
   - npm install appium-doctor -g
   - npm i -g opencv4nodejs
@@ -33,3 +33,4 @@ script:
   - adb devices
   - appium-doctor --android
   - cd probe-mobile-appium && gradle androidRegression
+  - cat /home/travis/build/ooni/probe-android/probe-mobile-appium/build/reports/tests/androidRegression/classes/probe.mobile.appium.runners.LandingPageRunner.html
