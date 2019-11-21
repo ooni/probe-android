@@ -14,7 +14,7 @@ env:
   global:
     - JAVA_HOME=/usr/lib/jvm/java-8-oracle
     - NODE_VERSION="12.13"
-    - PATH=$JAVA_HOME/bin:$PATH
+    - PATH=${JAVA_HOME}/bin:$PATH
 
 before_install:
   - yes | sdkmanager "platforms;android-29"
@@ -22,7 +22,7 @@ before_install:
 before_script:
   - nvm install $NODE_VERSION
   - npm install -g appium
-#  - npm install appium-doctor -g
+  - npm install -g appium-doctor
   - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a
   - emulator -avd test -no-window &
   - android-wait-for-emulator
@@ -33,10 +33,8 @@ before_script:
 script: 
   - ./gradlew connectedAndroidTest
   - ./gradlew assembleDebug
-#  - adb devices
-#  - appium-doctor --android
-  - pwd
-  - ls  /home/travis/build/ooni/probe-android/app/build/outputs/apk/fdroid/debug/
+  - adb devices
+  - appium-doctor --android
   - cd probe-mobile-appium && gradle androidRegression
 #  - cat $HOME/appium_log.txt
   - cat /home/travis/build/ooni/probe-android/probe-mobile-appium/build/reports/tests/androidRegression/classes/probe.mobile.appium.runners.LandingPageRunner.html
