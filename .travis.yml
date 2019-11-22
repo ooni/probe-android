@@ -31,7 +31,7 @@ before_script:
   - git clone https://github.com/ooni/probe-mobile-appium.git
 
 script: 
-  - ./gradlew connectedAndroidTest
+#  - ./gradlew connectedAndroidTest
   - ./gradlew assembleDebug
   - adb devices
   - appium-doctor --android
