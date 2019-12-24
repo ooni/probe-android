@@ -1,8 +1,6 @@
 #!/bin/bash
 set -ex
 
-appium &
-
 git clone https://github.com/ooni/probe-mobile-appium.git
 # ./gradlew connectedAndroidTest
 ./gradlew assembleDebug
