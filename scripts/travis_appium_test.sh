@@ -1,9 +1,6 @@
 #!/bin/bash
 set -ex
 
-emulator -avd test -no-window &
-android-wait-for-emulator
-adb shell input keyevent 82 &
 appium &
 
 git clone https://github.com/ooni/probe-mobile-appium.git
