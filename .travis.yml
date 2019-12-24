@@ -21,21 +21,8 @@ before_install:
 
 before_script:
   - nvm install $NODE_VERSION
-  - npm install -g appium
+  - npm install -g appium@1.16.0
   - npm install -g appium-doctor
-  - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a
-  - emulator -avd test -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
-#  - appium --log-level info > $HOME/appium_log.txt &
-  - git clone https://github.com/ooni/probe-mobile-appium.git
-
+  - echo no | android create avd --force -n test --package "system-images;android-24;google_apis_playstore;x86"
 script: 
-#  - ./gradlew connectedAndroidTest
-  - ./gradlew assembleDebug
-  - adb devices
-  - appium-doctor --android
-  - cd probe-mobile-appium && gradle androidRegression
-#  - cat $HOME/appium_log.txt
-  - cat /home/travis/build/ooni/probe-android/probe-mobile-appium/build/reports/tests/androidRegression/classes/probe.mobile.appium.runners.LandingPageRunner.html
-
+  - scripts/travis_appium_test.sh
