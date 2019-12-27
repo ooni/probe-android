@@ -237,6 +237,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                     json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(new JsonParser().parse(json));
                     startActivity(TextActivity.newIntent(this, json));
                 } catch (Exception e) {
+                    e.printStackTrace();
                     if (ReachabilityManager.getNetworkType(this).equals(ReachabilityManager.NO_INTERNET)) {
                         new MessageDialogFragment.Builder()
                                 .withTitle(getString(R.string.Modal_Error))
