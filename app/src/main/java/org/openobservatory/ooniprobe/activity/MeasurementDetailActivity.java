@@ -18,16 +18,10 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonParser;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
-import org.apache.commons.io.FileUtils;
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.client.callback.GetMeasurementJsonCallback;
 import org.openobservatory.ooniprobe.client.callback.GetMeasurementsCallback;
-import org.openobservatory.ooniprobe.common.OrchestraTask;
-import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.fragment.measurement.DashFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.FacebookMessengerFragment;
@@ -54,19 +48,17 @@ import org.openobservatory.ooniprobe.test.test.Telegram;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
-import java.io.File;
 import java.io.Serializable;
-import java.nio.charset.Charset;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
-import localhost.toolkit.app.fragment.MessageDialogFragment;
-import okhttp3.Request;
 
 public class MeasurementDetailActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String ID = "id";
+    private static final int TYPE_LOG = 1;
+    private static final int TYPE_JSON = 2;
     @BindView(R.id.coordinatorLayout)
     CoordinatorLayout coordinatorLayout;
     @BindView(R.id.toolbar)
@@ -230,60 +222,10 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.rawData:
-                //Try to open file, if it doesn't exist dont show Error dialog immediately but try to download the json from internet
-                try {
-                    File entryFile = Measurement.getEntryFile(this, measurement.id, measurement.test_name);
-                    String json = FileUtils.readFileToString(entryFile, Charset.forName("UTF-8"));
-                    json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(new JsonParser().parse(json));
-                    startActivity(TextActivity.newIntent(this, json));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    if (ReachabilityManager.getNetworkType(this).equals(ReachabilityManager.NO_INTERNET)) {
-                        new MessageDialogFragment.Builder()
-                                .withTitle(getString(R.string.Modal_Error))
-                                .withMessage(getString(R.string.Modal_Error_RawDataNoInternet))
-                                .build().show(getSupportFragmentManager(), null);
-                        return true;
-                    }
-                    getApiClient().getMeasurement(measurement.report_id, null).enqueue(new GetMeasurementsCallback() {
-                        @Override
-                        public void onSuccess(ApiMeasurement.Result result) {
-                            getOkHttpClient().newCall(new Request.Builder().url(result.measurement_url).build()).enqueue(new GetMeasurementJsonCallback() {
-                                @Override
-                                public void onSuccess(String json) {
-                                    startActivity(TextActivity.newIntent(MeasurementDetailActivity.this, json));
-                                }
-
-                                @Override
-                                public void onError(String msg) {
-                                    new MessageDialogFragment.Builder()
-                                            .withTitle(getString(R.string.Modal_Error))
-                                            .withMessage(msg)
-                                            .build().show(getSupportFragmentManager(), null);
-                                }
-                            });
-                        }
-                        @Override
-                        public void onError(String msg) {
-                            new MessageDialogFragment.Builder()
-                                    .withTitle(getString(R.string.Modal_Error))
-                                    .withMessage(msg)
-                                    .build().show(getSupportFragmentManager(), null);
-                        }
-                    });
-                }
+                startActivity(TextActivity.newIntent(this, TYPE_JSON, measurement));
                 return true;
             case R.id.viewLog:
-                try {
-                    File logFile = Measurement.getLogFile(this, measurement.result.id, measurement.test_name);
-                    String log = FileUtils.readFileToString(logFile, Charset.forName("UTF-8"));
-                    startActivity(TextActivity.newIntent(this, log));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    new MessageDialogFragment.Builder()
-                            .withTitle(getString(R.string.Modal_Error_LogNotFound))
-                            .build().show(getSupportFragmentManager(), null);
-                }
+                startActivity(TextActivity.newIntent(this, TYPE_LOG, measurement));
                 return true;
             case R.id.copyExplorerUrl:
                 String link = "https://explorer.ooni.io/measurement/" + measurement.report_id;
