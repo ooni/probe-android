@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +38,7 @@ public class TextActivity extends AbstractActivity {
 	private static final int TYPE_JSON = 2;
 	private static final String TEST = "test";
 	private static final String TYPE = "type";
-	@BindView(R.id.textView) TextView textView;
+	@BindView(R.id.webView) WebView webView;
 
 	public static Intent newIntent(Context context, int type, Measurement measurement) {
 		return new Intent(context, TextActivity.class).putExtra(TYPE, type).putExtra(TEST, measurement);
@@ -59,7 +60,7 @@ public class TextActivity extends AbstractActivity {
 	@Override public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.clipboard:
-				((ClipboardManager) getSystemService(CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText(getString(R.string.General_AppName), textView.getText().toString()));
+				//((ClipboardManager) getSystemService(CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText(getString(R.string.General_AppName), textView.getText().toString()));
 				Toast.makeText(this, R.string.Toast_CopiedToClipboard, Toast.LENGTH_SHORT).show();
 				return true;
 			default:
@@ -75,7 +76,7 @@ public class TextActivity extends AbstractActivity {
 					File entryFile = Measurement.getEntryFile(this, measurement.id, measurement.test_name);
 					String json = FileUtils.readFileToString(entryFile, Charset.forName("UTF-8"));
 					json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(new JsonParser().parse(json));
-					textView.setText(json);
+					webView.loadData(json, "text/html; charset=utf-8", "utf-8");
 				} catch (Exception e) {
 					e.printStackTrace();
 					if (ReachabilityManager.getNetworkType(this).equals(ReachabilityManager.NO_INTERNET)) {
@@ -87,10 +88,11 @@ public class TextActivity extends AbstractActivity {
 					getApiClient().getMeasurement(measurement.report_id, null).enqueue(new GetMeasurementsCallback() {
 						@Override
 						public void onSuccess(ApiMeasurement.Result result) {
+							//TODO load measurement_url into WebView from the internet
 							getOkHttpClient().newCall(new Request.Builder().url(result.measurement_url).build()).enqueue(new GetMeasurementJsonCallback() {
 								@Override
 								public void onSuccess(String json) {
-									textView.setText(json);
+									webView.loadData(json, "text/html; charset=utf-8", "utf-8");
 								}
 								@Override
 								public void onError(String msg) {
@@ -114,7 +116,7 @@ public class TextActivity extends AbstractActivity {
 				try {
 					File logFile = Measurement.getLogFile(this, measurement.result.id, measurement.test_name);
 					String log = FileUtils.readFileToString(logFile, Charset.forName("UTF-8"));
-					textView.setText(log);
+					webView.loadData(log, "text/html; charset=utf-8", "utf-8");
 				} catch (Exception e) {
 					e.printStackTrace();
 					new MessageDialogFragment.Builder()
