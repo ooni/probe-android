@@ -2,6 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
+	<ProgressBar
+		android:id="@+id/progressBar"
+		android:layout_width="32dp"
+		android:layout_height="32dp"
+		android:layout_centerInParent="true"
+		android:layout_gravity="center"
+		android:indeterminate="true" />
 
 	<WebView
 		android:id="@+id/webView"
@@ -11,4 +18,5 @@
 		android:padding="8dp"
 		android:scrollbars="vertical"
 		android:typeface="monospace" />
+
 </RelativeLayout>
