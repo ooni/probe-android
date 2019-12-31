@@ -115,6 +115,8 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                 getFragmentManager().beginTransaction().replace(android.R.id.content, newConcreteInstance(rootKey)).commit();
             }
         } else if (preference instanceof SwitchPreferenceCompat) {
+            if (key.equals(getString(R.string.max_runtime_enabled)))
+                return;
             boolean found = false;
             for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++)
                 if (getPreferenceScreen().getPreference(i) instanceof SwitchPreferenceCompat && !getPreferenceScreen().getPreference(i).getKey().equals(getString(R.string.test_whatsapp_extensive)))
