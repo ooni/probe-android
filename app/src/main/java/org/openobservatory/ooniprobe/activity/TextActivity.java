@@ -41,8 +41,8 @@ import okhttp3.Request;
 public class TextActivity extends AbstractActivity {
 	private Measurement measurement;
 	private String text;
-	private static final int TYPE_LOG = 1;
-	private static final int TYPE_JSON = 2;
+	public static final int TYPE_LOG = 1;
+	public static final int TYPE_JSON = 2;
 	private static final String TEST = "test";
 	private static final String TYPE = "type";
 	@BindView(R.id.webView) WebView webView;
@@ -58,7 +58,6 @@ public class TextActivity extends AbstractActivity {
 		ButterKnife.bind(this);
 		measurement = (Measurement) getIntent().getSerializableExtra(TEST);
 		webView.setWebChromeClient(new WebChromeClient());
-		setProgressBarVisibility(View.VISIBLE);
 		webView.setWebViewClient(new WebViewClient() {
 			@Override
 			public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -111,7 +110,6 @@ public class TextActivity extends AbstractActivity {
 					json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(new JsonParser().parse(json));
 					text = json;
 					webView.loadDataWithBaseURL(null, json, "text/plain", "UTF-8", null);
-					//webView.loadData(json, "text/plain", "UTF-8");
 				} catch (Exception e) {
 					e.printStackTrace();
 					if (ReachabilityManager.getNetworkType(this).equals(ReachabilityManager.NO_INTERNET)) {

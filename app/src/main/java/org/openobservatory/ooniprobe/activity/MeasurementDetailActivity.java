@@ -57,8 +57,6 @@ import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 
 public class MeasurementDetailActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String ID = "id";
-    private static final int TYPE_LOG = 1;
-    private static final int TYPE_JSON = 2;
     @BindView(R.id.coordinatorLayout)
     CoordinatorLayout coordinatorLayout;
     @BindView(R.id.toolbar)
@@ -222,10 +220,10 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.rawData:
-                startActivity(TextActivity.newIntent(this, TYPE_JSON, measurement));
+                startActivity(TextActivity.newIntent(this, TextActivity.TYPE_JSON, measurement));
                 return true;
             case R.id.viewLog:
-                startActivity(TextActivity.newIntent(this, TYPE_LOG, measurement));
+                startActivity(TextActivity.newIntent(this, TextActivity.TYPE_LOG, measurement));
                 return true;
             case R.id.copyExplorerUrl:
                 String link = "https://explorer.ooni.io/measurement/" + measurement.report_id;
