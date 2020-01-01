@@ -117,6 +117,7 @@ public class TextActivity extends AbstractActivity {
 								.withTitle(getString(R.string.Modal_Error))
 								.withMessage(getString(R.string.Modal_Error_RawDataNoInternet))
 								.build().show(getSupportFragmentManager(), null);
+						return;
 					}
 					getApiClient().getMeasurement(measurement.report_id, null).enqueue(new GetMeasurementsCallback() {
 						@Override
