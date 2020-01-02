@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  android-test:
+  build:
     macos:
       xcode: "11.2.0"
     working_directory: ~/repo/App
