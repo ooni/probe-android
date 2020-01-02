@@ -20,6 +20,7 @@ before_install:
   - yes | sdkmanager "platforms;android-29"
 
 before_script:
+  - emulator -accel-check
   - nvm install $NODE_VERSION
   - npm install -g appium@1.16.0
   - npm install -g appium-doctor
