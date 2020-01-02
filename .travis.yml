@@ -1,12 +1,12 @@
 os: osx
 osx_image: xcode11.2
+jdk: oraclejdk8
 env:
   global:
     - ANDROID_SDK_ROOT=$HOME/android-tools
     - NODE_VERSION="12.13"
     - JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee' # taken from: https://stackoverflow.com/a/51644855
     - PATH=${JAVA_HOME}/bin:PATH=$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/tools/bin:$PATH
-
 before_script:
   - sh scripts/install-android-tools.sh
   - sdkmanager --list
@@ -17,6 +17,5 @@ before_script:
   - make create-avd
   - emulator-headless -avd android-tablet &
   - adb wait-for-device shell 'while [[ -z $(getprop dev.bootcomplete) ]]; do sleep 1; done;'
-
 script:
   - scripts/travis_appium_test.sh
