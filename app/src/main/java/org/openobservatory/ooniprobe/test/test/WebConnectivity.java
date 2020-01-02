@@ -39,7 +39,9 @@ public class WebConnectivity extends AbstractTest {
 			return 30 + getMax_runtime();
 		else if (getInputs() != null)
 			return 30 + getInputs().size() * super.getRuntime(pm);
-		else
+		else if(pm.isMaxRuntimeEnabled())
 			return 30 + pm.getMaxRuntime();
+		else
+			return 0;
 	}
 }

@@ -53,7 +53,7 @@ public class PreferenceManager {
 		}
 	}
 
-	private boolean isMaxRuntimeEnabled(){
+	public boolean isMaxRuntimeEnabled(){
 		return sp.getBoolean(r.getString(R.string.max_runtime_enabled), true);
 	}
 
