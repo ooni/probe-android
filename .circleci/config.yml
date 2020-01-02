@@ -37,7 +37,7 @@ jobs:
       - run:
           name: wait for emulator
           command: adb wait-for-device shell 'while [[ -z $(getprop dev.bootcomplete) ]]; do sleep 1; done;'
-      - run: adb shell screencap -p > screenshots/before.png
+      # - run: adb shell screencap -p > screenshots/before.png
       - run: scripts/travis_appium_test.sh
-      - store_artifacts:
-          path: screenshots
+      # - store_artifacts:
+      #    path: screenshots
