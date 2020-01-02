@@ -12,7 +12,6 @@ install:
   - java -version
   - sh scripts/install-android-tools.sh
   - sdkmanager --list
-  - emulator -accel-check
   - nvm install $NODE_VERSION
   - npm install -g appium@1.16.0
   - npm install -g appium-doctor
