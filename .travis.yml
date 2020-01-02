@@ -1,6 +1,5 @@
 os: osx
 osx_image: xcode9.4
-jdk: oraclejdk8
 env:
   global:
     - ANDROID_SDK_ROOT=$HOME/android-tools
