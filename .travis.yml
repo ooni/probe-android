@@ -5,7 +5,6 @@ env:
     - ANDROID_SDK_ROOT=$HOME/android-tools
     - NODE_VERSION="12.13"
     - PATH=$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/tools/bin:$PATH
-    - JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
 before_install:
   - "export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)"
   - "export PATH=${JAVA_HOME}/bin:$PATH"
