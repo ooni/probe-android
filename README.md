@@ -3,7 +3,7 @@
 OONI Probe is free and open source software designed to measure internet
 censorship and other forms of network interference.
 
-[![OONI Probe Android](assets/OONIProbeLogo.png)](https://ooni.io)
+[![OONI Probe Android](assets/OONIProbeLogo.png)](https://ooni.org)
 
 <div align="left">
 
@@ -17,7 +17,7 @@ censorship and other forms of network interference.
 
 </div>
 
-[Click here to report a bug](https://github.com/ooni/probe-android/issues/new)
+[Click here to report a bug](https://github.com/ooni/probe/issues/new)
 
 Other supported platforms: [iOS](https://github.com/ooni/probe-ios), [Desktop](https://github.com/ooni/probe-desktop), [CLI](https://github.com/ooni/probe-cli)
 
