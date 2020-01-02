@@ -21,9 +21,9 @@ echo "d975f751698a77b662f1254ddbeed3901e976f5a" > "$ANDROID_SDK_ROOT/licenses/in
 
 SDKMANAGER=$ANDROID_SDK_ROOT/tools/bin/sdkmanager
 
-$SDKMANAGER "platform-tools"
-$SDKMANAGER "platforms;android-29"
-$SDKMANAGER "build-tools;29.0.2"
-$SDKMANAGER "ndk-bundle"
-$SDKMANAGER "system-images;android-29;google_apis;x86_64"
-$SDKMANAGER "emulator"
+$SDKMANAGER "platform-tools" > /dev/null 2>&1
+$SDKMANAGER "platforms;android-29" > /dev/null 2>&1
+$SDKMANAGER "build-tools;29.0.2" > /dev/null 2>&1
+$SDKMANAGER "ndk-bundle" > /dev/null 2>&1
+$SDKMANAGER "system-images;android-29;google_apis;x86_64" > /dev/null 2>&1
+$SDKMANAGER "emulator" > /dev/null 2>&1
