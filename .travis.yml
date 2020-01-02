@@ -10,7 +10,7 @@ before_install:
   - "export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)"
   - "export PATH=${JAVA_HOME}/bin:$PATH"
 install:
-  - java --version
+  - java -version
   - sh scripts/install-android-tools.sh
   - sdkmanager --list
   - emulator -accel-check
