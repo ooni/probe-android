@@ -8,6 +8,7 @@ env:
     - PATH=${JAVA_HOME}/bin:PATH=$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/tools/bin:$PATH
     - JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
 before_script:
+  - java --version
   - sh scripts/install-android-tools.sh
   - sdkmanager --list
   - emulator -accel-check

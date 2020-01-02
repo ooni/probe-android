@@ -1,3 +1,6 @@
+#!/bin/bash
+set -ex
+
 if [ -d $ANDROID_SDK_ROOT ]
 then
     echo "Directory $ANDROID_SDK_ROOT already exists so we're skipping the install. If you'd like to install fresh tools, edit this script to invalidate the CI cache."
