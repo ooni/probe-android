@@ -1,13 +1,15 @@
 os: osx
-osx_image: xcode9.4
-jdk: oraclejdk9
+osx_image: xcode8
 env:
   global:
     - ANDROID_SDK_ROOT=$HOME/android-tools
     - NODE_VERSION="12.13"
-    - PATH=${JAVA_HOME}/bin:PATH=$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/tools/bin:$PATH
+    - PATH=$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/tools/bin:$PATH
     - JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
-before_script:
+before_install:
+  - "export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)"
+  - "export PATH=${JAVA_HOME}/bin:$PATH"
+install:
   - java --version
   - sh scripts/install-android-tools.sh
   - sdkmanager --list
