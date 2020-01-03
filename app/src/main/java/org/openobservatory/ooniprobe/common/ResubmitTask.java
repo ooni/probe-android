@@ -26,7 +26,7 @@ import io.ooni.mk.MKResourcesManager;
 
 import localhost.toolkit.os.NetworkProgressAsyncTask;
 
-public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAsyncTask<A, Integer, Boolean> {
+public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAsyncTask<A, Integer, Integer> {
     private MKReporterTask task;
 
     /**
@@ -88,7 +88,8 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
      * @return true if success, false otherwise
      */
     @Override
-    protected Boolean doInBackground(Integer... params) {
+    protected Integer doInBackground(Integer... params) {
+        int errors = 0;
         if (params.length != 2)
             throw new IllegalArgumentException("MKCollectorResubmitTask requires 2 nullable params: result_id, measurement_id");
         Where<Measurement> msmQuery = Measurement.selectUploadable();
@@ -109,21 +110,27 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
             m.result.load();
             try {
                 if (!perform(activity, m))
-                    return false;
+                    errors++;
+                    //return false;
             } catch (IOException e) {
+                errors++;
                 e.printStackTrace();
-                return false;
+                //return false;
             }
         }
-        return true;
+        return errors;
     }
 
     @Override
-    protected void onPostExecute(Boolean result) {
-        super.onPostExecute(result);
+    protected void onPostExecute(Integer errors) {
+        super.onPostExecute(errors);
         A activity = getActivity();
-        if (activity != null  && result) {
-            Toast.makeText(activity, activity.getString(R.string.Toast_ResultsUploaded), Toast.LENGTH_SHORT).show();
+        if (activity != null) {
+            if (errors == 0)
+                Toast.makeText(activity, activity.getString(R.string.Toast_ResultsUploaded), Toast.LENGTH_SHORT).show();
+            else
+                // show  number of errors in retry popup.
+                Toast.makeText(activity, activity.getString(R.string.Toast_ResultsUploaded), Toast.LENGTH_SHORT).show();
             activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
     }
