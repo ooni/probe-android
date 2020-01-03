@@ -111,11 +111,9 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
             try {
                 if (!perform(activity, m))
                     errors++;
-                    //return false;
             } catch (IOException e) {
                 errors++;
                 e.printStackTrace();
-                //return false;
             }
         }
         return errors;
