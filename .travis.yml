@@ -15,7 +15,7 @@ install:
   - nvm install $NODE_VERSION
   - npm install -g appium@1.16.0
   - npm install -g appium-doctor
-  - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a
+  - echo no | avdmanager create avd --force --name test --package "system-images;android-24;google_apis_playstore;x86"
   - emulator -avd test -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
