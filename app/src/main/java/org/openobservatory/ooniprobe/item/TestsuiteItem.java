@@ -43,6 +43,7 @@ public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, Test
 		holder.itemView.setOnClickListener(onClickListener);
 		holder.run.setTag(extra);
 		holder.itemView.setTag(extra);
+		//TODO convert seconds to minutes and hours when needed
 		//if getRuntime = 0 show one hour
 		Integer runTime = extra.getRuntime(pm);
 		if (runTime == 0)
