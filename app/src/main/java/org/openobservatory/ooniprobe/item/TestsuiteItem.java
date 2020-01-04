@@ -43,8 +43,11 @@ public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, Test
 		holder.itemView.setOnClickListener(onClickListener);
 		holder.run.setTag(extra);
 		holder.itemView.setTag(extra);
-		//TODO if getRuntime = 0 use another string
-		holder.runtime.setText(holder.runtime.getContext().getString(R.string.Dashboard_Card_Seconds, extra.getRuntime(pm).toString()));
+		//if getRuntime = 0 show one hour
+		Integer runTime = extra.getRuntime(pm);
+		if (runTime == 0)
+			runTime = 3600;
+		holder.runtime.setText(holder.runtime.getContext().getString(R.string.Dashboard_Card_Seconds, runTime.toString()));
 	}
 
 	class ViewHolderImpl extends RecyclerView.ViewHolder {

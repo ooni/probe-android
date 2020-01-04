@@ -62,8 +62,11 @@ public class OverviewActivity extends AbstractActivity {
 		super.onResume();
 		testSuite.setTestList((AbstractTest[]) null);
 		testSuite.getTestList(getPreferenceManager());
-		//TODO if getRuntime = 0 use another string
-		runtime.setText(getString(R.string.twoParam, testSuite.getDataUsage(), getString(R.string.Dashboard_Card_Seconds, testSuite.getRuntime(getPreferenceManager()).toString())));
+		//if getRuntime = 0 show one hour
+		Integer runTime = testSuite.getRuntime(getPreferenceManager());
+		if (runTime == 0)
+			runTime = 3600;
+		runtime.setText(getString(R.string.twoParam, testSuite.getDataUsage(), getString(R.string.Dashboard_Card_Seconds, runTime.toString())));
 	}
 
 	@Override
