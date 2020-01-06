@@ -115,8 +115,10 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                 getFragmentManager().beginTransaction().replace(android.R.id.content, newConcreteInstance(rootKey)).commit();
             }
         } else if (preference instanceof SwitchPreferenceCompat) {
+            //Not executing this code in case of max_runtime_enabled. See below.
             if (key.equals(getString(R.string.max_runtime_enabled)))
                 return;
+            //This code is used by the test categories screen to leave at least one category enabled, should be refactored
             boolean found = false;
             for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++)
                 if (getPreferenceScreen().getPreference(i) instanceof SwitchPreferenceCompat && !getPreferenceScreen().getPreference(i).getKey().equals(getString(R.string.test_whatsapp_extensive)))
