@@ -25,5 +25,5 @@ $SDKMANAGER "platform-tools" > /dev/null 2>&1
 $SDKMANAGER "platforms;android-29" > /dev/null 2>&1
 $SDKMANAGER "build-tools;29.0.2" > /dev/null 2>&1
 $SDKMANAGER "ndk-bundle" > /dev/null 2>&1
-$SDKMANAGER "system-images;android-29;google_apis;x86_64" > /dev/null 2>&1
+$SDKMANAGER "system-images;android-29;google_apis;armeabi-v7a" > /dev/null 2>&1
 $SDKMANAGER "emulator" > /dev/null 2>&1
