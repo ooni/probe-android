@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class PreferenceManager {
 	static final String GEO_VER = "geo_ver";
+	public static final Integer MAX_RUNTIME_DISABLED = -1;
 	private static final String IS_MANUAL_UPLOAD_DIALOG = "isManualUploadDialog";
 	private static final String TOKEN = "token";
 	private static final String SHOW_ONBOARDING = "first_run";
@@ -45,7 +46,7 @@ public class PreferenceManager {
 
 	public Integer getMaxRuntime() {
 		if (!isMaxRuntimeEnabled())
-			return 0;
+			return MAX_RUNTIME_DISABLED;
 		try {
 			return Integer.parseInt(sp.getString(r.getString(R.string.max_runtime), "90"));
 		} catch (Exception e) {

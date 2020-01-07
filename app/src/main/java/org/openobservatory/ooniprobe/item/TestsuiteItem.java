@@ -46,7 +46,7 @@ public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, Test
 		//TODO convert seconds to minutes and hours when needed
 		//if getRuntime = 0 show one hour
 		Integer runTime = extra.getRuntime(pm);
-		if (runTime == 0)
+		if (runTime.equals(PreferenceManager.MAX_RUNTIME_DISABLED))
 			runTime = 3600;
 		holder.runtime.setText(holder.runtime.getContext().getString(R.string.Dashboard_Card_Seconds, runTime.toString()));
 	}

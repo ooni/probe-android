@@ -22,6 +22,7 @@ import androidx.core.app.NotificationCompat;
 import com.airbnb.lottie.LottieAnimationView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.NotificationService;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -47,7 +48,7 @@ public class RunningActivity extends AbstractActivity {
     LottieAnimationView animation;
     private AbstractSuite testSuite;
     private boolean background;
-    private Integer runtime;
+    private static Integer runtime;
 
     public static Intent newIntent(AbstractActivity context, AbstractSuite testSuite) {
         if (ReachabilityManager.getNetworkType(context).equals(ReachabilityManager.NO_INTERNET)) {
@@ -64,7 +65,7 @@ public class RunningActivity extends AbstractActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         testSuite = (AbstractSuite) getIntent().getSerializableExtra(TEST);
-        runtime = testSuite.getRuntime(getPreferenceManager());
+        updateRuntime(testSuite, getPreferenceManager());
         setTheme(testSuite.getThemeDark());
         setContentView(R.layout.activity_running);
         ButterKnife.bind(this);
@@ -125,6 +126,9 @@ public class RunningActivity extends AbstractActivity {
                         Toast.makeText(act, values[1], Toast.LENGTH_SHORT).show();
                         act.finish();
                         break;
+                    case URL:
+                        updateRuntime(act.testSuite, act.getPreferenceManager());
+                        break;
                 }
         }
 
@@ -142,5 +146,9 @@ public class RunningActivity extends AbstractActivity {
                 act.finish();
             }
         }
+    }
+
+    private static void updateRuntime(AbstractSuite testSuite, PreferenceManager pm){
+        runtime = testSuite.getRuntime(pm);
     }
 }
