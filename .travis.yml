@@ -5,12 +5,17 @@ env:
     - ANDROID_SDK_ROOT=$HOME/android-tools
     - NODE_VERSION="12.13"
     - PATH=$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/tools/bin:$PATH
+cache:
+  directories:
+    - $HOME/Library/Caches/Homebrew
+    - /usr/local/Homebrew
 before_install:
   - "export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)"
   - "export PATH=${JAVA_HOME}/bin:$PATH"
 install:
   - java -version
   - sh scripts/install-android-tools.sh
+  - brew update && brew upgrade
   - brew install gradle
   - sdkmanager --list
   - nvm install $NODE_VERSION
