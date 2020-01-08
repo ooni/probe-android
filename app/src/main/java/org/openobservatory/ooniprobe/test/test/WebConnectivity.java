@@ -34,6 +34,11 @@ public class WebConnectivity extends AbstractTest {
 			measurement.is_anomaly = !json.test_keys.blocking.equals("false");
 	}
 
+	/*
+ 	if the option max_runtime is already set in the option and is not MAX_RUNTIME_DISABLED let's use it
+ 	else if the input are sets we calculate 5 seconds per input
+ 	at last we check if max_runtime is enabled, in  that case we use the value in the settings
+ 	*/
 	@Override public int getRuntime(PreferenceManager pm) {
 		if (getMax_runtime() != null  &&
 				!getMax_runtime().equals(PreferenceManager.MAX_RUNTIME_DISABLED))

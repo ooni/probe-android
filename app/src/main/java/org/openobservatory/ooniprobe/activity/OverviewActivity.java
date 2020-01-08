@@ -63,11 +63,7 @@ public class OverviewActivity extends AbstractActivity {
 		super.onResume();
 		testSuite.setTestList((AbstractTest[]) null);
 		testSuite.getTestList(getPreferenceManager());
-		//TODO convert seconds to minutes and hours when needed
-		//if getRuntime = 0 show one hour
 		Integer runTime = testSuite.getRuntime(getPreferenceManager());
-		if (runTime.equals(PreferenceManager.MAX_RUNTIME_DISABLED))
-			runTime = 3600;
 		runtime.setText(getString(R.string.twoParam, testSuite.getDataUsage(), getString(R.string.Dashboard_Card_Seconds, runTime.toString())));
 	}
 
