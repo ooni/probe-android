@@ -15,6 +15,7 @@ before_install:
 install:
   - java -version
   - sh scripts/install-android-tools.sh
+  - brew update && brew install gradle
   - sdkmanager --list
   - nvm install $NODE_VERSION
   - npm install -g appium@1.16.0
