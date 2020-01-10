@@ -48,7 +48,7 @@ public class RunningActivity extends AbstractActivity {
     LottieAnimationView animation;
     private AbstractSuite testSuite;
     private boolean background;
-    private static Integer runtime;
+    private Integer runtime;
 
     public static Intent newIntent(AbstractActivity context, AbstractSuite testSuite) {
         if (ReachabilityManager.getNetworkType(context).equals(ReachabilityManager.NO_INTERNET)) {
@@ -65,7 +65,7 @@ public class RunningActivity extends AbstractActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         testSuite = (AbstractSuite) getIntent().getSerializableExtra(TEST);
-        updateRuntime(testSuite, getPreferenceManager());
+        runtime = testSuite.getRuntime(getPreferenceManager());
         setTheme(testSuite.getThemeDark());
         setContentView(R.layout.activity_running);
         ButterKnife.bind(this);
@@ -127,7 +127,7 @@ public class RunningActivity extends AbstractActivity {
                         act.finish();
                         break;
                     case URL:
-                        updateRuntime(act.testSuite, act.getPreferenceManager());
+                        act.runtime = act.testSuite.getRuntime(act.getPreferenceManager());
                         break;
                 }
         }
@@ -146,9 +146,5 @@ public class RunningActivity extends AbstractActivity {
                 act.finish();
             }
         }
-    }
-
-    private static void updateRuntime(AbstractSuite testSuite, PreferenceManager pm){
-        runtime = testSuite.getRuntime(pm);
     }
 }
