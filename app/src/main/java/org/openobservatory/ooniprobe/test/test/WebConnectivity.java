@@ -41,7 +41,7 @@ public class WebConnectivity extends AbstractTest {
  	*/
 	@Override public int getRuntime(PreferenceManager pm) {
 		if (getMax_runtime() != null  &&
-				!getMax_runtime().equals(PreferenceManager.MAX_RUNTIME_DISABLED))
+				getMax_runtime() > PreferenceManager.MAX_RUNTIME_DISABLED)
 			return 30 + getMax_runtime();
 		else if (getInputs() != null)
 			return 30 + getInputs().size() * super.getRuntime(pm);
