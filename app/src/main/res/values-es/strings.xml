@@ -222,7 +222,7 @@
   <string name="Modal_ManualUpload_Enable">Habilitar</string>
   <string name="Modal_ManualUpload_Disable">No, gracias!</string>
   <string name="Modal_UploadFailed_Title">La subida falló</string>
-  <string name="Modal_UploadFailed_Paragraph">¿Desea reintentar o cancelar?</string>
+  <string name="Modal_UploadFailed_Paragraph">We have failed to upload %1$s/%2$s measurements. The failure log has been shared with OONI developers.</string>
   <string name="Modal_Error_LogNotFound">Archivo de registro no encontrado</string>
   <string name="Modal_Error_NoValidUrls">No se encontraron URL válidas</string>
   <string name="Modal_Error_JsonEmpty">JSON vacío</string>
@@ -267,6 +267,7 @@
   <string name="Settings_Advanced_SendCrashReports">Enviar informes de errores</string>
   <string name="Settings_Advanced_DebugLogs">Registros de depuración</string>
   <string name="Settings_Advanced_UseDomainFronting">Usar siempre Domain Fronting</string>
+  <string name="Settings_Websites_MaxRuntimeEnabled">Limit test duration</string>
   <string name="Settings_Websites_MaxRuntime">Duración de la prueba</string>
   <string name="Settings_Websites_Categories_Label">Categorías de sitios web a probar</string>
   <string name="Settings_Websites_Categories_Description">%1$s categorías habilitadas</string>
@@ -290,7 +291,7 @@
   <string name="Settings_Performance_DashServerAddress">Servidor DASH</string>
   <string name="Settings_Performance_DashServerPort">Puerto del servidor DASH</string>
   <string name="Settings_SendEmail_Label">Enviar correo electrónico al soporte</string>
-  <string name="Settings_SendEmail_Error">Por favor envíe un correo electrónico a bugs@openobservatory.org con información sobre la aplicación y versió de iOS. Pulse \"Copiar al portapapeles\" abajo para copiar nuestro correo electrónico.</string>
+  <string name="Settings_SendEmail_Error">Por favor envíe un correo electrónico a bugs@openobservatory.org con información sobre la aplicación y versión de iOS. Pulse \"Copiar al portapapeles\" abajo para copiar nuestro correo electrónico.</string>
   <string name="Notification_FinishedRunning">Finalizó la ejecución</string>
   <string name="OONIBrowser_TryMirror">Intentar servidor réplica</string>
   <string name="OONIBrowser_Loading">Cargando...</string>
