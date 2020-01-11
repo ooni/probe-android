@@ -62,8 +62,7 @@ public class OverviewActivity extends AbstractActivity {
 		super.onResume();
 		testSuite.setTestList((AbstractTest[]) null);
 		testSuite.getTestList(getPreferenceManager());
-		Integer runTime = testSuite.getRuntime(getPreferenceManager());
-		runtime.setText(getString(R.string.twoParam, testSuite.getDataUsage(), getString(R.string.Dashboard_Card_Seconds, runTime.toString())));
+		runtime.setText(getString(R.string.twoParam, testSuite.getDataUsage(), getString(R.string.Dashboard_Card_Seconds, testSuite.getRuntime(getPreferenceManager()).toString())));
 	}
 
 	@Override
