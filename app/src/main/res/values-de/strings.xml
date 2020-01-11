@@ -222,7 +222,7 @@
   <string name="Modal_ManualUpload_Enable">Aktivieren</string>
   <string name="Modal_ManualUpload_Disable">Nein, danke</string>
   <string name="Modal_UploadFailed_Title">Hochladen fehlgeschlagen</string>
-  <string name="Modal_UploadFailed_Paragraph">Möchten Sie es erneut versuchen oder abbrechen?</string>
+  <string name="Modal_UploadFailed_Paragraph">We have failed to upload %1$s/%2$s measurements. The failure log has been shared with OONI developers.</string>
   <string name="Modal_Error_LogNotFound">Protokolldatei nicht gefunden</string>
   <string name="Modal_Error_NoValidUrls">Keine gültigen URLs gefunden</string>
   <string name="Modal_Error_JsonEmpty">JSON ist leer</string>
@@ -267,6 +267,7 @@
   <string name="Settings_Advanced_SendCrashReports">Sende Absturzberichte</string>
   <string name="Settings_Advanced_DebugLogs">Fehlerprotokolle</string>
   <string name="Settings_Advanced_UseDomainFronting">Immer Domain Fronting benutzen</string>
+  <string name="Settings_Websites_MaxRuntimeEnabled">Limit test duration</string>
   <string name="Settings_Websites_MaxRuntime">Testdauer</string>
   <string name="Settings_Websites_Categories_Label">Zu testende Webseiten-Kategorien</string>
   <string name="Settings_Websites_Categories_Description">%1$s aktivierte Kategorien</string>

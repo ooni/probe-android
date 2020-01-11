@@ -222,7 +222,7 @@
   <string name="Modal_ManualUpload_Enable">Включить</string>
   <string name="Modal_ManualUpload_Disable">Нет, спасибо</string>
   <string name="Modal_UploadFailed_Title">Загрузка не удалась</string>
-  <string name="Modal_UploadFailed_Paragraph">Вы хотите попробовать снова или отменить?</string>
+  <string name="Modal_UploadFailed_Paragraph">We have failed to upload %1$s/%2$s measurements. The failure log has been shared with OONI developers.</string>
   <string name="Modal_Error_LogNotFound">Лог-файл не найден</string>
   <string name="Modal_Error_NoValidUrls">URL не найдены</string>
   <string name="Modal_Error_JsonEmpty">JSON пуст</string>
@@ -267,6 +267,7 @@
   <string name="Settings_Advanced_SendCrashReports">Отправить отчет об ошибке</string>
   <string name="Settings_Advanced_DebugLogs">Журналы отладки</string>
   <string name="Settings_Advanced_UseDomainFronting">Всегда использовать прикрытие доменом</string>
+  <string name="Settings_Websites_MaxRuntimeEnabled">Limit test duration</string>
   <string name="Settings_Websites_MaxRuntime">Продолжительность теста</string>
   <string name="Settings_Websites_Categories_Label">Категории сайтов для тестирования</string>
   <string name="Settings_Websites_Categories_Description">Выбрано категорий: %1$s</string>

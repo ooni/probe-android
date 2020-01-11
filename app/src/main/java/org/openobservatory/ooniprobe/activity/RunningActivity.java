@@ -125,6 +125,9 @@ public class RunningActivity extends AbstractActivity {
                         Toast.makeText(act, values[1], Toast.LENGTH_SHORT).show();
                         act.finish();
                         break;
+                    case URL:
+                        act.runtime = act.testSuite.getRuntime(act.getPreferenceManager());
+                        break;
                 }
         }
 

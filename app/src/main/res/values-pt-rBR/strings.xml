@@ -222,7 +222,7 @@
   <string name="Modal_ManualUpload_Enable">Habilitar</string>
   <string name="Modal_ManualUpload_Disable">Não, agradeço</string>
   <string name="Modal_UploadFailed_Title">Falha ao enviar</string>
-  <string name="Modal_UploadFailed_Paragraph">Você gostaria de repetir ou de cancelar?</string>
+  <string name="Modal_UploadFailed_Paragraph">We have failed to upload %1$s/%2$s measurements. The failure log has been shared with OONI developers.</string>
   <string name="Modal_Error_LogNotFound">Arquivo de log não encontrado</string>
   <string name="Modal_Error_NoValidUrls">Nenhuma URL válida encontrada</string>
   <string name="Modal_Error_JsonEmpty">JSON vazio</string>
@@ -267,6 +267,7 @@
   <string name="Settings_Advanced_SendCrashReports">Enviar relatórios de erros</string>
   <string name="Settings_Advanced_DebugLogs">Registros de depuração</string>
   <string name="Settings_Advanced_UseDomainFronting">Sempre usar \"domain fronting\"</string>
+  <string name="Settings_Websites_MaxRuntimeEnabled">Limit test duration</string>
   <string name="Settings_Websites_MaxRuntime">Duração do teste</string>
   <string name="Settings_Websites_Categories_Label">Categorias de sites para testar</string>
   <string name="Settings_Websites_Categories_Description">%1$s categorias habilitadas</string>

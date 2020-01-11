@@ -222,7 +222,7 @@
   <string name="Modal_ManualUpload_Enable">فعال کن</string>
   <string name="Modal_ManualUpload_Disable">نه، ممنون</string>
   <string name="Modal_UploadFailed_Title">آپلود ناموفق بود</string>
-  <string name="Modal_UploadFailed_Paragraph">آیا می‌خواهید دوباره تلاش کنید یا لغو کنید؟</string>
+  <string name="Modal_UploadFailed_Paragraph">We have failed to upload %1$s/%2$s measurements. The failure log has been shared with OONI developers.</string>
   <string name="Modal_Error_LogNotFound">فایل لاگ یافت نشد</string>
   <string name="Modal_Error_NoValidUrls">هیچ URL معتبری یافت نشد</string>
   <string name="Modal_Error_JsonEmpty">JSON خالی است</string>
@@ -267,6 +267,7 @@
   <string name="Settings_Advanced_SendCrashReports">ارسال گزارش درباره‌ی متوقف شدن برنامه </string>
   <string name="Settings_Advanced_DebugLogs">ثبت اشکال زدایی‌ها</string>
   <string name="Settings_Advanced_UseDomainFronting">همواره از جعل دامنه استفاده کن</string>
+  <string name="Settings_Websites_MaxRuntimeEnabled">Limit test duration</string>
   <string name="Settings_Websites_MaxRuntime">مدت تست</string>
   <string name="Settings_Websites_Categories_Label">دسته‌بندی‌های وبسایت برای تست</string>
   <string name="Settings_Websites_Categories_Description">%1$s دسته بندی فعال است</string>

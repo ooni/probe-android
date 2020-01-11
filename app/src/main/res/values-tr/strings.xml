@@ -222,12 +222,12 @@
   <string name="Modal_ManualUpload_Enable">Etkinleştir</string>
   <string name="Modal_ManualUpload_Disable">Hayır, teşekkürler</string>
   <string name="Modal_UploadFailed_Title">Yükleme başarısız</string>
-  <string name="Modal_UploadFailed_Paragraph">Yeniden denemek ya da iptal etmek ister misiniz?</string>
+  <string name="Modal_UploadFailed_Paragraph">We have failed to upload %1$s/%2$s measurements. The failure log has been shared with OONI developers.</string>
   <string name="Modal_Error_LogNotFound">Günlük dosyası bulunamadı</string>
   <string name="Modal_Error_NoValidUrls">Geçerli bir adres bulunamadı</string>
   <string name="Modal_Error_JsonEmpty">JSON boş</string>
   <string name="Toast_CopiedToClipboard">Panoya kopyalandı</string>
-  <string name="Toast_WillBeAvailable">24 saat süreyle geçerlidir</string>
+  <string name="Toast_WillBeAvailable">24 saat içerisinde mevcut olacak</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Yüklenmemiş</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Yükle</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Bazıları yüklenmemiş</string>
@@ -267,6 +267,7 @@
   <string name="Settings_Advanced_SendCrashReports">Çökme raporları gönderilsin</string>
   <string name="Settings_Advanced_DebugLogs">Hata ayıklama günlükleri</string>
   <string name="Settings_Advanced_UseDomainFronting">Araya her zaman alan adı eklensin (Domain Fronting)</string>
+  <string name="Settings_Websites_MaxRuntimeEnabled">Sınama süresi sınırlansın</string>
   <string name="Settings_Websites_MaxRuntime">Sınama süresi</string>
   <string name="Settings_Websites_Categories_Label">Sınanacak web sitesi kategorileri</string>
   <string name="Settings_Websites_Categories_Description">%1$s kategori etkin</string>
@@ -290,7 +291,7 @@
   <string name="Settings_Performance_DashServerAddress">DASH sunucusu</string>
   <string name="Settings_Performance_DashServerPort">DASH sunucusu bağlantı noktası</string>
   <string name="Settings_SendEmail_Label">Destek ekibine e-posta gönderin</string>
-  <string name="Settings_SendEmail_Error">Lütfen uygulama hakkındaki bilgiler ve iOS sürümünü yazarak bugs@openobservatory.org adresine bir e-posta gönderin. E-posta adresimizi kopyalamak için aşağıdaki \"Panoya kopyala\" üzerine dokunun.</string>
+  <string name="Settings_SendEmail_Error">Lütfen uygulama hakkındaki bilgiler ve iOS sürümünü yazarak bugs@openobservatory.org adresine bir e-posta gönderin. E-posta adresimizi kopyalamak için aşağıdaki \"Panoya kopyala\" seçeneğine dokunun.</string>
   <string name="Notification_FinishedRunning">Çalışmayı tamamladı</string>
   <string name="OONIBrowser_TryMirror">Kopyası denensin</string>
   <string name="OONIBrowser_Loading">Yükleniyor...</string>

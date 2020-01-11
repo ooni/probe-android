@@ -33,6 +33,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 	public static final String LOG = "LOG";
 	public static final String RUN = "RUN";
 	public static final String ERR = "ERR";
+	public static final String URL = "URL";
 	protected final WeakReference<ACT> ref;
 	private final Result result;
 
@@ -76,6 +77,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 							abstractTest.setInputs(inputs);
 							abstractTest.setMax_runtime(act.getPreferenceManager().getMaxRuntime());
 						}
+						publishProgress(URL);
 					}
 				}
 				for (int i = 0; i < tests.length; i++)

@@ -16,7 +16,7 @@
   <string name="Onboarding_PopQuiz_Wrong_Button_Back">Enrere</string>
   <string name="Onboarding_PopQuiz_Wrong_Button_Continue">Continua</string>
   <string name="Onboarding_PopQuiz_1_Title">Pregunta 1/2</string>
-  <string name="Onboarding_PopQuiz_1_Question">Si algú està supervisant meva activitat a Internet, veurà que estic executant OONI Probe.</string>
+  <string name="Onboarding_PopQuiz_1_Question">Si algú està supervisant la meva activitat a Internet, veurà que estic executant OONI Probe.</string>
   <string name="Onboarding_PopQuiz_1_Wrong_Title">Avís</string>
   <string name="Onboarding_PopQuiz_1_Wrong_Paragraph">L\'OONI Probe no és una eina de privadesa. Qualsevol que supervisi la vostra activitat a Internet veurà quin programari esteu executant.</string>
   <string name="Onboarding_PopQuiz_2_Title">Pregunta 2/2</string>
@@ -125,7 +125,7 @@
   <string name="TestResults_Details_Failed_TryAgain">Torna-ho a provar</string>
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Accessible</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s és accessible.</string>
-  <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Probablement bloquejat</string>
+  <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Probablement blocat</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">%1$s està probablement blocat degut a %2$s.\n\nNota: es poden produir falsos positius. Més informació [aquí](https://ooni.io/nettest/web-connectivity/).</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Content_LearnToCircumvent">Elusió de censura</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_DNS">**Manipulació DNS**</string>
@@ -199,7 +199,7 @@
   <string name="Modal_Error_CantDownloadURLs">No s\'ha pogut baixar la llista d\'URL. Torneu-ho a provar.</string>
   <string name="Modal_Error_NotificationNotEnabled">Calen permisos de notificació. Activeu-los a la Configuració del telèfon i després activeu-los a l\'aplicació OONI Probe.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Aneu a Configuració</string>
-  <string name="Modal_Error_CantCloseScreen">Aquesta pantalla està bloquejada mentre s\'està executant una prova.</string>
+  <string name="Modal_Error_CantCloseScreen">Aquesta pantalla està blocada mentre s\'està executant una prova.</string>
   <string name="Modal_Error_RawDataNoInternet">Heu d\'estar connectats a Internet per baixar les dades de mesura sense processar.</string>
   <string name="Modal_ResultsNotUploaded_Title">Els resultats no s\'han pujat</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">Alguns dels resultats de les vostres proves no s\'han pujat als servidors d\'OONI. Si desitgeu contribuir al conjunt de dades d\'OONI, pugueu-los.</string>
@@ -222,7 +222,7 @@
   <string name="Modal_ManualUpload_Enable">Habilitar</string>
   <string name="Modal_ManualUpload_Disable">No, gràcies</string>
   <string name="Modal_UploadFailed_Title">Ha fallat la pujada</string>
-  <string name="Modal_UploadFailed_Paragraph">Voleu tornar-ho a provar o cancel·lar?</string>
+  <string name="Modal_UploadFailed_Paragraph">We have failed to upload %1$s/%2$s measurements. The failure log has been shared with OONI developers.</string>
   <string name="Modal_Error_LogNotFound">No s\'ha trobat el fitxer de registre</string>
   <string name="Modal_Error_NoValidUrls">No s\'ha trobat URL vàlides</string>
   <string name="Modal_Error_JsonEmpty">JSON buit</string>
@@ -267,6 +267,7 @@
   <string name="Settings_Advanced_SendCrashReports">Envia informes d\'errors</string>
   <string name="Settings_Advanced_DebugLogs">Registres de depuració</string>
   <string name="Settings_Advanced_UseDomainFronting">Utilitza sempre el camuflatge del domini</string>
+  <string name="Settings_Websites_MaxRuntimeEnabled">Limit test duration</string>
   <string name="Settings_Websites_MaxRuntime">Durada de la prova</string>
   <string name="Settings_Websites_Categories_Label">Categories de lloc web per provar</string>
   <string name="Settings_Websites_Categories_Description">%1$s categories activades</string>

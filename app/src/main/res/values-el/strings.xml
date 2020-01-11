@@ -222,7 +222,7 @@
   <string name="Modal_ManualUpload_Enable">Ενεργοποίηση</string>
   <string name="Modal_ManualUpload_Disable">Όχι, ευχαριστώ</string>
   <string name="Modal_UploadFailed_Title">Αποτυχία μεταφόρτωσης</string>
-  <string name="Modal_UploadFailed_Paragraph">Θα θέλατε να προσπαθήσετε ξανά ή να ακυρώσετε;</string>
+  <string name="Modal_UploadFailed_Paragraph">We have failed to upload %1$s/%2$s measurements. The failure log has been shared with OONI developers.</string>
   <string name="Modal_Error_LogNotFound">Δεν βρέθηκε αρχείο καταγραφής</string>
   <string name="Modal_Error_NoValidUrls">Δεν βρέθηκαν έγκυρα URL</string>
   <string name="Modal_Error_JsonEmpty">JSON empty</string>
@@ -267,6 +267,7 @@
   <string name="Settings_Advanced_SendCrashReports">Αποστολή αναφορών σφαλμάτων</string>
   <string name="Settings_Advanced_DebugLogs">Αρχεία καταγραφής εντοπισμού σφαλμάτων</string>
   <string name="Settings_Advanced_UseDomainFronting">Πάντα να χρησιμοποιείται domain fronting</string>
+  <string name="Settings_Websites_MaxRuntimeEnabled">Limit test duration</string>
   <string name="Settings_Websites_MaxRuntime">Διάρκεια δοκιμής</string>
   <string name="Settings_Websites_Categories_Label">Κατηγορίες ιστοσελιδών για δοκιμή</string>
   <string name="Settings_Websites_Categories_Description">%1$s ενεργοποιημένες κατηγορίες</string>
