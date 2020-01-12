@@ -51,7 +51,7 @@
   <string name="Dashboard_Middleboxes_Card_Description">Zbuloni middleboxes në rrjetin tuaj</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">Ofruesit e Shërbimit të Internetit shpeshë përdorin aplikime rrjeti (middleboxes) për qëllime të ndryshme rrjeti (siç janë fshehjet). Shpeshë herë këto middleboxes përdoren të implementuar censurim në internet dhe/ose përgjime.\n\nZbuloni middleboxes në rrjetin tuaj duke përdorur [HTTP Invalid Request Line](https://ooni.io/nettest/http-invalid-request-line/) nga OONI dhe [HTTP Header Field Manipulation](https://ooni.io/nettest/http-header-field-manipulation/) tests.\n\nRezultatet tuaja do të publikohen në [OONI Explorer](https://explorer.ooni.io/world/) dhe [OONI API](https://api.ooni.io/).\n</string>
   <string name="Dashboard_InstantMessaging_Card_Description">Testoni bllokimin e aplikacioneve të mesazheve</string>
-  <string name="Dashboard_InstantMessaging_Overview_Paragraph">Check whether [WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) and [Telegram](https://ooni.io/nettest/telegram/) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.io/world/) and [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_InstantMessaging_Overview_Paragraph">Kontrollo nëse [WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) dhe [Telegram](https://ooni.io/nettest/telegram/) janë të bllokuara.\n\nRezultatet do të publikohen në [OONI Explorer](https://explorer.ooni.io/world/) dhe [OONI API](https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">Gbps</string>
   <string name="TestResults_Mbps">Mbps</string>
   <string name="TestResults_Kbps">Kbps</string>
@@ -118,7 +118,7 @@
   <string name="TestResults_Details_Methodology">Metodologjia</string>
   <string name="TestResults_Details_ViewLog">Shiko detajet</string>
   <string name="TestResults_Details_RawData">Të dhëna</string>
-  <string name="TestResults_Details_CopyExplorerURL">Copy Explorer URL</string>
+  <string name="TestResults_Details_CopyExplorerURL">Kopjo URL e Eksploruesit</string>
   <string name="TestResults_Details_CopyToClipboard">Kopjo</string>
   <string name="TestResults_Details_Failed_Title">Dështoi</string>
   <string name="TestResults_Details_Failed_Paragraph">Ju mund të provoni të bëni sërish këtë test </string>
@@ -200,7 +200,7 @@
   <string name="Modal_Error_NotificationNotEnabled">Nevojitet të drejta njoftimesh. Ju lutem aktivizojini ato tek Rregullimit e telefonit tuaj dhe më pas aktivizojini tek tek aplikacioni juaj OONI Probe.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Shko tek Rregullimet</string>
   <string name="Modal_Error_CantCloseScreen">Ky ekran është i kyçur ndërkohë që po kryhet testimi.</string>
-  <string name="Modal_Error_RawDataNoInternet">You need to be connected to the internet to download the raw measurement data.</string>
+  <string name="Modal_Error_RawDataNoInternet">Ju duhet të jeni të lidhur me internet për të shkarkuar vlerat e matjeve.</string>
   <string name="Modal_ResultsNotUploaded_Title">Rezultatet nuk u ngarkuan</string>
   <string name="Modal_ResultsNotUploaded_Paragraph">Disa nga testimet e tua nuk janë të ngarkuara tek serverat e OONI. Nëse dëshiron të kontribuosh tek baza e të dhënave te OONI, ju lutem ngarkojini ato.\n</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Ngarkoni</string>
@@ -222,12 +222,12 @@
   <string name="Modal_ManualUpload_Enable">Aktivizoje</string>
   <string name="Modal_ManualUpload_Disable">Jo, faleminderit</string>
   <string name="Modal_UploadFailed_Title">Ngarkimi dështoi</string>
-  <string name="Modal_UploadFailed_Paragraph">Doni të provoni sërish apo anulloni?</string>
-  <string name="Modal_Error_LogNotFound">Log file not found</string>
-  <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
-  <string name="Modal_Error_JsonEmpty">JSON empty</string>
+  <string name="Modal_UploadFailed_Paragraph">We have failed to upload %1$s/%2$s measurements. The failure log has been shared with OONI developers.</string>
+  <string name="Modal_Error_LogNotFound">Skedari i Log -eve nuk u gjet</string>
+  <string name="Modal_Error_NoValidUrls">Nuk u gjet URL e vlefshme</string>
+  <string name="Modal_Error_JsonEmpty">JSON është bosh</string>
   <string name="Toast_CopiedToClipboard">U kopjua në tabelën-mbledhëse</string>
-  <string name="Toast_WillBeAvailable">Will be available within 24h</string>
+  <string name="Toast_WillBeAvailable">Do të jete e disponueshme brënda 24h</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Nuk është ngarkuar</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Ngarkoni</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Disa nuk janë ngarkuar</string>
@@ -267,6 +267,7 @@
   <string name="Settings_Advanced_SendCrashReports">Dërgo raportime dështimi</string>
   <string name="Settings_Advanced_DebugLogs">Kontrollo regjistrat për gabime</string>
   <string name="Settings_Advanced_UseDomainFronting">Gjithmonë përdor front domain</string>
+  <string name="Settings_Websites_MaxRuntimeEnabled">Limit test duration</string>
   <string name="Settings_Websites_MaxRuntime">Kohëzgjatja e testimit</string>
   <string name="Settings_Websites_Categories_Label">Kategori faqjesh për të testuar</string>
   <string name="Settings_Websites_Categories_Description">%1$s shtete të aktivizuara</string>

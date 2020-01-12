@@ -222,7 +222,7 @@
   <string name="Modal_ManualUpload_Enable">सक्षम करें</string>
   <string name="Modal_ManualUpload_Disable">जी नहीं, धन्यवाद</string>
   <string name="Modal_UploadFailed_Title">अपलोड विफ़ल रहा।</string>
-  <string name="Modal_UploadFailed_Paragraph">पुन: प्रयास करें या रद्द करें?</string>
+  <string name="Modal_UploadFailed_Paragraph">We have failed to upload %1$s/%2$s measurements. The failure log has been shared with OONI developers.</string>
   <string name="Modal_Error_LogNotFound">लॉग फ़ाइल नहीं मिला</string>
   <string name="Modal_Error_NoValidUrls">कोई मान्य यूआरएल नहीं मिले</string>
   <string name="Modal_Error_JsonEmpty">जॆसन खाली</string>
@@ -267,6 +267,7 @@
   <string name="Settings_Advanced_SendCrashReports">क्रैश रिपोर्ट भेजें</string>
   <string name="Settings_Advanced_DebugLogs">दोषमार्जन लॉग</string>
   <string name="Settings_Advanced_UseDomainFronting">हमेशा डोमेन फ्रंटिंग का उपयोग करें</string>
+  <string name="Settings_Websites_MaxRuntimeEnabled">Limit test duration</string>
   <string name="Settings_Websites_MaxRuntime">परीक्षण अवधि</string>
   <string name="Settings_Websites_Categories_Label">परीक्षण करने के लिए वेबसाइट श्रेणियां</string>
   <string name="Settings_Websites_Categories_Description">%1$s श्रेणियां सक्षम</string>

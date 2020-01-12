@@ -222,7 +222,7 @@
   <string name="Modal_ManualUpload_Enable">启用</string>
   <string name="Modal_ManualUpload_Disable">不要，谢谢</string>
   <string name="Modal_UploadFailed_Title">上传失败</string>
-  <string name="Modal_UploadFailed_Paragraph">您想重试还是取消？</string>
+  <string name="Modal_UploadFailed_Paragraph">We have failed to upload %1$s/%2$s measurements. The failure log has been shared with OONI developers.</string>
   <string name="Modal_Error_LogNotFound">未找到日志文件</string>
   <string name="Modal_Error_NoValidUrls">未找到有效 URL</string>
   <string name="Modal_Error_JsonEmpty">空的 JSON</string>
@@ -267,6 +267,7 @@
   <string name="Settings_Advanced_SendCrashReports">发送崩溃报告</string>
   <string name="Settings_Advanced_DebugLogs">调试日志</string>
   <string name="Settings_Advanced_UseDomainFronting">始终使用域前置</string>
+  <string name="Settings_Websites_MaxRuntimeEnabled">Limit test duration</string>
   <string name="Settings_Websites_MaxRuntime">测试用时</string>
   <string name="Settings_Websites_Categories_Label">要测试的网站类别</string>
   <string name="Settings_Websites_Categories_Description">已启用 %1$s 个分类</string>

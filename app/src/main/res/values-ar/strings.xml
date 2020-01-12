@@ -222,7 +222,7 @@
   <string name="Modal_ManualUpload_Enable">تمكين</string>
   <string name="Modal_ManualUpload_Disable">لا، شكراً</string>
   <string name="Modal_UploadFailed_Title">فَشِلتْ عملية الرفع</string>
-  <string name="Modal_UploadFailed_Paragraph">هل ترغب في إعادة المحاولة أو الإلغاء؟</string>
+  <string name="Modal_UploadFailed_Paragraph">We have failed to upload %1$s/%2$s measurements. The failure log has been shared with OONI developers.</string>
   <string name="Modal_Error_LogNotFound">ملف السجلّ غير موجود</string>
   <string name="Modal_Error_NoValidUrls">لم يتم العثور على روابط صحيحة</string>
   <string name="Modal_Error_JsonEmpty">JSON فارغ</string>
@@ -267,6 +267,7 @@
   <string name="Settings_Advanced_SendCrashReports">أرسل تقارير حول تعطل التطبيق</string>
   <string name="Settings_Advanced_DebugLogs">أظهر سجلات التصحيح</string>
   <string name="Settings_Advanced_UseDomainFronting">دائمًا استخدم وسيط في اتصال النطاق Domain Fronting</string>
+  <string name="Settings_Websites_MaxRuntimeEnabled">Limit test duration</string>
   <string name="Settings_Websites_MaxRuntime">مدة الاختبار</string>
   <string name="Settings_Websites_Categories_Label">أقسام المواقع للاختبار</string>
   <string name="Settings_Websites_Categories_Description">%1$s قسمًا مفعل</string>
