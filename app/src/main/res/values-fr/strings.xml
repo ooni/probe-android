@@ -222,7 +222,7 @@
   <string name="Modal_ManualUpload_Enable">Activer</string>
   <string name="Modal_ManualUpload_Disable">Non, merci</string>
   <string name="Modal_UploadFailed_Title">Échec de téléversement</string>
-  <string name="Modal_UploadFailed_Paragraph">Souhaitez-vous ressayer ou annuler ?</string>
+  <string name="Modal_UploadFailed_Paragraph">We have failed to upload %1$s/%2$s measurements. The failure log has been shared with OONI developers.</string>
   <string name="Modal_Error_LogNotFound">Le fichier journal est introuvable</string>
   <string name="Modal_Error_NoValidUrls">Aucune URL valide n’a été trouvée</string>
   <string name="Modal_Error_JsonEmpty">Le JSON est vide</string>
@@ -267,6 +267,7 @@
   <string name="Settings_Advanced_SendCrashReports">Envoyer des rapports de plantage</string>
   <string name="Settings_Advanced_DebugLogs">Journaux de débogage</string>
   <string name="Settings_Advanced_UseDomainFronting">Toujours utiliser un domaine-écran</string>
+  <string name="Settings_Websites_MaxRuntimeEnabled">Limiter la durée du test</string>
   <string name="Settings_Websites_MaxRuntime">Durée du test</string>
   <string name="Settings_Websites_Categories_Label">Catégories de sites Web à tester</string>
   <string name="Settings_Websites_Categories_Description">%1$s catégories sont activées</string>
@@ -305,7 +306,7 @@
   <string name="OONIRun_Update">Mettre à jour</string>
   <string name="OONIRun_Close">Fermer</string>
   <string name="OONIRun_InvalidParameter">Un paramètre est invalide</string>
-  <string name="OONIRun_InvalidParameter_Msg">Soit le lien OONI Run est mal formé soit votre appli n’est pas à jour.</string>
+  <string name="OONIRun_InvalidParameter_Msg">Soit le lien OONI Run est malformé soit votre appli n’est pas à jour.</string>
   <string name="OONIRun_RandomSamplingOfURLs">Vous testerez un échantillon aléatoire de sites Web.</string>
   <string name="OONIRun_TestRunningError">Veuillez attendre la fin du test avant d’ouvrir un lien OONI Run.</string>
   <string name="CategoryCode_ALDR_Name">Drogues et alcool</string>

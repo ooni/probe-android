@@ -191,8 +191,13 @@
 			android:summary="@string/CategoryCode_MILX_Description"
 			android:title="@string/CategoryCode_MILX_Name" />
 	</androidx.preference.PreferenceScreen>
+	<androidx.preference.SwitchPreferenceCompat
+		android:defaultValue="true"
+		android:key="@string/max_runtime_enabled"
+		android:title="@string/Settings_Websites_MaxRuntimeEnabled" />
 	<EditTextPreference
 		android:defaultValue="90"
+		android:dependency="@string/max_runtime_enabled"
 		android:key="@string/max_runtime"
 		android:title="@string/Settings_Websites_MaxRuntime" />
 </androidx.preference.PreferenceScreen>
