@@ -211,4 +211,11 @@ public class Measurement extends BaseModel implements Serializable {
 			});
 		}
 	}
+
+	public void setReRun(Context c){
+		this.deleteEntryFile(c);
+		this.deleteLogFile(c);
+		this.is_rerun = true;
+		this.save();
+	}
 }
