@@ -145,6 +145,12 @@ public class Measurement extends BaseModel implements Serializable {
 		}
 	}
 
+	public void deleteLogFileAfterAWeek(Context c) {
+		if (System.currentTimeMillis() - start_time.getTime() > PreferenceManager.DELETE_JSON_DELAY) {
+			deleteLogFile(c);
+		}
+	}
+
 	static File getMeasurementDir(Context c) {
 		return new File(c.getFilesDir(), Measurement.class.getSimpleName());
 	}
@@ -203,7 +209,7 @@ public class Measurement extends BaseModel implements Serializable {
 				@Override
 				public void onSuccess(ApiMeasurement.Result result) {
 					measurement.deleteEntryFile(a);
-					measurement.deleteLogFile(a);
+					measurement.deleteLogFileAfterAWeek(a);
 				}
 
 				@Override

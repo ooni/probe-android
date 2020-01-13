@@ -15,8 +15,8 @@ public class PreferenceManager {
 	private static final String IS_MANUAL_UPLOAD_DIALOG = "isManualUploadDialog";
 	private static final String TOKEN = "token";
 	private static final String SHOW_ONBOARDING = "first_run";
-	private final Integer DELETE_JSON_DELAY = 86400;
-	private final String DELETE_JSON_KEY = "deleteUploadedJsons";
+	public static final Integer DELETE_JSON_DELAY = 86400;
+	private static final String DELETE_JSON_KEY = "deleteUploadedJsons";
 
 	private final SharedPreferences sp;
 	private final Resources r;
