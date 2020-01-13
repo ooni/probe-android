@@ -129,6 +129,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
         A activity = getActivity();
         if (activity != null && result) {
             Toast.makeText(activity, activity.getString(R.string.Toast_ResultsUploaded), Toast.LENGTH_SHORT).show();
+            activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
     }
 }
