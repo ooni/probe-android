@@ -13,6 +13,7 @@ import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.client.OONIAPIClient;
 import org.openobservatory.ooniprobe.client.OONIOrchestraClient;
+import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
 import java.io.File;
@@ -47,6 +48,9 @@ public class Application extends android.app.Application {
 		FlavorApplication.onCreate(this, preferenceManager.isSendCrash());
 		if (BuildConfig.DEBUG)
 			FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
+		if (preferenceManager.canCallDeleteJson())
+			Measurement.deleteUploadedJsons(this);
+
 	}
 
 	public OkHttpClient getOkHttpClient() {
