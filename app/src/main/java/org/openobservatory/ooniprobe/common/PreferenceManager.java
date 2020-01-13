@@ -15,6 +15,9 @@ public class PreferenceManager {
 	private static final String IS_MANUAL_UPLOAD_DIALOG = "isManualUploadDialog";
 	private static final String TOKEN = "token";
 	private static final String SHOW_ONBOARDING = "first_run";
+	private final Integer DELETE_JSON_DELAY = 86400;
+	private final String DELETE_JSON_KEY = "deleteUploadedJsons";
+
 	private final SharedPreferences sp;
 	private final Resources r;
 
@@ -172,4 +175,21 @@ public class PreferenceManager {
 				count++;
 		return count;
 	}
+
+	public boolean canCallDeleteJson(){
+		long lastCalled = sp.getLong(DELETE_JSON_KEY, 0);
+
+		if (lastCalled == 0)
+			return true;
+
+		if (System.currentTimeMillis() - lastCalled > DELETE_JSON_DELAY){
+			return true;
+		}
+		return false;
+	}
+
+	public void setLastCalled(){
+		sp.edit().putLong(DELETE_JSON_KEY, System.currentTimeMillis()).apply();
+	}
+
 }
