@@ -187,7 +187,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                 @Override
                 public void onSuccess(ApiMeasurement.Result result) {
                     measurement.deleteEntryFile(c);
-                    measurement.deleteLogFile(c);
+                    measurement.deleteLogFileAfterAWeek(c);
                     isInExplorer = true;
                 }
                 @Override
