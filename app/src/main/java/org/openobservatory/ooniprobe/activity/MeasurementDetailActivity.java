@@ -177,7 +177,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                 @Override
                 public void onSuccess(ApiMeasurement.Result result) {
                     measurement.deleteEntryFile(c);
-                    measurement.deleteLogFile(c);
+                    measurement.deleteLogFileAfterAWeek(c);
                     isInExplorer = true;
                 }
                 @Override
@@ -269,7 +269,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                 if (!result)
                     new ConfirmDialogFragment.Builder()
                             .withTitle(activity.getString(R.string.Modal_UploadFailed_Title))
-                            .withMessage(activity.getString(R.string.Modal_UploadFailed_Paragraph))
+                            .withMessage(activity.getString(R.string.Modal_UploadFailed_Paragraph, errors.toString(), totUploads.toString()))
                             .withPositiveButton(activity.getString(R.string.Modal_Retry))
                             .build().show(activity.getSupportFragmentManager(), null);
             }
