@@ -26,7 +26,7 @@ import io.ooni.mk.MKResourcesManager;
 
 import localhost.toolkit.os.NetworkProgressAsyncTask;
 
-public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAsyncTask<A, Integer, Integer> {
+public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAsyncTask<A, Integer, Boolean> {
     private MKReporterTask task;
     protected Integer totUploads;
     protected Integer errors;
@@ -124,16 +124,11 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
     }
 
     @Override
-    protected void onPostExecute(Integer errors) {
-        super.onPostExecute(errors);
+    protected void onPostExecute(Boolean result) {
+        super.onPostExecute(result);
         A activity = getActivity();
-        if (activity != null) {
-            if (errors == 0)
-                Toast.makeText(activity, activity.getString(R.string.Toast_ResultsUploaded), Toast.LENGTH_SHORT).show();
-            else
-                // show  number of errors in retry popup.
-                Toast.makeText(activity, activity.getString(R.string.Toast_ResultsUploaded), Toast.LENGTH_SHORT).show();
-            activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        if (activity != null && result) {
+            Toast.makeText(activity, activity.getString(R.string.Toast_ResultsUploaded), Toast.LENGTH_SHORT).show();
         }
     }
 }
