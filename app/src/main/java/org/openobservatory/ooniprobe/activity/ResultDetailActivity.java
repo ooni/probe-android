@@ -153,7 +153,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
                 if (!result)
                     new ConfirmDialogFragment.Builder()
                             .withTitle(getActivity().getString(R.string.Modal_UploadFailed_Title))
-                            .withMessage(getActivity().getString(R.string.Modal_UploadFailed_Paragraph))
+                            .withMessage(getActivity().getString(R.string.Modal_UploadFailed_Paragraph, errors.toString(), totUploads.toString()))
                             .withPositiveButton(getActivity().getString(R.string.Modal_Retry))
                             .build().show(getActivity().getSupportFragmentManager(), null);
             }
