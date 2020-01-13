@@ -16,6 +16,7 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.openobservatory.ooniprobe.client.callback.GetMeasurementsCallback;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
@@ -193,7 +194,8 @@ public class Measurement extends BaseModel implements Serializable {
 		test_keys = new Gson().toJson(testKeys);
 	}
 
-	public void deleteUploadedJsons(Application a){
+	public static void deleteUploadedJsons(Application a){
+		PreferenceManager pm = a.getPreferenceManager();
 		List<Measurement> measurements = Measurement.selectMeasurementsWithJson(a);
 		for (int i = 0; i < measurements.size(); i++) {
 			Measurement measurement = measurements.get(i);
@@ -210,6 +212,7 @@ public class Measurement extends BaseModel implements Serializable {
 				}
 			});
 		}
+		pm.setLastCalled();
 	}
 
 	public void setReRun(Context c){
