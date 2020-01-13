@@ -28,6 +28,8 @@ import localhost.toolkit.os.NetworkProgressAsyncTask;
 
 public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAsyncTask<A, Integer, Integer> {
     private MKReporterTask task;
+    protected Integer totUploads;
+    protected Integer errors;
 
     /**
      * Use this class to resubmit a measurement, use result_id and measurement_id to filter list of value
@@ -88,8 +90,8 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
      * @return true if success, false otherwise
      */
     @Override
-    protected Integer doInBackground(Integer... params) {
-        int errors = 0;
+    protected Boolean doInBackground(Integer... params) {
+        errors = 0;
         if (params.length != 2)
             throw new IllegalArgumentException("MKCollectorResubmitTask requires 2 nullable params: result_id, measurement_id");
         Where<Measurement> msmQuery = Measurement.selectUploadable();
@@ -100,6 +102,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
             msmQuery.and(Measurement_Table.id.eq(params[1]));
         }
         List<Measurement> measurements = msmQuery.queryList();
+        totUploads = measurements.size();
         for (int i = 0; i < measurements.size(); i++) {
             A activity = getActivity();
             if (activity == null)
@@ -109,14 +112,15 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
             Measurement m = measurements.get(i);
             m.result.load();
             try {
-                if (!perform(activity, m))
+                if (!perform(activity, m)){
                     errors++;
+                }
             } catch (IOException e) {
                 errors++;
                 e.printStackTrace();
             }
         }
-        return errors;
+        return errors == 0;
     }
 
     @Override
