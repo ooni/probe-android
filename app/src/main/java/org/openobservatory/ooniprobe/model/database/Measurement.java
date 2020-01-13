@@ -145,7 +145,9 @@ public class Measurement extends BaseModel implements Serializable {
 	}
 
 	public void deleteLogFileAfterAWeek(Context c) {
-		deleteLogFile(c);
+		//if (System.currentTimeMillis() - timeOFMeasurement > pm.DELETE_JSON_DELAY) {
+			deleteLogFile(c);
+		//}
 	}
 
 	static File getMeasurementDir(Context c) {
