@@ -43,8 +43,6 @@ public class TextActivity extends AbstractActivity {
 	private static final String TYPE = "type";
 	@BindView(R.id.textView)
 	TextView textView;
-	@BindView(R.id.scrollView)
-	ScrollView scrollView;
 
 	public static Intent newIntent(Context context, int type, Measurement measurement) {
 		return new Intent(context, TextActivity.class).putExtra(TYPE, type).putExtra(TEST, measurement);
@@ -55,20 +53,6 @@ public class TextActivity extends AbstractActivity {
 		setContentView(R.layout.text);
 		ButterKnife.bind(this);
 		measurement = (Measurement) getIntent().getSerializableExtra(TEST);
-		scrollView.getViewTreeObserver()
-				.addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-					@Override
-					public void onScrollChanged() {
-						if (!scrollView.canScrollVertically(1)) {
-							System.out.println("SCROLLVIEW BOTTOM");
-							// bottom of scroll view
-						}
-						if (!scrollView.canScrollVertically(-1)) {
-							System.out.println("SCROLLVIEW TOP");
-							// top of scroll view
-						}
-					}
-				});
 		showText();
 	}
 
