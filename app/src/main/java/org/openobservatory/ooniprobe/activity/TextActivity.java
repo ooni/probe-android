@@ -8,13 +8,9 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.webkit.WebChromeClient;
-import android.webkit.WebResourceError;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.ProgressBar;
+import android.view.ViewTreeObserver;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.commons.io.FileUtils;
@@ -45,8 +41,10 @@ public class TextActivity extends AbstractActivity {
 	public static final int TYPE_JSON = 2;
 	private static final String TEST = "test";
 	private static final String TYPE = "type";
-	@BindView(R.id.webView) WebView webView;
-	@BindView(R.id.progressBar) ProgressBar progressBar;
+	@BindView(R.id.textView)
+	TextView textView;
+	@BindView(R.id.scrollView)
+	ScrollView scrollView;
 
 	public static Intent newIntent(Context context, int type, Measurement measurement) {
 		return new Intent(context, TextActivity.class).putExtra(TYPE, type).putExtra(TEST, measurement);
@@ -57,30 +55,20 @@ public class TextActivity extends AbstractActivity {
 		setContentView(R.layout.text);
 		ButterKnife.bind(this);
 		measurement = (Measurement) getIntent().getSerializableExtra(TEST);
-		webView.setWebChromeClient(new WebChromeClient());
-		webView.setWebViewClient(new WebViewClient() {
-			@Override
-			public void onPageStarted(WebView view, String url, Bitmap favicon) {
-				super.onPageStarted(view, url, favicon);
-				setProgressBarVisibility(View.VISIBLE);
-			}
-
-			@Override
-			public void onPageFinished(WebView view, String url) {
-				super.onPageFinished(view, url);
-				setProgressBarVisibility(View.GONE);
-			}
-
-			@Override
-			public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
-				super.onReceivedError(view, request, error);
-				new MessageDialogFragment.Builder()
-						.withTitle(getString(R.string.Modal_Error))
-						.withMessage(error.toString())
-						.build().show(getSupportFragmentManager(), null);
-				setProgressBarVisibility(View.GONE);
-			}
-		});
+		scrollView.getViewTreeObserver()
+				.addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+					@Override
+					public void onScrollChanged() {
+						if (!scrollView.canScrollVertically(1)) {
+							System.out.println("SCROLLVIEW BOTTOM");
+							// bottom of scroll view
+						}
+						if (!scrollView.canScrollVertically(-1)) {
+							System.out.println("SCROLLVIEW TOP");
+							// top of scroll view
+						}
+					}
+				});
 		showText();
 	}
 
@@ -109,7 +97,7 @@ public class TextActivity extends AbstractActivity {
 					String json = FileUtils.readFileToString(entryFile, Charset.forName("UTF-8"));
 					json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(new JsonParser().parse(json));
 					text = json;
-					webView.loadDataWithBaseURL(null, json, "text/plain", "UTF-8", null);
+					textView.setText(json);
 				} catch (Exception e) {
 					e.printStackTrace();
 					if (ReachabilityManager.getNetworkType(this).equals(ReachabilityManager.NO_INTERNET)) {
@@ -127,7 +115,7 @@ public class TextActivity extends AbstractActivity {
 								@Override
 								public void onSuccess(String json) {
 									text = json;
-									webView.loadData(json, "text/plain", "UTF-8");
+									textView.setText(json);
 								}
 								@Override
 								public void onError(String msg) {
@@ -153,7 +141,7 @@ public class TextActivity extends AbstractActivity {
 					File logFile = Measurement.getLogFile(this, measurement.result.id, measurement.test_name);
 					String log = FileUtils.readFileToString(logFile, Charset.forName("UTF-8"));
 					text = log;
-					webView.loadDataWithBaseURL(null, log, "text/plain", "UTF-8", null);
+					textView.setText(log);
 				} catch (Exception e) {
 					e.printStackTrace();
 					new MessageDialogFragment.Builder()
@@ -164,11 +152,5 @@ public class TextActivity extends AbstractActivity {
 		}
 	}
 
-	private void setProgressBarVisibility(int visibility) {
-		// If a user returns back, a NPE may occur if WebView is still loading a page and then tries to hide a ProgressBar.
-		if (progressBar != null) {
-			progressBar.setVisibility(visibility);
-		}
-	}
 
 }

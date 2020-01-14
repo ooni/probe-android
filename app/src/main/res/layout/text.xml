@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
-	<ProgressBar
-		android:id="@+id/progressBar"
-		android:layout_width="32dp"
-		android:layout_height="32dp"
-		android:layout_centerInParent="true"
-		android:layout_gravity="center"
-		android:indeterminate="true" />
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/scrollView"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
 
-	<WebView
-		android:id="@+id/webView"
+	<TextView
+		android:id="@+id/textView"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:fontFamily="monospace"
@@ -19,4 +13,5 @@
 		android:scrollbars="vertical"
 		android:typeface="monospace" />
 
-</RelativeLayout>
+</ScrollView>
+
