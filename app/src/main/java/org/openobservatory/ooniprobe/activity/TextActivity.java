@@ -79,9 +79,8 @@ public class TextActivity extends AbstractActivity {
 				try {
 					File entryFile = Measurement.getEntryFile(this, measurement.id, measurement.test_name);
 					String json = FileUtils.readFileToString(entryFile, Charset.forName("UTF-8"));
-					json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(new JsonParser().parse(json));
-					text = json;
-					textView.setText(json);
+					text = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(new JsonParser().parse(json));
+					textView.setText(text);
 				} catch (Exception e) {
 					e.printStackTrace();
 					if (ReachabilityManager.getNetworkType(this).equals(ReachabilityManager.NO_INTERNET)) {
@@ -94,7 +93,7 @@ public class TextActivity extends AbstractActivity {
 					getApiClient().getMeasurement(measurement.report_id, null).enqueue(new GetMeasurementsCallback() {
 						@Override
 						public void onSuccess(ApiMeasurement.Result result) {
-							//Download measurement data locally and displaying into the WebView
+							//Download measurement data locally and displaying into the TextView
 							getOkHttpClient().newCall(new Request.Builder().url(result.measurement_url).build()).enqueue(new GetMeasurementJsonCallback() {
 								@Override
 								public void onSuccess(String json) {
@@ -103,19 +102,13 @@ public class TextActivity extends AbstractActivity {
 								}
 								@Override
 								public void onError(String msg) {
-									new MessageDialogFragment.Builder()
-											.withTitle(getString(R.string.Modal_Error))
-											.withMessage(msg)
-											.build().show(getSupportFragmentManager(), null);
+									showError(msg);
 								}
 							});
 						}
 						@Override
 						public void onError(String msg) {
-							new MessageDialogFragment.Builder()
-									.withTitle(getString(R.string.Modal_Error))
-									.withMessage(msg)
-									.build().show(getSupportFragmentManager(), null);
+							showError(msg);
 						}
 					});
 				}
@@ -127,7 +120,6 @@ public class TextActivity extends AbstractActivity {
 					text = log;
 					textView.setText(log);
 				} catch (Exception e) {
-					e.printStackTrace();
 					new MessageDialogFragment.Builder()
 							.withTitle(getString(R.string.Modal_Error_LogNotFound))
 							.build().show(getSupportFragmentManager(), null);
@@ -136,5 +128,10 @@ public class TextActivity extends AbstractActivity {
 		}
 	}
 
-
+	private void showError(String msg){
+		new MessageDialogFragment.Builder()
+				.withTitle(getString(R.string.Modal_Error))
+				.withMessage(msg)
+				.build().show(getSupportFragmentManager(), null);
+	}
 }
