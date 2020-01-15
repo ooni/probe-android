@@ -61,6 +61,7 @@
 			android:screenOrientation="userPortrait" />
 		<activity
 			android:name=".activity.TextActivity"
+			android:hardwareAccelerated="false"
 			android:parentActivityName=".activity.MeasurementDetailActivity"
 			android:screenOrientation="userPortrait" />
 		<activity
