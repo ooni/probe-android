@@ -32,6 +32,7 @@ import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.item.DateItem;
+import org.openobservatory.ooniprobe.item.FailedItem;
 import org.openobservatory.ooniprobe.item.InstantMessagingItem;
 import org.openobservatory.ooniprobe.item.MiddleboxesItem;
 import org.openobservatory.ooniprobe.item.PerformanceItem;
@@ -178,19 +179,23 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
                     items.add(new DateItem(result.start_time));
                     set.add(key);
                 }
-                switch (result.test_group_name) {
-                    case WebsitesSuite.NAME:
-                        items.add(new WebsiteItem(result, this, this));
-                        break;
-                    case InstantMessagingSuite.NAME:
-                        items.add(new InstantMessagingItem(result, this, this));
-                        break;
-                    case MiddleBoxesSuite.NAME:
-                        items.add(new MiddleboxesItem(result, this, this));
-                        break;
-                    case PerformanceSuite.NAME:
-                        items.add(new PerformanceItem(result, this, this));
-                        break;
+                if (result.countTotalMeasurements() == 0)
+                    items.add(new FailedItem(result, this, this));
+                else {
+                    switch (result.test_group_name) {
+                        case WebsitesSuite.NAME:
+                            items.add(new WebsiteItem(result, this, this));
+                            break;
+                        case InstantMessagingSuite.NAME:
+                            items.add(new InstantMessagingItem(result, this, this));
+                            break;
+                        case MiddleBoxesSuite.NAME:
+                            items.add(new MiddleboxesItem(result, this, this));
+                            break;
+                        case PerformanceSuite.NAME:
+                            items.add(new PerformanceItem(result, this, this));
+                            break;
+                    }
                 }
             }
             adapter.notifyTypesChanged();
