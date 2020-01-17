@@ -42,7 +42,8 @@ public class FailedItem extends HeterogeneousRecyclerItem<Result, FailedItem.Vie
 		viewHolder.testName.setTextColor(ContextCompat.getColor(viewHolder.itemView.getContext(), R.color.color_gray6));
 		viewHolder.testName.setCompoundDrawablesRelativeWithIntrinsicBounds(extra.getTestSuite().getIcon(), 0, 0, 0);
 		viewHolder.testName.setText(extra.getTestSuite().getTitle());
-		viewHolder.subtitle.setText("Error - could not look up the bouncer");
+		viewHolder.subtitle.setText(viewHolder.itemView.getContext().getString(R.string.Modal_Error)
+				+ " - " + extra.failure_msg);
 		viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), extra.start_time));
 	}
 
