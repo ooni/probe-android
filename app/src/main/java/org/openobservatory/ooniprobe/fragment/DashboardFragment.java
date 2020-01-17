@@ -56,8 +56,8 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		items.clear();
 		items.add(new TestsuiteItem(new WebsitesSuite(), pm, this));
 		items.add(new TestsuiteItem(new InstantMessagingSuite(), pm, this));
-		items.add(new TestsuiteItem(new PerformanceSuite(), pm, this));
 		items.add(new TestsuiteItem(new MiddleBoxesSuite(), pm, this));
+		items.add(new TestsuiteItem(new PerformanceSuite(), pm, this));
 		adapter.notifyTypesChanged();
 	}
 
