@@ -136,6 +136,8 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
     public void onConfirmation(Serializable extra, int buttonClicked) {
         if (buttonClicked == DialogInterface.BUTTON_POSITIVE)
             runAsyncTask();
+        //else if (buttonClicked == DialogInterface.BUTTON_NEUTRAL)
+        //TODO
     }
 
     private static class ResubmitAsyncTask extends ResubmitTask<ResultDetailActivity> {
@@ -155,6 +157,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
                             .withTitle(getActivity().getString(R.string.Modal_UploadFailed_Title))
                             .withMessage(getActivity().getString(R.string.Modal_UploadFailed_Paragraph, errors.toString(), totUploads.toString()))
                             .withPositiveButton(getActivity().getString(R.string.Modal_Retry))
+                            .withNeutralButton(getActivity().getString(R.string.Modal_DisplayFailureLog))
                             .build().show(getActivity().getSupportFragmentManager(), null);
             }
         }

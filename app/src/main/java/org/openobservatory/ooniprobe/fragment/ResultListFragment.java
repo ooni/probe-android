@@ -219,6 +219,8 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         if (serializable.equals(R.string.Modal_ResultsNotUploaded_Title)) {
             if (i == DialogInterface.BUTTON_POSITIVE)
                 new ResubmitAsyncTask(this).execute(null, null);
+            //else if (i == DialogInterface.BUTTON_NEUTRAL)
+                //TODO
             else
                 snackbar.show();
         } else if (i == DialogInterface.BUTTON_POSITIVE) {
@@ -249,6 +251,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
                             .withTitle(getActivity().getString(R.string.Modal_UploadFailed_Title))
                             .withMessage(getActivity().getString(R.string.Modal_UploadFailed_Paragraph, errors.toString(), totUploads.toString()))
                             .withPositiveButton(getActivity().getString(R.string.Modal_Retry))
+                            .withNeutralButton(getActivity().getString(R.string.Modal_DisplayFailureLog))
                             .build().show(getActivity().getSupportFragmentManager(), null);
             }
         }
