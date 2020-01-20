@@ -253,6 +253,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
             runAsyncTask();
         //else if (buttonClicked == DialogInterface.BUTTON_NEUTRAL)
         //TODO
+        //startActivity(TextActivity.newIntent(this, TextActivity.TYPE_UPLOAD_LOG, measurement));
     }
 
     private static class ResubmitAsyncTask extends ResubmitTask<MeasurementDetailActivity> {

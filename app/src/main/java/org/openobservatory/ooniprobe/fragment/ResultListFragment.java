@@ -29,6 +29,7 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
+import org.openobservatory.ooniprobe.activity.TextActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.item.DateItem;
@@ -221,6 +222,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
                 new ResubmitAsyncTask(this).execute(null, null);
             //else if (i == DialogInterface.BUTTON_NEUTRAL)
                 //TODO
+            startActivity(TextActivity.newIntent(this, TextActivity.TYPE_UPLOAD_LOG, measurement));
             else
                 snackbar.show();
         } else if (i == DialogInterface.BUTTON_POSITIVE) {
