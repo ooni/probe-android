@@ -42,6 +42,8 @@
   <string name="Dashboard_Running_EstimatedTimeLeft">Koha që ka mbetur me përafërsi:</string>
   <string name="Dashboard_Running_Seconds">%1$s sekonda</string>
   <string name="Dashboard_Running_PreparingTest">Duke u përgatitur për testim</string>
+  <string name="Dashboard_Running_ShowLog">Shfaq log</string>
+  <string name="Dashboard_Running_CloseLog">Close Log</string>
   <string name="Dashboard_Card_Subtitle">Shyp mbi kartën për më shumë</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">Testo faqet e bllokuara</string>
@@ -81,6 +83,8 @@
   <string name="TestResults_Overview_InstantMessaging_Blocked_Plural">%1$s të bllokuara</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Singular">%1$s të aksesueshme</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Plural">%1$s të aksesueshme</string>
+  <string name="TestResults_Overview_Circumvention_Blocked_Plural">%1$s të bllokuara</string>
+  <string name="TestResults_Overview_Circumvention_Available_Plural">%1$s available</string>
   <string name="TestResults_Summary_Hero_DateAndTime">Data &amp; Ora</string>
   <string name="TestResults_Summary_Hero_Network">Rrjeti</string>
   <string name="TestResults_Summary_Hero_Country">Vendi</string>
@@ -114,12 +118,21 @@
   <string name="TestResults_Summary_InstantMessaging_Hero_Reachable_Plural">Aksesueshëm</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">Aplikacion</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">Aplikacione</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tested_Singular">Testuar</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tested_Plural">Testuar</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Blocked_Singular">Bllokuar</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Blocked_Plural">Bllokuar</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Reachable_Singular">Po punohet</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Reachable_Plural">Po punohet</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tools_Singular">Tool</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tools_Plural">Mjete</string>
   <string name="TestResults_Details_Hero_Runtime">Kohëzgjatja</string>
   <string name="TestResults_Details_Methodology">Metodologjia</string>
   <string name="TestResults_Details_ViewLog">Shiko detajet</string>
   <string name="TestResults_Details_RawData">Të dhëna</string>
   <string name="TestResults_Details_CopyExplorerURL">Kopjo URL e Eksploruesit</string>
   <string name="TestResults_Details_CopyToClipboard">Kopjo</string>
+  <string name="TestResults_Details_ShowInExplorer">Show in OONI Explorer</string>
   <string name="TestResults_Details_Failed_Title">Dështoi</string>
   <string name="TestResults_Details_Failed_Paragraph">Ju mund të provoni të bëni sërish këtë test </string>
   <string name="TestResults_Details_Failed_TryAgain">Riprovoni</string>
@@ -188,6 +201,10 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Mund të transmetosh video deri më %1$s pa ndërprerje.</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">Rang bitesh mesatar</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">Vonesë në fillimin e videos</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">Bllokuar</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">Po punohet</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
   <string name="Feed_Tab_Label">Kryefaqe</string>
   <string name="Feed_Title">Kryefaqe</string>
   <string name="Modal_OK">OK</string>
@@ -206,6 +223,7 @@
   <string name="Modal_ResultsNotUploaded_Button_Upload">Ngarkoni</string>
   <string name="Modal_ResultsNotUploaded_Uploading">Në ngarkim %1$s ...</string>
   <string name="Toast_ResultsUploaded">Ngarkimi i sukseshëm</string>
+  <string name="Modal_DisplayFailureLog">Display failure log</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Aktivizo të drejtat e njoftimeve që të kryesh testime automatikisht.</string>
   <string name="Modal_EnableNotifications_News">Aktivizo të drejtat e njoftimeve që të marrësh lajme të reja.</string>
   <string name="Modal_EnableNotifications_Any">Aktivizo të drejtat e njoftimeve që të marrësh njoftime.</string>
@@ -236,6 +254,7 @@
   <string name="Test_InstantMessaging_Fullname">Mesazhe</string>
   <string name="Test_Middleboxes_Fullname">Middleboxes</string>
   <string name="Test_Performance_Fullname">Performanca</string>
+  <string name="Test_Circumvention_Fullname">Circumvention</string>
   <string name="Test_HTTPInvalidRequestLine_Fullname">HTTP Invalid Request Line Test</string>
   <string name="Test_HTTPHeaderFieldManipulation_Fullname">HTTP Header Field Manipulation Test</string>
   <string name="Test_WebConnectivity_Fullname">Testim lidhjeje në internet</string>
@@ -244,6 +263,7 @@
   <string name="Test_WhatsApp_Fullname">Testim WhatsApp</string>
   <string name="Test_Telegram_Fullname">Testim Telegram</string>
   <string name="Test_FacebookMessenger_Fullname">Testim Facebook Messenger</string>
+  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">Rregullime</string>
   <string name="Settings_Error_TestDurationTooLow">Sasia e kohës që keni vendosur për kohëzgjatjen e testimit është shumë e vogël.</string>
   <string name="Settings_About_Label">Rreth OONI</string>

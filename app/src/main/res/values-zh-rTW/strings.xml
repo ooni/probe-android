@@ -42,6 +42,8 @@
   <string name="Dashboard_Running_EstimatedTimeLeft">預估剩餘時間:</string>
   <string name="Dashboard_Running_Seconds">%1$s 秒數</string>
   <string name="Dashboard_Running_PreparingTest">準備測試</string>
+  <string name="Dashboard_Running_ShowLog">顯示日誌</string>
+  <string name="Dashboard_Running_CloseLog">Close Log</string>
   <string name="Dashboard_Card_Subtitle">輕點卡片進一步了解</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">測試遭封鎖的網站</string>
@@ -81,6 +83,8 @@
   <string name="TestResults_Overview_InstantMessaging_Blocked_Plural">%1$s 已被封鎖</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Singular">%1$s 可訪問</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Plural">%1$s 可訪問</string>
+  <string name="TestResults_Overview_Circumvention_Blocked_Plural">%1$s 已被封鎖</string>
+  <string name="TestResults_Overview_Circumvention_Available_Plural">%1$s available</string>
   <string name="TestResults_Summary_Hero_DateAndTime">日期 &amp; 時間</string>
   <string name="TestResults_Summary_Hero_Network">網路</string>
   <string name="TestResults_Summary_Hero_Country">國家</string>
@@ -114,12 +118,21 @@
   <string name="TestResults_Summary_InstantMessaging_Hero_Reachable_Plural">可訪問的</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">App</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">應用程式</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tested_Singular">已測試過</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tested_Plural">已測試過</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Blocked_Singular">被封鎖的</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Blocked_Plural">被封鎖的</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Reachable_Singular">工作中</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Reachable_Plural">工作中</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tools_Singular">Tool</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tools_Plural">Tools</string>
   <string name="TestResults_Details_Hero_Runtime">執行時間</string>
   <string name="TestResults_Details_Methodology">方法學</string>
   <string name="TestResults_Details_ViewLog">檢視記錄</string>
   <string name="TestResults_Details_RawData">數據</string>
   <string name="TestResults_Details_CopyExplorerURL">複製 Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">複製到剪貼簿</string>
+  <string name="TestResults_Details_ShowInExplorer">Show in OONI Explorer</string>
   <string name="TestResults_Details_Failed_Title">失敗</string>
   <string name="TestResults_Details_Failed_Paragraph">可以試著再次執行此次測試</string>
   <string name="TestResults_Details_Failed_TryAgain">再試一次</string>
@@ -188,6 +201,10 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">不透過緩取進行串流 %1$s</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">位元率中位數</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">耗盡延遲</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">被封鎖的</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">工作中</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
   <string name="Feed_Tab_Label">訂閱推送</string>
   <string name="Feed_Title">訂閱推送</string>
   <string name="Modal_OK">OK</string>
@@ -206,6 +223,7 @@
   <string name="Modal_ResultsNotUploaded_Button_Upload">上傳</string>
   <string name="Modal_ResultsNotUploaded_Uploading">上傳 %1$s ...</string>
   <string name="Toast_ResultsUploaded">成功上傳</string>
+  <string name="Modal_DisplayFailureLog">Display failure log</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">啟用通知授權以便自動執行測試。</string>
   <string name="Modal_EnableNotifications_News">啟用通知授權以便接收新聞更新。</string>
   <string name="Modal_EnableNotifications_Any">啟用通知授權以便接收推送通知。 </string>
@@ -236,6 +254,7 @@
   <string name="Test_InstantMessaging_Fullname">即時通訊</string>
   <string name="Test_Middleboxes_Fullname">中間盒</string>
   <string name="Test_Performance_Fullname">效能</string>
+  <string name="Test_Circumvention_Fullname">繞行</string>
   <string name="Test_HTTPInvalidRequestLine_Fullname">HTTP 無效請求行測試</string>
   <string name="Test_HTTPHeaderFieldManipulation_Fullname">HTTP 表頭欄位操控測試</string>
   <string name="Test_WebConnectivity_Fullname">網頁連線測試</string>
@@ -244,6 +263,7 @@
   <string name="Test_WhatsApp_Fullname">WhatsApp 測試</string>
   <string name="Test_Telegram_Fullname">Telegram 測試</string>
   <string name="Test_FacebookMessenger_Fullname">Facebook Messenger 測試</string>
+  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">設定</string>
   <string name="Settings_Error_TestDurationTooLow">所設置的測試時間期過低。　</string>
   <string name="Settings_About_Label">關於 OONI</string>

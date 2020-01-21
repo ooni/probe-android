@@ -42,6 +42,8 @@
   <string name="Dashboard_Running_EstimatedTimeLeft">Осталось примерно:</string>
   <string name="Dashboard_Running_Seconds">%1$s сек</string>
   <string name="Dashboard_Running_PreparingTest">Подготовка к тесту</string>
+  <string name="Dashboard_Running_ShowLog">Показать журнал</string>
+  <string name="Dashboard_Running_CloseLog">Close Log</string>
   <string name="Dashboard_Card_Subtitle">Нажмите для информации</string>
   <string name="Dashboard_Card_Seconds">~%1$sс</string>
   <string name="Dashboard_Websites_Card_Description">Определение блокировок сайтов</string>
@@ -81,6 +83,8 @@
   <string name="TestResults_Overview_InstantMessaging_Blocked_Plural">Заблокировано: %1$s</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Singular">Доступно: %1$s</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Plural">Доступно: %1$s</string>
+  <string name="TestResults_Overview_Circumvention_Blocked_Plural">Заблокировано: %1$s</string>
+  <string name="TestResults_Overview_Circumvention_Available_Plural">%1$s available</string>
   <string name="TestResults_Summary_Hero_DateAndTime">Дата и время</string>
   <string name="TestResults_Summary_Hero_Network">Сеть</string>
   <string name="TestResults_Summary_Hero_Country">Страна</string>
@@ -114,12 +118,21 @@
   <string name="TestResults_Summary_InstantMessaging_Hero_Reachable_Plural">Доступно</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">Приложение</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">Приложения</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tested_Singular">Протестировано</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tested_Plural">Протестировано</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Blocked_Singular">Блокировано</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Blocked_Plural">Блокировано</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Reachable_Singular">Работает</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Reachable_Plural">Работает</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tools_Singular">Tool</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tools_Plural">Настройки</string>
   <string name="TestResults_Details_Hero_Runtime">Время теста</string>
   <string name="TestResults_Details_Methodology">Методология</string>
   <string name="TestResults_Details_ViewLog">Посмотреть лог</string>
   <string name="TestResults_Details_RawData">Данные</string>
   <string name="TestResults_Details_CopyExplorerURL">Скопировать ссылку на Explorer</string>
   <string name="TestResults_Details_CopyToClipboard">Скопировать в буфер обмена</string>
+  <string name="TestResults_Details_ShowInExplorer">Show in OONI Explorer</string>
   <string name="TestResults_Details_Failed_Title">Ошибка</string>
   <string name="TestResults_Details_Failed_Paragraph">Вы можете попробовать запустить этот тест снова</string>
   <string name="TestResults_Details_Failed_TryAgain">Попробовать снова</string>
@@ -188,6 +201,10 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Вы можете повысить видеопоток до %1$s без буферизации.</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">Средний битрейт</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">Задержка воспроизведения</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">Блокировано</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">Работает</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
   <string name="Feed_Tab_Label">Лента</string>
   <string name="Feed_Title">Лента</string>
   <string name="Modal_OK">OK</string>
@@ -206,6 +223,7 @@
   <string name="Modal_ResultsNotUploaded_Button_Upload">Загрузить</string>
   <string name="Modal_ResultsNotUploaded_Uploading">Загружаем %1$s ...</string>
   <string name="Toast_ResultsUploaded">Загрузка успешно завершена</string>
+  <string name="Modal_DisplayFailureLog">Display failure log</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Разрешить уведомления для автоматических тестов.</string>
   <string name="Modal_EnableNotifications_News">Разрешить новостные уведомления.</string>
   <string name="Modal_EnableNotifications_Any">Разрешить push-уведомления.</string>
@@ -236,6 +254,7 @@
   <string name="Test_InstantMessaging_Fullname">Мессенджеры</string>
   <string name="Test_Middleboxes_Fullname">Middleboxes</string>
   <string name="Test_Performance_Fullname">Производительность</string>
+  <string name="Test_Circumvention_Fullname">Обход блокировки Tor</string>
   <string name="Test_HTTPInvalidRequestLine_Fullname">Тест HTTP Invalid Request Line</string>
   <string name="Test_HTTPHeaderFieldManipulation_Fullname">Тест HTTP Header Field Manipulation</string>
   <string name="Test_WebConnectivity_Fullname">Тест веб-соединений</string>
@@ -244,6 +263,7 @@
   <string name="Test_WhatsApp_Fullname">Тест WhatsApp</string>
   <string name="Test_Telegram_Fullname">Тест Telegram</string>
   <string name="Test_FacebookMessenger_Fullname">Тест Facebook Messenger</string>
+  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">Настройки</string>
   <string name="Settings_Error_TestDurationTooLow">Вы указали слишком малое время для теста.</string>
   <string name="Settings_About_Label">Об OONI</string>

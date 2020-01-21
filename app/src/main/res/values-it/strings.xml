@@ -42,6 +42,8 @@
   <string name="Dashboard_Running_EstimatedTimeLeft">Tempo rimanente:</string>
   <string name="Dashboard_Running_Seconds">%1$s secondi</string>
   <string name="Dashboard_Running_PreparingTest">Preparando test</string>
+  <string name="Dashboard_Running_ShowLog">Mostra log</string>
+  <string name="Dashboard_Running_CloseLog">Close Log</string>
   <string name="Dashboard_Card_Subtitle">Fai tap sulla card per più informazioni</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">Verifica il blocco di siti web</string>
@@ -81,6 +83,8 @@
   <string name="TestResults_Overview_InstantMessaging_Blocked_Plural">%1$s bloccato</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Singular">%1$s accessibile</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Plural">%1$s accessibili</string>
+  <string name="TestResults_Overview_Circumvention_Blocked_Plural">%1$s bloccati</string>
+  <string name="TestResults_Overview_Circumvention_Available_Plural">%1$s available</string>
   <string name="TestResults_Summary_Hero_DateAndTime">Data e Ora</string>
   <string name="TestResults_Summary_Hero_Network">Rete</string>
   <string name="TestResults_Summary_Hero_Country">Paese</string>
@@ -114,12 +118,21 @@
   <string name="TestResults_Summary_InstantMessaging_Hero_Reachable_Plural">Accessibili</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">App</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">Applicazioni</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tested_Singular">Testati</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tested_Plural">Testati</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Blocked_Singular">Bloccato</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Blocked_Plural">Bloccato</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Reachable_Singular">Attivo</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Reachable_Plural">Attivo</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tools_Singular">Tool</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tools_Plural">Strumenti</string>
   <string name="TestResults_Details_Hero_Runtime">Tempo di esecuzione</string>
   <string name="TestResults_Details_Methodology">Metodologia</string>
   <string name="TestResults_Details_ViewLog">Vedi log</string>
   <string name="TestResults_Details_RawData">Dati</string>
   <string name="TestResults_Details_CopyExplorerURL">Copia URL Explorer</string>
   <string name="TestResults_Details_CopyToClipboard">Copia sugli Appunti</string>
+  <string name="TestResults_Details_ShowInExplorer">Show in OONI Explorer</string>
   <string name="TestResults_Details_Failed_Title">Fallito</string>
   <string name="TestResults_Details_Failed_Paragraph">Puoi provare ad effettuare di nuovo il test</string>
   <string name="TestResults_Details_Failed_TryAgain">Riprova</string>
@@ -188,6 +201,10 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Puoi fare streaming video fino a %1$s senza buffering.</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">Bitrate medio</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">Playout Delay</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">Bloccato</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">Attivo</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
   <string name="Feed_Tab_Label">Feed</string>
   <string name="Feed_Title">Feed</string>
   <string name="Modal_OK">OK</string>
@@ -206,6 +223,7 @@
   <string name="Modal_ResultsNotUploaded_Button_Upload">Carica</string>
   <string name="Modal_ResultsNotUploaded_Uploading">Caricamento %1$s ...</string>
   <string name="Toast_ResultsUploaded">Caricamento riuscito</string>
+  <string name="Modal_DisplayFailureLog">Display failure log</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Attiva i permessi di notifica per eseguire i test automaticamente.</string>
   <string name="Modal_EnableNotifications_News">Attiva i permessi di notifica per ricevere notizie.</string>
   <string name="Modal_EnableNotifications_Any">Attiva i permessi di notifica per ricevere notifiche push.</string>
@@ -236,6 +254,7 @@
   <string name="Test_InstantMessaging_Fullname">Messaggistica istantanea</string>
   <string name="Test_Middleboxes_Fullname">Middlebox</string>
   <string name="Test_Performance_Fullname">Prestazioni</string>
+  <string name="Test_Circumvention_Fullname">Elusione</string>
   <string name="Test_HTTPInvalidRequestLine_Fullname">Test HTTP Invalid Request Line</string>
   <string name="Test_HTTPHeaderFieldManipulation_Fullname">Test HTTP Header Field Manipulation</string>
   <string name="Test_WebConnectivity_Fullname">Test Web Connectivity</string>
@@ -244,6 +263,7 @@
   <string name="Test_WhatsApp_Fullname">Test WhatsApp</string>
   <string name="Test_Telegram_Fullname">Test Telegram</string>
   <string name="Test_FacebookMessenger_Fullname">Test Facebook Messenger</string>
+  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">Impostazioni</string>
   <string name="Settings_Error_TestDurationTooLow">Il tempo di esecuzione che hai scelto è troppo poco. </string>
   <string name="Settings_About_Label">Informazioni su OONI</string>

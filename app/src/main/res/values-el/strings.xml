@@ -42,6 +42,8 @@
   <string name="Dashboard_Running_EstimatedTimeLeft">Εκτιμώμενος χρόνος που απομένει:</string>
   <string name="Dashboard_Running_Seconds">%1$s δευτερόλεπτα</string>
   <string name="Dashboard_Running_PreparingTest">Προετοιμασία της δοκιμής</string>
+  <string name="Dashboard_Running_ShowLog">Εμφάνιση αρχείου καταγραφής</string>
+  <string name="Dashboard_Running_CloseLog">Close Log</string>
   <string name="Dashboard_Card_Subtitle">Πάτα την κάρτα για περισσότερα</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">Έλεγξε το μπλοκάρισμα ιστοσελιδών</string>
@@ -81,6 +83,8 @@
   <string name="TestResults_Overview_InstantMessaging_Blocked_Plural">%1$s μπλοκαρισμένες</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Singular">%1$s προσβάσιμη</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Plural">%1$s προσβάσιμες</string>
+  <string name="TestResults_Overview_Circumvention_Blocked_Plural">%1$s μπλοκαρισμένες</string>
+  <string name="TestResults_Overview_Circumvention_Available_Plural">%1$s available</string>
   <string name="TestResults_Summary_Hero_DateAndTime">Ημερομηνία και ώρα</string>
   <string name="TestResults_Summary_Hero_Network">Δίκτυο</string>
   <string name="TestResults_Summary_Hero_Country">Χώρα</string>
@@ -114,12 +118,21 @@
   <string name="TestResults_Summary_InstantMessaging_Hero_Reachable_Plural">Προσβάσιμες</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">Εφαρμογή</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">Εφαρμογές</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tested_Singular">Δοκιμασμένες</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tested_Plural">Δοκιμασμένες</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Blocked_Singular">Μπλοκαρισμένες</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Blocked_Plural">Μπλοκαρισμένες</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Reachable_Singular">Δουλεύει</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Reachable_Plural">Δουλεύει</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tools_Singular">Tool</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tools_Plural">Εργαλεία</string>
   <string name="TestResults_Details_Hero_Runtime">Διάρκεια εκτέλεσης</string>
   <string name="TestResults_Details_Methodology">Μεθοδολογία</string>
   <string name="TestResults_Details_ViewLog">Προβολή αρχείου καταγραφής</string>
   <string name="TestResults_Details_RawData">Δεδομένα</string>
   <string name="TestResults_Details_CopyExplorerURL">Αντιγραφή URL του OONI Explorer</string>
   <string name="TestResults_Details_CopyToClipboard">Αντιγραφή στο πρόχειρο</string>
+  <string name="TestResults_Details_ShowInExplorer">Show in OONI Explorer</string>
   <string name="TestResults_Details_Failed_Title">Απέτυχε</string>
   <string name="TestResults_Details_Failed_Paragraph">Μπορείς να επανεκτελέσεις αυτή την δοκιμή</string>
   <string name="TestResults_Details_Failed_TryAgain">Προσπάθησε ξανά</string>
@@ -188,6 +201,10 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Μπορείς να κάνεις streaming μέχρι και %1$s χωρίς buffering.</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">Μέσο bitrate</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">Καθυστέρηση αναπαραγωγής</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">Μπλοκαρισμένες</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">Δουλεύει</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
   <string name="Feed_Tab_Label">Feed</string>
   <string name="Feed_Title">Feed</string>
   <string name="Modal_OK">Εντάξει</string>
@@ -206,6 +223,7 @@
   <string name="Modal_ResultsNotUploaded_Button_Upload">Ανέβασμα</string>
   <string name="Modal_ResultsNotUploaded_Uploading">Ανεβαίνει %1$s ...</string>
   <string name="Toast_ResultsUploaded">Επιτυχής μεταφόρτωση</string>
+  <string name="Modal_DisplayFailureLog">Display failure log</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Ενεργοποίησε τα δικαιώματα ειδοποιήσεων για την αυτόματη εκτέλεση δοκιμών.</string>
   <string name="Modal_EnableNotifications_News">Ενεργοποίησε τα δικαιώματα ειδοποιήσεων για να λαμβάνεις ενημερώσεις.</string>
   <string name="Modal_EnableNotifications_Any">Ενεργοποίησε τα δικαιώματα ειδοποιήσεων για να λαμβάνεις ειδοποιήσεις push.</string>
@@ -236,6 +254,7 @@
   <string name="Test_InstantMessaging_Fullname">Εφαρμογές Συνομιλιών</string>
   <string name="Test_Middleboxes_Fullname">Middleboxes</string>
   <string name="Test_Performance_Fullname">Απόδοση δικτύου</string>
+  <string name="Test_Circumvention_Fullname">Παράκαμψη</string>
   <string name="Test_HTTPInvalidRequestLine_Fullname">HTTP Invalid Request Line</string>
   <string name="Test_HTTPHeaderFieldManipulation_Fullname">HTTP Header Field Manipulation</string>
   <string name="Test_WebConnectivity_Fullname">Δοκιμή Web Connectivity</string>
@@ -244,6 +263,7 @@
   <string name="Test_WhatsApp_Fullname">Δοκιμή WhatsApp</string>
   <string name="Test_Telegram_Fullname">Δοκιμή Telegram</string>
   <string name="Test_FacebookMessenger_Fullname">Δοκιμή Facebook Messenger</string>
+  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">Ρυθμίσεις</string>
   <string name="Settings_Error_TestDurationTooLow">Ο χρόνος που έχεις ρυθμίσει για τη διάρκεια εκτέλεσης της δοκιμής είναι πολύ χαμηλός.</string>
   <string name="Settings_About_Label">Σχετικά με το OONI</string>
