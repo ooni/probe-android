@@ -58,7 +58,6 @@ public class TextActivity extends AbstractActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.text);
 		ButterKnife.bind(this);
-		measurement = (Measurement) getIntent().getSerializableExtra(TEST);
 		showText();
 	}
 
@@ -81,12 +80,15 @@ public class TextActivity extends AbstractActivity {
 	public void showText(){
 		switch (getIntent().getIntExtra(TYPE, 0)) {
 			case TYPE_JSON:
+				measurement = (Measurement) getIntent().getSerializableExtra(TEST);
 				showJson();
 				break;
 			case TYPE_LOG:
+				measurement = (Measurement) getIntent().getSerializableExtra(TEST);
 				showLog();
 				break;
 			case TYPE_UPLOAD_LOG:
+				text = (String) getIntent().getSerializableExtra(TEXT);
 				showUploadLog();
 				break;
 		}

@@ -136,9 +136,8 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
     public void onConfirmation(Serializable extra, int buttonClicked) {
         if (buttonClicked == DialogInterface.BUTTON_POSITIVE)
             runAsyncTask();
-        //else if (buttonClicked == DialogInterface.BUTTON_NEUTRAL)
-        //TODO
-        startActivity(TextActivity.newIntent(this, TextActivity.TYPE_UPLOAD_LOG, measurement));
+        else if (buttonClicked == DialogInterface.BUTTON_NEUTRAL)
+            startActivity(TextActivity.newIntent(this, TextActivity.TYPE_UPLOAD_LOG, "HELLO"));
     }
 
     private static class ResubmitAsyncTask extends ResubmitTask<ResultDetailActivity> {

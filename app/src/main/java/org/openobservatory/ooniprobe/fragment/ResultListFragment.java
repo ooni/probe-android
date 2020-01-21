@@ -220,9 +220,8 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         if (serializable.equals(R.string.Modal_ResultsNotUploaded_Title)) {
             if (i == DialogInterface.BUTTON_POSITIVE)
                 new ResubmitAsyncTask(this).execute(null, null);
-            //else if (i == DialogInterface.BUTTON_NEUTRAL)
-                //TODO
-            startActivity(TextActivity.newIntent(this, TextActivity.TYPE_UPLOAD_LOG, measurement));
+            else if (i == DialogInterface.BUTTON_NEUTRAL)
+                startActivity(TextActivity.newIntent(this, TextActivity.TYPE_UPLOAD_LOG, "HELLO"));
             else
                 snackbar.show();
         } else if (i == DialogInterface.BUTTON_POSITIVE) {
