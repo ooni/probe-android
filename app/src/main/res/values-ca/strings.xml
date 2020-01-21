@@ -42,6 +42,8 @@
   <string name="Dashboard_Running_EstimatedTimeLeft">Temps restant estimat:</string>
   <string name="Dashboard_Running_Seconds">%1$s segons</string>
   <string name="Dashboard_Running_PreparingTest">S\'està preparant la prova</string>
+  <string name="Dashboard_Running_ShowLog">Mostra el registre</string>
+  <string name="Dashboard_Running_CloseLog">Close Log</string>
   <string name="Dashboard_Card_Subtitle">Toqueu la targeta per obtenir més informació</string>
   <string name="Dashboard_Card_Seconds">~%1$s s</string>
   <string name="Dashboard_Websites_Card_Description">Prova el blocatge de llocs web</string>
@@ -81,6 +83,8 @@
   <string name="TestResults_Overview_InstantMessaging_Blocked_Plural">%1$s blocats</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Singular">%1$s accessible</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Plural">%1$s accessibles</string>
+  <string name="TestResults_Overview_Circumvention_Blocked_Plural">%1$s blocats</string>
+  <string name="TestResults_Overview_Circumvention_Available_Plural">%1$s available</string>
   <string name="TestResults_Summary_Hero_DateAndTime">Data i hora</string>
   <string name="TestResults_Summary_Hero_Network">Xarxa</string>
   <string name="TestResults_Summary_Hero_Country">País</string>
@@ -114,12 +118,21 @@
   <string name="TestResults_Summary_InstantMessaging_Hero_Reachable_Plural">Accessibles</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">Aplicació</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">Aplicacions</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tested_Singular">Provats</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tested_Plural">Provats</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Blocked_Singular">Blocats</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Blocked_Plural">Blocats</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Reachable_Singular">S\'està treballant</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Reachable_Plural">S\'està treballant</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tools_Singular">Tool</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tools_Plural">Eines</string>
   <string name="TestResults_Details_Hero_Runtime">Temps d\'execució</string>
   <string name="TestResults_Details_Methodology">Metodologia</string>
   <string name="TestResults_Details_ViewLog">Mostra els registre</string>
   <string name="TestResults_Details_RawData">Dades</string>
   <string name="TestResults_Details_CopyExplorerURL">Copia l\'URL de l\'explorador</string>
   <string name="TestResults_Details_CopyToClipboard">Copia al porta-retalls</string>
+  <string name="TestResults_Details_ShowInExplorer">Show in OONI Explorer</string>
   <string name="TestResults_Details_Failed_Title">Ha fallat</string>
   <string name="TestResults_Details_Failed_Paragraph">Podeu tornar a provar aquesta prova</string>
   <string name="TestResults_Details_Failed_TryAgain">Torna-ho a provar</string>
@@ -188,6 +201,10 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Pot transmetre fins a %1$s sense emmagatzematge en la memòria intermèdia.</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">Taxa de bits mitjana</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">Retard en la reproducció</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">Blocats</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">S\'està treballant</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
   <string name="Feed_Tab_Label">Mur</string>
   <string name="Feed_Title">Mur</string>
   <string name="Modal_OK">Correcte</string>
@@ -206,6 +223,7 @@
   <string name="Modal_ResultsNotUploaded_Button_Upload">Pujada</string>
   <string name="Modal_ResultsNotUploaded_Uploading">S\'està pujant %1$s...</string>
   <string name="Toast_ResultsUploaded">S\'ha pujat amb èxit</string>
+  <string name="Modal_DisplayFailureLog">Display failure log</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Activeu els permisos de notificació per executar les proves automàticament.</string>
   <string name="Modal_EnableNotifications_News">Activeu els permisos de notificació per rebre actualitzacions de notícies.</string>
   <string name="Modal_EnableNotifications_Any">Activeu els permisos de notificació per rebre notificacions de tramesa automàtica.</string>
@@ -236,6 +254,7 @@
   <string name="Test_InstantMessaging_Fullname">Missatgeria instantània</string>
   <string name="Test_Middleboxes_Fullname">«Middleboxes»</string>
   <string name="Test_Performance_Fullname">Rendiment</string>
+  <string name="Test_Circumvention_Fullname">Elusió</string>
   <string name="Test_HTTPInvalidRequestLine_Fullname">Prova «HTTP Invalid Request Line Test»</string>
   <string name="Test_HTTPHeaderFieldManipulation_Fullname">Prova «HTTP Header Field Manipulation»</string>
   <string name="Test_WebConnectivity_Fullname">Prova de connectivitat web</string>
@@ -244,6 +263,7 @@
   <string name="Test_WhatsApp_Fullname">Prova de WhatsApp</string>
   <string name="Test_Telegram_Fullname">Prova de Telegram</string>
   <string name="Test_FacebookMessenger_Fullname">Prova de Facebook Messenger</string>
+  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">Configuració</string>
   <string name="Settings_Error_TestDurationTooLow">La quantitat de temps que heu establert per a la durada de la prova és massa baixa.</string>
   <string name="Settings_About_Label">Quant a l\'OONI</string>

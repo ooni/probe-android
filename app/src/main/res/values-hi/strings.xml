@@ -42,6 +42,8 @@
   <string name="Dashboard_Running_EstimatedTimeLeft">बचा हुआ अनुमानित समय:</string>
   <string name="Dashboard_Running_Seconds">%1$s सेकेंड</string>
   <string name="Dashboard_Running_PreparingTest">परीक्षण की तैयारी</string>
+  <string name="Dashboard_Running_ShowLog">Show Log</string>
+  <string name="Dashboard_Running_CloseLog">Close Log</string>
   <string name="Dashboard_Card_Subtitle">अधिक के लिए कार्ड टैप करें</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">वेबसाइटों के अवरुद्ध परीक्षण का परीक्षण करें</string>
@@ -81,6 +83,8 @@
   <string name="TestResults_Overview_InstantMessaging_Blocked_Plural">%1$s अवरुद्ध</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Singular">%1$s सुलभ</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Plural">%1$s सुलभ</string>
+  <string name="TestResults_Overview_Circumvention_Blocked_Plural">%1$s अवरुद्ध</string>
+  <string name="TestResults_Overview_Circumvention_Available_Plural">%1$s available</string>
   <string name="TestResults_Summary_Hero_DateAndTime">दिनांक समय</string>
   <string name="TestResults_Summary_Hero_Network">नेटवर्क</string>
   <string name="TestResults_Summary_Hero_Country">देश</string>
@@ -114,12 +118,21 @@
   <string name="TestResults_Summary_InstantMessaging_Hero_Reachable_Plural">सुलभ</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">ऐप</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">एप्लिकेशन</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tested_Singular">परीक्षण</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tested_Plural">परीक्षण</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Blocked_Singular">अवरुद्ध</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Blocked_Plural">अवरुद्ध</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Reachable_Singular">काम कर रहे</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Reachable_Plural">काम कर रहे</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tools_Singular">Tool</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tools_Plural">Tools</string>
   <string name="TestResults_Details_Hero_Runtime">रनटाइम</string>
   <string name="TestResults_Details_Methodology">क्रियाविधि</string>
   <string name="TestResults_Details_ViewLog">लॉग देखें</string>
   <string name="TestResults_Details_RawData">डेटा</string>
   <string name="TestResults_Details_CopyExplorerURL">एक्सप्लोरर यूआरएल कॉपी करें</string>
   <string name="TestResults_Details_CopyToClipboard">क्लिपबोर्ड पर कॉपी करें</string>
+  <string name="TestResults_Details_ShowInExplorer">Show in OONI Explorer</string>
   <string name="TestResults_Details_Failed_Title">विफ़ल</string>
   <string name="TestResults_Details_Failed_Paragraph">आप इस परीक्षण को फिर से चलाने का प्रयास कर सकते हैं</string>
   <string name="TestResults_Details_Failed_TryAgain">पुनः प्रयास करें</string>
@@ -188,6 +201,10 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">आप बफरिंग के बिना %1$s तक स्ट्रीम कर सकते हैं।</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">माध्य बिटरेट</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">प्लेआउट विलंब</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">अवरुद्ध</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">काम कर रहे</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
   <string name="Feed_Tab_Label">चारा</string>
   <string name="Feed_Title">चारा</string>
   <string name="Modal_OK">ठीक है </string>
@@ -206,6 +223,7 @@
   <string name="Modal_ResultsNotUploaded_Button_Upload">अपलोड करें</string>
   <string name="Modal_ResultsNotUploaded_Uploading">अपलोड कर रहे हें %1$s ...</string>
   <string name="Toast_ResultsUploaded">अपलोड सफल रहा।</string>
+  <string name="Modal_DisplayFailureLog">Display failure log</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">स्वचालित रूप से परीक्षण चलाने के लिए अधिसूचना अनुमतियां सक्षम करें।</string>
   <string name="Modal_EnableNotifications_News">समाचार अद्यतन प्राप्त करने के लिए अधिसूचना अनुमति सक्षम करें।</string>
   <string name="Modal_EnableNotifications_Any">पुश सूचनाएँ प्राप्त करने के लिए अधिसूचना अनुमतियां सक्षम करें।</string>
@@ -236,6 +254,7 @@
   <string name="Test_InstantMessaging_Fullname">तात्कालिक संदेशन</string>
   <string name="Test_Middleboxes_Fullname">मध्य बक्से</string>
   <string name="Test_Performance_Fullname">प्रदर्शन</string>
+  <string name="Test_Circumvention_Fullname">Circumvention</string>
   <string name="Test_HTTPInvalidRequestLine_Fullname">HTTP अवैध अनुरोध लाइन परीक्षण</string>
   <string name="Test_HTTPHeaderFieldManipulation_Fullname">HTTP हैडर फील्ड मैनिपुलेशन टेस्ट</string>
   <string name="Test_WebConnectivity_Fullname">वेब कनेक्टिविटी टेस्ट</string>
@@ -244,6 +263,7 @@
   <string name="Test_WhatsApp_Fullname">व्हाट्सएप टेस्ट</string>
   <string name="Test_Telegram_Fullname">टेलीग्राम टेस्ट</string>
   <string name="Test_FacebookMessenger_Fullname">फेसबुक मेसेंजर टेस्ट</string>
+  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">सेटिंग्स</string>
   <string name="Settings_Error_TestDurationTooLow">परीक्षण अवधि के लिए आपके द्वारा निर्धारित समय की मात्रा बहुत कम है।</string>
   <string name="Settings_About_Label">OONI बारे में</string>
