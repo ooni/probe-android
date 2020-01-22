@@ -252,7 +252,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
         if (buttonClicked == DialogInterface.BUTTON_POSITIVE)
             runAsyncTask();
         else if (buttonClicked == DialogInterface.BUTTON_NEUTRAL)
-            startActivity(TextActivity.newIntent(this, TextActivity.TYPE_UPLOAD_LOG, "HELLO"));
+            startActivity(TextActivity.newIntent(this, TextActivity.TYPE_UPLOAD_LOG, (String)extra));
     }
 
     private static class ResubmitAsyncTask extends ResubmitTask<MeasurementDetailActivity> {
@@ -274,6 +274,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                             .withMessage(activity.getString(R.string.Modal_UploadFailed_Paragraph, errors.toString(), totUploads.toString()))
                             .withPositiveButton(activity.getString(R.string.Modal_Retry))
                             .withNeutralButton(getActivity().getString(R.string.Modal_DisplayFailureLog))
+                            .withExtra(logs)
                             .build().show(activity.getSupportFragmentManager(), null);
             }
         }

@@ -148,7 +148,7 @@ public class TextActivity extends AbstractActivity {
 	}
 
 	private void showUploadLog(){
-
+		textView.setText(text);
 	}
 
 	private void showError(String msg){
