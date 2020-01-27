@@ -56,6 +56,8 @@ import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
 public class ResultDetailActivity extends AbstractActivity implements View.OnClickListener, ConfirmDialogFragment.OnConfirmedListener {
     private static final String ID = "id";
+    private static final String UPLOAD_KEY = "upload";
+    private static final String RERUN_KEY = "rerun";
     @BindView(R.id.coordinatorLayout)
     CoordinatorLayout coordinatorLayout;
     @BindView(R.id.toolbar)
@@ -129,7 +131,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
         switch (item.getItemId()) {
             case R.id.reRun:
                 new ConfirmDialogFragment.Builder()
-                        .withExtra("re_run")
+                        .withExtra(RERUN_KEY)
                         //TODO sub these rows when the string is inserted
                         //.withMessage(getString(R.string.Modal_ReRun_Websites_Title))
                         //.withPositiveButton(getString(R.string.Modal_ReRun_Websites_Run))
@@ -187,9 +189,9 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 
     @Override
     public void onConfirmation(Serializable extra, int buttonClicked) {
-        if (buttonClicked == DialogInterface.BUTTON_POSITIVE && extra.equals("upload"))
+        if (buttonClicked == DialogInterface.BUTTON_POSITIVE && extra.equals(UPLOAD_KEY))
             runAsyncTask();
-        else if (buttonClicked == DialogInterface.BUTTON_POSITIVE && extra.equals("rerun"))
+        else if (buttonClicked == DialogInterface.BUTTON_POSITIVE && extra.equals(RERUN_KEY))
             reTestWebsites();
     }
 
@@ -207,7 +209,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
                 getActivity().load();
                 if (!result)
                     new ConfirmDialogFragment.Builder()
-                            .withExtra("upload")
+                            .withExtra(UPLOAD_KEY)
                             .withTitle(getActivity().getString(R.string.Modal_UploadFailed_Title))
                             .withMessage(getActivity().getString(R.string.Modal_UploadFailed_Paragraph, errors.toString(), totUploads.toString()))
                             .withPositiveButton(getActivity().getString(R.string.Modal_Retry))
