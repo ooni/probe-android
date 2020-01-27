@@ -142,9 +142,9 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
         }
     }
 
-    private void reRunTest() {
+    private void reTestWebsites() {
         AbstractSuite testSuite = result.getTestSuite();
-        WebConnectivity test  =  new WebConnectivity();
+        WebConnectivity test = new WebConnectivity();
         ArrayList<String> urls = new ArrayList<>();
         for (Measurement m : result.getMeasurements()){
             urls.add(Url.checkExistingUrl(m.url.url, m.url.category_code, m.url.country_code).url);
@@ -190,7 +190,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
         if (buttonClicked == DialogInterface.BUTTON_POSITIVE && extra.equals("upload"))
             runAsyncTask();
         else if (buttonClicked == DialogInterface.BUTTON_POSITIVE && extra.equals("rerun"))
-            reRunTest();
+            reTestWebsites();
     }
 
     private static class ResubmitAsyncTask extends ResubmitTask<ResultDetailActivity> {
