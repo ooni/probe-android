@@ -18,6 +18,7 @@ import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
 
 import io.ooni.mk.MKReporterResults;
@@ -30,6 +31,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
     private MKReporterTask task;
     protected Integer totUploads;
     protected Integer errors;
+    protected String logs;
 
     /**
      * Use this class to resubmit a measurement, use result_id and measurement_id to filter list of value
@@ -65,8 +67,11 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
             m.save();
         } else {
             Log.w(MKReporterTask.class.getSimpleName(), results.getLogs());
-            // TODO decide what to do with logs (append on log file?)
         }
+        System.out.println("getReason "+ results.getReason());
+        System.out.println("getLogs "+ results.getLogs());
+        if (!results.isGood())
+            logs += results.getReason() + "\n";
         return results.isGood();
     }
 
@@ -91,6 +96,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
      */
     @Override
     protected Boolean doInBackground(Integer... params) {
+        logs = "";
         errors = 0;
         if (params.length != 2)
             throw new IllegalArgumentException("MKCollectorResubmitTask requires 2 nullable params: result_id, measurement_id");

@@ -193,6 +193,8 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
             runAsyncTask();
         else if (buttonClicked == DialogInterface.BUTTON_POSITIVE && extra.equals(RERUN_KEY))
             reTestWebsites();
+        else if (buttonClicked == DialogInterface.BUTTON_NEUTRAL)
+            startActivity(TextActivity.newIntent(this, TextActivity.TYPE_UPLOAD_LOG, (String)extra));
     }
 
     private static class ResubmitAsyncTask extends ResubmitTask<ResultDetailActivity> {
@@ -213,6 +215,8 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
                             .withTitle(getActivity().getString(R.string.Modal_UploadFailed_Title))
                             .withMessage(getActivity().getString(R.string.Modal_UploadFailed_Paragraph, errors.toString(), totUploads.toString()))
                             .withPositiveButton(getActivity().getString(R.string.Modal_Retry))
+                            .withNeutralButton(getActivity().getString(R.string.Modal_DisplayFailureLog))
+                            .withExtra(logs)
                             .build().show(getActivity().getSupportFragmentManager(), null);
             }
         }
