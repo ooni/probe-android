@@ -234,6 +234,8 @@
   <string name="Modal_OnlyDigits">本欄位只能填入數字</string>
   <string name="Modal_ReRun_Title">重新執行測試</string>
   <string name="Modal_ReRun_Paragraph">本次測試失敗，重新執執測試？</string>
+  <string name="Modal_ReRun_Websites_Title">You are about to re-test %1$s websites.</string>
+  <string name="Modal_ReRun_Websites_Run">執行</string>
   <string name="Modal_CustomURL_NotSaved">關閉此畫面後不會儲存 URL 記錄，確定要離開此畫面嗎？  </string>
   <string name="Modal_ManualUpload_Title">開啟手動上傳？</string>
   <string name="Modal_ManualUpload_Paragraph">本設定可以手動重新上傳未發佈的測量數據</string>

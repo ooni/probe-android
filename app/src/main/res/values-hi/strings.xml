@@ -234,6 +234,8 @@
   <string name="Modal_OnlyDigits">कृपया इस क्षेत्र में केवल अंक डालें।</string>
   <string name="Modal_ReRun_Title">परीक्षण फिर से चलाएं</string>
   <string name="Modal_ReRun_Paragraph">यह परीक्षण विफल रहा है। परीक्षण फिर से चलाएं?</string>
+  <string name="Modal_ReRun_Websites_Title">You are about to re-test %1$s websites.</string>
+  <string name="Modal_ReRun_Websites_Run">चलाना</string>
   <string name="Modal_CustomURL_NotSaved">जब आप यह स्क्रीन छोड़ते हैं तो आपके URL सहेजे नहीं जाएंगे। क्या आप वाकई इस स्क्रीन को छोड़ना चाहते हैं?</string>
   <string name="Modal_ManualUpload_Title">मैन्युअल अपलोड सक्षम करें?</string>
   <string name="Modal_ManualUpload_Paragraph">यह सेटिंग आपको अप्रकाशित माप को मैन्युअल रूप से पुनः अपलोड करने की अनुमति देती है।</string>

@@ -234,6 +234,8 @@
   <string name="Modal_OnlyDigits">Introduïu només dígits en aquest camp.</string>
   <string name="Modal_ReRun_Title">Torna a executar la prova</string>
   <string name="Modal_ReRun_Paragraph">Aquesta prova ha fallat. Voleu tornar a executar la prova?</string>
+  <string name="Modal_ReRun_Websites_Title">You are about to re-test %1$s websites.</string>
+  <string name="Modal_ReRun_Websites_Run">Inicia</string>
   <string name="Modal_CustomURL_NotSaved">Les vostres URL no es desaran quan surti d\'aquesta pantalla. Esteu segur de voler sortir d\'aquesta pantalla?</string>
   <string name="Modal_ManualUpload_Title">Voleu activar la pujada manual?</string>
   <string name="Modal_ManualUpload_Paragraph">Aquest paràmetre us permet carregar manualment mesures no publicades.</string>

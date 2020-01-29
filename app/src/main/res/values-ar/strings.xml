@@ -234,6 +234,8 @@
   <string name="Modal_OnlyDigits">يرجى إدخال الأرقام فقط في هذا الحقل.</string>
   <string name="Modal_ReRun_Title">إعادة إجراء الاختبار</string>
   <string name="Modal_ReRun_Paragraph">لقد فشل هذا الإختبار. هل تريد إعادة إجراء الاختبار؟</string>
+  <string name="Modal_ReRun_Websites_Title">You are about to re-test %1$s websites.</string>
+  <string name="Modal_ReRun_Websites_Run">ابدأ</string>
   <string name="Modal_CustomURL_NotSaved">المواقع لن تسجل اذا تركت هذه الواجهة. هل تريد ترك الواجهة؟</string>
   <string name="Modal_ManualUpload_Title">تفعيل الرّفع اليدوي؟ </string>
   <string name="Modal_ManualUpload_Paragraph">هذا الإعداد يمكّن من إعادة رفع القياسات الغير منشورة يدويّاً </string>

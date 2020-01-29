@@ -234,6 +234,8 @@
   <string name="Modal_OnlyDigits">Ju lutem vendosni vetëm shifra në këtë fushë.</string>
   <string name="Modal_ReRun_Title">Kryej testimin përsëri</string>
   <string name="Modal_ReRun_Paragraph">Ky testim dështoi. Doni t\'a kryeni përsëri?</string>
+  <string name="Modal_ReRun_Websites_Title">You are about to re-test %1$s websites.</string>
+  <string name="Modal_ReRun_Websites_Run">Përdor</string>
   <string name="Modal_CustomURL_NotSaved">URL-të nuk do ruhen pasi të largoheni nga ky ekran. Jeni të sigurt që doni të largoheni nga ky ekran?</string>
   <string name="Modal_ManualUpload_Title">Mundëso Ngarkim Manuale</string>
   <string name="Modal_ManualUpload_Paragraph">Ky opsion të mundëson ty që të ngarkosh sërish matjet e pa publikuara.</string>
