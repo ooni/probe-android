@@ -234,6 +234,8 @@
   <string name="Modal_OnlyDigits">В этом поле только цифры, пожалуйста.</string>
   <string name="Modal_ReRun_Title">Повторить тест</string>
   <string name="Modal_ReRun_Paragraph">Тест неудачен. Повторить?</string>
+  <string name="Modal_ReRun_Websites_Title">You are about to re-test %1$s websites.</string>
+  <string name="Modal_ReRun_Websites_Run">Старт</string>
   <string name="Modal_CustomURL_NotSaved">Если вы закроете этот экран, адреса не сохранятся. Хотите выйти?</string>
   <string name="Modal_ManualUpload_Title">Включить загрузку вручную?</string>
   <string name="Modal_ManualUpload_Paragraph">Эта настройка позволяет вам вручную загружать неопубликованные измерения</string>

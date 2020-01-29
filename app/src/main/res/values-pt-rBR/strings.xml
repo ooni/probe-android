@@ -234,6 +234,8 @@
   <string name="Modal_OnlyDigits">Por favor, insira apenas dígitos neste campo.</string>
   <string name="Modal_ReRun_Title">Repetir o teste</string>
   <string name="Modal_ReRun_Paragraph">Este teste falhou. Você deseja fazer um outro teste?</string>
+  <string name="Modal_ReRun_Websites_Title">You are about to re-test %1$s websites.</string>
+  <string name="Modal_ReRun_Websites_Run">Executat</string>
   <string name="Modal_CustomURL_NotSaved">Suas URLs não serão salvas quando você sair desta tela. Tem certeza de que deseja sair desta tela?</string>
   <string name="Modal_ManualUpload_Title">Ativar carregamento manual?</string>
   <string name="Modal_ManualUpload_Paragraph">Essa configuração permite que você carregue manualmente as medidas não publicadas.</string>

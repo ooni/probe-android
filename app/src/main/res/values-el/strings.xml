@@ -234,6 +234,8 @@
   <string name="Modal_OnlyDigits">Παρακαλώ γράψε μόνο ψηφία σε αυτό το πεδίο.</string>
   <string name="Modal_ReRun_Title">Επανεκτέλεση δοκιμής</string>
   <string name="Modal_ReRun_Paragraph">Αυτή η δοκιμή απέτυχε. Επανεκτέλεση δοκιμής;</string>
+  <string name="Modal_ReRun_Websites_Title">You are about to re-test %1$s websites.</string>
+  <string name="Modal_ReRun_Websites_Run">Εκτέλεση</string>
   <string name="Modal_CustomURL_NotSaved">Οι ιστοσελίδες σου δε θα αποθηκευτούν όταν φύγεις από αυτήν την οθόνη. Είσαι σίγουρος/η ότι θέλεις να φύγεις από αυτήν την οθόνη;</string>
   <string name="Modal_ManualUpload_Title">Ενεργοποίηση χειροκίνητου ανεβάσματος;</string>
   <string name="Modal_ManualUpload_Paragraph">Με αυτή τη ρύθμιση μπορείς να ανεβάσεις χειροκίνητα τις μη δημοσιευμένες μετρήσεις σου.</string>

@@ -234,6 +234,8 @@
   <string name="Modal_OnlyDigits">此栏中仅支持数字。</string>
   <string name="Modal_ReRun_Title">重新运行测试</string>
   <string name="Modal_ReRun_Paragraph">此测试已失败。重新运行此测试？</string>
+  <string name="Modal_ReRun_Websites_Title">You are about to re-test %1$s websites.</string>
+  <string name="Modal_ReRun_Websites_Run">运行</string>
   <string name="Modal_CustomURL_NotSaved">离开此屏幕将不会保存您的网址（URL）。确定离开吗。</string>
   <string name="Modal_ManualUpload_Title">是否开启手动上传？</string>
   <string name="Modal_ManualUpload_Paragraph">该设置允许您手动重新上传尚未发布的测量结果。</string>

@@ -118,7 +118,7 @@
   <string name="TestResults_Summary_InstantMessaging_Hero_Reachable_Plural">Accessibili</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">App</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">Applicazioni</string>
-  <string name="TestResults_Summary_Circumvention_Hero_Tested_Singular">Testati</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tested_Singular">Testato</string>
   <string name="TestResults_Summary_Circumvention_Hero_Tested_Plural">Testati</string>
   <string name="TestResults_Summary_Circumvention_Hero_Blocked_Singular">Bloccato</string>
   <string name="TestResults_Summary_Circumvention_Hero_Blocked_Plural">Bloccato</string>
@@ -234,6 +234,8 @@
   <string name="Modal_OnlyDigits">Per favore solo numeri in questo campo</string>
   <string name="Modal_ReRun_Title">Ri-esegui il test</string>
   <string name="Modal_ReRun_Paragraph">Questo test è fallito. Vuoi ri-eseguire il test?</string>
+  <string name="Modal_ReRun_Websites_Title">You are about to re-test %1$s websites.</string>
+  <string name="Modal_ReRun_Websites_Run">Esegui</string>
   <string name="Modal_CustomURL_NotSaved">Gli URL non saranno salvati quando lasci questa pagina. Sei sicuro di voler lasciare questa pagina?</string>
   <string name="Modal_ManualUpload_Title">Abilitare l\'Upload Manuale?</string>
   <string name="Modal_ManualUpload_Paragraph">Questa impostazione ti permette di ricaricare manualmente le misurazioni non pubblicate.</string>
