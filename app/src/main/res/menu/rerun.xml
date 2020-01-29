@@ -4,7 +4,6 @@
 <item
 		android:id="@+id/reRun"
 		android:icon="@drawable/rerun"
-		android:title="@string/TestResults_Overview_Tab_Label"
+		android:title="@string/Modal_ReRun_Websites_Run"
 		app:showAsAction="ifRoom|withText" />
-	<!-- Modal.ReRun.Websites.Run -->
 </menu>

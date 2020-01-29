@@ -132,11 +132,8 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
             case R.id.reRun:
                 new ConfirmDialogFragment.Builder()
                         .withExtra(RERUN_KEY)
-                        //TODO sub these rows when the string is inserted
-                        //.withMessage(getString(R.string.Modal_ReRun_Websites_Title))
-                        //.withPositiveButton(getString(R.string.Modal_ReRun_Websites_Run))
-                        .withMessage(getString(R.string.Modal_DoYouWantToDeleteThisTest))
-                        .withPositiveButton(getString(R.string.Modal_Delete))
+                        .withMessage(getString(R.string.Modal_ReRun_Websites_Title))
+                        .withPositiveButton(getString(R.string.Modal_ReRun_Websites_Run))
                         .build().show(getSupportFragmentManager(), null);
                 return true;
             default:
