@@ -29,7 +29,6 @@ public class Result extends BaseModel implements Serializable {
 	@PrimaryKey(autoincrement = true) public int id;
 	@Column public String test_group_name;
 	@Column public Date start_time;
-	@Column public double runtime;
 	@Column public boolean is_viewed;
 	@Column public boolean is_done;
 	@Column public long data_usage_up;
@@ -95,11 +94,7 @@ public class Result extends BaseModel implements Serializable {
 	public long countAnomalousMeasurements() {
 		return SQLite.selectCountOf().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false), Measurement_Table.is_done.eq(true), Measurement_Table.is_failed.eq(false), Measurement_Table.is_anomaly.eq(true)).count();
 	}
-
-	public void addDuration(double value) {
-		this.runtime += value;
-	}
-
+	
 	private Measurement getFirstMeasurement() {
 		return SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false)).orderBy(Measurement_Table.start_time, true).querySingle();
 	}
