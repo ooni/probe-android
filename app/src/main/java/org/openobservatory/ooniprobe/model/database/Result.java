@@ -22,6 +22,7 @@ import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Table(database = Application.class)
 public class Result extends BaseModel implements Serializable {
@@ -97,6 +98,22 @@ public class Result extends BaseModel implements Serializable {
 
 	public void addDuration(double value) {
 		this.runtime += value;
+	}
+
+	private Measurement getFirstMeasurement() {
+		return SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false)).orderBy(Measurement_Table.start_time, true).querySingle();
+	}
+
+	private Measurement getLastMeasurement() {
+		return SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false)).orderBy(Measurement_Table.start_time, false).querySingle();
+	}
+
+	public double getRuntime(){
+		Measurement first = getFirstMeasurement();
+		Measurement last = getLastMeasurement();
+		long diffInMs = last.start_time.getTime() - first.start_time.getTime();
+		long diffInSec = TimeUnit.MILLISECONDS.toSeconds(diffInMs);
+		return diffInSec + last.runtime;
 	}
 
 	public String getFormattedDataUsageUp() {
