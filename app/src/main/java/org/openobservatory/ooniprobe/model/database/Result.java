@@ -96,11 +96,15 @@ public class Result extends BaseModel implements Serializable {
 	}
 	
 	private Measurement getFirstMeasurement() {
-		return SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false)).orderBy(Measurement_Table.start_time, true).querySingle();
+		return SQLite.select().from(Measurement.class)
+				.where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false))
+				.orderBy(Measurement_Table.start_time, true).querySingle();
 	}
 
 	private Measurement getLastMeasurement() {
-		return SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false)).orderBy(Measurement_Table.start_time, false).querySingle();
+		return SQLite.select().from(Measurement.class)
+				.where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false))
+				.orderBy(Measurement_Table.start_time, false).querySingle();
 	}
 
 	public double getRuntime(){
