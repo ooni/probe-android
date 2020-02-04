@@ -247,7 +247,6 @@
   <string name="Modal_Error_NoValidUrls">Δεν βρέθηκαν έγκυρα URL</string>
   <string name="Modal_Error_JsonEmpty">JSON empty</string>
   <string name="Toast_CopiedToClipboard">Αντιγράφηκε στο πρόχειρο</string>
-  <string name="Toast_WillBeAvailable">Θα είναι διαθέσιμο εντός 24 ωρών</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Δεν ανέβηκαν</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Ανέβασμα</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Μερικά δεν ανέβηκαν</string>

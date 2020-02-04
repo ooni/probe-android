@@ -247,7 +247,6 @@
   <string name="Modal_Error_NoValidUrls">未找到有效 URL</string>
   <string name="Modal_Error_JsonEmpty">空的 JSON</string>
   <string name="Toast_CopiedToClipboard">已复制到剪贴板</string>
-  <string name="Toast_WillBeAvailable">将于 24 小时内可用</string>
   <string name="Snackbar_ResultsNotUploaded_Text">未上传</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">上传</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">部分未上传</string>

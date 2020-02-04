@@ -247,7 +247,6 @@
   <string name="Modal_Error_NoValidUrls">कोई मान्य यूआरएल नहीं मिले</string>
   <string name="Modal_Error_JsonEmpty">जॆसन खाली</string>
   <string name="Toast_CopiedToClipboard">क्लिपबोर्ड में कॉपी किया गया</string>
-  <string name="Toast_WillBeAvailable">24 घंटो के भीतर उपलब्ध होगा</string>
   <string name="Snackbar_ResultsNotUploaded_Text">अपलोड नहीं किया गया</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">अपलोड करें</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">कुछ अपलोड नहीं किए गए</string>

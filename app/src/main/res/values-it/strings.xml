@@ -247,7 +247,6 @@
   <string name="Modal_Error_NoValidUrls">Nessun URL valido trovato</string>
   <string name="Modal_Error_JsonEmpty">JSON vuoto</string>
   <string name="Toast_CopiedToClipboard">Copiato negli appunti</string>
-  <string name="Toast_WillBeAvailable">Sarà disponibile entro 24 ore</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Non caricati</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Carica</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Alcuni non caricati</string>

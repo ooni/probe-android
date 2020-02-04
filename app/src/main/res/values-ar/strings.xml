@@ -247,7 +247,6 @@
   <string name="Modal_Error_NoValidUrls">لم يتم العثور على روابط صحيحة</string>
   <string name="Modal_Error_JsonEmpty">JSON فارغ</string>
   <string name="Toast_CopiedToClipboard">نسخ إلى الحافظة</string>
-  <string name="Toast_WillBeAvailable">سوف يكون متوفرا خلال 24سا</string>
   <string name="Snackbar_ResultsNotUploaded_Text">لم يتمّ الرفع</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">رفع</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">لم يتمّ رفع البعض</string>

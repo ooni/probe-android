@@ -247,7 +247,6 @@
   <string name="Modal_Error_NoValidUrls">Aucune URL valide n’a été trouvée</string>
   <string name="Modal_Error_JsonEmpty">Le JSON est vide</string>
   <string name="Toast_CopiedToClipboard">Copié dans le presse-papiers</string>
-  <string name="Toast_WillBeAvailable">Sera disponible d’ici 24 h</string>
   <string name="Snackbar_ResultsNotUploaded_Text">N’a pas été téléversé</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Téléversement</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Tout n’a pas été téléversé</string>

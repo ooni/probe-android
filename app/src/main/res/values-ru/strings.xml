@@ -247,7 +247,6 @@
   <string name="Modal_Error_NoValidUrls">URL не найдены</string>
   <string name="Modal_Error_JsonEmpty">JSON пуст</string>
   <string name="Toast_CopiedToClipboard">Скопировано в буфер обмена</string>
-  <string name="Toast_WillBeAvailable">Будет доступно в течение 24 часов</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Не загружено</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Загрузить</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Загружено частично</string>

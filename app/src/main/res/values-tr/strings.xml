@@ -247,7 +247,6 @@
   <string name="Modal_Error_NoValidUrls">Geçerli bir adres bulunamadı</string>
   <string name="Modal_Error_JsonEmpty">JSON boş</string>
   <string name="Toast_CopiedToClipboard">Panoya kopyalandı</string>
-  <string name="Toast_WillBeAvailable">24 saat içerisinde mevcut olacak</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Yüklenmemiş</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Yükle</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Bazıları yüklenmemiş</string>

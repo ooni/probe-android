@@ -247,7 +247,6 @@
   <string name="Modal_Error_NoValidUrls">Keine gültigen URLs gefunden</string>
   <string name="Modal_Error_JsonEmpty">JSON ist leer</string>
   <string name="Toast_CopiedToClipboard">In Zwischenablage kopiert</string>
-  <string name="Toast_WillBeAvailable">Wird in 24h verfügbar sein</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Nicht hochgeladen</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Hochladen</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Manche nicht hochgeladen</string>

@@ -247,7 +247,6 @@
   <string name="Modal_Error_NoValidUrls">No se encontraron URL válidas</string>
   <string name="Modal_Error_JsonEmpty">JSON vacío</string>
   <string name="Toast_CopiedToClipboard">Se ha copiado al portapapeles</string>
-  <string name="Toast_WillBeAvailable">Estará disponible en meno de 24h</string>
   <string name="Snackbar_ResultsNotUploaded_Text">No subido</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Subir</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Algunos no subidos</string>

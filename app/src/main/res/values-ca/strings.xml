@@ -247,7 +247,6 @@
   <string name="Modal_Error_NoValidUrls">No s\'ha trobat URL vàlides</string>
   <string name="Modal_Error_JsonEmpty">JSON buit</string>
   <string name="Toast_CopiedToClipboard">S\'ha copiat al porta-retalls</string>
-  <string name="Toast_WillBeAvailable">Estarà disponible en 24 hores</string>
   <string name="Snackbar_ResultsNotUploaded_Text">No s\'ha pujat</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Pujada</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Alguns no s\'han pujat</string>

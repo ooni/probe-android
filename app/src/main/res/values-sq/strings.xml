@@ -247,7 +247,6 @@
   <string name="Modal_Error_NoValidUrls">Nuk u gjet URL e vlefshme</string>
   <string name="Modal_Error_JsonEmpty">JSON është bosh</string>
   <string name="Toast_CopiedToClipboard">U kopjua në tabelën-mbledhëse</string>
-  <string name="Toast_WillBeAvailable">Do të jete e disponueshme brënda 24h</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Nuk është ngarkuar</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Ngarkoni</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Disa nuk janë ngarkuar</string>

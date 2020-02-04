@@ -251,7 +251,6 @@
   <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
   <string name="Modal_Error_JsonEmpty">JSON empty</string>
   <string name="Toast_CopiedToClipboard">Copied to clipboard</string>
-  <string name="Toast_WillBeAvailable">Will be available within 24h</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Not uploaded</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Upload</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Some not uploaded</string>

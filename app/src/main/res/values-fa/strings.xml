@@ -247,7 +247,6 @@
   <string name="Modal_Error_NoValidUrls">هیچ URL معتبری یافت نشد</string>
   <string name="Modal_Error_JsonEmpty">JSON خالی است</string>
   <string name="Toast_CopiedToClipboard">در حافظه‌ی موقت کپی شد</string>
-  <string name="Toast_WillBeAvailable">بعد از 24 ساعت در دسترس خواهد بود</string>
   <string name="Snackbar_ResultsNotUploaded_Text">بارگذاری نشدند</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">آپلود</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">برخی بارگذاری نشدند</string>
