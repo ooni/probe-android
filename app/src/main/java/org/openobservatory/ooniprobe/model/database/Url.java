@@ -10,14 +10,14 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.AppDatabase;
 
 import java.io.Serializable;
 import java.util.Arrays;
 
 import androidx.annotation.NonNull;
 
-@Table(database = Application.class)
+@Table(database = AppDatabase.class)
 public class Url extends BaseModel implements Serializable {
 	@PrimaryKey(autoincrement = true) public int id;
 	@Column public String url;

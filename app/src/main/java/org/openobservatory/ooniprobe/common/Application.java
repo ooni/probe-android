@@ -20,7 +20,6 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-@Database(name = "v3", version = 3, foreignKeyConstraintsEnforced = true)
 public class Application extends android.app.Application {
 
 	static {
