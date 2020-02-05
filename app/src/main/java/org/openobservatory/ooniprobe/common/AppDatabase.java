@@ -15,9 +15,9 @@ import org.openobservatory.ooniprobe.model.database.Result;
 @Database(name = AppDatabase.NAME, version = AppDatabase.VERSION, foreignKeyConstraintsEnforced = true)
 public class AppDatabase {
     public static final String NAME = "v2";
-    public static final int VERSION = 4;
+    public static final int VERSION = 2;
 
-    @Migration(version = 4, database = AppDatabase.class)
+    @Migration(version = 2, database = AppDatabase.class)
     public static class Migration2 extends AlterTableMigration<Result> {
 
         public Migration2() {
