@@ -19,12 +19,10 @@ public class AppDatabase {
 
         public Migration2(Class<Result> table) {
             super(table);
-            Log.v("Creation2", "Creation()");
         }
 
         @Override
         public void onPreMigrate() {
-            Log.v("Creation", "onPreMigrate()");
             addColumn(SQLiteType.TEXT, "failure_msg");
         }
 
