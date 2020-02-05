@@ -4,7 +4,9 @@ import android.util.Log;
 
 import com.raizlabs.android.dbflow.annotation.Database;
 import com.raizlabs.android.dbflow.annotation.Migration;
+import com.raizlabs.android.dbflow.sql.SQLiteType;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
+import com.raizlabs.android.dbflow.sql.migration.AlterTableMigration;
 import com.raizlabs.android.dbflow.sql.migration.BaseMigration;
 import com.raizlabs.android.dbflow.structure.database.DatabaseWrapper;
 
@@ -13,30 +15,27 @@ import org.openobservatory.ooniprobe.model.database.Result;
 @Database(name = AppDatabase.NAME, version = AppDatabase.VERSION, foreignKeyConstraintsEnforced = true)
 public class AppDatabase {
     public static final String NAME = "v2";
-    public static final int VERSION = 2;
+    public static final int VERSION = 4;
 
-    @Migration(version = 2, database = AppDatabase.class)
-    public static class Migration2 extends BaseMigration {
+    @Migration(version = 4, database = AppDatabase.class)
+    public static class Migration2 extends AlterTableMigration<Result> {
 
         public Migration2() {
-            super();
+            super(Result.class);
             Log.v("Creation", "Creation()");
         }
 
-        @Override
-        public void migrate(DatabaseWrapper sqLiteDatabase) {
-            Log.v("Creation", "migrate()");
+        public Migration2(Class<Result> table) {
+            super(table);
+            Log.v("Creation2", "Creation()");
         }
 
         @Override
         public void onPreMigrate() {
             Log.v("Creation", "onPreMigrate()");
+            addColumn(SQLiteType.TEXT, "failure_msg");
         }
 
-        @Override
-        public void onPostMigrate() {
-            Log.v("Creation", "onPostMigrate()");
-        }
         /*
         @Override
         public void migrate(DatabaseWrapper database) {
