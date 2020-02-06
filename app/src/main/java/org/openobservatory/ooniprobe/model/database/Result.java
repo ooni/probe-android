@@ -12,6 +12,7 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.Crashlytics;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
@@ -110,8 +111,11 @@ public class Result extends BaseModel implements Serializable {
 	public double getRuntime(){
 		Measurement first = getFirstMeasurement();
 		Measurement last = getLastMeasurement();
-		if (first == null || last  == null)
+		if (first == null || last  == null) {
+			//TODO move this code to a ExceptionRecord class. #983
+			Crashlytics.logException(new Exception("get_runtime_null"));
 			return 0;
+		}
 		long diffInMs = last.start_time.getTime() - first.start_time.getTime();
 		long diffInSec = TimeUnit.MILLISECONDS.toSeconds(diffInMs);
 		return diffInSec + last.runtime;
