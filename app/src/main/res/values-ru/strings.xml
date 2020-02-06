@@ -201,10 +201,6 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Вы можете повысить видеопоток до %1$s без буферизации.</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">Средний битрейт</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">Задержка воспроизведения</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">Блокировано</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">Работает</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
   <string name="Feed_Tab_Label">Лента</string>
   <string name="Feed_Title">Лента</string>
   <string name="Modal_OK">OK</string>
@@ -247,7 +243,6 @@
   <string name="Modal_Error_NoValidUrls">URL не найдены</string>
   <string name="Modal_Error_JsonEmpty">JSON пуст</string>
   <string name="Toast_CopiedToClipboard">Скопировано в буфер обмена</string>
-  <string name="Toast_WillBeAvailable">Будет доступно в течение 24 часов</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Не загружено</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Загрузить</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Загружено частично</string>
@@ -265,7 +260,6 @@
   <string name="Test_WhatsApp_Fullname">Тест WhatsApp</string>
   <string name="Test_Telegram_Fullname">Тест Telegram</string>
   <string name="Test_FacebookMessenger_Fullname">Тест Facebook Messenger</string>
-  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">Настройки</string>
   <string name="Settings_Error_TestDurationTooLow">Вы указали слишком малое время для теста.</string>
   <string name="Settings_About_Label">Об OONI</string>

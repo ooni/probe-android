@@ -203,12 +203,6 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">You can stream up to %1$s without buffering.</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">Median Bitrate</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">Playout Delay</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">Blocked</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">Working</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph"></string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph"></string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
   <string name="Feed_Tab_Label">Feed</string>
   <string name="Feed_Title">Feed</string>
   <string name="Modal_OK">OK</string>
@@ -251,7 +245,6 @@
   <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
   <string name="Modal_Error_JsonEmpty">JSON empty</string>
   <string name="Toast_CopiedToClipboard">Copied to clipboard</string>
-  <string name="Toast_WillBeAvailable">Will be available within 24h</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Not uploaded</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Upload</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Some not uploaded</string>
@@ -269,7 +262,6 @@
   <string name="Test_WhatsApp_Fullname">WhatsApp Test</string>
   <string name="Test_Telegram_Fullname">Telegram Test</string>
   <string name="Test_FacebookMessenger_Fullname">Facebook Messenger Test</string>
-  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">Settings</string>
   <string name="Settings_Error_TestDurationTooLow">The amount of time you have set for the test duration is too low.</string>
   <string name="Settings_About_Label">About OONI</string>

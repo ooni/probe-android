@@ -201,10 +201,6 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">不透過緩取進行串流 %1$s</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">位元率中位數</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">耗盡延遲</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">被封鎖的</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">工作中</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
   <string name="Feed_Tab_Label">訂閱推送</string>
   <string name="Feed_Title">訂閱推送</string>
   <string name="Modal_OK">OK</string>
@@ -247,7 +243,6 @@
   <string name="Modal_Error_NoValidUrls">找不到有效的 URLs</string>
   <string name="Modal_Error_JsonEmpty">JSON 清空</string>
   <string name="Toast_CopiedToClipboard">複製到剪貼簿</string>
-  <string name="Toast_WillBeAvailable">24 小時內可取得</string>
   <string name="Snackbar_ResultsNotUploaded_Text">未上傳的</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">上傳</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">部份未上傳的</string>
@@ -265,7 +260,6 @@
   <string name="Test_WhatsApp_Fullname">WhatsApp 測試</string>
   <string name="Test_Telegram_Fullname">Telegram 測試</string>
   <string name="Test_FacebookMessenger_Fullname">Facebook Messenger 測試</string>
-  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">設定</string>
   <string name="Settings_Error_TestDurationTooLow">所設置的測試時間期過低。　</string>
   <string name="Settings_About_Label">關於 OONI</string>

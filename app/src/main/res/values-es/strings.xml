@@ -201,10 +201,6 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Puedes hacer stream hasta %1$s sin buffering.</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">Mediana de tasa de bits</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">Retardo de transmisión</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">Bloqueados</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">Trabajando</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">g</string>
   <string name="Feed_Tab_Label">Lista de suscripciones</string>
   <string name="Feed_Title">Lista de suscripciones</string>
   <string name="Modal_OK">Aceptar</string>
@@ -247,7 +243,6 @@
   <string name="Modal_Error_NoValidUrls">No se encontraron URL válidas</string>
   <string name="Modal_Error_JsonEmpty">JSON vacío</string>
   <string name="Toast_CopiedToClipboard">Se ha copiado al portapapeles</string>
-  <string name="Toast_WillBeAvailable">Estará disponible en meno de 24h</string>
   <string name="Snackbar_ResultsNotUploaded_Text">No subido</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Subir</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Algunos no subidos</string>
@@ -265,7 +260,6 @@
   <string name="Test_WhatsApp_Fullname">Prueba WhatsApp</string>
   <string name="Test_Telegram_Fullname">Prueba Telegram</string>
   <string name="Test_FacebookMessenger_Fullname">Prueba Facebook Messenger</string>
-  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">Configuración</string>
   <string name="Settings_Error_TestDurationTooLow">La cantidad de tiempo que haz establecido para la duración de la prueba es demasiado baja.</string>
   <string name="Settings_About_Label">Acerca de OONI</string>

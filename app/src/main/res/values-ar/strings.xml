@@ -201,10 +201,6 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">بإمكانك مشاهدة فيديو حتى جودة %1$s بدون توقف للتحميل</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">متوسط معدل البت</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">التأخير في التشغيل</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">محظور</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">يعمل</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">ف</string>
   <string name="Feed_Tab_Label">التغذية</string>
   <string name="Feed_Title">التغذية</string>
   <string name="Modal_OK">موافقة</string>
@@ -247,7 +243,6 @@
   <string name="Modal_Error_NoValidUrls">لم يتم العثور على روابط صحيحة</string>
   <string name="Modal_Error_JsonEmpty">JSON فارغ</string>
   <string name="Toast_CopiedToClipboard">نسخ إلى الحافظة</string>
-  <string name="Toast_WillBeAvailable">سوف يكون متوفرا خلال 24سا</string>
   <string name="Snackbar_ResultsNotUploaded_Text">لم يتمّ الرفع</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">رفع</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">لم يتمّ رفع البعض</string>
@@ -265,7 +260,6 @@
   <string name="Test_WhatsApp_Fullname">اختبار واتساب</string>
   <string name="Test_Telegram_Fullname">اختبار تيليجرام</string>
   <string name="Test_FacebookMessenger_Fullname">اختبار فيسبوك مسنجر</string>
-  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">الإعدادات</string>
   <string name="Settings_Error_TestDurationTooLow">المدة التي حددتها لفترة الاختبار قصيرة جدًا </string>
   <string name="Settings_About_Label">عن OONI</string>

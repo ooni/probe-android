@@ -201,10 +201,6 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Görüntü akışlarında ara bellek kullanmadan en fazla %1$s çözünürlük elde edebilirsiniz.</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">Ortalama Bithızı</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">Kusursuz Oynatma Gecikmesi</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">Engellenmiş</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">Çalışıyor</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Süresi</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
   <string name="Feed_Tab_Label">Akış</string>
   <string name="Feed_Title">Akış</string>
   <string name="Modal_OK">Tamam</string>
@@ -234,7 +230,7 @@
   <string name="Modal_OnlyDigits">Lütfen bu alana sadece sayı girin.</string>
   <string name="Modal_ReRun_Title">Sınamayı yinele</string>
   <string name="Modal_ReRun_Paragraph">Bu sınama tamamlanamadı. Yeniden sınamak ister misiniz?</string>
-  <string name="Modal_ReRun_Websites_Title">You are about to re-test %1$s websites.</string>
+  <string name="Modal_ReRun_Websites_Title">%1$s web sitesini yeniden sınamak üzeresiniz.</string>
   <string name="Modal_ReRun_Websites_Run">Çalıştır</string>
   <string name="Modal_CustomURL_NotSaved">Bu sayfadan ayrıldığınızda adresleriniz kaydedilmez. Bu sayfadan ayrılmak istediğinize emin misiniz?</string>
   <string name="Modal_ManualUpload_Title">El ile yükleme yapılabilsin mi?</string>
@@ -247,7 +243,6 @@
   <string name="Modal_Error_NoValidUrls">Geçerli bir adres bulunamadı</string>
   <string name="Modal_Error_JsonEmpty">JSON boş</string>
   <string name="Toast_CopiedToClipboard">Panoya kopyalandı</string>
-  <string name="Toast_WillBeAvailable">24 saat içerisinde mevcut olacak</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Yüklenmemiş</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Yükle</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Bazıları yüklenmemiş</string>
@@ -256,7 +251,7 @@
   <string name="Test_InstantMessaging_Fullname">Anlık İleti</string>
   <string name="Test_Middleboxes_Fullname">Ara Kutular</string>
   <string name="Test_Performance_Fullname">Performans</string>
-  <string name="Test_Circumvention_Fullname">Engellemeyi aşma</string>
+  <string name="Test_Circumvention_Fullname">Sansür Atlatma</string>
   <string name="Test_HTTPInvalidRequestLine_Fullname">HTTP Geçersiz İstek Hattı Sınaması</string>
   <string name="Test_HTTPHeaderFieldManipulation_Fullname">HTTP Üst Bilgi Müdahalesi Sınaması</string>
   <string name="Test_WebConnectivity_Fullname">Web Bağlantı Sınaması</string>
@@ -265,7 +260,6 @@
   <string name="Test_WhatsApp_Fullname">WhatsApp Sınaması</string>
   <string name="Test_Telegram_Fullname">Telegram Sınaması</string>
   <string name="Test_FacebookMessenger_Fullname">Facebook Messenger Sınaması</string>
-  <string name="Test_Psiphon_Fullname">Psiphon Sınaması</string>
   <string name="Settings_Title">Ayarlar</string>
   <string name="Settings_Error_TestDurationTooLow">Sınama süresi için belirlediğiniz süre çok az.</string>
   <string name="Settings_About_Label">OONI Hakkında</string>
