@@ -201,10 +201,6 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Pot transmetre fins a %1$s sense emmagatzematge en la memòria intermèdia.</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">Taxa de bits mitjana</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">Retard en la reproducció</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">Blocats</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">S\'està treballant</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
   <string name="Feed_Tab_Label">Mur</string>
   <string name="Feed_Title">Mur</string>
   <string name="Modal_OK">Correcte</string>
@@ -264,7 +260,6 @@
   <string name="Test_WhatsApp_Fullname">Prova de WhatsApp</string>
   <string name="Test_Telegram_Fullname">Prova de Telegram</string>
   <string name="Test_FacebookMessenger_Fullname">Prova de Facebook Messenger</string>
-  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">Configuració</string>
   <string name="Settings_Error_TestDurationTooLow">La quantitat de temps que heu establert per a la durada de la prova és massa baixa.</string>
   <string name="Settings_About_Label">Quant a l\'OONI</string>

@@ -201,10 +201,6 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Μπορείς να κάνεις streaming μέχρι και %1$s χωρίς buffering.</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">Μέσο bitrate</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">Καθυστέρηση αναπαραγωγής</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">Μπλοκαρισμένες</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">Δουλεύει</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
   <string name="Feed_Tab_Label">Feed</string>
   <string name="Feed_Title">Feed</string>
   <string name="Modal_OK">Εντάξει</string>
@@ -264,7 +260,6 @@
   <string name="Test_WhatsApp_Fullname">Δοκιμή WhatsApp</string>
   <string name="Test_Telegram_Fullname">Δοκιμή Telegram</string>
   <string name="Test_FacebookMessenger_Fullname">Δοκιμή Facebook Messenger</string>
-  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">Ρυθμίσεις</string>
   <string name="Settings_Error_TestDurationTooLow">Ο χρόνος που έχεις ρυθμίσει για τη διάρκεια εκτέλεσης της δοκιμής είναι πολύ χαμηλός.</string>
   <string name="Settings_About_Label">Σχετικά με το OONI</string>

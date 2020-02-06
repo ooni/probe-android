@@ -201,10 +201,6 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">شما می‌توانید تا کیفیت %1$s را بدون بافر کردن، پخش زنده کنید. </string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">میانگین نرخ بیت</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">تاخیر پخش</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">بسته شده</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">کار میکنه</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
   <string name="Feed_Tab_Label">خوراک</string>
   <string name="Feed_Title">خوراک</string>
   <string name="Modal_OK">باشه</string>
@@ -264,7 +260,6 @@
   <string name="Test_WhatsApp_Fullname">تست واتس‌اپ</string>
   <string name="Test_Telegram_Fullname">تست تلگرام</string>
   <string name="Test_FacebookMessenger_Fullname">تست پیام‌رسان فیسبوک</string>
-  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">تنظیمات</string>
   <string name="Settings_Error_TestDurationTooLow">زمانی که برای مدت این تست مشخص کرده‌اید خیلی کوتاه می‌باشد.</string>
   <string name="Settings_About_Label">درباره‌ی اونی</string>

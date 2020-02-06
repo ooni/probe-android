@@ -201,10 +201,6 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Puoi fare streaming video fino a %1$s senza buffering.</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">Bitrate medio</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">Playout Delay</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">Bloccato</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">Attivo</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
   <string name="Feed_Tab_Label">Feed</string>
   <string name="Feed_Title">Feed</string>
   <string name="Modal_OK">OK</string>
@@ -264,7 +260,6 @@
   <string name="Test_WhatsApp_Fullname">Test WhatsApp</string>
   <string name="Test_Telegram_Fullname">Test Telegram</string>
   <string name="Test_FacebookMessenger_Fullname">Test Facebook Messenger</string>
-  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">Impostazioni</string>
   <string name="Settings_Error_TestDurationTooLow">Il tempo di esecuzione che hai scelto è troppo poco. </string>
   <string name="Settings_About_Label">Informazioni su OONI</string>

@@ -201,10 +201,6 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Vous pouvez diffuser en continu jusqu’à %1$s sans mise en mémoire tampon.</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">Débit binaire médian</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">Délai de diffusion</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">Bloqués</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">En cours</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Temps d’amorçage</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
   <string name="Feed_Tab_Label">Flux</string>
   <string name="Feed_Title">Flux</string>
   <string name="Modal_OK">Valider</string>
@@ -234,7 +230,7 @@
   <string name="Modal_OnlyDigits">Veuillez ne saisir que des chiffres dans ce champ.</string>
   <string name="Modal_ReRun_Title">Relancer le test</string>
   <string name="Modal_ReRun_Paragraph">Ce test a échoué. Relancer le test ?</string>
-  <string name="Modal_ReRun_Websites_Title">You are about to re-test %1$s websites.</string>
+  <string name="Modal_ReRun_Websites_Title">Vous êtes sur le point de retester %1$s sites Web.</string>
   <string name="Modal_ReRun_Websites_Run">Lancer</string>
   <string name="Modal_CustomURL_NotSaved">Vos URL ne seront pas enregistrées si vous quittez cet écran. Voulez-vous vraiment le quitter ?</string>
   <string name="Modal_ManualUpload_Title">Activer le téléversement manuel ?</string>
@@ -264,7 +260,6 @@
   <string name="Test_WhatsApp_Fullname">Test de WhatsApp</string>
   <string name="Test_Telegram_Fullname">Test de Telegram</string>
   <string name="Test_FacebookMessenger_Fullname">Test de Facebook Messenger</string>
-  <string name="Test_Psiphon_Fullname">Test de Psiphon</string>
   <string name="Settings_Title">Paramètres</string>
   <string name="Settings_Error_TestDurationTooLow">La durée de test que vous avez définie est trop courte.</string>
   <string name="Settings_About_Label">À propos de l’OONI</string>

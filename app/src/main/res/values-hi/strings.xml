@@ -201,10 +201,6 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">आप बफरिंग के बिना %1$s तक स्ट्रीम कर सकते हैं।</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">माध्य बिटरेट</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">प्लेआउट विलंब</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">अवरुद्ध</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">काम कर रहे</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
   <string name="Feed_Tab_Label">चारा</string>
   <string name="Feed_Title">चारा</string>
   <string name="Modal_OK">ठीक है </string>
@@ -264,7 +260,6 @@
   <string name="Test_WhatsApp_Fullname">व्हाट्सएप टेस्ट</string>
   <string name="Test_Telegram_Fullname">टेलीग्राम टेस्ट</string>
   <string name="Test_FacebookMessenger_Fullname">फेसबुक मेसेंजर टेस्ट</string>
-  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">सेटिंग्स</string>
   <string name="Settings_Error_TestDurationTooLow">परीक्षण अवधि के लिए आपके द्वारा निर्धारित समय की मात्रा बहुत कम है।</string>
   <string name="Settings_About_Label">OONI बारे में</string>
