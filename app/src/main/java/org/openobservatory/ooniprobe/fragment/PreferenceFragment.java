@@ -52,7 +52,11 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
     public void onResume() {
         assert getArguments() != null;
         super.onResume();
-        setPreferencesFromResource(getArguments().getInt(ARG_PREFERENCES_RES_ID), getArguments().getInt(ARG_CONTAINER_RES_ID), getArguments().getString(ARG_PREFERENCE_ROOT));
+        if ("Websites".equals(rootKey)) {
+            setPreferencesFromResource(R.xml.preferences_websites, rootKey);
+        }
+        else
+            setPreferencesFromResource(getArguments().getInt(ARG_PREFERENCES_RES_ID), getArguments().getInt(ARG_CONTAINER_RES_ID), getArguments().getString(ARG_PREFERENCE_ROOT));
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         getActivity().setTitle(getPreferenceScreen().getTitle());
         for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++) {

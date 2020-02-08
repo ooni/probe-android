@@ -48,6 +48,33 @@
 	</androidx.preference.PreferenceScreen>
 	<androidx.preference.PreferenceScreen
 		android:icon="@drawable/advanced"
+		android:key="@string/test_options"
+		android:title="Test option">
+		<androidx.preference.PreferenceScreen
+			android:icon="@drawable/test_websites"
+			android:key="@string/Test_Websites_Fullname"
+			android:title="@string/Test_Websites_Fullname">
+			<Preference
+				android:key="preferences_websites" />
+		</androidx.preference.PreferenceScreen>
+		<androidx.preference.PreferenceScreen
+			android:icon="@drawable/test_instant_messaging"
+			android:key="@string/Test_InstantMessaging_Fullname"
+			android:title="@string/Test_InstantMessaging_Fullname">
+		</androidx.preference.PreferenceScreen>
+		<androidx.preference.PreferenceScreen
+			android:icon="@drawable/test_middle_boxes"
+			android:key="@string/Test_Middleboxes_Fullname"
+			android:title="@string/Test_Middleboxes_Fullname">
+		</androidx.preference.PreferenceScreen>
+		<androidx.preference.PreferenceScreen
+			android:icon="@drawable/test_performance"
+			android:key="@string/Test_Performance_Fullname"
+			android:title="@string/Test_Performance_Fullname">
+		</androidx.preference.PreferenceScreen>
+	</androidx.preference.PreferenceScreen>
+	<androidx.preference.PreferenceScreen
+		android:icon="@drawable/advanced"
 		android:key="@string/advanced"
 		android:title="@string/Settings_Advanced_Label">
 		<androidx.preference.SwitchPreferenceCompat
