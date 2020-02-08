@@ -18,13 +18,4 @@
 		android:defaultValue="true"
 		android:key="@string/test_facebook_messenger"
 		android:title="@string/Settings_InstantMessaging_TestFacebookMessenger" />
-	<androidx.preference.PreferenceCategory android:title="@string/Settings_Sharing_Footer">
-		<androidx.preference.PreferenceScreen
-			android:key="@string/about_ooni"
-			android:title="@string/Settings_About_Label">
-			<intent
-				android:action="android.intent.action.VIEW"
-				android:data="https://ooni.torproject.org/nettest/#im" />
-		</androidx.preference.PreferenceScreen>
-	</androidx.preference.PreferenceCategory>
 </androidx.preference.PreferenceScreen>
