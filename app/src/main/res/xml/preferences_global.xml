@@ -52,25 +52,27 @@
 		android:title="Test option">
 		<androidx.preference.PreferenceScreen
 			android:icon="@drawable/test_websites"
-			android:key="@string/Test_Websites_Fullname"
+			android:key="@string/websites"
 			android:title="@string/Test_Websites_Fullname">
-			<Preference
-				android:key="preferences_websites" />
+			<Preference />
 		</androidx.preference.PreferenceScreen>
 		<androidx.preference.PreferenceScreen
 			android:icon="@drawable/test_instant_messaging"
-			android:key="@string/Test_InstantMessaging_Fullname"
+			android:key="@string/instant_messaging"
 			android:title="@string/Test_InstantMessaging_Fullname">
+			<Preference />
 		</androidx.preference.PreferenceScreen>
 		<androidx.preference.PreferenceScreen
 			android:icon="@drawable/test_middle_boxes"
-			android:key="@string/Test_Middleboxes_Fullname"
+			android:key="@string/middle_boxes"
 			android:title="@string/Test_Middleboxes_Fullname">
+			<Preference />
 		</androidx.preference.PreferenceScreen>
 		<androidx.preference.PreferenceScreen
 			android:icon="@drawable/test_performance"
-			android:key="@string/Test_Performance_Fullname"
+			android:key="@string/performance"
 			android:title="@string/Test_Performance_Fullname">
+			<Preference />
 		</androidx.preference.PreferenceScreen>
 	</androidx.preference.PreferenceScreen>
 	<androidx.preference.PreferenceScreen
