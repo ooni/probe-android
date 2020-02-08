@@ -279,6 +279,7 @@
   <string name="Settings_Sharing_IncludeCountryCode">شامل کد کشور باشد</string>
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">این اطلاعات (مثل IT برای ایتالیا) برای تشخیص کشوری که اطلاعات در آن جمع‌آوری شده ضروری می‌باشد. آیا از غیرفعال کردن این گزینه اطمینان دارید؟</string>
   <string name="Settings_Sharing_Footer">با انتشار نتایج شما به افزایش شفافیت نظارت بر شبکه و جامعه‌ی OONI کمک می‌‌کنید.\n\nاطلاعات شبکه (مثل Autonomous System Number) برای شناسایی سرویس‌دهنده‌ی اینترنت ضروری است.</string>
+  <string name="Settings_TestOptions_Label">Test options</string>
   <string name="Settings_Advanced_Label">پیشرفته </string>
   <string name="Settings_Advanced_SendCrashReports">ارسال گزارش درباره‌ی متوقف شدن برنامه </string>
   <string name="Settings_Advanced_DebugLogs">ثبت اشکال زدایی‌ها</string>
