@@ -47,9 +47,9 @@
 		<androidx.preference.PreferenceCategory android:title="@string/Settings_Sharing_Footer" />
 	</androidx.preference.PreferenceScreen>
 	<androidx.preference.PreferenceScreen
-		android:icon="@drawable/advanced"
+		android:icon="@drawable/settings_icon"
 		android:key="@string/test_options"
-		android:title="Test option">
+		android:title="Test options">
 		<androidx.preference.PreferenceScreen
 			android:icon="@drawable/test_websites"
 			android:key="@string/websites"
