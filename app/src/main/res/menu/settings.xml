@@ -3,8 +3,7 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 	<item
 		android:id="@+id/settings"
-		android:icon="@drawable/settings_icon_white"
+		android:icon="@drawable/settings_icon"
 		android:title="@string/Settings_Title"
 		app:showAsAction="ifRoom"/>
 </menu>
-	<!-- Remove this settings_icon_white when you remove the menu item. Needed for API < 26-->

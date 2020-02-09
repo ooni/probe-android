@@ -47,29 +47,29 @@
 		<androidx.preference.PreferenceCategory android:title="@string/Settings_Sharing_Footer" />
 	</androidx.preference.PreferenceScreen>
 	<androidx.preference.PreferenceScreen
-		android:icon="@drawable/settings_icon"
+		android:icon="@drawable/test_options"
 		android:key="@string/test_options"
-		android:title="Test options">
+		android:title="@string/Settings_TestOptions_Label">
 		<androidx.preference.PreferenceScreen
-			android:icon="@drawable/test_websites"
+			android:icon="@drawable/settings_websites"
 			android:key="@string/websites"
 			android:title="@string/Test_Websites_Fullname">
 			<Preference />
 		</androidx.preference.PreferenceScreen>
 		<androidx.preference.PreferenceScreen
-			android:icon="@drawable/test_instant_messaging"
+			android:icon="@drawable/settings_instant_messaging"
 			android:key="@string/instant_messaging"
 			android:title="@string/Test_InstantMessaging_Fullname">
 			<Preference />
 		</androidx.preference.PreferenceScreen>
 		<androidx.preference.PreferenceScreen
-			android:icon="@drawable/test_middle_boxes"
+			android:icon="@drawable/settings_middle_boxes"
 			android:key="@string/middle_boxes"
 			android:title="@string/Test_Middleboxes_Fullname">
 			<Preference />
 		</androidx.preference.PreferenceScreen>
 		<androidx.preference.PreferenceScreen
-			android:icon="@drawable/test_performance"
+			android:icon="@drawable/settings_performance"
 			android:key="@string/performance"
 			android:title="@string/Test_Performance_Fullname">
 			<Preference />
