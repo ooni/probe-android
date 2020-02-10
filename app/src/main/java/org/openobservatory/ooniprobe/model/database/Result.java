@@ -13,6 +13,7 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.Crashlytics;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
@@ -23,6 +24,7 @@ import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.PropertyResourceBundle;
 import java.util.concurrent.TimeUnit;
 
 @Table(database = Application.class)
@@ -114,7 +116,7 @@ public class Result extends BaseModel implements Serializable {
 		if (first == null || last  == null) {
 			//TODO move this code to a ExceptionRecord class. #983
 			Crashlytics.logException(new Exception("get_runtime_null"));
-			return 0;
+			return PreferenceManager.ERROR_RUNTIME;
 		}
 		long diffInMs = last.start_time.getTime() - first.start_time.getTime();
 		long diffInSec = TimeUnit.MILLISECONDS.toSeconds(diffInMs);
