@@ -54,9 +54,9 @@
   <string name="Dashboard_Middleboxes_Overview_Paragraph">I provider di servizi internet (ISP) spesso usano apparecchiature di rete (middlebox) per motivi di networking (come ad esempio per il caching). Alle volte queste middlebox sono usate per implementare censura e/o sorveglianza internet.\n\nPuoi trovare middlebox sulla tua rete usando i test di OONI [HTTP Invalid Request Line](https://ooni.io/nettest/http-invalid-request-line/) e [HTTP Header Field Manipulation](https://ooni.io/nettest/http-header-field-manipulation/).\n\nI risultati dei tuoi test saranno pubblicati su [OONI Explorer](https://explorer.ooni.io/world/) e [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_InstantMessaging_Card_Description">Verifica il blocco di app di messaggistica</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">Controlla se [WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) o [Telegram](https://ooni.io/nettest/telegram/) sono bloccati.\n\nI risultati dei tuoi test saranno pubblicati su [OONI Explorer](https://explorer.ooni.io/world/) e [OONI API](https://api.ooni.io/).</string>
-  <string name="TestResults_Gbps">Gbps</string>
-  <string name="TestResults_Mbps">Mbps</string>
-  <string name="TestResults_Kbps">Kbps</string>
+  <string name="TestResults_Gbps">Gbit/s</string>
+  <string name="TestResults_Mbps">Mbit/s</string>
+  <string name="TestResults_Kbps">kbit/s</string>
   <string name="TestResults_ms">ms</string>
   <string name="TestResults_NotAvailable">Non valido</string>
   <string name="TestResults_UnknownASN">Sconosciuto</string>
@@ -118,7 +118,7 @@
   <string name="TestResults_Summary_InstantMessaging_Hero_Reachable_Plural">Accessibili</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">App</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">Applicazioni</string>
-  <string name="TestResults_Summary_Circumvention_Hero_Tested_Singular">Testati</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tested_Singular">Testato</string>
   <string name="TestResults_Summary_Circumvention_Hero_Tested_Plural">Testati</string>
   <string name="TestResults_Summary_Circumvention_Hero_Blocked_Singular">Bloccato</string>
   <string name="TestResults_Summary_Circumvention_Hero_Blocked_Plural">Bloccato</string>
@@ -201,10 +201,6 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Puoi fare streaming video fino a %1$s senza buffering.</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">Bitrate medio</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">Playout Delay</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">Bloccato</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">Attivo</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
   <string name="Feed_Tab_Label">Feed</string>
   <string name="Feed_Title">Feed</string>
   <string name="Modal_OK">OK</string>
@@ -234,6 +230,8 @@
   <string name="Modal_OnlyDigits">Per favore solo numeri in questo campo</string>
   <string name="Modal_ReRun_Title">Ri-esegui il test</string>
   <string name="Modal_ReRun_Paragraph">Questo test è fallito. Vuoi ri-eseguire il test?</string>
+  <string name="Modal_ReRun_Websites_Title">You are about to re-test %1$s websites.</string>
+  <string name="Modal_ReRun_Websites_Run">Esegui</string>
   <string name="Modal_CustomURL_NotSaved">Gli URL non saranno salvati quando lasci questa pagina. Sei sicuro di voler lasciare questa pagina?</string>
   <string name="Modal_ManualUpload_Title">Abilitare l\'Upload Manuale?</string>
   <string name="Modal_ManualUpload_Paragraph">Questa impostazione ti permette di ricaricare manualmente le misurazioni non pubblicate.</string>
@@ -245,7 +243,6 @@
   <string name="Modal_Error_NoValidUrls">Nessun URL valido trovato</string>
   <string name="Modal_Error_JsonEmpty">JSON vuoto</string>
   <string name="Toast_CopiedToClipboard">Copiato negli appunti</string>
-  <string name="Toast_WillBeAvailable">Sarà disponibile entro 24 ore</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Non caricati</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Carica</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Alcuni non caricati</string>
@@ -263,7 +260,6 @@
   <string name="Test_WhatsApp_Fullname">Test WhatsApp</string>
   <string name="Test_Telegram_Fullname">Test Telegram</string>
   <string name="Test_FacebookMessenger_Fullname">Test Facebook Messenger</string>
-  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">Impostazioni</string>
   <string name="Settings_Error_TestDurationTooLow">Il tempo di esecuzione che hai scelto è troppo poco. </string>
   <string name="Settings_About_Label">Informazioni su OONI</string>
@@ -283,6 +279,7 @@
   <string name="Settings_Sharing_IncludeCountryCode">Includi il codice del paese</string>
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Tali informazioni (es. IT per Italia) sono necessarie per determinare da quale Paese provengono le misurazioni. Sei sicuro di voler disabilitare quest\'opzione?</string>
   <string name="Settings_Sharing_Footer">Pubblicando i risultati, contribuisci alla trasparenza sulle interferenze di rete e dai supporto alla comunità di OONI.\n\nLe informazioni sulla rete (i.e. l\'Autonomous System Number) sono necessarie per poter identificare i provider di servizi internet (ISP).</string>
+  <string name="Settings_TestOptions_Label">Test options</string>
   <string name="Settings_Advanced_Label">Avanzate</string>
   <string name="Settings_Advanced_SendCrashReports">Manda rapporto sui crash</string>
   <string name="Settings_Advanced_DebugLogs">Log di debug</string>

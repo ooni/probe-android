@@ -54,9 +54,9 @@
   <string name="Dashboard_Middleboxes_Overview_Paragraph">因各種情況（如為了緩存），網路連線服務商經常會使用一些網路用具 (如中間盒) 。但有時候，中間盒被會用作網路審查與監控。\n\n使用 OONI\'s [HTTP  無效請求列](https://ooni.io/nettest/http-invalid-request-line/) 和 [HTTP 表頭欄位操控](https://ooni.io/nettest/http-header-field-manipulation/) 測試來找出網路是否有中間盒。\n\n測試結果會發佈在 [OONI Explorer](https://explorer.ooni.io/world/) 和 [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_InstantMessaging_Card_Description">測試遭封鎖的即時通訊應用</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">檢查 [WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) 和 [Telegram](https://ooni.io/nettest/telegram/) 是否已被封鎖。\n\n其結果會發佈在 [OONI Explorer](https://explorer.ooni.io/world/) 與 [OONI API](https://api.ooni.io/).</string>
-  <string name="TestResults_Gbps">Gbps</string>
-  <string name="TestResults_Mbps">Mbps</string>
-  <string name="TestResults_Kbps">Kbps</string>
+  <string name="TestResults_Gbps">Gbit/s</string>
+  <string name="TestResults_Mbps">Mbit/s</string>
+  <string name="TestResults_Kbps">kbit/s</string>
   <string name="TestResults_ms">ms</string>
   <string name="TestResults_NotAvailable">不適用</string>
   <string name="TestResults_UnknownASN">未知</string>
@@ -201,10 +201,6 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">不透過緩取進行串流 %1$s</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">位元率中位數</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">耗盡延遲</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">被封鎖的</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">工作中</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
   <string name="Feed_Tab_Label">訂閱推送</string>
   <string name="Feed_Title">訂閱推送</string>
   <string name="Modal_OK">OK</string>
@@ -234,6 +230,8 @@
   <string name="Modal_OnlyDigits">本欄位只能填入數字</string>
   <string name="Modal_ReRun_Title">重新執行測試</string>
   <string name="Modal_ReRun_Paragraph">本次測試失敗，重新執執測試？</string>
+  <string name="Modal_ReRun_Websites_Title">You are about to re-test %1$s websites.</string>
+  <string name="Modal_ReRun_Websites_Run">執行</string>
   <string name="Modal_CustomURL_NotSaved">關閉此畫面後不會儲存 URL 記錄，確定要離開此畫面嗎？  </string>
   <string name="Modal_ManualUpload_Title">開啟手動上傳？</string>
   <string name="Modal_ManualUpload_Paragraph">本設定可以手動重新上傳未發佈的測量數據</string>
@@ -245,7 +243,6 @@
   <string name="Modal_Error_NoValidUrls">找不到有效的 URLs</string>
   <string name="Modal_Error_JsonEmpty">JSON 清空</string>
   <string name="Toast_CopiedToClipboard">複製到剪貼簿</string>
-  <string name="Toast_WillBeAvailable">24 小時內可取得</string>
   <string name="Snackbar_ResultsNotUploaded_Text">未上傳的</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">上傳</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">部份未上傳的</string>
@@ -263,7 +260,6 @@
   <string name="Test_WhatsApp_Fullname">WhatsApp 測試</string>
   <string name="Test_Telegram_Fullname">Telegram 測試</string>
   <string name="Test_FacebookMessenger_Fullname">Facebook Messenger 測試</string>
-  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">設定</string>
   <string name="Settings_Error_TestDurationTooLow">所設置的測試時間期過低。　</string>
   <string name="Settings_About_Label">關於 OONI</string>
@@ -283,6 +279,7 @@
   <string name="Settings_Sharing_IncludeCountryCode">包含國碼</string>
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">需要這類資訊（例如 IT 代表義大利）以辨別網路計量是自哪個國家收集。是否要關閉此選項？</string>
   <string name="Settings_Sharing_Footer">出版評量結果，參與者共同提高了網路干涉的透明度與對 OONI  社群的支持。\n\n辬識網路連線服務商需要有網路資訊（例如網路自治系統編號 ASN）。</string>
+  <string name="Settings_TestOptions_Label">Test options</string>
   <string name="Settings_Advanced_Label">進階的</string>
   <string name="Settings_Advanced_SendCrashReports">送出出錯崩潰報告</string>
   <string name="Settings_Advanced_DebugLogs">調試記錄</string>

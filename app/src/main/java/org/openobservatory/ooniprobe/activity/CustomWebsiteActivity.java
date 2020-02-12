@@ -46,8 +46,10 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
             ArrayList<String> urls = new ArrayList<>(editTexts.size());
             for (EditText editText : editTexts) {
                 String value = editText.getText().toString();
-                if (Patterns.WEB_URL.matcher(value).matches() && value.length() < 2084)
-                    urls.add(Url.checkExistingUrl(value).toString());
+                String sanitizedUrl = value.replaceAll("\\r\\n|\\r|\\n", " ");
+                //https://support.microsoft.com/en-us/help/208427/maximum-url-length-is-2-083-characters-in-internet-explorer
+                if (Patterns.WEB_URL.matcher(sanitizedUrl).matches() && sanitizedUrl.length() < 2084)
+                    urls.add(Url.checkExistingUrl(sanitizedUrl).toString());
             }
             WebsitesSuite suite = new WebsitesSuite();
             suite.getTestList(getPreferenceManager())[0].setInputs(urls);

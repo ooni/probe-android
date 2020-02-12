@@ -39,8 +39,10 @@ public class TextActivity extends AbstractActivity {
 	private String text;
 	public static final int TYPE_LOG = 1;
 	public static final int TYPE_JSON = 2;
+	public static final int TYPE_UPLOAD_LOG = 3;
 	private static final String TEST = "test";
 	private static final String TYPE = "type";
+	private static final String TEXT = "text";
 	@BindView(R.id.textView)
 	TextView textView;
 
@@ -48,11 +50,14 @@ public class TextActivity extends AbstractActivity {
 		return new Intent(context, TextActivity.class).putExtra(TYPE, type).putExtra(TEST, measurement);
 	}
 
+	public static Intent newIntent(Context context, int type, String text) {
+		return new Intent(context, TextActivity.class).putExtra(TYPE, type).putExtra(TEXT, text);
+	}
+
 	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.text);
 		ButterKnife.bind(this);
-		measurement = (Measurement) getIntent().getSerializableExtra(TEST);
 		showText();
 	}
 
@@ -75,36 +80,58 @@ public class TextActivity extends AbstractActivity {
 	public void showText(){
 		switch (getIntent().getIntExtra(TYPE, 0)) {
 			case TYPE_JSON:
-				//Try to open file, if it doesn't exist dont show Error dialog immediately but try to download the json from internet
-				try {
-					File entryFile = Measurement.getEntryFile(this, measurement.id, measurement.test_name);
-					String json = FileUtils.readFileToString(entryFile, Charset.forName("UTF-8"));
-					text = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(new JsonParser().parse(json));
-					textView.setText(text);
-				} catch (Exception e) {
-					e.printStackTrace();
-					if (ReachabilityManager.getNetworkType(this).equals(ReachabilityManager.NO_INTERNET)) {
-						new MessageDialogFragment.Builder()
-								.withTitle(getString(R.string.Modal_Error))
-								.withMessage(getString(R.string.Modal_Error_RawDataNoInternet))
-								.build().show(getSupportFragmentManager(), null);
-						return;
-					}
-					getApiClient().getMeasurement(measurement.report_id, null).enqueue(new GetMeasurementsCallback() {
+				measurement = (Measurement) getIntent().getSerializableExtra(TEST);
+				showJson();
+				break;
+			case TYPE_LOG:
+				measurement = (Measurement) getIntent().getSerializableExtra(TEST);
+				showLog();
+				break;
+			case TYPE_UPLOAD_LOG:
+				text = (String) getIntent().getSerializableExtra(TEXT);
+				showUploadLog();
+				break;
+		}
+	}
+
+	private void showLog(){
+		try {
+			File logFile = Measurement.getLogFile(this, measurement.result.id, measurement.test_name);
+			String log = FileUtils.readFileToString(logFile, Charset.forName("UTF-8"));
+			text = log;
+			textView.setText(log);
+		} catch (Exception e) {
+			new MessageDialogFragment.Builder()
+					.withTitle(getString(R.string.Modal_Error_LogNotFound))
+					.build().show(getSupportFragmentManager(), null);
+		}
+	}
+
+	private void showJson(){
+		//Try to open file, if it doesn't exist dont show Error dialog immediately but try to download the json from internet
+		try {
+			File entryFile = Measurement.getEntryFile(this, measurement.id, measurement.test_name);
+			String json = FileUtils.readFileToString(entryFile, Charset.forName("UTF-8"));
+			text = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(new JsonParser().parse(json));
+			textView.setText(text);
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (ReachabilityManager.getNetworkType(this).equals(ReachabilityManager.NO_INTERNET)) {
+				new MessageDialogFragment.Builder()
+						.withTitle(getString(R.string.Modal_Error))
+						.withMessage(getString(R.string.Modal_Error_RawDataNoInternet))
+						.build().show(getSupportFragmentManager(), null);
+				return;
+			}
+			getApiClient().getMeasurement(measurement.report_id, null).enqueue(new GetMeasurementsCallback() {
+				@Override
+				public void onSuccess(ApiMeasurement.Result result) {
+					//Download measurement data locally and displaying into the TextView
+					getOkHttpClient().newCall(new Request.Builder().url(result.measurement_url).build()).enqueue(new GetMeasurementJsonCallback() {
 						@Override
-						public void onSuccess(ApiMeasurement.Result result) {
-							//Download measurement data locally and displaying into the TextView
-							getOkHttpClient().newCall(new Request.Builder().url(result.measurement_url).build()).enqueue(new GetMeasurementJsonCallback() {
-								@Override
-								public void onSuccess(String json) {
-									text = json;
-									textView.setText(json);
-								}
-								@Override
-								public void onError(String msg) {
-									showError(msg);
-								}
-							});
+						public void onSuccess(String json) {
+							text = json;
+							textView.setText(json);
 						}
 						@Override
 						public void onError(String msg) {
@@ -112,20 +139,16 @@ public class TextActivity extends AbstractActivity {
 						}
 					});
 				}
-				break;
-			case TYPE_LOG:
-				try {
-					File logFile = Measurement.getLogFile(this, measurement.result.id, measurement.test_name);
-					String log = FileUtils.readFileToString(logFile, Charset.forName("UTF-8"));
-					text = log;
-					textView.setText(log);
-				} catch (Exception e) {
-					new MessageDialogFragment.Builder()
-							.withTitle(getString(R.string.Modal_Error_LogNotFound))
-							.build().show(getSupportFragmentManager(), null);
+				@Override
+				public void onError(String msg) {
+					showError(msg);
 				}
-				break;
+			});
 		}
+	}
+
+	private void showUploadLog(){
+		textView.setText(text);
 	}
 
 	private void showError(String msg){

@@ -152,7 +152,7 @@ public abstract class AbstractTest implements Serializable {
                         setDataUsage(event.value, result);
                         break;
                     case "failure.startup":
-                        //Run next test
+                        setFailureMsg(event.value, result);
                         break;
                     case "bug.json_dump":
                         Crashlytics.logException(new MKException(event));
@@ -213,6 +213,13 @@ public abstract class AbstractTest implements Serializable {
         result.data_usage_down = result.data_usage_down + Double.valueOf(value.downloaded_kb).longValue();
         result.data_usage_up = result.data_usage_up + Double.valueOf(value.uploaded_kb).longValue();
         result.save();
+    }
+
+    private void setFailureMsg(EventResult.Value value, Result result) {
+        if (result != null) {
+            result.failure_msg = value.failure;
+            result.save();
+        }
     }
 
     public int getLabelResId() {

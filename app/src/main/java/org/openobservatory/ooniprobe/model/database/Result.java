@@ -12,6 +12,7 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.AppDatabase;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
@@ -24,7 +25,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-@Table(database = Application.class)
+@Table(database = AppDatabase.class)
 public class Result extends BaseModel implements Serializable {
 	@PrimaryKey(autoincrement = true) public int id;
 	@Column public String test_group_name;
@@ -33,6 +34,8 @@ public class Result extends BaseModel implements Serializable {
 	@Column public boolean is_done;
 	@Column public long data_usage_up;
 	@Column public long data_usage_down;
+	@Column public String failure_msg;
+
 	@ForeignKey(saveForeignKeyModel = true) public Network network;
 	private List<Measurement> measurements;
 
@@ -94,7 +97,7 @@ public class Result extends BaseModel implements Serializable {
 	public long countAnomalousMeasurements() {
 		return SQLite.selectCountOf().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false), Measurement_Table.is_done.eq(true), Measurement_Table.is_failed.eq(false), Measurement_Table.is_anomaly.eq(true)).count();
 	}
-	
+
 	private Measurement getFirstMeasurement() {
 		return SQLite.select().from(Measurement.class)
 				.where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false))

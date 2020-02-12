@@ -1,5 +1,5 @@
 <androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-	android:key="@string/Test_Websites_Fullname"
+	android:key="@string/websites"
 	android:title="@string/Test_Websites_Fullname">
 	<androidx.preference.PreferenceScreen
 		android:key="@string/Settings_Websites_Categories_Label"

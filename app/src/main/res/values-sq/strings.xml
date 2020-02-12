@@ -54,9 +54,9 @@
   <string name="Dashboard_Middleboxes_Overview_Paragraph">Ofruesit e Shërbimit të Internetit shpeshë përdorin aplikime rrjeti (middleboxes) për qëllime të ndryshme rrjeti (siç janë fshehjet). Shpeshë herë këto middleboxes përdoren të implementuar censurim në internet dhe/ose përgjime.\n\nZbuloni middleboxes në rrjetin tuaj duke përdorur [HTTP Invalid Request Line](https://ooni.io/nettest/http-invalid-request-line/) nga OONI dhe [HTTP Header Field Manipulation](https://ooni.io/nettest/http-header-field-manipulation/) tests.\n\nRezultatet tuaja do të publikohen në [OONI Explorer](https://explorer.ooni.io/world/) dhe [OONI API](https://api.ooni.io/).\n</string>
   <string name="Dashboard_InstantMessaging_Card_Description">Testoni bllokimin e aplikacioneve të mesazheve</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">Kontrollo nëse [WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) dhe [Telegram](https://ooni.io/nettest/telegram/) janë të bllokuara.\n\nRezultatet do të publikohen në [OONI Explorer](https://explorer.ooni.io/world/) dhe [OONI API](https://api.ooni.io/).</string>
-  <string name="TestResults_Gbps">Gbps</string>
-  <string name="TestResults_Mbps">Mbps</string>
-  <string name="TestResults_Kbps">Kbps</string>
+  <string name="TestResults_Gbps">Gbit/s</string>
+  <string name="TestResults_Mbps">Mbit/s</string>
+  <string name="TestResults_Kbps">kbit/s</string>
   <string name="TestResults_ms">ms</string>
   <string name="TestResults_NotAvailable">Jo e disponueshme</string>
   <string name="TestResults_UnknownASN">E panjohur</string>
@@ -201,10 +201,6 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Mund të transmetosh video deri më %1$s pa ndërprerje.</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">Rang bitesh mesatar</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">Vonesë në fillimin e videos</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">Bllokuar</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">Po punohet</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
   <string name="Feed_Tab_Label">Kryefaqe</string>
   <string name="Feed_Title">Kryefaqe</string>
   <string name="Modal_OK">OK</string>
@@ -234,6 +230,8 @@
   <string name="Modal_OnlyDigits">Ju lutem vendosni vetëm shifra në këtë fushë.</string>
   <string name="Modal_ReRun_Title">Kryej testimin përsëri</string>
   <string name="Modal_ReRun_Paragraph">Ky testim dështoi. Doni t\'a kryeni përsëri?</string>
+  <string name="Modal_ReRun_Websites_Title">You are about to re-test %1$s websites.</string>
+  <string name="Modal_ReRun_Websites_Run">Përdor</string>
   <string name="Modal_CustomURL_NotSaved">URL-të nuk do ruhen pasi të largoheni nga ky ekran. Jeni të sigurt që doni të largoheni nga ky ekran?</string>
   <string name="Modal_ManualUpload_Title">Mundëso Ngarkim Manuale</string>
   <string name="Modal_ManualUpload_Paragraph">Ky opsion të mundëson ty që të ngarkosh sërish matjet e pa publikuara.</string>
@@ -245,7 +243,6 @@
   <string name="Modal_Error_NoValidUrls">Nuk u gjet URL e vlefshme</string>
   <string name="Modal_Error_JsonEmpty">JSON është bosh</string>
   <string name="Toast_CopiedToClipboard">U kopjua në tabelën-mbledhëse</string>
-  <string name="Toast_WillBeAvailable">Do të jete e disponueshme brënda 24h</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Nuk është ngarkuar</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Ngarkoni</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Disa nuk janë ngarkuar</string>
@@ -263,7 +260,6 @@
   <string name="Test_WhatsApp_Fullname">Testim WhatsApp</string>
   <string name="Test_Telegram_Fullname">Testim Telegram</string>
   <string name="Test_FacebookMessenger_Fullname">Testim Facebook Messenger</string>
-  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">Rregullime</string>
   <string name="Settings_Error_TestDurationTooLow">Sasia e kohës që keni vendosur për kohëzgjatjen e testimit është shumë e vogël.</string>
   <string name="Settings_About_Label">Rreth OONI</string>
@@ -283,6 +279,7 @@
   <string name="Settings_Sharing_IncludeCountryCode">Shto Kodin e Shtetit</string>
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Ky informacion (psh IT për Itali) kërkohet për të identifikuar nga cili shtet po mblidhen të dhënat. Jeni të sigurt që e çaktivizoni këtë opsion?</string>
   <string name="Settings_Sharing_Footer">Duke publikuar rezultatet ti rrit transaprencën të ndërhyrjes në rrjet dhe mbështet komunitetin e OONI. \n\nInformacioni i rrjetit (psh Numri i Sistemit Autonom) kërkohet për të identifikuar Ofruesit e Shërbimit të Internetit.</string>
+  <string name="Settings_TestOptions_Label">Test options</string>
   <string name="Settings_Advanced_Label">Të mëtejshme</string>
   <string name="Settings_Advanced_SendCrashReports">Dërgo raportime dështimi</string>
   <string name="Settings_Advanced_DebugLogs">Kontrollo regjistrat për gabime</string>
