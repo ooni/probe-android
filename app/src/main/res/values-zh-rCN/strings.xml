@@ -43,7 +43,7 @@
   <string name="Dashboard_Running_Seconds">%1$s 秒</string>
   <string name="Dashboard_Running_PreparingTest">正在准备测试</string>
   <string name="Dashboard_Running_ShowLog">显示日志</string>
-  <string name="Dashboard_Running_CloseLog">Close Log</string>
+  <string name="Dashboard_Running_CloseLog">关闭日志</string>
   <string name="Dashboard_Card_Subtitle">触击选项卡以查看详情</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">测试封锁网站的情况</string>
@@ -54,9 +54,9 @@
   <string name="Dashboard_Middleboxes_Overview_Paragraph">互联网服务提供商（ISP）通常使用中间式的网络设备为各类网络连接与目的提供功能（例如缓存）。有时候，这些中间设备用于实施互联网审查和/或监视。\n\n使用 OONI 的 [HTTP 无效请求行](https://ooni.io/nettest/http-invalid-request-line/)和 [HTTP 标头操作](https://ooni.io/nettest/http-header-field-manipulation/)测试查找您的网络中的中间设备。\n\n您的测试结果将发布在 [OONI Explorer](https://explorer.ooni.io/world/) 和 [OONI API](https://api.ooni.io/)。</string>
   <string name="Dashboard_InstantMessaging_Card_Description">测试封锁即时消息应用的情况</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">检查 [WhatsApp](https://ooni.io/nettest/whatsapp/)、[Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) 和 [Telegram](https://ooni.io/nettest/telegram/) 是否被屏蔽。\n\n您的结果将会发布在 [OONI Explorer](https://explorer.ooni.io/world/) 和 [OONI API](https://api.ooni.io/) 上。</string>
-  <string name="TestResults_Gbps">Gbps</string>
-  <string name="TestResults_Mbps">Mbps</string>
-  <string name="TestResults_Kbps">Kbps</string>
+  <string name="TestResults_Gbps">Gbit/s</string>
+  <string name="TestResults_Mbps">Mbit/s</string>
+  <string name="TestResults_Kbps">kbit/s</string>
   <string name="TestResults_ms">ms</string>
   <string name="TestResults_NotAvailable">N/A</string>
   <string name="TestResults_UnknownASN">未知</string>
@@ -83,8 +83,8 @@
   <string name="TestResults_Overview_InstantMessaging_Blocked_Plural">被封锁 %1$s 个</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Singular">%1$s 个可访问</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Plural">%1$s 个可访问</string>
-  <string name="TestResults_Overview_Circumvention_Blocked_Plural">被封锁 %1$s 个</string>
-  <string name="TestResults_Overview_Circumvention_Available_Plural">%1$s available</string>
+  <string name="TestResults_Overview_Circumvention_Blocked_Plural">%1$s 个被屏蔽</string>
+  <string name="TestResults_Overview_Circumvention_Available_Plural">%1$s 个可访问</string>
   <string name="TestResults_Summary_Hero_DateAndTime">日期 &amp; 时间</string>
   <string name="TestResults_Summary_Hero_Network">网络</string>
   <string name="TestResults_Summary_Hero_Country">国家</string>
@@ -120,12 +120,12 @@
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">应用程序</string>
   <string name="TestResults_Summary_Circumvention_Hero_Tested_Singular">已测试</string>
   <string name="TestResults_Summary_Circumvention_Hero_Tested_Plural">已测试</string>
-  <string name="TestResults_Summary_Circumvention_Hero_Blocked_Singular">已被阻止</string>
-  <string name="TestResults_Summary_Circumvention_Hero_Blocked_Plural">已被阻止</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Blocked_Singular">被屏蔽</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Blocked_Plural">被屏蔽</string>
   <string name="TestResults_Summary_Circumvention_Hero_Reachable_Singular">测试中……</string>
   <string name="TestResults_Summary_Circumvention_Hero_Reachable_Plural">测试中……</string>
-  <string name="TestResults_Summary_Circumvention_Hero_Tools_Singular">Tool</string>
-  <string name="TestResults_Summary_Circumvention_Hero_Tools_Plural">Tools</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tools_Singular">工具</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tools_Plural">工具</string>
   <string name="TestResults_Details_Hero_Runtime">执行时间</string>
   <string name="TestResults_Details_Methodology">推理能力</string>
   <string name="TestResults_Details_ViewLog">查看日志</string>
@@ -201,10 +201,6 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">您在没有缓冲的情况下可以享用 %1$s。</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">比特率中间值</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">播放延迟</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">已被阻止</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">测试中……</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
   <string name="Feed_Tab_Label">Feed</string>
   <string name="Feed_Title">Feed</string>
   <string name="Modal_OK">确定</string>
@@ -234,6 +230,8 @@
   <string name="Modal_OnlyDigits">此栏中仅支持数字。</string>
   <string name="Modal_ReRun_Title">重新运行测试</string>
   <string name="Modal_ReRun_Paragraph">此测试已失败。重新运行此测试？</string>
+  <string name="Modal_ReRun_Websites_Title">You are about to re-test %1$s websites.</string>
+  <string name="Modal_ReRun_Websites_Run">运行</string>
   <string name="Modal_CustomURL_NotSaved">离开此屏幕将不会保存您的网址（URL）。确定离开吗。</string>
   <string name="Modal_ManualUpload_Title">是否开启手动上传？</string>
   <string name="Modal_ManualUpload_Paragraph">该设置允许您手动重新上传尚未发布的测量结果。</string>
@@ -245,7 +243,6 @@
   <string name="Modal_Error_NoValidUrls">未找到有效 URL</string>
   <string name="Modal_Error_JsonEmpty">空的 JSON</string>
   <string name="Toast_CopiedToClipboard">已复制到剪贴板</string>
-  <string name="Toast_WillBeAvailable">将于 24 小时内可用</string>
   <string name="Snackbar_ResultsNotUploaded_Text">未上传</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">上传</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">部分未上传</string>
@@ -263,7 +260,6 @@
   <string name="Test_WhatsApp_Fullname">WhatsApp 测试</string>
   <string name="Test_Telegram_Fullname">Telegram 测试</string>
   <string name="Test_FacebookMessenger_Fullname">Facebook Messenger 测试</string>
-  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">设置</string>
   <string name="Settings_Error_TestDurationTooLow">您设置的测试持续时间太短。</string>
   <string name="Settings_About_Label">关于 OONI</string>
@@ -283,6 +279,7 @@
   <string name="Settings_Sharing_IncludeCountryCode">包括国家代码</string>
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">该信息（例如，IT 指代意大利）会用于识别在什么国家收集的测量数据。您确定要禁用该选项吗？</string>
   <string name="Settings_Sharing_Footer">通过发布结果，您可以改进网络干扰的透明度，并支持 OONI 社区。\n\n识别网络运营商（ISP）需要网络信息（自制系统号码，即 AS 号码）。</string>
+  <string name="Settings_TestOptions_Label">Test options</string>
   <string name="Settings_Advanced_Label">高级</string>
   <string name="Settings_Advanced_SendCrashReports">发送崩溃报告</string>
   <string name="Settings_Advanced_DebugLogs">调试日志</string>

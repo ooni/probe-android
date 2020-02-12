@@ -54,9 +54,9 @@
   <string name="Dashboard_Middleboxes_Overview_Paragraph">سرویس‌دهنده‌های اینترنت اغلب از (middlebox) های شبکه برای اهداف مختلف (مانند گرفتن کش) استفاده می‌کنند. گاهی اوقات این middleboxها برای سانسور و/یا نظارت بر اینترنت استفاده می‌شوند.\n\nبا استفاده از تست‌های [خط درخواست نامعتبر HTTP](https://ooni.io/nettest/http-invalid-request-line/) و [دستکاری فیلد هدر HTTP](https://ooni.io/nettest/http-header-field-manipulation/) می‌توانید middleboxها در شبکه‌ی خود را بیابید.\n\nنتایج شما بر روی [OONI Explorer](https://explorer.ooni.io/world/) و [OONI API](https://api.ooni.io/) منتشر می‌شود.</string>
   <string name="Dashboard_InstantMessaging_Card_Description">تست مسدودیت پیام‌رسان‌ها</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">مسدود بودن [واتس‌اپ](https://ooni.io/nettest/whatsapp/)، [پیام‌رسان فیسبوک](https://ooni.io/nettest/facebook-messenger/) و [تلگرام](https://ooni.io/nettest/telegram/) را بررسی کنید.\n\nنتایج شما بر روی [OONI Explorer](https://explorer.ooni.io/world/) و [OONI API](https://api.ooni.io/) منتشر می‌شود.</string>
-  <string name="TestResults_Gbps">Gbps</string>
-  <string name="TestResults_Mbps">Mbps</string>
-  <string name="TestResults_Kbps">Kbps</string>
+  <string name="TestResults_Gbps">Gbit/s</string>
+  <string name="TestResults_Mbps">Mbit/s</string>
+  <string name="TestResults_Kbps">kbit/s</string>
   <string name="TestResults_ms">ms</string>
   <string name="TestResults_NotAvailable">N/A</string>
   <string name="TestResults_UnknownASN">نا شناخته</string>
@@ -201,10 +201,6 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">شما می‌توانید تا کیفیت %1$s را بدون بافر کردن، پخش زنده کنید. </string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">میانگین نرخ بیت</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">تاخیر پخش</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">بسته شده</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">کار میکنه</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
   <string name="Feed_Tab_Label">خوراک</string>
   <string name="Feed_Title">خوراک</string>
   <string name="Modal_OK">باشه</string>
@@ -234,6 +230,8 @@
   <string name="Modal_OnlyDigits">لطفا تنها از اعداد در فیلد استفاده کنید</string>
   <string name="Modal_ReRun_Title">اجرای دوباره تست</string>
   <string name="Modal_ReRun_Paragraph">این تست ناموفق بود. آیا دوباره اجرا شود؟</string>
+  <string name="Modal_ReRun_Websites_Title">You are about to re-test %1$s websites.</string>
+  <string name="Modal_ReRun_Websites_Run">اجرا</string>
   <string name="Modal_CustomURL_NotSaved">آدرس‌های شما با ترک این صفحه، ذخیره نخواهند شد. آیا مطمئنید که می‌خواهید این صفحه را ترک کنید؟</string>
   <string name="Modal_ManualUpload_Title">فعال‌سازی بارگذاری دستی</string>
   <string name="Modal_ManualUpload_Paragraph">با استفاده از این تنظیم می‌توانید اندازه‌گیری‌های منتشر نشده را دوباره به صورت دستی بارگذاری کنید.</string>
@@ -245,7 +243,6 @@
   <string name="Modal_Error_NoValidUrls">هیچ URL معتبری یافت نشد</string>
   <string name="Modal_Error_JsonEmpty">JSON خالی است</string>
   <string name="Toast_CopiedToClipboard">در حافظه‌ی موقت کپی شد</string>
-  <string name="Toast_WillBeAvailable">بعد از 24 ساعت در دسترس خواهد بود</string>
   <string name="Snackbar_ResultsNotUploaded_Text">بارگذاری نشدند</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">آپلود</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">برخی بارگذاری نشدند</string>
@@ -263,7 +260,6 @@
   <string name="Test_WhatsApp_Fullname">تست واتس‌اپ</string>
   <string name="Test_Telegram_Fullname">تست تلگرام</string>
   <string name="Test_FacebookMessenger_Fullname">تست پیام‌رسان فیسبوک</string>
-  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">تنظیمات</string>
   <string name="Settings_Error_TestDurationTooLow">زمانی که برای مدت این تست مشخص کرده‌اید خیلی کوتاه می‌باشد.</string>
   <string name="Settings_About_Label">درباره‌ی اونی</string>
@@ -283,6 +279,7 @@
   <string name="Settings_Sharing_IncludeCountryCode">شامل کد کشور باشد</string>
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">این اطلاعات (مثل IT برای ایتالیا) برای تشخیص کشوری که اطلاعات در آن جمع‌آوری شده ضروری می‌باشد. آیا از غیرفعال کردن این گزینه اطمینان دارید؟</string>
   <string name="Settings_Sharing_Footer">با انتشار نتایج شما به افزایش شفافیت نظارت بر شبکه و جامعه‌ی OONI کمک می‌‌کنید.\n\nاطلاعات شبکه (مثل Autonomous System Number) برای شناسایی سرویس‌دهنده‌ی اینترنت ضروری است.</string>
+  <string name="Settings_TestOptions_Label">Test options</string>
   <string name="Settings_Advanced_Label">پیشرفته </string>
   <string name="Settings_Advanced_SendCrashReports">ارسال گزارش درباره‌ی متوقف شدن برنامه </string>
   <string name="Settings_Advanced_DebugLogs">ثبت اشکال زدایی‌ها</string>

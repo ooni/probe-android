@@ -43,7 +43,7 @@
   <string name="Dashboard_Running_Seconds">%1$s saniye</string>
   <string name="Dashboard_Running_PreparingTest">Sınama hazırlanıyor</string>
   <string name="Dashboard_Running_ShowLog">Günlüğü Görüntüle</string>
-  <string name="Dashboard_Running_CloseLog">Close Log</string>
+  <string name="Dashboard_Running_CloseLog">Günlüğü Kapat</string>
   <string name="Dashboard_Card_Subtitle">Ayrıntılar için karta dokunun</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">Web sitesi engellemelerini sınayın</string>
@@ -54,9 +54,9 @@
   <string name="Dashboard_Middleboxes_Overview_Paragraph">İnternet Hizmeti Sağlayıcıları sıklıkla bazı ağ uygulamaları için (ön bellekleme gibi) çeşitli aygıtlar (ara kutular) kullanır. Bazen bu ara kutular İnternet sansürü ve izlemesi için kullanılır.\n\nOONI [HTTP Geçersiz İstek Hattı](https://ooni.io/nettest/http-invalid-request-line/) ve [HTTP Üst Bilgi Alanı Müdahalesi](https://ooni.io/nettest/http-header-field-manipulation/) sınamalarını kullanarak ara kutuları bulabilirsiniz.\n\nSonuçlarınız [OONI Explorer](https://explorer.ooni.io/world/) ve [OONI API](https://api.ooni.io/) üzerinde yayınlanır.</string>
   <string name="Dashboard_InstantMessaging_Card_Description">Anlık ileti uygulamalarının engellenip engellenmediğini anlayın</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">[WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) ve [Telegram](https://ooni.io/nettest/telegram/) uygulamalarının engellenip engellenmediğini kontrol edebilirsiniz.\n\nSonuçlarınız [OONI Explorer](https://explorer.ooni.io/world/) ve [OONI API](https://api.ooni.io/) üzerinde yayınlanır.</string>
-  <string name="TestResults_Gbps">Gbps</string>
-  <string name="TestResults_Mbps">Mbps</string>
-  <string name="TestResults_Kbps">Kbps</string>
+  <string name="TestResults_Gbps">Gbit/s</string>
+  <string name="TestResults_Mbps">Mbit/s</string>
+  <string name="TestResults_Kbps">kbit/s</string>
   <string name="TestResults_ms">ms</string>
   <string name="TestResults_NotAvailable">YOK</string>
   <string name="TestResults_UnknownASN">Bilinmiyor</string>
@@ -84,7 +84,7 @@
   <string name="TestResults_Overview_InstantMessaging_Available_Singular">%1$s erişilebilir</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Plural">%1$s erişilebilir</string>
   <string name="TestResults_Overview_Circumvention_Blocked_Plural">%1$s engellenmiş</string>
-  <string name="TestResults_Overview_Circumvention_Available_Plural">%1$s available</string>
+  <string name="TestResults_Overview_Circumvention_Available_Plural">%1$s kullanılabilir</string>
   <string name="TestResults_Summary_Hero_DateAndTime">Tarih ve Saat</string>
   <string name="TestResults_Summary_Hero_Network">Ağ</string>
   <string name="TestResults_Summary_Hero_Country">Ülke</string>
@@ -124,7 +124,7 @@
   <string name="TestResults_Summary_Circumvention_Hero_Blocked_Plural">Engellenmiş</string>
   <string name="TestResults_Summary_Circumvention_Hero_Reachable_Singular">Çalışıyor</string>
   <string name="TestResults_Summary_Circumvention_Hero_Reachable_Plural">Çalışıyor</string>
-  <string name="TestResults_Summary_Circumvention_Hero_Tools_Singular">Tool</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tools_Singular">Araç</string>
   <string name="TestResults_Summary_Circumvention_Hero_Tools_Plural">Araçlar</string>
   <string name="TestResults_Details_Hero_Runtime">Çalışan Dosya</string>
   <string name="TestResults_Details_Methodology">Yöntem</string>
@@ -132,7 +132,7 @@
   <string name="TestResults_Details_RawData">Veri</string>
   <string name="TestResults_Details_CopyExplorerURL">Tarayıcı Adresini Kopyala</string>
   <string name="TestResults_Details_CopyToClipboard">Panoya kopyala</string>
-  <string name="TestResults_Details_ShowInExplorer">Show in OONI Explorer</string>
+  <string name="TestResults_Details_ShowInExplorer">OONI gezgininde görüntüle</string>
   <string name="TestResults_Details_Failed_Title">Başarısız</string>
   <string name="TestResults_Details_Failed_Paragraph"> Bu sınamayı yeniden çalıştırmayı deneyebilirsiniz</string>
   <string name="TestResults_Details_Failed_TryAgain">Yeniden Dene</string>
@@ -201,10 +201,6 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Görüntü akışlarında ara bellek kullanmadan en fazla %1$s çözünürlük elde edebilirsiniz.</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">Ortalama Bithızı</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">Kusursuz Oynatma Gecikmesi</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">Engellenmiş</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">Çalışıyor</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
   <string name="Feed_Tab_Label">Akış</string>
   <string name="Feed_Title">Akış</string>
   <string name="Modal_OK">Tamam</string>
@@ -223,7 +219,7 @@
   <string name="Modal_ResultsNotUploaded_Button_Upload">Yükle</string>
   <string name="Modal_ResultsNotUploaded_Uploading">%1$s yükleniyor...</string>
   <string name="Toast_ResultsUploaded">Yüklendi</string>
-  <string name="Modal_DisplayFailureLog">Display failure log</string>
+  <string name="Modal_DisplayFailureLog">Hata günlüğünü görüntüle</string>
   <string name="Modal_EnableNotifications_AutomatedTesting">Sınamaların otomatik yapılması için bildirim izinleri verilsin.</string>
   <string name="Modal_EnableNotifications_News">Yeni güncellemelere dair haber alınması için bildirim izinleri verilsin.</string>
   <string name="Modal_EnableNotifications_Any">Anlık iletilerin alınması için bildirim izinleri verilsin.</string>
@@ -234,6 +230,8 @@
   <string name="Modal_OnlyDigits">Lütfen bu alana sadece sayı girin.</string>
   <string name="Modal_ReRun_Title">Sınamayı yinele</string>
   <string name="Modal_ReRun_Paragraph">Bu sınama tamamlanamadı. Yeniden sınamak ister misiniz?</string>
+  <string name="Modal_ReRun_Websites_Title">%1$s web sitesini yeniden sınamak üzeresiniz.</string>
+  <string name="Modal_ReRun_Websites_Run">Çalıştır</string>
   <string name="Modal_CustomURL_NotSaved">Bu sayfadan ayrıldığınızda adresleriniz kaydedilmez. Bu sayfadan ayrılmak istediğinize emin misiniz?</string>
   <string name="Modal_ManualUpload_Title">El ile yükleme yapılabilsin mi?</string>
   <string name="Modal_ManualUpload_Paragraph">Bu seçenek etkinleştirildiğinde, yayınlanmamış ölçümler el ile yeniden yüklenebilir.</string>
@@ -245,7 +243,6 @@
   <string name="Modal_Error_NoValidUrls">Geçerli bir adres bulunamadı</string>
   <string name="Modal_Error_JsonEmpty">JSON boş</string>
   <string name="Toast_CopiedToClipboard">Panoya kopyalandı</string>
-  <string name="Toast_WillBeAvailable">24 saat içerisinde mevcut olacak</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Yüklenmemiş</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Yükle</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Bazıları yüklenmemiş</string>
@@ -254,7 +251,7 @@
   <string name="Test_InstantMessaging_Fullname">Anlık İleti</string>
   <string name="Test_Middleboxes_Fullname">Ara Kutular</string>
   <string name="Test_Performance_Fullname">Performans</string>
-  <string name="Test_Circumvention_Fullname">Engellemeyi aşma</string>
+  <string name="Test_Circumvention_Fullname">Sansür Atlatma</string>
   <string name="Test_HTTPInvalidRequestLine_Fullname">HTTP Geçersiz İstek Hattı Sınaması</string>
   <string name="Test_HTTPHeaderFieldManipulation_Fullname">HTTP Üst Bilgi Müdahalesi Sınaması</string>
   <string name="Test_WebConnectivity_Fullname">Web Bağlantı Sınaması</string>
@@ -263,7 +260,6 @@
   <string name="Test_WhatsApp_Fullname">WhatsApp Sınaması</string>
   <string name="Test_Telegram_Fullname">Telegram Sınaması</string>
   <string name="Test_FacebookMessenger_Fullname">Facebook Messenger Sınaması</string>
-  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">Ayarlar</string>
   <string name="Settings_Error_TestDurationTooLow">Sınama süresi için belirlediğiniz süre çok az.</string>
   <string name="Settings_About_Label">OONI Hakkında</string>
@@ -283,6 +279,7 @@
   <string name="Settings_Sharing_IncludeCountryCode">Ülke Kodu Katılsın</string>
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Bu bilgi ölçümlerin hangi ülkeden (Türkiye için TR gibi) yapıldığını belirlemek için istenmektedir. Bu seçeneği devre dışı bırakmak istediğinize emin misiniz?</string>
   <string name="Settings_Sharing_Footer">Sonuçları yayınlayarak ağ müdahalelerinin daha görünür hale gelmesine yardım ederek OONI topluluğuna destek olursunuz.\n\nAğ bilgileri (Otonom Sistem Numarası gibi) İnternet Hizmeti Sağlayıcılarını belirlemek için gereklidir.</string>
+  <string name="Settings_TestOptions_Label">Ayarları sına</string>
   <string name="Settings_Advanced_Label">Gelişmiş</string>
   <string name="Settings_Advanced_SendCrashReports">Çökme raporları gönderilsin</string>
   <string name="Settings_Advanced_DebugLogs">Hata ayıklama günlükleri</string>

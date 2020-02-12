@@ -54,9 +54,9 @@
   <string name="Dashboard_Middleboxes_Overview_Paragraph">Провайдеры интернета часто используют сетевые устройства middlebox в решении различных сетевых задач (например, для кеширования). Бывает, что такие устройства применяются ради интернет-цензуры и/или слежки за пользователями.\n\nА у вас в сети есть устройства middlebox? OONI поможет ответить на этот вопрос с помощью теста [HTTP Invalid Request Line](https://ooni.io/nettest/http-invalid-request-line/) и теста [HTTP Header Field Manipulation](https://ooni.io/nettest/http-header-field-manipulation/).\n\nВаши результаты будут доступны на [OONI Explorer](https://explorer.ooni.io/world/) и [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_InstantMessaging_Card_Description">Определение блокировок мессенджеров</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">Узнайте, заблокированы ли [WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) и [Telegram](https://ooni.io/nettest/telegram/).\n\nРезультаты будут опубликованы в [OONI Explorer](https://explorer.ooni.io/world/) и [OONI API](https://api.ooni.io/).</string>
-  <string name="TestResults_Gbps">Гбит/с</string>
-  <string name="TestResults_Mbps">Мбит/с</string>
-  <string name="TestResults_Kbps">Кбит/с</string>
+  <string name="TestResults_Gbps">Gbit/s</string>
+  <string name="TestResults_Mbps">Mbit/s</string>
+  <string name="TestResults_Kbps">kbit/s</string>
   <string name="TestResults_ms">мс</string>
   <string name="TestResults_NotAvailable">Н/П</string>
   <string name="TestResults_UnknownASN">Неизвестно</string>
@@ -201,10 +201,6 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Вы можете повысить видеопоток до %1$s без буферизации.</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">Средний битрейт</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">Задержка воспроизведения</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">Блокировано</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">Работает</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
   <string name="Feed_Tab_Label">Лента</string>
   <string name="Feed_Title">Лента</string>
   <string name="Modal_OK">OK</string>
@@ -234,6 +230,8 @@
   <string name="Modal_OnlyDigits">В этом поле только цифры, пожалуйста.</string>
   <string name="Modal_ReRun_Title">Повторить тест</string>
   <string name="Modal_ReRun_Paragraph">Тест неудачен. Повторить?</string>
+  <string name="Modal_ReRun_Websites_Title">You are about to re-test %1$s websites.</string>
+  <string name="Modal_ReRun_Websites_Run">Старт</string>
   <string name="Modal_CustomURL_NotSaved">Если вы закроете этот экран, адреса не сохранятся. Хотите выйти?</string>
   <string name="Modal_ManualUpload_Title">Включить загрузку вручную?</string>
   <string name="Modal_ManualUpload_Paragraph">Эта настройка позволяет вам вручную загружать неопубликованные измерения</string>
@@ -245,7 +243,6 @@
   <string name="Modal_Error_NoValidUrls">URL не найдены</string>
   <string name="Modal_Error_JsonEmpty">JSON пуст</string>
   <string name="Toast_CopiedToClipboard">Скопировано в буфер обмена</string>
-  <string name="Toast_WillBeAvailable">Будет доступно в течение 24 часов</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Не загружено</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Загрузить</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Загружено частично</string>
@@ -263,7 +260,6 @@
   <string name="Test_WhatsApp_Fullname">Тест WhatsApp</string>
   <string name="Test_Telegram_Fullname">Тест Telegram</string>
   <string name="Test_FacebookMessenger_Fullname">Тест Facebook Messenger</string>
-  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">Настройки</string>
   <string name="Settings_Error_TestDurationTooLow">Вы указали слишком малое время для теста.</string>
   <string name="Settings_About_Label">Об OONI</string>
@@ -283,6 +279,7 @@
   <string name="Settings_Sharing_IncludeCountryCode">Включать код страны</string>
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Эта информация (например, IT для Италии) нужна, чтобы определять, к какой стране относятся измерения. Уверены, что хотите отключить эту опцию?</string>
   <string name="Settings_Sharing_Footer">Публикуя результаты, вы дополняете картину помех интернет-активности и поддерживаете сообщество OONI.\n\nСетевые данные (в частности, номер автономной системы) нужны для определения провайдеров доступа к интернету.</string>
+  <string name="Settings_TestOptions_Label">Test options</string>
   <string name="Settings_Advanced_Label">Расширенные настройки</string>
   <string name="Settings_Advanced_SendCrashReports">Отправить отчет об ошибке</string>
   <string name="Settings_Advanced_DebugLogs">Журналы отладки</string>

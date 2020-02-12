@@ -230,12 +230,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                 if (measurement.test_name.equals("web_connectivity"))
                     link = link + "?input=" + measurement.url.url;
                 ((ClipboardManager) getSystemService(CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText(getString(R.string.General_AppName), link));
-                if (isInExplorer)
-                    Toast.makeText(this, R.string.Toast_CopiedToClipboard, Toast.LENGTH_SHORT).show();
-                else {
-                    String toastStr = getString(R.string.Toast_CopiedToClipboard) + "\n" + getString(R.string.Toast_WillBeAvailable);
-                    Toast.makeText(this, toastStr, Toast.LENGTH_SHORT).show();
-                }
+                Toast.makeText(this, R.string.Toast_CopiedToClipboard, Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -251,6 +246,8 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     public void onConfirmation(Serializable extra, int buttonClicked) {
         if (buttonClicked == DialogInterface.BUTTON_POSITIVE)
             runAsyncTask();
+        else if (buttonClicked == DialogInterface.BUTTON_NEUTRAL)
+            startActivity(TextActivity.newIntent(this, TextActivity.TYPE_UPLOAD_LOG, (String)extra));
     }
 
     private static class ResubmitAsyncTask extends ResubmitTask<MeasurementDetailActivity> {
@@ -271,6 +268,8 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                             .withTitle(activity.getString(R.string.Modal_UploadFailed_Title))
                             .withMessage(activity.getString(R.string.Modal_UploadFailed_Paragraph, errors.toString(), totUploads.toString()))
                             .withPositiveButton(activity.getString(R.string.Modal_Retry))
+                            .withNeutralButton(getActivity().getString(R.string.Modal_DisplayFailureLog))
+                            .withExtra(logs)
                             .build().show(activity.getSupportFragmentManager(), null);
             }
         }

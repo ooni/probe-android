@@ -54,9 +54,9 @@
   <string name="Dashboard_Middleboxes_Overview_Paragraph">Los Proveedores de Servicio de Internet a menudo usan dispositivos de red (middleboxes) para varios propósitos técnicos (tales como cacheo). A veces estos middleboxes son usados para implementar censura y/o vigilancia de Internet.\n\nEncuentra middleboxes en tu red usando las pruebas de OONI [HTTP Invalid Request Line](https://ooni.io/nettest/http-invalid-request-line/) y [HTTP Header Field Manipulation](https://ooni.io/nettest/http-header-field-manipulation/).\n\nTus resultados serán publicados en el [Explorador OONI](https://explorer.ooni.io/world/) y la [API de OONI](https://api.ooni.io/).</string>
   <string name="Dashboard_InstantMessaging_Card_Description">Prueba el bloqueo de aplicaciones de mensajería instantánea.</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">Comprueba si [WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) y [Telegram](https://ooni.io/nettest/telegram/) están bloqueados.\n\nTus resultados serán publicados en el [Explorador OONI](https://explorer.ooni.io/world/) y la [API OONI](https://api.ooni.io/).</string>
-  <string name="TestResults_Gbps">Gbps</string>
-  <string name="TestResults_Mbps">Mbps</string>
-  <string name="TestResults_Kbps">Kbps</string>
+  <string name="TestResults_Gbps">Gbit/s</string>
+  <string name="TestResults_Mbps">Mbit/s</string>
+  <string name="TestResults_Kbps">kbit/s</string>
   <string name="TestResults_ms">ms</string>
   <string name="TestResults_NotAvailable">N/D</string>
   <string name="TestResults_UnknownASN">Desconocido</string>
@@ -201,10 +201,6 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Puedes hacer stream hasta %1$s sin buffering.</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">Mediana de tasa de bits</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">Retardo de transmisión</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">Bloqueados</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">Trabajando</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">g</string>
   <string name="Feed_Tab_Label">Lista de suscripciones</string>
   <string name="Feed_Title">Lista de suscripciones</string>
   <string name="Modal_OK">Aceptar</string>
@@ -234,6 +230,8 @@
   <string name="Modal_OnlyDigits">Por favor inserte sólo dígitos en este campo.</string>
   <string name="Modal_ReRun_Title">Volver a ejecutar prueba</string>
   <string name="Modal_ReRun_Paragraph">Esta prueba ha fallado. ¿Volver a ejecutarla?</string>
+  <string name="Modal_ReRun_Websites_Title">You are about to re-test %1$s websites.</string>
+  <string name="Modal_ReRun_Websites_Run">Ejecutar</string>
   <string name="Modal_CustomURL_NotSaved">Tus URLs no serán guardadas cuando dejes esta pantalla. ¿Estás seguro de que quieres dejarla?</string>
   <string name="Modal_ManualUpload_Title">¿Habilitar Subida Manual?</string>
   <string name="Modal_ManualUpload_Paragraph">Esta configuración te permite volver a subir manualmente mediciones no publicadas.</string>
@@ -245,7 +243,6 @@
   <string name="Modal_Error_NoValidUrls">No se encontraron URL válidas</string>
   <string name="Modal_Error_JsonEmpty">JSON vacío</string>
   <string name="Toast_CopiedToClipboard">Se ha copiado al portapapeles</string>
-  <string name="Toast_WillBeAvailable">Estará disponible en meno de 24h</string>
   <string name="Snackbar_ResultsNotUploaded_Text">No subido</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Subir</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">Algunos no subidos</string>
@@ -263,7 +260,6 @@
   <string name="Test_WhatsApp_Fullname">Prueba WhatsApp</string>
   <string name="Test_Telegram_Fullname">Prueba Telegram</string>
   <string name="Test_FacebookMessenger_Fullname">Prueba Facebook Messenger</string>
-  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">Configuración</string>
   <string name="Settings_Error_TestDurationTooLow">La cantidad de tiempo que haz establecido para la duración de la prueba es demasiado baja.</string>
   <string name="Settings_About_Label">Acerca de OONI</string>
@@ -283,6 +279,7 @@
   <string name="Settings_Sharing_IncludeCountryCode">Incluir código del país</string>
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Esta información (ej., IT por Italia) es requerida para identificar desde qué país son recopiladas las mediciones. ¿Estás seguro que quieres deshabilitar esta opción?</string>
   <string name="Settings_Sharing_Footer">Al publicar resultados, estás incrementando la transparencia de la interferencia de red y apoyando a la comunidad de OONI.\n\nCierta información de red (ej., Número de Sistema Autónomo, ASN) es requerida para identificar a Proveedores de Servicio de Internet.</string>
+  <string name="Settings_TestOptions_Label">Test options</string>
   <string name="Settings_Advanced_Label">Avanzado</string>
   <string name="Settings_Advanced_SendCrashReports">Enviar informes de errores</string>
   <string name="Settings_Advanced_DebugLogs">Registros de depuración</string>

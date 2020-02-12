@@ -29,9 +29,11 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
+import org.openobservatory.ooniprobe.activity.TextActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.item.DateItem;
+import org.openobservatory.ooniprobe.item.FailedItem;
 import org.openobservatory.ooniprobe.item.InstantMessagingItem;
 import org.openobservatory.ooniprobe.item.MiddleboxesItem;
 import org.openobservatory.ooniprobe.item.PerformanceItem;
@@ -178,19 +180,23 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
                     items.add(new DateItem(result.start_time));
                     set.add(key);
                 }
-                switch (result.test_group_name) {
-                    case WebsitesSuite.NAME:
-                        items.add(new WebsiteItem(result, this, this));
-                        break;
-                    case InstantMessagingSuite.NAME:
-                        items.add(new InstantMessagingItem(result, this, this));
-                        break;
-                    case MiddleBoxesSuite.NAME:
-                        items.add(new MiddleboxesItem(result, this, this));
-                        break;
-                    case PerformanceSuite.NAME:
-                        items.add(new PerformanceItem(result, this, this));
-                        break;
+                if (result.countTotalMeasurements() == 0)
+                    items.add(new FailedItem(result, this, this));
+                else {
+                    switch (result.test_group_name) {
+                        case WebsitesSuite.NAME:
+                            items.add(new WebsiteItem(result, this, this));
+                            break;
+                        case InstantMessagingSuite.NAME:
+                            items.add(new InstantMessagingItem(result, this, this));
+                            break;
+                        case MiddleBoxesSuite.NAME:
+                            items.add(new MiddleboxesItem(result, this, this));
+                            break;
+                        case PerformanceSuite.NAME:
+                            items.add(new PerformanceItem(result, this, this));
+                            break;
+                    }
                 }
             }
             adapter.notifyTypesChanged();
@@ -219,6 +225,8 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         if (serializable.equals(R.string.Modal_ResultsNotUploaded_Title)) {
             if (i == DialogInterface.BUTTON_POSITIVE)
                 new ResubmitAsyncTask(this).execute(null, null);
+            else if (i == DialogInterface.BUTTON_NEUTRAL)
+                startActivity(TextActivity.newIntent(getActivity(), TextActivity.TYPE_UPLOAD_LOG, (String)serializable));
             else
                 snackbar.show();
         } else if (i == DialogInterface.BUTTON_POSITIVE) {
@@ -249,6 +257,8 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
                             .withTitle(getActivity().getString(R.string.Modal_UploadFailed_Title))
                             .withMessage(getActivity().getString(R.string.Modal_UploadFailed_Paragraph, errors.toString(), totUploads.toString()))
                             .withPositiveButton(getActivity().getString(R.string.Modal_Retry))
+                            .withNeutralButton(getActivity().getString(R.string.Modal_DisplayFailureLog))
+                            .withExtra(logs)
                             .build().show(getActivity().getSupportFragmentManager(), null);
             }
         }

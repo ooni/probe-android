@@ -54,9 +54,9 @@
   <string name="Dashboard_Middleboxes_Overview_Paragraph">इंटरनेट सेवा प्रदाता अक्सर विभिन्न नेटवर्किंग उद्देश्यों (जैसे कैशिंग) के लिए नेटवर्क उपकरणों (middleboxes) का उपयोग करते हैं। कभी-कभी इन middleboxes को इंटरनेट सेंसरशिप और / या निगरानी को लागू करने के लिए उपयोग किया जाता है।\n\nOONI की [HTTP अमान्य अनुरोध पंक्ति](https://ooni.io/nettest/http-invalid-request-line/) और [HTTP शीर्ष लेख फ़ील्ड हेरफेर](https://ooni.io/nettest/http-header-field-manipulation/) का उपयोग करके अपने नेटवर्क में मिडिलबॉक्स खोजें परीक्षण।\n\nआपके परिणाम [OONI एक्सप्लोरर](https://explorer.ooni.io/world/) और [OONI API](https://api.ooni.io/) पर प्रकाशित किए जाएंगे।</string>
   <string name="Dashboard_InstantMessaging_Card_Description">त्वरित संदेश एप्लिकेशन को अवरुद्ध करने का परीक्षण करें</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">जाँच करें कि क्या [WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) और [Telegram](https://ooni.io/nettest/telegram/) अवरुद्ध हैं।\n\nआपके परिणाम [OONI एक्सप्लोरर](https://explorer.ooni.io/world/) और [OONI API](https://api.ooni.io/) पर प्रकाशित किए जाएंगे।</string>
-  <string name="TestResults_Gbps">Gbps</string>
-  <string name="TestResults_Mbps">एमबीपीएस</string>
-  <string name="TestResults_Kbps">Kbps</string>
+  <string name="TestResults_Gbps">Gbit/s</string>
+  <string name="TestResults_Mbps">Mbit/s</string>
+  <string name="TestResults_Kbps">kbit/s</string>
   <string name="TestResults_ms">ms</string>
   <string name="TestResults_NotAvailable">एन / ए</string>
   <string name="TestResults_UnknownASN">अज्ञात</string>
@@ -201,10 +201,6 @@
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">आप बफरिंग के बिना %1$s तक स्ट्रीम कर सकते हैं।</string>
   <string name="TestResults_Details_Performance_Dash_MedianBitrate">माध्य बिटरेट</string>
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">प्लेआउट विलंब</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">अवरुद्ध</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">काम कर रहे</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
   <string name="Feed_Tab_Label">चारा</string>
   <string name="Feed_Title">चारा</string>
   <string name="Modal_OK">ठीक है </string>
@@ -234,6 +230,8 @@
   <string name="Modal_OnlyDigits">कृपया इस क्षेत्र में केवल अंक डालें।</string>
   <string name="Modal_ReRun_Title">परीक्षण फिर से चलाएं</string>
   <string name="Modal_ReRun_Paragraph">यह परीक्षण विफल रहा है। परीक्षण फिर से चलाएं?</string>
+  <string name="Modal_ReRun_Websites_Title">You are about to re-test %1$s websites.</string>
+  <string name="Modal_ReRun_Websites_Run">चलाना</string>
   <string name="Modal_CustomURL_NotSaved">जब आप यह स्क्रीन छोड़ते हैं तो आपके URL सहेजे नहीं जाएंगे। क्या आप वाकई इस स्क्रीन को छोड़ना चाहते हैं?</string>
   <string name="Modal_ManualUpload_Title">मैन्युअल अपलोड सक्षम करें?</string>
   <string name="Modal_ManualUpload_Paragraph">यह सेटिंग आपको अप्रकाशित माप को मैन्युअल रूप से पुनः अपलोड करने की अनुमति देती है।</string>
@@ -245,7 +243,6 @@
   <string name="Modal_Error_NoValidUrls">कोई मान्य यूआरएल नहीं मिले</string>
   <string name="Modal_Error_JsonEmpty">जॆसन खाली</string>
   <string name="Toast_CopiedToClipboard">क्लिपबोर्ड में कॉपी किया गया</string>
-  <string name="Toast_WillBeAvailable">24 घंटो के भीतर उपलब्ध होगा</string>
   <string name="Snackbar_ResultsNotUploaded_Text">अपलोड नहीं किया गया</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">अपलोड करें</string>
   <string name="Snackbar_ResultsSomeNotUploaded_Text">कुछ अपलोड नहीं किए गए</string>
@@ -263,7 +260,6 @@
   <string name="Test_WhatsApp_Fullname">व्हाट्सएप टेस्ट</string>
   <string name="Test_Telegram_Fullname">टेलीग्राम टेस्ट</string>
   <string name="Test_FacebookMessenger_Fullname">फेसबुक मेसेंजर टेस्ट</string>
-  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Settings_Title">सेटिंग्स</string>
   <string name="Settings_Error_TestDurationTooLow">परीक्षण अवधि के लिए आपके द्वारा निर्धारित समय की मात्रा बहुत कम है।</string>
   <string name="Settings_About_Label">OONI बारे में</string>
@@ -283,6 +279,7 @@
   <string name="Settings_Sharing_IncludeCountryCode">देश कोड शामिल करें</string>
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">यह जानकारी (जैसे इटली के लिए आईटी) की पहचान करना आवश्यक है कि किस देश से माप एकत्र किए गए हैं। क्या आप वाकई इस विकल्प को अक्षम करना चाहते हैं?</string>
   <string name="Settings_Sharing_Footer">परिणाम प्रकाशित करके, आप नेटवर्क हस्तक्षेप की पारदर्शिता बढ़ा रहे हैं और OONI समुदाय का समर्थन कर रहे हैं।\n\nइंटरनेट सेवा प्रदाताओं की पहचान के लिए नेटवर्क जानकारी (यानी ऑटोनोमस सिस्टम नंबर) की आवश्यकता होती है।</string>
+  <string name="Settings_TestOptions_Label">Test options</string>
   <string name="Settings_Advanced_Label">उन्नत</string>
   <string name="Settings_Advanced_SendCrashReports">क्रैश रिपोर्ट भेजें</string>
   <string name="Settings_Advanced_DebugLogs">दोषमार्जन लॉग</string>
