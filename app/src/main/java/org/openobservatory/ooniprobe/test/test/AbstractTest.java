@@ -155,7 +155,6 @@ public abstract class AbstractTest implements Serializable {
                         //Run next test
                         break;
                     case "bug.json_dump":
-                        //TODO move this code to a ExceptionRecord class. #983
                         Crashlytics.logException(new MKException(event));
                         break;
                     default:
