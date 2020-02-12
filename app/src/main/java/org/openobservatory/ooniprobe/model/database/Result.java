@@ -110,8 +110,6 @@ public class Result extends BaseModel implements Serializable {
 	public double getRuntime(){
 		Measurement first = getFirstMeasurement();
 		Measurement last = getLastMeasurement();
-		if (first == null || last  == null)
-			return 0;
 		long diffInMs = last.start_time.getTime() - first.start_time.getTime();
 		long diffInSec = TimeUnit.MILLISECONDS.toSeconds(diffInMs);
 		return diffInSec + last.runtime;
