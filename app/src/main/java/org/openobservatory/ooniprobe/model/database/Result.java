@@ -113,8 +113,11 @@ public class Result extends BaseModel implements Serializable {
 	public double getRuntime(){
 		Measurement first = getFirstMeasurement();
 		Measurement last = getLastMeasurement();
-		if (first == null || last == null)
+		if (first == null || last  == null) {
+			//TODO move this code to a ExceptionRecord class. #983
+			Crashlytics.logException(new Exception("get_runtime_null"));
 			return PreferenceManager.ERROR_RUNTIME;
+		}
 		long diffInMs = last.start_time.getTime() - first.start_time.getTime();
 		long diffInSec = TimeUnit.MILLISECONDS.toSeconds(diffInMs);
 		return diffInSec + last.runtime;
