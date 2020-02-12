@@ -279,6 +279,7 @@
   <string name="Settings_Sharing_IncludeCountryCode">देश कोड शामिल करें</string>
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">यह जानकारी (जैसे इटली के लिए आईटी) की पहचान करना आवश्यक है कि किस देश से माप एकत्र किए गए हैं। क्या आप वाकई इस विकल्प को अक्षम करना चाहते हैं?</string>
   <string name="Settings_Sharing_Footer">परिणाम प्रकाशित करके, आप नेटवर्क हस्तक्षेप की पारदर्शिता बढ़ा रहे हैं और OONI समुदाय का समर्थन कर रहे हैं।\n\nइंटरनेट सेवा प्रदाताओं की पहचान के लिए नेटवर्क जानकारी (यानी ऑटोनोमस सिस्टम नंबर) की आवश्यकता होती है।</string>
+  <string name="Settings_TestOptions_Label">Test options</string>
   <string name="Settings_Advanced_Label">उन्नत</string>
   <string name="Settings_Advanced_SendCrashReports">क्रैश रिपोर्ट भेजें</string>
   <string name="Settings_Advanced_DebugLogs">दोषमार्जन लॉग</string>

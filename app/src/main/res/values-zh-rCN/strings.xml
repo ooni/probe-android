@@ -279,6 +279,7 @@
   <string name="Settings_Sharing_IncludeCountryCode">包括国家代码</string>
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">该信息（例如，IT 指代意大利）会用于识别在什么国家收集的测量数据。您确定要禁用该选项吗？</string>
   <string name="Settings_Sharing_Footer">通过发布结果，您可以改进网络干扰的透明度，并支持 OONI 社区。\n\n识别网络运营商（ISP）需要网络信息（自制系统号码，即 AS 号码）。</string>
+  <string name="Settings_TestOptions_Label">Test options</string>
   <string name="Settings_Advanced_Label">高级</string>
   <string name="Settings_Advanced_SendCrashReports">发送崩溃报告</string>
   <string name="Settings_Advanced_DebugLogs">调试日志</string>

@@ -279,6 +279,7 @@
   <string name="Settings_Sharing_IncludeCountryCode">إدراج رمز الدولة</string>
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">هذه المعلومات (مثلا IT لايطاليا) مطلوبة لتحدبد الدولة التي تم اجراء القياسات فيها. هل أنت متأكد أنك تريد الغاء هذا الإختيار؟</string>
   <string name="Settings_Sharing_Footer">قيامك بنشر النتائج سيرفع من الشفافية حول التدخل في الشبكة ويدعم مجتمع OONI. \n\nمعلومات الشبكة (أي رقم النظام التلقائي ASN) مطلوب لتحديد مزودي خدمات الانترنت. </string>
+  <string name="Settings_TestOptions_Label">Test options</string>
   <string name="Settings_Advanced_Label">متقدم</string>
   <string name="Settings_Advanced_SendCrashReports">أرسل تقارير حول تعطل التطبيق</string>
   <string name="Settings_Advanced_DebugLogs">أظهر سجلات التصحيح</string>

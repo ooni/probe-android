@@ -279,6 +279,7 @@
   <string name="Settings_Sharing_IncludeCountryCode">Ländercode einbeziehen</string>
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Diese Information (z. B. IT für Italien) ist notwendig um festzustellen von welchem Land die Messung durchgeführt wurde. Bist du dir sicher, dass du diese Option deaktivieren möchtest?</string>
   <string name="Settings_Sharing_Footer">Mit der Veröffentlichung von Ergebnissen erhöhst du die Transparenz um Netzwerkbeeinflussung und unterstützt die OONI Gemeinschaft.\n\nNetzwerkinformationen sind notwendig (z. B. die Autonomous System Nummer) um den Internetanbieter zu identifizieren.\n</string>
+  <string name="Settings_TestOptions_Label">Test options</string>
   <string name="Settings_Advanced_Label">Fortgeschritten</string>
   <string name="Settings_Advanced_SendCrashReports">Sende Absturzberichte</string>
   <string name="Settings_Advanced_DebugLogs">Fehlerprotokolle</string>
