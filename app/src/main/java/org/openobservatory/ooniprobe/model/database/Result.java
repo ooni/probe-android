@@ -11,7 +11,7 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.apache.commons.io.FileUtils;
-import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.AppDatabase;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
@@ -23,7 +23,7 @@ import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 
-@Table(database = Application.class)
+@Table(database = AppDatabase.class)
 public class Result extends BaseModel implements Serializable {
 	@PrimaryKey(autoincrement = true) public int id;
 	@Column public String test_group_name;

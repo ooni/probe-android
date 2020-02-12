@@ -15,6 +15,7 @@ import com.raizlabs.android.dbflow.sql.language.Where;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.openobservatory.ooniprobe.client.callback.GetMeasurementsCallback;
+import org.openobservatory.ooniprobe.common.AppDatabase;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
@@ -35,7 +36,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Table(database = Application.class)
+@Table(database = AppDatabase.class)
 public class Measurement extends BaseModel implements Serializable {
 	@PrimaryKey(autoincrement = true) public int id;
 	@Column public String test_name;
