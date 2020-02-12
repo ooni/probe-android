@@ -110,8 +110,8 @@ public abstract class AbstractSuite implements Serializable {
 		for (AbstractTest test : getTestList(pm))
 			runtime += test.getRuntime(pm);
 		//TODO convert seconds to minutes and hours when needed
-		//if getRuntime <== MAX_RUNTIME_DISABLED show one hour
-		if (runtime.equals(PreferenceManager.MAX_RUNTIME_DISABLED))
+		//if getRuntime <= MAX_RUNTIME_DISABLED show one hour
+		if (runtime <= PreferenceManager.MAX_RUNTIME_DISABLED)
 			runtime = 3600;
 		return runtime;
 	}

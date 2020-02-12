@@ -9,7 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.database.Network;
 
 import java.util.Date;
@@ -82,10 +81,7 @@ public class ResultHeaderDetailFragment extends Fragment {
 		else
 			startTimeBox.setVisibility(View.GONE);
 		if (getArguments().containsKey(RUNTIME)) {
-			if (getArguments().getDouble(RUNTIME) == PreferenceManager.ERROR_RUNTIME)
-				runtime.setText(getString(R.string.TestResults_NotAvailable));
-			else
-				runtime.setText(getString(R.string.f, getArguments().getDouble(RUNTIME)));
+			runtime.setText(getString(R.string.f, getArguments().getDouble(RUNTIME)));
 			runtimeLabel.setText(getArguments().getBoolean(IS_TOTAL_RUNTIME) ? R.string.TestResults_Summary_Hero_Runtime : R.string.TestResults_Details_Hero_Runtime);
 		} else
 			runtimeBox.setVisibility(View.GONE);
