@@ -54,9 +54,9 @@
   <string name="Dashboard_Middleboxes_Overview_Paragraph">عادة ما تقوم الشركات المزودة لخدمة الإنترنت بإستخدام أجهزة تسمى middleboxes لإستخدامات مختلفة في الشبكة (مثل تسريع الخدمة عن طريق تقديم نسخة مسجلة من المواقع). أحيانًا ما تستخدم middleboxes لتنفيذ الحجب أو مراقبة الإنترنت.\n\nاعثر على middleboxes في شبكتك بإستخدام اختبارات [عدم صلاحية طلب الHTTP](https://ooni.io/nettest/http-invalid-request-line/) و [التلاعب بخانة رأس صفحة الHTTP](https://ooni.io/nettest/http-header-field-manipulation/).\nنتائج اختبارك ستنشر على [متصفح OONI](https://explorer.ooni.io/world/) و على [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_InstantMessaging_Card_Description">اختبار حجب برامج المراسلة الفورية</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">تحقق من حجب [واتساب](https://ooni.io/nettest/whatsapp/)و [ماسنجر الفيسبوك](https://ooni.io/nettest/facebook-messenger/) و [تيليجرام](https://ooni.io/nettest/telegram/)\n\nنتائج اختبارك ستنشر على [متصفح OONI](https://explorer.ooni.io/world/) و على [OONI API](https://api.ooni.io/)</string>
-  <string name="TestResults_Gbps">Gbps</string>
-  <string name="TestResults_Mbps">Mbps</string>
-  <string name="TestResults_Kbps">Kbps</string>
+  <string name="TestResults_Gbps">Gbit/s</string>
+  <string name="TestResults_Mbps">Mbit/s</string>
+  <string name="TestResults_Kbps">kbit/s</string>
   <string name="TestResults_ms">ms</string>
   <string name="TestResults_NotAvailable">‮غير متاح</string>
   <string name="TestResults_UnknownASN">غير معروف</string>

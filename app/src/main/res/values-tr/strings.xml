@@ -54,9 +54,9 @@
   <string name="Dashboard_Middleboxes_Overview_Paragraph">İnternet Hizmeti Sağlayıcıları sıklıkla bazı ağ uygulamaları için (ön bellekleme gibi) çeşitli aygıtlar (ara kutular) kullanır. Bazen bu ara kutular İnternet sansürü ve izlemesi için kullanılır.\n\nOONI [HTTP Geçersiz İstek Hattı](https://ooni.io/nettest/http-invalid-request-line/) ve [HTTP Üst Bilgi Alanı Müdahalesi](https://ooni.io/nettest/http-header-field-manipulation/) sınamalarını kullanarak ara kutuları bulabilirsiniz.\n\nSonuçlarınız [OONI Explorer](https://explorer.ooni.io/world/) ve [OONI API](https://api.ooni.io/) üzerinde yayınlanır.</string>
   <string name="Dashboard_InstantMessaging_Card_Description">Anlık ileti uygulamalarının engellenip engellenmediğini anlayın</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">[WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) ve [Telegram](https://ooni.io/nettest/telegram/) uygulamalarının engellenip engellenmediğini kontrol edebilirsiniz.\n\nSonuçlarınız [OONI Explorer](https://explorer.ooni.io/world/) ve [OONI API](https://api.ooni.io/) üzerinde yayınlanır.</string>
-  <string name="TestResults_Gbps">Gbps</string>
-  <string name="TestResults_Mbps">Mbps</string>
-  <string name="TestResults_Kbps">Kbps</string>
+  <string name="TestResults_Gbps">Gbit/s</string>
+  <string name="TestResults_Mbps">Mbit/s</string>
+  <string name="TestResults_Kbps">kbit/s</string>
   <string name="TestResults_ms">ms</string>
   <string name="TestResults_NotAvailable">YOK</string>
   <string name="TestResults_UnknownASN">Bilinmiyor</string>
@@ -279,7 +279,7 @@
   <string name="Settings_Sharing_IncludeCountryCode">Ülke Kodu Katılsın</string>
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Bu bilgi ölçümlerin hangi ülkeden (Türkiye için TR gibi) yapıldığını belirlemek için istenmektedir. Bu seçeneği devre dışı bırakmak istediğinize emin misiniz?</string>
   <string name="Settings_Sharing_Footer">Sonuçları yayınlayarak ağ müdahalelerinin daha görünür hale gelmesine yardım ederek OONI topluluğuna destek olursunuz.\n\nAğ bilgileri (Otonom Sistem Numarası gibi) İnternet Hizmeti Sağlayıcılarını belirlemek için gereklidir.</string>
-  <string name="Settings_TestOptions_Label">Test options</string>
+  <string name="Settings_TestOptions_Label">Ayarları sına</string>
   <string name="Settings_Advanced_Label">Gelişmiş</string>
   <string name="Settings_Advanced_SendCrashReports">Çökme raporları gönderilsin</string>
   <string name="Settings_Advanced_DebugLogs">Hata ayıklama günlükleri</string>

@@ -54,9 +54,9 @@
   <string name="Dashboard_Middleboxes_Overview_Paragraph">Ofruesit e Shërbimit të Internetit shpeshë përdorin aplikime rrjeti (middleboxes) për qëllime të ndryshme rrjeti (siç janë fshehjet). Shpeshë herë këto middleboxes përdoren të implementuar censurim në internet dhe/ose përgjime.\n\nZbuloni middleboxes në rrjetin tuaj duke përdorur [HTTP Invalid Request Line](https://ooni.io/nettest/http-invalid-request-line/) nga OONI dhe [HTTP Header Field Manipulation](https://ooni.io/nettest/http-header-field-manipulation/) tests.\n\nRezultatet tuaja do të publikohen në [OONI Explorer](https://explorer.ooni.io/world/) dhe [OONI API](https://api.ooni.io/).\n</string>
   <string name="Dashboard_InstantMessaging_Card_Description">Testoni bllokimin e aplikacioneve të mesazheve</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">Kontrollo nëse [WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) dhe [Telegram](https://ooni.io/nettest/telegram/) janë të bllokuara.\n\nRezultatet do të publikohen në [OONI Explorer](https://explorer.ooni.io/world/) dhe [OONI API](https://api.ooni.io/).</string>
-  <string name="TestResults_Gbps">Gbps</string>
-  <string name="TestResults_Mbps">Mbps</string>
-  <string name="TestResults_Kbps">Kbps</string>
+  <string name="TestResults_Gbps">Gbit/s</string>
+  <string name="TestResults_Mbps">Mbit/s</string>
+  <string name="TestResults_Kbps">kbit/s</string>
   <string name="TestResults_ms">ms</string>
   <string name="TestResults_NotAvailable">Jo e disponueshme</string>
   <string name="TestResults_UnknownASN">E panjohur</string>

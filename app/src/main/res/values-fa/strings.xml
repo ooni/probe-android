@@ -54,9 +54,9 @@
   <string name="Dashboard_Middleboxes_Overview_Paragraph">سرویس‌دهنده‌های اینترنت اغلب از (middlebox) های شبکه برای اهداف مختلف (مانند گرفتن کش) استفاده می‌کنند. گاهی اوقات این middleboxها برای سانسور و/یا نظارت بر اینترنت استفاده می‌شوند.\n\nبا استفاده از تست‌های [خط درخواست نامعتبر HTTP](https://ooni.io/nettest/http-invalid-request-line/) و [دستکاری فیلد هدر HTTP](https://ooni.io/nettest/http-header-field-manipulation/) می‌توانید middleboxها در شبکه‌ی خود را بیابید.\n\nنتایج شما بر روی [OONI Explorer](https://explorer.ooni.io/world/) و [OONI API](https://api.ooni.io/) منتشر می‌شود.</string>
   <string name="Dashboard_InstantMessaging_Card_Description">تست مسدودیت پیام‌رسان‌ها</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">مسدود بودن [واتس‌اپ](https://ooni.io/nettest/whatsapp/)، [پیام‌رسان فیسبوک](https://ooni.io/nettest/facebook-messenger/) و [تلگرام](https://ooni.io/nettest/telegram/) را بررسی کنید.\n\nنتایج شما بر روی [OONI Explorer](https://explorer.ooni.io/world/) و [OONI API](https://api.ooni.io/) منتشر می‌شود.</string>
-  <string name="TestResults_Gbps">Gbps</string>
-  <string name="TestResults_Mbps">Mbps</string>
-  <string name="TestResults_Kbps">Kbps</string>
+  <string name="TestResults_Gbps">Gbit/s</string>
+  <string name="TestResults_Mbps">Mbit/s</string>
+  <string name="TestResults_Kbps">kbit/s</string>
   <string name="TestResults_ms">ms</string>
   <string name="TestResults_NotAvailable">N/A</string>
   <string name="TestResults_UnknownASN">نا شناخته</string>

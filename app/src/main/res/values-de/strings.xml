@@ -56,7 +56,7 @@
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">Überprüfe ob [WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) und [Telegram](https://ooni.io/nettest/telegram/) blockiert sind.\n\nDeine Ergebnisse werden auf [OONI Explorer](https://explorer.ooni.io/world/) und [OONI API](https://api.ooni.io/) veröffentlicht.</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
-  <string name="TestResults_Kbps">Kbit/s</string>
+  <string name="TestResults_Kbps">kbit/s</string>
   <string name="TestResults_ms">ms</string>
   <string name="TestResults_NotAvailable">Nicht verfügbar</string>
   <string name="TestResults_UnknownASN">Unbekannt</string>
@@ -279,7 +279,7 @@
   <string name="Settings_Sharing_IncludeCountryCode">Ländercode einbeziehen</string>
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Diese Information (z. B. IT für Italien) ist notwendig um festzustellen von welchem Land die Messung durchgeführt wurde. Bist du dir sicher, dass du diese Option deaktivieren möchtest?</string>
   <string name="Settings_Sharing_Footer">Mit der Veröffentlichung von Ergebnissen erhöhst du die Transparenz um Netzwerkbeeinflussung und unterstützt die OONI Gemeinschaft.\n\nNetzwerkinformationen sind notwendig (z. B. die Autonomous System Nummer) um den Internetanbieter zu identifizieren.\n</string>
-  <string name="Settings_TestOptions_Label">Test options</string>
+  <string name="Settings_TestOptions_Label">Testoptionen</string>
   <string name="Settings_Advanced_Label">Fortgeschritten</string>
   <string name="Settings_Advanced_SendCrashReports">Sende Absturzberichte</string>
   <string name="Settings_Advanced_DebugLogs">Fehlerprotokolle</string>

@@ -54,9 +54,9 @@
   <string name="Dashboard_Middleboxes_Overview_Paragraph">I provider di servizi internet (ISP) spesso usano apparecchiature di rete (middlebox) per motivi di networking (come ad esempio per il caching). Alle volte queste middlebox sono usate per implementare censura e/o sorveglianza internet.\n\nPuoi trovare middlebox sulla tua rete usando i test di OONI [HTTP Invalid Request Line](https://ooni.io/nettest/http-invalid-request-line/) e [HTTP Header Field Manipulation](https://ooni.io/nettest/http-header-field-manipulation/).\n\nI risultati dei tuoi test saranno pubblicati su [OONI Explorer](https://explorer.ooni.io/world/) e [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_InstantMessaging_Card_Description">Verifica il blocco di app di messaggistica</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">Controlla se [WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) o [Telegram](https://ooni.io/nettest/telegram/) sono bloccati.\n\nI risultati dei tuoi test saranno pubblicati su [OONI Explorer](https://explorer.ooni.io/world/) e [OONI API](https://api.ooni.io/).</string>
-  <string name="TestResults_Gbps">Gbps</string>
-  <string name="TestResults_Mbps">Mbps</string>
-  <string name="TestResults_Kbps">Kbps</string>
+  <string name="TestResults_Gbps">Gbit/s</string>
+  <string name="TestResults_Mbps">Mbit/s</string>
+  <string name="TestResults_Kbps">kbit/s</string>
   <string name="TestResults_ms">ms</string>
   <string name="TestResults_NotAvailable">Non valido</string>
   <string name="TestResults_UnknownASN">Sconosciuto</string>
