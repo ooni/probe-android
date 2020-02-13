@@ -227,7 +227,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
         @Override
         public Fragment getItem(int position) {
             if (position == 1)
-                return ResultHeaderDetailFragment.newInstance(false, result.getFormattedDataUsageUp(), result.getFormattedDataUsageDown(), result.start_time, result.runtime, true, null, null);
+                return ResultHeaderDetailFragment.newInstance(false, result.getFormattedDataUsageUp(), result.getFormattedDataUsageDown(), result.start_time, result.getRuntime(), true, null, null);
             else if (position == 2)
                 return ResultHeaderDetailFragment.newInstance(false, null, null, null, null, null, Network.getCountry(ResultDetailActivity.this, result.network), result.network);
             else switch (result.test_group_name) {

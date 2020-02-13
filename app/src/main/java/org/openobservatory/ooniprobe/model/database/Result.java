@@ -11,6 +11,7 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.apache.commons.io.FileUtils;
+import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.AppDatabase;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
@@ -22,13 +23,13 @@ import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Table(database = AppDatabase.class)
 public class Result extends BaseModel implements Serializable {
 	@PrimaryKey(autoincrement = true) public int id;
 	@Column public String test_group_name;
 	@Column public Date start_time;
-	@Column public double runtime;
 	@Column public boolean is_viewed;
 	@Column public boolean is_done;
 	@Column public long data_usage_up;
@@ -97,8 +98,24 @@ public class Result extends BaseModel implements Serializable {
 		return SQLite.selectCountOf().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false), Measurement_Table.is_done.eq(true), Measurement_Table.is_failed.eq(false), Measurement_Table.is_anomaly.eq(true)).count();
 	}
 
-	public void addDuration(double value) {
-		this.runtime += value;
+	private Measurement getFirstMeasurement() {
+		return SQLite.select().from(Measurement.class)
+				.where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false))
+				.orderBy(Measurement_Table.start_time, true).querySingle();
+	}
+
+	private Measurement getLastMeasurement() {
+		return SQLite.select().from(Measurement.class)
+				.where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false))
+				.orderBy(Measurement_Table.start_time, false).querySingle();
+	}
+
+	public double getRuntime(){
+		Measurement first = getFirstMeasurement();
+		Measurement last = getLastMeasurement();
+		long diffInMs = last.start_time.getTime() - first.start_time.getTime();
+		long diffInSec = TimeUnit.MILLISECONDS.toSeconds(diffInMs);
+		return diffInSec + last.runtime;
 	}
 
 	public String getFormattedDataUsageUp() {

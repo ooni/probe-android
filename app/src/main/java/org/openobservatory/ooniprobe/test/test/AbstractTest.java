@@ -175,7 +175,6 @@ public abstract class AbstractTest implements Serializable {
             measurement.start_time = json.measurement_start_time;
         if (json.test_runtime != null) {
             measurement.runtime = json.test_runtime;
-            measurement.result.addDuration(json.test_runtime);
         }
         measurement.setTestKeys(json.test_keys);
     }
