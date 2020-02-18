@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.Crashlytics;
+import org.openobservatory.ooniprobe.common.ExceptionManager;
 import org.openobservatory.ooniprobe.model.api.UrlList;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Url;
@@ -60,7 +60,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 					boolean okay = MKResourcesManager.maybeUpdateResources(act);
 					if (!okay) {
 						Exception e = new Exception("MKResourcesManager didn't find resources");
-						Crashlytics.logException(e);
+						ExceptionManager.logException(e);
 						throw e;
 					}
 					geoIPLookup.setCABundlePath(MKResourcesManager.getCABundlePath(act));
