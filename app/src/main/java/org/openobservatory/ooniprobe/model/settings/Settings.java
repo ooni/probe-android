@@ -19,22 +19,45 @@ import io.ooni.mk.MKResourcesManager;
 public class Settings {
 	@SerializedName("annotations")
 	public final Annotations annotations;
+
+	@SerializedName("assets_dir")
+	public String assets_dir;
+
 	@SerializedName("disabled_events")
 	public final List<String> disabled_events;
+
 	@SerializedName("log_level")
 	public final String log_level;
+
 	@SerializedName("options")
 	public final Options options;
+
 	@SerializedName("inputs")
 	public List<String> inputs;
+
 	@SerializedName("name")
 	public String name;
+
+	@SerializedName("state_dir")
+	public String state_dir;
+
+	@SerializedName("temp_dir")
+	public String temp_dir;
 
 	public Settings(Context c, PreferenceManager pm) {
 		annotations = new Annotations(c);
 		disabled_events = Arrays.asList("status.queued", "status.update.websites", "failure.report_close");
 		log_level = pm.isDebugLogs() ? "DEBUG2" : "INFO";
 		options = new Options(c, pm);
+		try {
+			assets_dir = new java.io.File(c.getCacheDir(), "assets").getCanonicalPath();
+			state_dir = new java.io.File(c.getFilesDir(), "state").getCanonicalPath();
+			temp_dir = new java.io.File(c.getCacheDir(), "tmp").getCanonicalPath();
+		} catch (java.io.IOException exc) {
+			// TODO(bassosimone): this should clearly not be a runtime exception
+			// and we should instead propagate the exception happening here.
+			throw new RuntimeException(exc);
+		}
 	}
 
 	public static class Annotations {

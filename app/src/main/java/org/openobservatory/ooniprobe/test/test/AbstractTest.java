@@ -76,7 +76,7 @@ public abstract class AbstractTest implements Serializable {
         settings.options.max_runtime = max_runtime;
         settings.annotations.origin = origin;
         measurements = new SparseArray<>();
-        MKAsyncTask task = MKAsyncTask.start(gson.toJson(settings));
+        AsyncTaskLike task = newAsyncTask(gson, settings);
         while (!task.isDone())
             try {
                 String json = task.waitForNextEvent();
@@ -268,5 +268,65 @@ public abstract class AbstractTest implements Serializable {
         void onProgress(int progress);
 
         void onLog(String log);
+    }
+
+    private interface AsyncTaskLike {
+        void interrupt();
+        boolean isDone();
+        String waitForNextEvent();
+    }
+
+    private class MKAsyncTaskAdapter implements AsyncTaskLike {
+        private MKAsyncTask task;
+
+        public MKAsyncTaskAdapter(MKAsyncTask task) {
+            this.task = task;
+        }
+
+        public void interrupt() {
+            this.task.interrupt();
+        }
+
+        public boolean isDone() {
+            return this.task.isDone();
+        }
+
+        public String waitForNextEvent() {
+            return this.task.waitForNextEvent();
+        }
+    }
+
+    private class OONIAsyncTaskAdapter implements AsyncTaskLike {
+        private oonimkall.Task task;
+
+        public OONIAsyncTaskAdapter(oonimkall.Task task) {
+            this.task = task;
+        }
+
+        public void interrupt() {
+            this.task.interrupt();
+        }
+
+        public boolean isDone() {
+            return this.task.isDone();
+        }
+
+        public String waitForNextEvent() {
+            return this.task.waitForNextEvent();
+        }
+    }
+
+    private AsyncTaskLike newAsyncTask(Gson gson, Settings settings) {
+        String serialized = gson.toJson(settings);
+        if (settings.name.equals("Telegram")) {
+            try {
+                return new OONIAsyncTaskAdapter(oonimkall.Oonimkall.startTask(serialized));
+            } catch (Exception exc) {
+                // TODO(bassosimone): this should clearly not be a runtime exception
+                // and we should instead propagate the exception happening here.
+                throw new RuntimeException(exc);
+            }
+        }
+        return new MKAsyncTaskAdapter(MKAsyncTask.start(serialized));
     }
 }
