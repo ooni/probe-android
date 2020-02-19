@@ -12,9 +12,10 @@ import androidx.annotation.StringRes;
 import com.google.gson.Gson;
 
 import org.apache.commons.io.FileUtils;
+import org.openobservatory.engine.Engine;
+import org.openobservatory.engine.ExperimentTask;
 import org.openobservatory.ooniprobe.common.ExceptionManager;
 import org.openobservatory.ooniprobe.common.MKException;
-import org.openobservatory.ooniprobe.common.OrchestraTask;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.model.database.Measurement;
@@ -30,7 +31,6 @@ import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.util.List;
 
-import io.ooni.mk.MKAsyncTask;
 import io.ooni.mk.MKResourcesManager;
 
 public abstract class AbstractTest implements Serializable {
@@ -76,7 +76,14 @@ public abstract class AbstractTest implements Serializable {
         settings.options.max_runtime = max_runtime;
         settings.annotations.origin = origin;
         measurements = new SparseArray<>();
-        MKAsyncTask task = MKAsyncTask.start(gson.toJson(settings));
+        ExperimentTask task;
+        try {
+            task = Engine.startExperimentTask(settings.toExperimentSettings(gson, c));
+        } catch (Exception exc) {
+            exc.printStackTrace();
+            ExceptionManager.logException(exc);
+            return;
+        }
         while (!task.isDone())
             try {
                 String json = task.waitForNextEvent();
