@@ -17,7 +17,7 @@ public class PreferenceActivity extends AbstractActivity {
 
 	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		getSupportFragmentManager().beginTransaction().replace(android.R.id.content, PreferenceFragment.newInstance(getIntent().getIntExtra(PreferenceFragment.ARG_PREFERENCES_RES_ID, 0), android.R.id.content, getIntent().getStringExtra(PreferenceFragment.ARG_PREFERENCE_ROOT))).commit();
+		getSupportFragmentManager().beginTransaction().replace(android.R.id.content, PreferenceFragment.newInstance(getIntent().getIntExtra(PreferenceFragment.ARG_PREFERENCES_RES_ID, 2), android.R.id.content, getIntent().getStringExtra(PreferenceFragment.ARG_PREFERENCE_ROOT))).commit();
 	}
 
 	@Override
