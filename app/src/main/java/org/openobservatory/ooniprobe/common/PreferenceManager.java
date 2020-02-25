@@ -23,11 +23,6 @@ public class PreferenceManager {
 
 	PreferenceManager(Context context) {
 		androidx.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_global, true);
-		/*androidx.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_instant_messaging, true);
-		androidx.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_middleboxes, true);
-		androidx.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_performance, true);
-		androidx.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_websites, true);
-		*/
 		sp = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context);
 		r = context.getResources();
 	}
