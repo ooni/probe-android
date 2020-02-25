@@ -19,7 +19,6 @@ public class WebsitesSuite extends AbstractSuite {
 				R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Websites,
 				R.style.Theme_MaterialComponents_NoActionBar_App_Websites,
 				R.string.Dashboard_Websites_Overview_Paragraph,
-				R.xml.preferences_websites,
 				"anim/websites.json",
 				"~ 8 MB");
 	}

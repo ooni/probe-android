@@ -22,10 +22,6 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
-import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
-import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
-import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
 import java.io.Serializable;
 
@@ -50,22 +46,13 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         this.rootKey = rootKey;
-        if (getString(R.string.websites).equals(rootKey))
-            setPreferencesFromResource(R.xml.preferences_websites, getArguments().getInt(ARG_CONTAINER_RES_ID), rootKey);
-        else if (getString(R.string.instant_messaging).equals(rootKey))
-            setPreferencesFromResource(R.xml.preferences_instant_messaging, getArguments().getInt(ARG_CONTAINER_RES_ID), rootKey);
-        else if (getString(R.string.middle_boxes).equals(rootKey))
-            setPreferencesFromResource(R.xml.preferences_middleboxes, getArguments().getInt(ARG_CONTAINER_RES_ID), rootKey);
-        else if (getString(R.string.performance).equals(rootKey))
-            setPreferencesFromResource(R.xml.preferences_performance, getArguments().getInt(ARG_CONTAINER_RES_ID), rootKey);
-        else 
-            setPreferencesFromResource(getArguments().getInt(ARG_PREFERENCES_RES_ID), getArguments().getInt(ARG_CONTAINER_RES_ID), getArguments().getString(ARG_PREFERENCE_ROOT));
     }
 
     @Override
     public void onResume() {
         assert getArguments() != null;
         super.onResume();
+        setPreferencesFromResource(getArguments().getInt(ARG_PREFERENCES_RES_ID), getArguments().getInt(ARG_CONTAINER_RES_ID), getArguments().getString(ARG_PREFERENCE_ROOT));
 
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         getActivity().setTitle(getPreferenceScreen().getTitle());
