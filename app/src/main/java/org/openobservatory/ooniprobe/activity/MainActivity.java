@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.OrchestraTask;
@@ -21,6 +22,9 @@ import java.io.Serializable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
+import ly.count.android.sdk.Countly;
+import ly.count.android.sdk.CountlyConfig;
+import ly.count.android.sdk.DeviceId;
 
 public class MainActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String RES_ITEM = "resItem";
@@ -34,6 +38,27 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        CountlyConfig config = new CountlyConfig()
+                .setAppKey("fd78482a10e95fd471925399adbcb8ae1a45661f")
+                .setContext(this)
+                .setDeviceId(null)
+                .setIdMode(DeviceId.Type.ADVERTISING_ID)
+                .setServerURL("https://mia-countly-test.ooni.nu")
+                //.setLoggingEnabled(!BuildConfig.DEBUG)
+                .setLoggingEnabled(true)
+                .setViewTracking(true)
+                .setHttpPostForced(true)
+                .enableCrashReporting();
+        Countly.sharedInstance().init(config);
+        /*
+        Deprecated code
+        Countly.sharedInstance().init(this, "https://mia-countly-test.ooni.nu", "fd78482a10e95fd471925399adbcb8ae1a45661f", null, DeviceId.Type.ADVERTISING_ID);
+        Countly.sharedInstance().initMessaging(this, MainActivity.class, "951667061699", Countly.CountlyMessagingMode.PRODUCTION);
+        Countly.sharedInstance().setViewTracking(true);
+        Countly.sharedInstance().enableCrashReporting();
+        */
         if (getPreferenceManager().isShowOnboarding()) {
             startActivity(new Intent(MainActivity.this, OnboardingActivity.class));
             finish();
@@ -81,5 +106,19 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     @Override
     public void onConfirmation(Serializable serializable, int i) {
         getPreferenceManager().setManualUploadResults(i == DialogInterface.BUTTON_POSITIVE);
+    }
+
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+        Countly.sharedInstance().onStart(this);
+    }
+
+    @Override
+    public void onStop()
+    {
+        Countly.sharedInstance().onStop();
+        super.onStop();
     }
 }
