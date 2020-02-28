@@ -71,21 +71,6 @@ public class OverviewActivity extends AbstractActivity {
 		return true;
 	}
 
-	@Override public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.settings, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
-
-	@Override public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-			case R.id.settings:
-				startActivity(PreferenceActivity.newIntent(this, testSuite.getPref(), null));
-				return true;
-			default:
-				return super.onOptionsItemSelected(item);
-		}
-	}
-
 	@OnClick(R.id.run) void onRunClick() {
 		Intent intent = RunningActivity.newIntent(this, testSuite);
 		if (intent != null)
