@@ -56,8 +56,8 @@ dependencies {
 	implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
 	implementation 'com.squareup.okhttp3:logging-interceptor:4.0.1'
 
-	annotationProcessor 'com.jakewharton:butterknife:10.1.0'
-	annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+	implementation 'com.jakewharton:butterknife:10.2.1'
+	annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 
 	fullImplementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
 	implementation 'org.openobservatory.measurement_kit:android-libs:0.10.11-android.1'
