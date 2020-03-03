@@ -5,13 +5,17 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.animation.Animation;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,11 +33,14 @@ import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.common.OrchestraTask;
 
+import java.io.Serializable;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 import localhost.toolkit.app.fragment.MessageDialogFragment;
 
-public class RunningActivity extends AbstractActivity {
+public class RunningActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String TEST = "test";
     @BindView(R.id.name)
     TextView name;
@@ -43,11 +50,14 @@ public class RunningActivity extends AbstractActivity {
     TextView eta;
     @BindView(R.id.progress)
     ProgressBar progress;
+    @BindView(R.id.close)
+    ImageButton close;
     @BindView(R.id.animation)
     LottieAnimationView animation;
     private AbstractSuite testSuite;
     private boolean background;
     private Integer runtime;
+    private TestAsyncTask task;
 
     public static Intent newIntent(AbstractActivity context, AbstractSuite testSuite) {
         if (ReachabilityManager.getNetworkType(context).equals(ReachabilityManager.NO_INTERNET)) {
@@ -73,8 +83,20 @@ public class RunningActivity extends AbstractActivity {
         animation.setRepeatCount(Animation.INFINITE);
         animation.playAnimation();
         progress.setMax(testSuite.getTestList(getPreferenceManager()).length * 100);
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Random strings
+                new ConfirmDialogFragment.Builder()
+                        .withTitle(getString(R.string.Modal_ManualUpload_Title))
+                        .withMessage(getString(R.string.Modal_ManualUpload_Paragraph))
+                        .withPositiveButton(getString(R.string.Modal_ManualUpload_Enable))
+                        .withNegativeButton(getString(R.string.Modal_ManualUpload_Disable))
+                        .build().show(getSupportFragmentManager(), null);
+            }
+        });
         setTestRunning(true);
-        new TestAsyncTaskImpl(this, testSuite.getResult()).execute(testSuite.getTestList(getPreferenceManager()));
+        task = (TestAsyncTaskImpl) new TestAsyncTaskImpl(this, testSuite.getResult()).execute(testSuite.getTestList(getPreferenceManager()));
     }
 
     @Override
@@ -145,5 +167,12 @@ public class RunningActivity extends AbstractActivity {
                 act.finish();
             }
         }
+    }
+
+    @Override
+    public void onConfirmation(Serializable serializable, int i) {
+        if (i == DialogInterface.BUTTON_POSITIVE)
+            if(task != null)
+                task.interruptTests();
     }
 }

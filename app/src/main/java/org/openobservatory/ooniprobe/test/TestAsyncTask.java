@@ -4,7 +4,6 @@ import android.os.AsyncTask;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
-import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.Crashlytics;
 import org.openobservatory.ooniprobe.model.api.UrlList;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -36,6 +35,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 	public static final String URL = "URL";
 	protected final WeakReference<ACT> ref;
 	private final Result result;
+	private AbstractTest currentTest;
 
 	protected TestAsyncTask(ACT activity, Result result) {
 		this.ref = new WeakReference<>(activity);
@@ -80,9 +80,12 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 						publishProgress(URL);
 					}
 				}
-				for (int i = 0; i < tests.length; i++)
-					if (!act.isFinishing())
-						tests[i].run(act, act.getPreferenceManager(), act.getGson(), result, i, this);
+				for (int i = 0; i < tests.length; i++) {
+					if (!act.isFinishing()) {
+						currentTest = tests[i];
+						currentTest.run(act, act.getPreferenceManager(), act.getGson(), result, i, this);
+					}
+				}
 			} catch (Exception e) {
 				publishProgress(ERR, act.getString(R.string.Modal_Error_CantDownloadURLs));
 			}
@@ -99,5 +102,10 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 
 	@Override public final void onLog(String log) {
 		publishProgress(LOG, log);
+	}
+
+	public void interruptTests(){
+		if (currentTest != null)
+			currentTest.interruptTest();
 	}
 }

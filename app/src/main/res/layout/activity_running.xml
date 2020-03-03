@@ -5,14 +5,30 @@
 	android:keepScreenOn="true"
 	android:orientation="vertical">
 
-	<TextView
-		style="@style/TextAppearance.AppCompat.Medium"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="?attr/actionBarSize"
-		android:gravity="center_horizontal"
-		android:text="@string/Dashboard_Running_Running"
-		android:textStyle="bold" />
+	<RelativeLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+		<ImageButton
+			android:id="@+id/close"
+			style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="end|bottom"
+			android:layout_alignParentEnd="true"
+			android:layout_margin="8dp"
+			android:minWidth="0dp"
+			android:src="@drawable/close"
+			android:tint="@color/color_white" />
+
+		<TextView
+			style="@style/TextAppearance.AppCompat.Medium"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="?attr/actionBarSize"
+			android:gravity="center_horizontal"
+			android:text="@string/Dashboard_Running_Running"
+			android:textStyle="bold" />
+	</RelativeLayout>
 
 	<TextView
 		android:id="@+id/name"

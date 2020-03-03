@@ -14,7 +14,6 @@ import com.google.gson.Gson;
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.ooniprobe.common.Crashlytics;
 import org.openobservatory.ooniprobe.common.MKException;
-import org.openobservatory.ooniprobe.common.OrchestraTask;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.model.database.Measurement;
@@ -47,6 +46,7 @@ public abstract class AbstractTest implements Serializable {
     private SparseArray<Measurement> measurements;
     private String reportId;
     private String origin;
+    private MKAsyncTask task;
 
     AbstractTest(String name, String mkName, @StringRes int labelResId, @DrawableRes int iconResId, @StringRes int urlResId, int runtime) {
         this.name = name;
@@ -76,7 +76,7 @@ public abstract class AbstractTest implements Serializable {
         settings.options.max_runtime = max_runtime;
         settings.annotations.origin = origin;
         measurements = new SparseArray<>();
-        MKAsyncTask task = MKAsyncTask.start(gson.toJson(settings));
+        task = MKAsyncTask.start(gson.toJson(settings));
         while (!task.isDone())
             try {
                 String json = task.waitForNextEvent();
@@ -165,6 +165,11 @@ public abstract class AbstractTest implements Serializable {
                 e.printStackTrace();
                 Crashlytics.logException(e);
             }
+    }
+
+    public void interruptTest(){
+        if(task != null)
+            task.interrupt();
     }
 
     @CallSuper
