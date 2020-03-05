@@ -116,6 +116,7 @@ public class RunningActivity extends AbstractActivity {
                         act.name.setText(values[1]);
                         break;
                     case PRG:
+                        act.progress.setIndeterminate(false);
                         int prgs = Integer.parseInt(values[1]);
                         act.progress.setProgress(prgs);
                         act.eta.setText(act.getString(R.string.Dashboard_Running_Seconds, String.valueOf(Math.round(act.runtime - ((double) prgs) / act.progress.getMax() * act.runtime))));
@@ -128,8 +129,8 @@ public class RunningActivity extends AbstractActivity {
                         act.finish();
                         break;
                     case URL:
-                        act.runtime = act.testSuite.getRuntime(act.getPreferenceManager());
                         act.progress.setIndeterminate(false);
+                        act.runtime = act.testSuite.getRuntime(act.getPreferenceManager());
                         break;
                 }
         }
