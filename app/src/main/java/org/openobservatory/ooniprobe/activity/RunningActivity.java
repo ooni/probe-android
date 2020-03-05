@@ -72,6 +72,8 @@ public class RunningActivity extends AbstractActivity {
         animation.setAnimation(testSuite.getAnim());
         animation.setRepeatCount(Animation.INFINITE);
         animation.playAnimation();
+        progress.setIndeterminate(true);
+        eta.setText(R.string.Dashboard_Running_CalculatingETA);
         progress.setMax(testSuite.getTestList(getPreferenceManager()).length * 100);
         setTestRunning(true);
         new TestAsyncTaskImpl(this, testSuite.getResult()).execute(testSuite.getTestList(getPreferenceManager()));
@@ -127,6 +129,7 @@ public class RunningActivity extends AbstractActivity {
                         break;
                     case URL:
                         act.runtime = act.testSuite.getRuntime(act.getPreferenceManager());
+                        act.progress.setIndeterminate(false);
                         break;
                 }
         }
