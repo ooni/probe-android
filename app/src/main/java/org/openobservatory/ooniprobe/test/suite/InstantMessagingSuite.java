@@ -23,7 +23,6 @@ public class InstantMessagingSuite extends AbstractSuite {
 				R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_InstantMessaging,
 				R.style.Theme_MaterialComponents_NoActionBar_App_InstantMessaging,
 				R.string.Dashboard_InstantMessaging_Overview_Paragraph,
-				R.xml.preferences_instant_messaging,
 				"anim/instant_messaging.json",
 				"< 1 MB");
 	}

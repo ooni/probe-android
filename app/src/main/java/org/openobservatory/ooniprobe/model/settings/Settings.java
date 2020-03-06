@@ -6,8 +6,6 @@ import com.google.gson.annotations.SerializedName;
 
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.OrchestraTask;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 

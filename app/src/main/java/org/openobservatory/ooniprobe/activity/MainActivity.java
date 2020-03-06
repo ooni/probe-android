@@ -11,8 +11,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.OrchestraTask;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
 import org.openobservatory.ooniprobe.fragment.PreferenceGlobalFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
@@ -93,7 +91,6 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
 
 	@Override protected void onResume() {
 		super.onResume();
-		new OrchestraTask((Application) getApplication()).execute();
 	}
 
     @Override
