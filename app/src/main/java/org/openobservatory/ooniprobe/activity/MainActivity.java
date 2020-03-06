@@ -37,12 +37,21 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // prepare features that should be added to the group
+        String[] groupFeatures = new String[]{ Countly.CountlyFeatureNames.sessions, Countly.CountlyFeatureNames.views, Countly.CountlyFeatureNames.crashes };
 
+// create the feature group
+       // Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);
+
+        //Countly.sharedInstance().setRequiresConsent(true);
         CountlyConfig config = new CountlyConfig()
                 .setAppKey("fd78482a10e95fd471925399adbcb8ae1a45661f")
                 .setContext(this)
-                .setDeviceId(null)
-                .setIdMode(DeviceId.Type.ADVERTISING_ID)
+                //.setDeviceId(null)
+                .setDeviceId("lorenzo")
+                //.setRequiresConsent(true)
+                .setConsentEnabled(groupFeatures)
+                //.setIdMode(DeviceId.Type.ADVERTISING_ID)
                 .setServerURL("https://mia-countly-test.ooni.nu")
                 //.setLoggingEnabled(!BuildConfig.DEBUG)
                 .setLoggingEnabled(true)
