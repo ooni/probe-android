@@ -132,7 +132,12 @@ public class TextActivity extends AbstractActivity {
 						@Override
 						public void onSuccess(String json) {
 							text = json;
-							textView.setText(json);
+							runOnUiThread(new Runnable() {
+								@Override
+								public void run() {
+									textView.setText(json);
+								}
+							});
 						}
 						@Override
 						public void onError(String msg) {
