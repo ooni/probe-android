@@ -14,8 +14,8 @@ android {
 		applicationId 'org.openobservatory.ooniprobe'
 		minSdkVersion 17
 		targetSdkVersion 29
-		versionName '2.3.0'
-		versionCode 57
+		versionName '2.3.1'
+		versionCode 58
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 	}
 
