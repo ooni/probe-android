@@ -3,19 +3,21 @@ package org.openobservatory.ooniprobe.common;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.raizlabs.android.dbflow.annotation.Database;
 import com.raizlabs.android.dbflow.config.FlowLog;
 import com.raizlabs.android.dbflow.config.FlowManager;
 
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.client.OONIAPIClient;
 import org.openobservatory.ooniprobe.client.OONIOrchestraClient;
-import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
+import java.io.IOException;
 import java.util.Date;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -53,7 +55,14 @@ public class Application extends android.app.Application {
 			logging.level(BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.BASIC);
 			okHttpClient = new OkHttpClient.Builder()
                     .retryOnConnectionFailure(false)
-                    .addInterceptor(logging)
+					.addInterceptor(logging)
+					.addInterceptor(new Interceptor() {
+						@Override
+						public Response intercept(Chain chain) throws IOException {
+							Request request = chain.request().newBuilder().addHeader("User-Agent", "ooniprobe-android/" + BuildConfig.VERSION_NAME).build();
+							return chain.proceed(request);
+						}
+					})
                     .build();
 		}
 		return okHttpClient;
