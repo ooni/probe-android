@@ -173,7 +173,8 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
         Context c = this;
         isInExplorer = !measurement.hasReportFile(c);
         if (measurement.hasReportFile(c)){
-            getApiClient().getMeasurement(measurement.report_id, null).enqueue(new GetMeasurementsCallback() {
+            //measurement.getUrlString will return null when the measurement is not a web_connectivity
+            getApiClient().getMeasurement(measurement.report_id, measurement.getUrlString()).enqueue(new GetMeasurementsCallback() {
                 @Override
                 public void onSuccess(ApiMeasurement.Result result) {
                     measurement.deleteEntryFile(c);
