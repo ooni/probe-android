@@ -206,7 +206,8 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
         Result result = (Result) v.getTag();
-        ActivityCompat.startActivity(getActivity(), ResultDetailActivity.newIntent(getActivity(), result.id), null);
+        if (result.countTotalMeasurements() != 0)
+            ActivityCompat.startActivity(getActivity(), ResultDetailActivity.newIntent(getActivity(), result.id), null);
     }
 
     @Override

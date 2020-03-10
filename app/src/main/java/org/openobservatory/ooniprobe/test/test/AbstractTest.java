@@ -12,7 +12,7 @@ import androidx.annotation.StringRes;
 import com.google.gson.Gson;
 
 import org.apache.commons.io.FileUtils;
-import org.openobservatory.ooniprobe.common.Crashlytics;
+import org.openobservatory.ooniprobe.common.ExceptionManager;
 import org.openobservatory.ooniprobe.common.MKException;
 import org.openobservatory.ooniprobe.common.OrchestraTask;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
@@ -68,7 +68,7 @@ public abstract class AbstractTest implements Serializable {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Crashlytics.logException(e);
+            ExceptionManager.logException(e);
             return;
         }
         settings.name = mkName;
@@ -155,7 +155,7 @@ public abstract class AbstractTest implements Serializable {
                         setFailureMsg(event.value, result);
                         break;
                     case "bug.json_dump":
-                        Crashlytics.logException(new MKException(event));
+                        ExceptionManager.logException(new MKException(event));
                         break;
                     default:
                         Log.w(UNUSED_KEY, event.key);
@@ -163,7 +163,7 @@ public abstract class AbstractTest implements Serializable {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                Crashlytics.logException(e);
+                ExceptionManager.logException(e);
             }
     }
 

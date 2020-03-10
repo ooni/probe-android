@@ -15,7 +15,8 @@ public class PreferenceManager {
 	private static final String IS_MANUAL_UPLOAD_DIALOG = "isManualUploadDialog";
 	private static final String TOKEN = "token";
 	private static final String SHOW_ONBOARDING = "first_run";
-	public static final Integer DELETE_JSON_DELAY = 86400;
+	//This is in ms, set to one day
+	public static final Integer DELETE_JSON_DELAY = 86400000;
 	private static final String DELETE_JSON_KEY = "deleteUploadedJsons";
 
 	private final SharedPreferences sp;
@@ -23,10 +24,6 @@ public class PreferenceManager {
 
 	PreferenceManager(Context context) {
 		androidx.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_global, true);
-		androidx.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_instant_messaging, true);
-		androidx.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_middleboxes, true);
-		androidx.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_performance, true);
-		androidx.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_websites, true);
 		sp = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context);
 		r = context.getResources();
 	}

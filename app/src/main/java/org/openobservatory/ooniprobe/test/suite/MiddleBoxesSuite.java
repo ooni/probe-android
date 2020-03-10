@@ -22,7 +22,6 @@ public class MiddleBoxesSuite extends AbstractSuite {
 				R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_MiddleBoxes,
 				R.style.Theme_MaterialComponents_NoActionBar_App_MiddleBoxes,
 				R.string.Dashboard_Middleboxes_Overview_Paragraph,
-				R.xml.preferences_middleboxes,
 				"anim/middle_boxes.json",
 				"< 1 MB");
 	}
