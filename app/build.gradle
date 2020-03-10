@@ -4,6 +4,7 @@ apply plugin: 'io.fabric'
 android {
 	compileSdkVersion 29
 	buildToolsVersion '28.0.3'
+	ndkVersion '21.0.6113669'
 
 	compileOptions {
 		sourceCompatibility JavaVersion.VERSION_1_8
