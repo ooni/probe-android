@@ -15,6 +15,9 @@ import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
 import java.util.Date;
 
+import ly.count.android.sdk.Countly;
+import ly.count.android.sdk.CountlyConfig;
+import ly.count.android.sdk.messaging.CountlyPush;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -44,6 +47,39 @@ public class Application extends android.app.Application {
 		if (preferenceManager.canCallDeleteJson())
 			Measurement.deleteUploadedJsons(this);
 
+		NotificationService.setChannel(this);
+		// prepare features that should be added to the group
+		String[] groupFeatures = new String[]{ Countly.CountlyFeatureNames.sessions, Countly.CountlyFeatureNames.views, Countly.CountlyFeatureNames.crashes };
+
+// create the feature group
+		// Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);
+
+		//Countly.sharedInstance().setRequiresConsent(true);
+		CountlyConfig config = new CountlyConfig()
+				.setAppKey("fd78482a10e95fd471925399adbcb8ae1a45661f")
+				.setContext(this)
+				//.setDeviceId(null)
+				.setDeviceId("lorenzo")
+				//.setRequiresConsent(true)
+				.setConsentEnabled(groupFeatures)
+				//.setIdMode(DeviceId.Type.ADVERTISING_ID)
+				.setServerURL("https://mia-countly-test.ooni.nu")
+				//.setLoggingEnabled(!BuildConfig.DEBUG)
+				.setLoggingEnabled(true)
+				.setViewTracking(true)
+				.setHttpPostForced(true)
+				.enableCrashReporting();
+		Countly.sharedInstance().init(config);
+		CountlyPush.init(this, Countly.CountlyMessagingMode.PRODUCTION);
+		NotificationService.setToken(this);
+
+        /*
+        Deprecated code
+        Countly.sharedInstance().init(this, "https://mia-countly-test.ooni.nu", "fd78482a10e95fd471925399adbcb8ae1a45661f", null, DeviceId.Type.ADVERTISING_ID);
+        Countly.sharedInstance().initMessaging(this, MainActivity.class, "951667061699", Countly.CountlyMessagingMode.PRODUCTION);
+        Countly.sharedInstance().setViewTracking(true);
+        Countly.sharedInstance().enableCrashReporting();
+        */
 	}
 
 	public OkHttpClient getOkHttpClient() {

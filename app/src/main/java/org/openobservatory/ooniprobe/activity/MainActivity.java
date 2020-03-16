@@ -21,8 +21,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 import ly.count.android.sdk.Countly;
-import ly.count.android.sdk.CountlyConfig;
-import ly.count.android.sdk.DeviceId;
 
 public class MainActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String RES_ITEM = "resItem";
@@ -36,36 +34,6 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // prepare features that should be added to the group
-        String[] groupFeatures = new String[]{ Countly.CountlyFeatureNames.sessions, Countly.CountlyFeatureNames.views, Countly.CountlyFeatureNames.crashes };
-
-// create the feature group
-       // Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);
-
-        //Countly.sharedInstance().setRequiresConsent(true);
-        CountlyConfig config = new CountlyConfig()
-                .setAppKey("fd78482a10e95fd471925399adbcb8ae1a45661f")
-                .setContext(this)
-                //.setDeviceId(null)
-                .setDeviceId("lorenzo")
-                //.setRequiresConsent(true)
-                .setConsentEnabled(groupFeatures)
-                //.setIdMode(DeviceId.Type.ADVERTISING_ID)
-                .setServerURL("https://mia-countly-test.ooni.nu")
-                //.setLoggingEnabled(!BuildConfig.DEBUG)
-                .setLoggingEnabled(true)
-                .setViewTracking(true)
-                .setHttpPostForced(true)
-                .enableCrashReporting();
-        Countly.sharedInstance().init(config);
-        /*
-        Deprecated code
-        Countly.sharedInstance().init(this, "https://mia-countly-test.ooni.nu", "fd78482a10e95fd471925399adbcb8ae1a45661f", null, DeviceId.Type.ADVERTISING_ID);
-        Countly.sharedInstance().initMessaging(this, MainActivity.class, "951667061699", Countly.CountlyMessagingMode.PRODUCTION);
-        Countly.sharedInstance().setViewTracking(true);
-        Countly.sharedInstance().enableCrashReporting();
-        */
         if (getPreferenceManager().isShowOnboarding()) {
             startActivity(new Intent(MainActivity.this, OnboardingActivity.class));
             finish();
