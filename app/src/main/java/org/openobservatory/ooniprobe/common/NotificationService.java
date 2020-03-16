@@ -50,7 +50,9 @@ public class NotificationService {
     }
 
     public static void setToken(Application a){
-        CountlyPush.onTokenRefresh(a.getPreferenceManager().getToken());
+        if (a.getPreferenceManager().getToken() != null)
+            CountlyPush.onTokenRefresh(a.getPreferenceManager().getToken());
+        System.out.println("CountlyPush " + a.getPreferenceManager().getToken());
     }
 
     public static void setChannel(Context c){

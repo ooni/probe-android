@@ -10,6 +10,8 @@ import org.openobservatory.ooniprobe.activity.NotificationDialogActivity;
 
 import java.util.Map;
 
+import ly.count.android.sdk.messaging.CountlyPush;
+
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
 	private static final String TAG = "FCM";
 
@@ -39,8 +41,9 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 	}
 
 	@Override public void onNewToken(String token) {
-		CountlyPush.onTokenRefresh(token);
 		((Application) getApplicationContext()).getPreferenceManager().setToken(token);
+		CountlyPush.onTokenRefresh(token);
+		System.out.println("CountlyPush onNewToken " + token);
 	}
 
 	@Override
