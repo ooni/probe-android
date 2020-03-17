@@ -17,6 +17,7 @@ import java.util.Date;
 
 import ly.count.android.sdk.Countly;
 import ly.count.android.sdk.CountlyConfig;
+import ly.count.android.sdk.DeviceId;
 import ly.count.android.sdk.messaging.CountlyPush;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -58,8 +59,11 @@ public class Application extends android.app.Application {
 		CountlyConfig config = new CountlyConfig()
 				.setAppKey("fd78482a10e95fd471925399adbcb8ae1a45661f")
 				.setContext(this)
-				//.setDeviceId(null)
-				.setDeviceId("lorenzo")
+				//.setDeviceId(DeviceId.Type.ADVERTISING_ID.toString())
+				//.setDeviceId("lorenzo")
+				.setDeviceId(null)
+				.setIdMode(DeviceId.Type.ADVERTISING_ID)
+				//.setIdMode(DeviceId.Type.OPEN_UDID)
 				//.setRequiresConsent(true)
 				.setConsentEnabled(groupFeatures)
 				//.setIdMode(DeviceId.Type.ADVERTISING_ID)
@@ -72,7 +76,6 @@ public class Application extends android.app.Application {
 		Countly.sharedInstance().init(config);
 		CountlyPush.init(this, Countly.CountlyMessagingMode.PRODUCTION);
 		NotificationService.setToken(this);
-
         /*
         Deprecated code
         Countly.sharedInstance().init(this, "https://mia-countly-test.ooni.nu", "fd78482a10e95fd471925399adbcb8ae1a45661f", null, DeviceId.Type.ADVERTISING_ID);
