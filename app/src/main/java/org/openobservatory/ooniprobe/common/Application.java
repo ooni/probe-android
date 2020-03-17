@@ -49,7 +49,7 @@ public class Application extends android.app.Application {
 
 		NotificationService.setChannel(this);
 		// prepare features that should be added to the group
-		String[] groupFeatures = new String[]{ Countly.CountlyFeatureNames.sessions, Countly.CountlyFeatureNames.views, Countly.CountlyFeatureNames.crashes };
+		String[] groupFeatures = new String[]{ Countly.CountlyFeatureNames.sessions, Countly.CountlyFeatureNames.views, Countly.CountlyFeatureNames.crashes, Countly.CountlyFeatureNames.push };
 
 // create the feature group
 		// Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);
