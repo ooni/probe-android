@@ -113,7 +113,9 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                         .withMessage(getString(R.string.Modal_OnlyDigits))
                         .build().show(getFragmentManager(), null);
                 sharedPreferences.edit().remove(key).apply();
-                getFragmentManager().beginTransaction().replace(android.R.id.content, newConcreteInstance(rootKey)).commit();
+                EditTextPreference p = (EditTextPreference) findPreference(key);
+                if (p != null)
+                    p.setText("");
             }
         } else if (preference instanceof SwitchPreferenceCompat) {
             //Not executing this code in case of max_runtime_enabled. See below.
@@ -129,7 +131,9 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                         .withMessage(getString(R.string.Modal_EnableAtLeastOneTest))
                         .build().show(getFragmentManager(), null);
                 sharedPreferences.edit().remove(key).apply();
-                getFragmentManager().beginTransaction().replace(android.R.id.content, newConcreteInstance(rootKey)).commit();
+                SwitchPreferenceCompat p = (SwitchPreferenceCompat) findPreference(key);
+                if (p != null)
+                    p.setChecked(true);
             }
         }
     }
