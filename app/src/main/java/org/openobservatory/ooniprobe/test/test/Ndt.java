@@ -16,7 +16,7 @@ import androidx.annotation.NonNull;
 
 public class Ndt extends AbstractTest {
 	public static final String NAME = "ndt";
-	private static final String MK_NAME = "Ndt";
+	private static final String MK_NAME = "Ndt7";
 	private String[] countries;
 
 	public Ndt() {

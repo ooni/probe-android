@@ -318,7 +318,7 @@ public abstract class AbstractTest implements Serializable {
 
     private AsyncTaskLike newAsyncTask(Gson gson, Settings settings) {
         String serialized = gson.toJson(settings);
-        if (settings.name.equals("Telegram")) {
+        if (settings.name.equals("Telegram") || settings.name.equals("Ndt7")) {
             try {
                 return new OONIAsyncTaskAdapter(oonimkall.Oonimkall.startTask(serialized));
             } catch (Exception exc) {
