@@ -14,6 +14,7 @@ import ly.count.android.sdk.messaging.CountlyPush;
 
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
 	private static final String TAG = "FCM";
+	//TODO prevent data collection https://firebase.google.com/docs/cloud-messaging/android/client#manifest
 
 	@Override
 	public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -25,6 +26,10 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 		// Check if message contains a data payload.
 		if (remoteMessage.getData().size() > 0) {
 			try {
+
+				//TODO how to handle properly https://github.com/firebase/quickstart-android/blob/e9197f731e13b78dc29d95102af201347634aac2/messaging/app/src/main/java/com/google/firebase/quickstart/fcm/java/MyFirebaseMessagingService.java#L58-L101
+				//NotificationService.sendNotification(this, remoteMessage.getData().get("title"), remoteMessage.getData().get("message"), null);
+
 				//TODO-FUTURE we can use click_action instead of type
 				JSONObject data = new JSONObject(params.toString());
 				if (data.getString("type").equals("open_href")) {

@@ -22,14 +22,16 @@ public class NotificationService {
     private static final String TEST_RUN = "TEST_RUN";
 
     public static void notifyTestEnded(Context c, AbstractSuite testSuite) {
-        sendNotification(c, c.getString(testSuite.getTitle()) + " " + c.getString(R.string.Notification_FinishedRunning), c.getResources().getDrawable(testSuite.getIcon()));
+        sendNotification(c, c.getString(R.string.General_AppName), c.getString(testSuite.getTitle()) + " " + c.getString(R.string.Notification_FinishedRunning), c.getResources().getDrawable(testSuite.getIcon()));
     }
 
-    public static void sendNotification(Context c, String text, Drawable icon) {
+    public static void sendNotification(Context c, String title, String message, Drawable icon) {
         NotificationManager notificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
         if (notificationManager == null)
             return;
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            //TODO create other channels for remote notifications
             notificationManager.createNotificationChannel(
                     new NotificationChannel(TEST_RUN, c.getString(R.string.Settings_Notifications_OnTestCompletion), NotificationManager.IMPORTANCE_DEFAULT)
             );
@@ -37,14 +39,16 @@ public class NotificationService {
         NotificationCompat.Builder b = new NotificationCompat.Builder(c, TEST_RUN);
         b.setAutoCancel(true);
         b.setDefaults(Notification.DEFAULT_ALL);
-        Bitmap bitmap = Bitmap.createBitmap(icon.getIntrinsicWidth(), icon.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        icon.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        icon.draw(canvas);
-        b.setLargeIcon(bitmap);
+        if (icon != null){
+            Bitmap bitmap = Bitmap.createBitmap(icon.getIntrinsicWidth(), icon.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap);
+            icon.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+            icon.draw(canvas);
+            b.setLargeIcon(bitmap);
+        }
         b.setSmallIcon(R.drawable.notification_icon);
-        b.setContentTitle(c.getString(R.string.General_AppName));
-        b.setContentText(text);
+        b.setContentTitle(title);
+        b.setContentText(message);
         b.setContentIntent(PendingIntent.getActivity(c, 0, MainActivity.newIntent(c, R.id.testResults), PendingIntent.FLAG_UPDATE_CURRENT));
         notificationManager.notify(1, b.build());
     }
