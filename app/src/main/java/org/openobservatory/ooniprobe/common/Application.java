@@ -48,13 +48,13 @@ public class Application extends android.app.Application {
 		if (preferenceManager.canCallDeleteJson())
 			Measurement.deleteUploadedJsons(this);
 
-		NotificationService.setChannel(this);
+		//NotificationService.setChannel(this);
 		// prepare features that should be added to the group
 		String[] groupFeatures = new String[]{ Countly.CountlyFeatureNames.sessions, Countly.CountlyFeatureNames.views, Countly.CountlyFeatureNames.crashes, Countly.CountlyFeatureNames.push };
 
-// create the feature group
+		// create the feature group
 		// Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);
-
+		//TODO disable analytics in debug mode  or use other server
 		//Countly.sharedInstance().setRequiresConsent(true);
 		CountlyConfig config = new CountlyConfig()
 				.setAppKey("fd78482a10e95fd471925399adbcb8ae1a45661f")

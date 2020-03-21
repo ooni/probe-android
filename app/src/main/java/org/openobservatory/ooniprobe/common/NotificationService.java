@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -22,33 +23,45 @@ public class NotificationService {
     private static final String TEST_RUN = "TEST_RUN";
 
     public static void notifyTestEnded(Context c, AbstractSuite testSuite) {
-        sendNotification(c, c.getString(R.string.General_AppName), c.getString(testSuite.getTitle()) + " " + c.getString(R.string.Notification_FinishedRunning), c.getResources().getDrawable(testSuite.getIcon()));
+        setChannel(c, TEST_RUN, c.getString(R.string.Settings_Notifications_OnTestCompletion));
+        sendNotification(c, c.getString(R.string.General_AppName), c.getString(testSuite.getTitle()) + " " + c.getString(R.string.Notification_FinishedRunning), testSuite.getIcon());
     }
-
-    public static void sendNotification(Context c, String title, String message, Drawable icon) {
+/*
+    public static void notificationReceived(Context c, String title, String message, String type) {
+        setChannel(c, TEST_RUN, c.getString(R.string.Settings_Notifications_OnTestCompletion));
+        sendNotification(c, c.getString(R.string.General_AppName), c.getString(testSuite.getTitle()) + " " + c.getString(R.string.Notification_FinishedRunning), testSuite.getIcon());
+    }
+*/
+    public static void sendNotification(Context c, String title, String message, int icon) {
         NotificationManager notificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
         if (notificationManager == null)
             return;
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            //TODO create other channels for remote notifications
-            notificationManager.createNotificationChannel(
-                    new NotificationChannel(TEST_RUN, c.getString(R.string.Settings_Notifications_OnTestCompletion), NotificationManager.IMPORTANCE_DEFAULT)
-            );
-        }
         NotificationCompat.Builder b = new NotificationCompat.Builder(c, TEST_RUN);
         b.setAutoCancel(true);
         b.setDefaults(Notification.DEFAULT_ALL);
-        if (icon != null){
-            Bitmap bitmap = Bitmap.createBitmap(icon.getIntrinsicWidth(), icon.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            b.setColor(c.getColor(R.color.color_base));
+        } else {
+            b.setColor(c.getResources().getColor(R.color.color_base));
+        }
+        //b.setLargeIcon(BitmapFactory.decodeResource(c.getResources(), icon));
+        b.setSmallIcon(R.drawable.notification_icon);
+
+        //TODO maybe set the icon of the test color
+        //TODO decide if we want small or big icon of test type
+        /*
+        Drawable icona = c.getResources().getDrawable(icon);
+        if (icona != null){
+            Bitmap bitmap = Bitmap.createBitmap(icona.getIntrinsicWidth(), icona.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(bitmap);
-            icon.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-            icon.draw(canvas);
+            icona.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+            icona.draw(canvas);
             b.setLargeIcon(bitmap);
         }
-        b.setSmallIcon(R.drawable.notification_icon);
+        */
         b.setContentTitle(title);
         b.setContentText(message);
+        //TODO edit intent based on  notification type
         b.setContentIntent(PendingIntent.getActivity(c, 0, MainActivity.newIntent(c, R.id.testResults), PendingIntent.FLAG_UPDATE_CURRENT));
         notificationManager.notify(1, b.build());
     }
@@ -59,16 +72,15 @@ public class NotificationService {
         System.out.println("CountlyPush " + a.getPreferenceManager().getToken());
     }
 
-    public static void setChannel(Context c){
+    //TODO better code https://developer.android.com/training/notify-user/channels
+    //Creating an existing notification channel with its original values performs no operation, so it's safe to call this code when starting an app.
+    public static void setChannel(Context c, String channelID, String channelName){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
             NotificationManager notificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
             if (notificationManager != null) {
-                // Create the NotificationChannel
-                NotificationChannel channel = new NotificationChannel(CountlyPush.CHANNEL_ID, "countly_hannel_name", NotificationManager.IMPORTANCE_DEFAULT);
-                channel.setDescription("countly_channel_description");
-                notificationManager.createNotificationChannel(channel);
+                notificationManager.createNotificationChannel(
+                        new NotificationChannel(channelID, channelName, NotificationManager.IMPORTANCE_DEFAULT)
+                );
             }
         }
     }
