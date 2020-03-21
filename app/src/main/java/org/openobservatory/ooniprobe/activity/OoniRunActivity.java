@@ -3,6 +3,7 @@ package org.openobservatory.ooniprobe.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -106,43 +107,46 @@ public class OoniRunActivity extends AbstractActivity {
 			String mv = uri == null ? null : uri.getQueryParameter("mv");
 			String tn = uri == null ? null : uri.getQueryParameter("tn");
 			String ta = uri == null ? null : uri.getQueryParameter("ta");
-			String[] split = BuildConfig.VERSION_NAME.split("-");
-			String version_name = split[0];
-			if (mv != null && tn != null) {
-				if (versionCompare(version_name, mv) >= 0) {
-					try {
-						Attribute attribute = new Gson().fromJson(ta, Attribute.class);
-						AbstractSuite suite = getSuite(tn, attribute == null ? null : attribute.urls);
-						if (suite != null) {
-							icon.setImageResource(suite.getIcon());
-							title.setText(suite.getTestList(getPreferenceManager())[0].getLabelResId());
-							desc.setText(getString(R.string.OONIRun_YouAreAboutToRun));
-							if (attribute != null && attribute.urls != null) {
-								for (String url : attribute.urls)
-									items.add(new TextItem(url));
-								adapter.notifyTypesChanged();
-								iconBig.setVisibility(View.GONE);
-							} else {
-								iconBig.setImageResource(suite.getIcon());
-								iconBig.setVisibility(View.VISIBLE);
-							}
-							run.setOnClickListener(v -> {
-								Intent runIntent = RunningActivity.newIntent(OoniRunActivity.this, suite);
-								if (runIntent != null) {
-									startActivity(runIntent);
-									finish();
-								}
-							});
+			loadScreen(mv, tn, ta);
+		}
+		else {
+			Bundle bundle = intent.getExtras();
+			String mv = bundle == null ? null : intent.getExtras().getString("mv");
+			String tn = bundle == null ? null : intent.getExtras().getString("tn");
+			String ta = bundle == null ? null : intent.getExtras().getString("ta");
+			loadScreen(mv, tn, ta);
+		}
+	}
+
+	private void loadScreen(String mv, String tn, String ta){
+		String[] split = BuildConfig.VERSION_NAME.split("-");
+		String version_name = split[0];
+		if (mv != null && tn != null) {
+			if (versionCompare(version_name, mv) >= 0) {
+				try {
+					Attribute attribute = new Gson().fromJson(ta, Attribute.class);
+					AbstractSuite suite = getSuite(tn, attribute == null ? null : attribute.urls);
+					if (suite != null) {
+						icon.setImageResource(suite.getIcon());
+						title.setText(suite.getTestList(getPreferenceManager())[0].getLabelResId());
+						desc.setText(getString(R.string.OONIRun_YouAreAboutToRun));
+						if (attribute != null && attribute.urls != null) {
+							for (String url : attribute.urls)
+								items.add(new TextItem(url));
+							adapter.notifyTypesChanged();
+							iconBig.setVisibility(View.GONE);
 						} else {
-							title.setText(R.string.OONIRun_InvalidParameter);
-							desc.setText(R.string.OONIRun_InvalidParameter_Msg);
-							run.setText(R.string.OONIRun_Close);
-							icon.setImageResource(R.drawable.question_mark);
-							iconBig.setImageResource(R.drawable.question_mark);
+							iconBig.setImageResource(suite.getIcon());
 							iconBig.setVisibility(View.VISIBLE);
-							run.setOnClickListener(v -> finish());
 						}
-					} catch (Exception e) {
+						run.setOnClickListener(v -> {
+							Intent runIntent = RunningActivity.newIntent(OoniRunActivity.this, suite);
+							if (runIntent != null) {
+								startActivity(runIntent);
+								finish();
+							}
+						});
+					} else {
 						title.setText(R.string.OONIRun_InvalidParameter);
 						desc.setText(R.string.OONIRun_InvalidParameter_Msg);
 						run.setText(R.string.OONIRun_Close);
@@ -151,27 +155,35 @@ public class OoniRunActivity extends AbstractActivity {
 						iconBig.setVisibility(View.VISIBLE);
 						run.setOnClickListener(v -> finish());
 					}
-				} else {
-					title.setText(R.string.OONIRun_OONIProbeOutOfDate);
-					desc.setText(R.string.OONIRun_OONIProbeNewerVersion);
-					run.setText(R.string.OONIRun_Update);
-					icon.setImageResource(R.drawable.update);
-					iconBig.setImageResource(R.drawable.update);
+				} catch (Exception e) {
+					title.setText(R.string.OONIRun_InvalidParameter);
+					desc.setText(R.string.OONIRun_InvalidParameter_Msg);
+					run.setText(R.string.OONIRun_Close);
+					icon.setImageResource(R.drawable.question_mark);
+					iconBig.setImageResource(R.drawable.question_mark);
 					iconBig.setVisibility(View.VISIBLE);
-					run.setOnClickListener(v -> {
-						startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName())));
-						finish();
-					});
+					run.setOnClickListener(v -> finish());
 				}
 			} else {
-				title.setText(R.string.OONIRun_InvalidParameter);
-				desc.setText(R.string.OONIRun_InvalidParameter_Msg);
-				run.setText(R.string.OONIRun_Close);
-				icon.setImageResource(R.drawable.question_mark);
-				iconBig.setImageResource(R.drawable.question_mark);
+				title.setText(R.string.OONIRun_OONIProbeOutOfDate);
+				desc.setText(R.string.OONIRun_OONIProbeNewerVersion);
+				run.setText(R.string.OONIRun_Update);
+				icon.setImageResource(R.drawable.update);
+				iconBig.setImageResource(R.drawable.update);
 				iconBig.setVisibility(View.VISIBLE);
-				run.setOnClickListener(v -> finish());
+				run.setOnClickListener(v -> {
+					startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName())));
+					finish();
+				});
 			}
+		} else {
+			title.setText(R.string.OONIRun_InvalidParameter);
+			desc.setText(R.string.OONIRun_InvalidParameter_Msg);
+			run.setText(R.string.OONIRun_Close);
+			icon.setImageResource(R.drawable.question_mark);
+			iconBig.setImageResource(R.drawable.question_mark);
+			iconBig.setVisibility(View.VISIBLE);
+			run.setOnClickListener(v -> finish());
 		}
 	}
 
