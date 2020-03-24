@@ -15,7 +15,9 @@ import com.raizlabs.android.dbflow.sql.language.Where;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.openobservatory.ooniprobe.client.callback.GetMeasurementsCallback;
+import org.openobservatory.ooniprobe.common.AppDatabase;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
@@ -34,7 +36,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Table(database = Application.class)
+@Table(database = AppDatabase.class)
 public class Measurement extends BaseModel implements Serializable {
 	@PrimaryKey(autoincrement = true) public int id;
 	@Column public String test_name;
@@ -136,11 +138,23 @@ public class Measurement extends BaseModel implements Serializable {
 		return new File(getMeasurementDir(c), resultId + "_" + test_name + ".log");
 	}
 
+	public String getUrlString() {
+		if (url == null)
+			return null;
+		return url.url;
+	}
+
 	public void deleteLogFile(Context c){
 		try {
 			Measurement.getLogFile(c, this.result.id, this.test_name).delete();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+
+	public void deleteLogFileAfterAWeek(Context c) {
+		if (System.currentTimeMillis() - start_time.getTime() > PreferenceManager.DELETE_JSON_DELAY) {
+			deleteLogFile(c);
 		}
 	}
 
@@ -193,15 +207,17 @@ public class Measurement extends BaseModel implements Serializable {
 		test_keys = new Gson().toJson(testKeys);
 	}
 
-	public void deleteUploadedJsons(Application a){
+	public static void deleteUploadedJsons(Application a){
+		PreferenceManager pm = a.getPreferenceManager();
 		List<Measurement> measurements = Measurement.selectMeasurementsWithJson(a);
 		for (int i = 0; i < measurements.size(); i++) {
 			Measurement measurement = measurements.get(i);
-			a.getApiClient().getMeasurement(measurement.report_id, null).enqueue(new GetMeasurementsCallback() {
+			//measurement.getUrlString will return null when the measurement is not a web_connectivity
+			a.getApiClient().getMeasurement(measurement.report_id, measurement.getUrlString()).enqueue(new GetMeasurementsCallback() {
 				@Override
 				public void onSuccess(ApiMeasurement.Result result) {
 					measurement.deleteEntryFile(a);
-					measurement.deleteLogFile(a);
+					measurement.deleteLogFileAfterAWeek(a);
 				}
 
 				@Override
@@ -210,5 +226,13 @@ public class Measurement extends BaseModel implements Serializable {
 				}
 			});
 		}
+		pm.setLastCalled();
+	}
+
+	public void setReRun(Context c){
+		this.deleteEntryFile(c);
+		this.deleteLogFile(c);
+		this.is_rerun = true;
+		this.save();
 	}
 }

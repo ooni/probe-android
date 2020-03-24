@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -35,10 +37,13 @@ import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
+import org.openobservatory.ooniprobe.model.database.Url;
+import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
+import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -51,6 +56,8 @@ import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
 public class ResultDetailActivity extends AbstractActivity implements View.OnClickListener, ConfirmDialogFragment.OnConfirmedListener {
     private static final String ID = "id";
+    private static final String UPLOAD_KEY = "upload";
+    private static final String RERUN_KEY = "rerun";
     @BindView(R.id.coordinatorLayout)
     CoordinatorLayout coordinatorLayout;
     @BindView(R.id.toolbar)
@@ -105,6 +112,51 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
         load();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.rerun, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        invalidateOptionsMenu();
+        if (!result.test_group_name.equals(WebsitesSuite.NAME))
+            menu.findItem(R.id.reRun).setVisible(false);
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.reRun:
+                new ConfirmDialogFragment.Builder()
+                        .withExtra(RERUN_KEY)
+                        .withMessage(getString(R.string.Modal_ReRun_Websites_Title, String.valueOf(result.getMeasurements().size())))
+                        .withPositiveButton(getString(R.string.Modal_ReRun_Websites_Run))
+                        .build().show(getSupportFragmentManager(), null);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void reTestWebsites() {
+        AbstractSuite testSuite = result.getTestSuite();
+        WebConnectivity test = new WebConnectivity();
+        ArrayList<String> urls = new ArrayList<>();
+        for (Measurement m : result.getMeasurements()){
+            urls.add(Url.checkExistingUrl(m.url.url, m.url.category_code, m.url.country_code).url);
+        }
+        test.setInputs(urls);
+        testSuite.setTestList(test);
+        Intent intent = RunningActivity.newIntent((AbstractActivity) this, testSuite);
+        if (intent != null) {
+            startActivity(intent);
+            this.finish();
+        }
+    }
+
     private void runAsyncTask() {
         new ResubmitAsyncTask(this).execute(result.id, null);
     }
@@ -134,8 +186,12 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 
     @Override
     public void onConfirmation(Serializable extra, int buttonClicked) {
-        if (buttonClicked == DialogInterface.BUTTON_POSITIVE)
+        if (buttonClicked == DialogInterface.BUTTON_POSITIVE && extra.equals(UPLOAD_KEY))
             runAsyncTask();
+        else if (buttonClicked == DialogInterface.BUTTON_POSITIVE && extra.equals(RERUN_KEY))
+            reTestWebsites();
+        else if (buttonClicked == DialogInterface.BUTTON_NEUTRAL)
+            startActivity(TextActivity.newIntent(this, TextActivity.TYPE_UPLOAD_LOG, (String)extra));
     }
 
     private static class ResubmitAsyncTask extends ResubmitTask<ResultDetailActivity> {
@@ -152,9 +208,12 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
                 getActivity().load();
                 if (!result)
                     new ConfirmDialogFragment.Builder()
+                            .withExtra(UPLOAD_KEY)
                             .withTitle(getActivity().getString(R.string.Modal_UploadFailed_Title))
-                            .withMessage(getActivity().getString(R.string.Modal_UploadFailed_Paragraph))
+                            .withMessage(getActivity().getString(R.string.Modal_UploadFailed_Paragraph, errors.toString(), totUploads.toString()))
                             .withPositiveButton(getActivity().getString(R.string.Modal_Retry))
+                            .withNeutralButton(getActivity().getString(R.string.Modal_DisplayFailureLog))
+                            .withExtra(logs)
                             .build().show(getActivity().getSupportFragmentManager(), null);
             }
         }
@@ -168,7 +227,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
         @Override
         public Fragment getItem(int position) {
             if (position == 1)
-                return ResultHeaderDetailFragment.newInstance(false, result.getFormattedDataUsageUp(), result.getFormattedDataUsageDown(), result.start_time, result.runtime, true, null, null);
+                return ResultHeaderDetailFragment.newInstance(false, result.getFormattedDataUsageUp(), result.getFormattedDataUsageDown(), result.start_time, result.getRuntime(), true, null, null);
             else if (position == 2)
                 return ResultHeaderDetailFragment.newInstance(false, null, null, null, null, null, Network.getCountry(ResultDetailActivity.this, result.network), result.network);
             else switch (result.test_group_name) {

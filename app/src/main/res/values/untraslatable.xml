@@ -7,9 +7,14 @@
 	<string name="notifications" translatable="false">notifications</string>
 	<string name="automated_testing" translatable="false">automated_testing</string>
 	<string name="sharing" translatable="false">sharing</string>
+	<string name="test_options" translatable="false">test_options</string>
 	<string name="advanced" translatable="false">advanced</string>
 	<string name="send_email" translatable="false">send_email</string>
 	<string name="about_ooni" translatable="false">about_ooni</string>
+	<string name="websites" translatable="false">websites</string>
+	<string name="instant_messaging" translatable="false">instant_messaging</string>
+	<string name="middle_boxes" translatable="false">middle_boxes</string>
+	<string name="performance" translatable="false">performance</string>
 	<string name="notifications_enabled" translatable="false">notifications_enabled</string>
 	<string name="notifications_completion" translatable="false">notifications_completion</string>
 	<string name="notifications_news" translatable="false">notifications_news</string>
@@ -30,6 +35,7 @@
 	<string name="test_facebook_messenger" translatable="false">test_facebook_messenger</string>
 	<string name="run_ndt" translatable="false">run_ndt</string>
 	<string name="run_dash" translatable="false">run_dash</string>
+	<string name="max_runtime_enabled" translatable="false">max_runtime_enabled</string>
 	<string name="max_runtime" translatable="false">max_runtime</string>
 	<string name="d" translatable="false">%1$d</string>
 	<string name="f" translatable="false">%1$.2f</string>
@@ -65,7 +71,7 @@
 	<string name="urlTestHfm" translatable="false">https://ooni.io/nettest/http-header-field-manipulation</string>
 	<string name="urlTestIrl" translatable="false">https://ooni.io/nettest/http-invalid-request-line</string>
 	<string name="urlTestNdt" translatable="false">https://ooni.io/nettest/ndt</string>
-	<string name="urlTestTlg" translatable="false">https://ooni.ionettest/telegram</string>
+	<string name="urlTestTlg" translatable="false">https://ooni.io/nettest/telegram</string>
 	<string name="urlTestWeb" translatable="false">https://ooni.io/nettest/web-connectivity</string>
 	<string name="urlTestWap" translatable="false">https://ooni.io/nettest/whatsapp</string>
 	<string-array name="filterTests" translatable="false">

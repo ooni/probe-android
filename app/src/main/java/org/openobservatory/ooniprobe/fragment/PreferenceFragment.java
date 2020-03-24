@@ -53,6 +53,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
         assert getArguments() != null;
         super.onResume();
         setPreferencesFromResource(getArguments().getInt(ARG_PREFERENCES_RES_ID), getArguments().getInt(ARG_CONTAINER_RES_ID), getArguments().getString(ARG_PREFERENCE_ROOT));
+
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         getActivity().setTitle(getPreferenceScreen().getTitle());
         for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++) {
@@ -112,9 +113,15 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                         .withMessage(getString(R.string.Modal_OnlyDigits))
                         .build().show(getFragmentManager(), null);
                 sharedPreferences.edit().remove(key).apply();
-                getFragmentManager().beginTransaction().replace(android.R.id.content, newConcreteInstance(rootKey)).commit();
+                EditTextPreference p = (EditTextPreference) findPreference(key);
+                if (p != null)
+                    p.setText("");
             }
         } else if (preference instanceof SwitchPreferenceCompat) {
+            //Not executing this code in case of max_runtime_enabled. See below.
+            if (key.equals(getString(R.string.max_runtime_enabled)))
+                return;
+            //This code is used by the test categories screen to leave at least one category enabled, should be refactored
             boolean found = false;
             for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++)
                 if (getPreferenceScreen().getPreference(i) instanceof SwitchPreferenceCompat && !getPreferenceScreen().getPreference(i).getKey().equals(getString(R.string.test_whatsapp_extensive)))
@@ -124,7 +131,9 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                         .withMessage(getString(R.string.Modal_EnableAtLeastOneTest))
                         .build().show(getFragmentManager(), null);
                 sharedPreferences.edit().remove(key).apply();
-                getFragmentManager().beginTransaction().replace(android.R.id.content, newConcreteInstance(rootKey)).commit();
+                SwitchPreferenceCompat p = (SwitchPreferenceCompat) findPreference(key);
+                if (p != null)
+                    p.setChecked(true);
             }
         }
     }

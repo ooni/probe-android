@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.Crashlytics;
+import org.openobservatory.ooniprobe.common.ExceptionManager;
 import org.openobservatory.ooniprobe.model.api.UrlList;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Url;
@@ -33,6 +33,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 	public static final String LOG = "LOG";
 	public static final String RUN = "RUN";
 	public static final String ERR = "ERR";
+	public static final String URL = "URL";
 	protected final WeakReference<ACT> ref;
 	private final Result result;
 
@@ -59,7 +60,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 					boolean okay = MKResourcesManager.maybeUpdateResources(act);
 					if (!okay) {
 						Exception e = new Exception("MKResourcesManager didn't find resources");
-						Crashlytics.logException(e);
+						ExceptionManager.logException(e);
 						throw e;
 					}
 					geoIPLookup.setCABundlePath(MKResourcesManager.getCABundlePath(act));
@@ -76,6 +77,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 							abstractTest.setInputs(inputs);
 							abstractTest.setMax_runtime(act.getPreferenceManager().getMaxRuntime());
 						}
+						publishProgress(URL);
 					}
 				}
 				for (int i = 0; i < tests.length; i++)

@@ -11,18 +11,19 @@ import java.util.ArrayList;
 
 public class PreferenceManager {
 	static final String GEO_VER = "geo_ver";
+	public static final Integer MAX_RUNTIME_DISABLED = -1;
 	private static final String IS_MANUAL_UPLOAD_DIALOG = "isManualUploadDialog";
 	private static final String TOKEN = "token";
 	private static final String SHOW_ONBOARDING = "first_run";
+	//This is in ms, set to one day
+	public static final Integer DELETE_JSON_DELAY = 86400000;
+	private static final String DELETE_JSON_KEY = "deleteUploadedJsons";
+
 	private final SharedPreferences sp;
 	private final Resources r;
 
 	PreferenceManager(Context context) {
 		androidx.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_global, true);
-		androidx.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_instant_messaging, true);
-		androidx.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_middleboxes, true);
-		androidx.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_performance, true);
-		androidx.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_websites, true);
 		sp = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context);
 		r = context.getResources();
 	}
@@ -44,11 +45,17 @@ public class PreferenceManager {
 	}
 
 	public Integer getMaxRuntime() {
+		if (!isMaxRuntimeEnabled())
+			return MAX_RUNTIME_DISABLED;
 		try {
-			return sp.getInt(r.getString(R.string.max_runtime), 90);
+			return Integer.parseInt(sp.getString(r.getString(R.string.max_runtime), "90"));
 		} catch (Exception e) {
 			return 90;
 		}
+	}
+
+	public boolean isMaxRuntimeEnabled(){
+		return sp.getBoolean(r.getString(R.string.max_runtime_enabled), true);
 	}
 
 	public boolean isSendCrash() {
@@ -165,4 +172,21 @@ public class PreferenceManager {
 				count++;
 		return count;
 	}
+
+	public boolean canCallDeleteJson(){
+		long lastCalled = sp.getLong(DELETE_JSON_KEY, 0);
+
+		if (lastCalled == 0)
+			return true;
+
+		if (System.currentTimeMillis() - lastCalled > DELETE_JSON_DELAY){
+			return true;
+		}
+		return false;
+	}
+
+	public void setLastCalled(){
+		sp.edit().putLong(DELETE_JSON_KEY, System.currentTimeMillis()).apply();
+	}
+
 }

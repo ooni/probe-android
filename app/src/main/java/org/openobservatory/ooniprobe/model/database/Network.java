@@ -10,12 +10,12 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.OrchestraTask;
+import org.openobservatory.ooniprobe.common.AppDatabase;
+import org.openobservatory.ooniprobe.common.ReachabilityManager;
 
 import java.io.Serializable;
 
-@Table(database = Application.class)
+@Table(database = AppDatabase.class)
 public class Network extends BaseModel implements Serializable {
 	@PrimaryKey(autoincrement = true) public int id;
 	@Column public String network_name;
@@ -69,11 +69,11 @@ public class Network extends BaseModel implements Serializable {
 			return c.getString(R.string.TestResults_UnknownASN);
 		else
 			switch (n.network_type) {
-				case OrchestraTask.WIFI:
+				case ReachabilityManager.WIFI:
 					return c.getString(R.string.TestResults_Summary_Hero_WiFi);
-				case OrchestraTask.MOBILE:
+				case ReachabilityManager.MOBILE:
 					return c.getString(R.string.TestResults_Summary_Hero_Mobile);
-				case OrchestraTask.NO_INTERNET:
+				case ReachabilityManager.NO_INTERNET:
 					return c.getString(R.string.TestResults_Summary_Hero_NoInternet);
 				default:
 					return c.getString(R.string.TestResults_UnknownASN);

@@ -12,10 +12,11 @@ import androidx.annotation.StringRes;
 import com.google.gson.Gson;
 
 import org.apache.commons.io.FileUtils;
-import org.openobservatory.ooniprobe.common.Crashlytics;
+import org.openobservatory.ooniprobe.common.ExceptionManager;
 import org.openobservatory.ooniprobe.common.MKException;
 import org.openobservatory.ooniprobe.common.OrchestraTask;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -67,7 +68,7 @@ public abstract class AbstractTest implements Serializable {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Crashlytics.logException(e);
+            ExceptionManager.logException(e);
             return;
         }
         settings.name = mkName;
@@ -151,10 +152,10 @@ public abstract class AbstractTest implements Serializable {
                         setDataUsage(event.value, result);
                         break;
                     case "failure.startup":
-                        //Run next test
+                        setFailureMsg(event.value, result);
                         break;
                     case "bug.json_dump":
-                        Crashlytics.logException(new MKException(event));
+                        ExceptionManager.logException(new MKException(event));
                         break;
                     default:
                         Log.w(UNUSED_KEY, event.key);
@@ -162,7 +163,7 @@ public abstract class AbstractTest implements Serializable {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                Crashlytics.logException(e);
+                ExceptionManager.logException(e);
             }
     }
 
@@ -174,14 +175,13 @@ public abstract class AbstractTest implements Serializable {
             measurement.start_time = json.measurement_start_time;
         if (json.test_runtime != null) {
             measurement.runtime = json.test_runtime;
-            measurement.result.addDuration(json.test_runtime);
         }
         measurement.setTestKeys(json.test_keys);
     }
 
     private void saveNetworkInfo(EventResult.Value value, Result result, Context c) {
         if (result != null && result.network == null) {
-            result.network = Network.getNetwork(value.probe_network_name, value.probe_ip, value.probe_asn, value.probe_cc, OrchestraTask.getNetworkType(c));
+            result.network = Network.getNetwork(value.probe_network_name, value.probe_ip, value.probe_asn, value.probe_cc, ReachabilityManager.getNetworkType(c));
             result.save();
         }
     }
@@ -213,6 +213,13 @@ public abstract class AbstractTest implements Serializable {
         result.data_usage_down = result.data_usage_down + Double.valueOf(value.downloaded_kb).longValue();
         result.data_usage_up = result.data_usage_up + Double.valueOf(value.uploaded_kb).longValue();
         result.save();
+    }
+
+    private void setFailureMsg(EventResult.Value value, Result result) {
+        if (result != null) {
+            result.failure_msg = value.failure;
+            result.save();
+        }
     }
 
     public int getLabelResId() {
