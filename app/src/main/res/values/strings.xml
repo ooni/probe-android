@@ -391,4 +391,6 @@
   <string name="CategoryCode_MISC_Description">Sites that haven\'t been categorized yet</string>
   <string name="Settings_AutomatedTesting_Label">Automated Testing</string>
   <string name="Settings_AutomatedTesting_RunAutomatically">Run test automatically</string>
+  <string name="Settings_AutomatedTesting_RunAutomaticallyTime">Time</string>
+  <string name="Settings_AutomatedTesting_TimeToRun">Time to run tests</string>
 </resources>

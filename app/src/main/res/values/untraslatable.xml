@@ -19,7 +19,7 @@
 	<string name="notifications_completion" translatable="false">notifications_completion</string>
 	<string name="notifications_news" translatable="false">notifications_news</string>
 	<string name="automated_testing_enabled" translatable="false">automated_testing_enabled</string>
-
+	<string name="automated_testing_enabled_time" translatable="false">automated_testing_enabled_time</string>
 	<string name="upload_results" translatable="false">upload_results</string>
 	<string name="upload_results_manual" translatable="false">upload_results_manual</string>
 	<string name="include_ip" translatable="false">include_ip</string>
