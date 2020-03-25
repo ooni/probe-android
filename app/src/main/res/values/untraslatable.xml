@@ -85,6 +85,15 @@
 		<item>middle_boxes</item>
 		<item>performance</item>
 	</string-array>
+	<string-array name="preferenceTestsNames" translatable="false">
+		<item>run_http_invalid_request_line</item>
+		<item>run_http_header_field_manipulation</item>
+		<item>test_whatsapp</item>
+		<item>test_telegram</item>
+		<item>test_facebook_messenger</item>
+		<item>run_ndt</item>
+		<item>run_dash</item>
+	</string-array>
 	<plurals name="TestResults_Overview_Websites_Blocked" translatable="false">
 		<item quantity="one">@string/TestResults_Overview_Websites_Blocked_Singular</item>
 		<item quantity="other">@string/TestResults_Overview_Websites_Blocked_Plural</item>
