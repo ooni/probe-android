@@ -4,7 +4,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import org.openobservatory.ooniprobe.activity.AbstractActivity;
+import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.common.NotificationService;
+import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
 
 public class AlarmReceiver extends BroadcastReceiver {
@@ -15,6 +18,14 @@ public class AlarmReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         System.out.println(DEBUG_TAG);
         //NotificationService.sendNotification(context, "", null);
+        /*
+        WebsitesSuite suite = new WebsitesSuite();
+        Intent act = RunningActivity.newIntent((AbstractActivity) context, suite);
+        if (act != null) {
+            context.startActivity(act);
+        }
+        */
+
 
         /*
         String[] testArray = {

@@ -38,9 +38,6 @@ public class AlarmService {
                 Context.ALARM_SERVICE);
         alarms.setRepeating(AlarmManager.RTC_WAKEUP, updateTime.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY, recurringAlarm);
-        /*alarms.setInexactRepeating(AlarmManager.RTC_WAKEUP,
-                updateTime.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, recurringAlarm);*/
     }
 
     public static void cancelRecurringAlarm(Context context) {
