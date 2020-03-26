@@ -25,6 +25,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.alarm.AlarmService;
 
 import java.io.Serializable;
 import java.text.NumberFormat;
@@ -69,9 +70,9 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                 String time = String.format(en_locale, "%02d", hour) + ":" + String.format(en_locale, "%02d", minute);
                 SharedPreferences.Editor editor = getPreferenceScreen().getSharedPreferences().edit();
                 editor.putString(getActivity().getString(R.string.automated_testing_time), time);
-                editor.commit();
+                editor.apply();
                 timePreference.setSummary(String.format("%02d", selectedHour) + ":" + String.format("%02d", selectedMinute));
-                //NotificationHandler.setRecurringAlarm(mActivity.getApplicationContext());
+                AlarmService.setRecurringAlarm(getActivity().getApplication());
             }
         }, hour, minute, true);
         mTimePicker.show();
@@ -145,6 +146,13 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                     .withTitle(getString(R.string.Settings_Sharing_IncludeCountryCode))
                     .withMessage(getString(R.string.Settings_Sharing_IncludeCountryCode_PopUp))
                     .build().show(getChildFragmentManager(), null);
+        else if (key.equals(getString(R.string.automated_testing_enabled))){
+            if(sharedPreferences.getBoolean(key, false))
+                //Enabling the alarm every time the user enabled automated_testing
+                AlarmService.setRecurringAlarm(getActivity().getApplication());
+            else
+                AlarmService.cancelRecurringAlarm(getActivity().getApplication());
+        }
         else if (preference instanceof EditTextPreference) {
             String value = sharedPreferences.getString(key, null);
             preference.setSummary(value);
@@ -160,7 +168,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
             }
         } else if (preference instanceof SwitchPreferenceCompat) {
             //Not executing this code in case of max_runtime_enabled. See below.
-            if (key.equals(getString(R.string.max_runtime_enabled)))
+            if (key.equals(getString(R.string.max_runtime_enabled)) || key.equals(getString(R.string.automated_testing_enabled)))
                 return;
             //This code is used by the test categories screen to leave at least one category enabled, should be refactored
             boolean found = false;
@@ -177,7 +185,6 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                     p.setChecked(true);
             }
         }
-        //TODO handle set and unset alarm when enabling automated_testing_enabled
     }
 
     @Override

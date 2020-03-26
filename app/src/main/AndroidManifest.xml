@@ -132,5 +132,19 @@
 					android:scheme="ooni" />
 			</intent-filter>
 		</activity>
+		<receiver
+			android:name=".common.alarm.AlarmReceiver"
+			android:enabled="true"
+			android:exported="false"
+			android:permission="android.permission.INTERNET" />
+		<receiver
+			android:name=".common.alarm.OnBootReceiver"
+			android:enabled="true"
+			android:exported="false"
+			android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+			<intent-filter>
+				<action android:name="android.intent.action.BOOT_COMPLETED" />
+			</intent-filter>
+		</receiver>
 	</application>
 </manifest>
