@@ -28,10 +28,10 @@
 			android:defaultValue="false"
 			android:key="@string/automated_testing_enabled"
 			android:title="@string/Settings_AutomatedTesting_RunAutomatically" />
-		<EditTextPreference
+		<Preference
 			android:defaultValue="18:00"
 			android:dependency="@string/automated_testing_enabled"
-			android:key="@string/automated_testing_enabled_time"
+			android:key="@string/automated_testing_time"
 			android:title="@string/Settings_AutomatedTesting_RunAutomaticallyTime" />
 	</androidx.preference.PreferenceScreen>
 	<androidx.preference.PreferenceScreen

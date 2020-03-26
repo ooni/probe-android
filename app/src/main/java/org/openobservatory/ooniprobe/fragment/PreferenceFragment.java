@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.fragment;
 
+import android.annotation.TargetApi;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,6 +9,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.IdRes;
@@ -24,6 +27,9 @@ import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.common.Application;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 import localhost.toolkit.app.fragment.MessageDialogFragment;
@@ -48,11 +54,46 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
         this.rootKey = rootKey;
     }
 
+    private void showDateDialog(Preference timePreference) {
+        Calendar mcurrentTime = Calendar.getInstance();
+        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+        int minute = mcurrentTime.get(Calendar.MINUTE);
+        TimePickerDialog mTimePicker;
+        mTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                Locale en_locale = new Locale("en","EN");
+                NumberFormat nf = NumberFormat.getInstance(en_locale);
+                int hour = Integer.parseInt(nf.format(selectedHour));
+                int minute = Integer.parseInt(nf.format(selectedMinute));
+                String time = String.format(en_locale, "%02d", hour) + ":" + String.format(en_locale, "%02d", minute);
+                SharedPreferences.Editor editor = getPreferenceScreen().getSharedPreferences().edit();
+                editor.putString(getActivity().getString(R.string.automated_testing_time), time);
+                editor.commit();
+                timePreference.setSummary(String.format("%02d", selectedHour) + ":" + String.format("%02d", selectedMinute));
+                //NotificationHandler.setRecurringAlarm(mActivity.getApplicationContext());
+            }
+        }, hour, minute, true);
+        mTimePicker.show();
+    }
+
     @Override
     public void onResume() {
         assert getArguments() != null;
         super.onResume();
         setPreferencesFromResource(getArguments().getInt(ARG_PREFERENCES_RES_ID), getArguments().getInt(ARG_CONTAINER_RES_ID), getArguments().getString(ARG_PREFERENCE_ROOT));
+
+        Preference timePreference = (Preference) findPreference(getActivity().getString(R.string.automated_testing_time));
+        String time = ((Application) getActivity().getApplication()).getPreferenceManager().getAutomatedTestingTime();
+        timePreference.setSummary(time);
+        timePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                showDateDialog(timePreference);
+                return false;
+            }
+        });
 
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         getActivity().setTitle(getPreferenceScreen().getTitle());
@@ -136,6 +177,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                     p.setChecked(true);
             }
         }
+        //TODO handle set and unset alarm when enabling automated_testing_enabled
     }
 
     @Override
