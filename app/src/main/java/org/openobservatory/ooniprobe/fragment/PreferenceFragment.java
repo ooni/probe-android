@@ -128,7 +128,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                 new MessageDialogFragment.Builder()
                         .withMessage(getString(R.string.Modal_EnableAtLeastOneTest))
                         .build().show(getFragmentManager(), null);
-                sharedPreferences.edit().remove(key).apply  ();
+                sharedPreferences.edit().remove(key).apply();
                 getFragmentManager().beginTransaction().replace(android.R.id.content, newConcreteInstance(rootKey)).commit();
             }
         }
