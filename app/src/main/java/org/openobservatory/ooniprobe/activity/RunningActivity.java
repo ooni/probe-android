@@ -67,6 +67,9 @@ public class RunningActivity extends AbstractActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //With this cunction we can move the activity to the background
+        //https://stackoverflow.com/questions/10008879/intent-to-start-activity-but-dont-bring-to-front
+        //moveTaskToBack(true);
         testSuite = (AbstractSuite) getIntent().getSerializableExtra(TEST);
         runtime = testSuite.getRuntime(getPreferenceManager());
         setTheme(testSuite.getThemeDark());
