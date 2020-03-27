@@ -19,13 +19,18 @@ public class AlarmReceiver extends BroadcastReceiver {
         System.out.println(DEBUG_TAG);
         //NotificationService.sendNotification(context, "", null);
         /*
-        WebsitesSuite suite = new WebsitesSuite();
-        Intent act = RunningActivity.newIntent((AbstractActivity) context, suite);
-        if (act != null) {
-            context.startActivity(act);
-        }
+        Two  strategies
+        - Start running activity
+        - Start silent test
+        This second approach ahs two problems:
+        - TestAsyncTaskImpl extends TestAsyncTask<RunningActivity>  so I need to refactor all the code to run tests
+        - If a test is running and the user opens the app he could potentially run another test and mess up
         */
 
+        WebsitesSuite suite = new WebsitesSuite();
+        Intent i = RunningActivity.newIntent(context, suite);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(i);
 
         /*
         String[] testArray = {

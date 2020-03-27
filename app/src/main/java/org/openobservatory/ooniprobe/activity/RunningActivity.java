@@ -60,6 +60,10 @@ public class RunningActivity extends AbstractActivity {
             return new Intent(context, RunningActivity.class).putExtra(TEST, testSuite);
     }
 
+    public static Intent newIntent(Context context, AbstractSuite testSuite) {
+        return new Intent(context, RunningActivity.class).putExtra(TEST, testSuite);
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
