@@ -33,6 +33,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 			return;
 		}
 
+		//Handle ooni run JSON (maybe not needed)
 		Intent notificationIntent = null;
 		 if (message.has("type") && message.data("type").equals("ooni_run")) {
 			 Log.i(TAG, "It's a OONIRun message!");
