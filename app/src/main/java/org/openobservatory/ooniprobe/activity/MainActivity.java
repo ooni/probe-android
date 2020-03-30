@@ -86,6 +86,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     public void onStart()
     {
         super.onStart();
+        //TODO do no merge this will crash fdroid
         Countly.sharedInstance().onStart(this);
     }
 
