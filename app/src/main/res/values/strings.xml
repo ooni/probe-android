@@ -42,6 +42,7 @@
   <string name="Dashboard_Running_EstimatedTimeLeft">Estimated time left:</string>
   <string name="Dashboard_Running_Seconds">%1$s seconds</string>
   <string name="Dashboard_Running_PreparingTest">Preparing test</string>
+  <string name="Dashboard_Running_CalculatingETA">Calculating ETA</string>
   <string name="Dashboard_Running_ShowLog">Show Log</string>
   <string name="Dashboard_Running_CloseLog">Close Log</string>
   <string name="Dashboard_Card_Subtitle">Tap card for more</string>

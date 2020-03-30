@@ -132,7 +132,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
             case R.id.reRun:
                 new ConfirmDialogFragment.Builder()
                         .withExtra(RERUN_KEY)
-                        .withMessage(getString(R.string.Modal_ReRun_Websites_Title))
+                        .withMessage(getString(R.string.Modal_ReRun_Websites_Title, String.valueOf(result.getMeasurements().size())))
                         .withPositiveButton(getString(R.string.Modal_ReRun_Websites_Run))
                         .build().show(getSupportFragmentManager(), null);
                 return true;
