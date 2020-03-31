@@ -12,8 +12,6 @@ import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import java.util.Locale;
 import java.util.Vector;
 
-import io.ooni.mk.MKOrchestraTask;
-
 public class OrchestraTask extends AsyncTask<Void, Void, Void> {
 	private Application app;
 
@@ -23,7 +21,7 @@ public class OrchestraTask extends AsyncTask<Void, Void, Void> {
 
 	public static void sync(Application app) {
 		if (app.getPreferenceManager().getToken() != null) {
-			MKOrchestraTask client = new MKOrchestraTask(
+			org.openobservatory.engine.OrchestraTask client = Engine.newOrchestraTask(
 					app.getString(R.string.software_name),
 					BuildConfig.VERSION_NAME,
 					getSupportedTests(),
@@ -46,8 +44,6 @@ public class OrchestraTask extends AsyncTask<Void, Void, Void> {
 			//TODO ORCHESTRATE - TIMEZONE
 			//client.setProbeTimezone(TimeZone.getDefault().getDisplayName(true, TimeZone.SHORT));
 			client.setRegistryURL(BuildConfig.NOTIFICATION_SERVER);
-			client.setSecretsFile(app.getFilesDir() + "/orchestration_secret.json");
-			client.setSoftwareVersion(BuildConfig.VERSION_NAME);
 			client.setTimeout(app.getResources().getInteger(R.integer.default_timeout));
 			client.updateOrRegister();
 		}

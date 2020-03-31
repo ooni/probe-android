@@ -5,6 +5,7 @@ import android.content.Context;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Vector;
 
 /**
  * Engine is a factory class for creating several kinds of tasks. We will use different
@@ -20,7 +21,7 @@ public class Engine {
         return io.ooni.mk.MKVersion.getVersionMK();
     }
 
-    /** startExperiment starts the experiment described by the provided settings. */
+    /** startExperimentTask starts the experiment described by the provided settings. */
     public static ExperimentTask startExperimentTask(ExperimentSettings settings) throws EngineException {
         if (probeEngineTasks.contains(settings.taskName())) {
             try {
@@ -54,14 +55,22 @@ public class Engine {
         return io.ooni.mk.MKResourcesManager.getASNDBPath(context);
     }
 
-    /** newGeoIPLookup creates a new GeoIP lookup task. */
+    /** newGeoIPLookupTask creates a new GeoIP lookup task. */
     public static GeoIPLookupTask newGeoIPLookupTask() {
         return new MKGeoIPLookupTaskAdapter();
     }
 
-    /** newCollector creates a new collector task. */
+    /** newCollectorTask creates a new collector task. */
     public static CollectorTask newCollectorTask(String softwareName, String softwareVersion,
                                                  String caBundlePath) {
         return new MKReporterTaskAdapter(softwareName, softwareVersion, caBundlePath);
+    }
+
+    /** newOrchestraTask creates a new orchestra task. */
+    public static OrchestraTask newOrchestraTask(String softwareName, String softwareVersion,
+                                                 Vector<String> supportedTests,
+                                                 String deviceToken, String secretsFile) {
+        return new MKOrchestraTaskAdapter(softwareName, softwareVersion, supportedTests,
+                deviceToken, secretsFile);
     }
 }
