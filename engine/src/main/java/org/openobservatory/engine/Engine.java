@@ -58,4 +58,10 @@ public class Engine {
     public static GeoIPLookupTask newGeoIPLookupTask() {
         return new MKGeoIPLookupTaskAdapter();
     }
+
+    /** newCollector creates a new collector task. */
+    public static CollectorTask newCollectorTask(String softwareName, String softwareVersion,
+                                                 String caBundlePath) {
+        return new MKReporterTaskAdapter(softwareName, softwareVersion, caBundlePath);
+    }
 }
