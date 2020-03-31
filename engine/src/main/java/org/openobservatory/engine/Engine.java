@@ -13,6 +13,11 @@ public class Engine {
             "Telegram"
     ));
 
+    /** getVersionMK returns the version of Measurement Kit we're using */
+    public static String getVersionMK() {
+        return io.ooni.mk.MKVersion.getVersionMK();
+    }
+
     /** startExperiment starts the experiment described by the provided settings. */
     public static ExperimentTask startExperimentTask(ExperimentSettings settings) throws EngineException {
         if (probeEngineTasks.contains(settings.taskName())) {
