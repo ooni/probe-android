@@ -31,8 +31,6 @@ import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.util.List;
 
-import io.ooni.mk.MKResourcesManager;
-
 public abstract class AbstractTest implements Serializable {
     private static final String UNUSED_KEY = "UNUSED_KEY";
     private static final String TAG = "MK_EVENT";
@@ -62,7 +60,7 @@ public abstract class AbstractTest implements Serializable {
     void run(Context c, PreferenceManager pm, Gson gson, Settings settings, Result result, int index, TestCallback testCallback) {
         //Checking for resources before running any test
         try {
-            boolean okay = MKResourcesManager.maybeUpdateResources(c);
+            boolean okay = Engine.maybeUpdateResources(c);
             if (!okay) {
                 throw new Exception("MKResourcesManager didn't find resources");
             }

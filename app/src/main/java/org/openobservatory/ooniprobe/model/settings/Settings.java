@@ -5,6 +5,7 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
+import org.openobservatory.engine.Engine;
 import org.openobservatory.engine.ExperimentSettings;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
@@ -13,8 +14,6 @@ import org.openobservatory.ooniprobe.common.ReachabilityManager;
 
 import java.util.Arrays;
 import java.util.List;
-
-import io.ooni.mk.MKResourcesManager;
 
 public class Settings {
 	@SerializedName("annotations")
@@ -123,9 +122,9 @@ public class Settings {
 		public Integer all_endpoints;
 
 		public Options(Context c, PreferenceManager pm) {
-			ca_bundle_path = MKResourcesManager.getCABundlePath(c);
-			geoip_country_path = MKResourcesManager.getCountryDBPath(c);
-			geoip_asn_path = MKResourcesManager.getASNDBPath(c);
+			ca_bundle_path = Engine.getCABundlePath(c);
+			geoip_country_path = Engine.getCountryDBPath(c);
+			geoip_asn_path = Engine.getASNDBPath(c);
 			no_collector = !pm.isUploadResults();
 			save_real_probe_asn = pm.isIncludeAsn();
 			save_real_probe_cc = pm.isIncludeCc();

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.raizlabs.android.dbflow.sql.language.Where;
 
 import org.apache.commons.io.FileUtils;
+import org.openobservatory.engine.Engine;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Measurement;
@@ -18,12 +19,10 @@ import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.List;
 
 import io.ooni.mk.MKReporterResults;
 import io.ooni.mk.MKReporterTask;
-import io.ooni.mk.MKResourcesManager;
 
 import localhost.toolkit.os.NetworkProgressAsyncTask;
 
@@ -44,14 +43,14 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
         task = new MKReporterTask(
                 activity.getString(R.string.software_name),
                 BuildConfig.VERSION_NAME,
-                MKResourcesManager.getCABundlePath(activity)
+                Engine.getCABundlePath(activity)
         );
     }
 
     private boolean perform(Context c, Measurement m) throws IOException {
         File file = Measurement.getEntryFile(c, m.id, m.test_name);
         String input = FileUtils.readFileToString(file, Charset.forName("UTF-8"));
-        boolean okay = MKResourcesManager.maybeUpdateResources(c);
+        boolean okay = Engine.maybeUpdateResources(c);
         if (!okay) {
             Crashlytics.logException(new Exception("MKResourcesManager didn't find resources"));
             return false;

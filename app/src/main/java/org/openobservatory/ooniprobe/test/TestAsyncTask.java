@@ -2,9 +2,9 @@ package org.openobservatory.ooniprobe.test;
 
 import android.os.AsyncTask;
 
+import org.openobservatory.engine.Engine;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
-import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.ExceptionManager;
 import org.openobservatory.ooniprobe.model.api.UrlList;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -24,7 +24,6 @@ import java.util.List;
 
 import io.ooni.mk.MKGeoIPLookupResults;
 import io.ooni.mk.MKGeoIPLookupTask;
-import io.ooni.mk.MKResourcesManager;
 import retrofit2.Response;
 
 public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<AbstractTest, String, Void> implements AbstractTest.TestCallback {
@@ -57,15 +56,15 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 				if (downloadUrls) {
 					MKGeoIPLookupTask geoIPLookup = new MKGeoIPLookupTask();
 					geoIPLookup.setTimeout(act.getResources().getInteger(R.integer.default_timeout));
-					boolean okay = MKResourcesManager.maybeUpdateResources(act);
+					boolean okay = Engine.maybeUpdateResources(act);
 					if (!okay) {
 						Exception e = new Exception("MKResourcesManager didn't find resources");
 						ExceptionManager.logException(e);
 						throw e;
 					}
-					geoIPLookup.setCABundlePath(MKResourcesManager.getCABundlePath(act));
-					geoIPLookup.setCountryDBPath(MKResourcesManager.getCountryDBPath(act));
-					geoIPLookup.setASNDBPath(MKResourcesManager.getASNDBPath(act));
+					geoIPLookup.setCABundlePath(Engine.getCABundlePath(act));
+					geoIPLookup.setCountryDBPath(Engine.getCountryDBPath(act));
+					geoIPLookup.setASNDBPath(Engine.getASNDBPath(act));
 					MKGeoIPLookupResults results = geoIPLookup.perform();
 					String probeCC = results.isGood() ? results.getProbeCC() : "XX";
 					Response<UrlList> response = act.getOrchestraClient().getUrls(probeCC, act.getPreferenceManager().getEnabledCategory()).execute();

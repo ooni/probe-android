@@ -1,10 +1,8 @@
 package org.openobservatory.ooniprobe.common;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 
+import org.openobservatory.engine.Engine;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
@@ -15,7 +13,6 @@ import java.util.Locale;
 import java.util.Vector;
 
 import io.ooni.mk.MKOrchestraTask;
-import io.ooni.mk.MKResourcesManager;
 
 public class OrchestraTask extends AsyncTask<Void, Void, Void> {
 	private Application app;
@@ -35,14 +32,14 @@ public class OrchestraTask extends AsyncTask<Void, Void, Void> {
 			//TODO ORCHESTRATE
 			//client.setAvailableBandwidth(String value);
 			//what happens when token is nil? should register anyway with empty string
-			boolean okay = MKResourcesManager.maybeUpdateResources(app);
+			boolean okay = Engine.maybeUpdateResources(app);
 			if (!okay) {
 				Crashlytics.logException(new Exception("MKResourcesManager didn't find resources"));
 				return;
 			}
-			client.setCABundlePath(MKResourcesManager.getCABundlePath(app));
-			client.setGeoIPCountryPath(MKResourcesManager.getCountryDBPath(app));
-			client.setGeoIPASNPath(MKResourcesManager.getASNDBPath(app));
+			client.setCABundlePath(Engine.getCABundlePath(app));
+			client.setGeoIPCountryPath(Engine.getCountryDBPath(app));
+			client.setGeoIPASNPath(Engine.getASNDBPath(app));
 			client.setLanguage(Locale.getDefault().getLanguage());
 			client.setNetworkType(ReachabilityManager.getNetworkType(app));
 			client.setPlatform("android");

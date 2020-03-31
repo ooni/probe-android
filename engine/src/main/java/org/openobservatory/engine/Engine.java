@@ -1,5 +1,7 @@
 package org.openobservatory.engine;
 
+import android.content.Context;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -30,5 +32,25 @@ public class Engine {
             }
         }
         return new MKExperimentTaskAdapter(io.ooni.mk.MKAsyncTask.start(settings.serialization()));
+    }
+
+    /** maybeUpdateResources updates the bundled resources if needed */
+    public static boolean maybeUpdateResources(Context context) {
+        return io.ooni.mk.MKResourcesManager.maybeUpdateResources(context);
+    }
+
+    /** getCABundlePath returns the CA bundle path. */
+    public static String getCABundlePath(Context context) {
+        return io.ooni.mk.MKResourcesManager.getCABundlePath(context);
+    }
+
+    /** getCountryDBPath returns the GeoIP country DB path. */
+    public static String getCountryDBPath(Context context) {
+        return io.ooni.mk.MKResourcesManager.getCountryDBPath(context);
+    }
+
+    /** getASNDBPath returns the GeoIP ASN DB path. */
+    public static String getASNDBPath(Context context) {
+        return io.ooni.mk.MKResourcesManager.getASNDBPath(context);
     }
 }
