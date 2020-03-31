@@ -15,7 +15,7 @@ android {
 		minSdkVersion 17
 		targetSdkVersion 29
 		versionName '2.3.2'
-		versionCode 58
+		versionCode 59
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 	}
 
@@ -45,8 +45,8 @@ android {
 dependencies {
 	implementation 'androidx.appcompat:appcompat:1.1.0'
 
-	//fullImplementation 'com.google.firebase:firebase-messaging:20.1.2'
-	fullImplementation 'com.google.firebase:firebase-core:17.2.3'
+	//fullImplementation 'com.google.firebase:firebase-messaging:20.1.4'
+	fullImplementation 'com.google.firebase:firebase-core:17.3.0'
 
 	annotationProcessor 'com.github.Raizlabs.DBFlow:dbflow-processor:4.2.4'
 	implementation 'com.github.Raizlabs.DBFlow:dbflow-core:4.2.4'
@@ -70,7 +70,7 @@ dependencies {
 
 	implementation 'ly.count.android:sdk:19.09.2'
 	//implementation 'ly.count.android:sdk-messaging-fcm:19.02.3'
-	implementation 'com.google.firebase:firebase-messaging:20.1.2'
+	implementation 'com.google.firebase:firebase-messaging:20.1.4'
 
 	androidTestImplementation 'androidx.test:runner:1.2.0'
 	androidTestImplementation 'androidx.test:rules:1.2.0'

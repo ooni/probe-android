@@ -138,6 +138,12 @@ public class Measurement extends BaseModel implements Serializable {
 		return new File(getMeasurementDir(c), resultId + "_" + test_name + ".log");
 	}
 
+	public String getUrlString() {
+		if (url == null)
+			return null;
+		return url.url;
+	}
+
 	public void deleteLogFile(Context c){
 		try {
 			Measurement.getLogFile(c, this.result.id, this.test_name).delete();
@@ -206,7 +212,8 @@ public class Measurement extends BaseModel implements Serializable {
 		List<Measurement> measurements = Measurement.selectMeasurementsWithJson(a);
 		for (int i = 0; i < measurements.size(); i++) {
 			Measurement measurement = measurements.get(i);
-			a.getApiClient().getMeasurement(measurement.report_id, null).enqueue(new GetMeasurementsCallback() {
+			//measurement.getUrlString will return null when the measurement is not a web_connectivity
+			a.getApiClient().getMeasurement(measurement.report_id, measurement.getUrlString()).enqueue(new GetMeasurementsCallback() {
 				@Override
 				public void onSuccess(ApiMeasurement.Result result) {
 					measurement.deleteEntryFile(a);
