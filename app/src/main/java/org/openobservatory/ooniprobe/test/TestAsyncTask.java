@@ -3,6 +3,8 @@ package org.openobservatory.ooniprobe.test;
 import android.os.AsyncTask;
 
 import org.openobservatory.engine.Engine;
+import org.openobservatory.engine.GeoIPLookupResults;
+import org.openobservatory.engine.GeoIPLookupTask;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.common.ExceptionManager;
@@ -22,8 +24,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import io.ooni.mk.MKGeoIPLookupResults;
-import io.ooni.mk.MKGeoIPLookupTask;
 import retrofit2.Response;
 
 public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<AbstractTest, String, Void> implements AbstractTest.TestCallback {
@@ -54,7 +54,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 						break;
 					}
 				if (downloadUrls) {
-					MKGeoIPLookupTask geoIPLookup = new MKGeoIPLookupTask();
+					GeoIPLookupTask geoIPLookup = Engine.newGeoIPLookupTask();
 					geoIPLookup.setTimeout(act.getResources().getInteger(R.integer.default_timeout));
 					boolean okay = Engine.maybeUpdateResources(act);
 					if (!okay) {
@@ -65,7 +65,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 					geoIPLookup.setCABundlePath(Engine.getCABundlePath(act));
 					geoIPLookup.setCountryDBPath(Engine.getCountryDBPath(act));
 					geoIPLookup.setASNDBPath(Engine.getASNDBPath(act));
-					MKGeoIPLookupResults results = geoIPLookup.perform();
+					GeoIPLookupResults results = geoIPLookup.perform();
 					String probeCC = results.isGood() ? results.getProbeCC() : "XX";
 					Response<UrlList> response = act.getOrchestraClient().getUrls(probeCC, act.getPreferenceManager().getEnabledCategory()).execute();
 					if (response.isSuccessful() && response.body() != null && response.body().results != null) {

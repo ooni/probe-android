@@ -53,4 +53,9 @@ public class Engine {
     public static String getASNDBPath(Context context) {
         return io.ooni.mk.MKResourcesManager.getASNDBPath(context);
     }
+
+    /** newGeoIPLookup creates a new GeoIP lookup task. */
+    public static GeoIPLookupTask newGeoIPLookupTask() {
+        return new MKGeoIPLookupTaskAdapter();
+    }
 }
