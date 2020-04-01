@@ -41,12 +41,26 @@ public class Application extends android.app.Application {
 	@Override public void onCreate() {
 		super.onCreate();
 
+		/*
+		    private final String[] validFeatureNames = new String[]{
+            CountlyFeatureNames.sessions,
+            CountlyFeatureNames.events,
+            CountlyFeatureNames.views,
+            CountlyFeatureNames.location,
+            CountlyFeatureNames.crashes,
+            CountlyFeatureNames.attribution,
+            CountlyFeatureNames.users,
+            CountlyFeatureNames.push,
+            CountlyFeatureNames.starRating};
+
+		 */
 		//TODO prepare features that should be added to the group
 		String[] groupFeatures = new String[]{
 				Countly.CountlyFeatureNames.sessions,
 				Countly.CountlyFeatureNames.views,
 				Countly.CountlyFeatureNames.crashes,
-				Countly.CountlyFeatureNames.push };
+				Countly.CountlyFeatureNames.push,
+				Countly.CountlyFeatureNames.events };
 		//TODO check for consent
 		//Countly.sharedInstance().setRequiresConsent(true);
 		CountlyConfig config = new CountlyConfig()
