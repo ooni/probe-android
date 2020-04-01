@@ -4,8 +4,6 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import org.openobservatory.ooniprobe.common.Application;
 
@@ -21,15 +19,12 @@ public class AlarmService {
         String[] separated = time.split(":");
         int hours = Integer.parseInt(separated[0]);
         int minutes = Integer.parseInt(separated[1]);
-        System.out.println("setRecurringAlarm " + time);
 
         Calendar updateTime = Calendar.getInstance();
         updateTime.setTimeZone(updateTime.getTimeZone());
         updateTime.set(Calendar.HOUR_OF_DAY, hours);
         updateTime.set(Calendar.MINUTE, minutes);
         updateTime.set(Calendar.SECOND, 0);
-
-        System.out.println("setRecurringAlarm " + updateTime.getTime());
 
         Intent alarm = new Intent(context, AlarmReceiver.class);
         PendingIntent recurringAlarm = PendingIntent.getBroadcast(context,
@@ -49,6 +44,5 @@ public class AlarmService {
         if (alarms!= null) {
             alarms.cancel(recurringAlarm);
         }
-        System.out.println("cancelRecurringAlarm");
     }
 }
