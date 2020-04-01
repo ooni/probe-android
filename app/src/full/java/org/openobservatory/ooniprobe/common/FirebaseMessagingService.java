@@ -68,7 +68,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 		if (remoteMessage.getData().size() > 0) {
 			try {
 				//TODO how to handle properly https://github.com/firebase/quickstart-android/blob/e9197f731e13b78dc29d95102af201347634aac2/messaging/app/src/main/java/com/google/firebase/quickstart/fcm/java/MyFirebaseMessagingService.java#L58-L101
-				NotificationService.sendNotification(this, remoteMessage.getData().get("title"), remoteMessage.getData().get("message"), null);
+				NotificationService.sendNotification(this, remoteMessage.getData().get("title"), remoteMessage.getData().get("message"), 0);
 
 				//TODO-FUTURE we can use click_action instead of type
 				JSONObject data = new JSONObject(params.toString());

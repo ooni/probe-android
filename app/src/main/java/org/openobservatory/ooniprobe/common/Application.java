@@ -14,6 +14,9 @@ import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 import java.io.IOException;
 import java.util.Date;
 
+import ly.count.android.sdk.Countly;
+import ly.count.android.sdk.CountlyConfig;
+import ly.count.android.sdk.DeviceId;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -37,7 +40,33 @@ public class Application extends android.app.Application {
 
 	@Override public void onCreate() {
 		super.onCreate();
-		FlowManager.init(this);
+
+		//TODO prepare features that should be added to the group
+		String[] groupFeatures = new String[]{
+				Countly.CountlyFeatureNames.sessions,
+				Countly.CountlyFeatureNames.views,
+				Countly.CountlyFeatureNames.crashes,
+				Countly.CountlyFeatureNames.push };
+		//TODO check for consent
+		//Countly.sharedInstance().setRequiresConsent(true);
+		CountlyConfig config = new CountlyConfig()
+				.setAppKey("fd78482a10e95fd471925399adbcb8ae1a45661f")
+				.setContext(this)
+				//.setDeviceId("lorenzo")
+				//.setDeviceId(null)
+				//it won't work with fdroid
+				.setIdMode(DeviceId.Type.ADVERTISING_ID)
+				//.setIdMode(DeviceId.Type.OPEN_UDID)
+				//.setRequiresConsent(true)
+				.setConsentEnabled(groupFeatures)
+				.setServerURL("https://mia-countly-test.ooni.nu")
+				//.setLoggingEnabled(!BuildConfig.DEBUG)
+				.setLoggingEnabled(true)
+				.setViewTracking(true)
+				.setHttpPostForced(true)
+				.enableCrashReporting();
+		Countly.sharedInstance().init(config);
+
 		preferenceManager = new PreferenceManager(this);
 		gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateAdapter()).registerTypeAdapter(TestKeys.Tampering.class, new TamperingJsonDeserializer()).create();
 		FlavorApplication.onCreate(this, preferenceManager.isSendCrash());
@@ -46,6 +75,8 @@ public class Application extends android.app.Application {
 		// Code commented to prevent callling API on app start
 		//if (preferenceManager.canCallDeleteJson())
 		//	Measurement.deleteUploadedJsons(this);
+
+		FlowManager.init(this);
 	}
 
 	public OkHttpClient getOkHttpClient() {

@@ -32,6 +32,8 @@ public class NotificationService {
         sendNotification(c, c.getString(R.string.General_AppName), c.getString(testSuite.getTitle()) + " " + c.getString(R.string.Notification_FinishedRunning), testSuite.getIcon());
     }
 */
+
+    //TODO icon not used
     public static void sendNotification(Context c, String title, String message, int icon) {
         NotificationManager notificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
         if (notificationManager == null)
