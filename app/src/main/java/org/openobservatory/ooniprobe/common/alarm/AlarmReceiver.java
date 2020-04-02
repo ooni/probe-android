@@ -15,7 +15,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         //TODO run more than one test
         WebsitesSuite suite = new WebsitesSuite();
-        Intent i = RunningActivity.newIntent(context, suite);
+        Intent i = RunningActivity.newBackgroundIntent(context, suite);
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(i);
     }

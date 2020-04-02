@@ -35,6 +35,8 @@ import localhost.toolkit.app.fragment.MessageDialogFragment;
 
 public class RunningActivity extends AbstractActivity {
     private static final String TEST = "test";
+    private static final String BACKGROUND_TASK = "background";
+
     @BindView(R.id.name)
     TextView name;
     @BindView(R.id.log)
@@ -64,12 +66,17 @@ public class RunningActivity extends AbstractActivity {
         return new Intent(context, RunningActivity.class).putExtra(TEST, testSuite);
     }
 
+    public static Intent newBackgroundIntent(Context context, AbstractSuite testSuite) {
+        return newIntent(context, testSuite).putExtra("background", true);
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //With this cunction we can move the activity to the background
+        //With this function we can move the activity to the background
         //https://stackoverflow.com/questions/10008879/intent-to-start-activity-but-dont-bring-to-front
-        //moveTaskToBack(true);
+        if (getIntent().getBooleanExtra(BACKGROUND_TASK, false))
+            moveTaskToBack(true);
         testSuite = (AbstractSuite) getIntent().getSerializableExtra(TEST);
         runtime = testSuite.getRuntime(getPreferenceManager());
         setTheme(testSuite.getThemeDark());
