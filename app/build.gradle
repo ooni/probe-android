@@ -68,7 +68,7 @@ dependencies {
 	implementation 'ru.noties:markwon:2.0.1'
 	implementation 'commons-io:commons-io:2.6'
 
-	implementation 'ly.count.android:sdk:19.09.2'
+	implementation 'ly.count.android:sdk:19.09.3'
 
 	androidTestImplementation 'androidx.test:runner:1.2.0'
 	androidTestImplementation 'androidx.test:rules:1.2.0'
