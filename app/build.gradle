@@ -4,6 +4,7 @@ apply plugin: 'io.fabric'
 android {
 	compileSdkVersion 29
 	buildToolsVersion '28.0.3'
+	ndkVersion '21.0.6113669'
 
 	compileOptions {
 		sourceCompatibility JavaVersion.VERSION_1_8
@@ -60,7 +61,6 @@ dependencies {
 	annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 
 	fullImplementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
-	implementation 'org.openobservatory.measurement_kit:android-libs:0.10.11-android.1'
 	implementation 'com.github.xanscale.LocalhostToolkit:app:19.05.01'
 	implementation 'pub.devrel:easypermissions:3.0.0'
 	implementation 'com.airbnb.android:lottie:3.0.7'
@@ -70,6 +70,7 @@ dependencies {
 
 	androidTestImplementation 'androidx.test:runner:1.2.0'
 	androidTestImplementation 'androidx.test:rules:1.2.0'
+	implementation project(path: ':engine')
 }
 
 apply plugin: 'com.google.gms.google-services'
