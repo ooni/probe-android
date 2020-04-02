@@ -89,6 +89,16 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.notifications_enabled), true);
 	}
 
+	//TODO how to handle local vs remote notifications?
+	/*
+	- Fdroid can't enable remote but they might to want to use local notifications
+	- Split the two settings
+	 */
+	public boolean isNotificationsCompletionTest() {
+		return sp.getBoolean(r.getString(R.string.notifications_completion), true);
+	}
+
+	//Old function dependent from notifications_enabled
 	public boolean isNotificationsCompletion() {
 		return isNotifications() && sp.getBoolean(r.getString(R.string.notifications_completion), true);
 	}

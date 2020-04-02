@@ -84,21 +84,23 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
         assert getArguments() != null;
         super.onResume();
         setPreferencesFromResource(getArguments().getInt(ARG_PREFERENCES_RES_ID), getArguments().getInt(ARG_CONTAINER_RES_ID), getArguments().getString(ARG_PREFERENCE_ROOT));
-
-        Preference timePreference = (Preference) findPreference(getActivity().getString(R.string.automated_testing_time));
-        String time = ((Application) getActivity().getApplication()).getPreferenceManager().getAutomatedTestingTime();
-        timePreference.setSummary(time);
-        timePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                showDateDialog(timePreference);
-                return false;
-            }
-        });
-
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         getActivity().setTitle(getPreferenceScreen().getTitle());
+
+        Preference timePreference = findPreference(getActivity().getString(R.string.automated_testing_time));
+        if (timePreference != null){
+            String time = ((Application) getActivity().getApplication()).getPreferenceManager().getAutomatedTestingTime();
+            timePreference.setSummary(time);
+            timePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    showDateDialog(timePreference);
+                    return false;
+                }
+            });
+        }
+
         for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++) {
             if (getPreferenceScreen().getPreference(i) instanceof EditTextPreference) {
                 EditTextPreference editTextPreference = (EditTextPreference) getPreferenceScreen().getPreference(i);
