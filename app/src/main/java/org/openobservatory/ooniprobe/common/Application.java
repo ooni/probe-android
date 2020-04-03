@@ -1,6 +1,5 @@
 package org.openobservatory.ooniprobe.common;
 
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.raizlabs.android.dbflow.config.FlowLog;
@@ -52,7 +51,6 @@ public class Application extends android.app.Application {
             CountlyFeatureNames.users,
             CountlyFeatureNames.push,
             CountlyFeatureNames.starRating};
-
 		 */
 		//TODO prepare features that should be added to the group
 		String[] groupFeatures = new String[]{
