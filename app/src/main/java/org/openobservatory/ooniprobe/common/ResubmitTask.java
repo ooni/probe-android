@@ -42,7 +42,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
     public ResubmitTask(A activity) {
         super(activity, true, false);
         task = new MKReporterTask(
-                activity.getString(R.string.software_name),
+                BuildConfig.SOFTWARE_NAME,
                 BuildConfig.VERSION_NAME,
                 MKResourcesManager.getCABundlePath(activity)
         );

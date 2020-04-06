@@ -89,7 +89,7 @@ public class Settings {
 			save_real_probe_asn = pm.isIncludeAsn();
 			save_real_probe_cc = pm.isIncludeCc();
 			save_real_probe_ip = pm.isIncludeIp();
-			software_name = c.getString(R.string.software_name);
+			software_name = BuildConfig.SOFTWARE_NAME;
 			software_version = BuildConfig.VERSION_NAME;
 			randomize_input = false;
 			no_file_report = true;

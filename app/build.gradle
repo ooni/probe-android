@@ -17,13 +17,18 @@ android {
 		versionName '2.3.2'
 		versionCode 59
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+		buildConfigField 'String', 'SOFTWARE_NAME', 'ooniprobe-android'
 	}
 
 	buildTypes {
+		//Debug is always debug. Will override all the flavors. Never release a debug version.
+		//TODO what to do whit these keys?
 		debug {
 			buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://registry.proteus.test.ooni.io"'
 			buildConfigField 'String', 'OONI_ORCHESTRATE_BASE_URL', '"https://orchestrate.ooni.io/"'
 			buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
+			buildConfigField 'String', 'SOFTWARE_NAME', '"ooniprobe-android-debug"'
+			resValue "string", "APP_NAME", "OONIDebug"
 		}
 
 		release {
@@ -32,15 +37,30 @@ android {
 			buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://registry.proteus.ooni.io"'
 			buildConfigField 'String', 'OONI_ORCHESTRATE_BASE_URL', '"https://orchestrate.ooni.io/"'
 			buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
+			resValue "string", "APP_NAME", "OONIProbe"
 		}
 	}
 
 	flavorDimensions 'license'
 	productFlavors {
-		fdroid { dimension 'license' }
-		full { dimension 'license' }
+		fdroid {
+			dimension 'license'
+			buildConfigField 'String', 'SOFTWARE_NAME', '"ooniprobe-android"'
+		}
+		full {
+			dimension 'license'
+			buildConfigField 'String', 'SOFTWARE_NAME', '"ooniprobe-android"'
+		}
+		experimental {
+			dimension = 'license'
+			applicationIdSuffix = '.experimental'
+			versionName = new Date().format('yyyyMMdd-HH')
+			buildConfigField 'String', 'SOFTWARE_NAME', '"ooniprobe-android-experimental"'
+			resValue "string", "APP_NAME", "OONIExperimental"
+		}
 	}
 }
+
 
 dependencies {
 	implementation 'androidx.appcompat:appcompat:1.1.0'
