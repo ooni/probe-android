@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
 
 android {
 	compileSdkVersion 29
@@ -18,26 +17,22 @@ android {
 		versionCode 59
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 		buildConfigField 'String', 'SOFTWARE_NAME', 'ooniprobe-android'
+		buildConfigField 'String', 'OONI_ORCHESTRATE_BASE_URL', '"https://orchestrate.ooni.io/"'
+		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 	}
 
 	buildTypes {
-		//Debug is always debug. Will override all the flavors. Never release a debug version.
-		//TODO what to do whit these keys?
 		debug {
 			buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://registry.proteus.test.ooni.io"'
-			buildConfigField 'String', 'OONI_ORCHESTRATE_BASE_URL', '"https://orchestrate.ooni.io/"'
-			buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 			buildConfigField 'String', 'SOFTWARE_NAME', '"ooniprobe-android-debug"'
-			resValue "string", "APP_NAME", "OONIDebug"
+			resValue "string", "APP_NAME", "OONI Debug"
 		}
 
 		release {
 			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 			buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://registry.proteus.ooni.io"'
-			buildConfigField 'String', 'OONI_ORCHESTRATE_BASE_URL', '"https://orchestrate.ooni.io/"'
-			buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
-			resValue "string", "APP_NAME", "OONIProbe"
+			resValue "string", "APP_NAME", "OONI Probe"
 		}
 	}
 
@@ -45,18 +40,16 @@ android {
 	productFlavors {
 		fdroid {
 			dimension 'license'
-			buildConfigField 'String', 'SOFTWARE_NAME', '"ooniprobe-android"'
 		}
 		full {
 			dimension 'license'
-			buildConfigField 'String', 'SOFTWARE_NAME', '"ooniprobe-android"'
 		}
 		experimental {
 			dimension = 'license'
 			applicationIdSuffix = '.experimental'
 			versionName = new Date().format('yyyyMMdd-HH')
 			buildConfigField 'String', 'SOFTWARE_NAME', '"ooniprobe-android-experimental"'
-			resValue "string", "APP_NAME", "OONIExperimental"
+			resValue "string", "APP_NAME", "OONI Experimental"
 		}
 	}
 }
@@ -92,4 +85,8 @@ dependencies {
 	androidTestImplementation 'androidx.test:rules:1.2.0'
 }
 
-apply plugin: 'com.google.gms.google-services'
+if (!getGradle().getStartParameter().getTaskRequests()
+		.toString().contains("Fdroid")){
+	apply plugin: 'com.google.gms.google-services'
+	apply plugin: 'io.fabric'
+}
