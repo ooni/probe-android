@@ -37,7 +37,7 @@ android {
 		}
 	}
 
-	flavorDimensions 'license'
+	flavorDimensions 'license', 'testing'
 	productFlavors {
 		fdroid {
 			dimension 'license'
@@ -45,12 +45,21 @@ android {
 		full {
 			dimension 'license'
 		}
+		stable {
+			dimension 'testing'
+		}
 		experimental {
-			dimension = 'license'
+			dimension = 'testing'
 			applicationIdSuffix = '.experimental'
 			versionName = new Date().format('yyyyMMdd-HH')
 			buildConfigField 'String', 'SOFTWARE_NAME', '"ooniprobe-android-experimental"'
 			resValue "string", "APP_NAME", "OONI Experimental"
+		}
+	}
+	variantFilter { variant ->
+		def names = variant.flavors*.name
+		if (names.contains("fdroid") && names.contains("experimental")) {
+			setIgnore(true)
 		}
 	}
 }
