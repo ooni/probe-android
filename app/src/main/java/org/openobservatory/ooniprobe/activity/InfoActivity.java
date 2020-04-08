@@ -25,7 +25,7 @@ public class InfoActivity extends AbstractActivity {
 		ButterKnife.bind(this);
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		version.setText(getString(R.string.version, BuildConfig.VERSION_NAME, Engine.getVersionMK()));
+		version.setText(getString(R.string.version, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, Engine.getVersionMK()));
 	}
 
 	@OnClick(R.id.learnMore) void onLearnMoreClick() {

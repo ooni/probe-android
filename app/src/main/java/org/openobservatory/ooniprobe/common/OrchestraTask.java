@@ -22,7 +22,7 @@ public class OrchestraTask extends AsyncTask<Void, Void, Void> {
 	public static void sync(Application app) {
 		if (app.getPreferenceManager().getToken() != null) {
 			org.openobservatory.engine.OrchestraTask client = Engine.newOrchestraTask(
-					app.getString(R.string.software_name),
+					BuildConfig.SOFTWARE_NAME,
 					BuildConfig.VERSION_NAME,
 					getSupportedTests(),
 					app.getPreferenceManager().getToken(),
