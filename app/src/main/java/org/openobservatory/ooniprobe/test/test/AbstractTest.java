@@ -12,9 +12,10 @@ import androidx.annotation.StringRes;
 import com.google.gson.Gson;
 
 import org.apache.commons.io.FileUtils;
+import org.openobservatory.engine.Engine;
+import org.openobservatory.engine.ExperimentTask;
 import org.openobservatory.ooniprobe.common.ExceptionManager;
 import org.openobservatory.ooniprobe.common.MKException;
-import org.openobservatory.ooniprobe.common.OrchestraTask;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.model.database.Measurement;
@@ -29,9 +30,6 @@ import java.io.File;
 import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.util.List;
-
-import io.ooni.mk.MKAsyncTask;
-import io.ooni.mk.MKResourcesManager;
 
 public abstract class AbstractTest implements Serializable {
     private static final String UNUSED_KEY = "UNUSED_KEY";
@@ -62,7 +60,7 @@ public abstract class AbstractTest implements Serializable {
     void run(Context c, PreferenceManager pm, Gson gson, Settings settings, Result result, int index, TestCallback testCallback) {
         //Checking for resources before running any test
         try {
-            boolean okay = MKResourcesManager.maybeUpdateResources(c);
+            boolean okay = Engine.maybeUpdateResources(c);
             if (!okay) {
                 throw new Exception("MKResourcesManager didn't find resources");
             }
@@ -76,7 +74,14 @@ public abstract class AbstractTest implements Serializable {
         settings.options.max_runtime = max_runtime;
         settings.annotations.origin = origin;
         measurements = new SparseArray<>();
-        MKAsyncTask task = MKAsyncTask.start(gson.toJson(settings));
+        ExperimentTask task;
+        try {
+            task = Engine.startExperimentTask(settings.toExperimentSettings(gson, c));
+        } catch (Exception exc) {
+            exc.printStackTrace();
+            ExceptionManager.logException(exc);
+            return;
+        }
         while (!task.isDone())
             try {
                 String json = task.waitForNextEvent();

@@ -7,13 +7,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import android.widget.TextView;
 
+import org.openobservatory.engine.Engine;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.ooni.mk.MKVersion;
 
 public class InfoActivity extends AbstractActivity {
 	@BindView(R.id.toolbar) Toolbar toolbar;
@@ -25,7 +25,7 @@ public class InfoActivity extends AbstractActivity {
 		ButterKnife.bind(this);
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		version.setText(getString(R.string.version, BuildConfig.VERSION_NAME, MKVersion.getVersionMK()));
+		version.setText(getString(R.string.version, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, Engine.getVersionMK()));
 	}
 
 	@OnClick(R.id.learnMore) void onLearnMoreClick() {
