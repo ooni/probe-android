@@ -23,6 +23,7 @@ android {
 	}
 
 	buildTypes {
+		//TODO (lowpri) improve this, as the variables here override the ones of the flavor
 		debug {
 			buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://registry.proteus.test.ooni.io"'
 			buildConfigField 'String', 'SOFTWARE_NAME', '"ooniprobe-android-debug"'
@@ -37,28 +38,35 @@ android {
 		}
 	}
 
-	flavorDimensions 'license', 'testing'
+	flavorDimensions 'testing', 'license'
 	productFlavors {
-		fdroid {
-			dimension 'license'
-		}
-		full {
-			dimension 'license'
-		}
 		stable {
 			dimension 'testing'
+		}
+		dev {
+			dimension = 'testing'
+			applicationIdSuffix = '.dev'
+			versionName = new Date().format('yyyyMMdd-HH')
+			buildConfigField 'String', 'SOFTWARE_NAME', '"ooniprobe-android-dev"'
+			resValue "string", "APP_NAME", "OONI Dev"
 		}
 		experimental {
 			dimension = 'testing'
 			applicationIdSuffix = '.experimental'
 			versionName = new Date().format('yyyyMMdd-HH')
 			buildConfigField 'String', 'SOFTWARE_NAME', '"ooniprobe-android-experimental"'
-			resValue "string", "APP_NAME", "OONI Experimental"
+			resValue "string", "APP_NAME", "OONI Exp"
+		}
+		fdroid {
+			dimension 'license'
+		}
+		full {
+			dimension 'license'
 		}
 	}
 	variantFilter { variant ->
 		def names = variant.flavors*.name
-		if (names.contains("fdroid") && names.contains("experimental")) {
+		if (names.contains("fdroid") && (names.contains("experimental")  || names.contains("dev"))) {
 			setIgnore(true)
 		}
 	}
