@@ -17,24 +17,24 @@ android {
 		versionName '2.3.2'
 		versionCode 59
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-		buildConfigField 'String', 'SOFTWARE_NAME', 'ooniprobe-android'
+		buildConfigField 'String', 'SOFTWARE_NAME', '"ooniprobe-android"'
 		buildConfigField 'String', 'OONI_ORCHESTRATE_BASE_URL', '"https://orchestrate.ooni.io/"'
 		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
+		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://registry.proteus.ooni.io"'
+		resValue "string", "APP_NAME", "OONI Probe"
+		buildConfigField 'String', 'BASE_SOFTWARE_NAME', 'SOFTWARE_NAME+"ooniprobe-android"'
 	}
 
 	buildTypes {
-		//TODO (lowpri) improve this, as the variables here override the ones of the flavor
 		debug {
 			buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://registry.proteus.test.ooni.io"'
-			buildConfigField 'String', 'SOFTWARE_NAME', '"ooniprobe-android-debug"'
-			resValue "string", "APP_NAME", "OONI Debug"
+			//TODO (non-prio) set SOFTWARE_NAME to ooniprobe-android-dev. Not in this way as it will override the flavors' one
+			//buildConfigField 'String', 'SOFTWARE_NAME', 'ooniprobe-android'
 		}
 
 		release {
 			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-			buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://registry.proteus.ooni.io"'
-			resValue "string", "APP_NAME", "OONI Probe"
 		}
 	}
 
