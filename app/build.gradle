@@ -17,24 +17,23 @@ android {
 		versionName '2.3.2'
 		versionCode 59
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-		buildConfigField 'String', 'SOFTWARE_NAME', '"ooniprobe-android"'
 		buildConfigField 'String', 'OONI_ORCHESTRATE_BASE_URL', '"https://orchestrate.ooni.io/"'
 		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://registry.proteus.ooni.io"'
 		resValue "string", "APP_NAME", "OONI Probe"
-		buildConfigField 'String', 'BASE_SOFTWARE_NAME', 'SOFTWARE_NAME+"ooniprobe-android"'
+		buildConfigField 'String', 'SOFTWARE_NAME', 'BASE_SOFTWARE_NAME+IS_DEBUG'
 	}
 
 	buildTypes {
 		debug {
 			buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://registry.proteus.test.ooni.io"'
-			//TODO (non-prio) set SOFTWARE_NAME to ooniprobe-android-dev. Not in this way as it will override the flavors' one
-			//buildConfigField 'String', 'SOFTWARE_NAME', 'ooniprobe-android'
+			buildConfigField 'String', 'IS_DEBUG', '"-debug"'
 		}
 
 		release {
 			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+			buildConfigField 'String', 'IS_DEBUG', '""'
 		}
 	}
 
@@ -42,19 +41,20 @@ android {
 	productFlavors {
 		stable {
 			dimension 'testing'
+			buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android"'
 		}
 		dev {
 			dimension = 'testing'
 			applicationIdSuffix = '.dev'
 			versionName = new Date().format('yyyyMMdd-HH')
-			buildConfigField 'String', 'SOFTWARE_NAME', '"ooniprobe-android-dev"'
+			buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-dev"'
 			resValue "string", "APP_NAME", "OONI Dev"
 		}
 		experimental {
 			dimension = 'testing'
 			applicationIdSuffix = '.experimental'
 			versionName = new Date().format('yyyyMMdd-HH')
-			buildConfigField 'String', 'SOFTWARE_NAME', '"ooniprobe-android-experimental"'
+			buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-experimental"'
 			resValue "string", "APP_NAME", "OONI Exp"
 		}
 		fdroid {
