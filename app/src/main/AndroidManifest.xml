@@ -9,7 +9,7 @@
 		android:name=".common.Application"
 		android:allowBackup="false"
 		android:icon="@mipmap/ic_launcher"
-		android:label="@string/General_AppName"
+		android:label="@string/APP_NAME"
 		android:supportsRtl="true"
 		android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App">
 		<activity
