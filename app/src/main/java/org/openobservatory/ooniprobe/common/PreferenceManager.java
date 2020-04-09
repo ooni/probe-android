@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.text.TextUtils;
 
+import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 
 import java.util.ArrayList;
@@ -63,7 +64,15 @@ public class PreferenceManager {
 	}
 
 	public boolean isShowOnboarding() {
-		return sp.getBoolean(SHOW_ONBOARDING, true);
+		return sp.getBoolean(SHOW_ONBOARDING, isOnboardingEnabled());
+	}
+
+	private boolean isOnboardingEnabled() {
+		if (BuildConfig.FLAVOR_testing.equals("experimental") ||
+				BuildConfig.FLAVOR_testing.equals("dev") ||
+				BuildConfig.BUILD_TYPE.equals("debug"))
+			return false;
+		return true;
 	}
 
 	public void setShowOnboarding(boolean showIntro) {
