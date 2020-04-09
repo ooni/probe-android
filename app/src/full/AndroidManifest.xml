@@ -14,7 +14,7 @@
 			android:resource="@color/color_base" />
 		<meta-data
 			android:name="com.google.firebase.messaging.default_notification_channel_id"
-			android:value="@string/software_name" />
+			android:value="@string/General_AppName" />
 
 		<service android:name=".common.FirebaseMessagingService"
 			android:exported="false">
