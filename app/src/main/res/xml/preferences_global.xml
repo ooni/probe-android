@@ -2,15 +2,6 @@
 	android:key="@string/preferences"
 	android:title="@string/Settings_Title">
 	<androidx.preference.PreferenceScreen
-		android:icon="@drawable/notifications"
-		android:key="@string/notifications"
-		android:title="@string/Settings_Notifications_Label">
-		<androidx.preference.SwitchPreferenceCompat
-			android:defaultValue="false"
-			android:key="@string/notifications_enabled"
-			android:title="@string/Settings_Notifications_Enabled" />
-	</androidx.preference.PreferenceScreen>
-	<androidx.preference.PreferenceScreen
 		android:icon="@drawable/sharing"
 		android:key="@string/sharing"
 		android:title="@string/Settings_Sharing_Label">
