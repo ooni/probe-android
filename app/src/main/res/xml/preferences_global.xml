@@ -9,16 +9,6 @@
 			android:defaultValue="false"
 			android:key="@string/notifications_enabled"
 			android:title="@string/Settings_Notifications_Enabled" />
-		<androidx.preference.SwitchPreferenceCompat
-			android:defaultValue="true"
-			android:dependency="@string/notifications_enabled"
-			android:key="@string/notifications_completion"
-			android:title="@string/Settings_Notifications_OnTestCompletion" />
-		<!-- <androidx.preference.SwitchPreferenceCompat
-			android:defaultValue="false"
-			android:dependency="@string/notifications_enabled"
-			android:key="@string/notifications_news"
-			android:title="@string/Settings_Notifications_OnNews" /> -->
 	</androidx.preference.PreferenceScreen>
 	<androidx.preference.PreferenceScreen
 		android:icon="@drawable/sharing"

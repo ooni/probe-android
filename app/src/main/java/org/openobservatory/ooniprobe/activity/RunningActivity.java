@@ -141,9 +141,7 @@ public class RunningActivity extends AbstractActivity {
             RunningActivity act = ref.get();
             if (act != null && !act.isFinishing()) {
                 if (act.background) {
-                    if(act.getPreferenceManager().isNotificationsCompletion()) {
-                        NotificationService.notifyTestEnded(act, act.testSuite);
-                    }
+                    NotificationService.notifyTestEnded(act, act.testSuite);
                 } else
                     act.startActivity(MainActivity.newIntent(act, R.id.testResults));
                 act.finish();
