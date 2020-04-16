@@ -78,14 +78,6 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.notifications_enabled), true);
 	}
 
-	public boolean isNotificationsCompletion() {
-		return isNotifications() && sp.getBoolean(r.getString(R.string.notifications_completion), true);
-	}
-
-	public boolean isNotificationsNews() {
-		return isNotifications() && sp.getBoolean(r.getString(R.string.notifications_news), true);
-	}
-
 	public boolean isUploadResults() {
 		return sp.getBoolean(r.getString(R.string.upload_results), true);
 	}
