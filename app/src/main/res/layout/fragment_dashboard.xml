@@ -23,6 +23,20 @@
 				android:scaleType="centerInside"
 				android:src="@drawable/ooni_logo" />
 		</androidx.appcompat.widget.Toolbar>
+		<!-- I started by moving here the runnbutton from item_testsuite.xml -->
+		<Button
+			android:id="@+id/run"
+			style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:text="@string/Dashboard_Card_Run"
+			android:textAllCaps="false"
+			android:textColor="?attr/colorPrimary"
+			android:transitionName="@string/transitionNameRun"
+			app:cornerRadius="24dp"
+			app:rippleColor="@color/ripple_material_light" />
+
 	</com.google.android.material.appbar.AppBarLayout>
 
 	<androidx.recyclerview.widget.RecyclerView
