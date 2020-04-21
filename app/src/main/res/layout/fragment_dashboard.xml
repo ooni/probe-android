@@ -66,7 +66,7 @@
 		android:id="@+id/last_tested"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="@string/Dashboard_Overview_LastRun_Never"
+		android:text="@string/Dashboard_Overview_LatestTest"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintTop_toBottomOf="@id/run"
