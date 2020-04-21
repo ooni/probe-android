@@ -61,13 +61,13 @@ public class RunningActivity extends AbstractActivity {
                     .build().show(context.getSupportFragmentManager(), null);
             return null;
         } else
-            return new Intent(context, RunningActivity.class).putParcelableArrayListExtra(TEST, testSuites);
+            return new Intent(context, RunningActivity.class).putExtra(TEST, testSuites);
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        testSuites = getIntent().getParcelableArrayListExtra(TEST);
+        testSuites = (ArrayList<AbstractSuite>) getIntent().getParcelableExtra(TEST);
         testSuite = testSuites.get(0);
         runtime = testSuite.getRuntime(getPreferenceManager());
         setTheme(testSuite.getThemeDark());
