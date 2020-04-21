@@ -43,6 +43,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		View v = inflater.inflate(R.layout.fragment_dashboard, container, false);
 		ButterKnife.bind(this, v);
 		((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+		((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(null);
 		items = new ArrayList<>();
 		adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
 		recycler.setAdapter(adapter);

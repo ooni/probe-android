@@ -36,23 +36,23 @@ public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, Test
 		holder.title.setText(extra.getTitle());
 		holder.desc.setText(extra.getCardDesc());
 		holder.icon.setImageResource(extra.getIcon());
-		int color = ContextCompat.getColor(holder.card.getContext(), extra.getColor());
-		holder.card.setCardBackgroundColor(color);
-		holder.run.setTextColor(color);
-		holder.run.setOnClickListener(onClickListener);
+//		int color = ContextCompat.getColor(holder.card.getContext(), extra.getColor());
+//		holder.card.setCardBackgroundColor(color);
+//		holder.run.setTextColor(color);
+//		holder.run.setOnClickListener(onClickListener);
 		holder.itemView.setOnClickListener(onClickListener);
-		holder.run.setTag(extra);
+//		holder.run.setTag(extra);
 		holder.itemView.setTag(extra);
-		holder.runtime.setText(holder.runtime.getContext().getString(R.string.Dashboard_Card_Seconds, extra.getRuntime(pm).toString()));
+//		holder.runtime.setText(holder.runtime.getContext().getString(R.string.Dashboard_Card_Seconds, extra.getRuntime(pm).toString()));
 	}
 
 	class ViewHolderImpl extends RecyclerView.ViewHolder {
 		@BindView(R.id.title) TextView title;
 		@BindView(R.id.desc) TextView desc;
 		@BindView(R.id.icon) ImageView icon;
-		@BindView(R.id.card) CardView card;
-		@BindView(R.id.run) Button run;
-		@BindView(R.id.runtime) TextView runtime;
+//		@BindView(R.id.card) CardView card;
+//		@BindView(R.id.run) Button run;
+//		@BindView(R.id.runtime) TextView runtime;
 
 		ViewHolderImpl(View itemView) {
 			super(itemView);
