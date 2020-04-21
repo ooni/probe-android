@@ -60,14 +60,21 @@ public class RunningActivity extends AbstractActivity {
                     .withMessage(context.getString(R.string.Modal_Error_NoInternet))
                     .build().show(context.getSupportFragmentManager(), null);
             return null;
-        } else
-            return new Intent(context, RunningActivity.class).putExtra(TEST, testSuites);
+        } else {
+            Bundle extra = new Bundle();
+            extra.putSerializable(TEST, testSuites);
+            return new Intent(context, RunningActivity.class).putExtra(TEST, extra);
+        }
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        testSuites = (ArrayList<AbstractSuite>) getIntent().getParcelableExtra(TEST);
+        Bundle extra = getIntent().getBundleExtra(TEST);
+        testSuites = (ArrayList<AbstractSuite>) extra.getSerializable(TEST);
+        if (testSuites == null || testSuites.size() == 0)
+            finish();
+        //TODO cycle array
         testSuite = testSuites.get(0);
         runtime = testSuite.getRuntime(getPreferenceManager());
         setTheme(testSuite.getThemeDark());

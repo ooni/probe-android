@@ -17,7 +17,7 @@ import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
 import androidx.annotation.XmlRes;
 
-public abstract class AbstractSuite implements Serializable, Parcelable {
+public abstract class AbstractSuite implements Serializable {
 	private final int title;
 	private final int cardDesc;
 	private final int icon;
