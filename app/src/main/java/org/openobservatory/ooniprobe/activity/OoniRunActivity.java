@@ -127,7 +127,7 @@ public class OoniRunActivity extends AbstractActivity {
 								iconBig.setVisibility(View.VISIBLE);
 							}
 							run.setOnClickListener(v -> {
-								Intent runIntent = RunningActivity.newIntent(OoniRunActivity.this, suite);
+								Intent runIntent = RunningActivity.newIntent(OoniRunActivity.this, suite.asArray());
 								if (runIntent != null) {
 									startActivity(runIntent);
 									finish();

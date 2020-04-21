@@ -150,7 +150,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
         }
         test.setInputs(urls);
         testSuite.setTestList(test);
-        Intent intent = RunningActivity.newIntent((AbstractActivity) this, testSuite);
+        Intent intent = RunningActivity.newIntent((AbstractActivity) this, testSuite.asArray());
         if (intent != null) {
             startActivity(intent);
             this.finish();

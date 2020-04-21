@@ -1,10 +1,13 @@
 package org.openobservatory.ooniprobe.test.suite;
 
+import android.os.Parcelable;
+
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import androidx.annotation.CallSuper;
 import androidx.annotation.ColorRes;
@@ -14,7 +17,7 @@ import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
 import androidx.annotation.XmlRes;
 
-public abstract class AbstractSuite implements Serializable {
+public abstract class AbstractSuite implements Serializable, Parcelable {
 	private final int title;
 	private final int cardDesc;
 	private final int icon;
@@ -109,4 +112,11 @@ public abstract class AbstractSuite implements Serializable {
 			runtime = 3600;
 		return runtime;
 	}
+
+	public ArrayList<AbstractSuite> asArray(){
+		ArrayList<AbstractSuite> list = new ArrayList<>();
+		list.add(this);
+		return list;
+	}
+
 }

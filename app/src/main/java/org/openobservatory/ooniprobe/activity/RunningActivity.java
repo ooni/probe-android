@@ -29,6 +29,9 @@ import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.common.OrchestraTask;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import localhost.toolkit.app.fragment.MessageDialogFragment;
@@ -45,11 +48,12 @@ public class RunningActivity extends AbstractActivity {
     ProgressBar progress;
     @BindView(R.id.animation)
     LottieAnimationView animation;
+    private ArrayList<AbstractSuite> testSuites;
     private AbstractSuite testSuite;
     private boolean background;
     private Integer runtime;
 
-    public static Intent newIntent(AbstractActivity context, AbstractSuite testSuite) {
+    public static Intent newIntent(AbstractActivity context, ArrayList<AbstractSuite> testSuites) {
         if (ReachabilityManager.getNetworkType(context).equals(ReachabilityManager.NO_INTERNET)) {
             new MessageDialogFragment.Builder()
                     .withTitle(context.getString(R.string.Modal_Error))
@@ -57,13 +61,14 @@ public class RunningActivity extends AbstractActivity {
                     .build().show(context.getSupportFragmentManager(), null);
             return null;
         } else
-            return new Intent(context, RunningActivity.class).putExtra(TEST, testSuite);
+            return new Intent(context, RunningActivity.class).putExtra(TEST, testSuites);
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        testSuite = (AbstractSuite) getIntent().getSerializableExtra(TEST);
+        testSuites = (ArrayList<AbstractSuite>) getIntent().getParcelableExtra(TEST);
+        testSuite = testSuites.get(0);
         runtime = testSuite.getRuntime(getPreferenceManager());
         setTheme(testSuite.getThemeDark());
         setContentView(R.layout.activity_running);
