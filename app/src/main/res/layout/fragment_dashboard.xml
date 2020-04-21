@@ -19,7 +19,9 @@
 				android:layout_width="wrap_content"
 				android:layout_height="match_parent"
 				android:scaleType="centerInside"
-				android:src="@drawable/ooni_logo" />
+				android:layout_marginLeft="15dp"
+				android:layout_marginStart="15dp"
+				android:src="@drawable/ooniprobe_logo" />
 
 		</androidx.appcompat.widget.Toolbar>
 
