@@ -19,6 +19,7 @@ public class InstantMessagingSuite extends AbstractSuite {
 				R.string.Test_InstantMessaging_Fullname,
 				R.string.Dashboard_InstantMessaging_Card_Description,
 				R.drawable.test_instant_messaging,
+				R.drawable.test_instant_messaging_24,
 				R.color.color_cyan6,
 				R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_InstantMessaging,
 				R.style.Theme_MaterialComponents_NoActionBar_App_InstantMessaging,

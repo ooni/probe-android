@@ -18,6 +18,7 @@ public class PerformanceSuite extends AbstractSuite {
 				R.string.Test_Performance_Fullname,
 				R.string.Dashboard_Performance_Card_Description,
 				R.drawable.test_performance,
+				R.drawable.test_performance_24,
 				R.color.color_fuchsia6,
 				R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Performance,
 				R.style.Theme_MaterialComponents_NoActionBar_App_Performance,
