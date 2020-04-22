@@ -37,6 +37,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 	@BindView(R.id.recycler) RecyclerView recycler;
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	private ArrayList<TestsuiteItem> items;
+	private ArrayList<AbstractSuite> testSuites;
 	private HeterogeneousRecyclerAdapter<TestsuiteItem> adapter;
 
 	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		ButterKnife.bind(this, v);
 		((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 		items = new ArrayList<>();
+		testSuites = new ArrayList<>();
 		adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
 		recycler.setAdapter(adapter);
 		recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -54,10 +56,13 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		super.onResume();
 		PreferenceManager pm = ((Application) getActivity().getApplication()).getPreferenceManager();
 		items.clear();
-		items.add(new TestsuiteItem(new WebsitesSuite(), pm, this));
-		items.add(new TestsuiteItem(new InstantMessagingSuite(), pm, this));
-		items.add(new TestsuiteItem(new MiddleBoxesSuite(), pm, this));
-		items.add(new TestsuiteItem(new PerformanceSuite(), pm, this));
+		testSuites.clear();
+		testSuites.add(new WebsitesSuite());
+		testSuites.add(new InstantMessagingSuite());
+		testSuites.add(new MiddleBoxesSuite());
+		testSuites.add(new PerformanceSuite());
+		for (AbstractSuite testSuite : testSuites)
+			items.add(new TestsuiteItem(testSuite, pm, this));
 		adapter.notifyTypesChanged();
 	}
 
@@ -65,7 +70,8 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		AbstractSuite testSuite = (AbstractSuite) v.getTag();
 		switch (v.getId()) {
 			case R.id.run:
-				Intent intent = RunningActivity.newIntent((AbstractActivity) getActivity(), testSuite.asArray());
+				//Intent intent = RunningActivity.newIntent((AbstractActivity) getActivity(), testSuite.asArray());
+				Intent intent = RunningActivity.newIntent((AbstractActivity) getActivity(), testSuites);
 				if (intent != null)
 					ActivityCompat.startActivity(getActivity(), intent, null);
 				break;

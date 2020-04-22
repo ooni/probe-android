@@ -1,15 +1,6 @@
 package org.openobservatory.ooniprobe.activity;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.widget.ProgressBar;
@@ -17,7 +8,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.core.app.NotificationCompat;
 
 import com.airbnb.lottie.LottieAnimationView;
 
@@ -27,10 +17,8 @@ import org.openobservatory.ooniprobe.common.NotificationService;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
-import org.openobservatory.ooniprobe.common.OrchestraTask;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,16 +58,29 @@ public class RunningActivity extends AbstractActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle extra = getIntent().getBundleExtra(TEST);
-        testSuites = (ArrayList<AbstractSuite>) extra.getSerializable(TEST);
-        if (testSuites == null || testSuites.size() == 0)
-            finish();
-        //TODO cycle array
-        testSuite = testSuites.get(0);
-        runtime = testSuite.getRuntime(getPreferenceManager());
-        setTheme(testSuite.getThemeDark());
+        setTheme(R.style.Theme_MaterialComponents_NoActionBar_App);
         setContentView(R.layout.activity_running);
         ButterKnife.bind(this);
+        Bundle extra = getIntent().getBundleExtra(TEST);
+        testSuites = (ArrayList<AbstractSuite>) extra.getSerializable(TEST);
+        if (testSuites == null)
+            finish();
+        runtTest();
+    }
+
+    private void runtTest() {
+        //TODO cycle array
+        if (testSuites.size() > 0) {
+            testSuite = testSuites.get(0);
+            testStart();
+            setTestRunning(true);
+            new TestAsyncTaskImpl(this, testSuite.getResult()).execute(testSuite.getTestList(getPreferenceManager()));
+        }
+    }
+
+    private void testStart(){
+        runtime = testSuite.getRuntime(getPreferenceManager());
+        getWindow().setBackgroundDrawableResource(testSuite.getColor());
         animation.setImageAssetsFolder("anim/");
         animation.setAnimation(testSuite.getAnim());
         animation.setRepeatCount(Animation.INFINITE);
@@ -87,8 +88,6 @@ public class RunningActivity extends AbstractActivity {
         progress.setIndeterminate(true);
         eta.setText(R.string.Dashboard_Running_CalculatingETA);
         progress.setMax(testSuite.getTestList(getPreferenceManager()).length * 100);
-        setTestRunning(true);
-        new TestAsyncTaskImpl(this, testSuite.getResult()).execute(testSuite.getTestList(getPreferenceManager()));
     }
 
     @Override
@@ -151,6 +150,14 @@ public class RunningActivity extends AbstractActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             RunningActivity act = ref.get();
+            act.testSuites.remove(act.testSuite);
+            if (act.testSuites.size() == 0)
+                endTest(act);
+            else
+                act.runtTest();
+        }
+
+        private void endTest(RunningActivity act){
             if (act != null && !act.isFinishing()) {
                 if (act.background) {
                     NotificationService.notifyTestEnded(act, act.testSuite);
@@ -158,6 +165,7 @@ public class RunningActivity extends AbstractActivity {
                     act.startActivity(MainActivity.newIntent(act, R.id.testResults));
                 act.finish();
             }
+
         }
     }
 }
