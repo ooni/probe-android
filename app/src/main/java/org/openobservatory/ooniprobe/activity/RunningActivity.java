@@ -1,14 +1,6 @@
 package org.openobservatory.ooniprobe.activity;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.animation.Animation;
@@ -17,7 +9,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.core.app.NotificationCompat;
 
 import com.airbnb.lottie.LottieAnimationView;
 
@@ -27,7 +18,8 @@ import org.openobservatory.ooniprobe.common.NotificationService;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
-import org.openobservatory.ooniprobe.common.OrchestraTask;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,29 +37,55 @@ public class RunningActivity extends AbstractActivity {
     ProgressBar progress;
     @BindView(R.id.animation)
     LottieAnimationView animation;
+    private ArrayList<AbstractSuite> testSuites;
     private AbstractSuite testSuite;
     private boolean background;
     private Integer runtime;
 
-    public static Intent newIntent(AbstractActivity context, AbstractSuite testSuite) {
+    public static Intent newIntent(AbstractActivity context, ArrayList<AbstractSuite> testSuites) {
         if (ReachabilityManager.getNetworkType(context).equals(ReachabilityManager.NO_INTERNET)) {
             new MessageDialogFragment.Builder()
                     .withTitle(context.getString(R.string.Modal_Error))
                     .withMessage(context.getString(R.string.Modal_Error_NoInternet))
                     .build().show(context.getSupportFragmentManager(), null);
             return null;
-        } else
-            return new Intent(context, RunningActivity.class).putExtra(TEST, testSuite);
+        } else {
+            Bundle extra = new Bundle();
+            extra.putSerializable(TEST, testSuites);
+            return new Intent(context, RunningActivity.class).putExtra(TEST, extra);
+        }
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        testSuite = (AbstractSuite) getIntent().getSerializableExtra(TEST);
-        runtime = testSuite.getRuntime(getPreferenceManager());
-        setTheme(testSuite.getThemeDark());
+        setTheme(R.style.Theme_MaterialComponents_NoActionBar_App);
         setContentView(R.layout.activity_running);
         ButterKnife.bind(this);
+        Bundle extra = getIntent().getBundleExtra(TEST);
+        testSuites = (ArrayList<AbstractSuite>) extra.getSerializable(TEST);
+        if (testSuites == null) {
+            finish();
+            return;
+        }
+        runTest();
+    }
+
+    private void runTest() {
+        if (testSuites.size() > 0) {
+            testSuite = testSuites.get(0);
+            testStart();
+            setTestRunning(true);
+            new TestAsyncTaskImpl(this, testSuite.getResult()).execute(testSuite.getTestList(getPreferenceManager()));
+        }
+    }
+
+    private void testStart(){
+        runtime = testSuite.getRuntime(getPreferenceManager());
+        getWindow().setBackgroundDrawableResource(testSuite.getColor());
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().setStatusBarColor(testSuite.getColor());
+        }
         animation.setImageAssetsFolder("anim/");
         animation.setAnimation(testSuite.getAnim());
         animation.setRepeatCount(Animation.INFINITE);
@@ -75,8 +93,6 @@ public class RunningActivity extends AbstractActivity {
         progress.setIndeterminate(true);
         eta.setText(R.string.Dashboard_Running_CalculatingETA);
         progress.setMax(testSuite.getTestList(getPreferenceManager()).length * 100);
-        setTestRunning(true);
-        new TestAsyncTaskImpl(this, testSuite.getResult()).execute(testSuite.getTestList(getPreferenceManager()));
     }
 
     @Override
@@ -139,6 +155,14 @@ public class RunningActivity extends AbstractActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             RunningActivity act = ref.get();
+            act.testSuites.remove(act.testSuite);
+            if (act.testSuites.size() == 0)
+                endTest(act);
+            else
+                act.runTest();
+        }
+
+        private void endTest(RunningActivity act){
             if (act != null && !act.isFinishing()) {
                 if (act.background) {
                     NotificationService.notifyTestEnded(act, act.testSuite);
@@ -146,6 +170,7 @@ public class RunningActivity extends AbstractActivity {
                     act.startActivity(MainActivity.newIntent(act, R.id.testResults));
                 act.finish();
             }
+
         }
     }
 }

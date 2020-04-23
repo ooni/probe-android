@@ -41,6 +41,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.last_tested) TextView lastTested;
 	private ArrayList<TestsuiteItem> items;
+	private ArrayList<AbstractSuite> testSuites;
 	private HeterogeneousRecyclerAdapter<TestsuiteItem> adapter;
 
 	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 		((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(null);
 		items = new ArrayList<>();
+		testSuites = new ArrayList<>();
 		adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
 		recycler.setAdapter(adapter);
 		recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -59,15 +61,18 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		super.onResume();
 		PreferenceManager pm = ((Application) getActivity().getApplication()).getPreferenceManager();
 		items.clear();
-		items.add(new TestsuiteItem(new WebsitesSuite(), pm, this));
-		items.add(new TestsuiteItem(new InstantMessagingSuite(), pm, this));
-		items.add(new TestsuiteItem(new MiddleBoxesSuite(), pm, this));
-		items.add(new TestsuiteItem(new PerformanceSuite(), pm, this));
+		testSuites.clear();
+		testSuites.add(new WebsitesSuite());
+		testSuites.add(new InstantMessagingSuite());
+		testSuites.add(new MiddleBoxesSuite());
+		testSuites.add(new PerformanceSuite());
+		for (AbstractSuite testSuite : testSuites)
+			items.add(new TestsuiteItem(testSuite, pm, this));
 		setLastTest();
 		adapter.notifyTypesChanged();
 	}
 
-	private void setLastTest(){
+	private void setLastTest() {
 		Result lastResult = Result.getLastResult();
 		if (lastResult == null)
 			lastTested.setText(getString(R.string.Dashboard_Overview_LatestTest)
@@ -79,11 +84,17 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 					DateUtils.getRelativeTimeSpanString(lastResult.start_time.getTime()));
 	}
 
+	public void runAll(){
+		Intent intent = RunningActivity.newIntent((AbstractActivity) getActivity(), testSuites);
+		if (intent != null)
+			ActivityCompat.startActivity(getActivity(), intent, null);
+	}
+
 	@Override public void onClick(View v) {
 		AbstractSuite testSuite = (AbstractSuite) v.getTag();
 		switch (v.getId()) {
 			case R.id.run:
-				Intent intent = RunningActivity.newIntent((AbstractActivity) getActivity(), testSuite);
+				Intent intent = RunningActivity.newIntent((AbstractActivity) getActivity(), testSuite.asArray());
 				if (intent != null)
 					ActivityCompat.startActivity(getActivity(), intent, null);
 				break;
