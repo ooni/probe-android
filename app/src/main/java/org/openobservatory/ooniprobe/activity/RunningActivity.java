@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.activity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.widget.ProgressBar;
@@ -81,6 +82,9 @@ public class RunningActivity extends AbstractActivity {
     private void testStart(){
         runtime = testSuite.getRuntime(getPreferenceManager());
         getWindow().setBackgroundDrawableResource(testSuite.getColor());
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().setStatusBarColor(testSuite.getColor());
+        }
         animation.setImageAssetsFolder("anim/");
         animation.setAnimation(testSuite.getAnim());
         animation.setRepeatCount(Animation.INFINITE);
