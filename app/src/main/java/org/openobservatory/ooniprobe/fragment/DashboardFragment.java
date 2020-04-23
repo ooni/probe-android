@@ -66,12 +66,17 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		adapter.notifyTypesChanged();
 	}
 
+	public void runAll(){
+		Intent intent = RunningActivity.newIntent((AbstractActivity) getActivity(), testSuites);
+		if (intent != null)
+			ActivityCompat.startActivity(getActivity(), intent, null);
+	}
+
 	@Override public void onClick(View v) {
 		AbstractSuite testSuite = (AbstractSuite) v.getTag();
 		switch (v.getId()) {
 			case R.id.run:
-				//Intent intent = RunningActivity.newIntent((AbstractActivity) getActivity(), testSuite.asArray());
-				Intent intent = RunningActivity.newIntent((AbstractActivity) getActivity(), testSuites);
+				Intent intent = RunningActivity.newIntent((AbstractActivity) getActivity(), testSuite.asArray());
 				if (intent != null)
 					ActivityCompat.startActivity(getActivity(), intent, null);
 				break;
