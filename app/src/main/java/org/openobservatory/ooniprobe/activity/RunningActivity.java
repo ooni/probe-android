@@ -66,11 +66,10 @@ public class RunningActivity extends AbstractActivity {
         testSuites = (ArrayList<AbstractSuite>) extra.getSerializable(TEST);
         if (testSuites == null)
             finish();
-        runtTest();
+        runTest();
     }
 
-    private void runtTest() {
-        //TODO cycle array
+    private void runTest() {
         if (testSuites.size() > 0) {
             testSuite = testSuites.get(0);
             testStart();
