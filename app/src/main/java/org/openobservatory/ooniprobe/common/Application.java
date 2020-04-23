@@ -62,7 +62,7 @@ public class Application extends android.app.Application {
 		//TODO check for consent
 		//Countly.sharedInstance().setRequiresConsent(true);
 		CountlyConfig config = new CountlyConfig()
-				.setAppKey("fd78482a10e95fd471925399adbcb8ae1a45661f")
+				.setAppKey("7424fe751e018c0e713cb878f51a5e9d1ca0ae06")
 				.setContext(this)
 				//.setDeviceId("lorenzo")
 				//.setDeviceId(null)
