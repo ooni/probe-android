@@ -5,13 +5,11 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
+
+import org.openobservatory.ooniprobe.BuildConfig;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
@@ -75,6 +73,8 @@ public class NotificationService {
     }
 
     //TODO better code https://developer.android.com/training/notify-user/channels
+    //https://code.tutsplus.com/tutorials/android-o-how-to-use-notification-channels--cms-28616
+    //https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK
     //Creating an existing notification channel with its original values performs no operation, so it's safe to call this code when starting an app.
     public static void setChannel(Context c, String channelID, String channelName){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
