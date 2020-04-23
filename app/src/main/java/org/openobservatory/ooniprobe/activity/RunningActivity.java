@@ -64,8 +64,10 @@ public class RunningActivity extends AbstractActivity {
         ButterKnife.bind(this);
         Bundle extra = getIntent().getBundleExtra(TEST);
         testSuites = (ArrayList<AbstractSuite>) extra.getSerializable(TEST);
-        if (testSuites == null)
+        if (testSuites == null) {
             finish();
+            return;
+        }
         runTest();
     }
 
@@ -157,7 +159,7 @@ public class RunningActivity extends AbstractActivity {
             if (act.testSuites.size() == 0)
                 endTest(act);
             else
-                act.runtTest();
+                act.runTest();
         }
 
         private void endTest(RunningActivity act){
