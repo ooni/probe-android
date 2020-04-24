@@ -40,7 +40,8 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 	@BindView(R.id.recycler) RecyclerView recycler;
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.last_tested) TextView lastTested;
-	private ArrayList<TestsuiteItem> items;
+    @BindView(R.id.run_all) TextView runAll;
+    private ArrayList<TestsuiteItem> items;
 	private ArrayList<AbstractSuite> testSuites;
 	private HeterogeneousRecyclerAdapter<TestsuiteItem> adapter;
 
@@ -54,6 +55,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
 		recycler.setAdapter(adapter);
 		recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+		runAll.setOnClickListener(v1 -> runAll());
 		return v;
 	}
 
