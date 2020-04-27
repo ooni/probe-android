@@ -15,6 +15,7 @@ public class WebsitesSuite extends AbstractSuite {
 				R.string.Test_Websites_Fullname,
 				R.string.Dashboard_Websites_Card_Description,
 				R.drawable.test_websites,
+				R.drawable.test_websites_24,
 				R.color.color_indigo6,
 				R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Websites,
 				R.style.Theme_MaterialComponents_NoActionBar_App_Websites,

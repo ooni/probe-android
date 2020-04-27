@@ -1,6 +1,6 @@
 package org.openobservatory.ooniprobe.test.suite;
 
-import android.os.Parcelable;
+import android.os.Build;
 
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -21,6 +21,7 @@ public abstract class AbstractSuite implements Serializable {
 	private final int title;
 	private final int cardDesc;
 	private final int icon;
+	private final int icon_24;
 	private final int color;
 	private final int themeLight;
 	private final int themeDark;
@@ -31,10 +32,11 @@ public abstract class AbstractSuite implements Serializable {
 	private AbstractTest[] testList;
 	private Result result;
 
-	AbstractSuite(String name, @StringRes int title, @StringRes int cardDesc, @DrawableRes int icon, @ColorRes int color, @StyleRes int themeLight, @StyleRes int themeDark, @StringRes int desc1, String anim, String dataUsage) {
+	AbstractSuite(String name, @StringRes int title, @StringRes int cardDesc, @DrawableRes int icon, @DrawableRes int icon_24, @ColorRes int color, @StyleRes int themeLight, @StyleRes int themeDark, @StringRes int desc1, String anim, String dataUsage) {
 		this.title = title;
 		this.cardDesc = cardDesc;
 		this.icon = icon;
+		this.icon_24 = icon_24;
 		this.color = color;
 		this.themeLight = themeLight;
 		this.themeDark = themeDark;
@@ -72,6 +74,14 @@ public abstract class AbstractSuite implements Serializable {
 
 	public int getIcon() {
 		return icon;
+	}
+
+	public int getIconGradient() {
+		if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.M){
+			return icon;
+		}else{
+			return icon_24;
+		}
 	}
 
 	public String getAnim() {

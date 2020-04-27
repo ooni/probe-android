@@ -1,34 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:orientation="vertical">
-
-	<com.google.android.material.appbar.AppBarLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
 		<androidx.appcompat.widget.Toolbar
 			android:id="@+id/toolbar"
 			android:layout_width="match_parent"
 			android:layout_height="?attr/actionBarSize"
+			android:background="@color/color_base"
 			app:contentInsetEnd="0dp"
 			app:contentInsetStart="0dp">
 
 			<ImageView
-				android:layout_width="match_parent"
+				android:layout_width="wrap_content"
 				android:layout_height="match_parent"
 				android:scaleType="centerInside"
-				android:src="@drawable/ooni_logo" />
+				android:layout_marginLeft="15dp"
+				android:layout_marginStart="15dp"
+				android:src="@drawable/ooniprobe_logo" />
+
 		</androidx.appcompat.widget.Toolbar>
-	</com.google.android.material.appbar.AppBarLayout>
+
+	<com.github.florent37.shapeofview.shapes.ArcView
+		android:layout_width="match_parent"
+		android:layout_height="56dp"
+		android:id="@+id/arc_view"
+		app:layout_constraintTop_toBottomOf="@id/toolbar"
+		app:shape_arc_cropDirection="inside"
+		app:shape_arc_height="16dp"
+		app:shape_arc_position="bottom">
+
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:background="@color/color_base"/>
+
+	</com.github.florent37.shapeofview.shapes.ArcView>
+
+	<Button
+		android:id="@+id/run_all"
+		android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+		android:layout_width="wrap_content"
+		android:layout_height="56dp"
+		android:layout_marginTop="24dp"
+		android:backgroundTint="@color/color_white"
+		android:stateListAnimator="@null"
+		android:elevation="5dp"
+		android:translationZ="5dp"
+		app:layout_constraintTop_toTopOf="@id/arc_view"
+		app:layout_constraintEnd_toEndOf="@id/arc_view"
+		app:layout_constraintStart_toStartOf="@id/arc_view"
+		app:layout_constraintBottom_toBottomOf="@id/arc_view"
+		android:text="@string/Dashboard_Card_Run"
+		android:textAllCaps="false"
+		android:textColor="?attr/colorPrimary"
+		android:transitionName="@string/transitionNameRun"
+		app:cornerRadius="18dp"
+		app:rippleColor="@color/ripple_material_light" />
+
+	<TextView
+		android:id="@+id/last_tested"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/Dashboard_Overview_LatestTest"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/run_all"
+		android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
 
 	<androidx.recyclerview.widget.RecyclerView
 		android:id="@+id/recycler"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:clipToPadding="false"
-		android:paddingVertical="8dp" />
-</LinearLayout>
+		android:layout_height="0dp"
+		android:paddingStart="8dp"
+		android:paddingEnd="8dp"
+		android:paddingTop="5dp"
+		android:paddingBottom="16dp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/last_tested"
+		tools:listitem="@layout/item_testsuite"
+		android:clipToPadding="false" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

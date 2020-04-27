@@ -1,99 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:id="@+id/card"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:layout_marginHorizontal="16dp"
-	android:layout_marginVertical="8dp"
-	android:orientation="vertical"
-	android:theme="@style/Theme.MaterialComponents.NoActionBar.App"
-	android:transitionName="@string/transitionNameCard">
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="6dp"
+    android:layout_marginTop="16dp"
+    app:cardBackgroundColor="@color/color_white"
+    app:cardElevation="5dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:transitionName="@string/transitionNameCard"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-	<FrameLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:foreground="?attr/selectableItemBackground">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-		<ImageView
-			android:id="@+id/icon"
-			android:layout_width="144dp"
-			android:layout_height="144dp"
-			android:layout_gravity="end"
-			android:layout_margin="8dp"
-			android:alpha="0.5"
-			android:tint="@color/color_white"
-			android:transitionName="@string/transitionNameIcon" />
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:id="@+id/icon"
+            android:src="@drawable/test_websites"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_margin="8dp"/>
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:baselineAligned="false"
-			android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:maxLines="1"
+            android:text="@string/Test_Websites_Fullname"
+            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:transitionName="@string/transitionNameTitle"
+            android:layout_margin="8dp"
+            android:textColor="@color/color_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/icon"/>
 
-			<FrameLayout
-				android:layout_width="0dp"
-				android:layout_height="match_parent"
-				android:layout_weight="1">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/desc"
+            android:layout_margin="8dp"
+            android:maxLines="2"
+            android:text="@string/Dashboard_Websites_Card_Description"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            android:textColor="@color/color_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title"/>
 
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_margin="16dp"
-					android:orientation="vertical">
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-					<TextView
-						android:id="@+id/title"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-						android:transitionName="@string/transitionNameTitle" />
-
-					<TextView
-						android:id="@+id/desc"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
-				</LinearLayout>
-
-				<TextView
-					style="@style/TextAppearance.MaterialComponents.Caption"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_gravity="bottom"
-					android:layout_marginHorizontal="16dp"
-					android:layout_marginBottom="8dp"
-					android:text="@string/Dashboard_Card_Subtitle"
-					android:textStyle="italic" />
-			</FrameLayout>
-
-			<LinearLayout
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginHorizontal="16dp"
-				android:layout_marginTop="128dp"
-				android:layout_marginBottom="8dp"
-				android:orientation="vertical">
-
-				<Button
-					android:id="@+id/run"
-					style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="@string/Dashboard_Card_Run"
-					android:textAllCaps="false"
-					android:textColor="?attr/colorPrimary"
-					android:transitionName="@string/transitionNameRun"
-					app:cornerRadius="24dp"
-					app:rippleColor="@color/ripple_material_light" />
-
-				<TextView
-					android:id="@+id/runtime"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_horizontal"
-					android:transitionName="@string/transitionNameRuntime" />
-			</LinearLayout>
-		</LinearLayout>
-	</FrameLayout>
-</com.google.android.material.card.MaterialCardView>
+</androidx.cardview.widget.CardView>

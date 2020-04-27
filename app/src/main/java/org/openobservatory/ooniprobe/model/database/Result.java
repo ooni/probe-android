@@ -55,6 +55,10 @@ public class Result extends BaseModel implements Serializable {
 		return new DecimalFormat("#,##0.#").format(kbSize / Math.pow(1024, digitGroups)) + " " + units[digitGroups];
 	}
 
+	public static Result getLastResult() {
+		return SQLite.select().from(Result.class).orderBy(Result_Table.start_time, false).limit(1).querySingle();
+	}
+
 	public static Result getLastResult(String test_group_name) {
 		return SQLite.select().from(Result.class).where(Result_Table.test_group_name.eq(test_group_name)).orderBy(Result_Table.start_time, false).limit(1).querySingle();
 	}
