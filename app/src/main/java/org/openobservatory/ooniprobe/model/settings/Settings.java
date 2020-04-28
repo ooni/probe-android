@@ -44,7 +44,7 @@ public class Settings {
 	private String temp_dir;
 
 	public Settings(Context c, PreferenceManager pm) {
-		annotations = new Annotations(c);
+		annotations = new Annotations(c, pm);
 		disabled_events = Arrays.asList("status.queued", "status.update.websites", "failure.report_close");
 		log_level = pm.isDebugLogs() ? "DEBUG2" : "INFO";
 		options = new Options(c, pm);
@@ -83,8 +83,11 @@ public class Settings {
 		@SerializedName("origin")
 		public String origin;
 
-		public Annotations(Context c) {
-			this.network_type = ReachabilityManager.getNetworkType(c);
+		public Annotations(Context c, PreferenceManager pm) {
+			if (pm.isIncludeAsn())
+				this.network_type = ReachabilityManager.getNetworkType(c);
+			else
+				this.network_type = null;
 			this.flavor = BuildConfig.FLAVOR;
 		}
 	}
