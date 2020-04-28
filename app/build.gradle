@@ -116,7 +116,7 @@ static def versionCodeDate() {
 }
 
 static def versionNameDate() {
-	return new Date().format("yyyyMMdd-HH")
+	return new Date().format("yyyy.MM.dd-HH")
 }
 
 if (!getGradle().getStartParameter().getTaskRequests()
