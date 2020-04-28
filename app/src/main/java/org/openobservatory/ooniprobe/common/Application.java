@@ -62,7 +62,7 @@ public class Application extends android.app.Application {
 		//TODO check for consent
 		//Countly.sharedInstance().setRequiresConsent(true);
 		CountlyConfig config = new CountlyConfig()
-				.setAppKey("7424fe751e018c0e713cb878f51a5e9d1ca0ae06")
+				.setAppKey("146836f41172f9e3287cab6f2cc347de3f5ddf3b")
 				.setContext(this)
 				//.setDeviceId("lorenzo")
 				//.setDeviceId(null)
@@ -71,7 +71,7 @@ public class Application extends android.app.Application {
 				//.setIdMode(DeviceId.Type.OPEN_UDID)
 				//.setRequiresConsent(true)
 				.setConsentEnabled(groupFeatures)
-				.setServerURL("https://mia-countly-test.ooni.nu")
+				.setServerURL("https://countly.ooni.io")
 				//.setLoggingEnabled(!BuildConfig.DEBUG)
 				.setLoggingEnabled(true)
 				.setViewTracking(true)
