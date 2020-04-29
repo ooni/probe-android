@@ -13,46 +13,6 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:text="@string/TestResults_Details_Performance_NDT_PacketLoss" />
-
-		<TextView
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:text="@string/TestResults_Details_Performance_NDT_OutOfOrder" />
-	</LinearLayout>
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="-5dp"
-		android:orientation="horizontal">
-
-		<TextView
-			android:id="@+id/packetLoss"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
-
-		<TextView
-			android:id="@+id/outOfOrder"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
-	</LinearLayout>
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="8dp"
-		android:orientation="horizontal">
-
-		<TextView
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
 			android:text="@string/TestResults_Details_Performance_NDT_AveragePing" />
 
 		<TextView
@@ -93,13 +53,13 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:text="@string/TestResults_Details_Performance_NDT_MSS" />
+			android:text="@string/TestResults_Details_Performance_NDT_PacketLoss" />
 
 		<TextView
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:text="@string/TestResults_Details_Performance_NDT_Timeouts" />
+			android:text="@string/TestResults_Details_Performance_NDT_MSS" />
 	</LinearLayout>
 
 	<LinearLayout
@@ -109,14 +69,14 @@
 		android:orientation="horizontal">
 
 		<TextView
-			android:id="@+id/mss"
+			android:id="@+id/packetLoss"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 
 		<TextView
-			android:id="@+id/timeouts"
+			android:id="@+id/mss"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
