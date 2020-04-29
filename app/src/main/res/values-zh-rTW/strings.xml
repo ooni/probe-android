@@ -45,6 +45,8 @@
   <string name="Dashboard_Running_CalculatingETA">Calculating ETA</string>
   <string name="Dashboard_Running_ShowLog">顯示日誌</string>
   <string name="Dashboard_Running_CloseLog">Close Log</string>
+  <string name="Dashboard_Running_Stopping_Title">Stopping test...</string>
+  <string name="Dashboard_Running_Stopping_Notice">Finishing the currently pending tests, please wait...</string>
   <string name="Dashboard_Card_Subtitle">輕點卡片進一步了解</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">測試遭封鎖的網站</string>
@@ -200,10 +202,10 @@
   <string name="TestResults_Details_Performance_NDT_Download">下載</string>
   <string name="TestResults_Details_Performance_NDT_Ping">Ping</string>
   <string name="TestResults_Details_Performance_NDT_Server">伺服器</string>
-  <string name="TestResults_Details_Performance_NDT_PacketLoss">封包丟失</string>
+  <string name="TestResults_Details_Performance_NDT_PacketLoss">Retransmit Rate</string>
   <string name="TestResults_Details_Performance_NDT_OutOfOrder">出問題</string>
   <string name="TestResults_Details_Performance_NDT_AveragePing">平均 Ping</string>
-  <string name="TestResults_Details_Performance_NDT_MaxPing">最大 Ping</string>
+  <string name="TestResults_Details_Performance_NDT_MaxPing">Max Ping Estimate</string>
   <string name="TestResults_Details_Performance_NDT_MSS">MSS</string>
   <string name="TestResults_Details_Performance_NDT_Timeouts">逾時</string>
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">不透過緩取進行串流 %1$s</string>
@@ -313,6 +315,7 @@
   <string name="Settings_Advanced_SendCrashReports">送出出錯崩潰報告</string>
   <string name="Settings_Advanced_DebugLogs">調試記錄</string>
   <string name="Settings_Advanced_UseDomainFronting">皆使用域名前列</string>
+  <string name="Settings_Advanced_CollectAnalytics">Collect app usage statistics</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Limit test duration</string>
   <string name="Settings_Websites_MaxRuntime">測試期間</string>
   <string name="Settings_Websites_Categories_Label">測試的網站類別</string>
@@ -322,6 +325,7 @@
   <string name="Settings_Websites_CustomURL_NoURLEntered">未輸入URL</string>
   <string name="Settings_Websites_CustomURL_Run">執行</string>
   <string name="Settings_Websites_CustomURL_Add">新增網站</string>
+  <string name="Settings_Websites_TestCount">Number of tested websites (0 means all)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">測試 WhatsApp</string>
   <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">測試所有的 WhatsApp 端點</string>
   <string name="Settings_InstantMessaging_TestTelegram">測試 Telegram</string>
@@ -338,6 +342,7 @@
   <string name="Settings_Performance_DashServerPort">DASH 伺服器端口</string>
   <string name="Settings_SendEmail_Label">寄求助郵件</string>
   <string name="Settings_SendEmail_Error">請將應用程式與  iOS 相關資訊寄送到此信箱 bugs@openobservatory.org ，下方的\"複製到剪貼簿\"分頁可直接複此電子郵址。 </string>
+  <string name="Settings_Language_Current">Current app language is %1$s</string>
   <string name="Notification_FinishedRunning">已完成的執行</string>
   <string name="OONIBrowser_TryMirror">試試鏡像站</string>
   <string name="OONIBrowser_Loading">載入中…</string>

@@ -45,6 +45,8 @@
   <string name="Dashboard_Running_CalculatingETA">Υπολογίζουμε την εκτιμώμενη ώρα άφιξης</string>
   <string name="Dashboard_Running_ShowLog">Εμφάνιση αρχείου καταγραφής</string>
   <string name="Dashboard_Running_CloseLog">Κλείσιμο αρχείου καταγραφής</string>
+  <string name="Dashboard_Running_Stopping_Title">Stopping test...</string>
+  <string name="Dashboard_Running_Stopping_Notice">Finishing the currently pending tests, please wait...</string>
   <string name="Dashboard_Card_Subtitle">Πάτα την κάρτα για περισσότερα</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">Έλεγξε το μπλοκάρισμα ιστοσελιδών</string>
@@ -200,10 +202,10 @@
   <string name="TestResults_Details_Performance_NDT_Download">Λήψη</string>
   <string name="TestResults_Details_Performance_NDT_Ping">Ping</string>
   <string name="TestResults_Details_Performance_NDT_Server">Διακομιστής</string>
-  <string name="TestResults_Details_Performance_NDT_PacketLoss">Απώλεια πακέτων</string>
+  <string name="TestResults_Details_Performance_NDT_PacketLoss">Retransmit Rate</string>
   <string name="TestResults_Details_Performance_NDT_OutOfOrder">Εκτός λειτουργίας</string>
   <string name="TestResults_Details_Performance_NDT_AveragePing">Μέσος όρος ping</string>
-  <string name="TestResults_Details_Performance_NDT_MaxPing">Μέγιστο ping</string>
+  <string name="TestResults_Details_Performance_NDT_MaxPing">Max Ping Estimate</string>
   <string name="TestResults_Details_Performance_NDT_MSS">MSS</string>
   <string name="TestResults_Details_Performance_NDT_Timeouts">Timeouts</string>
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Μπορείς να κάνεις streaming μέχρι και %1$s χωρίς buffering.</string>
@@ -313,6 +315,7 @@
   <string name="Settings_Advanced_SendCrashReports">Αποστολή αναφορών σφαλμάτων</string>
   <string name="Settings_Advanced_DebugLogs">Αρχεία καταγραφής εντοπισμού σφαλμάτων</string>
   <string name="Settings_Advanced_UseDomainFronting">Πάντα να χρησιμοποιείται domain fronting</string>
+  <string name="Settings_Advanced_CollectAnalytics">Collect app usage statistics</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Περιορισμός διάρκειας δοκιμής</string>
   <string name="Settings_Websites_MaxRuntime">Διάρκεια δοκιμής</string>
   <string name="Settings_Websites_Categories_Label">Κατηγορίες ιστοσελιδών για δοκιμή</string>
@@ -322,6 +325,7 @@
   <string name="Settings_Websites_CustomURL_NoURLEntered">Δεν έχουν εισαχθεί URL</string>
   <string name="Settings_Websites_CustomURL_Run">Εκτέλεση</string>
   <string name="Settings_Websites_CustomURL_Add">Προσθήκη ιστοσελίδας</string>
+  <string name="Settings_Websites_TestCount">Number of tested websites (0 means all)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">Δοκίμασε το WhatsApp</string>
   <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">Δοκίμασε όλα τα WhatsApp endpoints</string>
   <string name="Settings_InstantMessaging_TestTelegram">Δοκίμασε το Telegram</string>
@@ -338,6 +342,7 @@
   <string name="Settings_Performance_DashServerPort">Θύρα διακομιστή DASH</string>
   <string name="Settings_SendEmail_Label">Αποστολή email στην υποστήριξη</string>
   <string name="Settings_SendEmail_Error">Παρακαλούμε στείλτε ένα email στη διεύθυνση bugs@openobservatory.org με πληροφορίες σχετικά με την έκδοση της εφαρμογής και του iOS. Πατήστε \"Αντιγραφή στο πρόχειρο\" παρακάτω για να αντιγράψετε τη διεύθυνση email μας.</string>
+  <string name="Settings_Language_Current">Current app language is %1$s</string>
   <string name="Notification_FinishedRunning">Οι δοκιμές εκτελέστηκαν</string>
   <string name="OONIBrowser_TryMirror">Δοκίμασε mirror</string>
   <string name="OONIBrowser_Loading">Φορτώνεται...</string>

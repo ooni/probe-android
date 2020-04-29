@@ -45,11 +45,13 @@
   <string name="Dashboard_Running_CalculatingETA">Calculando ETA</string>
   <string name="Dashboard_Running_ShowLog">Mostrar registro (\'log\')</string>
   <string name="Dashboard_Running_CloseLog">Cerrar registro</string>
+  <string name="Dashboard_Running_Stopping_Title">Stopping test...</string>
+  <string name="Dashboard_Running_Stopping_Notice">Finishing the currently pending tests, please wait...</string>
   <string name="Dashboard_Card_Subtitle">Pulsar tarjeta por más</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">Probar el bloqueo de sitios web</string>
   <string name="Dashboard_Websites_Overview_Paragraph">Comprobar si los sitios web están bloqueados usando la [prueba Web Connectivity] de OONI (https://ooni.io/nettest/web-connectivity/).\n\nCada vez que pulsas Ejecutar, pruebas diferentes sitios web incluidos en las listas de pruebas de Citizen Lab [global](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) y [país-específico](https://github.com/citizenlab/test-lists/tree/master/lists).\n\nPara probar los sitios de tu elección, pulsa el botón Elegir sitios web o selecciona categorías de sitios vía los ajustes de ésta tarjeta.\n\nEsta prueba mide si los sitios web están bloqueados por medio de manipulación de DNS, bloqueo de TCP/IP o por un proxy transparente HTTP.\n\nTus resultados serán publicados en el [Explorador OONI](https://explorer.ooni.io/world/) y la [API OONI](https://api.ooni.io/).</string>
-  <string name="Dashboard_Websites_Overview_Paragraph_Desktop">Check whether websites are blocked using OONI\'s [Web Connectivity test](https://ooni.io/nettest/web-connectivity/).\n\nYou will test the websites included in the Citizen Lab\'s [global](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) and [country-specific](https://github.com/citizenlab/test-lists/tree/master/lists) test lists.\n\nThis test measures whether websites are blocked by means of DNS tampering, TCP/IP blocking or by a transparent HTTP proxy.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_Websites_Overview_Paragraph_Desktop">Comprobar si los sitios web están bloqueados usando la [prueba Web Connectivity] de OONI (https://ooni.io/nettest/web-connectivity/).\n\nVas a probar los sitios web incluidos en las listas de pruebas de Citizen Lab [global](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) y [país-específico](https://github.com/citizenlab/test-lists/tree/master/lists).\n\nEsta prueba mide si los sitios web están bloqueados por medio de manipulación de DNS, bloqueo de TCP/IP o por un proxy transparente HTTP.\n\nTus resultados serán publicados en el [Explorador OONI](https://explorer.ooni.org/) y la [API OONI](https://api.ooni.io/).</string>
   <string name="Dashboard_Performance_Card_Description">Mide la velocidad y rendimiento de tu red</string>
   <string name="Dashboard_Performance_Overview_Paragraph">Mide la velocidad y rendimiento de tu red usando la prueba [NDT](https://ooni.io/nettest/ndt/).\n\nMide el rendimiento del streaming de vídeo usando la prueba [DASH](https://ooni.io/nettest/dash/).\n\nEstas pruebas consumen datos dependiendo de la velocidad de tu red.\n\nTus resultados serán publicados en el [Explorador OONI](https://explorer.ooni.io/world/) y la [API OONI](https://api.ooni.io/).\n\nDescargo: Estas pruebas dependen de servidores de terceros. Por lo tanto, no podemos garantizar que tu dirección IP no será recopilada.</string>
   <string name="Dashboard_Middleboxes_Card_Description">Detecta middleboxes en tu red</string>
@@ -200,10 +202,10 @@
   <string name="TestResults_Details_Performance_NDT_Download">Descarga</string>
   <string name="TestResults_Details_Performance_NDT_Ping">Ping</string>
   <string name="TestResults_Details_Performance_NDT_Server">Servidor</string>
-  <string name="TestResults_Details_Performance_NDT_PacketLoss">Pérdida de paquetes</string>
+  <string name="TestResults_Details_Performance_NDT_PacketLoss">Retransmit Rate</string>
   <string name="TestResults_Details_Performance_NDT_OutOfOrder">Fuera de servicio</string>
   <string name="TestResults_Details_Performance_NDT_AveragePing">Ping promedio</string>
-  <string name="TestResults_Details_Performance_NDT_MaxPing">Ping máximo</string>
+  <string name="TestResults_Details_Performance_NDT_MaxPing">Max Ping Estimate</string>
   <string name="TestResults_Details_Performance_NDT_MSS">MSS</string>
   <string name="TestResults_Details_Performance_NDT_Timeouts">Tiempos de espera</string>
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Puedes hacer stream hasta %1$s sin buffering.</string>
@@ -313,6 +315,7 @@
   <string name="Settings_Advanced_SendCrashReports">Enviar informes de errores</string>
   <string name="Settings_Advanced_DebugLogs">Registros de depuración</string>
   <string name="Settings_Advanced_UseDomainFronting">Usar siempre Domain Fronting</string>
+  <string name="Settings_Advanced_CollectAnalytics">Collect app usage statistics</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Limite la duración de la prueba</string>
   <string name="Settings_Websites_MaxRuntime">Duración de la prueba</string>
   <string name="Settings_Websites_Categories_Label">Categorías de sitios web a probar</string>
@@ -322,6 +325,7 @@
   <string name="Settings_Websites_CustomURL_NoURLEntered">No se han introducido URLs</string>
   <string name="Settings_Websites_CustomURL_Run">Ejecutar</string>
   <string name="Settings_Websites_CustomURL_Add">Añadir sitio web</string>
+  <string name="Settings_Websites_TestCount">Number of tested websites (0 means all)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">Probar WhatsApp</string>
   <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">Probar todos los puntos de destino de WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Probar Telegram</string>
@@ -338,6 +342,7 @@
   <string name="Settings_Performance_DashServerPort">Puerto del servidor DASH</string>
   <string name="Settings_SendEmail_Label">Enviar correo electrónico al soporte</string>
   <string name="Settings_SendEmail_Error">Por favor envíe un correo electrónico a bugs@openobservatory.org con información sobre la aplicación y versión de iOS. Pulse \"Copiar al portapapeles\" abajo para copiar nuestro correo electrónico.</string>
+  <string name="Settings_Language_Current">Current app language is %1$s</string>
   <string name="Notification_FinishedRunning">Finalizó la ejecución</string>
   <string name="OONIBrowser_TryMirror">Intentar servidor réplica</string>
   <string name="OONIBrowser_Loading">Cargando...</string>

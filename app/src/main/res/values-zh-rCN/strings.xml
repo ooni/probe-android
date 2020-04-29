@@ -45,6 +45,8 @@
   <string name="Dashboard_Running_CalculatingETA">计算完成时间</string>
   <string name="Dashboard_Running_ShowLog">显示日志</string>
   <string name="Dashboard_Running_CloseLog">关闭日志</string>
+  <string name="Dashboard_Running_Stopping_Title">Stopping test...</string>
+  <string name="Dashboard_Running_Stopping_Notice">Finishing the currently pending tests, please wait...</string>
   <string name="Dashboard_Card_Subtitle">触击选项卡以查看详情</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">测试网站是否被屏蔽</string>
@@ -200,10 +202,10 @@
   <string name="TestResults_Details_Performance_NDT_Download">下载</string>
   <string name="TestResults_Details_Performance_NDT_Ping">Ping</string>
   <string name="TestResults_Details_Performance_NDT_Server">服务器</string>
-  <string name="TestResults_Details_Performance_NDT_PacketLoss">丢包</string>
+  <string name="TestResults_Details_Performance_NDT_PacketLoss">Retransmit Rate</string>
   <string name="TestResults_Details_Performance_NDT_OutOfOrder">乱序</string>
   <string name="TestResults_Details_Performance_NDT_AveragePing">平均 Ping</string>
-  <string name="TestResults_Details_Performance_NDT_MaxPing">最大 Ping</string>
+  <string name="TestResults_Details_Performance_NDT_MaxPing">Max Ping Estimate</string>
   <string name="TestResults_Details_Performance_NDT_MSS">MSS</string>
   <string name="TestResults_Details_Performance_NDT_Timeouts">超时</string>
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">您在没有缓冲的情况下可以享用 %1$s。</string>
@@ -313,6 +315,7 @@
   <string name="Settings_Advanced_SendCrashReports">发送崩溃报告</string>
   <string name="Settings_Advanced_DebugLogs">调试日志</string>
   <string name="Settings_Advanced_UseDomainFronting">始终使用 domain fronting</string>
+  <string name="Settings_Advanced_CollectAnalytics">Collect app usage statistics</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">限制测试持续时间</string>
   <string name="Settings_Websites_MaxRuntime">测试用时</string>
   <string name="Settings_Websites_Categories_Label">要测试的网站类别</string>
@@ -322,6 +325,7 @@
   <string name="Settings_Websites_CustomURL_NoURLEntered">没有输入 URL</string>
   <string name="Settings_Websites_CustomURL_Run">运行</string>
   <string name="Settings_Websites_CustomURL_Add">添加网站</string>
+  <string name="Settings_Websites_TestCount">Number of tested websites (0 means all)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">测试 WhatsApp</string>
   <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">测试全部的 WhatsApp 端点</string>
   <string name="Settings_InstantMessaging_TestTelegram">测试 Telegram</string>
@@ -338,6 +342,7 @@
   <string name="Settings_Performance_DashServerPort">DASH 服务器端口</string>
   <string name="Settings_SendEmail_Label">发送邮件给支持团队</string>
   <string name="Settings_SendEmail_Error">请将应用和 iOS 版本号通过邮件发送至 bugs@openobservatory.org。点击下方“复制到剪贴板”来复制我们邮箱地址。</string>
+  <string name="Settings_Language_Current">Current app language is %1$s</string>
   <string name="Notification_FinishedRunning">运行完成</string>
   <string name="OONIBrowser_TryMirror">试试镜像站</string>
   <string name="OONIBrowser_Loading">加载中</string>

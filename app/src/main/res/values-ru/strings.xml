@@ -45,11 +45,13 @@
   <string name="Dashboard_Running_CalculatingETA">Вычисляем предполагаемое время</string>
   <string name="Dashboard_Running_ShowLog">Показать журнал</string>
   <string name="Dashboard_Running_CloseLog">Закрыть журнал</string>
+  <string name="Dashboard_Running_Stopping_Title">Stopping test...</string>
+  <string name="Dashboard_Running_Stopping_Notice">Finishing the currently pending tests, please wait...</string>
   <string name="Dashboard_Card_Subtitle">Нажмите для информации</string>
   <string name="Dashboard_Card_Seconds">~%1$sс</string>
   <string name="Dashboard_Websites_Card_Description">Определение блокировок сайтов</string>
   <string name="Dashboard_Websites_Overview_Paragraph">Проверьте, заблокированы ли веб-сайты, с помощью теста OONI [Web Connectivity test](https://ooni.io/nettest/web-connectivity/).\n\nВсякий раз, когда вы запускаете тест, OONI проверяет новый набор сайтов из двух списков Citizen Lab: [глобального](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) и [с выборкой по стране](https://github.com/citizenlab/test-lists/tree/master/lists).\n\nЕсли хотите протестировать конкретные сайты, нажмите соответствующую кнопку выбора сайтов или отметьте категории в настройках на этой карточке.\n\nЭтот тест определит, блокируются ли сайты путем манипуляций с DNS, блокировки TCP/IP или прозрачного HTTP-прокси.\n\nРезультаты будут опубликованы в [OONI Explorer](https://explorer.ooni.io/world/) и [OONI API](https://api.ooni.io/).</string>
-  <string name="Dashboard_Websites_Overview_Paragraph_Desktop">Check whether websites are blocked using OONI\'s [Web Connectivity test](https://ooni.io/nettest/web-connectivity/).\n\nYou will test the websites included in the Citizen Lab\'s [global](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) and [country-specific](https://github.com/citizenlab/test-lists/tree/master/lists) test lists.\n\nThis test measures whether websites are blocked by means of DNS tampering, TCP/IP blocking or by a transparent HTTP proxy.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_Websites_Overview_Paragraph_Desktop">Проверьте, блокируются веб-сайты или нет, с помощью теста [Web Connectivity test](https://ooni.io/nettest/web-connectivity/) от OONI.\n\nТест использует списки сайтов от Citizen Lab: [глобальный](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) и [по странам](https://github.com/citizenlab/test-lists/tree/master/lists).\n\nТест покажет, блокируются ли эти сайты с использованием DNS-спуфинга, блокировки TCP/IP или прозрачного HTTP-прокси.\n\nПолученные вами результаты будут опубликованы на ресурсах [OONI Explorer](https://explorer.ooni.org/) и [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Performance_Card_Description">Измерение скорости/производительности вашего соединения</string>
   <string name="Dashboard_Performance_Overview_Paragraph">Скорость/производительность вашей сети можно измерить помощью теста [NDT](https://ooni.io/nettest/ndt/).\n\nСкорость видеопотока - с помощью теста [DASH](https://ooni.io/nettest/dash/).\n\nЭти тесты требуют ресурсов и зависят от скорости в сети.\n\nРезультаты будут опубликованы в [OONI Explorer](https://explorer.ooni.io/world/) и [OONI API](https://api.ooni.io/).\n\nВнимание: в этих тестах используются серверы третьих сторон. Мы не можем гарантировать конфиденциальность вашего IP-адреса.</string>
   <string name="Dashboard_Middleboxes_Card_Description">Определять устройства middlebox в вашей сети</string>
@@ -200,10 +202,10 @@
   <string name="TestResults_Details_Performance_NDT_Download">Скачать</string>
   <string name="TestResults_Details_Performance_NDT_Ping">Пинг</string>
   <string name="TestResults_Details_Performance_NDT_Server">Сервер</string>
-  <string name="TestResults_Details_Performance_NDT_PacketLoss">Потеря пакетов</string>
+  <string name="TestResults_Details_Performance_NDT_PacketLoss">Retransmit Rate</string>
   <string name="TestResults_Details_Performance_NDT_OutOfOrder">Не работает</string>
   <string name="TestResults_Details_Performance_NDT_AveragePing">Средний пинг</string>
-  <string name="TestResults_Details_Performance_NDT_MaxPing">Максимальный пинг</string>
+  <string name="TestResults_Details_Performance_NDT_MaxPing">Max Ping Estimate</string>
   <string name="TestResults_Details_Performance_NDT_MSS">MSS</string>
   <string name="TestResults_Details_Performance_NDT_Timeouts">Таймауты</string>
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Вы можете повысить видеопоток до %1$s без буферизации.</string>
@@ -313,6 +315,7 @@
   <string name="Settings_Advanced_SendCrashReports">Отправить отчет об ошибке</string>
   <string name="Settings_Advanced_DebugLogs">Журналы отладки</string>
   <string name="Settings_Advanced_UseDomainFronting">Всегда использовать прикрытие доменом</string>
+  <string name="Settings_Advanced_CollectAnalytics">Collect app usage statistics</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Ограничить продолжительность теста</string>
   <string name="Settings_Websites_MaxRuntime">Продолжительность теста</string>
   <string name="Settings_Websites_Categories_Label">Категории сайтов для тестирования</string>
@@ -322,6 +325,7 @@
   <string name="Settings_Websites_CustomURL_NoURLEntered">Не указаны адреса</string>
   <string name="Settings_Websites_CustomURL_Run">Старт</string>
   <string name="Settings_Websites_CustomURL_Add">Добавить сайт</string>
+  <string name="Settings_Websites_TestCount">Number of tested websites (0 means all)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">Тестировать WhatsApp</string>
   <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">Тестировать все конечные точки WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Тестировать Telegram</string>
@@ -338,6 +342,7 @@
   <string name="Settings_Performance_DashServerPort">Порт сервера DASH</string>
   <string name="Settings_SendEmail_Label">Отправить письмо поддержке</string>
   <string name="Settings_SendEmail_Error">Пожалуйста, отправьте письмо на bugs@openobservatory.org с информацией о версиях приложения и iOS. Нажмите «Скопировать в буфер обмена» снизу, чтобы скопировать наш адрес электронной почты.</string>
+  <string name="Settings_Language_Current">Current app language is %1$s</string>
   <string name="Notification_FinishedRunning">Завершено</string>
   <string name="OONIBrowser_TryMirror">Попробуйте зеркало</string>
   <string name="OONIBrowser_Loading">Загрузка...</string>

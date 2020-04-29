@@ -44,7 +44,9 @@
   <string name="Dashboard_Running_PreparingTest">Duke u përgatitur për testim</string>
   <string name="Dashboard_Running_CalculatingETA">Calculating ETA</string>
   <string name="Dashboard_Running_ShowLog">Shfaq log</string>
-  <string name="Dashboard_Running_CloseLog">Close Log</string>
+  <string name="Dashboard_Running_CloseLog">Mbyll log</string>
+  <string name="Dashboard_Running_Stopping_Title">Stopping test...</string>
+  <string name="Dashboard_Running_Stopping_Notice">Finishing the currently pending tests, please wait...</string>
   <string name="Dashboard_Card_Subtitle">Shyp mbi kartën për më shumë</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">Testo faqet e bllokuara</string>
@@ -200,10 +202,10 @@
   <string name="TestResults_Details_Performance_NDT_Download">Shkarkim</string>
   <string name="TestResults_Details_Performance_NDT_Ping">Ping</string>
   <string name="TestResults_Details_Performance_NDT_Server">Server</string>
-  <string name="TestResults_Details_Performance_NDT_PacketLoss">Humbje pakete</string>
+  <string name="TestResults_Details_Performance_NDT_PacketLoss">Retransmit Rate</string>
   <string name="TestResults_Details_Performance_NDT_OutOfOrder">Jashtë shërbimi</string>
   <string name="TestResults_Details_Performance_NDT_AveragePing">Ping mesatar</string>
-  <string name="TestResults_Details_Performance_NDT_MaxPing">Ping maksimal</string>
+  <string name="TestResults_Details_Performance_NDT_MaxPing">Max Ping Estimate</string>
   <string name="TestResults_Details_Performance_NDT_MSS">MSS</string>
   <string name="TestResults_Details_Performance_NDT_Timeouts">Timeouts</string>
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Mund të transmetosh video deri më %1$s pa ndërprerje.</string>
@@ -278,7 +280,7 @@
   <string name="Test_InstantMessaging_Fullname">Mesazhe</string>
   <string name="Test_Middleboxes_Fullname">Middleboxes</string>
   <string name="Test_Performance_Fullname">Performanca</string>
-  <string name="Test_Circumvention_Fullname">Circumvention</string>
+  <string name="Test_Circumvention_Fullname">Shmangie</string>
   <string name="Test_HTTPInvalidRequestLine_Fullname">HTTP Invalid Request Line Test</string>
   <string name="Test_HTTPHeaderFieldManipulation_Fullname">HTTP Header Field Manipulation Test</string>
   <string name="Test_WebConnectivity_Fullname">Testim lidhjeje në internet</string>
@@ -287,8 +289,8 @@
   <string name="Test_WhatsApp_Fullname">Testim WhatsApp</string>
   <string name="Test_Telegram_Fullname">Testim Telegram</string>
   <string name="Test_FacebookMessenger_Fullname">Testim Facebook Messenger</string>
-  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
-  <string name="Test_Tor_Fullname">Tor Test</string>
+  <string name="Test_Psiphon_Fullname">Testim i Psiphon</string>
+  <string name="Test_Tor_Fullname">Testimi i Tor</string>
   <string name="Settings_Title">Rregullime</string>
   <string name="Settings_Error_TestDurationTooLow">Sasia e kohës që keni vendosur për kohëzgjatjen e testimit është shumë e vogël.</string>
   <string name="Settings_About_Label">Rreth OONI</string>
@@ -308,12 +310,13 @@
   <string name="Settings_Sharing_IncludeCountryCode">Shto Kodin e Shtetit</string>
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Ky informacion (psh IT për Itali) kërkohet për të identifikuar nga cili shtet po mblidhen të dhënat. Jeni të sigurt që e çaktivizoni këtë opsion?</string>
   <string name="Settings_Sharing_Footer">Duke publikuar rezultatet ti rrit transaprencën të ndërhyrjes në rrjet dhe mbështet komunitetin e OONI. \n\nInformacioni i rrjetit (psh Numri i Sistemit Autonom) kërkohet për të identifikuar Ofruesit e Shërbimit të Internetit.</string>
-  <string name="Settings_TestOptions_Label">Test options</string>
+  <string name="Settings_TestOptions_Label">Mundësitë e testimit</string>
   <string name="Settings_Advanced_Label">Të mëtejshme</string>
   <string name="Settings_Advanced_SendCrashReports">Dërgo raportime dështimi</string>
   <string name="Settings_Advanced_DebugLogs">Kontrollo regjistrat për gabime</string>
   <string name="Settings_Advanced_UseDomainFronting">Gjithmonë përdor front domain</string>
-  <string name="Settings_Websites_MaxRuntimeEnabled">Limit test duration</string>
+  <string name="Settings_Advanced_CollectAnalytics">Collect app usage statistics</string>
+  <string name="Settings_Websites_MaxRuntimeEnabled">Kufizo kohëzgjatjen e testimit</string>
   <string name="Settings_Websites_MaxRuntime">Kohëzgjatja e testimit</string>
   <string name="Settings_Websites_Categories_Label">Kategori faqjesh për të testuar</string>
   <string name="Settings_Websites_Categories_Description">%1$s shtete të aktivizuara</string>
@@ -322,6 +325,7 @@
   <string name="Settings_Websites_CustomURL_NoURLEntered">Nuk është vendosur asnjë URL</string>
   <string name="Settings_Websites_CustomURL_Run">Përdor</string>
   <string name="Settings_Websites_CustomURL_Add">Shto faqe</string>
+  <string name="Settings_Websites_TestCount">Number of tested websites (0 means all)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">Testo WhatsApp</string>
   <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">Testo të gjitha skajet e WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Testo Telegram</string>
@@ -338,6 +342,7 @@
   <string name="Settings_Performance_DashServerPort">Porta e serverit NDT</string>
   <string name="Settings_SendEmail_Label">Dërgo email tek ndihmuesi</string>
   <string name="Settings_SendEmail_Error">Ju lutem dërgoni email tek bugs@openobservatory.org me informacionin e app dhe versionin e iOS. Zgjidh \"Kopjo në tabelën-mbledhëse\" më poshtë për të kopjuar adresën tonë të email.</string>
+  <string name="Settings_Language_Current">Current app language is %1$s</string>
   <string name="Notification_FinishedRunning">Mbaroi së ekzekutuari</string>
   <string name="OONIBrowser_TryMirror">Përvo mirror</string>
   <string name="OONIBrowser_Loading">Duke u ngarkuar</string>

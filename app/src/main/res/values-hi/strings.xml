@@ -45,6 +45,8 @@
   <string name="Dashboard_Running_CalculatingETA">Calculating ETA</string>
   <string name="Dashboard_Running_ShowLog">Show Log</string>
   <string name="Dashboard_Running_CloseLog">Close Log</string>
+  <string name="Dashboard_Running_Stopping_Title">Stopping test...</string>
+  <string name="Dashboard_Running_Stopping_Notice">Finishing the currently pending tests, please wait...</string>
   <string name="Dashboard_Card_Subtitle">अधिक के लिए कार्ड टैप करें</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">वेबसाइटों के अवरुद्ध परीक्षण का परीक्षण करें</string>
@@ -200,10 +202,10 @@
   <string name="TestResults_Details_Performance_NDT_Download">डाउनलोड</string>
   <string name="TestResults_Details_Performance_NDT_Ping">पिंग</string>
   <string name="TestResults_Details_Performance_NDT_Server">सर्वर</string>
-  <string name="TestResults_Details_Performance_NDT_PacketLoss">पैकेट खो गया</string>
+  <string name="TestResults_Details_Performance_NDT_PacketLoss">Retransmit Rate</string>
   <string name="TestResults_Details_Performance_NDT_OutOfOrder">खराब</string>
   <string name="TestResults_Details_Performance_NDT_AveragePing">औसत पिंग</string>
-  <string name="TestResults_Details_Performance_NDT_MaxPing">मैक्स पिंग</string>
+  <string name="TestResults_Details_Performance_NDT_MaxPing">Max Ping Estimate</string>
   <string name="TestResults_Details_Performance_NDT_MSS">एमएसएस</string>
   <string name="TestResults_Details_Performance_NDT_Timeouts">टाइमआउट</string>
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">आप बफरिंग के बिना %1$s तक स्ट्रीम कर सकते हैं।</string>
@@ -313,6 +315,7 @@
   <string name="Settings_Advanced_SendCrashReports">क्रैश रिपोर्ट भेजें</string>
   <string name="Settings_Advanced_DebugLogs">दोषमार्जन लॉग</string>
   <string name="Settings_Advanced_UseDomainFronting">हमेशा डोमेन फ्रंटिंग का उपयोग करें</string>
+  <string name="Settings_Advanced_CollectAnalytics">Collect app usage statistics</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Limit test duration</string>
   <string name="Settings_Websites_MaxRuntime">परीक्षण अवधि</string>
   <string name="Settings_Websites_Categories_Label">परीक्षण करने के लिए वेबसाइट श्रेणियां</string>
@@ -322,6 +325,7 @@
   <string name="Settings_Websites_CustomURL_NoURLEntered">कोई यूआरएल दर्ज नहीं हुआ</string>
   <string name="Settings_Websites_CustomURL_Run">चलाना</string>
   <string name="Settings_Websites_CustomURL_Add">वेबसाइट जोड़ें</string>
+  <string name="Settings_Websites_TestCount">Number of tested websites (0 means all)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">टेस्ट व्हाट्सएप</string>
   <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">सभी व्हाट्स एप समापन बिंदुओं का परीक्षण करें</string>
   <string name="Settings_InstantMessaging_TestTelegram">टेलीग्राम का परीक्षण करें</string>
@@ -338,6 +342,7 @@
   <string name="Settings_Performance_DashServerPort">DASH server port</string>
   <string name="Settings_SendEmail_Label">Send email to support</string>
   <string name="Settings_SendEmail_Error">कृपया iOS संस्करण और एप्लिकेशन की जानकारी के साथ bugs@openobservatory.org को एक ईमेल भेजें। हमारा  ईमेल पता कॉपी करने के लिए \"क्लिपबोर्ड पर कॉपी करें\" पर टैप करें।</string>
+  <string name="Settings_Language_Current">Current app language is %1$s</string>
   <string name="Notification_FinishedRunning">समाप्त हो रहा है</string>
   <string name="OONIBrowser_TryMirror">दर्पण की कोशिश करो</string>
   <string name="OONIBrowser_Loading">लोड हो रहा है ...</string>
