@@ -19,11 +19,9 @@ import butterknife.ButterKnife;
 public class NdtFragment extends Fragment {
 	private static final String MEASUREMENT = "measurement";
 	@BindView(R.id.packetLoss) TextView packetLoss;
-	@BindView(R.id.outOfOrder) TextView outOfOrder;
 	@BindView(R.id.averagePing) TextView averagePing;
 	@BindView(R.id.maxPing) TextView maxPing;
 	@BindView(R.id.mss) TextView mss;
-	@BindView(R.id.timeouts) TextView timeouts;
 
 	public static NdtFragment newInstance(Measurement measurement) {
 		Bundle args = new Bundle();
