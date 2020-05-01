@@ -20,6 +20,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
+/**
+ * @deprecated
+ * Is not possible to run a MiddleBoxesSuite anymore
+ * so the MiddleboxesItem is not gonna be shown anymore in the Test results
+ */
+@Deprecated
 public class MiddleboxesItem extends HeterogeneousRecyclerItem<Result, MiddleboxesItem.ViewHolder> {
 	private final View.OnClickListener onClickListener;
 	private final View.OnLongClickListener onLongClickListener;
