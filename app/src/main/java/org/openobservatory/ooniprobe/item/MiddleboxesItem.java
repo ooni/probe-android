@@ -22,7 +22,7 @@ import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
 /**
  * @deprecated
- * Is not possible to run a MiddleBoxesSuite anymore
+ * It is not possible to run a MiddleBoxesSuite anymore
  * so the MiddleboxesItem is not gonna be shown anymore in the Test results
  */
 @Deprecated
