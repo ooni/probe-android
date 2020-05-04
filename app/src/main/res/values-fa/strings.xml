@@ -45,8 +45,8 @@
   <string name="Dashboard_Running_CalculatingETA">محاسبه ETA</string>
   <string name="Dashboard_Running_ShowLog">نمایش رویداد</string>
   <string name="Dashboard_Running_CloseLog">بستن رویداد</string>
-  <string name="Dashboard_Running_Stopping_Title">Stopping test...</string>
-  <string name="Dashboard_Running_Stopping_Notice">Finishing the currently pending tests, please wait...</string>
+  <string name="Dashboard_Running_Stopping_Title">در حال توقف تست...</string>
+  <string name="Dashboard_Running_Stopping_Notice">در حال اتمام تست‌های در حال انتظار. لطفا صبر کنید...</string>
   <string name="Dashboard_Card_Subtitle">برای اطلاعات بیشتر کارت را بفشارید</string>
   <string name="Dashboard_Card_Seconds">~%1$s</string>
   <string name="Dashboard_Websites_Card_Description">تست مسدودیت وبسایت‌ها</string>
@@ -54,6 +54,7 @@
   <string name="Dashboard_Websites_Overview_Paragraph_Desktop">با استفاده از [تست ارتباط اینترنت](https://ooni.io/nettest/web-connectivity/) OONI مسدود بودن وبسایت‌ها را بررسی کنید.\n\nشما وبسایت‌های لیست تست [جهانی](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) و [کشوری](https://github.com/citizenlab/test-lists/tree/master/lists) در Citizen Lab را بررسی خواهید کرد.\n\nاین تست مسدود بودن وبسایت‌ها از طریق دستکاری DNS، مسدود کردن TCP/IP و یا به وسیله پروکسی HTTP بررسی می‌کند.\n\nنتایج شما بر روی [OONI Explorer](https://explorer.ooni.org/) و [OONI API](https://api.ooni.io/) منتشر خواهد شد.</string>
   <string name="Dashboard_Performance_Card_Description">تست سرعت و کارایی شبکه شما</string>
   <string name="Dashboard_Performance_Overview_Paragraph">سرعت و کارایی شبکه خود را با استفاده از تست [NDT](https://ooni.io/nettest/ndt/) test بررسی کنید.\n\nکارایی پخش زنده ویدیویی را با استفاده از تست [DASH](https://ooni.io/nettest/dash/) بررسی کنید.\n\nاین تست‌‌ها با توجه به سرعت شبکه‌ی  شما، داده مصرف می‌کنند.\n\nنتایج  شما بر روی [OONI Explorer](https://explorer.ooni.io/world/) و [OONI API](https://api.ooni.io/) منتشر می‌شود.\n\nسلب مسئولیت: این تست‌ها وابسته به سرورهای ثالث هستند. بنابر این ما تضمینی بر عدم جمع‌آوری آدرس IP شما را نمی‌دهیم.</string>
+  <string name="Dashboard_Performance_Overview_Paragraph_Updated">By running the tests in this card, you will:\n\n- Measure the speed and performance of your network ([NDT](https://ooni.org/nettest/ndt/) test)\n- Measure video streaming performance ([DASH](https://ooni.org/nettest/dash/) test)\n- Check for the presence of [middlebox technologies](https://ooni.org/support/glossary/#middlebox) on your network ([HTTP Invalid Request Line](https://ooni.org/nettest/http-invalid-request-line/) and [HTTP Header Field Manipulation](https://ooni.org/nettest/http-header-field-manipulation/) tests)\n\nThese tests consume data depending on your network speed.\n\nYour test results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).\n\n**Disclaimer:** The [NDT](https://ooni.org/nettest/ndt/) and [DASH](https://ooni.org/nettest/dash/) tests are conducted against third-party servers provided by [Measurement Lab (M-Lab)](https://www.measurementlab.net/). If you run these tests, M-Lab will collect and publish your IP address (for research purposes), irrespective of your OONI Probe settings. Learn more about M-Lab’s data governance through its [privacy statement](https://www.measurementlab.net/privacy/)</string>
   <string name="Dashboard_Middleboxes_Card_Description">شناسایی middlebox در شبکه شما</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">سرویس‌دهنده‌های اینترنت اغلب از (middlebox) های شبکه برای اهداف مختلف (مانند گرفتن کش) استفاده می‌کنند. گاهی اوقات این middleboxها برای سانسور و/یا نظارت بر اینترنت استفاده می‌شوند.\n\nبا استفاده از تست‌های [خط درخواست نامعتبر HTTP](https://ooni.io/nettest/http-invalid-request-line/) و [دستکاری فیلد هدر HTTP](https://ooni.io/nettest/http-header-field-manipulation/) می‌توانید middleboxها در شبکه‌ی خود را بیابید.\n\nنتایج شما بر روی [OONI Explorer](https://explorer.ooni.io/world/) و [OONI API](https://api.ooni.io/) منتشر می‌شود.</string>
   <string name="Dashboard_InstantMessaging_Card_Description">تست مسدودیت پیام‌رسان‌ها</string>
@@ -202,10 +203,10 @@
   <string name="TestResults_Details_Performance_NDT_Download">دانلود</string>
   <string name="TestResults_Details_Performance_NDT_Ping">پینگ</string>
   <string name="TestResults_Details_Performance_NDT_Server">سرور</string>
-  <string name="TestResults_Details_Performance_NDT_PacketLoss">Retransmit Rate</string>
+  <string name="TestResults_Details_Performance_NDT_PacketLoss">Retransmission Rate</string>
   <string name="TestResults_Details_Performance_NDT_OutOfOrder">خارج از روال</string>
   <string name="TestResults_Details_Performance_NDT_AveragePing">میانگین پینگ</string>
-  <string name="TestResults_Details_Performance_NDT_MaxPing">Max Ping Estimate</string>
+  <string name="TestResults_Details_Performance_NDT_MaxPing">پیش‌بینی حداکثر پینگ</string>
   <string name="TestResults_Details_Performance_NDT_MSS">MSS</string>
   <string name="TestResults_Details_Performance_NDT_Timeouts">اتمام زمان</string>
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">شما می‌توانید تا کیفیت %1$s را بدون بافر کردن، پخش زنده کنید. </string>
@@ -315,7 +316,7 @@
   <string name="Settings_Advanced_SendCrashReports">ارسال گزارش درباره‌ی متوقف شدن برنامه </string>
   <string name="Settings_Advanced_DebugLogs">ثبت اشکال زدایی‌ها</string>
   <string name="Settings_Advanced_UseDomainFronting">همواره از جعل دامنه استفاده کن</string>
-  <string name="Settings_Advanced_CollectAnalytics">Collect app usage statistics</string>
+  <string name="Settings_Advanced_CollectAnalytics">جمع‌آوری آمار استفاده از برنامه</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">کرانمند‌سازی مدت آزمون</string>
   <string name="Settings_Websites_MaxRuntime">مدت تست</string>
   <string name="Settings_Websites_Categories_Label">دسته‌بندی‌های وبسایت برای تست</string>
@@ -325,7 +326,7 @@
   <string name="Settings_Websites_CustomURL_NoURLEntered">هیچ آدرسی وارد نشده است</string>
   <string name="Settings_Websites_CustomURL_Run">اجرا</string>
   <string name="Settings_Websites_CustomURL_Add">افزودن وبسایت</string>
-  <string name="Settings_Websites_TestCount">Number of tested websites (0 means all)</string>
+  <string name="Settings_Websites_TestCount">تعداد وبسایت‌های آزمایش شده (۰ یعنی همه)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">تست واتس‌اپ</string>
   <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">تست تمام نقاط پایانی واتس‌‌اپ</string>
   <string name="Settings_InstantMessaging_TestTelegram">تست تلگرام</string>
@@ -342,7 +343,7 @@
   <string name="Settings_Performance_DashServerPort">درگاه سرور DASH</string>
   <string name="Settings_SendEmail_Label">ارسال ایمیل به پشتیبانی</string>
   <string name="Settings_SendEmail_Error">لطفا یک ایمیل به bugs@openobservatory.org همراه با اطلاعات برنامه و نسخه‌ی iOS ارسال کنید. بر روی «کپی در حافظه‌ی موقت» در پایین بزنید تا آدرس ایمیل کپی شود.</string>
-  <string name="Settings_Language_Current">Current app language is %1$s</string>
+  <string name="Settings_Language_Current">زبان فعلی برنامه %1$s است</string>
   <string name="Notification_FinishedRunning">اجرا به پایان رسید</string>
   <string name="OONIBrowser_TryMirror">سرورهای آینه را امتحان کنید</string>
   <string name="OONIBrowser_Loading">در حال بارگذاری...</string>
