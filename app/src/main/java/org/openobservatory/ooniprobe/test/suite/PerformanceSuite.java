@@ -4,6 +4,8 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.Dash;
+import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
+import org.openobservatory.ooniprobe.test.test.HttpInvalidRequestLine;
 import org.openobservatory.ooniprobe.test.test.Ndt;
 
 import java.util.ArrayList;
@@ -22,7 +24,7 @@ public class PerformanceSuite extends AbstractSuite {
 				R.color.color_fuchsia6,
 				R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Performance,
 				R.style.Theme_MaterialComponents_NoActionBar_App_Performance,
-				R.string.Dashboard_Performance_Overview_Paragraph,
+				R.string.Dashboard_Performance_Overview_Paragraph_Updated,
 				"anim/performance.json",
 				"5 - 200 MB");
 	}
@@ -34,6 +36,10 @@ public class PerformanceSuite extends AbstractSuite {
 				list.add(new Ndt());
 			if (pm == null || pm.isRunDash())
 				list.add(new Dash());
+			if (pm == null || pm.isRunHttpHeaderFieldManipulation())
+				list.add(new HttpHeaderFieldManipulation());
+			if (pm == null || pm.isRunHttpInvalidRequestLine())
+				list.add(new HttpInvalidRequestLine());
 			super.setTestList(list.toArray(new AbstractTest[0]));
 		}
 		return super.getTestList(pm);
