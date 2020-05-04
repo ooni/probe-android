@@ -45,13 +45,16 @@
   <string name="Dashboard_Running_CalculatingETA">Öngörülen varış süresi hesaplanıyor</string>
   <string name="Dashboard_Running_ShowLog">Günlüğü Görüntüle</string>
   <string name="Dashboard_Running_CloseLog">Günlüğü Kapat</string>
+  <string name="Dashboard_Running_Stopping_Title">Sınama durduruluyor...</string>
+  <string name="Dashboard_Running_Stopping_Notice">Bekleyen sınamalar tamamlanıyor. Lütfen bekleyin...</string>
   <string name="Dashboard_Card_Subtitle">Ayrıntılar için karta dokunun</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">Web sitesi engellemelerini sınayın</string>
   <string name="Dashboard_Websites_Overview_Paragraph">OONI [Web Bağlantısı Sınaması](https://ooni.io/nettest/web-connectivity/) özelliğini kullanarak web sitelerinin engellenip engellenmediğini denetleyebilirsiniz.\n\nÇalıştır üzerine her tıkladığınızda, Citizen Lab [küresel](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) ve [ülkeye özel](https://github.com/citizenlab/test-lists/tree/master/lists) sınama listelerindeki çeşitli web siteleri denetlenir.\n\nBelirli web sitelerini sınamak için Web Sitelerini Seçin düğmesine tıklayın ya da bu kartın ayarlarından kategori ya da siteler seçin. \n\nBu sınama web sitelerinin DNS müdahalesi, TCP/IP engelleme ya da görünmez vekil sunucu ile engellenip engellenmediğini ortaya çıkarır.\n\nSonuçlarınız [OONI Explorer](https://explorer.ooni.io/world/) ve [OONI API](https://api.ooni.io/) üzerinde yayınlanacaktır.</string>
-  <string name="Dashboard_Websites_Overview_Paragraph_Desktop">Check whether websites are blocked using OONI\'s [Web Connectivity test](https://ooni.io/nettest/web-connectivity/).\n\nYou will test the websites included in the Citizen Lab\'s [global](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) and [country-specific](https://github.com/citizenlab/test-lists/tree/master/lists) test lists.\n\nThis test measures whether websites are blocked by means of DNS tampering, TCP/IP blocking or by a transparent HTTP proxy.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_Websites_Overview_Paragraph_Desktop">OONI [Web Bağlantısı Sınaması](https://ooni.io/nettest/web-connectivity/) özelliğini kullanarak web sitelerinin engellenip engellenmediğini denetleyebilirsiniz.\n\nSınama ile Citizen Lab [küresel](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) ve [ülkeye özel](https://github.com/citizenlab/test-lists/tree/master/lists) sınama listelerindeki web siteleri denetlenir.\n\nBu sınama web sitelerinin DNS müdahalesi, TCP/IP engelleme ya da görünmez vekil sunucu ile engellenip engellenmediğini ortaya çıkarır.\n\nSonuçlarınız [OONI Explorer](https://explorer.ooni.org/world/) ve [OONI API](https://api.ooni.io/) üzerinde yayınlanır.</string>
   <string name="Dashboard_Performance_Card_Description">Ağınızın hızını ve performansını ölçün</string>
   <string name="Dashboard_Performance_Overview_Paragraph">[NDT](https://ooni.io/nettest/ndt/) sınaması ile ağınızın hızını ve performansını ölçebilirsiniz.\n\n[DASH](https://ooni.io/nettest/dash/) sınaması ile görüntü akış performansını ölçebilirsiniz.\n\nBu sınamalar sırasında ağınızın hızına göre belirlenen miktarda çeşitli veriler aktarılır.\n\nSonuçlarınız [OONI Explorer](https://explorer.ooni.io/world/) ve [OONI API](https://api.ooni.io/) üzerinde yayınlanır.\n\nBildirim: Bu sınamalar üçüncü tarafların sunucuları üzerinden yapılır. Bu nedenle IP adresinizin kaydedilmeyeceğini garanti edemeyiz.</string>
+  <string name="Dashboard_Performance_Overview_Paragraph_Updated">By running the tests in this card, you will:\n\n* Measure the speed and performance of your network ([NDT](https://ooni.org/nettest/ndt/) test)\n\n* Measure video streaming performance ([DASH](https://ooni.org/nettest/dash/) test)\n\n* Check for the presence of [middlebox technologies](https://ooni.org/support/glossary/#middlebox) on your network ([HTTP Invalid Request Line](https://ooni.org/nettest/http-invalid-request-line/) and [HTTP Header Field Manipulation](https://ooni.org/nettest/http-header-field-manipulation/) tests)\n\nThese tests consume data depending on your network speed.\n\nYour test results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).\n\n**Disclaimer:** The [NDT](https://ooni.org/nettest/ndt/) and [DASH](https://ooni.org/nettest/dash/) tests are conducted against third-party servers provided by [Measurement Lab (M-Lab)](https://www.measurementlab.net/). If you run these tests, M-Lab will collect and publish your IP address (for research purposes), irrespective of your OONI Probe settings. Learn more about M-Lab’s data governance through its [privacy statement](https://www.measurementlab.net/privacy/).</string>
   <string name="Dashboard_Middleboxes_Card_Description">Ağınızdaki ara kutuları bulun</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">İnternet Hizmeti Sağlayıcıları sıklıkla bazı ağ uygulamaları için (ön bellekleme gibi) çeşitli aygıtlar (ara kutular) kullanır. Bazen bu ara kutular İnternet sansürü ve izlemesi için kullanılır.\n\nOONI [HTTP Geçersiz İstek Hattı](https://ooni.io/nettest/http-invalid-request-line/) ve [HTTP Üst Bilgi Alanı Müdahalesi](https://ooni.io/nettest/http-header-field-manipulation/) sınamalarını kullanarak ara kutuları bulabilirsiniz.\n\nSonuçlarınız [OONI Explorer](https://explorer.ooni.io/world/) ve [OONI API](https://api.ooni.io/) üzerinde yayınlanır.</string>
   <string name="Dashboard_InstantMessaging_Card_Description">Anlık ileti uygulamalarının engellenip engellenmediğini anlayın</string>
@@ -200,10 +203,10 @@
   <string name="TestResults_Details_Performance_NDT_Download">İndirme</string>
   <string name="TestResults_Details_Performance_NDT_Ping">Gecikme</string>
   <string name="TestResults_Details_Performance_NDT_Server">Sunucu</string>
-  <string name="TestResults_Details_Performance_NDT_PacketLoss">Paket Kaybı</string>
+  <string name="TestResults_Details_Performance_NDT_PacketLoss">Yeniden Aktarım Hızı</string>
   <string name="TestResults_Details_Performance_NDT_OutOfOrder">Hizmet Dışı</string>
   <string name="TestResults_Details_Performance_NDT_AveragePing">Ortalama Gecikme</string>
-  <string name="TestResults_Details_Performance_NDT_MaxPing">En Yüksek Gecikme</string>
+  <string name="TestResults_Details_Performance_NDT_MaxPing">En Yüksek Ping Öngörüsü</string>
   <string name="TestResults_Details_Performance_NDT_MSS">MSS</string>
   <string name="TestResults_Details_Performance_NDT_Timeouts">Zaman Aşımları</string>
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Görüntü akışlarında ara bellek kullanmadan en fazla %1$s çözünürlük elde edebilirsiniz.</string>
@@ -313,6 +316,7 @@
   <string name="Settings_Advanced_SendCrashReports">Çökme raporları gönderilsin</string>
   <string name="Settings_Advanced_DebugLogs">Hata ayıklama günlükleri</string>
   <string name="Settings_Advanced_UseDomainFronting">Araya her zaman alan adı eklensin (Domain Fronting)</string>
+  <string name="Settings_Advanced_CollectAnalytics">Uygulama kullanım istatistikleri toplansın</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Sınama süresi sınırlansın</string>
   <string name="Settings_Websites_MaxRuntime">Sınama süresi</string>
   <string name="Settings_Websites_Categories_Label">Sınanacak web sitesi kategorileri</string>
@@ -322,6 +326,7 @@
   <string name="Settings_Websites_CustomURL_NoURLEntered">Herhangi bir adres yazılmamış</string>
   <string name="Settings_Websites_CustomURL_Run">Çalıştır</string>
   <string name="Settings_Websites_CustomURL_Add">Web sitesi ekle</string>
+  <string name="Settings_Websites_TestCount">Sınanan web sitesi sayısı (tümü için 0 yazın)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">WhatsApp Sınaması</string>
   <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">Tüm WhatsApp bağlantı noktaları sınansın</string>
   <string name="Settings_InstantMessaging_TestTelegram">Telegram Sınaması</string>
@@ -338,6 +343,7 @@
   <string name="Settings_Performance_DashServerPort">DASH sunucusu bağlantı noktası</string>
   <string name="Settings_SendEmail_Label">Destek ekibine e-posta gönderin</string>
   <string name="Settings_SendEmail_Error">Lütfen uygulama hakkındaki bilgiler ve iOS sürümünü yazarak bugs@openobservatory.org adresine bir e-posta gönderin. E-posta adresimizi kopyalamak için aşağıdaki \"Panoya kopyala\" seçeneğine dokunun.</string>
+  <string name="Settings_Language_Current">Geçerli uygulama dili: %1$s</string>
   <string name="Notification_FinishedRunning">Çalışmayı tamamladı</string>
   <string name="OONIBrowser_TryMirror">Kopyası denensin</string>
   <string name="OONIBrowser_Loading">Yükleniyor...</string>
