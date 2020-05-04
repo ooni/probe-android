@@ -2,7 +2,7 @@
 <resources>
   <string name="General_AppName">OONI Probe</string>
   <string name="Onboarding_WhatIsOONIProbe_Title">ما هو OONI Probe؟</string>
-  <string name="Onboarding_WhatIsOONIProbe_Paragraph">تطبيقكم لقياس الرّقابة على الانترنت. \n\nهل هناك مواقع أو تطبيقات إعلام اجتماعي محجوبة؟ هل الاتصال بالانترنت بطئ فوق العادة؟\n\nاستخدموا OONI Probe لتعرفوا! </string>
+  <string name="Onboarding_WhatIsOONIProbe_Paragraph">تطبيقكم لقياس الرّقابة على الانترنت. \n\nهل هناك مواقع أو تطبيقات إعلام اجتماعي محجوبة؟ هل الاتصال بالانترنت أبطأ من العادة؟\n\nاستخدموا OONI Probe لتعرفوا! </string>
   <string name="Onboarding_WhatIsOONIProbe_GotIt">فهمت</string>
   <string name="Onboarding_ThingsToKnow_Title">إنتباه! </string>
   <string name="Onboarding_ThingsToKnow_Bullet_1">يتم نشر بيانات OONI علنيّاً، بما فيها معلومات الشّبكة الخاصّة بك. </string>
@@ -45,13 +45,16 @@
   <string name="Dashboard_Running_CalculatingETA">حساب الوقت اللازم</string>
   <string name="Dashboard_Running_ShowLog">استعرض السِّجِل</string>
   <string name="Dashboard_Running_CloseLog">أغلِق السجل</string>
+  <string name="Dashboard_Running_Stopping_Title">Stopping test...</string>
+  <string name="Dashboard_Running_Stopping_Notice">Finishing the currently pending tests, please wait...</string>
   <string name="Dashboard_Card_Subtitle">انقر البطاقة للمزيد</string>
   <string name="Dashboard_Card_Seconds">~%1$sث</string>
   <string name="Dashboard_Websites_Card_Description">اختبار حجب المواقع</string>
   <string name="Dashboard_Websites_Overview_Paragraph">تحقق ما اذا كانت المواقع محجوبة من خلال [اختبار وصول للشيكة](https://ooni.io/nettest/web-connectivity/) الخاص ب OONI.\n\nفي كل مرة تنقر على تشغيل تختبر مواقع مختلفة من [القائمة العالمية](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) و [القوائم الخاصة بالدول](https://github.com/citizenlab/test-lists/tree/master/lists).\n\nلاختيار موقع معين للاختبار، انقر على زر \"إختر المواقع\" أو اختر أقسام المواقع من خلال اعدادات البطاقة.\n\nهذا الاختبار يقيس ما اذا كان الحجب بسبب التلاعب في DNS أو حجب TCP/IP أو من خلال بروكسي من نوع Transparent HTTP.\n\nنتائج اختبارك ستنشر على [متصفح OONI](https://explorer.ooni.io/world/) و على [OONI API](https://api.ooni.io/).</string>
-  <string name="Dashboard_Websites_Overview_Paragraph_Desktop">Check whether websites are blocked using OONI\'s [Web Connectivity test](https://ooni.io/nettest/web-connectivity/).\n\nYou will test the websites included in the Citizen Lab\'s [global](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) and [country-specific](https://github.com/citizenlab/test-lists/tree/master/lists) test lists.\n\nThis test measures whether websites are blocked by means of DNS tampering, TCP/IP blocking or by a transparent HTTP proxy.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_Websites_Overview_Paragraph_Desktop">تأكّدوا عمّا إذا كانت المواقع محجوبة باستخدام [اختبار الاتصاليّة بالويب](https://ooni.io/nettest/web-connectivity) من OONI \n\nستقومون بفحص المواقع الموجودة لدى قائمة اختبارات Citizen Lab [العالميّة](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) و تلك [الخاصّة ببلد معيّنة](https://github.com/citizenlab/test-lists/tree/master/lists)\n\nهذا الفحص يكشف عمّا إذا كانت المواقع محجوبة عن طريق التلاعب ب DNS، حجب TCP/IP أو عن طريق بروكسي HTTP غير مرئي.\n\nسيتم نشر نتائج فحصكم على كل من [مكتشف OONI](https://explorer.ooni.org) و [واجهة تطبيق OONI](https://api.ooni.io/)</string>
   <string name="Dashboard_Performance_Card_Description">اختبار سرعة و جودة شبكتك</string>
   <string name="Dashboard_Performance_Overview_Paragraph">قس سرعة و جودة شبكتك من خلال اختبار [NDT](https://ooni.io/nettest/ndt/).\n\nقس جودة تحميل الفيديو من خلال اختبار [DASH](https://ooni.io/nettest/dash/).\n\nهذه الاختبارات تستهلك بيانات على قدر سرعة اتصالك بالشبكة.\n\nنتائج اختبارك ستنشر على [متصفح OONI](https://explorer.ooni.io/world/) و على [OONI API](https://api.ooni.io/).\n\nتنبيه: هذه الاختبارات تعتمد على سيرفرات من أطراف أخرى. لذلك لا نستطيع ضمان عدم تسجيل عنوان IP الخاص بك.</string>
+  <string name="Dashboard_Performance_Overview_Paragraph_Updated">By running the tests in this card, you will:\n\n* Measure the speed and performance of your network ([NDT](https://ooni.org/nettest/ndt/) test)\n\n* Measure video streaming performance ([DASH](https://ooni.org/nettest/dash/) test)\n\n* Check for the presence of [middlebox technologies](https://ooni.org/support/glossary/#middlebox) on your network ([HTTP Invalid Request Line](https://ooni.org/nettest/http-invalid-request-line/) and [HTTP Header Field Manipulation](https://ooni.org/nettest/http-header-field-manipulation/) tests)\n\nThese tests consume data depending on your network speed.\n\nYour test results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).\n\n**Disclaimer:** The [NDT](https://ooni.org/nettest/ndt/) and [DASH](https://ooni.org/nettest/dash/) tests are conducted against third-party servers provided by [Measurement Lab (M-Lab)](https://www.measurementlab.net/). If you run these tests, M-Lab will collect and publish your IP address (for research purposes), irrespective of your OONI Probe settings. Learn more about M-Lab’s data governance through its [privacy statement](https://www.measurementlab.net/privacy/).</string>
   <string name="Dashboard_Middleboxes_Card_Description">البحث عن اختبارات تفتيش في شبكتك</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">عادة ما تقوم الشركات المزودة لخدمة الإنترنت بإستخدام أجهزة تسمى middleboxes لإستخدامات مختلفة في الشبكة (مثل تسريع الخدمة عن طريق تقديم نسخة مسجلة من المواقع). أحيانًا ما تستخدم middleboxes لتنفيذ الحجب أو مراقبة الإنترنت.\n\nاعثر على middleboxes في شبكتك بإستخدام اختبارات [عدم صلاحية طلب الHTTP](https://ooni.io/nettest/http-invalid-request-line/) و [التلاعب بخانة رأس صفحة الHTTP](https://ooni.io/nettest/http-header-field-manipulation/).\nنتائج اختبارك ستنشر على [متصفح OONI](https://explorer.ooni.io/world/) و على [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_InstantMessaging_Card_Description">اختبار حجب برامج المراسلة الفورية</string>
@@ -200,10 +203,10 @@
   <string name="TestResults_Details_Performance_NDT_Download">تحميل</string>
   <string name="TestResults_Details_Performance_NDT_Ping">الاستجابة</string>
   <string name="TestResults_Details_Performance_NDT_Server">الخادم</string>
-  <string name="TestResults_Details_Performance_NDT_PacketLoss">خسارة حزمة</string>
+  <string name="TestResults_Details_Performance_NDT_PacketLoss">Retransmit Rate</string>
   <string name="TestResults_Details_Performance_NDT_OutOfOrder">خروج حزمة</string>
   <string name="TestResults_Details_Performance_NDT_AveragePing">متوسط الاستجابة</string>
-  <string name="TestResults_Details_Performance_NDT_MaxPing">أعلى استجابة</string>
+  <string name="TestResults_Details_Performance_NDT_MaxPing">Max Ping Estimate</string>
   <string name="TestResults_Details_Performance_NDT_MSS">MSS</string>
   <string name="TestResults_Details_Performance_NDT_Timeouts">نفاذ وقت الحزمة</string>
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">بإمكانك مشاهدة فيديو حتى جودة %1$s بدون توقف للتحميل</string>
@@ -313,6 +316,7 @@
   <string name="Settings_Advanced_SendCrashReports">أرسل تقارير حول تعطل التطبيق</string>
   <string name="Settings_Advanced_DebugLogs">أظهر سجلات التصحيح</string>
   <string name="Settings_Advanced_UseDomainFronting">دائمًا استخدم وسيط في اتصال النطاق Domain Fronting</string>
+  <string name="Settings_Advanced_CollectAnalytics">Collect app usage statistics</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">قيّد مدة الاختبار</string>
   <string name="Settings_Websites_MaxRuntime">مدة الاختبار</string>
   <string name="Settings_Websites_Categories_Label">أقسام المواقع للاختبار</string>
@@ -322,6 +326,7 @@
   <string name="Settings_Websites_CustomURL_NoURLEntered">لم يتم إدخال أي روابط</string>
   <string name="Settings_Websites_CustomURL_Run">ابدأ</string>
   <string name="Settings_Websites_CustomURL_Add">أضف موقعًا</string>
+  <string name="Settings_Websites_TestCount">Number of tested websites (0 means all)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">اختبر واتساب</string>
   <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">اختبر كل أطراف واتساب</string>
   <string name="Settings_InstantMessaging_TestTelegram">اختبر تيليجرام</string>
@@ -338,6 +343,7 @@
   <string name="Settings_Performance_DashServerPort">منفذ خادم DASH</string>
   <string name="Settings_SendEmail_Label">إرسال إيميل لفريق الدعم </string>
   <string name="Settings_SendEmail_Error">من فضلك أرسل رسالة إلكترونية إلى bugs@openobservatory.org تحتوى على معلومات عن اصدار البرنامج وإصدار iOS. اضغط على \"نسخ إلى الحافظة\" فى الأسفل لنسخ عنوان بريدنا الإلكتروني.</string>
+  <string name="Settings_Language_Current">Current app language is %1$s</string>
   <string name="Notification_FinishedRunning">انتهى التشغيل</string>
   <string name="OONIBrowser_TryMirror">تجربة خادم بديل</string>
   <string name="OONIBrowser_Loading">جاري التحميل...</string>

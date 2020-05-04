@@ -2,7 +2,7 @@
 <resources>
   <string name="General_AppName">OONI Probe</string>
   <string name="Onboarding_WhatIsOONIProbe_Title">O que é o OONI Probe?</string>
-  <string name="Onboarding_WhatIsOONIProbe_Paragraph">Seu aplicativo para medir a censura na internet.\n\nOs sites e aplicativos de mídia social estão bloqueados? Sua conexão com a internet é estranhamente lenta?\n\nExecute o OONI Probe para descobrir!</string>
+  <string name="Onboarding_WhatIsOONIProbe_Paragraph">Seu aplicativo para medir a censura na internet.\n\nOs sites e aplicativos de mídia social estão bloqueados? Sua conexão com a internet é estranhamente lenta?\n\nExecute o OONI Probe para descobrir por quê!</string>
   <string name="Onboarding_WhatIsOONIProbe_GotIt">Entendi</string>
   <string name="Onboarding_ThingsToKnow_Title">Atenção!</string>
   <string name="Onboarding_ThingsToKnow_Bullet_1">Os dados da OONI são publicados abertamente e incluirão as informações da sua rede.</string>
@@ -45,6 +45,8 @@
   <string name="Dashboard_Running_CalculatingETA">Calculando ETA</string>
   <string name="Dashboard_Running_ShowLog">Exibir registro</string>
   <string name="Dashboard_Running_CloseLog">Fechar registro</string>
+  <string name="Dashboard_Running_Stopping_Title">Parando do teste...</string>
+  <string name="Dashboard_Running_Stopping_Notice">A finalizar os testes atualmente pendentes, por favor aguarde...</string>
   <string name="Dashboard_Card_Subtitle">Clique para ver outras opções </string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">Teste o bloqueio de sites</string>
@@ -52,6 +54,7 @@
   <string name="Dashboard_Websites_Overview_Paragraph_Desktop">Verifique se os sites estão bloqueados usando o OONI [Teste de conectividade da Web](https://ooni.io/nettest/web-connectivity/).\n\nVocê testará os sites incluídos no Citizen Lab\'s [global](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) elista de teste do [país específico](https://github.com/citizenlab/test-lists/tree/master/lists).\n\nEsse teste mede se os sites são bloqueados por adulteração de DNS, bloqueio de TCP/IP ou por um proxy HTTP transparente.\n\nSeus resultados serão publicados no [OONI Explorer](https://explorer.ooni.org/) e [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Performance_Card_Description">Teste a velocidade e o desempenho de sua rede</string>
   <string name="Dashboard_Performance_Overview_Paragraph">Meça a velocidade e o desempenho de sua rede usando o teste [NDT](https://ooni.io/nettest/ndt/).\n\nMeça o desempenho da transmissão de vídeo usando o teste [DASH](https://ooni.io/nettest/dash/).\n\nEsses testes consomem dados dependendo da velocidade da sua rede.\n\nSeus resultados serão publicados no [OONI Explorer](https://explorer.ooni.io/world/) e [OONI API](https://api.ooni.io/).\n\nIsenção de responsabilidade: esses testes dependem de servidores de terceiros. Portanto, não podemos garantir que seu endereço IP não será coletado.</string>
+  <string name="Dashboard_Performance_Overview_Paragraph_Updated">By running the tests in this card, you will:\n\n* Measure the speed and performance of your network ([NDT](https://ooni.org/nettest/ndt/) test)\n\n* Measure video streaming performance ([DASH](https://ooni.org/nettest/dash/) test)\n\n* Check for the presence of [middlebox technologies](https://ooni.org/support/glossary/#middlebox) on your network ([HTTP Invalid Request Line](https://ooni.org/nettest/http-invalid-request-line/) and [HTTP Header Field Manipulation](https://ooni.org/nettest/http-header-field-manipulation/) tests)\n\nThese tests consume data depending on your network speed.\n\nYour test results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).\n\n**Disclaimer:** The [NDT](https://ooni.org/nettest/ndt/) and [DASH](https://ooni.org/nettest/dash/) tests are conducted against third-party servers provided by [Measurement Lab (M-Lab)](https://www.measurementlab.net/). If you run these tests, M-Lab will collect and publish your IP address (for research purposes), irrespective of your OONI Probe settings. Learn more about M-Lab’s data governance through its [privacy statement](https://www.measurementlab.net/privacy/).</string>
   <string name="Dashboard_Middleboxes_Card_Description">Detectar middleboxes na sua rede</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">Provedores de serviços de Internet costumam usar dispositivos de rede (middleboxes) para várias finalidades de rede (como o armazenamento em cache). Às vezes, esses dispositivos são usados para implementar censura e/ou vigilância na internet.\n\nEncontre os middleboxes na sua rede usando os testes da OONI [HTTP Invalid Request Line](https://ooni.io/nettest/http-invalid-request-line/) e  [HTTP Header Field Manipulation](https://ooni.io/nettest/http-header-field-manipulation/).\n\nSeus resultados serão publicados no [OONI Explorer](https://explorer.ooni.io/world/) e [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_InstantMessaging_Card_Description">Teste o bloqueio de aplicativos de mensagens instantâneas</string>
@@ -127,8 +130,8 @@
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">Aplicativo</string>
   <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">Aplicativos</string>
   <string name="TestResults_Summary_Circumvention_Hero_Tested_Singular">Testado</string>
-  <string name="TestResults_Summary_Circumvention_Hero_Tested_Plural">Testado</string>
-  <string name="TestResults_Summary_Circumvention_Hero_Blocked_Singular">Bloqueado</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tested_Plural">Testadas</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Blocked_Singular">Bloqueadas</string>
   <string name="TestResults_Summary_Circumvention_Hero_Blocked_Plural">Bloqueado</string>
   <string name="TestResults_Summary_Circumvention_Hero_Reachable_Singular">Funcionando</string>
   <string name="TestResults_Summary_Circumvention_Hero_Reachable_Plural">Funcionando</string>
@@ -200,10 +203,10 @@
   <string name="TestResults_Details_Performance_NDT_Download">Download</string>
   <string name="TestResults_Details_Performance_NDT_Ping">Ping</string>
   <string name="TestResults_Details_Performance_NDT_Server">Servidor</string>
-  <string name="TestResults_Details_Performance_NDT_PacketLoss">Perda de Pacotes</string>
+  <string name="TestResults_Details_Performance_NDT_PacketLoss">Taxa de Retransmissão</string>
   <string name="TestResults_Details_Performance_NDT_OutOfOrder">Fora de Ordem</string>
   <string name="TestResults_Details_Performance_NDT_AveragePing">Ping Médio</string>
-  <string name="TestResults_Details_Performance_NDT_MaxPing">Ping Máximo</string>
+  <string name="TestResults_Details_Performance_NDT_MaxPing">Estimativa Máxima de Ping</string>
   <string name="TestResults_Details_Performance_NDT_MSS">MSS</string>
   <string name="TestResults_Details_Performance_NDT_Timeouts">Tempo excedido</string>
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Você pode transmitir até %1$s sem usar a memória temporária.</string>
@@ -211,7 +214,7 @@
   <string name="TestResults_Details_Performance_Dash_PlayoutDelay">Atraso de Playout</string>
   <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">Provavelmente bloqueado</string>
   <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">Funcionando</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph">[Psiphon](https://psiphon.ca/) appears to be blocked.</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph">[Tor](https://www.torproject.org/) parece estar bloqueado.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph">Conseguimos inicializar com êxito uma conexão Psiphon. Isso significa que [Psiphon](https://psiphon.ca/) deveria trabalhar.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Hora do Bootstrap</string>
   <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
@@ -226,7 +229,7 @@
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Name">Nome</string>
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Address">Endereço</string>
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Type">Tipo</string>
-  <string name="TestResults_Details_Circumvention_Tor_Table_Header_Connect">Conectar-se</string>
+  <string name="TestResults_Details_Circumvention_Tor_Table_Header_Connect">Conectar</string>
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Handshake">handshake</string>
   <string name="Feed_Tab_Label">Alimentar</string>
   <string name="Feed_Title">Alimentar</string>
@@ -258,7 +261,7 @@
   <string name="Modal_ReRun_Title">Repetir o teste</string>
   <string name="Modal_ReRun_Paragraph">Este teste falhou. Você deseja fazer um outro teste?</string>
   <string name="Modal_ReRun_Websites_Title">Você está prestes a testar novamente os sites %1$s.</string>
-  <string name="Modal_ReRun_Websites_Run">Executat</string>
+  <string name="Modal_ReRun_Websites_Run">Executar</string>
   <string name="Modal_CustomURL_NotSaved">Suas URLs não serão salvas quando você sair desta tela. Tem certeza de que deseja sair desta tela?</string>
   <string name="Modal_ManualUpload_Title">Ativar carregamento manual?</string>
   <string name="Modal_ManualUpload_Paragraph">Essa configuração permite que você carregue manualmente as medidas não publicadas.</string>
@@ -287,7 +290,7 @@
   <string name="Test_WhatsApp_Fullname">Teste do WhatsApp</string>
   <string name="Test_Telegram_Fullname">Teste do Telegram</string>
   <string name="Test_FacebookMessenger_Fullname">Teste do Facebook Messenger</string>
-  <string name="Test_Psiphon_Fullname">Teste Psiphon</string>
+  <string name="Test_Psiphon_Fullname">Teste do Psiphon</string>
   <string name="Test_Tor_Fullname">Teste do Tor</string>
   <string name="Settings_Title">Configurações</string>
   <string name="Settings_Error_TestDurationTooLow">A quantidade de tempo que você definiu para a duração do teste é muito baixa.</string>
@@ -313,6 +316,7 @@
   <string name="Settings_Advanced_SendCrashReports">Enviar relatórios de erros</string>
   <string name="Settings_Advanced_DebugLogs">Registros de depuração</string>
   <string name="Settings_Advanced_UseDomainFronting">Sempre usar \"domain fronting\"</string>
+  <string name="Settings_Advanced_CollectAnalytics">Coletar estatísticas de utilização do aplicativo</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Limitar a duração do teste</string>
   <string name="Settings_Websites_MaxRuntime">Duração do teste</string>
   <string name="Settings_Websites_Categories_Label">Categorias de sites para testar</string>
@@ -322,6 +326,7 @@
   <string name="Settings_Websites_CustomURL_NoURLEntered">Nenhuma URL inserida</string>
   <string name="Settings_Websites_CustomURL_Run">Rodar</string>
   <string name="Settings_Websites_CustomURL_Add">Adicionar website</string>
+  <string name="Settings_Websites_TestCount">Número de sites testados (0 significa todos)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">Teste do WhatsApp</string>
   <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">Testar todas as URLs do WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Teste do Telegram</string>
@@ -338,6 +343,7 @@
   <string name="Settings_Performance_DashServerPort">Porta do servidor DASH</string>
   <string name="Settings_SendEmail_Label">Enviar e-mail para suporte</string>
   <string name="Settings_SendEmail_Error">Por favor, envie um e-mail para bugs@openobservatory.org com informações sobre o aplicativo e a versão do iOS. Toque em \"Copiar para área de transferência,\" abaixo, para copiar nosso endereço de e-mail.</string>
+  <string name="Settings_Language_Current">Idioma atual da aplicação é %1$s</string>
   <string name="Notification_FinishedRunning">Execução concluída</string>
   <string name="OONIBrowser_TryMirror">Tentar espelho</string>
   <string name="OONIBrowser_Loading">Carregando...</string>
