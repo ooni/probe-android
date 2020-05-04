@@ -16,6 +16,7 @@ import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.item.TestsuiteItem;
 import org.openobservatory.ooniprobe.model.database.Result;
+import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
@@ -64,10 +65,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		PreferenceManager pm = ((Application) getActivity().getApplication()).getPreferenceManager();
 		items.clear();
 		testSuites.clear();
-		testSuites.add(new WebsitesSuite());
-		testSuites.add(new InstantMessagingSuite());
-		testSuites.add(new MiddleBoxesSuite());
-		testSuites.add(new PerformanceSuite());
+		testSuites.addAll(TestAsyncTask.SUITES);
 		for (AbstractSuite testSuite : testSuites)
 			items.add(new TestsuiteItem(testSuite, pm, this));
 		setLastTest();

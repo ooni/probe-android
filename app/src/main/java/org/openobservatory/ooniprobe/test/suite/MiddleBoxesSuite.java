@@ -10,6 +10,13 @@ import java.util.ArrayList;
 
 import androidx.annotation.Nullable;
 
+/**
+ * @deprecated
+ * It is not possible to run a MiddleBoxesSuite anymore
+ * The HttpHeaderFieldManipulation and HttpInvalidRequestLine tests
+ * are being ran inside the PerformanceSuite
+ */
+@Deprecated
 public class MiddleBoxesSuite extends AbstractSuite {
 	public static final String NAME = "middle_boxes";
 

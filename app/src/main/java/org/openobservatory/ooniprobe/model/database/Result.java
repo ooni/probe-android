@@ -74,7 +74,7 @@ public class Result extends BaseModel implements Serializable {
 
 	public List<Measurement> getMeasurements() {
 		if (measurements == null)
-			measurements = SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false), Measurement_Table.is_done.eq(true)).orderBy(Measurement_Table.is_anomaly, false).orderBy(Measurement_Table.is_failed, false).orderBy(Measurement_Table.id, false).queryList();
+			measurements = SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false), Measurement_Table.is_done.eq(true)).orderBy(Measurement_Table.is_anomaly, false).orderBy(Measurement_Table.is_failed, false).orderBy(Measurement_Table.id, true).queryList();
 		return measurements;
 	}
 

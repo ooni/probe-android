@@ -43,6 +43,8 @@ import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
+import org.openobservatory.ooniprobe.test.test.Dash;
+import org.openobservatory.ooniprobe.test.test.Ndt;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
 import java.io.Serializable;
@@ -164,10 +166,10 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
     private void load() {
         result = SQLite.select().from(Result.class).where(Result_Table.id.eq(result.id)).querySingle();
         assert result != null;
-        boolean isPerf = result.test_group_name.equals(PerformanceSuite.NAME);
         items.clear();
         for (Measurement measurement : result.getMeasurements())
-            items.add(isPerf && !measurement.is_failed ?
+            items.add((measurement.test_name.equals(Ndt.NAME) || measurement.test_name.equals(Dash.NAME))
+                    && !measurement.is_failed ?
                     new MeasurementPerfItem(measurement, this) :
                     new MeasurementItem(measurement, this));
         adapter.notifyTypesChanged();
