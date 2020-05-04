@@ -203,7 +203,7 @@
   <string name="TestResults_Details_Performance_NDT_Download">Λήψη</string>
   <string name="TestResults_Details_Performance_NDT_Ping">Ping</string>
   <string name="TestResults_Details_Performance_NDT_Server">Διακομιστής</string>
-  <string name="TestResults_Details_Performance_NDT_PacketLoss">Retransmit Rate</string>
+  <string name="TestResults_Details_Performance_NDT_PacketLoss">Retransmission Rate</string>
   <string name="TestResults_Details_Performance_NDT_OutOfOrder">Εκτός λειτουργίας</string>
   <string name="TestResults_Details_Performance_NDT_AveragePing">Μέσος όρος ping</string>
   <string name="TestResults_Details_Performance_NDT_MaxPing">Max Ping Estimate</string>

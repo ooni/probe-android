@@ -19,11 +19,9 @@ import butterknife.ButterKnife;
 public class NdtFragment extends Fragment {
 	private static final String MEASUREMENT = "measurement";
 	@BindView(R.id.packetLoss) TextView packetLoss;
-	@BindView(R.id.outOfOrder) TextView outOfOrder;
 	@BindView(R.id.averagePing) TextView averagePing;
 	@BindView(R.id.maxPing) TextView maxPing;
 	@BindView(R.id.mss) TextView mss;
-	@BindView(R.id.timeouts) TextView timeouts;
 
 	public static NdtFragment newInstance(Measurement measurement) {
 		Bundle args = new Bundle();
@@ -40,11 +38,9 @@ public class NdtFragment extends Fragment {
 		View v = inflater.inflate(R.layout.fragment_measurement_ndt, container, false);
 		ButterKnife.bind(this, v);
 		packetLoss.setText(Html.fromHtml(getString(R.string.bigNormal, measurement.getTestKeys().getPacketLoss(getActivity()), "%")));
-		outOfOrder.setText(Html.fromHtml(getString(R.string.bigNormal, measurement.getTestKeys().getOutOfOrder(getActivity()), "%")));
 		averagePing.setText(Html.fromHtml(getString(R.string.bigNormal, measurement.getTestKeys().getAveragePing(getActivity()), "ms")));
 		maxPing.setText(Html.fromHtml(getString(R.string.bigNormal, measurement.getTestKeys().getMaxPing(getActivity()), "ms")));
 		mss.setText(measurement.getTestKeys().getMSS(getActivity()));
-		timeouts.setText(measurement.getTestKeys().getTimeouts(getActivity()));
 		return v;
 	}
 }

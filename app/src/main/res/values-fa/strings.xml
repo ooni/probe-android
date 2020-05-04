@@ -203,7 +203,7 @@
   <string name="TestResults_Details_Performance_NDT_Download">دانلود</string>
   <string name="TestResults_Details_Performance_NDT_Ping">پینگ</string>
   <string name="TestResults_Details_Performance_NDT_Server">سرور</string>
-  <string name="TestResults_Details_Performance_NDT_PacketLoss">نرخ بارگیری مجدد</string>
+  <string name="TestResults_Details_Performance_NDT_PacketLoss">Retransmission Rate</string>
   <string name="TestResults_Details_Performance_NDT_OutOfOrder">خارج از روال</string>
   <string name="TestResults_Details_Performance_NDT_AveragePing">میانگین پینگ</string>
   <string name="TestResults_Details_Performance_NDT_MaxPing">پیش‌بینی حداکثر پینگ</string>

@@ -203,7 +203,7 @@
   <string name="TestResults_Details_Performance_NDT_Download">İndirme</string>
   <string name="TestResults_Details_Performance_NDT_Ping">Gecikme</string>
   <string name="TestResults_Details_Performance_NDT_Server">Sunucu</string>
-  <string name="TestResults_Details_Performance_NDT_PacketLoss">Yeniden Aktarım Hızı</string>
+  <string name="TestResults_Details_Performance_NDT_PacketLoss">Retransmission Rate</string>
   <string name="TestResults_Details_Performance_NDT_OutOfOrder">Hizmet Dışı</string>
   <string name="TestResults_Details_Performance_NDT_AveragePing">Ortalama Gecikme</string>
   <string name="TestResults_Details_Performance_NDT_MaxPing">En Yüksek Ping Öngörüsü</string>

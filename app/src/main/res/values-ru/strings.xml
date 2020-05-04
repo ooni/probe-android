@@ -203,7 +203,7 @@
   <string name="TestResults_Details_Performance_NDT_Download">Скачать</string>
   <string name="TestResults_Details_Performance_NDT_Ping">Пинг</string>
   <string name="TestResults_Details_Performance_NDT_Server">Сервер</string>
-  <string name="TestResults_Details_Performance_NDT_PacketLoss">Retransmit Rate</string>
+  <string name="TestResults_Details_Performance_NDT_PacketLoss">Retransmission Rate</string>
   <string name="TestResults_Details_Performance_NDT_OutOfOrder">Не работает</string>
   <string name="TestResults_Details_Performance_NDT_AveragePing">Средний пинг</string>
   <string name="TestResults_Details_Performance_NDT_MaxPing">Max Ping Estimate</string>

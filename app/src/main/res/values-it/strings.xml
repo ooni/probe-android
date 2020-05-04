@@ -203,7 +203,7 @@
   <string name="TestResults_Details_Performance_NDT_Download">Download</string>
   <string name="TestResults_Details_Performance_NDT_Ping">Ping</string>
   <string name="TestResults_Details_Performance_NDT_Server">Server</string>
-  <string name="TestResults_Details_Performance_NDT_PacketLoss">Retransmit Rate</string>
+  <string name="TestResults_Details_Performance_NDT_PacketLoss">Retransmission Rate</string>
   <string name="TestResults_Details_Performance_NDT_OutOfOrder">Fuori sequenza</string>
   <string name="TestResults_Details_Performance_NDT_AveragePing">Ping medio</string>
   <string name="TestResults_Details_Performance_NDT_MaxPing">Max Ping Estimate</string>
