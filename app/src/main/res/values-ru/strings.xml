@@ -78,6 +78,7 @@
   <string name="TestResults_Overview_FilterTests_MiddleBoxes">Промежуточные устройства</string>
   <string name="TestResults_Overview_FilterTests_Performance">Производительность</string>
   <string name="TestResults_Overview_FilterTests_InstantMessaging">Мессенджеры</string>
+  <string name="TestResults_Overview_FilterTests_Circumvention">Обход блокировки Tor</string>
   <string name="TestResults_Overview_NoTestsHaveBeenRun">Тесты еще не проводились. Попробуйте!</string>
   <string name="TestResults_Overview_Websites_Blocked_Singular">Заблокировано: %1$s</string>
   <string name="TestResults_Overview_Websites_Blocked_Plural">Заблокировано: %1$s</string>
@@ -90,7 +91,9 @@
   <string name="TestResults_Overview_InstantMessaging_Blocked_Plural">Заблокировано: %1$s</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Singular">Доступно: %1$s</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Plural">Доступно: %1$s</string>
+  <string name="TestResults_Overview_Circumvention_Blocked_Singular">Заблокировано: %1$s</string>
   <string name="TestResults_Overview_Circumvention_Blocked_Plural">Заблокировано: %1$s</string>
+  <string name="TestResults_Overview_Circumvention_Available_Singular">Доступно: %1$s</string>
   <string name="TestResults_Overview_Circumvention_Available_Plural">Доступно: %1$s</string>
   <string name="TestResults_Overview_IncompleteResult">Неполный результат</string>
   <string name="TestResults_Overview_Error">Ошибка</string>
@@ -217,7 +220,7 @@
   <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph">Похоже, [Psiphon](https://psiphon.ca/) заблокирован.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph">Нам удалось успешно установить соединение с Psiphon. Это означает, что [Psiphon](https://psiphon.ca/) должен работать.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Время бутстрапа</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s s</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Hero_Title">Похоже, заблокировано</string>
   <string name="TestResults_Details_Circumvention_Tor_Reachable_Hero_Title">Работает</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Content_Paragraph">Похоже, [Tor](https://www.torproject.org/) заблокирован.</string>
@@ -341,6 +344,8 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">Автоматический выбор сервера DASH</string>
   <string name="Settings_Performance_DashServerAddress">Сервер DASH</string>
   <string name="Settings_Performance_DashServerPort">Порт сервера DASH</string>
+  <string name="Settings_Circumvention_TestPsiphon">Test Psiphon</string>
+  <string name="Settings_Circumvention_TestTor">Test Tor</string>
   <string name="Settings_SendEmail_Label">Отправить письмо поддержке</string>
   <string name="Settings_SendEmail_Error">Пожалуйста, отправьте письмо на bugs@openobservatory.org с информацией о версиях приложения и iOS. Нажмите «Скопировать в буфер обмена» снизу, чтобы скопировать наш адрес электронной почты.</string>
   <string name="Settings_Language_Current">Current app language is %1$s</string>

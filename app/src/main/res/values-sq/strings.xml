@@ -78,6 +78,7 @@
   <string name="TestResults_Overview_FilterTests_MiddleBoxes">Middleboxes</string>
   <string name="TestResults_Overview_FilterTests_Performance">Performanca</string>
   <string name="TestResults_Overview_FilterTests_InstantMessaging">Mesazhe</string>
+  <string name="TestResults_Overview_FilterTests_Circumvention">Shmangie</string>
   <string name="TestResults_Overview_NoTestsHaveBeenRun">Asnjë test nuk është kryer deri tani. Bëj një test tani!</string>
   <string name="TestResults_Overview_Websites_Blocked_Singular">%1$s të bllokuara</string>
   <string name="TestResults_Overview_Websites_Blocked_Plural">%1$s të bllokuara</string>
@@ -90,7 +91,9 @@
   <string name="TestResults_Overview_InstantMessaging_Blocked_Plural">%1$s të bllokuara</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Singular">%1$s të aksesueshme</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Plural">%1$s të aksesueshme</string>
+  <string name="TestResults_Overview_Circumvention_Blocked_Singular">%1$s të bllokuara</string>
   <string name="TestResults_Overview_Circumvention_Blocked_Plural">%1$s të bllokuara</string>
+  <string name="TestResults_Overview_Circumvention_Available_Singular">%1$s available</string>
   <string name="TestResults_Overview_Circumvention_Available_Plural">%1$s available</string>
   <string name="TestResults_Overview_IncompleteResult">Incomplete Result</string>
   <string name="TestResults_Overview_Error">Gabim</string>
@@ -217,7 +220,7 @@
   <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph">[Psiphon](https://psiphon.ca/) appears to be blocked.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph">We were able to successfully bootstrap a Psiphon connection. This means that [Psiphon](https://psiphon.ca/) should work.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s s</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Hero_Title">Mundësisht i bllokuar</string>
   <string name="TestResults_Details_Circumvention_Tor_Reachable_Hero_Title">Po punohet</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Content_Paragraph">[Tor](https://www.torproject.org/) appears to be blocked.</string>
@@ -341,6 +344,8 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">Përzgjedhje automatike e serverit DASH</string>
   <string name="Settings_Performance_DashServerAddress">Serveri DASH</string>
   <string name="Settings_Performance_DashServerPort">Porta e serverit NDT</string>
+  <string name="Settings_Circumvention_TestPsiphon">Test Psiphon</string>
+  <string name="Settings_Circumvention_TestTor">Test Tor</string>
   <string name="Settings_SendEmail_Label">Dërgo email tek ndihmuesi</string>
   <string name="Settings_SendEmail_Error">Ju lutem dërgoni email tek bugs@openobservatory.org me informacionin e app dhe versionin e iOS. Zgjidh \"Kopjo në tabelën-mbledhëse\" më poshtë për të kopjuar adresën tonë të email.</string>
   <string name="Settings_Language_Current">Current app language is %1$s</string>

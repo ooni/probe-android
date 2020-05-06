@@ -78,6 +78,7 @@
   <string name="TestResults_Overview_FilterTests_MiddleBoxes">Ara Kutular</string>
   <string name="TestResults_Overview_FilterTests_Performance">Performans</string>
   <string name="TestResults_Overview_FilterTests_InstantMessaging">Anlık İleti</string>
+  <string name="TestResults_Overview_FilterTests_Circumvention">Sansür Atlatma</string>
   <string name="TestResults_Overview_NoTestsHaveBeenRun">Henüz bir sınama yapılmamış. Birini deneyin!</string>
   <string name="TestResults_Overview_Websites_Blocked_Singular">%1$s engellenmiş</string>
   <string name="TestResults_Overview_Websites_Blocked_Plural">%1$s engellenmiş</string>
@@ -90,7 +91,9 @@
   <string name="TestResults_Overview_InstantMessaging_Blocked_Plural">%1$s engellenmiş</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Singular">%1$s erişilebilir</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Plural">%1$s erişilebilir</string>
+  <string name="TestResults_Overview_Circumvention_Blocked_Singular">%1$s engellenmiş</string>
   <string name="TestResults_Overview_Circumvention_Blocked_Plural">%1$s engellenmiş</string>
+  <string name="TestResults_Overview_Circumvention_Available_Singular">%1$s kullanılabilir</string>
   <string name="TestResults_Overview_Circumvention_Available_Plural">%1$s kullanılabilir</string>
   <string name="TestResults_Overview_IncompleteResult">Tamamlanmamış Sonuç</string>
   <string name="TestResults_Overview_Error">Hata</string>
@@ -217,7 +220,7 @@
   <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph">[Psiphon](https://psiphon.ca/) engelleniyor gibi görünüyor.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph">Bir Psiphon bağlantısı kurabildik. [Psiphon](https://psiphon.ca/) çalışıyor olmalı.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Süresi</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s s</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Hero_Title">Engellenmiş olabilir</string>
   <string name="TestResults_Details_Circumvention_Tor_Reachable_Hero_Title">Çalışıyor</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Content_Paragraph">[Tor](https://www.torproject.org/) engelleniyor gibi görünüyor.</string>
@@ -341,6 +344,8 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">DASH sunucusu otomatik olarak seçilsin</string>
   <string name="Settings_Performance_DashServerAddress">DASH sunucusu</string>
   <string name="Settings_Performance_DashServerPort">DASH sunucusu bağlantı noktası</string>
+  <string name="Settings_Circumvention_TestPsiphon">Test Psiphon</string>
+  <string name="Settings_Circumvention_TestTor">Test Tor</string>
   <string name="Settings_SendEmail_Label">Destek ekibine e-posta gönderin</string>
   <string name="Settings_SendEmail_Error">Lütfen uygulama hakkındaki bilgiler ve iOS sürümünü yazarak bugs@openobservatory.org adresine bir e-posta gönderin. E-posta adresimizi kopyalamak için aşağıdaki \"Panoya kopyala\" seçeneğine dokunun.</string>
   <string name="Settings_Language_Current">Geçerli uygulama dili: %1$s</string>

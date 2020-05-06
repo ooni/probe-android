@@ -78,6 +78,7 @@
   <string name="TestResults_Overview_FilterTests_MiddleBoxes">Middleboxes</string>
   <string name="TestResults_Overview_FilterTests_Performance">کارایی</string>
   <string name="TestResults_Overview_FilterTests_InstantMessaging">پيام رسانی سريع</string>
+  <string name="TestResults_Overview_FilterTests_Circumvention">◾️ دور زدن سانسور</string>
   <string name="TestResults_Overview_NoTestsHaveBeenRun">تستی هنوز اجرا نشده. یکی را امتحان کنید!</string>
   <string name="TestResults_Overview_Websites_Blocked_Singular">%1$s مسدود شده</string>
   <string name="TestResults_Overview_Websites_Blocked_Plural">%1$s مسدود شده</string>
@@ -90,7 +91,9 @@
   <string name="TestResults_Overview_InstantMessaging_Blocked_Plural">%1$s مسدود شده</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Singular">%1$s در دسترس</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Plural">%1$s در دسترس</string>
+  <string name="TestResults_Overview_Circumvention_Blocked_Singular">%1$s مسدود شده</string>
   <string name="TestResults_Overview_Circumvention_Blocked_Plural">%1$s مسدود شده</string>
+  <string name="TestResults_Overview_Circumvention_Available_Singular">%1$s در دسترس</string>
   <string name="TestResults_Overview_Circumvention_Available_Plural">%1$s در دسترس</string>
   <string name="TestResults_Overview_IncompleteResult">نتیجه‌ی ناقص</string>
   <string name="TestResults_Overview_Error">خطا</string>
@@ -217,7 +220,7 @@
   <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph">ظاهرا [Psiphon (سایفون)](https://psiphon.ca/) مسدود است.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph">ما با موفقیت توانستیم یک اتصال سایفون راه اندازی کنیم. این بدان معناست که [سایفون](https://psiphon.ca/) بایستی کار کند.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">زمان راه‌اندازی</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s s</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Hero_Title">احتمالا مسدود</string>
   <string name="TestResults_Details_Circumvention_Tor_Reachable_Hero_Title">کار میکنه</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Content_Paragraph">ظاهرا [تور](https://www.torproject.org/) مسدود است.</string>
@@ -341,6 +344,8 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">انتخاب خودکار سرور DASH</string>
   <string name="Settings_Performance_DashServerAddress">سرور DASH</string>
   <string name="Settings_Performance_DashServerPort">درگاه سرور DASH</string>
+  <string name="Settings_Circumvention_TestPsiphon">Test Psiphon</string>
+  <string name="Settings_Circumvention_TestTor">Test Tor</string>
   <string name="Settings_SendEmail_Label">ارسال ایمیل به پشتیبانی</string>
   <string name="Settings_SendEmail_Error">لطفا یک ایمیل به bugs@openobservatory.org همراه با اطلاعات برنامه و نسخه‌ی iOS ارسال کنید. بر روی «کپی در حافظه‌ی موقت» در پایین بزنید تا آدرس ایمیل کپی شود.</string>
   <string name="Settings_Language_Current">زبان فعلی برنامه %1$s است</string>

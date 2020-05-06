@@ -78,6 +78,7 @@
   <string name="TestResults_Overview_FilterTests_MiddleBoxes">मध्य बक्से</string>
   <string name="TestResults_Overview_FilterTests_Performance">प्रदर्शन</string>
   <string name="TestResults_Overview_FilterTests_InstantMessaging">तात्कालिक संदेशन</string>
+  <string name="TestResults_Overview_FilterTests_Circumvention">Circumvention</string>
   <string name="TestResults_Overview_NoTestsHaveBeenRun">अभी तक कोई परीक्षण नहीं चला है। एक चलाने की कोशिश करो!</string>
   <string name="TestResults_Overview_Websites_Blocked_Singular">%1$s अवरुद्ध</string>
   <string name="TestResults_Overview_Websites_Blocked_Plural">%1$s अवरुद्ध</string>
@@ -90,7 +91,9 @@
   <string name="TestResults_Overview_InstantMessaging_Blocked_Plural">%1$s अवरुद्ध</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Singular">%1$s सुलभ</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Plural">%1$s सुलभ</string>
+  <string name="TestResults_Overview_Circumvention_Blocked_Singular">%1$s अवरुद्ध</string>
   <string name="TestResults_Overview_Circumvention_Blocked_Plural">%1$s अवरुद्ध</string>
+  <string name="TestResults_Overview_Circumvention_Available_Singular">%1$s available</string>
   <string name="TestResults_Overview_Circumvention_Available_Plural">%1$s available</string>
   <string name="TestResults_Overview_IncompleteResult">Incomplete Result</string>
   <string name="TestResults_Overview_Error">त्रुटि</string>
@@ -217,7 +220,7 @@
   <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph">[Psiphon](https://psiphon.ca/) appears to be blocked.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph">We were able to successfully bootstrap a Psiphon connection. This means that [Psiphon](https://psiphon.ca/) should work.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s s</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Hero_Title">शायद अवरुद्ध</string>
   <string name="TestResults_Details_Circumvention_Tor_Reachable_Hero_Title">काम कर रहे</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Content_Paragraph">[Tor](https://www.torproject.org/) appears to be blocked.</string>
@@ -341,6 +344,8 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">स्वचालित DASH सर्वर चयन</string>
   <string name="Settings_Performance_DashServerAddress">DASH सर्वर</string>
   <string name="Settings_Performance_DashServerPort">DASH server port</string>
+  <string name="Settings_Circumvention_TestPsiphon">Test Psiphon</string>
+  <string name="Settings_Circumvention_TestTor">Test Tor</string>
   <string name="Settings_SendEmail_Label">Send email to support</string>
   <string name="Settings_SendEmail_Error">कृपया iOS संस्करण और एप्लिकेशन की जानकारी के साथ bugs@openobservatory.org को एक ईमेल भेजें। हमारा  ईमेल पता कॉपी करने के लिए \"क्लिपबोर्ड पर कॉपी करें\" पर टैप करें।</string>
   <string name="Settings_Language_Current">Current app language is %1$s</string>

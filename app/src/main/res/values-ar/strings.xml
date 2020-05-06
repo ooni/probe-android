@@ -78,6 +78,7 @@
   <string name="TestResults_Overview_FilterTests_MiddleBoxes">Middleboxes</string>
   <string name="TestResults_Overview_FilterTests_Performance">الأداء</string>
   <string name="TestResults_Overview_FilterTests_InstantMessaging">المراسلة الفورية</string>
+  <string name="TestResults_Overview_FilterTests_Circumvention">تجاوز الحجب</string>
   <string name="TestResults_Overview_NoTestsHaveBeenRun">لم تجر أي اختبار حتى الآن. قم بتجربة أحد الاختبارات!</string>
   <string name="TestResults_Overview_Websites_Blocked_Singular">%1$s محجوب</string>
   <string name="TestResults_Overview_Websites_Blocked_Plural">%1$s محجوبة</string>
@@ -90,7 +91,9 @@
   <string name="TestResults_Overview_InstantMessaging_Blocked_Plural">%1$s محجوبة </string>
   <string name="TestResults_Overview_InstantMessaging_Available_Singular">%1$s متاح</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Plural">%1$s متاحة</string>
+  <string name="TestResults_Overview_Circumvention_Blocked_Singular">%1$s محجوب</string>
   <string name="TestResults_Overview_Circumvention_Blocked_Plural">%1$s محجوب</string>
+  <string name="TestResults_Overview_Circumvention_Available_Singular">%1$s متوفر</string>
   <string name="TestResults_Overview_Circumvention_Available_Plural">%1$s متوفر</string>
   <string name="TestResults_Overview_IncompleteResult">نتيجة غير مكتملة</string>
   <string name="TestResults_Overview_Error">خطأ</string>
@@ -217,7 +220,7 @@
   <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph">يبدو أن [Psiphon](https://psiphon.ca/) محجوب.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph">تمكنّا بنجاح من التمهيد لاتصال Psiphon. هذا معناه أن [Psiphon](https://psiphon.ca/) ينبغى أن يعمل.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">مدة التمهيد</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">ثا</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s s</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Hero_Title">محجوب على الأرجح</string>
   <string name="TestResults_Details_Circumvention_Tor_Reachable_Hero_Title">يعمل</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Content_Paragraph">يبدو أن [تور](https://www.torproject.org/) محجوب.</string>
@@ -341,6 +344,8 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">إختيار خادم DASH اوتوماتيكيًا</string>
   <string name="Settings_Performance_DashServerAddress">خادم DASH</string>
   <string name="Settings_Performance_DashServerPort">منفذ خادم DASH</string>
+  <string name="Settings_Circumvention_TestPsiphon">Test Psiphon</string>
+  <string name="Settings_Circumvention_TestTor">Test Tor</string>
   <string name="Settings_SendEmail_Label">إرسال إيميل لفريق الدعم </string>
   <string name="Settings_SendEmail_Error">من فضلك أرسل رسالة إلكترونية إلى bugs@openobservatory.org تحتوى على معلومات عن اصدار البرنامج وإصدار iOS. اضغط على \"نسخ إلى الحافظة\" فى الأسفل لنسخ عنوان بريدنا الإلكتروني.</string>
   <string name="Settings_Language_Current">Current app language is %1$s</string>

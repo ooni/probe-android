@@ -78,6 +78,7 @@
   <string name="TestResults_Overview_FilterTests_MiddleBoxes">Middleboxen</string>
   <string name="TestResults_Overview_FilterTests_Performance">Performance</string>
   <string name="TestResults_Overview_FilterTests_InstantMessaging">Instant Messaging</string>
+  <string name="TestResults_Overview_FilterTests_Circumvention">Umgehung</string>
   <string name="TestResults_Overview_NoTestsHaveBeenRun">Es wurden noch keine Tests durchgeführt. Probiere, einen auszuführen!</string>
   <string name="TestResults_Overview_Websites_Blocked_Singular">%1$s blockiert</string>
   <string name="TestResults_Overview_Websites_Blocked_Plural">%1$s blockiert</string>
@@ -90,7 +91,9 @@
   <string name="TestResults_Overview_InstantMessaging_Blocked_Plural">%1$s blockiert</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Singular">%1$s erreichbar</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Plural">%1$s erreichbar</string>
+  <string name="TestResults_Overview_Circumvention_Blocked_Singular">%1$s blockiert</string>
   <string name="TestResults_Overview_Circumvention_Blocked_Plural">%1$s blockiert</string>
+  <string name="TestResults_Overview_Circumvention_Available_Singular">%1$s verfügbar</string>
   <string name="TestResults_Overview_Circumvention_Available_Plural">%1$s verfügbar</string>
   <string name="TestResults_Overview_IncompleteResult">Unvollständiges Resultat</string>
   <string name="TestResults_Overview_Error">Fehler</string>
@@ -217,7 +220,7 @@
   <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph">[Psiphon](https://psiphon.ca/) scheint blockiert zu werden.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph">Wir konnten erfolgreich eine Psiphon-Verbindung herstellen. Das bedeutet, dass [Psiphon](https://psiphon.ca/) funktionieren sollte.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Zeit</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s s</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Hero_Title">Wahrscheinlich blockiert</string>
   <string name="TestResults_Details_Circumvention_Tor_Reachable_Hero_Title">Arbeite</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Content_Paragraph">[Tor](https://www.torproject.org/) scheint blockiert zu werden.</string>
@@ -341,6 +344,8 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">Automatische DASH Serverauswahl</string>
   <string name="Settings_Performance_DashServerAddress">DASH-Server</string>
   <string name="Settings_Performance_DashServerPort">DASH-Serverport</string>
+  <string name="Settings_Circumvention_TestPsiphon">Test Psiphon</string>
+  <string name="Settings_Circumvention_TestTor">Test Tor</string>
   <string name="Settings_SendEmail_Label">E-Mail an den Support senden</string>
   <string name="Settings_SendEmail_Error">Bitte senden Sie eine E-Mail an bugs@openobservatory.org mit Informationen zur App und iOS-Version. Tippen Sie unten auf \"In die Zwischenablage kopieren\", um unsere E-Mail Adresse zu kopieren.</string>
   <string name="Settings_Language_Current">Current app language is %1$s</string>
