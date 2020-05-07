@@ -2,24 +2,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:aapt="http://schemas.android.com/aapt"
     android:name="vector"
-    android:width="24dp"
-    android:height="24dp"
-    android:viewportWidth="166"
-    android:viewportHeight="166">
-    <group android:name="group">
-        <path
-            android:name="path"
-            android:pathData="M 28.062 149.996 L 52.962 126.896 C 54.095 125.838 55.581 125.236 57.131 125.206 L 142.874 125.206 C 143.963 125.21 145.034 124.925 145.978 124.382 C 146.922 123.838 147.706 123.054 148.249 122.11 C 148.793 121.166 149.077 120.095 149.074 119.006 L 149.074 35.636 C 149.077 34.547 148.793 33.475 148.249 32.531 C 147.706 31.588 146.922 30.804 145.978 30.26 C 145.034 29.717 143.963 29.432 142.874 29.436 L 23.896 29.436 C 22.806 29.432 21.735 29.717 20.791 30.26 C 19.847 30.804 19.064 31.588 18.52 32.531 C 17.976 33.475 17.692 34.547 17.696 35.636 L 17.696 145.489 C 17.687 147.102 18.313 148.656 19.438 149.812 C 20.563 150.967 22.099 151.635 23.712 151.67 C 25.325 151.704 26.888 151.103 28.062 149.996 Z"
-            android:strokeWidth="1">
-            <aapt:attr name="android:fillColor">
-                <gradient
-                    android:endY="166"
-                    android:startY="0"
-                    android:startColor="#66d9e8"
-                    android:endColor="#15aabf"
-                    android:type="linear">
-                </gradient>
-            </aapt:attr>
-        </path>
-    </group>
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+    <path
+        android:name="path"
+        android:pathData="M 16.316 85.187 L 31.477 71.359 C 32.165 70.72 33.07 70.353 34.016 70.33 L 86.226 70.33 C 87.227 70.333 88.188 69.943 88.897 69.247 C 89.605 68.552 90.002 67.607 90 66.623 L 90 16.711 C 90.003 15.726 89.606 14.78 88.898 14.084 C 88.189 13.387 87.228 12.997 86.226 13 L 13.774 13 C 12.772 12.997 11.811 13.387 11.102 14.084 C 10.394 14.78 9.997 15.726 10 16.711 L 10 82.488 C 9.992 83.962 10.878 85.299 12.253 85.886 C 13.628 86.474 15.226 86.199 16.316 85.187 Z"
+        android:strokeWidth="1">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:endY="166"
+                android:startY="0"
+                android:startColor="#66d9e8"
+                android:endColor="#15aabf"
+                android:type="linear">
+            </gradient>
+        </aapt:attr>
+    </path>
 </vector>
