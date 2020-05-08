@@ -10,6 +10,7 @@
 	<string name="about_ooni" translatable="false">about_ooni</string>
 	<string name="websites" translatable="false">websites</string>
 	<string name="instant_messaging" translatable="false">instant_messaging</string>
+	<string name="circumvention" translatable="false">circumvention</string>
 	<string name="middle_boxes" translatable="false">middle_boxes</string>
 	<string name="performance" translatable="false">performance</string>
 	<string name="notifications_enabled" translatable="false">notifications_enabled</string>
@@ -28,6 +29,8 @@
 	<string name="test_whatsapp_extensive" translatable="false">test_whatsapp_extensive</string>
 	<string name="test_telegram" translatable="false">test_telegram</string>
 	<string name="test_facebook_messenger" translatable="false">test_facebook_messenger</string>
+	<string name="test_psiphon" translatable="false">test_psiphon</string>
+	<string name="test_tor" translatable="false">test_tor</string>
 	<string name="run_ndt" translatable="false">run_ndt</string>
 	<string name="run_dash" translatable="false">run_dash</string>
 	<string name="max_runtime_enabled" translatable="false">max_runtime_enabled</string>
