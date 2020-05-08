@@ -3,13 +3,11 @@
     android:name="vector"
     android:width="36dp"
     android:height="36dp"
-    android:viewportWidth="166"
-    android:viewportHeight="166">
-    <group android:name="group">
+    android:viewportWidth="100"
+    android:viewportHeight="100">
         <path
             android:name="path"
-            android:pathData="M 127.344 38.109 L 59.466 72.047 L 59.466 97.498 L 42.497 89.016 L 42.497 63.563 L 110.373 29.625 L 84.919 16.898 L 17.044 50.836 L 17.044 118.712 L 84.919 152.65 L 152.794 118.712 L 152.794 50.836 Z"
+            android:pathData="M 74.999 22.5 L 34.999 42.5 L 34.999 57.5 L 24.997 52.501 L 24.997 37.5 L 64.997 17.5 L 50 10 L 10 30 L 10 70 L 50 90 L 90 70 L 90 30 Z"
             android:fillColor="#495057"
             android:strokeWidth="1"/>
-    </group>
 </vector>
