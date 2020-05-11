@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -58,12 +59,13 @@ public class RunningActivity extends AbstractActivity {
         }
     }
 
-    public static Intent newIntent(Context context, AbstractSuite testSuite) {
-        return new Intent(context, RunningActivity.class).putExtra(TEST, testSuite);
+    //TODO check these new intents
+    public static Intent newIntent(Context context, ArrayList<AbstractSuite> testSuites) {
+        return new Intent(context, RunningActivity.class).putExtra(TEST, testSuites);
     }
 
-    public static Intent newBackgroundIntent(Context context, AbstractSuite testSuite) {
-        return newIntent(context, testSuite).putExtra("background", true);
+    public static Intent newBackgroundIntent(Context context, ArrayList<AbstractSuite> testSuites) {
+        return newIntent(context, testSuites).putExtra("background", true);
     }
 
     @Override
