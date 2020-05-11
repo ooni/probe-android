@@ -44,7 +44,9 @@
   <string name="Dashboard_Running_PreparingTest">Duke u përgatitur për testim</string>
   <string name="Dashboard_Running_CalculatingETA">Calculating ETA</string>
   <string name="Dashboard_Running_ShowLog">Shfaq log</string>
-  <string name="Dashboard_Running_CloseLog">Close Log</string>
+  <string name="Dashboard_Running_CloseLog">Mbyll log</string>
+  <string name="Dashboard_Running_Stopping_Title">Stopping test...</string>
+  <string name="Dashboard_Running_Stopping_Notice">Finishing the currently pending tests, please wait...</string>
   <string name="Dashboard_Card_Subtitle">Shyp mbi kartën për më shumë</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">Testo faqet e bllokuara</string>
@@ -52,6 +54,7 @@
   <string name="Dashboard_Websites_Overview_Paragraph_Desktop">Check whether websites are blocked using OONI\'s [Web Connectivity test](https://ooni.io/nettest/web-connectivity/).\n\nYou will test the websites included in the Citizen Lab\'s [global](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) and [country-specific](https://github.com/citizenlab/test-lists/tree/master/lists) test lists.\n\nThis test measures whether websites are blocked by means of DNS tampering, TCP/IP blocking or by a transparent HTTP proxy.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Performance_Card_Description">Testo shpejtësinë dhe performancën e rrjetit</string>
   <string name="Dashboard_Performance_Overview_Paragraph">Measure the speed and performance of your network using the [NDT](https://ooni.io/nettest/ndt/) test.\n\nMasni shpejtësinë dhe performancën e rrjetit tuaj duke përdorur  [NDT](https://ooni.io/nettest/ndt/) test.\n\nMasni përformancën e transmetimeve të videove duke përdorur testin [DASH](https://ooni.io/nettest/dash/).\n\nKëto testime konsumojnë të dhëna në varësi të shpejtësisë së rrjetit.\n\nRezultatet tuaja do publikohen në [OONI Explorer](https://explorer.ooni.io/world/) dhe [OONI API](https://api.ooni.io/).\n\nPohim: Këto testime varen nga servera të palëve të treta. Për këtë arsye ne nuk mund të garantojmë që adresa juaj IP nuk do të ruhet si informacion.</string>
+  <string name="Dashboard_Performance_Overview_Paragraph_Updated">By running the tests in this card, you will:\n\n- Measure the speed and performance of your network ([NDT](https://ooni.org/nettest/ndt/) test)\n- Measure video streaming performance ([DASH](https://ooni.org/nettest/dash/) test)\n- Check for the presence of [middlebox technologies](https://ooni.org/support/glossary/#middlebox) on your network ([HTTP Invalid Request Line](https://ooni.org/nettest/http-invalid-request-line/) and [HTTP Header Field Manipulation](https://ooni.org/nettest/http-header-field-manipulation/) tests)\n\nThese tests consume data depending on your network speed.\n\nYour test results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).\n\n**Disclaimer:** The [NDT](https://ooni.org/nettest/ndt/) and [DASH](https://ooni.org/nettest/dash/) tests are conducted against third-party servers provided by [Measurement Lab (M-Lab)](https://www.measurementlab.net/). If you run these tests, M-Lab will collect and publish your IP address (for research purposes), irrespective of your OONI Probe settings. Learn more about M-Lab’s data governance through its [privacy statement](https://www.measurementlab.net/privacy/).</string>
   <string name="Dashboard_Middleboxes_Card_Description">Zbuloni middleboxes në rrjetin tuaj</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">Ofruesit e Shërbimit të Internetit shpeshë përdorin aplikime rrjeti (middleboxes) për qëllime të ndryshme rrjeti (siç janë fshehjet). Shpeshë herë këto middleboxes përdoren të implementuar censurim në internet dhe/ose përgjime.\n\nZbuloni middleboxes në rrjetin tuaj duke përdorur [HTTP Invalid Request Line](https://ooni.io/nettest/http-invalid-request-line/) nga OONI dhe [HTTP Header Field Manipulation](https://ooni.io/nettest/http-header-field-manipulation/) tests.\n\nRezultatet tuaja do të publikohen në [OONI Explorer](https://explorer.ooni.io/world/) dhe [OONI API](https://api.ooni.io/).\n</string>
   <string name="Dashboard_InstantMessaging_Card_Description">Testoni bllokimin e aplikacioneve të mesazheve</string>
@@ -75,6 +78,7 @@
   <string name="TestResults_Overview_FilterTests_MiddleBoxes">Middleboxes</string>
   <string name="TestResults_Overview_FilterTests_Performance">Performanca</string>
   <string name="TestResults_Overview_FilterTests_InstantMessaging">Mesazhe</string>
+  <string name="TestResults_Overview_FilterTests_Circumvention">Shmangie</string>
   <string name="TestResults_Overview_NoTestsHaveBeenRun">Asnjë test nuk është kryer deri tani. Bëj një test tani!</string>
   <string name="TestResults_Overview_Websites_Blocked_Singular">%1$s të bllokuara</string>
   <string name="TestResults_Overview_Websites_Blocked_Plural">%1$s të bllokuara</string>
@@ -87,7 +91,9 @@
   <string name="TestResults_Overview_InstantMessaging_Blocked_Plural">%1$s të bllokuara</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Singular">%1$s të aksesueshme</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Plural">%1$s të aksesueshme</string>
+  <string name="TestResults_Overview_Circumvention_Blocked_Singular">%1$s të bllokuara</string>
   <string name="TestResults_Overview_Circumvention_Blocked_Plural">%1$s të bllokuara</string>
+  <string name="TestResults_Overview_Circumvention_Available_Singular">%1$s available</string>
   <string name="TestResults_Overview_Circumvention_Available_Plural">%1$s available</string>
   <string name="TestResults_Overview_IncompleteResult">Incomplete Result</string>
   <string name="TestResults_Overview_Error">Gabim</string>
@@ -200,10 +206,10 @@
   <string name="TestResults_Details_Performance_NDT_Download">Shkarkim</string>
   <string name="TestResults_Details_Performance_NDT_Ping">Ping</string>
   <string name="TestResults_Details_Performance_NDT_Server">Server</string>
-  <string name="TestResults_Details_Performance_NDT_PacketLoss">Humbje pakete</string>
+  <string name="TestResults_Details_Performance_NDT_PacketLoss">Retransmission Rate</string>
   <string name="TestResults_Details_Performance_NDT_OutOfOrder">Jashtë shërbimi</string>
   <string name="TestResults_Details_Performance_NDT_AveragePing">Ping mesatar</string>
-  <string name="TestResults_Details_Performance_NDT_MaxPing">Ping maksimal</string>
+  <string name="TestResults_Details_Performance_NDT_MaxPing">Max Ping Estimate</string>
   <string name="TestResults_Details_Performance_NDT_MSS">MSS</string>
   <string name="TestResults_Details_Performance_NDT_Timeouts">Timeouts</string>
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Mund të transmetosh video deri më %1$s pa ndërprerje.</string>
@@ -214,7 +220,7 @@
   <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph">[Psiphon](https://psiphon.ca/) appears to be blocked.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph">We were able to successfully bootstrap a Psiphon connection. This means that [Psiphon](https://psiphon.ca/) should work.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s s</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Hero_Title">Mundësisht i bllokuar</string>
   <string name="TestResults_Details_Circumvention_Tor_Reachable_Hero_Title">Po punohet</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Content_Paragraph">[Tor](https://www.torproject.org/) appears to be blocked.</string>
@@ -278,7 +284,7 @@
   <string name="Test_InstantMessaging_Fullname">Mesazhe</string>
   <string name="Test_Middleboxes_Fullname">Middleboxes</string>
   <string name="Test_Performance_Fullname">Performanca</string>
-  <string name="Test_Circumvention_Fullname">Circumvention</string>
+  <string name="Test_Circumvention_Fullname">Shmangie</string>
   <string name="Test_HTTPInvalidRequestLine_Fullname">HTTP Invalid Request Line Test</string>
   <string name="Test_HTTPHeaderFieldManipulation_Fullname">HTTP Header Field Manipulation Test</string>
   <string name="Test_WebConnectivity_Fullname">Testim lidhjeje në internet</string>
@@ -287,8 +293,8 @@
   <string name="Test_WhatsApp_Fullname">Testim WhatsApp</string>
   <string name="Test_Telegram_Fullname">Testim Telegram</string>
   <string name="Test_FacebookMessenger_Fullname">Testim Facebook Messenger</string>
-  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
-  <string name="Test_Tor_Fullname">Tor Test</string>
+  <string name="Test_Psiphon_Fullname">Testim i Psiphon</string>
+  <string name="Test_Tor_Fullname">Testimi i Tor</string>
   <string name="Settings_Title">Rregullime</string>
   <string name="Settings_Error_TestDurationTooLow">Sasia e kohës që keni vendosur për kohëzgjatjen e testimit është shumë e vogël.</string>
   <string name="Settings_About_Label">Rreth OONI</string>
@@ -308,12 +314,13 @@
   <string name="Settings_Sharing_IncludeCountryCode">Shto Kodin e Shtetit</string>
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Ky informacion (psh IT për Itali) kërkohet për të identifikuar nga cili shtet po mblidhen të dhënat. Jeni të sigurt që e çaktivizoni këtë opsion?</string>
   <string name="Settings_Sharing_Footer">Duke publikuar rezultatet ti rrit transaprencën të ndërhyrjes në rrjet dhe mbështet komunitetin e OONI. \n\nInformacioni i rrjetit (psh Numri i Sistemit Autonom) kërkohet për të identifikuar Ofruesit e Shërbimit të Internetit.</string>
-  <string name="Settings_TestOptions_Label">Test options</string>
+  <string name="Settings_TestOptions_Label">Mundësitë e testimit</string>
   <string name="Settings_Advanced_Label">Të mëtejshme</string>
   <string name="Settings_Advanced_SendCrashReports">Dërgo raportime dështimi</string>
   <string name="Settings_Advanced_DebugLogs">Kontrollo regjistrat për gabime</string>
   <string name="Settings_Advanced_UseDomainFronting">Gjithmonë përdor front domain</string>
-  <string name="Settings_Websites_MaxRuntimeEnabled">Limit test duration</string>
+  <string name="Settings_Advanced_CollectAnalytics">Collect app usage statistics</string>
+  <string name="Settings_Websites_MaxRuntimeEnabled">Kufizo kohëzgjatjen e testimit</string>
   <string name="Settings_Websites_MaxRuntime">Kohëzgjatja e testimit</string>
   <string name="Settings_Websites_Categories_Label">Kategori faqjesh për të testuar</string>
   <string name="Settings_Websites_Categories_Description">%1$s shtete të aktivizuara</string>
@@ -322,6 +329,7 @@
   <string name="Settings_Websites_CustomURL_NoURLEntered">Nuk është vendosur asnjë URL</string>
   <string name="Settings_Websites_CustomURL_Run">Përdor</string>
   <string name="Settings_Websites_CustomURL_Add">Shto faqe</string>
+  <string name="Settings_Websites_TestCount">Number of tested websites (0 means all)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">Testo WhatsApp</string>
   <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">Testo të gjitha skajet e WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Testo Telegram</string>
@@ -336,8 +344,11 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">Përzgjedhje automatike e serverit DASH</string>
   <string name="Settings_Performance_DashServerAddress">Serveri DASH</string>
   <string name="Settings_Performance_DashServerPort">Porta e serverit NDT</string>
+  <string name="Settings_Circumvention_TestPsiphon">Test Psiphon</string>
+  <string name="Settings_Circumvention_TestTor">Test Tor</string>
   <string name="Settings_SendEmail_Label">Dërgo email tek ndihmuesi</string>
   <string name="Settings_SendEmail_Error">Ju lutem dërgoni email tek bugs@openobservatory.org me informacionin e app dhe versionin e iOS. Zgjidh \"Kopjo në tabelën-mbledhëse\" më poshtë për të kopjuar adresën tonë të email.</string>
+  <string name="Settings_Language_Current">Current app language is %1$s</string>
   <string name="Notification_FinishedRunning">Mbaroi së ekzekutuari</string>
   <string name="OONIBrowser_TryMirror">Përvo mirror</string>
   <string name="OONIBrowser_Loading">Duke u ngarkuar</string>

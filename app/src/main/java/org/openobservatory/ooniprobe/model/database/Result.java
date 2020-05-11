@@ -55,6 +55,10 @@ public class Result extends BaseModel implements Serializable {
 		return new DecimalFormat("#,##0.#").format(kbSize / Math.pow(1024, digitGroups)) + " " + units[digitGroups];
 	}
 
+	public static Result getLastResult() {
+		return SQLite.select().from(Result.class).orderBy(Result_Table.start_time, false).limit(1).querySingle();
+	}
+
 	public static Result getLastResult(String test_group_name) {
 		return SQLite.select().from(Result.class).where(Result_Table.test_group_name.eq(test_group_name)).orderBy(Result_Table.start_time, false).limit(1).querySingle();
 	}
@@ -70,7 +74,7 @@ public class Result extends BaseModel implements Serializable {
 
 	public List<Measurement> getMeasurements() {
 		if (measurements == null)
-			measurements = SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false), Measurement_Table.is_done.eq(true)).orderBy(Measurement_Table.is_anomaly, false).orderBy(Measurement_Table.is_failed, false).orderBy(Measurement_Table.id, false).queryList();
+			measurements = SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false), Measurement_Table.is_done.eq(true)).orderBy(Measurement_Table.is_anomaly, false).orderBy(Measurement_Table.is_failed, false).orderBy(Measurement_Table.id, true).queryList();
 		return measurements;
 	}
 

@@ -37,7 +37,7 @@ import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 import localhost.toolkit.app.fragment.MessageDialogFragment;
 import localhost.toolkit.preference.ExtendedPreferenceFragment;
 
-public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFragment> implements SharedPreferences.OnSharedPreferenceChangeListener, ConfirmDialogFragment.OnConfirmedListener {
+public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFragment> implements SharedPreferences.OnSharedPreferenceChangeListener {
     public static final String ARG_PREFERENCES_RES_ID = "org.openobservatory.ooniprobe.fragment.PreferenceFragment.PREF_RES_ID";
     private static final String ARG_CONTAINER_RES_ID = "org.openobservatory.ooniprobe.fragment.PreferenceFragment.CONTAINER_VIEW_ID";
     private String rootKey;
@@ -143,13 +143,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Preference preference = findPreference(key);
-        if (key.equals(getString(R.string.include_cc)) && !sharedPreferences.getBoolean(key, true))
-            new ConfirmDialogFragment.Builder()
-                    .withExtra(key)
-                    .withTitle(getString(R.string.Settings_Sharing_IncludeCountryCode))
-                    .withMessage(getString(R.string.Settings_Sharing_IncludeCountryCode_PopUp))
-                    .build().show(getChildFragmentManager(), null);
-        else if (key.equals(getString(R.string.automated_testing_enabled))){
+        if (key.equals(getString(R.string.automated_testing_enabled))){
             if(sharedPreferences.getBoolean(key, false))
                 //Enabling the alarm every time the user enabled automated_testing
                 AlarmService.setRecurringAlarm(getActivity().getApplication());

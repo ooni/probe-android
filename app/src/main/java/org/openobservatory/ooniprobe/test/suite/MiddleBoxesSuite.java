@@ -10,6 +10,13 @@ import java.util.ArrayList;
 
 import androidx.annotation.Nullable;
 
+/**
+ * @deprecated
+ * It is not possible to run a MiddleBoxesSuite anymore
+ * The HttpHeaderFieldManipulation and HttpInvalidRequestLine tests
+ * are being ran inside the PerformanceSuite
+ */
+@Deprecated
 public class MiddleBoxesSuite extends AbstractSuite {
 	public static final String NAME = "middle_boxes";
 
@@ -18,6 +25,7 @@ public class MiddleBoxesSuite extends AbstractSuite {
 				R.string.Test_Middleboxes_Fullname,
 				R.string.Dashboard_Middleboxes_Card_Description,
 				R.drawable.test_middle_boxes,
+				R.drawable.test_middle_boxes_24,
 				R.color.color_violet8,
 				R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_MiddleBoxes,
 				R.style.Theme_MaterialComponents_NoActionBar_App_MiddleBoxes,

@@ -197,12 +197,6 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	public String getOutOfOrder(Context ctx) {
-		if (advanced != null && advanced.out_of_order != null)
-			return String.format(Locale.getDefault(), "%.1f", advanced.out_of_order * 100);
-		return ctx.getString(R.string.TestResults_NotAvailable);
-	}
-
 	public String getAveragePing(Context ctx) {
 		if (advanced != null && advanced.avg_rtt != null)
 			return String.format(Locale.getDefault(), "%.1f", advanced.avg_rtt);
@@ -218,12 +212,6 @@ public class TestKeys {
 	public String getMSS(Context ctx) {
 		if (advanced != null && advanced.mss != null)
 			return String.format(Locale.getDefault(), "%.0f", advanced.mss);
-		return ctx.getString(R.string.TestResults_NotAvailable);
-	}
-
-	public String getTimeouts(Context ctx) {
-		if (advanced != null && advanced.timeouts != null)
-			return String.format(Locale.getDefault(), "%.0f", advanced.timeouts);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
@@ -284,16 +272,12 @@ public class TestKeys {
 	public static class Advanced {
 		@SerializedName("packet_loss")
 		public Double packet_loss;
-		@SerializedName("out_of_order")
-		public Double out_of_order;
 		@SerializedName("avg_rtt")
 		public Double avg_rtt;
 		@SerializedName("max_rtt")
 		public Double max_rtt;
 		@SerializedName("mss")
 		public Double mss;
-		@SerializedName("timeouts")
-		public Double timeouts;
 	}
 
 	public static class Tampering {

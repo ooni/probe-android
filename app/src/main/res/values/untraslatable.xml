@@ -76,14 +76,12 @@
 		<item>@string/TestResults_Overview_FilterTests_AllTests</item>
 		<item>@string/TestResults_Overview_FilterTests_Websites</item>
 		<item>@string/TestResults_Overview_FilterTests_InstantMessaging</item>
-		<item>@string/TestResults_Overview_FilterTests_MiddleBoxes</item>
 		<item>@string/TestResults_Overview_FilterTests_Performance</item>
 	</string-array>
 	<string-array name="filterTestValues" translatable="false">
 		<item></item>
 		<item>websites</item>
 		<item>instant_messaging</item>
-		<item>middle_boxes</item>
 		<item>performance</item>
 	</string-array>
 	<string-array name="preferenceTestsNames" translatable="false">
