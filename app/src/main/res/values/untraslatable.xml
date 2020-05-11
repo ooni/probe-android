@@ -72,6 +72,8 @@
 	<string name="urlTestTlg" translatable="false">https://ooni.io/nettest/telegram</string>
 	<string name="urlTestWeb" translatable="false">https://ooni.io/nettest/web-connectivity</string>
 	<string name="urlTestWap" translatable="false">https://ooni.io/nettest/whatsapp</string>
+	<string name="urlTestTor" translatable="false">https://ooni.io/nettest/tor</string>
+	<string name="urlTestPsi" translatable="false">https://ooni.io/nettest/psiphon</string>
 	<string-array name="filterTests" translatable="false">
 		<item>@string/TestResults_Overview_FilterTests_AllTests</item>
 		<item>@string/TestResults_Overview_FilterTests_Websites</item>

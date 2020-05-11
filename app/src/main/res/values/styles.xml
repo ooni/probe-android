@@ -41,6 +41,11 @@
 		<item name="colorPrimaryDark">@color/color_cyan9</item>
 	</style>
 
+	<style name="Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar.Circimbention">
+		<item name="colorPrimary">@color/color_pink6</item>
+		<item name="colorPrimaryDark">@color/color_pink9</item>
+	</style>
+
 	<style name="Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar.MiddleBoxes">
 		<item name="colorPrimary">@color/color_violet8</item>
 		<item name="colorPrimaryDark">@color/color_violet9</item>
@@ -76,6 +81,12 @@
 		<item name="colorPrimary">@color/color_cyan6</item>
 		<item name="colorPrimaryDark">@color/color_cyan9</item>
 		<item name="android:windowBackground">@color/color_cyan6</item>
+	</style>
+
+	<style name="Theme.MaterialComponents.NoActionBar.App.Circumvention">
+		<item name="colorPrimary">@color/color_pink6</item>
+		<item name="colorPrimaryDark">@color/color_pink9</item>
+		<item name="android:windowBackground">@color/color_pink6</item>
 	</style>
 
 	<style name="Theme.MaterialComponents.NoActionBar.App.MiddleBoxes">
