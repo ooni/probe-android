@@ -13,7 +13,9 @@ import java.util.Vector;
  */
 public class Engine {
     private static Set<String> probeEngineTasks = new HashSet<>(Arrays.asList(
-            "Telegram"
+            "Telegram",
+            "Dash",
+            "Ndt"
     ));
 
     /** getVersionMK returns the version of Measurement Kit we're using */
