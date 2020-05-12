@@ -49,6 +49,7 @@ import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -167,7 +168,12 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
         result = SQLite.select().from(Result.class).where(Result_Table.id.eq(result.id)).querySingle();
         assert result != null;
         items.clear();
-        for (Measurement measurement : result.getMeasurements())
+        List<Measurement> measurements;
+        if (result.test_group_name.equals("websites"))
+            measurements = result.getMeasurementsSorted();
+        else
+            measurements = result.getMeasurements();
+        for (Measurement measurement : measurements)
             items.add((measurement.test_name.equals(Ndt.NAME) || measurement.test_name.equals(Dash.NAME))
                     && !measurement.is_failed ?
                     new MeasurementPerfItem(measurement, this) :
