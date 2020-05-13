@@ -256,6 +256,7 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
+	//NDTSummary
 	public static class Summary {
 		@SerializedName("upload")
 		public Double upload;
@@ -275,6 +276,7 @@ public class TestKeys {
 		public Double retransmit_rate;
 	}
 
+	//DASHSummary
 	public static class Simple {
 		@SerializedName("median_bitrate")
 		public Double median_bitrate;
