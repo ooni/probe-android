@@ -78,12 +78,14 @@
 		<item>@string/TestResults_Overview_FilterTests_AllTests</item>
 		<item>@string/TestResults_Overview_FilterTests_Websites</item>
 		<item>@string/TestResults_Overview_FilterTests_InstantMessaging</item>
+		<item>@string/TestResults_Overview_FilterTests_Circumvention</item>
 		<item>@string/TestResults_Overview_FilterTests_Performance</item>
 	</string-array>
 	<string-array name="filterTestValues" translatable="false">
 		<item></item>
 		<item>websites</item>
 		<item>instant_messaging</item>
+		<item>circumvention</item>
 		<item>performance</item>
 	</string-array>
 	<string-array name="preferenceTestsNames" translatable="false">
@@ -94,6 +96,8 @@
 		<item>test_facebook_messenger</item>
 		<item>run_ndt</item>
 		<item>run_dash</item>
+		<item>test_tor</item>
+		<item>test_psiphon</item>
 	</string-array>
 	<plurals name="TestResults_Overview_Websites_Blocked" translatable="false">
 		<item quantity="one">@string/TestResults_Overview_Websites_Blocked_Singular</item>

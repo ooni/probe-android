@@ -44,7 +44,9 @@ import org.openobservatory.ooniprobe.test.test.FacebookMessenger;
 import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
 import org.openobservatory.ooniprobe.test.test.HttpInvalidRequestLine;
 import org.openobservatory.ooniprobe.test.test.Ndt;
+import org.openobservatory.ooniprobe.test.test.Psiphon;
 import org.openobservatory.ooniprobe.test.test.Telegram;
+import org.openobservatory.ooniprobe.test.test.Tor;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
@@ -152,6 +154,21 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                             R.string.TestResults_Details_InstantMessaging_WhatsApp_Reachable_Hero_Title)));
                     detail = WhatsappFragment.newInstance(measurement);
                     break;
+                case Psiphon.NAME:
+                    head = HeaderOutcomeFragment.newInstance(iconRes, getString(R.string.bold, getString(measurement.is_anomaly ?
+                            R.string.TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title :
+                            R.string.TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title)));
+                    //TODO
+                    detail = WhatsappFragment.newInstance(measurement);
+                    break;
+                case Tor.NAME:
+                    head = HeaderOutcomeFragment.newInstance(iconRes, getString(R.string.bold, getString(measurement.is_anomaly ?
+                            R.string.TestResults_Details_Circumvention_Tor_Blocked_Hero_Title :
+                            R.string.TestResults_Details_Circumvention_Tor_Reachable_Hero_Title)));
+                    //TODO
+                    detail = WhatsappFragment.newInstance(measurement);
+                    break;
+
             }
         }
         assert detail != null && head != null;
