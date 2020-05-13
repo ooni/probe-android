@@ -111,6 +111,14 @@
 		<item quantity="one">@string/TestResults_Overview_InstantMessaging_Available_Singular</item>
 		<item quantity="other">@string/TestResults_Overview_InstantMessaging_Available_Plural</item>
 	</plurals>
+	<plurals name="TestResults_Overview_Circumvention_Available" translatable="false">
+		<item quantity="one">@string/TestResults_Overview_Circumvention_Available_Singular</item>
+		<item quantity="other">@string/TestResults_Overview_Circumvention_Available_Plural</item>
+	</plurals>
+	<plurals name="TestResults_Overview_Circumvention_Blocked" translatable="false">
+		<item quantity="one">@string/TestResults_Overview_Circumvention_Blocked_Singular</item>
+		<item quantity="other">@string/TestResults_Overview_Circumvention_Blocked_Plural</item>
+	</plurals>
 	<plurals name="TestResults_Summary_Websites_Hero_Tested" translatable="false">
 		<item quantity="one">@string/TestResults_Summary_Websites_Hero_Tested_Singular</item>
 		<item quantity="other">@string/TestResults_Summary_Websites_Hero_Tested_Plural</item>
