@@ -43,8 +43,8 @@ public class TestKeys {
 	public String telegram_web_status;
 	@SerializedName("simple")
 	public Simple simple;
-	@SerializedName("advanced")
-	public Advanced advanced;
+	@SerializedName("summary")
+	public Summary summary;
 	@SerializedName("tampering")
 	public Tampering tampering;
 
@@ -137,26 +137,26 @@ public class TestKeys {
 	}
 
 	public String getUpload(Context ctx) {
-		if (simple != null && simple.upload != null)
-			return setFractionalDigits(getScaledValue(simple.upload));
+		if (summary != null && summary.upload != null)
+			return setFractionalDigits(getScaledValue(summary.upload));
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public int getUploadUnit() {
-		if (simple != null && simple.upload != null)
-			return getUnit(simple.upload);
+		if (summary != null && summary.upload != null)
+			return getUnit(summary.upload);
 		return R.string.TestResults_NotAvailable;
 	}
 
 	public String getDownload(Context ctx) {
-		if (simple != null && simple.download != null)
-			return setFractionalDigits(getScaledValue(simple.download));
+		if (summary != null && summary.download != null)
+			return setFractionalDigits(getScaledValue(summary.download));
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public int getDownloadUnit() {
-		if (simple != null && simple.download != null)
-			return getUnit(simple.download);
+		if (summary != null && summary.download != null)
+			return getUnit(summary.download);
 		return R.string.TestResults_NotAvailable;
 	}
 
@@ -180,8 +180,8 @@ public class TestKeys {
 	}
 
 	public String getPing(Context ctx) {
-		if (simple != null && simple.ping != null)
-			return String.format(Locale.getDefault(), "%.1f", simple.ping);
+		if (summary != null && summary.ping != null)
+			return String.format(Locale.getDefault(), "%.1f", summary.ping);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
@@ -192,26 +192,26 @@ public class TestKeys {
 	}
 
 	public String getPacketLoss(Context ctx) {
-		if (advanced != null && advanced.packet_loss != null)
-			return String.format(Locale.getDefault(), "%.3f", advanced.packet_loss * 100);
+		if (summary != null && summary.retransmit_rate != null)
+			return String.format(Locale.getDefault(), "%.3f", summary.retransmit_rate * 100);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public String getAveragePing(Context ctx) {
-		if (advanced != null && advanced.avg_rtt != null)
-			return String.format(Locale.getDefault(), "%.1f", advanced.avg_rtt);
+		if (summary != null && summary.avg_rtt != null)
+			return String.format(Locale.getDefault(), "%.1f", summary.avg_rtt);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public String getMaxPing(Context ctx) {
-		if (advanced != null && advanced.max_rtt != null)
-			return String.format(Locale.getDefault(), "%.1f", advanced.max_rtt);
+		if (summary != null && summary.max_rtt != null)
+			return String.format(Locale.getDefault(), "%.1f", summary.max_rtt);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public String getMSS(Context ctx) {
-		if (advanced != null && advanced.mss != null)
-			return String.format(Locale.getDefault(), "%.0f", advanced.mss);
+		if (summary != null && summary.mss != null)
+			return String.format(Locale.getDefault(), "%.0f", summary.mss);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
@@ -256,28 +256,30 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	public static class Simple {
+	public static class Summary {
 		@SerializedName("upload")
 		public Double upload;
 		@SerializedName("download")
 		public Double download;
 		@SerializedName("ping")
 		public Double ping;
+		@SerializedName("max_rtt")
+		public Double max_rtt;
+		@SerializedName("avg_rtt")
+		public Double avg_rtt;
+		@SerializedName("min_rtt")
+		public Double min_rtt;
+		@SerializedName("mss")
+		public Double mss;
+		@SerializedName("retransmit_rate")
+		public Double retransmit_rate;
+	}
+
+	public static class Simple {
 		@SerializedName("median_bitrate")
 		public Double median_bitrate;
 		@SerializedName("min_playout_delay")
 		public Double min_playout_delay;
-	}
-
-	public static class Advanced {
-		@SerializedName("packet_loss")
-		public Double packet_loss;
-		@SerializedName("avg_rtt")
-		public Double avg_rtt;
-		@SerializedName("max_rtt")
-		public Double max_rtt;
-		@SerializedName("mss")
-		public Double mss;
 	}
 
 	public static class Tampering {
