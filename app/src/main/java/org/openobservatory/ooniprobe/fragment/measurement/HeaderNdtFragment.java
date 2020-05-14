@@ -40,7 +40,7 @@ public class HeaderNdtFragment extends Fragment {
 		download.setText(Html.fromHtml(getString(R.string.bigNormal, measurement.getTestKeys().getDownload(getActivity()), getString(measurement.getTestKeys().getDownloadUnit()))));
 		upload.setText(Html.fromHtml(getString(R.string.bigNormal, measurement.getTestKeys().getUpload(getActivity()), getString(measurement.getTestKeys().getUploadUnit()))));
 		ping.setText(Html.fromHtml(getString(R.string.bigNormal, measurement.getTestKeys().getPing(getActivity()), "ms")));
-		server.setText(measurement.getTestKeys().getServer(getActivity()));
+		server.setText(measurement.getTestKeys().getAirportCountry(getActivity()));
 		return v;
 	}
 }

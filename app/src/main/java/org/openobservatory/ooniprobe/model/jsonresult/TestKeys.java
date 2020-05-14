@@ -21,10 +21,8 @@ public class TestKeys {
 	public ArrayList<String> received;
 	@SerializedName("failure")
 	public String failure;
-	@SerializedName("server_address")
-	public String server_address;
-	public String server_name;
-	public String server_country;
+	@SerializedName("server")
+	public Server server;
 	@SerializedName("whatsapp_endpoints_status")
 	public String whatsapp_endpoints_status;
 	@SerializedName("whatsapp_web_status")
@@ -185,9 +183,15 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	public String getServer(Context ctx) {
-		if (server_name != null && server_country != null)
-			return server_name + " - " + server_country;
+
+	public String getAirportCountry(Context ctx) {
+		if (server != null && server.site != null) {
+			System.out.println("getServerSite " + server.site);
+			String[] countries = ctx.getResources().getStringArray(R.array.countries);
+			for (String country : countries)
+				if (country.startsWith(server.site.substring(0, 3)))
+					return country.split("\\|")[1];
+		}
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
@@ -274,6 +278,13 @@ public class TestKeys {
 		public Double mss;
 		@SerializedName("retransmit_rate")
 		public Double retransmit_rate;
+	}
+
+	public class Server {
+		@SerializedName("hostname")
+		public String hostname;
+		@SerializedName("site")
+		public String site;
 	}
 
 	//DASHSummary
