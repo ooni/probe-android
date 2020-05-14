@@ -143,28 +143,30 @@ public class TestKeys {
 		return R.string.TestResults_NotAvailable;
 	}
 
+	public Boolean isNdt7() {
+		return protocol != null && protocol == 7;
+	}
+	
 	public String getUpload(Context ctx) {
-		//if (version == null)
-		//	return ctx.getString(R.string.TestResults_NotAvailable);
-		if (summary != null && summary.upload != null)
+		if (isNdt7() && summary != null && summary.upload != null)
 			return setFractionalDigits(getScaledValue(summary.upload));
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public int getUploadUnit() {
-		if (summary != null && summary.upload != null)
+		if (isNdt7() && summary != null && summary.upload != null)
 			return getUnit(summary.upload);
 		return R.string.TestResults_NotAvailable;
 	}
 
 	public String getDownload(Context ctx) {
-		if (summary != null && summary.download != null)
+		if (isNdt7() && summary != null && summary.download != null)
 			return setFractionalDigits(getScaledValue(summary.download));
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public int getDownloadUnit() {
-		if (summary != null && summary.download != null)
+		if (isNdt7() && summary != null && summary.download != null)
 			return getUnit(summary.download);
 		return R.string.TestResults_NotAvailable;
 	}
@@ -189,7 +191,7 @@ public class TestKeys {
 	}
 
 	public String getPing(Context ctx) {
-		if (summary != null && summary.ping != null)
+		if (isNdt7() && summary != null && summary.ping != null)
 			return String.format(Locale.getDefault(), "%.1f", summary.ping);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
@@ -212,25 +214,25 @@ public class TestKeys {
 	}
 
 	public String getPacketLoss(Context ctx) {
-		if (summary != null && summary.retransmit_rate != null)
+		if (isNdt7() && summary != null && summary.retransmit_rate != null)
 			return String.format(Locale.getDefault(), "%.3f", summary.retransmit_rate * 100);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public String getAveragePing(Context ctx) {
-		if (summary != null && summary.avg_rtt != null)
+		if (isNdt7() && summary != null && summary.avg_rtt != null)
 			return String.format(Locale.getDefault(), "%.1f", summary.avg_rtt);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public String getMaxPing(Context ctx) {
-		if (summary != null && summary.max_rtt != null)
+		if (isNdt7() && summary != null && summary.max_rtt != null)
 			return String.format(Locale.getDefault(), "%.1f", summary.max_rtt);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public String getMSS(Context ctx) {
-		if (summary != null && summary.mss != null)
+		if (isNdt7() && summary != null && summary.mss != null)
 			return String.format(Locale.getDefault(), "%.0f", summary.mss);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
