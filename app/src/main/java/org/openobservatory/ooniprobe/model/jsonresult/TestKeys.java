@@ -21,8 +21,6 @@ public class TestKeys {
 	public ArrayList<String> received;
 	@SerializedName("failure")
 	public String failure;
-	@SerializedName("server")
-	public Server server;
 	@SerializedName("whatsapp_endpoints_status")
 	public String whatsapp_endpoints_status;
 	@SerializedName("whatsapp_web_status")
@@ -39,10 +37,21 @@ public class TestKeys {
 	public Boolean telegram_tcp_blocking;
 	@SerializedName("telegram_web_status")
 	public String telegram_web_status;
+	@SerializedName("protocol")
+	public Integer protocol;
 	@SerializedName("simple")
 	public Simple simple;
+	@SerializedName("advanced")
+	@Deprecated public Advanced advanced;
 	@SerializedName("summary")
 	public Summary summary;
+	@SerializedName("server")
+	public Server server;
+	@SerializedName("server_address")
+	@Deprecated public String server_address;
+	//We calculate server_name and server_country at runtime and save the single values here.
+	public String server_name;
+	public String server_country;
 	@SerializedName("tampering")
 	public Tampering tampering;
 
@@ -135,6 +144,8 @@ public class TestKeys {
 	}
 
 	public String getUpload(Context ctx) {
+		//if (version == null)
+		//	return ctx.getString(R.string.TestResults_NotAvailable);
 		if (summary != null && summary.upload != null)
 			return setFractionalDigits(getScaledValue(summary.upload));
 		return ctx.getString(R.string.TestResults_NotAvailable);
@@ -183,6 +194,11 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
+	public String getServer(Context ctx) {
+		if (server_name != null && server_country != null)
+			return server_name + " - " + server_country;
+		return ctx.getString(R.string.TestResults_NotAvailable);
+	}
 
 	public String getAirportCountry(Context ctx) {
 		if (server != null && server.site != null) {
@@ -287,12 +303,30 @@ public class TestKeys {
 		public String site;
 	}
 
-	//DASHSummary
+	//DASHSummary and NDT5Summary
+	//Deprecate values
 	public static class Simple {
+		@SerializedName("upload")
+		@Deprecated public Double upload;
+		@SerializedName("download")
+		@Deprecated public Double download;
+		@SerializedName("ping")
+		@Deprecated public Double ping;
 		@SerializedName("median_bitrate")
 		public Double median_bitrate;
 		@SerializedName("min_playout_delay")
 		public Double min_playout_delay;
+	}
+
+	@Deprecated public static class Advanced {
+		@SerializedName("packet_loss")
+		public Double packet_loss;
+		@SerializedName("avg_rtt")
+		public Double avg_rtt;
+		@SerializedName("max_rtt")
+		public Double max_rtt;
+		@SerializedName("mss")
+		public Double mss;
 	}
 
 	public static class Tampering {

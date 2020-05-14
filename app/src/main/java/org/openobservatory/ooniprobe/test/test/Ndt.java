@@ -17,12 +17,14 @@ import androidx.annotation.NonNull;
 public class Ndt extends AbstractTest {
 	public static final String NAME = "ndt";
 	private static final String MK_NAME = "Ndt";
+	private String[] countries;
 
 	public Ndt() {
 		super(NAME, MK_NAME, R.string.Test_NDT_Fullname, 0, R.string.urlTestNdt, 45);
 	}
 
 	@Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback) {
+		countries = c.getResources().getStringArray(R.array.countries);
 		Settings settings = new Settings(c, pm);
 		run(c, pm, gson, settings, result, index, testCallback);
 	}
@@ -30,8 +32,22 @@ public class Ndt extends AbstractTest {
 	@Override public void onEntry(Context c, PreferenceManager pm, @NonNull JsonResult json, Measurement measurement) {
 		super.onEntry(c, pm, json, measurement);
 		measurement.is_failed = json.test_keys.failure != null;
+		calculateServerName(json.test_keys);
 		measurement.setTestKeys(json.test_keys);
-		System.out.println("test_keys.server.hostname " + json.test_keys.server.hostname);
-		System.out.println("test_keys.server.site " + json.test_keys.server.site);
+	}
+
+	private void calculateServerName(TestKeys keys) {
+		for (String country : countries)
+			if (country.startsWith(keys.server.site.substring(0, 3))) {
+				keys.server_name = keys.server.site;
+				keys.server_country = getAirportCountry(keys.server.site.substring(0, 3));
+			}
+	}
+
+	private String getAirportCountry(String serverName) {
+		for (String country : countries)
+			if (country.startsWith(serverName))
+				return country.split("\\|")[1];
+		return null;
 	}
 }
