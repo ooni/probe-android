@@ -150,24 +150,32 @@ public class TestKeys {
 	public String getUpload(Context ctx) {
 		if (isNdt7() && summary != null && summary.upload != null)
 			return setFractionalDigits(getScaledValue(summary.upload));
+		if (simple != null && simple.upload != null)
+			return setFractionalDigits(getScaledValue(simple.upload));
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public int getUploadUnit() {
 		if (isNdt7() && summary != null && summary.upload != null)
 			return getUnit(summary.upload);
+		if (simple != null && simple.upload != null)
+			return getUnit(simple.upload);
 		return R.string.TestResults_NotAvailable;
 	}
 
 	public String getDownload(Context ctx) {
 		if (isNdt7() && summary != null && summary.download != null)
 			return setFractionalDigits(getScaledValue(summary.download));
+		if (simple != null && simple.download != null)
+			return setFractionalDigits(getScaledValue(simple.download));
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public int getDownloadUnit() {
 		if (isNdt7() && summary != null && summary.download != null)
 			return getUnit(summary.download);
+		if (simple != null && simple.download != null)
+			return getUnit(simple.download);
 		return R.string.TestResults_NotAvailable;
 	}
 
@@ -193,6 +201,8 @@ public class TestKeys {
 	public String getPing(Context ctx) {
 		if (isNdt7() && summary != null && summary.ping != null)
 			return String.format(Locale.getDefault(), "%.1f", summary.ping);
+		if (simple != null && simple.ping != null)
+			return String.format(Locale.getDefault(), "%.1f", simple.ping);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
@@ -202,38 +212,35 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	public String getAirportCountry(Context ctx) {
-		if (server != null && server.site != null) {
-			System.out.println("getServerSite " + server.site);
-			String[] countries = ctx.getResources().getStringArray(R.array.countries);
-			for (String country : countries)
-				if (country.startsWith(server.site.substring(0, 3)))
-					return country.split("\\|")[1];
-		}
-		return ctx.getString(R.string.TestResults_NotAvailable);
-	}
-
 	public String getPacketLoss(Context ctx) {
 		if (isNdt7() && summary != null && summary.retransmit_rate != null)
 			return String.format(Locale.getDefault(), "%.3f", summary.retransmit_rate * 100);
+		if (advanced != null && advanced.packet_loss != null)
+			return String.format(Locale.getDefault(), "%.3f", advanced.packet_loss * 100);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public String getAveragePing(Context ctx) {
 		if (isNdt7() && summary != null && summary.avg_rtt != null)
 			return String.format(Locale.getDefault(), "%.1f", summary.avg_rtt);
+		if (advanced != null && advanced.avg_rtt != null)
+			return String.format(Locale.getDefault(), "%.1f", advanced.avg_rtt);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public String getMaxPing(Context ctx) {
 		if (isNdt7() && summary != null && summary.max_rtt != null)
 			return String.format(Locale.getDefault(), "%.1f", summary.max_rtt);
+		if (advanced != null && advanced.max_rtt != null)
+			return String.format(Locale.getDefault(), "%.1f", advanced.max_rtt);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public String getMSS(Context ctx) {
 		if (isNdt7() && summary != null && summary.mss != null)
 			return String.format(Locale.getDefault(), "%.0f", summary.mss);
+		if (advanced != null && advanced.mss != null)
+			return String.format(Locale.getDefault(), "%.0f", advanced.mss);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
