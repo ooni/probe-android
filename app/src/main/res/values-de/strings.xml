@@ -45,8 +45,8 @@
   <string name="Dashboard_Running_CalculatingETA">ETA wird errechnet</string>
   <string name="Dashboard_Running_ShowLog">Zeige Logdatei</string>
   <string name="Dashboard_Running_CloseLog">Log schliessen</string>
-  <string name="Dashboard_Running_Stopping_Title">Stopping test...</string>
-  <string name="Dashboard_Running_Stopping_Notice">Finishing the currently pending tests, please wait...</string>
+  <string name="Dashboard_Running_Stopping_Title">Stoppe Test ...</string>
+  <string name="Dashboard_Running_Stopping_Notice">Beendigung der derzeit ausstehenden Tests, bitte warten ...</string>
   <string name="Dashboard_Card_Subtitle">Tippe auf die Schaltfläche, um mehr zu erfahren</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">Teste die Blockierung von Webseiten</string>
@@ -54,7 +54,7 @@
   <string name="Dashboard_Websites_Overview_Paragraph_Desktop">Überprüfe mit Hilfe des [Web-Connectivity-Tests](https://ooni.io/nettest/web-connectivity/) von OONI, ob Webseiten blockiert werden\n\nDu wirst die Websites testen, die in den Testlisten des Citizen Labs [global](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) und [länderspezifisch](https://github.com/citizenlab/test-lists/tree/master/lists) enthalten sind.\n\nDieser Test misst, ob Websites mittels DNS-Manipulation, TCP/IP-Blockierung oder durch einen transparenten HTTP-Proxy blockiert werden.\n\nDeine Ergebnisse werden auf dem [OONI Explorer](https://explorer.ooni.org/) und der [OONI API](https://api.ooni.io/) veröffentlicht.</string>
   <string name="Dashboard_Performance_Card_Description">Teste die Geschwindigkeit und Performance deines Netzwerks</string>
   <string name="Dashboard_Performance_Overview_Paragraph">Messe die Geschwindigkeit und Leistung deines Netzwerks mit dem [NDT](https://ooni.io/nettest/ndt/) Test.\n\nMesse Video-Streaming Perfomance mit dem [DASH](https://ooni.io/nettest/dash/) Test.\n\nDiese Tests verbrauchen Datenvolumen basierend auf deiner Netzwerkgeschwindigkeit.\n\nDeine Ergebnisse werden auf dem [OONI Explorer](https://explorer.ooni.io/world/) und der [OONI API](https://api.ooni.io/) veröffentlicht.\n\nHaftungsausschluss: Diese Tests basieren auf Servern von Drittanbietern. Wir können daher nicht garantieren, dass deine IP-Adresse nicht erfasst wird.</string>
-  <string name="Dashboard_Performance_Overview_Paragraph_Updated">By running the tests in this card, you will:\n\n- Measure the speed and performance of your network ([NDT](https://ooni.org/nettest/ndt/) test)\n- Measure video streaming performance ([DASH](https://ooni.org/nettest/dash/) test)\n- Check for the presence of [middlebox technologies](https://ooni.org/support/glossary/#middlebox) on your network ([HTTP Invalid Request Line](https://ooni.org/nettest/http-invalid-request-line/) and [HTTP Header Field Manipulation](https://ooni.org/nettest/http-header-field-manipulation/) tests)\n\nThese tests consume data depending on your network speed.\n\nYour test results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).\n\n**Disclaimer:** The [NDT](https://ooni.org/nettest/ndt/) and [DASH](https://ooni.org/nettest/dash/) tests are conducted against third-party servers provided by [Measurement Lab (M-Lab)](https://www.measurementlab.net/). If you run these tests, M-Lab will collect and publish your IP address (for research purposes), irrespective of your OONI Probe settings. Learn more about M-Lab’s data governance through its [privacy statement](https://www.measurementlab.net/privacy/).</string>
+  <string name="Dashboard_Performance_Overview_Paragraph_Updated">Wenn Sie die Tests in dieser Karte durchführen, werden Sie:\n\n- die Geschwindigkeit und Leistung Ihres Netzwerks ([NDT](https://ooni.org/nettest/ndt/) Test) messen.\n- Video-Streaming-Leistung messen ([DASH](https://ooni.org/nettest/dash/) test).\n- das Vorhandensein von [Middlebox-Technologien](https://ooni.org/support/glossary/#middlebox) und [HTTP Header Field Manipulation] (https://ooni.org/nettest/http-header-field-manipulation/) Tests) in Ihrem Netzwerk ([HTTP Invalid Request Line] (https://ooni.org/nettest/http-invalid-request-line/) prüfen.\n\nDiese Tests verbrauchen Daten abhängig von der Geschwindigkeit Ihres Netzwerks.\n\nIhre Testergebnisse werden auf [OONI Explorer](https://explorer.ooni.org/) und [OONI API](https://api.ooni.io/) veröffentlicht.\n\n**Haftungsausschluss:** Die Tests [NDT](https://ooni.org/nettest/ndt/) und [DASH](https://ooni.org/nettest/dash/) werden gegen Server von Drittanbietern durchgeführt, die von [Measurement Lab (M-Lab)] (https://www.measurementlab.net/) bereitgestellt werden. Wenn Sie diese Tests durchführen, wird M-Lab Ihre IP-Adresse (zu Forschungszwecken) erfassen und veröffentlichen, unabhängig von den Einstellungen Ihrer OONI-Sonde. Weitere Informationen über die Datenverwaltung von M-Lab finden Sie in der [Datenschutzerklärung] (https://www.measurementlab.net/privacy/).</string>
   <string name="Dashboard_Middleboxes_Card_Description">Entdecke Middleboxen in deinem Netzwerk</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">Internetanbieter nutzen oft Netwerkgeräte (Middleboxen) für verschiedene Anwendungen (z. B. Caching). Manchmal werden diese aber auch für Internetzensur und/oder Überwachung eingesetzt.\n\nDu kannst Middleboxes in deinem Netzwerk mit OONIs [HTTP Invalid Request Line](https://ooni.io/nettest/http-invalid-request-line/) und [HTTP Header Field Manipulation](https://ooni.io/nettest/http-header-field-manipulation/) Tests finden.\n\nDeine Ergebnisse werden auf [OONI Explorer](https://explorer.ooni.io/world/) und [OONI API](https://api.ooni.io/) veröffentlicht.</string>
   <string name="Dashboard_InstantMessaging_Card_Description">Teste das Blockieren von Instant Messaging-Apps</string>
@@ -206,10 +206,10 @@
   <string name="TestResults_Details_Performance_NDT_Download">Herunterladen</string>
   <string name="TestResults_Details_Performance_NDT_Ping">Ping</string>
   <string name="TestResults_Details_Performance_NDT_Server">Server</string>
-  <string name="TestResults_Details_Performance_NDT_PacketLoss">Retransmission Rate</string>
+  <string name="TestResults_Details_Performance_NDT_PacketLoss">Weiterleitungsrate</string>
   <string name="TestResults_Details_Performance_NDT_OutOfOrder">Außer Betrieb</string>
   <string name="TestResults_Details_Performance_NDT_AveragePing">Durchschnittlicher Ping</string>
-  <string name="TestResults_Details_Performance_NDT_MaxPing">Max Ping Estimate</string>
+  <string name="TestResults_Details_Performance_NDT_MaxPing">Maximale Ping-Schätzung</string>
   <string name="TestResults_Details_Performance_NDT_MSS">MSS</string>
   <string name="TestResults_Details_Performance_NDT_Timeouts">Timeouts</string>
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Du kannst ohne Pufferung bis zu %1$s streamen.</string>
@@ -319,7 +319,7 @@
   <string name="Settings_Advanced_SendCrashReports">Sende Absturzberichte</string>
   <string name="Settings_Advanced_DebugLogs">Fehlerprotokolle</string>
   <string name="Settings_Advanced_UseDomainFronting">Immer Domain Fronting benutzen</string>
-  <string name="Settings_Advanced_CollectAnalytics">Collect app usage statistics</string>
+  <string name="Settings_Advanced_CollectAnalytics">Sammeln von Statistiken zur App-Nutzung</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Testdauer begrenzen</string>
   <string name="Settings_Websites_MaxRuntime">Testdauer</string>
   <string name="Settings_Websites_Categories_Label">Zu testende Webseiten-Kategorien</string>
@@ -329,7 +329,7 @@
   <string name="Settings_Websites_CustomURL_NoURLEntered">Keine URLs eingegeben</string>
   <string name="Settings_Websites_CustomURL_Run">Ausführen</string>
   <string name="Settings_Websites_CustomURL_Add"> Webseite hinzufügen</string>
-  <string name="Settings_Websites_TestCount">Number of tested websites (0 means all)</string>
+  <string name="Settings_Websites_TestCount">Anzahl der getesteten Websites (0 bedeutet alle)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">WhatsApp testen</string>
   <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">Alle WhatsApp-Endpunkte testen</string>
   <string name="Settings_InstantMessaging_TestTelegram">Telegram testen</string>
@@ -344,11 +344,11 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">Automatische DASH Serverauswahl</string>
   <string name="Settings_Performance_DashServerAddress">DASH-Server</string>
   <string name="Settings_Performance_DashServerPort">DASH-Serverport</string>
-  <string name="Settings_Circumvention_TestPsiphon">Test Psiphon</string>
-  <string name="Settings_Circumvention_TestTor">Test Tor</string>
+  <string name="Settings_Circumvention_TestPsiphon">Psiphon testen</string>
+  <string name="Settings_Circumvention_TestTor">Tor Testen</string>
   <string name="Settings_SendEmail_Label">E-Mail an den Support senden</string>
   <string name="Settings_SendEmail_Error">Bitte senden Sie eine E-Mail an bugs@openobservatory.org mit Informationen zur App und iOS-Version. Tippen Sie unten auf \"In die Zwischenablage kopieren\", um unsere E-Mail Adresse zu kopieren.</string>
-  <string name="Settings_Language_Current">Current app language is %1$s</string>
+  <string name="Settings_Language_Current">Aktuelle App-Sprache ist %1$s</string>
   <string name="Notification_FinishedRunning">Vollständig ausgeführt</string>
   <string name="OONIBrowser_TryMirror">Versuche Mirror</string>
   <string name="OONIBrowser_Loading">Lade...</string>

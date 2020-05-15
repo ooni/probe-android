@@ -21,10 +21,6 @@ public class TestKeys {
 	public ArrayList<String> received;
 	@SerializedName("failure")
 	public String failure;
-	@SerializedName("server_address")
-	public String server_address;
-	public String server_name;
-	public String server_country;
 	@SerializedName("whatsapp_endpoints_status")
 	public String whatsapp_endpoints_status;
 	@SerializedName("whatsapp_web_status")
@@ -41,10 +37,21 @@ public class TestKeys {
 	public Boolean telegram_tcp_blocking;
 	@SerializedName("telegram_web_status")
 	public String telegram_web_status;
+	@SerializedName("protocol")
+	public Integer protocol;
 	@SerializedName("simple")
 	public Simple simple;
 	@SerializedName("advanced")
-	public Advanced advanced;
+	@Deprecated public Advanced advanced;
+	@SerializedName("summary")
+	public Summary summary;
+	@SerializedName("server")
+	public Server server;
+	@SerializedName("server_address")
+	@Deprecated public String server_address;
+	//We calculate server_name and server_country at runtime and save the single values here.
+	public String server_name;
+	public String server_country;
 	@SerializedName("tampering")
 	public Tampering tampering;
 
@@ -136,25 +143,37 @@ public class TestKeys {
 		return R.string.TestResults_NotAvailable;
 	}
 
+	public Boolean isNdt7() {
+		return protocol != null && protocol == 7;
+	}
+	
 	public String getUpload(Context ctx) {
+		if (isNdt7() && summary != null && summary.upload != null)
+			return setFractionalDigits(getScaledValue(summary.upload));
 		if (simple != null && simple.upload != null)
 			return setFractionalDigits(getScaledValue(simple.upload));
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public int getUploadUnit() {
+		if (isNdt7() && summary != null && summary.upload != null)
+			return getUnit(summary.upload);
 		if (simple != null && simple.upload != null)
 			return getUnit(simple.upload);
 		return R.string.TestResults_NotAvailable;
 	}
 
 	public String getDownload(Context ctx) {
+		if (isNdt7() && summary != null && summary.download != null)
+			return setFractionalDigits(getScaledValue(summary.download));
 		if (simple != null && simple.download != null)
 			return setFractionalDigits(getScaledValue(simple.download));
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public int getDownloadUnit() {
+		if (isNdt7() && summary != null && summary.download != null)
+			return getUnit(summary.download);
 		if (simple != null && simple.download != null)
 			return getUnit(simple.download);
 		return R.string.TestResults_NotAvailable;
@@ -180,6 +199,8 @@ public class TestKeys {
 	}
 
 	public String getPing(Context ctx) {
+		if (isNdt7() && summary != null && summary.ping != null)
+			return String.format(Locale.getDefault(), "%.1f", summary.ping);
 		if (simple != null && simple.ping != null)
 			return String.format(Locale.getDefault(), "%.1f", simple.ping);
 		return ctx.getString(R.string.TestResults_NotAvailable);
@@ -192,24 +213,32 @@ public class TestKeys {
 	}
 
 	public String getPacketLoss(Context ctx) {
+		if (isNdt7() && summary != null && summary.retransmit_rate != null)
+			return String.format(Locale.getDefault(), "%.3f", summary.retransmit_rate * 100);
 		if (advanced != null && advanced.packet_loss != null)
 			return String.format(Locale.getDefault(), "%.3f", advanced.packet_loss * 100);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public String getAveragePing(Context ctx) {
+		if (isNdt7() && summary != null && summary.avg_rtt != null)
+			return String.format(Locale.getDefault(), "%.1f", summary.avg_rtt);
 		if (advanced != null && advanced.avg_rtt != null)
 			return String.format(Locale.getDefault(), "%.1f", advanced.avg_rtt);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public String getMaxPing(Context ctx) {
+		if (isNdt7() && summary != null && summary.max_rtt != null)
+			return String.format(Locale.getDefault(), "%.1f", summary.max_rtt);
 		if (advanced != null && advanced.max_rtt != null)
 			return String.format(Locale.getDefault(), "%.1f", advanced.max_rtt);
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
 	public String getMSS(Context ctx) {
+		if (isNdt7() && summary != null && summary.mss != null)
+			return String.format(Locale.getDefault(), "%.0f", summary.mss);
 		if (advanced != null && advanced.mss != null)
 			return String.format(Locale.getDefault(), "%.0f", advanced.mss);
 		return ctx.getString(R.string.TestResults_NotAvailable);
@@ -256,20 +285,49 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	public static class Simple {
+	//NDTSummary
+	public static class Summary {
 		@SerializedName("upload")
 		public Double upload;
 		@SerializedName("download")
 		public Double download;
 		@SerializedName("ping")
 		public Double ping;
+		@SerializedName("max_rtt")
+		public Double max_rtt;
+		@SerializedName("avg_rtt")
+		public Double avg_rtt;
+		@SerializedName("min_rtt")
+		public Double min_rtt;
+		@SerializedName("mss")
+		public Double mss;
+		@SerializedName("retransmit_rate")
+		public Double retransmit_rate;
+	}
+
+	public class Server {
+		@SerializedName("hostname")
+		public String hostname;
+		@SerializedName("site")
+		public String site;
+	}
+
+	//DASHSummary and NDT5Summary
+	//Deprecate values
+	public static class Simple {
+		@SerializedName("upload")
+		@Deprecated public Double upload;
+		@SerializedName("download")
+		@Deprecated public Double download;
+		@SerializedName("ping")
+		@Deprecated public Double ping;
 		@SerializedName("median_bitrate")
 		public Double median_bitrate;
 		@SerializedName("min_playout_delay")
 		public Double min_playout_delay;
 	}
 
-	public static class Advanced {
+	@Deprecated public static class Advanced {
 		@SerializedName("packet_loss")
 		public Double packet_loss;
 		@SerializedName("avg_rtt")

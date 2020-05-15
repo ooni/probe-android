@@ -14,6 +14,8 @@ import java.util.Vector;
 public class Engine {
     private static Set<String> probeEngineTasks = new HashSet<>(Arrays.asList(
             "Telegram",
+            "Dash",
+            "Ndt",
             "Psiphon",
             "Tor"
     ));

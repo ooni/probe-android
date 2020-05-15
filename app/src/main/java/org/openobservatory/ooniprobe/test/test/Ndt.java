@@ -37,11 +37,11 @@ public class Ndt extends AbstractTest {
 	}
 
 	private void calculateServerName(TestKeys keys) {
-		String[] parts = keys.server_address.split("\\.");
-		if (parts.length > 3) {
-			keys.server_name = parts[3];
-			keys.server_country = getAirportCountry(parts[3].substring(0, 3));
-		}
+		for (String country : countries)
+			if (country.startsWith(keys.server.site.substring(0, 3))) {
+				keys.server_name = keys.server.site;
+				keys.server_country = getAirportCountry(keys.server.site.substring(0, 3));
+			}
 	}
 
 	private String getAirportCountry(String serverName) {
