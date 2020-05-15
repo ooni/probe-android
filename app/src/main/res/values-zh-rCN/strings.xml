@@ -45,7 +45,7 @@
   <string name="Dashboard_Running_CalculatingETA">计算完成时间</string>
   <string name="Dashboard_Running_ShowLog">显示日志</string>
   <string name="Dashboard_Running_CloseLog">关闭日志</string>
-  <string name="Dashboard_Running_Stopping_Title">Stopping test...</string>
+  <string name="Dashboard_Running_Stopping_Title">停止测试中……</string>
   <string name="Dashboard_Running_Stopping_Notice">Finishing the currently pending tests, please wait...</string>
   <string name="Dashboard_Card_Subtitle">触击选项卡以查看详情</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>

@@ -100,6 +100,7 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
             ((View) v.getParent()).setVisibility(View.GONE);
             editTexts.remove(tag);
             deletes.remove(v);
+            bottomBar.setTitle(getString(R.string.OONIRun_URLs, Integer.toString(editTexts.size())));
             setVisibilityDelete();
         });
         setVisibilityDelete();
