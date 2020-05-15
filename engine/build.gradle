@@ -25,7 +25,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'org.openobservatory.measurement_kit:android-libs:0.11.0-1-android.1'
+    implementation 'org.openobservatory.measurement_kit:android-libs:0.11.0-1'
     implementation 'org.ooni:oonimkall:2020.05.14-133636'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     testImplementation 'junit:junit:4.12'
