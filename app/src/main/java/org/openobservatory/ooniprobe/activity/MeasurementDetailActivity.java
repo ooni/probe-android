@@ -31,7 +31,9 @@ import org.openobservatory.ooniprobe.fragment.measurement.HeaderOutcomeFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.HttpHeaderFieldManipulationFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.HttpInvalidRequestLineFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.NdtFragment;
+import org.openobservatory.ooniprobe.fragment.measurement.PsiphonFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.TelegramFragment;
+import org.openobservatory.ooniprobe.fragment.measurement.TorFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.WebConnectivityFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.WhatsappFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment;
@@ -158,17 +160,14 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                     head = HeaderOutcomeFragment.newInstance(iconRes, getString(R.string.bold, getString(measurement.is_anomaly ?
                             R.string.TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title :
                             R.string.TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title)));
-                    //TODO
-                    detail = WhatsappFragment.newInstance(measurement);
+                    detail = PsiphonFragment.newInstance(measurement);
                     break;
                 case Tor.NAME:
                     head = HeaderOutcomeFragment.newInstance(iconRes, getString(R.string.bold, getString(measurement.is_anomaly ?
                             R.string.TestResults_Details_Circumvention_Tor_Blocked_Hero_Title :
                             R.string.TestResults_Details_Circumvention_Tor_Reachable_Hero_Title)));
-                    //TODO
-                    detail = WhatsappFragment.newInstance(measurement);
+                    detail = TorFragment.newInstance(measurement);
                     break;
-
             }
         }
         assert detail != null && head != null;
