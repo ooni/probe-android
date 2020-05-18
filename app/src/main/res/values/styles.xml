@@ -41,7 +41,7 @@
 		<item name="colorPrimaryDark">@color/color_cyan9</item>
 	</style>
 
-	<style name="Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar.Circimbention">
+	<style name="Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar.Circumvention">
 		<item name="colorPrimary">@color/color_pink6</item>
 		<item name="colorPrimaryDark">@color/color_pink9</item>
 	</style>

@@ -20,7 +20,7 @@ public class CircumventionSuite extends AbstractSuite {
                 R.drawable.test_circumvention,
                 R.drawable.test_circumvention_24,
                 R.color.color_pink6,
-                R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Circimbention,
+                R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Circumvention,
                 R.style.Theme_MaterialComponents_NoActionBar_App_Circumvention,
                 R.string.Dashboard_Circumvention_Overview_Paragraph,
                 "anim/circumvention.json",
