@@ -220,7 +220,7 @@
   <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph">Η σύνδεση στο [Psiphon] (https://psiphon.ca/) φαίνεται να έχει μπλοκαριστεί.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph">Η σύνδεση στο [Psiphon](https://psiphon.ca/) ήταν επιτυχής, και επομένως πρέπει να λειτουργεί.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Χρόνος εκκίνησης</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s s</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s \' \'</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Hero_Title">Πιθανή λογοκρισία</string>
   <string name="TestResults_Details_Circumvention_Tor_Reachable_Hero_Title">Λειτουργεί</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Content_Paragraph">Η σύνδεση στο [Tor](https://www.torproject.org/) φαίνεται να έχει μπλοκαριστεί.</string>
@@ -344,8 +344,8 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">Αυτόματη επιλογή διακομιστή DASH </string>
   <string name="Settings_Performance_DashServerAddress">Διακομιστής DASH</string>
   <string name="Settings_Performance_DashServerPort">Θύρα διακομιστή DASH</string>
-  <string name="Settings_Circumvention_TestPsiphon">Test Psiphon</string>
-  <string name="Settings_Circumvention_TestTor">Test Tor</string>
+  <string name="Settings_Circumvention_TestPsiphon">Δοκίμασε το Psiphon</string>
+  <string name="Settings_Circumvention_TestTor">Δοκίμασε το Tor</string>
   <string name="Settings_SendEmail_Label">Αποστολή email στην υποστήριξη</string>
   <string name="Settings_SendEmail_Error">Παρακαλούμε στείλτε ένα email στη διεύθυνση bugs@openobservatory.org με πληροφορίες σχετικά με την έκδοση της εφαρμογής και του iOS. Πατήστε \"Αντιγραφή στο πρόχειρο\" παρακάτω για να αντιγράψετε τη διεύθυνση email μας.</string>
   <string name="Settings_Language_Current">Η τρέχουσα γλώσσα εφαρμογής είναι %1$s</string>

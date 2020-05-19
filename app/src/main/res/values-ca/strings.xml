@@ -45,8 +45,8 @@
   <string name="Dashboard_Running_CalculatingETA">S\'està calculant el temps estimat</string>
   <string name="Dashboard_Running_ShowLog">Mostra el registre</string>
   <string name="Dashboard_Running_CloseLog">Tanca el registre</string>
-  <string name="Dashboard_Running_Stopping_Title">Stopping test...</string>
-  <string name="Dashboard_Running_Stopping_Notice">Finishing the currently pending tests, please wait...</string>
+  <string name="Dashboard_Running_Stopping_Title">S\'està aturant la prova...</string>
+  <string name="Dashboard_Running_Stopping_Notice">S\'està finalitzant les proves actualment pendents, espereu...</string>
   <string name="Dashboard_Card_Subtitle">Toqueu la targeta per obtenir més informació</string>
   <string name="Dashboard_Card_Seconds">~%1$s s</string>
   <string name="Dashboard_Websites_Card_Description">Prova el blocatge de llocs web</string>
@@ -206,10 +206,10 @@
   <string name="TestResults_Details_Performance_NDT_Download">Baixada</string>
   <string name="TestResults_Details_Performance_NDT_Ping">Ping</string>
   <string name="TestResults_Details_Performance_NDT_Server">Servidor</string>
-  <string name="TestResults_Details_Performance_NDT_PacketLoss">Retransmission Rate</string>
+  <string name="TestResults_Details_Performance_NDT_PacketLoss">Taxa de retransmissió</string>
   <string name="TestResults_Details_Performance_NDT_OutOfOrder">No funciona</string>
   <string name="TestResults_Details_Performance_NDT_AveragePing">Ping mitjà</string>
-  <string name="TestResults_Details_Performance_NDT_MaxPing">Max Ping Estimate</string>
+  <string name="TestResults_Details_Performance_NDT_MaxPing">Estimació màxima de ping</string>
   <string name="TestResults_Details_Performance_NDT_MSS">MSS</string>
   <string name="TestResults_Details_Performance_NDT_Timeouts">Temps d\'espera</string>
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Pot transmetre fins a %1$s sense emmagatzematge en la memòria intermèdia.</string>
@@ -220,7 +220,7 @@
   <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph">[Psiphon](https://psiphon.ca/) sembla estar blocat.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph">Hem pogut iniciar amb èxit una connexió amb Psiphon. Això vol dir que [Psiphon](https://psiphon.ca/) hauria de funcionar.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Temps d\'arrencada</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s s</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s segons</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Hero_Title">Probablement blocat</string>
   <string name="TestResults_Details_Circumvention_Tor_Reachable_Hero_Title">S\'està treballant</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Content_Paragraph">[Tor](https://www.torproject.org/) sembla estar blocat.</string>
@@ -319,7 +319,7 @@
   <string name="Settings_Advanced_SendCrashReports">Envia informes d\'errors</string>
   <string name="Settings_Advanced_DebugLogs">Registres de depuració</string>
   <string name="Settings_Advanced_UseDomainFronting">Utilitza sempre el camuflatge del domini</string>
-  <string name="Settings_Advanced_CollectAnalytics">Collect app usage statistics</string>
+  <string name="Settings_Advanced_CollectAnalytics">Recopila les estadístiques d\'ús de l\'aplicació</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Límit de durada de la prova</string>
   <string name="Settings_Websites_MaxRuntime">Durada de la prova</string>
   <string name="Settings_Websites_Categories_Label">Categories de lloc web per provar</string>
@@ -329,7 +329,7 @@
   <string name="Settings_Websites_CustomURL_NoURLEntered">No s\'ha introduït cap URL</string>
   <string name="Settings_Websites_CustomURL_Run">Inicia</string>
   <string name="Settings_Websites_CustomURL_Add">Afegeix lloc web</string>
-  <string name="Settings_Websites_TestCount">Number of tested websites (0 means all)</string>
+  <string name="Settings_Websites_TestCount">Número de llocs web provats (0 significa tots)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">Prova el WhatsApp</string>
   <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">Prova tots els punts finals de WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Prova el Telegram</string>
@@ -344,11 +344,11 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">Selecció automàtica del servidor DASH</string>
   <string name="Settings_Performance_DashServerAddress">Servidor DASH</string>
   <string name="Settings_Performance_DashServerPort">Port del servidor DASH</string>
-  <string name="Settings_Circumvention_TestPsiphon">Test Psiphon</string>
-  <string name="Settings_Circumvention_TestTor">Test Tor</string>
+  <string name="Settings_Circumvention_TestPsiphon">Prova el Psiphon</string>
+  <string name="Settings_Circumvention_TestTor">Prova el Tor</string>
   <string name="Settings_SendEmail_Label">Envia un correu per donar suport</string>
   <string name="Settings_SendEmail_Error">Envieu un correu a bugs@openobservatory.org amb informació sobre l\'aplicació i la versió d\'iOS. Toqueu «Copia al porta-retalls» a continuació per copiar la nostra adreça de correu.</string>
-  <string name="Settings_Language_Current">Current app language is %1$s</string>
+  <string name="Settings_Language_Current">L\'idioma actual de l\'aplicació és %1$s</string>
   <string name="Notification_FinishedRunning">Ha finalitzat l\'execució</string>
   <string name="OONIBrowser_TryMirror">Prova un mirall</string>
   <string name="OONIBrowser_Loading">S\'està carregant...</string>

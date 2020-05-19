@@ -91,9 +91,9 @@
   <string name="TestResults_Overview_InstantMessaging_Blocked_Plural">%1$s bloquées</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Singular">%1$s accessible</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Plural">%1$s accessibles</string>
-  <string name="TestResults_Overview_Circumvention_Blocked_Singular">%1$s bloqués</string>
+  <string name="TestResults_Overview_Circumvention_Blocked_Singular">%1$s bloqué</string>
   <string name="TestResults_Overview_Circumvention_Blocked_Plural">%1$s bloqués</string>
-  <string name="TestResults_Overview_Circumvention_Available_Singular">%1$s disponibles</string>
+  <string name="TestResults_Overview_Circumvention_Available_Singular">%1$s disponible</string>
   <string name="TestResults_Overview_Circumvention_Available_Plural">%1$s disponibles</string>
   <string name="TestResults_Overview_IncompleteResult">Résultat incomplet</string>
   <string name="TestResults_Overview_Error">Erreur</string>
@@ -316,7 +316,7 @@
   <string name="Settings_Sharing_Footer">En publiant les résultats, vous augmentez la transparence des interférences réseau et soutenez la communauté de l’OONI. \n\nLe renseignement sur le réseau (c.-à-d. le numéro de système autonome) est nécessaire pour identifier les fournisseurs d’accès à Internet.</string>
   <string name="Settings_TestOptions_Label">Options de test</string>
   <string name="Settings_Advanced_Label">Avancés</string>
-  <string name="Settings_Advanced_SendCrashReports">Envoyer des rapports de plantage</string>
+  <string name="Settings_Advanced_SendCrashReports">Envoyer des relevés de plantage</string>
   <string name="Settings_Advanced_DebugLogs">Journaux de débogage</string>
   <string name="Settings_Advanced_UseDomainFronting">Toujours utiliser un domaine-écran</string>
   <string name="Settings_Advanced_CollectAnalytics">Recueillir les statistiques d’utilisation de l’appli</string>
@@ -344,8 +344,8 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">Sélection automatique du serveur DASH</string>
   <string name="Settings_Performance_DashServerAddress">Serveur DASH</string>
   <string name="Settings_Performance_DashServerPort">Port du serveur DASH</string>
-  <string name="Settings_Circumvention_TestPsiphon">Test Psiphon</string>
-  <string name="Settings_Circumvention_TestTor">Test Tor</string>
+  <string name="Settings_Circumvention_TestPsiphon">Test de Psiphon</string>
+  <string name="Settings_Circumvention_TestTor">Test de Tor</string>
   <string name="Settings_SendEmail_Label">Envoyer un courriel à l’assistance</string>
   <string name="Settings_SendEmail_Error">Veuillez envoyer un courriel à bugs@openobservatory.org avec des renseignements sur la version de l’appli et d’iOS. Touchez « Copier dans le presse-papiers » ci-dessous pour copier votre adresse courriel.</string>
   <string name="Settings_Language_Current">La langue actuelle de l’appli est %1$s</string>
@@ -407,7 +407,7 @@
   <string name="CategoryCode_MILX_Description">Terrorisme, mouvements militants ou séparatistes violents</string>
   <string name="CategoryCode_HATE_Description">Dénigrement de groupes particuliers d’après la race, le sexe, la sexualité ou d’autres caractéristiques</string>
   <string name="CategoryCode_NEWS_Description">Grands sites Web d’information, organes d’information régionaux et médias indépendants</string>
-  <string name="CategoryCode_XED_Description">Questions relatives à la santé sexuelle, dont la contraception, les ITS, la prévention du viol et l’avortement</string>
+  <string name="CategoryCode_XED_Description">Questions relatives à la santé sexuelle, dont la contraception, les ITS, l’avortement et la prévention du viol</string>
   <string name="CategoryCode_PUBH_Description">Questions relatives à la santé publique, dont le VIH, le SRAG, la grippe aviaire, l’Organisation mondiale de la santé</string>
   <string name="CategoryCode_GMB_Description">Jeux d’argent et pari en ligne</string>
   <string name="CategoryCode_ANON_Description">Anonymisation, contournement de la censure et chiffrement</string>
