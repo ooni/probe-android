@@ -118,13 +118,13 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                     detail = FacebookMessengerFragment.newInstance(measurement);
                     break;
                 case HttpHeaderFieldManipulation.NAME:
-                    head = HeaderOutcomeFragment.newInstance(iconRes, getString(R.string.bold, getString(measurement.is_anomaly ?
+                    head = HeaderOutcomeFragment.newInstance(R.drawable.test_middle_boxes_white, getString(R.string.bold, getString(measurement.is_anomaly ?
                             R.string.TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_Found_Hero_Title :
                             R.string.TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_NotFound_Hero_Title)));
                     detail = HttpHeaderFieldManipulationFragment.newInstance(measurement);
                     break;
                 case HttpInvalidRequestLine.NAME:
-                    head = HeaderOutcomeFragment.newInstance(iconRes, getString(R.string.bold, getString(measurement.is_anomaly ?
+                    head = HeaderOutcomeFragment.newInstance(R.drawable.test_middle_boxes_white, getString(R.string.bold, getString(measurement.is_anomaly ?
                             R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title :
                             R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title)));
                     detail = HttpInvalidRequestLineFragment.newInstance(measurement);
