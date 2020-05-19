@@ -192,12 +192,5 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
     protected PreferenceFragment newConcreteInstance(String rootKey) {
         return PreferenceFragment.newInstance(getArguments().getInt(ARG_PREFERENCES_RES_ID), getArguments().getInt(ARG_CONTAINER_RES_ID), rootKey);
     }
-
-    @Override
-    public void onConfirmation(Serializable serializable, int i) {
-        if (i == DialogInterface.BUTTON_NEGATIVE && serializable.equals(getString(R.string.include_cc))) {
-            getPreferenceScreen().getSharedPreferences().edit().remove((String) serializable).apply();
-            getFragmentManager().beginTransaction().replace(android.R.id.content, newConcreteInstance(rootKey)).commit();
-        }
-    }
+    
 }
