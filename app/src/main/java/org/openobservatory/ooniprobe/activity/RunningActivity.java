@@ -59,9 +59,10 @@ public class RunningActivity extends AbstractActivity {
         }
     }
 
-    //TODO check these new intents
     public static Intent newIntent(Context context, ArrayList<AbstractSuite> testSuites) {
-        return new Intent(context, RunningActivity.class).putExtra(TEST, testSuites);
+        Bundle extra = new Bundle();
+        extra.putSerializable(TEST, testSuites);
+        return new Intent(context, RunningActivity.class).putExtra(TEST, extra);
     }
 
     public static Intent newBackgroundIntent(Context context, ArrayList<AbstractSuite> testSuites) {
@@ -80,6 +81,7 @@ public class RunningActivity extends AbstractActivity {
         setContentView(R.layout.activity_running);
         ButterKnife.bind(this);
         Bundle extra = getIntent().getBundleExtra(TEST);
+        //if (extra != null)
         testSuites = (ArrayList<AbstractSuite>) extra.getSerializable(TEST);
         if (testSuites == null) {
             finish();
