@@ -220,7 +220,7 @@
   <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph">Η σύνδεση στο [Psiphon] (https://psiphon.ca/) φαίνεται να έχει μπλοκαριστεί.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph">Η σύνδεση στο [Psiphon](https://psiphon.ca/) ήταν επιτυχής, και επομένως πρέπει να λειτουργεί.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Χρόνος εκκίνησης</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s \''</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s \' \'</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Hero_Title">Πιθανή λογοκρισία</string>
   <string name="TestResults_Details_Circumvention_Tor_Reachable_Hero_Title">Λειτουργεί</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Content_Paragraph">Η σύνδεση στο [Tor](https://www.torproject.org/) φαίνεται να έχει μπλοκαριστεί.</string>
