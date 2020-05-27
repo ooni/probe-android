@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ResultHeaderMiddleboxFragment extends Fragment {
+@Deprecated public class ResultHeaderMiddleboxFragment extends Fragment {
 	private static final String ANOMALY = "anomaly";
 	@BindView(R.id.text) TextView text;
 

@@ -46,7 +46,7 @@
   <string name="Dashboard_Running_ShowLog">Показать журнал</string>
   <string name="Dashboard_Running_CloseLog">Закрыть журнал</string>
   <string name="Dashboard_Running_Stopping_Title">Останавливаем тест...</string>
-  <string name="Dashboard_Running_Stopping_Notice">Finishing the currently pending tests, please wait...</string>
+  <string name="Dashboard_Running_Stopping_Notice">Завершаем текущие незавершенные тесты, пожалуйста, подождите...</string>
   <string name="Dashboard_Card_Subtitle">Нажмите для информации</string>
   <string name="Dashboard_Card_Seconds">~%1$sс</string>
   <string name="Dashboard_Websites_Card_Description">Определение блокировок сайтов</string>
@@ -54,7 +54,7 @@
   <string name="Dashboard_Websites_Overview_Paragraph_Desktop">Проверьте, блокируются веб-сайты или нет, с помощью теста [Web Connectivity test](https://ooni.io/nettest/web-connectivity/) от OONI.\n\nТест использует списки сайтов от Citizen Lab: [глобальный](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) и [по странам](https://github.com/citizenlab/test-lists/tree/master/lists).\n\nТест покажет, блокируются ли эти сайты с использованием DNS-спуфинга, блокировки TCP/IP или прозрачного HTTP-прокси.\n\nПолученные вами результаты будут опубликованы на ресурсах [OONI Explorer](https://explorer.ooni.org/) и [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Performance_Card_Description">Измерение скорости/производительности вашего соединения</string>
   <string name="Dashboard_Performance_Overview_Paragraph">Скорость/производительность вашей сети можно измерить помощью теста [NDT](https://ooni.io/nettest/ndt/).\n\nСкорость видеопотока - с помощью теста [DASH](https://ooni.io/nettest/dash/).\n\nЭти тесты требуют ресурсов и зависят от скорости в сети.\n\nРезультаты будут опубликованы в [OONI Explorer](https://explorer.ooni.io/world/) и [OONI API](https://api.ooni.io/).\n\nВнимание: в этих тестах используются серверы третьих сторон. Мы не можем гарантировать конфиденциальность вашего IP-адреса.</string>
-  <string name="Dashboard_Performance_Overview_Paragraph_Updated">By running the tests in this card, you will:\n\n- Measure the speed and performance of your network ([NDT](https://ooni.org/nettest/ndt/) test)\n- Measure video streaming performance ([DASH](https://ooni.org/nettest/dash/) test)\n- Check for the presence of [middlebox technologies](https://ooni.org/support/glossary/#middlebox) on your network ([HTTP Invalid Request Line](https://ooni.org/nettest/http-invalid-request-line/) and [HTTP Header Field Manipulation](https://ooni.org/nettest/http-header-field-manipulation/) tests)\n\nThese tests consume data depending on your network speed.\n\nYour test results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).\n\n**Disclaimer:** The [NDT](https://ooni.org/nettest/ndt/) and [DASH](https://ooni.org/nettest/dash/) tests are conducted against third-party servers provided by [Measurement Lab (M-Lab)](https://www.measurementlab.net/). If you run these tests, M-Lab will collect and publish your IP address (for research purposes), irrespective of your OONI Probe settings. Learn more about M-Lab’s data governance through its [privacy statement](https://www.measurementlab.net/privacy/).</string>
+  <string name="Dashboard_Performance_Overview_Paragraph_Updated">Запустив тесты в этой карточке, вы сможете:\n\n- Измерить скорость и производительность вашей сети ([NDT] (https://ooni.org/nettest/ndt/) тест)\n- Измерить производительность потоковой передачи видео ([DASH](https://ooni.org/nettest/dash/) тест)\n- Проверить наличие [middlebox-технологий] (https://ooni.org/support/glossary/#middlebox) в вашей сети ([HTTP Invalid Request Line](https://ooni.org/nettest/http-invalid-request-line/) и [HTTP Header Field Manipulation](https://ooni.org/nettest/http-header-field-manipulation/) тесты)\n\nЭти тесты потребляют данные в зависимости от скорости вашей сети.\n\nРезультаты ваших тестов будут опубликованы на сайте [OONI Explorer] (https://explorer.ooni.org/) и [OONI API](https://api.ooni.io/).\n\n**Дисклеймер:* * [NDT](https://ooni.org/nettest/ndt/) и [DASH](https://ooni.org/nettest/dash/) тесты проводятся на сторонних серверах, предоставленных [Measurement Lab (M-Lab)](https://www.measurementlab.net). Если вы запускаете эти тесты, M-Lab соберет и опубликует ваш IP-адрес (в исследовательских целях), независимо от ваших настроек OONI Probe. Узнайте больше об управлении данными компании M-Lab в их [заявление о конфиденциальности](https://www.measurementlab.net/privacy/).</string>
   <string name="Dashboard_Middleboxes_Card_Description">Определять устройства middlebox в вашей сети</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">Провайдеры интернета часто используют сетевые устройства middlebox в решении различных сетевых задач (например, для кеширования). Бывает, что такие устройства применяются ради интернет-цензуры и/или слежки за пользователями.\n\nА у вас в сети есть устройства middlebox? OONI поможет ответить на этот вопрос с помощью теста [HTTP Invalid Request Line](https://ooni.io/nettest/http-invalid-request-line/) и теста [HTTP Header Field Manipulation](https://ooni.io/nettest/http-header-field-manipulation/).\n\nВаши результаты будут доступны на [OONI Explorer](https://explorer.ooni.io/world/) и [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_InstantMessaging_Card_Description">Определение блокировок мессенджеров</string>
@@ -206,10 +206,10 @@
   <string name="TestResults_Details_Performance_NDT_Download">Скачать</string>
   <string name="TestResults_Details_Performance_NDT_Ping">Пинг</string>
   <string name="TestResults_Details_Performance_NDT_Server">Сервер</string>
-  <string name="TestResults_Details_Performance_NDT_PacketLoss">Retransmission Rate</string>
+  <string name="TestResults_Details_Performance_NDT_PacketLoss">Скорость повторной передачи</string>
   <string name="TestResults_Details_Performance_NDT_OutOfOrder">Не работает</string>
   <string name="TestResults_Details_Performance_NDT_AveragePing">Средний пинг</string>
-  <string name="TestResults_Details_Performance_NDT_MaxPing">Max Ping Estimate</string>
+  <string name="TestResults_Details_Performance_NDT_MaxPing">Оценка максимального пинга</string>
   <string name="TestResults_Details_Performance_NDT_MSS">MSS</string>
   <string name="TestResults_Details_Performance_NDT_Timeouts">Таймауты</string>
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Вы можете повысить видеопоток до %1$s без буферизации.</string>
@@ -220,7 +220,7 @@
   <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph">Похоже, [Psiphon](https://psiphon.ca/) заблокирован.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph">Нам удалось успешно установить соединение с Psiphon. Это означает, что [Psiphon](https://psiphon.ca/) должен работать.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Время бутстрапа</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s s</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s с</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Hero_Title">Похоже, заблокировано</string>
   <string name="TestResults_Details_Circumvention_Tor_Reachable_Hero_Title">Работает</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Content_Paragraph">Похоже, [Tor](https://www.torproject.org/) заблокирован.</string>
@@ -329,7 +329,7 @@
   <string name="Settings_Websites_CustomURL_NoURLEntered">Не указаны адреса</string>
   <string name="Settings_Websites_CustomURL_Run">Старт</string>
   <string name="Settings_Websites_CustomURL_Add">Добавить сайт</string>
-  <string name="Settings_Websites_TestCount">Number of tested websites (0 means all)</string>
+  <string name="Settings_Websites_TestCount">Количество проверенных веб-сайтов (0 означает все)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">Тестировать WhatsApp</string>
   <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">Тестировать все конечные точки WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Тестировать Telegram</string>
@@ -344,11 +344,11 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">Автоматический выбор сервера DASH</string>
   <string name="Settings_Performance_DashServerAddress">Сервер DASH</string>
   <string name="Settings_Performance_DashServerPort">Порт сервера DASH</string>
-  <string name="Settings_Circumvention_TestPsiphon">Test Psiphon</string>
-  <string name="Settings_Circumvention_TestTor">Test Tor</string>
+  <string name="Settings_Circumvention_TestPsiphon">Тестировать Psiphon</string>
+  <string name="Settings_Circumvention_TestTor">Тестировать Tor</string>
   <string name="Settings_SendEmail_Label">Отправить письмо поддержке</string>
   <string name="Settings_SendEmail_Error">Пожалуйста, отправьте письмо на bugs@openobservatory.org с информацией о версиях приложения и iOS. Нажмите «Скопировать в буфер обмена» снизу, чтобы скопировать наш адрес электронной почты.</string>
-  <string name="Settings_Language_Current">Current app language is %1$s</string>
+  <string name="Settings_Language_Current">Текущий язык приложения: %1$s</string>
   <string name="Notification_FinishedRunning">Завершено</string>
   <string name="OONIBrowser_TryMirror">Попробуйте зеркало</string>
   <string name="OONIBrowser_Loading">Загрузка...</string>

@@ -168,15 +168,11 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
     private void load() {
         result = SQLite.select().from(Result.class).where(Result_Table.id.eq(result.id)).querySingle();
         assert result != null;
+        boolean isPerf = result.test_group_name.equals(PerformanceSuite.NAME);
         items.clear();
-        List<Measurement> measurements;
-        if (result.test_group_name.equals("websites"))
-            measurements = result.getMeasurementsSorted();
-        else
-            measurements = result.getMeasurements();
+        List<Measurement> measurements = result.getMeasurementsSorted();
         for (Measurement measurement : measurements)
-            items.add((measurement.test_name.equals(Ndt.NAME) || measurement.test_name.equals(Dash.NAME))
-                    && !measurement.is_failed ?
+            items.add(isPerf && !measurement.is_failed ?
                     new MeasurementPerfItem(measurement, this) :
                     new MeasurementItem(measurement, this));
         adapter.notifyTypesChanged();
