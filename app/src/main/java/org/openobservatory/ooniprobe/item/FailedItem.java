@@ -4,6 +4,7 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
@@ -40,10 +41,12 @@ public class FailedItem extends HeterogeneousRecyclerItem<Result, FailedItem.Vie
 		viewHolder.itemView.setOnLongClickListener(onLongClickListener);
 		viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(viewHolder.itemView.getContext(), R.color.color_gray2));
 		viewHolder.testName.setTextColor(ContextCompat.getColor(viewHolder.itemView.getContext(), R.color.color_gray6));
-		viewHolder.testName.setCompoundDrawablesRelativeWithIntrinsicBounds(extra.getTestSuite().getIcon(), 0, 0, 0);
+		viewHolder.icon.setImageResource(extra.getTestSuite().getIcon());
 		viewHolder.testName.setText(extra.getTestSuite().getTitle());
-		viewHolder.subtitle.setText(viewHolder.itemView.getContext().getString(R.string.Modal_Error)
-				+ " - " + extra.failure_msg);
+		String failure_msg = viewHolder.itemView.getContext().getString(R.string.Modal_Error);
+		if (extra.failure_msg != null)
+			failure_msg += " - " + extra.failure_msg;
+		viewHolder.subtitle.setText(failure_msg);
 		viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), extra.start_time));
 	}
 
@@ -51,6 +54,7 @@ public class FailedItem extends HeterogeneousRecyclerItem<Result, FailedItem.Vie
 		@BindView(R.id.testName) TextView testName;
 		@BindView(R.id.subtitle) TextView subtitle;
 		@BindView(R.id.startTime) TextView startTime;
+		@BindView(R.id.icon) ImageView icon;
 
 		ViewHolder(View itemView) {
 			super(itemView);

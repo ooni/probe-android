@@ -53,7 +53,7 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
             }
             WebsitesSuite suite = new WebsitesSuite();
             suite.getTestList(getPreferenceManager())[0].setInputs(urls);
-            Intent intent = RunningActivity.newIntent(CustomWebsiteActivity.this, suite);
+            Intent intent = RunningActivity.newIntent(CustomWebsiteActivity.this, suite.asArray());
             if (intent != null) {
                 ActivityCompat.startActivity(CustomWebsiteActivity.this, intent, null);
                 finish();
@@ -100,6 +100,7 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
             ((View) v.getParent()).setVisibility(View.GONE);
             editTexts.remove(tag);
             deletes.remove(v);
+            bottomBar.setTitle(getString(R.string.OONIRun_URLs, Integer.toString(editTexts.size())));
             setVisibilityDelete();
         });
         setVisibilityDelete();

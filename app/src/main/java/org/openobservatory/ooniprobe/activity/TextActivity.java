@@ -123,7 +123,8 @@ public class TextActivity extends AbstractActivity {
 						.build().show(getSupportFragmentManager(), null);
 				return;
 			}
-			getApiClient().getMeasurement(measurement.report_id, null).enqueue(new GetMeasurementsCallback() {
+			//measurement.getUrlString will return null when the measurement is not a web_connectivity
+			getApiClient().getMeasurement(measurement.report_id, measurement.getUrlString()).enqueue(new GetMeasurementsCallback() {
 				@Override
 				public void onSuccess(ApiMeasurement.Result result) {
 					//Download measurement data locally and displaying into the TextView
@@ -131,7 +132,12 @@ public class TextActivity extends AbstractActivity {
 						@Override
 						public void onSuccess(String json) {
 							text = json;
-							textView.setText(json);
+							runOnUiThread(new Runnable() {
+								@Override
+								public void run() {
+									textView.setText(json);
+								}
+							});
 						}
 						@Override
 						public void onError(String msg) {

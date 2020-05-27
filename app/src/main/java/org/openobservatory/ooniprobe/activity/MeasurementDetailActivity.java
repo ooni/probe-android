@@ -118,13 +118,13 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                     detail = FacebookMessengerFragment.newInstance(measurement);
                     break;
                 case HttpHeaderFieldManipulation.NAME:
-                    head = HeaderOutcomeFragment.newInstance(iconRes, getString(R.string.bold, getString(measurement.is_anomaly ?
+                    head = HeaderOutcomeFragment.newInstance(R.drawable.test_middle_boxes_white, getString(R.string.bold, getString(measurement.is_anomaly ?
                             R.string.TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_Found_Hero_Title :
                             R.string.TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_NotFound_Hero_Title)));
                     detail = HttpHeaderFieldManipulationFragment.newInstance(measurement);
                     break;
                 case HttpInvalidRequestLine.NAME:
-                    head = HeaderOutcomeFragment.newInstance(iconRes, getString(R.string.bold, getString(measurement.is_anomaly ?
+                    head = HeaderOutcomeFragment.newInstance(R.drawable.test_middle_boxes_white, getString(R.string.bold, getString(measurement.is_anomaly ?
                             R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title :
                             R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title)));
                     detail = HttpInvalidRequestLineFragment.newInstance(measurement);
@@ -173,7 +173,8 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
         Context c = this;
         isInExplorer = !measurement.hasReportFile(c);
         if (measurement.hasReportFile(c)){
-            getApiClient().getMeasurement(measurement.report_id, null).enqueue(new GetMeasurementsCallback() {
+            //measurement.getUrlString will return null when the measurement is not a web_connectivity
+            getApiClient().getMeasurement(measurement.report_id, measurement.getUrlString()).enqueue(new GetMeasurementsCallback() {
                 @Override
                 public void onSuccess(ApiMeasurement.Result result) {
                     measurement.deleteEntryFile(c);

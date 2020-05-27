@@ -12,7 +12,9 @@ import androidx.annotation.StringRes;
 import com.google.gson.Gson;
 
 import org.apache.commons.io.FileUtils;
-import org.openobservatory.ooniprobe.common.Crashlytics;
+import org.openobservatory.engine.Engine;
+import org.openobservatory.engine.ExperimentTask;
+import org.openobservatory.ooniprobe.common.ExceptionManager;
 import org.openobservatory.ooniprobe.common.MKException;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
@@ -28,9 +30,6 @@ import java.io.File;
 import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.util.List;
-
-import io.ooni.mk.MKAsyncTask;
-import io.ooni.mk.MKResourcesManager;
 
 public abstract class AbstractTest implements Serializable {
     private static final String UNUSED_KEY = "UNUSED_KEY";
@@ -62,13 +61,13 @@ public abstract class AbstractTest implements Serializable {
     void run(Context c, PreferenceManager pm, Gson gson, Settings settings, Result result, int index, TestCallback testCallback) {
         //Checking for resources before running any test
         try {
-            boolean okay = MKResourcesManager.maybeUpdateResources(c);
+            boolean okay = Engine.maybeUpdateResources(c);
             if (!okay) {
                 throw new Exception("MKResourcesManager didn't find resources");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Crashlytics.logException(e);
+            ExceptionManager.logException(e);
             return;
         }
         settings.name = mkName;
@@ -76,7 +75,14 @@ public abstract class AbstractTest implements Serializable {
         settings.options.max_runtime = max_runtime;
         settings.annotations.origin = origin;
         measurements = new SparseArray<>();
-        task = MKAsyncTask.start(gson.toJson(settings));
+        ExperimentTask task;
+        try {
+            task = Engine.startExperimentTask(settings.toExperimentSettings(gson, c));
+        } catch (Exception exc) {
+            exc.printStackTrace();
+            ExceptionManager.logException(exc);
+            return;
+        }
         while (!task.isDone())
             try {
                 String json = task.waitForNextEvent();
@@ -155,7 +161,7 @@ public abstract class AbstractTest implements Serializable {
                         setFailureMsg(event.value, result);
                         break;
                     case "bug.json_dump":
-                        Crashlytics.logException(new MKException(event));
+                        ExceptionManager.logException(new MKException(event));
                         break;
                     default:
                         Log.w(UNUSED_KEY, event.key);
@@ -163,7 +169,7 @@ public abstract class AbstractTest implements Serializable {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                Crashlytics.logException(e);
+                ExceptionManager.logException(e);
             }
     }
 

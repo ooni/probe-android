@@ -172,17 +172,6 @@ import androidx.test.filters.SmallTest;
 		Assert.assertEquals(testKeys.getPacketLoss(c), HUNDRED_THREE);
 	}
 
-	@Test public void outOfOrder() {
-		TestKeys testKeys = new TestKeys();
-		Assert.assertEquals(testKeys.getOutOfOrder(c), c.getString(R.string.TestResults_NotAvailable));
-		testKeys.advanced = new TestKeys.Advanced();
-		Assert.assertEquals(testKeys.getOutOfOrder(c), c.getString(R.string.TestResults_NotAvailable));
-		testKeys.advanced.out_of_order = 0d;
-		Assert.assertEquals(testKeys.getOutOfOrder(c), ZERO_ONE);
-		testKeys.advanced.out_of_order = 1d;
-		Assert.assertEquals(testKeys.getOutOfOrder(c), HUNDRED_ONE);
-	}
-
 	@Test public void averagePing() {
 		TestKeys testKeys = new TestKeys();
 		Assert.assertEquals(testKeys.getAveragePing(c), c.getString(R.string.TestResults_NotAvailable));
@@ -208,15 +197,6 @@ import androidx.test.filters.SmallTest;
 		Assert.assertEquals(testKeys.getMSS(c), c.getString(R.string.TestResults_NotAvailable));
 		testKeys.advanced.mss = 0d;
 		Assert.assertEquals(testKeys.getMSS(c), ZERO_ZERO);
-	}
-
-	@Test public void timeouts() {
-		TestKeys testKeys = new TestKeys();
-		Assert.assertEquals(testKeys.getTimeouts(c), c.getString(R.string.TestResults_NotAvailable));
-		testKeys.advanced = new TestKeys.Advanced();
-		Assert.assertEquals(testKeys.getTimeouts(c), c.getString(R.string.TestResults_NotAvailable));
-		testKeys.advanced.timeouts = 0d;
-		Assert.assertEquals(testKeys.getTimeouts(c), ZERO_ZERO);
 	}
 
 	@Test public void medianBitrate() {

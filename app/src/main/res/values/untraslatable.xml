@@ -1,7 +1,5 @@
 <resources>
-	""
-	<string name="software_name" translatable="false">ooniprobe-android</string>
-	<string name="version" translatable="false">ooniprobe: %1$s\nmeasurement-kit: %2$s</string>
+	<string name="version" translatable="false">%1$s: %2$s\nmeasurement-kit: %3$s</string>
 	<integer name="default_timeout" translatable="false">30</integer>
 	<string name="preferences" translatable="false">preferences</string>
 	<string name="notifications" translatable="false">notifications</string>
@@ -75,15 +73,22 @@
 		<item>@string/TestResults_Overview_FilterTests_AllTests</item>
 		<item>@string/TestResults_Overview_FilterTests_Websites</item>
 		<item>@string/TestResults_Overview_FilterTests_InstantMessaging</item>
-		<item>@string/TestResults_Overview_FilterTests_MiddleBoxes</item>
 		<item>@string/TestResults_Overview_FilterTests_Performance</item>
 	</string-array>
 	<string-array name="filterTestValues" translatable="false">
 		<item></item>
 		<item>websites</item>
 		<item>instant_messaging</item>
-		<item>middle_boxes</item>
 		<item>performance</item>
+	</string-array>
+	<string-array name="preferenceTestsNames" translatable="false">
+		<item>run_http_invalid_request_line</item>
+		<item>run_http_header_field_manipulation</item>
+		<item>test_whatsapp</item>
+		<item>test_telegram</item>
+		<item>test_facebook_messenger</item>
+		<item>run_ndt</item>
+		<item>run_dash</item>
 	</string-array>
 	<plurals name="TestResults_Overview_Websites_Blocked" translatable="false">
 		<item quantity="one">@string/TestResults_Overview_Websites_Blocked_Singular</item>

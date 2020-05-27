@@ -9,6 +9,9 @@ import android.widget.TextView;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.test.test.Dash;
+import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
+import org.openobservatory.ooniprobe.test.test.HttpInvalidRequestLine;
+import org.openobservatory.ooniprobe.test.test.Ndt;
 
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -36,12 +39,19 @@ public class MeasurementPerfItem extends HeterogeneousRecyclerItem<Measurement, 
 			viewHolder.data1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.video_quality, 0, 0, 0);
 			viewHolder.data1.setText(extra.getTestKeys().getVideoQuality(true));
 			viewHolder.data2.setVisibility(View.GONE);
-		} else {
+		} else if (extra.test_name.equals(Ndt.NAME)) {
 			viewHolder.data1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.download_black, 0, 0, 0);
 			viewHolder.data1.setText(c.getString(R.string.twoParam, extra.getTestKeys().getDownload(c), c.getString(extra.getTestKeys().getDownloadUnit())));
 			viewHolder.data2.setVisibility(View.VISIBLE);
 			viewHolder.data2.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.upload_black, 0, 0, 0);
 			viewHolder.data2.setText(c.getString(R.string.twoParam, extra.getTestKeys().getUpload(c), c.getString(extra.getTestKeys().getUploadUnit())));
+		} else if (extra.test_name.equals(HttpHeaderFieldManipulation.NAME)
+				|| extra.test_name.equals(HttpInvalidRequestLine.NAME)) {
+			viewHolder.data1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.test_middle_boxes_small, 0, 0, 0);
+			viewHolder.data1.setText(extra.is_anomaly ?
+					c.getString(R.string.TestResults_Overview_MiddleBoxes_Found) :
+					c.getString(R.string.TestResults_Overview_MiddleBoxes_NotFound));
+			viewHolder.data2.setVisibility(View.GONE);
 		}
 	}
 

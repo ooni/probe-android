@@ -15,7 +15,8 @@ public class PreferenceManager {
 	private static final String IS_MANUAL_UPLOAD_DIALOG = "isManualUploadDialog";
 	private static final String TOKEN = "token";
 	private static final String SHOW_ONBOARDING = "first_run";
-	public static final Integer DELETE_JSON_DELAY = 86400;
+	//This is in ms, set to one day
+	public static final Integer DELETE_JSON_DELAY = 86400000;
 	private static final String DELETE_JSON_KEY = "deleteUploadedJsons";
 
 	private final SharedPreferences sp;
@@ -77,14 +78,6 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.notifications_enabled), true);
 	}
 
-	public boolean isNotificationsCompletion() {
-		return isNotifications() && sp.getBoolean(r.getString(R.string.notifications_completion), true);
-	}
-
-	public boolean isNotificationsNews() {
-		return isNotifications() && sp.getBoolean(r.getString(R.string.notifications_news), true);
-	}
-
 	public boolean isUploadResults() {
 		return sp.getBoolean(r.getString(R.string.upload_results), true);
 	}
@@ -110,7 +103,7 @@ public class PreferenceManager {
 	}
 
 	public boolean isIncludeCc() {
-		return sp.getBoolean(r.getString(R.string.include_cc), true);
+		return true;
 	}
 
 	public boolean isTestWhatsapp() {

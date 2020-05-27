@@ -24,12 +24,13 @@ import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.common.Application;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 import localhost.toolkit.app.fragment.MessageDialogFragment;
 import localhost.toolkit.preference.ExtendedPreferenceFragment;
 
-public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFragment> implements SharedPreferences.OnSharedPreferenceChangeListener, ConfirmDialogFragment.OnConfirmedListener {
+public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFragment> implements SharedPreferences.OnSharedPreferenceChangeListener {
     public static final String ARG_PREFERENCES_RES_ID = "org.openobservatory.ooniprobe.fragment.PreferenceFragment.PREF_RES_ID";
     private static final String ARG_CONTAINER_RES_ID = "org.openobservatory.ooniprobe.fragment.PreferenceFragment.CONTAINER_VIEW_ID";
     private String rootKey;
@@ -98,13 +99,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Preference preference = findPreference(key);
-        if (key.equals(getString(R.string.include_cc)) && !sharedPreferences.getBoolean(key, true))
-            new ConfirmDialogFragment.Builder()
-                    .withExtra(key)
-                    .withTitle(getString(R.string.Settings_Sharing_IncludeCountryCode))
-                    .withMessage(getString(R.string.Settings_Sharing_IncludeCountryCode_PopUp))
-                    .build().show(getChildFragmentManager(), null);
-        else if (preference instanceof EditTextPreference) {
+        if (preference instanceof EditTextPreference) {
             String value = sharedPreferences.getString(key, null);
             preference.setSummary(value);
             if (key.equals(getString(R.string.max_runtime)) && value != null && !TextUtils.isDigitsOnly(value)) {
@@ -113,37 +108,37 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                         .withMessage(getString(R.string.Modal_OnlyDigits))
                         .build().show(getFragmentManager(), null);
                 sharedPreferences.edit().remove(key).apply();
-                getFragmentManager().beginTransaction().replace(android.R.id.content, newConcreteInstance(rootKey)).commit();
+                EditTextPreference p = (EditTextPreference) findPreference(key);
+                if (p != null)
+                    p.setText("");
             }
         } else if (preference instanceof SwitchPreferenceCompat) {
-            //Not executing this code in case of max_runtime_enabled. See below.
-            if (key.equals(getString(R.string.max_runtime_enabled)))
-                return;
-            //This code is used by the test categories screen to leave at least one category enabled, should be refactored
-            boolean found = false;
-            for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++)
-                if (getPreferenceScreen().getPreference(i) instanceof SwitchPreferenceCompat && !getPreferenceScreen().getPreference(i).getKey().equals(getString(R.string.test_whatsapp_extensive)))
-                    found = found || sharedPreferences.getBoolean(getPreferenceScreen().getPreference(i).getKey(), true);
-            if (!found) {
-                new MessageDialogFragment.Builder()
-                        .withMessage(getString(R.string.Modal_EnableAtLeastOneTest))
-                        .build().show(getFragmentManager(), null);
-                sharedPreferences.edit().remove(key).apply();
-                getFragmentManager().beginTransaction().replace(android.R.id.content, newConcreteInstance(rootKey)).commit();
-            }
+            //Call this code only in case of category or tests
+            if (Arrays.asList(getActivity().getResources().getStringArray(R.array.CategoryCodes)).contains(key) ||
+                    Arrays.asList(getActivity().getResources().getStringArray(R.array.preferenceTestsNames)).contains(key))
+                checkAtLeastOneEnabled(sharedPreferences, key);
+        }
+    }
+
+    private void checkAtLeastOneEnabled(SharedPreferences sharedPreferences, String key){
+        boolean found = false;
+        //cycle all preferences in the page and return true if at least one is enabled
+        for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++)
+            if (getPreferenceScreen().getPreference(i) instanceof SwitchPreferenceCompat && !getPreferenceScreen().getPreference(i).getKey().equals(getString(R.string.test_whatsapp_extensive)))
+                found = found || sharedPreferences.getBoolean(getPreferenceScreen().getPreference(i).getKey(), true);
+        if (!found) {
+            new MessageDialogFragment.Builder()
+                    .withMessage(getString(R.string.Modal_EnableAtLeastOneTest))
+                    .build().show(getFragmentManager(), null);
+            sharedPreferences.edit().remove(key).apply();
+            SwitchPreferenceCompat p = (SwitchPreferenceCompat) findPreference(key);
+            if (p != null)
+                p.setChecked(true);
         }
     }
 
     @Override
     protected PreferenceFragment newConcreteInstance(String rootKey) {
         return PreferenceFragment.newInstance(getArguments().getInt(ARG_PREFERENCES_RES_ID), getArguments().getInt(ARG_CONTAINER_RES_ID), rootKey);
-    }
-
-    @Override
-    public void onConfirmation(Serializable serializable, int i) {
-        if (i == DialogInterface.BUTTON_NEGATIVE && serializable.equals(getString(R.string.include_cc))) {
-            getPreferenceScreen().getSharedPreferences().edit().remove((String) serializable).apply();
-            getFragmentManager().beginTransaction().replace(android.R.id.content, newConcreteInstance(rootKey)).commit();
-        }
     }
 }

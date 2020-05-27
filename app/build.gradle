@@ -1,9 +1,9 @@
 apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
 
 android {
 	compileSdkVersion 29
 	buildToolsVersion '28.0.3'
+	ndkVersion '21.0.6113669'
 
 	compileOptions {
 		sourceCompatibility JavaVersion.VERSION_1_8
@@ -14,39 +14,72 @@ android {
 		applicationId 'org.openobservatory.ooniprobe'
 		minSdkVersion 17
 		targetSdkVersion 29
-		versionName '2.3.0-beta.2'
-		versionCode 56
+		versionName '2.4.0'
+		versionCode 60
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+		buildConfigField 'String', 'OONI_ORCHESTRATE_BASE_URL', '"https://orchestrate.ooni.io/"'
+		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
+		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://registry.proteus.ooni.io"'
+		resValue "string", "APP_NAME", "OONI Probe"
+		buildConfigField 'String', 'SOFTWARE_NAME', 'BASE_SOFTWARE_NAME+IS_DEBUG'
 	}
 
 	buildTypes {
 		debug {
 			buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://registry.proteus.test.ooni.io"'
-			buildConfigField 'String', 'OONI_ORCHESTRATE_BASE_URL', '"https://orchestrate.ooni.io/"'
-			buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
+			buildConfigField 'String', 'IS_DEBUG', '"-debug"'
 		}
 
 		release {
 			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-			buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://registry.proteus.ooni.io"'
-			buildConfigField 'String', 'OONI_ORCHESTRATE_BASE_URL', '"https://orchestrate.ooni.io/"'
-			buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
+			buildConfigField 'String', 'IS_DEBUG', '""'
 		}
 	}
 
-	flavorDimensions 'license'
+	flavorDimensions 'testing', 'license'
 	productFlavors {
-		fdroid { dimension 'license' }
-		full { dimension 'license' }
+		stable {
+			dimension 'testing'
+			buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android"'
+		}
+		dev {
+			dimension = 'testing'
+			applicationIdSuffix = '.dev'
+			versionName = versionNameDate()
+			versionCode = versionCodeDate()
+			buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-dev"'
+			resValue "string", "APP_NAME", "OONI Dev"
+		}
+		experimental {
+			dimension = 'testing'
+			applicationIdSuffix = '.experimental'
+			versionName = versionNameDate()
+			versionCode = versionCodeDate()
+			buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-experimental"'
+			resValue "string", "APP_NAME", "OONI Exp"
+		}
+		fdroid {
+			dimension 'license'
+		}
+		full {
+			dimension 'license'
+		}
+	}
+	variantFilter { variant ->
+		def names = variant.flavors*.name
+		if (names.contains("fdroid") && (names.contains("experimental") || names.contains("dev"))) {
+			setIgnore(true)
+		}
 	}
 }
+
 
 dependencies {
 	implementation 'androidx.appcompat:appcompat:1.1.0'
 
-	fullImplementation 'com.google.firebase:firebase-messaging:20.1.0'
-	fullImplementation 'com.google.firebase:firebase-core:17.2.2'
+	fullImplementation 'com.google.firebase:firebase-messaging:20.1.4'
+	fullImplementation 'com.google.firebase:firebase-core:17.3.0'
 
 	annotationProcessor 'com.github.Raizlabs.DBFlow:dbflow-processor:4.2.4'
 	implementation 'com.github.Raizlabs.DBFlow:dbflow-core:4.2.4'
@@ -60,7 +93,6 @@ dependencies {
 	annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 
 	fullImplementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
-	implementation 'org.openobservatory.measurement_kit:android-libs:0.10.11-android.1'
 	implementation 'com.github.xanscale.LocalhostToolkit:app:19.05.01'
 	implementation 'pub.devrel:easypermissions:3.0.0'
 	implementation 'com.airbnb.android:lottie:3.0.7'
@@ -68,8 +100,27 @@ dependencies {
 	implementation 'ru.noties:markwon:2.0.1'
 	implementation 'commons-io:commons-io:2.6'
 
+	//arcview to fragment_dashboard
+	implementation 'com.github.florent37:shapeofview:1.3.2'
+
+	//constraint layout
+	implementation "androidx.constraintlayout:constraintlayout:1.1.3"
+
 	androidTestImplementation 'androidx.test:runner:1.2.0'
 	androidTestImplementation 'androidx.test:rules:1.2.0'
+	implementation project(path: ':engine')
 }
 
-apply plugin: 'com.google.gms.google-services'
+static def versionCodeDate() {
+	return new Date().format("yyyyMMdd").toInteger()
+}
+
+static def versionNameDate() {
+	return new Date().format("yyyy.MM.dd-HH")
+}
+
+if (!getGradle().getStartParameter().getTaskRequests()
+		.toString().contains("Fdroid")){
+	apply plugin: 'com.google.gms.google-services'
+	apply plugin: 'io.fabric'
+}

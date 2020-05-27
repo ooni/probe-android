@@ -50,7 +50,7 @@ public class FailedFragment extends Fragment {
 		testSuite.setTestList(abstractTest);
 		testSuite.setResult(failedMeasurement.result);
 		failedMeasurement.setReRun(getContext());
-		Intent intent = RunningActivity.newIntent((AbstractActivity) getActivity(), testSuite);
+		Intent intent = RunningActivity.newIntent((AbstractActivity) getActivity(), testSuite.asArray());
 		if (intent != null) {
 			startActivity(intent);
 			getActivity().finish();
