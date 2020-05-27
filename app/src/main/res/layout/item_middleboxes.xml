@@ -62,7 +62,7 @@
 			android:id="@+id/status"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:drawableStart="@drawable/test_middle_boxes"
+			android:drawableStart="@drawable/test_middle_boxes_small"
 			android:drawablePadding="8dp"
 			android:gravity="center_vertical" />
 	</LinearLayout>
