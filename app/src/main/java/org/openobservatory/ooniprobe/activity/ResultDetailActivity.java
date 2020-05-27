@@ -169,11 +169,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
         assert result != null;
         boolean isPerf = result.test_group_name.equals(PerformanceSuite.NAME);
         items.clear();
-        List<Measurement> measurements;
-        if (result.test_group_name.equals("websites"))
-            measurements = result.getMeasurementsSorted();
-        else
-            measurements = result.getMeasurements();
+        List<Measurement> measurements = result.getMeasurementsSorted();
         for (Measurement measurement : measurements)
             items.add(isPerf && !measurement.is_failed ?
                     new MeasurementPerfItem(measurement, this) :
