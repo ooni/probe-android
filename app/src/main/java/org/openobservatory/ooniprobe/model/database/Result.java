@@ -95,7 +95,12 @@ public class Result extends BaseModel implements Serializable {
 	 */
 	public List<Measurement> getMeasurementsSorted() {
 		if (WebsitesSuite.NAME.equals(test_group_name))
-			return SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false), Measurement_Table.is_done.eq(true)).orderBy(Measurement_Table.is_anomaly, false).orderBy(Measurement_Table.is_failed, false).orderBy(Measurement_Table.id, true).queryList();
+			return SQLite.select().from(Measurement.class)
+					.where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false), Measurement_Table.is_done.eq(true))
+					.orderBy(Measurement_Table.is_anomaly, false)
+					.orderBy(Measurement_Table.is_failed, false)
+					.orderBy(Measurement_Table.id, true)
+					.queryList();
 		measurements = getMeasurements();
 		List<Measurement> measurementsSorted = new ArrayList<>();
 		String[] testOrder = getTestOrder();
@@ -182,13 +187,13 @@ public class Result extends BaseModel implements Serializable {
 	public String[] getTestOrder() {
 		switch (test_group_name) {
 			case WebsitesSuite.NAME:
-				return new String[] {WebConnectivity.NAME};
+				return new String[]{WebConnectivity.NAME};
 			case InstantMessagingSuite.NAME:
-				return new String[] {Whatsapp.NAME, Telegram.NAME, FacebookMessenger.NAME};
+				return new String[]{Whatsapp.NAME, Telegram.NAME, FacebookMessenger.NAME};
 			case MiddleBoxesSuite.NAME:
-				return new String[] {HttpInvalidRequestLine.NAME, HttpHeaderFieldManipulation.NAME};
+				return new String[]{HttpInvalidRequestLine.NAME, HttpHeaderFieldManipulation.NAME};
 			case PerformanceSuite.NAME:
-				return new String[] {Ndt.NAME, Dash.NAME, HttpInvalidRequestLine.NAME, HttpHeaderFieldManipulation.NAME};
+				return new String[]{Ndt.NAME, Dash.NAME, HttpInvalidRequestLine.NAME, HttpHeaderFieldManipulation.NAME};
 			default:
 				return null;
 		}
