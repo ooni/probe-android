@@ -64,16 +64,16 @@
 	<string name="transitionNameRuntime" translatable="false">runtime</string>
 	<string name="shareEmailTo" translatable="false">mailto:contact@openobservatory.org</string>
 	<string name="shareSubject" translatable="false">[bug-report] OONI Probe Android %1$s</string>
-	<string name="urlTestDas" translatable="false">https://ooni.io/nettest/dash</string>
-	<string name="urlTestFbm" translatable="false">https://ooni.io/nettest/facebook-messenger</string>
-	<string name="urlTestHfm" translatable="false">https://ooni.io/nettest/http-header-field-manipulation</string>
-	<string name="urlTestIrl" translatable="false">https://ooni.io/nettest/http-invalid-request-line</string>
-	<string name="urlTestNdt" translatable="false">https://ooni.io/nettest/ndt</string>
-	<string name="urlTestTlg" translatable="false">https://ooni.io/nettest/telegram</string>
-	<string name="urlTestWeb" translatable="false">https://ooni.io/nettest/web-connectivity</string>
-	<string name="urlTestWap" translatable="false">https://ooni.io/nettest/whatsapp</string>
-	<string name="urlTestTor" translatable="false">https://ooni.io/nettest/tor</string>
-	<string name="urlTestPsi" translatable="false">https://ooni.io/nettest/psiphon</string>
+	<string name="urlTestDas" translatable="false">https://ooni.org/nettest/dash</string>
+	<string name="urlTestFbm" translatable="false">https://ooni.org/nettest/facebook-messenger</string>
+	<string name="urlTestHfm" translatable="false">https://ooni.org/nettest/http-header-field-manipulation</string>
+	<string name="urlTestIrl" translatable="false">https://ooni.org/nettest/http-invalid-request-line</string>
+	<string name="urlTestNdt" translatable="false">https://ooni.org/nettest/ndt</string>
+	<string name="urlTestTlg" translatable="false">https://ooni.org/nettest/telegram</string>
+	<string name="urlTestWeb" translatable="false">https://ooni.org/nettest/web-connectivity</string>
+	<string name="urlTestWap" translatable="false">https://ooni.org/nettest/whatsapp</string>
+	<string name="urlTestTor" translatable="false">https://ooni.org/nettest/tor</string>
+	<string name="urlTestPsi" translatable="false">https://ooni.org/nettest/psiphon</string>
 	<string-array name="filterTests" translatable="false">
 		<item>@string/TestResults_Overview_FilterTests_AllTests</item>
 		<item>@string/TestResults_Overview_FilterTests_Websites</item>
