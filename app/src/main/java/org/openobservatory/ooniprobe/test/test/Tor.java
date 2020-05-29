@@ -28,6 +28,9 @@ public class Tor extends AbstractTest {
 
     @Override public void onEntry(Context c, PreferenceManager pm, @NonNull JsonResult json, Measurement measurement) {
         super.onEntry(c, pm, json, measurement);
-        //TODO
+        measurement.is_anomaly = ((json.test_keys.dir_port_accessible <= 0 && json.test_keys.dir_port_total > 0) ||
+        		(json.test_keys.obfs4_accessible <= 0 && json.test_keys.obfs4_total > 0) ||
+        		(json.test_keys.or_port_dirauth_accessible <= 0 && json.test_keys.or_port_dirauth_total > 0) ||
+        		(json.test_keys.or_port_accessible <= 0 && json.test_keys.or_port_total > 0));
     }
 }
