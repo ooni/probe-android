@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ru.noties.markwon.Markwon;
 
 public class PsiphonFragment extends Fragment {
 	private static final String MEASUREMENT = "measurement";
@@ -35,16 +36,12 @@ public class PsiphonFragment extends Fragment {
 		assert measurement != null;
 		View v = inflater.inflate(R.layout.fragment_measurement_psiphon, container, false);
 		ButterKnife.bind(this, v);
-		desc.setText(measurement.is_anomaly ? R.string.TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph : R.string.TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph);
-		/*
-		TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Unit
-		dns.setText(measurement.getTestKeys().getFacebookMessengerDns());
-		if (Boolean.TRUE.equals(measurement.getTestKeys().facebook_dns_blocking))
-			dns.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_yellow9));
-		tcp.setText(measurement.getTestKeys().getFacebookMessengerTcp());
-		if (Boolean.TRUE.equals(measurement.getTestKeys().facebook_tcp_blocking))
-			tcp.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_yellow9));
-		 */
+		Markwon.setMarkdown(desc,
+				measurement.is_anomaly ?
+						getString(R.string.TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph) :
+						getString(R.string.TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph)
+		);
+		bootstrap.setText(measurement.getTestKeys().getBootstrapTime(getActivity()));
 		return v;
 	}
 }

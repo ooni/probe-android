@@ -305,6 +305,28 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
+	public String getBootstrapTime(Context ctx) {
+		if (bootstrap_time != null) {
+			return ctx.getString(R.string.TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit,
+					String.format(Locale.getDefault(), "%.2f", bootstrap_time));
+		}
+		return ctx.getString(R.string.TestResults_NotAvailable);
+	}
+
+	public String getBridges(Context ctx) {
+		if (obfs4_accessible != null && obfs4_total != null) {
+			return ctx.getString(R.string.TestResults_Details_Circumvention_Tor_BrowserBridges_Label_OK, obfs4_accessible, obfs4_total);
+		}
+		return ctx.getString(R.string.TestResults_NotAvailable);
+	}
+
+	public String getAuthorities(Context ctx) {
+		if (or_port_dirauth_accessible != null && or_port_dirauth_total != null) {
+			return ctx.getString(R.string.TestResults_Details_Circumvention_Tor_DirectoryAuthorities_Label_OK, or_port_dirauth_accessible, or_port_dirauth_total);
+		}
+		return ctx.getString(R.string.TestResults_NotAvailable);
+	}
+
 	//NDTSummary
 	public static class Summary {
 		@SerializedName("upload")

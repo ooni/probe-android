@@ -30,5 +30,4 @@ public class Psiphon extends AbstractTest {
         super.onEntry(c, pm, json, measurement);
         measurement.is_anomaly = json.test_keys.failure != null;
     }
-
 }
