@@ -9,8 +9,6 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
-import org.openobservatory.ooniprobe.BuildConfig;
-
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
@@ -48,6 +46,7 @@ public class NotificationService {
         b.setSmallIcon(R.drawable.notification_icon);
 
         //TODO maybe set the icon of the test color
+        b.setColor(R.color.color_base);
         //TODO decide if we want small or big icon of test type
         /*
         Drawable icona = c.getResources().getDrawable(icon);
