@@ -42,9 +42,9 @@ public class WebsiteItem extends HeterogeneousRecyclerItem<Result, WebsiteItem.V
 		viewHolder.asnName.setText(Network.toString(viewHolder.asnName.getContext(), extra.network));
 		viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), extra.start_time));
 		Long blocked = extra.countAnomalousMeasurements();
-		Long available = extra.countOkMeasurements();
+		Long tested = extra.countTotalMeasurements();
 		viewHolder.failedMeasurements.setText(viewHolder.failedMeasurements.getContext().getResources().getQuantityString(R.plurals.TestResults_Overview_Websites_Blocked, blocked.intValue(), blocked.toString()));
-		viewHolder.okMeasurements.setText(viewHolder.failedMeasurements.getContext().getResources().getQuantityString(R.plurals.TestResults_Overview_Websites_Tested, available.intValue(), available.toString()));
+		viewHolder.testedMeasurements.setText(viewHolder.failedMeasurements.getContext().getResources().getQuantityString(R.plurals.TestResults_Overview_Websites_Tested, tested.intValue(), tested.toString()));
 		viewHolder.failedMeasurements.setTextColor(ContextCompat.getColor(viewHolder.failedMeasurements.getContext(), blocked == 0 ? R.color.color_gray9 : R.color.color_yellow9));
 		DrawableCompat.setTint(DrawableCompat.wrap(viewHolder.failedMeasurements.getCompoundDrawablesRelative()[0]).mutate(), ContextCompat.getColor(viewHolder.failedMeasurements.getContext(), blocked == 0 ? R.color.color_gray9 : R.color.color_yellow9));
 		boolean allUploaded = true;
@@ -57,7 +57,7 @@ public class WebsiteItem extends HeterogeneousRecyclerItem<Result, WebsiteItem.V
 		@BindView(R.id.asnName) TextView asnName;
 		@BindView(R.id.startTime) TextView startTime;
 		@BindView(R.id.failedMeasurements) TextView failedMeasurements;
-		@BindView(R.id.okMeasurements) TextView okMeasurements;
+		@BindView(R.id.testedMeasurements) TextView testedMeasurements;
 
 		ViewHolder(View itemView) {
 			super(itemView);

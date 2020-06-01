@@ -45,6 +45,8 @@
   <string name="Dashboard_Running_CalculatingETA">计算完成时间</string>
   <string name="Dashboard_Running_ShowLog">显示日志</string>
   <string name="Dashboard_Running_CloseLog">关闭日志</string>
+  <string name="Dashboard_Running_Stopping_Title">停止测试……</string>
+  <string name="Dashboard_Running_Stopping_Notice">结束当前队列中测试，请稍候……</string>
   <string name="Dashboard_Card_Subtitle">触击选项卡以查看详情</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">测试网站是否被屏蔽</string>
@@ -52,6 +54,7 @@
   <string name="Dashboard_Websites_Overview_Paragraph_Desktop">使用 OONI 的 [Web Connectivity 测试](https://ooni.io/nettest/web-connectivity) 检查网站是否被屏蔽。\n\n你将测试公民实验室的 [全球](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) 和 [特定国家](https://github.com/citizenlab/test-lists/tree/master/lists) 的测试列表。\n\n本测试将测量网站是否被通过 DNS 篡改、TCP/IP 屏蔽或 HTTP 透明代理的方式屏蔽。\n\n你的结果将发布于 [OONI Explorer](https://explorer.ooni.org/) 和 [OONI API](https://api.ooni.io/) 上。</string>
   <string name="Dashboard_Performance_Card_Description">测试您的网速和性能</string>
   <string name="Dashboard_Performance_Overview_Paragraph">使用 [NDT](https://ooni.io/nettest/ndt/) 测试测量您的网速和性能。\n\n使用 [DASH](https://ooni.io/nettest/dash/) 测试测量视频流媒体性能。\n\n这些测试消耗的流量取决于你的网速。\n\n测试结果将发布在 [OONI Explorer](https://explorer.ooni.io/world/) 和 [OONI API](https://api.ooni.io/)。\n\n免责声明：这些测试依赖于第三方服务器。因此，我们无法保证您的 IP 地址不被收集。</string>
+  <string name="Dashboard_Performance_Overview_Paragraph_Updated">通过运行选项卡中的测试，你将：\n\n- 测量网速及性能（[NDT](https://ooni.org/nettest/ndt/) 测试）\n- 测量视频流播放性能（[DASH](https://ooni.org/nettest/dash/) 测试）\n- 检查网络中是否存在 [middlebox technologies](https://ooni.org/support/glossary/#middlebox)  （[HTTP Invalid Request Line](https://ooni.org/nettest/http-invalid-request-line/) 和 [HTTP Header Field Manipulation](https://ooni.org/nettest/http-header-field-manipulation/) 测试）\n\n这些测试消耗的流量取决于你的网速。\n\n你的测量结果将发布在 [OONI Explorer](https://explorer.ooni.org/) 和 [OONI API](https://api.ooni.io/)。\n\n**免责声明**：[NDT](https://ooni.org/nettest/ndt/) 和 [DASH](https://ooni.org/nettest/dash/) 测试由 [Measurement Lab (M-Lab)](https://www.measurementlab.net/) 提供的第三方服务器进行测试。如果你运行这些测试，M-Lab 将会收集你的 IP 地址，并以研究目的进行发表，不受 OONI Probe 设置约束。阅读其[隐私声明](https://www.measurementlab.net/privacy/)了解更多关于 M-Lab 的数据监管。</string>
   <string name="Dashboard_Middleboxes_Card_Description">检测您网络中的 Middlebox</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">因特网服务提供商（ISP）通常使用网络应用（如 middlebox）的目的有很多（例如缓存）。有时候，这些 middlebox 用于实施网络审查和/或监视。\n\n使用 OONI 的 [HTTP Invalid Request Line](https://ooni.io/nettest/http-invalid-request-line/)和 [HTTP Header Field Manipulation](https://ooni.io/nettest/http-header-field-manipulation/)测试查找您的网络中的 middlebox。\n\n您的测试结果将发布在 [OONI Explorer](https://explorer.ooni.io/world/) 和 [OONI API](https://api.ooni.io/)。</string>
   <string name="Dashboard_InstantMessaging_Card_Description">测试即时消息应用的屏蔽情况</string>
@@ -75,6 +78,7 @@
   <string name="TestResults_Overview_FilterTests_MiddleBoxes">Middlebox</string>
   <string name="TestResults_Overview_FilterTests_Performance">性能</string>
   <string name="TestResults_Overview_FilterTests_InstantMessaging">即时通讯</string>
+  <string name="TestResults_Overview_FilterTests_Circumvention">翻墙</string>
   <string name="TestResults_Overview_NoTestsHaveBeenRun">还没有进行过测试。试着运行一个吧！</string>
   <string name="TestResults_Overview_Websites_Blocked_Singular">%1$s 个被屏蔽</string>
   <string name="TestResults_Overview_Websites_Blocked_Plural">%1$s 个被屏蔽</string>
@@ -87,7 +91,9 @@
   <string name="TestResults_Overview_InstantMessaging_Blocked_Plural">%1$s 个被屏蔽</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Singular">%1$s 个可访问</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Plural">%1$s 个可访问</string>
+  <string name="TestResults_Overview_Circumvention_Blocked_Singular">%1$s 个被屏蔽</string>
   <string name="TestResults_Overview_Circumvention_Blocked_Plural">%1$s 个被屏蔽</string>
+  <string name="TestResults_Overview_Circumvention_Available_Singular">%1$s 个可访问</string>
   <string name="TestResults_Overview_Circumvention_Available_Plural">%1$s 个可访问</string>
   <string name="TestResults_Overview_IncompleteResult">未完成的测试</string>
   <string name="TestResults_Overview_Error">错误</string>
@@ -200,10 +206,10 @@
   <string name="TestResults_Details_Performance_NDT_Download">下载</string>
   <string name="TestResults_Details_Performance_NDT_Ping">Ping</string>
   <string name="TestResults_Details_Performance_NDT_Server">服务器</string>
-  <string name="TestResults_Details_Performance_NDT_PacketLoss">丢包</string>
+  <string name="TestResults_Details_Performance_NDT_PacketLoss">重传率</string>
   <string name="TestResults_Details_Performance_NDT_OutOfOrder">乱序</string>
   <string name="TestResults_Details_Performance_NDT_AveragePing">平均 Ping</string>
-  <string name="TestResults_Details_Performance_NDT_MaxPing">最大 Ping</string>
+  <string name="TestResults_Details_Performance_NDT_MaxPing">预计最大 Ping</string>
   <string name="TestResults_Details_Performance_NDT_MSS">MSS</string>
   <string name="TestResults_Details_Performance_NDT_Timeouts">超时</string>
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">您在没有缓冲的情况下可以享用 %1$s。</string>
@@ -214,7 +220,7 @@
   <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph">[赛风] (https://psiphon.ca/) 似乎被屏蔽。</string>
   <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph">我们已经成功通过自举建立了赛风连接。这说明 [赛风](https://psiphon.ca/) 应当可用。</string>
   <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">自举时间</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">秒</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s秒</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Hero_Title">可能被屏蔽</string>
   <string name="TestResults_Details_Circumvention_Tor_Reachable_Hero_Title">测试中</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Content_Paragraph">[Tor](https://www.torproject.org/) 似乎被屏蔽。</string>
@@ -313,6 +319,7 @@
   <string name="Settings_Advanced_SendCrashReports">发送崩溃报告</string>
   <string name="Settings_Advanced_DebugLogs">调试日志</string>
   <string name="Settings_Advanced_UseDomainFronting">始终使用 domain fronting</string>
+  <string name="Settings_Advanced_CollectAnalytics">手机应用使用数据</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">限制测试持续时间</string>
   <string name="Settings_Websites_MaxRuntime">测试用时</string>
   <string name="Settings_Websites_Categories_Label">要测试的网站类别</string>
@@ -322,6 +329,7 @@
   <string name="Settings_Websites_CustomURL_NoURLEntered">没有输入 URL</string>
   <string name="Settings_Websites_CustomURL_Run">运行</string>
   <string name="Settings_Websites_CustomURL_Add">添加网站</string>
+  <string name="Settings_Websites_TestCount">测试网站数（0为全选）</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">测试 WhatsApp</string>
   <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">测试全部的 WhatsApp 端点</string>
   <string name="Settings_InstantMessaging_TestTelegram">测试 Telegram</string>
@@ -336,8 +344,11 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">自动选择 DASH 服务器</string>
   <string name="Settings_Performance_DashServerAddress">DASH 服务器</string>
   <string name="Settings_Performance_DashServerPort">DASH 服务器端口</string>
+  <string name="Settings_Circumvention_TestPsiphon">测试赛风</string>
+  <string name="Settings_Circumvention_TestTor">测试 Tor</string>
   <string name="Settings_SendEmail_Label">发送邮件给支持团队</string>
   <string name="Settings_SendEmail_Error">请将应用和 iOS 版本号通过邮件发送至 bugs@openobservatory.org。点击下方“复制到剪贴板”来复制我们邮箱地址。</string>
+  <string name="Settings_Language_Current">当前语言为 %1$s</string>
   <string name="Notification_FinishedRunning">运行完成</string>
   <string name="OONIBrowser_TryMirror">试试镜像站</string>
   <string name="OONIBrowser_Loading">加载中</string>

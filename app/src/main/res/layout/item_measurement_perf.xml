@@ -11,8 +11,9 @@
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
 		android:layout_weight="2"
-		android:drawablePadding="8dp"
-		android:paddingHorizontal="8dp" />
+		android:textColor="@color/color_gray9"
+		android:drawablePadding="16dp"
+		android:paddingHorizontal="16dp" />
 
 	<LinearLayout
 		android:layout_width="0dp"
@@ -24,12 +25,14 @@
 			android:id="@+id/data1"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:textColor="@color/color_gray9"
 			android:drawablePadding="4dp" />
 
 		<TextView
 			android:id="@+id/data2"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:textColor="@color/color_gray9"
 			android:drawablePadding="4dp" />
 	</LinearLayout>
 </LinearLayout>

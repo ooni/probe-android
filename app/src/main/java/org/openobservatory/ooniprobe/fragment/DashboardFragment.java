@@ -2,9 +2,11 @@ package org.openobservatory.ooniprobe.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
@@ -13,6 +15,8 @@ import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.item.TestsuiteItem;
+import org.openobservatory.ooniprobe.model.database.Result;
+import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
@@ -36,17 +40,23 @@ import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerAdapter;
 public class DashboardFragment extends Fragment implements View.OnClickListener {
 	@BindView(R.id.recycler) RecyclerView recycler;
 	@BindView(R.id.toolbar) Toolbar toolbar;
-	private ArrayList<TestsuiteItem> items;
+	@BindView(R.id.last_tested) TextView lastTested;
+    @BindView(R.id.run_all) TextView runAll;
+    private ArrayList<TestsuiteItem> items;
+	private ArrayList<AbstractSuite> testSuites;
 	private HeterogeneousRecyclerAdapter<TestsuiteItem> adapter;
 
 	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_dashboard, container, false);
 		ButterKnife.bind(this, v);
 		((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+		((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(null);
 		items = new ArrayList<>();
+		testSuites = new ArrayList<>();
 		adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
 		recycler.setAdapter(adapter);
 		recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+		runAll.setOnClickListener(v1 -> runAll());
 		return v;
 	}
 
@@ -54,18 +64,37 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		super.onResume();
 		PreferenceManager pm = ((Application) getActivity().getApplication()).getPreferenceManager();
 		items.clear();
-		items.add(new TestsuiteItem(new WebsitesSuite(), pm, this));
-		items.add(new TestsuiteItem(new InstantMessagingSuite(), pm, this));
-		items.add(new TestsuiteItem(new MiddleBoxesSuite(), pm, this));
-		items.add(new TestsuiteItem(new PerformanceSuite(), pm, this));
+		testSuites.clear();
+		testSuites.addAll(TestAsyncTask.SUITES);
+		for (AbstractSuite testSuite : testSuites)
+			items.add(new TestsuiteItem(testSuite, pm, this));
+		setLastTest();
 		adapter.notifyTypesChanged();
+	}
+
+	private void setLastTest() {
+		Result lastResult = Result.getLastResult();
+		if (lastResult == null)
+			lastTested.setText(getString(R.string.Dashboard_Overview_LatestTest)
+					+ " " +
+					getString(R.string.Dashboard_Overview_LastRun_Never));
+		else
+			lastTested.setText(getString(R.string.Dashboard_Overview_LatestTest)
+					+ " " +
+					DateUtils.getRelativeTimeSpanString(lastResult.start_time.getTime()));
+	}
+
+	public void runAll(){
+		Intent intent = RunningActivity.newIntent((AbstractActivity) getActivity(), testSuites);
+		if (intent != null)
+			ActivityCompat.startActivity(getActivity(), intent, null);
 	}
 
 	@Override public void onClick(View v) {
 		AbstractSuite testSuite = (AbstractSuite) v.getTag();
 		switch (v.getId()) {
 			case R.id.run:
-				Intent intent = RunningActivity.newIntent((AbstractActivity) getActivity(), testSuite);
+				Intent intent = RunningActivity.newIntent((AbstractActivity) getActivity(), testSuite.asArray());
 				if (intent != null)
 					ActivityCompat.startActivity(getActivity(), intent, null);
 				break;

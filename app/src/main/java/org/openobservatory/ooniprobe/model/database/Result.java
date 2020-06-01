@@ -11,16 +11,24 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.apache.commons.io.FileUtils;
-import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.AppDatabase;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
+import org.openobservatory.ooniprobe.test.test.Dash;
+import org.openobservatory.ooniprobe.test.test.FacebookMessenger;
+import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
+import org.openobservatory.ooniprobe.test.test.HttpInvalidRequestLine;
+import org.openobservatory.ooniprobe.test.test.Ndt;
+import org.openobservatory.ooniprobe.test.test.Telegram;
+import org.openobservatory.ooniprobe.test.test.WebConnectivity;
+import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
 import java.io.Serializable;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -55,6 +63,10 @@ public class Result extends BaseModel implements Serializable {
 		return new DecimalFormat("#,##0.#").format(kbSize / Math.pow(1024, digitGroups)) + " " + units[digitGroups];
 	}
 
+	public static Result getLastResult() {
+		return SQLite.select().from(Result.class).orderBy(Result_Table.start_time, false).limit(1).querySingle();
+	}
+
 	public static Result getLastResult(String test_group_name) {
 		return SQLite.select().from(Result.class).where(Result_Table.test_group_name.eq(test_group_name)).orderBy(Result_Table.start_time, false).limit(1).querySingle();
 	}
@@ -70,8 +82,39 @@ public class Result extends BaseModel implements Serializable {
 
 	public List<Measurement> getMeasurements() {
 		if (measurements == null)
-			measurements = SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false), Measurement_Table.is_done.eq(true)).orderBy(Measurement_Table.is_anomaly, false).orderBy(Measurement_Table.is_failed, false).orderBy(Measurement_Table.id, false).queryList();
+			measurements = SQLite.select().from(Measurement.class).where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false), Measurement_Table.is_done.eq(true)).orderBy(Measurement_Table.id, true).queryList();
 		return measurements;
+	}
+
+	/*
+	 * Sorting measurements:
+	 * by is_anomaly and is_failed for Websites
+	 * Whatsapp - Telegram - Facebook for Instant Messaging
+	 * Ndt - Dash - HIRL - HHFM for Performance
+	 * Psiphon - Tor for Circumvention
+	 */
+	public List<Measurement> getMeasurementsSorted() {
+		if (WebsitesSuite.NAME.equals(test_group_name))
+			return SQLite.select().from(Measurement.class)
+					.where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false), Measurement_Table.is_done.eq(true))
+					.orderBy(Measurement_Table.is_anomaly, false)
+					.orderBy(Measurement_Table.is_failed, false)
+					.orderBy(Measurement_Table.id, true)
+					.queryList();
+		measurements = getMeasurements();
+		List<Measurement> measurementsSorted = new ArrayList<>();
+		String[] testOrder = getTestOrder();
+		if (testOrder == null)
+			return measurements;
+		for (String testName : testOrder) {
+			for (Measurement current : measurements) {
+				if (!current.test_name.equals(testName)) {
+					measurementsSorted.add(current);
+					break;
+				}
+			}
+		}
+		return measurementsSorted;
 	}
 
 	private List<Measurement> getAllMeasurements() {
@@ -136,6 +179,21 @@ public class Result extends BaseModel implements Serializable {
 				return new MiddleBoxesSuite();
 			case PerformanceSuite.NAME:
 				return new PerformanceSuite();
+			default:
+				return null;
+		}
+	}
+
+	public String[] getTestOrder() {
+		switch (test_group_name) {
+			case WebsitesSuite.NAME:
+				return new String[]{WebConnectivity.NAME};
+			case InstantMessagingSuite.NAME:
+				return new String[]{Whatsapp.NAME, Telegram.NAME, FacebookMessenger.NAME};
+			case MiddleBoxesSuite.NAME:
+				return new String[]{HttpInvalidRequestLine.NAME, HttpHeaderFieldManipulation.NAME};
+			case PerformanceSuite.NAME:
+				return new String[]{Ndt.NAME, Dash.NAME, HttpInvalidRequestLine.NAME, HttpHeaderFieldManipulation.NAME};
 			default:
 				return null;
 		}

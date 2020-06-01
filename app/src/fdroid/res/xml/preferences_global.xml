@@ -18,10 +18,6 @@
 			android:key="@string/include_asn"
 			android:title="@string/Settings_Sharing_IncludeNetwork" />
 		<androidx.preference.SwitchPreferenceCompat
-			android:defaultValue="true"
-			android:key="@string/include_cc"
-			android:title="@string/Settings_Sharing_IncludeCountryCode" />
-		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="@string/include_ip"
 			android:title="@string/Settings_Sharing_IncludeIP" />
@@ -258,19 +254,6 @@
 				android:title="@string/Settings_InstantMessaging_TestFacebookMessenger" />
 		</androidx.preference.PreferenceScreen>
 		<androidx.preference.PreferenceScreen
-			android:icon="@drawable/settings_middle_boxes"
-			android:key="@string/middle_boxes"
-			android:title="@string/Test_Middleboxes_Fullname">
-			<androidx.preference.SwitchPreferenceCompat
-				android:defaultValue="true"
-				android:key="@string/run_http_invalid_request_line"
-				android:title="@string/Settings_Middleboxes_TestHTTPInvalidRequestLine"/>
-			<androidx.preference.SwitchPreferenceCompat
-				android:defaultValue="true"
-				android:key="@string/run_http_header_field_manipulation"
-				android:title="@string/Settings_Middleboxes_TestHTTPHeaderFieldManipulation"/>
-		</androidx.preference.PreferenceScreen>
-		<androidx.preference.PreferenceScreen
 			android:icon="@drawable/settings_performance"
 			android:key="@string/performance"
 			android:title="@string/Test_Performance_Fullname">
@@ -282,6 +265,14 @@
 				android:defaultValue="true"
 				android:key="@string/run_dash"
 				android:title="@string/Settings_Performance_TestDash"/>
+			<androidx.preference.SwitchPreferenceCompat
+				android:defaultValue="true"
+				android:key="@string/run_http_invalid_request_line"
+				android:title="@string/Settings_Middleboxes_TestHTTPInvalidRequestLine"/>
+			<androidx.preference.SwitchPreferenceCompat
+				android:defaultValue="true"
+				android:key="@string/run_http_header_field_manipulation"
+				android:title="@string/Settings_Middleboxes_TestHTTPHeaderFieldManipulation"/>
 		</androidx.preference.PreferenceScreen>
 	</androidx.preference.PreferenceScreen>
 	<androidx.preference.PreferenceScreen

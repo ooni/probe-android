@@ -103,7 +103,7 @@ public class PreferenceManager {
 	}
 
 	public boolean isIncludeCc() {
-		return sp.getBoolean(r.getString(R.string.include_cc), true);
+		return true;
 	}
 
 	public boolean isTestWhatsapp() {

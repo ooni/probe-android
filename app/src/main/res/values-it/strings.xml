@@ -45,6 +45,8 @@
   <string name="Dashboard_Running_CalculatingETA">Calcolando l\'ETA</string>
   <string name="Dashboard_Running_ShowLog">Mostra log</string>
   <string name="Dashboard_Running_CloseLog">Chiudi il Log</string>
+  <string name="Dashboard_Running_Stopping_Title">Interrompendo il test...</string>
+  <string name="Dashboard_Running_Stopping_Notice">Finendo di eseguire i test in corso, attendere prego...</string>
   <string name="Dashboard_Card_Subtitle">Fai tap sulla card per più informazioni</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">Verifica il blocco di siti web</string>
@@ -52,6 +54,7 @@
   <string name="Dashboard_Websites_Overview_Paragraph_Desktop">Verifica se i siti Web sono bloccati utilizzando [Test connettività Web] di OONI (https://ooni.io/nettest/web-connectivity/).\n\nTesterai i siti web inclusi in Citizen Lab [global] (https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) e [specifici per paese] (https://github.com/citizenlab/test-lists/tree/master/lists) liste di test.\n\nQuesto test misura se i siti Web sono bloccati mediante manomissione DNS, blocco TCP / IP o un proxy HTTP trasparente.\n\nI risultati verranno pubblicati su [OONI Explorer] (https://explorer.ooni.org/) e [OONI API] (https://api.ooni.io/).</string>
   <string name="Dashboard_Performance_Card_Description">Misura la velocità e le prestazioni della tua rete</string>
   <string name="Dashboard_Performance_Overview_Paragraph">Misura la velocità e le prestazioni della tua rete con il test [NDT](https://ooni.io/nettest/ndt/).\n\nMisura le prestazioni dello streaming video con il test [DASH](https://ooni.io/nettest/dash/).\n\nQuesti test consumano traffico dati in base alla velocità della tua rete.\n\nI risultati dei tuoi test saranno pubblicati su [OONI Explorer](https://explorer.ooni.io/world/) e [OONI API](https://api.ooni.io/).\n\nAttenzione: questi test usano server di terze parti. Non possiamo quindi garantire che il vostro indirizzo IP non sarà raccolto.</string>
+  <string name="Dashboard_Performance_Overview_Paragraph_Updated">Eseguendo i test in questa card:\n- Misurerai la velocità e le prestazioni della tua rete (il test [NDT](https://ooni.org/nettest/ndt/))\n- Misurerai le prestazioni di streaming video (il test [DASH](https://ooni.org/nettest/dash/))\n- Verificherai la presenza di [tecnologie di middlebox](https://ooni.org/support/glossary/#middlebox) sulla tua rete (i test [HTTP Invalid Request Line](https://ooni.org/nettest/http-invalid-request-line/) e [HTTP Header Field Manipulation](https://ooni.org/nettest/http-header-field-manipulation/))\n\nQuesti test consumeranno una quantità di traffico dati che dipende dalla velocità della tua rete.\n\nI risultati dei test saranno pubblicati su [OONI Explorer](https://explorer.ooni.org/) e [OONI API](https://api.ooni.io/).\n\n**Attenzione:** I test [NDT](https://ooni.org/nettest/ndt/) e [DASH](https://ooni.org/nettest/dash/) usano server di terze parti forniti da [Measurement Lab (M-Lab)](https://www.measurementlab.net/). Quando esegui questi test, M-Lab raccoglierà e pubblicherà il tuo indirizzo IP (per scopi di ricerca), indipendentemente dalle impostazioni di OONI Probe. Per maggiori informazioni sulla data governance di M-Lab leggi il loro [privacy statement](https://www.measurementlab.net/privacy/).</string>
   <string name="Dashboard_Middleboxes_Card_Description">Rileva middlebox nella tua rete</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">I provider di servizi internet (ISP) spesso usano apparecchiature di rete (middlebox) per motivi di networking (come ad esempio per il caching). Alle volte queste middlebox sono usate per implementare censura e/o sorveglianza internet.\n\nPuoi trovare middlebox sulla tua rete usando i test di OONI [HTTP Invalid Request Line](https://ooni.io/nettest/http-invalid-request-line/) e [HTTP Header Field Manipulation](https://ooni.io/nettest/http-header-field-manipulation/).\n\nI risultati dei tuoi test saranno pubblicati su [OONI Explorer](https://explorer.ooni.io/world/) e [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_InstantMessaging_Card_Description">Verifica il blocco di app di messaggistica</string>
@@ -75,6 +78,7 @@
   <string name="TestResults_Overview_FilterTests_MiddleBoxes">Middleboxes</string>
   <string name="TestResults_Overview_FilterTests_Performance">Prestazioni</string>
   <string name="TestResults_Overview_FilterTests_InstantMessaging">Messaggistica istantanea</string>
+  <string name="TestResults_Overview_FilterTests_Circumvention">Elusione</string>
   <string name="TestResults_Overview_NoTestsHaveBeenRun">Nessun test è stato eseguito. Prova ad eseguirne uno!</string>
   <string name="TestResults_Overview_Websites_Blocked_Singular">%1$s bloccato</string>
   <string name="TestResults_Overview_Websites_Blocked_Plural">%1$s bloccati</string>
@@ -87,7 +91,9 @@
   <string name="TestResults_Overview_InstantMessaging_Blocked_Plural">%1$s bloccati</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Singular">%1$s accessibile</string>
   <string name="TestResults_Overview_InstantMessaging_Available_Plural">%1$s accessibili</string>
+  <string name="TestResults_Overview_Circumvention_Blocked_Singular">%1$s bloccati</string>
   <string name="TestResults_Overview_Circumvention_Blocked_Plural">%1$s bloccati</string>
+  <string name="TestResults_Overview_Circumvention_Available_Singular">%1$s disponibili</string>
   <string name="TestResults_Overview_Circumvention_Available_Plural">%1$s disponibile</string>
   <string name="TestResults_Overview_IncompleteResult">Risultato incompleto</string>
   <string name="TestResults_Overview_Error">Errore</string>
@@ -200,10 +206,10 @@
   <string name="TestResults_Details_Performance_NDT_Download">Download</string>
   <string name="TestResults_Details_Performance_NDT_Ping">Ping</string>
   <string name="TestResults_Details_Performance_NDT_Server">Server</string>
-  <string name="TestResults_Details_Performance_NDT_PacketLoss">Perdita di pacchetti</string>
+  <string name="TestResults_Details_Performance_NDT_PacketLoss">Retransmission Rate</string>
   <string name="TestResults_Details_Performance_NDT_OutOfOrder">Fuori sequenza</string>
   <string name="TestResults_Details_Performance_NDT_AveragePing">Ping medio</string>
-  <string name="TestResults_Details_Performance_NDT_MaxPing">Ping massimo</string>
+  <string name="TestResults_Details_Performance_NDT_MaxPing">Ping massimo (stima)</string>
   <string name="TestResults_Details_Performance_NDT_MSS">MSS</string>
   <string name="TestResults_Details_Performance_NDT_Timeouts">Timeout</string>
   <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">Puoi fare streaming video fino a %1$s senza buffering.</string>
@@ -214,7 +220,7 @@
   <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph">[Psiphon](https://psiphon.ca/) sembra sia bloccato.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph">Siamo stati in grado di avviare correttamente una connessione Psiphon. Questo vuol dire che [Psiphon](https://psiphon.ca/) dovrebbe funzionare.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Tempo di avvio</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">s</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s s</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Hero_Title">Probabilmente bloccato</string>
   <string name="TestResults_Details_Circumvention_Tor_Reachable_Hero_Title">Attivo</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Content_Paragraph">[Tor](https://www.torproject.org/) sembra essere bloccato.</string>
@@ -313,6 +319,7 @@
   <string name="Settings_Advanced_SendCrashReports">Manda rapporto sui crash</string>
   <string name="Settings_Advanced_DebugLogs">Log di debug</string>
   <string name="Settings_Advanced_UseDomainFronting">Usa sempre il domain fronting</string>
+  <string name="Settings_Advanced_CollectAnalytics">Raccogli statistiche di utilizzo</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Limita la durata del test</string>
   <string name="Settings_Websites_MaxRuntime">Durata del test</string>
   <string name="Settings_Websites_Categories_Label">Categorie di siti web da misurare</string>
@@ -322,6 +329,7 @@
   <string name="Settings_Websites_CustomURL_NoURLEntered">Nessun URL inserito</string>
   <string name="Settings_Websites_CustomURL_Run">Esegui</string>
   <string name="Settings_Websites_CustomURL_Add">Aggiungi sito web</string>
+  <string name="Settings_Websites_TestCount">Numero di siti web da misurare (0 significa tutti)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">Testa WhatsApp</string>
   <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">Testa tutti i server WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Testa Telegram</string>
@@ -336,8 +344,11 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">Seleziona automaticamente il server DASH</string>
   <string name="Settings_Performance_DashServerAddress">Server DASH</string>
   <string name="Settings_Performance_DashServerPort">Porta server DASH</string>
+  <string name="Settings_Circumvention_TestPsiphon">Test Psiphon</string>
+  <string name="Settings_Circumvention_TestTor">Test Tor</string>
   <string name="Settings_SendEmail_Label">Invia email a supporto</string>
   <string name="Settings_SendEmail_Error">Per favore manda un email a bugs@openobservatory.org con i la versione dell\'app e iOS. Tappa su \"Copia nella clipboard\" per copiare il nostro indirizzo email.</string>
+  <string name="Settings_Language_Current">La lingua attuale dell\'app è %1$s</string>
   <string name="Notification_FinishedRunning">Esecuzione conclusa</string>
   <string name="OONIBrowser_TryMirror">Prova un mirror</string>
   <string name="OONIBrowser_Loading">Caricamento...</string>
