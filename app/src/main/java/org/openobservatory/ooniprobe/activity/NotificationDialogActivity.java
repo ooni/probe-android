@@ -19,6 +19,7 @@ public class NotificationDialogActivity extends Activity {
 		displayAlert(message);
 	}
 
+	@Deprecated
 	private void displayAlert(String message) {
 		new AlertDialog.Builder(NotificationDialogActivity.this)
 				.setTitle(getString(R.string.notifications))
