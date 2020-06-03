@@ -20,7 +20,7 @@ public class NotificationService {
 
     public static void notifyTestEnded(Context c, AbstractSuite testSuite) {
         setChannel(c, TEST_RUN, c.getString(R.string.Settings_Notifications_OnTestCompletion));
-        sendNotification(c, c.getString(R.string.General_AppName), c.getString(testSuite.getTitle()) + " " + c.getString(R.string.Notification_FinishedRunning), testSuite.getIcon());
+        sendNotification(c, c.getString(R.string.General_AppName), c.getString(testSuite.getTitle()) + " " + c.getString(R.string.Notification_FinishedRunning));
     }
 /*
     public static void notificationReceived(Context c, String title, String message, String type) {
@@ -29,8 +29,7 @@ public class NotificationService {
     }
 */
 
-    //TODO icon not used
-    public static void sendNotification(Context c, String title, String message, int icon) {
+    public static void sendNotification(Context c, String title, String message) {
         NotificationManager notificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
         if (notificationManager == null)
             return;
@@ -42,25 +41,10 @@ public class NotificationService {
         } else {
             b.setColor(c.getResources().getColor(R.color.color_base));
         }
-        //b.setLargeIcon(BitmapFactory.decodeResource(c.getResources(), icon));
         b.setSmallIcon(R.drawable.notification_icon);
-
-        //TODO maybe set the icon of the test color
-        b.setColor(R.color.color_base);
-        //TODO decide if we want small or big icon of test type
-        /*
-        Drawable icona = c.getResources().getDrawable(icon);
-        if (icona != null){
-            Bitmap bitmap = Bitmap.createBitmap(icona.getIntrinsicWidth(), icona.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(bitmap);
-            icona.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-            icona.draw(canvas);
-            b.setLargeIcon(bitmap);
-        }
-        */
         b.setContentTitle(title);
         b.setContentText(message);
-        //TODO edit intent based on  notification type
+        //TODO-COUNTLY edit intent based on  notification type
         b.setContentIntent(PendingIntent.getActivity(c, 0, MainActivity.newIntent(c, R.id.testResults), PendingIntent.FLAG_UPDATE_CURRENT));
         notificationManager.notify(1, b.build());
     }

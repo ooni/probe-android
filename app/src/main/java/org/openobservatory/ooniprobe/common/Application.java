@@ -52,14 +52,22 @@ public class Application extends android.app.Application {
             CountlyFeatureNames.push,
             CountlyFeatureNames.starRating};
 		 */
-		//TODO prepare features that should be added to the group
+		//TODO-COUNTLY prepare features that should be added to the group
 		String[] groupFeatures = new String[]{
 				Countly.CountlyFeatureNames.sessions,
 				Countly.CountlyFeatureNames.views,
 				Countly.CountlyFeatureNames.crashes,
+				//TODO-COUNTLY check what it does
+				//https://support.count.ly/hc/en-us/articles/360037997132-Compliance-Hub
+				Countly.CountlyFeatureNames.location,
+				//scrolls, clicks, forms, attribution
+				/*feature grouping
+				https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#gdpr-compatability
+				add analytics in advanced setting (default on)
+				 */
 				Countly.CountlyFeatureNames.push,
 				Countly.CountlyFeatureNames.events };
-		//TODO check for consent
+		//TODO-COUNTLY check for consent
 		//Countly.sharedInstance().setRequiresConsent(true);
 		CountlyConfig config = new CountlyConfig()
 				.setAppKey("146836f41172f9e3287cab6f2cc347de3f5ddf3b")

@@ -16,7 +16,7 @@ import ly.count.android.sdk.messaging.CountlyPush;
 
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
 	private static final String TAG = "FCM";
-	//TODO prevent data collection https://firebase.google.com/docs/cloud-messaging/android/client#manifest
+	//TODO-COUNTLY prevent data collection https://firebase.google.com/docs/cloud-messaging/android/client#manifest
 
 	@Override
 	public void onMessageReceived(RemoteMessage remoteMessage) {

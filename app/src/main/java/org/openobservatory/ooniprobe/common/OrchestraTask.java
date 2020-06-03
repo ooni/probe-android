@@ -27,7 +27,7 @@ public class OrchestraTask extends AsyncTask<Void, Void, Void> {
 					getSupportedTests(),
 					app.getPreferenceManager().getToken(),
 					app.getFilesDir() + "/orchestration_secret.json") ;
-			//TODO ORCHESTRATE
+			//TODO-COUNTLY ORCHESTRATE
 			//client.setAvailableBandwidth(String value);
 			//what happens when token is nil? should register anyway with empty string
 			boolean okay = Engine.maybeUpdateResources(app);
@@ -41,7 +41,6 @@ public class OrchestraTask extends AsyncTask<Void, Void, Void> {
 			client.setLanguage(Locale.getDefault().getLanguage());
 			client.setNetworkType(ReachabilityManager.getNetworkType(app));
 			client.setPlatform("android");
-			//TODO ORCHESTRATE - TIMEZONE
 			//client.setProbeTimezone(TimeZone.getDefault().getDisplayName(true, TimeZone.SHORT));
 			client.setRegistryURL(BuildConfig.NOTIFICATION_SERVER);
 			client.setTimeout(app.getResources().getInteger(R.integer.default_timeout));
