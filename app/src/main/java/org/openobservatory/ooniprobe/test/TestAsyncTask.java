@@ -12,6 +12,7 @@ import org.openobservatory.ooniprobe.model.api.UrlList;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
+import org.openobservatory.ooniprobe.test.suite.CircumventionSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
@@ -26,7 +27,8 @@ import java.util.List;
 import retrofit2.Response;
 
 public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<AbstractTest, String, Void> implements AbstractTest.TestCallback {
-	public static final List<AbstractSuite> SUITES = Arrays.asList(new WebsitesSuite(), new InstantMessagingSuite(), new PerformanceSuite());
+	public static final List<AbstractSuite> SUITES = Arrays.asList(new WebsitesSuite(),
+			new InstantMessagingSuite(), new CircumventionSuite(), new PerformanceSuite());
 	public static final String PRG = "PRG";
 	public static final String LOG = "LOG";
 	public static final String RUN = "RUN";
