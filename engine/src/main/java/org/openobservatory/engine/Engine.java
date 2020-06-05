@@ -15,7 +15,9 @@ public class Engine {
     private static Set<String> probeEngineTasks = new HashSet<>(Arrays.asList(
             "Telegram",
             "Dash",
-            "Ndt"
+            "Ndt",
+            "Psiphon",
+            "Tor"
     ));
 
     /** getVersionMK returns the version of Measurement Kit we're using */

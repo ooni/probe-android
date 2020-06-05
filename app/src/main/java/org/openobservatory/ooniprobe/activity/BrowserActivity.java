@@ -29,6 +29,11 @@ import java.util.ArrayList;
 
 import static java.lang.Boolean.FALSE;
 
+/**
+ * @deprecated
+ * This component is not used and will be probably removed
+ */
+@Deprecated
 public class BrowserActivity extends AbstractActivity implements View.OnClickListener {
 	private static final String TAG = "BrowserActivity";
 	private WebView webView;
