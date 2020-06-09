@@ -109,7 +109,7 @@ public class Result extends BaseModel implements Serializable {
 			return measurements;
 		for (String testName : testOrder) {
 			for (Measurement current : measurements) {
-				if (!current.test_name.equals(testName)) {
+				if (current.test_name.equals(testName)) {
 					measurementsSorted.add(current);
 					break;
 				}
