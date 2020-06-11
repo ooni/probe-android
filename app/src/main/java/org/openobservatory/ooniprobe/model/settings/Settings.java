@@ -53,7 +53,7 @@ public class Settings {
 	public ExperimentSettings toExperimentSettings(Gson gson, Context c) throws java.io.IOException {
 		assets_dir = new java.io.File(c.getFilesDir(), "assets").getCanonicalPath();
 		state_dir = new java.io.File(c.getFilesDir(), "state").getCanonicalPath();
-		temp_dir = new java.io.File(c.getCacheDir(), "ooniprobe").getCanonicalPath();
+		temp_dir = new java.io.File(c.getCacheDir(), "").getCanonicalPath();
 		return new ExperimentSettingsAdapter(gson, this);
 	}
 
