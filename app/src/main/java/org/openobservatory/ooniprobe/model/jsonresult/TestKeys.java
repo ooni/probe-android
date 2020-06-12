@@ -5,9 +5,11 @@ import android.content.Context;
 import com.google.gson.annotations.SerializedName;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.test.test.Tor;
 
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Map;
 
 public class TestKeys {
 	public static final String BLOCKED = "blocked";
@@ -15,10 +17,6 @@ public class TestKeys {
 	public String blocking;
 	@SerializedName("accessible")
 	public String accessible;
-	@SerializedName("sent")
-	public ArrayList<String> sent;
-	@SerializedName("received")
-	public ArrayList<String> received;
 	@SerializedName("failure")
 	public String failure;
 	@SerializedName("whatsapp_endpoints_status")
@@ -74,6 +72,8 @@ public class TestKeys {
 	public Long or_port_total;
 	@SerializedName("or_port_accessible")
 	public Long or_port_accessible;
+	@SerializedName("targets")
+	public ArrayList<TorTarget> targets;
 
 	private static String setFractionalDigits(double value) {
 		return String.format(Locale.getDefault(), value < 10 ? "%.2f" : "%.1f", value);
@@ -400,4 +400,48 @@ public class TestKeys {
 			}
 		}
 	}
+
+	public static class TorTarget {
+		public String name;
+		public String address;
+		public String type;
+		public String connect;
+		public String handshake;
+
+		public class TorTargetObj {
+			@SerializedName("target_name")
+			String target_name;
+			@SerializedName("target_address")
+			String target_address;
+			@SerializedName("target_protocol")
+			String target_protocol;
+			@SerializedName("summary")
+			TorTargetSummary summary;
+
+			private class TorTargetSummary {
+				@SerializedName("handshake")
+				TorTargetSummaryObj handshake;
+				@SerializedName("connect")
+				TorTargetSummaryObj connect;
+
+				private class TorTargetSummaryObj {
+					@SerializedName("failure")
+					String failure;
+				}
+			}
+
+			public TorTarget createTorTarget() {
+				TorTarget target = new TorTarget();
+				target.name = target_name;
+				target.address = target_address;
+				target.type = target_protocol;
+				if (summary.handshake != null && summary.handshake.failure != null)
+					target.handshake = summary.handshake.failure;
+				if (summary.connect != null && summary.connect.failure != null)
+					target.connect = summary.connect.failure;
+				return target;
+			}
+		}
+	}
+
 }

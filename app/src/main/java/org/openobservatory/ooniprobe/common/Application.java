@@ -3,6 +3,7 @@ package org.openobservatory.ooniprobe.common;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.raizlabs.android.dbflow.config.FlowLog;
 import com.raizlabs.android.dbflow.config.FlowManager;
 
@@ -12,7 +13,10 @@ import org.openobservatory.ooniprobe.client.OONIOrchestraClient;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -39,7 +43,11 @@ public class Application extends android.app.Application {
 		super.onCreate();
 		FlowManager.init(this);
 		preferenceManager = new PreferenceManager(this);
-		gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateAdapter()).registerTypeAdapter(TestKeys.Tampering.class, new TamperingJsonDeserializer()).create();
+		Type type = new TypeToken<ArrayList<TestKeys.TorTarget>>(){}.getType();
+		gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateAdapter())
+				.registerTypeAdapter(TestKeys.Tampering.class, new TamperingJsonDeserializer())
+				.registerTypeAdapter(type, new TargetsJsonDeserializer())
+				.create();
 		FlavorApplication.onCreate(this, preferenceManager.isSendCrash());
 		if (BuildConfig.DEBUG)
 			FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);

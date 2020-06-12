@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Measurement;
+import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -44,6 +45,9 @@ public class TorFragment extends Fragment {
 		);
 		bridges.setText(measurement.getTestKeys().getBridges(getActivity()));
 		authorities.setText(measurement.getTestKeys().getAuthorities(getActivity()));
+		for (TestKeys.TorTarget target : measurement.getTestKeys().targets)
+			System.out.println("TORDEBUG "+ target.address + " connect " + target.connect + " handshake " + target.handshake);
+
 		return v;
 	}
 }
