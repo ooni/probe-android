@@ -164,6 +164,12 @@ public abstract class AbstractTest implements Serializable {
                         ExceptionManager.logException(new MKException(event));
                         break;
                     case "task_terminated":
+                        /*
+                         * The task will be interrupted so the current
+                         * measurement data will not show up.
+                         * The measurement db object can be deleted
+                         * TODO to be tested when web_connectivity will be implemented
+                         */
                         break;
                     default:
                         Log.w(UNUSED_KEY, event.key);
