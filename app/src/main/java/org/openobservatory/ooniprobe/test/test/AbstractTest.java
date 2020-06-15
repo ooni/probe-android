@@ -45,7 +45,7 @@ public abstract class AbstractTest implements Serializable {
     private SparseArray<Measurement> measurements;
     private String reportId;
     private String origin;
-    private MKAsyncTask task;
+    private ExperimentTask task;
 
     AbstractTest(String name, String mkName, @StringRes int labelResId, @DrawableRes int iconResId, @StringRes int urlResId, int runtime) {
         this.name = name;
@@ -163,6 +163,8 @@ public abstract class AbstractTest implements Serializable {
                     case "bug.json_dump":
                         ExceptionManager.logException(new MKException(event));
                         break;
+                    case "task_terminated":
+                        break;
                     default:
                         Log.w(UNUSED_KEY, event.key);
                         break;
@@ -173,8 +175,12 @@ public abstract class AbstractTest implements Serializable {
             }
     }
 
-    public void interruptTest(){
-        if(task != null)
+    public boolean canInterrupt(){
+        return task.canInterrupt();
+    }
+
+    public void interrupt(){
+        if(task != null && task.canInterrupt())
             task.interrupt();
     }
 

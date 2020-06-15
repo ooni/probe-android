@@ -105,8 +105,12 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 		publishProgress(LOG, log);
 	}
 
-	public void interruptTests(){
-		if (currentTest != null)
-			currentTest.interruptTest();
+	public boolean canInterrupt(){
+		return currentTest.canInterrupt();
+	}
+
+	public void interrupt(){
+		if(currentTest != null && currentTest.canInterrupt())
+			currentTest.interrupt();
 	}
 }

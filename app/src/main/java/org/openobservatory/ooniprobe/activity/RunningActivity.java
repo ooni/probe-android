@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -102,10 +103,11 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         progress.setIndeterminate(true);
         eta.setText(R.string.Dashboard_Running_CalculatingETA);
         progress.setMax(testSuite.getTestList(getPreferenceManager()).length * 100);
+        close.setEnabled(false);
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Random strings
+                //TODO Random strings
                 new ConfirmDialogFragment.Builder()
                         .withTitle(getString(R.string.Modal_ManualUpload_Title))
                         .withMessage(getString(R.string.Modal_ManualUpload_Paragraph))
@@ -153,6 +155,10 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                 switch (values[0]) {
                     case RUN:
                         act.name.setText(values[1]);
+                        if (act.task.canInterrupt())
+                            act.close.setEnabled(true);
+                        else
+                            act.close.setEnabled(false);
                         break;
                     case PRG:
                         act.progress.setIndeterminate(false);
@@ -201,6 +207,6 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     public void onConfirmation(Serializable serializable, int i) {
         if (i == DialogInterface.BUTTON_POSITIVE)
             if(task != null)
-                task.interruptTests();
+                task.interrupt();
     }
 }
