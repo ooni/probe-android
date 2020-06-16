@@ -106,7 +106,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 	}
 
 	public boolean canInterrupt(){
-		return currentTest.canInterrupt();
+		return currentTest == null ? false :  currentTest.canInterrupt();
 	}
 
 	public void interrupt(){

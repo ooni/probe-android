@@ -75,7 +75,6 @@ public abstract class AbstractTest implements Serializable {
         settings.options.max_runtime = max_runtime;
         settings.annotations.origin = origin;
         measurements = new SparseArray<>();
-        ExperimentTask task;
         try {
             task = Engine.startExperimentTask(settings.toExperimentSettings(gson, c));
         } catch (Exception exc) {
@@ -182,7 +181,7 @@ public abstract class AbstractTest implements Serializable {
     }
 
     public boolean canInterrupt(){
-        return task.canInterrupt();
+        return task == null ? false :  task.canInterrupt();
     }
 
     public void interrupt(){

@@ -86,7 +86,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
             testSuite = testSuites.get(0);
             testStart();
             setTestRunning(true);
-            new TestAsyncTaskImpl(this, testSuite.getResult()).execute(testSuite.getTestList(getPreferenceManager()));
+            task = (TestAsyncTaskImpl) new TestAsyncTaskImpl(this, testSuite.getResult()).execute(testSuite.getTestList(getPreferenceManager()));
         }
     }
 
@@ -103,7 +103,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         progress.setIndeterminate(true);
         eta.setText(R.string.Dashboard_Running_CalculatingETA);
         progress.setMax(testSuite.getTestList(getPreferenceManager()).length * 100);
-        close.setEnabled(false);
+        close.setVisibility(View.GONE);
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,8 +116,6 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                         .build().show(getSupportFragmentManager(), null);
             }
         });
-        setTestRunning(true);
-        task = (TestAsyncTaskImpl) new TestAsyncTaskImpl(this, testSuite.getResult()).execute(testSuite.getTestList(getPreferenceManager()));
     }
 
     @Override
@@ -156,9 +154,9 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                     case RUN:
                         act.name.setText(values[1]);
                         if (act.task.canInterrupt())
-                            act.close.setEnabled(true);
+                            act.close.setVisibility(View.VISIBLE);
                         else
-                            act.close.setEnabled(false);
+                            act.close.setVisibility(View.GONE);
                         break;
                     case PRG:
                         act.progress.setIndeterminate(false);
