@@ -107,12 +107,11 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO Random strings
                 new ConfirmDialogFragment.Builder()
-                        .withTitle(getString(R.string.Modal_ManualUpload_Title))
-                        .withMessage(getString(R.string.Modal_ManualUpload_Paragraph))
-                        .withPositiveButton(getString(R.string.Modal_ManualUpload_Enable))
-                        .withNegativeButton(getString(R.string.Modal_ManualUpload_Disable))
+                        .withTitle(getString(R.string.Modal_InterruptTest_Title))
+                        .withMessage(getString(R.string.Modal_InterruptTest_Paragraph))
+                        .withPositiveButton(getString(R.string.Modal_OK))
+                        .withNegativeButton(getString(R.string.Modal_Cancel))
                         .build().show(getSupportFragmentManager(), null);
             }
         });
