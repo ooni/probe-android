@@ -185,7 +185,7 @@ public abstract class AbstractTest implements Serializable {
     }
 
     public void interrupt(){
-        if(task != null && task.canInterrupt())
+        if(task.canInterrupt())
             task.interrupt();
     }
 

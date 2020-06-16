@@ -110,7 +110,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 	}
 
 	public void interrupt(){
-		if(currentTest != null && currentTest.canInterrupt())
+		if(currentTest.canInterrupt())
 			currentTest.interrupt();
 	}
 }
