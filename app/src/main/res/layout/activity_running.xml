@@ -22,6 +22,7 @@
 			android:tint="@color/color_white" />
 
 		<TextView
+			android:id="@+id/running"
 			style="@style/TextAppearance.AppCompat.Medium"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"

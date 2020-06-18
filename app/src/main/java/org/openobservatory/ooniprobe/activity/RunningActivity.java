@@ -22,6 +22,7 @@ import org.openobservatory.ooniprobe.common.NotificationService;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
+import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
 import java.util.ArrayList;
 
@@ -34,6 +35,8 @@ import localhost.toolkit.app.fragment.MessageDialogFragment;
 
 public class RunningActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String TEST = "test";
+    @BindView(R.id.running)
+    TextView running;
     @BindView(R.id.name)
     TextView name;
     @BindView(R.id.log)
@@ -103,7 +106,8 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         progress.setIndeterminate(true);
         eta.setText(R.string.Dashboard_Running_CalculatingETA);
         progress.setMax(testSuite.getTestList(getPreferenceManager()).length * 100);
-        close.setVisibility(View.GONE);
+        //TODO remove this line when web_connectiviity will be in go
+        close.setVisibility(testSuite.getName().equals(WebsitesSuite.NAME) ? View.GONE : View.VISIBLE);
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -152,10 +156,6 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                 switch (values[0]) {
                     case RUN:
                         act.name.setText(values[1]);
-                        if (act.task.canInterrupt())
-                            act.close.setVisibility(View.VISIBLE);
-                        else
-                            act.close.setVisibility(View.GONE);
                         break;
                     case PRG:
                         act.progress.setIndeterminate(false);
@@ -164,7 +164,8 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                         act.eta.setText(act.getString(R.string.Dashboard_Running_Seconds, String.valueOf(Math.round(act.runtime - ((double) prgs) / act.progress.getMax() * act.runtime))));
                         break;
                     case LOG:
-                        act.log.setText(values[1]);
+                        if (!act.task.interrupt)
+                            act.log.setText(values[1]);
                         break;
                     case ERR:
                         Toast.makeText(act, values[1], Toast.LENGTH_SHORT).show();
@@ -202,8 +203,12 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
 
     @Override
     public void onConfirmation(Serializable serializable, int i) {
-        if (i == DialogInterface.BUTTON_POSITIVE)
-            if(task != null)
+        if (i == DialogInterface.BUTTON_POSITIVE) {
+            task.interrupt = true;
+            running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
+            log.setText(getString(R.string.Dashboard_Running_Stopping_Notice));
+            if (task.canInterrupt())
                 task.interrupt();
+        }
     }
 }

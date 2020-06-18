@@ -37,6 +37,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 	protected final WeakReference<ACT> ref;
 	private final Result result;
 	private AbstractTest currentTest;
+	public boolean interrupt;
 
 	protected TestAsyncTask(ACT activity, Result result) {
 		this.ref = new WeakReference<>(activity);
@@ -82,7 +83,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 					}
 				}
 				for (int i = 0; i < tests.length; i++) {
-					if (!act.isFinishing()) {
+					if (!act.isFinishing() && !interrupt) {
 						currentTest = tests[i];
 						currentTest.run(act, act.getPreferenceManager(), act.getGson(), result, i, this);
 					}
