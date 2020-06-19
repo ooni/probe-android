@@ -37,7 +37,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 	protected final WeakReference<ACT> ref;
 	private final Result result;
 	private AbstractTest currentTest;
-	public boolean interrupt;
+	private boolean interrupt;
 
 	protected TestAsyncTask(ACT activity, Result result) {
 		this.ref = new WeakReference<>(activity);
@@ -106,11 +106,12 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 		publishProgress(LOG, log);
 	}
 
-	public boolean canInterrupt(){
-		return currentTest == null ? false :  currentTest.canInterrupt();
+	public synchronized boolean isInterrupted() {
+		return interrupt;
 	}
 
-	public void interrupt(){
+	public synchronized void interrupt(){
+		interrupt = true;
 		if(currentTest.canInterrupt())
 			currentTest.interrupt();
 	}

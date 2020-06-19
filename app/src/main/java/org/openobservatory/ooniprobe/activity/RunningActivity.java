@@ -164,7 +164,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                         act.eta.setText(act.getString(R.string.Dashboard_Running_Seconds, String.valueOf(Math.round(act.runtime - ((double) prgs) / act.progress.getMax() * act.runtime))));
                         break;
                     case LOG:
-                        if (!act.task.interrupt)
+                        if (!act.task.isInterrupted())
                             act.log.setText(values[1]);
                         break;
                     case ERR:
@@ -204,11 +204,9 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     @Override
     public void onConfirmation(Serializable serializable, int i) {
         if (i == DialogInterface.BUTTON_POSITIVE) {
-            task.interrupt = true;
             running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
             log.setText(getString(R.string.Dashboard_Running_Stopping_Notice));
-            if (task.canInterrupt())
-                task.interrupt();
+            task.interrupt();
         }
     }
 }
