@@ -75,6 +75,13 @@ public class Measurement extends BaseModel implements Serializable {
 		start_time = new java.util.Date();
 	}
 
+	public static Where<Measurement> selectDone() {
+		return SQLite.select().from(Measurement.class)
+				.where(Measurement_Table.is_failed.eq(false))
+				.and(Measurement_Table.is_rerun.eq(false))
+				.and(Measurement_Table.is_done.eq(true));
+	}
+
 	public static Where<Measurement> selectUploadable() {
 		// We check on both the report_id and is_uploaded as we
 		// may have some unuploaded measurements which are marked
@@ -114,6 +121,17 @@ public class Measurement extends BaseModel implements Serializable {
 				measurementsJson.add(measurement);
 		}
 		return measurementsJson;
+	}
+
+	public static List<Measurement> selectMeasurementsWithLog(Context c) {
+		Where<Measurement> msmQuery = Measurement.selectDone();
+		List<Measurement> measurementsLog = new ArrayList<>();
+		List<Measurement> measurements = msmQuery.queryList();
+		for (Measurement measurement : measurements){
+			if (measurement.hasReportFile(c))
+				measurementsLog.add(measurement);
+		}
+		return measurementsLog;
 	}
 
 	public static File getEntryFile(Context c, int measurementId, String test_name) {
@@ -225,7 +243,6 @@ public class Measurement extends BaseModel implements Serializable {
 				@Override
 				public void onSuccess(ApiMeasurement.Result result) {
 					measurement.deleteEntryFile(a);
-					measurement.deleteLogFileAfterAWeek(a);
 				}
 
 				@Override
@@ -235,6 +252,14 @@ public class Measurement extends BaseModel implements Serializable {
 			});
 		}
 		pm.setLastCalled();
+	}
+
+	public static void deleteOldLogs(Application a){
+		List<Measurement> measurements = Measurement.selectMeasurementsWithLog(a);
+		for (int i = 0; i < measurements.size(); i++) {
+			Measurement measurement = measurements.get(i);
+			measurement.deleteLogFileAfterAWeek(a);
+		}
 	}
 
 	public void setReRun(Context c){
