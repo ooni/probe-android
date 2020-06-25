@@ -268,6 +268,19 @@
 				android:title="@string/Settings_InstantMessaging_TestFacebookMessenger" />
 		</androidx.preference.PreferenceScreen>
 		<androidx.preference.PreferenceScreen
+			android:icon="@drawable/settings_circumvention"
+			android:key="@string/circumvention"
+			android:title="@string/Test_Circumvention_Fullname">
+			<androidx.preference.SwitchPreferenceCompat
+				android:defaultValue="true"
+				android:key="@string/test_psiphon"
+				android:title="@string/Settings_Circumvention_TestPsiphon"/>
+			<androidx.preference.SwitchPreferenceCompat
+				android:defaultValue="true"
+				android:key="@string/test_tor"
+				android:title="@string/Settings_Circumvention_TestTor"/>
+		</androidx.preference.PreferenceScreen>
+		<androidx.preference.PreferenceScreen
 			android:icon="@drawable/settings_performance"
 			android:key="@string/performance"
 			android:title="@string/Test_Performance_Fullname">

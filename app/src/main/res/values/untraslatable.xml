@@ -11,6 +11,7 @@
 	<string name="about_ooni" translatable="false">about_ooni</string>
 	<string name="websites" translatable="false">websites</string>
 	<string name="instant_messaging" translatable="false">instant_messaging</string>
+	<string name="circumvention" translatable="false">circumvention</string>
 	<string name="middle_boxes" translatable="false">middle_boxes</string>
 	<string name="performance" translatable="false">performance</string>
 	<string name="notifications_enabled" translatable="false">notifications_enabled</string>
@@ -31,6 +32,8 @@
 	<string name="test_whatsapp_extensive" translatable="false">test_whatsapp_extensive</string>
 	<string name="test_telegram" translatable="false">test_telegram</string>
 	<string name="test_facebook_messenger" translatable="false">test_facebook_messenger</string>
+	<string name="test_psiphon" translatable="false">test_psiphon</string>
+	<string name="test_tor" translatable="false">test_tor</string>
 	<string name="run_ndt" translatable="false">run_ndt</string>
 	<string name="run_dash" translatable="false">run_dash</string>
 	<string name="max_runtime_enabled" translatable="false">max_runtime_enabled</string>
@@ -64,24 +67,28 @@
 	<string name="transitionNameRuntime" translatable="false">runtime</string>
 	<string name="shareEmailTo" translatable="false">mailto:contact@openobservatory.org</string>
 	<string name="shareSubject" translatable="false">[bug-report] OONI Probe Android %1$s</string>
-	<string name="urlTestDas" translatable="false">https://ooni.io/nettest/dash</string>
-	<string name="urlTestFbm" translatable="false">https://ooni.io/nettest/facebook-messenger</string>
-	<string name="urlTestHfm" translatable="false">https://ooni.io/nettest/http-header-field-manipulation</string>
-	<string name="urlTestIrl" translatable="false">https://ooni.io/nettest/http-invalid-request-line</string>
-	<string name="urlTestNdt" translatable="false">https://ooni.io/nettest/ndt</string>
-	<string name="urlTestTlg" translatable="false">https://ooni.io/nettest/telegram</string>
-	<string name="urlTestWeb" translatable="false">https://ooni.io/nettest/web-connectivity</string>
-	<string name="urlTestWap" translatable="false">https://ooni.io/nettest/whatsapp</string>
+	<string name="urlTestDas" translatable="false">https://ooni.org/nettest/dash</string>
+	<string name="urlTestFbm" translatable="false">https://ooni.org/nettest/facebook-messenger</string>
+	<string name="urlTestHfm" translatable="false">https://ooni.org/nettest/http-header-field-manipulation</string>
+	<string name="urlTestIrl" translatable="false">https://ooni.org/nettest/http-invalid-request-line</string>
+	<string name="urlTestNdt" translatable="false">https://ooni.org/nettest/ndt</string>
+	<string name="urlTestTlg" translatable="false">https://ooni.org/nettest/telegram</string>
+	<string name="urlTestWeb" translatable="false">https://ooni.org/nettest/web-connectivity</string>
+	<string name="urlTestWap" translatable="false">https://ooni.org/nettest/whatsapp</string>
+	<string name="urlTestTor" translatable="false">https://ooni.org/nettest/tor</string>
+	<string name="urlTestPsi" translatable="false">https://ooni.org/nettest/psiphon</string>
 	<string-array name="filterTests" translatable="false">
 		<item>@string/TestResults_Overview_FilterTests_AllTests</item>
 		<item>@string/TestResults_Overview_FilterTests_Websites</item>
 		<item>@string/TestResults_Overview_FilterTests_InstantMessaging</item>
+		<item>@string/TestResults_Overview_FilterTests_Circumvention</item>
 		<item>@string/TestResults_Overview_FilterTests_Performance</item>
 	</string-array>
 	<string-array name="filterTestValues" translatable="false">
 		<item></item>
 		<item>websites</item>
 		<item>instant_messaging</item>
+		<item>circumvention</item>
 		<item>performance</item>
 	</string-array>
 	<string-array name="preferenceTestsNames" translatable="false">
@@ -92,6 +99,8 @@
 		<item>test_facebook_messenger</item>
 		<item>run_ndt</item>
 		<item>run_dash</item>
+		<item>test_tor</item>
+		<item>test_psiphon</item>
 	</string-array>
 	<plurals name="TestResults_Overview_Websites_Blocked" translatable="false">
 		<item quantity="one">@string/TestResults_Overview_Websites_Blocked_Singular</item>
@@ -108,6 +117,14 @@
 	<plurals name="TestResults_Overview_InstantMessaging_Available" translatable="false">
 		<item quantity="one">@string/TestResults_Overview_InstantMessaging_Available_Singular</item>
 		<item quantity="other">@string/TestResults_Overview_InstantMessaging_Available_Plural</item>
+	</plurals>
+	<plurals name="TestResults_Overview_Circumvention_Available" translatable="false">
+		<item quantity="one">@string/TestResults_Overview_Circumvention_Available_Singular</item>
+		<item quantity="other">@string/TestResults_Overview_Circumvention_Available_Plural</item>
+	</plurals>
+	<plurals name="TestResults_Overview_Circumvention_Blocked" translatable="false">
+		<item quantity="one">@string/TestResults_Overview_Circumvention_Blocked_Singular</item>
+		<item quantity="other">@string/TestResults_Overview_Circumvention_Blocked_Plural</item>
 	</plurals>
 	<plurals name="TestResults_Summary_Websites_Hero_Tested" translatable="false">
 		<item quantity="one">@string/TestResults_Summary_Websites_Hero_Tested_Singular</item>

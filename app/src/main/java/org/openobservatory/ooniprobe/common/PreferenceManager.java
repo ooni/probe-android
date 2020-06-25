@@ -133,6 +133,14 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.test_facebook_messenger), true);
 	}
 
+	public boolean isTestPsiphon() {
+		return sp.getBoolean(r.getString(R.string.test_psiphon), true);
+	}
+
+	public boolean isTestTor() {
+		return sp.getBoolean(r.getString(R.string.test_tor), true);
+	}
+
 	public boolean isRunHttpInvalidRequestLine() {
 		return sp.getBoolean(r.getString(R.string.run_http_invalid_request_line), true);
 	}

@@ -32,6 +32,7 @@ import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
 import org.openobservatory.ooniprobe.activity.TextActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
+import org.openobservatory.ooniprobe.item.CircumventionItem;
 import org.openobservatory.ooniprobe.item.DateItem;
 import org.openobservatory.ooniprobe.item.FailedItem;
 import org.openobservatory.ooniprobe.item.InstantMessagingItem;
@@ -42,6 +43,7 @@ import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
+import org.openobservatory.ooniprobe.test.suite.CircumventionSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
@@ -195,6 +197,9 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
                             break;
                         case PerformanceSuite.NAME:
                             items.add(new PerformanceItem(result, this, this));
+                            break;
+                        case CircumventionSuite.NAME:
+                            items.add(new CircumventionItem(result, this, this));
                             break;
                     }
                 }

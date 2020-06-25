@@ -7,66 +7,44 @@
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:weightSum="3"
 		android:orientation="horizontal">
 
 		<TextView
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_marginEnd="5dp"
 			android:layout_weight="1"
-			android:text="@string/TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Title" />
+			android:text="@string/TestResults_Details_Circumvention_Tor_BrowserBridges_Label_Title" />
 
 		<TextView
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="5dp"
-			android:layout_marginEnd="5dp"
 			android:layout_weight="1"
-			android:text="@string/TestResults_Details_InstantMessaging_WhatsApp_WebApp_Label_Title" />
-
-		<TextView
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="5dp"
-			android:layout_weight="1"
-			android:text="@string/TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Title" />
+			android:text="@string/TestResults_Details_Circumvention_Tor_DirectoryAuthorities_Label_Title" />
 	</LinearLayout>
 
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:weightSum="3"
 		android:orientation="horizontal">
 
 		<TextView
-			android:id="@+id/application"
+			android:id="@+id/bridges"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_marginEnd="5dp"
 			android:layout_weight="1"
 			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 
 		<TextView
-			android:id="@+id/webApp"
+			android:id="@+id/authorities"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_marginEnd="5dp"
-			android:layout_marginStart="5dp"
-			android:layout_weight="1"
-			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
-
-		<TextView
-			android:id="@+id/registrations"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="5dp"
 			android:layout_weight="1"
 			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 	</LinearLayout>
 
 	<TextView
 		android:id="@+id/desc"
+		android:layout_marginTop="5dp"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content" />
 </LinearLayout>

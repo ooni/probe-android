@@ -39,6 +39,7 @@ import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
 import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
+import org.openobservatory.ooniprobe.test.suite.CircumventionSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
@@ -169,11 +170,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
         assert result != null;
         boolean isPerf = result.test_group_name.equals(PerformanceSuite.NAME);
         items.clear();
-        List<Measurement> measurements;
-        if (result.test_group_name.equals("websites"))
-            measurements = result.getMeasurementsSorted();
-        else
-            measurements = result.getMeasurements();
+        List<Measurement> measurements = result.getMeasurementsSorted();
         for (Measurement measurement : measurements)
             items.add(isPerf && !measurement.is_failed ?
                     new MeasurementPerfItem(measurement, this) :
@@ -247,6 +244,8 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
                         return ResultHeaderMiddleboxFragment.newInstance(result.countAnomalousMeasurements() > 0);
                     case PerformanceSuite.NAME:
                         return ResultHeaderPerformanceFragment.newInstance(result);
+                    case CircumventionSuite.NAME:
+                        return ResultHeaderTBAFragment.newInstance(result);
                     default:
                         return null;
                 }

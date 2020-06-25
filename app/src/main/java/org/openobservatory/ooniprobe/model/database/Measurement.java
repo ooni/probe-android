@@ -26,7 +26,9 @@ import org.openobservatory.ooniprobe.test.test.FacebookMessenger;
 import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
 import org.openobservatory.ooniprobe.test.test.HttpInvalidRequestLine;
 import org.openobservatory.ooniprobe.test.test.Ndt;
+import org.openobservatory.ooniprobe.test.test.Psiphon;
 import org.openobservatory.ooniprobe.test.test.Telegram;
+import org.openobservatory.ooniprobe.test.test.Tor;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
@@ -188,6 +190,12 @@ public class Measurement extends BaseModel implements Serializable {
 					break;
 				case Dash.NAME:
 					test = new Dash();
+					break;
+				case Psiphon.NAME:
+					test = new Psiphon();
+					break;
+				case Tor.NAME:
+					test = new Tor();
 					break;
 			}
 		return test;
