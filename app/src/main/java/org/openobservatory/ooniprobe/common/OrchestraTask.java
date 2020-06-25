@@ -12,6 +12,8 @@ import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import java.util.Locale;
 import java.util.Vector;
 
+//TODO-COUNTLY
+@Deprecated
 public class OrchestraTask extends AsyncTask<Void, Void, Void> {
 	private Application app;
 

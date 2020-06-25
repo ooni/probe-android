@@ -14,6 +14,7 @@ import ly.count.android.sdk.messaging.CountlyPush;
 
 class FlavorApplication {
 	public static void onCreate(Context context, boolean sendCrash) {
+		//TODO-COUNTLY remove CrashlyticsCore and use sendCrash also in fdroid
 		CrashlyticsCore core = new CrashlyticsCore.Builder().disabled(sendCrash).build();
 		Fabric.with(context, new Crashlytics.Builder().core(core).build());
 		FirebaseApp.initializeApp(context);
