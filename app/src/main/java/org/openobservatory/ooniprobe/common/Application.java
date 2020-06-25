@@ -89,8 +89,10 @@ public class Application extends android.app.Application {
 		Countly.sharedInstance().init(config);
 
 		preferenceManager = new PreferenceManager(this);
+        //TODO-COUNTLY preferenceManager.isSendCrash()
+
 		gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateAdapter()).registerTypeAdapter(TestKeys.Tampering.class, new TamperingJsonDeserializer()).create();
-		FlavorApplication.onCreate(this, preferenceManager.isSendCrash());
+		FlavorApplication.onCreate(this);
 		if (BuildConfig.DEBUG)
 			FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
 		// Code commented to prevent callling API on app start

@@ -93,7 +93,6 @@ dependencies {
 	implementation 'com.jakewharton:butterknife:10.2.1'
 	annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 
-	fullImplementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
 	implementation 'com.github.xanscale.LocalhostToolkit:app:19.05.01'
 	implementation 'pub.devrel:easypermissions:3.0.0'
 	implementation 'com.airbnb.android:lottie:3.0.7'
