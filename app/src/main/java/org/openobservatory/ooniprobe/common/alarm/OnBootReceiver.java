@@ -13,7 +13,8 @@ public class OnBootReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-            if (preferences.getBoolean(context.getString(R.string.automated_testing), false)){
+            //TODO set to false on production
+            if (preferences.getBoolean(context.getString(R.string.automated_testing_enabled), true)){
                 AlarmService.setRecurringAlarm(context);
             }
         }
