@@ -84,6 +84,7 @@ public class Application extends android.app.Application {
 				.setLoggingEnabled(true)
 				.setViewTracking(true)
 				.setHttpPostForced(true)
+				//TODO-COUNTLY use if is enabled in features https://support.count.ly/hc/en-us/articles/360037754031-Android#crash-reporting
 				.enableCrashReporting();
 		Countly.sharedInstance().init(config);
 
