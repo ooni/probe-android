@@ -54,6 +54,26 @@ public class TestKeys {
 	public String server_country;
 	@SerializedName("tampering")
 	public Tampering tampering;
+	//Psiphon
+	@SerializedName("bootstrap_time")
+	public Double bootstrap_time;
+	//Tor
+	@SerializedName("dir_port_total")
+	public Long dir_port_total;
+	@SerializedName("dir_port_accessible")
+	public Long dir_port_accessible;
+	@SerializedName("obfs4_total")
+	public Long obfs4_total;
+	@SerializedName("obfs4_accessible")
+	public Long obfs4_accessible;
+	@SerializedName("or_port_dirauth_total")
+	public Long or_port_dirauth_total;
+	@SerializedName("or_port_dirauth_accessible")
+	public Long or_port_dirauth_accessible;
+	@SerializedName("or_port_total")
+	public Long or_port_total;
+	@SerializedName("or_port_accessible")
+	public Long or_port_accessible;
 
 	private static String setFractionalDigits(double value) {
 		return String.format(Locale.getDefault(), value < 10 ? "%.2f" : "%.1f", value);
@@ -282,6 +302,28 @@ public class TestKeys {
 	public String getPlayoutDelay(Context ctx) {
 		if (simple != null && simple.min_playout_delay != null)
 			return String.format(Locale.getDefault(), "%.2f", simple.min_playout_delay);
+		return ctx.getString(R.string.TestResults_NotAvailable);
+	}
+
+	public String getBootstrapTime(Context ctx) {
+		if (bootstrap_time != null) {
+			return ctx.getString(R.string.TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit,
+					String.format(Locale.getDefault(), "%.2f", bootstrap_time));
+		}
+		return ctx.getString(R.string.TestResults_NotAvailable);
+	}
+
+	public String getBridges(Context ctx) {
+		if (obfs4_accessible != null && obfs4_total != null) {
+			return ctx.getString(R.string.TestResults_Details_Circumvention_Tor_BrowserBridges_Label_OK, obfs4_accessible, obfs4_total);
+		}
+		return ctx.getString(R.string.TestResults_NotAvailable);
+	}
+
+	public String getAuthorities(Context ctx) {
+		if (or_port_dirauth_accessible != null && or_port_dirauth_total != null) {
+			return ctx.getString(R.string.TestResults_Details_Circumvention_Tor_DirectoryAuthorities_Label_OK, or_port_dirauth_accessible, or_port_dirauth_total);
+		}
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
