@@ -122,5 +122,4 @@ static def versionNameDate() {
 if (!getGradle().getStartParameter().getTaskRequests()
 		.toString().contains("Fdroid")){
 	apply plugin: 'com.google.gms.google-services'
-	apply plugin: 'io.fabric'
 }
