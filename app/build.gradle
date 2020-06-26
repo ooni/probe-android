@@ -19,8 +19,7 @@ android {
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 		buildConfigField 'String', 'OONI_ORCHESTRATE_BASE_URL', '"https://orchestrate.ooni.io/"'
 		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
-		//TODO remove this if implement countly
-		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://registry.proteus.ooni.io"'
+		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://countly.ooni.io"'
 		resValue "string", "APP_NAME", "OONI Probe"
 		buildConfigField 'String', 'SOFTWARE_NAME', 'BASE_SOFTWARE_NAME+IS_DEBUG'
 	}

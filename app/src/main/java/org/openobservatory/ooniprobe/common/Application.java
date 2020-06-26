@@ -24,6 +24,8 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static org.openobservatory.ooniprobe.BuildConfig.NOTIFICATION_SERVER;
+
 public class Application extends android.app.Application {
 
 	static {
@@ -39,36 +41,32 @@ public class Application extends android.app.Application {
 
 	@Override public void onCreate() {
 		super.onCreate();
+		preferenceManager = new PreferenceManager(this);
 
-		/*
-		    private final String[] validFeatureNames = new String[]{
-            CountlyFeatureNames.sessions,
-            CountlyFeatureNames.events,
-            CountlyFeatureNames.views,
-            CountlyFeatureNames.location,
-            CountlyFeatureNames.crashes,
-            CountlyFeatureNames.attribution,
-            CountlyFeatureNames.users,
-            CountlyFeatureNames.push,
-            CountlyFeatureNames.starRating};
-		 */
-		//TODO-COUNTLY prepare features that should be added to the group
-		String[] groupFeatures = new String[]{
+		//TODO-COUNTLY manage remove consent
+		//Countly.sharedInstance().consent().giveConsent();
+
+		String[] basicFeatures = new String[]{
+				Countly.CountlyFeatureNames.location,
+		};
+
+		String[] analyticsFeatures = new String[]{
 				Countly.CountlyFeatureNames.sessions,
 				Countly.CountlyFeatureNames.views,
-				Countly.CountlyFeatureNames.crashes,
-				//TODO-COUNTLY check what it does
-				//https://support.count.ly/hc/en-us/articles/360037997132-Compliance-Hub
-				Countly.CountlyFeatureNames.location,
-				//scrolls, clicks, forms, attribution
-				/*feature grouping
-				https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#gdpr-compatability
-				add analytics in advanced setting (default on)
-				 */
 				Countly.CountlyFeatureNames.push,
-				Countly.CountlyFeatureNames.events };
-		//TODO-COUNTLY check for consent
-		//Countly.sharedInstance().setRequiresConsent(true);
+				Countly.CountlyFeatureNames.events
+				//scrolls, clicks, forms, attribution
+		};
+		Countly.sharedInstance().consent().createFeatureGroup("groupName", analyticsFeatures);
+
+		String[] crashFeatures = new String[]{
+				Countly.CountlyFeatureNames.crashes,
+		};
+
+		String[] pushFeatures = new String[]{
+				Countly.CountlyFeatureNames.push,
+		};
+
 		CountlyConfig config = new CountlyConfig()
 				.setAppKey("146836f41172f9e3287cab6f2cc347de3f5ddf3b")
 				.setContext(this)
@@ -78,27 +76,32 @@ public class Application extends android.app.Application {
 				.setIdMode(DeviceId.Type.ADVERTISING_ID)
 				//.setIdMode(DeviceId.Type.OPEN_UDID)
 				//.setRequiresConsent(true)
-				.setConsentEnabled(groupFeatures)
-				.setServerURL("https://countly.ooni.io")
+				.setConsentEnabled(basicFeatures)
+				.setServerURL(NOTIFICATION_SERVER)
 				//.setLoggingEnabled(!BuildConfig.DEBUG)
 				.setLoggingEnabled(true)
 				.setViewTracking(true)
 				.setHttpPostForced(true)
-				//TODO-COUNTLY use if is enabled in features https://support.count.ly/hc/en-us/articles/360037754031-Android#crash-reporting
 				.enableCrashReporting();
+
 		Countly.sharedInstance().init(config);
 
-		preferenceManager = new PreferenceManager(this);
-        //TODO-COUNTLY preferenceManager.isSendCrash()
+		if (preferenceManager.isSendCrash())
+			Countly.sharedInstance().consent().giveConsent(crashFeatures);
+
+		if (preferenceManager.isNotifications())
+			Countly.sharedInstance().consent().giveConsent(pushFeatures);
+
+			//Countly.sharedInstance().consent().setConsentFeatureGroup();
 
 		gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateAdapter()).registerTypeAdapter(TestKeys.Tampering.class, new TamperingJsonDeserializer()).create();
 		FlavorApplication.onCreate(this);
 		if (BuildConfig.DEBUG)
 			FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
+
 		// Code commented to prevent callling API on app start
 		//if (preferenceManager.canCallDeleteJson())
 		//	Measurement.deleteUploadedJsons(this);
-
 		FlowManager.init(this);
 	}
 

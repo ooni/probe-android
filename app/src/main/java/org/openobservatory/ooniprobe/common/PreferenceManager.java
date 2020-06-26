@@ -61,6 +61,7 @@ public class PreferenceManager {
 	public boolean isSendCrash() {
 		return sp.getBoolean(r.getString(R.string.send_crash), true);
 	}
+	//TODO-COUNTLY add isAnalytics + defaults
 
 	public boolean isShowOnboarding() {
 		return sp.getBoolean(SHOW_ONBOARDING, true);
@@ -74,8 +75,8 @@ public class PreferenceManager {
 		return sp.getBoolean(IS_MANUAL_UPLOAD_DIALOG, true);
 	}
 
-	private boolean isNotifications() {
-		return sp.getBoolean(r.getString(R.string.notifications_enabled), true);
+	public boolean isNotifications() {
+		return sp.getBoolean(r.getString(R.string.notifications_enabled), false);
 	}
 
 	public boolean isUploadResults() {
