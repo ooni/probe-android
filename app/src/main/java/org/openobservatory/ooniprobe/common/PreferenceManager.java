@@ -56,13 +56,13 @@ public class PreferenceManager {
 
 	public String getAutomatedTestingTime() {
 		try {
-			String local_notifications_time = sp.getString(r.getString(R.string.automated_testing_time), "18:00");
+			String local_notifications_time = sp.getString(r.getString(R.string.automated_testing_time), "05:00");
 			String[] separated = local_notifications_time.split(":");
 			int hours = Integer.valueOf(separated[0]);
 			int minutes = Integer.valueOf(separated[1]);
 			return String.format("%02d", hours) + ":" +String.format("%02d", minutes);
 		} catch (Exception e) {
-			return "18:00";
+			return "05:00";
 		}
 	}
 	public boolean isMaxRuntimeEnabled(){
