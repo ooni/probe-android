@@ -52,21 +52,9 @@ public class CountlyManager {
     }
 
     public static void reloadConsent(PreferenceManager preferenceManager){
-        if (preferenceManager.isSendCrash())
-            Countly.sharedInstance().consent().giveConsent(crashFeatures);
-        else
-            Countly.sharedInstance().consent().removeConsent(crashFeatures);
-
-        if (preferenceManager.isSendAnalytics())
-            Countly.sharedInstance().consent().giveConsent(analyticsFeatures);
-        else
-            Countly.sharedInstance().consent().removeConsent(analyticsFeatures);
-
-        if (preferenceManager.isNotifications()) {
-            //TODO-COUNTLY init countly notification
-            Countly.sharedInstance().consent().giveConsent(pushFeatures);
-        }
-        else
-            Countly.sharedInstance().consent().removeConsent(pushFeatures);
+        Countly.sharedInstance().consent().setConsent(crashFeatures, preferenceManager.isSendCrash());
+        Countly.sharedInstance().consent().setConsent(analyticsFeatures, preferenceManager.isSendAnalytics());
+        Countly.sharedInstance().consent().setConsent(pushFeatures, preferenceManager.isNotifications());
+        //TODO-COUNTLY init countly notification?
     }
 }
