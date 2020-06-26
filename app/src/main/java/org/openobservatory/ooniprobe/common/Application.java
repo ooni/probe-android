@@ -9,6 +9,7 @@ import com.raizlabs.android.dbflow.config.FlowManager;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.client.OONIAPIClient;
 import org.openobservatory.ooniprobe.client.OONIOrchestraClient;
+import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
 import java.io.IOException;
@@ -46,7 +47,7 @@ public class Application extends android.app.Application {
 		// Code commented to prevent callling API on app start
 		//if (preferenceManager.canCallDeleteJson())
 		//	Measurement.deleteUploadedJsons(this);
-
+		Measurement.deleteOldLogs(this);
 	}
 
 	public OkHttpClient getOkHttpClient() {
