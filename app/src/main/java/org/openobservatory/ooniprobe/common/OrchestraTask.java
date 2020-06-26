@@ -34,7 +34,7 @@ public class OrchestraTask extends AsyncTask<Void, Void, Void> {
 			//what happens when token is nil? should register anyway with empty string
 			boolean okay = Engine.maybeUpdateResources(app);
 			if (!okay) {
-				Crashlytics.logException(new Exception("MKResourcesManager didn't find resources"));
+				//Crashlytics.logException(new Exception("MKResourcesManager didn't find resources"));
 				return;
 			}
 			client.setCABundlePath(Engine.getCABundlePath(app));

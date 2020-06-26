@@ -12,6 +12,7 @@ class FlavorApplication {
 	public static void onCreate(Context context) {
 		FirebaseApp.initializeApp(context);
 		NotificationService.setChannel(context, CountlyPush.CHANNEL_ID, context.getString(R.string.General_AppName));
+		//TODO-COUNTLY what to do on notification disable?
 		CountlyPush.init((Application) context, BuildConfig.DEBUG? Countly.CountlyMessagingMode.TEST:Countly.CountlyMessagingMode.PRODUCTION);
 		NotificationService.setToken((Application) context);
 	}

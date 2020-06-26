@@ -61,7 +61,10 @@ public class PreferenceManager {
 	public boolean isSendCrash() {
 		return sp.getBoolean(r.getString(R.string.send_crash), true);
 	}
-	//TODO-COUNTLY add isAnalytics + defaults
+
+	public boolean isSendAnalytics() {
+		return sp.getBoolean(r.getString(R.string.send_analytics), true);
+	}
 
 	public boolean isShowOnboarding() {
 		return sp.getBoolean(SHOW_ONBOARDING, true);

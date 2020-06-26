@@ -24,7 +24,6 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static org.openobservatory.ooniprobe.BuildConfig.NOTIFICATION_SERVER;
 
 public class Application extends android.app.Application {
 
@@ -42,57 +41,7 @@ public class Application extends android.app.Application {
 	@Override public void onCreate() {
 		super.onCreate();
 		preferenceManager = new PreferenceManager(this);
-
-		//TODO-COUNTLY manage remove consent
-		//Countly.sharedInstance().consent().giveConsent();
-
-		String[] basicFeatures = new String[]{
-				Countly.CountlyFeatureNames.location,
-		};
-
-		String[] analyticsFeatures = new String[]{
-				Countly.CountlyFeatureNames.sessions,
-				Countly.CountlyFeatureNames.views,
-				Countly.CountlyFeatureNames.push,
-				Countly.CountlyFeatureNames.events
-				//scrolls, clicks, forms, attribution
-		};
-		Countly.sharedInstance().consent().createFeatureGroup("groupName", analyticsFeatures);
-
-		String[] crashFeatures = new String[]{
-				Countly.CountlyFeatureNames.crashes,
-		};
-
-		String[] pushFeatures = new String[]{
-				Countly.CountlyFeatureNames.push,
-		};
-
-		CountlyConfig config = new CountlyConfig()
-				.setAppKey("146836f41172f9e3287cab6f2cc347de3f5ddf3b")
-				.setContext(this)
-				//.setDeviceId("lorenzo")
-				//.setDeviceId(null)
-				//it won't work with fdroid
-				.setIdMode(DeviceId.Type.ADVERTISING_ID)
-				//.setIdMode(DeviceId.Type.OPEN_UDID)
-				//.setRequiresConsent(true)
-				.setConsentEnabled(basicFeatures)
-				.setServerURL(NOTIFICATION_SERVER)
-				//.setLoggingEnabled(!BuildConfig.DEBUG)
-				.setLoggingEnabled(true)
-				.setViewTracking(true)
-				.setHttpPostForced(true)
-				.enableCrashReporting();
-
-		Countly.sharedInstance().init(config);
-
-		if (preferenceManager.isSendCrash())
-			Countly.sharedInstance().consent().giveConsent(crashFeatures);
-
-		if (preferenceManager.isNotifications())
-			Countly.sharedInstance().consent().giveConsent(pushFeatures);
-
-			//Countly.sharedInstance().consent().setConsentFeatureGroup();
+		CountlyManager.register(this, preferenceManager);
 
 		gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateAdapter()).registerTypeAdapter(TestKeys.Tampering.class, new TamperingJsonDeserializer()).create();
 		FlavorApplication.onCreate(this);

@@ -22,6 +22,8 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.CountlyManager;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -29,6 +31,7 @@ import java.util.Arrays;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 import localhost.toolkit.app.fragment.MessageDialogFragment;
 import localhost.toolkit.preference.ExtendedPreferenceFragment;
+import ly.count.android.sdk.Countly;
 
 public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFragment> implements SharedPreferences.OnSharedPreferenceChangeListener {
     public static final String ARG_PREFERENCES_RES_ID = "org.openobservatory.ooniprobe.fragment.PreferenceFragment.PREF_RES_ID";
@@ -99,7 +102,10 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Preference preference = findPreference(key);
-        if (preference instanceof EditTextPreference) {
+        if (key.equals(getString(R.string.send_crash)) || key.equals(getString(R.string.send_analytics)) || key.equals(getString(R.string.notifications_enabled))){
+            CountlyManager.reloadConsent(((Application) getActivity().getApplication()).getPreferenceManager());
+        }
+        else if (preference instanceof EditTextPreference) {
             String value = sharedPreferences.getString(key, null);
             preference.setSummary(value);
             if (key.equals(getString(R.string.max_runtime)) && value != null && !TextUtils.isDigitsOnly(value)) {
@@ -112,7 +118,8 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                 if (p != null)
                     p.setText("");
             }
-        } else if (preference instanceof SwitchPreferenceCompat) {
+        }
+        else if (preference instanceof SwitchPreferenceCompat) {
             //Call this code only in case of category or tests
             if (Arrays.asList(getActivity().getResources().getStringArray(R.array.CategoryCodes)).contains(key) ||
                     Arrays.asList(getActivity().getResources().getStringArray(R.array.preferenceTestsNames)).contains(key))

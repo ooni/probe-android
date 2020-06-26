@@ -1,6 +1,7 @@
 package org.openobservatory.engine;
 
 /** OrchestraTask is a task for interacting with the OONI orchestra */
+@Deprecated
 public interface OrchestraTask {
     /** setAvailableBandwidth sets the bandwidth that a probe is
      * available to commit to running measurements. */

@@ -303,6 +303,10 @@
 		android:title="@string/Settings_Advanced_Label">
 		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
+			android:key="@string/send_analytics"
+			android:title="@string/Settings_Advanced_CollectAnalytics" />
+		<androidx.preference.SwitchPreferenceCompat
+			android:defaultValue="true"
 			android:key="@string/send_crash"
 			android:title="@string/Settings_Advanced_SendCrashReports" />
 		<androidx.preference.SwitchPreferenceCompat

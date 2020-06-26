@@ -1,7 +1,7 @@
 package org.openobservatory.engine;
 
 import java.util.Vector;
-
+@Deprecated
 class MKOrchestraTaskAdapter implements OrchestraTask {
     private io.ooni.mk.MKOrchestraTask task;
 
