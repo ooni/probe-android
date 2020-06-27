@@ -63,6 +63,10 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                         .withPositiveButton(getString(R.string.Modal_ManualUpload_Enable))
                         .withNegativeButton(getString(R.string.Modal_ManualUpload_Disable))
                         .build().show(getSupportFragmentManager(), null);
+            if (getPreferenceManager().isShareAnalyticsDialog()) {
+                //TODO-COUNTLY
+
+            }
         }
     }
 

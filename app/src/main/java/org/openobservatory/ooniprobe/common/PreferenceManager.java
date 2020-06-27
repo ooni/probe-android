@@ -15,6 +15,7 @@ public class PreferenceManager {
 	private static final String IS_MANUAL_UPLOAD_DIALOG = "isManualUploadDialog";
 	private static final String TOKEN = "token";
 	private static final String SHOW_ONBOARDING = "first_run";
+	private static final String SHOW_SHARE_ANALYTICS = "show_share_analytics";
 	//This is in ms, set to one day
 	public static final Integer DELETE_JSON_DELAY = 86400000;
 	private static final String DELETE_JSON_KEY = "deleteUploadedJsons";
@@ -71,9 +72,21 @@ public class PreferenceManager {
 	}
 
 	public void setShowOnboarding(boolean showIntro) {
-		sp.edit().putBoolean(SHOW_ONBOARDING, showIntro).putBoolean(IS_MANUAL_UPLOAD_DIALOG, showIntro).apply();
+		sp.edit().putBoolean(SHOW_SHARE_ANALYTICS, showIntro)
+				.putBoolean(SHOW_SHARE_ANALYTICS, showIntro)
+				.putBoolean(IS_MANUAL_UPLOAD_DIALOG, showIntro).apply();
 	}
 
+	/*
+	 * This method is used to ask user to share app usage to old users.
+	 */
+	public boolean isShareAnalyticsDialog() {
+		return sp.getBoolean(SHOW_SHARE_ANALYTICS, true);
+	}
+
+	/*
+	 * This method is used to ask user to enable manual upload.
+	 */
 	public boolean isManualUploadDialog() {
 		return sp.getBoolean(IS_MANUAL_UPLOAD_DIALOG, true);
 	}
