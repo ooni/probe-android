@@ -37,7 +37,8 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
         if (getPreferenceManager().isShowOnboarding()) {
             startActivity(new Intent(MainActivity.this, OnboardingActivity.class));
             finish();
-        } else {
+        }
+        else {
             setContentView(R.layout.activity_main);
             ButterKnife.bind(this);
             bottomNavigation.setOnNavigationItemSelectedListener(item -> {
