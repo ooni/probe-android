@@ -6,8 +6,6 @@ import android.util.Log;
 import com.google.firebase.messaging.RemoteMessage;
 
 import org.json.JSONObject;
-import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.activity.NotificationDialogActivity;
 import org.openobservatory.ooniprobe.activity.OoniRunActivity;
 
 import java.util.Map;
@@ -73,14 +71,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 				//TODO-FUTURE we can use click_action instead of type
 				JSONObject data = new JSONObject(params.toString());
 				//TODO change these parameters
-				if (data.getString("type").equals("open_href")) {
-					Intent intent = new Intent(getApplicationContext(), NotificationDialogActivity.class);
-					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					intent.putExtra("message", remoteMessage.getNotification().getBody());
-					intent.putExtra("payload", data.getString("payload"));
-					getApplicationContext().startActivity(intent);
-				}
-				else if (data.getString("type").equals("ooni_run")) {
+			  if (data.getString("type").equals("ooni_run")) {
 					Intent intent = new Intent(getApplicationContext(), OoniRunActivity.class);
 					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					intent.putExtra("mv",  params.get("mv"));
