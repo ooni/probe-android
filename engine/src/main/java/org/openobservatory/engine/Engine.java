@@ -69,12 +69,4 @@ public class Engine {
                                                  String caBundlePath) {
         return new MKReporterTaskAdapter(softwareName, softwareVersion, caBundlePath);
     }
-
-    /** newOrchestraTask creates a new orchestra task. */
-    public static OrchestraTask newOrchestraTask(String softwareName, String softwareVersion,
-                                                 Vector<String> supportedTests,
-                                                 String deviceToken, String secretsFile) {
-        return new MKOrchestraTaskAdapter(softwareName, softwareVersion, supportedTests,
-                deviceToken, secretsFile);
-    }
 }
