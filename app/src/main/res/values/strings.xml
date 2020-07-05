@@ -428,4 +428,6 @@
   <string name="CategoryCode_CTRL_Description">Benign or innocuous content used for control</string>
   <string name="CategoryCode_IGO_Description">Intergovernmental organizations including The United Nations</string>
   <string name="CategoryCode_MISC_Description">Sites that haven\'t been categorized yet</string>
+  <string name="Modal_InterruptTest_Title">Placeholder</string>
+  <string name="Modal_InterruptTest_Paragraph">Placeholder</string>
 </resources>
