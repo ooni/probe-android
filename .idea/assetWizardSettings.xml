@@ -8,6 +8,17 @@
             <PersistentState>
               <option name="children">
                 <map>
+                  <entry key="confirmationStep">
+                    <value>
+                      <PersistentState>
+                        <option name="values">
+                          <map>
+                            <entry key="resourceDirectory" value="experimental" />
+                          </map>
+                        </option>
+                      </PersistentState>
+                    </value>
+                  </entry>
                   <entry key="imageAssetPanel">
                     <value>
                       <PersistentState>
@@ -63,7 +74,7 @@
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
                                       <entry key="backgroundColor" value="8dd8f8" />
-                                      <entry key="foregroundImage" value="$USER_HOME$/Downloads/Icon Play Store.png" />
+                                      <entry key="foregroundImage" value="$USER_HOME$/Downloads/Icon Play Store_red.png" />
                                     </map>
                                   </option>
                                 </PersistentState>
