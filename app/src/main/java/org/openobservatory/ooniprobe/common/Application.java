@@ -44,9 +44,8 @@ public class Application extends android.app.Application {
 		FlavorApplication.onCreate(this, preferenceManager.isSendCrash());
 		if (BuildConfig.DEBUG)
 			FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
-		// Code commented to prevent callling API on app start
-		//if (preferenceManager.canCallDeleteJson())
-		//	Measurement.deleteUploadedJsons(this);
+		if (preferenceManager.canCallDeleteJson())
+			Measurement.deleteUploadedJsons(this);
 		Measurement.deleteOldLogs(this);
 	}
 
