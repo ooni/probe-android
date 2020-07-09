@@ -259,12 +259,12 @@ public class Measurement extends BaseModel implements Serializable {
 		pm.setLastCalled();
 	}
 
-	private static void deleteMeasurementWithReportId(Application a, String report_id) {
+	public static void deleteMeasurementWithReportId(Context c, String report_id) {
 		Where<Measurement> msmQuery = Measurement.selectWithReportId(report_id);
 		List<Measurement> measurements = msmQuery.queryList();
 		for (int i = 0; i < measurements.size(); i++) {
 			Measurement measurement = measurements.get(i);
-			measurement.deleteEntryFile(a);
+			measurement.deleteEntryFile(c);
 		}
 	}
 
