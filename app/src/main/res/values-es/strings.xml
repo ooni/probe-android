@@ -275,6 +275,8 @@
   <string name="Modal_Error_LogNotFound">Archivo de registro no encontrado</string>
   <string name="Modal_Error_NoValidUrls">No se encontraron URL válidas</string>
   <string name="Modal_Error_JsonEmpty">JSON vacío</string>
+  <string name="Modal_InterruptTest_Title">Do you want to interrupt this test?</string>
+  <string name="Modal_InterruptTest_Paragraph">This will interrupt the current test from this moment.</string>
   <string name="Toast_CopiedToClipboard">Se ha copiado al portapapeles</string>
   <string name="Snackbar_ResultsNotUploaded_Text">No subido</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Subir</string>
@@ -408,7 +410,7 @@
   <string name="CategoryCode_HATE_Description">Denigración de grupos particulares basada en raza, sexo, sexualidad u otras características</string>
   <string name="CategoryCode_NEWS_Description">Principales sitios web de noticias, medios de noticias regionales e independientes</string>
   <string name="CategoryCode_XED_Description">Cuestiones de salud sexual, incluyendo anticoncepción, enfermedades de transmisión sexual, prevención de violaciones y aborto</string>
-  <string name="CategoryCode_PUBH_Description">Cuestiones de salud pública, incluyendo VIH, SRAS, gripe aviar, Organización Mundial de la Salud</string>
+  <string name="CategoryCode_PUBH_Description">Public health issues, such as COVID-19, HIV/AIDS, Ebola</string>
   <string name="CategoryCode_GMB_Description">Juego y apuestas en línea</string>
   <string name="CategoryCode_ANON_Description">Anonimización, elusión de censura y cifrado</string>
   <string name="CategoryCode_DATE_Description">Sitios de citas en línea</string>

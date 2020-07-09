@@ -275,6 +275,8 @@
   <string name="Modal_Error_LogNotFound">未找到日志文件</string>
   <string name="Modal_Error_NoValidUrls">未找到有效 URL</string>
   <string name="Modal_Error_JsonEmpty">空 JSON</string>
+  <string name="Modal_InterruptTest_Title">Do you want to interrupt this test?</string>
+  <string name="Modal_InterruptTest_Paragraph">This will interrupt the current test from this moment.</string>
   <string name="Toast_CopiedToClipboard">已复制到剪贴板</string>
   <string name="Snackbar_ResultsNotUploaded_Text">未上传</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">上传</string>
@@ -408,7 +410,7 @@
   <string name="CategoryCode_HATE_Description">根据种族、性别、性取向或其他特征对特定群体诋毁</string>
   <string name="CategoryCode_NEWS_Description">主流新闻网站、地区性媒体以及独立媒体</string>
   <string name="CategoryCode_XED_Description">性卫生问题，包括避孕、性病、预防强奸和堕胎</string>
-  <string name="CategoryCode_PUBH_Description">公共卫生问题，包括艾滋病（HIV）、非典（SARS）、禽流感和世界卫生组织</string>
+  <string name="CategoryCode_PUBH_Description">Public health issues, such as COVID-19, HIV/AIDS, Ebola</string>
   <string name="CategoryCode_GMB_Description">在线赌博和投注</string>
   <string name="CategoryCode_ANON_Description">匿名、翻墙和加密</string>
   <string name="CategoryCode_DATE_Description">在线约会网站</string>

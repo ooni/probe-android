@@ -275,6 +275,8 @@
   <string name="Modal_Error_LogNotFound">लॉग फ़ाइल नहीं मिला</string>
   <string name="Modal_Error_NoValidUrls">कोई मान्य यूआरएल नहीं मिले</string>
   <string name="Modal_Error_JsonEmpty">जॆसन खाली</string>
+  <string name="Modal_InterruptTest_Title">Do you want to interrupt this test?</string>
+  <string name="Modal_InterruptTest_Paragraph">This will interrupt the current test from this moment.</string>
   <string name="Toast_CopiedToClipboard">क्लिपबोर्ड में कॉपी किया गया</string>
   <string name="Snackbar_ResultsNotUploaded_Text">अपलोड नहीं किया गया</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">अपलोड करें</string>
@@ -408,7 +410,7 @@
   <string name="CategoryCode_HATE_Description">जाति, लिंग, कामुकता या अन्य विशेषताओं के आधार पर विशेष समूहों का असंतोष</string>
   <string name="CategoryCode_NEWS_Description">प्रमुख समाचार वेबसाइट, क्षेत्रीय समाचार आउटलेट और स्वतंत्र मीडिया</string>
   <string name="CategoryCode_XED_Description">गर्भनिरोधक, एसटीडी, बलात्कार की रोकथाम और गर्भपात सहित यौन स्वास्थ्य के मुद्दे</string>
-  <string name="CategoryCode_PUBH_Description">एचआईवी, सार्स, बर्ड फ्लू, विश्व स्वास्थ्य संगठन सहित सार्वजनिक स्वास्थ्य मुद्दे</string>
+  <string name="CategoryCode_PUBH_Description">Public health issues, such as COVID-19, HIV/AIDS, Ebola</string>
   <string name="CategoryCode_GMB_Description">ऑनलाइन जुआ और सट्टेबाजी</string>
   <string name="CategoryCode_ANON_Description">गुमनामी, सेंसरशिप परिधि और एन्क्रिप्शन</string>
   <string name="CategoryCode_DATE_Description">ऑनलाइन डेटिंग साइटें</string>

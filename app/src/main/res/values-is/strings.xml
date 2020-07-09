@@ -275,6 +275,8 @@
   <string name="Modal_Error_LogNotFound">Atvikaskrá fannst ekki</string>
   <string name="Modal_Error_NoValidUrls">Engar gildar slóðir fundust</string>
   <string name="Modal_Error_JsonEmpty">Tómt JSON</string>
+  <string name="Modal_InterruptTest_Title">Do you want to interrupt this test?</string>
+  <string name="Modal_InterruptTest_Paragraph">This will interrupt the current test from this moment.</string>
   <string name="Toast_CopiedToClipboard">Afritað á klippispjald</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Ekki sent inn</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Senda inn</string>
@@ -408,7 +410,7 @@
   <string name="CategoryCode_HATE_Description">Vanvirðing við einstaka hópa, byggt á kynþætti, kyni, kynhneigð eða öðru slíku</string>
   <string name="CategoryCode_NEWS_Description">Stórar fréttagáttir, svæðisbundnir fréttamiðlar og óháðir fjölmiðlar</string>
   <string name="CategoryCode_XED_Description">Kynheilsutengd mál, t.d. getnaðarvarnir, kynsjúkdómar, varnir gegn nauðgunum og þungunarrof</string>
-  <string name="CategoryCode_PUBH_Description">Lýðheilsumál eins og t.d. HIV, SARS, fuglaflensa, Alþjóðaheilbrigðisstofnunin (WHO)</string>
+  <string name="CategoryCode_PUBH_Description">Public health issues, such as COVID-19, HIV/AIDS, Ebola</string>
   <string name="CategoryCode_GMB_Description">Fjárhættuspil og veðmál á netinu</string>
   <string name="CategoryCode_ANON_Description">Nafnleysi, dulritun og leiðir framhjá ritskoðun</string>
   <string name="CategoryCode_DATE_Description">Stefnumótasíður á netinu</string>

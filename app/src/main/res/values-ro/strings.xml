@@ -275,6 +275,8 @@
   <string name="Modal_Error_LogNotFound">Fișierul jurnal nu a fost găsit</string>
   <string name="Modal_Error_NoValidUrls">Nu s-au găsit adrese URL valide</string>
   <string name="Modal_Error_JsonEmpty">JSON gol</string>
+  <string name="Modal_InterruptTest_Title">Do you want to interrupt this test?</string>
+  <string name="Modal_InterruptTest_Paragraph">This will interrupt the current test from this moment.</string>
   <string name="Toast_CopiedToClipboard">Copiat în clipboard</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Nu s-a încărcat</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Încarcă</string>
@@ -408,7 +410,7 @@
   <string name="CategoryCode_HATE_Description">Dispersarea unor grupuri particulare bazate pe rasă, sex, sexualitate sau alte caracteristici</string>
   <string name="CategoryCode_NEWS_Description">Principalele site-uri de știri, puncte de știri regionale și mass-media independente</string>
   <string name="CategoryCode_XED_Description">Probleme de sănătate sexuală, inclusiv contracepție, BTS, prevenirea violului și avort</string>
-  <string name="CategoryCode_PUBH_Description">Probleme de sănătate publică, inclusiv HIV, SARS, gripa aviară, Organizația Mondială a Sănătății</string>
+  <string name="CategoryCode_PUBH_Description">Public health issues, such as COVID-19, HIV/AIDS, Ebola</string>
   <string name="CategoryCode_GMB_Description">Jocuri de noroc și pariuri online</string>
   <string name="CategoryCode_ANON_Description">Anonimizare, eludarea cenzurii și criptare</string>
   <string name="CategoryCode_DATE_Description">Site-uri de întâlniri online</string>

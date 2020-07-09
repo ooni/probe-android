@@ -275,6 +275,8 @@
   <string name="Modal_Error_LogNotFound">Súbor denníka sa nenašiel</string>
   <string name="Modal_Error_NoValidUrls">Nenašli sa platné URL adresy</string>
   <string name="Modal_Error_JsonEmpty">Súbor JSON je prázdny</string>
+  <string name="Modal_InterruptTest_Title">Do you want to interrupt this test?</string>
+  <string name="Modal_InterruptTest_Paragraph">This will interrupt the current test from this moment.</string>
   <string name="Toast_CopiedToClipboard">Skopírované do schránky</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Nenahrané</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Nahrať</string>
@@ -408,7 +410,7 @@
   <string name="CategoryCode_HATE_Description">Znevažovanie určitých skupín na základe rasy, pohlavia, sexuálnej orientácie a iných vlastností</string>
   <string name="CategoryCode_NEWS_Description">Veľké spravodajské portály, regionálne spravodajské médiá a nezávislé médiá</string>
   <string name="CategoryCode_XED_Description">Otázky sexuálneho zdravia vrátane antikoncepcie, sexuálne prenosných chorôb, prevencie znásilnení a potratov</string>
-  <string name="CategoryCode_PUBH_Description">Otázky verejného zdravia vrátane HIV, SARS, vtáčej chrípky, Svetovej zdravotníckej organizácie</string>
+  <string name="CategoryCode_PUBH_Description">Public health issues, such as COVID-19, HIV/AIDS, Ebola</string>
   <string name="CategoryCode_GMB_Description">Online gambling a podávanie stávok</string>
   <string name="CategoryCode_ANON_Description">Anonymizácia, obchádzanie cenzúry a šifrovanie</string>
   <string name="CategoryCode_DATE_Description">Online zoznamovacie služby</string>

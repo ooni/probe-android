@@ -275,6 +275,8 @@
   <string name="Modal_Error_LogNotFound">Log file not found</string>
   <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
   <string name="Modal_Error_JsonEmpty">JSON empty</string>
+  <string name="Modal_InterruptTest_Title">Do you want to interrupt this test?</string>
+  <string name="Modal_InterruptTest_Paragraph">This will interrupt the current test from this moment.</string>
   <string name="Toast_CopiedToClipboard">Copied to clipboard</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Not uploaded</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Upload</string>
@@ -408,7 +410,7 @@
   <string name="CategoryCode_HATE_Description">Disparaging of particular groups based on race, sex, sexuality or other characteristics</string>
   <string name="CategoryCode_NEWS_Description">Major news websites, regional news outlets and independent media</string>
   <string name="CategoryCode_XED_Description">Sexual health issues including contraception, STD\'s, rape prevention and abortion</string>
-  <string name="CategoryCode_PUBH_Description">Public health issues including HIV, SARS, bird flu, World Health Organization</string>
+  <string name="CategoryCode_PUBH_Description">Public health issues, such as COVID-19, HIV/AIDS, Ebola</string>
   <string name="CategoryCode_GMB_Description">Online gambling and betting</string>
   <string name="CategoryCode_ANON_Description">Anonymization, censorship circumvention and encryption</string>
   <string name="CategoryCode_DATE_Description">Online dating sites</string>
@@ -428,6 +430,4 @@
   <string name="CategoryCode_CTRL_Description">Benign or innocuous content used for control</string>
   <string name="CategoryCode_IGO_Description">Intergovernmental organizations including The United Nations</string>
   <string name="CategoryCode_MISC_Description">Sites that haven\'t been categorized yet</string>
-  <string name="Modal_InterruptTest_Title">Placeholder</string>
-  <string name="Modal_InterruptTest_Paragraph">Placeholder</string>
 </resources>

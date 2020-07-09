@@ -275,6 +275,8 @@
   <string name="Modal_Error_LogNotFound">Лог-файл не найден</string>
   <string name="Modal_Error_NoValidUrls">URL не найдены</string>
   <string name="Modal_Error_JsonEmpty">JSON пуст</string>
+  <string name="Modal_InterruptTest_Title">Do you want to interrupt this test?</string>
+  <string name="Modal_InterruptTest_Paragraph">This will interrupt the current test from this moment.</string>
   <string name="Toast_CopiedToClipboard">Скопировано в буфер обмена</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Не загружено</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Загрузить</string>
@@ -408,7 +410,7 @@
   <string name="CategoryCode_HATE_Description">Пренебрежительное/унижающее отношение к определенным группам людей из-за их расы, пола, сексуальных предпочтений или чего-то другого</string>
   <string name="CategoryCode_NEWS_Description">Крупные новостные сайты, региональные источники новостей, независимые медиа</string>
   <string name="CategoryCode_XED_Description">Вопросы сексуального здоровья, включая темы контрацепции, венерических заболеваний, изнасилований и абортов</string>
-  <string name="CategoryCode_PUBH_Description">Вопросы общественного здоровья, включая темы ВИЧ, атипичной пневмонии, птичьего гриппа, ВОЗ</string>
+  <string name="CategoryCode_PUBH_Description">Public health issues, such as COVID-19, HIV/AIDS, Ebola</string>
   <string name="CategoryCode_GMB_Description">Азартные игры и ставки онлайн</string>
   <string name="CategoryCode_ANON_Description">Обеспечение анонимности, обход цензуры, шифрование</string>
   <string name="CategoryCode_DATE_Description">Сайты для знакомств по интернету</string>

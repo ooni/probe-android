@@ -275,6 +275,8 @@
   <string name="Modal_Error_LogNotFound">فایل لاگ یافت نشد</string>
   <string name="Modal_Error_NoValidUrls">هیچ URL معتبری یافت نشد</string>
   <string name="Modal_Error_JsonEmpty">JSON خالی است</string>
+  <string name="Modal_InterruptTest_Title">Do you want to interrupt this test?</string>
+  <string name="Modal_InterruptTest_Paragraph">This will interrupt the current test from this moment.</string>
   <string name="Toast_CopiedToClipboard">در حافظه‌ی موقت کپی شد</string>
   <string name="Snackbar_ResultsNotUploaded_Text">بارگذاری نشدند</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">آپلود</string>
@@ -408,7 +410,7 @@
   <string name="CategoryCode_HATE_Description">پست شمردن گروه مشخصی بر اساس نژاد، جنسیت، تمایلات جنسی و یا سایر ویژگی‌ها</string>
   <string name="CategoryCode_NEWS_Description">وبسایت‌های خبری اصلی، رسانه‌های خبری محلی و رسانه مستقل</string>
   <string name="CategoryCode_XED_Description">مسائل سلامت جنسی شامل ضدبارداری‌ها، STDها، پیشگیری از تجاوز و سقط جنین</string>
-  <string name="CategoryCode_PUBH_Description">مسائل سلامت عمومی شامل HIC، SARS، آنفولانزای مرغی، سازمان بهداشت جهانی</string>
+  <string name="CategoryCode_PUBH_Description">Public health issues, such as COVID-19, HIV/AIDS, Ebola</string>
   <string name="CategoryCode_GMB_Description">قمار و شرط بندی آنلاین</string>
   <string name="CategoryCode_ANON_Description">گمنام‌سازی، دور زدن سانسور و رمزگذاری</string>
   <string name="CategoryCode_DATE_Description">سایت‌‌های دوستیابی آنلاین</string>

@@ -275,6 +275,8 @@
   <string name="Modal_Error_LogNotFound">No s\'ha trobat el fitxer de registre</string>
   <string name="Modal_Error_NoValidUrls">No s\'ha trobat URL vàlides</string>
   <string name="Modal_Error_JsonEmpty">JSON buit</string>
+  <string name="Modal_InterruptTest_Title">Do you want to interrupt this test?</string>
+  <string name="Modal_InterruptTest_Paragraph">This will interrupt the current test from this moment.</string>
   <string name="Toast_CopiedToClipboard">S\'ha copiat al porta-retalls</string>
   <string name="Snackbar_ResultsNotUploaded_Text">No s\'ha pujat</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Pujada</string>
@@ -408,7 +410,7 @@
   <string name="CategoryCode_HATE_Description">Menysprear a grups particulars per motius de raça, sexe, sexualitat o altres característiques</string>
   <string name="CategoryCode_NEWS_Description">Principals llocs web de notícies, mitjans regionals i mitjans independents</string>
   <string name="CategoryCode_XED_Description">Qüestions de salut sexual, incloent anticoncepció, malalties de transmissió sexual, prevenció de violacions i avortament</string>
-  <string name="CategoryCode_PUBH_Description">Qüestions de salut pública, incloent VIH, SRAS, grip aviària, Organització Mundial de la Salut</string>
+  <string name="CategoryCode_PUBH_Description">Public health issues, such as COVID-19, HIV/AIDS, Ebola</string>
   <string name="CategoryCode_GMB_Description">Joc i apostes en línia</string>
   <string name="CategoryCode_ANON_Description">Anonimització, elusió de la censura i xifratge</string>
   <string name="CategoryCode_DATE_Description">Llocs de cites en línia</string>

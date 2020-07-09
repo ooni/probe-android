@@ -275,6 +275,8 @@
   <string name="Modal_Error_LogNotFound">Protokolldatei nicht gefunden</string>
   <string name="Modal_Error_NoValidUrls">Keine gültigen URLs gefunden</string>
   <string name="Modal_Error_JsonEmpty">JSON ist leer</string>
+  <string name="Modal_InterruptTest_Title">Do you want to interrupt this test?</string>
+  <string name="Modal_InterruptTest_Paragraph">This will interrupt the current test from this moment.</string>
   <string name="Toast_CopiedToClipboard">In Zwischenablage kopiert</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Nicht hochgeladen</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Hochladen</string>
@@ -408,7 +410,7 @@
   <string name="CategoryCode_HATE_Description">Herabwürdigung bestimmter Gruppen aufgrund von Rasse, Geschlecht, Sexualität oder anderen Merkmalen</string>
   <string name="CategoryCode_NEWS_Description">Große Nachrichtenseiten, regionale Zeitungen und unabhängige Medien</string>
   <string name="CategoryCode_XED_Description">Sexuelle Gesundheitsprobleme einschließlich Verhütung, sexuell übertragbarer Krankheiten, Vergewaltigungsprävention und Abtreibung</string>
-  <string name="CategoryCode_PUBH_Description">Gesundheitswesen mit Informationen zu HIV, SARS, Vogelgrippe, Weltgesundheitsorganisation</string>
+  <string name="CategoryCode_PUBH_Description">Public health issues, such as COVID-19, HIV/AIDS, Ebola</string>
   <string name="CategoryCode_GMB_Description">Online-Glücksspiele und Wetten</string>
   <string name="CategoryCode_ANON_Description">Anonymisierung, Zensurumgehung und Verschlüsselung</string>
   <string name="CategoryCode_DATE_Description">Online-Dating-Seiten</string>

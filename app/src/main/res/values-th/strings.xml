@@ -275,6 +275,8 @@
   <string name="Modal_Error_LogNotFound">ไม่พบแฟ้มปูม</string>
   <string name="Modal_Error_NoValidUrls">ไม่พบ URL ที่ใช้ได้</string>
   <string name="Modal_Error_JsonEmpty">JSON ว่างเปล่า</string>
+  <string name="Modal_InterruptTest_Title">Do you want to interrupt this test?</string>
+  <string name="Modal_InterruptTest_Paragraph">This will interrupt the current test from this moment.</string>
   <string name="Toast_CopiedToClipboard">คัดลอกไปคลิปบอร์ดแล้ว</string>
   <string name="Snackbar_ResultsNotUploaded_Text">ไม่ได้อัปโหลด</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">อัปโหลด</string>
@@ -408,7 +410,7 @@
   <string name="CategoryCode_HATE_Description">การดูถูกเหยียบย่ำกลุ่มเฉพาะเจาะจง บนฐานของเชื้อชาติ เพศ เพศสภาพ หรือลักษณะอื่นๆ</string>
   <string name="CategoryCode_NEWS_Description">เว็บไซต์ข่าวรายใหญ่ ช่องข่าวระดับภูมิภาค และสื่ออิสระ</string>
   <string name="CategoryCode_XED_Description">ประเด็นสุขภาพทางเพศ รวมถึงการคุมกำเนิด โรคติดต่อทางเพศสัมพันธ์ การป้องกันการถูกข่มขืน และการทำแท้ง</string>
-  <string name="CategoryCode_PUBH_Description">ประเด็นสาธารณสุข รวมถึงเอชไอวี ซาร์ส หวัดนก องค์การอนามัยโลก</string>
+  <string name="CategoryCode_PUBH_Description">Public health issues, such as COVID-19, HIV/AIDS, Ebola</string>
   <string name="CategoryCode_GMB_Description">การพนันและการเดิมพันออนไลน์</string>
   <string name="CategoryCode_ANON_Description">การทำให้ตามตัวไม่ได้ การหลบเลี่ยงการปิดกั้น และการเข้ารหัสลับ</string>
   <string name="CategoryCode_DATE_Description">เว็บไซต์นัดเดต</string>

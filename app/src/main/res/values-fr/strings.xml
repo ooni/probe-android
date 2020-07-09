@@ -275,6 +275,8 @@
   <string name="Modal_Error_LogNotFound">Le fichier journal est introuvable</string>
   <string name="Modal_Error_NoValidUrls">Aucune URL valide n’a été trouvée</string>
   <string name="Modal_Error_JsonEmpty">Le JSON est vide</string>
+  <string name="Modal_InterruptTest_Title">Do you want to interrupt this test?</string>
+  <string name="Modal_InterruptTest_Paragraph">This will interrupt the current test from this moment.</string>
   <string name="Toast_CopiedToClipboard">Copié dans le presse-papiers</string>
   <string name="Snackbar_ResultsNotUploaded_Text">N’a pas été téléversé</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Téléversement</string>
@@ -408,7 +410,7 @@
   <string name="CategoryCode_HATE_Description">Dénigrement de groupes particuliers d’après la race, le sexe, la sexualité ou d’autres caractéristiques</string>
   <string name="CategoryCode_NEWS_Description">Grands sites Web d’information, organes d’information régionaux et médias indépendants</string>
   <string name="CategoryCode_XED_Description">Questions relatives à la santé sexuelle, dont la contraception, les ITS, l’avortement et la prévention du viol</string>
-  <string name="CategoryCode_PUBH_Description">Questions relatives à la santé publique, dont le VIH, le SRAG, la grippe aviaire, l’Organisation mondiale de la santé</string>
+  <string name="CategoryCode_PUBH_Description">Public health issues, such as COVID-19, HIV/AIDS, Ebola</string>
   <string name="CategoryCode_GMB_Description">Jeux d’argent et pari en ligne</string>
   <string name="CategoryCode_ANON_Description">Anonymisation, contournement de la censure et chiffrement</string>
   <string name="CategoryCode_DATE_Description">Sites de rencontre en ligne</string>

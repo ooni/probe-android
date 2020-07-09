@@ -275,6 +275,8 @@
   <string name="Modal_Error_LogNotFound">Günlük dosyası bulunamadı</string>
   <string name="Modal_Error_NoValidUrls">Geçerli bir adres bulunamadı</string>
   <string name="Modal_Error_JsonEmpty">JSON boş</string>
+  <string name="Modal_InterruptTest_Title">Do you want to interrupt this test?</string>
+  <string name="Modal_InterruptTest_Paragraph">This will interrupt the current test from this moment.</string>
   <string name="Toast_CopiedToClipboard">Panoya kopyalandı</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Yüklenmemiş</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Yükle</string>
@@ -408,7 +410,7 @@
   <string name="CategoryCode_HATE_Description">Belirli grupların, ırk, cinsiyet, cinsellik ya da diğer özelliklerine göre aşağılanması</string>
   <string name="CategoryCode_NEWS_Description">Ana haber siteleri, bölgesel haber siteleri ve bağımsız medya</string>
   <string name="CategoryCode_XED_Description">Doğum kontrolu, cinsel yolla bulaşan hastalıklar, tecavüz önleme ve kürtaj gibi cinsel sağlık konuları</string>
-  <string name="CategoryCode_PUBH_Description">HIV, SARS, kuş gribi, Dünya Sağlık Örgütü gibi kamu sağlığı konuları</string>
+  <string name="CategoryCode_PUBH_Description">Public health issues, such as COVID-19, HIV/AIDS, Ebola</string>
   <string name="CategoryCode_GMB_Description">Çevrimiçi kumar ve bahis</string>
   <string name="CategoryCode_ANON_Description">Anonimleşme, sansür atlatma ve şifreleme</string>
   <string name="CategoryCode_DATE_Description">Çevrimiçi arkadaşlık siteleri</string>
