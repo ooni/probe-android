@@ -9,4 +9,7 @@ import retrofit2.http.Query;
 public interface OONIAPIClient {
 	@GET("api/v1/measurements")
 	Call<ApiMeasurement> getMeasurement(@Query("report_id") String report_id, @Query("input") String input);
+
+	@GET("api/_/check_report_id")
+	Call<ApiMeasurement> checkReportId(@Query("report_id") String report_id);
 }

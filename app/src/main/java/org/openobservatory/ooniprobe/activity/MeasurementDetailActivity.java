@@ -21,7 +21,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.client.callback.GetMeasurementsCallback;
+import org.openobservatory.ooniprobe.client.callback.CheckReportIdCallback;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.fragment.measurement.DashFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.FacebookMessengerFragment;
@@ -37,7 +37,6 @@ import org.openobservatory.ooniprobe.fragment.measurement.TorFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.WebConnectivityFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.WhatsappFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment;
-import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
@@ -189,12 +188,12 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
         Context c = this;
         isInExplorer = !measurement.hasReportFile(c);
         if (measurement.hasReportFile(c)){
-            //measurement.getUrlString will return null when the measurement is not a web_connectivity
-            getApiClient().getMeasurement(measurement.report_id, measurement.getUrlString()).enqueue(new GetMeasurementsCallback() {
+            getApiClient().checkReportId(measurement.report_id).enqueue(new CheckReportIdCallback() {
                 @Override
-                public void onSuccess(ApiMeasurement.Result result) {
-                    measurement.deleteEntryFile(c);
-                    isInExplorer = true;
+                public void onSuccess(Boolean found) {
+                    if (found)
+                        Measurement.deleteMeasurementWithReportId(c, measurement.report_id);
+                    isInExplorer = found;
                 }
                 @Override
                 public void onError(String msg) {

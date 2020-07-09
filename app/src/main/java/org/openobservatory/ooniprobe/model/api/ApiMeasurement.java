@@ -5,6 +5,7 @@ import java.util.List;
 public class ApiMeasurement {
     public Metadata metadata;
     public List<Result> results = null;
+    public Boolean found;
 
     public class Metadata {
         public Integer count;
@@ -28,4 +29,5 @@ public class ApiMeasurement {
         public String report_id;
         public String test_name;
     }
+
 }
