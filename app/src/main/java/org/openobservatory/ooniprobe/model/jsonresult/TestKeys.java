@@ -226,7 +226,7 @@ public class TestKeys {
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 
-	public String getServer(Context ctx) {
+	public String getServerDetails(Context ctx) {
 		if (server_name != null && server_country != null)
 			return server_name + " - " + server_country;
 		return ctx.getString(R.string.TestResults_NotAvailable);
