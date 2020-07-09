@@ -149,53 +149,57 @@ import androidx.test.filters.SmallTest;
 
 	@Test public void server() {
 		TestKeys testKeys = new TestKeys();
-		Assert.assertEquals(testKeys.getServer(c), c.getString(R.string.TestResults_NotAvailable));
+		Assert.assertEquals(testKeys.getServerDetails(c), c.getString(R.string.TestResults_NotAvailable));
 		testKeys.server_name = BLANK;
 		testKeys.server_country = null;
-		Assert.assertEquals(testKeys.getServer(c), c.getString(R.string.TestResults_NotAvailable));
+		Assert.assertEquals(testKeys.getServerDetails(c), c.getString(R.string.TestResults_NotAvailable));
 		testKeys.server_name = null;
 		testKeys.server_country = BLANK;
-		Assert.assertEquals(testKeys.getServer(c), c.getString(R.string.TestResults_NotAvailable));
+		Assert.assertEquals(testKeys.getServerDetails(c), c.getString(R.string.TestResults_NotAvailable));
 		testKeys.server_name = BLANK;
 		testKeys.server_country = BLANK;
-		Assert.assertEquals(testKeys.getServer(c), BLANK + " - " + BLANK);
+		Assert.assertEquals(testKeys.getServerDetails(c), BLANK + " - " + BLANK);
 	}
 
 	@Test public void packetLoss() {
 		TestKeys testKeys = new TestKeys();
+		testKeys.protocol = 7;
 		Assert.assertEquals(testKeys.getPacketLoss(c), c.getString(R.string.TestResults_NotAvailable));
-		testKeys.advanced = new TestKeys.Advanced();
+		testKeys.summary = new TestKeys.Summary();
 		Assert.assertEquals(testKeys.getPacketLoss(c), c.getString(R.string.TestResults_NotAvailable));
-		testKeys.advanced.packet_loss = 0d;
+		testKeys.summary.retransmit_rate = 0d;
 		Assert.assertEquals(testKeys.getPacketLoss(c), ZERO_THREE);
-		testKeys.advanced.packet_loss = 1d;
+		testKeys.summary.retransmit_rate = 1d;
 		Assert.assertEquals(testKeys.getPacketLoss(c), HUNDRED_THREE);
 	}
 
 	@Test public void averagePing() {
 		TestKeys testKeys = new TestKeys();
+		testKeys.protocol = 7;
 		Assert.assertEquals(testKeys.getAveragePing(c), c.getString(R.string.TestResults_NotAvailable));
-		testKeys.advanced = new TestKeys.Advanced();
+		testKeys.summary = new TestKeys.Summary();
 		Assert.assertEquals(testKeys.getAveragePing(c), c.getString(R.string.TestResults_NotAvailable));
-		testKeys.advanced.avg_rtt = 0d;
+		testKeys.summary.avg_rtt = 0d;
 		Assert.assertEquals(testKeys.getAveragePing(c), ZERO_ONE);
 	}
 
 	@Test public void maxPing() {
 		TestKeys testKeys = new TestKeys();
+		testKeys.protocol = 7;
 		Assert.assertEquals(testKeys.getMaxPing(c), c.getString(R.string.TestResults_NotAvailable));
-		testKeys.advanced = new TestKeys.Advanced();
+		testKeys.summary = new TestKeys.Summary();
 		Assert.assertEquals(testKeys.getMaxPing(c), c.getString(R.string.TestResults_NotAvailable));
-		testKeys.advanced.max_rtt = 0d;
+		testKeys.summary.max_rtt = 0d;
 		Assert.assertEquals(testKeys.getMaxPing(c), ZERO_ONE);
 	}
 
 	@Test public void mss() {
 		TestKeys testKeys = new TestKeys();
+		testKeys.protocol = 7;
 		Assert.assertEquals(testKeys.getMSS(c), c.getString(R.string.TestResults_NotAvailable));
-		testKeys.advanced = new TestKeys.Advanced();
+		testKeys.summary = new TestKeys.Summary();
 		Assert.assertEquals(testKeys.getMSS(c), c.getString(R.string.TestResults_NotAvailable));
-		testKeys.advanced.mss = 0d;
+		testKeys.summary.mss = 0d;
 		Assert.assertEquals(testKeys.getMSS(c), ZERO_ZERO);
 	}
 
