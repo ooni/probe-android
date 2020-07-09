@@ -4,7 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.animation.Animation;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,17 +22,20 @@ import org.openobservatory.ooniprobe.common.NotificationService;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
+import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
 import java.util.ArrayList;
 
+import java.io.Serializable;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 import localhost.toolkit.app.fragment.MessageDialogFragment;
 
-public class RunningActivity extends AbstractActivity {
+public class RunningActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String TEST = "test";
     private static final String BACKGROUND_TASK = "background";
-
     @BindView(R.id.name)
     TextView name;
     @BindView(R.id.log)
@@ -38,12 +44,15 @@ public class RunningActivity extends AbstractActivity {
     TextView eta;
     @BindView(R.id.progress)
     ProgressBar progress;
+    @BindView(R.id.close)
+    ImageButton close;
     @BindView(R.id.animation)
     LottieAnimationView animation;
     private ArrayList<AbstractSuite> testSuites;
     private AbstractSuite testSuite;
     private boolean background;
     private Integer runtime;
+    private TestAsyncTask task;
 
     public static Intent newIntent(AbstractActivity context, ArrayList<AbstractSuite> testSuites) {
         if (ReachabilityManager.getNetworkType(context).equals(ReachabilityManager.NO_INTERNET)) {
@@ -76,7 +85,7 @@ public class RunningActivity extends AbstractActivity {
         //https://stackoverflow.com/questions/10008879/intent-to-start-activity-but-dont-bring-to-front
         if (getIntent().getBooleanExtra(BACKGROUND_TASK, false))
             moveTaskToBack(true);
-            
+
         setTheme(R.style.Theme_MaterialComponents_NoActionBar_App);
         setContentView(R.layout.activity_running);
         ButterKnife.bind(this);
@@ -95,7 +104,7 @@ public class RunningActivity extends AbstractActivity {
             testSuite = testSuites.get(0);
             testStart();
             setTestRunning(true);
-            new TestAsyncTaskImpl(this, testSuite.getResult()).execute(testSuite.getTestList(getPreferenceManager()));
+            task = (TestAsyncTaskImpl) new TestAsyncTaskImpl(this, testSuite.getResult()).execute(testSuite.getTestList(getPreferenceManager()));
         }
     }
 
@@ -112,6 +121,19 @@ public class RunningActivity extends AbstractActivity {
         progress.setIndeterminate(true);
         eta.setText(R.string.Dashboard_Running_CalculatingETA);
         progress.setMax(testSuite.getTestList(getPreferenceManager()).length * 100);
+        //TODO remove this line when web_connectiviity will be in go
+        close.setVisibility(testSuite.getName().equals(WebsitesSuite.NAME) ? View.GONE : View.VISIBLE);
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new ConfirmDialogFragment.Builder()
+                        .withTitle(getString(R.string.Modal_InterruptTest_Title))
+                        .withMessage(getString(R.string.Modal_InterruptTest_Paragraph))
+                        .withPositiveButton(getString(R.string.Modal_OK))
+                        .withNegativeButton(getString(R.string.Modal_Cancel))
+                        .build().show(getSupportFragmentManager(), null);
+            }
+        });
     }
 
     @Override
@@ -157,7 +179,8 @@ public class RunningActivity extends AbstractActivity {
                         act.eta.setText(act.getString(R.string.Dashboard_Running_Seconds, String.valueOf(Math.round(act.runtime - ((double) prgs) / act.progress.getMax() * act.runtime))));
                         break;
                     case LOG:
-                        act.log.setText(values[1]);
+                        if (!act.task.isInterrupted())
+                            act.log.setText(values[1]);
                         break;
                     case ERR:
                         Toast.makeText(act, values[1], Toast.LENGTH_SHORT).show();
@@ -190,6 +213,15 @@ public class RunningActivity extends AbstractActivity {
                 act.finish();
             }
 
+        }
+    }
+
+    @Override
+    public void onConfirmation(Serializable serializable, int i) {
+        if (i == DialogInterface.BUTTON_POSITIVE) {
+            running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
+            log.setText(getString(R.string.Dashboard_Running_Stopping_Notice));
+            task.interrupt();
         }
     }
 }

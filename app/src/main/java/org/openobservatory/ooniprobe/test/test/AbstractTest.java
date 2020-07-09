@@ -45,6 +45,7 @@ public abstract class AbstractTest implements Serializable {
     private SparseArray<Measurement> measurements;
     private String reportId;
     private String origin;
+    private ExperimentTask task;
 
     AbstractTest(String name, String mkName, @StringRes int labelResId, @DrawableRes int iconResId, @StringRes int urlResId, int runtime) {
         this.name = name;
@@ -74,7 +75,6 @@ public abstract class AbstractTest implements Serializable {
         settings.options.max_runtime = max_runtime;
         settings.annotations.origin = origin;
         measurements = new SparseArray<>();
-        ExperimentTask task;
         try {
             task = Engine.startExperimentTask(settings.toExperimentSettings(gson, c));
         } catch (Exception exc) {
@@ -162,6 +162,14 @@ public abstract class AbstractTest implements Serializable {
                     case "bug.json_dump":
                         ExceptionManager.logException(new MKException(event));
                         break;
+                    case "task_terminated":
+                        /*
+                         * The task will be interrupted so the current
+                         * measurement data will not show up.
+                         * The measurement db object can be deleted
+                         * TODO to be tested when web_connectivity will be implemented
+                         */
+                        break;
                     default:
                         Log.w(UNUSED_KEY, event.key);
                         break;
@@ -170,6 +178,15 @@ public abstract class AbstractTest implements Serializable {
                 e.printStackTrace();
                 ExceptionManager.logException(e);
             }
+    }
+
+    public boolean canInterrupt(){
+        return task == null ? false :  task.canInterrupt();
+    }
+
+    public void interrupt(){
+        if(task.canInterrupt())
+            task.interrupt();
     }
 
     @CallSuper

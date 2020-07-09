@@ -36,6 +36,8 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 	public static final String URL = "URL";
 	protected final WeakReference<ACT> ref;
 	private final Result result;
+	private AbstractTest currentTest;
+	private boolean interrupt;
 
 	protected TestAsyncTask(ACT activity, Result result) {
 		this.ref = new WeakReference<>(activity);
@@ -80,9 +82,12 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 						publishProgress(URL);
 					}
 				}
-				for (int i = 0; i < tests.length; i++)
-					if (!act.isFinishing())
-						tests[i].run(act, act.getPreferenceManager(), act.getGson(), result, i, this);
+				for (int i = 0; i < tests.length; i++) {
+					if (!act.isFinishing() && !interrupt) {
+						currentTest = tests[i];
+						currentTest.run(act, act.getPreferenceManager(), act.getGson(), result, i, this);
+					}
+				}
 			} catch (Exception e) {
 				publishProgress(ERR, act.getString(R.string.Modal_Error_CantDownloadURLs));
 			}
@@ -99,5 +104,15 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 
 	@Override public final void onLog(String log) {
 		publishProgress(LOG, log);
+	}
+
+	public synchronized boolean isInterrupted() {
+		return interrupt;
+	}
+
+	public synchronized void interrupt(){
+		interrupt = true;
+		if(currentTest.canInterrupt())
+			currentTest.interrupt();
 	}
 }

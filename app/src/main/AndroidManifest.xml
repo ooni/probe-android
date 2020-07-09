@@ -23,19 +23,6 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".activity.BrowserActivity"
-			android:screenOrientation="userPortrait"
-			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
-			<intent-filter>
-				<action android:name="org.openobservatory.ooniprobe.OPEN_BROWSER" />
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-		</activity>
-		<activity
-			android:name=".activity.NotificationDialogActivity"
-			android:screenOrientation="userPortrait"
-			android:theme="@style/Theme.MaterialComponents.Light.Transparent" />
-		<activity
 			android:name=".activity.OnboardingActivity"
 			android:screenOrientation="userPortrait"
 			android:theme="@style/Theme.MaterialComponents.NoActionBar.Onboarding" />
