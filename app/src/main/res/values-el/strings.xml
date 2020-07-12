@@ -220,7 +220,7 @@
   <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph">Η σύνδεση στο [Psiphon] (https://psiphon.ca/) φαίνεται να έχει μπλοκαριστεί.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph">Η σύνδεση στο [Psiphon](https://psiphon.ca/) ήταν επιτυχής, και επομένως πρέπει να λειτουργεί.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Χρόνος εκκίνησης</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s \' \'</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s \'</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Hero_Title">Πιθανή λογοκρισία</string>
   <string name="TestResults_Details_Circumvention_Tor_Reachable_Hero_Title">Λειτουργεί</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Content_Paragraph">Η σύνδεση στο [Tor](https://www.torproject.org/) φαίνεται να έχει μπλοκαριστεί.</string>
@@ -275,6 +275,8 @@
   <string name="Modal_Error_LogNotFound">Δεν βρέθηκε αρχείο καταγραφής</string>
   <string name="Modal_Error_NoValidUrls">Δεν βρέθηκαν έγκυρα URL</string>
   <string name="Modal_Error_JsonEmpty">Άδειο JSON</string>
+  <string name="Modal_InterruptTest_Title">Do you want to interrupt this test?</string>
+  <string name="Modal_InterruptTest_Paragraph">This will interrupt the current test from this moment.</string>
   <string name="Toast_CopiedToClipboard">Αντιγράφηκε στο πρόχειρο</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Δεν ανέβηκαν</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Ανέβασμα</string>
@@ -408,7 +410,7 @@
   <string name="CategoryCode_HATE_Description">Δυσφήμιση ορισμένων κοινωνικών ομάδων με βάση τη φυλή, το φύλο, τη σεξουαλικότητα ή άλλα χαρακτηριστικά</string>
   <string name="CategoryCode_NEWS_Description">Σημαντικές ιστοσελίδες ειδήσεων, περιφερειακά πρακτορεία ειδήσεων και ανεξάρτητα μέσα ενημέρωσης</string>
   <string name="CategoryCode_XED_Description">Θέματα σεξουαλικής υγείας, όπως αντισύλληψη, σεξουαλικώς μεταδιδόμενα νοσήματα, πρόληψη βιασμού και έκτρωση</string>
-  <string name="CategoryCode_PUBH_Description">Ζητήματα δημόσιας υγείας, όπως HIV/AIDS, γρίπη των πτηνών, Παγκόσμιος Οργανισμός Υγείας</string>
+  <string name="CategoryCode_PUBH_Description">Public health issues, such as COVID-19, HIV/AIDS, Ebola</string>
   <string name="CategoryCode_GMB_Description">Τυχερά παιχνίδια και στοιχήματα</string>
   <string name="CategoryCode_ANON_Description">Ανωνυμοποίηση, παράκαμψη λογοκρισίας και κρυπτογράφηση</string>
   <string name="CategoryCode_DATE_Description">Ιστοσελίδες για προσωπικές γνωριμίες και σχέσεις</string>

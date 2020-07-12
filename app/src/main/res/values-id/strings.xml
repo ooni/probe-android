@@ -275,6 +275,8 @@
   <string name="Modal_Error_LogNotFound">Berkas Log tidak ditemukan</string>
   <string name="Modal_Error_NoValidUrls">Ditemukan URL yang tidak sahih</string>
   <string name="Modal_Error_JsonEmpty">JSON kosong</string>
+  <string name="Modal_InterruptTest_Title">Do you want to interrupt this test?</string>
+  <string name="Modal_InterruptTest_Paragraph">This will interrupt the current test from this moment.</string>
   <string name="Toast_CopiedToClipboard">Disalin ke clipboard</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Tidak terunggah</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Unggah</string>
@@ -408,7 +410,7 @@
   <string name="CategoryCode_HATE_Description">Pelecehan kelompok tertentu berdasarkan ras, kelamin, kecenderungan seksual atau karakteristik lainnya</string>
   <string name="CategoryCode_NEWS_Description">Laman-laman berita ternama, berita regional dan media independen</string>
   <string name="CategoryCode_XED_Description">Isu-isu kesehatan seksual termasuk alat kontrasepsi, STD, pencegahan pemerkosaan dan aborsi</string>
-  <string name="CategoryCode_PUBH_Description">Isu-isu kesehatan publik termasuk HIV, SARS, flu burung, Organisasi Kesehatan Dunia WHO</string>
+  <string name="CategoryCode_PUBH_Description">Public health issues, such as COVID-19, HIV/AIDS, Ebola</string>
   <string name="CategoryCode_GMB_Description">Perjudian dan pertaruhan daring</string>
   <string name="CategoryCode_ANON_Description">Pengaturan anonim, penyensoran, pengelakan dan enkripsi</string>
   <string name="CategoryCode_DATE_Description">Situs-situs kencan daring</string>

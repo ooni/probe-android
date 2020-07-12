@@ -275,6 +275,8 @@
   <string name="Modal_Error_LogNotFound">ملف السجلّ غير موجود</string>
   <string name="Modal_Error_NoValidUrls">لم يتم العثور على روابط صحيحة</string>
   <string name="Modal_Error_JsonEmpty">JSON فارغ</string>
+  <string name="Modal_InterruptTest_Title">Do you want to interrupt this test?</string>
+  <string name="Modal_InterruptTest_Paragraph">This will interrupt the current test from this moment.</string>
   <string name="Toast_CopiedToClipboard">نسخ إلى الحافظة</string>
   <string name="Snackbar_ResultsNotUploaded_Text">لم يتمّ الرفع</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">رفع</string>
@@ -408,7 +410,7 @@
   <string name="CategoryCode_HATE_Description">ذم مجموعات معيّنة بناءً على العرق، الجنس، الجنسانيّة، أو ميّزات أخرى</string>
   <string name="CategoryCode_NEWS_Description">مواقع الأخبار الرئيسيّة، مواقع الإعلام المستقل والأخبار المحليّة</string>
   <string name="CategoryCode_XED_Description">قضايا الصحة الجنسيّة مثل وسائل منع الحمل، الأمراض المنقولة جنسياً، منع الاغتصاب، والإجهاض </string>
-  <string name="CategoryCode_PUBH_Description">قضايا الصحة العامّة بما فيها الأيدز، الالتهاب الرئوي اللانمطي الحاد المعروف بسارس، انفلونزا الطيور، منظّمة الصحة العالميّة </string>
+  <string name="CategoryCode_PUBH_Description">Public health issues, such as COVID-19, HIV/AIDS, Ebola</string>
   <string name="CategoryCode_GMB_Description">القمار على النت والمراهنة</string>
   <string name="CategoryCode_ANON_Description">أدوات مجهوليّة، تجاوز رقابة وتعمية </string>
   <string name="CategoryCode_DATE_Description">مواقع المواعدة على النت</string>

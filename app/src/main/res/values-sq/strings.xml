@@ -275,6 +275,8 @@
   <string name="Modal_Error_LogNotFound">Skedari i Log -eve nuk u gjet</string>
   <string name="Modal_Error_NoValidUrls">Nuk u gjet URL e vlefshme</string>
   <string name="Modal_Error_JsonEmpty">JSON është bosh</string>
+  <string name="Modal_InterruptTest_Title">Do you want to interrupt this test?</string>
+  <string name="Modal_InterruptTest_Paragraph">This will interrupt the current test from this moment.</string>
   <string name="Toast_CopiedToClipboard">U kopjua në tabelën-mbledhëse</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Nuk është ngarkuar</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Ngarkoni</string>
@@ -408,7 +410,7 @@
   <string name="CategoryCode_HATE_Description">Diskriminim i grupimeve të caktuara bazuar mbi gjininë, seksualitetin ose karakteristika të tjera</string>
   <string name="CategoryCode_NEWS_Description">Faqe kryesore lajmesh, portale rajonale lajmesh dhe media të pavarura</string>
   <string name="CategoryCode_XED_Description">Çështje të shëndetit seksual përfshirë kontraceptim, SST, përdhunim, parandalim dhe abort</string>
-  <string name="CategoryCode_PUBH_Description">Çështje të shëndetit publik përfshirë HIV, virusi SARS, gripi i shpendëve, Organizata Botërore e Shëndetit</string>
+  <string name="CategoryCode_PUBH_Description">Public health issues, such as COVID-19, HIV/AIDS, Ebola</string>
   <string name="CategoryCode_GMB_Description">Kumar në internet dhe baste</string>
   <string name="CategoryCode_ANON_Description">Anonimitet, shkelje të censurimit dhe enkriptim</string>
   <string name="CategoryCode_DATE_Description">Faqe lidhjesh në internet</string>

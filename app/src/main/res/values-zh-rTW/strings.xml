@@ -275,6 +275,8 @@
   <string name="Modal_Error_LogNotFound">找無日誌檔案</string>
   <string name="Modal_Error_NoValidUrls">找不到有效的 URLs</string>
   <string name="Modal_Error_JsonEmpty">JSON 清空</string>
+  <string name="Modal_InterruptTest_Title">Do you want to interrupt this test?</string>
+  <string name="Modal_InterruptTest_Paragraph">This will interrupt the current test from this moment.</string>
   <string name="Toast_CopiedToClipboard">複製到剪貼簿</string>
   <string name="Snackbar_ResultsNotUploaded_Text">未上傳的</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">上傳</string>
@@ -408,7 +410,7 @@
   <string name="CategoryCode_HATE_Description">因種族，性別，性別認同或其他特徵而詆毀特定群體</string>
   <string name="CategoryCode_NEWS_Description">主要新聞網站、地區新聞媒體和獨立媒體</string>
   <string name="CategoryCode_XED_Description">性敎育議題，包括避孕、性病、強暴防制與墮胎\n</string>
-  <string name="CategoryCode_PUBH_Description">公衛議題包含 HIV, SARS, 禽流感, 世界衛生組織</string>
+  <string name="CategoryCode_PUBH_Description">Public health issues, such as COVID-19, HIV/AIDS, Ebola</string>
   <string name="CategoryCode_GMB_Description">線上賭博與下注</string>
   <string name="CategoryCode_ANON_Description">匿名化，審查規避和加密</string>
   <string name="CategoryCode_DATE_Description">線上約會網站</string>
