@@ -25,19 +25,24 @@ public class NotificationService {
         if (!preferenceManager.isNotifications())
             return;
         CountlyPush.init((Application) context, BuildConfig.DEBUG? Countly.CountlyMessagingMode.TEST:Countly.CountlyMessagingMode.PRODUCTION);
-        NotificationService.setChannel(context, CountlyPush.CHANNEL_ID, context.getString(R.string.General_AppName));
+        //TODO-COUNTLY strings
+        NotificationService.setChannel(context, CountlyPush.CHANNEL_ID,
+                context.getString(R.string.General_AppName), context.getString(R.string.General_AppName));
         NotificationService.setToken((Application) context);
     }
 
     public static void notifyTestEnded(Context c, AbstractSuite testSuite) {
-        setChannel(c, TEST_RUN, c.getString(R.string.Settings_Notifications_OnTestCompletion));
+        //TODO-COUNTLY strings
+        setChannel(c, TEST_RUN,
+                c.getString(R.string.Settings_Notifications_OnTestCompletion),
+                c.getString(R.string.Settings_Notifications_OnTestCompletion));
         sendNotification(c, c.getString(R.string.General_AppName), c.getString(testSuite.getTitle()) + " " + c.getString(R.string.Notification_FinishedRunning));
     }
 
     /*
      * Used for local notification, ex "test has finished running"
      */
-    public static void sendNotification(Context c, String title, String message) {
+    private static void sendNotification(Context c, String title, String message) {
         NotificationManager notificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
         if (notificationManager == null)
             return;
@@ -57,25 +62,21 @@ public class NotificationService {
         notificationManager.notify(1, b.build());
     }
 
-    public static void setToken(Application a){
+    private static void setToken(Application a){
         if (a.getPreferenceManager().getToken() != null)
             CountlyPush.onTokenRefresh(a.getPreferenceManager().getToken());
         System.out.println("CountlyPush " + a.getPreferenceManager().getToken());
     }
 
-    //TODO-COUNTLY better code https://developer.android.com/training/notify-user/channels
-    //https://code.tutsplus.com/tutorials/android-o-how-to-use-notification-channels--cms-28616
-    //https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK
-    //Creating an existing notification channel with its original values performs no operation, so it's safe to call this code when starting an app.
-    public static void setChannel(Context c, String channelID, String channelName){
+    // Register the channel with the system
+    private static void setChannel(Context c, String channelID, String channelName, String description){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationManager notificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
             if (notificationManager != null) {
-                notificationManager.createNotificationChannel(
-                        new NotificationChannel(channelID, channelName, NotificationManager.IMPORTANCE_DEFAULT)
-                );
+                NotificationChannel channel = new NotificationChannel(channelID, channelName, NotificationManager.IMPORTANCE_DEFAULT);
+                channel.setDescription(description);
+                notificationManager.createNotificationChannel(channel);
             }
         }
     }
-
 }

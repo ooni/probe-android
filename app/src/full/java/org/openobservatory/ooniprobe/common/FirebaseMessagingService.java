@@ -28,19 +28,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 			return;
 		}
 
-		//TODO-COUNTLY
-		//Handle ooni run JSON (maybe not needed)
-		Intent notificationIntent = null;
-		 if (message.has("type") && message.data("type").equals("ooni_run")) {
-			 Log.i(TAG, "It's a OONIRun message!");
-			 notificationIntent = new Intent(getApplicationContext(), OoniRunActivity.class);
-			 notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			 notificationIntent.putExtra("mv",  message.data("mv"));
-			 notificationIntent.putExtra("ta",  message.data("ta"));
-			 notificationIntent.putExtra("tn",  message.data("tn"));
-		}
-
-		Boolean result = CountlyPush.displayMessage(getApplicationContext(), message, R.drawable.notification_icon, notificationIntent);
+		Boolean result = CountlyPush.displayMessage(getApplicationContext(), message, R.drawable.notification_icon, null);
 		if (result == null) {
 			Log.i(TAG, "Message wasn't sent from Countly server, so it cannot be handled by Countly SDK");
 		} else if (result) {
@@ -49,43 +37,20 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 			Log.i(TAG, "Message wasn't handled by Countly SDK because API level is too low for Notification support or because currentActivity is null (not enough lifecycle method calls)");
 		}
 	}
-	
 
-/*
-	@Override
-	public void onMessageReceived(RemoteMessage remoteMessage) {
-		// TODO(developer): Handle FCM messages here.
-		// Not getting messages here? See why this may be: https://goo.gl/39bRNJ
-		Log.d(TAG, "Message from: " + remoteMessage.getFrom());
-		//Log.d(TAG, "Message data notification: " + remoteMessage.getNotification().getBody());
-		Log.d(TAG, "Message data notification: " + remoteMessage.getNotification());
-		Log.d(TAG, "Message data payload: " + remoteMessage.getData());
-		Map<String, String> params = remoteMessage.getData();
-		// Check if message contains a data payload.
-		if (remoteMessage.getData().size() > 0) {
-			try {
-				//TODO how to handle properly https://github.com/firebase/quickstart-android/blob/e9197f731e13b78dc29d95102af201347634aac2/messaging/app/src/main/java/com/google/firebase/quickstart/fcm/java/MyFirebaseMessagingService.java#L58-L101
-				NotificationService.sendNotification(this, remoteMessage.getData().get("title"), remoteMessage.getData().get("message"), 0);
-
-				//TODO-FUTURE we can use click_action instead of type
-				JSONObject data = new JSONObject(params.toString());
-				//TODO change these parameters
-			  if (data.getString("type").equals("ooni_run")) {
-					Intent intent = new Intent(getApplicationContext(), OoniRunActivity.class);
-					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					intent.putExtra("mv",  params.get("mv"));
-					intent.putExtra("tn",  params.get("tn"));
-					//intent.putExtra("message", remoteMessage.getNotification().getBody());
-					//intent.putExtra("payload", data.getString("payload"));
-					getApplicationContext().startActivity(intent);
-				}
-
-			} catch (Exception e) {
-				System.out.println("JSONException " + e);
-			}
+	//Handle ooni run JSON. This is not needed for now
+	public void handleJson(CountlyPush.Message message){
+		Intent notificationIntent = null;
+		if (message.has("type") && message.data("type").equals("ooni_run")) {
+			Log.i(TAG, "It's a OONIRun message!");
+			notificationIntent = new Intent(getApplicationContext(), OoniRunActivity.class);
+			notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			notificationIntent.putExtra("mv",  message.data("mv"));
+			notificationIntent.putExtra("ta",  message.data("ta"));
+			notificationIntent.putExtra("tn",  message.data("tn"));
 		}
 	}
-*/
+
 	@Override public void onNewToken(String token) {
 		((Application) getApplicationContext()).getPreferenceManager().setToken(token);
 		CountlyPush.onTokenRefresh(token);
