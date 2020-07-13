@@ -70,7 +70,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                         .build().show(getSupportFragmentManager(), null);
             }
             if (getPreferenceManager().isShareAnalyticsDialog()) {
-                //TODO-COUNTLY add strings and test setting false
+                //TODO-COUNTLY strings and invert buttons?
                 new ConfirmDialogFragment.Builder()
                         .withTitle(getString(R.string.Modal_ManualUpload_Title))
                         .withMessage(getString(R.string.Modal_ManualUpload_Paragraph))

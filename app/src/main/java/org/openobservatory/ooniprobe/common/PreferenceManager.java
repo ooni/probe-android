@@ -76,8 +76,10 @@ public class PreferenceManager {
 	}
 
 	public void setShowOnboarding(boolean showIntro) {
-		sp.edit().putBoolean(IS_ANALYTICS_DIALOG, showIntro)
-				.putBoolean(IS_MANUAL_UPLOAD_DIALOG, showIntro).apply();
+		sp.edit().putBoolean(SHOW_ONBOARDING, showIntro)
+				.putBoolean(IS_ANALYTICS_DIALOG, showIntro)
+				.putBoolean(IS_MANUAL_UPLOAD_DIALOG, showIntro)
+				.apply();
 	}
 
 	/*
