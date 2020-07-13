@@ -12,7 +12,6 @@ import ly.count.android.sdk.messaging.CountlyPush;
 
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
 	private static final String TAG = "FCM";
-	//TODO-COUNTLY prevent data collection https://firebase.google.com/docs/cloud-messaging/android/client#manifest
 
 	@Override
 	public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -29,6 +28,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 			return;
 		}
 
+		//TODO-COUNTLY
 		//Handle ooni run JSON (maybe not needed)
 		Intent notificationIntent = null;
 		 if (message.has("type") && message.data("type").equals("ooni_run")) {
@@ -49,6 +49,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 			Log.i(TAG, "Message wasn't handled by Countly SDK because API level is too low for Notification support or because currentActivity is null (not enough lifecycle method calls)");
 		}
 	}
+	
 
 /*
 	@Override

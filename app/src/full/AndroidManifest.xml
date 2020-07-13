@@ -15,7 +15,9 @@
 		<meta-data
 			android:name="com.google.firebase.messaging.default_notification_channel_id"
 			android:value="@string/General_AppName" />
-
+		<meta-data
+			android:name="firebase_analytics_collection_deactivated"
+			android:value="true" />
 		<service android:name=".common.FirebaseMessagingService"
 			android:exported="false">
 		<intent-filter>
