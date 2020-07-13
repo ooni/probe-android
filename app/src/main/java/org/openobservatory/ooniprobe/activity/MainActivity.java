@@ -24,6 +24,9 @@ import ly.count.android.sdk.Countly;
 
 public class MainActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String RES_ITEM = "resItem";
+    private static final String MANUAL_UPLOAD_DIALOG = "manual_upload";
+    private static final String ANALYTICS_DIALOG = "analytics";
+
     @BindView(R.id.bottomNavigation)
     BottomNavigationView bottomNavigation;
 
@@ -57,16 +60,24 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 }
             });
             bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
-            if (getPreferenceManager().isManualUploadDialog())
+            if (getPreferenceManager().isManualUploadDialog()) {
                 new ConfirmDialogFragment.Builder()
                         .withTitle(getString(R.string.Modal_ManualUpload_Title))
                         .withMessage(getString(R.string.Modal_ManualUpload_Paragraph))
                         .withPositiveButton(getString(R.string.Modal_ManualUpload_Enable))
                         .withNegativeButton(getString(R.string.Modal_ManualUpload_Disable))
+                        .withExtra(MANUAL_UPLOAD_DIALOG)
                         .build().show(getSupportFragmentManager(), null);
+            }
             if (getPreferenceManager().isShareAnalyticsDialog()) {
-                //TODO-COUNTLY
-
+                //TODO-COUNTLY add strings and test setting false
+                new ConfirmDialogFragment.Builder()
+                        .withTitle(getString(R.string.Modal_ManualUpload_Title))
+                        .withMessage(getString(R.string.Modal_ManualUpload_Paragraph))
+                        .withPositiveButton(getString(R.string.Modal_ManualUpload_Enable))
+                        .withNegativeButton(getString(R.string.Modal_ManualUpload_Disable))
+                        .withExtra(ANALYTICS_DIALOG)
+                        .build().show(getSupportFragmentManager(), null);
             }
         }
     }
@@ -83,8 +94,11 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     }
 
     @Override
-    public void onConfirmation(Serializable serializable, int i) {
-        getPreferenceManager().setManualUploadResults(i == DialogInterface.BUTTON_POSITIVE);
+    public void onConfirmation(Serializable extra, int i) {
+        if (extra.equals(MANUAL_UPLOAD_DIALOG))
+            getPreferenceManager().setManualUploadResults(i == DialogInterface.BUTTON_POSITIVE);
+        else if (extra.equals(ANALYTICS_DIALOG))
+            getPreferenceManager().setSendAnalytics(i == DialogInterface.BUTTON_POSITIVE);
     }
 
     @Override

@@ -9,26 +9,34 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
+import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
+import ly.count.android.sdk.Countly;
 import ly.count.android.sdk.messaging.CountlyPush;
 
 public class NotificationService {
     private static final String TEST_RUN = "TEST_RUN";
 
+    public static void initNotification(Context context){
+        PreferenceManager preferenceManager = ((Application) context.getApplicationContext()).getPreferenceManager();
+        if (!preferenceManager.isNotifications())
+            return;
+        CountlyPush.init((Application) context, BuildConfig.DEBUG? Countly.CountlyMessagingMode.TEST:Countly.CountlyMessagingMode.PRODUCTION);
+        NotificationService.setChannel(context, CountlyPush.CHANNEL_ID, context.getString(R.string.General_AppName));
+        NotificationService.setToken((Application) context);
+    }
+
     public static void notifyTestEnded(Context c, AbstractSuite testSuite) {
         setChannel(c, TEST_RUN, c.getString(R.string.Settings_Notifications_OnTestCompletion));
         sendNotification(c, c.getString(R.string.General_AppName), c.getString(testSuite.getTitle()) + " " + c.getString(R.string.Notification_FinishedRunning));
     }
-/*
-    public static void notificationReceived(Context c, String title, String message, String type) {
-        setChannel(c, TEST_RUN, c.getString(R.string.Settings_Notifications_OnTestCompletion));
-        sendNotification(c, c.getString(R.string.General_AppName), c.getString(testSuite.getTitle()) + " " + c.getString(R.string.Notification_FinishedRunning), testSuite.getIcon());
-    }
-*/
 
+    /*
+     * Used for local notification, ex "test has finished running"
+     */
     public static void sendNotification(Context c, String title, String message) {
         NotificationManager notificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
         if (notificationManager == null)
@@ -55,7 +63,7 @@ public class NotificationService {
         System.out.println("CountlyPush " + a.getPreferenceManager().getToken());
     }
 
-    //TODO better code https://developer.android.com/training/notify-user/channels
+    //TODO-COUNTLY better code https://developer.android.com/training/notify-user/channels
     //https://code.tutsplus.com/tutorials/android-o-how-to-use-notification-channels--cms-28616
     //https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK
     //Creating an existing notification channel with its original values performs no operation, so it's safe to call this code when starting an app.

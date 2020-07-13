@@ -1,6 +1,5 @@
 package org.openobservatory.ooniprobe.fragment;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -23,15 +22,12 @@ import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.CountlyManager;
-import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.common.NotificationService;
 
-import java.io.Serializable;
 import java.util.Arrays;
 
-import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 import localhost.toolkit.app.fragment.MessageDialogFragment;
 import localhost.toolkit.preference.ExtendedPreferenceFragment;
-import ly.count.android.sdk.Countly;
 
 public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFragment> implements SharedPreferences.OnSharedPreferenceChangeListener {
     public static final String ARG_PREFERENCES_RES_ID = "org.openobservatory.ooniprobe.fragment.PreferenceFragment.PREF_RES_ID";
@@ -102,8 +98,12 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Preference preference = findPreference(key);
-        if (key.equals(getString(R.string.send_crash)) || key.equals(getString(R.string.send_analytics)) || key.equals(getString(R.string.notifications_enabled))){
+        if (key.equals(getString(R.string.send_crash)) ||
+                key.equals(getString(R.string.send_analytics)) ||
+                key.equals(getString(R.string.notifications_enabled))){
             CountlyManager.reloadConsent(((Application) getActivity().getApplication()).getPreferenceManager());
+            if (key.equals(getString(R.string.notifications_enabled)))
+                NotificationService.initNotification(getActivity());
         }
         else if (preference instanceof EditTextPreference) {
             String value = sharedPreferences.getString(key, null);

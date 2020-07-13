@@ -5,11 +5,8 @@ import android.util.Log;
 
 import com.google.firebase.messaging.RemoteMessage;
 
-import org.json.JSONObject;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.OoniRunActivity;
-
-import java.util.Map;
 
 import ly.count.android.sdk.messaging.CountlyPush;
 

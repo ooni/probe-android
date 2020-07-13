@@ -7,6 +7,7 @@ import org.openobservatory.ooniprobe.BuildConfig;
 import ly.count.android.sdk.Countly;
 import ly.count.android.sdk.CountlyConfig;
 import ly.count.android.sdk.DeviceId;
+import ly.count.android.sdk.messaging.CountlyPush;
 
 public class CountlyManager {
     public static String[] basicFeatures = new String[]{
@@ -55,6 +56,5 @@ public class CountlyManager {
         Countly.sharedInstance().consent().setConsent(crashFeatures, preferenceManager.isSendCrash());
         Countly.sharedInstance().consent().setConsent(analyticsFeatures, preferenceManager.isSendAnalytics());
         Countly.sharedInstance().consent().setConsent(pushFeatures, preferenceManager.isNotifications());
-        //TODO-COUNTLY init countly notification?
     }
 }

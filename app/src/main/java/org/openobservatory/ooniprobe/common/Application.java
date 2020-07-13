@@ -14,9 +14,6 @@ import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 import java.io.IOException;
 import java.util.Date;
 
-import ly.count.android.sdk.Countly;
-import ly.count.android.sdk.CountlyConfig;
-import ly.count.android.sdk.DeviceId;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

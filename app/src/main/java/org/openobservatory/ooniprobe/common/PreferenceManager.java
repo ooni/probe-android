@@ -13,9 +13,9 @@ public class PreferenceManager {
 	static final String GEO_VER = "geo_ver";
 	public static final Integer MAX_RUNTIME_DISABLED = -1;
 	private static final String IS_MANUAL_UPLOAD_DIALOG = "isManualUploadDialog";
+	private static final String IS_ANALYTICS_DIALOG = "isAnalyticsDialog";
 	private static final String TOKEN = "token";
 	private static final String SHOW_ONBOARDING = "first_run";
-	private static final String SHOW_SHARE_ANALYTICS = "show_share_analytics";
 	//This is in ms, set to one day
 	public static final Integer DELETE_JSON_DELAY = 86400000;
 	private static final String DELETE_JSON_KEY = "deleteUploadedJsons";
@@ -67,13 +67,16 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.send_analytics), true);
 	}
 
+	public void setSendAnalytics(boolean analytics) {
+		sp.edit().putBoolean(IS_ANALYTICS_DIALOG, false).putBoolean(r.getString(R.string.send_analytics), analytics).apply();
+	}
+
 	public boolean isShowOnboarding() {
 		return sp.getBoolean(SHOW_ONBOARDING, true);
 	}
 
 	public void setShowOnboarding(boolean showIntro) {
-		sp.edit().putBoolean(SHOW_SHARE_ANALYTICS, showIntro)
-				.putBoolean(SHOW_SHARE_ANALYTICS, showIntro)
+		sp.edit().putBoolean(IS_ANALYTICS_DIALOG, showIntro)
 				.putBoolean(IS_MANUAL_UPLOAD_DIALOG, showIntro).apply();
 	}
 
@@ -81,7 +84,7 @@ public class PreferenceManager {
 	 * This method is used to ask user to share app usage to old users.
 	 */
 	public boolean isShareAnalyticsDialog() {
-		return sp.getBoolean(SHOW_SHARE_ANALYTICS, true);
+		return sp.getBoolean(IS_ANALYTICS_DIALOG, true);
 	}
 
 	/*
