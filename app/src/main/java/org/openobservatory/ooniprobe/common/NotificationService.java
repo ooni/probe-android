@@ -52,7 +52,6 @@ public class NotificationService {
         b.setSmallIcon(R.drawable.notification_icon);
         b.setContentTitle(title);
         b.setContentText(message);
-        //TODO-COUNTLY edit intent based on  notification type
         b.setContentIntent(PendingIntent.getActivity(c, 0, MainActivity.newIntent(c, R.id.testResults), PendingIntent.FLAG_UPDATE_CURRENT));
         notificationManager.notify(1, b.build());
     }
