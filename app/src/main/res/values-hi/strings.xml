@@ -270,6 +270,10 @@
   <string name="Modal_ManualUpload_Paragraph">यह सेटिंग आपको अप्रकाशित माप को मैन्युअल रूप से पुनः अपलोड करने की अनुमति देती है।</string>
   <string name="Modal_ManualUpload_Enable">सक्षम करें</string>
   <string name="Modal_ManualUpload_Disable">जी नहीं, धन्यवाद</string>
+  <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
+  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. We will never link these app usage metrics to your identity. You can opt out of this at any time through the settings.</string>
+  <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
+  <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
   <string name="Modal_UploadFailed_Title">अपलोड विफ़ल रहा।</string>
   <string name="Modal_UploadFailed_Paragraph">हम %1$s / %2$s माप अपलोड करने में विफल रहे हैं। विफलता लॉग OONI डेवलपर्स के साथ साझा किया गया है।</string>
   <string name="Modal_Error_LogNotFound">लॉग फ़ाइल नहीं मिला</string>

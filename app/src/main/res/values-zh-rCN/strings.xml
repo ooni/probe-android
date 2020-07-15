@@ -270,6 +270,10 @@
   <string name="Modal_ManualUpload_Paragraph">该设置允许您手动重新上传尚未发布的测量结果。</string>
   <string name="Modal_ManualUpload_Enable">启用</string>
   <string name="Modal_ManualUpload_Disable">不要，谢谢</string>
+  <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
+  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. We will never link these app usage metrics to your identity. You can opt out of this at any time through the settings.</string>
+  <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
+  <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
   <string name="Modal_UploadFailed_Title">上传失败</string>
   <string name="Modal_UploadFailed_Paragraph">%1$s/%2$s 测量结果上传失败。日志已经分享给 OONI 开发者。</string>
   <string name="Modal_Error_LogNotFound">未找到日志文件</string>

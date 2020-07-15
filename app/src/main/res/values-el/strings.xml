@@ -220,7 +220,7 @@
   <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph">Η σύνδεση στο [Psiphon] (https://psiphon.ca/) φαίνεται να έχει μπλοκαριστεί.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph">Η σύνδεση στο [Psiphon](https://psiphon.ca/) ήταν επιτυχής, και επομένως πρέπει να λειτουργεί.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Χρόνος εκκίνησης</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s \'</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s \'\'</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Hero_Title">Πιθανή λογοκρισία</string>
   <string name="TestResults_Details_Circumvention_Tor_Reachable_Hero_Title">Λειτουργεί</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Content_Paragraph">Η σύνδεση στο [Tor](https://www.torproject.org/) φαίνεται να έχει μπλοκαριστεί.</string>
@@ -270,6 +270,10 @@
   <string name="Modal_ManualUpload_Paragraph">Με αυτή τη ρύθμιση μπορείς να ανεβάσεις χειροκίνητα τις μη δημοσιευμένες μετρήσεις σου.</string>
   <string name="Modal_ManualUpload_Enable">Ενεργοποίηση</string>
   <string name="Modal_ManualUpload_Disable">Όχι, ευχαριστώ</string>
+  <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
+  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. We will never link these app usage metrics to your identity. You can opt out of this at any time through the settings.</string>
+  <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
+  <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
   <string name="Modal_UploadFailed_Title">Αποτυχία ανεβάσματος</string>
   <string name="Modal_UploadFailed_Paragraph">Αποτύχαμε να ανεβάσουμε %1$s/%2$s μετρήσεις. Το αρχείο καταγραφής αποτυχιών έχει μοιραστεί στους OONI developers.</string>
   <string name="Modal_Error_LogNotFound">Δεν βρέθηκε αρχείο καταγραφής</string>

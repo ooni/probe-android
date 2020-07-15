@@ -270,6 +270,10 @@
   <string name="Modal_ManualUpload_Paragraph">Þetta gerir þér kleift að endursenda inn handvirkt óbirtar mælingar.</string>
   <string name="Modal_ManualUpload_Enable">Virkja</string>
   <string name="Modal_ManualUpload_Disable">Nei takk</string>
+  <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
+  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. We will never link these app usage metrics to your identity. You can opt out of this at any time through the settings.</string>
+  <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
+  <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
   <string name="Modal_UploadFailed_Title">Innsending mistókst</string>
   <string name="Modal_UploadFailed_Paragraph">Ekki tókst að senda inn %1$s/%2$s mælingar. Atvikaskránni með því sem brást hefur verið deilt til forritara OONI.</string>
   <string name="Modal_Error_LogNotFound">Atvikaskrá fannst ekki</string>

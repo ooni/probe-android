@@ -270,6 +270,10 @@
   <string name="Modal_ManualUpload_Paragraph">با استفاده از این تنظیم می‌توانید اندازه‌گیری‌های منتشر نشده را دوباره به صورت دستی بارگذاری کنید.</string>
   <string name="Modal_ManualUpload_Enable">فعال کن</string>
   <string name="Modal_ManualUpload_Disable">نه، ممنون</string>
+  <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
+  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. We will never link these app usage metrics to your identity. You can opt out of this at any time through the settings.</string>
+  <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
+  <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
   <string name="Modal_UploadFailed_Title">آپلود ناموفق بود</string>
   <string name="Modal_UploadFailed_Paragraph">ما در بارگذاری %1$s/%2$s اندازه‌گیری ناکام بودیم. گزارش این ناکامی با توسعه دهندگان OONI به اشتراک گذاشته شد.</string>
   <string name="Modal_Error_LogNotFound">فایل لاگ یافت نشد</string>

@@ -270,6 +270,10 @@
   <string name="Modal_ManualUpload_Paragraph">Mit dieser Einstellung kannst du unveröffentlichte Messungen manuell erneut hochladen.</string>
   <string name="Modal_ManualUpload_Enable">Aktivieren</string>
   <string name="Modal_ManualUpload_Disable">Nein, danke</string>
+  <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
+  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. We will never link these app usage metrics to your identity. You can opt out of this at any time through the settings.</string>
+  <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
+  <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
   <string name="Modal_UploadFailed_Title">Hochladen fehlgeschlagen</string>
   <string name="Modal_UploadFailed_Paragraph">Wir haben es nicht geschafft, %1$s/%2$s Messungen hochzuladen. Das Fehlerprotokoll wurde den OONI-Entwicklern zur Verfügung gestellt.</string>
   <string name="Modal_Error_LogNotFound">Protokolldatei nicht gefunden</string>

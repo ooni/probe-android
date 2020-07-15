@@ -270,6 +270,10 @@
   <string name="Modal_ManualUpload_Paragraph">Эта настройка позволяет вам вручную загружать неопубликованные измерения</string>
   <string name="Modal_ManualUpload_Enable">Включить</string>
   <string name="Modal_ManualUpload_Disable">Нет, спасибо</string>
+  <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
+  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. We will never link these app usage metrics to your identity. You can opt out of this at any time through the settings.</string>
+  <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
+  <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
   <string name="Modal_UploadFailed_Title">Загрузка не удалась</string>
   <string name="Modal_UploadFailed_Paragraph">Нам не удалось загрузить измерения %1$s/%2$s. Журнал сбоев был передан разработчикам OONI.</string>
   <string name="Modal_Error_LogNotFound">Лог-файл не найден</string>

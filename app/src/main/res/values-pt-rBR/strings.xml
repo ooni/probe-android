@@ -270,6 +270,10 @@
   <string name="Modal_ManualUpload_Paragraph">Essa configuração permite que você carregue manualmente as medidas não publicadas.</string>
   <string name="Modal_ManualUpload_Enable">Habilitar</string>
   <string name="Modal_ManualUpload_Disable">Não, agradeço</string>
+  <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
+  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. We will never link these app usage metrics to your identity. You can opt out of this at any time through the settings.</string>
+  <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
+  <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
   <string name="Modal_UploadFailed_Title">Falha ao enviar</string>
   <string name="Modal_UploadFailed_Paragraph">Falha ao carregar %1$s/%2$s medidas. O log de falhas foi compartilhado com as pessoas que desenvolvem o OONI.</string>
   <string name="Modal_Error_LogNotFound">Arquivo de log não encontrado</string>
