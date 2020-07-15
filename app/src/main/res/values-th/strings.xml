@@ -270,6 +270,10 @@
   <string name="Modal_ManualUpload_Paragraph">การตั้งค่านี้อนุญาตให้คุณอัปโหลดผลการตรวจวัดที่ยังไม่ถูกเผยแพร่ได้ด้วยตัวเอง</string>
   <string name="Modal_ManualUpload_Enable">เปิดใช้งาน</string>
   <string name="Modal_ManualUpload_Disable">ไม่ล่ะ ขอบคุณ</string>
+  <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
+  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. We will never link these app usage metrics to your identity. You can opt out of this at any time through the settings.</string>
+  <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
+  <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
   <string name="Modal_UploadFailed_Title">การอัปโหลดล้มเหลว</string>
   <string name="Modal_UploadFailed_Paragraph">เราล้มเหลวที่จะอัปโหลด %1$s/%2$s การตรวจวัด ปูมความล้มเหลวได้ถูกส่งให้กับทีมพัฒนา OONI แล้ว</string>
   <string name="Modal_Error_LogNotFound">ไม่พบแฟ้มปูม</string>

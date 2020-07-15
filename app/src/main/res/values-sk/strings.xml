@@ -270,6 +270,10 @@
   <string name="Modal_ManualUpload_Paragraph">Toto nastavenie ti umožňuje manuálne znova nahrať neuverejnené merania.</string>
   <string name="Modal_ManualUpload_Enable">Povoliť</string>
   <string name="Modal_ManualUpload_Disable">Nie, ďakujem</string>
+  <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
+  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. We will never link these app usage metrics to your identity. You can opt out of this at any time through the settings.</string>
+  <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
+  <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
   <string name="Modal_UploadFailed_Title">Nahrávanie zlyhalo</string>
   <string name="Modal_UploadFailed_Paragraph">Nepodarilo sa nám nahrať %1$s/%2$s meraní. Denník zlyhaní sa zdieľa s vývojarmi OONI.</string>
   <string name="Modal_Error_LogNotFound">Súbor denníka sa nenašiel</string>
