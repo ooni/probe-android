@@ -25,17 +25,12 @@ public class NotificationService {
         if (!preferenceManager.isNotifications())
             return;
         CountlyPush.init((Application) context, BuildConfig.DEBUG? Countly.CountlyMessagingMode.TEST:Countly.CountlyMessagingMode.PRODUCTION);
-        //TODO-COUNTLY strings
-        NotificationService.setChannel(context, CountlyPush.CHANNEL_ID,
-                context.getString(R.string.General_AppName), context.getString(R.string.General_AppName));
+        NotificationService.setChannel(context, CountlyPush.CHANNEL_ID, context.getString(R.string.Settings_Notifications_Label));
         NotificationService.setToken((Application) context);
     }
 
     public static void notifyTestEnded(Context c, AbstractSuite testSuite) {
-        //TODO-COUNTLY strings
-        setChannel(c, TEST_RUN,
-                c.getString(R.string.Settings_Notifications_OnTestCompletion),
-                c.getString(R.string.Settings_Notifications_OnTestCompletion));
+        setChannel(c, TEST_RUN, c.getString(R.string.Settings_Notifications_OnTestCompletion));
         sendNotification(c, c.getString(R.string.General_AppName), c.getString(testSuite.getTitle()) + " " + c.getString(R.string.Notification_FinishedRunning));
     }
 
@@ -69,12 +64,11 @@ public class NotificationService {
     }
 
     // Register the channel with the system
-    private static void setChannel(Context c, String channelID, String channelName, String description){
+    private static void setChannel(Context c, String channelID, String channelName){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationManager notificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
             if (notificationManager != null) {
                 NotificationChannel channel = new NotificationChannel(channelID, channelName, NotificationManager.IMPORTANCE_DEFAULT);
-                channel.setDescription(description);
                 notificationManager.createNotificationChannel(channel);
             }
         }

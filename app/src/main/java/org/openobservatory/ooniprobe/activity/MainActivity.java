@@ -70,12 +70,11 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                         .build().show(getSupportFragmentManager(), null);
             }
             if (getPreferenceManager().isShareAnalyticsDialog()) {
-                //TODO-COUNTLY strings and invert buttons?
                 new ConfirmDialogFragment.Builder()
-                        .withTitle(getString(R.string.Modal_ManualUpload_Title))
-                        .withMessage(getString(R.string.Modal_ManualUpload_Paragraph))
-                        .withPositiveButton(getString(R.string.Modal_ManualUpload_Enable))
-                        .withNegativeButton(getString(R.string.Modal_ManualUpload_Disable))
+                        .withTitle(getString(R.string.Modal_ShareAnalytics_Title))
+                        .withMessage(getString(R.string.Modal_ShareAnalytics_Paragraph))
+                        .withPositiveButton(getString(R.string.Modal_ShareAnalytics_Enable))
+                        .withNegativeButton(getString(R.string.Modal_ShareAnalytics_Disable))
                         .withExtra(ANALYTICS_DIALOG)
                         .build().show(getSupportFragmentManager(), null);
             }
