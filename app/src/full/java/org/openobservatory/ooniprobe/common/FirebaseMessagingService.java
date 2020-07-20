@@ -17,7 +17,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 	public void onMessageReceived(RemoteMessage remoteMessage) {
 		super.onMessageReceived(remoteMessage);
 
-		Log.d("DemoFirebaseService", "got new message: " + remoteMessage.getData());
+		Log.d(TAG, "got new message: " + remoteMessage.getData());
 
 		// decode message data and extract meaningful information from it: title, body, badge, etc.
 		CountlyPush.Message message = CountlyPush.decodeMessage(remoteMessage.getData());
