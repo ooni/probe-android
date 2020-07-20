@@ -17,7 +17,6 @@ public class CountlyManager {
     public static String[] analyticsFeatures = new String[]{
             ly.count.android.sdk.Countly.CountlyFeatureNames.sessions,
             ly.count.android.sdk.Countly.CountlyFeatureNames.views,
-            ly.count.android.sdk.Countly.CountlyFeatureNames.push,
             ly.count.android.sdk.Countly.CountlyFeatureNames.events
             //TODO evaluate scrolls, clicks, forms, attribution
     };
@@ -42,10 +41,11 @@ public class CountlyManager {
                 .setLoggingEnabled(!BuildConfig.DEBUG)
                 .setViewTracking(true)
                 .setHttpPostForced(true)
+                .setViewTracking(true)
+                .enableCrashReporting()
                 .enableCrashReporting();
-
-        Countly.sharedInstance().init(config);
         CountlyManager.reloadConsent(preferenceManager);
+        Countly.sharedInstance().init(config);
     }
 
     public static void reloadConsent(PreferenceManager preferenceManager){
