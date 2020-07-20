@@ -28,7 +28,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">Κωδικό χώρας (π.χ. GR για την Ελλάδα)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">Πληροφορίες δικτύου (όπως ASN, για τον εντοπισμό πάροχου δικτύου)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">Ώρα και ημερομηνὶα εκτέλεσης δοκιμών</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">Κάνουμε ό,τι μπορούμε ώστε να μη δημοσιευτεί η διεύθυνση IP ή άλλα (δυνητικά) προσωπικά σου δεδομένα.\n\nΜάθε περισσότερα διαβάζοντας την [Πολιτική Δεδομένων του OONI](https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI\'s Data Policy](https://ooni.io/about/data-policy/).</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Συνέχεια</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Αλλαγή ρυθμίσεων</string>
   <string name="Dashboard_Tab_Label">Ταμπλό</string>
@@ -271,7 +271,7 @@
   <string name="Modal_ManualUpload_Enable">Ενεργοποίηση</string>
   <string name="Modal_ManualUpload_Disable">Όχι, ευχαριστώ</string>
   <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. We will never link these app usage metrics to your identity. You can opt out of this at any time through the settings.</string>
+  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. You can opt out of this at any time through the settings.</string>
   <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
   <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
   <string name="Modal_UploadFailed_Title">Αποτυχία ανεβάσματος</string>
@@ -321,11 +321,12 @@
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Αυτή η πληροφορία (π.χ. GR για την Ελλάδα) είναι απαραίτητη για τον προσδιορισμό της χώρας από την οποία συλλέγονται οι μετρήσεις. Είσαι σίγουρος/η ότι θέλεις να απενεργοποιήσεις αυτήν την επιλογή;</string>
   <string name="Settings_Sharing_Footer">Δημοσιεύοντας αποτελέσματα, αυξάνεις τη διαφάνεια για τυχόν παρεμβολές στο Διαδικτύο, και υποστηρίζεις την κοινότητα του OONI.\n\nΓια την αναγνώριση των παρόχων δικτύου, απαιτούνται πληροφορίες δικτύου (όπως ο Αριθμός Αυτόνομου Συστήματος ASN).</string>
   <string name="Settings_TestOptions_Label">Επιλογές δοκιμής</string>
+  <string name="Settings_Privacy_Label">Απόρρητο</string>
+  <string name="Settings_Privacy_CollectAnalytics">Share app usage metrics</string>
+  <string name="Settings_Privacy_SendCrashReports">Αποστολή αναφορών σφαλμάτων</string>
   <string name="Settings_Advanced_Label">Ρυθμίσεις για προχωρημένους</string>
-  <string name="Settings_Advanced_SendCrashReports">Αποστολή αναφορών σφαλμάτων</string>
   <string name="Settings_Advanced_DebugLogs">Αρχεία καταγραφής εντοπισμού σφαλμάτων</string>
   <string name="Settings_Advanced_UseDomainFronting">Πάντα να χρησιμοποιείται domain fronting</string>
-  <string name="Settings_Advanced_CollectAnalytics">Συλλογή στατιστικών στοιχείων χρήσης εφαρμογής</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Περιορισμός διάρκειας δοκιμής</string>
   <string name="Settings_Websites_MaxRuntime">Διάρκεια δοκιμής</string>
   <string name="Settings_Websites_Categories_Label">Κατηγορίες ιστοσελιδών για δοκιμή</string>

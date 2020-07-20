@@ -28,7 +28,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">รหัสประเทศ (เช่น TH สำหรับประเทศไทย)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">ข้อมูลเครือข่าย (รวมถึง  Autonomous System Number)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">วันและเวลาของการทดสอบ</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">เราทำอย่างดีที่สุดเพื่อจะไม่เผยแพร่ที่อยู่ไอพีของคุณหรือข้อมูลใดที่อาจใช้ระบุบุคคลได้\n\nเรียนรู้เพิ่มเติมใน [นโยบายข้อมูลของ OON](https://ooni.org/about/data-policy/)</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI\'s Data Policy](https://ooni.io/about/data-policy/).</string>
   <string name="Onboarding_DefaultSettings_Button_Go">เริ่มกันเลย</string>
   <string name="Onboarding_DefaultSettings_Button_Change">เปลี่ยนค่าปริยาย</string>
   <string name="Dashboard_Tab_Label">หน้าปัด</string>
@@ -271,7 +271,7 @@
   <string name="Modal_ManualUpload_Enable">เปิดใช้งาน</string>
   <string name="Modal_ManualUpload_Disable">ไม่ล่ะ ขอบคุณ</string>
   <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. We will never link these app usage metrics to your identity. You can opt out of this at any time through the settings.</string>
+  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. You can opt out of this at any time through the settings.</string>
   <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
   <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
   <string name="Modal_UploadFailed_Title">การอัปโหลดล้มเหลว</string>
@@ -321,11 +321,12 @@
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">ข้อมูลนี้ (เช่น TH สำหรับประเทศไทย) ต้องใช้ในการระบุว่าการตรวจวัดนั้นถูกเก็บมาจากประเทศใด คุณแน่ใจหรือไม่ที่จะปิดใช้ตัวเลือกนี้?</string>
   <string name="Settings_Sharing_Footer">โดยการเผยแพร่ผลลัพธ์ คุณจะช่วยเพิ่มความเข้าใจต่อการแทรกแซงเครือข่ายและช่วยสนับสนุนชุมชน OONI\n\nข้อมูลเครือข่าย (หรือ Autonomous System Number) นั้นจำเป็นต่อการระบุผู้ให้บริการอินเทอร์เน็ต</string>
   <string name="Settings_TestOptions_Label">ตัวเลือกการทดสอบ</string>
+  <string name="Settings_Privacy_Label">ความเป็นส่วนตัว</string>
+  <string name="Settings_Privacy_CollectAnalytics">Share app usage metrics</string>
+  <string name="Settings_Privacy_SendCrashReports">ส่งรายงานการพังของแอป</string>
   <string name="Settings_Advanced_Label">ขั้นสูง</string>
-  <string name="Settings_Advanced_SendCrashReports">ส่งรายงานการพังของแอป</string>
   <string name="Settings_Advanced_DebugLogs">ปูมดีบัก</string>
   <string name="Settings_Advanced_UseDomainFronting">ใช้ domain fronting เสมอ</string>
-  <string name="Settings_Advanced_CollectAnalytics">จัดเก็บสถิติการใช้แอป</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">จำกัดระยะเวลาทดสอบ</string>
   <string name="Settings_Websites_MaxRuntime">ระยะเวลาทดสอบ</string>
   <string name="Settings_Websites_Categories_Label">ประเภทเว็บไซต์ที่จะทดสอบ</string>

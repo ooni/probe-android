@@ -28,7 +28,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">国家代码（例如，IT 指代意大利）</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">网络信息（包含 ASN）</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">测试的日期和时间</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">我们尽力避免发布你的 IP 地址以及任何可能识别个人身份的信息。\n\n了解更多，请访问 [OONI 数据政策](https://ooni.io/about/data-policy/)。</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI\'s Data Policy](https://ooni.io/about/data-policy/).</string>
   <string name="Onboarding_DefaultSettings_Button_Go">开始</string>
   <string name="Onboarding_DefaultSettings_Button_Change">更改默认值</string>
   <string name="Dashboard_Tab_Label">面板</string>
@@ -271,7 +271,7 @@
   <string name="Modal_ManualUpload_Enable">启用</string>
   <string name="Modal_ManualUpload_Disable">不要，谢谢</string>
   <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. We will never link these app usage metrics to your identity. You can opt out of this at any time through the settings.</string>
+  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. You can opt out of this at any time through the settings.</string>
   <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
   <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
   <string name="Modal_UploadFailed_Title">上传失败</string>
@@ -321,11 +321,12 @@
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">该信息会用于确定在什么国家收集的测量数据（例如，IT 指代意大利）。您确定要禁用该选项吗？</string>
   <string name="Settings_Sharing_Footer">通过发布结果，您可以提升网络审查的透明度，并支持 OONI 社区。\n\n网络信息（如自治系统号，ASN）通过它确定因特网服务提供商（ISP）。</string>
   <string name="Settings_TestOptions_Label">测试选项</string>
+  <string name="Settings_Privacy_Label">隐私</string>
+  <string name="Settings_Privacy_CollectAnalytics">Share app usage metrics</string>
+  <string name="Settings_Privacy_SendCrashReports">发送崩溃报告</string>
   <string name="Settings_Advanced_Label">高级</string>
-  <string name="Settings_Advanced_SendCrashReports">发送崩溃报告</string>
   <string name="Settings_Advanced_DebugLogs">调试日志</string>
   <string name="Settings_Advanced_UseDomainFronting">始终使用 domain fronting</string>
-  <string name="Settings_Advanced_CollectAnalytics">手机应用使用数据</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">限制测试持续时间</string>
   <string name="Settings_Websites_MaxRuntime">测试用时</string>
   <string name="Settings_Websites_Categories_Label">要测试的网站类别</string>

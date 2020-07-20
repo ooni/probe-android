@@ -28,7 +28,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">Codul țării (de exemplu IT pentru Italia)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">Informații despre rețea (inclusiv numărul de sistem autonom - ASN)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">Ora și data testării</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">Facem tot posibilul să nu publicăm adresa dvs. IP sau orice alte informații care pot fi identificate personal.\n\nAflați mai multe prin [Politica de Date OONI](https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI\'s Data Policy](https://ooni.io/about/data-policy/).</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Să începe</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Modific valori implicite</string>
   <string name="Dashboard_Tab_Label">Tablou bord</string>
@@ -271,7 +271,7 @@
   <string name="Modal_ManualUpload_Enable">Activează:</string>
   <string name="Modal_ManualUpload_Disable">Nu, mulțumesc</string>
   <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. We will never link these app usage metrics to your identity. You can opt out of this at any time through the settings.</string>
+  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. You can opt out of this at any time through the settings.</string>
   <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
   <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
   <string name="Modal_UploadFailed_Title">Incărcare eșuată</string>
@@ -321,11 +321,12 @@
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Aceste informații (de exemplu, IT pentru Italia) sunt necesare pentru a identifica din ce țară sunt colectate măsurătorile. Sigur doriți să dezactivați această opțiune?</string>
   <string name="Settings_Sharing_Footer">Prin publicarea rezultatelor, sporiți transparența interferenței rețelei și sprijiniți comunitatea OONI. \n\nInformațiile de rețea (adică numărul de sistem autonom) sunt necesare pentru identificarea furnizorilor de servicii Internet.</string>
   <string name="Settings_TestOptions_Label">Opțiuni de testare</string>
+  <string name="Settings_Privacy_Label">Confidențialitate</string>
+  <string name="Settings_Privacy_CollectAnalytics">Share app usage metrics</string>
+  <string name="Settings_Privacy_SendCrashReports">Trimitere rapoarte de avarie</string>
   <string name="Settings_Advanced_Label">Avansat</string>
-  <string name="Settings_Advanced_SendCrashReports">Trimitere rapoarte de avarie</string>
   <string name="Settings_Advanced_DebugLogs">Jurnale de depanare</string>
   <string name="Settings_Advanced_UseDomainFronting">Utilizați întotdeauna fronting de domeniu</string>
-  <string name="Settings_Advanced_CollectAnalytics">Colectați statistici de utilizare a aplicațiilor</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Limitarea duratei testului</string>
   <string name="Settings_Websites_MaxRuntime">Durata testului</string>
   <string name="Settings_Websites_Categories_Label">Categorii de site-uri web de testat</string>

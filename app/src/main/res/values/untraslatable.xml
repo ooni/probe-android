@@ -5,6 +5,7 @@
 	<string name="notifications" translatable="false">notifications</string>
 	<string name="sharing" translatable="false">sharing</string>
 	<string name="test_options" translatable="false">test_options</string>
+	<string name="privacy" translatable="false">privacy</string>
 	<string name="advanced" translatable="false">advanced</string>
 	<string name="send_email" translatable="false">send_email</string>
 	<string name="about_ooni" translatable="false">about_ooni</string>

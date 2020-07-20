@@ -28,7 +28,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">Kode Negara (contoh: IT untuk Italia)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">Informasi jaringan (termasuk ASN)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">Jam &amp; tanggal tes</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">Kami berusaha sebaik-baiknya untuk tidak mempublikasikan alamat IP Anda atau informasi lain yang berpotensi mudah teridentifikasi secara personal.\n\nPelajari selengkapnya di [OONI\'s Data Policy](https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI\'s Data Policy](https://ooni.io/about/data-policy/).</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Ayo!</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Ubah default</string>
   <string name="Dashboard_Tab_Label">Dasbor</string>
@@ -271,7 +271,7 @@
   <string name="Modal_ManualUpload_Enable">Aktifkan</string>
   <string name="Modal_ManualUpload_Disable">Tidak, terima kasih</string>
   <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. We will never link these app usage metrics to your identity. You can opt out of this at any time through the settings.</string>
+  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. You can opt out of this at any time through the settings.</string>
   <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
   <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
   <string name="Modal_UploadFailed_Title">Gagal mengunggah</string>
@@ -321,11 +321,12 @@
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">This information (e.g. IT for Italy) is required to identify which country the measurements are collected from. Are you sure you want to disable this option?</string>
   <string name="Settings_Sharing_Footer">By publishing results, you are increasing transparency of network interference and supporting the OONI community. \n\nNetwork information (i.e. Autonomous System Number) is required for identifying Internet Service Providers.</string>
   <string name="Settings_TestOptions_Label">Pilihan Tes</string>
+  <string name="Settings_Privacy_Label">Kerahasiaan pribadi</string>
+  <string name="Settings_Privacy_CollectAnalytics">Share app usage metrics</string>
+  <string name="Settings_Privacy_SendCrashReports">Kirim laporan tabrakan</string>
   <string name="Settings_Advanced_Label">Advanced </string>
-  <string name="Settings_Advanced_SendCrashReports">Kirim laporan tabrakan</string>
   <string name="Settings_Advanced_DebugLogs">Log Debug</string>
   <string name="Settings_Advanced_UseDomainFronting">Always use domain fronting</string>
-  <string name="Settings_Advanced_CollectAnalytics">Collect app usage statistics</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Batas durasi tes</string>
   <string name="Settings_Websites_MaxRuntime">Durasi tes</string>
   <string name="Settings_Websites_Categories_Label">Kategori laman yang akan dites</string>

@@ -28,7 +28,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">Ülke kodu (örn: Türkiye için TR)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">Ağ Bilgileri (Otonom Sistem Numarası İle)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">Sınama tarih ve saati</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">IP adresinizi ya da kim olduğunuzu ortaya çıkarabilecek bilgileri yayınlamamak için elimizden geleni yapıyoruz.\n\nAyrıntılı bilgi almak için [OONI Veri İşleme İlkesi](https://ooni.io/about/data-policy/) bölümüne bakabilirsiniz.</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI\'s Data Policy](https://ooni.io/about/data-policy/).</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Başlayalım</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Varsayılanları değiştir</string>
   <string name="Dashboard_Tab_Label">Pano</string>
@@ -271,7 +271,7 @@
   <string name="Modal_ManualUpload_Enable">Etkinleştir</string>
   <string name="Modal_ManualUpload_Disable">Hayır, teşekkürler</string>
   <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. We will never link these app usage metrics to your identity. You can opt out of this at any time through the settings.</string>
+  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. You can opt out of this at any time through the settings.</string>
   <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
   <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
   <string name="Modal_UploadFailed_Title">Yükleme başarısız</string>
@@ -321,11 +321,12 @@
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Bu bilgi ölçümlerin hangi ülkeden (Türkiye için TR gibi) yapıldığını belirlemek için istenmektedir. Bu seçeneği devre dışı bırakmak istediğinize emin misiniz?</string>
   <string name="Settings_Sharing_Footer">Sonuçları yayınlayarak ağ müdahalelerinin daha görünür hale gelmesine yardım ederek OONI topluluğuna destek olursunuz.\n\nAğ bilgileri (Otonom Sistem Numarası gibi) İnternet Hizmeti Sağlayıcılarını belirlemek için gereklidir.</string>
   <string name="Settings_TestOptions_Label">Ayarları sına</string>
+  <string name="Settings_Privacy_Label">Gizlilik</string>
+  <string name="Settings_Privacy_CollectAnalytics">Share app usage metrics</string>
+  <string name="Settings_Privacy_SendCrashReports">Çökme raporları gönderilsin</string>
   <string name="Settings_Advanced_Label">Gelişmiş</string>
-  <string name="Settings_Advanced_SendCrashReports">Çökme raporları gönderilsin</string>
   <string name="Settings_Advanced_DebugLogs">Hata ayıklama günlükleri</string>
   <string name="Settings_Advanced_UseDomainFronting">Araya her zaman alan adı eklensin (Domain Fronting)</string>
-  <string name="Settings_Advanced_CollectAnalytics">Uygulama kullanım istatistikleri toplansın</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Sınama süresi sınırlansın</string>
   <string name="Settings_Websites_MaxRuntime">Sınama süresi</string>
   <string name="Settings_Websites_Categories_Label">Sınanacak web sitesi kategorileri</string>

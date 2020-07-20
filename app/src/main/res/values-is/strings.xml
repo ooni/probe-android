@@ -28,7 +28,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">Landskóði (t.d. IT fyrir Ítalíu)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">Upplýsingar um netkerfið (þar með talið Autonomous System Number)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">Tími og dagsetning prófunar</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">Við gerum okkar besta til að birta ekki IP-vistfangið þitt eða aðrar mögulega persónugreinanlegar upplýsingar.\n\nÍtarlegri upplýsingar eru í [gagnaleyndarstefnu OONI](https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI\'s Data Policy](https://ooni.io/about/data-policy/).</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Hefjumst handa</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Breyta sjálfgefnum gildum</string>
   <string name="Dashboard_Tab_Label">Stjórnborð</string>
@@ -271,7 +271,7 @@
   <string name="Modal_ManualUpload_Enable">Virkja</string>
   <string name="Modal_ManualUpload_Disable">Nei takk</string>
   <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. We will never link these app usage metrics to your identity. You can opt out of this at any time through the settings.</string>
+  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. You can opt out of this at any time through the settings.</string>
   <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
   <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
   <string name="Modal_UploadFailed_Title">Innsending mistókst</string>
@@ -321,11 +321,12 @@
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Þessar upplýsingar (t.d. IT fyrir Ítalía) eru nauðsynlegar til að auðkenna landið þaðan sem upplýsingunum er safnað. Ertu viss um að þú viljir gera þetta óvirkt?</string>
   <string name="Settings_Sharing_Footer">Með því að birta niðurstöðurnar ertu að auka gegnsæi á íhlutanir í netkerfi og styður þannig OONI-samfélagið. \n\nNetkerfisupplýsingar (þ.e.a.s. Autonomous System Number) eru nauðsynlegar til að auðkenna netþjónustur (ISP - Internet Service Providers).</string>
   <string name="Settings_TestOptions_Label">Valkostir prófunar</string>
+  <string name="Settings_Privacy_Label">Friðhelgi</string>
+  <string name="Settings_Privacy_CollectAnalytics">Share app usage metrics</string>
+  <string name="Settings_Privacy_SendCrashReports">Senda hrunskýrslur</string>
   <string name="Settings_Advanced_Label">Ítarlegra</string>
-  <string name="Settings_Advanced_SendCrashReports">Senda hrunskýrslur</string>
   <string name="Settings_Advanced_DebugLogs">Villuskrár</string>
   <string name="Settings_Advanced_UseDomainFronting">Alltaf nota lénaframhlið (domain fronting)</string>
-  <string name="Settings_Advanced_CollectAnalytics">Safna tölfræði um notkun forrits</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Takmarka tímalengd prófunar</string>
   <string name="Settings_Websites_MaxRuntime">Tímalengd prófunar</string>
   <string name="Settings_Websites_Categories_Label">Flokkar vefsvæða sem á að prófa</string>

@@ -28,7 +28,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">Код страны (например, IT для Италии)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">Сетевую информацию (включая номер автономной системы)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">Время и дату тестирования</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">Мы прилагаем все силы, чтобы не раскрыть ваш IP-адрес и другие данные, которые в принципе могут позволить вас идентифицировать. \n\nПодробнее об этом в [политике OONI по обращению с данными](https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI\'s Data Policy](https://ooni.io/about/data-policy/).</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Начнем</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Изменить настройки</string>
   <string name="Dashboard_Tab_Label">Панель приборов</string>
@@ -271,7 +271,7 @@
   <string name="Modal_ManualUpload_Enable">Включить</string>
   <string name="Modal_ManualUpload_Disable">Нет, спасибо</string>
   <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. We will never link these app usage metrics to your identity. You can opt out of this at any time through the settings.</string>
+  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. You can opt out of this at any time through the settings.</string>
   <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
   <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
   <string name="Modal_UploadFailed_Title">Загрузка не удалась</string>
@@ -321,11 +321,12 @@
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Эта информация (например, IT для Италии) нужна, чтобы определять, к какой стране относятся измерения. Уверены, что хотите отключить эту опцию?</string>
   <string name="Settings_Sharing_Footer">Публикуя результаты, вы дополняете картину помех интернет-активности и поддерживаете сообщество OONI.\n\nСетевые данные (в частности, номер автономной системы) нужны для определения провайдеров доступа к интернету.</string>
   <string name="Settings_TestOptions_Label">Варианты тестирования</string>
+  <string name="Settings_Privacy_Label">Приватность</string>
+  <string name="Settings_Privacy_CollectAnalytics">Share app usage metrics</string>
+  <string name="Settings_Privacy_SendCrashReports">Отправить отчет об ошибке</string>
   <string name="Settings_Advanced_Label">Расширенные настройки</string>
-  <string name="Settings_Advanced_SendCrashReports">Отправить отчет об ошибке</string>
   <string name="Settings_Advanced_DebugLogs">Журналы отладки</string>
   <string name="Settings_Advanced_UseDomainFronting">Всегда использовать прикрытие доменом</string>
-  <string name="Settings_Advanced_CollectAnalytics">Собирать статистику использования приложения</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Ограничить продолжительность теста</string>
   <string name="Settings_Websites_MaxRuntime">Продолжительность теста</string>
   <string name="Settings_Websites_Categories_Label">Категории сайтов для тестирования</string>

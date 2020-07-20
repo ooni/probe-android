@@ -28,7 +28,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">رمز الدّولة (مثلاً IT لإيطاليا) </string>
   <string name="Onboarding_DefaultSettings_Bullet_2">معلومات الشبكة (متضمنا رقم ASN)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">وقت وتاريخ الاختبار</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">نفعل ما بوسعنا لعدم نشر عنوان IP الخاص بك أو أي معلومات شخصية محددة عنك.\n\nأعرف المزيد من خلال [سياسة بيانات OONI](https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI\'s Data Policy](https://ooni.io/about/data-policy/).</string>
   <string name="Onboarding_DefaultSettings_Button_Go">فلننطلق!</string>
   <string name="Onboarding_DefaultSettings_Button_Change">تغيير الافتراضي</string>
   <string name="Dashboard_Tab_Label">لوحة التحكم</string>
@@ -271,7 +271,7 @@
   <string name="Modal_ManualUpload_Enable">تمكين</string>
   <string name="Modal_ManualUpload_Disable">لا، شكراً</string>
   <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. We will never link these app usage metrics to your identity. You can opt out of this at any time through the settings.</string>
+  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. You can opt out of this at any time through the settings.</string>
   <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
   <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
   <string name="Modal_UploadFailed_Title">فَشِلتْ عملية الرفع</string>
@@ -321,11 +321,12 @@
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">هذه المعلومات (مثلا IT لايطاليا) مطلوبة لتحدبد الدولة التي تم اجراء القياسات فيها. هل أنت متأكد أنك تريد الغاء هذا الإختيار؟</string>
   <string name="Settings_Sharing_Footer">قيامك بنشر النتائج سيرفع من الشفافية حول التدخل في الشبكة ويدعم مجتمع OONI. \n\nمعلومات الشبكة (أي رقم النظام التلقائي ASN) مطلوب لتحديد مزودي خدمات الانترنت. </string>
   <string name="Settings_TestOptions_Label">اختيارات الاختبار</string>
+  <string name="Settings_Privacy_Label">الخصوصية</string>
+  <string name="Settings_Privacy_CollectAnalytics">Share app usage metrics</string>
+  <string name="Settings_Privacy_SendCrashReports">أرسل تقارير حول تعطل التطبيق</string>
   <string name="Settings_Advanced_Label">متقدم</string>
-  <string name="Settings_Advanced_SendCrashReports">أرسل تقارير حول تعطل التطبيق</string>
   <string name="Settings_Advanced_DebugLogs">أظهر سجلات التصحيح</string>
   <string name="Settings_Advanced_UseDomainFronting">دائمًا استخدم وسيط في اتصال النطاق Domain Fronting</string>
-  <string name="Settings_Advanced_CollectAnalytics">تطبيق جمع إحصائيات استخدام التطبيق</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">قيّد مدة الاختبار</string>
   <string name="Settings_Websites_MaxRuntime">مدة الاختبار</string>
   <string name="Settings_Websites_Categories_Label">أقسام المواقع للاختبار</string>

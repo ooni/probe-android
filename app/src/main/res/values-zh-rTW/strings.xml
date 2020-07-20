@@ -28,7 +28,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">國別代碼 (e.g. IT 為義大利)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">網路資訊 ( 包含網路自治系統代號 ASN)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">測試的時間和日期</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">我們盡量不會發佈用戶 IP 位置或是其它可能辨識個人資料的資訊。\n\n可進一步了解[ONNI 資料政策](https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI\'s Data Policy](https://ooni.io/about/data-policy/).</string>
   <string name="Onboarding_DefaultSettings_Button_Go">開始吧！</string>
   <string name="Onboarding_DefaultSettings_Button_Change">變更預設</string>
   <string name="Dashboard_Tab_Label">儀表板</string>
@@ -271,7 +271,7 @@
   <string name="Modal_ManualUpload_Enable">啟用</string>
   <string name="Modal_ManualUpload_Disable">不用，謝謝</string>
   <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. We will never link these app usage metrics to your identity. You can opt out of this at any time through the settings.</string>
+  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. You can opt out of this at any time through the settings.</string>
   <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
   <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
   <string name="Modal_UploadFailed_Title">上傳失敗</string>
@@ -321,11 +321,12 @@
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">需要這類資訊（例如 IT 代表義大利）以辨別網路計量是自哪個國家收集。是否要關閉此選項？</string>
   <string name="Settings_Sharing_Footer">出版評量結果，參與者共同提高了網路干涉的透明度與對 OONI  社群的支持。\n\n辬識網路連線服務商需要有網路資訊（例如網路自治系統編號 ASN）。</string>
   <string name="Settings_TestOptions_Label">Test options</string>
+  <string name="Settings_Privacy_Label">隱私</string>
+  <string name="Settings_Privacy_CollectAnalytics">Share app usage metrics</string>
+  <string name="Settings_Privacy_SendCrashReports">送出出錯崩潰報告</string>
   <string name="Settings_Advanced_Label">進階的</string>
-  <string name="Settings_Advanced_SendCrashReports">送出出錯崩潰報告</string>
   <string name="Settings_Advanced_DebugLogs">調試記錄</string>
   <string name="Settings_Advanced_UseDomainFronting">皆使用域名前列</string>
-  <string name="Settings_Advanced_CollectAnalytics">Collect app usage statistics</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Limit test duration</string>
   <string name="Settings_Websites_MaxRuntime">測試期間</string>
   <string name="Settings_Websites_Categories_Label">測試的網站類別</string>

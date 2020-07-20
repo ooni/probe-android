@@ -28,7 +28,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">Il codice del paese (es. IT per l\'Italia)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">Informazioni sulla tua rete (incluso l\'Autonomous System Number)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">Data e ora del test</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">Facciamo del nostro meglio per evitare di pubblicare il tuo indirizzo IP o altre informazioni personali.\n\nPer maggiori informazioni vedi la [Data Policy di OONI](https://ooni.io/about/data-policy/)</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI\'s Data Policy](https://ooni.io/about/data-policy/).</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Andiamo</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Cambia i default</string>
   <string name="Dashboard_Tab_Label">Dashboard</string>
@@ -271,7 +271,7 @@
   <string name="Modal_ManualUpload_Enable">Abilita</string>
   <string name="Modal_ManualUpload_Disable">No, grazie</string>
   <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. We will never link these app usage metrics to your identity. You can opt out of this at any time through the settings.</string>
+  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. You can opt out of this at any time through the settings.</string>
   <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
   <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
   <string name="Modal_UploadFailed_Title">Invio fallito</string>
@@ -321,11 +321,12 @@
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Tali informazioni (es. IT per Italia) sono necessarie per determinare da quale Paese provengono le misurazioni. Sei sicuro di voler disabilitare quest\'opzione?</string>
   <string name="Settings_Sharing_Footer">Pubblicando i risultati, contribuisci alla trasparenza sulle interferenze di rete e dai supporto alla comunità di OONI.\n\nLe informazioni sulla rete (i.e. l\'Autonomous System Number) sono necessarie per poter identificare i provider di servizi internet (ISP).</string>
   <string name="Settings_TestOptions_Label">Opzioni dei test</string>
+  <string name="Settings_Privacy_Label">Privacy</string>
+  <string name="Settings_Privacy_CollectAnalytics">Share app usage metrics</string>
+  <string name="Settings_Privacy_SendCrashReports">Manda rapporto sui crash</string>
   <string name="Settings_Advanced_Label">Avanzate</string>
-  <string name="Settings_Advanced_SendCrashReports">Manda rapporto sui crash</string>
   <string name="Settings_Advanced_DebugLogs">Log di debug</string>
   <string name="Settings_Advanced_UseDomainFronting">Usa sempre il domain fronting</string>
-  <string name="Settings_Advanced_CollectAnalytics">Raccogli statistiche di utilizzo</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Limita la durata del test</string>
   <string name="Settings_Websites_MaxRuntime">Durata del test</string>
   <string name="Settings_Websites_Categories_Label">Categorie di siti web da misurare</string>
