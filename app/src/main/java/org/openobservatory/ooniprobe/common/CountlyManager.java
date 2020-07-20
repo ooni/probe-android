@@ -42,7 +42,6 @@ public class CountlyManager {
                 .setViewTracking(true)
                 .setHttpPostForced(true)
                 .setViewTracking(true)
-                .enableCrashReporting()
                 .enableCrashReporting();
         CountlyManager.reloadConsent(preferenceManager);
         Countly.sharedInstance().init(config);
