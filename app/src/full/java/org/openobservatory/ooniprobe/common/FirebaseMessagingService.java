@@ -55,7 +55,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 		super.onNewToken(token);
 		((Application) getApplicationContext()).getPreferenceManager().setToken(token);
 		CountlyPush.onTokenRefresh(token);
-		Log.i(TAG, "CountlyPush onNewToken " + token); }
+	}
 
 	@Override
 	public void onDeletedMessages() {

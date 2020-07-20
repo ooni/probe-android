@@ -10,22 +10,22 @@ import ly.count.android.sdk.DeviceId;
 import ly.count.android.sdk.messaging.CountlyPush;
 
 public class CountlyManager {
-    public static String[] basicFeatures = new String[]{
+    private static String[] basicFeatures = new String[]{
             ly.count.android.sdk.Countly.CountlyFeatureNames.location,
     };
 
-    public static String[] analyticsFeatures = new String[]{
+    private static String[] analyticsFeatures = new String[]{
             ly.count.android.sdk.Countly.CountlyFeatureNames.sessions,
             ly.count.android.sdk.Countly.CountlyFeatureNames.views,
             ly.count.android.sdk.Countly.CountlyFeatureNames.events
             //TODO evaluate scrolls, clicks, forms, attribution
     };
 
-    public static String[] crashFeatures = new String[]{
+    private static String[] crashFeatures = new String[]{
             ly.count.android.sdk.Countly.CountlyFeatureNames.crashes,
     };
 
-    public static String[] pushFeatures = new String[]{
+    private static String[] pushFeatures = new String[]{
             ly.count.android.sdk.Countly.CountlyFeatureNames.push,
     };
 
