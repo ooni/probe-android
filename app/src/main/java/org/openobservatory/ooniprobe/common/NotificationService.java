@@ -59,7 +59,6 @@ public class NotificationService {
     private static void setToken(Application a){
         if (a.getPreferenceManager().getToken() != null)
             CountlyPush.onTokenRefresh(a.getPreferenceManager().getToken());
-        System.out.println("CountlyPush " + a.getPreferenceManager().getToken());
     }
 
     // Register the channel with the system
