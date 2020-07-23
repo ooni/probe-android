@@ -103,7 +103,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                 key.equals(getString(R.string.notifications_enabled))){
             CountlyManager.reloadConsent(((Application) getActivity().getApplication()).getPreferenceManager());
             if (key.equals(getString(R.string.notifications_enabled)))
-                NotificationService.initNotification(getActivity());
+                NotificationService.initNotification(getActivity().getApplication());
         }
         else if (preference instanceof EditTextPreference) {
             String value = sharedPreferences.getString(key, null);

@@ -2,7 +2,13 @@ package org.openobservatory.ooniprobe.common;
 
 import android.content.Context;
 
+import com.google.android.gms.common.util.ArrayUtils;
+
 import org.openobservatory.ooniprobe.BuildConfig;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import ly.count.android.sdk.Countly;
 import ly.count.android.sdk.CountlyConfig;
@@ -33,18 +39,28 @@ public class CountlyManager {
         CountlyConfig config = new CountlyConfig()
                 .setAppKey("146836f41172f9e3287cab6f2cc347de3f5ddf3b")
                 .setContext(ctx)
-                //.setDeviceId("TODO")
-                .setIdMode(DeviceId.Type.ADVERTISING_ID)
+                .setDeviceId("Lorenzo-Android")
+                //.setIdMode(DeviceId.Type.ADVERTISING_ID)
                 .setRequiresConsent(true)
-                .setConsentEnabled(basicFeatures)
+                .setConsentEnabled(getConsentsEnabled(preferenceManager))
                 .setServerURL(BuildConfig.NOTIFICATION_SERVER)
                 .setLoggingEnabled(!BuildConfig.DEBUG)
                 .setViewTracking(true)
                 .setHttpPostForced(true)
                 .setViewTracking(true)
                 .enableCrashReporting();
-        CountlyManager.reloadConsent(preferenceManager);
         Countly.sharedInstance().init(config);
+    }
+
+    public static String[] getConsentsEnabled(PreferenceManager preferenceManager) {
+        List<String> consents = new ArrayList(Arrays.asList(basicFeatures));
+        if (preferenceManager.isSendCrash())
+            consents.addAll(Arrays.asList(crashFeatures));
+        if (preferenceManager.isSendAnalytics())
+            consents.addAll(Arrays.asList(analyticsFeatures));
+        if (preferenceManager.isNotifications())
+            consents.addAll(Arrays.asList(pushFeatures));
+        return (String[]) consents.toArray();
     }
 
     public static void reloadConsent(PreferenceManager preferenceManager){
