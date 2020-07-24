@@ -28,7 +28,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">Country code (e.g. IT for Italy)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">Network information (including Autonomous System Number)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">Time &amp; date of testing</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nLearn more through [OONI\'s Data Policy](https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI\'s Data Policy](https://ooni.io/about/data-policy/).</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Let\'s go</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Change defaults</string>
   <string name="Dashboard_Tab_Label">Dashboard</string>
@@ -253,9 +253,8 @@
   <string name="Modal_ResultsNotUploaded_Uploading">Uploading %1$s ...</string>
   <string name="Toast_ResultsUploaded">Upload successful</string>
   <string name="Modal_DisplayFailureLog">Display failure log</string>
-  <string name="Modal_EnableNotifications_AutomatedTesting">Enable notification permissions to run tests automatically.</string>
-  <string name="Modal_EnableNotifications_News">Enable notification permissions to receive news updates.</string>
-  <string name="Modal_EnableNotifications_Any">Enable notification permissions to receive push notifications.</string>
+  <string name="Modal_EnableNotifications_Title">Receive notifications</string>
+  <string name="Modal_EnableNotifications_ Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
   <string name="Modal_EnableGPS">To improve the accuracy of tests, we need GPS permissions. OONI will only collect an approximation of your GPS position.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Do you want to delete all test results?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Do you want to delete this test?</string>
@@ -271,7 +270,7 @@
   <string name="Modal_ManualUpload_Enable">Enable</string>
   <string name="Modal_ManualUpload_Disable">No, thanks</string>
   <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. We will never link these app usage metrics to your identity. You can opt out of this at any time through the settings.</string>
+  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. You can opt out of this at any time through the settings.</string>
   <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
   <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
   <string name="Modal_UploadFailed_Title">Upload failed</string>
@@ -321,11 +320,12 @@
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">This information (e.g. IT for Italy) is required to identify which country the measurements are collected from. Are you sure you want to disable this option?</string>
   <string name="Settings_Sharing_Footer">By publishing results, you are increasing transparency of network interference and supporting the OONI community. \n\nNetwork information (i.e. Autonomous System Number) is required for identifying Internet Service Providers.</string>
   <string name="Settings_TestOptions_Label">Test options</string>
+  <string name="Settings_Privacy_Label">Privacy</string>
+  <string name="Settings_Privacy_CollectAnalytics">Share app usage metrics</string>
+  <string name="Settings_Privacy_SendCrashReports">Send crash reports</string>
   <string name="Settings_Advanced_Label">Advanced</string>
-  <string name="Settings_Advanced_SendCrashReports">Send crash reports</string>
   <string name="Settings_Advanced_DebugLogs">Debug logs</string>
   <string name="Settings_Advanced_UseDomainFronting">Always use domain fronting</string>
-  <string name="Settings_Advanced_CollectAnalytics">Collect app usage statistics</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Limit test duration</string>
   <string name="Settings_Websites_MaxRuntime">Test duration</string>
   <string name="Settings_Websites_Categories_Label">Website categories to test</string>
@@ -337,7 +337,6 @@
   <string name="Settings_Websites_CustomURL_Add">Add website</string>
   <string name="Settings_Websites_TestCount">Number of tested websites (0 means all)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">Test WhatsApp</string>
-  <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">Test all WhatsApp endpoints</string>
   <string name="Settings_InstantMessaging_TestTelegram">Test Telegram</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">Test Facebook Messenger</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">Run the HTTP Invalid Request Line Test</string>

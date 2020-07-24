@@ -28,7 +28,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">Codi del país (p. ex. IT per a Itàlia)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">Informació de la xarxa (inclòs el número del sistema autònom)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">Hora i data de la prova</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">Fem tot el possible per no publicar la vostra adreça IP o qualsevol altra informació que us identifiqui personalment.\n\nObteniu més informació amb la [Política de dades d\'OONI](https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI\'s Data Policy](https://ooni.io/about/data-policy/).</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Som-hi</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Canvia valors</string>
   <string name="Dashboard_Tab_Label">Tauler</string>
@@ -253,9 +253,8 @@
   <string name="Modal_ResultsNotUploaded_Uploading">S\'està pujant %1$s...</string>
   <string name="Toast_ResultsUploaded">S\'ha pujat amb èxit</string>
   <string name="Modal_DisplayFailureLog">Mostra el registre d\'errors</string>
-  <string name="Modal_EnableNotifications_AutomatedTesting">Activeu els permisos de notificació per executar les proves automàticament.</string>
-  <string name="Modal_EnableNotifications_News">Activeu els permisos de notificació per rebre actualitzacions de notícies.</string>
-  <string name="Modal_EnableNotifications_Any">Activeu els permisos de notificació per rebre notificacions de tramesa automàtica.</string>
+  <string name="Modal_EnableNotifications_Title">Receive notifications</string>
+  <string name="Modal_EnableNotifications_ Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
   <string name="Modal_EnableGPS">Per millorar la precisió de les proves, necessitem permisos de GPS. L\'OONI només recopilarà una aproximació de la vostra posició GPS.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Voleu eliminar tots els resultats de la prova?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Voleu eliminar aquesta prova?</string>
@@ -271,7 +270,7 @@
   <string name="Modal_ManualUpload_Enable">Habilitar</string>
   <string name="Modal_ManualUpload_Disable">No, gràcies</string>
   <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. We will never link these app usage metrics to your identity. You can opt out of this at any time through the settings.</string>
+  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. You can opt out of this at any time through the settings.</string>
   <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
   <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
   <string name="Modal_UploadFailed_Title">Ha fallat la pujada</string>
@@ -321,11 +320,12 @@
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Aquesta informació (p. ex. IT per a Itàlia) és necessària per identificar des de quin país es recopilen els mesuraments. Esteu segur que voleu desactivar aquesta opció?</string>
   <string name="Settings_Sharing_Footer">En publicar els resultats, augmenteu la transparència de la interferència de la xarxa i dóneu suport a la comunitat OONI.\n\nLa informació de la xarxa (és a dir, el número del sistema autònom) és necessària per identificar els proveïdors de serveis d\'Internet.</string>
   <string name="Settings_TestOptions_Label">Opcions de la prova</string>
+  <string name="Settings_Privacy_Label">Privadesa</string>
+  <string name="Settings_Privacy_CollectAnalytics">Share app usage metrics</string>
+  <string name="Settings_Privacy_SendCrashReports">Envia informes d\'errors</string>
   <string name="Settings_Advanced_Label">Avançat</string>
-  <string name="Settings_Advanced_SendCrashReports">Envia informes d\'errors</string>
   <string name="Settings_Advanced_DebugLogs">Registres de depuració</string>
   <string name="Settings_Advanced_UseDomainFronting">Utilitza sempre el camuflatge del domini</string>
-  <string name="Settings_Advanced_CollectAnalytics">Recopila les estadístiques d\'ús de l\'aplicació</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Límit de durada de la prova</string>
   <string name="Settings_Websites_MaxRuntime">Durada de la prova</string>
   <string name="Settings_Websites_Categories_Label">Categories de lloc web per provar</string>
@@ -337,7 +337,6 @@
   <string name="Settings_Websites_CustomURL_Add">Afegeix lloc web</string>
   <string name="Settings_Websites_TestCount">Número de llocs web provats (0 significa tots)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">Prova el WhatsApp</string>
-  <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">Prova tots els punts finals de WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Prova el Telegram</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">Prova el Facebook Messenger</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">Executa la prova «HTTP Invalid Request Line»</string>
