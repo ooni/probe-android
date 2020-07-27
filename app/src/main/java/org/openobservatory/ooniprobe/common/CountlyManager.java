@@ -60,7 +60,7 @@ public class CountlyManager {
             consents.addAll(Arrays.asList(analyticsFeatures));
         if (preferenceManager.isNotifications())
             consents.addAll(Arrays.asList(pushFeatures));
-        return (String[]) consents.toArray();
+        return consents.toArray((new String[0]));
     }
 
     public static void reloadConsent(PreferenceManager preferenceManager){
