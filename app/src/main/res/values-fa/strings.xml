@@ -253,9 +253,8 @@
   <string name="Modal_ResultsNotUploaded_Uploading">بارگذاری %1$s ...</string>
   <string name="Toast_ResultsUploaded">بارگذاری با موفقیت انجام شد.</string>
   <string name="Modal_DisplayFailureLog">نمایش گزارش خرابی</string>
-  <string name="Modal_EnableNotifications_AutomatedTesting">اجازه‌ی اعلان را فعال کنید تا تست‌ها به صورت خودکار اجرا شوند.</string>
-  <string name="Modal_EnableNotifications_News">اجازه‌ی اعلان را فعال کنید تا اخبار بروز رسانی را دریافت کنید.</string>
-  <string name="Modal_EnableNotifications_Any">اجازه‌ی اعلان را فعال کنید تا اعلان های ضروری را دریافت کنید.</string>
+  <string name="Modal_EnableNotifications_Title">Receive notifications</string>
+  <string name="Modal_EnableNotifications_ Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
   <string name="Modal_EnableGPS">برای بهبود دقت تست‌ها نیاز به اجازه‌ی GPS داریم. OONi تنها اطلاعات تقریبی مکان GPS شما را جمع‌آوری می‌کند.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">آیا مایلید که تمام آزمایش‌های قبلی را پاک کنید؟</string>
   <string name="Modal_DoYouWantToDeleteThisTest">آیا می‌خواهید این تست را حذف کنید؟</string>
@@ -338,7 +337,6 @@
   <string name="Settings_Websites_CustomURL_Add">افزودن وبسایت</string>
   <string name="Settings_Websites_TestCount">تعداد وبسایت‌های آزمایش شده (۰ یعنی همه)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">تست واتس‌اپ</string>
-  <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">تست تمام نقاط پایانی واتس‌‌اپ</string>
   <string name="Settings_InstantMessaging_TestTelegram">تست تلگرام</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">تست پیام‌رسان فیسبوک</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">اجرای تست خط درخواست نامعتبر HTTP</string>

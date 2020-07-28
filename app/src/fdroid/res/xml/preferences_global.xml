@@ -240,11 +240,6 @@
 				android:key="@string/test_whatsapp"
 				android:title="@string/Settings_InstantMessaging_TestWhatsApp" />
 			<androidx.preference.SwitchPreferenceCompat
-				android:defaultValue="false"
-				android:dependency="@string/test_whatsapp"
-				android:key="@string/test_whatsapp_extensive"
-				android:title="@string/Settings_InstantMessaging_WhatsAppExtensiveTesting" />
-			<androidx.preference.SwitchPreferenceCompat
 				android:defaultValue="true"
 				android:key="@string/test_telegram"
 				android:title="@string/Settings_InstantMessaging_TestTelegram" />

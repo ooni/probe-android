@@ -253,9 +253,8 @@
   <string name="Modal_ResultsNotUploaded_Uploading">กำลังอัปโหลด %1$s ...</string>
   <string name="Toast_ResultsUploaded">อัปโหลดสำเร็จ</string>
   <string name="Modal_DisplayFailureLog">แสดงปูมความล้มเหลว</string>
-  <string name="Modal_EnableNotifications_AutomatedTesting">อนุญาตให้ใช้การแจ้งเตือน เพื่อทำการทดสอบโดยอัตโนมัติ</string>
-  <string name="Modal_EnableNotifications_News">อนุญาตให้ใช้การแจ้งเตือน เพื่อรับข่าวสารใหม่ๆ</string>
-  <string name="Modal_EnableNotifications_Any">อนุญาตให้ใช้การแจ้งเตือน เพื่อรับการแจ้งเตือนจากเซิร์ฟเวอร์</string>
+  <string name="Modal_EnableNotifications_Title">Receive notifications</string>
+  <string name="Modal_EnableNotifications_ Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
   <string name="Modal_EnableGPS">เพื่อเพิ่มความแม่นยำของการทดสอบ เราต้องการการอนุญาตให้เข้าถึงจีพีเอส OONI จะเก็บเฉพาะตำแหน่งจีพีเอสโดยประมาณของคุณเท่านั้น</string>
   <string name="Modal_DoYouWantToDeleteAllTests">คุณต้องการลบผลการทดสอบทั้งหมดหรือไม่?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">คุณต้องการลบการทดสอบนี้หรือไม่?</string>
@@ -338,7 +337,6 @@
   <string name="Settings_Websites_CustomURL_Add">เพิ่มเว็บไซต์</string>
   <string name="Settings_Websites_TestCount">จำนวนของเว็บไซต์ที่ได้ทดสอบ (0 หมายถึงทั้งหมด)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">ทดสอบ WhatsApp</string>
-  <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">ทดสอบจุดปลายทางของ WhatsApp ทุกจุด</string>
   <string name="Settings_InstantMessaging_TestTelegram">ทดสอบ Telegram</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">ทดสอบ Facebook Messenger</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">เริ่มทดสอบ HTTP Invalid Request Line</string>

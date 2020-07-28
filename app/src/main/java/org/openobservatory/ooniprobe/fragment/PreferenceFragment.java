@@ -131,7 +131,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
         boolean found = false;
         //cycle all preferences in the page and return true if at least one is enabled
         for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++)
-            if (getPreferenceScreen().getPreference(i) instanceof SwitchPreferenceCompat && !getPreferenceScreen().getPreference(i).getKey().equals(getString(R.string.test_whatsapp_extensive)))
+            if (getPreferenceScreen().getPreference(i) instanceof SwitchPreferenceCompat)
                 found = found || sharedPreferences.getBoolean(getPreferenceScreen().getPreference(i).getKey(), true);
         if (!found) {
             new MessageDialogFragment.Builder()

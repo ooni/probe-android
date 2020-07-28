@@ -253,9 +253,8 @@
   <string name="Modal_ResultsNotUploaded_Uploading">Hochladen von %1$s ...</string>
   <string name="Toast_ResultsUploaded">Upload erfolgreich</string>
   <string name="Modal_DisplayFailureLog">Fehlerlog anzeigen</string>
-  <string name="Modal_EnableNotifications_AutomatedTesting">Erlaube Benachrichtigungen um diese Tests automatisch auszuführen.</string>
-  <string name="Modal_EnableNotifications_News">Erlaube Benachrichtigungen um Neuigkeiten automatisch zu erhalten.</string>
-  <string name="Modal_EnableNotifications_Any">Erlaube Benachrichtigungen um Push-Benachrichtigungen zu erhalten.</string>
+  <string name="Modal_EnableNotifications_Title">Receive notifications</string>
+  <string name="Modal_EnableNotifications_ Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
   <string name="Modal_EnableGPS">Um die Genauigkeit von Tests zu verbessern brauchen wir Berechtigung für GPS. OONI wird nur eine ungefähre Position aufnehmen.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Möchtest du alle Testergebnisse löschen?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Möchtest du diesen Test löschen?</string>
@@ -338,7 +337,6 @@
   <string name="Settings_Websites_CustomURL_Add"> Webseite hinzufügen</string>
   <string name="Settings_Websites_TestCount">Anzahl der getesteten Websites (0 bedeutet alle)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">WhatsApp testen</string>
-  <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">Alle WhatsApp-Endpunkte testen</string>
   <string name="Settings_InstantMessaging_TestTelegram">Telegram testen</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">Facebook Messenger testen</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">Führe den HTTP Invalid Request Line Test aus</string>

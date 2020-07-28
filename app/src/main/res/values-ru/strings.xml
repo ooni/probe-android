@@ -253,9 +253,8 @@
   <string name="Modal_ResultsNotUploaded_Uploading">Загружаем %1$s ...</string>
   <string name="Toast_ResultsUploaded">Загрузка успешно завершена</string>
   <string name="Modal_DisplayFailureLog">Показать список ошибок</string>
-  <string name="Modal_EnableNotifications_AutomatedTesting">Разрешить уведомления для автоматических тестов.</string>
-  <string name="Modal_EnableNotifications_News">Разрешить новостные уведомления.</string>
-  <string name="Modal_EnableNotifications_Any">Разрешить push-уведомления.</string>
+  <string name="Modal_EnableNotifications_Title">Receive notifications</string>
+  <string name="Modal_EnableNotifications_ Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
   <string name="Modal_EnableGPS">Чтобы повысить точность тестов, нам требуется доступ к GPS-данным. OONI собирает только примерные данные о GPS-координатах.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Удалить все результаты теста?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Хотите удалить этот тест?</string>
@@ -338,7 +337,6 @@
   <string name="Settings_Websites_CustomURL_Add">Добавить сайт</string>
   <string name="Settings_Websites_TestCount">Количество проверенных веб-сайтов (0 означает все)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">Тестировать WhatsApp</string>
-  <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">Тестировать все конечные точки WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Тестировать Telegram</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">Тестировать Facebook Messenger</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">Начать тест HTTP Invalid Request Line</string>

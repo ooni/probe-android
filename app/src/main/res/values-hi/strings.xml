@@ -253,9 +253,8 @@
   <string name="Modal_ResultsNotUploaded_Uploading">अपलोड कर रहे हें %1$s ...</string>
   <string name="Toast_ResultsUploaded">अपलोड सफल रहा।</string>
   <string name="Modal_DisplayFailureLog">विफलता लॉग प्रदर्शित करें</string>
-  <string name="Modal_EnableNotifications_AutomatedTesting">स्वचालित रूप से परीक्षण चलाने के लिए अधिसूचना अनुमतियां सक्षम करें।</string>
-  <string name="Modal_EnableNotifications_News">समाचार अद्यतन प्राप्त करने के लिए अधिसूचना अनुमति सक्षम करें।</string>
-  <string name="Modal_EnableNotifications_Any">पुश सूचनाएँ प्राप्त करने के लिए अधिसूचना अनुमतियां सक्षम करें।</string>
+  <string name="Modal_EnableNotifications_Title">Receive notifications</string>
+  <string name="Modal_EnableNotifications_ Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
   <string name="Modal_EnableGPS">परीक्षणों की सटीकता में सुधार करने के लिए, हमें GPS अनुमतियों की आवश्यकता है। OONI केवल आपके GPS स्थिति का एक अनुमान एकत्र करेगा।</string>
   <string name="Modal_DoYouWantToDeleteAllTests">क्या आप सभी परीक्षण परिणामों को हटाना चाहते हैं?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">क्या आप इस परीक्षा को मिटाना चाहते हैं?</string>
@@ -338,7 +337,6 @@
   <string name="Settings_Websites_CustomURL_Add">वेबसाइट जोड़ें</string>
   <string name="Settings_Websites_TestCount">परीक्षण की गई वेबसाइटों की संख्या (0 का मतलब सभी)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">टेस्ट व्हाट्सएप</string>
-  <string name="Settings_InstantMessaging_WhatsAppExtensiveTesting">सभी व्हाट्स एप समापन बिंदुओं का परीक्षण करें</string>
   <string name="Settings_InstantMessaging_TestTelegram">टेलीग्राम का परीक्षण करें</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">फेसबुक मैसेंजर का परीक्षण करें</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">HTTP अमान्य अनुरोध रेखा परीक्षण चलाएँ</string>
