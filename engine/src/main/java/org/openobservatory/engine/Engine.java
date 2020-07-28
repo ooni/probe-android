@@ -17,7 +17,11 @@ public class Engine {
             "Dash",
             "Ndt",
             "Psiphon",
-            "Tor"
+            "Tor",
+            "Whatsapp",
+            "FacebookMessenger",
+            "HttpHeaderFieldManipulation",
+            "HttpInvalidRequestLine"
     ));
 
     /** getVersionMK returns the version of Measurement Kit we're using */
