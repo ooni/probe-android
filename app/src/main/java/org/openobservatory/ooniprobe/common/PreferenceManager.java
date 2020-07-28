@@ -110,10 +110,6 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.test_whatsapp), true);
 	}
 
-	public boolean isTestWhatsappExtensive() {
-		return sp.getBoolean(r.getString(R.string.test_whatsapp_extensive), true);
-	}
-
 	public boolean isTestTelegram() {
 		return sp.getBoolean(r.getString(R.string.test_telegram), true);
 	}
