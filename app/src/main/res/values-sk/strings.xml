@@ -254,7 +254,7 @@
   <string name="Toast_ResultsUploaded">Nahrávanie prebehlo úspešne</string>
   <string name="Modal_DisplayFailureLog">Zobraziť denník zlyhaní</string>
   <string name="Modal_EnableNotifications_Title">Receive notifications</string>
-  <string name="Modal_EnableNotifications_ Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
+  <string name="Modal_EnableNotifications_Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
   <string name="Modal_EnableGPS">Pre vylepšenie presnosti testov potrebujeme povolenia GPS. OONI bude zhromažďovať iba tvoju približnú polohu GPS.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Chceš odstrániť všetky výsledky testov?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Chceš odstrániť tento test?</string>

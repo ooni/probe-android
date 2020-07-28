@@ -254,7 +254,7 @@
   <string name="Toast_ResultsUploaded">成功上傳</string>
   <string name="Modal_DisplayFailureLog">Display failure log</string>
   <string name="Modal_EnableNotifications_Title">Receive notifications</string>
-  <string name="Modal_EnableNotifications_ Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
+  <string name="Modal_EnableNotifications_Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
   <string name="Modal_EnableGPS">為改進測試的準確度，需要啟用 GPS 授權。OONI 僅收集大略的 GPS 定位資訊。</string>
   <string name="Modal_DoYouWantToDeleteAllTests">要刪除所有的測試結果嗎？</string>
   <string name="Modal_DoYouWantToDeleteThisTest">要刪除這次的測試嗎？</string>

@@ -254,7 +254,7 @@
   <string name="Toast_ResultsUploaded">Ngarkimi i sukseshëm</string>
   <string name="Modal_DisplayFailureLog">Display failure log</string>
   <string name="Modal_EnableNotifications_Title">Receive notifications</string>
-  <string name="Modal_EnableNotifications_ Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
+  <string name="Modal_EnableNotifications_Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
   <string name="Modal_EnableGPS">Që të përmirësuar saktësinë e testimeve, na duhen të drejta tek GPS. OONI do të ruaj pozicionin tend të GPS vetëm me përafërsi.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Doni që të fshihen të gjitha rezultatet e testimeve?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Doni të fshini këtë testim?</string>
