@@ -121,8 +121,6 @@ public class Settings {
 		public String server;
 		@SerializedName("port")
 		public Integer port;
-		@SerializedName("all_endpoints")
-		public Integer all_endpoints;
 
 		public Options(Context c, PreferenceManager pm) {
 			ca_bundle_path = Engine.getCABundlePath(c);

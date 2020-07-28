@@ -23,8 +23,6 @@ public class Whatsapp extends AbstractTest {
 
 	@Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback) {
 		Settings settings = new Settings(c, pm);
-		if (pm.isTestWhatsappExtensive())
-			settings.options.all_endpoints = 1;
 		run(c, pm, gson, settings, result, index, testCallback);
 	}
 
