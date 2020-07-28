@@ -254,7 +254,7 @@
   <string name="Toast_ResultsUploaded">بارگذاری با موفقیت انجام شد.</string>
   <string name="Modal_DisplayFailureLog">نمایش گزارش خرابی</string>
   <string name="Modal_EnableNotifications_Title">Receive notifications</string>
-  <string name="Modal_EnableNotifications_ Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
+  <string name="Modal_EnableNotifications_Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
   <string name="Modal_EnableGPS">برای بهبود دقت تست‌ها نیاز به اجازه‌ی GPS داریم. OONi تنها اطلاعات تقریبی مکان GPS شما را جمع‌آوری می‌کند.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">آیا مایلید که تمام آزمایش‌های قبلی را پاک کنید؟</string>
   <string name="Modal_DoYouWantToDeleteThisTest">آیا می‌خواهید این تست را حذف کنید؟</string>

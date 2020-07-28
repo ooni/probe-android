@@ -254,7 +254,7 @@
   <string name="Toast_ResultsUploaded">Innsending tókst</string>
   <string name="Modal_DisplayFailureLog">Birta mistakaskrá</string>
   <string name="Modal_EnableNotifications_Title">Receive notifications</string>
-  <string name="Modal_EnableNotifications_ Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
+  <string name="Modal_EnableNotifications_Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
   <string name="Modal_EnableGPS">Til að bæta nákvæmni prófana þurfum við heimildir fyrir GPS-staðsetningar. OONI mun einungis safna grófum GPS-staðsetningum.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Viltu eyða öllum niðurstöðum prófana?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Viltu eyða þessari prófun?</string>

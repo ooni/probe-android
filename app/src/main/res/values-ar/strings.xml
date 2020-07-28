@@ -254,7 +254,7 @@
   <string name="Toast_ResultsUploaded">تم التحميل بنجاح</string>
   <string name="Modal_DisplayFailureLog">عرض سجل الإخفاق</string>
   <string name="Modal_EnableNotifications_Title">Receive notifications</string>
-  <string name="Modal_EnableNotifications_ Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
+  <string name="Modal_EnableNotifications_Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
   <string name="Modal_EnableGPS">التطبيق بجاجة إلى تصريح GPS لتحسين دقة الاختبارات. سيقوم OONI بالحصول على موقع GPS التقريبي الخاص بك.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">هل تريد حذف جميع نتائج الإختبارات؟</string>
   <string name="Modal_DoYouWantToDeleteThisTest">هل تريد حذف هذا الإختبار؟</string>

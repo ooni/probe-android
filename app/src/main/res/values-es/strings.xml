@@ -254,7 +254,7 @@
   <string name="Toast_ResultsUploaded">Subida exitosa</string>
   <string name="Modal_DisplayFailureLog">Mostrar registro de fallos</string>
   <string name="Modal_EnableNotifications_Title">Receive notifications</string>
-  <string name="Modal_EnableNotifications_ Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
+  <string name="Modal_EnableNotifications_Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
   <string name="Modal_EnableGPS">Para mejorar la precisión de las pruebas, necesitamos permisos para GPS. OONI sólo recopilará una aproximación de tu posición GPS.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">¿Deseas eliminar todos los resultados de las pruebas?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">¿Deseas eliminar esta prueba?</string>

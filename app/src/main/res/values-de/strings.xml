@@ -28,7 +28,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">Ländercode (z. B. DE für Deutschland)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">Netzwerkinformationen (einschließlich der Autonomous System Number, ASN)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">Zeit &amp; Datum des Tests</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI\'s Data Policy](https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">Wir geben unser Bestes, deine IP-Adresse oder andere möglicherweise personenbezogene Daten nicht zu veröffentlichen.\n\nUm OONI Probe zu verbessern, sammeln wir auch Metriken zur Anwendungsnutzung und Absturzberichte.\n\nWeitere Informationen findest du in [OONI\'s Datenrichtlinie](https://ooni.io/about/data-policy/).</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Auf geht\'s</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Defaults ändern</string>
   <string name="Dashboard_Tab_Label">Übersicht</string>
@@ -253,8 +253,8 @@
   <string name="Modal_ResultsNotUploaded_Uploading">Hochladen von %1$s ...</string>
   <string name="Toast_ResultsUploaded">Upload erfolgreich</string>
   <string name="Modal_DisplayFailureLog">Fehlerlog anzeigen</string>
-  <string name="Modal_EnableNotifications_Title">Receive notifications</string>
-  <string name="Modal_EnableNotifications_ Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
+  <string name="Modal_EnableNotifications_Title">Benachrichtigungen erhalten</string>
+  <string name="Modal_EnableNotifications_Paragraph">Bist du daran interessiert, OONI-Probe-Tests während aufkommender Zensurereignisse durchzuführen? Aktiviere Benachrichtigungen, um eine Nachricht zu erhalten, wenn wir von Internetzensur in deiner Nähe hören!</string>
   <string name="Modal_EnableGPS">Um die Genauigkeit von Tests zu verbessern brauchen wir Berechtigung für GPS. OONI wird nur eine ungefähre Position aufnehmen.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Möchtest du alle Testergebnisse löschen?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Möchtest du diesen Test löschen?</string>
@@ -270,7 +270,7 @@
   <string name="Modal_ManualUpload_Enable">Aktivieren</string>
   <string name="Modal_ManualUpload_Disable">Nein, danke</string>
   <string name="Modal_ShareAnalytics_Title">Hilf uns OONI Probe zu verbessern</string>
-  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. You can opt out of this at any time through the settings.</string>
+  <string name="Modal_ShareAnalytics_Paragraph">Wir möchten einige Metriken darüber sammeln, wie du OONI-Probe verwendest, damit wir sie verbessern können. Du kannst dies jederzeit über die Einstellungen abbestellen.</string>
   <string name="Modal_ShareAnalytics_Enable">App-Nutzung teilen</string>
   <string name="Modal_ShareAnalytics_Disable">Nicht teilen</string>
   <string name="Modal_UploadFailed_Title">Hochladen fehlgeschlagen</string>
@@ -321,7 +321,7 @@
   <string name="Settings_Sharing_Footer">Mit der Veröffentlichung von Ergebnissen erhöhst du die Transparenz um Netzwerkbeeinflussung und unterstützt die OONI Gemeinschaft.\n\nNetzwerkinformationen sind notwendig (z. B. die Autonomous System Nummer) um den Internetanbieter zu identifizieren.\n</string>
   <string name="Settings_TestOptions_Label">Testoptionen</string>
   <string name="Settings_Privacy_Label">Privatsphäre</string>
-  <string name="Settings_Privacy_CollectAnalytics">Share app usage metrics</string>
+  <string name="Settings_Privacy_CollectAnalytics">Metriken zur App-Nutzung teilen</string>
   <string name="Settings_Privacy_SendCrashReports">Sende Absturzberichte</string>
   <string name="Settings_Advanced_Label">Fortgeschritten</string>
   <string name="Settings_Advanced_DebugLogs">Fehlerprotokolle</string>
