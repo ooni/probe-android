@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+def gservices = 'yes'
 
 android {
 	compileSdkVersion 29
@@ -57,6 +58,7 @@ android {
 			resValue "string", "APP_NAME", "OONI Exp"
 		}
 		fdroid {
+			gservices = 'no'
 			dimension 'license'
 		}
 		full {
@@ -107,7 +109,7 @@ dependencies {
 	androidTestImplementation 'androidx.test:rules:1.2.0'
 	implementation project(path: ':engine')
 
-	androidTestCompile 'tools.fastlane:screengrab:1.0.0'
+	androidTestImplementation 'tools.fastlane:screengrab:1.0.0'
 	androidTestImplementation 'androidx.test:runner:1.2.0'
 	androidTestImplementation 'androidx.test:rules:1.2.0'
 	androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
@@ -121,8 +123,7 @@ static def versionNameDate() {
 	return new Date().format("yyyy.MM.dd-HH")
 }
 
-if (!getGradle().getStartParameter().getTaskRequests()
-		.toString().contains("Fdroid")){
+if(gservices == "yes") {
 	apply plugin: 'com.google.gms.google-services'
 	apply plugin: 'io.fabric'
 }
