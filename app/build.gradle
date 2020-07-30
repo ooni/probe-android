@@ -107,6 +107,8 @@ dependencies {
 	androidTestImplementation 'androidx.test:runner:1.2.0'
 	androidTestImplementation 'androidx.test:rules:1.2.0'
 	implementation project(path: ':engine')
+
+	androidTestCompile 'tools.fastlane:screengrab:1.0.0'
 }
 
 static def versionCodeDate() {
