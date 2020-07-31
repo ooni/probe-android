@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.google.android.gms.common.util.ArrayUtils;
 
+import org.openobservatory.engine.Engine;
 import org.openobservatory.ooniprobe.BuildConfig;
 
 import java.util.ArrayList;
@@ -39,8 +40,7 @@ public class CountlyManager {
         CountlyConfig config = new CountlyConfig()
                 .setAppKey("146836f41172f9e3287cab6f2cc347de3f5ddf3b")
                 .setContext(ctx)
-                .setDeviceId("Lorenzo-Android")
-                //.setIdMode(DeviceId.Type.ADVERTISING_ID)
+                .setDeviceId(Engine.getUUID())
                 .setRequiresConsent(true)
                 .setConsentEnabled(getConsentsEnabled(preferenceManager))
                 .setServerURL(BuildConfig.NOTIFICATION_SERVER)
