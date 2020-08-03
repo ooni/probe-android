@@ -9,6 +9,7 @@ import org.openobservatory.ooniprobe.BuildConfig;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import ly.count.android.sdk.Countly;
@@ -67,5 +68,9 @@ public class CountlyManager {
         Countly.sharedInstance().consent().setConsent(crashFeatures, preferenceManager.isSendCrash());
         Countly.sharedInstance().consent().setConsent(analyticsFeatures, preferenceManager.isSendAnalytics());
         Countly.sharedInstance().consent().setConsent(pushFeatures, preferenceManager.isNotifications());
+    }
+
+    public static void recordEvent(String title, HashMap<String, Object> segmentation) {
+        Countly.sharedInstance().events().recordEvent(title, segmentation);
     }
 }
