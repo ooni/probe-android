@@ -70,6 +70,10 @@ public class CountlyManager {
         Countly.sharedInstance().consent().setConsent(pushFeatures, preferenceManager.isNotifications());
     }
 
+    public static void recordEvent(String title) {
+        Countly.sharedInstance().events().recordEvent(title);
+    }
+
     public static void recordEvent(String title, HashMap<String, Object> segmentation) {
         Countly.sharedInstance().events().recordEvent(title, segmentation);
     }
