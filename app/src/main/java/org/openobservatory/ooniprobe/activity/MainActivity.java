@@ -101,15 +101,13 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     }
 
     @Override
-    public void onStart()
-    {
+    public void onStart() {
         super.onStart();
         Countly.sharedInstance().onStart(this);
     }
 
     @Override
-    public void onStop()
-    {
+    public void onStop() {
         Countly.sharedInstance().onStop();
         super.onStop();
     }
