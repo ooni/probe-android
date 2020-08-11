@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.text.TextUtils;
 
+import org.openobservatory.engine.Engine;
 import org.openobservatory.ooniprobe.R;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class PreferenceManager {
 	//This is in ms, set to one day
 	public static final Integer DELETE_JSON_DELAY = 86400000;
 	private static final String DELETE_JSON_KEY = "deleteUploadedJsons";
+	private static final String UUID4 = "uuid4";
 
 	private final SharedPreferences sp;
 	private final Resources r;
@@ -207,4 +209,9 @@ public class PreferenceManager {
 		sp.edit().putLong(DELETE_JSON_KEY, System.currentTimeMillis()).apply();
 	}
 
+	public String getOrGenerateUUID4() {
+		String uuid = sp.getString(UUID4, Engine.newUUID4());
+		sp.edit().putString(UUID4, uuid).apply();
+		return uuid;
+	}
 }

@@ -40,14 +40,13 @@ public class CountlyManager {
         CountlyConfig config = new CountlyConfig()
                 .setAppKey("146836f41172f9e3287cab6f2cc347de3f5ddf3b")
                 .setContext(ctx)
-                .setDeviceId(Engine.getUUID())
+                .setDeviceId(preferenceManager.getOrGenerateUUID4())
                 .setRequiresConsent(true)
                 .setConsentEnabled(getConsentsEnabled(preferenceManager))
                 .setServerURL(BuildConfig.NOTIFICATION_SERVER)
                 .setLoggingEnabled(!BuildConfig.DEBUG)
                 .setViewTracking(true)
                 .setHttpPostForced(true)
-                .setViewTracking(true)
                 .enableCrashReporting();
         Countly.sharedInstance().init(config);
     }
