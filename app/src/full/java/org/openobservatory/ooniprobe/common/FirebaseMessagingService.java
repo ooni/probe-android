@@ -17,12 +17,6 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 		// decode message data and extract meaningful information from it: title, body, badge, etc.
 		CountlyPush.Message message = CountlyPush.decodeMessage(remoteMessage.getData());
 
-		if (message != null && message.has("typ")) {
-			// custom handling only for messages with specific "typ" keys
-			message.recordAction(getApplicationContext());
-			return;
-		}
-
 		Boolean result = CountlyPush.displayMessage(getApplicationContext(), message, R.drawable.notification_icon, null);
 		if (result == null) {
 			Log.d(TAG, "Message wasn't sent from Countly server, so it cannot be handled by Countly SDK");
