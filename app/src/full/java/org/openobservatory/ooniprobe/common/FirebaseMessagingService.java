@@ -30,11 +30,11 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
 		Boolean result = CountlyPush.displayMessage(getApplicationContext(), message, R.drawable.notification_icon, null);
 		if (result == null) {
-			Log.i(TAG, "Message wasn't sent from Countly server, so it cannot be handled by Countly SDK");
+			Log.d(TAG, "Message wasn't sent from Countly server, so it cannot be handled by Countly SDK");
 		} else if (result) {
-			Log.i(TAG, "Message was handled by Countly SDK");
+			Log.d(TAG, "Message was handled by Countly SDK");
 		} else {
-			Log.i(TAG, "Message wasn't handled by Countly SDK because API level is too low for Notification support or because currentActivity is null (not enough lifecycle method calls)");
+			Log.d(TAG, "Message wasn't handled by Countly SDK because API level is too low for Notification support or because currentActivity is null (not enough lifecycle method calls)");
 		}
 	}
 
@@ -42,7 +42,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 	public void handleJson(CountlyPush.Message message){
 		Intent notificationIntent = null;
 		if (message.has("type") && message.data("type").equals("ooni_run")) {
-			Log.i(TAG, "It's a OONIRun message!");
+			Log.d(TAG, "It's a OONIRun message!");
 			notificationIntent = new Intent(getApplicationContext(), OoniRunActivity.class);
 			notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			notificationIntent.putExtra("mv",  message.data("mv"));
