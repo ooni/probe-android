@@ -20,13 +20,13 @@ import ly.count.android.sdk.messaging.CountlyPush;
 public class NotificationService {
     private static final String TEST_RUN = "TEST_RUN";
 
-    public static void initNotification(Context context){
-        PreferenceManager preferenceManager = ((Application) context.getApplicationContext()).getPreferenceManager();
+    public static void initNotification(Application app){
+        PreferenceManager preferenceManager = app.getPreferenceManager();
         if (!preferenceManager.isNotifications())
             return;
-        CountlyPush.init((Application) context, BuildConfig.DEBUG? Countly.CountlyMessagingMode.TEST:Countly.CountlyMessagingMode.PRODUCTION);
-        NotificationService.setChannel(context, CountlyPush.CHANNEL_ID, context.getString(R.string.Settings_Notifications_Label));
-        NotificationService.setToken((Application) context);
+        CountlyPush.init(app, BuildConfig.DEBUG? Countly.CountlyMessagingMode.TEST:Countly.CountlyMessagingMode.PRODUCTION);
+        NotificationService.setChannel(app, CountlyPush.CHANNEL_ID, app.getString(R.string.Settings_Notifications_Label));
+        NotificationService.setToken(app);
     }
 
     public static void notifyTestEnded(Context c, AbstractSuite testSuite) {
