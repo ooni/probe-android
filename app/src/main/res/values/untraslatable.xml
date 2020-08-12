@@ -5,6 +5,7 @@
 	<string name="notifications" translatable="false">notifications</string>
 	<string name="sharing" translatable="false">sharing</string>
 	<string name="test_options" translatable="false">test_options</string>
+	<string name="privacy" translatable="false">privacy</string>
 	<string name="advanced" translatable="false">advanced</string>
 	<string name="send_email" translatable="false">send_email</string>
 	<string name="about_ooni" translatable="false">about_ooni</string>
@@ -22,6 +23,7 @@
 	<string name="include_asn" translatable="false">include_asn</string>
 	<string name="debugLogs" translatable="false">debugLogs</string>
 	<string name="send_crash" translatable="false">send_crash</string>
+	<string name="send_analytics" translatable="false">send_analytics</string>
 	<string name="include_cc" translatable="false">include_cc</string>
 	<string name="run_http_invalid_request_line" translatable="false">run_http_invalid_request_line</string>
 	<string name="run_http_header_field_manipulation" translatable="false">run_http_header_field_manipulation</string>
