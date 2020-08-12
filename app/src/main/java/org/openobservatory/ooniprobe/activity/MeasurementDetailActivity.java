@@ -22,6 +22,7 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.client.callback.CheckReportIdCallback;
+import org.openobservatory.ooniprobe.common.CountlyManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.fragment.measurement.DashFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.FacebookMessengerFragment;
@@ -235,12 +236,15 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.rawData:
+                CountlyManager.recordEvent("RawData");
                 startActivity(TextActivity.newIntent(this, TextActivity.TYPE_JSON, measurement));
                 return true;
             case R.id.viewLog:
+                CountlyManager.recordEvent("ViewLog");
                 startActivity(TextActivity.newIntent(this, TextActivity.TYPE_LOG, measurement));
                 return true;
             case R.id.copyExplorerUrl:
+                CountlyManager.recordEvent("CopyExplorerURL");
                 String link = "https://explorer.ooni.io/measurement/" + measurement.report_id;
                 if (measurement.test_name.equals("web_connectivity"))
                     link = link + "?input=" + measurement.url.url;
@@ -254,6 +258,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
 
     @OnClick(R.id.methodology)
     void methodologyClick() {
+        CountlyManager.recordEvent("Methodology");
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(measurement.getTest().getUrlResId()))));
     }
 
