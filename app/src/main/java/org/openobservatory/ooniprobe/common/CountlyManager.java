@@ -2,19 +2,15 @@ package org.openobservatory.ooniprobe.common;
 
 import android.content.Context;
 
-import com.google.android.gms.common.util.ArrayUtils;
-
-import org.openobservatory.engine.Engine;
 import org.openobservatory.ooniprobe.BuildConfig;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import ly.count.android.sdk.Countly;
 import ly.count.android.sdk.CountlyConfig;
-import ly.count.android.sdk.DeviceId;
-import ly.count.android.sdk.messaging.CountlyPush;
 
 public class CountlyManager {
     private static String[] basicFeatures = new String[]{
