@@ -14,3 +14,4 @@ fastlane/screenshots/*/*.png
 fastlane/screenshots/screenshots.html
 fastlane/screenshots/report.xml
 fastlane/metadata/
+fastlane/report.xml
