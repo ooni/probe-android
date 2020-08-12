@@ -4,19 +4,22 @@
 
 	<application tools:ignore="GoogleAppIndexingWarning">
 		<meta-data
-			android:name="io.fabric.ApiKey"
-			android:value="529a3ff33bd5359fe86c53f6252035178bdb03a1" />
-		<meta-data
 			android:name="com.google.firebase.messaging.default_notification_icon"
 			android:resource="@drawable/ic_notification" />
 		<meta-data
 			android:name="com.google.firebase.messaging.default_notification_color"
 			android:resource="@color/color_base" />
-
-		<service android:name=".common.FirebaseMessagingService">
-			<intent-filter>
-				<action android:name="com.google.firebase.MESSAGING_EVENT" />
-			</intent-filter>
+		<meta-data
+			android:name="com.google.firebase.messaging.default_notification_channel_id"
+			android:value="@string/General_AppName" />
+		<meta-data
+			android:name="firebase_analytics_collection_deactivated"
+			android:value="true" />
+		<service android:name=".common.FirebaseMessagingService"
+			android:exported="false">
+		<intent-filter>
+			<action android:name="com.google.firebase.MESSAGING_EVENT" />
+		</intent-filter>
 		</service>
 	</application>
 </manifest>

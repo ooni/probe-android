@@ -1,6 +1,15 @@
 <androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
 	android:key="@string/preferences"
 	android:title="@string/Settings_Title">
+		<androidx.preference.PreferenceScreen
+		android:icon="@drawable/notifications"
+		android:key="@string/notifications"
+		android:title="@string/Settings_Notifications_Label">
+		<androidx.preference.SwitchPreferenceCompat
+			android:defaultValue="false"
+			android:key="@string/notifications_enabled"
+			android:title="@string/Settings_Notifications_Enabled" />
+	</androidx.preference.PreferenceScreen>
 	<androidx.preference.PreferenceScreen
 		android:icon="@drawable/sharing"
 		android:key="@string/sharing"
@@ -284,13 +293,22 @@
 		</androidx.preference.PreferenceScreen>
 	</androidx.preference.PreferenceScreen>
 	<androidx.preference.PreferenceScreen
-		android:icon="@drawable/advanced"
-		android:key="@string/advanced"
-		android:title="@string/Settings_Advanced_Label">
+		android:icon="@drawable/sharing"
+		android:key="@string/privacy"
+		android:title="@string/Settings_Privacy_Label">
+		<androidx.preference.SwitchPreferenceCompat
+			android:defaultValue="true"
+			android:key="@string/send_analytics"
+			android:title="@string/Settings_Privacy_CollectAnalytics" />
 		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="@string/send_crash"
 			android:title="@string/Settings_Privacy_SendCrashReports" />
+	</androidx.preference.PreferenceScreen>
+	<androidx.preference.PreferenceScreen
+		android:icon="@drawable/advanced"
+		android:key="@string/advanced"
+		android:title="@string/Settings_Advanced_Label">
 		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="@string/debugLogs"

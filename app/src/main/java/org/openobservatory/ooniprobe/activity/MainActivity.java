@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
 import org.openobservatory.ooniprobe.fragment.PreferenceGlobalFragment;
@@ -19,9 +20,13 @@ import java.io.Serializable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
+import ly.count.android.sdk.Countly;
 
 public class MainActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String RES_ITEM = "resItem";
+    private static final String MANUAL_UPLOAD_DIALOG = "manual_upload";
+    private static final String ANALYTICS_DIALOG = "analytics";
+
     @BindView(R.id.bottomNavigation)
     BottomNavigationView bottomNavigation;
 
@@ -35,7 +40,8 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
         if (getPreferenceManager().isShowOnboarding()) {
             startActivity(new Intent(MainActivity.this, OnboardingActivity.class));
             finish();
-        } else {
+        }
+        else {
             setContentView(R.layout.activity_main);
             ButterKnife.bind(this);
             bottomNavigation.setOnNavigationItemSelectedListener(item -> {
@@ -54,13 +60,25 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 }
             });
             bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
-            if (getPreferenceManager().isManualUploadDialog())
+            //These cases are not mutually exclusive. When a user upgrade if one or both modal has never been showed it will be.
+            if (getPreferenceManager().isManualUploadDialog()) {
                 new ConfirmDialogFragment.Builder()
                         .withTitle(getString(R.string.Modal_ManualUpload_Title))
                         .withMessage(getString(R.string.Modal_ManualUpload_Paragraph))
                         .withPositiveButton(getString(R.string.Modal_ManualUpload_Enable))
                         .withNegativeButton(getString(R.string.Modal_ManualUpload_Disable))
+                        .withExtra(MANUAL_UPLOAD_DIALOG)
                         .build().show(getSupportFragmentManager(), null);
+            }
+            if (getPreferenceManager().isShareAnalyticsDialog()) {
+                new ConfirmDialogFragment.Builder()
+                        .withTitle(getString(R.string.Modal_ShareAnalytics_Title))
+                        .withMessage(getString(R.string.Modal_ShareAnalytics_Paragraph))
+                        .withPositiveButton(getString(R.string.Modal_ShareAnalytics_Enable))
+                        .withNegativeButton(getString(R.string.Modal_ShareAnalytics_Disable))
+                        .withExtra(ANALYTICS_DIALOG)
+                        .build().show(getSupportFragmentManager(), null);
+            }
         }
     }
 
@@ -76,7 +94,22 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     }
 
     @Override
-    public void onConfirmation(Serializable serializable, int i) {
-        getPreferenceManager().setManualUploadResults(i == DialogInterface.BUTTON_POSITIVE);
+    public void onConfirmation(Serializable extra, int i) {
+        if (extra.equals(MANUAL_UPLOAD_DIALOG))
+            getPreferenceManager().setManualUploadResults(i == DialogInterface.BUTTON_POSITIVE);
+        else if (extra.equals(ANALYTICS_DIALOG))
+            getPreferenceManager().setSendAnalytics(i == DialogInterface.BUTTON_POSITIVE);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Countly.sharedInstance().onStart(this);
+    }
+
+    @Override
+    public void onStop() {
+        Countly.sharedInstance().onStop();
+        super.onStop();
     }
 }

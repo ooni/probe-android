@@ -29,6 +29,11 @@ public class Engine {
         return io.ooni.mk.MKVersion.getVersionMK();
     }
 
+    /** newUUID4 returns the a new UUID4 for this client  */
+    public static String newUUID4() {
+        return oonimkall.Oonimkall.newUUID4();
+    }
+
     /** startExperimentTask starts the experiment described by the provided settings. */
     public static ExperimentTask startExperimentTask(ExperimentSettings settings) throws EngineException {
         if (probeEngineTasks.contains(settings.taskName())) {

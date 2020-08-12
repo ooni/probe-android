@@ -51,7 +51,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
         String input = FileUtils.readFileToString(file, Charset.forName("UTF-8"));
         boolean okay = Engine.maybeUpdateResources(c);
         if (!okay) {
-            Crashlytics.logException(new Exception("MKResourcesManager didn't find resources"));
+            ExceptionManager.logException(new Exception("MKResourcesManager didn't find resources"));
             return false;
         }
         long uploadTimeout = getTimeout(file.length());

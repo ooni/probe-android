@@ -6,6 +6,7 @@
 		<item name="colorAccent">@color/color_blue4</item>
 		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 		<item name="fontFamily">@font/firasans</item>
+		<item name="android:alertDialogTheme">@style/AlertDialogCustom</item>
 	</style>
 
 	<style name="Theme.MaterialComponents.NoActionBar.App">
@@ -15,6 +16,7 @@
 		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 		<item name="fontFamily">@font/firasans</item>
 		<item name="android:textColor">@color/color_white</item>
+		<item name="android:alertDialogTheme">@style/AlertDialogCustom</item>
 	</style>
 
 	<style name="Theme.MaterialComponents.Light.NoActionBar.App">
@@ -24,6 +26,11 @@
 		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 		<item name="fontFamily">@font/firasans</item>
 		<item name="android:colorEdgeEffect" tools:targetApi="lollipop">@color/color_gray6</item>
+		<item name="android:alertDialogTheme">@style/AlertDialogCustom</item>
+	</style>
+
+	<style name="AlertDialogCustom" parent="android:Theme.Material.Light.Dialog.Alert">
+		<item name="colorAccent">@color/color_white</item>
 	</style>
 
 	<style name="Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
