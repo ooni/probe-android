@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.text.TextUtils;
 
+import org.openobservatory.engine.Engine;
 import org.openobservatory.ooniprobe.R;
 
 import java.util.ArrayList;
@@ -13,11 +14,13 @@ public class PreferenceManager {
 	static final String GEO_VER = "geo_ver";
 	public static final Integer MAX_RUNTIME_DISABLED = -1;
 	private static final String IS_MANUAL_UPLOAD_DIALOG = "isManualUploadDialog";
+	private static final String IS_ANALYTICS_DIALOG = "isAnalyticsDialog";
 	private static final String TOKEN = "token";
 	private static final String SHOW_ONBOARDING = "first_run";
 	//This is in ms, set to one day
 	public static final Integer DELETE_JSON_DELAY = 86400000;
 	private static final String DELETE_JSON_KEY = "deleteUploadedJsons";
+	private static final String UUID4 = "uuid4";
 
 	private final SharedPreferences sp;
 	private final Resources r;
@@ -73,20 +76,41 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.send_crash), true);
 	}
 
+	public boolean isSendAnalytics() {
+		return sp.getBoolean(r.getString(R.string.send_analytics), true);
+	}
+
+	public void setSendAnalytics(boolean analytics) {
+		sp.edit().putBoolean(IS_ANALYTICS_DIALOG, false).putBoolean(r.getString(R.string.send_analytics), analytics).apply();
+	}
+
 	public boolean isShowOnboarding() {
 		return sp.getBoolean(SHOW_ONBOARDING, true);
 	}
 
 	public void setShowOnboarding(boolean showIntro) {
-		sp.edit().putBoolean(SHOW_ONBOARDING, showIntro).putBoolean(IS_MANUAL_UPLOAD_DIALOG, showIntro).apply();
+		sp.edit().putBoolean(SHOW_ONBOARDING, showIntro)
+				.putBoolean(IS_ANALYTICS_DIALOG, showIntro)
+				.putBoolean(IS_MANUAL_UPLOAD_DIALOG, showIntro)
+				.apply();
 	}
 
+	/*
+	 * This method is used to ask user to share app usage to old users.
+	 */
+	public boolean isShareAnalyticsDialog() {
+		return sp.getBoolean(IS_ANALYTICS_DIALOG, true);
+	}
+
+	/*
+	 * This method is used to ask user to enable manual upload.
+	 */
 	public boolean isManualUploadDialog() {
 		return sp.getBoolean(IS_MANUAL_UPLOAD_DIALOG, true);
 	}
 
-	private boolean isNotifications() {
-		return sp.getBoolean(r.getString(R.string.notifications_enabled), true);
+	public boolean isNotifications() {
+		return sp.getBoolean(r.getString(R.string.notifications_enabled), false);
 	}
 
 	public boolean isUploadResults() {
@@ -119,10 +143,6 @@ public class PreferenceManager {
 
 	public boolean isTestWhatsapp() {
 		return sp.getBoolean(r.getString(R.string.test_whatsapp), true);
-	}
-
-	public boolean isTestWhatsappExtensive() {
-		return sp.getBoolean(r.getString(R.string.test_whatsapp_extensive), true);
 	}
 
 	public boolean isTestTelegram() {
@@ -200,4 +220,9 @@ public class PreferenceManager {
 		sp.edit().putLong(DELETE_JSON_KEY, System.currentTimeMillis()).apply();
 	}
 
+	public String getOrGenerateUUID4() {
+		String uuid = sp.getString(UUID4, Engine.newUUID4());
+		sp.edit().putString(UUID4, uuid).apply();
+		return uuid;
+	}
 }

@@ -32,8 +32,8 @@ import java.text.NumberFormat;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Arrays;
-
-import localhost.toolkit.app.fragment.ConfirmDialogFragment;
+import org.openobservatory.ooniprobe.common.CountlyManager;
+import org.openobservatory.ooniprobe.common.NotificationService;
 import localhost.toolkit.app.fragment.MessageDialogFragment;
 import localhost.toolkit.preference.ExtendedPreferenceFragment;
 
@@ -149,6 +149,12 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                 AlarmService.setRecurringAlarm(getActivity().getApplication());
             else
                 AlarmService.cancelRecurringAlarm(getActivity().getApplication());
+        if (key.equals(getString(R.string.send_crash)) ||
+                key.equals(getString(R.string.send_analytics)) ||
+                key.equals(getString(R.string.notifications_enabled))){
+            CountlyManager.reloadConsent(((Application) getActivity().getApplication()).getPreferenceManager());
+            if (key.equals(getString(R.string.notifications_enabled)))
+                NotificationService.initNotification((Application) getActivity().getApplication());
         }
         else if (preference instanceof EditTextPreference) {
             String value = sharedPreferences.getString(key, null);
@@ -163,7 +169,8 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                 if (p != null)
                     p.setText("");
             }
-        } else if (preference instanceof SwitchPreferenceCompat) {
+        }
+        else if (preference instanceof SwitchPreferenceCompat) {
             //Call this code only in case of category or tests
             if (Arrays.asList(getActivity().getResources().getStringArray(R.array.CategoryCodes)).contains(key) ||
                     Arrays.asList(getActivity().getResources().getStringArray(R.array.preferenceTestsNames)).contains(key))
@@ -175,7 +182,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
         boolean found = false;
         //cycle all preferences in the page and return true if at least one is enabled
         for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++)
-            if (getPreferenceScreen().getPreference(i) instanceof SwitchPreferenceCompat && !getPreferenceScreen().getPreference(i).getKey().equals(getString(R.string.test_whatsapp_extensive)))
+            if (getPreferenceScreen().getPreference(i) instanceof SwitchPreferenceCompat)
                 found = found || sharedPreferences.getBoolean(getPreferenceScreen().getPreference(i).getKey(), true);
         if (!found) {
             new MessageDialogFragment.Builder()
@@ -192,5 +199,4 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
     protected PreferenceFragment newConcreteInstance(String rootKey) {
         return PreferenceFragment.newInstance(getArguments().getInt(ARG_PREFERENCES_RES_ID), getArguments().getInt(ARG_CONTAINER_RES_ID), rootKey);
     }
-    
 }

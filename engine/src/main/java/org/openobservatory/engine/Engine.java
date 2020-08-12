@@ -17,12 +17,21 @@ public class Engine {
             "Dash",
             "Ndt",
             "Psiphon",
-            "Tor"
+            "Tor",
+            "Whatsapp",
+            "FacebookMessenger",
+            "HttpHeaderFieldManipulation",
+            "HttpInvalidRequestLine"
     ));
 
     /** getVersionMK returns the version of Measurement Kit we're using */
     public static String getVersionMK() {
         return io.ooni.mk.MKVersion.getVersionMK();
+    }
+
+    /** newUUID4 returns the a new UUID4 for this client  */
+    public static String newUUID4() {
+        return oonimkall.Oonimkall.newUUID4();
     }
 
     /** startExperimentTask starts the experiment described by the provided settings. */

@@ -1,6 +1,5 @@
 package org.openobservatory.ooniprobe.common;
 
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.raizlabs.android.dbflow.config.FlowLog;
@@ -23,6 +22,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+
 public class Application extends android.app.Application {
 
 	static {
@@ -40,8 +40,10 @@ public class Application extends android.app.Application {
 		super.onCreate();
 		FlowManager.init(this);
 		preferenceManager = new PreferenceManager(this);
+		CountlyManager.register(this, preferenceManager);
+
 		gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateAdapter()).registerTypeAdapter(TestKeys.Tampering.class, new TamperingJsonDeserializer()).create();
-		FlavorApplication.onCreate(this, preferenceManager.isSendCrash());
+		FlavorApplication.onCreate(this);
 		if (BuildConfig.DEBUG)
 			FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
 		if (preferenceManager.canCallDeleteJson())

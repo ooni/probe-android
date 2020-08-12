@@ -5,45 +5,70 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
+import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
+import ly.count.android.sdk.Countly;
+import ly.count.android.sdk.messaging.CountlyPush;
+
 public class NotificationService {
     private static final String TEST_RUN = "TEST_RUN";
 
-    public static void notifyTestEnded(Context c, AbstractSuite testSuite) {
-        sendNotification(c, c.getString(testSuite.getTitle()) + " " + c.getString(R.string.Notification_FinishedRunning), c.getResources().getDrawable(testSuite.getIcon()));
+    public static void initNotification(Application app){
+        PreferenceManager preferenceManager = app.getPreferenceManager();
+        if (!preferenceManager.isNotifications())
+            return;
+        CountlyPush.init(app, BuildConfig.DEBUG? Countly.CountlyMessagingMode.TEST:Countly.CountlyMessagingMode.PRODUCTION);
+        NotificationService.setChannel(app, CountlyPush.CHANNEL_ID, app.getString(R.string.Settings_Notifications_Label));
+        NotificationService.setToken(app);
     }
 
-    public static void sendNotification(Context c, String text, Drawable icon) {
+    public static void notifyTestEnded(Context c, AbstractSuite testSuite) {
+        setChannel(c, TEST_RUN, c.getString(R.string.Settings_Notifications_OnTestCompletion));
+        sendNotification(c, c.getString(R.string.General_AppName), c.getString(testSuite.getTitle()) + " " + c.getString(R.string.Notification_FinishedRunning));
+    }
+
+    /*
+     * Used for local notification, ex "test has finished running"
+     */
+    private static void sendNotification(Context c, String title, String message) {
         NotificationManager notificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
         if (notificationManager == null)
             return;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            notificationManager.createNotificationChannel(
-                    new NotificationChannel(TEST_RUN, c.getString(R.string.Settings_Notifications_OnTestCompletion), NotificationManager.IMPORTANCE_DEFAULT)
-            );
-        }
         NotificationCompat.Builder b = new NotificationCompat.Builder(c, TEST_RUN);
         b.setAutoCancel(true);
         b.setDefaults(Notification.DEFAULT_ALL);
-        Bitmap bitmap = Bitmap.createBitmap(icon.getIntrinsicWidth(), icon.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        icon.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        icon.draw(canvas);
-        b.setLargeIcon(bitmap);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            b.setColor(c.getColor(R.color.color_base));
+        } else {
+            b.setColor(c.getResources().getColor(R.color.color_base));
+        }
         b.setSmallIcon(R.drawable.notification_icon);
-        b.setContentTitle(c.getString(R.string.General_AppName));
-        b.setContentText(text);
+        b.setContentTitle(title);
+        b.setContentText(message);
         b.setContentIntent(PendingIntent.getActivity(c, 0, MainActivity.newIntent(c, R.id.testResults), PendingIntent.FLAG_UPDATE_CURRENT));
         notificationManager.notify(1, b.build());
+    }
+
+    private static void setToken(Application a){
+        if (a.getPreferenceManager().getToken() != null)
+            CountlyPush.onTokenRefresh(a.getPreferenceManager().getToken());
+    }
+
+    // Register the channel with the system
+    private static void setChannel(Context c, String channelID, String channelName){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationManager notificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
+            if (notificationManager != null) {
+                NotificationChannel channel = new NotificationChannel(channelID, channelName, NotificationManager.IMPORTANCE_DEFAULT);
+                notificationManager.createNotificationChannel(channel);
+            }
+        }
     }
 }

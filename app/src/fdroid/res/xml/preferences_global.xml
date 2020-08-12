@@ -254,11 +254,6 @@
 				android:key="@string/test_whatsapp"
 				android:title="@string/Settings_InstantMessaging_TestWhatsApp" />
 			<androidx.preference.SwitchPreferenceCompat
-				android:defaultValue="false"
-				android:dependency="@string/test_whatsapp"
-				android:key="@string/test_whatsapp_extensive"
-				android:title="@string/Settings_InstantMessaging_WhatsAppExtensiveTesting" />
-			<androidx.preference.SwitchPreferenceCompat
 				android:defaultValue="true"
 				android:key="@string/test_telegram"
 				android:title="@string/Settings_InstantMessaging_TestTelegram" />
@@ -303,13 +298,22 @@
 		</androidx.preference.PreferenceScreen>
 	</androidx.preference.PreferenceScreen>
 	<androidx.preference.PreferenceScreen
-		android:icon="@drawable/advanced"
-		android:key="@string/advanced"
-		android:title="@string/Settings_Advanced_Label">
+		android:icon="@drawable/sharing"
+		android:key="@string/privacy"
+		android:title="@string/Settings_Privacy_Label">
+		<androidx.preference.SwitchPreferenceCompat
+			android:defaultValue="true"
+			android:key="@string/send_analytics"
+			android:title="@string/Settings_Privacy_CollectAnalytics" />
 		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="@string/send_crash"
-			android:title="@string/Settings_Advanced_SendCrashReports" />
+			android:title="@string/Settings_Privacy_SendCrashReports" />
+	</androidx.preference.PreferenceScreen>
+	<androidx.preference.PreferenceScreen
+		android:icon="@drawable/advanced"
+		android:key="@string/advanced"
+		android:title="@string/Settings_Advanced_Label">
 		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="@string/debugLogs"

@@ -14,17 +14,19 @@ android {
 		applicationId 'org.openobservatory.ooniprobe'
 		minSdkVersion 17
 		targetSdkVersion 29
-		versionName '2.5.0'
-		versionCode 61
+		versionName '2.5.2'
+		versionCode 63
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 		buildConfigField 'String', 'OONI_ORCHESTRATE_BASE_URL', '"https://orchestrate.ooni.io/"'
 		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
+		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://countly.ooni.io"'
 		resValue "string", "APP_NAME", "OONI Probe"
 		buildConfigField 'String', 'SOFTWARE_NAME', 'BASE_SOFTWARE_NAME+IS_DEBUG'
 	}
 
 	buildTypes {
 		debug {
+			buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://countly.ooni.io"'
 			buildConfigField 'String', 'IS_DEBUG', '"-debug"'
 		}
 
@@ -90,13 +92,13 @@ dependencies {
 	implementation 'com.jakewharton:butterknife:10.2.1'
 	annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 
-	fullImplementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
 	implementation 'com.github.xanscale.LocalhostToolkit:app:19.05.01'
 	implementation 'pub.devrel:easypermissions:3.0.0'
 	implementation 'com.airbnb.android:lottie:3.0.7'
 	implementation 'com.google.code.gson:gson:2.8.6'
 	implementation 'ru.noties:markwon:2.0.1'
 	implementation 'commons-io:commons-io:2.6'
+	implementation 'ly.count.android:sdk:20.04.2'
 
 	//arcview to fragment_dashboard
 	implementation 'com.github.florent37:shapeofview:1.3.2'
@@ -120,5 +122,4 @@ static def versionNameDate() {
 if (!getGradle().getStartParameter().getTaskRequests()
 		.toString().contains("Fdroid")){
 	apply plugin: 'com.google.gms.google-services'
-	apply plugin: 'io.fabric'
 }
