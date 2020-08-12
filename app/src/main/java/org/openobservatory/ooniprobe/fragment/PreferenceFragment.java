@@ -2,7 +2,6 @@ package org.openobservatory.ooniprobe.fragment;
 
 import android.annotation.TargetApi;
 import android.app.TimePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -27,7 +26,6 @@ import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.alarm.AlarmService;
 
-import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -143,12 +141,13 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Preference preference = findPreference(key);
-        if (key.equals(getString(R.string.automated_testing_enabled))){
-            if(sharedPreferences.getBoolean(key, false))
+        if (key.equals(getString(R.string.automated_testing_enabled))) {
+            if (sharedPreferences.getBoolean(key, false))
                 //Enabling the alarm every time the user enabled automated_testing
                 AlarmService.setRecurringAlarm(getActivity().getApplication());
             else
                 AlarmService.cancelRecurringAlarm(getActivity().getApplication());
+        }
         if (key.equals(getString(R.string.send_crash)) ||
                 key.equals(getString(R.string.send_analytics)) ||
                 key.equals(getString(R.string.notifications_enabled))){
