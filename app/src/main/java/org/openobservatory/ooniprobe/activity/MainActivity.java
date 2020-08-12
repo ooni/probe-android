@@ -60,6 +60,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 }
             });
             bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
+            //These cases are not mutually exclusive. When a user upgrade if one or both modal has never been showed it will be.
             if (getPreferenceManager().isManualUploadDialog()) {
                 new ConfirmDialogFragment.Builder()
                         .withTitle(getString(R.string.Modal_ManualUpload_Title))
@@ -101,15 +102,13 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     }
 
     @Override
-    public void onStart()
-    {
+    public void onStart() {
         super.onStart();
         Countly.sharedInstance().onStart(this);
     }
 
     @Override
-    public void onStop()
-    {
+    public void onStop() {
         Countly.sharedInstance().onStop();
         super.onStop();
     }

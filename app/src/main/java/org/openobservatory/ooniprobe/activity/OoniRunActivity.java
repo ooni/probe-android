@@ -102,23 +102,18 @@ public class OoniRunActivity extends AbstractActivity {
 		if (isTestRunning()) {
 			Toast.makeText(this, getString(R.string.OONIRun_TestRunningError), Toast.LENGTH_LONG).show();
 			finish();
-		} else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
+		}
+		else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
 			Uri uri = intent.getData();
 			String mv = uri == null ? null : uri.getQueryParameter("mv");
 			String tn = uri == null ? null : uri.getQueryParameter("tn");
 			String ta = uri == null ? null : uri.getQueryParameter("ta");
 			loadScreen(mv, tn, ta);
 		}
-		else {
-			Bundle bundle = intent.getExtras();
-			String mv = bundle == null ? null : intent.getExtras().getString("mv");
-			String tn = bundle == null ? null : intent.getExtras().getString("tn");
-			String ta = bundle == null ? null : intent.getExtras().getString("ta");
-			loadScreen(mv, tn, ta);
-		}
 	}
 
 	private void loadScreen(String mv, String tn, String ta){
+		//TODO refactor
 		String[] split = BuildConfig.VERSION_NAME.split("-");
 		String version_name = split[0];
 		if (mv != null && tn != null) {

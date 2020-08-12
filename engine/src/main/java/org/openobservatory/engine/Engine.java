@@ -29,8 +29,8 @@ public class Engine {
         return io.ooni.mk.MKVersion.getVersionMK();
     }
 
-    /** getUUID returns the UUID4 generated for this client  */
-    public static String getUUID() {
+    /** newUUID4 returns the a new UUID4 for this client  */
+    public static String newUUID4() {
         return oonimkall.Oonimkall.newUUID4();
     }
 
