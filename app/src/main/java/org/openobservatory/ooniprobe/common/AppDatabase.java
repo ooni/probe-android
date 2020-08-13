@@ -1,7 +1,5 @@
 package org.openobservatory.ooniprobe.common;
 
-import android.util.Log;
-
 import com.raizlabs.android.dbflow.annotation.Database;
 import com.raizlabs.android.dbflow.annotation.Migration;
 import com.raizlabs.android.dbflow.sql.SQLiteType;
