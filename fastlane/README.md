@@ -36,9 +36,14 @@ Deploy a new version to the Google Play
 fastlane android tests
 ```
 
-### android screenshots
+### android upload_screenshots
 ```
-fastlane android screenshots
+fastlane android upload_screenshots
+```
+
+### android capture_screen
+```
+fastlane android capture_screen
 ```
 
 
