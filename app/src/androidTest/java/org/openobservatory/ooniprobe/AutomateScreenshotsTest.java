@@ -16,10 +16,7 @@ import tools.fastlane.screengrab.locale.LocaleTestRule;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 
 @RunWith(JUnit4.class)
@@ -28,22 +25,32 @@ public class AutomateScreenshotsTest {
     public static final LocaleTestRule localeTestRule = new LocaleTestRule();
 
     @Rule
-    public ActivityTestRule<MainActivity> activityRule = new ActivityTestRule<>(MainActivity.class, false, true);
+    public ActivityTestRule<MainActivity> activityRule = new ActivityTestRule<>(MainActivity.class);
 
     @Before
-    public void setUp() {
+    public void before() {
         Screengrab.setDefaultScreenshotStrategy(new UiAutomatorScreenshotStrategy());
     }
 
     @Test
     public void testTakeScreenshot() {
-        //Thread.sleep(500);
-        Screengrab.screenshot("before_button_click");
+        //Dashboard
+        Screengrab.screenshot("01_dashboard");
+
+        //Screenshot overview
+        //onView(withId(R.id.recycler))
+         //       .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+
+        //Test results
+        onView(withId(R.id.testResults)).perform(click());
+        Screengrab.screenshot("02_testResults");
+
+        //Thepiratebay fetails
+        //Dash details
+        //Custom url
 
         // Your custom onView...
         //onView(withId(R.id.run_all)).perform(click());
-
-        //Screengrab.screenshot("after_button_click");
     }
 }
 
