@@ -9,13 +9,13 @@ import androidx.annotation.Nullable;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
 import org.openobservatory.ooniprobe.fragment.PreferenceGlobalFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
 
 import java.io.Serializable;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,6 +26,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     private static final String RES_ITEM = "resItem";
     private static final String MANUAL_UPLOAD_DIALOG = "manual_upload";
     private static final String ANALYTICS_DIALOG = "analytics";
+    private AtomicBoolean isTestRunning;
 
     @BindView(R.id.bottomNavigation)
     BottomNavigationView bottomNavigation;
@@ -37,7 +38,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getPreferenceManager().isShowOnboarding()) {
+        if (getPreferenceManager().isShowOnboarding() && !isTestRunning()) {
             startActivity(new Intent(MainActivity.this, OnboardingActivity.class));
             finish();
         }
@@ -60,6 +61,8 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 }
             });
             bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
+            if (isTestRunning())
+                return;
             //These cases are not mutually exclusive. When a user upgrade if one or both modal has never been showed it will be.
             if (getPreferenceManager().isManualUploadDialog()) {
                 new ConfirmDialogFragment.Builder()
@@ -111,5 +114,19 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     public void onStop() {
         Countly.sharedInstance().onStop();
         super.onStop();
+    }
+
+    public synchronized boolean isTestRunning() {
+        if (null == isTestRunning) {
+            boolean istest;
+            try {
+                Class.forName ("org.openobservatory.ooniprobe.AutomateScreenshotsTest");
+                istest = true;
+            } catch (ClassNotFoundException e) {
+                istest = false;
+            }
+            isTestRunning = new AtomicBoolean (istest);
+        }
+        return isTestRunning.get ();
     }
 }
