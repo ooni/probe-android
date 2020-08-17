@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe;
 
+import androidx.test.espresso.Espresso;
+import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.rule.ActivityTestRule;
 
 import org.junit.Before;
@@ -37,20 +39,35 @@ public class AutomateScreenshotsTest {
         //Dashboard
         Screengrab.screenshot("01_dashboard");
 
-        //Screenshot overview
-        //onView(withId(R.id.recycler))
-         //       .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
-
         //Test results
         onView(withId(R.id.testResults)).perform(click());
         Screengrab.screenshot("02_testResults");
 
-        //Thepiratebay fetails
-        //Dash details
-        //Custom url
+        //Blocked Website details
+        onView(withId(R.id.recycler))
+               .perform(RecyclerViewActions.actionOnItemAtPosition(4, click()));
+        onView(withId(R.id.recyclerView))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(3, click()));
+        Screengrab.screenshot("03_blockedwebsiste");
 
-        // Your custom onView...
-        //onView(withId(R.id.run_all)).perform(click());
+        Espresso.pressBack();
+        Espresso.pressBack();
+
+        //Dash details
+        onView(withId(R.id.recycler))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
+        onView(withId(R.id.recyclerView))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
+        Screengrab.screenshot("04_dash");
+
+        //Custom url
+        Espresso.pressBack();
+        Espresso.pressBack();
+        onView(withId(R.id.dashboard)).perform(click());
+        onView(withId(R.id.recycler))
+               .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        onView(withId(R.id.customUrl)).perform(click());
+        Screengrab.screenshot("05_customurl");
     }
 }
 
