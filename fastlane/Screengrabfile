@@ -1,5 +1,5 @@
 #app_package_name "org.openobservatory.ooniprobe.test"
-#locales(['en-US', 'fr-FR', 'it-IT'])
+locales(['ar', 'en-US', 'hi-IN', 'pt-BR', 'sk', 'zh-CN', 'ca', 'es-ES', 'id', 'ro', 'sq', 'zh-TW', 'de-DE', 'fa', 'is-IS', 'ru-RU', 'th', 'el-GR', 'fr-FR', 'it-IT', 'tr-TR'])
 app_apk_path "app/build/outputs/apk/stableFull/debug/app-stable-full-debug.apk"
 tests_apk_path "app/build/outputs/apk/androidTest/stableFull/debug/app-stable-full-debug-androidTest.apk"
 test_instrumentation_runner 'androidx.test.runner.AndroidJUnitRunner'
