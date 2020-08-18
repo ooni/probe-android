@@ -41,9 +41,7 @@ platform :android do
   end
 
   lane :upload_screenshots do
-    gradle(task: "clean assembleDebug assembleAndroidTest")  
-    capture_android_screenshots
-    upload_to_play_store
+    upload_to_play_store skip_upload_apk:"true" skip_upload_aab:"true" version_code:"63" skip_upload_changelogs:"true" skip_upload_images:"true" skip_upload_metadata:"true"
   end
 
   lane :capture_screen do
