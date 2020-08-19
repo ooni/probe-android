@@ -26,7 +26,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     private static final String RES_ITEM = "resItem";
     private static final String MANUAL_UPLOAD_DIALOG = "manual_upload";
     private static final String ANALYTICS_DIALOG = "analytics";
-    private AtomicBoolean isTestRunning;
+    private AtomicBoolean isUITestRunning;
 
     @BindView(R.id.bottomNavigation)
     BottomNavigationView bottomNavigation;
@@ -38,7 +38,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getPreferenceManager().isShowOnboarding() && !isTestRunning()) {
+        if (getPreferenceManager().isShowOnboarding() && !isUITestRunning()) {
             startActivity(new Intent(MainActivity.this, OnboardingActivity.class));
             finish();
         }
@@ -116,17 +116,17 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
         super.onStop();
     }
 
-    public synchronized boolean isTestRunning() {
-        if (null == isTestRunning) {
+    public synchronized boolean isUITestRunning() {
+        if (isUITestRunning == null) {
             boolean istest;
             try {
-                Class.forName ("org.openobservatory.ooniprobe.AutomateScreenshotsTest");
+                Class.forName("org.openobservatory.ooniprobe.AutomateScreenshotsTest");
                 istest = true;
             } catch (ClassNotFoundException e) {
                 istest = false;
             }
-            isTestRunning = new AtomicBoolean (istest);
+            isUITestRunning = new AtomicBoolean (istest);
         }
-        return isTestRunning.get ();
+        return isUITestRunning.get();
     }
 }
