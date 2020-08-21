@@ -21,7 +21,8 @@ public class Engine {
             "Whatsapp",
             "FacebookMessenger",
             "HttpHeaderFieldManipulation",
-            "HttpInvalidRequestLine"
+            "HttpInvalidRequestLine",
+            "WebConnectivity"
     ));
 
     /** getVersionMK returns the version of Measurement Kit we're using */
