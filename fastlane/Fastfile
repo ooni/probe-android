@@ -25,7 +25,6 @@ platform :android do
   lane :beta do
     gradle(task: "clean assembleRelease")
     crashlytics
-  
     # sh "your_script.sh"
     # You can also use other beta testing services here
   end
@@ -41,12 +40,19 @@ platform :android do
   end
 
   lane :upload_screenshots do
-    upload_to_play_store skip_upload_apk:"true" skip_upload_aab:"true" version_code:"63" skip_upload_changelogs:"true" skip_upload_images:"true" skip_upload_metadata:"true"
+    upload_to_play_store(
+      skip_upload_apk: "true",
+      skip_upload_aab: "true",
+      version_code: "63",
+      skip_upload_changelogs: "true",
+      skip_upload_images: "true",
+      skip_upload_metadata: "true"
+    )
   end
 
   lane :capture_screen do
     gradle(task: "clean assembleDebug assembleAndroidTest")
     capture_android_screenshots
-  end  
+  end
 
 end
