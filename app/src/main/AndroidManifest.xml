@@ -89,10 +89,8 @@
 			android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.App">
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW" />
-
 				<category android:name="android.intent.category.DEFAULT" />
 				<category android:name="android.intent.category.BROWSABLE" />
-
 				<action android:name="org.openobservatory.ooniprobe.nettest" />
 				<data
 					android:host="run.ooni.io"
@@ -101,10 +99,8 @@
 			</intent-filter>
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW" />
-
 				<category android:name="android.intent.category.DEFAULT" />
 				<category android:name="android.intent.category.BROWSABLE" />
-
 				<action android:name="org.openobservatory.ooniprobe.nettest" />
 				<data
 					android:host="run.ooni.io"
@@ -113,13 +109,14 @@
 			</intent-filter>
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW" />
-
 				<category android:name="android.intent.category.DEFAULT" />
 				<category android:name="android.intent.category.BROWSABLE" />
-
 				<data
 					android:host="nettest"
 					android:scheme="ooni" />
+				<data
+					android:host="nettest"
+					android:scheme="oonitest" />
 			</intent-filter>
 		</activity>
 	</application>
