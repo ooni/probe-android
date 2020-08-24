@@ -9,13 +9,13 @@ import androidx.annotation.Nullable;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
 import org.openobservatory.ooniprobe.fragment.PreferenceGlobalFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
 
 import java.io.Serializable;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,7 +37,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getPreferenceManager().isShowOnboarding()) {
+        if (getPreferenceManager().isShowOnboarding() && !isUITestRunning()) {
             startActivity(new Intent(MainActivity.this, OnboardingActivity.class));
             finish();
         }
@@ -60,6 +60,9 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 }
             });
             bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
+            if (isUITestRunning()) {
+                return;
+            }
             //These cases are not mutually exclusive. When a user upgrade if one or both modal has never been showed it will be.
             if (getPreferenceManager().isManualUploadDialog()) {
                 new ConfirmDialogFragment.Builder()
@@ -111,5 +114,14 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     public void onStop() {
         Countly.sharedInstance().onStop();
         super.onStop();
+    }
+
+    public boolean isUITestRunning() {
+        try {
+            Class.forName("org.openobservatory.ooniprobe.AutomateScreenshotsTest");
+            return true;
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
     }
 }
