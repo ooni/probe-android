@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
+def gservices = 'yes'
 
 android {
 	compileSdkVersion 29
-	buildToolsVersion '28.0.3'
 	ndkVersion '21.0.6113669'
 
 	compileOptions {
@@ -12,7 +12,7 @@ android {
 
 	defaultConfig {
 		applicationId 'org.openobservatory.ooniprobe'
-		minSdkVersion 17
+		minSdkVersion 18
 		targetSdkVersion 29
 		versionName '2.5.2'
 		versionCode 63
@@ -60,6 +60,7 @@ android {
 			resValue "string", "APP_NAME", "OONI Exp"
 		}
 		fdroid {
+			gservices = 'no'
 			dimension 'license'
 		}
 		full {
@@ -109,6 +110,20 @@ dependencies {
 	androidTestImplementation 'androidx.test:runner:1.2.0'
 	androidTestImplementation 'androidx.test:rules:1.2.0'
 	implementation project(path: ':engine')
+
+	androidTestImplementation 'tools.fastlane:screengrab:2.0.0'
+	androidTestImplementation 'androidx.test:runner:1.2.0'
+	androidTestImplementation 'androidx.test:rules:1.2.0'
+	androidTestImplementation ('androidx.test.espresso:espresso-contrib:3.2.0'){
+		exclude group: 'com.android.support', module: 'appcompat'
+		exclude group: 'com.android.support', module: 'support-v4'
+		exclude module: 'recyclerview-v7'
+	}
+	androidTestImplementation ('androidx.test.espresso:espresso-core:3.2.0'){
+		exclude group: 'com.android.support', module: 'appcompat'
+		exclude group: 'com.android.support', module: 'support-v4'
+		exclude module: 'recyclerview-v7'
+	}
 }
 
 static def versionCodeDate() {
@@ -119,7 +134,6 @@ static def versionNameDate() {
 	return new Date().format("yyyy.MM.dd-HH")
 }
 
-if (!getGradle().getStartParameter().getTaskRequests()
-		.toString().contains("Fdroid")){
+if (gservices == "yes") {
 	apply plugin: 'com.google.gms.google-services'
 }
