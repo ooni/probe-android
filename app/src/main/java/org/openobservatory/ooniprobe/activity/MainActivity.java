@@ -61,8 +61,9 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 }
             });
             bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
-            if (isUITestRunning())
+            if (isUITestRunning()) {
                 return;
+            }
             //These cases are not mutually exclusive. When a user upgrade if one or both modal has never been showed it will be.
             if (getPreferenceManager().isManualUploadDialog()) {
                 new ConfirmDialogFragment.Builder()
