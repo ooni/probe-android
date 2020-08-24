@@ -26,7 +26,6 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     private static final String RES_ITEM = "resItem";
     private static final String MANUAL_UPLOAD_DIALOG = "manual_upload";
     private static final String ANALYTICS_DIALOG = "analytics";
-    private AtomicBoolean isUITestRunning;
 
     @BindView(R.id.bottomNavigation)
     BottomNavigationView bottomNavigation;
@@ -117,17 +116,12 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
         super.onStop();
     }
 
-    public synchronized boolean isUITestRunning() {
-        if (isUITestRunning == null) {
-            boolean istest;
-            try {
-                Class.forName("org.openobservatory.ooniprobe.AutomateScreenshotsTest");
-                istest = true;
-            } catch (ClassNotFoundException e) {
-                istest = false;
-            }
-            isUITestRunning = new AtomicBoolean(istest);
+    public boolean isUITestRunning() {
+        try {
+            Class.forName("org.openobservatory.ooniprobe.AutomateScreenshotsTest");
+            return true;
+        } catch (ClassNotFoundException e) {
+            return false;
         }
-        return isUITestRunning.get();
     }
 }
