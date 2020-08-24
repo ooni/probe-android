@@ -64,6 +64,7 @@ android {
 			dimension 'license'
 		}
 		full {
+			gservices = 'yes'
 			dimension 'license'
 		}
 	}
@@ -134,6 +135,6 @@ static def versionNameDate() {
 	return new Date().format("yyyy.MM.dd-HH")
 }
 
-if (gservices == "yes") {
+if (gservices == 'yes') {
 	apply plugin: 'com.google.gms.google-services'
 }
