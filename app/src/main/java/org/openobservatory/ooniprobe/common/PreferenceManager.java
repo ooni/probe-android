@@ -15,6 +15,7 @@ public class PreferenceManager {
 	public static final Integer MAX_RUNTIME_DISABLED = -1;
 	private static final String IS_MANUAL_UPLOAD_DIALOG = "isManualUploadDialog";
 	private static final String IS_ANALYTICS_DIALOG = "isAnalyticsDialog";
+	private static final String IS_NOTIFICATION_DIALOG = "isNotificationDialog";
 	private static final String TOKEN = "token";
 	private static final String SHOW_ONBOARDING = "first_run";
 	//This is in ms, set to one day
@@ -96,6 +97,13 @@ public class PreferenceManager {
 	 */
 	public boolean isManualUploadDialog() {
 		return sp.getBoolean(IS_MANUAL_UPLOAD_DIALOG, true);
+	}
+
+	/*
+	 * This method is used to ask user to enable push notifications.
+	 */
+	public boolean isAskNotificationDialog() {
+		return sp.getBoolean(IS_NOTIFICATION_DIALOG, true);
 	}
 
 	public boolean isNotifications() {
