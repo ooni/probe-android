@@ -45,20 +45,4 @@ import androidx.test.filters.SmallTest;
 		n.country_code = COUNTRY_CODE;
 		Assert.assertEquals(Network.getCountry(c, n), COUNTRY_CODE);
 	}
-
-	@Test public void getNetwork() {
-		Delete.table(Network.class);
-		Assert.assertEquals(SQLite.selectCountOf().from(Network.class).longValue(), 0);
-		Network n = Network.getNetwork(BLANK, BLANK, BLANK, BLANK, BLANK);
-		n.save();
-		Assert.assertEquals(SQLite.selectCountOf().from(Network.class).longValue(), 1);
-		n = Network.getNetwork(BLANK, BLANK, BLANK, BLANK, BLANK);
-		n.save();
-		Assert.assertEquals(SQLite.selectCountOf().from(Network.class).longValue(), 1);
-		n = Network.getNetwork("networkName", "ip", "asn", "countryCode", "networkType");
-		n.save();
-		Assert.assertEquals(SQLite.selectCountOf().from(Network.class).longValue(), 2);
-		Delete.table(Network.class);
-		Assert.assertEquals(SQLite.selectCountOf().from(Network.class).longValue(), 0);
-	}
 }
