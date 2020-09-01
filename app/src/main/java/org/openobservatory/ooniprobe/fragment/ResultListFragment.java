@@ -95,10 +95,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         setHasOptionsMenu(true);
         getActivity().setTitle(R.string.TestResults_Overview_Title);
-        tests.setText(getString(R.string.d, SQLite.selectCountOf().from(Result.class).longValue()));
-        networks.setText(getString(R.string.d, SQLite.selectCountOf().from(Network.class).longValue()));
-        upload.setText(Result.readableFileSize(SQLite.select(Method.sum(Result_Table.data_usage_up)).from(Result.class).longValue()));
-        download.setText(Result.readableFileSize(SQLite.select(Method.sum(Result_Table.data_usage_down)).from(Result.class).longValue()));
+        reloadHeader();
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recycler.setLayoutManager(layoutManager);
         recycler.addItemDecoration(new DividerItemDecoration(getActivity(), layoutManager.getOrientation()));
@@ -115,6 +112,13 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
                                 .build().show(getChildFragmentManager(), null)
                 );
         return v;
+    }
+
+    public void reloadHeader() {
+        tests.setText(getString(R.string.d, SQLite.selectCountOf().from(Result.class).longValue()));
+        networks.setText(getString(R.string.d, SQLite.selectCountOf().from(Network.class).longValue()));
+        upload.setText(Result.readableFileSize(SQLite.select(Method.sum(Result_Table.data_usage_up)).from(Result.class).longValue()));
+        download.setText(Result.readableFileSize(SQLite.select(Method.sum(Result_Table.data_usage_down)).from(Result.class).longValue()));
     }
 
     @Override
@@ -241,6 +245,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
             else if (serializable.equals(R.id.delete))
                 Result.deleteAll(getActivity());
             queryList();
+            reloadHeader();
         }
     }
 
