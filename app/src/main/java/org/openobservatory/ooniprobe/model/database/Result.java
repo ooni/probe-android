@@ -78,7 +78,7 @@ public class Result extends BaseModel implements Serializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		Delete.tables(Measurement.class, Result.class);
+		Delete.tables(Measurement.class, Result.class, Network.class);
 	}
 
 	public List<Measurement> getMeasurements() {
@@ -209,5 +209,8 @@ public class Result extends BaseModel implements Serializable {
 			measurement.delete();
 		}
 		delete();
+		//Network object is deleted after the Result object to avoid constraint fail
+		if (this.network != null)
+			this.network.delete();
 	}
 }
