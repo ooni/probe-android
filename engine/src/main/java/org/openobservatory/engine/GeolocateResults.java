@@ -2,9 +2,9 @@ package org.openobservatory.engine;
 
 /** GeolocateResults contains the results of geolocating this probe. */
 public class GeolocateResults {
-    protected oonimkall.Location results;
+    protected oonimkall.GeolocateResults results;
 
-    protected GeolocateResults(oonimkall.Location results) {
+    protected GeolocateResults(oonimkall.GeolocateResults results) {
         this.results = results;
     }
 

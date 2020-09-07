@@ -4,8 +4,8 @@ package org.openobservatory.engine;
  * TaskContext allows to interrupt a long running task programmatically
  * or by setting a specific timeout in advance.
  */
-public class TaskContext {
-    protected oonimkall.Context ctx;
+public class TaskContext implements AutoCloseable {
+    protected oonimkall.TaskContext ctx;
 
     /**
      * TaskContext(long) allows to construct a Context that expires
@@ -13,7 +13,7 @@ public class TaskContext {
      * timeout value implies there is no timeout.
      */
     public TaskContext(long timeout) {
-        ctx = oonimkall.Oonimkall.newContextWithTimeout(timeout);
+        ctx = oonimkall.Oonimkall.newTaskContextWithTimeout(timeout);
     }
 
     /** TaskContext() constructs a context without timeout. */
@@ -28,4 +28,7 @@ public class TaskContext {
     public void cancel() {
         ctx.cancel();
     }
+
+    /** close is like cancel() and it's here to implement AutoCloseable. */
+    public void close() throws Exception { this.cancel(); }
 }
