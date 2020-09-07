@@ -153,7 +153,7 @@
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Terakses</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s sudah terakses.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Diblok juga</string>
-  <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">%1$s tampaknya sudah diblok dengan %2$s.\n\nCatatan: Bisa jadi kurang akurat. Selengkapnya di [here](https://ooni.io/nettest/web-connectivity/).</string>
+  <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">%1$s tampaknya sudah diblok dengan %2$s.\n\nCatatan: Bisa jadi kurang akurat. Selengkapnya di [here](https://ooni.org/support/faq/#what-are-false-positives).</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Content_LearnToCircumvent">Penyensoran Pengelakan</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_DNS">**Perusakan DNS yang disengaja**</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_TCPIP">**Bloking berbasis TCP/IP**</string>
@@ -238,9 +238,12 @@
   <string name="Feed_Title">Asupan</string>
   <string name="Modal_OK">Setuju</string>
   <string name="Modal_Cancel">Batal</string>
+  <string name="Modal_DontAskAgain">Don\'t ask again</string>
   <string name="Modal_Delete">Hapus</string>
   <string name="Modal_Error">Kesalahan</string>
   <string name="Modal_Retry">Coba Lagi</string>
+  <string name="Modal_SoundsGreat">Sounds great</string>
+  <string name="Modal_NoThanks">Tidak, terima kasih</string>
   <string name="Modal_Error_NoInternet">Tidak bisa menjalankan tes. Mohon cek konektivitas internet Anda.</string>
   <string name="Modal_Error_CantDownloadURLs">Gagal mengunduh daftar URL. Coba lagi.</string>
   <string name="Modal_Error_NotificationNotEnabled">Anda perlu izin untuk mengaktifkan notifikasi. Tolong aktifkan dalam Penyetelan di ponsel Anda dan kemudian aktikan di aplikasi OONI Probe Anda.</string>
@@ -253,7 +256,7 @@
   <string name="Modal_ResultsNotUploaded_Uploading">Mengunggah %1$s ...</string>
   <string name="Toast_ResultsUploaded">Unggahan berhasil</string>
   <string name="Modal_DisplayFailureLog">Tampilkan log kesalahan</string>
-  <string name="Modal_EnableNotifications_Title">Receive notifications</string>
+  <string name="Modal_EnableNotifications_Title">Get updates on internet censorship</string>
   <string name="Modal_EnableNotifications_Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
   <string name="Modal_EnableGPS">Untuk meningkatkan akuransi semua tes, kita perlu ijin GPS. OONI hanya akan mengambil perkiraan posisi GPS Anda.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Anda ingin menghapus semua hasil tes?</string>
@@ -270,9 +273,7 @@
   <string name="Modal_ManualUpload_Enable">Aktifkan</string>
   <string name="Modal_ManualUpload_Disable">Tidak, terima kasih</string>
   <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. You can opt out of this at any time through the settings.</string>
-  <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
-  <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
+  <string name="Modal_ShareAnalytics_Paragraph">With the new OONI Probe, you can contribute anonymized usage metrics to help us improve the app. You can opt out through the settings at any time.</string>
   <string name="Modal_UploadFailed_Title">Gagal mengunggah</string>
   <string name="Modal_UploadFailed_Paragraph">We have failed to upload %1$s/%2$s measurements. The failure log has been shared with OONI developers.</string>
   <string name="Modal_Error_LogNotFound">Berkas Log tidak ditemukan</string>
@@ -354,6 +355,7 @@
   <string name="Settings_SendEmail_Label">Kirim surel ke pendukung</string>
   <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap \"Copy to clipboard\" below to copy our email address.</string>
   <string name="Settings_Language_Current">Bahasa aplikasi saat ini adalah %1$s</string>
+  <string name="Settings_Language_Label">Bahasa</string>
   <string name="Notification_FinishedRunning">Selesai dijalani</string>
   <string name="OONIBrowser_TryMirror">Coba mirror</string>
   <string name="OONIBrowser_Loading">Memuat...</string>

@@ -153,7 +153,7 @@
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">सुलभ</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s सुलभ है</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">शायद अवरुद्ध</string>
-  <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">%1$s संभवत: %2$s के माध्यम से अवरुद्ध है।\n\nनोट: झूठी सकारात्मकता हो सकती है। और जानें [यहाँ](https://ooni.io/nettest/web-connectivity/)।</string>
+  <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">%1$s संभवत: %2$s के माध्यम से अवरुद्ध है।\n\nनोट: झूठी सकारात्मकता हो सकती है। और जानें [यहाँ](https://ooni.org/support/faq/#what-are-false-positives)।</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Content_LearnToCircumvent">सेंसरशिप सर्कुलेशन</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_DNS">** DNS छेड़छाड़ **</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_TCPIP">**टीसीपी / आईपी आधारित अवरोधन**</string>
@@ -238,9 +238,12 @@
   <string name="Feed_Title">चारा</string>
   <string name="Modal_OK">ठीक है </string>
   <string name="Modal_Cancel">रद्द करें </string>
+  <string name="Modal_DontAskAgain">फिर से मत पूछो</string>
   <string name="Modal_Delete">हटाना</string>
   <string name="Modal_Error">त्रुटि</string>
   <string name="Modal_Retry">पुन: प्रयास करें</string>
+  <string name="Modal_SoundsGreat">Sounds great</string>
+  <string name="Modal_NoThanks">जी नहीं, धन्यवाद</string>
   <string name="Modal_Error_NoInternet">परीक्षण चलाने में असमर्थ। कृपया अपनी इंटरनेट कनेक्टिविटी की जांच करें।</string>
   <string name="Modal_Error_CantDownloadURLs">यूआरएल सूची डाउनलोड करने में असमर्थ। कृपया पुन: प्रयास करें।</string>
   <string name="Modal_Error_NotificationNotEnabled">अधिसूचना की अनुमति आवश्यक है। कृपया उन्हें अपने फ़ोन की सेटिंग में सक्षम करें और फिर उन्हें अपने OONI जांच ऐप में सक्षम करें।</string>
@@ -253,7 +256,7 @@
   <string name="Modal_ResultsNotUploaded_Uploading">अपलोड कर रहे हें %1$s ...</string>
   <string name="Toast_ResultsUploaded">अपलोड सफल रहा।</string>
   <string name="Modal_DisplayFailureLog">विफलता लॉग प्रदर्शित करें</string>
-  <string name="Modal_EnableNotifications_Title">Receive notifications</string>
+  <string name="Modal_EnableNotifications_Title">Get updates on internet censorship</string>
   <string name="Modal_EnableNotifications_Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
   <string name="Modal_EnableGPS">परीक्षणों की सटीकता में सुधार करने के लिए, हमें GPS अनुमतियों की आवश्यकता है। OONI केवल आपके GPS स्थिति का एक अनुमान एकत्र करेगा।</string>
   <string name="Modal_DoYouWantToDeleteAllTests">क्या आप सभी परीक्षण परिणामों को हटाना चाहते हैं?</string>
@@ -270,9 +273,7 @@
   <string name="Modal_ManualUpload_Enable">सक्षम करें</string>
   <string name="Modal_ManualUpload_Disable">जी नहीं, धन्यवाद</string>
   <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. You can opt out of this at any time through the settings.</string>
-  <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
-  <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
+  <string name="Modal_ShareAnalytics_Paragraph">With the new OONI Probe, you can contribute anonymized usage metrics to help us improve the app. You can opt out through the settings at any time.</string>
   <string name="Modal_UploadFailed_Title">अपलोड विफ़ल रहा।</string>
   <string name="Modal_UploadFailed_Paragraph">हम %1$s / %2$s माप अपलोड करने में विफल रहे हैं। विफलता लॉग OONI डेवलपर्स के साथ साझा किया गया है।</string>
   <string name="Modal_Error_LogNotFound">लॉग फ़ाइल नहीं मिला</string>
@@ -354,6 +355,7 @@
   <string name="Settings_SendEmail_Label">Send email to support</string>
   <string name="Settings_SendEmail_Error">कृपया iOS संस्करण और एप्लिकेशन की जानकारी के साथ bugs@openobservatory.org को एक ईमेल भेजें। हमारा  ईमेल पता कॉपी करने के लिए \"क्लिपबोर्ड पर कॉपी करें\" पर टैप करें।</string>
   <string name="Settings_Language_Current">वर्तमान एप्लिकेशन भाषा %1$s है</string>
+  <string name="Settings_Language_Label">भाषा</string>
   <string name="Notification_FinishedRunning">समाप्त हो रहा है</string>
   <string name="OONIBrowser_TryMirror">दर्पण की कोशिश करो</string>
   <string name="OONIBrowser_Loading">लोड हो रहा है ...</string>
