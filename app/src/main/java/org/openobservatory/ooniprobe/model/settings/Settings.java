@@ -51,9 +51,9 @@ public class Settings {
 	}
 
 	public ExperimentSettings toExperimentSettings(Gson gson, Context c) throws java.io.IOException {
-		assets_dir = new java.io.File(c.getFilesDir(), "assets").getCanonicalPath();
-		state_dir = new java.io.File(c.getFilesDir(), "state").getCanonicalPath();
-		temp_dir = new java.io.File(c.getCacheDir(), "").getCanonicalPath();
+		assets_dir = Engine.getAssetsDir(c);
+		state_dir = Engine.getStateDir(c);
+		temp_dir = Engine.getTempDir(c);
 		return new ExperimentSettingsAdapter(gson, this);
 	}
 

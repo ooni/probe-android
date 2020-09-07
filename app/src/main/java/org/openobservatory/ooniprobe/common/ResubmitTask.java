@@ -10,9 +10,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.raizlabs.android.dbflow.sql.language.Where;
 
 import org.apache.commons.io.FileUtils;
+import org.openobservatory.engine.AndroidLogger;
 import org.openobservatory.engine.CollectorResults;
 import org.openobservatory.engine.CollectorTask;
 import org.openobservatory.engine.Engine;
+import org.openobservatory.engine.EngineException;
+import org.openobservatory.engine.Session;
+import org.openobservatory.engine.SessionConfig;
+import org.openobservatory.engine.SubmitResults;
+import org.openobservatory.engine.SubmitTask;
+import org.openobservatory.engine.TaskContext;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Measurement;
@@ -26,7 +33,6 @@ import java.util.List;
 import localhost.toolkit.os.NetworkProgressAsyncTask;
 
 public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAsyncTask<A, Integer, Boolean> {
-    private CollectorTask task;
     protected Integer totUploads;
     protected Integer errors;
     protected String logs;
@@ -39,38 +45,34 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
      */
     public ResubmitTask(A activity) {
         super(activity, true, false);
-        task = Engine.newCollectorTask(
-                BuildConfig.SOFTWARE_NAME,
-                BuildConfig.VERSION_NAME,
-                Engine.getCABundlePath(activity)
-        );
     }
 
-    private boolean perform(Context c, Measurement m) throws IOException {
+    private boolean perform(Context c, SubmitTask task, Measurement m) {
         File file = Measurement.getEntryFile(c, m.id, m.test_name);
-        String input = FileUtils.readFileToString(file, Charset.forName("UTF-8"));
-        boolean okay = Engine.maybeUpdateResources(c);
-        if (!okay) {
-            ExceptionManager.logException(new Exception("MKResourcesManager didn't find resources"));
-            return false;
-        }
-        long uploadTimeout = getTimeout(file.length());
-        CollectorResults results = task.maybeDiscoverAndSubmit(input, uploadTimeout);
-        if (results.isGood()) {
-            String output = results.getUpdatedSerializedMeasurement();
+        try {
+            String input = FileUtils.readFileToString(file, Charset.forName("UTF-8"));
+            SubmitResults results;
+            long uploadTimeout = getTimeout(file.length());
+            try (TaskContext taskContext = new TaskContext(uploadTimeout)) {
+                results = task.submit(taskContext, input);
+            } catch (EngineException exc) {
+                logs += exc.toString() + "\n";
+                return false;
+            } catch (Exception exc) {
+                logs += exc.toString() + "\n";
+                return false;
+            }
+            String output = results.getUpdatedMeasurement();
             FileUtils.writeStringToFile(file, output, Charset.forName("UTF-8"));
             m.report_id = results.getUpdatedReportID();
             m.is_uploaded = true;
             m.is_upload_failed = false;
             m.save();
-        } else {
-            Log.w(CollectorTask.class.getSimpleName(), results.getLogs());
+        } catch (IOException exc) {
+            logs += exc.toString() + "\n";
+            return false;
         }
-        System.out.println("getReason "+ results.getReason());
-        System.out.println("getLogs "+ results.getLogs());
-        if (!results.isGood())
-            logs += results.getReason() + "\n";
-        return results.isGood();
+        return true;
     }
 
     public static long getTimeout(long length) {
@@ -94,10 +96,15 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
      */
     @Override
     protected Boolean doInBackground(Integer... params) {
+        A activity = getActivity();
+        if (activity == null) {
+            return false;
+        }
         logs = "";
         errors = 0;
-        if (params.length != 2)
-            throw new IllegalArgumentException("MKCollectorResubmitTask requires 2 nullable params: result_id, measurement_id");
+        if (params.length != 2) {
+            throw new IllegalArgumentException("ResubmitTask requires 2 nullable params: result_id, measurement_id");
+        }
         Where<Measurement> msmQuery = Measurement.selectUploadable();
         if (params[0] != null) {
             msmQuery.and(Measurement_Table.result_id.eq(params[0]));
@@ -107,24 +114,33 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
         }
         List<Measurement> measurements = msmQuery.queryList();
         totUploads = measurements.size();
-        for (int i = 0; i < measurements.size(); i++) {
-            A activity = getActivity();
-            if (activity == null)
-                break;
-            String paramOfParam = activity.getString(R.string.paramOfParam, Integer.toString(i + 1), Integer.toString(measurements.size()));
-            publishProgress(activity.getString(R.string.Modal_ResultsNotUploaded_Uploading, paramOfParam));
-            Measurement m = measurements.get(i);
-            m.result.load();
-            try {
-                if (!perform(activity, m)){
+        try (Session session = new Session(maybeNewSessionConfig(activity));
+             TaskContext taskContext = new TaskContext();
+             SubmitTask submitTask = new SubmitTask(taskContext, session)) {
+            for (int i = 0; i < measurements.size(); i++) {
+                String paramOfParam = activity.getString(R.string.paramOfParam, Integer.toString(i + 1), Integer.toString(measurements.size()));
+                publishProgress(activity.getString(R.string.Modal_ResultsNotUploaded_Uploading, paramOfParam));
+                Measurement m = measurements.get(i);
+                m.result.load();
+                if (!perform(activity, submitTask, m)) {
                     errors++;
                 }
-            } catch (IOException e) {
-                errors++;
-                e.printStackTrace();
             }
+        } catch (Exception exc) {
+            Log.w("ResubmitTask", exc.toString());
+            return false;
         }
         return errors == 0;
+    }
+
+    private SessionConfig maybeNewSessionConfig(Context ctx) throws IOException {
+        SessionConfig config = new SessionConfig();
+        config.setPathsFromContext(ctx);
+        config.setLogger(new AndroidLogger());
+        config.setSoftwareVersion(BuildConfig.SOFTWARE_NAME);
+        config.setSoftwareVersion(BuildConfig.VERSION_NAME);
+        config.setVerbose(false);
+        return config;
     }
 
     @Override

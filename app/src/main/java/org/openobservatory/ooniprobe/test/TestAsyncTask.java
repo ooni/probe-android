@@ -1,13 +1,21 @@
 package org.openobservatory.ooniprobe.test;
 
+import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
+import org.openobservatory.engine.AndroidLogger;
+import org.openobservatory.engine.CountryLookup;
 import org.openobservatory.engine.Engine;
-import org.openobservatory.engine.GeoIPLookupResults;
-import org.openobservatory.engine.GeoIPLookupTask;
+import org.openobservatory.engine.EngineException;
+import org.openobservatory.engine.ErrorOr;
+import org.openobservatory.engine.GeolocateResults;
+import org.openobservatory.engine.Session;
+import org.openobservatory.engine.SessionConfig;
+import org.openobservatory.engine.TaskContext;
+import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
-import org.openobservatory.ooniprobe.common.ExceptionManager;
 import org.openobservatory.ooniprobe.model.api.UrlList;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Url;
@@ -19,6 +27,7 @@ import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
+import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,6 +55,30 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 		result.save();
 	}
 
+	private String lookupCountryCode(Context ctx) {
+		final String defaultCountryCode = "XX";
+		SessionConfig config = new SessionConfig();
+		try {
+			config.setAssetsDir(Engine.getAssetsDir(ctx));
+			config.setStateDir(Engine.getStateDir(ctx));
+			config.setTempDir(Engine.getTempDir(ctx));
+		} catch (IOException exc) {
+			Log.w("TestAsyncTask", exc.toString());
+			return defaultCountryCode;
+		}
+		config.setLogger(new AndroidLogger());
+		config.setSoftwareName(BuildConfig.SOFTWARE_NAME);
+		config.setSoftwareVersion(BuildConfig.VERSION_NAME);
+		config.setVerbose(false);
+		try (TaskContext taskContext = new TaskContext(30 /* seconds */);
+			 Session session = new Session(config)) {
+			return session.geolocate(taskContext).getCountry();
+		} catch (Exception exc) {
+			Log.w("TestAsyncTask", exc.toString());
+			return defaultCountryCode;
+		}
+	}
+
 	@Override protected Void doInBackground(AbstractTest... tests) {
 		ACT act = ref.get();
 		if (act != null && !act.isFinishing())
@@ -57,19 +90,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 						break;
 					}
 				if (downloadUrls) {
-					GeoIPLookupTask geoIPLookup = Engine.newGeoIPLookupTask();
-					geoIPLookup.setTimeout(act.getResources().getInteger(R.integer.default_timeout));
-					boolean okay = Engine.maybeUpdateResources(act);
-					if (!okay) {
-						Exception e = new Exception("MKResourcesManager didn't find resources");
-						ExceptionManager.logException(e);
-						throw e;
-					}
-					geoIPLookup.setCABundlePath(Engine.getCABundlePath(act));
-					geoIPLookup.setCountryDBPath(Engine.getCountryDBPath(act));
-					geoIPLookup.setASNDBPath(Engine.getASNDBPath(act));
-					GeoIPLookupResults results = geoIPLookup.perform();
-					String probeCC = results.isGood() ? results.getProbeCC() : "XX";
+					String probeCC = lookupCountryCode(act);
 					Response<UrlList> response = act.getOrchestraClient().getUrls(probeCC, act.getPreferenceManager().getEnabledCategory()).execute();
 					if (response.isSuccessful() && response.body() != null && response.body().results != null) {
 						ArrayList<String> inputs = new ArrayList<>();

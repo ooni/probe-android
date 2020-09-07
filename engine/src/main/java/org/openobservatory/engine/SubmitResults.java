@@ -1,7 +1,7 @@
 package org.openobservatory.engine;
 
 /** SubmitResults contains the results of submitting a measurement. */
-class SubmitResults {
+public class SubmitResults {
     protected oonimkall.SubmitResults results;
 
     protected SubmitResults(oonimkall.SubmitResults results) {
