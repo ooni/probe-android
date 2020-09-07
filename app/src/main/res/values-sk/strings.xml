@@ -153,7 +153,7 @@
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Dostupné</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">Adresa %1$s je dostupná.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Pravdepodobne blokovaná</string>
-  <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">Adresa %1$s je pravdepodobne blokovaná prostredníctvom %2$s.\n\nPoznámka: Môžu sa vyskytnúť nesprávne pozitívne výsledky. Zisti viac [tu](https://ooni.io/nettest/web-connectivity/).</string>
+  <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">Adresa %1$s je pravdepodobne blokovaná prostredníctvom %2$s.\n\nPoznámka: Môžu sa vyskytnúť nesprávne pozitívne výsledky. Zisti viac [tu](https://ooni.org/support/faq/#what-are-false-positives).</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Content_LearnToCircumvent">Obchádzanie cenzúry</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_DNS">**Zásah do DNS**</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_TCPIP">**Blokovanie na báze protokolu TCP/IP**</string>
@@ -238,9 +238,12 @@
   <string name="Feed_Title">Informačný kanál</string>
   <string name="Modal_OK">OK</string>
   <string name="Modal_Cancel">Zrušiť</string>
+  <string name="Modal_DontAskAgain">Don\'t ask again</string>
   <string name="Modal_Delete">Odstrániť</string>
   <string name="Modal_Error">Chyba</string>
   <string name="Modal_Retry">Opakovať</string>
+  <string name="Modal_SoundsGreat">Sounds great</string>
+  <string name="Modal_NoThanks">Nie, ďakujem</string>
   <string name="Modal_Error_NoInternet">Nie je možné spustiť test. Skontroluj internetovú pripojiteľnosť.</string>
   <string name="Modal_Error_CantDownloadURLs">Nepodarilo sa stiahnuť zoznam URL adries. Skús to znova.</string>
   <string name="Modal_Error_NotificationNotEnabled">Vyžadujú sa povolenia oznámení. Prosím, povoľ ich v Nastaveniach svojho telefónu a potom ich povoľ v aplikácii OONI Probe.</string>
@@ -253,7 +256,7 @@
   <string name="Modal_ResultsNotUploaded_Uploading">Nahráva sa %1$s ...</string>
   <string name="Toast_ResultsUploaded">Nahrávanie prebehlo úspešne</string>
   <string name="Modal_DisplayFailureLog">Zobraziť denník zlyhaní</string>
-  <string name="Modal_EnableNotifications_Title">Receive notifications</string>
+  <string name="Modal_EnableNotifications_Title">Get updates on internet censorship</string>
   <string name="Modal_EnableNotifications_Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
   <string name="Modal_EnableGPS">Pre vylepšenie presnosti testov potrebujeme povolenia GPS. OONI bude zhromažďovať iba tvoju približnú polohu GPS.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Chceš odstrániť všetky výsledky testov?</string>
@@ -270,9 +273,7 @@
   <string name="Modal_ManualUpload_Enable">Povoliť</string>
   <string name="Modal_ManualUpload_Disable">Nie, ďakujem</string>
   <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. You can opt out of this at any time through the settings.</string>
-  <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
-  <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
+  <string name="Modal_ShareAnalytics_Paragraph">With the new OONI Probe, you can contribute anonymized usage metrics to help us improve the app. You can opt out through the settings at any time.</string>
   <string name="Modal_UploadFailed_Title">Nahrávanie zlyhalo</string>
   <string name="Modal_UploadFailed_Paragraph">Nepodarilo sa nám nahrať %1$s/%2$s meraní. Denník zlyhaní sa zdieľa s vývojarmi OONI.</string>
   <string name="Modal_Error_LogNotFound">Súbor denníka sa nenašiel</string>
@@ -354,6 +355,7 @@
   <string name="Settings_SendEmail_Label">Poslať e-mail na podporu</string>
   <string name="Settings_SendEmail_Error">Pošli, prosím, e-mail s informáciami o aplikácii a verzii iOS na bugs@openobservatory.org. Pre skopírovanie našej e-mailovej adresy ťukni na „Kopírovať do schránky“ nižšie.</string>
   <string name="Settings_Language_Current">Current app language is %1$s</string>
+  <string name="Settings_Language_Label">Jazyk</string>
   <string name="Notification_FinishedRunning">Hotovo</string>
   <string name="OONIBrowser_TryMirror">Skúsiť zrkadlo</string>
   <string name="OONIBrowser_Loading">Načítava sa...</string>

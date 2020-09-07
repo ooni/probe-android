@@ -77,8 +77,8 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 new ConfirmDialogFragment.Builder()
                         .withTitle(getString(R.string.Modal_ShareAnalytics_Title))
                         .withMessage(getString(R.string.Modal_ShareAnalytics_Paragraph))
-                        .withPositiveButton(getString(R.string.Modal_ShareAnalytics_Enable))
-                        .withNegativeButton(getString(R.string.Modal_ShareAnalytics_Disable))
+                        .withPositiveButton(getString(R.string.Modal_SoundsGreat))
+                        .withNegativeButton(getString(R.string.Modal_NoThanks))
                         .withExtra(ANALYTICS_DIALOG)
                         .build().show(getSupportFragmentManager(), null);
             }
