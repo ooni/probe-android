@@ -79,6 +79,7 @@ android {
 
 dependencies {
 	implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.lifecycle:lifecycle-process:2.1.0'
 
 	fullImplementation 'com.google.firebase:firebase-messaging:20.1.4'
 	fullImplementation 'com.google.firebase:firebase-core:17.3.0'
