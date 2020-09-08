@@ -11,8 +11,6 @@ import com.raizlabs.android.dbflow.sql.language.Where;
 
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.engine.AndroidLogger;
-import org.openobservatory.engine.CollectorResults;
-import org.openobservatory.engine.CollectorTask;
 import org.openobservatory.engine.Engine;
 import org.openobservatory.engine.EngineException;
 import org.openobservatory.engine.Session;
@@ -56,9 +54,11 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
             try (TaskContext taskContext = new TaskContext(uploadTimeout)) {
                 results = task.submit(taskContext, input);
             } catch (EngineException exc) {
+                exc.printStackTrace();
                 logs += exc.toString() + "\n";
                 return false;
             } catch (Exception exc) {
+                exc.printStackTrace();
                 logs += exc.toString() + "\n";
                 return false;
             }
@@ -69,6 +69,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
             m.is_upload_failed = false;
             m.save();
         } catch (IOException exc) {
+            exc.printStackTrace();
             logs += exc.toString() + "\n";
             return false;
         }
@@ -127,6 +128,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
                 }
             }
         } catch (Exception exc) {
+            exc.printStackTrace();
             Log.w("ResubmitTask", exc.toString());
             return false;
         }
@@ -135,11 +137,13 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
 
     private SessionConfig maybeNewSessionConfig(Context ctx) throws IOException {
         SessionConfig config = new SessionConfig();
-        config.setPathsFromContext(ctx);
+        config.setAssetsDir(Engine.getAssetsDir(ctx));
+        config.setStateDir(Engine.getStateDir(ctx));
+        config.setTempDir(Engine.getTempDir(ctx));
         config.setLogger(new AndroidLogger());
-        config.setSoftwareVersion(BuildConfig.SOFTWARE_NAME);
+        config.setSoftwareName(BuildConfig.SOFTWARE_NAME);
         config.setSoftwareVersion(BuildConfig.VERSION_NAME);
-        config.setVerbose(false);
+        config.setVerbose(true);
         return config;
     }
 

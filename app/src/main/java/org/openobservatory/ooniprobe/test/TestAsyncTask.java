@@ -5,11 +5,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import org.openobservatory.engine.AndroidLogger;
-import org.openobservatory.engine.CountryLookup;
 import org.openobservatory.engine.Engine;
-import org.openobservatory.engine.EngineException;
-import org.openobservatory.engine.ErrorOr;
-import org.openobservatory.engine.GeolocateResults;
 import org.openobservatory.engine.Session;
 import org.openobservatory.engine.SessionConfig;
 import org.openobservatory.engine.TaskContext;
@@ -69,12 +65,12 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 		config.setLogger(new AndroidLogger());
 		config.setSoftwareName(BuildConfig.SOFTWARE_NAME);
 		config.setSoftwareVersion(BuildConfig.VERSION_NAME);
-		config.setVerbose(false);
+		config.setVerbose(true);
 		try (TaskContext taskContext = new TaskContext(30 /* seconds */);
 			 Session session = new Session(config)) {
 			return session.geolocate(taskContext).getCountry();
 		} catch (Exception exc) {
-			Log.w("TestAsyncTask", exc.toString());
+			exc.printStackTrace();
 			return defaultCountryCode;
 		}
 	}
