@@ -1,9 +1,9 @@
 package org.openobservatory.engine;
 
-class OONIProbeEngineTaskAdapter implements ExperimentTask {
+class OPEExperimentTaskAdapter implements ExperimentTask {
     private oonimkall.Task task;
 
-    public OONIProbeEngineTaskAdapter(oonimkall.Task task) {
+    public OPEExperimentTaskAdapter(oonimkall.Task task) {
         this.task = task;
     }
 

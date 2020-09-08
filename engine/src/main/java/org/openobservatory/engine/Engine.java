@@ -5,7 +5,6 @@ import android.content.Context;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Vector;
 
 /**
  * Engine is a factory class for creating several kinds of tasks. We will use different
@@ -39,7 +38,7 @@ public class Engine {
     public static ExperimentTask startExperimentTask(ExperimentSettings settings) throws EngineException {
         if (probeEngineTasks.contains(settings.taskName())) {
             try {
-                return new OONIProbeEngineTaskAdapter(
+                return new OPEExperimentTaskAdapter(
                         oonimkall.Oonimkall.startTask(settings.serialization())
                 );
             } catch (Exception exc) {
