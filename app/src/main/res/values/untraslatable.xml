@@ -1,5 +1,5 @@
 <resources>
-	<string name="version" translatable="false">%1$s: %2$s\nmeasurement-kit: %3$s</string>
+	<string name="version" translatable="false">%1$s: %2$s</string>
 	<integer name="default_timeout" translatable="false">30</integer>
 	<string name="preferences" translatable="false">preferences</string>
 	<string name="notifications" translatable="false">notifications</string>

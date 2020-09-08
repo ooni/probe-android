@@ -24,11 +24,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class Application extends android.app.Application {
-
-	static {
-		System.loadLibrary("measurement_kit");
-	}
-
 	private PreferenceManager preferenceManager;
 	private Gson gson;
 	private boolean testRunning;

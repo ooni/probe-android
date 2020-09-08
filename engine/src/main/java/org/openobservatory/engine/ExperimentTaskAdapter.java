@@ -1,14 +1,14 @@
 package org.openobservatory.engine;
 
-class MKExperimentTaskAdapter implements ExperimentTask {
-    private io.ooni.mk.MKAsyncTask task;
+class ExperimentTaskAdapter implements ExperimentTask {
+    private oonimkall.Task task;
 
-    public MKExperimentTaskAdapter(io.ooni.mk.MKAsyncTask task) {
+    public ExperimentTaskAdapter(oonimkall.Task task) {
         this.task = task;
     }
 
     public boolean canInterrupt() {
-        return false;
+        return true;
     }
 
     public void interrupt() {

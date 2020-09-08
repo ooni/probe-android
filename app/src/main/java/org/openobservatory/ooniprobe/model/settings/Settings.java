@@ -93,12 +93,6 @@ public class Settings {
 	}
 
 	public static class Options {
-		@SerializedName("net/ca_bundle_path")
-		public final String ca_bundle_path;
-		@SerializedName("geoip_asn_path")
-		public final String geoip_asn_path;
-		@SerializedName("geoip_country_path")
-		public final String geoip_country_path;
 		@SerializedName("no_collector")
 		public final boolean no_collector;
 		@SerializedName("save_real_probe_asn")
@@ -123,9 +117,6 @@ public class Settings {
 		public Integer port;
 
 		public Options(Context c, PreferenceManager pm) {
-			ca_bundle_path = Engine.getCABundlePath(c);
-			geoip_country_path = Engine.getCountryDBPath(c);
-			geoip_asn_path = Engine.getASNDBPath(c);
 			no_collector = !pm.isUploadResults();
 			save_real_probe_asn = pm.isIncludeAsn();
 			save_real_probe_cc = pm.isIncludeCc();

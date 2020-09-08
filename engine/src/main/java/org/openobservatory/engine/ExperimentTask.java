@@ -18,7 +18,7 @@ package org.openobservatory.engine;
  */
 public interface ExperimentTask {
     /** isDone tells you whether this task has completed. */
-    public boolean isDone();
+    boolean isDone();
 
     /**
      * waitForNextEvent blocks until the next event is available
@@ -26,14 +26,14 @@ public interface ExperimentTask {
      * event is a JSON serialized string that uses the data format
      * specified by Measurement Kit v0.9.0.
      */
-    public String waitForNextEvent();
+    String waitForNextEvent();
 
     /** canInterrupt returns true if this task can be interrupted. */
-    public boolean canInterrupt();
+    boolean canInterrupt();
 
     /**
      * interrupt will interrupt this task. If the backend does
      * not support interrupting a task, this method does noething.
      */
-    public void interrupt();
+    void interrupt();
 }
