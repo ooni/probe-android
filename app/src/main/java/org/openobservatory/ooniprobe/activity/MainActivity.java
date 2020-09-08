@@ -10,6 +10,10 @@ import androidx.annotation.Nullable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.CountlyManager;
+import org.openobservatory.ooniprobe.common.NotificationService;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
 import org.openobservatory.ooniprobe.fragment.PreferenceGlobalFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
@@ -84,8 +88,10 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                         .withExtra(ANALYTICS_DIALOG)
                         .build().show(getSupportFragmentManager(), null);
             }
-            if (getPreferenceManager().isAskNotificationDialog() &&
-                    Measurement.selectDone().queryList().size() > 0) {
+            //we don't want to flood the user with popups
+            else if (getPreferenceManager().isAskNotificationDialog() &&
+                    !getPreferenceManager().isNotifications() &&
+                    getPreferenceManager().getAppOpenCount() > 3) {
                 new ConfirmDialogFragment.Builder()
                         .withTitle(getString(R.string.Modal_EnableNotifications_Title))
                         .withMessage(getString(R.string.Modal_EnableNotifications_Paragraph))
@@ -114,8 +120,14 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
             getPreferenceManager().setManualUploadResults(i == DialogInterface.BUTTON_POSITIVE);
         else if (extra.equals(ANALYTICS_DIALOG))
             getPreferenceManager().setSendAnalytics(i == DialogInterface.BUTTON_POSITIVE);
-        //else if (extra.equals(NOTIFICATION_DIALOG))
-        //TODO save state or add don't ask again
+        else if (extra.equals(NOTIFICATION_DIALOG)) {
+            getPreferenceManager().setNotifications(i == DialogInterface.BUTTON_POSITIVE);
+            //If positive answer reload consents and init notification
+            if (i == DialogInterface.BUTTON_POSITIVE){
+                CountlyManager.reloadConsent(((Application) getApplication()).getPreferenceManager());
+                NotificationService.initNotification((Application) getApplication());
+            }
+        }
     }
 
     @Override

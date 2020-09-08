@@ -41,7 +41,7 @@ public class Application extends android.app.Application {
 		FlowManager.init(this);
 		preferenceManager = new PreferenceManager(this);
 		CountlyManager.register(this, preferenceManager);
-
+		preferenceManager.incrementAppOpenCount();
 		gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateAdapter()).registerTypeAdapter(TestKeys.Tampering.class, new TamperingJsonDeserializer()).create();
 		FlavorApplication.onCreate(this);
 		if (BuildConfig.DEBUG)

@@ -22,6 +22,7 @@ public class PreferenceManager {
 	public static final Integer DELETE_JSON_DELAY = 86400000;
 	private static final String DELETE_JSON_KEY = "deleteUploadedJsons";
 	private static final String UUID4 = "uuid4";
+	private static final String APP_OPEN_KEY = "app_open";
 
 	private final SharedPreferences sp;
 	private final Resources r;
@@ -108,6 +109,10 @@ public class PreferenceManager {
 
 	public boolean isNotifications() {
 		return sp.getBoolean(r.getString(R.string.notifications_enabled), false);
+	}
+
+	public void setNotifications(boolean notifications) {
+		sp.edit().putBoolean(IS_NOTIFICATION_DIALOG, false).putBoolean(r.getString(R.string.notifications_enabled), notifications).apply();
 	}
 
 	public boolean isUploadResults() {
@@ -221,5 +226,13 @@ public class PreferenceManager {
 		String uuid = sp.getString(UUID4, Engine.newUUID4());
 		sp.edit().putString(UUID4, uuid).apply();
 		return uuid;
+	}
+
+	public void incrementAppOpenCount(){
+		sp.edit().putLong(APP_OPEN_KEY, getAppOpenCount()+1);
+	}
+
+	public long getAppOpenCount(){
+		return sp.getLong(APP_OPEN_KEY, 0);
 	}
 }
