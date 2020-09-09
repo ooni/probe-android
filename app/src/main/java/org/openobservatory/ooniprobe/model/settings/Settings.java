@@ -6,9 +6,8 @@ import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
 import org.openobservatory.engine.Engine;
-import org.openobservatory.engine.ExperimentSettings;
+import org.openobservatory.engine.OONIMKTaskConfig;
 import org.openobservatory.ooniprobe.BuildConfig;
-import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 
@@ -50,18 +49,18 @@ public class Settings {
 		options = new Options(c, pm);
 	}
 
-	public ExperimentSettings toExperimentSettings(Gson gson, Context c) throws java.io.IOException {
+	public OONIMKTaskConfig toExperimentSettings(Gson gson, Context c) throws java.io.IOException {
 		assets_dir = new java.io.File(c.getFilesDir(), "assets").getCanonicalPath();
 		state_dir = new java.io.File(c.getFilesDir(), "state").getCanonicalPath();
 		temp_dir = new java.io.File(c.getCacheDir(), "").getCanonicalPath();
-		return new ExperimentSettingsAdapter(gson, this);
+		return new OONIMKTaskConfigAdapter(gson, this);
 	}
 
-	private class ExperimentSettingsAdapter implements ExperimentSettings {
+	private class OONIMKTaskConfigAdapter implements OONIMKTaskConfig {
 		private String serialized;
 		private Settings settings;
 
-		ExperimentSettingsAdapter(Gson gson, Settings settings) {
+		OONIMKTaskConfigAdapter(Gson gson, Settings settings) {
 			this.serialized = gson.toJson(settings);
 			this.settings = settings;
 		}

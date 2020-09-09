@@ -1,23 +1,23 @@
 package org.openobservatory.engine;
 
-/** GeoIPLookupResults contains the results of a GeoIP lookup */
-public interface GeoIPLookupResults {
+/** OONIGeoIPLookupResults contains the results of a GeoIP lookup */
+public interface OONIGeoIPLookupResults {
     /** isGood returns whether we succeeded. */
-    public boolean isGood();
+    boolean isGood();
 
     /** getProbeIP returns the probe IP. */
-    public String getProbeIP();
+    String getProbeIP();
 
     /** getProbeASN returns the probe ASN. */
-    public String getProbeASN();
+    String getProbeASN();
 
     /** getProbeCC returns the probe CC. */
-    public String getProbeCC();
+    String getProbeCC();
 
     /** getProbeOrg returns the probe ASN organization. */
-    public String getProbeOrg();
+    String getProbeOrg();
 
     /** getLogs returns the logs as one or more newline separated
      * lines containing only UTF-8 characters. */
-    public String getLogs();
+    String getLogs();
 }

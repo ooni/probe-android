@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.engine.Engine;
-import org.openobservatory.engine.ExperimentTask;
+import org.openobservatory.engine.OONIMKTask;
 import org.openobservatory.ooniprobe.common.ExceptionManager;
 import org.openobservatory.ooniprobe.common.MKException;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
@@ -45,7 +45,7 @@ public abstract class AbstractTest implements Serializable {
     private SparseArray<Measurement> measurements;
     private String reportId;
     private String origin;
-    private ExperimentTask task;
+    private OONIMKTask task;
 
     AbstractTest(String name, String mkName, @StringRes int labelResId, @DrawableRes int iconResId, @StringRes int urlResId, int runtime) {
         this.name = name;

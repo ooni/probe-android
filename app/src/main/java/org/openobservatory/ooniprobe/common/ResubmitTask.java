@@ -10,8 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.raizlabs.android.dbflow.sql.language.Where;
 
 import org.apache.commons.io.FileUtils;
-import org.openobservatory.engine.CollectorResults;
-import org.openobservatory.engine.CollectorTask;
+import org.openobservatory.engine.OONICollectorResults;
+import org.openobservatory.engine.OONICollectorTask;
 import org.openobservatory.engine.Engine;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
@@ -26,7 +26,7 @@ import java.util.List;
 import localhost.toolkit.os.NetworkProgressAsyncTask;
 
 public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAsyncTask<A, Integer, Boolean> {
-    private CollectorTask task;
+    private OONICollectorTask task;
     protected Integer totUploads;
     protected Integer errors;
     protected String logs;
@@ -55,7 +55,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
             return false;
         }
         long uploadTimeout = getTimeout(file.length());
-        CollectorResults results = task.maybeDiscoverAndSubmit(input, uploadTimeout);
+        OONICollectorResults results = task.maybeDiscoverAndSubmit(input, uploadTimeout);
         if (results.isGood()) {
             String output = results.getUpdatedSerializedMeasurement();
             FileUtils.writeStringToFile(file, output, Charset.forName("UTF-8"));
@@ -64,7 +64,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
             m.is_upload_failed = false;
             m.save();
         } else {
-            Log.w(CollectorTask.class.getSimpleName(), results.getLogs());
+            Log.w(OONICollectorTask.class.getSimpleName(), results.getLogs());
         }
         System.out.println("getReason "+ results.getReason());
         System.out.println("getLogs "+ results.getLogs());

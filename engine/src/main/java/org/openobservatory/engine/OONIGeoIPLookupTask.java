@@ -1,22 +1,22 @@
 package org.openobservatory.engine;
 
-/** GeoIPLookupTask performs a GeoIP lookup */
-public interface GeoIPLookupTask {
+/** OONIGeoIPLookupTask performs a GeoIP lookup */
+public interface OONIGeoIPLookupTask {
     /** setTimeout sets the number of seconds after which pending
      * requests are aborted by the underlying engine. */
-    public void setTimeout(long timeout);
+    void setTimeout(long timeout);
 
     /** setCABundlePath sets the path of the CA bundle to use. */
-    public void setCABundlePath(String path);
+    void setCABundlePath(String path);
 
     /** setCountryDBPath sets the path of the MaxMind country
      * database to use. */
-    public void setCountryDBPath(String path);
+    void setCountryDBPath(String path);
 
     /** setASNDBPath sets the path of the MaxMind ASN
      * database to use. */
-    public void setASNDBPath(String path);
+    void setASNDBPath(String path);
 
     /** perform performs a GeoIP lookup with current settings. */
-    public GeoIPLookupResults perform();
+    OONIGeoIPLookupResults perform();
 }

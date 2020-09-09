@@ -3,8 +3,8 @@ package org.openobservatory.ooniprobe.test;
 import android.os.AsyncTask;
 
 import org.openobservatory.engine.Engine;
-import org.openobservatory.engine.GeoIPLookupResults;
-import org.openobservatory.engine.GeoIPLookupTask;
+import org.openobservatory.engine.OONIGeoIPLookupResults;
+import org.openobservatory.engine.OONIGeoIPLookupTask;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.common.ExceptionManager;
@@ -57,7 +57,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 						break;
 					}
 				if (downloadUrls) {
-					GeoIPLookupTask geoIPLookup = Engine.newGeoIPLookupTask();
+					OONIGeoIPLookupTask geoIPLookup = Engine.newGeoIPLookupTask();
 					geoIPLookup.setTimeout(act.getResources().getInteger(R.integer.default_timeout));
 					boolean okay = Engine.maybeUpdateResources(act);
 					if (!okay) {
@@ -68,7 +68,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 					geoIPLookup.setCABundlePath(Engine.getCABundlePath(act));
 					geoIPLookup.setCountryDBPath(Engine.getCountryDBPath(act));
 					geoIPLookup.setASNDBPath(Engine.getASNDBPath(act));
-					GeoIPLookupResults results = geoIPLookup.perform();
+					OONIGeoIPLookupResults results = geoIPLookup.perform();
 					String probeCC = results.isGood() ? results.getProbeCC() : "XX";
 					Response<UrlList> response = act.getOrchestraClient().getUrls(probeCC, act.getPreferenceManager().getEnabledCategory()).execute();
 					if (response.isSuccessful() && response.body() != null && response.body().results != null) {
