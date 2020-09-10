@@ -89,9 +89,8 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                         .build().show(getSupportFragmentManager(), null);
             }
             //we don't want to flood the user with popups
-            else if (getPreferenceManager().isAskNotificationDialog() &&
-                    !getPreferenceManager().isNotifications() &&
-                    getPreferenceManager().getAppOpenCount() > 3) {
+            else if (getPreferenceManager().getAppOpenCount() == PreferenceManager.NOTIFICATION_DIALOG_COUNT
+                    && !getPreferenceManager().isNotifications()) {
                 new ConfirmDialogFragment.Builder()
                         .withTitle(getString(R.string.Modal_EnableNotifications_Title))
                         .withMessage(getString(R.string.Modal_EnableNotifications_Paragraph))
@@ -121,7 +120,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
         else if (extra.equals(ANALYTICS_DIALOG))
             getPreferenceManager().setSendAnalytics(i == DialogInterface.BUTTON_POSITIVE);
         else if (extra.equals(NOTIFICATION_DIALOG)) {
-            getPreferenceManager().setNotifications(i == DialogInterface.BUTTON_POSITIVE);
+            getPreferenceManager().setNotificationsFromDialog(i == DialogInterface.BUTTON_POSITIVE);
             //If positive answer reload consents and init notification
             if (i == DialogInterface.BUTTON_POSITIVE){
                 CountlyManager.reloadConsent(((Application) getApplication()).getPreferenceManager());
