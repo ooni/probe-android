@@ -15,6 +15,8 @@ public class PreferenceManager {
 	public static final Integer MAX_RUNTIME_DISABLED = -1;
 	private static final String IS_MANUAL_UPLOAD_DIALOG = "isManualUploadDialog";
 	private static final String IS_ANALYTICS_DIALOG = "isAnalyticsDialog";
+	private static final String IS_NOTIFICATION_DIALOG = "isNotificationDialog";
+	public static final int NOTIFICATION_DIALOG_COUNT = 5;
 	private static final String TOKEN = "token";
 	private static final String SHOW_ONBOARDING = "first_run";
 	//This is in ms, set to one day
@@ -98,8 +100,23 @@ public class PreferenceManager {
 		return sp.getBoolean(IS_MANUAL_UPLOAD_DIALOG, true);
 	}
 
+	/*
+	 * This method is used to ask user to enable push notifications.
+	 */
+	public boolean isAskNotificationDialog() {
+		return sp.getBoolean(IS_NOTIFICATION_DIALOG, true);
+	}
+
 	public boolean isNotifications() {
 		return sp.getBoolean(r.getString(R.string.notifications_enabled), false);
+	}
+
+	public void setNotificationsFromDialog(boolean notifications) {
+		//set notification value and increment app open
+		sp.edit()
+				.putLong(IS_NOTIFICATION_DIALOG, getAppOpenCount()+1)
+				.putBoolean(r.getString(R.string.notifications_enabled), notifications)
+				.apply();
 	}
 
 	public boolean isUploadResults() {
@@ -213,5 +230,14 @@ public class PreferenceManager {
 		String uuid = sp.getString(UUID4, Engine.newUUID4());
 		sp.edit().putString(UUID4, uuid).apply();
 		return uuid;
+	}
+
+	public void incrementAppOpenCount(){
+		if (getAppOpenCount() > NOTIFICATION_DIALOG_COUNT) return;
+		sp.edit().putLong(IS_NOTIFICATION_DIALOG, getAppOpenCount()+1);
+	}
+
+	public long getAppOpenCount(){
+		return sp.getLong(IS_NOTIFICATION_DIALOG, 0);
 	}
 }

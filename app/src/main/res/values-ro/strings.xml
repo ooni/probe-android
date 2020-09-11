@@ -153,7 +153,7 @@
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Accesibil</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s este accesibil.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Probabil blocat</string>
-  <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">%1$s este probabil blocat prin intermediul %2$s.\n\nNotă: Pot apărea falsuri pozitive. Aflați mai multe [aici](https://ooni.io/nettest/web-connectivity/).</string>
+  <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">%1$s este probabil blocat prin intermediul %2$s.\n\nNotă: Pot apărea falsuri pozitive. Aflați mai multe [aici](https://ooni.org/support/faq/#what-are-false-positives).</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Content_LearnToCircumvent">Circumvenția de cenzură</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_DNS">**Modificări DNS**</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_TCPIP">**Blocarea bazată pe TCP / IP**</string>
@@ -238,9 +238,12 @@
   <string name="Feed_Title">Alimentare</string>
   <string name="Modal_OK">&amp;OK</string>
   <string name="Modal_Cancel">Anulare</string>
+  <string name="Modal_DontAskAgain">Nu mai întreba din nou</string>
   <string name="Modal_Delete">Ștergere</string>
   <string name="Modal_Error">Eroare</string>
   <string name="Modal_Retry">Încearcă din nou</string>
+  <string name="Modal_SoundsGreat">Sounds great</string>
+  <string name="Modal_NoThanks">Nu, mulțumesc</string>
   <string name="Modal_Error_NoInternet">Imposibil de efectuat testul. Verificați conectivitatea la internet.</string>
   <string name="Modal_Error_CantDownloadURLs">Imposibil de descărcat lista URL. Vă rugăm să încercați din nou.</string>
   <string name="Modal_Error_NotificationNotEnabled">Permisele de notificare sunt necesare. Vă rugăm să le activați în Setările telefonului dvs. și apoi să le activați în aplicația dvs. OONI Sonda.</string>
@@ -253,7 +256,7 @@
   <string name="Modal_ResultsNotUploaded_Uploading">Se încarcă %1$s ...</string>
   <string name="Toast_ResultsUploaded">Încărcare realizată cu succes</string>
   <string name="Modal_DisplayFailureLog">Afișare jurnal de erori</string>
-  <string name="Modal_EnableNotifications_Title">Receive notifications</string>
+  <string name="Modal_EnableNotifications_Title">Get updates on internet censorship</string>
   <string name="Modal_EnableNotifications_Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
   <string name="Modal_EnableGPS">Pentru a îmbunătăți acuratețea testelor, avem nevoie de permisiuni GPS. OONI va colecta doar o aproximare a poziției GPS.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Doriți să ștergeți toate rezultatele testelor?</string>
@@ -270,9 +273,7 @@
   <string name="Modal_ManualUpload_Enable">Activează:</string>
   <string name="Modal_ManualUpload_Disable">Nu, mulțumesc</string>
   <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. You can opt out of this at any time through the settings.</string>
-  <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
-  <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
+  <string name="Modal_ShareAnalytics_Paragraph">With the new OONI Probe, you can contribute anonymized usage metrics to help us improve the app. You can opt out through the settings at any time.</string>
   <string name="Modal_UploadFailed_Title">Incărcare eșuată</string>
   <string name="Modal_UploadFailed_Paragraph">Nu am reușit să încărcăm măsurările %1$s / %2$s. Jurnalul de erori a fost partajat cu dezvoltatorii OONI.</string>
   <string name="Modal_Error_LogNotFound">Fișierul jurnal nu a fost găsit</string>
@@ -354,6 +355,7 @@
   <string name="Settings_SendEmail_Label">Trimitere e-mail pentru asistență</string>
   <string name="Settings_SendEmail_Error">Vă rugăm să trimiteți un e-mail la bugs@openobservatory.org cu informații despre aplicație și versiunea iOS. Atingeți „Copiere în clipboard” de mai jos pentru a copia adresa noastră de e-mail.</string>
   <string name="Settings_Language_Current">Limba actuală a aplicației este %1$s</string>
+  <string name="Settings_Language_Label">Limbă</string>
   <string name="Notification_FinishedRunning">Execuție finaliza</string>
   <string name="OONIBrowser_TryMirror">Încercați mirror</string>
   <string name="OONIBrowser_Loading">Se încarcă...</string>

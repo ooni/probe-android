@@ -153,7 +153,7 @@
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Προσβάσιμη</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">Η ιστοσελίδα %1$s είναι προσβάσιμη.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Πιθανή λογοκρισία</string>
-  <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">Η ιστοσελίδα %1$s ίσως είναι μπλοκαρισμένη μέσω %2$s.\n\nΣημείωση: Υπάρχουν διάφοροι λόγοι για τους οποίους μπορεί να φαίνεται μια ιστοσελίδα ως μπλοκαρισμένη, χωρίς να είναι. Μάθε περισσότερα [εδώ](https://ooni.io/nettest/web-connectivity/).</string>
+  <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">Η ιστοσελίδα %1$s ίσως είναι μπλοκαρισμένη μέσω %2$s.\n\nΣημείωση: Υπάρχουν διάφοροι λόγοι για τους οποίους μπορεί να φαίνεται μια ιστοσελίδα ως μπλοκαρισμένη, χωρίς να είναι. Μάθε περισσότερα [εδώ](https://ooni.org/support/faq/#what-are-false-positives).</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Content_LearnToCircumvent">Παράκαμψη λογοκρισίας</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_DNS">**DNS tampering**</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_TCPIP">**Μπλοκάρισμα βασισμένο σε TCP/IP**</string>
@@ -238,9 +238,12 @@
   <string name="Feed_Title">Feed</string>
   <string name="Modal_OK">Εντάξει</string>
   <string name="Modal_Cancel">Άκυρο</string>
+  <string name="Modal_DontAskAgain">Don\'t ask again</string>
   <string name="Modal_Delete">Διαγραφή</string>
   <string name="Modal_Error">Σφάλμα</string>
   <string name="Modal_Retry">Ξαναδοκίμασε</string>
+  <string name="Modal_SoundsGreat">Sounds great</string>
+  <string name="Modal_NoThanks">Όχι, ευχαριστώ</string>
   <string name="Modal_Error_NoInternet">Δεν είναι δυνατή η εκτέλεση της δοκιμής. Έλεγξε τη σύνδεσή σου στο Διαδίκτυο.</string>
   <string name="Modal_Error_CantDownloadURLs">Δεν είναι δυνατή η λήψη της λίστας ιστοσελιδών. Παρακαλώ προσπάθησε ξανά.</string>
   <string name="Modal_Error_NotificationNotEnabled">Χρειάζονται δικαιώματα ειδοποιήσεων. Ενεργοποίησέ τα στις Ρυθμίσεις του τηλεφώνου σου και στην εφαρμογή του OONI Probe.</string>
@@ -253,7 +256,7 @@
   <string name="Modal_ResultsNotUploaded_Uploading">Ανεβαίνει %1$s ...</string>
   <string name="Toast_ResultsUploaded">Επιτυχές ανέβασμα</string>
   <string name="Modal_DisplayFailureLog">Προβολή αρχείου καταγραφής αποτυχιών</string>
-  <string name="Modal_EnableNotifications_Title">Receive notifications</string>
+  <string name="Modal_EnableNotifications_Title">Get updates on internet censorship</string>
   <string name="Modal_EnableNotifications_Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
   <string name="Modal_EnableGPS">Για να βελτιώσουμε την ακρίβεια των δοκιμών, χρειαζόμαστε δικαιώματα GPS. Το OONI συλλέγει τη θέση σου (GPS) μόνο κατά προσέγγιση.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Θέλεις να διαγράψεις όλα τα αποτελέσματα των δοκιμών σου;</string>
@@ -270,9 +273,7 @@
   <string name="Modal_ManualUpload_Enable">Ενεργοποίηση</string>
   <string name="Modal_ManualUpload_Disable">Όχι, ευχαριστώ</string>
   <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. You can opt out of this at any time through the settings.</string>
-  <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
-  <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
+  <string name="Modal_ShareAnalytics_Paragraph">With the new OONI Probe, you can contribute anonymized usage metrics to help us improve the app. You can opt out through the settings at any time.</string>
   <string name="Modal_UploadFailed_Title">Αποτυχία ανεβάσματος</string>
   <string name="Modal_UploadFailed_Paragraph">Αποτύχαμε να ανεβάσουμε %1$s/%2$s μετρήσεις. Το αρχείο καταγραφής αποτυχιών έχει μοιραστεί στους OONI developers.</string>
   <string name="Modal_Error_LogNotFound">Δεν βρέθηκε αρχείο καταγραφής</string>
@@ -354,6 +355,7 @@
   <string name="Settings_SendEmail_Label">Αποστολή email στην υποστήριξη</string>
   <string name="Settings_SendEmail_Error">Παρακαλούμε στείλτε ένα email στη διεύθυνση bugs@openobservatory.org με πληροφορίες σχετικά με την έκδοση της εφαρμογής και του iOS. Πατήστε \"Αντιγραφή στο πρόχειρο\" παρακάτω για να αντιγράψετε τη διεύθυνση email μας.</string>
   <string name="Settings_Language_Current">Η τρέχουσα γλώσσα εφαρμογής είναι %1$s</string>
+  <string name="Settings_Language_Label">Γλώσσα</string>
   <string name="Notification_FinishedRunning">Οι δοκιμές εκτελέστηκαν</string>
   <string name="OONIBrowser_TryMirror">Δοκίμασε mirror</string>
   <string name="OONIBrowser_Loading">Φορτώνεται...</string>

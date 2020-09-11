@@ -153,7 +153,7 @@
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Доступно</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">Сайт %1$s доступен.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Похоже, заблокировано</string>
-  <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">Сайт %1$s, по-видимому, заблокирован (%2$s). \n\nПримечание: случаются ложные срабатывания. Подробнее см. [здесь](https://ooni.io/nettest/web-connectivity/).</string>
+  <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">Сайт %1$s, по-видимому, заблокирован %2$s. \n\nПримечание: случаются ложные срабатывания. Подробнее см. [здесь](https://ooni.org/support/faq/#what-are-false-positives).</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Content_LearnToCircumvent">Обход цензуры</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_DNS">**Поддельные DNS**</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_TCPIP">**Блокировки на основе TCP/IP**</string>
@@ -238,9 +238,12 @@
   <string name="Feed_Title">Лента</string>
   <string name="Modal_OK">OK</string>
   <string name="Modal_Cancel">Отмена</string>
+  <string name="Modal_DontAskAgain">Больше не спрашивать</string>
   <string name="Modal_Delete">Удалить</string>
   <string name="Modal_Error">Ошибка</string>
   <string name="Modal_Retry">Повторить</string>
+  <string name="Modal_SoundsGreat">Sounds great</string>
+  <string name="Modal_NoThanks">Нет, спасибо</string>
   <string name="Modal_Error_NoInternet">Ошибка теста. Пожалуйста, проверьте подключение к интернету.</string>
   <string name="Modal_Error_CantDownloadURLs">Ошибка скачивания списка адресов. Пожалуйста, попробуйте снова.</string>
   <string name="Modal_Error_NotificationNotEnabled">Нужно разрешить уведомления. Пожалуйста, включите их в настройках телефона, а затем в приложении OONI Probe.</string>
@@ -253,7 +256,7 @@
   <string name="Modal_ResultsNotUploaded_Uploading">Загружаем %1$s ...</string>
   <string name="Toast_ResultsUploaded">Загрузка успешно завершена</string>
   <string name="Modal_DisplayFailureLog">Показать список ошибок</string>
-  <string name="Modal_EnableNotifications_Title">Receive notifications</string>
+  <string name="Modal_EnableNotifications_Title">Get updates on internet censorship</string>
   <string name="Modal_EnableNotifications_Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
   <string name="Modal_EnableGPS">Чтобы повысить точность тестов, нам требуется доступ к GPS-данным. OONI собирает только примерные данные о GPS-координатах.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Удалить все результаты теста?</string>
@@ -269,10 +272,8 @@
   <string name="Modal_ManualUpload_Paragraph">Эта настройка позволяет вам вручную загружать неопубликованные измерения</string>
   <string name="Modal_ManualUpload_Enable">Включить</string>
   <string name="Modal_ManualUpload_Disable">Нет, спасибо</string>
-  <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. You can opt out of this at any time through the settings.</string>
-  <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
-  <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
+  <string name="Modal_ShareAnalytics_Title">Помогите нам улучшить OONI Probe</string>
+  <string name="Modal_ShareAnalytics_Paragraph">With the new OONI Probe, you can contribute anonymized usage metrics to help us improve the app. You can opt out through the settings at any time.</string>
   <string name="Modal_UploadFailed_Title">Загрузка не удалась</string>
   <string name="Modal_UploadFailed_Paragraph">Нам не удалось загрузить измерения %1$s/%2$s. Журнал сбоев был передан разработчикам OONI.</string>
   <string name="Modal_Error_LogNotFound">Лог-файл не найден</string>
@@ -354,6 +355,7 @@
   <string name="Settings_SendEmail_Label">Отправить письмо поддержке</string>
   <string name="Settings_SendEmail_Error">Пожалуйста, отправьте письмо на bugs@openobservatory.org с информацией о версиях приложения и iOS. Нажмите «Скопировать в буфер обмена» снизу, чтобы скопировать наш адрес электронной почты.</string>
   <string name="Settings_Language_Current">Текущий язык приложения: %1$s</string>
+  <string name="Settings_Language_Label">Язык</string>
   <string name="Notification_FinishedRunning">Завершено</string>
   <string name="OONIBrowser_TryMirror">Попробуйте зеркало</string>
   <string name="OONIBrowser_Loading">Загрузка...</string>
