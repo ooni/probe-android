@@ -1,8 +1,13 @@
 package org.openobservatory.ooniprobe.common;
 
+import android.content.Intent;
 import android.util.Log;
+
+import com.google.android.gms.common.internal.Constants;
 import com.google.firebase.messaging.RemoteMessage;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.MainActivity;
+
 import ly.count.android.sdk.messaging.CountlyPush;
 
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
@@ -17,7 +22,23 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 		// decode message data and extract meaningful information from it: title, body, badge, etc.
 		CountlyPush.Message message = CountlyPush.decodeMessage(remoteMessage.getData());
 
-		Boolean result = CountlyPush.displayMessage(getApplicationContext(), message, R.drawable.notification_icon, null);
+		Intent notificationIntent = null;
+		if (!message.has("c.l")) {
+			notificationIntent = new Intent(this, MainActivity.class);
+			notificationIntent.putExtra(MainActivity.NOTIFICATION_DIALOG, "yes");
+			notificationIntent.putExtra("title", "title");
+			notificationIntent.putExtra("message", "message");
+			//notificationIntent = new Intent(Constants.Engine.BROADCAST_RECEIVER_FILTER_NOTIFICATION_ONCLICK);
+		/*
+		Intent launchApp = new Intent(getApplicationContext(), ItemListActivity.class);
+        launchApp.putExtra("com.xxxxxxx.xxxxxxxxx.bean.Item", "anyObjectYouWant");
+        launchApp.setAction( "VIEW_DETAILS_PROPERTY" );
+        PendingIntent launchNotification = PendingIntent.getActivity(getApplicationContext(), 0, launchApp, 0);
+        notification.setLatestEventInfo(getApplicationContext(), titulo, contextText, launchNotification);
+		 */
+			//}
+		}
+		Boolean result = CountlyPush.displayMessage(getApplicationContext(), message, R.drawable.notification_icon, notificationIntent);
 		if (result == null) {
 			Log.d(TAG, "Message wasn't sent from Countly server, so it cannot be handled by Countly SDK");
 		} else if (result) {
