@@ -12,9 +12,9 @@ jobs:
         target: [google_apis]
     steps:
     - name: checkout
-      uses: actions/checkout
+      uses: actions/checkout@v2
     - name: run tests
-      uses: reactivecircus/android-emulator-runner@master
+      uses: reactivecircus/android-emulator-runner@latest
       with:
         api-level: ${{ matrix.api-level }}
         target: ${{ matrix.target }}
