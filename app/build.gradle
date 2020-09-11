@@ -3,7 +3,7 @@ def gservices = 'yes'
 
 android {
 	compileSdkVersion 29
-	ndkVersion '21.0.6113669'
+	ndkVersion '21.3.6528147'
 
 	compileOptions {
 		sourceCompatibility JavaVersion.VERSION_1_8
@@ -79,10 +79,10 @@ android {
 
 dependencies {
 	implementation 'androidx.appcompat:appcompat:1.1.0'
+	implementation 'androidx.lifecycle:lifecycle-process:2.1.0'
 
 	fullImplementation 'com.google.firebase:firebase-messaging:20.1.4'
-	fullImplementation 'com.google.firebase:firebase-core:17.3.0'
-
+	
 	annotationProcessor 'com.github.Raizlabs.DBFlow:dbflow-processor:4.2.4'
 	implementation 'com.github.Raizlabs.DBFlow:dbflow-core:4.2.4'
 	implementation 'com.github.Raizlabs.DBFlow:dbflow:4.2.4'
