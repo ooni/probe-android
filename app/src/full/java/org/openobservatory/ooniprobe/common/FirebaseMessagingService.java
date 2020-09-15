@@ -28,16 +28,8 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 			notificationIntent.putExtra(MainActivity.NOTIFICATION_DIALOG, "yes");
 			notificationIntent.putExtra("title", "title");
 			notificationIntent.putExtra("message", "message");
-			//notificationIntent = new Intent(Constants.Engine.BROADCAST_RECEIVER_FILTER_NOTIFICATION_ONCLICK);
-		/*
-		Intent launchApp = new Intent(getApplicationContext(), ItemListActivity.class);
-        launchApp.putExtra("com.xxxxxxx.xxxxxxxxx.bean.Item", "anyObjectYouWant");
-        launchApp.setAction( "VIEW_DETAILS_PROPERTY" );
-        PendingIntent launchNotification = PendingIntent.getActivity(getApplicationContext(), 0, launchApp, 0);
-        notification.setLatestEventInfo(getApplicationContext(), titulo, contextText, launchNotification);
-		 */
-			//}
 		}
+		
 		Boolean result = CountlyPush.displayMessage(getApplicationContext(), message, R.drawable.notification_icon, notificationIntent);
 		if (result == null) {
 			Log.d(TAG, "Message wasn't sent from Countly server, so it cannot be handled by Countly SDK");
