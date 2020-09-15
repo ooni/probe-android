@@ -3,7 +3,6 @@ package org.openobservatory.ooniprobe.common;
 import android.content.Intent;
 import android.util.Log;
 
-import com.google.android.gms.common.internal.Constants;
 import com.google.firebase.messaging.RemoteMessage;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
