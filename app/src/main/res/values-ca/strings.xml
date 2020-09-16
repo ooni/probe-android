@@ -153,7 +153,7 @@
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Accessible</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s és accessible.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Probablement blocat</string>
-  <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">%1$s està probablement blocat degut a %2$s.\n\nNota: es poden produir falsos positius. Més informació [aquí](https://ooni.io/nettest/web-connectivity/).</string>
+  <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">%1$s està probablement blocat degut a %2$s.\n\nNota: es poden produir falsos positius. Més informació [aquí](https://ooni.org/support/faq/#what-are-false-positives).</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Content_LearnToCircumvent">Elusió de censura</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_DNS">**Manipulació DNS**</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_TCPIP">**Blocatge basat en TCP/IP**</string>
@@ -238,9 +238,12 @@
   <string name="Feed_Title">Mur</string>
   <string name="Modal_OK">Correcte</string>
   <string name="Modal_Cancel">Cancel·la</string>
+  <string name="Modal_DontAskAgain">No tornis a preguntar-ho</string>
   <string name="Modal_Delete">Suprimeix</string>
   <string name="Modal_Error">Error</string>
   <string name="Modal_Retry">Reintenta</string>
+  <string name="Modal_SoundsGreat">Sounds great</string>
+  <string name="Modal_NoThanks">No, gràcies</string>
   <string name="Modal_Error_NoInternet">No s\'ha pogut executar la prova. Verifiqueu la connexió a Internet.</string>
   <string name="Modal_Error_CantDownloadURLs">No s\'ha pogut baixar la llista d\'URL. Torneu-ho a provar.</string>
   <string name="Modal_Error_NotificationNotEnabled">Calen permisos de notificació. Activeu-los a la Configuració del telèfon i després activeu-los a l\'aplicació OONI Probe.</string>
@@ -253,7 +256,7 @@
   <string name="Modal_ResultsNotUploaded_Uploading">S\'està pujant %1$s...</string>
   <string name="Toast_ResultsUploaded">S\'ha pujat amb èxit</string>
   <string name="Modal_DisplayFailureLog">Mostra el registre d\'errors</string>
-  <string name="Modal_EnableNotifications_Title">Receive notifications</string>
+  <string name="Modal_EnableNotifications_Title">Get updates on internet censorship</string>
   <string name="Modal_EnableNotifications_Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
   <string name="Modal_EnableGPS">Per millorar la precisió de les proves, necessitem permisos de GPS. L\'OONI només recopilarà una aproximació de la vostra posició GPS.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Voleu eliminar tots els resultats de la prova?</string>
@@ -270,9 +273,7 @@
   <string name="Modal_ManualUpload_Enable">Habilitar</string>
   <string name="Modal_ManualUpload_Disable">No, gràcies</string>
   <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">We would like to collect some metrics about how you use OONI Probe so that we can improve it. You can opt out of this at any time through the settings.</string>
-  <string name="Modal_ShareAnalytics_Enable">Share app usage</string>
-  <string name="Modal_ShareAnalytics_Disable">Don\'t share</string>
+  <string name="Modal_ShareAnalytics_Paragraph">With the new OONI Probe, you can contribute anonymized usage metrics to help us improve the app. You can opt out through the settings at any time.</string>
   <string name="Modal_UploadFailed_Title">Ha fallat la pujada</string>
   <string name="Modal_UploadFailed_Paragraph">No hem pogut penjar %1$s/%2$s mesures. El registre d\'errors s\'ha compartit amb els desenvolupadors de l\'OONI.</string>
   <string name="Modal_Error_LogNotFound">No s\'ha trobat el fitxer de registre</string>
@@ -354,6 +355,7 @@
   <string name="Settings_SendEmail_Label">Envia un correu per donar suport</string>
   <string name="Settings_SendEmail_Error">Envieu un correu a bugs@openobservatory.org amb informació sobre l\'aplicació i la versió d\'iOS. Toqueu «Copia al porta-retalls» a continuació per copiar la nostra adreça de correu.</string>
   <string name="Settings_Language_Current">L\'idioma actual de l\'aplicació és %1$s</string>
+  <string name="Settings_Language_Label">Llengua</string>
   <string name="Notification_FinishedRunning">Ha finalitzat l\'execució</string>
   <string name="OONIBrowser_TryMirror">Prova un mirall</string>
   <string name="OONIBrowser_Loading">S\'està carregant...</string>

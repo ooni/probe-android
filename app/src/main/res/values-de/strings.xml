@@ -153,7 +153,7 @@
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Zugänglich</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s ist zugänglich.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Wahrscheinlich blockiert</string>
-  <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">%1$s ist wahrscheinlich blockiert wegen %2$s.\n\nHinweis: Falsch positive Ergebnisse können auftreten. Erfahre [hier](https://ooni.io/nettest/web-connectivity/) mehr dazu.</string>
+  <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">%1$s ist wahrscheinlich blockiert wegen %2$s.\n\nHinweis: Falsch positive Ergebnisse können auftreten. Erfahre [hier](https://ooni.org/support/faq/#what-are-false-positives) mehr dazu.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Content_LearnToCircumvent">Zensurumgehung</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_DNS">**DNS-Manipulation**</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_TCPIP">**TCP/IP basiertes Blocken**</string>
@@ -238,9 +238,12 @@
   <string name="Feed_Title">Feed</string>
   <string name="Modal_OK">OK</string>
   <string name="Modal_Cancel">Abbrechen</string>
+  <string name="Modal_DontAskAgain">Nicht erneut nachfragen</string>
   <string name="Modal_Delete">Entfernen</string>
   <string name="Modal_Error">Fehler</string>
   <string name="Modal_Retry">Versuche erneut</string>
+  <string name="Modal_SoundsGreat">Sounds great</string>
+  <string name="Modal_NoThanks">Nein, danke</string>
   <string name="Modal_Error_NoInternet">Test konnte nicht ausgeführt werden. Bitte überprüfe deine Internetverbindung.</string>
   <string name="Modal_Error_CantDownloadURLs">URL-Liste kann nicht heruntergeladen werden. Bitte versuche es erneut.</string>
   <string name="Modal_Error_NotificationNotEnabled">Benachrichtigungsberechtigungen sind erforderlich. Bitte aktiviere sie in den Einstellungen deines Telefons und anschließend in deiner OONI Probe App.</string>
@@ -253,7 +256,7 @@
   <string name="Modal_ResultsNotUploaded_Uploading">Hochladen von %1$s ...</string>
   <string name="Toast_ResultsUploaded">Upload erfolgreich</string>
   <string name="Modal_DisplayFailureLog">Fehlerlog anzeigen</string>
-  <string name="Modal_EnableNotifications_Title">Benachrichtigungen erhalten</string>
+  <string name="Modal_EnableNotifications_Title">Get updates on internet censorship</string>
   <string name="Modal_EnableNotifications_Paragraph">Bist du daran interessiert, OONI-Probe-Tests während aufkommender Zensurereignisse durchzuführen? Aktiviere Benachrichtigungen, um eine Nachricht zu erhalten, wenn wir von Internetzensur in deiner Nähe hören!</string>
   <string name="Modal_EnableGPS">Um die Genauigkeit von Tests zu verbessern brauchen wir Berechtigung für GPS. OONI wird nur eine ungefähre Position aufnehmen.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Möchtest du alle Testergebnisse löschen?</string>
@@ -270,9 +273,7 @@
   <string name="Modal_ManualUpload_Enable">Aktivieren</string>
   <string name="Modal_ManualUpload_Disable">Nein, danke</string>
   <string name="Modal_ShareAnalytics_Title">Hilf uns OONI Probe zu verbessern</string>
-  <string name="Modal_ShareAnalytics_Paragraph">Wir möchten einige Metriken darüber sammeln, wie du OONI-Probe verwendest, damit wir sie verbessern können. Du kannst dies jederzeit über die Einstellungen abbestellen.</string>
-  <string name="Modal_ShareAnalytics_Enable">App-Nutzung teilen</string>
-  <string name="Modal_ShareAnalytics_Disable">Nicht teilen</string>
+  <string name="Modal_ShareAnalytics_Paragraph">With the new OONI Probe, you can contribute anonymized usage metrics to help us improve the app. You can opt out through the settings at any time.</string>
   <string name="Modal_UploadFailed_Title">Hochladen fehlgeschlagen</string>
   <string name="Modal_UploadFailed_Paragraph">Wir haben es nicht geschafft, %1$s/%2$s Messungen hochzuladen. Das Fehlerprotokoll wurde den OONI-Entwicklern zur Verfügung gestellt.</string>
   <string name="Modal_Error_LogNotFound">Protokolldatei nicht gefunden</string>
@@ -354,6 +355,7 @@
   <string name="Settings_SendEmail_Label">E-Mail an den Support senden</string>
   <string name="Settings_SendEmail_Error">Bitte senden Sie eine E-Mail an bugs@openobservatory.org mit Informationen zur App und iOS-Version. Tippen Sie unten auf \"In die Zwischenablage kopieren\", um unsere E-Mail Adresse zu kopieren.</string>
   <string name="Settings_Language_Current">Aktuelle App-Sprache ist %1$s</string>
+  <string name="Settings_Language_Label">Sprache</string>
   <string name="Notification_FinishedRunning">Vollständig ausgeführt</string>
   <string name="OONIBrowser_TryMirror">Versuche Mirror</string>
   <string name="OONIBrowser_Loading">Lade...</string>

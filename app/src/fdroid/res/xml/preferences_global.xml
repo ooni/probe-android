@@ -298,7 +298,7 @@
 		</androidx.preference.PreferenceScreen>
 	</androidx.preference.PreferenceScreen>
 	<androidx.preference.PreferenceScreen
-		android:icon="@drawable/sharing"
+		android:icon="@drawable/privacy"
 		android:key="@string/privacy"
 		android:title="@string/Settings_Privacy_Label">
 		<androidx.preference.SwitchPreferenceCompat
