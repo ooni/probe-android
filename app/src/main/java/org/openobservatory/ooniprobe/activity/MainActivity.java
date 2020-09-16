@@ -109,7 +109,6 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        assert intent != null;
         if (intent.getExtras() != null){
             if (intent.getExtras().containsKey(RES_ITEM))
                 bottomNavigation.setSelectedItemId(intent.getIntExtra(RES_ITEM, R.id.dashboard));
