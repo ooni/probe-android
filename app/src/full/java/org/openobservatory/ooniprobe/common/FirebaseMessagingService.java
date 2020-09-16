@@ -25,8 +25,8 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 		if (!message.has("c.l")) {
 			notificationIntent = new Intent(this, MainActivity.class);
 			notificationIntent.putExtra(MainActivity.NOTIFICATION_DIALOG, "yes");
-			notificationIntent.putExtra("title", "title");
-			notificationIntent.putExtra("message", "message");
+			notificationIntent.putExtra("title", message.title());
+			notificationIntent.putExtra("message", message.message());
 		}
 		
 		Boolean result = CountlyPush.displayMessage(getApplicationContext(), message, R.drawable.notification_icon, notificationIntent);
