@@ -242,10 +242,10 @@
   <string name="Modal_Delete">Apagar</string>
   <string name="Modal_Error">Erro</string>
   <string name="Modal_Retry">Tentar novamente</string>
-  <string name="Modal_SoundsGreat">Parece ótimo</string>
+  <string name="Modal_SoundsGreat">Sounds great</string>
   <string name="Modal_NoThanks">Não, agradeço</string>
   <string name="Modal_Error_NoInternet">Não foi possível executar o teste. Por favor, verifique sua conexão com a Internet.</string>
-  <string name="Modal_Error_CantDownloadURLs">Não foi possível baixar a lista de URL&#x27;s. Por favor, tente novamente.</string>
+  <string name="Modal_Error_CantDownloadURLs">Não foi possível baixar a lista de URL\'s. Por favor, tente novamente.</string>
   <string name="Modal_Error_NotificationNotEnabled">Permissões de notificação são necessárias. Por favor, habilite-as nas Configurações do seu telefone e, em seguida, habilite-as em seu aplicativo OONI Probe.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Abrir Configurações</string>
   <string name="Modal_Error_CantCloseScreen">Esta tela é bloqueada enquanto um teste é executado.</string>
@@ -256,7 +256,7 @@
   <string name="Modal_ResultsNotUploaded_Uploading">Fazendo upload de %1$s ...</string>
   <string name="Toast_ResultsUploaded">Carregamento bem-sucedido</string>
   <string name="Modal_DisplayFailureLog">Exibir log de falhas</string>
-  <string name="Modal_EnableNotifications_Title">Receba atualizações sobre censura na internet</string>
+  <string name="Modal_EnableNotifications_Title">Get updates on internet censorship</string>
   <string name="Modal_EnableNotifications_Paragraph">Interessado em executar os testes do OONI Probe durante eventos de censura emergente? Habilite notificações para receber uma mensagem quando soubermos de censura na internet próximo a você!</string>
   <string name="Modal_EnableGPS">Para melhorar a precisão dos testes, necessitamos de permissões de GPS. OONI coletará somente a sua posição GPS aproximada.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Deseja apagar todos os resultados do teste?</string>
@@ -273,7 +273,7 @@
   <string name="Modal_ManualUpload_Enable">Habilitar</string>
   <string name="Modal_ManualUpload_Disable">Não, agradeço</string>
   <string name="Modal_ShareAnalytics_Title">Ajude-nos a melhorar o OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">Com o novo OONI Probe, você pode contribuir com métricas de uso anônimo para nos ajudar a melhorar o aplicativo. Você pode optar por não utilizar o aplicativo a qualquer momento.</string>
+  <string name="Modal_ShareAnalytics_Paragraph">With the new OONI Probe, you can contribute anonymized usage metrics to help us improve the app. You can opt out through the settings at any time.</string>
   <string name="Modal_UploadFailed_Title">Falha ao enviar</string>
   <string name="Modal_UploadFailed_Paragraph">Falha ao carregar %1$s/%2$s medidas. O log de falhas foi compartilhado com as pessoas que desenvolvem o OONI.</string>
   <string name="Modal_Error_LogNotFound">Arquivo de log não encontrado</string>
@@ -291,8 +291,8 @@
   <string name="Test_Middleboxes_Fullname">Caixas intermediárias</string>
   <string name="Test_Performance_Fullname">Desempenho</string>
   <string name="Test_Circumvention_Fullname">Contornar a censura</string>
-  <string name="Test_HTTPInvalidRequestLine_Fullname">Teste &quot;HTTP Invalid Request Line Test&quot;</string>
-  <string name="Test_HTTPHeaderFieldManipulation_Fullname">Teste &quot;HTTP Header Field Manipulation&quot;</string>
+  <string name="Test_HTTPInvalidRequestLine_Fullname">Teste \"HTTP Invalid Request Line Test\"</string>
+  <string name="Test_HTTPHeaderFieldManipulation_Fullname">Teste \"HTTP Header Field Manipulation\"</string>
   <string name="Test_WebConnectivity_Fullname">Teste de Conexão da Web</string>
   <string name="Test_NDT_Fullname">Teste de Velocidade NDT</string>
   <string name="Test_Dash_Fullname">Teste de Transmissão DASH</string>
@@ -326,7 +326,7 @@
   <string name="Settings_Privacy_SendCrashReports">Enviar relatórios de erros</string>
   <string name="Settings_Advanced_Label">Avançado</string>
   <string name="Settings_Advanced_DebugLogs">Registros de depuração</string>
-  <string name="Settings_Advanced_UseDomainFronting">Sempre usar &quot;domain fronting&quot;</string>
+  <string name="Settings_Advanced_UseDomainFronting">Sempre usar \"domain fronting\"</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Limitar a duração do teste</string>
   <string name="Settings_Websites_MaxRuntime">Duração do teste</string>
   <string name="Settings_Websites_Categories_Label">Categorias de sites para testar</string>
@@ -340,8 +340,8 @@
   <string name="Settings_InstantMessaging_TestWhatsApp">Teste do WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Teste do Telegram</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">Teste do Facebook Messenger</string>
-  <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">Executar o teste &quot;HTTP Invalid Request Line&quot;</string>
-  <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">Executar o teste &quot;HTTP Header Field Manipulation&quot;</string>
+  <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">Executar o teste \"HTTP Invalid Request Line\"</string>
+  <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">Executar o teste \"HTTP Header Field Manipulation\"</string>
   <string name="Settings_Performance_TestNDT">Execute o teste de velocidade NDT</string>
   <string name="Settings_Performance_NDTAutomaticServerSelection">Seleção automática do servidor NDT</string>
   <string name="Settings_Performance_NDTServerAddress">Endereço do servidor NDT</string>
@@ -353,7 +353,7 @@
   <string name="Settings_Circumvention_TestPsiphon">Teste Psiphon</string>
   <string name="Settings_Circumvention_TestTor">Teste Tor</string>
   <string name="Settings_SendEmail_Label">Enviar e-mail para suporte</string>
-  <string name="Settings_SendEmail_Error">Por favor, envie um e-mail para bugs@openobservatory.org com informações sobre o aplicativo e a versão do iOS. Toque em &quot;Copiar para área de transferência,&quot; abaixo, para copiar nosso endereço de e-mail.</string>
+  <string name="Settings_SendEmail_Error">Por favor, envie um e-mail para bugs@openobservatory.org com informações sobre o aplicativo e a versão do iOS. Toque em \"Copiar para área de transferência,\" abaixo, para copiar nosso endereço de e-mail.</string>
   <string name="Settings_Language_Current">O idioma atual da aplicação é %1$s</string>
   <string name="Settings_Language_Label">Idioma</string>
   <string name="Notification_FinishedRunning">Execução concluída</string>
@@ -361,7 +361,7 @@
   <string name="OONIBrowser_Loading">Carregando...</string>
   <string name="OONIBrowser_Error">Um erro inesperado ocorreu. Por favor, recarregue esta página.</string>
   <string name="OONIRun_YouAreAboutToRun">Você está prestes a executar um teste OONI Probe.</string>
-  <string name="OONIRun_URLs">%1$s URL&#x27;s</string>
+  <string name="OONIRun_URLs">%1$s URL\'s</string>
   <string name="OONIRun_TestName">Nome de teste</string>
   <string name="OONIRun_TestDetails">Detalhes do teste</string>
   <string name="OONIRun_Run">Executat</string>

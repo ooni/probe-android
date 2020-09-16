@@ -28,7 +28,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">國別代碼 (e.g. IT 為義大利)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">網路資訊 ( 包含網路自治系統代號 ASN)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">測試的時間和日期</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI&#x27;s Data Policy](https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI\'s Data Policy](https://ooni.io/about/data-policy/).</string>
   <string name="Onboarding_DefaultSettings_Button_Go">開始吧！</string>
   <string name="Onboarding_DefaultSettings_Button_Change">變更預設</string>
   <string name="Dashboard_Tab_Label">儀表板</string>
@@ -50,13 +50,13 @@
   <string name="Dashboard_Card_Subtitle">輕點卡片進一步了解</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">測試遭封鎖的網站</string>
-  <string name="Dashboard_Websites_Overview_Paragraph">使用 OONI&#x27;s [網頁連結測試](https://ooni.io/nettest/web-connectivity/)來檢查網頁是否被屏蔽封鎖。\n\n只需輕觸執行鍵，即會測試 Citizen Lab 提供的 [全球](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) 和 [特定國家](https://github.com/citizenlab/test-lists/tree/master/lists) 清單。\n\n測試所挑選的網站，輕觸其按鍵或透過卡片設定來選取網站類別。 \n\n此測試會計算網站是否因 DNS 篡改、TCP/IP 封鎖或透明 HTTP 代理等手段而遭屏蔽。\n\n測試結果會發佈在 [OONI Explorer](https://explorer.ooni.io/world/) 和 [OONI API](https://api.ooni.io/).</string>
-  <string name="Dashboard_Websites_Overview_Paragraph_Desktop">Check whether websites are blocked using OONI&#x27;s [Web Connectivity test](https://ooni.io/nettest/web-connectivity/).\n\nYou will test the websites included in the Citizen Lab&#x27;s [global](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) and [country-specific](https://github.com/citizenlab/test-lists/tree/master/lists) test lists.\n\nThis test measures whether websites are blocked by means of DNS tampering, TCP/IP blocking or by a transparent HTTP proxy.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_Websites_Overview_Paragraph">使用 OONI\'s [網頁連結測試](https://ooni.io/nettest/web-connectivity/)來檢查網頁是否被屏蔽封鎖。\n\n只需輕觸執行鍵，即會測試 Citizen Lab 提供的 [全球](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) 和 [特定國家](https://github.com/citizenlab/test-lists/tree/master/lists) 清單。\n\n測試所挑選的網站，輕觸其按鍵或透過卡片設定來選取網站類別。 \n\n此測試會計算網站是否因 DNS 篡改、TCP/IP 封鎖或透明 HTTP 代理等手段而遭屏蔽。\n\n測試結果會發佈在 [OONI Explorer](https://explorer.ooni.io/world/) 和 [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_Websites_Overview_Paragraph_Desktop">Check whether websites are blocked using OONI\'s [Web Connectivity test](https://ooni.io/nettest/web-connectivity/).\n\nYou will test the websites included in the Citizen Lab\'s [global](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) and [country-specific](https://github.com/citizenlab/test-lists/tree/master/lists) test lists.\n\nThis test measures whether websites are blocked by means of DNS tampering, TCP/IP blocking or by a transparent HTTP proxy.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Performance_Card_Description">測試網路速度和效能</string>
   <string name="Dashboard_Performance_Overview_Paragraph">利用 [NDT](https://ooni.io/nettest/ndt/) 測試來衡量網路速度和效能。\n\n用 [DASH](https://ooni.io/nettest/dash/) 測試來了解影片串流的表現。\n\n這些測試會因所在網路速度而消耗數據\n\n測試結果會發佈在 [OONI Explorer](https://explorer.ooni.io/world/) 和 [OONI API](https://api.ooni.io/).\n\n免責聲明: 這些測試是透過第三方伺服器，故我們無法保證你的 IP 地址不被他人收集。</string>
   <string name="Dashboard_Performance_Overview_Paragraph_Updated">By running the tests in this card, you will:\n\n- Measure the speed and performance of your network ([NDT](https://ooni.org/nettest/ndt/) test)\n- Measure video streaming performance ([DASH](https://ooni.org/nettest/dash/) test)\n- Check for the presence of [middlebox technologies](https://ooni.org/support/glossary/#middlebox) on your network ([HTTP Invalid Request Line](https://ooni.org/nettest/http-invalid-request-line/) and [HTTP Header Field Manipulation](https://ooni.org/nettest/http-header-field-manipulation/) tests)\n\nThese tests consume data depending on your network speed.\n\nYour test results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).\n\n**Disclaimer:** The [NDT](https://ooni.org/nettest/ndt/) and [DASH](https://ooni.org/nettest/dash/) tests are conducted against third-party servers provided by [Measurement Lab (M-Lab)](https://www.measurementlab.net/). If you run these tests, M-Lab will collect and publish your IP address (for research purposes), irrespective of your OONI Probe settings. Learn more about M-Lab’s data governance through its [privacy statement](https://www.measurementlab.net/privacy/).</string>
   <string name="Dashboard_Middleboxes_Card_Description">偵測你的網路環境是否有中間盒</string>
-  <string name="Dashboard_Middleboxes_Overview_Paragraph">因各種情況（如為了緩存），網路連線服務商經常會使用一些網路用具 (如中間盒) 。但有時候，中間盒被會用作網路審查與監控。\n\n使用 OONI&#x27;s [HTTP  無效請求列](https://ooni.io/nettest/http-invalid-request-line/) 和 [HTTP 表頭欄位操控](https://ooni.io/nettest/http-header-field-manipulation/) 測試來找出網路是否有中間盒。\n\n測試結果會發佈在 [OONI Explorer](https://explorer.ooni.io/world/) 和 [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_Middleboxes_Overview_Paragraph">因各種情況（如為了緩存），網路連線服務商經常會使用一些網路用具 (如中間盒) 。但有時候，中間盒被會用作網路審查與監控。\n\n使用 OONI\'s [HTTP  無效請求列](https://ooni.io/nettest/http-invalid-request-line/) 和 [HTTP 表頭欄位操控](https://ooni.io/nettest/http-header-field-manipulation/) 測試來找出網路是否有中間盒。\n\n測試結果會發佈在 [OONI Explorer](https://explorer.ooni.io/world/) 和 [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_InstantMessaging_Card_Description">測試遭封鎖的即時通訊應用</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">檢查 [WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) 和 [Telegram](https://ooni.io/nettest/telegram/) 是否已被封鎖。\n\n其結果會發佈在 [OONI Explorer](https://explorer.ooni.io/world/) 與 [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Circumvention_Card_Description">Test the blocking of censorship circumvention tools</string>
@@ -238,7 +238,7 @@
   <string name="Feed_Title">訂閱推送</string>
   <string name="Modal_OK">OK</string>
   <string name="Modal_Cancel">取消</string>
-  <string name="Modal_DontAskAgain">Don&#x27;t ask again</string>
+  <string name="Modal_DontAskAgain">Don\'t ask again</string>
   <string name="Modal_Delete">刪除</string>
   <string name="Modal_Error">錯誤</string>
   <string name="Modal_Retry">重試</string>
@@ -353,7 +353,7 @@
   <string name="Settings_Circumvention_TestPsiphon">Test Psiphon</string>
   <string name="Settings_Circumvention_TestTor">Test Tor</string>
   <string name="Settings_SendEmail_Label">寄求助郵件</string>
-  <string name="Settings_SendEmail_Error">請將應用程式與  iOS 相關資訊寄送到此信箱 bugs@openobservatory.org ，下方的&quot;複製到剪貼簿&quot;分頁可直接複此電子郵址。 </string>
+  <string name="Settings_SendEmail_Error">請將應用程式與  iOS 相關資訊寄送到此信箱 bugs@openobservatory.org ，下方的\"複製到剪貼簿\"分頁可直接複此電子郵址。 </string>
   <string name="Settings_Language_Current">Current app language is %1$s</string>
   <string name="Settings_Language_Label">語言</string>
   <string name="Notification_FinishedRunning">已完成的執行</string>

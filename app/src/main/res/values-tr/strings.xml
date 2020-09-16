@@ -353,7 +353,7 @@
   <string name="Settings_Circumvention_TestPsiphon">Psiphon Dene</string>
   <string name="Settings_Circumvention_TestTor">Tor Dene</string>
   <string name="Settings_SendEmail_Label">Destek ekibine e-posta gönderin</string>
-  <string name="Settings_SendEmail_Error">Lütfen uygulama hakkındaki bilgiler ve iOS sürümünü yazarak bugs@openobservatory.org adresine bir e-posta gönderin. E-posta adresimizi kopyalamak için aşağıdaki &quot;Panoya kopyala&quot; seçeneğine dokunun.</string>
+  <string name="Settings_SendEmail_Error">Lütfen uygulama hakkındaki bilgiler ve iOS sürümünü yazarak bugs@openobservatory.org adresine bir e-posta gönderin. E-posta adresimizi kopyalamak için aşağıdaki \"Panoya kopyala\" seçeneğine dokunun.</string>
   <string name="Settings_Language_Current">Geçerli uygulama dili: %1$s</string>
   <string name="Settings_Language_Label">Dil</string>
   <string name="Notification_FinishedRunning">Çalışmayı tamamladı</string>

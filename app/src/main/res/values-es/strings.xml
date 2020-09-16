@@ -43,7 +43,7 @@
   <string name="Dashboard_Running_Seconds">%1$s segundos</string>
   <string name="Dashboard_Running_PreparingTest">Preparando prueba</string>
   <string name="Dashboard_Running_CalculatingETA">Calculando ETA</string>
-  <string name="Dashboard_Running_ShowLog">Mostrar registro (&#x27;log&#x27;)</string>
+  <string name="Dashboard_Running_ShowLog">Mostrar registro (\'log\')</string>
   <string name="Dashboard_Running_CloseLog">Cerrar registro</string>
   <string name="Dashboard_Running_Stopping_Title">Deteniendo prueba...</string>
   <string name="Dashboard_Running_Stopping_Notice">Finalizando las pruebas actualmente pendientes, por favor espera...</string>
@@ -242,8 +242,8 @@
   <string name="Modal_Delete">Borrar</string>
   <string name="Modal_Error">Error</string>
   <string name="Modal_Retry">Intentar de nuevo</string>
-  <string name="Modal_SoundsGreat">Suena genial</string>
-  <string name="Modal_NoThanks">¡No, gracias!</string>
+  <string name="Modal_SoundsGreat">Sounds great</string>
+  <string name="Modal_NoThanks">No, gracias!</string>
   <string name="Modal_Error_NoInternet">Incapaz de ejecutar la prueba. Por favor comprueba tu conectividad de Internet.</string>
   <string name="Modal_Error_CantDownloadURLs">Incapaz de descargar la lista de URL. Por favor intenta de nuevo.</string>
   <string name="Modal_Error_NotificationNotEnabled">Son requeridos permisos de notificación. Por favor habilítalos en las Configuraciones de tu teléfono y luego en tu aplicación OONI Probe.</string>
@@ -256,7 +256,7 @@
   <string name="Modal_ResultsNotUploaded_Uploading">Subiendo %1$s ...</string>
   <string name="Toast_ResultsUploaded">Subida exitosa</string>
   <string name="Modal_DisplayFailureLog">Mostrar registro de fallos</string>
-  <string name="Modal_EnableNotifications_Title">Obtiene actualizaciones sobre censura en Internet</string>
+  <string name="Modal_EnableNotifications_Title">Get updates on internet censorship</string>
   <string name="Modal_EnableNotifications_Paragraph">¿Interesado en ejecutar pruebas de OONI Probe durante eventos emergentes de censura? ¡Habilita notificaciones para recibir un mensaje cuando escuchemos acerca de censura en Internet cerca tuyo!</string>
   <string name="Modal_EnableGPS">Para mejorar la precisión de las pruebas, necesitamos permisos para GPS. OONI sólo recopilará una aproximación de tu posición GPS.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">¿Deseas eliminar todos los resultados de las pruebas?</string>
@@ -273,7 +273,7 @@
   <string name="Modal_ManualUpload_Enable">Habilitar</string>
   <string name="Modal_ManualUpload_Disable">No, gracias!</string>
   <string name="Modal_ShareAnalytics_Title">Ayúdanos a mejorar OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">Con la nueva OONI Probe, puedes contribuir métricas de uso anónimas para ayudarnos a mejorar la aplicación. Puedes dejar de hacerlo a través de los ajustes en cualquier momento.</string>
+  <string name="Modal_ShareAnalytics_Paragraph">With the new OONI Probe, you can contribute anonymized usage metrics to help us improve the app. You can opt out through the settings at any time.</string>
   <string name="Modal_UploadFailed_Title">La subida falló</string>
   <string name="Modal_UploadFailed_Paragraph">No hemos podido subir las medidas %1$s/%2$s. El registro de fallas ha sido compartido con los desarrolladores de OONI.</string>
   <string name="Modal_Error_LogNotFound">Archivo de registro no encontrado</string>
@@ -353,7 +353,7 @@
   <string name="Settings_Circumvention_TestPsiphon">Probar Psiphon</string>
   <string name="Settings_Circumvention_TestTor">Probar Tor</string>
   <string name="Settings_SendEmail_Label">Enviar correo electrónico al soporte</string>
-  <string name="Settings_SendEmail_Error">Por favor envíe un correo electrónico a bugs@openobservatory.org con información sobre la aplicación y versión de iOS. Pulse &quot;Copiar al portapapeles&quot; abajo para copiar nuestro correo electrónico.</string>
+  <string name="Settings_SendEmail_Error">Por favor envíe un correo electrónico a bugs@openobservatory.org con información sobre la aplicación y versión de iOS. Pulse \"Copiar al portapapeles\" abajo para copiar nuestro correo electrónico.</string>
   <string name="Settings_Language_Current">El idioma actual de la aplicación es %1$s</string>
   <string name="Settings_Language_Label">Idioma</string>
   <string name="Notification_FinishedRunning">Finalizó la ejecución</string>

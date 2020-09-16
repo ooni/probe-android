@@ -28,7 +28,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">Kode Negara (contoh: IT untuk Italia)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">Informasi jaringan (termasuk ASN)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">Jam &amp; tanggal tes</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI&#x27;s Data Policy](https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI\'s Data Policy](https://ooni.io/about/data-policy/).</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Ayo!</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Ubah default</string>
   <string name="Dashboard_Tab_Label">Dasbor</string>
@@ -50,8 +50,8 @@
   <string name="Dashboard_Card_Subtitle">Ketuk untuk lebih lanjut</string>
   <string name="Dashboard_Card_Seconds">~%1$s</string>
   <string name="Dashboard_Websites_Card_Description">Tes laman-laman yang diblok</string>
-  <string name="Dashboard_Websites_Overview_Paragraph">Cek bilamana laman-laman yang diblok menggunakan OONI [Tes konektivitas jaringan](https://ooni.io/nettest/web-connectivity/).\n\nSetiap kali Anda mengetik Jalankan, Anda mengetes berbagai laman yang berbeda dari Citizen Lab&#x27;s [global](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) dan daftar tes [country-specific](https://github.com/citizenlab/test-lists/tree/master/lists).\n\nUntuk mengetes situs-situs pilihan Anda, klik Pilih Laman atau pilih kategori-kategori situs melalui pengaturan kartu ini. \n\nTes ini mengukur apakah laman-laman tersebut diblok karena perusakan DNS yang disengaja, bloking TCP/IP atau lantaran HTTP proxy yang transparan.\n\nHasilnya akan dipublikasikan di [OONI Explorer](https://explorer.ooni.io/world/) and [OONI API](https://api.ooni.io/).\n </string>
-  <string name="Dashboard_Websites_Overview_Paragraph_Desktop">Cek bilamana laman-laman yang diblok menggunakan OONI [Tes konektivitas jaringan](https://ooni.io/nettest/web-connectivity/).\n\nAnda akan mengetes laman-laman termasuk yang ada di Citizen Lab&#x27;s [global](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) dan daftartes [country-specific](https://github.com/citizenlab/test-lists/tree/master/lists).\n\nTes ini mengukur apakah laman-laman yang diblok karena rusaknya DNS, bloking TCP/IP atau lantaran HTTP proxy yang transparan.\n\nHasilnya akan dipublikasikan di [OONI Explorer](https://explorer.ooni.org/) dan [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_Websites_Overview_Paragraph">Cek bilamana laman-laman yang diblok menggunakan OONI [Tes konektivitas jaringan](https://ooni.io/nettest/web-connectivity/).\n\nSetiap kali Anda mengetik Jalankan, Anda mengetes berbagai laman yang berbeda dari Citizen Lab\'s [global](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) dan daftar tes [country-specific](https://github.com/citizenlab/test-lists/tree/master/lists).\n\nUntuk mengetes situs-situs pilihan Anda, klik Pilih Laman atau pilih kategori-kategori situs melalui pengaturan kartu ini. \n\nTes ini mengukur apakah laman-laman tersebut diblok karena perusakan DNS yang disengaja, bloking TCP/IP atau lantaran HTTP proxy yang transparan.\n\nHasilnya akan dipublikasikan di [OONI Explorer](https://explorer.ooni.io/world/) and [OONI API](https://api.ooni.io/).\n </string>
+  <string name="Dashboard_Websites_Overview_Paragraph_Desktop">Cek bilamana laman-laman yang diblok menggunakan OONI [Tes konektivitas jaringan](https://ooni.io/nettest/web-connectivity/).\n\nAnda akan mengetes laman-laman termasuk yang ada di Citizen Lab\'s [global](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) dan daftartes [country-specific](https://github.com/citizenlab/test-lists/tree/master/lists).\n\nTes ini mengukur apakah laman-laman yang diblok karena rusaknya DNS, bloking TCP/IP atau lantaran HTTP proxy yang transparan.\n\nHasilnya akan dipublikasikan di [OONI Explorer](https://explorer.ooni.org/) dan [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Performance_Card_Description">Tes kecepatan dan kinerja jaringan Anda.</string>
   <string name="Dashboard_Performance_Overview_Paragraph">Mengukur kecepatan dan kinerja jaringan Anda menggunakan tes [NDT](https://ooni.io/nettest/ndt/).\n\nMengukur kinerja arus video menggunakan tes [DASH](https://ooni.io/nettest/dash/) test.\n\nTes-tes ini menyita data tergantung kecepatan jaringan Anda.\n\nHasilnya akan dipublikasikan di [OONI Explorer](https://explorer.ooni.io/world/) dan [OONI API](https://api.ooni.io/).\n\nPenyangkalan: Tes-tes ini mengandalkan server dari pihak ketiga. Karena itu kami tidak dapat menjamin alamat-alamat IP anda tidak akan disimpan.</string>
   <string name="Dashboard_Performance_Overview_Paragraph_Updated">By running the tests in this card, you will:\n\n- Measure the speed and performance of your network ([NDT](https://ooni.org/nettest/ndt/) test)\n- Measure video streaming performance ([DASH](https://ooni.org/nettest/dash/) test)\n- Check for the presence of [middlebox technologies](https://ooni.org/support/glossary/#middlebox) on your network ([HTTP Invalid Request Line](https://ooni.org/nettest/http-invalid-request-line/) and [HTTP Header Field Manipulation](https://ooni.org/nettest/http-header-field-manipulation/) tests)\n\nThese tests consume data depending on your network speed.\n\nYour test results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).\n\n**Disclaimer:** The [NDT](https://ooni.org/nettest/ndt/) and [DASH](https://ooni.org/nettest/dash/) tests are conducted against third-party servers provided by [Measurement Lab (M-Lab)](https://www.measurementlab.net/). If you run these tests, M-Lab will collect and publish your IP address (for research purposes), irrespective of your OONI Probe settings. Learn more about M-Lab’s data governance through its [privacy statement](https://www.measurementlab.net/privacy/).</string>
@@ -189,7 +189,7 @@
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_DNS_Label_Okay">Setuju</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_DNS_Label_Failed">Gagal</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Hero_Title">Sedang bekerja</string>
-  <string name="TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Content_Paragraph">This test successfully connected to Facebook&#x27;s endpoints and resolved to Facebook IP addresses.</string>
+  <string name="TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Content_Paragraph">This test successfully connected to Facebook\'s endpoints and resolved to Facebook IP addresses.</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Hero_Title">Diblok juga</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Content_Paragraph">Facebook Messenger appears to be blocked.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title">Middlebox tidak terdeteksi</string>
@@ -238,7 +238,7 @@
   <string name="Feed_Title">Asupan</string>
   <string name="Modal_OK">Setuju</string>
   <string name="Modal_Cancel">Batal</string>
-  <string name="Modal_DontAskAgain">Don&#x27;t ask again</string>
+  <string name="Modal_DontAskAgain">Don\'t ask again</string>
   <string name="Modal_Delete">Hapus</string>
   <string name="Modal_Error">Kesalahan</string>
   <string name="Modal_Retry">Coba Lagi</string>
@@ -251,7 +251,7 @@
   <string name="Modal_Error_CantCloseScreen">Layar ini terkunci ketika tes sedang berjalan.</string>
   <string name="Modal_Error_RawDataNoInternet">Apakah kamu ingin menghapus semua hasil tes?</string>
   <string name="Modal_ResultsNotUploaded_Title">Hasil tidak diunggah</string>
-  <string name="Modal_ResultsNotUploaded_Paragraph">Some of your test results have not been uploaded to OONI servers. If you&#x27;d like to contribute to OONI&#x27;s dataset, please upload them.</string>
+  <string name="Modal_ResultsNotUploaded_Paragraph">Some of your test results have not been uploaded to OONI servers. If you\'d like to contribute to OONI\'s dataset, please upload them.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Unggah</string>
   <string name="Modal_ResultsNotUploaded_Uploading">Mengunggah %1$s ...</string>
   <string name="Toast_ResultsUploaded">Unggahan berhasil</string>
@@ -304,7 +304,7 @@
   <string name="Settings_Title">Pengaturan</string>
   <string name="Settings_Error_TestDurationTooLow">Lamanya waktu yang Anda tentukan untuk durasi tes terlalu singkat.</string>
   <string name="Settings_About_Label">Tentang OONI</string>
-  <string name="Settings_About_Content_Paragraph">The Open Observatory of Network Interference (OONI) is a free software project under The Tor Project that aims to increase transparency of internet censorship around the world.\n\nSince 2012, OONI&#x27;s global community has been measuring networks in more than 200 countries. Some of these measurements serve as evidence of internet censorship.</string>
+  <string name="Settings_About_Content_Paragraph">The Open Observatory of Network Interference (OONI) is a free software project under The Tor Project that aims to increase transparency of internet censorship around the world.\n\nSince 2012, OONI\'s global community has been measuring networks in more than 200 countries. Some of these measurements serve as evidence of internet censorship.</string>
   <string name="Settings_About_Content_LearnMore">Pelajari Selengkapnya</string>
   <string name="Settings_About_Content_DataPolicy">Kebijakan Data OONI</string>
   <string name="Settings_Notifications_Label">Notifikasi</string>
@@ -353,7 +353,7 @@
   <string name="Settings_Circumvention_TestPsiphon">Test Psiphon</string>
   <string name="Settings_Circumvention_TestTor">Test Tor</string>
   <string name="Settings_SendEmail_Label">Kirim surel ke pendukung</string>
-  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap &quot;Copy to clipboard&quot; below to copy our email address.</string>
+  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap \"Copy to clipboard\" below to copy our email address.</string>
   <string name="Settings_Language_Current">Bahasa aplikasi saat ini adalah %1$s</string>
   <string name="Settings_Language_Label">Bahasa</string>
   <string name="Notification_FinishedRunning">Selesai dijalani</string>
@@ -434,5 +434,5 @@
   <string name="CategoryCode_COMM_Description">Commercial services and products</string>
   <string name="CategoryCode_CTRL_Description">Benign or innocuous content used for control</string>
   <string name="CategoryCode_IGO_Description">Intergovernmental organizations including The United Nations</string>
-  <string name="CategoryCode_MISC_Description">Sites that haven&#x27;t been categorized yet</string>
+  <string name="CategoryCode_MISC_Description">Sites that haven\'t been categorized yet</string>
 </resources>
