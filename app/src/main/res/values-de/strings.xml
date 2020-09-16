@@ -28,8 +28,8 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">Ländercode (z. B. DE für Deutschland)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">Netzwerkinformationen (einschließlich der Autonomous System Number, ASN)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">Zeit &amp; Datum des Tests</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">Wir geben unser Bestes, deine IP-Adresse oder andere möglicherweise personenbezogene Daten nicht zu veröffentlichen.\n\nUm OONI Probe zu verbessern, sammeln wir auch Metriken zur Anwendungsnutzung und Absturzberichte.\n\nWeitere Informationen findest du in [OONI\'s Datenrichtlinie](https://ooni.io/about/data-policy/).</string>
-  <string name="Onboarding_DefaultSettings_Button_Go">Auf geht\'s</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">Wir geben unser Bestes, deine IP-Adresse oder andere möglicherweise personenbezogene Daten nicht zu veröffentlichen.\n\nUm OONI Probe zu verbessern, sammeln wir auch Metriken zur Anwendungsnutzung und Absturzberichte.\n\nWeitere Informationen findest du in [OONI&#x27;s Datenrichtlinie](https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Button_Go">Auf geht&#x27;s</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Defaults ändern</string>
   <string name="Dashboard_Tab_Label">Übersicht</string>
   <string name="Dashboard_Card_Run">Ausführen</string>
@@ -50,7 +50,7 @@
   <string name="Dashboard_Card_Subtitle">Tippe auf die Schaltfläche, um mehr zu erfahren</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">Teste die Blockierung von Webseiten</string>
-  <string name="Dashboard_Websites_Overview_Paragraph">Überprüfe mit Hilfe des [Web-Connectivity-Tests](https://ooni.io/nettest/web-connectivity/) von OONI, ob Webseiten blockiert werden\n\nJedes Mal, wenn du „Ausführen“ auswählst, testest du verschiedene Webseiten von Citizen Labs\' [globalen](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) und [länderspezifischen](https://github.com/citizenlab/test-lists/tree/master/lists) Testlisten.\n\nUm Webseiten deiner Wahl zu testen, tippe auf die \"Webseiten\"-Schaltfläche oder wähle Kategorien von Webseiten üausführenber die Einstellungen dieser Karte.\n\nDieser Test misst, ob Webseiten durch DNS-Manipulation, TCP/IP-Blockierung oder einen transparenten HTTP-Proxy blockiert werden.\n\nDeine Ergebnisse werden auf dem [OONI Explorer](https://explorer.ooni.io/world/) und der [OONI API](https://api.ooni.io/) veröffentlicht.</string>
+  <string name="Dashboard_Websites_Overview_Paragraph">Überprüfe mit Hilfe des [Web-Connectivity-Tests](https://ooni.io/nettest/web-connectivity/) von OONI, ob Webseiten blockiert werden\n\nJedes Mal, wenn du „Ausführen“ auswählst, testest du verschiedene Webseiten von Citizen Labs&#x27; [globalen](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) und [länderspezifischen](https://github.com/citizenlab/test-lists/tree/master/lists) Testlisten.\n\nUm Webseiten deiner Wahl zu testen, tippe auf die &quot;Webseiten&quot;-Schaltfläche oder wähle Kategorien von Webseiten üausführenber die Einstellungen dieser Karte.\n\nDieser Test misst, ob Webseiten durch DNS-Manipulation, TCP/IP-Blockierung oder einen transparenten HTTP-Proxy blockiert werden.\n\nDeine Ergebnisse werden auf dem [OONI Explorer](https://explorer.ooni.io/world/) und der [OONI API](https://api.ooni.io/) veröffentlicht.</string>
   <string name="Dashboard_Websites_Overview_Paragraph_Desktop">Überprüfe mit Hilfe des [Web-Connectivity-Tests](https://ooni.io/nettest/web-connectivity/) von OONI, ob Webseiten blockiert werden\n\nDu wirst die Websites testen, die in den Testlisten des Citizen Labs [global](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) und [länderspezifisch](https://github.com/citizenlab/test-lists/tree/master/lists) enthalten sind.\n\nDieser Test misst, ob Websites mittels DNS-Manipulation, TCP/IP-Blockierung oder durch einen transparenten HTTP-Proxy blockiert werden.\n\nDeine Ergebnisse werden auf dem [OONI Explorer](https://explorer.ooni.org/) und der [OONI API](https://api.ooni.io/) veröffentlicht.</string>
   <string name="Dashboard_Performance_Card_Description">Teste die Geschwindigkeit und Performance deines Netzwerks</string>
   <string name="Dashboard_Performance_Overview_Paragraph">Messe die Geschwindigkeit und Leistung deines Netzwerks mit dem [NDT](https://ooni.io/nettest/ndt/) Test.\n\nMesse Video-Streaming Perfomance mit dem [DASH](https://ooni.io/nettest/dash/) Test.\n\nDiese Tests verbrauchen Datenvolumen basierend auf deiner Netzwerkgeschwindigkeit.\n\nDeine Ergebnisse werden auf dem [OONI Explorer](https://explorer.ooni.io/world/) und der [OONI API](https://api.ooni.io/) veröffentlicht.\n\nHaftungsausschluss: Diese Tests basieren auf Servern von Drittanbietern. Wir können daher nicht garantieren, dass deine IP-Adresse nicht erfasst wird.</string>
@@ -169,7 +169,7 @@
   <string name="TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Okay">OK</string>
   <string name="TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed">Fehlgeschlagen</string>
   <string name="TestResults_Details_InstantMessaging_WhatsApp_Reachable_Hero_Title">Arbeite</string>
-  <string name="TestResults_Details_InstantMessaging_WhatsApp_Reachable_Content_Paragraph">Dieser Test hat eine erfolgreiche Verbindung zu WhatsApp\'s Endpunkten, Registrierungsservice und Weboberfläche (web.whatsapp.com) hergestellt.</string>
+  <string name="TestResults_Details_InstantMessaging_WhatsApp_Reachable_Content_Paragraph">Dieser Test hat eine erfolgreiche Verbindung zu WhatsApp&#x27;s Endpunkten, Registrierungsservice und Weboberfläche (web.whatsapp.com) hergestellt.</string>
   <string name="TestResults_Details_InstantMessaging_WhatsApp_LikelyBlocked_Hero_Title">Wahrscheinlich blockiert</string>
   <string name="TestResults_Details_InstantMessaging_WhatsApp_LikelyBlocked_Content_Paragraph">WhatsApp scheint geblockt zu sein.</string>
   <string name="TestResults_Details_InstantMessaging_Telegram_Application_Label_Title">Mobile App</string>
@@ -179,7 +179,7 @@
   <string name="TestResults_Details_InstantMessaging_Telegram_WebApp_Label_Okay">OK</string>
   <string name="TestResults_Details_InstantMessaging_Telegram_WebApp_Label_Failed">Fehlgeschlagen</string>
   <string name="TestResults_Details_InstantMessaging_Telegram_Reachable_Hero_Title">Arbeite</string>
-  <string name="TestResults_Details_InstantMessaging_Telegram_Reachable_Content_Paragraph">Dieser Test hat eine erfolgreiche Verbindung zu Telegram\'s Endpunkten und dessen Weboberfläche (web.telegram.org) hergestellt.</string>
+  <string name="TestResults_Details_InstantMessaging_Telegram_Reachable_Content_Paragraph">Dieser Test hat eine erfolgreiche Verbindung zu Telegram&#x27;s Endpunkten und dessen Weboberfläche (web.telegram.org) hergestellt.</string>
   <string name="TestResults_Details_InstantMessaging_Telegram_LikelyBlocked_Hero_Title">Wahrscheinlich blockiert</string>
   <string name="TestResults_Details_InstantMessaging_Telegram_LikelyBlocked_Content_Paragraph">Telegram scheint geblockt zu sein.</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_TCP_Label_Title">TCP-Verbindungen</string>
@@ -242,7 +242,7 @@
   <string name="Modal_Delete">Entfernen</string>
   <string name="Modal_Error">Fehler</string>
   <string name="Modal_Retry">Versuche erneut</string>
-  <string name="Modal_SoundsGreat">Sounds great</string>
+  <string name="Modal_SoundsGreat">Hört sich toll an</string>
   <string name="Modal_NoThanks">Nein, danke</string>
   <string name="Modal_Error_NoInternet">Test konnte nicht ausgeführt werden. Bitte überprüfe deine Internetverbindung.</string>
   <string name="Modal_Error_CantDownloadURLs">URL-Liste kann nicht heruntergeladen werden. Bitte versuche es erneut.</string>
@@ -256,7 +256,7 @@
   <string name="Modal_ResultsNotUploaded_Uploading">Hochladen von %1$s ...</string>
   <string name="Toast_ResultsUploaded">Upload erfolgreich</string>
   <string name="Modal_DisplayFailureLog">Fehlerlog anzeigen</string>
-  <string name="Modal_EnableNotifications_Title">Get updates on internet censorship</string>
+  <string name="Modal_EnableNotifications_Title">Aktuelle Informationen zur Internetzensur</string>
   <string name="Modal_EnableNotifications_Paragraph">Bist du daran interessiert, OONI-Probe-Tests während aufkommender Zensurereignisse durchzuführen? Aktiviere Benachrichtigungen, um eine Nachricht zu erhalten, wenn wir von Internetzensur in deiner Nähe hören!</string>
   <string name="Modal_EnableGPS">Um die Genauigkeit von Tests zu verbessern brauchen wir Berechtigung für GPS. OONI wird nur eine ungefähre Position aufnehmen.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Möchtest du alle Testergebnisse löschen?</string>
@@ -273,7 +273,7 @@
   <string name="Modal_ManualUpload_Enable">Aktivieren</string>
   <string name="Modal_ManualUpload_Disable">Nein, danke</string>
   <string name="Modal_ShareAnalytics_Title">Hilf uns OONI Probe zu verbessern</string>
-  <string name="Modal_ShareAnalytics_Paragraph">With the new OONI Probe, you can contribute anonymized usage metrics to help us improve the app. You can opt out through the settings at any time.</string>
+  <string name="Modal_ShareAnalytics_Paragraph">Mit der neuen OONI Probe können Sie anonymisierte Nutzungsmetriken beisteuern, um uns dabei zu helfen, die App zu verbessern. Sie können sich jederzeit über die Einstellungen abmelden.</string>
   <string name="Modal_UploadFailed_Title">Hochladen fehlgeschlagen</string>
   <string name="Modal_UploadFailed_Paragraph">Wir haben es nicht geschafft, %1$s/%2$s Messungen hochzuladen. Das Fehlerprotokoll wurde den OONI-Entwicklern zur Verfügung gestellt.</string>
   <string name="Modal_Error_LogNotFound">Protokolldatei nicht gefunden</string>
@@ -304,7 +304,7 @@
   <string name="Settings_Title">Einstellungen</string>
   <string name="Settings_Error_TestDurationTooLow">Die eingestellte Zeit für den Test ist zu kurz.</string>
   <string name="Settings_About_Label">Über OONI</string>
-  <string name="Settings_About_Content_Paragraph">Open Observatory of Network Interference (OONI)  ist ein freies Software Projekt im Rahmen des Tor Projektes und versucht Internetzensur auf der Welt sichtbar zu machen.\n\nSeit 2012 hat OONI\'s globale Gemineschaft Netzwerke in über 200 Ländern vermessen. Manche dieser Messungen zeigen Beweise für Internetzensur.</string>
+  <string name="Settings_About_Content_Paragraph">Open Observatory of Network Interference (OONI)  ist ein freies Software Projekt im Rahmen des Tor Projektes und versucht Internetzensur auf der Welt sichtbar zu machen.\n\nSeit 2012 hat OONI&#x27;s globale Gemineschaft Netzwerke in über 200 Ländern vermessen. Manche dieser Messungen zeigen Beweise für Internetzensur.</string>
   <string name="Settings_About_Content_LearnMore">Erfahre mehr</string>
   <string name="Settings_About_Content_DataPolicy">OONI Datenschutzbestimmungen</string>
   <string name="Settings_Notifications_Label">Benachrichtigungen</string>
@@ -353,7 +353,7 @@
   <string name="Settings_Circumvention_TestPsiphon">Psiphon testen</string>
   <string name="Settings_Circumvention_TestTor">Tor Testen</string>
   <string name="Settings_SendEmail_Label">E-Mail an den Support senden</string>
-  <string name="Settings_SendEmail_Error">Bitte senden Sie eine E-Mail an bugs@openobservatory.org mit Informationen zur App und iOS-Version. Tippen Sie unten auf \"In die Zwischenablage kopieren\", um unsere E-Mail Adresse zu kopieren.</string>
+  <string name="Settings_SendEmail_Error">Bitte senden Sie eine E-Mail an bugs@openobservatory.org mit Informationen zur App und iOS-Version. Tippen Sie unten auf &quot;In die Zwischenablage kopieren&quot;, um unsere E-Mail Adresse zu kopieren.</string>
   <string name="Settings_Language_Current">Aktuelle App-Sprache ist %1$s</string>
   <string name="Settings_Language_Label">Sprache</string>
   <string name="Notification_FinishedRunning">Vollständig ausgeführt</string>

@@ -28,7 +28,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">رمز الدّولة (مثلاً IT لإيطاليا) </string>
   <string name="Onboarding_DefaultSettings_Bullet_2">معلومات الشبكة (متضمنا رقم ASN)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">وقت وتاريخ الاختبار</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI\'s Data Policy](https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI&#x27;s Data Policy](https://ooni.io/about/data-policy/).</string>
   <string name="Onboarding_DefaultSettings_Button_Go">فلننطلق!</string>
   <string name="Onboarding_DefaultSettings_Button_Change">تغيير الافتراضي</string>
   <string name="Dashboard_Tab_Label">لوحة التحكم</string>
@@ -50,7 +50,7 @@
   <string name="Dashboard_Card_Subtitle">انقر البطاقة للمزيد</string>
   <string name="Dashboard_Card_Seconds">~%1$sث</string>
   <string name="Dashboard_Websites_Card_Description">اختبار حجب المواقع</string>
-  <string name="Dashboard_Websites_Overview_Paragraph">تحقق ما اذا كانت المواقع محجوبة من خلال [اختبار وصول للشيكة](https://ooni.io/nettest/web-connectivity/) الخاص ب OONI.\n\nفي كل مرة تنقر على تشغيل تختبر مواقع مختلفة من [القائمة العالمية](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) و [القوائم الخاصة بالدول](https://github.com/citizenlab/test-lists/tree/master/lists).\n\nلاختيار موقع معين للاختبار، انقر على زر \"إختر المواقع\" أو اختر أقسام المواقع من خلال اعدادات البطاقة.\n\nهذا الاختبار يقيس ما اذا كان الحجب بسبب التلاعب في DNS أو حجب TCP/IP أو من خلال بروكسي من نوع Transparent HTTP.\n\nنتائج اختبارك ستنشر على [متصفح OONI](https://explorer.ooni.io/world/) و على [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_Websites_Overview_Paragraph">تحقق ما اذا كانت المواقع محجوبة من خلال [اختبار وصول للشيكة](https://ooni.io/nettest/web-connectivity/) الخاص ب OONI.\n\nفي كل مرة تنقر على تشغيل تختبر مواقع مختلفة من [القائمة العالمية](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) و [القوائم الخاصة بالدول](https://github.com/citizenlab/test-lists/tree/master/lists).\n\nلاختيار موقع معين للاختبار، انقر على زر &quot;إختر المواقع&quot; أو اختر أقسام المواقع من خلال اعدادات البطاقة.\n\nهذا الاختبار يقيس ما اذا كان الحجب بسبب التلاعب في DNS أو حجب TCP/IP أو من خلال بروكسي من نوع Transparent HTTP.\n\nنتائج اختبارك ستنشر على [متصفح OONI](https://explorer.ooni.io/world/) و على [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Websites_Overview_Paragraph_Desktop">تأكّدوا عمّا إذا كانت المواقع محجوبة باستخدام [اختبار الاتصاليّة بالويب](https://ooni.io/nettest/web-connectivity) من OONI \n\nستقومون بفحص المواقع الموجودة لدى قائمة اختبارات Citizen Lab [العالميّة](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) و تلك [الخاصّة ببلد معيّنة](https://github.com/citizenlab/test-lists/tree/master/lists)\n\nهذا الفحص يكشف عمّا إذا كانت المواقع محجوبة عن طريق التلاعب ب DNS، حجب TCP/IP أو عن طريق بروكسي HTTP غير مرئي.\n\nسيتم نشر نتائج فحصكم على كل من [مكتشف OONI](https://explorer.ooni.org) و [واجهة تطبيق OONI](https://api.ooni.io/)</string>
   <string name="Dashboard_Performance_Card_Description">اختبار سرعة و جودة شبكتك</string>
   <string name="Dashboard_Performance_Overview_Paragraph">قس سرعة و جودة شبكتك من خلال اختبار [NDT](https://ooni.io/nettest/ndt/).\n\nقس جودة تحميل الفيديو من خلال اختبار [DASH](https://ooni.io/nettest/dash/).\n\nهذه الاختبارات تستهلك بيانات على قدر سرعة اتصالك بالشبكة.\n\nنتائج اختبارك ستنشر على [متصفح OONI](https://explorer.ooni.io/world/) و على [OONI API](https://api.ooni.io/).\n\nتنبيه: هذه الاختبارات تعتمد على سيرفرات من أطراف أخرى. لذلك لا نستطيع ضمان عدم تسجيل عنوان IP الخاص بك.</string>
@@ -353,7 +353,7 @@
   <string name="Settings_Circumvention_TestPsiphon">إختبار Psiphon</string>
   <string name="Settings_Circumvention_TestTor">إختبار Tor</string>
   <string name="Settings_SendEmail_Label">إرسال إيميل لفريق الدعم </string>
-  <string name="Settings_SendEmail_Error">من فضلك أرسل رسالة إلكترونية إلى bugs@openobservatory.org تحتوى على معلومات عن اصدار البرنامج وإصدار iOS. اضغط على \"نسخ إلى الحافظة\" فى الأسفل لنسخ عنوان بريدنا الإلكتروني.</string>
+  <string name="Settings_SendEmail_Error">من فضلك أرسل رسالة إلكترونية إلى bugs@openobservatory.org تحتوى على معلومات عن اصدار البرنامج وإصدار iOS. اضغط على &quot;نسخ إلى الحافظة&quot; فى الأسفل لنسخ عنوان بريدنا الإلكتروني.</string>
   <string name="Settings_Language_Current">اللغة الحالية للتطبيق هي %1$s</string>
   <string name="Settings_Language_Label">اللغة</string>
   <string name="Notification_FinishedRunning">انتهى التشغيل</string>

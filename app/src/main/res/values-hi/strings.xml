@@ -28,7 +28,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">देश कोड (उदाहरण के लिए इटली के लिए आईटी)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">नेटवर्क जानकारी (स्वायत्त प्रणाली संख्या सहित)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">परीक्षण का समय और तिथि</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI\'s Data Policy](https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI&#x27;s Data Policy](https://ooni.io/about/data-policy/).</string>
   <string name="Onboarding_DefaultSettings_Button_Go">चलिए चलते</string>
   <string name="Onboarding_DefaultSettings_Button_Change">डिफ़ॉल्ट बदलें</string>
   <string name="Dashboard_Tab_Label">डैशबोर्ड</string>
@@ -353,7 +353,7 @@
   <string name="Settings_Circumvention_TestPsiphon">Psiphon का परीक्षण करें</string>
   <string name="Settings_Circumvention_TestTor">टेस्ट Tor</string>
   <string name="Settings_SendEmail_Label">Send email to support</string>
-  <string name="Settings_SendEmail_Error">कृपया iOS संस्करण और एप्लिकेशन की जानकारी के साथ bugs@openobservatory.org को एक ईमेल भेजें। हमारा  ईमेल पता कॉपी करने के लिए \"क्लिपबोर्ड पर कॉपी करें\" पर टैप करें।</string>
+  <string name="Settings_SendEmail_Error">कृपया iOS संस्करण और एप्लिकेशन की जानकारी के साथ bugs@openobservatory.org को एक ईमेल भेजें। हमारा  ईमेल पता कॉपी करने के लिए &quot;क्लिपबोर्ड पर कॉपी करें&quot; पर टैप करें।</string>
   <string name="Settings_Language_Current">वर्तमान एप्लिकेशन भाषा %1$s है</string>
   <string name="Settings_Language_Label">भाषा</string>
   <string name="Notification_FinishedRunning">समाप्त हो रहा है</string>

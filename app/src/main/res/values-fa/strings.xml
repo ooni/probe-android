@@ -28,7 +28,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">کد کشور (مثلا IT برای ایتالیا)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">اطلاعات شبکه (شامل شماره سیستم مستقل ASN)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">زمان و تاریخ تست</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI\'s Data Policy](https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI&#x27;s Data Policy](https://ooni.io/about/data-policy/).</string>
   <string name="Onboarding_DefaultSettings_Button_Go">بزن بریم! </string>
   <string name="Onboarding_DefaultSettings_Button_Change">تغییر پیشفرض‌ها</string>
   <string name="Dashboard_Tab_Label">پنل</string>

@@ -28,7 +28,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">Kód krajiny (napr. IT pre Taliansko)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">Informácie o sieti (vrátane čísla autonómneho systému)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">Čas a dátum testu</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI\'s Data Policy](https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI&#x27;s Data Policy](https://ooni.io/about/data-policy/).</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Poďme na to</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Zmeniť predvolené</string>
   <string name="Dashboard_Tab_Label">Ovlád. panel</string>
@@ -238,7 +238,7 @@
   <string name="Feed_Title">Informačný kanál</string>
   <string name="Modal_OK">OK</string>
   <string name="Modal_Cancel">Zrušiť</string>
-  <string name="Modal_DontAskAgain">Don\'t ask again</string>
+  <string name="Modal_DontAskAgain">Don&#x27;t ask again</string>
   <string name="Modal_Delete">Odstrániť</string>
   <string name="Modal_Error">Chyba</string>
   <string name="Modal_Retry">Opakovať</string>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="General_AppName">OONI Probe</string>
-  <string name="Onboarding_WhatIsOONIProbe_Title">Cos\'è OONI Probe?</string>
+  <string name="Onboarding_WhatIsOONIProbe_Title">Cos&#x27;è OONI Probe?</string>
   <string name="Onboarding_WhatIsOONIProbe_Paragraph">La tua app per misurare la censura di internet\n\nCi sono siti web e/o app social bloccati? La tua rete internet è stranamente lenta?\n\nScoprilo con OONI Probe!</string>
   <string name="Onboarding_WhatIsOONIProbe_GotIt">Ho capito</string>
   <string name="Onboarding_ThingsToKnow_Title">Sappiatelo!</string>
@@ -25,10 +25,10 @@
   <string name="Onboarding_PopQuiz_2_Wrong_Paragraph">Per aumentare la trasparenza sulla censura di internet, le misure di rete di OONI Probe sono pubblicate automaticamente (a meno che non sia disabilitato nelle impostazioni).</string>
   <string name="Onboarding_DefaultSettings_Title">Impostazioni predefinite</string>
   <string name="Onboarding_DefaultSettings_Header">Raccogliamo e pubblichiamo:</string>
-  <string name="Onboarding_DefaultSettings_Bullet_1">Il codice del paese (es. IT per l\'Italia)</string>
-  <string name="Onboarding_DefaultSettings_Bullet_2">Informazioni sulla tua rete (incluso l\'Autonomous System Number)</string>
+  <string name="Onboarding_DefaultSettings_Bullet_1">Il codice del paese (es. IT per l&#x27;Italia)</string>
+  <string name="Onboarding_DefaultSettings_Bullet_2">Informazioni sulla tua rete (incluso l&#x27;Autonomous System Number)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">Data e ora del test</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI\'s Data Policy](https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally-identifiable information.\n\nTo improve OONI Probe we also collect app usage metrics and crash reports.\n\nLearn more through [OONI&#x27;s Data Policy](https://ooni.io/about/data-policy/).</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Andiamo</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Cambia i default</string>
   <string name="Dashboard_Tab_Label">Dashboard</string>
@@ -42,7 +42,7 @@
   <string name="Dashboard_Running_EstimatedTimeLeft">Tempo rimanente:</string>
   <string name="Dashboard_Running_Seconds">%1$s secondi</string>
   <string name="Dashboard_Running_PreparingTest">Preparando test</string>
-  <string name="Dashboard_Running_CalculatingETA">Calcolando l\'ETA</string>
+  <string name="Dashboard_Running_CalculatingETA">Calcolando l&#x27;ETA</string>
   <string name="Dashboard_Running_ShowLog">Mostra log</string>
   <string name="Dashboard_Running_CloseLog">Chiudi il Log</string>
   <string name="Dashboard_Running_Stopping_Title">Interrompendo il test...</string>
@@ -59,7 +59,7 @@
   <string name="Dashboard_Middleboxes_Overview_Paragraph">I provider di servizi internet (ISP) spesso usano apparecchiature di rete (middlebox) per motivi di networking (come ad esempio per il caching). Alle volte queste middlebox sono usate per implementare censura e/o sorveglianza internet.\n\nPuoi trovare middlebox sulla tua rete usando i test di OONI [HTTP Invalid Request Line](https://ooni.io/nettest/http-invalid-request-line/) e [HTTP Header Field Manipulation](https://ooni.io/nettest/http-header-field-manipulation/).\n\nI risultati dei tuoi test saranno pubblicati su [OONI Explorer](https://explorer.ooni.io/world/) e [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_InstantMessaging_Card_Description">Verifica il blocco di app di messaggistica</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">Controlla se [WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) o [Telegram](https://ooni.io/nettest/telegram/) sono bloccati.\n\nI risultati dei tuoi test saranno pubblicati su [OONI Explorer](https://explorer.ooni.io/world/) e [OONI API](https://api.ooni.io/).</string>
-  <string name="Dashboard_Circumvention_Card_Description">Testa il blocco degli strumenti d\'elusione della censura</string>
+  <string name="Dashboard_Circumvention_Card_Description">Testa il blocco degli strumenti d&#x27;elusione della censura</string>
   <string name="Dashboard_Circumvention_Overview_Paragraph">Controlla se [Psiphon](https://ooni.io/nettest/psiphon/) e [Tor](https://ooni.io/nettest/tor/) sono bloccati.\n\nI tuoi risultati saranno pubblicati in [OONI Explorer](https://explorer.ooni.org/) e [OONI API](https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
@@ -169,7 +169,7 @@
   <string name="TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Okay">OK</string>
   <string name="TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed">Fallito</string>
   <string name="TestResults_Details_InstantMessaging_WhatsApp_Reachable_Hero_Title">Attivo</string>
-  <string name="TestResults_Details_InstantMessaging_WhatsApp_Reachable_Content_Paragraph">Questo test è riuscito a collegarsi ai server di WhatsApp, il servizio di registrazione e l\'interfaccia web (web.whatsapp.com).</string>
+  <string name="TestResults_Details_InstantMessaging_WhatsApp_Reachable_Content_Paragraph">Questo test è riuscito a collegarsi ai server di WhatsApp, il servizio di registrazione e l&#x27;interfaccia web (web.whatsapp.com).</string>
   <string name="TestResults_Details_InstantMessaging_WhatsApp_LikelyBlocked_Hero_Title">Probabilmente bloccato</string>
   <string name="TestResults_Details_InstantMessaging_WhatsApp_LikelyBlocked_Content_Paragraph">WhatsApp sembra essere bloccato.</string>
   <string name="TestResults_Details_InstantMessaging_Telegram_Application_Label_Title">App mobile</string>
@@ -179,7 +179,7 @@
   <string name="TestResults_Details_InstantMessaging_Telegram_WebApp_Label_Okay">OK</string>
   <string name="TestResults_Details_InstantMessaging_Telegram_WebApp_Label_Failed">Fallito</string>
   <string name="TestResults_Details_InstantMessaging_Telegram_Reachable_Hero_Title">Attivo</string>
-  <string name="TestResults_Details_InstantMessaging_Telegram_Reachable_Content_Paragraph">Questo test è riuscito a collegarsi ai server di Telegram e l\'interfaccia web (web.telegram.org).</string>
+  <string name="TestResults_Details_InstantMessaging_Telegram_Reachable_Content_Paragraph">Questo test è riuscito a collegarsi ai server di Telegram e l&#x27;interfaccia web (web.telegram.org).</string>
   <string name="TestResults_Details_InstantMessaging_Telegram_LikelyBlocked_Hero_Title">Probabilmente bloccato</string>
   <string name="TestResults_Details_InstantMessaging_Telegram_LikelyBlocked_Content_Paragraph">Telegram sembra essere bloccato.</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_TCP_Label_Title">Connessioni TCP</string>
@@ -195,11 +195,11 @@
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title">Nessuna middlebox rilevata</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Content_Paragraph">Non è stata rilevata alcuna anomalia nel comunicare con i nostri server.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title">Manipolazione di rete</string>
-  <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Content_Paragraph">Il traffico di rete è stato manipolato nel comunicare con i nostri server di controllo.\n\nCiò significa che una \"middlebox\" potrebbe essere presente nella tua rete e favorire censura o sorveglianza internet.</string>
+  <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Content_Paragraph">Il traffico di rete è stato manipolato nel comunicare con i nostri server di controllo.\n\nCiò significa che una &quot;middlebox&quot; potrebbe essere presente nella tua rete e favorire censura o sorveglianza internet.</string>
   <string name="TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_NotFound_Hero_Title">Nessuna middlebox rilevata</string>
   <string name="TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_NotFound_Content_Paragraph">Non è stata rilevata alcuna anomalia nel comunicare con i nostri server.</string>
   <string name="TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_Found_Hero_Title">Manipolazione di rete</string>
-  <string name="TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_Found_Content_Paragraph">Il traffico di rete è stato manipolato nel comunicare con i nostri server di controllo.\n\nCiò significa che una \"middlebox\" potrebbe essere presente nella tua rete e favorire censura o sorveglianza internet.</string>
+  <string name="TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_Found_Content_Paragraph">Il traffico di rete è stato manipolato nel comunicare con i nostri server di controllo.\n\nCiò significa che una &quot;middlebox&quot; potrebbe essere presente nella tua rete e favorire censura o sorveglianza internet.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_YouSent">Hai inviato</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_YouReceived">Hai ricevuto</string>
   <string name="TestResults_Details_Performance_NDT_Upload">Carica</string>
@@ -246,7 +246,7 @@
   <string name="Modal_NoThanks">No, grazie</string>
   <string name="Modal_Error_NoInternet">Non è stato possibile eseguire il test. Controlla la tua connessione internet.</string>
   <string name="Modal_Error_CantDownloadURLs">Non è stato possibile scaricare la lista di URL. Riprova.</string>
-  <string name="Modal_Error_NotificationNotEnabled">Servono i permessi di notifica. Per favore attivali nelle impostazioni del tuo telefono e poi abilita le notifiche dentro l\'app OONI Probe.</string>
+  <string name="Modal_Error_NotificationNotEnabled">Servono i permessi di notifica. Per favore attivali nelle impostazioni del tuo telefono e poi abilita le notifiche dentro l&#x27;app OONI Probe.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Vai alle impostazioni</string>
   <string name="Modal_Error_CantCloseScreen">Lo schermo è bloccato quando un test è in corso.</string>
   <string name="Modal_Error_RawDataNoInternet">Devi essere collegato a internet per poter scaricare i dati delle misure di rete.</string>
@@ -268,7 +268,7 @@
   <string name="Modal_ReRun_Websites_Title">Stai per ri-testare %1$s siti.</string>
   <string name="Modal_ReRun_Websites_Run">Esegui</string>
   <string name="Modal_CustomURL_NotSaved">Gli URL non saranno salvati quando lasci questa pagina. Sei sicuro di voler lasciare questa pagina?</string>
-  <string name="Modal_ManualUpload_Title">Abilitare l\'Upload Manuale?</string>
+  <string name="Modal_ManualUpload_Title">Abilitare l&#x27;Upload Manuale?</string>
   <string name="Modal_ManualUpload_Paragraph">Questa impostazione ti permette di ricaricare manualmente le misurazioni non pubblicate.</string>
   <string name="Modal_ManualUpload_Enable">Abilita</string>
   <string name="Modal_ManualUpload_Disable">No, grazie</string>
@@ -304,7 +304,7 @@
   <string name="Settings_Title">Impostazioni</string>
   <string name="Settings_Error_TestDurationTooLow">Il tempo di esecuzione che hai scelto è troppo poco. </string>
   <string name="Settings_About_Label">Informazioni su OONI</string>
-  <string name="Settings_About_Content_Paragraph">L\'Osservatorio Aperto delle l’Interferenze di Rete (Open Observatory of Network Interference, OONI) è un progetto di software libero di Tor Project che si propone di incrementare la trasparenza nell’ambito della censura di internet in tutto il mondo.\n\nDal 2012, la comunità globale di OONI ha raccolto misurazioni di rete in oltre 200 Paesi. In alcuni casi, questi dati sono stati utilizzati per dimostrare la deliberata censura di internet.</string>
+  <string name="Settings_About_Content_Paragraph">L&#x27;Osservatorio Aperto delle l’Interferenze di Rete (Open Observatory of Network Interference, OONI) è un progetto di software libero di Tor Project che si propone di incrementare la trasparenza nell’ambito della censura di internet in tutto il mondo.\n\nDal 2012, la comunità globale di OONI ha raccolto misurazioni di rete in oltre 200 Paesi. In alcuni casi, questi dati sono stati utilizzati per dimostrare la deliberata censura di internet.</string>
   <string name="Settings_About_Content_LearnMore">Per saperne di più</string>
   <string name="Settings_About_Content_DataPolicy">La Policy sui dati di OONI</string>
   <string name="Settings_Notifications_Label">Notifiche</string>
@@ -318,8 +318,8 @@
   <string name="Settings_Sharing_GPS">Includi geo-localizzazione approssimativa</string>
   <string name="Settings_Sharing_IncludeIP">Includi il mio indirizzo IP</string>
   <string name="Settings_Sharing_IncludeCountryCode">Includi il codice del paese</string>
-  <string name="Settings_Sharing_IncludeCountryCode_PopUp">Tali informazioni (es. IT per Italia) sono necessarie per determinare da quale Paese provengono le misurazioni. Sei sicuro di voler disabilitare quest\'opzione?</string>
-  <string name="Settings_Sharing_Footer">Pubblicando i risultati, contribuisci alla trasparenza sulle interferenze di rete e dai supporto alla comunità di OONI.\n\nLe informazioni sulla rete (i.e. l\'Autonomous System Number) sono necessarie per poter identificare i provider di servizi internet (ISP).</string>
+  <string name="Settings_Sharing_IncludeCountryCode_PopUp">Tali informazioni (es. IT per Italia) sono necessarie per determinare da quale Paese provengono le misurazioni. Sei sicuro di voler disabilitare quest&#x27;opzione?</string>
+  <string name="Settings_Sharing_Footer">Pubblicando i risultati, contribuisci alla trasparenza sulle interferenze di rete e dai supporto alla comunità di OONI.\n\nLe informazioni sulla rete (i.e. l&#x27;Autonomous System Number) sono necessarie per poter identificare i provider di servizi internet (ISP).</string>
   <string name="Settings_TestOptions_Label">Opzioni dei test</string>
   <string name="Settings_Privacy_Label">Privacy</string>
   <string name="Settings_Privacy_CollectAnalytics">Share app usage metrics</string>
@@ -353,8 +353,8 @@
   <string name="Settings_Circumvention_TestPsiphon">Test Psiphon</string>
   <string name="Settings_Circumvention_TestTor">Test Tor</string>
   <string name="Settings_SendEmail_Label">Invia email a supporto</string>
-  <string name="Settings_SendEmail_Error">Per favore manda un email a bugs@openobservatory.org con i la versione dell\'app e iOS. Tappa su \"Copia nella clipboard\" per copiare il nostro indirizzo email.</string>
-  <string name="Settings_Language_Current">La lingua attuale dell\'app è %1$s</string>
+  <string name="Settings_SendEmail_Error">Per favore manda un email a bugs@openobservatory.org con i la versione dell&#x27;app e iOS. Tappa su &quot;Copia nella clipboard&quot; per copiare il nostro indirizzo email.</string>
+  <string name="Settings_Language_Current">La lingua attuale dell&#x27;app è %1$s</string>
   <string name="Settings_Language_Label">Lingua</string>
   <string name="Notification_FinishedRunning">Esecuzione conclusa</string>
   <string name="OONIBrowser_TryMirror">Prova un mirror</string>
@@ -378,14 +378,14 @@
   <string name="CategoryCode_PORN_Name">Pornografia</string>
   <string name="CategoryCode_PROV_Name">Abbigliamento provocante</string>
   <string name="CategoryCode_POLR_Name">Opposizione politica</string>
-  <string name="CategoryCode_HUMR_Name">Diritti dell\'uomo</string>
+  <string name="CategoryCode_HUMR_Name">Diritti dell&#x27;uomo</string>
   <string name="CategoryCode_ENV_Name">Ambientalismo</string>
   <string name="CategoryCode_MILX_Name">Terrorismo e militanza</string>
   <string name="CategoryCode_HATE_Name">Odio</string>
   <string name="CategoryCode_NEWS_Name">Notizie e Media</string>
   <string name="CategoryCode_XED_Name">Educazione sessuale</string>
   <string name="CategoryCode_PUBH_Name">Salute</string>
-  <string name="CategoryCode_GMB_Name">Gioco d\'azzardo</string>
+  <string name="CategoryCode_GMB_Name">Gioco d&#x27;azzardo</string>
   <string name="CategoryCode_ANON_Name">Strumenti per aggirare la censura</string>
   <string name="CategoryCode_DATE_Name">Incontri online</string>
   <string name="CategoryCode_GRP_Name">Reti Sociali</string>
@@ -409,14 +409,14 @@
   <string name="CategoryCode_PORN_Description">Pornografia soft e hard</string>
   <string name="CategoryCode_PROV_Description">Abbigliamento provocante e donne che indossano abbigliamento minimale</string>
   <string name="CategoryCode_POLR_Description">Opinioni politiche di opposizione</string>
-  <string name="CategoryCode_HUMR_Description">Questioni di diritti dell\'uomo</string>
+  <string name="CategoryCode_HUMR_Description">Questioni di diritti dell&#x27;uomo</string>
   <string name="CategoryCode_ENV_Description">Argomenti riguardanti problemi ambientali</string>
   <string name="CategoryCode_MILX_Description">Terrorismo, militanza violenta e movimenti separatisti</string>
   <string name="CategoryCode_HATE_Description">Espressioni di odio verso particolari gruppi etnici, di orientamento sessuale o altre caratteristiche</string>
   <string name="CategoryCode_NEWS_Description">Siti web di maggiori testate giornalistiche, giornali locali o media indipendenti</string>
   <string name="CategoryCode_XED_Description">Temi di salute sessuale, inclusi contraccezione, malattie sessualmente trasmissibili, prevenzione di violenze sessuali e aborto</string>
   <string name="CategoryCode_PUBH_Description">Public health issues, such as COVID-19, HIV/AIDS, Ebola</string>
-  <string name="CategoryCode_GMB_Description">Gioco d\'azzardo online e scommesse</string>
+  <string name="CategoryCode_GMB_Description">Gioco d&#x27;azzardo online e scommesse</string>
   <string name="CategoryCode_ANON_Description">Anonimizzazione, aggirare la censura e cifratura</string>
   <string name="CategoryCode_DATE_Description">Siti di incontri online</string>
   <string name="CategoryCode_GRP_Description">Reti sociali online, strumenti e piattaforme</string>
@@ -427,7 +427,7 @@
   <string name="CategoryCode_MMED_Description">Condivisione di video, audio e foto</string>
   <string name="CategoryCode_HOST_Description">Hosting web, blog e altre forme di pubblicazione online</string>
   <string name="CategoryCode_SRCH_Description">Motori di ricerca e portali</string>
-  <string name="CategoryCode_GAME_Description">Giochi online e piattaforme di gaming (esclusi i giochi d\'azzardo)</string>
+  <string name="CategoryCode_GAME_Description">Giochi online e piattaforme di gaming (esclusi i giochi d&#x27;azzardo)</string>
   <string name="CategoryCode_CULTR_Description">Intrattenimento inclusa storia, letteratura, musica, film, satira e umorismo</string>
   <string name="CategoryCode_ECON_Description">Sviluppo economico e povertà</string>
   <string name="CategoryCode_GOVT_Description">Siti web governativi, inclusi militari</string>
