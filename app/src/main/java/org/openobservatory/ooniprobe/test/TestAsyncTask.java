@@ -57,17 +57,9 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 						break;
 					}
 				if (downloadUrls) {
-					OONIGeoIPLookupTask geoIPLookup = Engine.newGeoIPLookupTask();
+					//TODO edit this
+					OONIGeoIPLookupTask geoIPLookup = Engine.newGeoIPLookupTask(act);
 					geoIPLookup.setTimeout(act.getResources().getInteger(R.integer.default_timeout));
-					boolean okay = Engine.maybeUpdateResources(act);
-					if (!okay) {
-						Exception e = new Exception("MKResourcesManager didn't find resources");
-						ExceptionManager.logException(e);
-						throw e;
-					}
-					geoIPLookup.setCABundlePath(Engine.getCABundlePath(act));
-					geoIPLookup.setCountryDBPath(Engine.getCountryDBPath(act));
-					geoIPLookup.setASNDBPath(Engine.getASNDBPath(act));
 					OONIGeoIPLookupResults results = geoIPLookup.perform();
 					String probeCC = results.isGood() ? results.getProbeCC() : "XX";
 					Response<UrlList> response = act.getOrchestraClient().getUrls(probeCC, act.getPreferenceManager().getEnabledCategory()).execute();
@@ -90,6 +82,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 				}
 			} catch (Exception e) {
 				publishProgress(ERR, act.getString(R.string.Modal_Error_CantDownloadURLs));
+				e.printStackTrace();
 			}
 		return null;
 	}

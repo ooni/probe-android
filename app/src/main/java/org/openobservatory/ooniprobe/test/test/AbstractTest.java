@@ -60,16 +60,6 @@ public abstract class AbstractTest implements Serializable {
 
     void run(Context c, PreferenceManager pm, Gson gson, Settings settings, Result result, int index, TestCallback testCallback) {
         //Checking for resources before running any test
-        try {
-            boolean okay = Engine.maybeUpdateResources(c);
-            if (!okay) {
-                throw new Exception("MKResourcesManager didn't find resources");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            ExceptionManager.logException(e);
-            return;
-        }
         settings.name = mkName;
         settings.inputs = inputs;
         settings.options.max_runtime = max_runtime;

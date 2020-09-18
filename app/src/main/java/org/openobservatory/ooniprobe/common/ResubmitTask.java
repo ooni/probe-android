@@ -39,21 +39,23 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
      */
     public ResubmitTask(A activity) {
         super(activity, true, false);
-        task = Engine.newCollectorTask(
-                BuildConfig.SOFTWARE_NAME,
-                BuildConfig.VERSION_NAME,
-                Engine.getCABundlePath(activity)
-        );
+        try {
+            task = Engine.newCollectorTask(
+                    activity,
+                    BuildConfig.SOFTWARE_NAME,
+                    BuildConfig.VERSION_NAME
+            );
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            ExceptionManager.logException(e);
+        }
+
     }
 
     private boolean perform(Context c, Measurement m) throws IOException {
         File file = Measurement.getEntryFile(c, m.id, m.test_name);
         String input = FileUtils.readFileToString(file, Charset.forName("UTF-8"));
-        boolean okay = Engine.maybeUpdateResources(c);
-        if (!okay) {
-            ExceptionManager.logException(new Exception("MKResourcesManager didn't find resources"));
-            return false;
-        }
         long uploadTimeout = getTimeout(file.length());
         OONICollectorResults results = task.maybeDiscoverAndSubmit(input, uploadTimeout);
         if (results.isGood()) {
