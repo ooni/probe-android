@@ -31,7 +31,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     private static final String RES_ITEM = "resItem";
     private static final String MANUAL_UPLOAD_DIALOG = "manual_upload";
     private static final String ANALYTICS_DIALOG = "analytics";
-    private static final String NOTIFICATION_DIALOG = "notification";
+    public static final String NOTIFICATION_DIALOG = "notification";
 
     @BindView(R.id.bottomNavigation)
     BottomNavigationView bottomNavigation;
@@ -109,8 +109,18 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        if (intent.getExtras() != null && intent.getExtras().containsKey(RES_ITEM))
-            bottomNavigation.setSelectedItemId(intent.getIntExtra(RES_ITEM, R.id.dashboard));
+        if (intent.getExtras() != null){
+            if (intent.getExtras().containsKey(RES_ITEM))
+                bottomNavigation.setSelectedItemId(intent.getIntExtra(RES_ITEM, R.id.dashboard));
+            else if (intent.getExtras().containsKey(NOTIFICATION_DIALOG)){
+                new ConfirmDialogFragment.Builder()
+                        .withTitle(intent.getExtras().getString("title"))
+                        .withMessage(intent.getExtras().getString("message"))
+                        .withNegativeButton("")
+                        .withPositiveButton(getString(R.string.Modal_OK))
+                        .build().show(getSupportFragmentManager(), null);
+            }
+        }
     }
 
     @Override
