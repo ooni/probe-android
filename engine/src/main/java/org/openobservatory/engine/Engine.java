@@ -2,6 +2,7 @@ package org.openobservatory.engine;
 
 import android.content.Context;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -97,12 +98,33 @@ public final class Engine {
     /** newCollectorTask creates a new collector task. This version of
      * this factory is already using OONI Probe Engine. */
     public static OONICollectorTask newCollectorTask(Context ctx, String softwareName,
-                                                     String softwareVersion) {
-        return new PECollectorTask(ctx, softwareName, softwareVersion);
+                                                     String softwareVersion) throws IOException {
+        return new PECollectorTask(getAssetsDir(ctx), softwareName, softwareVersion, getStateDir(ctx), getTempDir(ctx));
     }
 
     /** newSession returns a new OONISession instance. */
     public static OONISession newSession(OONISessionConfig config) throws OONIException {
         return new PESession(config);
+    }
+
+    /** getAssetsDir returns the assets directory for the current context. The
+     * assets directory is the directory where the OONI Probe Engine should store
+     * the assets it requires, e.g., the MaxMind DB files. */
+    public static String getAssetsDir(Context ctx) throws IOException {
+        return new java.io.File(ctx.getFilesDir(), "assets").getCanonicalPath();
+    }
+
+    /** getStateDir returns the state directory for the current context. The
+     * state directory is the directory where the OONI Probe Engine should store
+     * internal state variables (e.g. the orchestra credentials). */
+    public static String getStateDir(Context ctx) throws IOException {
+        return new java.io.File(ctx.getFilesDir(), "state").getCanonicalPath();
+    }
+
+    /** getTempDir returns the temporary directory for the current context. The
+     * temporary directory is the directory where the OONI Probe Engine should store
+     * the temporary files that are managed by a Session. */
+    public static String getTempDir(Context ctx) throws IOException {
+        return new java.io.File(ctx.getCacheDir(), "").getCanonicalPath();
     }
 }
