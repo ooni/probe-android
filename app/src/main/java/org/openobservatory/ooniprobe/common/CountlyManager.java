@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.common;
 
 import android.content.Context;
+import android.os.Build;
 
 import org.openobservatory.ooniprobe.BuildConfig;
 
@@ -34,7 +35,7 @@ public class CountlyManager {
 
     public static void register(Context ctx, PreferenceManager preferenceManager){
         CountlyConfig config = new CountlyConfig()
-                .setAppKey("146836f41172f9e3287cab6f2cc347de3f5ddf3b")
+                .setAppKey(BuildConfig.COUNTLY_KEY)
                 .setContext(ctx)
                 .setDeviceId(preferenceManager.getOrGenerateUUID4())
                 .setRequiresConsent(true)
