@@ -58,22 +58,19 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 						break;
 					}
 				if (downloadUrls) {
-					OONIGeoIPLookupTask task = null;
 					OONIGeoIPLookupResults results = null;
 					try {
-						task = Engine.newGeoIPLookupTask(
+						results = Engine.newGeoIPLookupTask(
 								act,
 								BuildConfig.SOFTWARE_NAME,
 								BuildConfig.VERSION_NAME,
 								30
-						);
+						).run();
 					}
 					catch (Exception e) {
 						e.printStackTrace();
 						ExceptionManager.logException(e);
 					}
-					if (task != null)
-						results = task.run();
 					String probeCC = results != null && results.isGood() ? results.getProbeCC() : "XX";
 					Response<UrlList> response = act.getOrchestraClient().getUrls(probeCC, act.getPreferenceManager().getEnabledCategory()).execute();
 					if (response.isSuccessful() && response.body() != null && response.body().results != null) {

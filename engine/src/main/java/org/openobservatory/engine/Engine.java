@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import oonimkall.Oonimkall;
 import oonimkall.Session;
+import oonimkall.SessionConfig;
 
 /**
  * Engine is a factory class for creating several kinds of tasks. We will use different
@@ -33,15 +34,13 @@ public final class Engine {
     public static OONIGeoIPLookupTask newGeoIPLookupTask(Context ctx,
                                                          String softwareName,
                                                          String softwareVersion,
-                                                         long timeout) {
+                                                         long timeout) throws OONIException {
         try {
-            //TODO could DefaultSessionConfig be useful?
-            Session session = Oonimkall.newSession(DefaultSessionConfig.getDefaultSessionConfig(ctx, softwareName, softwareVersion));
+            Session session = Oonimkall.newSession(Engine.getDefaultSessionConfig(ctx, softwareName, softwareVersion));
             return new PEGeoIPLookupTask(session.newGeolocateTask(timeout));
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception exc) {
+            throw new OONIException("cannot create new GeoIPLookupTask ", exc);
         }
-        return null;
     }
 
     /** newCollectorTask creates a new collector task. This version of
@@ -54,6 +53,26 @@ public final class Engine {
     /** newSession returns a new OONISession instance. */
     public static OONISession newSession(OONISessionConfig config) throws OONIException {
         return new PESession(config);
+    }
+
+    /** getDefaultSessionConfig returns a new SessionConfig with default parameters. */
+    public static SessionConfig getDefaultSessionConfig(Context ctx,
+                                                        String softwareName,
+                                                        String softwareVersion) {
+        SessionConfig config = new SessionConfig();
+        config.setLogger(null); // TODO(bassosimone): implement
+        config.setSoftwareName(softwareName);
+        config.setSoftwareVersion(softwareVersion);
+        config.setVerbose(true);
+        try {
+            config.setAssetsDir(Engine.getAssetsDir(ctx));
+            config.setStateDir(Engine.getStateDir(ctx));
+            config.setTempDir(Engine.getTempDir(ctx));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return config;
     }
 
     /** getAssetsDir returns the assets directory for the current context. The
