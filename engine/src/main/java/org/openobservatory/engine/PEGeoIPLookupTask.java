@@ -1,29 +1,30 @@
 package org.openobservatory.engine;
 
+import oonimkall.GeolocateTask;
+
 final class PEGeoIPLookupTask implements OONIGeoIPLookupTask {
+    private GeolocateTask task;
 
-    @Override
-    public void setASNDBPath(String path) {
-
+    public PEGeoIPLookupTask(GeolocateTask task) {
+        this.task = task;
     }
 
     @Override
-    public void setCABundlePath(String path) {
-
+    public PEGeoIPLookupResults run() throws OONIException {
+        try {
+            return new PEGeoIPLookupResults(new OONIGeolocateResults(task.run()));
+        } catch (Exception exc) {
+            throw new OONIException("PEGeoIPLookupTask.run failed", exc);
+        }
     }
 
     @Override
-    public void setCountryDBPath(String path) {
-
+    public void cancel() {
+        task.cancel();
     }
 
     @Override
-    public void setTimeout(long timeout) {
-
-    }
-
-    @Override
-    public OONIGeoIPLookupResults perform() {
-        return null;
+    public void close() throws Exception {
+        task.close();
     }
 }

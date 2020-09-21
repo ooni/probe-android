@@ -4,6 +4,9 @@ import android.content.Context;
 
 import java.io.IOException;
 
+import oonimkall.Oonimkall;
+import oonimkall.Session;
+
 /**
  * Engine is a factory class for creating several kinds of tasks. We will use different
  * engines depending on the task that you wish to create.
@@ -27,8 +30,18 @@ public final class Engine {
 
     /** newGeoIPLookupTask creates a new GeoIP lookup task. This version of
      * this factory is already using OONI Probe Engine. */
-    public static OONIGeoIPLookupTask newGeoIPLookupTask(Context ctx) {
-        return new PEGeoIPLookupTask();
+    public static OONIGeoIPLookupTask newGeoIPLookupTask(Context ctx,
+                                                         String softwareName,
+                                                         String softwareVersion,
+                                                         long timeout) {
+        try {
+            //TODO could DefaultSessionConfig be useful?
+            Session session = Oonimkall.newSession(DefaultSessionConfig.getDefaultSessionConfig(ctx, softwareName, softwareVersion));
+            return new PEGeoIPLookupTask(session.newGeolocateTask(timeout));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /** newCollectorTask creates a new collector task. This version of

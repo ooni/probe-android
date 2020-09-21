@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import org.openobservatory.engine.Engine;
 import org.openobservatory.engine.OONIGeoIPLookupResults;
 import org.openobservatory.engine.OONIGeoIPLookupTask;
+import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.common.ExceptionManager;
@@ -57,11 +58,23 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 						break;
 					}
 				if (downloadUrls) {
-					//TODO edit this
-					OONIGeoIPLookupTask geoIPLookup = Engine.newGeoIPLookupTask(act);
-					geoIPLookup.setTimeout(act.getResources().getInteger(R.integer.default_timeout));
-					OONIGeoIPLookupResults results = geoIPLookup.perform();
-					String probeCC = results.isGood() ? results.getProbeCC() : "XX";
+					OONIGeoIPLookupTask task = null;
+					OONIGeoIPLookupResults results = null;
+					try {
+						task = Engine.newGeoIPLookupTask(
+								act,
+								BuildConfig.SOFTWARE_NAME,
+								BuildConfig.VERSION_NAME,
+								30
+						);
+					}
+					catch (Exception e) {
+						e.printStackTrace();
+						ExceptionManager.logException(e);
+					}
+					if (task != null)
+						results = task.run();
+					String probeCC = results != null && results.isGood() ? results.getProbeCC() : "XX";
 					Response<UrlList> response = act.getOrchestraClient().getUrls(probeCC, act.getPreferenceManager().getEnabledCategory()).execute();
 					if (response.isSuccessful() && response.body() != null && response.body().results != null) {
 						ArrayList<String> inputs = new ArrayList<>();
