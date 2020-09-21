@@ -29,15 +29,15 @@ public final class Engine {
         }
     }
 
-    /** newGeoIPLookupTask creates a new GeoIP lookup task. This version of
-     * this factory is already using OONI Probe Engine. */
-    public static OONIGeoIPLookupTask newGeoIPLookupTask(Context ctx,
-                                                         String softwareName,
-                                                         String softwareVersion,
-                                                         long timeout) throws OONIException {
-        try {
-            Session session = Oonimkall.newSession(Engine.getDefaultSessionConfig(ctx, softwareName, softwareVersion));
-            return new PEGeoIPLookupTask(session.newGeolocateTask(timeout));
+    /** resolveProbeCC creates a new GeoIP lookup task, runs it and return the probeCC. */
+    public static String resolveProbeCC(Context ctx,
+                                    String softwareName,
+                                    String softwareVersion,
+                                    long timeout) throws OONIException {
+        try (OONISession session = new PESession(Engine.getDefaultSessionConfig(ctx, softwareName, softwareVersion));
+             OONIGeolocateTask task = session.newGeolocateTask(timeout)) {
+            //OONIGeoIPLookupTask task = new PEGeoIPLookupTask(session.newGeolocateTask(timeout));
+            return task.run().country;
         } catch (Exception exc) {
             throw new OONIException("cannot create new GeoIPLookupTask ", exc);
         }
@@ -56,22 +56,17 @@ public final class Engine {
     }
 
     /** getDefaultSessionConfig returns a new SessionConfig with default parameters. */
-    public static SessionConfig getDefaultSessionConfig(Context ctx,
+    public static OONISessionConfig getDefaultSessionConfig(Context ctx,
                                                         String softwareName,
-                                                        String softwareVersion) {
-        SessionConfig config = new SessionConfig();
-        config.setLogger(null); // TODO(bassosimone): implement
-        config.setSoftwareName(softwareName);
-        config.setSoftwareVersion(softwareVersion);
-        config.setVerbose(true);
-        try {
-            config.setAssetsDir(Engine.getAssetsDir(ctx));
-            config.setStateDir(Engine.getStateDir(ctx));
-            config.setTempDir(Engine.getTempDir(ctx));
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
+                                                        String softwareVersion) throws IOException {
+        OONISessionConfig config = new OONISessionConfig();
+        config.logger = new AndroidLogger();
+        config.softwareName = softwareName;
+        config.softwareVersion = softwareVersion;
+        config.verbose = true;
+        config.assetsDir = Engine.getAssetsDir(ctx);
+        config.stateDir = Engine.getStateDir(ctx);
+        config.tempDir = Engine.getTempDir(ctx);
         return config;
     }
 

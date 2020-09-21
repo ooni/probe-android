@@ -3,8 +3,6 @@ package org.openobservatory.ooniprobe.test;
 import android.os.AsyncTask;
 
 import org.openobservatory.engine.Engine;
-import org.openobservatory.engine.OONIGeoIPLookupResults;
-import org.openobservatory.engine.OONIGeoIPLookupTask;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
@@ -58,20 +56,19 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 						break;
 					}
 				if (downloadUrls) {
-					OONIGeoIPLookupResults results = null;
+					String probeCC = "XX";
 					try {
-						results = Engine.newGeoIPLookupTask(
+						probeCC = Engine.resolveProbeCC(
 								act,
 								BuildConfig.SOFTWARE_NAME,
 								BuildConfig.VERSION_NAME,
 								30
-						).run();
+						);
 					}
 					catch (Exception e) {
 						e.printStackTrace();
 						ExceptionManager.logException(e);
 					}
-					String probeCC = results != null && results.isGood() ? results.getProbeCC() : "XX";
 					Response<UrlList> response = act.getOrchestraClient().getUrls(probeCC, act.getPreferenceManager().getEnabledCategory()).execute();
 					if (response.isSuccessful() && response.body() != null && response.body().results != null) {
 						ArrayList<String> inputs = new ArrayList<>();
