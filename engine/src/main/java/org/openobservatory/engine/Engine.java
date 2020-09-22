@@ -4,10 +4,6 @@ import android.content.Context;
 
 import java.io.IOException;
 
-import oonimkall.Oonimkall;
-import oonimkall.Session;
-import oonimkall.SessionConfig;
-
 /**
  * Engine is a factory class for creating several kinds of tasks. We will use different
  * engines depending on the task that you wish to create.
@@ -34,19 +30,12 @@ public final class Engine {
                                     String softwareName,
                                     String softwareVersion,
                                     long timeout) throws OONIException {
-        try (OONISession session = new PESession(Engine.getDefaultSessionConfig(ctx, softwareName, softwareVersion));
+        try (OONISession session = new PESession(Engine.getDefaultSessionConfig(ctx, softwareName, softwareVersion, new AndroidLogger()));
              OONIGeolocateTask task = session.newGeolocateTask(timeout)) {
             return task.run().country;
         } catch (Exception exc) {
             throw new OONIException("cannot create new GeoIPLookupTask ", exc);
         }
-    }
-
-    /** newCollectorTask creates a new collector task. This version of
-     * this factory is already using OONI Probe Engine. */
-    public static OONICollectorTask newCollectorTask(Context ctx, String softwareName,
-                                                     String softwareVersion) throws IOException {
-        return new PECollectorTask(getAssetsDir(ctx), softwareName, softwareVersion, getStateDir(ctx), getTempDir(ctx));
     }
 
     /** newSession returns a new OONISession instance. */
@@ -56,10 +45,11 @@ public final class Engine {
 
     /** getDefaultSessionConfig returns a new SessionConfig with default parameters. */
     public static OONISessionConfig getDefaultSessionConfig(Context ctx,
-                                                        String softwareName,
-                                                        String softwareVersion) throws IOException {
+                                                            String softwareName,
+                                                            String softwareVersion,
+                                                            OONILogger logger) throws IOException {
         OONISessionConfig config = new OONISessionConfig();
-        config.logger = new AndroidLogger();
+        config.logger = logger;
         config.softwareName = softwareName;
         config.softwareVersion = softwareVersion;
         config.verbose = true;

@@ -2,10 +2,10 @@ package org.openobservatory.engine;
 
 import oonimkall.Submitter;
 
-final class PESubmitter implements OONISubmitter {
+final class PEReport implements OONIReport {
     private Submitter submitter;
 
-    public PESubmitter(Submitter submitter) {
+    public PEReport(Submitter submitter) {
         this.submitter = submitter;
     }
 

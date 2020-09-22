@@ -23,5 +23,5 @@ public interface OONISession extends AutoCloseable {
      * you to submit measurements to the OONI collector. The timeout for the
      * task has exactly the same semantics of newGeolocateTask.
      */
-    OONIMakeSubmitterTask newMakeSubmitterTask(long timeout) throws OONIException;
+    OONIProbeServicesClient newMakeSubmitterTask(long timeout) throws OONIException;
 }

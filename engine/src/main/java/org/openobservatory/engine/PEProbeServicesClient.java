@@ -2,17 +2,17 @@ package org.openobservatory.engine;
 
 import oonimkall.MakeSubmitterTask;
 
-final class PEMakeSubmitterTask implements OONIMakeSubmitterTask {
+final class PEProbeServicesClient implements OONIProbeServicesClient {
     private MakeSubmitterTask task;
 
-    public PEMakeSubmitterTask(MakeSubmitterTask task) {
+    public PEProbeServicesClient(MakeSubmitterTask task) {
         this.task = task;
     }
 
     @Override
-    public OONISubmitter run() throws OONIException {
+    public OONIReport run() throws OONIException {
         try {
-            return new PESubmitter(task.run());
+            return new PEReport(task.run());
         } catch (Exception exc) {
             throw new OONIException("PEMakeSubmitterTask.run failed", exc);
         }

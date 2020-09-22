@@ -9,10 +9,10 @@ import oonimkall.SubmitResults;
 public final class OONISubmitResults {
     /** updatedMeasurement is a copy of the original measurement
      * in which the report ID has been updated. */
-    String updatedMeasurement;
+    public String updatedMeasurement;
 
     /** updatedReportID returns the updated report ID. */
-    String updatedReportID;
+    public String updatedReportID;
 
     protected OONISubmitResults(SubmitResults r) {
         updatedMeasurement = r.getUpdatedMeasurement();

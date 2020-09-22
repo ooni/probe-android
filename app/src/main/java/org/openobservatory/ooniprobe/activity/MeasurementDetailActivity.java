@@ -289,7 +289,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                             .withMessage(activity.getString(R.string.Modal_UploadFailed_Paragraph, errors.toString(), totUploads.toString()))
                             .withPositiveButton(activity.getString(R.string.Modal_Retry))
                             .withNeutralButton(getActivity().getString(R.string.Modal_DisplayFailureLog))
-                            .withExtra(logs)
+                            .withExtra(String.join("\n", logger.logs))
                             .build().show(activity.getSupportFragmentManager(), null);
             }
         }
