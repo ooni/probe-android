@@ -36,7 +36,6 @@ public final class Engine {
                                     long timeout) throws OONIException {
         try (OONISession session = new PESession(Engine.getDefaultSessionConfig(ctx, softwareName, softwareVersion));
              OONIGeolocateTask task = session.newGeolocateTask(timeout)) {
-            //OONIGeoIPLookupTask task = new PEGeoIPLookupTask(session.newGeolocateTask(timeout));
             return task.run().country;
         } catch (Exception exc) {
             throw new OONIException("cannot create new GeoIPLookupTask ", exc);
