@@ -30,7 +30,9 @@
 	</style>
 
 	<style name="AlertDialogCustom" parent="android:Theme.Material.Light.Dialog.Alert">
-		<item name="colorAccent">@color/color_white</item>
+		<item name="colorPrimary">@color/colorPrimary</item>
+		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+		<item name="colorAccent">@color/colorAccent</item>
 	</style>
 
 	<style name="Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
