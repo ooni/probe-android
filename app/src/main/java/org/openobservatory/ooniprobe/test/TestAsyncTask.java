@@ -90,6 +90,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 			} catch (Exception e) {
 				publishProgress(ERR, act.getString(R.string.Modal_Error_CantDownloadURLs));
 				e.printStackTrace();
+				ExceptionManager.logException(e);
 			}
 		return null;
 	}

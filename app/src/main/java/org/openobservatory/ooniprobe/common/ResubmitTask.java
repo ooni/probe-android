@@ -50,8 +50,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
             input = FileUtils.readFileToString(file, Charset.forName("UTF-8"));
             try (OONISubmitMeasurementTask task = submitter.newSubmitMeasurementTask(uploadTimeout)){
                 OONISubmitResults results = task.run(input);
-                String output = results.updatedMeasurement;
-                FileUtils.writeStringToFile(file, output, Charset.forName("UTF-8"));
+                FileUtils.writeStringToFile(file, results.updatedMeasurement, Charset.forName("UTF-8"));
                 m.report_id = results.updatedReportID;
                 m.is_uploaded = true;
                 m.is_upload_failed = false;
@@ -100,8 +99,8 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
         List<Measurement> measurements = msmQuery.queryList();
         totUploads = measurements.size();
         try (OONISession session = Engine.newSession(Engine.getDefaultSessionConfig(getActivity(), BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, logger));
-             OONIProbeServicesClient client = session.newMakeSubmitterTask(30);
-             OONIReport submitter = client.run();){
+             OONIProbeServicesClient client = session.newProbeServicesClient(30);
+             OONIReport submitter = client.openReport();){
             for (int i = 0; i < measurements.size(); i++) {
                 A activity = getActivity();
                 if (activity == null)

@@ -10,7 +10,7 @@ final class PEProbeServicesClient implements OONIProbeServicesClient {
     }
 
     @Override
-    public OONIReport run() throws OONIException {
+    public OONIReport openReport() throws OONIException {
         try {
             return new PEReport(task.run());
         } catch (Exception exc) {

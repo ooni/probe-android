@@ -25,7 +25,7 @@ public final class Engine {
         }
     }
 
-    /** resolveProbeCC creates a new GeoIP lookup task, runs it and return the probeCC. */
+    /** resolveProbeCC creates a new GeoIP lookup task, runs it and returns the probeCC. */
     public static String resolveProbeCC(Context ctx,
                                     String softwareName,
                                     String softwareVersion,

@@ -24,7 +24,7 @@ final class PESession implements OONISession {
     }
 
     @Override
-    public OONIProbeServicesClient newMakeSubmitterTask(long timeout) throws OONIException {
+    public OONIProbeServicesClient newProbeServicesClient(long timeout) throws OONIException {
         try {
             return new PEProbeServicesClient(session.newMakeSubmitterTask(timeout));
         } catch (Exception exc) {
