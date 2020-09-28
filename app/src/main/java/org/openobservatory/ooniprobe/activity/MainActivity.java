@@ -125,6 +125,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
 
     @Override
     public void onConfirmation(Serializable extra, int i) {
+        if (extra == null) return;
         if (extra.equals(MANUAL_UPLOAD_DIALOG))
             getPreferenceManager().setManualUploadResults(i == DialogInterface.BUTTON_POSITIVE);
         else if (extra.equals(ANALYTICS_DIALOG))
