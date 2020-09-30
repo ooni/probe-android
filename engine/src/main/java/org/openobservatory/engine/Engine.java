@@ -27,16 +27,17 @@ public final class Engine {
 
     /** resolveProbeCC returns the probeCC. */
     public static String resolveProbeCC(Context ctx, String softwareName,
-                                        String softwareVersion) throws OONIException {
+                                        String softwareVersion, long timeout) throws OONIException {
         try {
             OONISession session = newSession(Engine.getDefaultSessionConfig(
                     ctx, softwareName, softwareVersion, new NullLogger()
             ));
-            // Implementation note: we're not using any timeout here because we also need
-            // to fetch the resources and that may take more than, say, 30 seconds. Ideally,
-            // the user should be able to interrupt the test whatever is causing the test
-            // to run for too much time, so we should not be juggling with timeouts.
-            return session.geolocate(session.newContext()).country;
+            // Updating resources with no context because we don't know for sure how much
+            // it will take to download them and choosing a timeout may prevent the operation
+            // to ever complete. (Ideally the user should be able to interrupt the process
+            // and there should be no timeout here.)
+            session.maybeUpdateResources(session.newContext());
+            return session.geolocate(session.newContextWithTimeout(timeout)).country;
         } catch (Exception exc) {
             throw new OONIException("cannot resolve the country code ", exc);
         }

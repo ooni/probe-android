@@ -10,6 +10,9 @@ public interface OONISession {
     /** geolocate returns the probe geolocation. */
     OONIGeolocateResults geolocate(OONIContext ctx) throws OONIException;
 
+    /** maybeUpdateResources updates resources if needed. */
+    void maybeUpdateResources(OONIContext ctx) throws OONIException;
+
     /** newContext creates a new OONIContext instance. */
     OONIContext newContext();
 

@@ -61,7 +61,8 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 						probeCC = Engine.resolveProbeCC(
 								act,
 								BuildConfig.SOFTWARE_NAME,
-								BuildConfig.VERSION_NAME
+								BuildConfig.VERSION_NAME,
+								30
 						);
 					}
 					catch (Exception e) {
