@@ -14,26 +14,35 @@ final class PESession implements OONISession {
         }
     }
 
-    @Override
-    public OONIGeolocateTask newGeolocateTask(long timeout) throws OONIException {
+    /** geolocate returns the probe geolocation. */
+    public OONIGeolocateResults geolocate(OONIContext ctx) throws OONIException {
         try {
-            return new PEGeolocateTask(session.newGeolocateTask(timeout));
+            return new OONIGeolocateResults(session.geolocate(ctx.ctx));
         } catch (Exception exc) {
-            throw new OONIException("session.newGeolocateTask failed", exc);
+            throw new OONIException("session.geolocate failed", exc);
         }
     }
 
-    @Override
-    public OONIProbeServicesClient newProbeServicesClient(long timeout) throws OONIException {
-        try {
-            return new PEProbeServicesClient(session.newMakeSubmitterTask(timeout));
-        } catch (Exception exc) {
-            throw new OONIException("session.newMakeSubmitterTask failed", exc);
-        }
+    /** newContext creates a new OONIContext instance. */
+    public OONIContext newContext() {
+        return newContextWithTimeout(-1);
     }
 
-    @Override
-    public void close() throws Exception {
-        session.close();
+    /**
+     * newContextWithTimeout creates a new OONIContext instance that times
+     * out after the specified number of seconds. A zero or negative timeout
+     * is equivalent to create a OONIContext without a timeout.
+     */
+    public OONIContext newContextWithTimeout(long timeout) {
+        return new OONIContext(session.newContextWithTimeout(timeout));
+    }
+
+    /** submit submits a measurement and returns the submission results. */
+    public OONISubmitResults submit(OONIContext ctx, String measurement) throws OONIException {
+        try {
+            return new OONISubmitResults(session.submit(ctx.ctx, measurement));
+        } catch (Exception exc) {
+            throw new OONIException("", exc);
+        }
     }
 }

@@ -9,7 +9,7 @@ import java.io.IOException;
  * engines depending on the task that you wish to create.
  */
 public final class Engine {
-    /** newUUID4 returns the a new UUID4 for this client  */
+    /** newUUID4 returns the a new UUID4 for this client */
     public static String newUUID4() {
         return oonimkall.Oonimkall.newUUID4();
     }
@@ -26,15 +26,19 @@ public final class Engine {
     }
 
     /** resolveProbeCC returns the probeCC. */
-    public static String resolveProbeCC(Context ctx,
-                                    String softwareName,
-                                    String softwareVersion,
-                                    long timeout) throws OONIException {
-        try (OONISession session = new PESession(Engine.getDefaultSessionConfig(ctx, softwareName, softwareVersion, new AndroidLogger()));
-             OONIGeolocateTask task = session.newGeolocateTask(timeout)) {
-            return task.run().country;
+    public static String resolveProbeCC(Context ctx, String softwareName,
+                                        String softwareVersion) throws OONIException {
+        try {
+            OONISession session = newSession(Engine.getDefaultSessionConfig(
+                    ctx, softwareName, softwareVersion, new NullLogger()
+            ));
+            // Implementation note: we're not using any timeout here because we also need
+            // to fetch the resources and that may take more than, say, 30 seconds. Ideally,
+            // the user should be able to interrupt the test whatever is causing the test
+            // to run for too much time, so we should not be juggling with timeouts.
+            return session.geolocate(session.newContext()).country;
         } catch (Exception exc) {
-            throw new OONIException("cannot create new GeoIPLookupTask ", exc);
+            throw new OONIException("cannot resolve the country code ", exc);
         }
     }
 
@@ -49,7 +53,7 @@ public final class Engine {
                                                             String softwareVersion,
                                                             OONILogger logger) throws IOException {
         OONISessionConfig config = new OONISessionConfig();
-        config.logger = logger;
+        config.logger = new ComposedLogger(logger, new AndroidLogger());
         config.softwareName = softwareName;
         config.softwareVersion = softwareVersion;
         config.verbose = true;
@@ -59,23 +63,29 @@ public final class Engine {
         return config;
     }
 
-    /** getAssetsDir returns the assets directory for the current context. The
+    /**
+     * getAssetsDir returns the assets directory for the current context. The
      * assets directory is the directory where the OONI Probe Engine should store
-     * the assets it requires, e.g., the MaxMind DB files. */
+     * the assets it requires, e.g., the MaxMind DB files.
+     */
     public static String getAssetsDir(Context ctx) throws IOException {
         return new java.io.File(ctx.getFilesDir(), "assets").getCanonicalPath();
     }
 
-    /** getStateDir returns the state directory for the current context. The
+    /**
+     * getStateDir returns the state directory for the current context. The
      * state directory is the directory where the OONI Probe Engine should store
-     * internal state variables (e.g. the orchestra credentials). */
+     * internal state variables (e.g. the orchestra credentials).
+     */
     public static String getStateDir(Context ctx) throws IOException {
         return new java.io.File(ctx.getFilesDir(), "state").getCanonicalPath();
     }
 
-    /** getTempDir returns the temporary directory for the current context. The
+    /**
+     * getTempDir returns the temporary directory for the current context. The
      * temporary directory is the directory where the OONI Probe Engine should store
-     * the temporary files that are managed by a Session. */
+     * the temporary files that are managed by a Session.
+     */
     public static String getTempDir(Context ctx) throws IOException {
         return new java.io.File(ctx.getCacheDir(), "").getCanonicalPath();
     }

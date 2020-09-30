@@ -2,26 +2,24 @@ package org.openobservatory.engine;
 
 /**
  * OONISession contains shared state for running experiments and/or other
- * related task (e.g. geolocation). Note that the OONISession isn't
- * mean to be shared across thread. It is also not meant to be a long
- * living object. The workflow is to create a OONISession, do the operations
- * you need to do with it now, then call Session.close. All of this is
- * supposed to happen within the same Java thread. If you need to cancel
- * any operation from other threads, all tasks have a cancel method.
+ * related task (e.g. geolocation). Note that a OONISession is not meant to
+ * be a long running instance. The expected usage is that you create a new
+ * session, use it immediately, and then forget about it.
  */
-public interface OONISession extends AutoCloseable {
-    /**
-     * newGeolocateTask creates a new OONIGeolocateTask. This task will allow you
-     * to geolocate the probe. The timeout for the task is in seconds. When
-     * the timeout value is zero or negative, there won't be any timeout.
-     */
-    OONIGeolocateTask newGeolocateTask(long timeout) throws OONIException;
+public interface OONISession {
+    /** geolocate returns the probe geolocation. */
+    OONIGeolocateResults geolocate(OONIContext ctx) throws OONIException;
+
+    /** newContext creates a new OONIContext instance. */
+    OONIContext newContext();
 
     /**
-     * newMakeSubmitterTask creates a new OONIMakeSubmitterTask. This task will
-     * allow you to create a OONISubmitter. That is an object that allows
-     * you to submit measurements to the OONI collector. The timeout for the
-     * task has exactly the same semantics of newGeolocateTask.
+     * newContextWithTimeout creates a new OONIContext instance that times
+     * out after the specified number of seconds. A zero or negative timeout
+     * is equivalent to create a OONIContext without a timeout.
      */
-    OONIProbeServicesClient newProbeServicesClient(long timeout) throws OONIException;
+    OONIContext newContextWithTimeout(long timeout);
+
+    /** submit submits a measurement and returns the submission results. */
+    OONISubmitResults submit(OONIContext ctx, String measurement) throws OONIException;
 }
