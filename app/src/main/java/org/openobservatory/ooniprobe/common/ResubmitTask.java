@@ -98,7 +98,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
         try {
             OONISession session = Engine.newSession(Engine.getDefaultSessionConfig(
                     getActivity(), BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, logger));
-            // Updating resources with no context because we don't know for sure how much
+            // Updating resources with no timeout because we don't know for sure how much
             // it will take to download them and choosing a timeout may prevent the operation
             // to ever complete. (Ideally the user should be able to interrupt the process
             // and there should be no timeout here.)
