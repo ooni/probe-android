@@ -11,11 +11,9 @@ import com.raizlabs.android.dbflow.sql.language.Where;
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.engine.ArrayLogger;
 import org.openobservatory.engine.Engine;
-import org.openobservatory.engine.OONIProbeServicesClient;
+import org.openobservatory.engine.OONIContext;
 import org.openobservatory.engine.OONISession;
-import org.openobservatory.engine.OONISubmitMeasurementTask;
 import org.openobservatory.engine.OONISubmitResults;
-import org.openobservatory.engine.OONIReport;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Measurement;
@@ -42,22 +40,21 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
         super(activity, true, false);
     }
 
-    private boolean perform(Context c, Measurement m, OONIReport submitter)  {
+    private boolean perform(Context c, Measurement m, OONISession session)  {
         File file = Measurement.getEntryFile(c, m.id, m.test_name);
         String input;
         long uploadTimeout = getTimeout(file.length());
+        OONIContext ooniContext = session.newContextWithTimeout(uploadTimeout);
         try {
             input = FileUtils.readFileToString(file, Charset.forName("UTF-8"));
-            try (OONISubmitMeasurementTask task = submitter.newSubmitMeasurementTask(uploadTimeout)){
-                OONISubmitResults results = task.run(input);
-                FileUtils.writeStringToFile(file, results.updatedMeasurement, Charset.forName("UTF-8"));
-                m.report_id = results.updatedReportID;
-                m.is_uploaded = true;
-                m.is_upload_failed = false;
-                m.save();
-                return true;
-            }
-        } catch (Exception e){
+            OONISubmitResults results = session.submit(ooniContext, input);
+            FileUtils.writeStringToFile(file, results.updatedMeasurement, Charset.forName("UTF-8"));
+            m.report_id = results.updatedReportID;
+            m.is_uploaded = true;
+            m.is_upload_failed = false;
+            m.save();
+            return true;
+        } catch (Exception e) {
             e.printStackTrace();
             ExceptionManager.logException(e);
             return false;
@@ -98,9 +95,9 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
         }
         List<Measurement> measurements = msmQuery.queryList();
         totUploads = measurements.size();
-        try (OONISession session = Engine.newSession(Engine.getDefaultSessionConfig(getActivity(), BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, logger));
-             OONIProbeServicesClient client = session.newProbeServicesClient(30);
-             OONIReport submitter = client.openReport();){
+        try {
+            OONISession session = Engine.newSession(Engine.getDefaultSessionConfig(
+                    getActivity(), BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, logger));
             for (int i = 0; i < measurements.size(); i++) {
                 A activity = getActivity();
                 if (activity == null)
@@ -109,7 +106,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
                 publishProgress(activity.getString(R.string.Modal_ResultsNotUploaded_Uploading, paramOfParam));
                 Measurement m = measurements.get(i);
                 m.result.load();
-                if (!perform(activity, m, submitter)){
+                if (!perform(activity, m, session)) {
                     errors++;
                 }
             }

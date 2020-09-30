@@ -6,9 +6,6 @@ package org.openobservatory.engine;
  * that we want to run and to obtain its serialization.
  */
 public interface OONIMKTaskConfig {
-    /** taskName returns the task name */
-    String taskName();
-
     /**
      * serialization returns the JSON serialization of the task config, which
      * must be compatible with Measurement Kit v0.9.0 specification.
