@@ -72,7 +72,7 @@ public abstract class AbstractTest implements Serializable {
             ExceptionManager.logException(exc);
             return;
         }
-        while (!task.isDone())
+        while (!task.isDone()){
             try {
                 String json = task.waitForNextEvent();
                 Log.d(TAG, json);
@@ -168,6 +168,7 @@ public abstract class AbstractTest implements Serializable {
                 e.printStackTrace();
                 ExceptionManager.logException(e);
             }
+        }
     }
 
     public boolean canInterrupt(){

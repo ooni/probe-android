@@ -25,16 +25,28 @@ public class OONIAPIClientTest extends AbstractTest {
     private static final String EXISTING_REPORT_ID = "20190113T202156Z_AS327931_CgoC3KbgM6zKajvIIt1AxxybJ1HbjwwWJjsJnlxy9rpcGY54VH";
     private static final String NONEXISTING_REPORT_ID = "EMPTY";
     private static final String NON_EXISTING_MEASUREMENT_URL = "https://api.ooni.io/api/v1/measurement/nonexistent-measurement-url";
-    private static final String JSON_URL = "https://api.ooni.io/api/v1/measurement/temp-id-263478291";
+    private static final String CLIENT_URL = "https://ams-pg.ooni.org";
 
     @Test
     public void getMeasurementSuccess() {
         final CountDownLatch signal = new CountDownLatch(1);
-        a.getApiClient().getMeasurement(EXISTING_REPORT_ID, null).enqueue(new GetMeasurementsCallback() {
+        a.getApiClientWithUrl(CLIENT_URL).getMeasurement(EXISTING_REPORT_ID, null).enqueue(new GetMeasurementsCallback() {
             @Override
             public void onSuccess(ApiMeasurement.Result result) {
                 Assert.assertNotNull(result);
-                signal.countDown();
+                a.getOkHttpClient().newCall(new Request.Builder().url(result.measurement_url).build()).enqueue(new GetMeasurementJsonCallback() {
+                    @Override
+                    public void onSuccess(String json) {
+                        Assert.assertNotNull(json);
+                        signal.countDown();
+                    }
+
+                    @Override
+                    public void onError(String msg) {
+                        Assert.fail();
+                        signal.countDown();
+                    }
+                });
             }
 
             @Override
@@ -54,7 +66,7 @@ public class OONIAPIClientTest extends AbstractTest {
     @Test
     public void getMeasurementError() {
         final CountDownLatch signal = new CountDownLatch(1);
-        a.getApiClient().getMeasurement(NONEXISTING_REPORT_ID, null).enqueue(new GetMeasurementsCallback() {
+        a.getApiClientWithUrl(CLIENT_URL).getMeasurement(NONEXISTING_REPORT_ID, null).enqueue(new GetMeasurementsCallback() {
             @Override
             public void onSuccess(ApiMeasurement.Result result) {
                 Assert.fail();
@@ -79,7 +91,7 @@ public class OONIAPIClientTest extends AbstractTest {
         final CountDownLatch signal = new CountDownLatch(1);
         Delete.table(Measurement.class);
         addMeasurement(EXISTING_REPORT_ID, false);
-        a.getApiClient().checkReportId(EXISTING_REPORT_ID).enqueue(new CheckReportIdCallback() {
+        a.getApiClientWithUrl(CLIENT_URL).checkReportId(EXISTING_REPORT_ID).enqueue(new CheckReportIdCallback() {
             @Override
             public void onSuccess(Boolean found) {
                 Assert.assertTrue(found);
@@ -106,30 +118,6 @@ public class OONIAPIClientTest extends AbstractTest {
                 return true;
         }
         return false;
-    }
-
-    @Test
-    public void getMeasurementJsonSuccess() {
-        final CountDownLatch signal = new CountDownLatch(1);
-        a.getOkHttpClient().newCall(new Request.Builder().url(JSON_URL).build()).enqueue(new GetMeasurementJsonCallback() {
-            @Override
-            public void onSuccess(String json) {
-                Assert.assertNotNull(json);
-                signal.countDown();
-            }
-
-            @Override
-            public void onError(String msg) {
-                Assert.fail();
-                signal.countDown();
-            }
-        });
-        try {
-            signal.await(1, TimeUnit.MINUTES);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
     }
 
     @Test
