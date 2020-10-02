@@ -9,7 +9,7 @@ import java.io.IOException;
  * engines depending on the task that you wish to create.
  */
 public final class Engine {
-    /** newUUID4 returns the a new UUID4 for this client  */
+    /** newUUID4 returns the a new UUID4 for this client */
     public static String newUUID4() {
         return oonimkall.Oonimkall.newUUID4();
     }
@@ -26,16 +26,17 @@ public final class Engine {
     }
 
     /** resolveProbeCC returns the probeCC. */
-    public static String resolveProbeCC(Context ctx,
-                                    String softwareName,
-                                    String softwareVersion,
-                                    long timeout) throws OONIException {
-        try (OONISession session = new PESession(Engine.getDefaultSessionConfig(ctx, softwareName, softwareVersion, new AndroidLogger()));
-             OONIGeolocateTask task = session.newGeolocateTask(timeout)) {
-            return task.run().country;
-        } catch (Exception exc) {
-            throw new OONIException("cannot create new GeoIPLookupTask ", exc);
-        }
+    public static String resolveProbeCC(Context ctx, String softwareName,
+                                        String softwareVersion, long timeout) throws OONIException {
+        OONISession session = newSession(Engine.getDefaultSessionConfig(
+                ctx, softwareName, softwareVersion, new LoggerNull()
+        ));
+        // Updating resources with no timeout because we don't know for sure how much
+        // it will take to download them and choosing a timeout may prevent the operation
+        // to ever complete. (Ideally the user should be able to interrupt the process
+        // and there should be no timeout here.)
+        session.maybeUpdateResources(session.newContext());
+        return session.geolocate(session.newContextWithTimeout(timeout)).country;
     }
 
     /** newSession returns a new OONISession instance. */
@@ -47,35 +48,45 @@ public final class Engine {
     public static OONISessionConfig getDefaultSessionConfig(Context ctx,
                                                             String softwareName,
                                                             String softwareVersion,
-                                                            OONILogger logger) throws IOException {
-        OONISessionConfig config = new OONISessionConfig();
-        config.logger = logger;
-        config.softwareName = softwareName;
-        config.softwareVersion = softwareVersion;
-        config.verbose = true;
-        config.assetsDir = Engine.getAssetsDir(ctx);
-        config.stateDir = Engine.getStateDir(ctx);
-        config.tempDir = Engine.getTempDir(ctx);
-        return config;
+                                                            OONILogger logger) throws OONIException {
+        try {
+            OONISessionConfig config = new OONISessionConfig();
+            config.logger = new LoggerComposed(logger, new LoggerAndroid());
+            config.softwareName = softwareName;
+            config.softwareVersion = softwareVersion;
+            config.verbose = true;
+            config.assetsDir = Engine.getAssetsDir(ctx);
+            config.stateDir = Engine.getStateDir(ctx);
+            config.tempDir = Engine.getTempDir(ctx);
+            return config;
+        } catch (java.io.IOException exc) {
+            throw new OONIException("getDefaultSessionConfig failed", exc);
+        }
     }
 
-    /** getAssetsDir returns the assets directory for the current context. The
+    /**
+     * getAssetsDir returns the assets directory for the current context. The
      * assets directory is the directory where the OONI Probe Engine should store
-     * the assets it requires, e.g., the MaxMind DB files. */
+     * the assets it requires, e.g., the MaxMind DB files.
+     */
     public static String getAssetsDir(Context ctx) throws IOException {
         return new java.io.File(ctx.getFilesDir(), "assets").getCanonicalPath();
     }
 
-    /** getStateDir returns the state directory for the current context. The
+    /**
+     * getStateDir returns the state directory for the current context. The
      * state directory is the directory where the OONI Probe Engine should store
-     * internal state variables (e.g. the orchestra credentials). */
+     * internal state variables (e.g. the orchestra credentials).
+     */
     public static String getStateDir(Context ctx) throws IOException {
         return new java.io.File(ctx.getFilesDir(), "state").getCanonicalPath();
     }
 
-    /** getTempDir returns the temporary directory for the current context. The
+    /**
+     * getTempDir returns the temporary directory for the current context. The
      * temporary directory is the directory where the OONI Probe Engine should store
-     * the temporary files that are managed by a Session. */
+     * the temporary files that are managed by a Session.
+     */
     public static String getTempDir(Context ctx) throws IOException {
         return new java.io.File(ctx.getCacheDir(), "").getCanonicalPath();
     }

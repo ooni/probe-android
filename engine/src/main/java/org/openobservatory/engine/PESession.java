@@ -14,26 +14,35 @@ final class PESession implements OONISession {
         }
     }
 
-    @Override
-    public OONIGeolocateTask newGeolocateTask(long timeout) throws OONIException {
+    public OONIGeolocateResults geolocate(OONIContext ctx) throws OONIException {
         try {
-            return new PEGeolocateTask(session.newGeolocateTask(timeout));
+            return new OONIGeolocateResults(session.geolocate(ctx.ctx));
         } catch (Exception exc) {
-            throw new OONIException("session.newGeolocateTask failed", exc);
+            throw new OONIException("session.geolocate failed", exc);
         }
     }
 
-    @Override
-    public OONIProbeServicesClient newProbeServicesClient(long timeout) throws OONIException {
+    public void maybeUpdateResources(OONIContext ctx) throws OONIException {
         try {
-            return new PEProbeServicesClient(session.newMakeSubmitterTask(timeout));
+            session.maybeUpdateResources(ctx.ctx);
         } catch (Exception exc) {
-            throw new OONIException("session.newMakeSubmitterTask failed", exc);
+            throw new OONIException("session.maybeUpdateResources failed", exc);
         }
     }
 
-    @Override
-    public void close() throws Exception {
-        session.close();
+    public OONIContext newContext() {
+        return newContextWithTimeout(-1);
+    }
+
+    public OONIContext newContextWithTimeout(long timeout) {
+        return new OONIContext(session.newContextWithTimeout(timeout));
+    }
+
+    public OONISubmitResults submit(OONIContext ctx, String measurement) throws OONIException {
+        try {
+            return new OONISubmitResults(session.submit(ctx.ctx, measurement));
+        } catch (Exception exc) {
+            throw new OONIException("", exc);
+        }
     }
 }

@@ -1,6 +1,6 @@
 package org.openobservatory.engine;
 
-import oonimkall.SubmitResults;
+import oonimkall.SubmitMeasurementResults;
 
 /**
  * OONISubmitResults contains the results of a single measurement submission
@@ -14,7 +14,7 @@ public final class OONISubmitResults {
     /** updatedReportID returns the updated report ID. */
     public String updatedReportID;
 
-    protected OONISubmitResults(SubmitResults r) {
+    protected OONISubmitResults(SubmitMeasurementResults r) {
         updatedMeasurement = r.getUpdatedMeasurement();
         updatedReportID = r.getUpdatedReportID();
     }
