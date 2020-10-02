@@ -24,8 +24,8 @@ import okhttp3.Request;
 public class OONIAPIClientTest extends AbstractTest {
     private static final String EXISTING_REPORT_ID = "20190113T202156Z_AS327931_CgoC3KbgM6zKajvIIt1AxxybJ1HbjwwWJjsJnlxy9rpcGY54VH";
     private static final String NONEXISTING_REPORT_ID = "EMPTY";
-    private static final String NON_EXISTING_MEASUREMENT_URL = "https://api.ooni.io/api/v1/measurement/nonexistent-measurement-url";
     private static final String CLIENT_URL = "https://ams-pg.ooni.org";
+    private static final String NON_EXISTING_MEASUREMENT_URL = CLIENT_URL + "/api/v1/measurement/nonexistent-measurement-url";
 
     @Test
     public void getMeasurementSuccess() {
