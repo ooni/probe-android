@@ -14,7 +14,6 @@ import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
 import org.openobservatory.ooniprobe.model.settings.Settings;
 
 import java.util.Collections;
-import java.util.concurrent.CountDownLatch;
 
 public class WebConnectivityTest extends AbstractTest {
     private static final String EXPERIMENT_NAME = "WebConnectivity";
