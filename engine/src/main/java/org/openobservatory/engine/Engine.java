@@ -29,7 +29,7 @@ public final class Engine {
     public static String resolveProbeCC(Context ctx, String softwareName,
                                         String softwareVersion, long timeout) throws OONIException {
         OONISession session = newSession(Engine.getDefaultSessionConfig(
-                ctx, softwareName, softwareVersion, new NullLogger()
+                ctx, softwareName, softwareVersion, new LoggerNull()
         ));
         // Updating resources with no timeout because we don't know for sure how much
         // it will take to download them and choosing a timeout may prevent the operation
@@ -51,7 +51,7 @@ public final class Engine {
                                                             OONILogger logger) throws OONIException {
         try {
             OONISessionConfig config = new OONISessionConfig();
-            config.logger = new ComposedLogger(logger, new AndroidLogger());
+            config.logger = new LoggerComposed(logger, new LoggerAndroid());
             config.softwareName = softwareName;
             config.softwareVersion = softwareVersion;
             config.verbose = true;

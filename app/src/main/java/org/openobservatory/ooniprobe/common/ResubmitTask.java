@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.raizlabs.android.dbflow.sql.language.Where;
 
 import org.apache.commons.io.FileUtils;
-import org.openobservatory.engine.ArrayLogger;
+import org.openobservatory.engine.LoggerArray;
 import org.openobservatory.engine.Engine;
 import org.openobservatory.engine.OONIContext;
 import org.openobservatory.engine.OONISession;
@@ -28,7 +28,7 @@ import localhost.toolkit.os.NetworkProgressAsyncTask;
 public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAsyncTask<A, Integer, Boolean> {
     protected Integer totUploads;
     protected Integer errors;
-    protected ArrayLogger logger;
+    protected LoggerArray logger;
 
     /**
      * Use this class to resubmit a measurement, use result_id and measurement_id to filter list of value
@@ -82,7 +82,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
      */
     @Override
     protected Boolean doInBackground(Integer... params) {
-        logger = new ArrayLogger();
+        logger = new LoggerArray();
         errors = 0;
         if (params.length != 2)
             throw new IllegalArgumentException("MKCollectorResubmitTask requires 2 nullable params: result_id, measurement_id");

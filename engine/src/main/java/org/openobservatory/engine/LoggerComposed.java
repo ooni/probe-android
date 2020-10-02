@@ -1,10 +1,10 @@
 package org.openobservatory.engine;
 
 /** ComposedLogger allows to compose two loggers */
-final class ComposedLogger implements OONILogger {
+final class LoggerComposed implements OONILogger {
     private OONILogger left, right;
 
-    ComposedLogger(OONILogger left, OONILogger right) {
+    LoggerComposed(OONILogger left, OONILogger right) {
         this.left = left;
         this.right = right;
     }

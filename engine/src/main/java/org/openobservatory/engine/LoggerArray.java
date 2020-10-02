@@ -3,7 +3,7 @@ package org.openobservatory.engine;
 import java.util.ArrayList;
 
 /** ArrayLogger is a logger that writes logs into an array. */
-public final class ArrayLogger implements OONILogger {
+public final class LoggerArray implements OONILogger {
     public ArrayList<String> logs = new ArrayList<>();
 
     @Override

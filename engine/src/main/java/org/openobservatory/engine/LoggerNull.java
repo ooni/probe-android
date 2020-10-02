@@ -1,6 +1,6 @@
 package org.openobservatory.engine;
 
-final class NullLogger implements OONILogger {
+final class LoggerNull implements OONILogger {
     @Override
     public void debug(String message) {
     }
