@@ -7,7 +7,7 @@ import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openobservatory.engine.Engine;
-import org.openobservatory.engine.OONIMKTask;
+import org.openobservatory.engine.ExperimentTask;
 import org.openobservatory.ooniprobe.AbstractTest;
 import org.openobservatory.ooniprobe.model.jsonresult.EventResult;
 import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
@@ -26,7 +26,7 @@ public class WebConnectivityTest extends AbstractTest {
         boolean submitted = false;
         String report_id_1 = "r1";
         String report_id_2 = "r2";
-        OONIMKTask task = null;
+        ExperimentTask task = null;
         Settings settings = new Settings(c, a.getPreferenceManager());
         Gson gson = a.getGson();
         settings.name = EXPERIMENT_NAME;
