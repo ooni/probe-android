@@ -100,7 +100,7 @@ public class Settings {
 		@SerializedName("geoip_country_path")
 		public final String geoip_country_path;
 		@SerializedName("no_collector")
-		public final boolean no_collector;
+		public boolean no_collector;
 		@SerializedName("save_real_probe_asn")
 		public final boolean save_real_probe_asn;
 		@SerializedName("save_real_probe_cc")
@@ -119,8 +119,8 @@ public class Settings {
 		public Integer max_runtime;
 		@SerializedName("server")
 		public String server;
-		@SerializedName("port")
-		public Integer port;
+		@SerializedName("probe_services_base_url")
+		public String probe_services_base_url;
 
 		public Options(Context c, PreferenceManager pm) {
 			ca_bundle_path = Engine.getCABundlePath(c);

@@ -13,10 +13,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class OONIOrchestraClientTest extends AbstractTest {
+    private static final String ORCHESTRA_URL = "https://ams-pg.ooni.org";
+
     @Test
     public void getUrlsSuccess() {
         final CountDownLatch signal = new CountDownLatch(1);
-        a.getOrchestraClient().getUrls("XX", null).enqueue(new Callback<UrlList>() {
+        a.getOrchestraClientWithUrl(ORCHESTRA_URL).getUrls("XX", null).enqueue(new Callback<UrlList>() {
             @Override
             public void onResponse(Call<UrlList> call, Response<UrlList> response) {
                 Assert.assertTrue(response.isSuccessful());
