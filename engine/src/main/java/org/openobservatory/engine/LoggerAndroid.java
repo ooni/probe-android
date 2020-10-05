@@ -2,7 +2,7 @@ package org.openobservatory.engine;
 
 import android.util.Log;
 
-/** AndroidLogger is a logger that logs with the Android logging system. */
+/** LoggerAndroid is a logger that logs with the Android logging system. */
 final class LoggerAndroid implements OONILogger {
     private String TAG_ENGINE = "engine";
 
