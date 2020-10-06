@@ -54,7 +54,7 @@ public final class Engine {
             config.logger = new LoggerComposed(logger, new LoggerAndroid());
             config.softwareName = softwareName;
             config.softwareVersion = softwareVersion;
-            config.verbose = true;
+            config.verbose = false;
             config.assetsDir = Engine.getAssetsDir(ctx);
             config.stateDir = Engine.getStateDir(ctx);
             config.tempDir = Engine.getTempDir(ctx);
