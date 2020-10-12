@@ -145,6 +145,7 @@
   <string name="TestResults_Details_ViewLog">Lihat log</string>
   <string name="TestResults_Details_RawData">Data</string>
   <string name="TestResults_Details_CopyExplorerURL">Kopi Penjelajah URL</string>
+  <string name="TestResults_Details_ShareExplorerURL">Share Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">Salin ke clipboard</string>
   <string name="TestResults_Details_ShowInExplorer">Tampilkan di OONI Explorer</string>
   <string name="TestResults_Details_Failed_Title">Gagal</string>

@@ -145,6 +145,7 @@
   <string name="TestResults_Details_ViewLog">Zobraziť denník</string>
   <string name="TestResults_Details_RawData">Dáta</string>
   <string name="TestResults_Details_CopyExplorerURL">Kopírovať URL adresu prieskumníka</string>
+  <string name="TestResults_Details_ShareExplorerURL">Share Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">Kopírovať do schránky</string>
   <string name="TestResults_Details_ShowInExplorer">Zobraziť v Prieskumníku OONI</string>
   <string name="TestResults_Details_Failed_Title">Zlyhalo</string>

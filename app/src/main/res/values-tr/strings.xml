@@ -145,6 +145,7 @@
   <string name="TestResults_Details_ViewLog">Günlüğü görüntüle</string>
   <string name="TestResults_Details_RawData">Veri</string>
   <string name="TestResults_Details_CopyExplorerURL">Tarayıcı Adresini Kopyala</string>
+  <string name="TestResults_Details_ShareExplorerURL">Share Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">Panoya kopyala</string>
   <string name="TestResults_Details_ShowInExplorer">OONI gezgininde görüntüle</string>
   <string name="TestResults_Details_Failed_Title">Başarısız</string>

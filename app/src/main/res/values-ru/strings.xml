@@ -145,6 +145,7 @@
   <string name="TestResults_Details_ViewLog">Посмотреть лог</string>
   <string name="TestResults_Details_RawData">Данные</string>
   <string name="TestResults_Details_CopyExplorerURL">Скопировать ссылку на Explorer</string>
+  <string name="TestResults_Details_ShareExplorerURL">Share Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">Скопировать в буфер обмена</string>
   <string name="TestResults_Details_ShowInExplorer">Показать в OONI Explorer</string>
   <string name="TestResults_Details_Failed_Title">Ошибка</string>

@@ -145,6 +145,7 @@
   <string name="TestResults_Details_ViewLog">Skoða atvikaskrá</string>
   <string name="TestResults_Details_RawData">Gögn</string>
   <string name="TestResults_Details_CopyExplorerURL">Afrita slóð úr Explorer-vafranum</string>
+  <string name="TestResults_Details_ShareExplorerURL">Share Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">Afrita á klippispjald</string>
   <string name="TestResults_Details_ShowInExplorer">Birta í OONI Explorer vafranum</string>
   <string name="TestResults_Details_Failed_Title">Mistókst</string>
@@ -257,7 +258,7 @@
   <string name="Toast_ResultsUploaded">Innsending tókst</string>
   <string name="Modal_DisplayFailureLog">Birta mistakaskrá</string>
   <string name="Modal_EnableNotifications_Title">Fáðu vísbendingar um ritskoðun internetsins</string>
-  <string name="Modal_EnableNotifications_Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you!</string>
+  <string name="Modal_EnableNotifications_Paragraph">Hefurðu áhuga á að gera prófanir á OONI Probe þegar ritskoðun á sér stað? Virkjaðu tilkynningar til að fá skilaboð þegar við heyrum um ritskoðun internetsins á þínum slóðum!</string>
   <string name="Modal_EnableGPS">Til að bæta nákvæmni prófana þurfum við heimildir fyrir GPS-staðsetningar. OONI mun einungis safna grófum GPS-staðsetningum.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Viltu eyða öllum niðurstöðum prófana?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Viltu eyða þessari prófun?</string>
@@ -273,7 +274,7 @@
   <string name="Modal_ManualUpload_Enable">Virkja</string>
   <string name="Modal_ManualUpload_Disable">Nei takk</string>
   <string name="Modal_ShareAnalytics_Title">Hjálpaðu okkur að bæta OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">With the new OONI Probe, you can contribute anonymized usage metrics to help us improve the app. You can opt out through the settings at any time.</string>
+  <string name="Modal_ShareAnalytics_Paragraph">Með þessu nýja OONI Probe geturðu sent inn nafnlausa tölfræði til að hjálpa okkur að bæta hugbúnaðinn. Hægt er að segja sig frá þessu í stillingunum hvenær sem er.</string>
   <string name="Modal_UploadFailed_Title">Innsending mistókst</string>
   <string name="Modal_UploadFailed_Paragraph">Ekki tókst að senda inn %1$s/%2$s mælingar. Atvikaskránni með því sem brást hefur verið deilt til forritara OONI.</string>
   <string name="Modal_Error_LogNotFound">Atvikaskrá fannst ekki</string>

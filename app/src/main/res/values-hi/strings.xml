@@ -145,6 +145,7 @@
   <string name="TestResults_Details_ViewLog">लॉग देखें</string>
   <string name="TestResults_Details_RawData">डेटा</string>
   <string name="TestResults_Details_CopyExplorerURL">एक्सप्लोरर यूआरएल कॉपी करें</string>
+  <string name="TestResults_Details_ShareExplorerURL">Share Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">क्लिपबोर्ड पर कॉपी करें</string>
   <string name="TestResults_Details_ShowInExplorer">OONI एक्सप्लोरर में दिखाएं</string>
   <string name="TestResults_Details_Failed_Title">विफ़ल</string>

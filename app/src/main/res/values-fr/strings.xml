@@ -145,6 +145,7 @@
   <string name="TestResults_Details_ViewLog">Visualiser le journal</string>
   <string name="TestResults_Details_RawData">Données</string>
   <string name="TestResults_Details_CopyExplorerURL">Copier l’URL de l’explorateur</string>
+  <string name="TestResults_Details_ShareExplorerURL">Share Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">Copier dans le presse-papiers</string>
   <string name="TestResults_Details_ShowInExplorer">Afficher dans l’explorateur OONI</string>
   <string name="TestResults_Details_Failed_Title">Échec</string>
@@ -257,7 +258,7 @@
   <string name="Toast_ResultsUploaded">Téléversement réussi</string>
   <string name="Modal_DisplayFailureLog">Afficher le journal des échecs</string>
   <string name="Modal_EnableNotifications_Title">Obtenez des mises à jour sur la censure d’Internet</string>
-  <string name="Modal_EnableNotifications_Paragraph">Souhaitez-vous exécuter les tests d’OONI Probe pendant des événements de censure émergents ? Activez les notifications afin de recevoir un message si nous sommes informés de censure d’Internet près de vous.</string>
+  <string name="Modal_EnableNotifications_Paragraph">Voulez-vous exécuter les tests d’OONI Probe pendant des événements de censure émergents ? Activez les notifications afin de recevoir un message si nous sommes informés de censure d’Internet près de vous.</string>
   <string name="Modal_EnableGPS">Pour améliorer la précision des tests, nous avons besoin des autorisations Position. OONI ne recueillera qu’une position GPS approximative.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Voulez-vous supprimer tous les résultats de test ?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Voulez-vous supprimer ce test ?</string>

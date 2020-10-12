@@ -145,6 +145,7 @@
   <string name="TestResults_Details_ViewLog">ดูปูม</string>
   <string name="TestResults_Details_RawData">ข้อมูล</string>
   <string name="TestResults_Details_CopyExplorerURL">คัดลอก URL ของ Explorer</string>
+  <string name="TestResults_Details_ShareExplorerURL">Share Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">คัดลอกไปคลิปบอร์ด</string>
   <string name="TestResults_Details_ShowInExplorer">แสดงใน OONI Explorer</string>
   <string name="TestResults_Details_Failed_Title">ล้มเหลว</string>

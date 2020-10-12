@@ -145,6 +145,7 @@
   <string name="TestResults_Details_ViewLog">檢視記錄</string>
   <string name="TestResults_Details_RawData">數據</string>
   <string name="TestResults_Details_CopyExplorerURL">複製 Explorer URL</string>
+  <string name="TestResults_Details_ShareExplorerURL">Share Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">複製到剪貼簿</string>
   <string name="TestResults_Details_ShowInExplorer">Show in OONI Explorer</string>
   <string name="TestResults_Details_Failed_Title">失敗</string>
