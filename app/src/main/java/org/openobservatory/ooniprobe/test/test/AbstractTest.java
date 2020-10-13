@@ -74,6 +74,8 @@ public abstract class AbstractTest implements Serializable {
         }
         while (!task.isDone()){
             try {
+                File logFile = Measurement.getLogFile(c, result.id, name);
+                logFile.getParentFile().mkdirs();
                 String json = task.waitForNextEvent();
                 Log.d(TAG, json);
                 EventResult event = gson.fromJson(json, EventResult.class);
@@ -96,8 +98,6 @@ public abstract class AbstractTest implements Serializable {
                         measurement.save();
                         break;
                     case "log":
-                        File logFile = Measurement.getLogFile(c, result.id, name);
-                        logFile.getParentFile().mkdirs();
                         FileUtils.writeStringToFile(
                                 logFile,
                                 event.value.message + "\n",
@@ -108,6 +108,13 @@ public abstract class AbstractTest implements Serializable {
                         break;
                     case "status.progress":
                         testCallback.onProgress(Double.valueOf((index + event.value.percentage) * 100).intValue());
+                        FileUtils.writeStringToFile(
+                                logFile,
+                                event.value.message + "\n",
+                                Charset.forName("UTF-8"),
+                                /*append*/true
+                        );
+                        testCallback.onLog(event.value.message);
                         break;
                     case "measurement":
                         Measurement m = measurements.get(event.value.idx);
