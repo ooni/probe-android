@@ -145,6 +145,7 @@
   <string name="TestResults_Details_ViewLog">عرض السجل</string>
   <string name="TestResults_Details_RawData">بيانات</string>
   <string name="TestResults_Details_CopyExplorerURL">نسخ رابط المتصفح</string>
+  <string name="TestResults_Details_ShareExplorerURL">Share Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">نسخ إلى الحافظة</string>
   <string name="TestResults_Details_ShowInExplorer">إظهار في متصفح OONI</string>
   <string name="TestResults_Details_Failed_Title">فشل</string>

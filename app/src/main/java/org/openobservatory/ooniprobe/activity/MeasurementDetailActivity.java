@@ -227,8 +227,10 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
         invalidateOptionsMenu();
         if (!measurement.hasLogFile(this))
                 menu.findItem(R.id.viewLog).setVisible(false);
-        if (measurement.report_id == null || measurement.report_id.isEmpty())
+        if (measurement.report_id == null || measurement.report_id.isEmpty()) {
+            menu.findItem(R.id.shareExplorerUrl).setVisible(false);
             menu.findItem(R.id.copyExplorerUrl).setVisible(false);
+        }
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -243,17 +245,29 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                 CountlyManager.recordEvent("ViewLog");
                 startActivity(TextActivity.newIntent(this, TextActivity.TYPE_LOG, measurement));
                 return true;
+            case R.id.shareExplorerUrl:
+                CountlyManager.recordEvent("ShareExplorerURL");
+                Intent share = new Intent(Intent.ACTION_SEND);
+                share.putExtra(Intent.EXTRA_TEXT, getExplorerUrl());
+                share.setType("text/plain");
+                Intent shareIntent = Intent.createChooser(share, null);
+                startActivity(shareIntent);
+                return true;
             case R.id.copyExplorerUrl:
                 CountlyManager.recordEvent("CopyExplorerURL");
-                String link = "https://explorer.ooni.io/measurement/" + measurement.report_id;
-                if (measurement.test_name.equals("web_connectivity"))
-                    link = link + "?input=" + measurement.url.url;
-                ((ClipboardManager) getSystemService(CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText(getString(R.string.General_AppName), link));
+                ((ClipboardManager) getSystemService(CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText(getString(R.string.General_AppName), getExplorerUrl()));
                 Toast.makeText(this, R.string.Toast_CopiedToClipboard, Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private String getExplorerUrl(){
+        String url = "https://explorer.ooni.io/measurement/" + measurement.report_id;
+        if (measurement.test_name.equals("web_connectivity"))
+            url = url + "?input=" + measurement.url.url;
+        return url;
     }
 
     @OnClick(R.id.methodology)
@@ -289,7 +303,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                             .withMessage(activity.getString(R.string.Modal_UploadFailed_Paragraph, errors.toString(), totUploads.toString()))
                             .withPositiveButton(activity.getString(R.string.Modal_Retry))
                             .withNeutralButton(getActivity().getString(R.string.Modal_DisplayFailureLog))
-                            .withExtra(logs)
+                            .withExtra(String.join("\n", logger.logs))
                             .build().show(activity.getSupportFragmentManager(), null);
             }
         }

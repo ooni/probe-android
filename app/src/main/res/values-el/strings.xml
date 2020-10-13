@@ -145,6 +145,7 @@
   <string name="TestResults_Details_ViewLog">Προβολή αρχείου καταγραφής</string>
   <string name="TestResults_Details_RawData">Δεδομένα</string>
   <string name="TestResults_Details_CopyExplorerURL">Αντιγραφή URL του OONI Explorer</string>
+  <string name="TestResults_Details_ShareExplorerURL">Share Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">Αντιγραφή στο πρόχειρο</string>
   <string name="TestResults_Details_ShowInExplorer">Προβολή στον OONI Explorer</string>
   <string name="TestResults_Details_Failed_Title">Απέτυχε</string>

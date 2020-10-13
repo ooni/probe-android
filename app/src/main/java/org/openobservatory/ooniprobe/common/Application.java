@@ -29,11 +29,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class Application extends android.app.Application {
-
-	static {
-		System.loadLibrary("measurement_kit");
-	}
-
 	private PreferenceManager preferenceManager;
 	private Gson gson;
 	private boolean testRunning;
@@ -75,11 +70,10 @@ public class Application extends android.app.Application {
 		}
 		return okHttpClient;
 	}
-
-	public OONIOrchestraClient getOrchestraClient() {
+	public OONIOrchestraClient getOrchestraClientWithUrl(String url) {
 		if (orchestraClient == null) {
 			orchestraClient = new Retrofit.Builder()
-					.baseUrl(BuildConfig.OONI_ORCHESTRATE_BASE_URL)
+					.baseUrl(url)
 					.addConverterFactory(GsonConverterFactory.create())
 					.client(getOkHttpClient())
 					.build().create(OONIOrchestraClient.class);
@@ -87,15 +81,23 @@ public class Application extends android.app.Application {
 		return orchestraClient;
 	}
 
-	public OONIAPIClient getApiClient() {
+	public OONIOrchestraClient getOrchestraClient() {
+		return getOrchestraClientWithUrl(BuildConfig.OONI_ORCHESTRATE_BASE_URL);
+	}
+
+	public OONIAPIClient getApiClientWithUrl(String url) {
 		if (apiClient == null) {
 			apiClient = new Retrofit.Builder()
-					.baseUrl(BuildConfig.OONI_API_BASE_URL)
+					.baseUrl(url)
 					.addConverterFactory(GsonConverterFactory.create())
 					.client(getOkHttpClient())
 					.build().create(OONIAPIClient.class);
 		}
 		return apiClient;
+	}
+
+	public OONIAPIClient getApiClient() {
+		return getApiClientWithUrl(BuildConfig.OONI_API_BASE_URL);
 	}
 
 	public PreferenceManager getPreferenceManager() {

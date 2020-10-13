@@ -7,6 +7,9 @@
 		android:id="@+id/viewLog"
 		android:title="@string/TestResults_Details_ViewLog" />
 	<item
+		android:id="@+id/shareExplorerUrl"
+		android:title="@string/TestResults_Details_ShareExplorerURL" />
+	<item
 		android:id="@+id/copyExplorerUrl"
 		android:title="@string/TestResults_Details_CopyExplorerURL" />
 </menu>

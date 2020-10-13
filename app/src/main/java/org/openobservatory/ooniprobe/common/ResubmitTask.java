@@ -1,7 +1,6 @@
 package org.openobservatory.ooniprobe.common;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -10,26 +9,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.raizlabs.android.dbflow.sql.language.Where;
 
 import org.apache.commons.io.FileUtils;
-import org.openobservatory.engine.CollectorResults;
-import org.openobservatory.engine.CollectorTask;
+import org.openobservatory.engine.LoggerArray;
 import org.openobservatory.engine.Engine;
+import org.openobservatory.engine.OONIContext;
+import org.openobservatory.engine.OONISession;
+import org.openobservatory.engine.OONISubmitResults;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
 
 import localhost.toolkit.os.NetworkProgressAsyncTask;
 
 public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAsyncTask<A, Integer, Boolean> {
-    private CollectorTask task;
     protected Integer totUploads;
     protected Integer errors;
-    protected String logs;
+    protected LoggerArray logger;
 
     /**
      * Use this class to resubmit a measurement, use result_id and measurement_id to filter list of value
@@ -39,38 +38,27 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
      */
     public ResubmitTask(A activity) {
         super(activity, true, false);
-        task = Engine.newCollectorTask(
-                BuildConfig.SOFTWARE_NAME,
-                BuildConfig.VERSION_NAME,
-                Engine.getCABundlePath(activity)
-        );
     }
 
-    private boolean perform(Context c, Measurement m) throws IOException {
+    private boolean perform(Context c, Measurement m, OONISession session)  {
         File file = Measurement.getEntryFile(c, m.id, m.test_name);
-        String input = FileUtils.readFileToString(file, Charset.forName("UTF-8"));
-        boolean okay = Engine.maybeUpdateResources(c);
-        if (!okay) {
-            ExceptionManager.logException(new Exception("MKResourcesManager didn't find resources"));
-            return false;
-        }
+        String input;
         long uploadTimeout = getTimeout(file.length());
-        CollectorResults results = task.maybeDiscoverAndSubmit(input, uploadTimeout);
-        if (results.isGood()) {
-            String output = results.getUpdatedSerializedMeasurement();
-            FileUtils.writeStringToFile(file, output, Charset.forName("UTF-8"));
-            m.report_id = results.getUpdatedReportID();
+        OONIContext ooniContext = session.newContextWithTimeout(uploadTimeout);
+        try {
+            input = FileUtils.readFileToString(file, Charset.forName("UTF-8"));
+            OONISubmitResults results = session.submit(ooniContext, input);
+            FileUtils.writeStringToFile(file, results.updatedMeasurement, Charset.forName("UTF-8"));
+            m.report_id = results.updatedReportID;
             m.is_uploaded = true;
             m.is_upload_failed = false;
             m.save();
-        } else {
-            Log.w(CollectorTask.class.getSimpleName(), results.getLogs());
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            ExceptionManager.logException(e);
+            return false;
         }
-        System.out.println("getReason "+ results.getReason());
-        System.out.println("getLogs "+ results.getLogs());
-        if (!results.isGood())
-            logs += results.getReason() + "\n";
-        return results.isGood();
     }
 
     public static long getTimeout(long length) {
@@ -94,7 +82,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
      */
     @Override
     protected Boolean doInBackground(Integer... params) {
-        logs = "";
+        logger = new LoggerArray();
         errors = 0;
         if (params.length != 2)
             throw new IllegalArgumentException("MKCollectorResubmitTask requires 2 nullable params: result_id, measurement_id");
@@ -107,23 +95,32 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
         }
         List<Measurement> measurements = msmQuery.queryList();
         totUploads = measurements.size();
-        for (int i = 0; i < measurements.size(); i++) {
-            A activity = getActivity();
-            if (activity == null)
-                break;
-            String paramOfParam = activity.getString(R.string.paramOfParam, Integer.toString(i + 1), Integer.toString(measurements.size()));
-            publishProgress(activity.getString(R.string.Modal_ResultsNotUploaded_Uploading, paramOfParam));
-            Measurement m = measurements.get(i);
-            m.result.load();
-            try {
-                if (!perform(activity, m)){
+        try {
+            OONISession session = Engine.newSession(Engine.getDefaultSessionConfig(
+                    getActivity(), BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, logger));
+            // Updating resources with no timeout because we don't know for sure how much
+            // it will take to download them and choosing a timeout may prevent the operation
+            // to ever complete. (Ideally the user should be able to interrupt the process
+            // and there should be no timeout here.)
+            session.maybeUpdateResources(session.newContext());
+            for (int i = 0; i < measurements.size(); i++) {
+                A activity = getActivity();
+                if (activity == null)
+                    break;
+                String paramOfParam = activity.getString(R.string.paramOfParam, Integer.toString(i + 1), Integer.toString(measurements.size()));
+                publishProgress(activity.getString(R.string.Modal_ResultsNotUploaded_Uploading, paramOfParam));
+                Measurement m = measurements.get(i);
+                m.result.load();
+                if (!perform(activity, m, session)) {
                     errors++;
                 }
-            } catch (IOException e) {
-                errors++;
-                e.printStackTrace();
             }
         }
+       catch (Exception e){
+           e.printStackTrace();
+           ExceptionManager.logException(e);
+           return false;
+       }
         return errors == 0;
     }
 

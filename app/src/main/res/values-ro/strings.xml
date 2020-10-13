@@ -145,6 +145,7 @@
   <string name="TestResults_Details_ViewLog">Vezi jurnalul</string>
   <string name="TestResults_Details_RawData">Date</string>
   <string name="TestResults_Details_CopyExplorerURL">Copiați URL-ul Explorer</string>
+  <string name="TestResults_Details_ShareExplorerURL">Share Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">Copiază în clipboard</string>
   <string name="TestResults_Details_ShowInExplorer">Afișează în OONI Explorer</string>
   <string name="TestResults_Details_Failed_Title">Acţiunea a eşuat</string>

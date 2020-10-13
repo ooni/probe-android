@@ -145,6 +145,7 @@
   <string name="TestResults_Details_ViewLog">View log</string>
   <string name="TestResults_Details_RawData">Data</string>
   <string name="TestResults_Details_CopyExplorerURL">Copy Explorer URL</string>
+  <string name="TestResults_Details_ShareExplorerURL">Share Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">Copy to clipboard</string>
   <string name="TestResults_Details_ShowInExplorer">Show in OONI Explorer</string>
   <string name="TestResults_Details_Failed_Title">Failed</string>

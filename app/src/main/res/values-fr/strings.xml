@@ -145,6 +145,7 @@
   <string name="TestResults_Details_ViewLog">Visualiser le journal</string>
   <string name="TestResults_Details_RawData">Données</string>
   <string name="TestResults_Details_CopyExplorerURL">Copier l’URL de l’explorateur</string>
+  <string name="TestResults_Details_ShareExplorerURL">Share Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">Copier dans le presse-papiers</string>
   <string name="TestResults_Details_ShowInExplorer">Afficher dans l’explorateur OONI</string>
   <string name="TestResults_Details_Failed_Title">Échec</string>
@@ -153,7 +154,7 @@
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Accessible</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s est accessible.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Probablement bloqué</string>
-  <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">%1$s est probablement bloqué au moyen de %2$s.\n\nNote : De faux positifs peuvent se produire. Apprenez-en davantage [ici](https://ooni.org/support/faq/#what-are-false-positives).</string>
+  <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">%1$s est probablement bloqué par %2$s.\n\nNote : De faux positifs peuvent se produire. Apprenez-en davantage [ici](https://ooni.org/support/faq/#what-are-false-positives) (page en anglais).</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Content_LearnToCircumvent">Contournement de la censure</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_DNS">**Manipulation DNS**</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_TCPIP">**Blocage basé sur le TCP/IP**</string>
@@ -242,7 +243,7 @@
   <string name="Modal_Delete">Supprimer</string>
   <string name="Modal_Error">Erreur</string>
   <string name="Modal_Retry">Réessayer</string>
-  <string name="Modal_SoundsGreat">Sounds great</string>
+  <string name="Modal_SoundsGreat">C’est parfait</string>
   <string name="Modal_NoThanks">Non, merci</string>
   <string name="Modal_Error_NoInternet">Impossible d’effectuer le test. Veuillez vérifier votre connexion à Internet.</string>
   <string name="Modal_Error_CantDownloadURLs">Impossible de télécharger la liste des URL. Veuillez réessayer.</string>
@@ -256,8 +257,8 @@
   <string name="Modal_ResultsNotUploaded_Uploading">Téléversement de %1$s…</string>
   <string name="Toast_ResultsUploaded">Téléversement réussi</string>
   <string name="Modal_DisplayFailureLog">Afficher le journal des échecs</string>
-  <string name="Modal_EnableNotifications_Title">Get updates on internet censorship</string>
-  <string name="Modal_EnableNotifications_Paragraph">Souhaitez-vous exécuter les tests d’OONI Probe pendant des événements de censure émergents ? Activez les notifications afin de recevoir un message si nous sommes informés de censure d’Internet près de vous.</string>
+  <string name="Modal_EnableNotifications_Title">Obtenez des mises à jour sur la censure d’Internet</string>
+  <string name="Modal_EnableNotifications_Paragraph">Voulez-vous exécuter les tests d’OONI Probe pendant des événements de censure émergents ? Activez les notifications afin de recevoir un message si nous sommes informés de censure d’Internet près de vous.</string>
   <string name="Modal_EnableGPS">Pour améliorer la précision des tests, nous avons besoin des autorisations Position. OONI ne recueillera qu’une position GPS approximative.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Voulez-vous supprimer tous les résultats de test ?</string>
   <string name="Modal_DoYouWantToDeleteThisTest">Voulez-vous supprimer ce test ?</string>
@@ -273,7 +274,7 @@
   <string name="Modal_ManualUpload_Enable">Activer</string>
   <string name="Modal_ManualUpload_Disable">Non, merci</string>
   <string name="Modal_ShareAnalytics_Title">Aidez-nous à améliorer OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">With the new OONI Probe, you can contribute anonymized usage metrics to help us improve the app. You can opt out through the settings at any time.</string>
+  <string name="Modal_ShareAnalytics_Paragraph">Avec la nouvelle OONI Probe, vous pouvez envoyer des mesures d’utilisation anonymisées afin de nous aider à améliorer l’appli. Vous pouvez en tout temps retirer cette autorisation dans les paramètres.</string>
   <string name="Modal_UploadFailed_Title">Échec de téléversement</string>
   <string name="Modal_UploadFailed_Paragraph">Nous n’avons pas réussi à téléverser %1$s mesures sur %2$s. Le journal des échecs a été partagé avec les développeurs d’OONI.</string>
   <string name="Modal_Error_LogNotFound">Le fichier journal est introuvable</string>

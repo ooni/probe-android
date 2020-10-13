@@ -145,6 +145,7 @@
   <string name="TestResults_Details_ViewLog">Ver log</string>
   <string name="TestResults_Details_RawData">Dados</string>
   <string name="TestResults_Details_CopyExplorerURL">Copiar URL do Explorer</string>
+  <string name="TestResults_Details_ShareExplorerURL">Share Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">Copiar para área de transferência</string>
   <string name="TestResults_Details_ShowInExplorer">Mostrar no OONI Explorer</string>
   <string name="TestResults_Details_Failed_Title">Falhou</string>
@@ -242,7 +243,7 @@
   <string name="Modal_Delete">Apagar</string>
   <string name="Modal_Error">Erro</string>
   <string name="Modal_Retry">Tentar novamente</string>
-  <string name="Modal_SoundsGreat">Sounds great</string>
+  <string name="Modal_SoundsGreat">Parece ótimo</string>
   <string name="Modal_NoThanks">Não, agradeço</string>
   <string name="Modal_Error_NoInternet">Não foi possível executar o teste. Por favor, verifique sua conexão com a Internet.</string>
   <string name="Modal_Error_CantDownloadURLs">Não foi possível baixar a lista de URL\'s. Por favor, tente novamente.</string>
@@ -256,7 +257,7 @@
   <string name="Modal_ResultsNotUploaded_Uploading">Fazendo upload de %1$s ...</string>
   <string name="Toast_ResultsUploaded">Carregamento bem-sucedido</string>
   <string name="Modal_DisplayFailureLog">Exibir log de falhas</string>
-  <string name="Modal_EnableNotifications_Title">Get updates on internet censorship</string>
+  <string name="Modal_EnableNotifications_Title">Receba atualizações sobre censura na internet</string>
   <string name="Modal_EnableNotifications_Paragraph">Interessado em executar os testes do OONI Probe durante eventos de censura emergente? Habilite notificações para receber uma mensagem quando soubermos de censura na internet próximo a você!</string>
   <string name="Modal_EnableGPS">Para melhorar a precisão dos testes, necessitamos de permissões de GPS. OONI coletará somente a sua posição GPS aproximada.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Deseja apagar todos os resultados do teste?</string>
@@ -273,7 +274,7 @@
   <string name="Modal_ManualUpload_Enable">Habilitar</string>
   <string name="Modal_ManualUpload_Disable">Não, agradeço</string>
   <string name="Modal_ShareAnalytics_Title">Ajude-nos a melhorar o OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">With the new OONI Probe, you can contribute anonymized usage metrics to help us improve the app. You can opt out through the settings at any time.</string>
+  <string name="Modal_ShareAnalytics_Paragraph">Com o novo OONI Probe, você pode contribuir com métricas de uso anônimo para nos ajudar a melhorar o aplicativo. Você pode optar por não utilizar o aplicativo a qualquer momento.</string>
   <string name="Modal_UploadFailed_Title">Falha ao enviar</string>
   <string name="Modal_UploadFailed_Paragraph">Falha ao carregar %1$s/%2$s medidas. O log de falhas foi compartilhado com as pessoas que desenvolvem o OONI.</string>
   <string name="Modal_Error_LogNotFound">Arquivo de log não encontrado</string>

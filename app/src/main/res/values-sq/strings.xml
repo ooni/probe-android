@@ -145,6 +145,7 @@
   <string name="TestResults_Details_ViewLog">Shiko detajet</string>
   <string name="TestResults_Details_RawData">Të dhëna</string>
   <string name="TestResults_Details_CopyExplorerURL">Kopjo URL e Eksploruesit</string>
+  <string name="TestResults_Details_ShareExplorerURL">Share Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">Kopjo</string>
   <string name="TestResults_Details_ShowInExplorer">Show in OONI Explorer</string>
   <string name="TestResults_Details_Failed_Title">Dështoi</string>

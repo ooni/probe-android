@@ -1,17 +1,14 @@
 package org.openobservatory.engine;
 
 /**
- * ExperimentSettings is the interface that settings passed to this engine
+ * OONIMKTaskConfig is the interface that any settings for MK-like tasks
  * must implement. It allows the engine to discover the name of the task
  * that we want to run and to obtain its serialization.
  */
-public interface ExperimentSettings {
-    /** taskName returns the task name */
-    public String taskName();
-
+public interface OONIMKTaskConfig {
     /**
      * serialization returns the JSON serialization of the task config, which
      * must be compatible with Measurement Kit v0.9.0 specification.
      */
-    public String serialization();
+    String serialization();
 }

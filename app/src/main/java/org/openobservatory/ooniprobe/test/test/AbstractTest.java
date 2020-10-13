@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.engine.Engine;
-import org.openobservatory.engine.ExperimentTask;
+import org.openobservatory.engine.OONIMKTask;
 import org.openobservatory.ooniprobe.common.ExceptionManager;
 import org.openobservatory.ooniprobe.common.MKException;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
@@ -45,7 +45,7 @@ public abstract class AbstractTest implements Serializable {
     private SparseArray<Measurement> measurements;
     private String reportId;
     private String origin;
-    private ExperimentTask task;
+    private OONIMKTask task;
 
     AbstractTest(String name, String mkName, @StringRes int labelResId, @DrawableRes int iconResId, @StringRes int urlResId, int runtime) {
         this.name = name;
@@ -60,16 +60,6 @@ public abstract class AbstractTest implements Serializable {
 
     void run(Context c, PreferenceManager pm, Gson gson, Settings settings, Result result, int index, TestCallback testCallback) {
         //Checking for resources before running any test
-        try {
-            boolean okay = Engine.maybeUpdateResources(c);
-            if (!okay) {
-                throw new Exception("MKResourcesManager didn't find resources");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            ExceptionManager.logException(e);
-            return;
-        }
         settings.name = mkName;
         settings.inputs = inputs;
         settings.options.max_runtime = max_runtime;
@@ -82,8 +72,10 @@ public abstract class AbstractTest implements Serializable {
             ExceptionManager.logException(exc);
             return;
         }
-        while (!task.isDone())
+        while (!task.isDone()){
             try {
+                File logFile = Measurement.getLogFile(c, result.id, name);
+                logFile.getParentFile().mkdirs();
                 String json = task.waitForNextEvent();
                 Log.d(TAG, json);
                 EventResult event = gson.fromJson(json, EventResult.class);
@@ -106,8 +98,6 @@ public abstract class AbstractTest implements Serializable {
                         measurement.save();
                         break;
                     case "log":
-                        File logFile = Measurement.getLogFile(c, result.id, name);
-                        logFile.getParentFile().mkdirs();
                         FileUtils.writeStringToFile(
                                 logFile,
                                 event.value.message + "\n",
@@ -118,6 +108,13 @@ public abstract class AbstractTest implements Serializable {
                         break;
                     case "status.progress":
                         testCallback.onProgress(Double.valueOf((index + event.value.percentage) * 100).intValue());
+                        FileUtils.writeStringToFile(
+                                logFile,
+                                event.value.message + "\n",
+                                Charset.forName("UTF-8"),
+                                /*append*/true
+                        );
+                        testCallback.onLog(event.value.message);
                         break;
                     case "measurement":
                         Measurement m = measurements.get(event.value.idx);
@@ -178,6 +175,7 @@ public abstract class AbstractTest implements Serializable {
                 e.printStackTrace();
                 ExceptionManager.logException(e);
             }
+        }
     }
 
     public boolean canInterrupt(){

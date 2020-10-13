@@ -145,6 +145,7 @@
   <string name="TestResults_Details_ViewLog">نمایش لاگ</string>
   <string name="TestResults_Details_RawData">داده‌‌ها</string>
   <string name="TestResults_Details_CopyExplorerURL">کپی آدرس Explorer</string>
+  <string name="TestResults_Details_ShareExplorerURL">Share Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">به حافظه کوتاه مدت کپی کن</string>
   <string name="TestResults_Details_ShowInExplorer">در OONI Explorer نشان بده</string>
   <string name="TestResults_Details_Failed_Title">ناموفق</string>

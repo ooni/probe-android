@@ -145,6 +145,7 @@
   <string name="TestResults_Details_ViewLog">Mostra els registre</string>
   <string name="TestResults_Details_RawData">Dades</string>
   <string name="TestResults_Details_CopyExplorerURL">Copia l\'URL de l\'explorador</string>
+  <string name="TestResults_Details_ShareExplorerURL">Share Explorer URL</string>
   <string name="TestResults_Details_CopyToClipboard">Copia al porta-retalls</string>
   <string name="TestResults_Details_ShowInExplorer">Mostra a l\'OONI Explorer</string>
   <string name="TestResults_Details_Failed_Title">Ha fallat</string>

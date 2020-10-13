@@ -218,7 +218,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
                             .withMessage(getActivity().getString(R.string.Modal_UploadFailed_Paragraph, errors.toString(), totUploads.toString()))
                             .withPositiveButton(getActivity().getString(R.string.Modal_Retry))
                             .withNeutralButton(getActivity().getString(R.string.Modal_DisplayFailureLog))
-                            .withExtra(logs)
+                            .withExtra(String.join("\n", logger.logs))
                             .build().show(getActivity().getSupportFragmentManager(), null);
             }
         }
