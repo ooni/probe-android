@@ -145,7 +145,7 @@
   <string name="TestResults_Details_ViewLog">Visualiser le journal</string>
   <string name="TestResults_Details_RawData">Données</string>
   <string name="TestResults_Details_CopyExplorerURL">Copier l’URL de l’explorateur</string>
-  <string name="TestResults_Details_ShareExplorerURL">Share Explorer URL</string>
+  <string name="TestResults_Details_ShareExplorerURL">Partager l’URL de l’explorateur</string>
   <string name="TestResults_Details_CopyToClipboard">Copier dans le presse-papiers</string>
   <string name="TestResults_Details_ShowInExplorer">Afficher dans l’explorateur OONI</string>
   <string name="TestResults_Details_Failed_Title">Échec</string>
@@ -312,6 +312,11 @@
   <string name="Settings_Notifications_Enabled">Activées</string>
   <string name="Settings_Notifications_OnTestCompletion">Aviser à la fin du test</string>
   <string name="Settings_Notifications_OnNews">Fil d’actualité</string>
+  <string name="Settings_AutomatedTesting_Label">Automated testing</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
+  <string name="Settings_AutomatedTesting_RunAutomaticallyTime">Heure</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Test only when connected to Wi-Fi</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Durée du test</string>
   <string name="Settings_Sharing_Label">Partage</string>
   <string name="Settings_Sharing_UploadResults">Publication automatique des résultats</string>
   <string name="Settings_Sharing_UploadResultsManually">Téléversement manuel des résultats</string>
