@@ -312,6 +312,11 @@
   <string name="Settings_Notifications_Enabled">Povolené</string>
   <string name="Settings_Notifications_OnTestCompletion">Upozorniť na dokončenie testu</string>
   <string name="Settings_Notifications_OnNews">Novinky</string>
+  <string name="Settings_AutomatedTesting_Label">Automated testing</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
+  <string name="Settings_AutomatedTesting_RunAutomaticallyTime">Čas</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Test only when connected to Wi-Fi</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Trvanie testu</string>
   <string name="Settings_Sharing_Label">Zdieľanie</string>
   <string name="Settings_Sharing_UploadResults">Automaticky uverejniť výsledky</string>
   <string name="Settings_Sharing_UploadResultsManually">Manuálne nahrávanie výsledkov</string>

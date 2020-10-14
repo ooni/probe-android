@@ -312,6 +312,11 @@
   <string name="Settings_Notifications_Enabled">Activat</string>
   <string name="Settings_Notifications_OnTestCompletion">Informare la finalizarea testului</string>
   <string name="Settings_Notifications_OnNews">Fluxuri de știri</string>
+  <string name="Settings_AutomatedTesting_Label">Automated testing</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
+  <string name="Settings_AutomatedTesting_RunAutomaticallyTime">Ora</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Test only when connected to Wi-Fi</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Durata testului</string>
   <string name="Settings_Sharing_Label">Partajare</string>
   <string name="Settings_Sharing_UploadResults">Publicare automată a rezultatelor</string>
   <string name="Settings_Sharing_UploadResultsManually">Încărcarea manuală a rezultatelor</string>

@@ -145,7 +145,7 @@
   <string name="TestResults_Details_ViewLog">Günlüğü görüntüle</string>
   <string name="TestResults_Details_RawData">Veri</string>
   <string name="TestResults_Details_CopyExplorerURL">Tarayıcı Adresini Kopyala</string>
-  <string name="TestResults_Details_ShareExplorerURL">Share Explorer URL</string>
+  <string name="TestResults_Details_ShareExplorerURL">Gezgin adresini paylaş</string>
   <string name="TestResults_Details_CopyToClipboard">Panoya kopyala</string>
   <string name="TestResults_Details_ShowInExplorer">OONI gezgininde görüntüle</string>
   <string name="TestResults_Details_Failed_Title">Başarısız</string>
@@ -243,7 +243,7 @@
   <string name="Modal_Delete">Sil</string>
   <string name="Modal_Error">Hata</string>
   <string name="Modal_Retry">Yeniden Dene</string>
-  <string name="Modal_SoundsGreat">Sounds great</string>
+  <string name="Modal_SoundsGreat">Harika görünüyor</string>
   <string name="Modal_NoThanks">Hayır, teşekkürler</string>
   <string name="Modal_Error_NoInternet">Sınama yapılamadı. Lütfen İnternet bağlantınızı denetleyin.</string>
   <string name="Modal_Error_CantDownloadURLs">Adres listesi indirilemedi. Lütfen yeniden deneyin.</string>
@@ -257,7 +257,7 @@
   <string name="Modal_ResultsNotUploaded_Uploading">%1$s yükleniyor...</string>
   <string name="Toast_ResultsUploaded">Yüklendi</string>
   <string name="Modal_DisplayFailureLog">Hata günlüğünü görüntüle</string>
-  <string name="Modal_EnableNotifications_Title">Get updates on internet censorship</string>
+  <string name="Modal_EnableNotifications_Title">İnternet sansürleri hakkında güncel bilgileri alın</string>
   <string name="Modal_EnableNotifications_Paragraph">Yeni sansür uygulamaları sırasında OONI Probe sınamaları yapmak ilginizi çeker mi? Yakınınızda bir İnternet sansürü olduğunu öğrendiğimizde size bildirmemiz için bildirimleri etkinleştirebilirsiniz.</string>
   <string name="Modal_EnableGPS">Sınamaların ayrıntısını arttırmak için GPS izinlerine gerek duyulur. OONI yalnızca yaklaşık GPS konumunuzu kullanır.</string>
   <string name="Modal_DoYouWantToDeleteAllTests">Tüm sınama sonuçlarını silmek ister misiniz?</string>
@@ -274,7 +274,7 @@
   <string name="Modal_ManualUpload_Enable">Etkinleştir</string>
   <string name="Modal_ManualUpload_Disable">Hayır, teşekkürler</string>
   <string name="Modal_ShareAnalytics_Title">OONI Probe uygulamasını geliştirmemize katkıda bulunun</string>
-  <string name="Modal_ShareAnalytics_Paragraph">With the new OONI Probe, you can contribute anonymized usage metrics to help us improve the app. You can opt out through the settings at any time.</string>
+  <string name="Modal_ShareAnalytics_Paragraph">Yeni OONI Probe uygulamasını geliştirmemize yardımcı olmak için kullanım istatistiklerinizi bizimle paylaşarak katkıda bulunabilirsiniz. İstediğiniz zaman kullanım istatistiklerinizi paylaşmaktan vazgeçebilirsiniz.</string>
   <string name="Modal_UploadFailed_Title">Yükleme başarısız</string>
   <string name="Modal_UploadFailed_Paragraph">%1$s/%2$s ölçüm yüklenemedi. Sorun ile ilgili günlük kayıtları OONI geliştiricileri ile paylaşıldı.</string>
   <string name="Modal_Error_LogNotFound">Günlük dosyası bulunamadı</string>
@@ -312,6 +312,11 @@
   <string name="Settings_Notifications_Enabled">Etkin</string>
   <string name="Settings_Notifications_OnTestCompletion">Sınamanın tamamlandığı bildirilsin</string>
   <string name="Settings_Notifications_OnNews">Haber Akışı</string>
+  <string name="Settings_AutomatedTesting_Label">Automated testing</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
+  <string name="Settings_AutomatedTesting_RunAutomaticallyTime">Zaman</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Test only when connected to Wi-Fi</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Sınama süresi</string>
   <string name="Settings_Sharing_Label">Paylaşım</string>
   <string name="Settings_Sharing_UploadResults">Sonuçlar Otomatik Olarak Yayınlansın</string>
   <string name="Settings_Sharing_UploadResultsManually">Sonuçları El ile Yükle </string>

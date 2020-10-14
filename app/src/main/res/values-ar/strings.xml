@@ -312,6 +312,11 @@
   <string name="Settings_Notifications_Enabled">‮مُفعّل</string>
   <string name="Settings_Notifications_OnTestCompletion">إجراء تنبيه عند إنتهاء الاختبار</string>
   <string name="Settings_Notifications_OnNews">شريط الأخبار</string>
+  <string name="Settings_AutomatedTesting_Label">Automated testing</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
+  <string name="Settings_AutomatedTesting_RunAutomaticallyTime">الوقت</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Test only when connected to Wi-Fi</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">مدة الاختبار</string>
   <string name="Settings_Sharing_Label">المشاركة</string>
   <string name="Settings_Sharing_UploadResults">نشر النتائج أوتوماتيكيّاً </string>
   <string name="Settings_Sharing_UploadResultsManually">رفع النتائج يدويّاً </string>

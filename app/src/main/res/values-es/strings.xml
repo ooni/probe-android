@@ -145,7 +145,7 @@
   <string name="TestResults_Details_ViewLog">Ver registro</string>
   <string name="TestResults_Details_RawData">Datos</string>
   <string name="TestResults_Details_CopyExplorerURL">Copiar URL del explorador</string>
-  <string name="TestResults_Details_ShareExplorerURL">Share Explorer URL</string>
+  <string name="TestResults_Details_ShareExplorerURL">Compartir URL del explorador</string>
   <string name="TestResults_Details_CopyToClipboard">Copiar al portapapeles</string>
   <string name="TestResults_Details_ShowInExplorer">Mostrar en OONI Explorer</string>
   <string name="TestResults_Details_Failed_Title">Falló</string>
@@ -244,7 +244,7 @@
   <string name="Modal_Error">Error</string>
   <string name="Modal_Retry">Intentar de nuevo</string>
   <string name="Modal_SoundsGreat">Suena genial</string>
-  <string name="Modal_NoThanks">¡No, gracias!</string>
+  <string name="Modal_NoThanks">No, gracias</string>
   <string name="Modal_Error_NoInternet">Incapaz de ejecutar la prueba. Por favor comprueba tu conectividad de Internet.</string>
   <string name="Modal_Error_CantDownloadURLs">Incapaz de descargar la lista de URL. Por favor intenta de nuevo.</string>
   <string name="Modal_Error_NotificationNotEnabled">Son requeridos permisos de notificación. Por favor habilítalos en las Configuraciones de tu teléfono y luego en tu aplicación OONI Probe.</string>
@@ -312,6 +312,11 @@
   <string name="Settings_Notifications_Enabled">Activado</string>
   <string name="Settings_Notifications_OnTestCompletion">Notificar una vez que la prueba se haya completado</string>
   <string name="Settings_Notifications_OnNews">Suscripción de noticias</string>
+  <string name="Settings_AutomatedTesting_Label">Automated testing</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
+  <string name="Settings_AutomatedTesting_RunAutomaticallyTime">Hora</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Test only when connected to Wi-Fi</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Duración de la prueba</string>
   <string name="Settings_Sharing_Label">Compartir</string>
   <string name="Settings_Sharing_UploadResults">Publicar resultados automáticamente</string>
   <string name="Settings_Sharing_UploadResultsManually">Subida Manual de Resultado</string>
