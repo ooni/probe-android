@@ -312,10 +312,10 @@
   <string name="Settings_Notifications_Enabled">Activées</string>
   <string name="Settings_Notifications_OnTestCompletion">Aviser à la fin du test</string>
   <string name="Settings_Notifications_OnNews">Fil d’actualité</string>
-  <string name="Settings_AutomatedTesting_Label">Automated testing</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
+  <string name="Settings_AutomatedTesting_Label">Test automatisé</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically">Lancer les tests automatiquement</string>
   <string name="Settings_AutomatedTesting_RunAutomaticallyTime">Heure</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Test only when connected to Wi-Fi</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Only test on WiFi</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Limiter la durée du test</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Durée du test</string>
   <string name="Settings_Sharing_Label">Partage</string>
