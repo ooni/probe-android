@@ -221,7 +221,7 @@
   <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph">Η σύνδεση στο [Psiphon] (https://psiphon.ca/) φαίνεται να έχει μπλοκαριστεί.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph">Η σύνδεση στο [Psiphon](https://psiphon.ca/) ήταν επιτυχής, και επομένως πρέπει να λειτουργεί.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Χρόνος εκκίνησης</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s \'\'</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s \''</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Hero_Title">Πιθανή λογοκρισία</string>
   <string name="TestResults_Details_Circumvention_Tor_Reachable_Hero_Title">Λειτουργεί</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Content_Paragraph">Η σύνδεση στο [Tor](https://www.torproject.org/) φαίνεται να έχει μπλοκαριστεί.</string>
@@ -315,7 +315,7 @@
   <string name="Settings_AutomatedTesting_Label">Automated testing</string>
   <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
   <string name="Settings_AutomatedTesting_RunAutomaticallyTime">Χρόνος</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Test only when connected to Wi-Fi</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Only test on WiFi</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Περιορισμός διάρκειας δοκιμής</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Διάρκεια δοκιμής</string>
   <string name="Settings_Sharing_Label">Κοινή χρήση</string>
