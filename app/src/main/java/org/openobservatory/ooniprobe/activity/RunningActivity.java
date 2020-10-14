@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -36,6 +37,8 @@ import localhost.toolkit.app.fragment.MessageDialogFragment;
 public class RunningActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String TEST = "test";
     private static final String BACKGROUND_TASK = "background";
+    @BindView(R.id.running)
+    TextView running;
     @BindView(R.id.name)
     TextView name;
     @BindView(R.id.log)
