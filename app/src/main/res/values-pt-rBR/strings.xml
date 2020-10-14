@@ -316,6 +316,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
   <string name="Settings_AutomatedTesting_RunAutomaticallyTime">Hora</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Test only when connected to Wi-Fi</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Limitar a duração do teste</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Duração do teste</string>
   <string name="Settings_Sharing_Label">Compartilhando</string>
   <string name="Settings_Sharing_UploadResults">Publicar os resultados automaticamente</string>
