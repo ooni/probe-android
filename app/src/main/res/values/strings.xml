@@ -441,7 +441,4 @@
   <string name="CategoryCode_CTRL_Description">Benign or innocuous content used for control</string>
   <string name="CategoryCode_IGO_Description">Intergovernmental organizations including The United Nations</string>
   <string name="CategoryCode_MISC_Description">Sites that haven\'t been categorized yet</string>
-  <string name="Settings_AutomatedTesting_Label">Automated Testing</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically">Run test automatically</string>
-  <string name="Settings_AutomatedTesting_RunAutomaticallyTime">Time</string>
 </resources>
