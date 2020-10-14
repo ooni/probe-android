@@ -316,6 +316,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
   <string name="Settings_AutomatedTesting_RunAutomaticallyTime">पहर</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Test only when connected to Wi-Fi</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">परीक्षण अवधि सीमित करें</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">परीक्षण अवधि</string>
   <string name="Settings_Sharing_Label">सहभाजन</string>
   <string name="Settings_Sharing_UploadResults">परिणाम स्वचालित रूप से प्रकाशित करें</string>

@@ -316,6 +316,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
   <string name="Settings_AutomatedTesting_RunAutomaticallyTime">Time</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Test only when connected to Wi-Fi</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Takmarka tímalengd prófunar</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Tímalengd prófunar</string>
   <string name="Settings_Sharing_Label">Deiling</string>
   <string name="Settings_Sharing_UploadResults">Sjálfvirk birting niðurstaðna</string>

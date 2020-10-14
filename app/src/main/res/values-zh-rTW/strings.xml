@@ -316,6 +316,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
   <string name="Settings_AutomatedTesting_RunAutomaticallyTime">時間</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Test only when connected to Wi-Fi</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Limit test duration</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">測試期間</string>
   <string name="Settings_Sharing_Label">分享</string>
   <string name="Settings_Sharing_UploadResults">自動發佈結果</string>
