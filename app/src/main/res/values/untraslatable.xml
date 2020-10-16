@@ -20,6 +20,9 @@
 	<string name="notifications_news" translatable="false">notifications_news</string>
 	<string name="automated_testing_enabled" translatable="false">automated_testing_enabled</string>
 	<string name="automated_testing_time" translatable="false">automated_testing_time</string>
+	<string name="automated_testing_wifionly" translatable="false">automated_testing_wifionly</string>
+	<string name="automated_testing_max_runtime_enabled" translatable="false">automated_testing_max_runtime_enabled</string>
+	<string name="automated_testing_max_runtime" translatable="false">automated_testing_max_runtime</string>
 	<string name="upload_results" translatable="false">upload_results</string>
 	<string name="upload_results_manual" translatable="false">upload_results_manual</string>
 	<string name="include_ip" translatable="false">include_ip</string>

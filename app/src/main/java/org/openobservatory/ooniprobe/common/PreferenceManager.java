@@ -59,6 +59,15 @@ public class PreferenceManager {
 		}
 	}
 
+	public Integer getMaxRuntimeAutoTest() {
+		if (!isMaxRuntimeAutoTestEnabled())
+			return MAX_RUNTIME_DISABLED;
+		try {
+			return Integer.parseInt(sp.getString(r.getString(R.string.automated_testing_max_runtime), "90"));
+		} catch (Exception e) {
+			return 90;
+		}
+	}
 	public String getAutomatedTestingTime() {
 		try {
 			String local_notifications_time = sp.getString(r.getString(R.string.automated_testing_time), "05:00");
@@ -72,6 +81,10 @@ public class PreferenceManager {
 	}
 	public boolean isMaxRuntimeEnabled(){
 		return sp.getBoolean(r.getString(R.string.max_runtime_enabled), true);
+	}
+
+	public boolean isMaxRuntimeAutoTestEnabled(){
+		return sp.getBoolean(r.getString(R.string.automated_testing_max_runtime_enabled), false);
 	}
 
 	public boolean isSendCrash() {
@@ -251,4 +264,9 @@ public class PreferenceManager {
 	public long getAppOpenCount(){
 		return sp.getLong(IS_NOTIFICATION_DIALOG, 0);
 	}
+
+	public boolean testWifiOnly() {
+		return sp.getBoolean(r.getString(R.string.automated_testing_wifionly), true);
+	}
+
 }
