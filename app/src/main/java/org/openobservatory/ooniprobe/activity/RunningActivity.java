@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.ImageButton;
@@ -18,6 +17,7 @@ import androidx.annotation.Nullable;
 import com.airbnb.lottie.LottieAnimationView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.NotificationService;
 import org.openobservatory.ooniprobe.model.database.Result;

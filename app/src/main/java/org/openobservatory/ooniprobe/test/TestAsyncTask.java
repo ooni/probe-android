@@ -1,11 +1,13 @@
 package org.openobservatory.ooniprobe.test;
 
+import android.content.Context;
 import android.os.AsyncTask;
 
 import org.openobservatory.engine.Engine;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
+import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.ExceptionManager;
 import org.openobservatory.ooniprobe.model.api.UrlList;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -34,12 +36,22 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 	public static final String ERR = "ERR";
 	public static final String URL = "URL";
 	protected final WeakReference<ACT> ref;
+	protected final Application app;
 	private final Result result;
 	private AbstractTest currentTest;
 	private boolean interrupt;
 
 	protected TestAsyncTask(ACT activity, Result result) {
 		this.ref = new WeakReference<>(activity);
+		this.app = (Application) activity.getApplication();
+		this.result = result;
+		result.is_viewed = false;
+		result.save();
+	}
+
+	public TestAsyncTask(Application app, Result result) {
+		this.ref = null;
+		this.app = app;
 		this.result = result;
 		result.is_viewed = false;
 		result.save();
@@ -47,7 +59,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 
 	@Override protected Void doInBackground(AbstractTest... tests) {
 		ACT act = ref.get();
-		if (act != null && !act.isFinishing())
+		if (app != null)
 			try {
 				boolean downloadUrls = false;
 				for (AbstractTest abstractTest : tests)
@@ -59,7 +71,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 					String probeCC = "XX";
 					try {
 						probeCC = Engine.resolveProbeCC(
-								act,
+								app,
 								BuildConfig.SOFTWARE_NAME,
 								BuildConfig.VERSION_NAME,
 								30
@@ -69,26 +81,26 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 						e.printStackTrace();
 						ExceptionManager.logException(e);
 					}
-					Response<UrlList> response = act.getOrchestraClient().getUrls(probeCC, act.getPreferenceManager().getEnabledCategory()).execute();
+					Response<UrlList> response = app.getOrchestraClient().getUrls(probeCC, app.getPreferenceManager().getEnabledCategory()).execute();
 					if (response.isSuccessful() && response.body() != null && response.body().results != null) {
 						ArrayList<String> inputs = new ArrayList<>();
 						for (Url url : response.body().results)
 							inputs.add(Url.checkExistingUrl(url.url, url.category_code, url.country_code).url);
 						for (AbstractTest abstractTest : tests) {
 							abstractTest.setInputs(inputs);
-							abstractTest.setMax_runtime(act.getPreferenceManager().getMaxRuntime());
+							abstractTest.setMax_runtime(app.getPreferenceManager().getMaxRuntime());
 						}
 						publishProgress(URL);
 					}
 				}
 				for (int i = 0; i < tests.length; i++) {
-					if (!act.isFinishing() && !interrupt) {
+					if (!interrupt) {
 						currentTest = tests[i];
-						currentTest.run(act, act.getPreferenceManager(), act.getGson(), result, i, this);
+						currentTest.run(app, app.getPreferenceManager(), app.getGson(), result, i, this);
 					}
 				}
 			} catch (Exception e) {
-				publishProgress(ERR, act.getString(R.string.Modal_Error_CantDownloadURLs));
+				publishProgress(ERR, app.getString(R.string.Modal_Error_CantDownloadURLs));
 				e.printStackTrace();
 				ExceptionManager.logException(e);
 			}
