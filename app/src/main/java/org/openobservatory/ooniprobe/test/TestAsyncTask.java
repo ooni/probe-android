@@ -58,7 +58,10 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 	}
 
 	@Override protected Void doInBackground(AbstractTest... tests) {
-		ACT act = ref.get();
+		//How to move this in TestAsyncTaskImpl only?
+		ACT act = null;
+		if (ref != null)
+			act = ref.get();
 		if (app != null)
 			try {
 				boolean downloadUrls = false;
