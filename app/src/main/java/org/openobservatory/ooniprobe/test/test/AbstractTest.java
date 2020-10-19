@@ -266,7 +266,7 @@ public abstract class AbstractTest implements Serializable {
         this.inputs = inputs;
     }
 
-    Integer getMax_runtime() {
+    public Integer getMax_runtime() {
         return max_runtime;
     }
 
