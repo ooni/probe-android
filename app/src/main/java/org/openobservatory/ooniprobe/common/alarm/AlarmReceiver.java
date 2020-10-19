@@ -48,6 +48,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         //TODO log stuff in countly
         webConnectivity.setMax_runtime(pm.getMaxRuntimeAutoTest());
         websitesSuite.setTestList(webConnectivity);
+
         ArrayList<AbstractSuite> testSuites = new ArrayList<>(Arrays.asList(websitesSuite));
         //Intent i = RunningActivity.newBackgroundIntent(context, testSuites);
         //i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -58,7 +59,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         //runWebConnectivity(context, app);
         //context.startActivity(i);
         TestAsyncTask task = (TestAsyncTask) new TestAsyncTask(app, websitesSuite.getResult()).execute(websitesSuite.getTestList(pm));
-
+        //Problem, the test result is shown as error until the test completes.
     }
 
     public void runWebConnectivity(Context c, Application a) {

@@ -59,6 +59,8 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 
 	@Override protected Void doInBackground(AbstractTest... tests) {
 		//How to move this in TestAsyncTaskImpl only?
+
+		//Make another class without background
 		ACT act = null;
 		if (ref != null)
 			act = ref.get();
@@ -91,7 +93,8 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 							inputs.add(Url.checkExistingUrl(url.url, url.category_code, url.country_code).url);
 						for (AbstractTest abstractTest : tests) {
 							abstractTest.setInputs(inputs);
-							abstractTest.setMax_runtime(app.getPreferenceManager().getMaxRuntime());
+							if (abstractTest.getMax_runtime() == null)
+								abstractTest.setMax_runtime(app.getPreferenceManager().getMaxRuntime());
 						}
 						publishProgress(URL);
 					}
