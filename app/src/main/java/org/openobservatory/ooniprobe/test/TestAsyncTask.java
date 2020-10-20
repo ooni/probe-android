@@ -1,12 +1,10 @@
 package org.openobservatory.ooniprobe.test;
 
-import android.content.Context;
 import android.os.AsyncTask;
 
 import org.openobservatory.engine.Engine;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.ExceptionManager;
 import org.openobservatory.ooniprobe.model.api.UrlList;
@@ -20,14 +18,13 @@ import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Response;
 
-public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<AbstractTest, String, Void> implements AbstractTest.TestCallback {
+public class TestAsyncTask extends AsyncTask<AbstractTest, String, Void> implements AbstractTest.TestCallback {
 	public static final List<AbstractSuite> SUITES = Arrays.asList(new WebsitesSuite(),
 			new InstantMessagingSuite(), new CircumventionSuite(), new PerformanceSuite());
 	public static final String PRG = "PRG";
@@ -35,22 +32,12 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 	public static final String RUN = "RUN";
 	public static final String ERR = "ERR";
 	public static final String URL = "URL";
-	protected final WeakReference<ACT> ref;
 	protected final Application app;
 	private final Result result;
 	private AbstractTest currentTest;
 	private boolean interrupt;
 
-	protected TestAsyncTask(ACT activity, Result result) {
-		this.ref = new WeakReference<>(activity);
-		this.app = (Application) activity.getApplication();
-		this.result = result;
-		result.is_viewed = false;
-		result.save();
-	}
-
 	public TestAsyncTask(Application app, Result result) {
-		this.ref = null;
 		this.app = app;
 		this.result = result;
 		result.is_viewed = false;
@@ -58,12 +45,6 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 	}
 
 	@Override protected Void doInBackground(AbstractTest... tests) {
-		//How to move this in TestAsyncTaskImpl only?
-
-		//Make another class without background
-		ACT act = null;
-		if (ref != null)
-			act = ref.get();
 		if (app != null)
 			try {
 				boolean downloadUrls = false;

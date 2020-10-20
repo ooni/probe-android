@@ -25,6 +25,7 @@ import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import java.io.Serializable;
@@ -107,7 +108,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
             testSuite = testSuites.get(0);
             testStart();
             setTestRunning(true);
-            task = (TestAsyncTaskImpl) new TestAsyncTaskImpl(this, testSuite.getResult()).execute(testSuite.getTestList(getPreferenceManager()));
+            task = (TestAsyncTaskImpl) new TestAsyncTaskImpl(this, (Application) getApplication(), testSuite.getResult()).execute(testSuite.getTestList(getPreferenceManager()));
         }
     }
 
@@ -162,14 +163,18 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         Toast.makeText(this, getString(R.string.Modal_Error_CantCloseScreen), Toast.LENGTH_SHORT).show();
     }
 
-    private static class TestAsyncTaskImpl extends TestAsyncTask<RunningActivity> {
-        TestAsyncTaskImpl(RunningActivity activity, Result result) {
-            super(activity, result);
+    private static class TestAsyncTaskImpl<ACT extends AbstractActivity> extends TestAsyncTask {
+        protected final WeakReference<ACT> ref;
+
+        TestAsyncTaskImpl(ACT activity, Application app, Result result) {
+            super(app, result);
+            this.ref = new WeakReference<>(activity);
         }
 
         @Override
         protected void onProgressUpdate(String... values) {
-            RunningActivity act = ref.get();
+            //ACT act = ref.get();
+            RunningActivity act = (RunningActivity)ref.get();
             if (act != null && !act.isFinishing())
                 switch (values[0]) {
                     case RUN:
@@ -199,7 +204,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            RunningActivity act = ref.get();
+            RunningActivity act = (RunningActivity)ref.get();
             act.testSuites.remove(act.testSuite);
             if (act.testSuites.size() == 0)
                 endTest(act);
