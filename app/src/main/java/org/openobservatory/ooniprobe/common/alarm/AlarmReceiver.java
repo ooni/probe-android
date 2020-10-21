@@ -62,6 +62,8 @@ public class AlarmReceiver extends BroadcastReceiver {
         //Problem, the test result is shown as error until the test completes.
     }
 
+
+    //TODO used for early testing. TO REMOVE
     public void runWebConnectivity(Context c, Application a) {
         boolean submitted = false;
         String report_id_1 = "r1";
