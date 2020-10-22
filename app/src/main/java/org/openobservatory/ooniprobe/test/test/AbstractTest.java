@@ -68,6 +68,7 @@ public abstract class AbstractTest implements Serializable {
         try {
             task = Engine.startExperimentTask(settings.toExperimentSettings(gson, c));
         } catch (Exception exc) {
+            //TODO call setFailureMsg here and in other point of (non) return
             exc.printStackTrace();
             ExceptionManager.logException(exc);
             return;
