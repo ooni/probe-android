@@ -122,6 +122,27 @@
 					android:scheme="ooni" />
 			</intent-filter>
 		</activity>
+
+		<service
+			android:name=".common.service.RunTestService"
+			android:icon="@drawable/ooni_logo"
+			android:label="@string/websites">
+		</service>
+		<service android:name=".common.service.RunTestJobService"
+			android:label="Run Test Service"
+			android:permission="android.permission.BIND_JOB_SERVICE">
+		</service>
+		<receiver
+			android:name=".common.service.StartServiceReceiver"
+			android:enabled="true"
+			android:exported="false"
+			android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+			<intent-filter>
+				<action android:name="android.intent.action.BOOT_COMPLETED" />
+			</intent-filter>
+		</receiver>
+
+		<!-- TODO REMOVE -->
 		<receiver
 			android:name=".common.alarm.AlarmReceiver"
 			android:enabled="true"
