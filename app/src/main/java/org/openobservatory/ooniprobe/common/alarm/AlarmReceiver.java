@@ -9,7 +9,6 @@ import com.google.gson.Gson;
 
 import org.openobservatory.engine.Engine;
 import org.openobservatory.engine.OONIMKTask;
-import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.NotificationService;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
@@ -45,6 +44,12 @@ public class AlarmReceiver extends BroadcastReceiver {
             return;
         }
 
+        if (!ReachabilityManager.getNetworkType(context).equals(ReachabilityManager.NO_INTERNET)) {
+            Log.d(TAG, "no internet available");
+            NotificationService.notifyTestError(context, websitesSuite);
+            return;
+        }
+
         //TODO log stuff in countly
         webConnectivity.setMax_runtime(pm.getMaxRuntimeAutoTest());
         websitesSuite.setTestList(webConnectivity);
@@ -61,7 +66,6 @@ public class AlarmReceiver extends BroadcastReceiver {
         TestAsyncTask task = (TestAsyncTask) new TestAsyncTask(app, websitesSuite.getResult()).execute(websitesSuite.getTestList(pm));
         //Problem, the test result is shown as error until the test completes.
     }
-
 
     //TODO used for early testing. TO REMOVE
     public void runWebConnectivity(Context c, Application a) {
