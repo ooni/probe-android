@@ -29,6 +29,7 @@ import java.util.Collections;
 public class AlarmReceiver extends BroadcastReceiver {
     private static final String TAG = "alarm-receiver";
 
+    //TODO MOVE this to RunTestJobService
     @Override
     public void onReceive(Context context, Intent intent) {
         Application app = ((Application)context.getApplicationContext());
@@ -63,7 +64,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         NotificationService.notifyTestStarted(context, websitesSuite);
         //runWebConnectivity(context, app);
         //context.startActivity(i);
-        TestAsyncTask task = (TestAsyncTask) new TestAsyncTask(app, websitesSuite.getResult()).execute(websitesSuite.getTestList(pm));
+        //TestAsyncTask task = (TestAsyncTask) new TestAsyncTask(app, websitesSuite.getResult()).execute(websitesSuite.getTestList(pm));
         //Problem, the test result is shown as error until the test completes.
     }
 

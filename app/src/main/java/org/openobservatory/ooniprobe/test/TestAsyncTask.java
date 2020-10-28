@@ -1,12 +1,20 @@
 package org.openobservatory.ooniprobe.test;
 
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.widget.Toast;
+
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import org.openobservatory.engine.Engine;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.MainActivity;
+import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.ExceptionManager;
+import org.openobservatory.ooniprobe.common.NotificationService;
+import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.model.api.UrlList;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Url;
@@ -24,74 +32,93 @@ import java.util.List;
 
 import retrofit2.Response;
 
-public class TestAsyncTask extends AsyncTask<AbstractTest, String, Void> implements AbstractTest.TestCallback {
+public class TestAsyncTask extends AsyncTask<Void, String, Void> implements AbstractTest.TestCallback {
 	public static final List<AbstractSuite> SUITES = Arrays.asList(new WebsitesSuite(),
 			new InstantMessagingSuite(), new CircumventionSuite(), new PerformanceSuite());
+	public static final String START = "START";
 	public static final String PRG = "PRG";
 	public static final String LOG = "LOG";
 	public static final String RUN = "RUN";
 	public static final String ERR = "ERR";
+	public static final String END = "END";
 	public static final String URL = "URL";
 	protected final Application app;
-	private final Result result;
-	private AbstractTest currentTest;
+	private Result result;
+	ArrayList<AbstractSuite> testSuites;
+	public AbstractSuite currentSuite;
+	public AbstractTest currentTest;
 	private boolean interrupt;
+	RunTestService service;
 
-	public TestAsyncTask(Application app, Result result) {
+	public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, RunTestService service) {
 		this.app = app;
-		this.result = result;
-		result.is_viewed = false;
-		result.save();
+		this.testSuites = testSuites;
+		this.service = service;
 	}
 
-	@Override protected Void doInBackground(AbstractTest... tests) {
-		if (app != null)
-			try {
-				boolean downloadUrls = false;
-				for (AbstractTest abstractTest : tests)
-					if (abstractTest instanceof WebConnectivity && abstractTest.getInputs() == null) {
-						downloadUrls = true;
-						break;
-					}
-				if (downloadUrls) {
-					String probeCC = "XX";
-					try {
-						probeCC = Engine.resolveProbeCC(
-								app,
-								BuildConfig.SOFTWARE_NAME,
-								BuildConfig.VERSION_NAME,
-								30
-						);
-					}
-					catch (Exception e) {
-						e.printStackTrace();
-						ExceptionManager.logException(e);
-					}
-					Response<UrlList> response = app.getOrchestraClient().getUrls(probeCC, app.getPreferenceManager().getEnabledCategory()).execute();
-					if (response.isSuccessful() && response.body() != null && response.body().results != null) {
-						ArrayList<String> inputs = new ArrayList<>();
-						for (Url url : response.body().results)
-							inputs.add(Url.checkExistingUrl(url.url, url.category_code, url.country_code).url);
-						for (AbstractTest abstractTest : tests) {
-							abstractTest.setInputs(inputs);
-							if (abstractTest.getMax_runtime() == null)
-								abstractTest.setMax_runtime(app.getPreferenceManager().getMaxRuntime());
-						}
-						publishProgress(URL);
-					}
+	@Override
+	protected Void doInBackground(Void... voids) {
+		if (app != null){
+			for (int suiteIdx = 0; suiteIdx < testSuites.size(); suiteIdx++){
+				if (!interrupt){
+					currentSuite = testSuites.get(suiteIdx);
+					result = currentSuite.getResult();
+					result.is_viewed = false;
+					result.save();
+					publishProgress(START, String.valueOf(suiteIdx));
+					runTest(currentSuite.getTestList(app.getPreferenceManager()));
 				}
-				for (int i = 0; i < tests.length; i++) {
-					if (!interrupt) {
-						currentTest = tests[i];
-						currentTest.run(app, app.getPreferenceManager(), app.getGson(), result, i, this);
-					}
-				}
-			} catch (Exception e) {
-				publishProgress(ERR, app.getString(R.string.Modal_Error_CantDownloadURLs));
-				e.printStackTrace();
-				ExceptionManager.logException(e);
 			}
+		}
 		return null;
+	}
+
+	private void runTest(AbstractTest ... tests){
+		try {
+			boolean downloadUrls = false;
+			for (AbstractTest abstractTest : tests)
+				if (abstractTest instanceof WebConnectivity && abstractTest.getInputs() == null) {
+					downloadUrls = true;
+					break;
+				}
+			if (downloadUrls) {
+				String probeCC = "XX";
+				try {
+					probeCC = Engine.resolveProbeCC(
+							app,
+							BuildConfig.SOFTWARE_NAME,
+							BuildConfig.VERSION_NAME,
+							30
+					);
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+					ExceptionManager.logException(e);
+				}
+				Response<UrlList> response = app.getOrchestraClient().getUrls(probeCC, app.getPreferenceManager().getEnabledCategory()).execute();
+				if (response.isSuccessful() && response.body() != null && response.body().results != null) {
+					ArrayList<String> inputs = new ArrayList<>();
+					for (Url url : response.body().results)
+						inputs.add(Url.checkExistingUrl(url.url, url.category_code, url.country_code).url);
+					for (AbstractTest abstractTest : tests) {
+						abstractTest.setInputs(inputs);
+						if (abstractTest.getMax_runtime() == null)
+							abstractTest.setMax_runtime(app.getPreferenceManager().getMaxRuntime());
+					}
+					publishProgress(URL);
+				}
+			}
+			for (int i = 0; i < tests.length; i++) {
+				if (!interrupt) {
+					currentTest = tests[i];
+					currentTest.run(app, app.getPreferenceManager(), app.getGson(), result, i, this);
+				}
+			}
+		} catch (Exception e) {
+			publishProgress(ERR, app.getString(R.string.Modal_Error_CantDownloadURLs));
+			e.printStackTrace();
+			ExceptionManager.logException(e);
+		}
 	}
 
 	@Override public void onStart(String name) {
@@ -103,7 +130,60 @@ public class TestAsyncTask extends AsyncTask<AbstractTest, String, Void> impleme
 	}
 
 	@Override public final void onLog(String log) {
-		publishProgress(LOG, log);
+		if (!isInterrupted())
+		    publishProgress(LOG, log);
+	}
+
+	@Override
+	protected void onProgressUpdate(String... values) {
+		sendBroadcast(values);
+		String key = values[0];
+		if (values.length <= 1) return;
+		String value = values[1];
+		switch (key) {
+			case TestAsyncTask.RUN:
+				service.builder.setContentText(value)
+						.setProgress(currentSuite.getTestList(app.getPreferenceManager()).length * 100, 0,false);
+				service.notificationManager.notify(RunTestService.NOTIFICATION_ID, service.builder.build());
+				break;
+			case TestAsyncTask.PRG:
+				int prgs = Integer.parseInt(value);
+				service.builder.setProgress(currentSuite.getTestList(app.getPreferenceManager()).length * 100, prgs,false);
+				service.notificationManager.notify(RunTestService.NOTIFICATION_ID, service.builder.build());
+				break;
+			case TestAsyncTask.ERR:
+				break;
+		}
+	}
+
+	@Override
+	protected void onPostExecute(Void aVoid) {
+		super.onPostExecute(aVoid);
+		/*suiteIdx++;
+		if (suiteIdx < testSuites.size() && !interrupt){
+			AbstractSuite suite = testSuites.get(suiteIdx);
+			runTest(suite.getTestList(app.getPreferenceManager()));
+		}
+		else
+		 */
+		sendBroadcast(END);
+		/*
+		RunningActivity act = (RunningActivity)ref.get();
+		act.testSuites.remove(act.testSuite);
+		if (act.testSuites.size() == 0)
+			endTest(act);
+		else
+			act.runTest();
+		 */
+	}
+
+	private void sendBroadcast(String... values){
+		Intent broadcastIntent = new Intent();
+		broadcastIntent.putExtra("key", values[0]);
+		if (values.length > 1)
+			broadcastIntent.putExtra("value", values[1]);
+		broadcastIntent.setAction("org.openobservatory.ooniprobe.activity.RunningActivity");
+		LocalBroadcastManager.getInstance(app).sendBroadcast(broadcastIntent);
 	}
 
 	public synchronized boolean isInterrupted() {

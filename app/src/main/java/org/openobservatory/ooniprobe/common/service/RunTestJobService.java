@@ -10,6 +10,7 @@ public class RunTestJobService extends JobService {
     @Override
     public boolean onStartJob(JobParameters params) {
         Intent service = new Intent(getApplicationContext(), RunTestService.class);
+
         getApplicationContext().startService(service);
         ServiceUtil.scheduleJob(getApplicationContext()); // reschedule the job
         return true;
