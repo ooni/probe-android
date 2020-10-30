@@ -6,11 +6,13 @@ import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Binder;
 import android.os.IBinder;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
@@ -24,14 +26,19 @@ import java.util.ArrayList;
 public class RunTestService extends Service {
     public static final String CHANNEL_ID = "RunTestService";
     public static final int NOTIFICATION_ID = 1;
+    public static final String ACTION_INTERRUPT = "interrupt_test";
     private final IBinder mBinder = new TestBinder();
     public TestAsyncTask task;
     public NotificationCompat.Builder builder;
     public NotificationManagerCompat notificationManager;
+    ActionReceiver receiver;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        IntentFilter filter = new IntentFilter(ACTION_INTERRUPT);
+        ActionReceiver receiver = new ActionReceiver();
+        this.registerReceiver(receiver, filter);
     }
 
     @Override
@@ -52,15 +59,15 @@ public class RunTestService extends Service {
                 //.addAction(android.R.drawable.ic_media_play, "Play", pplayIntent)
                 .build();
 
-        Intent intentAction = new Intent(getApplicationContext(), ActionReceiver.class);
-        intentAction.putExtra("action","stop");
-        PendingIntent pIntent = PendingIntent.getBroadcast(this,1, intentAction,PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.addAction(R.drawable.ooni_logo, "STOP TEST", pIntent);
-
-
-        startForeground(NOTIFICATION_ID, builder.build());
 
         task = (TestAsyncTask) new TestAsyncTask(app, testSuites, this).execute();
+
+        Intent broadcastIntent = new Intent();
+        broadcastIntent.setAction(RunTestService.ACTION_INTERRUPT);
+        PendingIntent pIntent = PendingIntent.getBroadcast(this,1, broadcastIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.addAction(R.drawable.ooni_logo, "STOP TEST", pIntent);
+
+        startForeground(NOTIFICATION_ID, builder.build());
 
         //stopSelf();
 
@@ -74,6 +81,8 @@ public class RunTestService extends Service {
         builder.setContentText(getApplicationContext().getString(R.string.Notification_FinishedRunning))
                 .setProgress(0,0,false);
         notificationManager.notify(1, builder.build());
+        if (receiver != null)
+            this.unregisterReceiver(receiver);
     }
 
     @Override
@@ -87,23 +96,24 @@ public class RunTestService extends Service {
         }
     }
 
-    public static class ActionReceiver extends BroadcastReceiver {
+    public class ActionReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            String action=intent.getStringExtra("action");
-            if(action.equals("stop")){
-                stopTest();
+            String action = intent.getAction();
+            System.out.println("stopTest onReceive is being called1.1 " + action);
+            if(action != null && action.equals("interrupt_test")){
+                stopTest(context);
             }
             //This is used to close the notification tray
             Intent it = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
             context.sendBroadcast(it);
         }
 
-        public void stopTest(){
+        public void stopTest(Context context){
             //TODO call interrupt test
-            //task.interrupt();
-            System.out.println("stopTest is being called");
+            System.out.println("stopTest is being called1");
+            task.interrupt();
         }
     }
 

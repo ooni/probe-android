@@ -38,6 +38,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 	public static final String ERR = "ERR";
 	public static final String END = "END";
 	public static final String URL = "URL";
+	public static final String INT = "INT";
 	protected final Application app;
 	private Result result;
 	ArrayList<AbstractSuite> testSuites;
@@ -122,7 +123,8 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 	}
 
 	@Override public final void onProgress(int progress) {
-		publishProgress(PRG, Integer.toString(progress));
+		if (!isInterrupted())
+			publishProgress(PRG, Integer.toString(progress));
 	}
 
 	@Override public final void onLog(String log) {
@@ -145,6 +147,11 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 			case TestAsyncTask.PRG:
 				int prgs = Integer.parseInt(value);
 				service.builder.setProgress(currentSuite.getTestList(app.getPreferenceManager()).length * 100, prgs,false);
+				service.notificationManager.notify(RunTestService.NOTIFICATION_ID, service.builder.build());
+				break;
+			case TestAsyncTask.INT:
+				service.builder.setContentText(app.getString(R.string.Dashboard_Running_Stopping_Title))
+					.setProgress(0, 0, true);
 				service.notificationManager.notify(RunTestService.NOTIFICATION_ID, service.builder.build());
 				break;
 			case TestAsyncTask.ERR:
@@ -173,8 +180,10 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 	}
 
 	public synchronized void interrupt(){
-		interrupt = true;
-		if(currentTest.canInterrupt())
+		if(currentTest.canInterrupt()) {
+			interrupt = true;
 			currentTest.interrupt();
+			sendBroadcast(INT);
+		}
 	}
 }

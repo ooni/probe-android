@@ -59,7 +59,6 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     private AbstractSuite testSuite;
     private boolean background;
     private Integer runtime;
-    private TestAsyncTask task;
     private RunTestService service;
     private TestRunBroadRequestReceiver receiver;
 
@@ -118,6 +117,8 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     }
 
     private void applyUIChanges(AbstractSuite testSuite){
+        if (testSuite == null)
+            return;
         runtime = testSuite.getRuntime(getPreferenceManager());
         getWindow().setBackgroundDrawableResource(testSuite.getColor());
         if (Build.VERSION.SDK_INT >= 21) {
@@ -221,6 +222,9 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                     progress.setIndeterminate(false);
                     runtime = testSuite.getRuntime(getPreferenceManager());
                     break;
+                case TestAsyncTask.INT:
+                    running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
+                    log.setText(getString(R.string.Dashboard_Running_Stopping_Notice));
                 case TestAsyncTask.END:
                     //TODO this can be removed if we use the onDestroy of the Service
                     if (background) {
@@ -238,10 +242,8 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     @Override
     public void onConfirmation(Serializable serializable, int i) {
         if (i == DialogInterface.BUTTON_POSITIVE) {
-            //TODO move these strings in a callback
-            running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
-            log.setText(getString(R.string.Dashboard_Running_Stopping_Notice));
-            task.interrupt();
+            if (service != null)
+                service.task.interrupt();
         }
     }
 }
