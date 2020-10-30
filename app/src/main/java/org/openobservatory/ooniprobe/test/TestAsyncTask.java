@@ -2,18 +2,14 @@ package org.openobservatory.ooniprobe.test;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import org.openobservatory.engine.Engine;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.activity.MainActivity;
-import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.ExceptionManager;
-import org.openobservatory.ooniprobe.common.NotificationService;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.model.api.UrlList;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -152,6 +148,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 				service.notificationManager.notify(RunTestService.NOTIFICATION_ID, service.builder.build());
 				break;
 			case TestAsyncTask.ERR:
+				//TODO
 				break;
 		}
 	}
@@ -159,22 +156,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 	@Override
 	protected void onPostExecute(Void aVoid) {
 		super.onPostExecute(aVoid);
-		/*suiteIdx++;
-		if (suiteIdx < testSuites.size() && !interrupt){
-			AbstractSuite suite = testSuites.get(suiteIdx);
-			runTest(suite.getTestList(app.getPreferenceManager()));
-		}
-		else
-		 */
 		sendBroadcast(END);
-		/*
-		RunningActivity act = (RunningActivity)ref.get();
-		act.testSuites.remove(act.testSuite);
-		if (act.testSuites.size() == 0)
-			endTest(act);
-		else
-			act.runTest();
-		 */
 	}
 
 	private void sendBroadcast(String... values){

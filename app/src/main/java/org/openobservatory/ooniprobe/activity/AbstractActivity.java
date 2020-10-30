@@ -20,10 +20,12 @@ public abstract class AbstractActivity extends AppCompatActivity {
 		return ((Application) getApplication()).getGson();
 	}
 
+	//TODO check the RunTestService
 	boolean isTestRunning() {
 		return ((Application) getApplication()).isTestRunning();
 	}
 
+	//TODO check the RunTestService
 	void setTestRunning(boolean testRunning) {
 		((Application) getApplication()).setTestRunning(testRunning);
 	}

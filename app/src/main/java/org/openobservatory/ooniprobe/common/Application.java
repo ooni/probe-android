@@ -108,10 +108,12 @@ public class Application extends android.app.Application {
 		return gson;
 	}
 
+	//TODO check the RunTestService
 	public boolean isTestRunning() {
 		return testRunning;
 	}
 
+	//TODO check the RunTestService
 	public void setTestRunning(boolean testRunning) {
 		this.testRunning = testRunning;
 	}

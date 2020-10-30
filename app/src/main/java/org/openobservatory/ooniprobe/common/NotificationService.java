@@ -29,6 +29,7 @@ public class NotificationService {
         NotificationService.setToken(app);
     }
 
+    //TODO check these methods
     public static void notifyTestStarted(Context c, AbstractSuite testSuite) {
         setChannel(c, TEST_RUN, c.getString(R.string.Settings_Notifications_OnTestCompletion));
         sendNotification(c, c.getString(R.string.General_AppName), c.getString(testSuite.getTitle()) + " " + c.getString(R.string.Dashboard_Running_Running));
@@ -72,7 +73,7 @@ public class NotificationService {
     }
 
     // Register the channel with the system
-    private static void setChannel(Context c, String channelID, String channelName){
+    public static void setChannel(Context c, String channelID, String channelName){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationManager notificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
             if (notificationManager != null) {

@@ -24,16 +24,12 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.airbnb.lottie.LottieAnimationView;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.NotificationService;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
-import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
-import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import java.io.Serializable;
@@ -45,7 +41,6 @@ import localhost.toolkit.app.fragment.MessageDialogFragment;
 
 public class RunningActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener, ServiceConnection {
     private static final String TEST = "test";
-    private static final String BACKGROUND_TASK = "background";
     @BindView(R.id.running)
     TextView running;
     @BindView(R.id.name)
@@ -62,13 +57,11 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     LottieAnimationView animation;
     private ArrayList<AbstractSuite> testSuites;
     private AbstractSuite testSuite;
-    //private AbstractSuite testSuite;
-    //TODO maybe not needed anymore
     private boolean background;
     private Integer runtime;
     private TestAsyncTask task;
     private RunTestService service;
-    private MyBroadRequestReceiver receiver;
+    private TestRunBroadRequestReceiver receiver;
 
     public static Intent newIntent(AbstractActivity context, ArrayList<AbstractSuite> testSuites) {
         if (ReachabilityManager.getNetworkType(context).equals(ReachabilityManager.NO_INTERNET)) {
@@ -90,20 +83,9 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         return new Intent(context, RunningActivity.class).putExtra(TEST, extra);
     }
 
-    //TODO remove
-    public static Intent newBackgroundIntent(Context context, ArrayList<AbstractSuite> testSuites) {
-        return newIntent(context, testSuites).putExtra("background", true);
-    }
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //TODO remove
-        //With this function we can move the activity to the background
-        //https://stackoverflow.com/questions/10008879/intent-to-start-activity-but-dont-bring-to-front
-        if (getIntent().getBooleanExtra(BACKGROUND_TASK, false))
-            moveTaskToBack(true);
 
         setTheme(R.style.Theme_MaterialComponents_NoActionBar_App);
         setContentView(R.layout.activity_running);
@@ -122,7 +104,6 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
             }
         });
 
-        //if (extra != null)
         testSuites = (ArrayList<AbstractSuite>) extra.getSerializable(TEST);
         if (testSuites == null) {
             finish();
@@ -131,16 +112,6 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         startService();
     }
 
-    private void runTest() {
-        /*if (testSuites.size() > 0) {
-            testSuite = testSuites.get(0);
-            testStart();
-            setTestRunning(true);
-            startService();
-            //task = (TestAsyncTaskImpl) new TestAsyncTaskImpl(this, (Application) getApplication(), testSuite.getResult()).execute(testSuite.getTestList(getPreferenceManager()));
-        }
-         */
-    }
     private void applyUIChanges(int index){
         testSuite = testSuites.get(index);
         applyUIChanges(testSuite);
@@ -161,14 +132,13 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         progress.setMax(testSuite.getTestList(getPreferenceManager()).length * 100);
     }
 
-    //TODO https://stackoverflow.com/questions/55486812/using-a-broadcastreceiver-to-update-a-progressbar
     @Override
     protected void onResume() {
         super.onResume();
         IntentFilter filter = new IntentFilter("org.openobservatory.ooniprobe.activity.RunningActivity");
-        receiver = new MyBroadRequestReceiver();
+        receiver = new TestRunBroadRequestReceiver();
         LocalBroadcastManager.getInstance(this).registerReceiver(receiver, filter);
-
+        //Bind the RunTestService
         Intent intent= new Intent(this, RunTestService.class);
         bindService(intent, this, Context.BIND_AUTO_CREATE);
         background = false;
@@ -200,22 +170,12 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         Intent serviceIntent = new Intent(this, RunTestService.class);
         serviceIntent.putExtra("testSuites", testSuites);
         ContextCompat.startForegroundService(this, serviceIntent);
-        //service.setOnProgressChangedListener(this);
     }
-
-    /*
-    @Override
-    public void onProgressUpdate(int progress) {
-        // Do update your progress...
-    }
-    */
 
     //TODO this should stop the test. Do the relative close functions in there
     public void stopService() {
         Intent serviceIntent = new Intent(this, RunTestService.class);
         stopService(serviceIntent);
-        Toast.makeText(RunningActivity.this, "DISConnected", Toast.LENGTH_SHORT).show();
-
     }
 
     @Override
@@ -225,7 +185,6 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         applyUIChanges(service.task.currentSuite);
         if (service.task.currentTest != null)
             name.setText(getString(service.task.currentTest.getLabelResId()));
-        Toast.makeText(RunningActivity.this, "Connected", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -233,9 +192,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         service = null;
     }
 
-    //TODO if activity is opened when a test is running we won't get START (wrong background)
-    //TODO Create getCurrentTest method onResume
-    public class MyBroadRequestReceiver extends BroadcastReceiver {
+    public class TestRunBroadRequestReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             String key = intent.getStringExtra("key");
@@ -265,83 +222,23 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                     runtime = testSuite.getRuntime(getPreferenceManager());
                     break;
                 case TestAsyncTask.END:
+                    //TODO this can be removed if we use the onDestroy of the Service
                     if (background) {
                         NotificationService.notifyTestEnded(context, testSuite);
                     } else
                         startActivity(MainActivity.newIntent(context, R.id.testResults));
+                    //TODO I don't think the activity should be the one in charge to stop the service
                     stopService();
                     finish();
                     break;
             }
         }
     }
-    //TODO remove impl and change with callbacks from service
-    /*private static class TestAsyncTaskImpl<ACT extends AbstractActivity> extends TestAsyncTask {
-        protected final WeakReference<ACT> ref;
 
-        TestAsyncTaskImpl(ACT activity, Application app, Result result) {
-            //super(app, result);
-            this.ref = new WeakReference<>(activity);
-        }
-
-        @Override
-        protected void onProgressUpdate(String... values) {
-            //ACT act = ref.get();
-            RunningActivity act = (RunningActivity)ref.get();
-            if (act != null && !act.isFinishing())
-                switch (values[0]) {
-                    case RUN:
-                        //TODO this should be fixed in the test to be able to see it even when the test is started
-                        act.name.setText(values[1]);
-                        break;
-                    case PRG:
-                        act.progress.setIndeterminate(false);
-                        int prgs = Integer.parseInt(values[1]);
-                        act.progress.setProgress(prgs);
-                        act.eta.setText(act.getString(R.string.Dashboard_Running_Seconds, String.valueOf(Math.round(act.runtime - ((double) prgs) / act.progress.getMax() * act.runtime))));
-                        break;
-                    case LOG:
-                        if (!act.task.isInterrupted())
-                            act.log.setText(values[1]);
-                        break;
-                    case ERR:
-                        Toast.makeText(act, values[1], Toast.LENGTH_SHORT).show();
-                        act.finish();
-                        break;
-                    case URL:
-                        act.progress.setIndeterminate(false);
-                        act.runtime = act.testSuite.getRuntime(act.getPreferenceManager());
-                        break;
-                }
-        }
-
-        //TODO this execute next test. Will it work in the Service?
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            RunningActivity act = (RunningActivity)ref.get();
-            act.testSuites.remove(act.testSuite);
-            if (act.testSuites.size() == 0)
-                endTest(act);
-            else
-                act.runTest();
-        }
-
-        //TODO last test executed
-        private void endTest(RunningActivity act){
-            if (act != null && !act.isFinishing()) {
-                if (act.background) {
-                    NotificationService.notifyTestEnded(act, act.testSuite);
-                } else
-                    act.startActivity(MainActivity.newIntent(act, R.id.testResults));
-                act.finish();
-            }
-        }
-    }
-*/
     @Override
     public void onConfirmation(Serializable serializable, int i) {
         if (i == DialogInterface.BUTTON_POSITIVE) {
+            //TODO move these strings in a callback
             running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
             log.setText(getString(R.string.Dashboard_Running_Stopping_Notice));
             task.interrupt();
