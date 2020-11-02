@@ -145,7 +145,7 @@
 			</intent-filter>
 		</receiver>
 
-		<!-- TODO REMOVE -->
+		<!-- TODO-SERVICE REMOVE -->
 		<receiver
 			android:name=".common.alarm.AlarmReceiver"
 			android:enabled="true"

@@ -30,7 +30,7 @@ import retrofit2.Response;
 
 public class TestAsyncTask extends AsyncTask<Void, String, Void> implements AbstractTest.TestCallback {
 	public static final List<AbstractSuite> SUITES = Arrays.asList(new WebsitesSuite(),
-			new InstantMessagingSuite(), new CircumventionSuite(), new PerformanceSuite());
+			new InstantMessagingSuite(), new CircumventionSuite());
 	public static final String START = "START";
 	public static final String PRG = "PRG";
 	public static final String LOG = "LOG";
@@ -154,9 +154,6 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 					.setProgress(0, 0, true);
 				service.notificationManager.notify(RunTestService.NOTIFICATION_ID, service.builder.build());
 				break;
-			case TestAsyncTask.ERR:
-				//TODO-SERVICE stop the service
-				break;
 		}
 	}
 
@@ -164,6 +161,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 	protected void onPostExecute(Void aVoid) {
 		super.onPostExecute(aVoid);
 		sendBroadcast(END);
+		service.stopSelf();
 	}
 
 	private void sendBroadcast(String... values){

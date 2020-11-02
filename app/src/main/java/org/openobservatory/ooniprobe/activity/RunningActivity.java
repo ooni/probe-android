@@ -57,7 +57,6 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     LottieAnimationView animation;
     private ArrayList<AbstractSuite> testSuites;
     private AbstractSuite testSuite;
-    private boolean background;
     private Integer runtime;
     private RunTestService service;
     private TestRunBroadRequestReceiver receiver;
@@ -135,13 +134,14 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     @Override
     protected void onResume() {
         super.onResume();
+        if (!isTestRunning())
+            testEnded(this);
         IntentFilter filter = new IntentFilter("org.openobservatory.ooniprobe.activity.RunningActivity");
         receiver = new TestRunBroadRequestReceiver();
         LocalBroadcastManager.getInstance(this).registerReceiver(receiver, filter);
         //Bind the RunTestService
         Intent intent= new Intent(this, RunTestService.class);
         bindService(intent, this, Context.BIND_AUTO_CREATE);
-        background = false;
     }
 
     @Override
@@ -149,13 +149,12 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         super.onPause();
         unbindService(this);
         LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
-        background = true;
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
     }
 
     @Override
@@ -167,13 +166,6 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         Intent serviceIntent = new Intent(this, RunTestService.class);
         serviceIntent.putExtra("testSuites", testSuites);
         ContextCompat.startForegroundService(this, serviceIntent);
-    }
-
-    //TODO-SERVICE this should stop the test. Do the relative close functions in there
-    public void stopService() {
-        Intent serviceIntent = new Intent(this, RunTestService.class);
-        stopService(serviceIntent);
-        finish();
     }
 
     @Override
@@ -212,9 +204,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                     log.setText(value);
                     break;
                 case TestAsyncTask.ERR:
-                    //TODO-SERVICE shouldn't be thiss callback to stop
                     Toast.makeText(context, value, Toast.LENGTH_SHORT).show();
-                    stopService();
                     break;
                 case TestAsyncTask.URL:
                     progress.setIndeterminate(false);
@@ -224,16 +214,15 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                     running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
                     log.setText(getString(R.string.Dashboard_Running_Stopping_Notice));
                 case TestAsyncTask.END:
-                    //TODO-SERVICE this can be removed if we use the onDestroy of the Service
-                    if (background) {
-                        NotificationService.notifyTestEnded(context, testSuite);
-                    } else
-                        startActivity(MainActivity.newIntent(context, R.id.testResults));
-                    //TODO-SERVICE I don't think the activity should be the one in charge to stop the service
-                    stopService();
+                    testEnded(context);
                     break;
             }
         }
+    }
+
+    private void testEnded(Context context) {
+        startActivity(MainActivity.newIntent(context, R.id.testResults));
+        finish();
     }
 
     @Override

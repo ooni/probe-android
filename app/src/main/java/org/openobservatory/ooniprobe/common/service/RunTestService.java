@@ -37,7 +37,7 @@ public class RunTestService extends Service {
     public void onCreate() {
         super.onCreate();
         IntentFilter filter = new IntentFilter(ACTION_INTERRUPT);
-        ActionReceiver receiver = new ActionReceiver();
+        receiver = new ActionReceiver();
         this.registerReceiver(receiver, filter);
     }
 
@@ -69,20 +69,18 @@ public class RunTestService extends Service {
 
         startForeground(NOTIFICATION_ID, builder.build());
 
-        //stopSelf();
-
         return START_NOT_STICKY;
     }
 
-    //TODO-SERVICE test this if it's too intrusive when app foreground
+    //TODO-SERVICE test this notification if it's too intrusive when app foreground
     @Override
     public void onDestroy() {
         super.onDestroy();
-        builder.setContentText(getApplicationContext().getString(R.string.Notification_FinishedRunning))
+        builder.mActions.clear();
+        builder.setContentTitle(getApplicationContext().getString(R.string.Notification_FinishedRunning))
                 .setProgress(0,0,false);
         notificationManager.notify(1, builder.build());
-        if (receiver != null)
-            this.unregisterReceiver(receiver);
+        this.unregisterReceiver(receiver);
     }
 
     @Override
@@ -101,7 +99,6 @@ public class RunTestService extends Service {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            System.out.println("stopTest onReceive is being called1.1 " + action);
             if(action != null && action.equals("interrupt_test")){
                 stopTest(context);
             }
@@ -111,8 +108,6 @@ public class RunTestService extends Service {
         }
 
         public void stopTest(Context context){
-            //TODO-SERVICE call interrupt test
-            System.out.println("stopTest is being called1");
             task.interrupt();
         }
     }

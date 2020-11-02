@@ -29,17 +29,19 @@ public class NotificationService {
         NotificationService.setToken(app);
     }
 
-    //TODO-SERVICE check these methods
+    //TODO-SERVICE-BK remove this method
     public static void notifyTestStarted(Context c, AbstractSuite testSuite) {
         setChannel(c, TEST_RUN, c.getString(R.string.Settings_Notifications_OnTestCompletion));
         sendNotification(c, c.getString(R.string.General_AppName), c.getString(testSuite.getTitle()) + " " + c.getString(R.string.Dashboard_Running_Running));
     }
 
+    //TODO-SERVICE-BK check this method
     public static void notifyTestError(Context c, AbstractSuite testSuite) {
         setChannel(c, TEST_RUN, c.getString(R.string.Settings_Notifications_OnTestCompletion));
         sendNotification(c, c.getString(R.string.General_AppName), c.getString(testSuite.getTitle()) + " " + c.getString(R.string.Modal_Error));
     }
 
+    //TODO-SERVICE-BK check remove method (it's unified with RunTestService.onDestroy
     public static void notifyTestEnded(Context c, AbstractSuite testSuite) {
         setChannel(c, TEST_RUN, c.getString(R.string.Settings_Notifications_OnTestCompletion));
         sendNotification(c, c.getString(R.string.General_AppName), c.getString(testSuite.getTitle()) + " " + c.getString(R.string.Notification_FinishedRunning));
