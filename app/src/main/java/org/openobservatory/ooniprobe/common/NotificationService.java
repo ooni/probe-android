@@ -29,7 +29,7 @@ public class NotificationService {
         NotificationService.setToken(app);
     }
 
-    //TODO check these methods
+    //TODO-SERVICE check these methods
     public static void notifyTestStarted(Context c, AbstractSuite testSuite) {
         setChannel(c, TEST_RUN, c.getString(R.string.Settings_Notifications_OnTestCompletion));
         sendNotification(c, c.getString(R.string.General_AppName), c.getString(testSuite.getTitle()) + " " + c.getString(R.string.Dashboard_Running_Running));

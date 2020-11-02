@@ -29,7 +29,7 @@ import java.util.Collections;
 public class AlarmReceiver extends BroadcastReceiver {
     private static final String TAG = "alarm-receiver";
 
-    //TODO MOVE this to RunTestJobService
+    //TODO-SERVICE MOVE this to RunTestJobService
     @Override
     public void onReceive(Context context, Intent intent) {
         Application app = ((Application)context.getApplicationContext());
@@ -51,7 +51,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             return;
         }
 
-        //TODO log stuff in countly
+        //TODO-SERVICE log stuff in countly
         webConnectivity.setMax_runtime(pm.getMaxRuntimeAutoTest());
         websitesSuite.setTestList(webConnectivity);
 
@@ -68,7 +68,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         //Problem, the test result is shown as error until the test completes.
     }
 
-    //TODO used for early testing. TO REMOVE
+    //TODO-SERVICE used for early testing. TO REMOVE
     public void runWebConnectivity(Context c, Application a) {
         boolean submitted = false;
         String report_id_1 = "r1";

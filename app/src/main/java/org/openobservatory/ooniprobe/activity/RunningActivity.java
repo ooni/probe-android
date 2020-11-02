@@ -85,7 +85,6 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setTheme(R.style.Theme_MaterialComponents_NoActionBar_App);
         setContentView(R.layout.activity_running);
         ButterKnife.bind(this);
@@ -155,9 +154,8 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
 
     @Override
     protected void onDestroy() {
-        //TODO use service running
-        setTestRunning(false);
         super.onDestroy();
+
     }
 
     @Override
@@ -166,17 +164,16 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     }
 
     public void startService() {
-        //TODO use service running
-        setTestRunning(true);
         Intent serviceIntent = new Intent(this, RunTestService.class);
         serviceIntent.putExtra("testSuites", testSuites);
         ContextCompat.startForegroundService(this, serviceIntent);
     }
 
-    //TODO this should stop the test. Do the relative close functions in there
+    //TODO-SERVICE this should stop the test. Do the relative close functions in there
     public void stopService() {
         Intent serviceIntent = new Intent(this, RunTestService.class);
         stopService(serviceIntent);
+        finish();
     }
 
     @Override
@@ -215,8 +212,9 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                     log.setText(value);
                     break;
                 case TestAsyncTask.ERR:
+                    //TODO-SERVICE shouldn't be thiss callback to stop
                     Toast.makeText(context, value, Toast.LENGTH_SHORT).show();
-                    finish();
+                    stopService();
                     break;
                 case TestAsyncTask.URL:
                     progress.setIndeterminate(false);
@@ -226,14 +224,13 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                     running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
                     log.setText(getString(R.string.Dashboard_Running_Stopping_Notice));
                 case TestAsyncTask.END:
-                    //TODO this can be removed if we use the onDestroy of the Service
+                    //TODO-SERVICE this can be removed if we use the onDestroy of the Service
                     if (background) {
                         NotificationService.notifyTestEnded(context, testSuite);
                     } else
                         startActivity(MainActivity.newIntent(context, R.id.testResults));
-                    //TODO I don't think the activity should be the one in charge to stop the service
+                    //TODO-SERVICE I don't think the activity should be the one in charge to stop the service
                     stopService();
-                    finish();
                     break;
             }
         }

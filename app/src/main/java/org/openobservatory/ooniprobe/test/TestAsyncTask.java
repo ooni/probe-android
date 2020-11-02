@@ -155,7 +155,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 				service.notificationManager.notify(RunTestService.NOTIFICATION_ID, service.builder.build());
 				break;
 			case TestAsyncTask.ERR:
-				//TODO
+				//TODO-SERVICE stop the service
 				break;
 		}
 	}

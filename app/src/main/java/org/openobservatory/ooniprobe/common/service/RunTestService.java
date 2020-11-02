@@ -74,7 +74,7 @@ public class RunTestService extends Service {
         return START_NOT_STICKY;
     }
 
-    //TODO test this if it's too intrusive when app foreground
+    //TODO-SERVICE test this if it's too intrusive when app foreground
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -111,7 +111,7 @@ public class RunTestService extends Service {
         }
 
         public void stopTest(Context context){
-            //TODO call interrupt test
+            //TODO-SERVICE call interrupt test
             System.out.println("stopTest is being called1");
             task.interrupt();
         }
