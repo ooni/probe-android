@@ -30,7 +30,7 @@ import retrofit2.Response;
 
 public class TestAsyncTask extends AsyncTask<Void, String, Void> implements AbstractTest.TestCallback {
 	public static final List<AbstractSuite> SUITES = Arrays.asList(new WebsitesSuite(),
-			new InstantMessagingSuite(), new CircumventionSuite());
+			new InstantMessagingSuite(), new CircumventionSuite(), new PerformanceSuite());
 	public static final String START = "START";
 	public static final String PRG = "PRG";
 	public static final String LOG = "LOG";
