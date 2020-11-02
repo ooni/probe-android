@@ -64,7 +64,10 @@ public class Application extends android.app.Application {
 					.addInterceptor(new Interceptor() {
 						@Override
 						public Response intercept(Chain chain) throws IOException {
-							Request request = chain.request().newBuilder().addHeader("User-Agent", "ooniprobe-android/" + BuildConfig.VERSION_NAME).build();
+							Request request = chain.request().newBuilder()
+									.addHeader("User-Agent", "ooniprobe-android/" + BuildConfig.VERSION_NAME)
+									.addHeader("Connection", "Close")
+									.build();
 							return chain.proceed(request);
 						}
 					})
