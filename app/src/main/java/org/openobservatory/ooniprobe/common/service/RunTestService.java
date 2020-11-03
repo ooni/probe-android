@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.common.service;
 
-import android.app.Notification;
+import android.app.ActivityManager;
+import android.app.KeyguardManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
@@ -12,9 +13,9 @@ import android.os.IBinder;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.NotificationService;
@@ -53,10 +54,10 @@ public class RunTestService extends Service {
         builder = new NotificationCompat.Builder(this, CHANNEL_ID);
         builder.setContentTitle(getApplication().getString(R.string.Dashboard_Running_Running))
                 .setContentText(getApplication().getString(R.string.Dashboard_Running_PreparingTest))
+                .setAutoCancel(false)
                 .setSmallIcon(R.drawable.notification_icon)
                 .setContentIntent(pendingIntent)
                 .setProgress(100, 0, false)
-                //.addAction(android.R.drawable.ic_media_play, "Play", pplayIntent)
                 .build();
 
 
@@ -72,14 +73,23 @@ public class RunTestService extends Service {
         return START_NOT_STICKY;
     }
 
-    //TODO-SERVICE test this notification if it's too intrusive when app foreground
     @Override
     public void onDestroy() {
         super.onDestroy();
-        builder.mActions.clear();
-        builder.setContentTitle(getApplicationContext().getString(R.string.Notification_FinishedRunning))
-                .setProgress(0,0,false);
-        notificationManager.notify(1, builder.build());
+        Application app = ((Application)getApplication());
+        if (shouldShowNotification(this)){
+            PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),
+                    0, MainActivity.newIntent(getApplicationContext(), R.id.testResults), 0);
+            builder.mActions.clear();
+            builder.setContentTitle(getApplicationContext().getString(R.string.Notification_FinishedRunning))
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(true)
+                    .setProgress(0,0,false);
+
+            notificationManager.notify(1, builder.build());
+        }
+        else
+            notificationManager.cancel(NOTIFICATION_ID);
         this.unregisterReceiver(receiver);
     }
 
@@ -92,6 +102,17 @@ public class RunTestService extends Service {
         public RunTestService getService() {
             return RunTestService.this;
         }
+    }
+
+    static boolean shouldShowNotification(Context context) {
+        ActivityManager.RunningAppProcessInfo myProcess = new ActivityManager.RunningAppProcessInfo();
+        ActivityManager.getMyMemoryState(myProcess);
+        if (myProcess.importance != ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND)
+            return true;
+
+        KeyguardManager km = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
+        // app is in foreground, but if screen is locked show notification anyway
+        return km.inKeyguardRestrictedInputMode();
     }
 
     public class ActionReceiver extends BroadcastReceiver {
