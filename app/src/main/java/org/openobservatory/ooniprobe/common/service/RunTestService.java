@@ -78,7 +78,6 @@ public class RunTestService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Application app = ((Application)getApplication());
         if (shouldShowNotification(this)){
             PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),
                     0, MainActivity.newIntent(getApplicationContext(), R.id.testResults), 0);
