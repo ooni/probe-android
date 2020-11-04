@@ -45,6 +45,8 @@ public class RunTestService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         ArrayList<AbstractSuite> testSuites = (ArrayList<AbstractSuite>) intent.getSerializableExtra("testSuites");
+        if (testSuites == null || testSuites.size() == 0)
+            return 0;
         Application app = ((Application)getApplication());
         NotificationService.setChannel(getApplicationContext(), CHANNEL_ID, app.getString(R.string.Settings_AutomatedTesting_Label));
         Intent notificationIntent = new Intent(this, RunningActivity.class);
@@ -84,7 +86,7 @@ public class RunTestService extends Service {
             builder.setContentTitle(getApplicationContext().getString(R.string.Notification_FinishedRunning))
                     .setContentIntent(pendingIntent)
                     .setAutoCancel(true)
-                    .setProgress(0,0,false);
+                    .setProgress(100,100,false);
 
             notificationManager.notify(1, builder.build());
         }
