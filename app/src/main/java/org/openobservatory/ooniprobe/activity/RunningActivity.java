@@ -25,7 +25,6 @@ import com.airbnb.lottie.LottieAnimationView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
-import org.openobservatory.ooniprobe.common.NotificationService;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
@@ -40,7 +39,6 @@ import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 import localhost.toolkit.app.fragment.MessageDialogFragment;
 
 public class RunningActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener, ServiceConnection {
-    private static final String TEST = "test";
     @BindView(R.id.running)
     TextView running;
     @BindView(R.id.name)
@@ -55,8 +53,6 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     ImageButton close;
     @BindView(R.id.animation)
     LottieAnimationView animation;
-    private ArrayList<AbstractSuite> testSuites;
-    private AbstractSuite testSuite;
     private Integer runtime;
     private RunTestService service;
     private TestRunBroadRequestReceiver receiver;
@@ -69,16 +65,11 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                     .build().show(context.getSupportFragmentManager(), null);
             return null;
         } else {
-            Bundle extra = new Bundle();
-            extra.putSerializable(TEST, testSuites);
-            return new Intent(context, RunningActivity.class).putExtra(TEST, extra);
+            Intent serviceIntent = new Intent(context, RunTestService.class);
+            serviceIntent.putExtra("testSuites", testSuites);
+            ContextCompat.startForegroundService(context, serviceIntent);
+            return new Intent(context, RunningActivity.class);
         }
-    }
-
-    public static Intent newIntent(Context context, ArrayList<AbstractSuite> testSuites) {
-        Bundle extra = new Bundle();
-        extra.putSerializable(TEST, testSuites);
-        return new Intent(context, RunningActivity.class).putExtra(TEST, extra);
     }
 
     @Override
@@ -87,7 +78,6 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         setTheme(R.style.Theme_MaterialComponents_NoActionBar_App);
         setContentView(R.layout.activity_running);
         ButterKnife.bind(this);
-        Bundle extra = getIntent().getBundleExtra(TEST);
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,18 +90,6 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                         .build().show(getSupportFragmentManager(), null);
             }
         });
-
-        testSuites = (ArrayList<AbstractSuite>) extra.getSerializable(TEST);
-        if (testSuites == null) {
-            finish();
-            return;
-        }
-        startService();
-    }
-
-    private void applyUIChanges(int index){
-        testSuite = testSuites.get(index);
-        applyUIChanges(testSuite);
     }
 
     private void applyUIChanges(AbstractSuite testSuite){
@@ -162,12 +140,6 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         Toast.makeText(this, getString(R.string.Modal_Error_CantCloseScreen), Toast.LENGTH_SHORT).show();
     }
 
-    public void startService() {
-        Intent serviceIntent = new Intent(this, RunTestService.class);
-        serviceIntent.putExtra("testSuites", testSuites);
-        ContextCompat.startForegroundService(this, serviceIntent);
-    }
-
     @Override
     public void onServiceConnected(ComponentName cname, IBinder binder) {
         RunTestService.TestBinder b = (RunTestService.TestBinder) binder;
@@ -189,7 +161,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
             String value = intent.getStringExtra("value");
             switch (key) {
                 case TestAsyncTask.START:
-                    applyUIChanges(Integer.parseInt(value));
+                    applyUIChanges(service.task.currentSuite);
                     break;
                 case TestAsyncTask.RUN:
                     name.setText(value);
@@ -208,7 +180,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                     break;
                 case TestAsyncTask.URL:
                     progress.setIndeterminate(false);
-                    runtime = testSuite.getRuntime(getPreferenceManager());
+                    runtime = service.task.currentSuite.getRuntime(getPreferenceManager());
                     break;
                 case TestAsyncTask.INT:
                     running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
