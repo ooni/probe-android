@@ -92,34 +92,44 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         });
     }
 
-    private void applyUIChanges(AbstractSuite testSuite){
-        if (testSuite == null)
+    private void applyUIChanges(){
+        //TODO rename in assumenotnull
+        if (service == null || service.task == null ||
+            service.task.currentSuite == null || service.task.currentTest == null) {
+            System.out.println("RunningActivity currentSuite is null");
             return;
-        runtime = testSuite.getRuntime(getPreferenceManager());
-        getWindow().setBackgroundDrawableResource(testSuite.getColor());
-        if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().setStatusBarColor(testSuite.getColor());
         }
+        else
+            System.out.println("RunningActivity currentSuite FOUND");
         animation.setImageAssetsFolder("anim/");
-        animation.setAnimation(testSuite.getAnim());
         animation.setRepeatCount(Animation.INFINITE);
         animation.playAnimation();
         progress.setIndeterminate(true);
         eta.setText(R.string.Dashboard_Running_CalculatingETA);
-        progress.setMax(testSuite.getTestList(getPreferenceManager()).length * 100);
+
+        name.setText(getString(service.task.currentTest.getLabelResId()));
+        runtime = service.task.currentSuite.getRuntime(getPreferenceManager());
+        getWindow().setBackgroundDrawableResource(service.task.currentSuite.getColor());
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().setStatusBarColor(service.task.currentSuite.getColor());
+        }
+        animation.setAnimation(service.task.currentSuite.getAnim());
+        progress.setMax(service.task.currentSuite.getTestList(getPreferenceManager()).length * 100);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (!isTestRunning())
-            testEnded(this);
         IntentFilter filter = new IntentFilter("org.openobservatory.ooniprobe.activity.RunningActivity");
         receiver = new TestRunBroadRequestReceiver();
         LocalBroadcastManager.getInstance(this).registerReceiver(receiver, filter);
         //Bind the RunTestService
         Intent intent= new Intent(this, RunTestService.class);
         bindService(intent, this, Context.BIND_AUTO_CREATE);
+        if (!isTestRunning())
+            testEnded(this);
+        else
+            applyUIChanges();
     }
 
     @Override
@@ -144,10 +154,10 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     public void onServiceConnected(ComponentName cname, IBinder binder) {
         RunTestService.TestBinder b = (RunTestService.TestBinder) binder;
         service = b.getService();
-        applyUIChanges(service.task.currentSuite);
-        if (service.task.currentTest != null)
-            name.setText(getString(service.task.currentTest.getLabelResId()));
+        System.out.println("RunningActivity service connected");
+        applyUIChanges();
     }
+
 
     @Override
     public void onServiceDisconnected(ComponentName name) {
@@ -161,16 +171,18 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
             String value = intent.getStringExtra("value");
             switch (key) {
                 case TestAsyncTask.START:
-                    applyUIChanges(service.task.currentSuite);
+                    applyUIChanges();
                     break;
                 case TestAsyncTask.RUN:
                     name.setText(value);
                     break;
                 case TestAsyncTask.PRG:
-                    progress.setIndeterminate(false);
                     int prgs = Integer.parseInt(value);
+                    progress.setIndeterminate(false);
                     progress.setProgress(prgs);
-                    eta.setText(getString(R.string.Dashboard_Running_Seconds, String.valueOf(Math.round(runtime - ((double) prgs) / progress.getMax() * runtime))));
+                    if (runtime != null)
+                        eta.setText(getString(R.string.Dashboard_Running_Seconds,
+                                String.valueOf(Math.round(runtime - ((double) prgs) / progress.getMax() * runtime))));
                     break;
                 case TestAsyncTask.LOG:
                     log.setText(value);
