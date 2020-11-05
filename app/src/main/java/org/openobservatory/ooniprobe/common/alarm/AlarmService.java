@@ -32,7 +32,7 @@ public class AlarmService {
         AlarmManager alarms = (AlarmManager) context.getSystemService(
                 Context.ALARM_SERVICE);
         alarms.setRepeating(AlarmManager.RTC_WAKEUP, updateTime.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, recurringAlarm);
+                AlarmManager.INTERVAL_HOUR*2, recurringAlarm);
     }
 
     public static void cancelRecurringAlarm(Context context) {

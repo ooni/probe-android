@@ -131,6 +131,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 	}
 
 	@Override public final void onLog(String log) {
+		//TODO LOG
 		if (!isInterrupted())
 		    publishProgress(LOG, log);
 	}
@@ -167,6 +168,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 	protected void onPostExecute(Void aVoid) {
 		super.onPostExecute(aVoid);
 		sendBroadcast(END);
+		System.out.println("SyncService ended test");
 		service.stopSelf();
 	}
 
