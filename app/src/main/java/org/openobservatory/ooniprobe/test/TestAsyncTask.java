@@ -73,6 +73,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 	}
 
 	private void runTest(AbstractTest ... tests){
+		//TODO the UI doesn't update because for websites currentTest is null on start
 		try {
 			boolean downloadUrls = false;
 			for (AbstractTest abstractTest : tests)
