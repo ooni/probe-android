@@ -1,14 +1,11 @@
 package org.openobservatory.ooniprobe.fragment;
 
-import android.annotation.TargetApi;
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.IdRes;
@@ -24,11 +21,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.alarm.AlarmService;
 
-import java.text.NumberFormat;
-import java.util.Calendar;
-import java.util.Locale;
 import java.util.Arrays;
 import org.openobservatory.ooniprobe.common.CountlyManager;
 import org.openobservatory.ooniprobe.common.NotificationService;
@@ -54,29 +47,6 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
         this.rootKey = rootKey;
     }
 
-    private void showDateDialog(Preference timePreference) {
-        Calendar mcurrentTime = Calendar.getInstance();
-        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-        int minute = mcurrentTime.get(Calendar.MINUTE);
-        TimePickerDialog mTimePicker;
-        mTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                Locale en_locale = new Locale("en","EN");
-                NumberFormat nf = NumberFormat.getInstance(en_locale);
-                int hour = Integer.parseInt(nf.format(selectedHour));
-                int minute = Integer.parseInt(nf.format(selectedMinute));
-                String time = String.format(en_locale, "%02d", hour) + ":" + String.format(en_locale, "%02d", minute);
-                SharedPreferences.Editor editor = getPreferenceScreen().getSharedPreferences().edit();
-                editor.putString(getActivity().getString(R.string.automated_testing_time), time);
-                editor.apply();
-                timePreference.setSummary(String.format("%02d", selectedHour) + ":" + String.format("%02d", selectedMinute));
-                AlarmService.setRecurringAlarm(getActivity().getApplication());
-            }
-        }, hour, minute, true);
-        mTimePicker.show();
-    }
-
     @Override
     public void onResume() {
         assert getArguments() != null;
@@ -84,20 +54,6 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
         setPreferencesFromResource(getArguments().getInt(ARG_PREFERENCES_RES_ID), getArguments().getInt(ARG_CONTAINER_RES_ID), getArguments().getString(ARG_PREFERENCE_ROOT));
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         getActivity().setTitle(getPreferenceScreen().getTitle());
-
-        Preference timePreference = findPreference(getActivity().getString(R.string.automated_testing_time));
-        if (timePreference != null){
-            String time = ((Application) getActivity().getApplication()).getPreferenceManager().getAutomatedTestingTime();
-            timePreference.setSummary(time);
-            timePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    showDateDialog(timePreference);
-                    return false;
-                }
-            });
-        }
 
         for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++) {
             if (getPreferenceScreen().getPreference(i) instanceof EditTextPreference) {
@@ -141,13 +97,6 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Preference preference = findPreference(key);
-        if (key.equals(getString(R.string.automated_testing_enabled))) {
-            if (sharedPreferences.getBoolean(key, false))
-                //Enabling the alarm every time the user enabled automated_testing
-                AlarmService.setRecurringAlarm(getActivity().getApplication());
-            else
-                AlarmService.cancelRecurringAlarm(getActivity().getApplication());
-        }
         if (key.equals(getString(R.string.send_crash)) ||
                 key.equals(getString(R.string.send_analytics)) ||
                 key.equals(getString(R.string.notifications_enabled))){
