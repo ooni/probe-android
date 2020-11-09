@@ -338,6 +338,13 @@
   <string name="Settings_Websites_MaxRuntime">Durada de la prova</string>
   <string name="Settings_Websites_Categories_Label">Categories de lloc web per provar</string>
   <string name="Settings_Websites_Categories_Description">%1$s categories activades</string>
+  <string name="Settings_Websites_Categories_Selection_None">Deselect All</string>
+  <string name="Settings_Websites_Categories_Selection_All">Selecciona-ho tot</string>
+  <string name="Settings_Websites_Categories_Selection_Done">Fet</string>
+  <string name="Settings_Websites_Categories_Confirmation_Title">Unsaved Changes</string>
+  <string name="Settings_Websites_Categories_Confirmation_Body">You made some changes to the enabled categories. Would you like to save them?</string>
+  <string name="Settings_Websites_Categories_Confirmation_Label_Confirm">Desa</string>
+  <string name="Settings_Websites_Categories_Confirmation_Label_Cancel">Descarta</string>
   <string name="Settings_Websites_CustomURL_Title">Trieu llocs web per provar</string>
   <string name="Settings_Websites_CustomURL_URL">URL</string>
   <string name="Settings_Websites_CustomURL_NoURLEntered">No s\'ha introduït cap URL</string>

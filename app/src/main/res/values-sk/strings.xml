@@ -338,6 +338,13 @@
   <string name="Settings_Websites_MaxRuntime">Trvanie testu</string>
   <string name="Settings_Websites_Categories_Label">Kategórie webových stránok na testovanie</string>
   <string name="Settings_Websites_Categories_Description">%1$s povolených kategórií</string>
+  <string name="Settings_Websites_Categories_Selection_None">Deselect All</string>
+  <string name="Settings_Websites_Categories_Selection_All">Označiť všetko</string>
+  <string name="Settings_Websites_Categories_Selection_Done">Hotovo </string>
+  <string name="Settings_Websites_Categories_Confirmation_Title">Unsaved Changes</string>
+  <string name="Settings_Websites_Categories_Confirmation_Body">You made some changes to the enabled categories. Would you like to save them?</string>
+  <string name="Settings_Websites_Categories_Confirmation_Label_Confirm">Uložiť</string>
+  <string name="Settings_Websites_Categories_Confirmation_Label_Cancel">Zahodiť zmeny</string>
   <string name="Settings_Websites_CustomURL_Title">Vyber webové stránky na testovanie</string>
   <string name="Settings_Websites_CustomURL_URL">URL adresa</string>
   <string name="Settings_Websites_CustomURL_NoURLEntered">Neboli zadané URL adresy</string>

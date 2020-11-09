@@ -338,6 +338,13 @@
   <string name="Settings_Websites_MaxRuntime">测试用时</string>
   <string name="Settings_Websites_Categories_Label">要测试的网站类别</string>
   <string name="Settings_Websites_Categories_Description">已启用 %1$s 个分类</string>
+  <string name="Settings_Websites_Categories_Selection_None">Deselect All</string>
+  <string name="Settings_Websites_Categories_Selection_All">选择全部</string>
+  <string name="Settings_Websites_Categories_Selection_Done">完成</string>
+  <string name="Settings_Websites_Categories_Confirmation_Title">未保存的更改</string>
+  <string name="Settings_Websites_Categories_Confirmation_Body">You made some changes to the enabled categories. Would you like to save them?</string>
+  <string name="Settings_Websites_Categories_Confirmation_Label_Confirm">保存</string>
+  <string name="Settings_Websites_Categories_Confirmation_Label_Cancel">放弃</string>
   <string name="Settings_Websites_CustomURL_Title">选择要测试的网站</string>
   <string name="Settings_Websites_CustomURL_URL">URL</string>
   <string name="Settings_Websites_CustomURL_NoURLEntered">没有输入 URL</string>

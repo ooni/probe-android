@@ -145,7 +145,7 @@
   <string name="TestResults_Details_ViewLog">Ver log</string>
   <string name="TestResults_Details_RawData">Dados</string>
   <string name="TestResults_Details_CopyExplorerURL">Copiar URL do Explorer</string>
-  <string name="TestResults_Details_ShareExplorerURL">Share Explorer URL</string>
+  <string name="TestResults_Details_ShareExplorerURL">URL do explorador de compartilhamento</string>
   <string name="TestResults_Details_CopyToClipboard">Copiar para área de transferência</string>
   <string name="TestResults_Details_ShowInExplorer">Mostrar no OONI Explorer</string>
   <string name="TestResults_Details_Failed_Title">Falhou</string>
@@ -312,10 +312,10 @@
   <string name="Settings_Notifications_Enabled">Ativado</string>
   <string name="Settings_Notifications_OnTestCompletion">Notificar após a conclusão do teste</string>
   <string name="Settings_Notifications_OnNews">Notícias</string>
-  <string name="Settings_AutomatedTesting_Label">Automated testing</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
+  <string name="Settings_AutomatedTesting_Label">Teste automatizado</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically">Executar testes automaticamente</string>
   <string name="Settings_AutomatedTesting_RunAutomaticallyTime">Hora</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Only test on WiFi</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Teste apenas em WiFi</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Limitar a duração do teste</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Duração do teste</string>
   <string name="Settings_Sharing_Label">Compartilhando</string>
@@ -338,6 +338,13 @@
   <string name="Settings_Websites_MaxRuntime">Duração do teste</string>
   <string name="Settings_Websites_Categories_Label">Categorias de sites para testar</string>
   <string name="Settings_Websites_Categories_Description">%1$s categorias habilitadas</string>
+  <string name="Settings_Websites_Categories_Selection_None">Deselect All</string>
+  <string name="Settings_Websites_Categories_Selection_All">Selecionar tudo</string>
+  <string name="Settings_Websites_Categories_Selection_Done">Pronto</string>
+  <string name="Settings_Websites_Categories_Confirmation_Title">As Modificações Não Foram Salvas</string>
+  <string name="Settings_Websites_Categories_Confirmation_Body">You made some changes to the enabled categories. Would you like to save them?</string>
+  <string name="Settings_Websites_Categories_Confirmation_Label_Confirm">Gravar</string>
+  <string name="Settings_Websites_Categories_Confirmation_Label_Cancel">Descartar</string>
   <string name="Settings_Websites_CustomURL_Title">Escolha sites para testar</string>
   <string name="Settings_Websites_CustomURL_URL">URL</string>
   <string name="Settings_Websites_CustomURL_NoURLEntered">Nenhuma URL inserida</string>

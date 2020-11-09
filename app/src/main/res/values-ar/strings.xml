@@ -338,6 +338,13 @@
   <string name="Settings_Websites_MaxRuntime">مدة الاختبار</string>
   <string name="Settings_Websites_Categories_Label">أقسام المواقع للاختبار</string>
   <string name="Settings_Websites_Categories_Description">%1$s قسمًا مفعل</string>
+  <string name="Settings_Websites_Categories_Selection_None">Deselect All</string>
+  <string name="Settings_Websites_Categories_Selection_All">حدد الكل</string>
+  <string name="Settings_Websites_Categories_Selection_Done">انتهى</string>
+  <string name="Settings_Websites_Categories_Confirmation_Title">تغييرات غير مسجلة</string>
+  <string name="Settings_Websites_Categories_Confirmation_Body">You made some changes to the enabled categories. Would you like to save them?</string>
+  <string name="Settings_Websites_Categories_Confirmation_Label_Confirm">حفظ</string>
+  <string name="Settings_Websites_Categories_Confirmation_Label_Cancel">تجاهل</string>
   <string name="Settings_Websites_CustomURL_Title">اختيار المواقع للاختبار</string>
   <string name="Settings_Websites_CustomURL_URL">الرابط</string>
   <string name="Settings_Websites_CustomURL_NoURLEntered">لم يتم إدخال أي روابط</string>

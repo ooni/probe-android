@@ -312,10 +312,10 @@
   <string name="Settings_Notifications_Enabled">Etkin</string>
   <string name="Settings_Notifications_OnTestCompletion">Sınamanın tamamlandığı bildirilsin</string>
   <string name="Settings_Notifications_OnNews">Haber Akışı</string>
-  <string name="Settings_AutomatedTesting_Label">Automated testing</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
+  <string name="Settings_AutomatedTesting_Label">Otomatik sınama</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically">Sınamalar otomatik olarak yapılsın</string>
   <string name="Settings_AutomatedTesting_RunAutomaticallyTime">Zaman</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Only test on WiFi</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Yalnız Wi-Fi bağlantısında sınansın</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Sınama süresi sınırlansın</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Sınama süresi</string>
   <string name="Settings_Sharing_Label">Paylaşım</string>
@@ -338,6 +338,13 @@
   <string name="Settings_Websites_MaxRuntime">Sınama süresi</string>
   <string name="Settings_Websites_Categories_Label">Sınanacak web sitesi kategorileri</string>
   <string name="Settings_Websites_Categories_Description">%1$s kategori etkin</string>
+  <string name="Settings_Websites_Categories_Selection_None">Deselect All</string>
+  <string name="Settings_Websites_Categories_Selection_All">Tümünü Seç</string>
+  <string name="Settings_Websites_Categories_Selection_Done">Tamam</string>
+  <string name="Settings_Websites_Categories_Confirmation_Title">Unsaved Changes</string>
+  <string name="Settings_Websites_Categories_Confirmation_Body">You made some changes to the enabled categories. Would you like to save them?</string>
+  <string name="Settings_Websites_Categories_Confirmation_Label_Confirm">Kaydet</string>
+  <string name="Settings_Websites_Categories_Confirmation_Label_Cancel">Iptal</string>
   <string name="Settings_Websites_CustomURL_Title">Sınanacak web sitelerini seçin</string>
   <string name="Settings_Websites_CustomURL_URL">Adres</string>
   <string name="Settings_Websites_CustomURL_NoURLEntered">Herhangi bir adres yazılmamış</string>
