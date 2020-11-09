@@ -73,50 +73,45 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 	}
 
 	private void runTest(AbstractTest ... tests){
-		//TODO the UI doesn't update because for websites currentTest is null on start
 		try {
-			boolean downloadUrls = false;
-			for (AbstractTest abstractTest : tests)
-				if (abstractTest instanceof WebConnectivity && abstractTest.getInputs() == null) {
-					downloadUrls = true;
-					break;
-				}
-			if (downloadUrls) {
-				String probeCC = "XX";
-				try {
-					probeCC = Engine.resolveProbeCC(
-							app,
-							BuildConfig.SOFTWARE_NAME,
-							BuildConfig.VERSION_NAME,
-							30
-					);
-				}
-				catch (Exception e) {
-					e.printStackTrace();
-					ExceptionManager.logException(e);
-				}
-				Response<UrlList> response = app.getOrchestraClient().getUrls(probeCC, app.getPreferenceManager().getEnabledCategory()).execute();
-				if (response.isSuccessful() && response.body() != null && response.body().results != null) {
-					ArrayList<String> inputs = new ArrayList<>();
-					for (Url url : response.body().results)
-						inputs.add(Url.checkExistingUrl(url.url, url.category_code, url.country_code).url);
-					for (AbstractTest abstractTest : tests) {
-						abstractTest.setInputs(inputs);
-						if (abstractTest.getMax_runtime() == null)
-							abstractTest.setMax_runtime(app.getPreferenceManager().getMaxRuntime());
-					}
-					publishProgress(URL);
-				}
-			}
 			for (int i = 0; i < tests.length; i++) {
 				if (!interrupt) {
 					currentTest = tests[i];
+					if (currentTest instanceof WebConnectivity && currentTest.getInputs() == null) {
+						downloadURLs();
+					}
 					Log.d(TAG, "run next stuite: "+ currentSuite.getName() + " test:" +currentTest.getName());
 					currentTest.run(app, app.getPreferenceManager(), app.getGson(), result, i, this);
 				}
 			}
 		} catch (Exception e) {
 			publishProgress(ERR, app.getString(R.string.Modal_Error_CantDownloadURLs));
+			e.printStackTrace();
+			ExceptionManager.logException(e);
+		}
+	}
+
+	private void downloadURLs(){
+		String probeCC = "XX";
+		try {
+			probeCC = Engine.resolveProbeCC(
+					app,
+					BuildConfig.SOFTWARE_NAME,
+					BuildConfig.VERSION_NAME,
+					30
+			);
+			Response<UrlList> response = app.getOrchestraClient().getUrls(probeCC, app.getPreferenceManager().getEnabledCategory()).execute();
+			if (response.isSuccessful() && response.body() != null && response.body().results != null) {
+				ArrayList<String> inputs = new ArrayList<>();
+				for (Url url : response.body().results)
+					inputs.add(Url.checkExistingUrl(url.url, url.category_code, url.country_code).url);
+				currentTest.setInputs(inputs);
+				if (currentTest.getMax_runtime() == null)
+					currentTest.setMax_runtime(app.getPreferenceManager().getMaxRuntime());
+				publishProgress(URL);
+			}
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 			ExceptionManager.logException(e);
 		}
