@@ -154,6 +154,7 @@ public abstract class AbstractTest implements Serializable {
                         setDataUsage(event.value, result);
                         break;
                     case "failure.startup":
+                    case "failure.resolver_lookup":
                         setFailureMsg(event.value, result);
                         break;
                     case "bug.json_dump":
