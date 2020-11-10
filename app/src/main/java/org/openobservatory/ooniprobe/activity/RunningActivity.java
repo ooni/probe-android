@@ -56,6 +56,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     private Integer runtime;
     private RunTestService service;
     private TestRunBroadRequestReceiver receiver;
+    boolean isBound = false;
 
     public static Intent newIntent(AbstractActivity context, ArrayList<AbstractSuite> testSuites) {
         if (ReachabilityManager.getNetworkType(context).equals(ReachabilityManager.NO_INTERNET)) {
@@ -93,14 +94,10 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     }
 
     private void applyUIChanges(){
-        //TODO rename in assumenotnull
         if (service == null || service.task == null ||
             service.task.currentSuite == null || service.task.currentTest == null) {
-            System.out.println("RunningActivity currentSuite is null");
             return;
         }
-        else
-            System.out.println("RunningActivity currentSuite FOUND");
         animation.setImageAssetsFolder("anim/");
         animation.setRepeatCount(Animation.INFINITE);
         animation.playAnimation();
@@ -120,22 +117,26 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     @Override
     protected void onResume() {
         super.onResume();
+        if (!isTestRunning()) {
+            testEnded(this);
+            return;
+        }
         IntentFilter filter = new IntentFilter("org.openobservatory.ooniprobe.activity.RunningActivity");
         receiver = new TestRunBroadRequestReceiver();
         LocalBroadcastManager.getInstance(this).registerReceiver(receiver, filter);
         //Bind the RunTestService
+        //TODO this create a new intent if the previous was destroyed. not good
         Intent intent= new Intent(this, RunTestService.class);
         bindService(intent, this, Context.BIND_AUTO_CREATE);
-        if (!isTestRunning())
-            testEnded(this);
-        else
-            applyUIChanges();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        unbindService(this);
+        if (isBound) {
+            unbindService(this);
+            isBound = false;
+        }
         LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
     }
 
@@ -154,7 +155,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     public void onServiceConnected(ComponentName cname, IBinder binder) {
         RunTestService.TestBinder b = (RunTestService.TestBinder) binder;
         service = b.getService();
-        System.out.println("RunningActivity service connected");
+        isBound = true;
         applyUIChanges();
     }
 
