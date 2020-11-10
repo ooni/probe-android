@@ -13,7 +13,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class OONIOrchestraClientTest extends AbstractTest {
-    private static final String ORCHESTRA_URL = "https://ams-pg.ooni.org";
+    private static final String ORCHESTRA_URL = "https://ams-pg-test.ooni.org";
 
     @Test
     public void getUrlsSuccess() {

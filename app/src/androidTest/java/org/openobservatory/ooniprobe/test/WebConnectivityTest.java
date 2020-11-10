@@ -19,7 +19,7 @@ public class WebConnectivityTest extends AbstractTest {
     private static final String EXPERIMENT_NAME = "WebConnectivity";
     private static final String TAG = "integration-test";
     private static final String UNUSED_KEY = "UNUSED_KEY";
-    private static final String CLIENT_URL = "https://ams-pg.ooni.org";
+    private static final String CLIENT_URL = "https://ams-pg-test.ooni.org";
 
     @Test
     public void runWebConnectivity() {
