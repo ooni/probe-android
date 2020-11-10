@@ -319,7 +319,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">จำกัดระยะเวลาทดสอบ</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">ระยะเวลาทดสอบ</string>
   <string name="Settings_Sharing_Label">แบ่งปัน</string>
-  <string name="Settings_Sharing_UploadResults">เผยแพร่ผลลัพธ์โดยอัตโนมัติ</string>
+  <string name="Settings_Sharing_UploadResults">Publish Results</string>
   <string name="Settings_Sharing_UploadResultsManually">อัปโหลดผลลัพธ์ด้วยตัวเอง</string>
   <string name="Settings_Sharing_IncludeNetwork">รวมข้อมูลเครือข่าย</string>
   <string name="Settings_Sharing_GPS">รวมถึงตำแหน่งที่ตั้งทางภูมิศาสตร์โดยประมาณ</string>
@@ -338,6 +338,7 @@
   <string name="Settings_Websites_MaxRuntime">ระยะเวลาทดสอบ</string>
   <string name="Settings_Websites_Categories_Label">ประเภทเว็บไซต์ที่จะทดสอบ</string>
   <string name="Settings_Websites_Categories_Description">%1$s หมวดหมู่เปิดใช้งาน</string>
+  <string name="Settings_Websites_Categories_Edit">แก้ไข</string>
   <string name="Settings_Websites_Categories_Selection_None">Deselect All</string>
   <string name="Settings_Websites_Categories_Selection_All">เลือกทั้งหมด</string>
   <string name="Settings_Websites_Categories_Selection_Done">เสร็จสิ้น</string>

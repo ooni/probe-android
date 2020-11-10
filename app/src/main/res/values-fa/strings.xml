@@ -319,7 +319,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">کرانمند‌سازی مدت آزمون</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">مدت تست</string>
   <string name="Settings_Sharing_Label">به اشتراک گذاری</string>
-  <string name="Settings_Sharing_UploadResults">انتشار خودکار نتایج</string>
+  <string name="Settings_Sharing_UploadResults">Publish Results</string>
   <string name="Settings_Sharing_UploadResultsManually">بارگذاری دستی نتایج</string>
   <string name="Settings_Sharing_IncludeNetwork">شامل اطلاعات شبکه باشد</string>
   <string name="Settings_Sharing_GPS">شامل موقعیت جغرافیایی تقریبی باشد</string>
@@ -338,6 +338,7 @@
   <string name="Settings_Websites_MaxRuntime">مدت تست</string>
   <string name="Settings_Websites_Categories_Label">دسته‌بندی‌های وبسایت برای تست</string>
   <string name="Settings_Websites_Categories_Description">%1$s دسته بندی فعال است</string>
+  <string name="Settings_Websites_Categories_Edit">ویرایش</string>
   <string name="Settings_Websites_Categories_Selection_None">Deselect All</string>
   <string name="Settings_Websites_Categories_Selection_All">انتخاب همه</string>
   <string name="Settings_Websites_Categories_Selection_Done">انجام شد</string>

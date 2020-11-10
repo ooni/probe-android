@@ -319,7 +319,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Kufizo kohëzgjatjen e testimit</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Kohëzgjatja e testimit</string>
   <string name="Settings_Sharing_Label">Ndajë</string>
-  <string name="Settings_Sharing_UploadResults">Publiko rezultatet automatikisht</string>
+  <string name="Settings_Sharing_UploadResults">Publish Results</string>
   <string name="Settings_Sharing_UploadResultsManually">Ngarkim Muanual i Rezultateve</string>
   <string name="Settings_Sharing_IncludeNetwork">Përfshi informacion të rrjetit</string>
   <string name="Settings_Sharing_GPS">Përfshi gjelokacionin me përafërsi</string>
@@ -338,6 +338,7 @@
   <string name="Settings_Websites_MaxRuntime">Kohëzgjatja e testimit</string>
   <string name="Settings_Websites_Categories_Label">Kategori faqjesh për të testuar</string>
   <string name="Settings_Websites_Categories_Description">%1$s shtete të aktivizuara</string>
+  <string name="Settings_Websites_Categories_Edit">Përpunojeni</string>
   <string name="Settings_Websites_Categories_Selection_None">Deselect All</string>
   <string name="Settings_Websites_Categories_Selection_All">Përzgjidhi Krejt</string>
   <string name="Settings_Websites_Categories_Selection_Done">U bë</string>

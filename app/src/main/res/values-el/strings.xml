@@ -319,7 +319,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Περιορισμός διάρκειας δοκιμής</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Διάρκεια δοκιμής</string>
   <string name="Settings_Sharing_Label">Κοινή χρήση</string>
-  <string name="Settings_Sharing_UploadResults">Αυτόματη δημοσίευση αποτελεσμάτων</string>
+  <string name="Settings_Sharing_UploadResults">Publish Results</string>
   <string name="Settings_Sharing_UploadResultsManually">Χειροκίνητο ανέβασμα αποτελεσμάτων</string>
   <string name="Settings_Sharing_IncludeNetwork">Δημοσίευση πληροφοριών δικτύου</string>
   <string name="Settings_Sharing_GPS">Δημοσίευση της κατά προσέγγιση γεωγραφικής θέσης</string>
@@ -338,6 +338,7 @@
   <string name="Settings_Websites_MaxRuntime">Διάρκεια δοκιμής</string>
   <string name="Settings_Websites_Categories_Label">Κατηγορίες ιστοσελιδών για δοκιμή</string>
   <string name="Settings_Websites_Categories_Description">%1$s ενεργοποιημένες κατηγορίες</string>
+  <string name="Settings_Websites_Categories_Edit">Επεξεργασία</string>
   <string name="Settings_Websites_Categories_Selection_None">Deselect All</string>
   <string name="Settings_Websites_Categories_Selection_All">Επιλογή όλων</string>
   <string name="Settings_Websites_Categories_Selection_Done">Τέλος</string>

@@ -319,7 +319,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Limitar a duração do teste</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Duração do teste</string>
   <string name="Settings_Sharing_Label">Compartilhando</string>
-  <string name="Settings_Sharing_UploadResults">Publicar os resultados automaticamente</string>
+  <string name="Settings_Sharing_UploadResults">Publish Results</string>
   <string name="Settings_Sharing_UploadResultsManually">Carregamento manual dos resultados</string>
   <string name="Settings_Sharing_IncludeNetwork">Incluir informações de rede</string>
   <string name="Settings_Sharing_GPS">Incluir localização geográfica aproximada</string>
@@ -338,6 +338,7 @@
   <string name="Settings_Websites_MaxRuntime">Duração do teste</string>
   <string name="Settings_Websites_Categories_Label">Categorias de sites para testar</string>
   <string name="Settings_Websites_Categories_Description">%1$s categorias habilitadas</string>
+  <string name="Settings_Websites_Categories_Edit">Editar</string>
   <string name="Settings_Websites_Categories_Selection_None">Deselect All</string>
   <string name="Settings_Websites_Categories_Selection_All">Selecionar tudo</string>
   <string name="Settings_Websites_Categories_Selection_Done">Pronto</string>

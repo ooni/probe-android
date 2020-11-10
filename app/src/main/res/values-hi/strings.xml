@@ -319,7 +319,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">परीक्षण अवधि सीमित करें</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">परीक्षण अवधि</string>
   <string name="Settings_Sharing_Label">सहभाजन</string>
-  <string name="Settings_Sharing_UploadResults">परिणाम स्वचालित रूप से प्रकाशित करें</string>
+  <string name="Settings_Sharing_UploadResults">Publish Results</string>
   <string name="Settings_Sharing_UploadResultsManually">मैनुअल रिजल्ट अपलोड</string>
   <string name="Settings_Sharing_IncludeNetwork">नेटवर्क जानकारी शामिल करें</string>
   <string name="Settings_Sharing_GPS">अनुमानित भू-स्थान शामिल करें</string>
@@ -338,6 +338,7 @@
   <string name="Settings_Websites_MaxRuntime">परीक्षण अवधि</string>
   <string name="Settings_Websites_Categories_Label">परीक्षण करने के लिए वेबसाइट श्रेणियां</string>
   <string name="Settings_Websites_Categories_Description">%1$s श्रेणियां सक्षम</string>
+  <string name="Settings_Websites_Categories_Edit">Edit</string>
   <string name="Settings_Websites_Categories_Selection_None">Deselect All</string>
   <string name="Settings_Websites_Categories_Selection_All">सब कुछ चुने। </string>
   <string name="Settings_Websites_Categories_Selection_Done">सम्पन्न</string>

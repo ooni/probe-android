@@ -319,7 +319,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">限制测试持续时间</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">测试用时</string>
   <string name="Settings_Sharing_Label">分享</string>
-  <string name="Settings_Sharing_UploadResults">自动发布结果</string>
+  <string name="Settings_Sharing_UploadResults">Publish Results</string>
   <string name="Settings_Sharing_UploadResultsManually">手动上传结果</string>
   <string name="Settings_Sharing_IncludeNetwork">包括网络信息</string>
   <string name="Settings_Sharing_GPS">包括模糊的地理位置</string>
@@ -338,6 +338,7 @@
   <string name="Settings_Websites_MaxRuntime">测试用时</string>
   <string name="Settings_Websites_Categories_Label">要测试的网站类别</string>
   <string name="Settings_Websites_Categories_Description">已启用 %1$s 个分类</string>
+  <string name="Settings_Websites_Categories_Edit">编辑</string>
   <string name="Settings_Websites_Categories_Selection_None">Deselect All</string>
   <string name="Settings_Websites_Categories_Selection_All">选择全部</string>
   <string name="Settings_Websites_Categories_Selection_Done">完成</string>
