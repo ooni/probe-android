@@ -319,7 +319,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Limitarea duratei testului</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Durata testului</string>
   <string name="Settings_Sharing_Label">Partajare</string>
-  <string name="Settings_Sharing_UploadResults">Publicare automată a rezultatelor</string>
+  <string name="Settings_Sharing_UploadResults">Publish Results</string>
   <string name="Settings_Sharing_UploadResultsManually">Încărcarea manuală a rezultatelor</string>
   <string name="Settings_Sharing_IncludeNetwork">Includereți informații despre rețea</string>
   <string name="Settings_Sharing_GPS">Includere geo-locație aproximativă</string>
@@ -338,6 +338,14 @@
   <string name="Settings_Websites_MaxRuntime">Durata testului</string>
   <string name="Settings_Websites_Categories_Label">Categorii de site-uri web de testat</string>
   <string name="Settings_Websites_Categories_Description">%1$s categorii activate</string>
+  <string name="Settings_Websites_Categories_Edit">Editare</string>
+  <string name="Settings_Websites_Categories_Selection_None">Deselect All</string>
+  <string name="Settings_Websites_Categories_Selection_All">Selectare totală</string>
+  <string name="Settings_Websites_Categories_Selection_Done">Gata</string>
+  <string name="Settings_Websites_Categories_Confirmation_Title">Unsaved Changes</string>
+  <string name="Settings_Websites_Categories_Confirmation_Body">You made some changes to the enabled categories. Would you like to save them?</string>
+  <string name="Settings_Websites_Categories_Confirmation_Label_Confirm">Salvare</string>
+  <string name="Settings_Websites_Categories_Confirmation_Label_Cancel">Renunţă</string>
   <string name="Settings_Websites_CustomURL_Title">Alegeți site-uri web de testat</string>
   <string name="Settings_Websites_CustomURL_URL">URL</string>
   <string name="Settings_Websites_CustomURL_NoURLEntered">Nu au fost introduse URL-uri</string>

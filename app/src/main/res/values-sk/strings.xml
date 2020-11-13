@@ -319,7 +319,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Obmedziť trvanie testu</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Trvanie testu</string>
   <string name="Settings_Sharing_Label">Zdieľanie</string>
-  <string name="Settings_Sharing_UploadResults">Automaticky uverejniť výsledky</string>
+  <string name="Settings_Sharing_UploadResults">Publish Results</string>
   <string name="Settings_Sharing_UploadResultsManually">Manuálne nahrávanie výsledkov</string>
   <string name="Settings_Sharing_IncludeNetwork">Zahrnúť info o sieti</string>
   <string name="Settings_Sharing_GPS">Zahrnúť približnú zemepisnú polohu</string>
@@ -338,6 +338,14 @@
   <string name="Settings_Websites_MaxRuntime">Trvanie testu</string>
   <string name="Settings_Websites_Categories_Label">Kategórie webových stránok na testovanie</string>
   <string name="Settings_Websites_Categories_Description">%1$s povolených kategórií</string>
+  <string name="Settings_Websites_Categories_Edit">Upraviť</string>
+  <string name="Settings_Websites_Categories_Selection_None">Deselect All</string>
+  <string name="Settings_Websites_Categories_Selection_All">Označiť všetko</string>
+  <string name="Settings_Websites_Categories_Selection_Done">Hotovo </string>
+  <string name="Settings_Websites_Categories_Confirmation_Title">Unsaved Changes</string>
+  <string name="Settings_Websites_Categories_Confirmation_Body">You made some changes to the enabled categories. Would you like to save them?</string>
+  <string name="Settings_Websites_Categories_Confirmation_Label_Confirm">Uložiť</string>
+  <string name="Settings_Websites_Categories_Confirmation_Label_Cancel">Zahodiť zmeny</string>
   <string name="Settings_Websites_CustomURL_Title">Vyber webové stránky na testovanie</string>
   <string name="Settings_Websites_CustomURL_URL">URL adresa</string>
   <string name="Settings_Websites_CustomURL_NoURLEntered">Neboli zadané URL adresy</string>

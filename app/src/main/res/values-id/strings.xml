@@ -252,7 +252,7 @@
   <string name="Modal_Error_CantCloseScreen">Layar ini terkunci ketika tes sedang berjalan.</string>
   <string name="Modal_Error_RawDataNoInternet">Apakah kamu ingin menghapus semua hasil tes?</string>
   <string name="Modal_ResultsNotUploaded_Title">Hasil tidak diunggah</string>
-  <string name="Modal_ResultsNotUploaded_Paragraph">Some of your test results have not been uploaded to OONI servers. If you\'d like to contribute to OONI\'s dataset, please upload them.</string>
+  <string name="Modal_ResultsNotUploaded_Paragraph">Beberapa hasil test anda belum diunggah ke OONI Server. Jika anda ingin berkontribusi ke OONI dataset, silahkan mengunggah hasil tersebut.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Unggah</string>
   <string name="Modal_ResultsNotUploaded_Uploading">Mengunggah %1$s ...</string>
   <string name="Toast_ResultsUploaded">Unggahan berhasil</string>
@@ -319,11 +319,11 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Batas durasi tes</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Durasi tes</string>
   <string name="Settings_Sharing_Label">Berbagi</string>
-  <string name="Settings_Sharing_UploadResults">Hasil Publikasi Otomatis</string>
+  <string name="Settings_Sharing_UploadResults">Publish Results</string>
   <string name="Settings_Sharing_UploadResultsManually">Hasil Unggah Manual</string>
   <string name="Settings_Sharing_IncludeNetwork">Include Network Info</string>
   <string name="Settings_Sharing_GPS">Include approximate geo-location</string>
-  <string name="Settings_Sharing_IncludeIP">Include my IP address</string>
+  <string name="Settings_Sharing_IncludeIP">Termasuk alamat IP Saya</string>
   <string name="Settings_Sharing_IncludeCountryCode">Include Country Code</string>
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">This information (e.g. IT for Italy) is required to identify which country the measurements are collected from. Are you sure you want to disable this option?</string>
   <string name="Settings_Sharing_Footer">By publishing results, you are increasing transparency of network interference and supporting the OONI community. \n\nNetwork information (i.e. Autonomous System Number) is required for identifying Internet Service Providers.</string>
@@ -338,6 +338,14 @@
   <string name="Settings_Websites_MaxRuntime">Durasi tes</string>
   <string name="Settings_Websites_Categories_Label">Kategori laman yang akan dites</string>
   <string name="Settings_Websites_Categories_Description">%1$s kategori diaktifkan</string>
+  <string name="Settings_Websites_Categories_Edit">Sunting</string>
+  <string name="Settings_Websites_Categories_Selection_None">Deselect All</string>
+  <string name="Settings_Websites_Categories_Selection_All">Pilih Semua</string>
+  <string name="Settings_Websites_Categories_Selection_Done">Selesai</string>
+  <string name="Settings_Websites_Categories_Confirmation_Title">Unsaved Changes</string>
+  <string name="Settings_Websites_Categories_Confirmation_Body">You made some changes to the enabled categories. Would you like to save them?</string>
+  <string name="Settings_Websites_Categories_Confirmation_Label_Confirm">Simpan</string>
+  <string name="Settings_Websites_Categories_Confirmation_Label_Cancel">Buang</string>
   <string name="Settings_Websites_CustomURL_Title">Pilih laman yang akan dites</string>
   <string name="Settings_Websites_CustomURL_URL">URL </string>
   <string name="Settings_Websites_CustomURL_NoURLEntered">URL belum dimasukkan</string>
@@ -435,11 +443,11 @@
   <string name="CategoryCode_HOST_Description">Web hosting, blogging and other online publishing</string>
   <string name="CategoryCode_SRCH_Description">Search engines and portals</string>
   <string name="CategoryCode_GAME_Description">Online games and gaming platforms (excluding gambling sites)</string>
-  <string name="CategoryCode_CULTR_Description">Entertainment including history, literature, music, film, satire and humour</string>
+  <string name="CategoryCode_CULTR_Description">Hiburan termasuk sejarah, literatur, musik, satir dan humor</string>
   <string name="CategoryCode_ECON_Description">General economic development and poverty</string>
   <string name="CategoryCode_GOVT_Description">Laman-laman yang dijalankan oleh pemerintah termasuk militer.</string>
   <string name="CategoryCode_COMM_Description">Commercial services and products</string>
   <string name="CategoryCode_CTRL_Description">Benign or innocuous content used for control</string>
   <string name="CategoryCode_IGO_Description">Intergovernmental organizations including The United Nations</string>
-  <string name="CategoryCode_MISC_Description">Sites that haven\'t been categorized yet</string>
+  <string name="CategoryCode_MISC_Description">Situs yang belum terkategorisasi</string>
 </resources>

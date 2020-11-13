@@ -319,7 +319,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Limita la durata del test</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Durata del test</string>
   <string name="Settings_Sharing_Label">Condivisione</string>
-  <string name="Settings_Sharing_UploadResults">Risultati Pubblicati Automaticamente</string>
+  <string name="Settings_Sharing_UploadResults">Publish Results</string>
   <string name="Settings_Sharing_UploadResultsManually">Caricamento Manuale dei Risultati</string>
   <string name="Settings_Sharing_IncludeNetwork">Includi informazioni sulla rete</string>
   <string name="Settings_Sharing_GPS">Includi geo-localizzazione approssimativa</string>
@@ -338,6 +338,14 @@
   <string name="Settings_Websites_MaxRuntime">Durata del test</string>
   <string name="Settings_Websites_Categories_Label">Categorie di siti web da misurare</string>
   <string name="Settings_Websites_Categories_Description">%1$s categorie abilitate</string>
+  <string name="Settings_Websites_Categories_Edit">Modifica</string>
+  <string name="Settings_Websites_Categories_Selection_None">Deselect All</string>
+  <string name="Settings_Websites_Categories_Selection_All">Seleziona tutto</string>
+  <string name="Settings_Websites_Categories_Selection_Done">Fatto</string>
+  <string name="Settings_Websites_Categories_Confirmation_Title">Modifiche non salvate</string>
+  <string name="Settings_Websites_Categories_Confirmation_Body">You made some changes to the enabled categories. Would you like to save them?</string>
+  <string name="Settings_Websites_Categories_Confirmation_Label_Confirm">Salva</string>
+  <string name="Settings_Websites_Categories_Confirmation_Label_Cancel">Elimina</string>
   <string name="Settings_Websites_CustomURL_Title">Scegli i siti da testare</string>
   <string name="Settings_Websites_CustomURL_URL">URL</string>
   <string name="Settings_Websites_CustomURL_NoURLEntered">Nessun URL inserito</string>

@@ -138,8 +138,8 @@
   <string name="TestResults_Summary_Circumvention_Hero_Blocked_Plural">被封鎖的</string>
   <string name="TestResults_Summary_Circumvention_Hero_Reachable_Singular">工作中</string>
   <string name="TestResults_Summary_Circumvention_Hero_Reachable_Plural">工作中</string>
-  <string name="TestResults_Summary_Circumvention_Hero_Tools_Singular">Tool</string>
-  <string name="TestResults_Summary_Circumvention_Hero_Tools_Plural">Tools</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tools_Singular">工具</string>
+  <string name="TestResults_Summary_Circumvention_Hero_Tools_Plural">工具</string>
   <string name="TestResults_Details_Hero_Runtime">執行時間</string>
   <string name="TestResults_Details_Methodology">方法學</string>
   <string name="TestResults_Details_ViewLog">檢視記錄</string>
@@ -221,7 +221,7 @@
   <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph">[Psiphon](https://psiphon.ca/) appears to be blocked.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph">We were able to successfully bootstrap a Psiphon connection. This means that [Psiphon](https://psiphon.ca/) should work.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s s</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s 秒</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Hero_Title">很可能被屏蔽</string>
   <string name="TestResults_Details_Circumvention_Tor_Reachable_Hero_Title">工作中</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Content_Paragraph">[Tor](https://www.torproject.org/) appears to be blocked.</string>
@@ -239,11 +239,11 @@
   <string name="Feed_Title">訂閱推送</string>
   <string name="Modal_OK">OK</string>
   <string name="Modal_Cancel">取消</string>
-  <string name="Modal_DontAskAgain">Don\'t ask again</string>
+  <string name="Modal_DontAskAgain">不再詢問</string>
   <string name="Modal_Delete">刪除</string>
   <string name="Modal_Error">錯誤</string>
   <string name="Modal_Retry">重試</string>
-  <string name="Modal_SoundsGreat">Sounds great</string>
+  <string name="Modal_SoundsGreat">聽起來不錯</string>
   <string name="Modal_NoThanks">不用，謝謝</string>
   <string name="Modal_Error_NoInternet">無法執行測試，請檢查網路連線是否正常。</string>
   <string name="Modal_Error_CantDownloadURLs">無法下載 URL 清單，請再試一次。</string>
@@ -273,7 +273,7 @@
   <string name="Modal_ManualUpload_Paragraph">本設定可以手動重新上傳未發佈的測量數據</string>
   <string name="Modal_ManualUpload_Enable">啟用</string>
   <string name="Modal_ManualUpload_Disable">不用，謝謝</string>
-  <string name="Modal_ShareAnalytics_Title">Help us improve OONI Probe</string>
+  <string name="Modal_ShareAnalytics_Title">幫助我們改善 OONI Probe</string>
   <string name="Modal_ShareAnalytics_Paragraph">With the new OONI Probe, you can contribute anonymized usage metrics to help us improve the app. You can opt out through the settings at any time.</string>
   <string name="Modal_UploadFailed_Title">上傳失敗</string>
   <string name="Modal_UploadFailed_Paragraph">We have failed to upload %1$s/%2$s measurements. The failure log has been shared with OONI developers.</string>
@@ -300,8 +300,8 @@
   <string name="Test_WhatsApp_Fullname">WhatsApp 測試</string>
   <string name="Test_Telegram_Fullname">Telegram 測試</string>
   <string name="Test_FacebookMessenger_Fullname">Facebook Messenger 測試</string>
-  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
-  <string name="Test_Tor_Fullname">Tor Test</string>
+  <string name="Test_Psiphon_Fullname">Psiphon 測試</string>
+  <string name="Test_Tor_Fullname">Tor 測試</string>
   <string name="Settings_Title">設定</string>
   <string name="Settings_Error_TestDurationTooLow">所設置的測試時間期過低。　</string>
   <string name="Settings_About_Label">關於 OONI</string>
@@ -319,7 +319,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Limit test duration</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">測試期間</string>
   <string name="Settings_Sharing_Label">分享</string>
-  <string name="Settings_Sharing_UploadResults">自動發佈結果</string>
+  <string name="Settings_Sharing_UploadResults">Publish Results</string>
   <string name="Settings_Sharing_UploadResultsManually">手動上傳結果</string>
   <string name="Settings_Sharing_IncludeNetwork">包括網路資訊</string>
   <string name="Settings_Sharing_GPS">包含大略的地理位置</string>
@@ -327,7 +327,7 @@
   <string name="Settings_Sharing_IncludeCountryCode">包含國碼</string>
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">需要這類資訊（例如 IT 代表義大利）以辨別網路計量是自哪個國家收集。是否要關閉此選項？</string>
   <string name="Settings_Sharing_Footer">出版評量結果，參與者共同提高了網路干涉的透明度與對 OONI  社群的支持。\n\n辬識網路連線服務商需要有網路資訊（例如網路自治系統編號 ASN）。</string>
-  <string name="Settings_TestOptions_Label">Test options</string>
+  <string name="Settings_TestOptions_Label">測試選項</string>
   <string name="Settings_Privacy_Label">隱私</string>
   <string name="Settings_Privacy_CollectAnalytics">Share app usage metrics</string>
   <string name="Settings_Privacy_SendCrashReports">送出出錯崩潰報告</string>
@@ -338,6 +338,14 @@
   <string name="Settings_Websites_MaxRuntime">測試期間</string>
   <string name="Settings_Websites_Categories_Label">測試的網站類別</string>
   <string name="Settings_Websites_Categories_Description">%1$s 啟用的分類</string>
+  <string name="Settings_Websites_Categories_Edit">編輯</string>
+  <string name="Settings_Websites_Categories_Selection_None">Deselect All</string>
+  <string name="Settings_Websites_Categories_Selection_All">選擇全部</string>
+  <string name="Settings_Websites_Categories_Selection_Done">完成</string>
+  <string name="Settings_Websites_Categories_Confirmation_Title">Unsaved Changes</string>
+  <string name="Settings_Websites_Categories_Confirmation_Body">You made some changes to the enabled categories. Would you like to save them?</string>
+  <string name="Settings_Websites_Categories_Confirmation_Label_Confirm">儲存</string>
+  <string name="Settings_Websites_Categories_Confirmation_Label_Cancel">丟棄</string>
   <string name="Settings_Websites_CustomURL_Title">選擇要測試的網站</string>
   <string name="Settings_Websites_CustomURL_URL">URL</string>
   <string name="Settings_Websites_CustomURL_NoURLEntered">未輸入URL</string>
@@ -357,8 +365,8 @@
   <string name="Settings_Performance_DashAutomaticServerSelection">自動的 DASH 伺服器選取</string>
   <string name="Settings_Performance_DashServerAddress">DASH 伺服器</string>
   <string name="Settings_Performance_DashServerPort">DASH 伺服器端口</string>
-  <string name="Settings_Circumvention_TestPsiphon">Test Psiphon</string>
-  <string name="Settings_Circumvention_TestTor">Test Tor</string>
+  <string name="Settings_Circumvention_TestPsiphon">測試Psiphon</string>
+  <string name="Settings_Circumvention_TestTor">測試Tor</string>
   <string name="Settings_SendEmail_Label">寄求助郵件</string>
   <string name="Settings_SendEmail_Error">請將應用程式與  iOS 相關資訊寄送到此信箱 bugs@openobservatory.org ，下方的\"複製到剪貼簿\"分頁可直接複此電子郵址。 </string>
   <string name="Settings_Language_Current">Current app language is %1$s</string>

@@ -31,6 +31,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
 import org.openobservatory.ooniprobe.activity.TextActivity;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.CountlyManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.item.CircumventionItem;
 import org.openobservatory.ooniprobe.item.DateItem;
@@ -151,6 +152,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
                         .withMessage(getString(R.string.Modal_DoYouWantToDeleteAllTests))
                         .withPositiveButton(getString(R.string.Modal_Delete))
                         .build().show(getChildFragmentManager(), null);
+                CountlyManager.recordEvent("DeleteAllTests");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -159,8 +161,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 
     @OnItemSelected(R.id.filterTests)
     void queryList() {
-        if (((Application) getActivity().getApplication()).getPreferenceManager().isManualUploadResults() &&
-                Measurement.selectUploadable().count() != 0)
+        if (Measurement.selectUploadable().count() != 0)
             snackbar.show();
         else
             snackbar.dismiss();

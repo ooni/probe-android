@@ -12,28 +12,6 @@
 			<androidx.preference.PreferenceCategory android:title="@string/Modal_EnableNotifications_Paragraph" />
 		</androidx.preference.PreferenceScreen>
 	<androidx.preference.PreferenceScreen
-		android:icon="@drawable/sharing"
-		android:key="@string/sharing"
-		android:title="@string/Settings_Sharing_Label">
-		<androidx.preference.SwitchPreferenceCompat
-			android:defaultValue="true"
-			android:key="@string/upload_results"
-			android:title="@string/Settings_Sharing_UploadResults" />
-		<androidx.preference.SwitchPreferenceCompat
-			android:defaultValue="true"
-			android:key="@string/upload_results_manual"
-			android:title="@string/Settings_Sharing_UploadResultsManually" />
-		<androidx.preference.SwitchPreferenceCompat
-			android:defaultValue="true"
-			android:key="@string/include_asn"
-			android:title="@string/Settings_Sharing_IncludeNetwork" />
-		<androidx.preference.SwitchPreferenceCompat
-			android:defaultValue="false"
-			android:key="@string/include_ip"
-			android:title="@string/Settings_Sharing_IncludeIP" />
-		<androidx.preference.PreferenceCategory android:title="@string/Settings_Sharing_Footer" />
-	</androidx.preference.PreferenceScreen>
-	<androidx.preference.PreferenceScreen
 		android:icon="@drawable/test_options"
 		android:key="@string/test_options"
 		android:title="@string/Settings_TestOptions_Label">
@@ -297,6 +275,10 @@
 		android:icon="@drawable/privacy"
 		android:key="@string/privacy"
 		android:title="@string/Settings_Privacy_Label">
+		<androidx.preference.SwitchPreferenceCompat
+			android:defaultValue="true"
+			android:key="@string/upload_results"
+			android:title="@string/Settings_Sharing_UploadResults" />
 		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="@string/send_analytics"
