@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.fragment;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -243,8 +244,14 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         } else if (i == DialogInterface.BUTTON_POSITIVE) {
             if (serializable instanceof Result)
                 ((Result) serializable).delete(getActivity());
-            else if (serializable.equals(R.id.delete))
+            else if (serializable.equals(R.id.delete)) {
+                //From https://guides.codepath.com/android/using-dialogfragment
+                ProgressDialog pd = new ProgressDialog(getContext());
+                pd.setCancelable(false);
+                pd.show();
                 Result.deleteAll(getActivity());
+                pd.dismiss();
+            }
             queryList();
             reloadHeader();
         }
