@@ -125,8 +125,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         receiver = new TestRunBroadRequestReceiver();
         LocalBroadcastManager.getInstance(this).registerReceiver(receiver, filter);
         //Bind the RunTestService
-        //TODO this create a new intent if the previous was destroyed. not good
-        Intent intent= new Intent(this, RunTestService.class);
+        Intent intent = new Intent(this, RunTestService.class);
         bindService(intent, this, Context.BIND_AUTO_CREATE);
     }
 

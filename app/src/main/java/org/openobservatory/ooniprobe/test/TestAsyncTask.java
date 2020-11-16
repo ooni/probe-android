@@ -127,7 +127,6 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 	}
 
 	@Override public final void onLog(String log) {
-		//TODO LOG
 		if (!isInterrupted())
 		    publishProgress(LOG, log);
 	}
