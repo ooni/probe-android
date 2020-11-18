@@ -57,6 +57,8 @@ public class OverviewActivity extends AbstractActivity {
 			lastTime.setText(R.string.Dashboard_Overview_LastRun_Never);
 		else
 			lastTime.setText(DateUtils.getRelativeTimeSpanString(lastResult.start_time.getTime()));
+		CountlyManager.recordView("TestOverview");
+		CountlyManager.recordView("TestOverview_" + testSuite.getName());
 	}
 
 	@Override protected void onResume() {

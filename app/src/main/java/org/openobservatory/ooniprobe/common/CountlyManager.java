@@ -1,7 +1,6 @@
 package org.openobservatory.ooniprobe.common;
 
 import android.content.Context;
-import android.os.Build;
 
 import org.openobservatory.ooniprobe.BuildConfig;
 
@@ -42,7 +41,6 @@ public class CountlyManager {
                 .setConsentEnabled(getConsentsEnabled(preferenceManager))
                 .setServerURL(BuildConfig.NOTIFICATION_SERVER)
                 .setLoggingEnabled(!BuildConfig.DEBUG)
-                .setViewTracking(true)
                 .setHttpPostForced(true)
                 .enableCrashReporting();
         Countly.sharedInstance().init(config);
@@ -71,5 +69,9 @@ public class CountlyManager {
 
     public static void recordEvent(String title, HashMap<String, Object> segmentation) {
         Countly.sharedInstance().events().recordEvent(title, segmentation);
+    }
+
+    public static void recordView(String title) {
+        Countly.sharedInstance().views().recordView(title);
     }
 }

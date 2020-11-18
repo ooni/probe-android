@@ -15,6 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.CountlyManager;
 import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
@@ -39,6 +40,7 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customwebsite);
         ButterKnife.bind(this);
+        CountlyManager.recordView("CustomURL");
         editTexts = new ArrayList<>();
         deletes = new ArrayList<>();
         bottomBar.inflateMenu(R.menu.run);
