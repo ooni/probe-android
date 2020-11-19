@@ -63,6 +63,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
 	@Override public void onResume() {
 		super.onResume();
+		CountlyManager.recordView("Dashboard");
 		PreferenceManager pm = ((Application) getActivity().getApplication()).getPreferenceManager();
 		items.clear();
 		testSuites.clear();
