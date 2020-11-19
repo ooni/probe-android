@@ -33,6 +33,7 @@ import org.openobservatory.ooniprobe.fragment.measurement.HttpHeaderFieldManipul
 import org.openobservatory.ooniprobe.fragment.measurement.HttpInvalidRequestLineFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.NdtFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.PsiphonFragment;
+import org.openobservatory.ooniprobe.fragment.measurement.RiseupVPNFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.TelegramFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.TorFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.WebConnectivityFragment;
@@ -47,6 +48,7 @@ import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
 import org.openobservatory.ooniprobe.test.test.HttpInvalidRequestLine;
 import org.openobservatory.ooniprobe.test.test.Ndt;
 import org.openobservatory.ooniprobe.test.test.Psiphon;
+import org.openobservatory.ooniprobe.test.test.RiseupVPN;
 import org.openobservatory.ooniprobe.test.test.Telegram;
 import org.openobservatory.ooniprobe.test.test.Tor;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
@@ -167,6 +169,12 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                             R.string.TestResults_Details_Circumvention_Tor_Blocked_Hero_Title :
                             R.string.TestResults_Details_Circumvention_Tor_Reachable_Hero_Title)));
                     detail = TorFragment.newInstance(measurement);
+                    break;
+                case RiseupVPN.NAME:
+                    head = HeaderOutcomeFragment.newInstance(iconRes, getString(R.string.bold, getString(measurement.is_anomaly ?
+                            R.string.TestResults_Details_Circumvention_Riseupvpn_Blocked_Hero_Title :
+                            R.string.TestResults_Details_Circumvention_Riseupvpn_Reachable_Hero_Title)));
+                    detail = RiseupVPNFragment.newInstance(measurement);
                     break;
             }
         }
