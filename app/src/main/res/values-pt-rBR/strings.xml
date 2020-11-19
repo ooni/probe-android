@@ -319,7 +319,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Limitar a duração do teste</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Duração do teste</string>
   <string name="Settings_Sharing_Label">Compartilhando</string>
-  <string name="Settings_Sharing_UploadResults">Publish Results</string>
+  <string name="Settings_Sharing_UploadResults">Publicar resultados</string>
   <string name="Settings_Sharing_UploadResultsManually">Carregamento manual dos resultados</string>
   <string name="Settings_Sharing_IncludeNetwork">Incluir informações de rede</string>
   <string name="Settings_Sharing_GPS">Incluir localização geográfica aproximada</string>
@@ -339,11 +339,11 @@
   <string name="Settings_Websites_Categories_Label">Categorias de sites para testar</string>
   <string name="Settings_Websites_Categories_Description">%1$s categorias habilitadas</string>
   <string name="Settings_Websites_Categories_Edit">Editar</string>
-  <string name="Settings_Websites_Categories_Selection_None">Deselect All</string>
+  <string name="Settings_Websites_Categories_Selection_None">Desmarcar todos</string>
   <string name="Settings_Websites_Categories_Selection_All">Selecionar tudo</string>
   <string name="Settings_Websites_Categories_Selection_Done">Pronto</string>
   <string name="Settings_Websites_Categories_Confirmation_Title">As Modificações Não Foram Salvas</string>
-  <string name="Settings_Websites_Categories_Confirmation_Body">You made some changes to the enabled categories. Would you like to save them?</string>
+  <string name="Settings_Websites_Categories_Confirmation_Body">Você fez algumas alterações nas categorias ativadas. Você gostaria de salvá-los?</string>
   <string name="Settings_Websites_Categories_Confirmation_Label_Confirm">Gravar</string>
   <string name="Settings_Websites_Categories_Confirmation_Label_Cancel">Descartar</string>
   <string name="Settings_Websites_CustomURL_Title">Escolha sites para testar</string>

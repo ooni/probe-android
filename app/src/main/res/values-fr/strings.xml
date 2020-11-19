@@ -319,7 +319,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Limiter la durée du test</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Durée du test</string>
   <string name="Settings_Sharing_Label">Partage</string>
-  <string name="Settings_Sharing_UploadResults">Publish Results</string>
+  <string name="Settings_Sharing_UploadResults">Publier les résultats</string>
   <string name="Settings_Sharing_UploadResultsManually">Téléversement manuel des résultats</string>
   <string name="Settings_Sharing_IncludeNetwork">Inclure les renseignements sur le réseau</string>
   <string name="Settings_Sharing_GPS">Inclure la position géographique approximative</string>

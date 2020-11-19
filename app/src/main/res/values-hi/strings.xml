@@ -338,7 +338,7 @@
   <string name="Settings_Websites_MaxRuntime">परीक्षण अवधि</string>
   <string name="Settings_Websites_Categories_Label">परीक्षण करने के लिए वेबसाइट श्रेणियां</string>
   <string name="Settings_Websites_Categories_Description">%1$s श्रेणियां सक्षम</string>
-  <string name="Settings_Websites_Categories_Edit">Edit</string>
+  <string name="Settings_Websites_Categories_Edit">बदलें</string>
   <string name="Settings_Websites_Categories_Selection_None">Deselect All</string>
   <string name="Settings_Websites_Categories_Selection_All">सब कुछ चुने। </string>
   <string name="Settings_Websites_Categories_Selection_Done">सम्पन्न</string>
