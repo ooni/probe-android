@@ -24,6 +24,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.airbnb.lottie.LottieAnimationView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.CountlyManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
@@ -79,7 +80,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         setTheme(R.style.Theme_MaterialComponents_NoActionBar_App);
         setContentView(R.layout.activity_running);
         ButterKnife.bind(this);
-
+        CountlyManager.recordView("TestRunning");
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

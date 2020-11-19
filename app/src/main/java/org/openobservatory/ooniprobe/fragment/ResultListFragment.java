@@ -126,6 +126,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     @Override
     public void onResume() {
         super.onResume();
+        CountlyManager.recordView("TestResults");
         if (refresh) {
             queryList();
             refresh = false;

@@ -319,7 +319,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Sınama süresi sınırlansın</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Sınama süresi</string>
   <string name="Settings_Sharing_Label">Paylaşım</string>
-  <string name="Settings_Sharing_UploadResults">Publish Results</string>
+  <string name="Settings_Sharing_UploadResults">Sonuçları Yayınla</string>
   <string name="Settings_Sharing_UploadResultsManually">Sonuçları El ile Yükle </string>
   <string name="Settings_Sharing_IncludeNetwork">Ağ Bilgileri Katılsın</string>
   <string name="Settings_Sharing_GPS">Yaklaşık coğrafi konum katılsın</string>
@@ -339,11 +339,11 @@
   <string name="Settings_Websites_Categories_Label">Sınanacak web sitesi kategorileri</string>
   <string name="Settings_Websites_Categories_Description">%1$s kategori etkin</string>
   <string name="Settings_Websites_Categories_Edit">Düzenle</string>
-  <string name="Settings_Websites_Categories_Selection_None">Deselect All</string>
+  <string name="Settings_Websites_Categories_Selection_None">Tümünü Bırak</string>
   <string name="Settings_Websites_Categories_Selection_All">Tümünü Seç</string>
   <string name="Settings_Websites_Categories_Selection_Done">Tamam</string>
-  <string name="Settings_Websites_Categories_Confirmation_Title">Unsaved Changes</string>
-  <string name="Settings_Websites_Categories_Confirmation_Body">You made some changes to the enabled categories. Would you like to save them?</string>
+  <string name="Settings_Websites_Categories_Confirmation_Title">Kaydedilmemiş Değişiklikler</string>
+  <string name="Settings_Websites_Categories_Confirmation_Body">Etkinleştirilmiş kategorilerde bazı değişiklikler yaptınız. Bunları kaydetmek ister misiniz?</string>
   <string name="Settings_Websites_Categories_Confirmation_Label_Confirm">Kaydet</string>
   <string name="Settings_Websites_Categories_Confirmation_Label_Cancel">Iptal</string>
   <string name="Settings_Websites_CustomURL_Title">Sınanacak web sitelerini seçin</string>
