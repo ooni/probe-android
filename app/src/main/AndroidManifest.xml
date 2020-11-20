@@ -2,9 +2,7 @@
 	package="org.openobservatory.ooniprobe">
 
 	<uses-permission android:name="android.permission.INTERNET" />
-	<!-- TODO REMOVE -->
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 	<permission android:name="org.openobservatory.ooniprobe.permission.C2D_MESSAGE" android:protectionLevel="signature" />
