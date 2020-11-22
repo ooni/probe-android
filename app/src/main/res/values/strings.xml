@@ -239,7 +239,7 @@
   <string name="TestResults_Details_Circumvention_Riseupvpn_Reachable_Hero_Title">Working</string>
   <string name="TestResults_Details_Circumvention_Riseupvpn_Blocked_Content_Paragraph">[RiseupVPN](https://riseup.net/vpn) appears to be blocked.</string>
   <string name="TestResults_Details_Circumvention_Riseupvpn_Reachable_Content_Paragraph">We were able to successfully connect to RiseupVPN\'s bootstrap server and VPN gateways. This means that [RiseupVPN](https://riseup.net/vpn) should work.</string>
-  <string name="TestResults_Details_Circumvention_Riseupvpn_Table_Header_Api">Bootstrapping API</string>
+  <string name="TestResults_Details_Circumvention_Riseupvpn_Table_Header_Api">Bootstrap server</string>
   <string name="TestResults_Details_Circumvention_Riseupvpn_Table_Header_Openvpn">OpenVPN connections</string>
   <string name="TestResults_Details_Circumvention_Riseupvpn_Table_Header_Bridge">Bridged connections</string>
   <string name="TestResults_Overview_Circumvention_Riseupvpn_Blocked">blocked</string>
