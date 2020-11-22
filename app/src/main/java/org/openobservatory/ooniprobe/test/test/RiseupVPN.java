@@ -18,7 +18,7 @@ public class RiseupVPN extends AbstractTest {
     private static final String MK_NAME = "riseupvpn";
 
     public RiseupVPN() {
-        super(NAME, MK_NAME, R.string.Test_Riseupvpn_Fullname, R.drawable.test_psiphon, R.string.urlTestPsi, 25);
+        super(NAME, MK_NAME, R.string.Test_Riseupvpn_Fullname, R.drawable.test_psiphon, R.string.urlTestRvpn, 15);
     }
 
     @Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, AbstractTest.TestCallback testCallback) {
@@ -28,10 +28,6 @@ public class RiseupVPN extends AbstractTest {
 
     @Override public void onEntry(Context c, PreferenceManager pm, @NonNull JsonResult json, Measurement measurement) {
         super.onEntry(c, pm, json, measurement);
-        measurement.is_anomaly = ((json.test_keys.dir_port_accessible <= 0 && json.test_keys.dir_port_total > 0) ||
-                (json.test_keys.obfs4_accessible <= 0 && json.test_keys.obfs4_total > 0) ||
-                (json.test_keys.or_port_dirauth_accessible <= 0 && json.test_keys.or_port_dirauth_total > 0) ||
-                (json.test_keys.or_port_accessible <= 0 && json.test_keys.or_port_total > 0));
-        measurement.is_anomaly = json.test_keys.failure != null;
+        measurement.is_anomaly = json.test_keys.api_failure != null && json.test_keys.ca_cert_status && json.test_keys.failing_gateways == null;
     }
 }

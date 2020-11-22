@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.model.jsonresult;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.google.gson.annotations.SerializedName;
@@ -74,6 +75,13 @@ public class TestKeys {
 	public Long or_port_total;
 	@SerializedName("or_port_accessible")
 	public Long or_port_accessible;
+	//RiseupVPN
+	@SerializedName("api_failure")
+	public String api_failure;
+	@SerializedName("ca_cert_status")
+	public Boolean ca_cert_status;
+	@SerializedName("failing_gateways")
+	public GatewayConnection[] failing_gateways;
 
 	private static String setFractionalDigits(double value) {
 		return String.format(Locale.getDefault(), value < 10 ? "%.2f" : "%.1f", value);
@@ -161,6 +169,36 @@ public class TestKeys {
 				return R.string.TestResults_Details_InstantMessaging_FacebookMessenger_TCP_Label_Okay;
 		}
 		return R.string.TestResults_NotAvailable;
+	}
+
+	public int getRiseupvpnApiStatus() {
+		if (api_failure != null || !ca_cert_status) {
+			return R.string.TestResults_Overview_Circumvention_Riseupvpn_Blocked;
+		} else {
+			return R.string.TestResults_Details_Circumvention_Riseupvpn_Reachable_Okay;
+		}
+	}
+
+	public String getRiseupvpnOpenvpnGatewayStatus(Context context) {
+		return getGatewayStatus(context, "openvpn");
+	}
+
+	public String getRiseupvpnBridgedGatewayStatus(Context context) {
+		return getGatewayStatus(context, "obfs4");
+	}
+
+	private String getGatewayStatus(Context context, String transport) {
+		if (failing_gateways != null) {
+			int blockedConnection = 0;
+			for (GatewayConnection connection : failing_gateways) {
+				if (transport.equals(connection.transport_type)) {
+					blockedConnection++;
+				}
+			}
+			return context.getResources().getQuantityString(R.string.TestResults_Overview_Circumvention_Riseupvpn_Blocked, blockedConnection);
+		} else {
+			return context.getString(R.string.TestResults_Details_Circumvention_Riseupvpn_Reachable_Okay);
+		}
 	}
 
 	public Boolean isNdt7() {
@@ -399,5 +437,11 @@ public class TestKeys {
 				return header_field_name || header_field_number || header_field_value || header_name_capitalization || request_line_capitalization || total;
 			}
 		}
+	}
+
+	public static class GatewayConnection {
+		@SerializedName("ip") String ip;
+		@SerializedName("port") int port;
+		@SerializedName("transport_type") String transport_type;
 	}
 }

@@ -3,32 +3,58 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:orientation="vertical">
-
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:weightSum="3"
 		android:orientation="horizontal">
 
 		<TextView
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:text="@string/TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title" />
+			android:layout_marginEnd="5dp"
+			android:text="@string/TestResults_Details_Circumvention_Riseupvpn_Table_Header_Api" />
 
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:layout_marginEnd="5dp"
+			android:text="@string/TestResults_Details_Circumvention_Riseupvpn_Table_Header_Openvpn" />
+
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="@string/TestResults_Details_Circumvention_Riseupvpn_Table_Header_Bridge" />
 	</LinearLayout>
 
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:weightSum="3"
 		android:orientation="horizontal">
 
 		<TextView
-			android:id="@+id/bootstrap"
+			android:id="@+id/bootstrap_value"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+			android:layout_marginEnd="5dp" />
 
+		<TextView
+			android:id="@+id/openvpn_value"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:layout_marginEnd="5dp" />
+
+		<TextView
+			android:id="@+id/bridges_value"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1" />
 	</LinearLayout>
 
 	<TextView
