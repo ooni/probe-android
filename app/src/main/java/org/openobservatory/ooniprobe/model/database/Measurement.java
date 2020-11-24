@@ -101,10 +101,7 @@ public class Measurement extends BaseModel implements Serializable {
 
 	public static Where<Measurement> selectUploaded() {
 		return SQLite.select().from(Measurement.class)
-				.where(Measurement_Table.is_failed.eq(false))
-				.and(Measurement_Table.is_rerun.eq(false))
-				.and(Measurement_Table.is_done.eq(true))
-				.and(OperatorGroup.clause()
+				.where(OperatorGroup.clause()
 						.or(Measurement_Table.is_uploaded.eq(true))
 						.or(Measurement_Table.report_id.isNotNull())
 				);
