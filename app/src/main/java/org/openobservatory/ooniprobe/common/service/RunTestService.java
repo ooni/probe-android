@@ -2,6 +2,7 @@ package org.openobservatory.ooniprobe.common.service;
 
 import android.app.ActivityManager;
 import android.app.KeyguardManager;
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
@@ -48,7 +49,7 @@ public class RunTestService extends Service {
         if (testSuites == null || testSuites.size() == 0)
             return 0;
         Application app = ((Application)getApplication());
-        NotificationService.setChannel(getApplicationContext(), CHANNEL_ID, app.getString(R.string.Settings_AutomatedTesting_Label));
+        NotificationService.setChannel(getApplicationContext(), CHANNEL_ID, app.getString(R.string.Settings_AutomatedTesting_Label), false, false, false);
         Intent notificationIntent = new Intent(this, RunningActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this,
                 0, notificationIntent, 0);
@@ -61,7 +62,6 @@ public class RunTestService extends Service {
                 .setContentIntent(pendingIntent)
                 .setProgress(100, 0, false)
                 .build();
-
 
         task = (TestAsyncTask) new TestAsyncTask(app, testSuites, this).execute();
 
@@ -86,7 +86,6 @@ public class RunTestService extends Service {
                     .setContentIntent(pendingIntent)
                     .setAutoCancel(true)
                     .setProgress(100,100,false);
-
             notificationManager.notify(1, builder.build());
         }
         else

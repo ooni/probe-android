@@ -25,7 +25,7 @@ public class NotificationService {
         if (!preferenceManager.isNotifications())
             return;
         CountlyPush.init(app, BuildConfig.DEBUG? Countly.CountlyMessagingMode.TEST:Countly.CountlyMessagingMode.PRODUCTION);
-        NotificationService.setChannel(app, CountlyPush.CHANNEL_ID, app.getString(R.string.Settings_Notifications_Label));
+        NotificationService.setChannel(app, CountlyPush.CHANNEL_ID, app.getString(R.string.Settings_Notifications_Label), true, true, true);
         NotificationService.setToken(app);
     }
 
@@ -57,11 +57,16 @@ public class NotificationService {
     }
 
     // Register the channel with the system
-    public static void setChannel(Context c, String channelID, String channelName){
+    public static void setChannel(Context c, String channelID, String channelName,
+                                  Boolean vibration, Boolean sound, Boolean lights){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationManager notificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
             if (notificationManager != null) {
                 NotificationChannel channel = new NotificationChannel(channelID, channelName, NotificationManager.IMPORTANCE_DEFAULT);
+                channel.enableVibration(vibration);
+                channel.enableLights(lights);
+                if (!sound)
+                    channel.setSound(null, null);
                 notificationManager.createNotificationChannel(channel);
             }
         }
