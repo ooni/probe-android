@@ -75,11 +75,11 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 	private void runTest(AbstractTest ... tests){
 		try {
 			for (int i = 0; i < tests.length; i++) {
+				currentTest = tests[i];
+				if (currentTest instanceof WebConnectivity && currentTest.getInputs() == null) {
+					downloadURLs();
+				}
 				if (!interrupt) {
-					currentTest = tests[i];
-					if (currentTest instanceof WebConnectivity && currentTest.getInputs() == null) {
-						downloadURLs();
-					}
 					Log.d(TAG, "run next stuite: "+ currentSuite.getName() + " test:" +currentTest.getName());
 					currentTest.run(app, app.getPreferenceManager(), app.getGson(), result, i, this);
 				}
@@ -163,7 +163,6 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 	protected void onPostExecute(Void aVoid) {
 		super.onPostExecute(aVoid);
 		sendBroadcast(END);
-		System.out.println("SyncService ended test");
 		service.stopSelf();
 	}
 
@@ -181,10 +180,10 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 	}
 
 	public synchronized void interrupt(){
-		if(currentTest.canInterrupt()) {
-			interrupt = true;
+		if(currentTest != null && currentTest.canInterrupt()) {
 			currentTest.interrupt();
-			sendBroadcast(INT);
 		}
+		interrupt = true;
+		sendBroadcast(INT);
 	}
 }

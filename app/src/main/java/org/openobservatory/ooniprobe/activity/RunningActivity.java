@@ -198,6 +198,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                 case TestAsyncTask.INT:
                     running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
                     log.setText(getString(R.string.Dashboard_Running_Stopping_Notice));
+                    break;
                 case TestAsyncTask.END:
                     testEnded(context);
                     break;
