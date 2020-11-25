@@ -68,6 +68,7 @@ public class TestAsyncTask<ACT extends AbstractActivity> extends AsyncTask<Abstr
 					catch (Exception e) {
 						e.printStackTrace();
 						ExceptionManager.logException(e);
+						// FALLTHROUGH
 					}
 					Response<UrlList> response = act.getOrchestraClient().getUrls(probeCC, act.getPreferenceManager().getEnabledCategory()).execute();
 					if (response.isSuccessful() && response.body() != null && response.body().results != null) {
