@@ -79,8 +79,7 @@ public class Measurement extends BaseModel implements Serializable {
 
 	public static Where<Measurement> selectDone() {
 		return SQLite.select().from(Measurement.class)
-				.where(Measurement_Table.is_failed.eq(false))
-				.and(Measurement_Table.is_rerun.eq(false))
+				.where(Measurement_Table.is_rerun.eq(false))
 				.and(Measurement_Table.is_done.eq(true));
 	}
 
@@ -90,8 +89,7 @@ public class Measurement extends BaseModel implements Serializable {
 		// as is_uploaded = true, but we always know that those with
 		// report_id set to null are not uploaded
 		return SQLite.select().from(Measurement.class)
-				.where(Measurement_Table.is_failed.eq(false))
-				.and(Measurement_Table.is_rerun.eq(false))
+				.where(Measurement_Table.is_rerun.eq(false))
 				.and(Measurement_Table.is_done.eq(true))
 				.and(OperatorGroup.clause()
 						.or(Measurement_Table.is_uploaded.eq(false))
