@@ -126,7 +126,7 @@
 
 		<service
 			android:name=".common.service.RunTestService"
-			android:icon="@drawable/ooni_logo"
+			android:icon="@drawable/notification_icon"
 			android:label="@string/Dashboard_Card_Run">
 		</service>
 	</application>
