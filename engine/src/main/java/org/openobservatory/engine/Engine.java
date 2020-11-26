@@ -15,19 +15,13 @@ public final class Engine {
     }
 
     /** startExperimentTask starts the experiment described by the provided settings. */
-    public static OONIMKTask startExperimentTask(OONIMKTaskConfig settings) throws OONIException {
-        try {
-            return new PEMKTask(
-                    oonimkall.Oonimkall.startTask(settings.serialization())
-            );
-        } catch (Exception exc) {
-            throw new OONIException("cannot start OONI Probe Engine task", exc);
-        }
+    public static OONIMKTask startExperimentTask(OONIMKTaskConfig settings) throws Exception {
+        return new PEMKTask(oonimkall.Oonimkall.startTask(settings.serialization()));
     }
 
     /** resolveProbeCC returns the probeCC. */
     public static String resolveProbeCC(Context ctx, String softwareName,
-                                        String softwareVersion, long timeout) throws OONIException {
+                                        String softwareVersion, long timeout) throws Exception {
         OONISession session = newSession(Engine.getDefaultSessionConfig(
                 ctx, softwareName, softwareVersion, new LoggerNull()
         ));
@@ -40,7 +34,7 @@ public final class Engine {
     }
 
     /** newSession returns a new OONISession instance. */
-    public static OONISession newSession(OONISessionConfig config) throws OONIException {
+    public static OONISession newSession(OONISessionConfig config) throws Exception {
         return new PESession(config);
     }
 
@@ -48,20 +42,16 @@ public final class Engine {
     public static OONISessionConfig getDefaultSessionConfig(Context ctx,
                                                             String softwareName,
                                                             String softwareVersion,
-                                                            OONILogger logger) throws OONIException {
-        try {
-            OONISessionConfig config = new OONISessionConfig();
-            config.logger = new LoggerComposed(logger, new LoggerAndroid());
-            config.softwareName = softwareName;
-            config.softwareVersion = softwareVersion;
-            config.verbose = false;
-            config.assetsDir = Engine.getAssetsDir(ctx);
-            config.stateDir = Engine.getStateDir(ctx);
-            config.tempDir = Engine.getTempDir(ctx);
-            return config;
-        } catch (java.io.IOException exc) {
-            throw new OONIException("getDefaultSessionConfig failed", exc);
-        }
+                                                            OONILogger logger) throws Exception {
+        OONISessionConfig config = new OONISessionConfig();
+        config.logger = new LoggerComposed(logger, new LoggerAndroid());
+        config.softwareName = softwareName;
+        config.softwareVersion = softwareVersion;
+        config.verbose = false;
+        config.assetsDir = Engine.getAssetsDir(ctx);
+        config.stateDir = Engine.getStateDir(ctx);
+        config.tempDir = Engine.getTempDir(ctx);
+        return config;
     }
 
     /**
