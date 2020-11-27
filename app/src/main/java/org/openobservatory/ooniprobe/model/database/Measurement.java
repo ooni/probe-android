@@ -180,7 +180,7 @@ public class Measurement extends BaseModel implements Serializable {
 	}
 
 	public static long getStorageUsed(Context c){
-		String database = AppDatabase.NAME + "db";
+		String database = AppDatabase.NAME + ".db";
 		return getFolderSize(getMeasurementDir(c)) +
 				c.getDatabasePath(database).length() +
 				c.getDatabasePath(database + "-shm").length() +

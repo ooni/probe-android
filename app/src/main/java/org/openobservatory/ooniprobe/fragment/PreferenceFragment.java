@@ -85,7 +85,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
         setStorage();
     }
 
-    private void setStorage(){
+    public void setStorage(){
         Preference storage = findPreference(getString(R.string.storage_usage));
         if (storage != null){
             storage.setSummary(FileUtils.byteCountToDisplaySize(Measurement.getStorageUsed(getContext())));
