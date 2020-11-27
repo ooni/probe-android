@@ -319,7 +319,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Limiter la durée du test</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Durée du test</string>
   <string name="Settings_Sharing_Label">Partage</string>
-  <string name="Settings_Sharing_UploadResults">Publier les résultats</string>
+  <string name="Settings_Sharing_UploadResults">Publication automatique des résultats</string>
   <string name="Settings_Sharing_UploadResultsManually">Téléversement manuel des résultats</string>
   <string name="Settings_Sharing_IncludeNetwork">Inclure les renseignements sur le réseau</string>
   <string name="Settings_Sharing_GPS">Inclure la position géographique approximative</string>
@@ -341,7 +341,7 @@
   <string name="Settings_Websites_Categories_Edit">Modifier</string>
   <string name="Settings_Websites_Categories_Selection_None">Tout dessélectionner</string>
   <string name="Settings_Websites_Categories_Selection_All">Tout sélectionner</string>
-  <string name="Settings_Websites_Categories_Selection_Done">Terminé</string>
+  <string name="Settings_Websites_Categories_Selection_Done">Enregistrer</string>
   <string name="Settings_Websites_Categories_Confirmation_Title">Changements non enregistrés</string>
   <string name="Settings_Websites_Categories_Confirmation_Body">Vous avez apporté des changements aux catégories activées. Voulez-vous les enregistrer ?</string>
   <string name="Settings_Websites_Categories_Confirmation_Label_Confirm">Enregistrer</string>
@@ -371,7 +371,13 @@
   <string name="Settings_SendEmail_Error">Veuillez envoyer un courriel à bugs@openobservatory.org avec des renseignements sur la version de l’appli et d’iOS. Touchez « Copier dans le presse-papiers » ci-dessous pour copier votre adresse courriel.</string>
   <string name="Settings_Language_Current">La langue actuelle de l’appli est %1$s</string>
   <string name="Settings_Language_Label">Langue</string>
+  <string name="Settings_Storage_Label">Storage usage</string>
+  <string name="Settings_Storage_Usage_Label">Espace de stockage utilisé</string>
+  <string name="Settings_Storage_Delete">Supprimer</string>
+  <string name="Settings_Storage_Clear">Effacer</string>
+  <string name="Settings_Storage_Confirmation_Paragraph">You are about to delete all OONI measurements from your device. If uploaded they will still be available on [OONI Explorer](https://explorer.ooni.org)</string>
   <string name="Notification_FinishedRunning">Le test est terminé.</string>
+  <string name="Notification_StopTest">Stop test</string>
   <string name="OONIBrowser_TryMirror">Essayer un miroir</string>
   <string name="OONIBrowser_Loading">Chargement…</string>
   <string name="OONIBrowser_Error">Une erreur inattendue s’est produite. Veuillez recharger cette page.</string>

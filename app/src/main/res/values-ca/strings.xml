@@ -319,7 +319,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Límit de durada de la prova</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Durada de la prova</string>
   <string name="Settings_Sharing_Label">Comparteix</string>
-  <string name="Settings_Sharing_UploadResults">Publica els resultats</string>
+  <string name="Settings_Sharing_UploadResults">Publica automàticament els resultats</string>
   <string name="Settings_Sharing_UploadResultsManually">Pujada manual dels resultats</string>
   <string name="Settings_Sharing_IncludeNetwork">Inclou informació de la xarxa</string>
   <string name="Settings_Sharing_GPS">Inclou geolocalització aproximada</string>
@@ -341,7 +341,7 @@
   <string name="Settings_Websites_Categories_Edit">Editar</string>
   <string name="Settings_Websites_Categories_Selection_None">Anul·la la selecció</string>
   <string name="Settings_Websites_Categories_Selection_All">Selecciona-ho tot</string>
-  <string name="Settings_Websites_Categories_Selection_Done">Fet</string>
+  <string name="Settings_Websites_Categories_Selection_Done">Desa</string>
   <string name="Settings_Websites_Categories_Confirmation_Title">Canvis sense desar</string>
   <string name="Settings_Websites_Categories_Confirmation_Body">Heu fet alguns canvis a les categories activades. Voleu desar-los?</string>
   <string name="Settings_Websites_Categories_Confirmation_Label_Confirm">Desa</string>
@@ -371,7 +371,13 @@
   <string name="Settings_SendEmail_Error">Envieu un correu a bugs@openobservatory.org amb informació sobre l\'aplicació i la versió d\'iOS. Toqueu «Copia al porta-retalls» a continuació per copiar la nostra adreça de correu.</string>
   <string name="Settings_Language_Current">L\'idioma actual de l\'aplicació és %1$s</string>
   <string name="Settings_Language_Label">Llengua</string>
+  <string name="Settings_Storage_Label">Storage usage</string>
+  <string name="Settings_Storage_Usage_Label">Storage used</string>
+  <string name="Settings_Storage_Delete">Suprimeix</string>
+  <string name="Settings_Storage_Clear">Netejar</string>
+  <string name="Settings_Storage_Confirmation_Paragraph">You are about to delete all OONI measurements from your device. If uploaded they will still be available on [OONI Explorer](https://explorer.ooni.org)</string>
   <string name="Notification_FinishedRunning">Ha finalitzat l\'execució</string>
+  <string name="Notification_StopTest">Stop test</string>
   <string name="OONIBrowser_TryMirror">Prova un mirall</string>
   <string name="OONIBrowser_Loading">S\'està carregant...</string>
   <string name="OONIBrowser_Error">S\'ha produït un error inesperat. Torneu a carregar aquesta pàgina.</string>
