@@ -21,11 +21,10 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.CountlyManager;
-import org.openobservatory.ooniprobe.common.NotificationService;
 
 import java.util.Arrays;
-
+import org.openobservatory.ooniprobe.common.CountlyManager;
+import org.openobservatory.ooniprobe.common.NotificationService;
 import localhost.toolkit.app.fragment.MessageDialogFragment;
 import localhost.toolkit.preference.ExtendedPreferenceFragment;
 
@@ -54,9 +53,9 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
         super.onResume();
         CountlyManager.recordView("Settings");
         setPreferencesFromResource(getArguments().getInt(ARG_PREFERENCES_RES_ID), getArguments().getInt(ARG_CONTAINER_RES_ID), getArguments().getString(ARG_PREFERENCE_ROOT));
-
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         getActivity().setTitle(getPreferenceScreen().getTitle());
+
         for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++) {
             if (getPreferenceScreen().getPreference(i) instanceof EditTextPreference) {
                 EditTextPreference editTextPreference = (EditTextPreference) getPreferenceScreen().getPreference(i);

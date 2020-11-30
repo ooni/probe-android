@@ -223,4 +223,5 @@ public class PreferenceManager {
 	public long getAppOpenCount(){
 		return sp.getLong(IS_NOTIFICATION_DIALOG, 0);
 	}
+
 }

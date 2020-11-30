@@ -68,6 +68,7 @@ public abstract class AbstractTest implements Serializable {
         try {
             task = Engine.startExperimentTask(settings.toExperimentSettings(gson, c));
         } catch (Exception exc) {
+            //TODO call setFailureMsg here and in other point of (non) return
             exc.printStackTrace();
             ExceptionManager.logException(exc);
             return;
@@ -185,8 +186,9 @@ public abstract class AbstractTest implements Serializable {
     }
 
     public void interrupt(){
-        if(task.canInterrupt())
+        if(task.canInterrupt()) {
             task.interrupt();
+        }
     }
 
     @CallSuper
@@ -268,7 +270,7 @@ public abstract class AbstractTest implements Serializable {
         this.inputs = inputs;
     }
 
-    Integer getMax_runtime() {
+    public Integer getMax_runtime() {
         return max_runtime;
     }
 
