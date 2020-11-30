@@ -319,7 +319,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Sınama süresi sınırlansın</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Sınama süresi</string>
   <string name="Settings_Sharing_Label">Paylaşım</string>
-  <string name="Settings_Sharing_UploadResults">Sonuçları Yayınla</string>
+  <string name="Settings_Sharing_UploadResults">Sonuçlar Otomatik Olarak Yayınlansın</string>
   <string name="Settings_Sharing_UploadResultsManually">Sonuçları El ile Yükle </string>
   <string name="Settings_Sharing_IncludeNetwork">Ağ Bilgileri Katılsın</string>
   <string name="Settings_Sharing_GPS">Yaklaşık coğrafi konum katılsın</string>
@@ -341,7 +341,7 @@
   <string name="Settings_Websites_Categories_Edit">Düzenle</string>
   <string name="Settings_Websites_Categories_Selection_None">Tümünü Bırak</string>
   <string name="Settings_Websites_Categories_Selection_All">Tümünü Seç</string>
-  <string name="Settings_Websites_Categories_Selection_Done">Tamam</string>
+  <string name="Settings_Websites_Categories_Selection_Done">Kaydet</string>
   <string name="Settings_Websites_Categories_Confirmation_Title">Kaydedilmemiş Değişiklikler</string>
   <string name="Settings_Websites_Categories_Confirmation_Body">Etkinleştirilmiş kategorilerde bazı değişiklikler yaptınız. Bunları kaydetmek ister misiniz?</string>
   <string name="Settings_Websites_Categories_Confirmation_Label_Confirm">Kaydet</string>
@@ -371,7 +371,13 @@
   <string name="Settings_SendEmail_Error">Lütfen uygulama hakkındaki bilgiler ve iOS sürümünü yazarak bugs@openobservatory.org adresine bir e-posta gönderin. E-posta adresimizi kopyalamak için aşağıdaki \"Panoya kopyala\" seçeneğine dokunun.</string>
   <string name="Settings_Language_Current">Geçerli uygulama dili: %1$s</string>
   <string name="Settings_Language_Label">Dil</string>
+  <string name="Settings_Storage_Label">Storage usage</string>
+  <string name="Settings_Storage_Usage_Label">Storage used</string>
+  <string name="Settings_Storage_Delete">Sil</string>
+  <string name="Settings_Storage_Clear">Temizle</string>
+  <string name="Settings_Storage_Confirmation_Paragraph">You are about to delete all OONI measurements from your device. If uploaded they will still be available on [OONI Explorer](https://explorer.ooni.org)</string>
   <string name="Notification_FinishedRunning">Çalışmayı tamamladı</string>
+  <string name="Notification_StopTest">Stop test</string>
   <string name="OONIBrowser_TryMirror">Kopyası denensin</string>
   <string name="OONIBrowser_Loading">Yükleniyor...</string>
   <string name="OONIBrowser_Error">Bilinmeyen bir sorun çıktı. Lütfen bu sayfayı yeniden yükleyin.</string>

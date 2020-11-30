@@ -4,6 +4,7 @@
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 	<permission android:name="org.openobservatory.ooniprobe.permission.C2D_MESSAGE" android:protectionLevel="signature" />
 	<uses-permission android:name="org.openobservatory.ooniprobe.permission.C2D_MESSAGE" />
 
@@ -122,5 +123,11 @@
 					android:scheme="ooni" />
 			</intent-filter>
 		</activity>
+
+		<service
+			android:name=".common.service.RunTestService"
+			android:icon="@drawable/notification_icon"
+			android:label="@string/Dashboard_Card_Run">
+		</service>
 	</application>
 </manifest>

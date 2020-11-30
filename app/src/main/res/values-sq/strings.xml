@@ -319,7 +319,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Kufizo kohëzgjatjen e testimit</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Kohëzgjatja e testimit</string>
   <string name="Settings_Sharing_Label">Ndajë</string>
-  <string name="Settings_Sharing_UploadResults">Publish Results</string>
+  <string name="Settings_Sharing_UploadResults">Publiko rezultatet automatikisht</string>
   <string name="Settings_Sharing_UploadResultsManually">Ngarkim Muanual i Rezultateve</string>
   <string name="Settings_Sharing_IncludeNetwork">Përfshi informacion të rrjetit</string>
   <string name="Settings_Sharing_GPS">Përfshi gjelokacionin me përafërsi</string>
@@ -341,7 +341,7 @@
   <string name="Settings_Websites_Categories_Edit">Përpunojeni</string>
   <string name="Settings_Websites_Categories_Selection_None">Deselect All</string>
   <string name="Settings_Websites_Categories_Selection_All">Përzgjidhi Krejt</string>
-  <string name="Settings_Websites_Categories_Selection_Done">U bë</string>
+  <string name="Settings_Websites_Categories_Selection_Done">Ruaje</string>
   <string name="Settings_Websites_Categories_Confirmation_Title">Unsaved Changes</string>
   <string name="Settings_Websites_Categories_Confirmation_Body">You made some changes to the enabled categories. Would you like to save them?</string>
   <string name="Settings_Websites_Categories_Confirmation_Label_Confirm">Ruaje</string>
@@ -371,7 +371,13 @@
   <string name="Settings_SendEmail_Error">Ju lutem dërgoni email tek bugs@openobservatory.org me informacionin e app dhe versionin e iOS. Zgjidh \"Kopjo në tabelën-mbledhëse\" më poshtë për të kopjuar adresën tonë të email.</string>
   <string name="Settings_Language_Current">Current app language is %1$s</string>
   <string name="Settings_Language_Label">Gjuhë</string>
+  <string name="Settings_Storage_Label">Storage usage</string>
+  <string name="Settings_Storage_Usage_Label">Storage used</string>
+  <string name="Settings_Storage_Delete">Fshije</string>
+  <string name="Settings_Storage_Clear">Spastroje</string>
+  <string name="Settings_Storage_Confirmation_Paragraph">You are about to delete all OONI measurements from your device. If uploaded they will still be available on [OONI Explorer](https://explorer.ooni.org)</string>
   <string name="Notification_FinishedRunning">Mbaroi së ekzekutuari</string>
+  <string name="Notification_StopTest">Stop test</string>
   <string name="OONIBrowser_TryMirror">Përvo mirror</string>
   <string name="OONIBrowser_Loading">Duke u ngarkuar</string>
   <string name="OONIBrowser_Error">Ndodhi një gabim i papritur. Ju lutem ringarkoni këtë faqe.</string>

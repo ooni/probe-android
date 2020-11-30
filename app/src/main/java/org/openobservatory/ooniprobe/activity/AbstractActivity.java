@@ -24,10 +24,6 @@ public abstract class AbstractActivity extends AppCompatActivity {
 		return ((Application) getApplication()).isTestRunning();
 	}
 
-	void setTestRunning(boolean testRunning) {
-		((Application) getApplication()).setTestRunning(testRunning);
-	}
-
 	public OONIOrchestraClient getOrchestraClient() {
 		return ((Application) getApplication()).getOrchestraClient();
 	}
