@@ -319,7 +319,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Περιορισμός διάρκειας δοκιμής</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Διάρκεια δοκιμής</string>
   <string name="Settings_Sharing_Label">Κοινή χρήση</string>
-  <string name="Settings_Sharing_UploadResults">Δημοσίευση αποτελεσμάτων</string>
+  <string name="Settings_Sharing_UploadResults">Αυτόματη δημοσίευση αποτελεσμάτων</string>
   <string name="Settings_Sharing_UploadResultsManually">Χειροκίνητο ανέβασμα αποτελεσμάτων</string>
   <string name="Settings_Sharing_IncludeNetwork">Δημοσίευση πληροφοριών δικτύου</string>
   <string name="Settings_Sharing_GPS">Δημοσίευση της κατά προσέγγιση γεωγραφικής θέσης</string>
@@ -341,7 +341,7 @@
   <string name="Settings_Websites_Categories_Edit">Επεξεργασία</string>
   <string name="Settings_Websites_Categories_Selection_None">Αποεπιλογή όλων</string>
   <string name="Settings_Websites_Categories_Selection_All">Επιλογή όλων</string>
-  <string name="Settings_Websites_Categories_Selection_Done">Τέλος</string>
+  <string name="Settings_Websites_Categories_Selection_Done">Αποθήκευση</string>
   <string name="Settings_Websites_Categories_Confirmation_Title">Μη αποθηκευμένες αλλαγές</string>
   <string name="Settings_Websites_Categories_Confirmation_Body">Έκανες αλλαγές στις ενεργοποιημένες κατηγορίες. Θέλεις να τις αποθηκεύσεις;</string>
   <string name="Settings_Websites_Categories_Confirmation_Label_Confirm">Αποθήκευση</string>
@@ -371,7 +371,13 @@
   <string name="Settings_SendEmail_Error">Παρακαλούμε στείλτε ένα email στη διεύθυνση bugs@openobservatory.org με πληροφορίες σχετικά με την έκδοση της εφαρμογής και του iOS. Πατήστε \"Αντιγραφή στο πρόχειρο\" παρακάτω για να αντιγράψετε τη διεύθυνση email μας.</string>
   <string name="Settings_Language_Current">Η τρέχουσα γλώσσα εφαρμογής είναι %1$s</string>
   <string name="Settings_Language_Label">Γλώσσα</string>
+  <string name="Settings_Storage_Label">Storage usage</string>
+  <string name="Settings_Storage_Usage_Label">Storage used</string>
+  <string name="Settings_Storage_Delete">Διαγραφή</string>
+  <string name="Settings_Storage_Clear">Clear</string>
+  <string name="Settings_Storage_Confirmation_Paragraph">You are about to delete all OONI measurements from your device. If uploaded they will still be available on [OONI Explorer](https://explorer.ooni.org)</string>
   <string name="Notification_FinishedRunning">Οι δοκιμές εκτελέστηκαν</string>
+  <string name="Notification_StopTest">Stop test</string>
   <string name="OONIBrowser_TryMirror">Δοκίμασε mirror</string>
   <string name="OONIBrowser_Loading">Φορτώνεται...</string>
   <string name="OONIBrowser_Error">Προέκυψε ένα μη αναμενόμενο σφάλμα. Παρακαλούμε ξαναφόρτωσε αυτήν τη σελίδα.</string>

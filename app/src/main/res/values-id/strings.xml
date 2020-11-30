@@ -319,7 +319,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Batas durasi tes</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Durasi tes</string>
   <string name="Settings_Sharing_Label">Berbagi</string>
-  <string name="Settings_Sharing_UploadResults">Publish Results</string>
+  <string name="Settings_Sharing_UploadResults">Hasil Publikasi Otomatis</string>
   <string name="Settings_Sharing_UploadResultsManually">Hasil Unggah Manual</string>
   <string name="Settings_Sharing_IncludeNetwork">Include Network Info</string>
   <string name="Settings_Sharing_GPS">Include approximate geo-location</string>
@@ -341,7 +341,7 @@
   <string name="Settings_Websites_Categories_Edit">Sunting</string>
   <string name="Settings_Websites_Categories_Selection_None">Deselect All</string>
   <string name="Settings_Websites_Categories_Selection_All">Pilih Semua</string>
-  <string name="Settings_Websites_Categories_Selection_Done">Selesai</string>
+  <string name="Settings_Websites_Categories_Selection_Done">Simpan</string>
   <string name="Settings_Websites_Categories_Confirmation_Title">Unsaved Changes</string>
   <string name="Settings_Websites_Categories_Confirmation_Body">You made some changes to the enabled categories. Would you like to save them?</string>
   <string name="Settings_Websites_Categories_Confirmation_Label_Confirm">Simpan</string>
@@ -371,7 +371,13 @@
   <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap \"Copy to clipboard\" below to copy our email address.</string>
   <string name="Settings_Language_Current">Bahasa aplikasi saat ini adalah %1$s</string>
   <string name="Settings_Language_Label">Bahasa</string>
+  <string name="Settings_Storage_Label">Storage usage</string>
+  <string name="Settings_Storage_Usage_Label">Storage used</string>
+  <string name="Settings_Storage_Delete">Hapus</string>
+  <string name="Settings_Storage_Clear">Bersihkan</string>
+  <string name="Settings_Storage_Confirmation_Paragraph">You are about to delete all OONI measurements from your device. If uploaded they will still be available on [OONI Explorer](https://explorer.ooni.org)</string>
   <string name="Notification_FinishedRunning">Selesai dijalani</string>
+  <string name="Notification_StopTest">Stop test</string>
   <string name="OONIBrowser_TryMirror">Coba mirror</string>
   <string name="OONIBrowser_Loading">Memuat...</string>
   <string name="OONIBrowser_Error">An unexpected error occurred. Please reload this page.</string>
