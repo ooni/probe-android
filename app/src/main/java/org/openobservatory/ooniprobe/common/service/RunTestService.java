@@ -68,7 +68,7 @@ public class RunTestService extends Service {
         Intent broadcastIntent = new Intent();
         broadcastIntent.setAction(RunTestService.ACTION_INTERRUPT);
         PendingIntent pIntent = PendingIntent.getBroadcast(this,1, broadcastIntent,PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.addAction(0, "STOP TEST", pIntent);
+        builder.addAction(0, getApplicationContext().getString(R.string.Notification_StopTest), pIntent);
         startForeground(NOTIFICATION_ID, builder.build());
 
         return START_NOT_STICKY;
