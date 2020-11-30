@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.activity;
 
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -119,6 +120,9 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     protected void onResume() {
         super.onResume();
         if (!isTestRunning()) {
+            NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+            assert notificationManager != null;
+            notificationManager.cancel(RunTestService.NOTIFICATION_ID);
             testEnded(this);
             return;
         }
