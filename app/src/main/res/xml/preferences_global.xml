@@ -298,7 +298,7 @@
 			android:title="@string/Settings_Advanced_DebugLogs" />
 		<Preference
 			android:key="storage_usage"
-			android:title="storage_usage"
+			android:title="@string/Settings_Storage_Label"
 			android:summary=""
 			android:widgetLayout="@layout/preference_button" />
 	</androidx.preference.PreferenceScreen>
