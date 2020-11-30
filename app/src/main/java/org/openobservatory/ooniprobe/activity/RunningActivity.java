@@ -153,6 +153,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
 
     @Override
     public void onServiceConnected(ComponentName cname, IBinder binder) {
+        //Bind the service to this activity
         RunTestService.TestBinder b = (RunTestService.TestBinder) binder;
         service = b.getService();
         isBound = true;

@@ -23,6 +23,7 @@ import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -92,6 +93,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 	}
 
 	private void downloadURLs(){
+		//Try/Catch to resolve probeCC only
 		String probeCC = "XX";
 		try {
 			probeCC = Engine.resolveProbeCC(
@@ -100,6 +102,14 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 					BuildConfig.VERSION_NAME,
 					30
 			);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			ExceptionManager.logException(e);
+		}
+
+		//Try/Catch for the downloader
+		try {
 			Response<UrlList> response = app.getOrchestraClient().getUrls(probeCC, app.getPreferenceManager().getEnabledCategory()).execute();
 			if (response.isSuccessful() && response.body() != null && response.body().results != null) {
 				ArrayList<String> inputs = new ArrayList<>();
@@ -111,7 +121,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 				publishProgress(URL);
 			}
 		}
-		catch (Exception e) {
+		catch (IOException e) {
 			e.printStackTrace();
 			ExceptionManager.logException(e);
 		}
@@ -133,7 +143,9 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 
 	@Override
 	protected void onProgressUpdate(String... values) {
+		//Send broadcast to the RunningActivity
 		sendBroadcast(values);
+		//And update the notification
 		String key = values[0];
 		if (values.length <= 1) return;
 		String value = values[1];
@@ -167,6 +179,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 	}
 
 	private void sendBroadcast(String... values){
+		//This Broadcast is sent to the RunningActivity (if alive) to update the UI
 		Intent broadcastIntent = new Intent();
 		broadcastIntent.putExtra("key", values[0]);
 		if (values.length > 1)
