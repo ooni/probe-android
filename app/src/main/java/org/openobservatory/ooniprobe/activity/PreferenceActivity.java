@@ -43,6 +43,7 @@ public class PreferenceActivity extends AbstractActivity implements ConfirmDialo
 				return super.onOptionsItemSelected(item);
 		}
 	}
+
 	public void removeAllTests(View view){
 		new ConfirmDialogFragment.Builder()
 				.withExtra(R.id.delete)
