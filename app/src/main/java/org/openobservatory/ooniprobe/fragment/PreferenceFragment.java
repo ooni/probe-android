@@ -19,12 +19,16 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.SwitchPreferenceCompat;
 
+import org.apache.commons.io.FileUtils;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.alarm.AlarmService;
+import org.openobservatory.ooniprobe.common.CountlyManager;
+import org.openobservatory.ooniprobe.common.NotificationService;
+import org.openobservatory.ooniprobe.model.database.Measurement;
 
 import java.text.NumberFormat;
 import java.util.Calendar;
@@ -81,6 +85,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
     public void onResume() {
         assert getArguments() != null;
         super.onResume();
+        CountlyManager.recordView("Settings");
         setPreferencesFromResource(getArguments().getInt(ARG_PREFERENCES_RES_ID), getArguments().getInt(ARG_CONTAINER_RES_ID), getArguments().getString(ARG_PREFERENCE_ROOT));
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         getActivity().setTitle(getPreferenceScreen().getTitle());
@@ -122,6 +127,14 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                 }
                 return true;
             });
+        setStorage();
+    }
+
+    public void setStorage(){
+        Preference storage = findPreference(getString(R.string.storage_usage));
+        if (storage != null){
+            storage.setSummary(FileUtils.byteCountToDisplaySize(Measurement.getStorageUsed(getContext())));
+        }
     }
 
     @Override

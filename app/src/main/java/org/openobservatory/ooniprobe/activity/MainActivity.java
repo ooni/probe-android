@@ -29,7 +29,6 @@ import ly.count.android.sdk.Countly;
 
 public class MainActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String RES_ITEM = "resItem";
-    private static final String MANUAL_UPLOAD_DIALOG = "manual_upload";
     private static final String ANALYTICS_DIALOG = "analytics";
     public static final String NOTIFICATION_DIALOG = "notification";
 
@@ -68,16 +67,6 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
             bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
             if (isUITestRunning()) {
                 return;
-            }
-            //These cases are not mutually exclusive. When a user upgrade if one or both modal has never been showed it will be.
-            if (getPreferenceManager().isManualUploadDialog()) {
-                new ConfirmDialogFragment.Builder()
-                        .withTitle(getString(R.string.Modal_ManualUpload_Title))
-                        .withMessage(getString(R.string.Modal_ManualUpload_Paragraph))
-                        .withPositiveButton(getString(R.string.Modal_ManualUpload_Enable))
-                        .withNegativeButton(getString(R.string.Modal_ManualUpload_Disable))
-                        .withExtra(MANUAL_UPLOAD_DIALOG)
-                        .build().show(getSupportFragmentManager(), null);
             }
             if (getPreferenceManager().isShareAnalyticsDialog()) {
                 new ConfirmDialogFragment.Builder()
@@ -128,9 +117,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     @Override
     public void onConfirmation(Serializable extra, int i) {
         if (extra == null) return;
-        if (extra.equals(MANUAL_UPLOAD_DIALOG))
-            getPreferenceManager().setManualUploadResults(i == DialogInterface.BUTTON_POSITIVE);
-        else if (extra.equals(ANALYTICS_DIALOG))
+        if (extra.equals(ANALYTICS_DIALOG))
             getPreferenceManager().setSendAnalytics(i == DialogInterface.BUTTON_POSITIVE);
         else if (extra.equals(NOTIFICATION_DIALOG)) {
             getPreferenceManager().setNotificationsFromDialog(i == DialogInterface.BUTTON_POSITIVE);
@@ -138,7 +125,10 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
             if (i == DialogInterface.BUTTON_POSITIVE){
                 CountlyManager.reloadConsent(((Application) getApplication()).getPreferenceManager());
                 NotificationService.initNotification((Application) getApplication());
+                CountlyManager.recordEvent("NotificationModal_Accepted");
             }
+            else
+                CountlyManager.recordEvent("NotificationModal_Declined");
         }
     }
 

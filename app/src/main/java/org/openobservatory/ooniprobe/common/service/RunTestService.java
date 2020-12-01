@@ -2,6 +2,7 @@ package org.openobservatory.ooniprobe.common.service;
 
 import android.app.ActivityManager;
 import android.app.KeyguardManager;
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
@@ -48,7 +49,7 @@ public class RunTestService extends Service {
         if (testSuites == null || testSuites.size() == 0)
             return 0;
         Application app = ((Application)getApplication());
-        NotificationService.setChannel(getApplicationContext(), CHANNEL_ID, app.getString(R.string.Settings_AutomatedTesting_Label));
+        NotificationService.setChannel(getApplicationContext(), CHANNEL_ID, app.getString(R.string.Settings_AutomatedTesting_Label), false, false, false);
         Intent notificationIntent = new Intent(this, RunningActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this,
                 0, notificationIntent, 0);
@@ -62,16 +63,21 @@ public class RunTestService extends Service {
                 .setProgress(100, 0, false)
                 .build();
 
-
         task = (TestAsyncTask) new TestAsyncTask(app, testSuites, this).execute();
-
+        //This intent is used to manage the stop test button in the notification
         Intent broadcastIntent = new Intent();
         broadcastIntent.setAction(RunTestService.ACTION_INTERRUPT);
         PendingIntent pIntent = PendingIntent.getBroadcast(this,1, broadcastIntent,PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.addAction(R.drawable.ooni_logo, "STOP TEST", pIntent);
-
+        builder.addAction(0, getApplicationContext().getString(R.string.Notification_StopTest), pIntent);
         startForeground(NOTIFICATION_ID, builder.build());
-
+        /*
+        START_NOT_STICKY says that, after returning from onStartCreated(),
+        if the process is killed with no remaining start commands to deliver,
+        then the service will be stopped instead of restarted.
+        This makes a lot more sense for services that are intended to only run while executing commands sent to them.
+        For example, a service may be started every 15 minutes from an alarm to poll some network state.
+        If it gets killed while doing that work, it would be best to just let it be stopped and get started the next time the alarm fires.
+         */
         return START_NOT_STICKY;
     }
 
@@ -86,7 +92,6 @@ public class RunTestService extends Service {
                     .setContentIntent(pendingIntent)
                     .setAutoCancel(true)
                     .setProgress(100,100,false);
-
             notificationManager.notify(1, builder.build());
         }
         else
@@ -122,14 +127,14 @@ public class RunTestService extends Service {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if(action != null && action.equals("interrupt_test")){
-                stopTest(context);
+                stopTest();
             }
             //This is used to close the notification tray
             Intent it = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
             context.sendBroadcast(it);
         }
 
-        public void stopTest(Context context){
+        public void stopTest(){
             task.interrupt();
         }
     }

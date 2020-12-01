@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class PreferenceManager {
 	static final String GEO_VER = "geo_ver";
 	public static final Integer MAX_RUNTIME_DISABLED = -1;
-	private static final String IS_MANUAL_UPLOAD_DIALOG = "isManualUploadDialog";
 	private static final String IS_ANALYTICS_DIALOG = "isAnalyticsDialog";
 	private static final String IS_NOTIFICATION_DIALOG = "isNotificationDialog";
 	public static final int NOTIFICATION_DIALOG_COUNT = 5;
@@ -106,7 +105,6 @@ public class PreferenceManager {
 	public void setShowOnboarding(boolean showIntro) {
 		sp.edit().putBoolean(SHOW_ONBOARDING, showIntro)
 				.putBoolean(IS_ANALYTICS_DIALOG, showIntro)
-				.putBoolean(IS_MANUAL_UPLOAD_DIALOG, showIntro)
 				.apply();
 	}
 
@@ -115,13 +113,6 @@ public class PreferenceManager {
 	 */
 	public boolean isShareAnalyticsDialog() {
 		return sp.getBoolean(IS_ANALYTICS_DIALOG, true);
-	}
-
-	/*
-	 * This method is used to ask user to enable manual upload.
-	 */
-	public boolean isManualUploadDialog() {
-		return sp.getBoolean(IS_MANUAL_UPLOAD_DIALOG, true);
 	}
 
 	/*
@@ -147,20 +138,12 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.upload_results), true);
 	}
 
-	public boolean isManualUploadResults() {
-		return sp.getBoolean(r.getString(R.string.upload_results_manual), true);
-	}
-
-	public void setManualUploadResults(boolean manualUpload) {
-		sp.edit().putBoolean(IS_MANUAL_UPLOAD_DIALOG, false).putBoolean(r.getString(R.string.upload_results_manual), manualUpload).apply();
-	}
-
 	public boolean isIncludeIp() {
-		return sp.getBoolean(r.getString(R.string.include_ip), false);
+		return false;
 	}
 
 	public boolean isIncludeAsn() {
-		return sp.getBoolean(r.getString(R.string.include_asn), true);
+		return true;
 	}
 
 	public boolean isDebugLogs() {

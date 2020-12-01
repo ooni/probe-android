@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.activity;
 
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -24,6 +25,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.airbnb.lottie.LottieAnimationView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.CountlyManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
@@ -56,6 +58,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     private Integer runtime;
     private RunTestService service;
     private TestRunBroadRequestReceiver receiver;
+    boolean isBound = false;
 
     public static Intent newIntent(AbstractActivity context, ArrayList<AbstractSuite> testSuites) {
         if (ReachabilityManager.getNetworkType(context).equals(ReachabilityManager.NO_INTERNET)) {
@@ -78,7 +81,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         setTheme(R.style.Theme_MaterialComponents_NoActionBar_App);
         setContentView(R.layout.activity_running);
         ButterKnife.bind(this);
-
+        CountlyManager.recordView("TestRunning");
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,14 +96,10 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     }
 
     private void applyUIChanges(){
-        //TODO rename in assumenotnull
         if (service == null || service.task == null ||
             service.task.currentSuite == null || service.task.currentTest == null) {
-            System.out.println("RunningActivity currentSuite is null");
             return;
         }
-        else
-            System.out.println("RunningActivity currentSuite FOUND");
         animation.setImageAssetsFolder("anim/");
         animation.setRepeatCount(Animation.INFINITE);
         animation.playAnimation();
@@ -120,22 +119,28 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     @Override
     protected void onResume() {
         super.onResume();
+        if (!isTestRunning()) {
+            NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+            assert notificationManager != null;
+            notificationManager.cancel(RunTestService.NOTIFICATION_ID);
+            testEnded(this);
+            return;
+        }
         IntentFilter filter = new IntentFilter("org.openobservatory.ooniprobe.activity.RunningActivity");
         receiver = new TestRunBroadRequestReceiver();
         LocalBroadcastManager.getInstance(this).registerReceiver(receiver, filter);
         //Bind the RunTestService
-        Intent intent= new Intent(this, RunTestService.class);
+        Intent intent = new Intent(this, RunTestService.class);
         bindService(intent, this, Context.BIND_AUTO_CREATE);
-        if (!isTestRunning())
-            testEnded(this);
-        else
-            applyUIChanges();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        unbindService(this);
+        if (isBound) {
+            unbindService(this);
+            isBound = false;
+        }
         LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
     }
 
@@ -152,9 +157,10 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
 
     @Override
     public void onServiceConnected(ComponentName cname, IBinder binder) {
+        //Bind the service to this activity
         RunTestService.TestBinder b = (RunTestService.TestBinder) binder;
         service = b.getService();
-        System.out.println("RunningActivity service connected");
+        isBound = true;
         applyUIChanges();
     }
 
@@ -197,6 +203,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                 case TestAsyncTask.INT:
                     running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
                     log.setText(getString(R.string.Dashboard_Running_Stopping_Notice));
+                    break;
                 case TestAsyncTask.END:
                     testEnded(context);
                     break;

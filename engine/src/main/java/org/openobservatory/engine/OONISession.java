@@ -8,10 +8,10 @@ package org.openobservatory.engine;
  */
 public interface OONISession {
     /** geolocate returns the probe geolocation. */
-    OONIGeolocateResults geolocate(OONIContext ctx) throws OONIException;
+    OONIGeolocateResults geolocate(OONIContext ctx) throws Exception;
 
     /** maybeUpdateResources updates resources if needed. */
-    void maybeUpdateResources(OONIContext ctx) throws OONIException;
+    void maybeUpdateResources(OONIContext ctx) throws Exception;
 
     /** newContext creates a new OONIContext instance. */
     OONIContext newContext();
@@ -24,5 +24,5 @@ public interface OONISession {
     OONIContext newContextWithTimeout(long timeout);
 
     /** submit submits a measurement and returns the submission results. */
-    OONISubmitResults submit(OONIContext ctx, String measurement) throws OONIException;
+    OONISubmitResults submit(OONIContext ctx, String measurement) throws Exception;
 }

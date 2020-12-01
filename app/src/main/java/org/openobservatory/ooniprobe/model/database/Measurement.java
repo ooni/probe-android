@@ -79,8 +79,7 @@ public class Measurement extends BaseModel implements Serializable {
 
 	public static Where<Measurement> selectDone() {
 		return SQLite.select().from(Measurement.class)
-				.where(Measurement_Table.is_failed.eq(false))
-				.and(Measurement_Table.is_rerun.eq(false))
+				.where(Measurement_Table.is_rerun.eq(false))
 				.and(Measurement_Table.is_done.eq(true));
 	}
 
@@ -90,8 +89,7 @@ public class Measurement extends BaseModel implements Serializable {
 		// as is_uploaded = true, but we always know that those with
 		// report_id set to null are not uploaded
 		return SQLite.select().from(Measurement.class)
-				.where(Measurement_Table.is_failed.eq(false))
-				.and(Measurement_Table.is_rerun.eq(false))
+				.where(Measurement_Table.is_rerun.eq(false))
 				.and(Measurement_Table.is_done.eq(true))
 				.and(OperatorGroup.clause()
 						.or(Measurement_Table.is_uploaded.eq(false))
@@ -101,10 +99,7 @@ public class Measurement extends BaseModel implements Serializable {
 
 	public static Where<Measurement> selectUploaded() {
 		return SQLite.select().from(Measurement.class)
-				.where(Measurement_Table.is_failed.eq(false))
-				.and(Measurement_Table.is_rerun.eq(false))
-				.and(Measurement_Table.is_done.eq(true))
-				.and(OperatorGroup.clause()
+				.where(OperatorGroup.clause()
 						.or(Measurement_Table.is_uploaded.eq(true))
 						.or(Measurement_Table.report_id.isNotNull())
 				);
@@ -182,6 +177,26 @@ public class Measurement extends BaseModel implements Serializable {
 		if (System.currentTimeMillis() - start_time.getTime() > PreferenceManager.DELETE_JSON_DELAY) {
 			deleteLogFile(c);
 		}
+	}
+
+	public static long getStorageUsed(Context c){
+		String database = AppDatabase.NAME + ".db";
+		return getFolderSize(getMeasurementDir(c)) +
+				c.getDatabasePath(database).length() +
+				c.getDatabasePath(database + "-shm").length() +
+				c.getDatabasePath(database + "-wal").length();
+	}
+
+	public static long getFolderSize(File f) {
+		long size = 0;
+		if (f.isDirectory()) {
+			for (File file : f.listFiles()) {
+				size += getFolderSize(file);
+			}
+		} else {
+			size=f.length();
+		}
+		return size;
 	}
 
 	static File getMeasurementDir(Context c) {

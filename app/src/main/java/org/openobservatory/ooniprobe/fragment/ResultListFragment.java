@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.fragment;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -31,6 +32,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
 import org.openobservatory.ooniprobe.activity.TextActivity;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.CountlyManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.item.CircumventionItem;
 import org.openobservatory.ooniprobe.item.DateItem;
@@ -124,6 +126,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     @Override
     public void onResume() {
         super.onResume();
+        CountlyManager.recordView("TestResults");
         if (refresh) {
             queryList();
             refresh = false;
@@ -159,8 +162,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 
     @OnItemSelected(R.id.filterTests)
     void queryList() {
-        if (((Application) getActivity().getApplication()).getPreferenceManager().isManualUploadResults() &&
-                Measurement.selectUploadable().count() != 0)
+        if (Measurement.selectUploadable().count() != 0)
             snackbar.show();
         else
             snackbar.dismiss();
@@ -242,8 +244,15 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         } else if (i == DialogInterface.BUTTON_POSITIVE) {
             if (serializable instanceof Result)
                 ((Result) serializable).delete(getActivity());
-            else if (serializable.equals(R.id.delete))
+            else if (serializable.equals(R.id.delete)) {
+                //From https://guides.codepath.com/android/using-dialogfragment
+                CountlyManager.recordEvent("DeleteAllTests");
+                ProgressDialog pd = new ProgressDialog(getContext());
+                pd.setCancelable(false);
+                pd.show();
                 Result.deleteAll(getActivity());
+                pd.dismiss();
+            }
             queryList();
             reloadHeader();
         }
