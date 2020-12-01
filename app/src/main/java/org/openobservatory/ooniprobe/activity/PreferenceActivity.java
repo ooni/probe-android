@@ -62,7 +62,7 @@ public class PreferenceActivity extends AbstractActivity implements ConfirmDialo
 				pd.show();
 				Result.deleteAll(this);
 				pd.dismiss();
-                fragment.setStorage();
+				fragment.setStorage();
 			}
 		}
 	}
