@@ -179,6 +179,26 @@ public class Measurement extends BaseModel implements Serializable {
 		}
 	}
 
+	public static long getStorageUsed(Context c){
+		String database = AppDatabase.NAME + ".db";
+		return getFolderSize(getMeasurementDir(c)) +
+				c.getDatabasePath(database).length() +
+				c.getDatabasePath(database + "-shm").length() +
+				c.getDatabasePath(database + "-wal").length();
+	}
+
+	public static long getFolderSize(File f) {
+		long size = 0;
+		if (f.isDirectory()) {
+			for (File file : f.listFiles()) {
+				size += getFolderSize(file);
+			}
+		} else {
+			size=f.length();
+		}
+		return size;
+	}
+
 	static File getMeasurementDir(Context c) {
 		return new File(c.getFilesDir(), Measurement.class.getSimpleName());
 	}

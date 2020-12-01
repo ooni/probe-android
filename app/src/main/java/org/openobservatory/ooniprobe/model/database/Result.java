@@ -6,6 +6,7 @@ import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.ForeignKey;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.config.FlowManager;
 import com.raizlabs.android.dbflow.sql.language.Delete;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.BaseModel;
@@ -79,6 +80,8 @@ public class Result extends BaseModel implements Serializable {
 			e.printStackTrace();
 		}
 		Delete.tables(Measurement.class, Result.class, Network.class);
+		FlowManager.getDatabase(AppDatabase.class).close();
+		FlowManager.getDatabase(AppDatabase.class).reset();
 	}
 
 	public List<Measurement> getMeasurements() {

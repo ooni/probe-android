@@ -16,11 +16,15 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.SwitchPreferenceCompat;
 
+import org.apache.commons.io.FileUtils;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.CountlyManager;
+import org.openobservatory.ooniprobe.common.NotificationService;
+import org.openobservatory.ooniprobe.model.database.Measurement;
 
 import java.util.Arrays;
 import org.openobservatory.ooniprobe.common.CountlyManager;
@@ -79,6 +83,14 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                 }
                 return true;
             });
+        setStorage();
+    }
+
+    public void setStorage(){
+        Preference storage = findPreference(getString(R.string.storage_usage));
+        if (storage != null){
+            storage.setSummary(FileUtils.byteCountToDisplaySize(Measurement.getStorageUsed(getContext())));
+        }
     }
 
     @Override

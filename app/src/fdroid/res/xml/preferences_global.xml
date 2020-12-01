@@ -286,6 +286,11 @@
 			android:defaultValue="false"
 			android:key="@string/debugLogs"
 			android:title="@string/Settings_Advanced_DebugLogs" />
+		<Preference
+			android:key="storage_usage"
+			android:title="@string/Settings_Storage_Label"
+			android:summary=""
+			android:widgetLayout="@layout/preference_button" />
 	</androidx.preference.PreferenceScreen>
 	<androidx.preference.PreferenceScreen
 		android:icon="@drawable/send_email"
