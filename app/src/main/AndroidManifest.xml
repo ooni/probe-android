@@ -135,14 +135,8 @@
 			android:label="Run Test Service"
 			android:permission="android.permission.BIND_JOB_SERVICE">
 		</service>
-
 		<receiver
-			android:name=".common.alarm.AlarmReceiver"
-			android:enabled="true"
-			android:exported="false"
-			android:permission="android.permission.INTERNET" />
-		<receiver
-			android:name=".common.alarm.OnBootReceiver"
+			android:name=".common.service.OnBootReceiver"
 			android:enabled="true"
 			android:exported="false"
 			android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
