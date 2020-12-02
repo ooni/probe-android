@@ -1,4 +1,5 @@
 <androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:key="@string/preferences"
 	android:title="@string/Settings_Title">
 		<androidx.preference.PreferenceScreen
@@ -19,11 +20,21 @@
 			android:defaultValue="false"
 			android:key="@string/automated_testing_enabled"
 			android:title="@string/Settings_AutomatedTesting_RunAutomatically" />
+		<CheckBoxPreference
+			android:defaultValue="false"
+			android:key="automated_testing_adanced"
+			app:isPreferenceVisible="false" />
 		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
-			android:dependency="@string/automated_testing_enabled"
+			android:dependency="automated_testing_adanced"
 			android:key="@string/automated_testing_wifionly"
 			android:title="@string/Settings_AutomatedTesting_RunAutomatically_WiFiOnly" />
+		<androidx.preference.SwitchPreferenceCompat
+			android:defaultValue="true"
+			android:dependency="automated_testing_adanced"
+			android:key="@string/automated_testing_charging"
+			android:title="@string/Settings_AutomatedTesting_RunAutomatically_ChargingOnly" />
+		<androidx.preference.PreferenceCategory android:title="@string/Settings_AutomatedTesting_RunAutomatically_Footer" />
 	</androidx.preference.PreferenceScreen>
 	<androidx.preference.PreferenceScreen
 		android:icon="@drawable/test_options"

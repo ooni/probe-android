@@ -20,6 +20,7 @@
 	<string name="notifications_news" translatable="false">notifications_news</string>
 	<string name="automated_testing_enabled" translatable="false">automated_testing_enabled</string>
 	<string name="automated_testing_wifionly" translatable="false">automated_testing_wifionly</string>
+	<string name="automated_testing_charging" translatable="false">automated_testing_charging</string>
 	<string name="upload_results" translatable="false">upload_results</string>
 	<string name="debugLogs" translatable="false">debugLogs</string>
 	<string name="storage_usage" translatable="false">storage_usage</string>

@@ -15,7 +15,7 @@ import java.util.Calendar;
 public class AlarmService {
     public static void setRecurringAlarm(Context context) {
         cancelRecurringAlarm(context);
-        String time = ((Application) context).getPreferenceManager().getAutomatedTestingTime();
+        String time = "05:00";// = ((Application) context).getPreferenceManager().getAutomatedTestingTime();
         String[] separated = time.split(":");
         int hours = Integer.parseInt(separated[0]);
         int minutes = Integer.parseInt(separated[1]);
