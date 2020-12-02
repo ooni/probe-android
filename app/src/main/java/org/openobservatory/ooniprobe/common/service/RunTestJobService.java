@@ -30,7 +30,7 @@ public class RunTestJobService extends JobService {
         PreferenceManager pm = app.getPreferenceManager();
         AbstractSuite websitesSuite = new WebsitesSuite();
         AbstractTest webConnectivity = new WebConnectivity();
-        webConnectivity.setMax_runtime(pm.getMaxRuntimeAutoTest());
+        //webConnectivity.setMax_runtime(pm.getMaxRuntimeAutoTest());
         websitesSuite.setTestList(webConnectivity);
         ArrayList<AbstractSuite> testSuites = new ArrayList<>(Arrays.asList(websitesSuite));
 
