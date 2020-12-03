@@ -1,14 +1,11 @@
 package org.openobservatory.ooniprobe.fragment;
 
-import android.annotation.TargetApi;
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.IdRes;
@@ -25,14 +22,11 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.alarm.AlarmService;
 import org.openobservatory.ooniprobe.common.CountlyManager;
 import org.openobservatory.ooniprobe.common.NotificationService;
+import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 
-import java.text.NumberFormat;
-import java.util.Calendar;
-import java.util.Locale;
 import java.util.Arrays;
 import localhost.toolkit.app.fragment.MessageDialogFragment;
 import localhost.toolkit.preference.ExtendedPreferenceFragment;
@@ -117,12 +111,9 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
         Preference preference = findPreference(key);
         if (key.equals(getString(R.string.automated_testing_enabled))) {
             if (sharedPreferences.getBoolean(key, false))
-                //TODO
-                System.out.println("run");
-                //Enabling the alarm every time the user enabled automated_testing
-               // AlarmService.setRecurringAlarm(getActivity().getApplication());
-            //else
-                //AlarmService.cancelRecurringAlarm(getActivity().getApplication());
+                ServiceUtil.scheduleJob(getContext());
+            else
+                ServiceUtil.stopJob(getContext());
         }
         if (key.equals(getString(R.string.send_crash)) ||
                 key.equals(getString(R.string.send_analytics)) ||

@@ -32,7 +32,7 @@ public class NotificationService {
     /*
      * Used for local notification, ex "test has finished running"
      */
-    private static void sendNotification(Context c, String title, String message) {
+    public static void sendNotification(Context c, String title, String message) {
         NotificationManager notificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
         if (notificationManager == null)
             return;
