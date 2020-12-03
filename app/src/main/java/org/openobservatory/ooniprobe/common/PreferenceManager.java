@@ -228,4 +228,8 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.automated_testing_wifionly), true);
 	}
 
+	public boolean testChargingOnly() {
+		return sp.getBoolean(r.getString(R.string.automated_testing_charging), true);
+	}
+
 }
