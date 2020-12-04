@@ -314,10 +314,9 @@
   <string name="Settings_Notifications_OnNews">Fluxuri de știri</string>
   <string name="Settings_AutomatedTesting_Label">Automated testing</string>
   <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
-  <string name="Settings_AutomatedTesting_RunAutomaticallyTime">Ora</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Only test on WiFi</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Limitarea duratei testului</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Durata testului</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Run tests only on WiFi</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Run tests only while charging</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically on a regular basis (and you don’t need to remember to manually run tests).</string>
   <string name="Settings_Sharing_Label">Partajare</string>
   <string name="Settings_Sharing_UploadResults">Publicare automată a rezultatelor</string>
   <string name="Settings_Sharing_UploadResultsManually">Încărcarea manuală a rezultatelor</string>

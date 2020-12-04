@@ -314,10 +314,9 @@
   <string name="Settings_Notifications_OnNews">News Feed</string>
   <string name="Settings_AutomatedTesting_Label">Automated testing</string>
   <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
-  <string name="Settings_AutomatedTesting_RunAutomaticallyTime">Time</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Only test on WiFi</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Limit test duration</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Test duration</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Run tests only on WiFi</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Run tests only while charging</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically on a regular basis (and you don’t need to remember to manually run tests).</string>
   <string name="Settings_Sharing_Label">Sharing</string>
   <string name="Settings_Sharing_UploadResults">Automatically Publish Results</string>
   <string name="Settings_Sharing_UploadResultsManually">Manual Result Upload</string>
