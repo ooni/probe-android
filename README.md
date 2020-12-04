@@ -1,4 +1,22 @@
-# OONI Probe Android [![Slack Channel](https://slack.openobservatory.org/badge.svg)](https://slack.openobservatory.org/) ![Emulator Tests Status](https://github.com/ooni/probe-android/workflows/emulator/badge.svg)
+# OONI Probe Android
+
+[![OONI Probe Android](assets/OONIProbeLogo.png)](https://ooni.org)
+
+<p align="center">
+  <a href="https://slack.openobservatory.org/">
+        <img src="https://slack.openobservatory.org/badge.svg"
+            alt="chat on Slack"></a>
+
+  <a href="https://github.com/ooni/probe/issues?q=label%3Aooni%2Fprobe-android">
+    <img src="https://img.shields.io/github/issues/ooni/probe/ooni/probe-android" alt="open issues">
+  </a>
+
+  <img src="https://github.com/ooni/probe-android/workflows/emulator/badge.svg" alt="Emulator Tests Status">
+
+  <a href="https://twitter.com/intent/follow?screen_name=OpenObservatory">
+    <img src="https://img.shields.io/twitter/follow/OpenObservatory?style=social&logo=twitter"
+    alt="follow on Twitter"></a>
+</p>
 
 OONI Probe is free and open source software designed to measure internet
 censorship and other forms of network interference.
