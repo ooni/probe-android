@@ -18,11 +18,6 @@
     alt="follow on Twitter"></a>
 </p>
 
-OONI Probe is free and open source software designed to measure internet
-censorship and other forms of network interference.
-
-[![OONI Probe Android](assets/OONIProbeLogo.png)](https://ooni.org)
-
 <div align="left">
 
 <a href="https://f-droid.org/packages/org.openobservatory.ooniprobe/" target="_blank">
@@ -34,6 +29,9 @@ censorship and other forms of network interference.
 </a>
 
 </div>
+
+OONI Probe is free and open source software designed to measure internet
+censorship and other forms of network interference.
 
 [Click here to report a bug](https://github.com/ooni/probe/issues/new)
 
