@@ -6,8 +6,26 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 
+import org.openobservatory.engine.Engine;
+import org.openobservatory.ooniprobe.BuildConfig;
+import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.client.callback.GetMeasurementJsonCallback;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.ExceptionManager;
+import org.openobservatory.ooniprobe.common.NotificationService;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.model.api.CheckIn;
+import org.openobservatory.ooniprobe.model.api.UrlList;
+import org.openobservatory.ooniprobe.model.database.Url;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+
+import okhttp3.Request;
+import retrofit2.Response;
 
 
 public class ServiceUtil {
@@ -62,6 +80,43 @@ public class ServiceUtil {
     public static void stopJob(Context context) {
         JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
         jobScheduler.cancel(id);
+    }
+
+    public static void callAPITest(Application app){
+        PreferenceManager pm = app.getPreferenceManager();
+        System.out.println("callAPITest " );
+        try {
+            Response <CheckIn> response = app.getTestClient().checkIn(
+                    pm.testChargingOnly(),
+                    pm.testWifiOnly(),
+                    "android",
+                    "string",
+                    "string",
+                    "string",
+                    "string",
+                    "{ \\\"category_codes:\\\": \\\"string\\\" }").execute();
+            if (response.isSuccessful() && response.body() != null && response.body().tests != null) {
+                ArrayList<String> inputs = new ArrayList<>();
+                System.out.println("callAPITest " + response.body().tests.web_connectivity.urls.size());
+                String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+                //NotificationService.setChannel(app, "RunTestService", app.getString(R.string.Settings_AutomatedTesting_Label), false, false, false);
+                //NotificationService.sendNotification(app, "RunTestService", "Should run test", "Time is "+currentTime + "Url size " + response.body().tests.web_connectivity.urls.size());
+
+                //for (Url url : response.body().tests.web_connectivity.urls)
+                //    inputs.add(Url.checkExistingUrl(url.url, url.category_code, url.country_code).url);
+                /*currentTest.setInputs(inputs);
+                if (currentTest.getMax_runtime() == null)
+                    currentTest.setMax_runtime(app.getPreferenceManager().getMaxRuntime());
+                publishProgress(URL);
+                 */
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("callAPITest e " + e);
+
+            ExceptionManager.logException(e);
+        }
     }
 
 }

@@ -15,6 +15,7 @@ import com.raizlabs.android.dbflow.config.FlowManager;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.client.OONIAPIClient;
 import org.openobservatory.ooniprobe.client.OONIOrchestraClient;
+import org.openobservatory.ooniprobe.client.OONITestClient;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
@@ -37,6 +38,7 @@ public class Application extends android.app.Application {
 	private OkHttpClient okHttpClient;
 	private OONIOrchestraClient orchestraClient;
 	private OONIAPIClient apiClient;
+	private OONITestClient testClient;
 
 	@Override public void onCreate() {
 		super.onCreate();
@@ -75,6 +77,7 @@ public class Application extends android.app.Application {
 		}
 		return okHttpClient;
 	}
+
 	public OONIOrchestraClient getOrchestraClientWithUrl(String url) {
 		if (orchestraClient == null) {
 			orchestraClient = new Retrofit.Builder()
@@ -103,6 +106,21 @@ public class Application extends android.app.Application {
 
 	public OONIAPIClient getApiClient() {
 		return getApiClientWithUrl(BuildConfig.OONI_API_BASE_URL);
+	}
+
+	public OONITestClient getTestClientWithUrl(String url) {
+		if (testClient == null) {
+			testClient = new Retrofit.Builder()
+					.baseUrl(url)
+					.addConverterFactory(GsonConverterFactory.create())
+					.client(getOkHttpClient())
+					.build().create(OONITestClient.class);
+		}
+		return testClient;
+	}
+
+	public OONITestClient getTestClient() {
+		return getTestClientWithUrl(BuildConfig.OONI_TEST_BASE_URL);
 	}
 
 	public PreferenceManager getPreferenceManager() {
