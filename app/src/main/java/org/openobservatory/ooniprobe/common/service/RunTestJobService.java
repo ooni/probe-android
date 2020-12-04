@@ -35,7 +35,7 @@ public class RunTestJobService extends JobService {
         Log.d(TAG, "is started");
         String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
         NotificationService.setChannel(getApplicationContext(), "RunTestService", app.getString(R.string.Settings_AutomatedTesting_Label), false, false, false);
-        NotificationService.sendNotification(getApplicationContext(), "Should run test", "Time is "+currentTime);
+        NotificationService.sendNotification(getApplicationContext(), "RunTestService", "Should run test", "Time is "+currentTime);
 
         //TODO-TEST2 call the API
 

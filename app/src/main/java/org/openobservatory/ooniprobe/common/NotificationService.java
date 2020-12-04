@@ -18,8 +18,6 @@ import ly.count.android.sdk.Countly;
 import ly.count.android.sdk.messaging.CountlyPush;
 
 public class NotificationService {
-    private static final String TEST_RUN = "TEST_RUN";
-
     public static void initNotification(Application app){
         PreferenceManager preferenceManager = app.getPreferenceManager();
         if (!preferenceManager.isNotifications())
@@ -32,11 +30,11 @@ public class NotificationService {
     /*
      * Used for local notification, ex "test has finished running"
      */
-    public static void sendNotification(Context c, String title, String message) {
+    public static void sendNotification(Context c, String channel_id, String title, String message) {
         NotificationManager notificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
         if (notificationManager == null)
             return;
-        NotificationCompat.Builder b = new NotificationCompat.Builder(c, TEST_RUN);
+        NotificationCompat.Builder b = new NotificationCompat.Builder(c, channel_id);
         b.setAutoCancel(true);
         b.setDefaults(Notification.DEFAULT_ALL);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
