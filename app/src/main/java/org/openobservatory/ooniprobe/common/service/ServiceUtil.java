@@ -99,9 +99,8 @@ public class ServiceUtil {
                 ArrayList<String> inputs = new ArrayList<>();
                 System.out.println("callAPITest " + response.body().tests.web_connectivity.urls.size());
                 String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
-                //NotificationService.setChannel(app, "RunTestService", app.getString(R.string.Settings_AutomatedTesting_Label), false, false, false);
-                //NotificationService.sendNotification(app, "RunTestService", "Should run test", "Time is "+currentTime + "Url size " + response.body().tests.web_connectivity.urls.size());
-
+                NotificationService.setChannel(app, "RunTestService", app.getString(R.string.Settings_AutomatedTesting_Label), false, false, false);
+                NotificationService.sendNotification(app, "RunTestService", "Should run test", "Time is "+currentTime + "Url size " + response.body().tests.web_connectivity.urls.size());
                 //for (Url url : response.body().tests.web_connectivity.urls)
                 //    inputs.add(Url.checkExistingUrl(url.url, url.category_code, url.country_code).url);
                 /*currentTest.setInputs(inputs);

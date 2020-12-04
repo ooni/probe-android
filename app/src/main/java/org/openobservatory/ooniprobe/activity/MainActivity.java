@@ -90,6 +90,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                         .build().show(getSupportFragmentManager(), null);
             }
         }
+        /*
         Thread thread = new Thread(new Runnable() {
 
             @Override
@@ -102,8 +103,8 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 }
             }
         });
-
         thread.start();
+         */
 
     }
 

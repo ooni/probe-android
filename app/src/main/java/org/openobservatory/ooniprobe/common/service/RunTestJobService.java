@@ -30,15 +30,28 @@ public class RunTestJobService extends JobService {
     public boolean onStartJob(JobParameters params) {
         //Intent service = new Intent(getApplicationContext(), RunTestService.class);
         Application app = ((Application)getApplicationContext());
+        Log.d(TAG, "is started");
 
         //TEST1 only send notification every hour
-        Log.d(TAG, "is started");
+        /*
         String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
         NotificationService.setChannel(getApplicationContext(), "RunTestService", app.getString(R.string.Settings_AutomatedTesting_Label), false, false, false);
         NotificationService.sendNotification(getApplicationContext(), "RunTestService", "Should run test", "Time is "+currentTime);
+*/
 
-        //TODO-TEST2 call the API
-
+        //TEST2 call the API
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try  {
+                    Application app = ((Application)getApplicationContext());
+                    ServiceUtil.callAPITest(app);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
 
         /*
         //TODO-SERVICE-BK log stuff in countly
