@@ -314,10 +314,9 @@
   <string name="Settings_Notifications_OnNews">خوراک خبری</string>
   <string name="Settings_AutomatedTesting_Label">آزمایش خودکار</string>
   <string name="Settings_AutomatedTesting_RunAutomatically">اجرای خودکار آزمایش‌ها</string>
-  <string name="Settings_AutomatedTesting_RunAutomaticallyTime">زمان</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">فقط از طریق WiFi آزمایش کنید</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">کرانمند‌سازی مدت آزمون</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">مدت تست</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Run tests only on WiFi</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Run tests only while charging</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically on a regular basis (and you don’t need to remember to manually run tests).</string>
   <string name="Settings_Sharing_Label">به اشتراک گذاری</string>
   <string name="Settings_Sharing_UploadResults">انتشار خودکار نتایج</string>
   <string name="Settings_Sharing_UploadResultsManually">بارگذاری دستی نتایج</string>

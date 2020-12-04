@@ -314,10 +314,9 @@
   <string name="Settings_Notifications_OnNews">Mur de notícies</string>
   <string name="Settings_AutomatedTesting_Label">Prova automatitzada</string>
   <string name="Settings_AutomatedTesting_RunAutomatically">Executa proves automàticament</string>
-  <string name="Settings_AutomatedTesting_RunAutomaticallyTime">Temps</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Proves només amb Wi-Fi</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntimeEnabled">Límit de durada de la prova</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_MaxRuntime">Durada de la prova</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Run tests only on WiFi</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Run tests only while charging</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically on a regular basis (and you don’t need to remember to manually run tests).</string>
   <string name="Settings_Sharing_Label">Comparteix</string>
   <string name="Settings_Sharing_UploadResults">Publica automàticament els resultats</string>
   <string name="Settings_Sharing_UploadResultsManually">Pujada manual dels resultats</string>
