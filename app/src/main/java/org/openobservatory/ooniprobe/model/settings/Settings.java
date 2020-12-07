@@ -46,11 +46,11 @@ public class Settings {
 	private Integer version;
 
 	public Settings(Context c, PreferenceManager pm) {
-		annotations = new Annotations(c, pm);
+		annotations = new Annotations(c);
 		disabled_events = Arrays.asList("status.queued", "status.update.websites", "failure.report_close");
 		log_level = pm.isDebugLogs() ? "DEBUG2" : "INFO";
 		version = 1;
-		options = new Options(c, pm);
+		options = new Options(pm);
 	}
 
 	public OONIMKTaskConfig toExperimentSettings(Gson gson, Context c) throws java.io.IOException {
@@ -86,11 +86,8 @@ public class Settings {
 		@SerializedName("origin")
 		public String origin;
 
-		public Annotations(Context c, PreferenceManager pm) {
-			if (pm.isIncludeAsn())
-				this.network_type = ReachabilityManager.getNetworkType(c);
-			else
-				this.network_type = null;
+		public Annotations(Context c) {
+			this.network_type = ReachabilityManager.getNetworkType(c);
 			this.flavor = BuildConfig.FLAVOR;
 		}
 	}
@@ -98,36 +95,19 @@ public class Settings {
 	public static class Options {
 		@SerializedName("no_collector")
 		public boolean no_collector;
-		@SerializedName("save_real_probe_asn")
-		public final boolean save_real_probe_asn;
-		@SerializedName("save_real_probe_cc")
-		public final boolean save_real_probe_cc;
-		@SerializedName("save_real_probe_ip")
-		public final boolean save_real_probe_ip;
 		@SerializedName("software_name")
 		public final String software_name;
 		@SerializedName("software_version")
 		public final String software_version;
-		@SerializedName("randomize_input")
-		public final boolean randomize_input;
-		@SerializedName("no_file_report")
-		public final boolean no_file_report;
 		@SerializedName("max_runtime")
 		public Integer max_runtime;
-		@SerializedName("server")
-		public String server;
 		@SerializedName("probe_services_base_url")
 		public String probe_services_base_url;
 
-		public Options(Context c, PreferenceManager pm) {
+		public Options(PreferenceManager pm) {
 			no_collector = !pm.isUploadResults();
-			save_real_probe_asn = pm.isIncludeAsn();
-			save_real_probe_cc = pm.isIncludeCc();
-			save_real_probe_ip = pm.isIncludeIp();
 			software_name = BuildConfig.SOFTWARE_NAME;
 			software_version = BuildConfig.VERSION_NAME;
-			randomize_input = false;
-			no_file_report = true;
 		}
 	}
 }

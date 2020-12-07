@@ -114,20 +114,8 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.upload_results), true);
 	}
 
-	public boolean isIncludeIp() {
-		return false;
-	}
-
-	public boolean isIncludeAsn() {
-		return true;
-	}
-
 	public boolean isDebugLogs() {
 		return sp.getBoolean(r.getString(R.string.debugLogs), false);
-	}
-
-	public boolean isIncludeCc() {
-		return true;
 	}
 
 	public boolean isTestWhatsapp() {
