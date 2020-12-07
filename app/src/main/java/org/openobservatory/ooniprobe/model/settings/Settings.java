@@ -42,10 +42,14 @@ public class Settings {
 	@SerializedName("temp_dir")
 	private String temp_dir;
 
+	@SerializedName("version")
+	private Integer version;
+
 	public Settings(Context c, PreferenceManager pm) {
 		annotations = new Annotations(c, pm);
 		disabled_events = Arrays.asList("status.queued", "status.update.websites", "failure.report_close");
 		log_level = pm.isDebugLogs() ? "DEBUG2" : "INFO";
+		version = 1;
 		options = new Options(c, pm);
 	}
 
