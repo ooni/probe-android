@@ -78,13 +78,15 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                         .build().show(getSupportFragmentManager(), null);
             }
             //we don't want to flood the user with popups
-            else if (getPreferenceManager().getAppOpenCount() == PreferenceManager.NOTIFICATION_DIALOG_COUNT
-                    && !getPreferenceManager().isNotifications()) {
+            else if (getPreferenceManager().getAppOpenCount() % PreferenceManager.NOTIFICATION_DIALOG_COUNT == 0
+                    && !getPreferenceManager().isNotifications()
+                    && !getPreferenceManager().isAskNotificationDialogDisabled()) {
                 new ConfirmDialogFragment.Builder()
                         .withTitle(getString(R.string.Modal_EnableNotifications_Title))
                         .withMessage(getString(R.string.Modal_EnableNotifications_Paragraph))
                         .withPositiveButton(getString(R.string.Modal_OK))
-                        .withNegativeButton(getString(R.string.Modal_Cancel))
+                        .withNegativeButton(getString(R.string.Modal_NoThanks))
+                        .withNeutralButton(getString(R.string.Modal_DontAskAgain))
                         .withExtra(NOTIFICATION_DIALOG)
                         .build().show(getSupportFragmentManager(), null);
             }
@@ -125,6 +127,10 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 CountlyManager.reloadConsent(((Application) getApplication()).getPreferenceManager());
                 NotificationService.initNotification((Application) getApplication());
                 CountlyManager.recordEvent("NotificationModal_Accepted");
+            }
+            else if (i == DialogInterface.BUTTON_NEUTRAL){
+                getPreferenceManager().disableAskNotificationDialog();
+                CountlyManager.recordEvent("NotificationModal_DontAskAgain");
             }
             else
                 CountlyManager.recordEvent("NotificationModal_Declined");
