@@ -2,6 +2,8 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	package="org.openobservatory.ooniprobe">
 
+	<uses-permission android:name="${applicationId}.CountlyPush.BROADCAST_PERMISSION" />
+
 	<application tools:ignore="GoogleAppIndexingWarning">
 		<meta-data
 			android:name="com.google.firebase.messaging.default_notification_icon"
