@@ -314,9 +314,9 @@
   <string name="Settings_Notifications_OnNews">Neuigkeiten</string>
   <string name="Settings_AutomatedTesting_Label">Automatisches Testen</string>
   <string name="Settings_AutomatedTesting_RunAutomatically">Tests automatisch ausführen</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Run tests only on WiFi</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Run tests only while charging</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically on a regular basis (and you don’t need to remember to manually run tests).</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Tests nur auf WiFi starten</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Tests nur während des Ladevorgangs durchführen</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">Wenn Sie automatische Tests aktivieren, werden die Tests der OONI-Sonde regelmässig automatisch ausgeführt (und Sie müssen nicht daran denken, Tests manuell auszuführen).</string>
   <string name="Settings_Sharing_Label">Teilen</string>
   <string name="Settings_Sharing_UploadResults">Ergebnisse automatisch veröffentlichen</string>
   <string name="Settings_Sharing_UploadResultsManually">Manuelles Hochladen der Ergebnisse</string>

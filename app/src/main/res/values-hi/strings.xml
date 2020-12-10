@@ -373,7 +373,7 @@
   <string name="Settings_Storage_Label">Storage usage</string>
   <string name="Settings_Storage_Usage_Label">Storage used</string>
   <string name="Settings_Storage_Delete">हटाना</string>
-  <string name="Settings_Storage_Clear">Clear</string>
+  <string name="Settings_Storage_Clear">साफ़ करें</string>
   <string name="Settings_Storage_Confirmation_Paragraph">You are about to delete all OONI measurements from your device. If uploaded they will still be available on [OONI Explorer](https://explorer.ooni.org)</string>
   <string name="Notification_FinishedRunning">समाप्त हो रहा है</string>
   <string name="Notification_StopTest">Stop test</string>
