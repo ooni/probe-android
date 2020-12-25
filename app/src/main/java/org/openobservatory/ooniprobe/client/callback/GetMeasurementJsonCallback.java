@@ -17,7 +17,7 @@ public abstract class GetMeasurementJsonCallback implements Callback {
         String json;
         try {
             json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create()
-                    .toJson(new JsonParser().parse(response.body().string()));
+                    .toJson(JsonParser.parseString(response.body().string()));
         } catch (Exception e) {
             onError(e.getMessage());
             return;

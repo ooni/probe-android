@@ -114,7 +114,7 @@ public class TextActivity extends AbstractActivity {
 		try {
 			File entryFile = Measurement.getEntryFile(this, measurement.id, measurement.test_name);
 			String json = FileUtils.readFileToString(entryFile, Charset.forName("UTF-8"));
-			text = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(new JsonParser().parse(json));
+			text = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(JsonParser.parseString(json));
 			textView.setText(text);
 		} catch (Exception e) {
 			e.printStackTrace();

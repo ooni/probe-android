@@ -22,7 +22,7 @@ public class PreferenceGlobalFragment extends Fragment {
 		View v = inflater.inflate(R.layout.fragment_content, container, false);
 		ButterKnife.bind(this, v);
 		((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-		getFragmentManager().beginTransaction().replace(R.id.subContent, PreferenceFragment.newInstance(R.xml.preferences_global, R.id.subContent, null)).commit();
+		getParentFragmentManager().beginTransaction().replace(R.id.subContent, PreferenceFragment.newInstance(R.xml.preferences_global, R.id.subContent, null)).commit();
 		return v;
 	}
 }
