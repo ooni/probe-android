@@ -23,11 +23,6 @@
 				android:orientation="vertical"
 				app:layout_collapseMode="parallax">
 
-				<androidx.viewpager.widget.ViewPager
-					android:id="@+id/pager"
-					android:layout_width="match_parent"
-					android:layout_height="90dp" />
-
 				<com.google.android.material.tabs.TabLayout
 					android:id="@+id/tabLayout"
 					android:layout_width="match_parent"
@@ -39,6 +34,11 @@
 					app:tabSelectedTextColor="@color/color_white"
 					app:tabTextAppearance="@style/TextAppearance.AppCompat.Medium"
 					app:tabTextColor="#55ffffff" />
+
+				<androidx.viewpager2.widget.ViewPager2
+					android:id="@+id/pager"
+					android:layout_width="match_parent"
+					android:layout_height="90dp" />
 			</LinearLayout>
 
 			<androidx.appcompat.widget.Toolbar
