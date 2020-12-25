@@ -124,9 +124,9 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                 new MessageDialogFragment.Builder()
                         .withTitle(getString(R.string.Modal_Error))
                         .withMessage(getString(R.string.Modal_OnlyDigits))
-                        .build().show(getFragmentManager(), null);
+                        .build().show(getChildFragmentManager(), null);
                 sharedPreferences.edit().remove(key).apply();
-                EditTextPreference p = (EditTextPreference) findPreference(key);
+                EditTextPreference p = findPreference(key);
                 if (p != null)
                     p.setText("");
             }
@@ -148,9 +148,9 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
         if (!found) {
             new MessageDialogFragment.Builder()
                     .withMessage(getString(R.string.Modal_EnableAtLeastOneTest))
-                    .build().show(getFragmentManager(), null);
+                    .build().show(getChildFragmentManager(), null);
             sharedPreferences.edit().remove(key).apply();
-            SwitchPreferenceCompat p = (SwitchPreferenceCompat) findPreference(key);
+            SwitchPreferenceCompat p = findPreference(key);
             if (p != null)
                 p.setChecked(true);
         }
