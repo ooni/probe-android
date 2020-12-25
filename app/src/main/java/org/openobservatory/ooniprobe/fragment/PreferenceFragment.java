@@ -27,8 +27,7 @@ import org.openobservatory.ooniprobe.common.NotificationService;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 
 import java.util.Arrays;
-import org.openobservatory.ooniprobe.common.CountlyManager;
-import org.openobservatory.ooniprobe.common.NotificationService;
+
 import localhost.toolkit.app.fragment.MessageDialogFragment;
 import localhost.toolkit.preference.ExtendedPreferenceFragment;
 

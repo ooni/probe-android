@@ -5,11 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.openobservatory.ooniprobe.R;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import org.openobservatory.ooniprobe.R;
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 

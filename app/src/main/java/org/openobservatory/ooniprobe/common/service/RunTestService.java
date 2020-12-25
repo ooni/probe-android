@@ -2,7 +2,6 @@ package org.openobservatory.ooniprobe.common.service;
 
 import android.app.ActivityManager;
 import android.app.KeyguardManager;
-import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;

@@ -3,6 +3,8 @@ package org.openobservatory.ooniprobe.model.database;
 import android.content.Context;
 import android.content.res.TypedArray;
 
+import androidx.annotation.NonNull;
+
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
@@ -14,8 +16,6 @@ import org.openobservatory.ooniprobe.common.AppDatabase;
 
 import java.io.Serializable;
 import java.util.Arrays;
-
-import androidx.annotation.NonNull;
 
 @Table(database = AppDatabase.class)
 public class Url extends BaseModel implements Serializable {
