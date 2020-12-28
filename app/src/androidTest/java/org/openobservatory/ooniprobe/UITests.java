@@ -1,11 +1,8 @@
 package org.openobservatory.ooniprobe;
 
-import android.widget.TextView;
-
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.rule.ActivityTestRule;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -22,7 +19,10 @@ import static androidx.test.espresso.Espresso.closeSoftKeyboard;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.core.StringContains.containsString;
 
 @RunWith(JUnit4.class)
 public class UITests {
@@ -48,18 +48,24 @@ public class UITests {
         closeSoftKeyboard();
         onView(withId(R.id.runButton)).perform(click());
 
-        //onView(withId(R.id.testResults)).perform(click());
+        onView(withId(R.id.testResults)).perform(click());
         onView(withId(R.id.recycler))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+                .perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
         onView(withId(R.id.recyclerView))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
 
 
-        TextView textView = activityRule.getActivity().findViewById(R.id.outcome);
+        //TODO TestResults_Details_Websites_Reachable_Content_Paragraph
+        onView(withId(R.id.desc)).check(matches(withText(containsString("http://ooni.io is accessible"))));
 
-        //TODO use string translated resources
-        Assert.assertTrue(textView.getText().toString().contains("http://ooni.io"));
-        Assert.assertTrue(textView.getText().toString().contains("Accessible"));
+    }
+
+
+    //@Test
+    public void testSettings() {
+        onView(withId(R.id.settings)).perform(click());
+        //onView(withId(R.id.privacy)).perform(click());
+        //onView(withText(activityRule.getActivity().getResources().getString(R.string.privacy))).perform(click());
     }
 
 }
