@@ -76,7 +76,8 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                         .build().show(getSupportFragmentManager(), null);
             }
             //we don't want to flood the user with popups
-            else if (getPreferenceManager().getAppOpenCount() % PreferenceManager.NOTIFICATION_DIALOG_COUNT == 0
+            else if (getPreferenceManager().getAppOpenCount() != 0
+                    && getPreferenceManager().getAppOpenCount() % PreferenceManager.NOTIFICATION_DIALOG_COUNT == 0
                     && !getPreferenceManager().isNotifications()
                     && !getPreferenceManager().isAskNotificationDialogDisabled()) {
                 new ConfirmDialogFragment.Builder()
