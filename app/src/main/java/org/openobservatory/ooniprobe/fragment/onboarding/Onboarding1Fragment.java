@@ -5,11 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.openobservatory.ooniprobe.R;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import org.openobservatory.ooniprobe.R;
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -21,6 +22,6 @@ public class Onboarding1Fragment extends Fragment {
 	}
 
 	@OnClick(R.id.master) void masterClick() {
-		getFragmentManager().beginTransaction().replace(android.R.id.content, new Onboarding2Fragment()).commit();
+		getParentFragmentManager().beginTransaction().replace(android.R.id.content, new Onboarding2Fragment()).commit();
 	}
 }

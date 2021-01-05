@@ -9,8 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.raizlabs.android.dbflow.sql.language.Where;
 
 import org.apache.commons.io.FileUtils;
-import org.openobservatory.engine.LoggerArray;
 import org.openobservatory.engine.Engine;
+import org.openobservatory.engine.LoggerArray;
 import org.openobservatory.engine.OONIContext;
 import org.openobservatory.engine.OONISession;
 import org.openobservatory.engine.OONISubmitResults;
