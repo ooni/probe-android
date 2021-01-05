@@ -46,6 +46,7 @@
 			android:id="@+id/bottomBar"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:background="@color/color_base"
 			app:title="@string/OONIRun_URLs"
 			app:titleTextAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title.App" />
 	</com.google.android.material.appbar.AppBarLayout>
