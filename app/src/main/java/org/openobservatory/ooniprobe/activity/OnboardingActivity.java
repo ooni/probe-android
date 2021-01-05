@@ -2,9 +2,9 @@ package org.openobservatory.ooniprobe.activity;
 
 import android.os.Bundle;
 
-import org.openobservatory.ooniprobe.fragment.onboarding.Onboarding1Fragment;
-
 import androidx.annotation.Nullable;
+
+import org.openobservatory.ooniprobe.fragment.onboarding.Onboarding1Fragment;
 
 public class OnboardingActivity extends AbstractActivity {
 	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {

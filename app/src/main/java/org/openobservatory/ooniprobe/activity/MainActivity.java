@@ -17,10 +17,8 @@ import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
 import org.openobservatory.ooniprobe.fragment.PreferenceGlobalFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
-import org.openobservatory.ooniprobe.model.database.Measurement;
 
 import java.io.Serializable;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

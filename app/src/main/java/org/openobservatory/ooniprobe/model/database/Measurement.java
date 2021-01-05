@@ -18,7 +18,6 @@ import org.openobservatory.ooniprobe.client.callback.CheckReportIdCallback;
 import org.openobservatory.ooniprobe.common.AppDatabase;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
-import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.Dash;

@@ -8,24 +8,26 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.CountlyManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment;
@@ -45,8 +47,6 @@ import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
-import org.openobservatory.ooniprobe.test.test.Dash;
-import org.openobservatory.ooniprobe.test.test.Ndt;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
 import java.io.Serializable;
@@ -70,7 +70,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
     @BindView(R.id.tabLayout)
     TabLayout tabLayout;
     @BindView(R.id.pager)
-    ViewPager pager;
+    ViewPager2 pager;
     @BindView(R.id.recyclerView)
     RecyclerView recycler;
     private ArrayList<HeterogeneousRecyclerItem> items;
@@ -97,8 +97,10 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
             bar.setDisplayHomeAsUpEnabled(true);
             bar.setTitle(result.getTestSuite().getTitle());
         }
-        pager.setAdapter(new ResultHeaderAdapter());
-        tabLayout.setupWithViewPager(pager);
+        pager.setAdapter(new ResultHeaderAdapter(this));
+        new TabLayoutMediator(tabLayout, pager, (tab, position) ->
+                tab.setText("●")
+        ).attach();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recycler.setLayoutManager(layoutManager);
         recycler.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
@@ -226,18 +228,21 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
         }
     }
 
-    private class ResultHeaderAdapter extends FragmentPagerAdapter {
-        ResultHeaderAdapter() {
-            super(getSupportFragmentManager());
+    private class ResultHeaderAdapter extends FragmentStateAdapter {
+        ResultHeaderAdapter(final FragmentActivity fa) {
+            super(fa);
         }
 
+        @NonNull
         @Override
-        public Fragment getItem(int position) {
+        public Fragment createFragment(int position) {
             if (position == 1)
                 return ResultHeaderDetailFragment.newInstance(false, result.getFormattedDataUsageUp(), result.getFormattedDataUsageDown(), result.start_time, result.getRuntime(), true, null, null);
             else if (position == 2)
                 return ResultHeaderDetailFragment.newInstance(false, null, null, null, null, null, Network.getCountry(ResultDetailActivity.this, result.network), result.network);
             else switch (result.test_group_name) {
+                    default: //Default can no longer be null, so we have to default to something...
+                    // NOTE: Perhaps set up a test page?
                     case WebsitesSuite.NAME:
                         return ResultHeaderTBAFragment.newInstance(result);
                     case InstantMessagingSuite.NAME:
@@ -248,20 +253,12 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
                         return ResultHeaderPerformanceFragment.newInstance(result);
                     case CircumventionSuite.NAME:
                         return ResultHeaderTBAFragment.newInstance(result);
-                    default:
-                        return null;
                 }
         }
 
         @Override
-        public int getCount() {
+        public int getItemCount() {
             return 3;
-        }
-
-        @Nullable
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return "●";
         }
     }
 }

@@ -31,7 +31,6 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
 import org.openobservatory.ooniprobe.activity.TextActivity;
-import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.CountlyManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.item.CircumventionItem;

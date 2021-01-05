@@ -6,14 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.model.database.Measurement;
-import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+
+import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.model.database.Measurement;
+import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

@@ -2,6 +2,8 @@ package org.openobservatory.ooniprobe.test.test;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.Gson;
 
 import org.openobservatory.ooniprobe.R;
@@ -10,8 +12,6 @@ import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
 import org.openobservatory.ooniprobe.model.settings.Settings;
-
-import androidx.annotation.NonNull;
 
 public class HttpInvalidRequestLine extends AbstractTest {
 	public static final String NAME = "http_invalid_request_line";
