@@ -170,7 +170,7 @@ public class TestKeys {
 		return R.string.TestResults_NotAvailable;
 	}
 
-	public int getRiseupvpnApiStatus() {
+	public int getRiseupVPNApiStatus() {
 		if (api_failure != null || !ca_cert_status) {
 			return R.string.TestResults_Overview_Circumvention_RiseupVPN_Api_Blocked;
 		} else {
@@ -178,11 +178,11 @@ public class TestKeys {
 		}
 	}
 
-	public String getRiseupvpnOpenvpnGatewayStatus(Context context) {
+	public String getRiseupVPNOpenvpnGatewayStatus(Context context) {
 		return getGatewayStatus(context, "openvpn");
 	}
 
-	public String getRiseupvpnBridgedGatewayStatus(Context context) {
+	public String getRiseupVPNBridgedGatewayStatus(Context context) {
 		return getGatewayStatus(context, "obfs4");
 	}
 

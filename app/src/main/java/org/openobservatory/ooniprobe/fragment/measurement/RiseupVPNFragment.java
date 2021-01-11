@@ -43,9 +43,9 @@ public class RiseupVPNFragment extends Fragment {
 						getString(R.string.TestResults_Details_Circumvention_RiseupVPN_Blocked_Content_Paragraph) :
 						getString(R.string.TestResults_Details_Circumvention_RiseupVPN_Reachable_Content_Paragraph)
 		);
-		bootstrap_value.setText(measurement.getTestKeys().getRiseupvpnApiStatus());
-		openvpn_value.setText(measurement.getTestKeys().getRiseupvpnOpenvpnGatewayStatus(getContext()));
-		bridges_value.setText(measurement.getTestKeys().getRiseupvpnBridgedGatewayStatus(getContext()));
+		bootstrap_value.setText(measurement.getTestKeys().getRiseupVPNApiStatus());
+		openvpn_value.setText(measurement.getTestKeys().getRiseupVPNOpenvpnGatewayStatus(getContext()));
+		bridges_value.setText(measurement.getTestKeys().getRiseupVPNBridgedGatewayStatus(getContext()));
 		return v;
 	}
 }

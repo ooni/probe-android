@@ -35,7 +35,7 @@ public class CircumventionSuite extends AbstractSuite {
                 list.add(new Psiphon());
             if (pm == null || pm.isTestTor())
                 list.add(new Tor());
-            if (pm == null || pm.isTestRiseupvpn())
+            if (pm == null || pm.isTestRiseupVPN())
                 list.add(new RiseupVPN());
             super.setTestList(list.toArray(new AbstractTest[0]));
         }

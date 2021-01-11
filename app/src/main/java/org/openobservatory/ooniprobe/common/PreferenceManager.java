@@ -145,9 +145,9 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.test_tor), true);
 	}
 
-	public boolean isTestRiseupvpn() {
-		boolean isRiseupvpn = sp.getBoolean(r.getString(R.string.test_riseupvpn), true);
-		return isRiseupvpn;
+	public boolean isTestRiseupVPN() {
+		boolean isRiseupVPN = sp.getBoolean(r.getString(R.string.test_riseupvpn), true);
+		return isRiseupVPN;
 	}
 
 	public boolean isRunHttpInvalidRequestLine() {
