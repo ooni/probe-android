@@ -243,7 +243,8 @@
   <string name="TestResults_Details_Circumvention_ RiseupVPN_Table_Header_Openvpn">OpenVPN connections</string>
   <string name="TestResults_Details_Circumvention_ RiseupVPN_Table_Header_Bridge">Bridged connections</string>
   <string name="TestResults_Overview_Circumvention_ RiseupVPN_Api_Blocked">Bloccati</string>
-  <string name="TestResults_Overview_Circumvention_ RiseupVPN_Blocked">%1$s bloccati</string>
+  <string name="TestResults_Overview_Circumvention_ RiseupVPN_Blocked_Singular">%1$s bloccati</string>
+  <string name="TestResults_Overview_Circumvention_ RiseupVPN_Blocked_Plural">%1$s bloccati</string>
   <string name="TestResults_Details_Circumvention_ RiseupVPN_Reachable_Okay">OK</string>
   <string name="Feed_Tab_Label">Feed</string>
   <string name="Feed_Title">Feed</string>
