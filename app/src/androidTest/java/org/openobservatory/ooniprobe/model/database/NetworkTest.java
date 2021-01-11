@@ -1,14 +1,11 @@
 package org.openobservatory.ooniprobe.model.database;
 
-import com.raizlabs.android.dbflow.sql.language.Delete;
-import com.raizlabs.android.dbflow.sql.language.SQLite;
+import androidx.test.filters.SmallTest;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.openobservatory.ooniprobe.AbstractTest;
 import org.openobservatory.ooniprobe.R;
-
-import androidx.test.filters.SmallTest;
 
 @SmallTest public class NetworkTest extends AbstractTest {
 	private static final String BLANK = "";

@@ -217,6 +217,13 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
         new ResubmitAsyncTask(this).execute(null, measurement.id);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        CountlyManager.recordView("TestDetails");
+        CountlyManager.recordView("TestDetails_" + measurement.test_name);
+    }
+
     private void load() {
         if (!measurement.is_failed && (!measurement.is_uploaded || measurement.report_id == null))
             snackbar.show();

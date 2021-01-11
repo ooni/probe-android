@@ -1,13 +1,13 @@
 package org.openobservatory.ooniprobe.model.jsonresult;
 
+import androidx.test.filters.SmallTest;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.openobservatory.ooniprobe.AbstractTest;
 import org.openobservatory.ooniprobe.R;
 
 import java.util.Locale;
-
-import androidx.test.filters.SmallTest;
 
 @SmallTest public class TestKeysTest extends AbstractTest {
 	private static final String BLANK = "";

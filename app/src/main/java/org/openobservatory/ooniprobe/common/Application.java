@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.common;
 
+import android.app.ActivityManager;
+
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
@@ -13,6 +15,7 @@ import com.raizlabs.android.dbflow.config.FlowManager;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.client.OONIAPIClient;
 import org.openobservatory.ooniprobe.client.OONIOrchestraClient;
+import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
@@ -31,7 +34,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Application extends android.app.Application {
 	private PreferenceManager preferenceManager;
 	private Gson gson;
-	private boolean testRunning;
 	private OkHttpClient okHttpClient;
 	private OONIOrchestraClient orchestraClient;
 	private OONIAPIClient apiClient;
@@ -62,7 +64,10 @@ public class Application extends android.app.Application {
 					.addInterceptor(new Interceptor() {
 						@Override
 						public Response intercept(Chain chain) throws IOException {
-							Request request = chain.request().newBuilder().addHeader("User-Agent", "ooniprobe-android/" + BuildConfig.VERSION_NAME).build();
+							Request request = chain.request().newBuilder()
+									.addHeader("User-Agent", "ooniprobe-android/" + BuildConfig.VERSION_NAME)
+									.addHeader("Connection", "Close")
+									.build();
 							return chain.proceed(request);
 						}
 					})
@@ -109,13 +114,26 @@ public class Application extends android.app.Application {
 	}
 
 	public boolean isTestRunning() {
-		return testRunning;
+		return checkServiceRunning(RunTestService.class);
 	}
 
-	public void setTestRunning(boolean testRunning) {
-		this.testRunning = testRunning;
+	/**
+	 * Check if the service is Running https://stackoverflow.com/a/24729110
+	 * @param serviceClass the class of the Service
+	 *
+	 * @return true if the service is running otherwise false
+	 */
+	public boolean checkServiceRunning(Class<?> serviceClass){
+		ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+		for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE))
+		{
+			if (serviceClass.getName().equals(service.service.getClassName()))
+			{
+				return true;
+			}
+		}
+		return false;
 	}
-
 	//from https://medium.com/mindorks/detecting-when-an-android-app-is-in-foreground-or-background-7a1ff49812d7
 	public class AppLifecycleObserver implements LifecycleObserver {
 

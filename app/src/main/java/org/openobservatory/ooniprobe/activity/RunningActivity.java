@@ -1,10 +1,16 @@
 package org.openobservatory.ooniprobe.activity;
 
+import android.app.NotificationManager;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.MotionEvent;
+import android.os.IBinder;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.ImageButton;
@@ -13,28 +19,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.airbnb.lottie.LottieAnimationView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.CountlyManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
-import org.openobservatory.ooniprobe.common.NotificationService;
-import org.openobservatory.ooniprobe.model.database.Result;
+import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
-import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
-
-import java.util.ArrayList;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 import localhost.toolkit.app.fragment.MessageDialogFragment;
 
-public class RunningActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
-    private static final String TEST = "test";
+public class RunningActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener, ServiceConnection {
     @BindView(R.id.running)
     TextView running;
     @BindView(R.id.name)
@@ -49,11 +54,10 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     ImageButton close;
     @BindView(R.id.animation)
     LottieAnimationView animation;
-    private ArrayList<AbstractSuite> testSuites;
-    private AbstractSuite testSuite;
-    private boolean background;
     private Integer runtime;
-    private TestAsyncTask task;
+    private RunTestService service;
+    private TestRunBroadRequestReceiver receiver;
+    boolean isBound = false;
 
     public static Intent newIntent(AbstractActivity context, ArrayList<AbstractSuite> testSuites) {
         if (ReachabilityManager.getNetworkType(context).equals(ReachabilityManager.NO_INTERNET)) {
@@ -63,9 +67,10 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                     .build().show(context.getSupportFragmentManager(), null);
             return null;
         } else {
-            Bundle extra = new Bundle();
-            extra.putSerializable(TEST, testSuites);
-            return new Intent(context, RunningActivity.class).putExtra(TEST, extra);
+            Intent serviceIntent = new Intent(context, RunTestService.class);
+            serviceIntent.putExtra("testSuites", testSuites);
+            ContextCompat.startForegroundService(context, serviceIntent);
+            return new Intent(context, RunningActivity.class);
         }
     }
 
@@ -75,39 +80,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         setTheme(R.style.Theme_MaterialComponents_NoActionBar_App);
         setContentView(R.layout.activity_running);
         ButterKnife.bind(this);
-        Bundle extra = getIntent().getBundleExtra(TEST);
-        testSuites = (ArrayList<AbstractSuite>) extra.getSerializable(TEST);
-        if (testSuites == null) {
-            finish();
-            return;
-        }
-        runTest();
-    }
-
-    private void runTest() {
-        if (testSuites.size() > 0) {
-            testSuite = testSuites.get(0);
-            testStart();
-            setTestRunning(true);
-            task = (TestAsyncTaskImpl) new TestAsyncTaskImpl(this, testSuite.getResult()).execute(testSuite.getTestList(getPreferenceManager()));
-        }
-    }
-
-    private void testStart(){
-        runtime = testSuite.getRuntime(getPreferenceManager());
-        getWindow().setBackgroundDrawableResource(testSuite.getColor());
-        if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().setStatusBarColor(testSuite.getColor());
-        }
-        animation.setImageAssetsFolder("anim/");
-        animation.setAnimation(testSuite.getAnim());
-        animation.setRepeatCount(Animation.INFINITE);
-        animation.playAnimation();
-        progress.setIndeterminate(true);
-        eta.setText(R.string.Dashboard_Running_CalculatingETA);
-        progress.setMax(testSuite.getTestList(getPreferenceManager()).length * 100);
-        //TODO remove this line when web_connectiviity will be in go
-        close.setVisibility(testSuite.getName().equals(WebsitesSuite.NAME) ? View.GONE : View.VISIBLE);
+        CountlyManager.recordView("TestRunning");
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,22 +94,59 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         });
     }
 
+    private void applyUIChanges(){
+        if (service == null || service.task == null ||
+            service.task.currentSuite == null || service.task.currentTest == null) {
+            return;
+        }
+        animation.setImageAssetsFolder("anim/");
+        animation.setRepeatCount(Animation.INFINITE);
+        animation.playAnimation();
+        progress.setIndeterminate(true);
+        eta.setText(R.string.Dashboard_Running_CalculatingETA);
+
+        name.setText(getString(service.task.currentTest.getLabelResId()));
+        runtime = service.task.currentSuite.getRuntime(getPreferenceManager());
+        getWindow().setBackgroundDrawableResource(service.task.currentSuite.getColor());
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().setStatusBarColor(service.task.currentSuite.getColor());
+        }
+        animation.setAnimation(service.task.currentSuite.getAnim());
+        progress.setMax(service.task.currentSuite.getTestList(getPreferenceManager()).length * 100);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
-        background = false;
+        if (!isTestRunning()) {
+            NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+            assert notificationManager != null;
+            notificationManager.cancel(RunTestService.NOTIFICATION_ID);
+            testEnded(this);
+            return;
+        }
+        IntentFilter filter = new IntentFilter("org.openobservatory.ooniprobe.activity.RunningActivity");
+        receiver = new TestRunBroadRequestReceiver();
+        LocalBroadcastManager.getInstance(this).registerReceiver(receiver, filter);
+        //Bind the RunTestService
+        Intent intent = new Intent(this, RunTestService.class);
+        bindService(intent, this, Context.BIND_AUTO_CREATE);
     }
 
     @Override
     protected void onPause() {
-        background = true;
         super.onPause();
+        if (isBound) {
+            unbindService(this);
+            isBound = false;
+        }
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
     }
 
     @Override
     protected void onDestroy() {
-        setTestRunning(false);
         super.onDestroy();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
     }
 
     @Override
@@ -144,69 +154,72 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         Toast.makeText(this, getString(R.string.Modal_Error_CantCloseScreen), Toast.LENGTH_SHORT).show();
     }
 
-    private static class TestAsyncTaskImpl extends TestAsyncTask<RunningActivity> {
-        TestAsyncTaskImpl(RunningActivity activity, Result result) {
-            super(activity, result);
-        }
+    @Override
+    public void onServiceConnected(ComponentName cname, IBinder binder) {
+        //Bind the service to this activity
+        RunTestService.TestBinder b = (RunTestService.TestBinder) binder;
+        service = b.getService();
+        isBound = true;
+        applyUIChanges();
+    }
 
+
+    @Override
+    public void onServiceDisconnected(ComponentName name) {
+        service = null;
+    }
+
+    public class TestRunBroadRequestReceiver extends BroadcastReceiver {
         @Override
-        protected void onProgressUpdate(String... values) {
-            RunningActivity act = ref.get();
-            if (act != null && !act.isFinishing())
-                switch (values[0]) {
-                    case RUN:
-                        act.name.setText(values[1]);
-                        break;
-                    case PRG:
-                        act.progress.setIndeterminate(false);
-                        int prgs = Integer.parseInt(values[1]);
-                        act.progress.setProgress(prgs);
-                        act.eta.setText(act.getString(R.string.Dashboard_Running_Seconds, String.valueOf(Math.round(act.runtime - ((double) prgs) / act.progress.getMax() * act.runtime))));
-                        break;
-                    case LOG:
-                        if (!act.task.isInterrupted())
-                            act.log.setText(values[1]);
-                        break;
-                    case ERR:
-                        Toast.makeText(act, values[1], Toast.LENGTH_SHORT).show();
-                        act.finish();
-                        break;
-                    case URL:
-                        act.progress.setIndeterminate(false);
-                        act.runtime = act.testSuite.getRuntime(act.getPreferenceManager());
-                        break;
-                }
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            RunningActivity act = ref.get();
-            act.testSuites.remove(act.testSuite);
-            if (act.testSuites.size() == 0)
-                endTest(act);
-            else
-                act.runTest();
-        }
-
-        private void endTest(RunningActivity act){
-            if (act != null && !act.isFinishing()) {
-                if (act.background) {
-                    NotificationService.notifyTestEnded(act, act.testSuite);
-                } else
-                    act.startActivity(MainActivity.newIntent(act, R.id.testResults));
-                act.finish();
+        public void onReceive(Context context, Intent intent) {
+            String key = intent.getStringExtra("key");
+            String value = intent.getStringExtra("value");
+            switch (key) {
+                case TestAsyncTask.START:
+                    applyUIChanges();
+                    break;
+                case TestAsyncTask.RUN:
+                    name.setText(value);
+                    break;
+                case TestAsyncTask.PRG:
+                    int prgs = Integer.parseInt(value);
+                    progress.setIndeterminate(false);
+                    progress.setProgress(prgs);
+                    if (runtime != null)
+                        eta.setText(getString(R.string.Dashboard_Running_Seconds,
+                                String.valueOf(Math.round(runtime - ((double) prgs) / progress.getMax() * runtime))));
+                    break;
+                case TestAsyncTask.LOG:
+                    log.setText(value);
+                    break;
+                case TestAsyncTask.ERR:
+                    Toast.makeText(context, value, Toast.LENGTH_SHORT).show();
+                    break;
+                case TestAsyncTask.URL:
+                    progress.setIndeterminate(false);
+                    runtime = service.task.currentSuite.getRuntime(getPreferenceManager());
+                    break;
+                case TestAsyncTask.INT:
+                    running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
+                    log.setText(getString(R.string.Dashboard_Running_Stopping_Notice));
+                    break;
+                case TestAsyncTask.END:
+                    testEnded(context);
+                    break;
             }
-
         }
+    }
+
+    private void testEnded(Context context) {
+        startActivity(MainActivity.newIntent(context, R.id.testResults));
+        finish();
     }
 
     @Override
     public void onConfirmation(Serializable serializable, int i) {
         if (i == DialogInterface.BUTTON_POSITIVE) {
-            running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
-            log.setText(getString(R.string.Dashboard_Running_Stopping_Notice));
-            task.interrupt();
+            if (service != null)
+                service.task.interrupt();
         }
     }
 }

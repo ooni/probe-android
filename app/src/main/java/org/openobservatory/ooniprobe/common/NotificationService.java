@@ -12,7 +12,6 @@ import androidx.core.app.NotificationCompat;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
-import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
 import ly.count.android.sdk.Countly;
 import ly.count.android.sdk.messaging.CountlyPush;
@@ -25,13 +24,8 @@ public class NotificationService {
         if (!preferenceManager.isNotifications())
             return;
         CountlyPush.init(app, BuildConfig.DEBUG? Countly.CountlyMessagingMode.TEST:Countly.CountlyMessagingMode.PRODUCTION);
-        NotificationService.setChannel(app, CountlyPush.CHANNEL_ID, app.getString(R.string.Settings_Notifications_Label));
+        NotificationService.setChannel(app, CountlyPush.CHANNEL_ID, app.getString(R.string.Settings_Notifications_Label), true, true, true);
         NotificationService.setToken(app);
-    }
-
-    public static void notifyTestEnded(Context c, AbstractSuite testSuite) {
-        setChannel(c, TEST_RUN, c.getString(R.string.Settings_Notifications_OnTestCompletion));
-        sendNotification(c, c.getString(R.string.General_AppName), c.getString(testSuite.getTitle()) + " " + c.getString(R.string.Notification_FinishedRunning));
     }
 
     /*
@@ -62,11 +56,16 @@ public class NotificationService {
     }
 
     // Register the channel with the system
-    private static void setChannel(Context c, String channelID, String channelName){
+    public static void setChannel(Context c, String channelID, String channelName,
+                                  Boolean vibration, Boolean sound, Boolean lights){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationManager notificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
             if (notificationManager != null) {
                 NotificationChannel channel = new NotificationChannel(channelID, channelName, NotificationManager.IMPORTANCE_DEFAULT);
+                channel.enableVibration(vibration);
+                channel.enableLights(lights);
+                if (!sound)
+                    channel.setSound(null, null);
                 notificationManager.createNotificationChannel(channel);
             }
         }

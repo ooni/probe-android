@@ -4,27 +4,25 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewTreeObserver;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.apache.commons.io.FileUtils;
-import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.client.callback.GetMeasurementJsonCallback;
-import org.openobservatory.ooniprobe.client.callback.GetMeasurementsCallback;
-import org.openobservatory.ooniprobe.common.ReachabilityManager;
-import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
-import org.openobservatory.ooniprobe.model.database.Measurement;
 
 import androidx.annotation.Nullable;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
+
+import org.apache.commons.io.FileUtils;
+import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.client.callback.GetMeasurementJsonCallback;
+import org.openobservatory.ooniprobe.client.callback.GetMeasurementsCallback;
+import org.openobservatory.ooniprobe.common.CountlyManager;
+import org.openobservatory.ooniprobe.common.ReachabilityManager;
+import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
+import org.openobservatory.ooniprobe.model.database.Measurement;
 
 import java.io.File;
 import java.nio.charset.Charset;
@@ -59,6 +57,7 @@ public class TextActivity extends AbstractActivity {
 		setContentView(R.layout.text);
 		ButterKnife.bind(this);
 		showText();
+		CountlyManager.recordView("DataView");
 	}
 
 	@Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -112,7 +111,7 @@ public class TextActivity extends AbstractActivity {
 		try {
 			File entryFile = Measurement.getEntryFile(this, measurement.id, measurement.test_name);
 			String json = FileUtils.readFileToString(entryFile, Charset.forName("UTF-8"));
-			text = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(new JsonParser().parse(json));
+			text = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(JsonParser.parseString(json));
 			textView.setText(text);
 		} catch (Exception e) {
 			e.printStackTrace();

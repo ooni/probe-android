@@ -16,6 +16,7 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.SwitchPreferenceCompat;
 
+import org.apache.commons.io.FileUtils;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
@@ -23,6 +24,7 @@ import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.CountlyManager;
 import org.openobservatory.ooniprobe.common.NotificationService;
+import org.openobservatory.ooniprobe.model.database.Measurement;
 
 import java.util.Arrays;
 
@@ -52,10 +54,11 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
     public void onResume() {
         assert getArguments() != null;
         super.onResume();
+        CountlyManager.recordView("Settings");
         setPreferencesFromResource(getArguments().getInt(ARG_PREFERENCES_RES_ID), getArguments().getInt(ARG_CONTAINER_RES_ID), getArguments().getString(ARG_PREFERENCE_ROOT));
-
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         getActivity().setTitle(getPreferenceScreen().getTitle());
+
         for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++) {
             if (getPreferenceScreen().getPreference(i) instanceof EditTextPreference) {
                 EditTextPreference editTextPreference = (EditTextPreference) getPreferenceScreen().getPreference(i);
@@ -79,6 +82,14 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                 }
                 return true;
             });
+        setStorage();
+    }
+
+    public void setStorage(){
+        Preference storage = findPreference(getString(R.string.storage_usage));
+        if (storage != null){
+            storage.setSummary(FileUtils.byteCountToDisplaySize(Measurement.getStorageUsed(getContext())));
+        }
     }
 
     @Override
@@ -112,9 +123,9 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                 new MessageDialogFragment.Builder()
                         .withTitle(getString(R.string.Modal_Error))
                         .withMessage(getString(R.string.Modal_OnlyDigits))
-                        .build().show(getFragmentManager(), null);
+                        .build().show(getChildFragmentManager(), null);
                 sharedPreferences.edit().remove(key).apply();
-                EditTextPreference p = (EditTextPreference) findPreference(key);
+                EditTextPreference p = findPreference(key);
                 if (p != null)
                     p.setText("");
             }
@@ -136,9 +147,9 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
         if (!found) {
             new MessageDialogFragment.Builder()
                     .withMessage(getString(R.string.Modal_EnableAtLeastOneTest))
-                    .build().show(getFragmentManager(), null);
+                    .build().show(getChildFragmentManager(), null);
             sharedPreferences.edit().remove(key).apply();
-            SwitchPreferenceCompat p = (SwitchPreferenceCompat) findPreference(key);
+            SwitchPreferenceCompat p = findPreference(key);
             if (p != null)
                 p.setChecked(true);
         }

@@ -44,6 +44,7 @@
 		android:text="@string/Onboarding_WhatIsOONIProbe_GotIt"
 		android:textAllCaps="false"
 		android:textColor="#002B54"
+		app:backgroundTint="@color/color_white"
 		app:cornerRadius="32dp" />
 
 	<ImageView
