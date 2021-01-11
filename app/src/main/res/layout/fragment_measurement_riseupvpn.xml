@@ -14,20 +14,20 @@
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:layout_marginEnd="5dp"
-			android:text="@string/TestResults_Details_Circumvention_Riseupvpn_Table_Header_Api" />
+			android:text="@string/TestResults_Details_Circumvention_RiseupVPN_Table_Header_Api" />
 
 		<TextView
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:layout_marginEnd="5dp"
-			android:text="@string/TestResults_Details_Circumvention_Riseupvpn_Table_Header_Openvpn" />
+			android:text="@string/TestResults_Details_Circumvention_RiseupVPN_Table_Header_Openvpn" />
 
 		<TextView
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:text="@string/TestResults_Details_Circumvention_Riseupvpn_Table_Header_Bridge" />
+			android:text="@string/TestResults_Details_Circumvention_RiseupVPN_Table_Header_Bridge" />
 	</LinearLayout>
 
 	<LinearLayout

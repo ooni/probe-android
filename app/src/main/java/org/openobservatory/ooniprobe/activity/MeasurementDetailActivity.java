@@ -172,8 +172,8 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                     break;
                 case RiseupVPN.NAME:
                     head = HeaderOutcomeFragment.newInstance(iconRes, getString(R.string.bold, getString(measurement.is_anomaly ?
-                            R.string.TestResults_Details_Circumvention_Riseupvpn_Blocked_Hero_Title :
-                            R.string.TestResults_Details_Circumvention_Riseupvpn_Reachable_Hero_Title)));
+                            R.string.TestResults_Details_Circumvention_RiseupVPN_Blocked_Hero_Title :
+                            R.string.TestResults_Details_Circumvention_RiseupVPN_Reachable_Hero_Title)));
                     detail = RiseupVPNFragment.newInstance(measurement);
                     break;
             }

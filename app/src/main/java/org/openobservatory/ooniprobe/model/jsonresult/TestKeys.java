@@ -172,9 +172,9 @@ public class TestKeys {
 
 	public int getRiseupvpnApiStatus() {
 		if (api_failure != null || !ca_cert_status) {
-			return R.string.TestResults_Overview_Circumvention_Riseupvpn_Api_Blocked;
+			return R.string.TestResults_Overview_Circumvention_RiseupVPN_Api_Blocked;
 		} else {
-			return R.string.TestResults_Details_Circumvention_Riseupvpn_Reachable_Okay;
+			return R.string.TestResults_Details_Circumvention_RiseupVPN_Reachable_Okay;
 		}
 	}
 
@@ -194,9 +194,9 @@ public class TestKeys {
 					blockedConnection++;
 				}
 			}
-			return context.getResources().getQuantityString(R.plurals.TestResults_Overview_Circumvention_Riseupvpn_Blocked, blockedConnection);
+			return context.getResources().getQuantityString(R.plurals.TestResults_Overview_Circumvention_RiseupVPN_Blocked, blockedConnection);
 		} else {
-			return context.getString(R.string.TestResults_Details_Circumvention_Riseupvpn_Reachable_Okay);
+			return context.getString(R.string.TestResults_Details_Circumvention_RiseupVPN_Reachable_Okay);
 		}
 	}
 

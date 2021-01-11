@@ -135,6 +135,10 @@
 		<item quantity="one">@string/TestResults_Summary_Websites_Hero_Reachable_Singular</item>
 		<item quantity="other">@string/TestResults_Summary_Websites_Hero_Reachable_Plural</item>
 	</plurals>
+	<plurals name="TestResults_Overview_Circumvention_RiseupVPN_Blocked" translatable="false">
+		<item quantity="one">@string/TestResults_Overview_Circumvention_RiseupVPN_Blocked_Singular</item>
+		<item quantity="other">@string/TestResults_Overview_Circumvention_RiseupVPN_Blocked_Plural</item>
+	</plurals>
 	<string name="CategoryCode_ALDR_Key" translatable="false">ALDR</string>
 	<string name="CategoryCode_REL_Key" translatable="false">REL</string>
 	<string name="CategoryCode_PORN_Key" translatable="false">PORN</string>

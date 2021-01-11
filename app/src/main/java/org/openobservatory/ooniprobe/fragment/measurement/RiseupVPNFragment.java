@@ -40,8 +40,8 @@ public class RiseupVPNFragment extends Fragment {
 		ButterKnife.bind(this, v);
 		Markwon.setMarkdown(desc,
 				measurement.is_anomaly ?
-						getString(R.string.TestResults_Details_Circumvention_Riseupvpn_Blocked_Content_Paragraph) :
-						getString(R.string.TestResults_Details_Circumvention_Riseupvpn_Reachable_Content_Paragraph)
+						getString(R.string.TestResults_Details_Circumvention_RiseupVPN_Blocked_Content_Paragraph) :
+						getString(R.string.TestResults_Details_Circumvention_RiseupVPN_Reachable_Content_Paragraph)
 		);
 		bootstrap_value.setText(measurement.getTestKeys().getRiseupvpnApiStatus());
 		openvpn_value.setText(measurement.getTestKeys().getRiseupvpnOpenvpnGatewayStatus(getContext()));
