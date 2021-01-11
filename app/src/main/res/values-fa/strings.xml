@@ -60,7 +60,7 @@
   <string name="Dashboard_InstantMessaging_Card_Description">تست مسدودیت پیام‌رسان‌ها</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">مسدود بودن [واتس‌اپ](https://ooni.io/nettest/whatsapp/)، [پیام‌رسان فیسبوک](https://ooni.io/nettest/facebook-messenger/) و [تلگرام](https://ooni.io/nettest/telegram/) را بررسی کنید.\n\nنتایج شما بر روی [OONI Explorer](https://explorer.ooni.io/world/) و [OONI API](https://api.ooni.io/) منتشر می‌شود.</string>
   <string name="Dashboard_Circumvention_Card_Description">مسدود بودن ابزارهای دور زدن سانسور را بیازمایید</string>
-  <string name="Dashboard_Circumvention_Overview_Paragraph">بررسی کنید که آیا [Psiphon (سایفون)](https://ooni.io/nettest/psiphon/) و  [تور](https://ooni.io/nettest/tor/) مسدود هستند.\n\nنتایج شما در  [OONI Explorer](https://explorer.ooni.org/) و [OONI API](https://api.ooni.io/) منتشر خواهد شد.</string>
+  <string name="Dashboard_Circumvention_Overview_Paragraph">Check whether [Psiphon](https://ooni.io/nettest/psiphon/), [Tor](https://ooni.io/nettest/tor/) or [RiseupVPN](https://ooni.io/nettest/riseupvpn/) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">گیگابیت بر ثانیه</string>
   <string name="TestResults_Mbps">مگابیت بر ثانیه</string>
   <string name="TestResults_Kbps">کیلوبیت بر ثانیه</string>
@@ -235,6 +235,16 @@
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Type">نوع</string>
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Connect">اتصال</string>
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Handshake">دست‌دادن</string>
+  <string name="TestResults_Details_Circumvention_ RiseupVPN_Blocked_Hero_Title">احتمالا مسدود</string>
+  <string name="TestResults_Details_Circumvention_ RiseupVPN_Reachable_Hero_Title">کار میکنه</string>
+  <string name="TestResults_Details_Circumvention_ RiseupVPN_Blocked_Content_Paragraph">[RiseupVPN](https://riseup.net/vpn) appears to be blocked.</string>
+  <string name="TestResults_Details_Circumvention_ RiseupVPN_Reachable_Content_Paragraph">We were able to successfully connect to RiseupVPN\'s bootstrap server and VPN gateways. This means that [RiseupVPN](https://riseup.net/vpn) should work.</string>
+  <string name="TestResults_Details_Circumvention_ RiseupVPN_Table_Header_Api">Bootstrap server</string>
+  <string name="TestResults_Details_Circumvention_ RiseupVPN_Table_Header_Openvpn">OpenVPN connections</string>
+  <string name="TestResults_Details_Circumvention_ RiseupVPN_Table_Header_Bridge">Bridged connections</string>
+  <string name="TestResults_Overview_Circumvention_ RiseupVPN_Api_Blocked">بسته شده</string>
+  <string name="TestResults_Overview_Circumvention_ RiseupVPN_Blocked">%1$s مسدود شده</string>
+  <string name="TestResults_Details_Circumvention_ RiseupVPN_Reachable_Okay">تایید</string>
   <string name="Feed_Tab_Label">خوراک</string>
   <string name="Feed_Title">خوراک</string>
   <string name="Modal_OK">باشه</string>
@@ -302,6 +312,7 @@
   <string name="Test_FacebookMessenger_Fullname">تست پیام‌رسان فیسبوک</string>
   <string name="Test_Psiphon_Fullname">تست سایفون</string>
   <string name="Test_Tor_Fullname">تست تور</string>
+  <string name="Test_RiseupVPN_Fullname">RiseupVPN Test</string>
   <string name="Settings_Title">تنظیمات</string>
   <string name="Settings_Error_TestDurationTooLow">زمانی که برای مدت این تست مشخص کرده‌اید خیلی کوتاه می‌باشد.</string>
   <string name="Settings_About_Label">درباره‌ی اونی</string>
@@ -366,6 +377,7 @@
   <string name="Settings_Performance_DashServerPort">درگاه سرور DASH</string>
   <string name="Settings_Circumvention_TestPsiphon">تست سایفون</string>
   <string name="Settings_Circumvention_TestTor">تست تور</string>
+  <string name="Settings_Circumvention_TestRiseupVPN">Test RiseupVPN</string>
   <string name="Settings_SendEmail_Label">ارسال ایمیل به پشتیبانی</string>
   <string name="Settings_SendEmail_Error">لطفا یک ایمیل به bugs@openobservatory.org همراه با اطلاعات برنامه و نسخه‌ی iOS ارسال کنید. بر روی «کپی در حافظه‌ی موقت» در پایین بزنید تا آدرس ایمیل کپی شود.</string>
   <string name="Settings_Language_Current">زبان فعلی برنامه %1$s است</string>

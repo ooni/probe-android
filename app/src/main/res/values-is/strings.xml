@@ -60,7 +60,7 @@
   <string name="Dashboard_InstantMessaging_Card_Description">Prófa hindranir fyrir skilaboðaforrit</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">Athugaðu hvort [WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) og [Telegram](https://ooni.io/nettest/telegram/) verði fyrir hindrunum.\n\nNiðurstöðurnar þínar verða birtar í [OONI Explorer](https://explorer.ooni.org/) og [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Circumvention_Card_Description">Prófa hindranir fyrir leiðir framhjá ritskoðun</string>
-  <string name="Dashboard_Circumvention_Overview_Paragraph">Athugaðu hvort [Psiphon](https://ooni.io/nettest/psiphon/) og [Tor](https://ooni.io/nettest/tor/) verði fyrir hindrunum.\n\nNiðurstöðurnar þínar verða birtar í [OONI Explorer](https://explorer.ooni.org/) og [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_Circumvention_Overview_Paragraph">Check whether [Psiphon](https://ooni.io/nettest/psiphon/), [Tor](https://ooni.io/nettest/tor/) or [RiseupVPN](https://ooni.io/nettest/riseupvpn/) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>
@@ -235,6 +235,16 @@
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Type">Tegund</string>
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Connect">Tengjast</string>
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Handshake">Handaband</string>
+  <string name="TestResults_Details_Circumvention_ RiseupVPN_Blocked_Hero_Title">Líklega hindrað</string>
+  <string name="TestResults_Details_Circumvention_ RiseupVPN_Reachable_Hero_Title">Í vinnslu</string>
+  <string name="TestResults_Details_Circumvention_ RiseupVPN_Blocked_Content_Paragraph">[RiseupVPN](https://riseup.net/vpn) appears to be blocked.</string>
+  <string name="TestResults_Details_Circumvention_ RiseupVPN_Reachable_Content_Paragraph">We were able to successfully connect to RiseupVPN\'s bootstrap server and VPN gateways. This means that [RiseupVPN](https://riseup.net/vpn) should work.</string>
+  <string name="TestResults_Details_Circumvention_ RiseupVPN_Table_Header_Api">Bootstrap server</string>
+  <string name="TestResults_Details_Circumvention_ RiseupVPN_Table_Header_Openvpn">OpenVPN connections</string>
+  <string name="TestResults_Details_Circumvention_ RiseupVPN_Table_Header_Bridge">Bridged connections</string>
+  <string name="TestResults_Overview_Circumvention_ RiseupVPN_Api_Blocked">Hindrað</string>
+  <string name="TestResults_Overview_Circumvention_ RiseupVPN_Blocked">%1$s hindranir</string>
+  <string name="TestResults_Details_Circumvention_ RiseupVPN_Reachable_Okay">Í lagi</string>
   <string name="Feed_Tab_Label">Streymi</string>
   <string name="Feed_Title">Streymi</string>
   <string name="Modal_OK">Í lagi</string>
@@ -302,6 +312,7 @@
   <string name="Test_FacebookMessenger_Fullname">Prófun Facebook Messenger</string>
   <string name="Test_Psiphon_Fullname">Prófun Psiphon</string>
   <string name="Test_Tor_Fullname">Prófun Tor</string>
+  <string name="Test_RiseupVPN_Fullname">RiseupVPN Test</string>
   <string name="Settings_Title">Stillingar</string>
   <string name="Settings_Error_TestDurationTooLow">Tíminn sem þú settir sem lengd prófunar er of lítill.</string>
   <string name="Settings_About_Label">Um OONI</string>
@@ -314,9 +325,9 @@
   <string name="Settings_Notifications_OnNews">Fréttastreymi</string>
   <string name="Settings_AutomatedTesting_Label">Sjálfvirkar prófanir</string>
   <string name="Settings_AutomatedTesting_RunAutomatically">Keyra prófanir sjálfvirkt</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Run tests only on WiFi</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Run tests only while charging</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically on a regular basis (and you don’t need to remember to manually run tests).</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Aðeins keyra prófanir á WiFi</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Aðeins keyra prófanir þegar verið er í hleðslu</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">Með því að virkja sjálfvirkar prófanir, verða prófanir OONI Probe keyrðar sjálfvirkt með reglubundnum hætti (og þú þarft þá ekki að muna eftir að setja þær í gang).</string>
   <string name="Settings_Sharing_Label">Deiling</string>
   <string name="Settings_Sharing_UploadResults">Sjálfvirk birting niðurstaðna</string>
   <string name="Settings_Sharing_UploadResultsManually">Handvirk innsending niðurstaðna</string>
@@ -366,6 +377,7 @@
   <string name="Settings_Performance_DashServerPort">Gátt DASH-netþjóns</string>
   <string name="Settings_Circumvention_TestPsiphon">Prófa Psiphon</string>
   <string name="Settings_Circumvention_TestTor">Prófa Tor</string>
+  <string name="Settings_Circumvention_TestRiseupVPN">Test RiseupVPN</string>
   <string name="Settings_SendEmail_Label">Senda tölvupóst til að fá aðstoð</string>
   <string name="Settings_SendEmail_Error">Sentu tölvupóst til bugs@openobservatory.org með upplýsingum um forritið og útgáfu þína af iOS. Ýttu á \"Afrita á klippispjald\" hér fyrir neðan til að afrita tölvupóstfangið okkar.</string>
   <string name="Settings_Language_Current">Núverandi tungumál forritsins er %1$s</string>

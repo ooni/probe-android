@@ -60,7 +60,7 @@
   <string name="Dashboard_InstantMessaging_Card_Description">Teste das Blockieren von Instant Messaging-Apps</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">Überprüfen Sie ob [WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) und [Telegram](https://ooni.io/nettest/telegram/) blockiert werden.\n\nIhre Ergebnisse werden auf [OONI Explorer](https://explorer.ooni.io/world/) und [OONI API](https://api.ooni.io/) veröffentlicht.</string>
   <string name="Dashboard_Circumvention_Card_Description">Test auf Blockierung der Instrumente zur Zensurumgehung </string>
-  <string name="Dashboard_Circumvention_Overview_Paragraph">Prüfen Sie, ob [Psiphon](https://ooni.io/nettest/psiphon/) und [Tor](https://ooni.io/nettest/tor/) blockiert werden.\n\nIhre Ergebnisse werden auf [OONI Explorer](https://explorer.ooni.org/) und [OONI API](https://api.ooni.io/) veröffentlicht.</string>
+  <string name="Dashboard_Circumvention_Overview_Paragraph">Check whether [Psiphon](https://ooni.io/nettest/psiphon/), [Tor](https://ooni.io/nettest/tor/) or [RiseupVPN](https://ooni.io/nettest/riseupvpn/) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>
@@ -235,6 +235,16 @@
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Type">Typ</string>
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Connect">Verbinden</string>
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Handshake">Handschlag</string>
+  <string name="TestResults_Details_Circumvention_ RiseupVPN_Blocked_Hero_Title">Wahrscheinlich blockiert</string>
+  <string name="TestResults_Details_Circumvention_ RiseupVPN_Reachable_Hero_Title">Funktioniert</string>
+  <string name="TestResults_Details_Circumvention_ RiseupVPN_Blocked_Content_Paragraph">[RiseupVPN](https://riseup.net/vpn) appears to be blocked.</string>
+  <string name="TestResults_Details_Circumvention_ RiseupVPN_Reachable_Content_Paragraph">We were able to successfully connect to RiseupVPN\'s bootstrap server and VPN gateways. This means that [RiseupVPN](https://riseup.net/vpn) should work.</string>
+  <string name="TestResults_Details_Circumvention_ RiseupVPN_Table_Header_Api">Bootstrap server</string>
+  <string name="TestResults_Details_Circumvention_ RiseupVPN_Table_Header_Openvpn">OpenVPN connections</string>
+  <string name="TestResults_Details_Circumvention_ RiseupVPN_Table_Header_Bridge">Bridged connections</string>
+  <string name="TestResults_Overview_Circumvention_ RiseupVPN_Api_Blocked">Gesperrt</string>
+  <string name="TestResults_Overview_Circumvention_ RiseupVPN_Blocked">%1$s blockiert</string>
+  <string name="TestResults_Details_Circumvention_ RiseupVPN_Reachable_Okay">OK</string>
   <string name="Feed_Tab_Label">Feed</string>
   <string name="Feed_Title">Feed</string>
   <string name="Modal_OK">OK</string>
@@ -302,6 +312,7 @@
   <string name="Test_FacebookMessenger_Fullname">Facebook Messenger Test</string>
   <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Test_Tor_Fullname">Tor Test</string>
+  <string name="Test_RiseupVPN_Fullname">RiseupVPN Test</string>
   <string name="Settings_Title">Einstellungen</string>
   <string name="Settings_Error_TestDurationTooLow">Die eingestellte Zeit für den Test ist zu kurz.</string>
   <string name="Settings_About_Label">Über OONI</string>
@@ -366,6 +377,7 @@
   <string name="Settings_Performance_DashServerPort">DASH-Serverport</string>
   <string name="Settings_Circumvention_TestPsiphon">Psiphon testen</string>
   <string name="Settings_Circumvention_TestTor">Tor Testen</string>
+  <string name="Settings_Circumvention_TestRiseupVPN">Test RiseupVPN</string>
   <string name="Settings_SendEmail_Label">E-Mail an den Support senden</string>
   <string name="Settings_SendEmail_Error">Bitte senden Sie eine E-Mail an bugs@openobservatory.org mit Informationen zur App und iOS-Version. Tippen Sie unten auf \"In Zwischenablage kopieren\", um unsere E-Mail Adresse zu kopieren.</string>
   <string name="Settings_Language_Current">Aktuelle App-Sprache ist %1$s</string>
