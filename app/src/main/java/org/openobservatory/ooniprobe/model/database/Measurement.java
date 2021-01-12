@@ -26,6 +26,7 @@ import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
 import org.openobservatory.ooniprobe.test.test.HttpInvalidRequestLine;
 import org.openobservatory.ooniprobe.test.test.Ndt;
 import org.openobservatory.ooniprobe.test.test.Psiphon;
+import org.openobservatory.ooniprobe.test.test.RiseupVPN;
 import org.openobservatory.ooniprobe.test.test.Telegram;
 import org.openobservatory.ooniprobe.test.test.Tor;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
@@ -234,6 +235,9 @@ public class Measurement extends BaseModel implements Serializable {
 					break;
 				case Tor.NAME:
 					test = new Tor();
+					break;
+				case RiseupVPN.NAME:
+					test = new RiseupVPN();
 					break;
 			}
 		return test;

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical">
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:weightSum="3"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:layout_marginEnd="5dp"
+			android:text="@string/TestResults_Details_Circumvention_RiseupVPN_Table_Header_Api" />
+
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:layout_marginEnd="5dp"
+			android:text="@string/TestResults_Details_Circumvention_RiseupVPN_Table_Header_Openvpn" />
+
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="@string/TestResults_Details_Circumvention_RiseupVPN_Table_Header_Bridge" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:weightSum="3"
+		android:orientation="horizontal">
+
+		<TextView
+			android:id="@+id/bootstrap_value"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:layout_marginEnd="5dp"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+
+		<TextView
+			android:id="@+id/openvpn_value"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:layout_marginEnd="5dp"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+
+		<TextView
+			android:id="@+id/bridges_value"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+
+	</LinearLayout>
+
+	<TextView
+		android:id="@+id/desc"
+		android:layout_marginTop="5dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
+</LinearLayout>
