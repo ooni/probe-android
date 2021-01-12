@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.google.firebase.messaging.RemoteMessage;
+
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 
@@ -28,7 +29,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 			notificationIntent.putExtra("title", message.title());
 			notificationIntent.putExtra("message", message.message());
 		}
-		
+
 		Boolean result = CountlyPush.displayMessage(getApplicationContext(), message, R.drawable.notification_icon, notificationIntent);
 		if (result == null) {
 			Log.d(TAG, "Message wasn't sent from Countly server, so it cannot be handled by Countly SDK");
@@ -44,5 +45,10 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 		super.onNewToken(token);
 		((Application) getApplicationContext()).getPreferenceManager().setToken(token);
 		CountlyPush.onTokenRefresh(token);
+	}
+
+	@Override
+	public void onDeletedMessages() {
+		super.onDeletedMessages();
 	}
 }

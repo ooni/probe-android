@@ -271,6 +271,10 @@
 				android:defaultValue="true"
 				android:key="@string/test_tor"
 				android:title="@string/Settings_Circumvention_TestTor"/>
+			<androidx.preference.SwitchPreferenceCompat
+				android:defaultValue="true"
+				android:key="@string/test_riseupvpn"
+				android:title="@string/Settings_Circumvention_TestRiseupVPN"/>
 		</androidx.preference.PreferenceScreen>
 		<androidx.preference.PreferenceScreen
 			android:icon="@drawable/settings_performance"

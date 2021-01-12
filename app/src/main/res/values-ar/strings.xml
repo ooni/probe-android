@@ -60,7 +60,7 @@
   <string name="Dashboard_InstantMessaging_Card_Description">اختبار حجب برامج المراسلة الفورية</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">تحقق من حجب [واتساب](https://ooni.io/nettest/whatsapp/)و [ماسنجر الفيسبوك](https://ooni.io/nettest/facebook-messenger/) و [تيليجرام](https://ooni.io/nettest/telegram/)\n\nنتائج اختبارك ستنشر على [متصفح OONI](https://explorer.ooni.io/world/) و على [OONI API](https://api.ooni.io/)</string>
   <string name="Dashboard_Circumvention_Card_Description">اختبار حجب وسائل تجاوز الرقابة.</string>
-  <string name="Dashboard_Circumvention_Overview_Paragraph">تحقق من حجب [Psiphon](https://ooni.io/nettest/psiphon/) و [تور](https://ooni.io/nettest/tor/).\n\nنتائج اختبارك ستنشر على [متصفح OONI](https://explorer.ooni.org/) و على [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_Circumvention_Overview_Paragraph">Check whether [Psiphon](https://ooni.io/nettest/psiphon/), [Tor](https://ooni.io/nettest/tor/) or [RiseupVPN](https://ooni.io/nettest/riseupvpn/) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">غيغابت/ثا</string>
   <string name="TestResults_Mbps">ميغابت/ثا</string>
   <string name="TestResults_Kbps">كيلوبت/ثا</string>
@@ -235,6 +235,17 @@
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Type">النوع</string>
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Connect">اتصل</string>
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Handshake">المصافحة</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Hero_Title">محجوب على الأرجح</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Hero_Title">يعمل</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Content_Paragraph">[RiseupVPN](https://riseup.net/vpn) appears to be blocked.</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Content_Paragraph">We were able to successfully connect to RiseupVPN\'s bootstrap server and VPN gateways. This means that [RiseupVPN](https://riseup.net/vpn) should work.</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Api">Bootstrap server</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Openvpn">OpenVPN connections</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Bridge">Bridged connections</string>
+  <string name="TestResults_Overview_Circumvention_RiseupVPN_Api_Blocked">محجوب</string>
+  <string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Singular">%1$s محجوب</string>
+  <string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Plural">%1$s محجوب</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Okay">موافق</string>
   <string name="Feed_Tab_Label">التغذية</string>
   <string name="Feed_Title">التغذية</string>
   <string name="Modal_OK">موافقة</string>
@@ -302,6 +313,7 @@
   <string name="Test_FacebookMessenger_Fullname">اختبار فيسبوك مسنجر</string>
   <string name="Test_Psiphon_Fullname">اختبار Psiphon</string>
   <string name="Test_Tor_Fullname">اختبار تور</string>
+  <string name="Test_RiseupVPN_Fullname">RiseupVPN Test</string>
   <string name="Settings_Title">الإعدادات</string>
   <string name="Settings_Error_TestDurationTooLow">المدة التي حددتها لفترة الاختبار قصيرة جدًا </string>
   <string name="Settings_About_Label">عن OONI</string>
@@ -366,6 +378,7 @@
   <string name="Settings_Performance_DashServerPort">منفذ خادم DASH</string>
   <string name="Settings_Circumvention_TestPsiphon">إختبار Psiphon</string>
   <string name="Settings_Circumvention_TestTor">إختبار Tor</string>
+  <string name="Settings_Circumvention_TestRiseupVPN">Test RiseupVPN</string>
   <string name="Settings_SendEmail_Label">إرسال إيميل لفريق الدعم </string>
   <string name="Settings_SendEmail_Error">من فضلك أرسل رسالة إلكترونية إلى bugs@openobservatory.org تحتوى على معلومات عن اصدار البرنامج وإصدار iOS. اضغط على \"نسخ إلى الحافظة\" فى الأسفل لنسخ عنوان بريدنا الإلكتروني.</string>
   <string name="Settings_Language_Current">اللغة الحالية للتطبيق هي %1$s</string>

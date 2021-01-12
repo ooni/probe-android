@@ -1,6 +1,9 @@
 package org.openobservatory.ooniprobe.test;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.Network;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -49,6 +52,8 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 	public AbstractTest currentTest;
 	private boolean interrupt;
 	RunTestService service;
+	private ConnectivityManager manager;
+	private ConnectivityManager.NetworkCallback networkCallback;
 
 	public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, RunTestService service) {
 		this.app = app;
@@ -56,9 +61,33 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 		this.service = service;
 	}
 
+	private void registerConnChange() {
+		manager = (ConnectivityManager) this.app.getSystemService(Context.CONNECTIVITY_SERVICE);
+		networkCallback = new ConnectivityManager.NetworkCallback() {
+			@Override
+			public void onAvailable(Network network) {
+				super.onAvailable(network);
+				Log.i(TAG, "connected to " + (manager.isActiveNetworkMetered() ? "LTE" : "WIFI"));
+			}
+			@Override
+			public void onLost(Network network) {
+				super.onLost(network);
+				//losing active connection stop test
+				Log.i(TAG, "losing active connection");
+				interrupt();
+			}
+		};
+		manager.registerDefaultNetworkCallback(networkCallback);
+	}
+
+	private void unregisterConnChange() {
+		manager.unregisterNetworkCallback(networkCallback);
+	}
+
 	@Override
 	protected Void doInBackground(Void... voids) {
 		if (app != null && testSuites != null){
+			registerConnChange();
 			for (int suiteIdx = 0; suiteIdx < testSuites.size(); suiteIdx++){
 				if (!interrupt){
 					currentSuite = testSuites.get(suiteIdx);
@@ -176,6 +205,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 		super.onPostExecute(aVoid);
 		sendBroadcast(END);
 		service.stopSelf();
+		unregisterConnChange();
 	}
 
 	private void sendBroadcast(String... values){

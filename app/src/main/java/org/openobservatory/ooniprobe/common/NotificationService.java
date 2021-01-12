@@ -12,7 +12,6 @@ import androidx.core.app.NotificationCompat;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
-import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
 import ly.count.android.sdk.Countly;
 import ly.count.android.sdk.messaging.CountlyPush;

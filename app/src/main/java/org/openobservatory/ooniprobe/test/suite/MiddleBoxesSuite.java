@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.test.suite;
 
+import androidx.annotation.Nullable;
+
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
@@ -7,8 +9,6 @@ import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
 import org.openobservatory.ooniprobe.test.test.HttpInvalidRequestLine;
 
 import java.util.ArrayList;
-
-import androidx.annotation.Nullable;
 
 /**
  * @deprecated

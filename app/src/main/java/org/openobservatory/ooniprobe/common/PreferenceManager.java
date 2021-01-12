@@ -16,6 +16,7 @@ public class PreferenceManager {
 	private static final String IS_ANALYTICS_DIALOG = "isAnalyticsDialog";
 	private static final String IS_NOTIFICATION_DIALOG = "isNotificationDialog";
 	public static final int NOTIFICATION_DIALOG_COUNT = 5;
+	private static final String NOTIFICATION_DIALOG_DISABLE = "isNotificationDialogDisabled";
 	private static final String TOKEN = "token";
 	private static final String SHOW_ONBOARDING = "first_run";
 	//This is in ms, set to one day
@@ -94,9 +95,15 @@ public class PreferenceManager {
 	/*
 	 * This method is used to ask user to enable push notifications.
 	 */
-	public boolean isAskNotificationDialog() {
-		return sp.getBoolean(IS_NOTIFICATION_DIALOG, true);
+	public boolean isAskNotificationDialogDisabled() {
+		return sp.getBoolean(NOTIFICATION_DIALOG_DISABLE, false);
 	}
+
+	public void disableAskNotificationDialog() {
+		sp.edit().putBoolean(NOTIFICATION_DIALOG_DISABLE, true)
+				.apply();
+	}
+
 
 	public boolean isNotifications() {
 		return sp.getBoolean(r.getString(R.string.notifications_enabled), false);
@@ -114,20 +121,8 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.upload_results), true);
 	}
 
-	public boolean isIncludeIp() {
-		return false;
-	}
-
-	public boolean isIncludeAsn() {
-		return true;
-	}
-
 	public boolean isDebugLogs() {
 		return sp.getBoolean(r.getString(R.string.debugLogs), false);
-	}
-
-	public boolean isIncludeCc() {
-		return true;
 	}
 
 	public boolean isTestWhatsapp() {
@@ -148,6 +143,11 @@ public class PreferenceManager {
 
 	public boolean isTestTor() {
 		return sp.getBoolean(r.getString(R.string.test_tor), true);
+	}
+
+	public boolean isTestRiseupVPN() {
+		boolean isRiseupVPN = sp.getBoolean(r.getString(R.string.test_riseupvpn), true);
+		return isRiseupVPN;
 	}
 
 	public boolean isRunHttpInvalidRequestLine() {
@@ -216,7 +216,6 @@ public class PreferenceManager {
 	}
 
 	public void incrementAppOpenCount(){
-		if (getAppOpenCount() > NOTIFICATION_DIALOG_COUNT) return;
 		sp.edit().putLong(IS_NOTIFICATION_DIALOG, getAppOpenCount()+1);
 	}
 
