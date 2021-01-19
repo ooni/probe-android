@@ -15,10 +15,9 @@ import org.openobservatory.ooniprobe.model.settings.Settings;
 
 public class Tor extends AbstractTest {
     public static final String NAME = "tor";
-    private static final String MK_NAME = "Tor";
 
     public Tor() {
-        super(NAME, MK_NAME, R.string.Test_Tor_Fullname, R.drawable.test_tor, R.string.urlTestTor, 40);
+        super(NAME, R.string.Test_Tor_Fullname, R.drawable.test_tor, R.string.urlTestTor, 40);
     }
 
     @Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, AbstractTest.TestCallback testCallback) {

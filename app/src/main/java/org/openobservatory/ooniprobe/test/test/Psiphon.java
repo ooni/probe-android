@@ -15,10 +15,9 @@ import org.openobservatory.ooniprobe.model.settings.Settings;
 
 public class Psiphon extends AbstractTest {
     public static final String NAME = "psiphon";
-    private static final String MK_NAME = "Psiphon";
 
     public Psiphon() {
-        super(NAME, MK_NAME, R.string.Test_Psiphon_Fullname, R.drawable.test_psiphon, R.string.urlTestPsi, 20);
+        super(NAME, R.string.Test_Psiphon_Fullname, R.drawable.test_psiphon, R.string.urlTestPsi, 20);
     }
 
     @Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, AbstractTest.TestCallback testCallback) {

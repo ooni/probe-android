@@ -16,11 +16,10 @@ import org.openobservatory.ooniprobe.model.settings.Settings;
 
 public class Ndt extends AbstractTest {
 	public static final String NAME = "ndt";
-	private static final String MK_NAME = "Ndt";
 	private String[] countries;
 
 	public Ndt() {
-		super(NAME, MK_NAME, R.string.Test_NDT_Fullname, 0, R.string.urlTestNdt, 45);
+		super(NAME, R.string.Test_NDT_Fullname, 0, R.string.urlTestNdt, 45);
 	}
 
 	@Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback) {
