@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.google.firebase.messaging.RemoteMessage;
+
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 

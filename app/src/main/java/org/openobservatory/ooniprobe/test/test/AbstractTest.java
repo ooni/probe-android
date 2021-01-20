@@ -35,7 +35,6 @@ public abstract class AbstractTest implements Serializable {
     private static final String UNUSED_KEY = "UNUSED_KEY";
     private static final String TAG = "MK_EVENT";
     private final String name;
-    private final String mkName;
     private final int labelResId;
     private final int iconResId;
     private final int urlResId;
@@ -47,9 +46,8 @@ public abstract class AbstractTest implements Serializable {
     private String origin;
     private OONIMKTask task;
 
-    AbstractTest(String name, String mkName, @StringRes int labelResId, @DrawableRes int iconResId, @StringRes int urlResId, int runtime) {
+    AbstractTest(String name, @StringRes int labelResId, @DrawableRes int iconResId, @StringRes int urlResId, int runtime) {
         this.name = name;
-        this.mkName = mkName;
         this.labelResId = labelResId;
         this.iconResId = iconResId;
         this.urlResId = urlResId;
@@ -60,7 +58,7 @@ public abstract class AbstractTest implements Serializable {
 
     void run(Context c, PreferenceManager pm, Gson gson, Settings settings, Result result, int index, TestCallback testCallback) {
         //Checking for resources before running any test
-        settings.name = mkName;
+        settings.name = name;
         settings.inputs = inputs;
         settings.options.max_runtime = max_runtime;
         settings.annotations.origin = origin;

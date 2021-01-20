@@ -2,6 +2,8 @@ package org.openobservatory.ooniprobe.test.test;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.Gson;
 
 import org.openobservatory.ooniprobe.R;
@@ -11,14 +13,11 @@ import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
 import org.openobservatory.ooniprobe.model.settings.Settings;
 
-import androidx.annotation.NonNull;
-
 public class HttpInvalidRequestLine extends AbstractTest {
 	public static final String NAME = "http_invalid_request_line";
-	private static final String MK_NAME = "HttpInvalidRequestLine";
 
 	public HttpInvalidRequestLine() {
-		super(NAME, MK_NAME, R.string.Test_HTTPInvalidRequestLine_Fullname, 0, R.string.urlTestIrl, 10);
+		super(NAME, R.string.Test_HTTPInvalidRequestLine_Fullname, 0, R.string.urlTestIrl, 10);
 	}
 
 	@Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback) {

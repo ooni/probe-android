@@ -21,6 +21,7 @@ import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -59,7 +60,10 @@ public class Application extends android.app.Application {
 			HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
 			logging.level(BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.BASIC);
 			okHttpClient = new OkHttpClient.Builder()
-                    .retryOnConnectionFailure(false)
+					.connectTimeout(30, TimeUnit.SECONDS)
+					.readTimeout(30, TimeUnit.SECONDS)
+					.writeTimeout(30, TimeUnit.SECONDS)
+					.retryOnConnectionFailure(false)
 					.addInterceptor(logging)
 					.addInterceptor(new Interceptor() {
 						@Override

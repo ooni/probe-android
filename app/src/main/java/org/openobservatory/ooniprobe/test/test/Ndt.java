@@ -2,6 +2,8 @@ package org.openobservatory.ooniprobe.test.test;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.Gson;
 
 import org.openobservatory.ooniprobe.R;
@@ -12,15 +14,12 @@ import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 import org.openobservatory.ooniprobe.model.settings.Settings;
 
-import androidx.annotation.NonNull;
-
 public class Ndt extends AbstractTest {
 	public static final String NAME = "ndt";
-	private static final String MK_NAME = "Ndt";
 	private String[] countries;
 
 	public Ndt() {
-		super(NAME, MK_NAME, R.string.Test_NDT_Fullname, 0, R.string.urlTestNdt, 45);
+		super(NAME, R.string.Test_NDT_Fullname, 0, R.string.urlTestNdt, 45);
 	}
 
 	@Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback) {

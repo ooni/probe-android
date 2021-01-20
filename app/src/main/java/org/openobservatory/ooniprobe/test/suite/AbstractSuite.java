@@ -2,20 +2,19 @@ package org.openobservatory.ooniprobe.test.suite;
 
 import android.os.Build;
 
-import org.openobservatory.ooniprobe.common.PreferenceManager;
-import org.openobservatory.ooniprobe.model.database.Result;
-import org.openobservatory.ooniprobe.test.test.AbstractTest;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-
 import androidx.annotation.CallSuper;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
-import androidx.annotation.XmlRes;
+
+import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.model.database.Result;
+import org.openobservatory.ooniprobe.test.test.AbstractTest;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 
 public abstract class AbstractSuite implements Serializable {
 	private final int title;

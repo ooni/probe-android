@@ -2,12 +2,8 @@ apply plugin: 'com.android.application'
 
 android {
 	compileSdkVersion 29
-	ndkVersion '21.3.6528147'
-
-	compileOptions {
-		sourceCompatibility JavaVersion.VERSION_1_8
-		targetCompatibility JavaVersion.VERSION_1_8
-	}
+	buildToolsVersion "30.0.3"
+	ndkVersion '22.0.7026061'
 
 	defaultConfig {
 		applicationId 'org.openobservatory.ooniprobe'
@@ -44,19 +40,19 @@ android {
 			buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android"'
 		}
 		dev {
-			dimension = 'testing'
-			applicationIdSuffix = '.dev'
-			versionName = versionNameDate()
-			versionCode = versionCodeDate()
+			dimension 'testing'
+			applicationIdSuffix '.dev'
+			versionName versionNameDate()
+			versionCode versionCodeDate()
 			buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-dev"'
 			resValue "string", "APP_NAME", "OONI Dev"
 			buildConfigField 'String', 'COUNTLY_KEY', '"e6c2cfe53e85951d50567467cef3f9fa2eab32c3"'
 		}
 		experimental {
-			dimension = 'testing'
-			applicationIdSuffix = '.experimental'
-			versionName = versionNameDate()
-			versionCode = versionCodeDate()
+			dimension 'testing'
+			applicationIdSuffix '.experimental'
+			versionName versionNameDate()
+			versionCode versionCodeDate()
 			buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-experimental"'
 			resValue "string", "APP_NAME", "OONI Exp"
 			buildConfigField 'String', 'COUNTLY_KEY', '"e6c2cfe53e85951d50567467cef3f9fa2eab32c3"'
@@ -74,15 +70,24 @@ android {
 			setIgnore(true)
 		}
 	}
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
 }
 
-
 dependencies {
-	implementation 'androidx.appcompat:appcompat:1.1.0'
-	implementation 'androidx.lifecycle:lifecycle-process:2.1.0'
+	implementation project(path: ':engine')
 
-	fullImplementation 'com.google.firebase:firebase-messaging:20.1.4'
-	
+// AndroidX
+	implementation 'androidx.appcompat:appcompat:1.2.0'
+	implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+	implementation 'androidx.lifecycle:lifecycle-process:2.2.0'
+	implementation 'androidx.preference:preference:1.1.1'
+	implementation 'com.google.android.material:material:1.2.1'
+	implementation "androidx.constraintlayout:constraintlayout:1.1.3"
+
+// Third-party
 	annotationProcessor 'com.github.Raizlabs.DBFlow:dbflow-processor:4.2.4'
 	implementation 'com.github.Raizlabs.DBFlow:dbflow-core:4.2.4'
 	implementation 'com.github.Raizlabs.DBFlow:dbflow:4.2.4'
@@ -91,30 +96,27 @@ dependencies {
 	implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
 	implementation 'com.squareup.okhttp3:logging-interceptor:4.0.1'
 
-	implementation 'com.jakewharton:butterknife:10.2.1'
-	annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+	implementation 'com.jakewharton:butterknife:10.2.3'
+	annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
 
 	implementation 'com.github.xanscale.LocalhostToolkit:app:19.05.01'
-	implementation 'pub.devrel:easypermissions:3.0.0'
 	implementation 'com.airbnb.android:lottie:3.0.7'
 	implementation 'com.google.code.gson:gson:2.8.6'
 	implementation 'ru.noties:markwon:2.0.1'
 	implementation 'commons-io:commons-io:2.6'
 	implementation 'ly.count.android:sdk:20.11.1'
-
 	//arcview to fragment_dashboard
 	implementation 'com.github.florent37:shapeofview:1.3.2'
 
-	//constraint layout
-	implementation "androidx.constraintlayout:constraintlayout:1.1.3"
+// Flavor
+	fullImplementation 'com.google.firebase:firebase-messaging:20.1.4'
 
-	androidTestImplementation 'androidx.test:runner:1.2.0'
-	androidTestImplementation 'androidx.test:rules:1.2.0'
-	implementation project(path: ':engine')
-
+// Testing
+	testImplementation 'junit:junit:4.12'
 	androidTestImplementation 'tools.fastlane:screengrab:2.0.0'
 	androidTestImplementation 'androidx.test:runner:1.2.0'
 	androidTestImplementation 'androidx.test:rules:1.2.0'
+	implementation project(path: ':engine')
 	androidTestImplementation ('androidx.test.espresso:espresso-contrib:3.3.0'){
 		exclude group: 'com.android.support', module: 'appcompat'
 		exclude group: 'com.android.support', module: 'support-v4'

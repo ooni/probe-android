@@ -2,6 +2,8 @@ package org.openobservatory.ooniprobe.test.test;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.Gson;
 
 import org.openobservatory.ooniprobe.R;
@@ -11,14 +13,11 @@ import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
 import org.openobservatory.ooniprobe.model.settings.Settings;
 
-import androidx.annotation.NonNull;
-
 public class WebConnectivity extends AbstractTest {
 	public static final String NAME = "web_connectivity";
-	private static final String MK_NAME = "WebConnectivity";
 
 	public WebConnectivity() {
-		super(NAME, MK_NAME, R.string.Test_WebConnectivity_Fullname, 0, R.string.urlTestWeb, 5);
+		super(NAME, R.string.Test_WebConnectivity_Fullname, 0, R.string.urlTestWeb, 5);
 	}
 
 	@Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback) {

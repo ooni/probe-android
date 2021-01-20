@@ -31,9 +31,8 @@ import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
-import java.util.ArrayList;
-
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -1,12 +1,12 @@
 package org.openobservatory.ooniprobe.common;
 
+import androidx.test.filters.SmallTest;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.openobservatory.ooniprobe.AbstractTest;
 
 import java.util.Date;
-
-import androidx.test.filters.SmallTest;
 
 @SmallTest public class DateAdapterTest extends AbstractTest {
 	private static final String STRING = "\"1970-01-01 00:00:00\"";

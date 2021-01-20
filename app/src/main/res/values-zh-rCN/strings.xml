@@ -60,7 +60,7 @@
   <string name="Dashboard_InstantMessaging_Card_Description">测试即时消息应用的屏蔽情况</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">检查 [WhatsApp](https://ooni.io/nettest/whatsapp/)、[Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) 和 [Telegram](https://ooni.io/nettest/telegram/) 是否被屏蔽。\n\n您的结果将会发布在 [OONI Explorer](https://explorer.ooni.io/world/) 和 [OONI API](https://api.ooni.io/) 上。</string>
   <string name="Dashboard_Circumvention_Card_Description">测试翻墙工具屏蔽状况</string>
-  <string name="Dashboard_Circumvention_Overview_Paragraph">测试 [赛风](https://ooni.io/nettest/psiphon/) 和 [Tor](https://ooni.io/nettest/tor/) 是否被屏蔽。\n\n你的测试结果将会发布在 [OONI Explorer](https://explorer.ooni.org/) 和 [OONI API](https://api.ooni.io/)。</string>
+  <string name="Dashboard_Circumvention_Overview_Paragraph">Check whether [Psiphon](https://ooni.io/nettest/psiphon/), [Tor](https://ooni.io/nettest/tor/) or [RiseupVPN](https://ooni.io/nettest/riseupvpn/) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>
@@ -235,6 +235,17 @@
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Type">类型</string>
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Connect">连接</string>
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Handshake">握手</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Hero_Title">可能被屏蔽</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Hero_Title">测试中</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Content_Paragraph">[RiseupVPN](https://riseup.net/vpn) appears to be blocked.</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Content_Paragraph">We were able to successfully connect to RiseupVPN\'s bootstrap server and VPN gateways. This means that [RiseupVPN](https://riseup.net/vpn) should work.</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Api">Bootstrap server</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Openvpn">OpenVPN connections</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Bridge">Bridged connections</string>
+  <string name="TestResults_Overview_Circumvention_RiseupVPN_Api_Blocked">被屏蔽</string>
+  <string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Singular">%1$s 个被屏蔽</string>
+  <string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Plural">%1$s 个被屏蔽</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Okay">正常</string>
   <string name="Feed_Tab_Label">Feed</string>
   <string name="Feed_Title">Feed</string>
   <string name="Modal_OK">确定</string>
@@ -302,6 +313,7 @@
   <string name="Test_FacebookMessenger_Fullname">Facebook Messenger 测试</string>
   <string name="Test_Psiphon_Fullname">赛风测试</string>
   <string name="Test_Tor_Fullname">Tor 测试</string>
+  <string name="Test_RiseupVPN_Fullname">RiseupVPN Test</string>
   <string name="Settings_Title">设置</string>
   <string name="Settings_Error_TestDurationTooLow">您设置的测试持续时间太短。</string>
   <string name="Settings_About_Label">关于 OONI</string>
@@ -366,6 +378,7 @@
   <string name="Settings_Performance_DashServerPort">DASH 服务器端口</string>
   <string name="Settings_Circumvention_TestPsiphon">测试赛风</string>
   <string name="Settings_Circumvention_TestTor">测试 Tor</string>
+  <string name="Settings_Circumvention_TestRiseupVPN">Test RiseupVPN</string>
   <string name="Settings_SendEmail_Label">发送邮件给支持团队</string>
   <string name="Settings_SendEmail_Error">请将应用和 iOS 版本号通过邮件发送至 bugs@openobservatory.org。点击下方“复制到剪贴板”来复制我们邮箱地址。</string>
   <string name="Settings_Language_Current">当前语言为 %1$s</string>

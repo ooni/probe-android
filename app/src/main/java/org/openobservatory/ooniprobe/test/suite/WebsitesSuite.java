@@ -1,11 +1,11 @@
 package org.openobservatory.ooniprobe.test.suite;
 
+import androidx.annotation.Nullable;
+
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
-
-import androidx.annotation.Nullable;
 
 public class WebsitesSuite extends AbstractSuite {
 	public static final String NAME = "websites";

@@ -60,7 +60,7 @@
   <string name="Dashboard_InstantMessaging_Card_Description">त्वरित संदेश एप्लिकेशन को अवरुद्ध करने का परीक्षण करें</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">जाँच करें कि क्या [WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) और [Telegram](https://ooni.io/nettest/telegram/) अवरुद्ध हैं।\n\nआपके परिणाम [OONI एक्सप्लोरर](https://explorer.ooni.io/world/) और [OONI API](https://api.ooni.io/) पर प्रकाशित किए जाएंगे।</string>
   <string name="Dashboard_Circumvention_Card_Description">सेंसरशिप परिधि उपकरणों के अवरोधन का परीक्षण करें</string>
-  <string name="Dashboard_Circumvention_Overview_Paragraph">जांचें कि क्या [Psiphon] (https://ooni.io/nettest/psiphon/) और [Tor] (https://ooni.io/nettest/tor/) अवरुद्ध हैं।\n\nआपके परिणाम [OONI Explorer] (https://explorer.ooni.org/) और [OONI API] (https://api.ooni.io/) पर प्रकाशित किए जाएंगे।</string>
+  <string name="Dashboard_Circumvention_Overview_Paragraph">Check whether [Psiphon](https://ooni.io/nettest/psiphon/), [Tor](https://ooni.io/nettest/tor/) or [RiseupVPN](https://ooni.io/nettest/riseupvpn/) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>
@@ -235,6 +235,17 @@
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Type">प्रकार</string>
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Connect">जोड़ें</string>
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Handshake">हाथ मिलाना</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Hero_Title">शायद अवरुद्ध</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Hero_Title">काम कर रहे</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Content_Paragraph">[RiseupVPN](https://riseup.net/vpn) appears to be blocked.</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Content_Paragraph">We were able to successfully connect to RiseupVPN\'s bootstrap server and VPN gateways. This means that [RiseupVPN](https://riseup.net/vpn) should work.</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Api">Bootstrap server</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Openvpn">OpenVPN connections</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Bridge">Bridged connections</string>
+  <string name="TestResults_Overview_Circumvention_RiseupVPN_Api_Blocked">अवरुद्ध</string>
+  <string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Singular">%1$s अवरुद्ध</string>
+  <string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Plural">%1$s अवरुद्ध</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Okay">ठीक है </string>
   <string name="Feed_Tab_Label">चारा</string>
   <string name="Feed_Title">चारा</string>
   <string name="Modal_OK">ठीक है </string>
@@ -302,6 +313,7 @@
   <string name="Test_FacebookMessenger_Fullname">फेसबुक मेसेंजर टेस्ट</string>
   <string name="Test_Psiphon_Fullname">Psiphon परीक्षा</string>
   <string name="Test_Tor_Fullname">Tor परीक्षा</string>
+  <string name="Test_RiseupVPN_Fullname">RiseupVPN Test</string>
   <string name="Settings_Title">सेटिंग्स</string>
   <string name="Settings_Error_TestDurationTooLow">परीक्षण अवधि के लिए आपके द्वारा निर्धारित समय की मात्रा बहुत कम है।</string>
   <string name="Settings_About_Label">OONI बारे में</string>
@@ -366,6 +378,7 @@
   <string name="Settings_Performance_DashServerPort">DASH server port</string>
   <string name="Settings_Circumvention_TestPsiphon">Psiphon का परीक्षण करें</string>
   <string name="Settings_Circumvention_TestTor">टेस्ट Tor</string>
+  <string name="Settings_Circumvention_TestRiseupVPN">Test RiseupVPN</string>
   <string name="Settings_SendEmail_Label">Send email to support</string>
   <string name="Settings_SendEmail_Error">कृपया iOS संस्करण और एप्लिकेशन की जानकारी के साथ bugs@openobservatory.org को एक ईमेल भेजें। हमारा  ईमेल पता कॉपी करने के लिए \"क्लिपबोर्ड पर कॉपी करें\" पर टैप करें।</string>
   <string name="Settings_Language_Current">वर्तमान एप्लिकेशन भाषा %1$s है</string>
