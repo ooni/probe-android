@@ -15,10 +15,9 @@ import org.openobservatory.ooniprobe.model.settings.Settings;
 
 public class WebConnectivity extends AbstractTest {
 	public static final String NAME = "web_connectivity";
-	private static final String MK_NAME = "WebConnectivity";
 
 	public WebConnectivity() {
-		super(NAME, MK_NAME, R.string.Test_WebConnectivity_Fullname, 0, R.string.urlTestWeb, 5);
+		super(NAME, R.string.Test_WebConnectivity_Fullname, 0, R.string.urlTestWeb, 5);
 	}
 
 	@Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback) {

@@ -15,10 +15,9 @@ import org.openobservatory.ooniprobe.model.settings.Settings;
 
 public class RiseupVPN extends AbstractTest {
     public static final String NAME = "riseupvpn";
-    private static final String MK_NAME = "riseupvpn";
 
     public RiseupVPN() {
-        super(NAME, MK_NAME, R.string.Test_RiseupVPN_Fullname, R.drawable.test_riseupvpn, R.string.urlTestRvpn, 15);
+        super(NAME, R.string.Test_RiseupVPN_Fullname, R.drawable.test_riseupvpn, R.string.urlTestRvpn, 15);
     }
 
     @Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, AbstractTest.TestCallback testCallback) {

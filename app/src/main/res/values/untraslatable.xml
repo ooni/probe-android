@@ -77,7 +77,7 @@
 	<string name="urlTestWap" translatable="false">https://ooni.org/nettest/whatsapp</string>
 	<string name="urlTestTor" translatable="false">https://ooni.org/nettest/tor</string>
 	<string name="urlTestPsi" translatable="false">https://ooni.org/nettest/psiphon</string>
-	<string name="urlTestRvpn" translatable="false">https://ooni.org/nettest/riseup</string>
+	<string name="urlTestRvpn" translatable="false">https://ooni.org/nettest/riseupvpn</string>
 	<string-array name="filterTests" translatable="false">
 		<item>@string/TestResults_Overview_FilterTests_AllTests</item>
 		<item>@string/TestResults_Overview_FilterTests_Websites</item>

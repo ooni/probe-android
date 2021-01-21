@@ -15,10 +15,9 @@ import org.openobservatory.ooniprobe.model.settings.Settings;
 
 public class Telegram extends AbstractTest {
 	public static final String NAME = "telegram";
-	private static final String MK_NAME = "Telegram";
 
 	public Telegram() {
-		super(NAME, MK_NAME, R.string.Test_Telegram_Fullname, R.drawable.test_telegram, R.string.urlTestTlg, 10);
+		super(NAME, R.string.Test_Telegram_Fullname, R.drawable.test_telegram, R.string.urlTestTlg, 10);
 	}
 
 	@Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback) {

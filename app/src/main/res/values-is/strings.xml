@@ -60,7 +60,7 @@
   <string name="Dashboard_InstantMessaging_Card_Description">Prófa hindranir fyrir skilaboðaforrit</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">Athugaðu hvort [WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) og [Telegram](https://ooni.io/nettest/telegram/) verði fyrir hindrunum.\n\nNiðurstöðurnar þínar verða birtar í [OONI Explorer](https://explorer.ooni.org/) og [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Circumvention_Card_Description">Prófa hindranir fyrir leiðir framhjá ritskoðun</string>
-  <string name="Dashboard_Circumvention_Overview_Paragraph">Check whether [Psiphon](https://ooni.io/nettest/psiphon/), [Tor](https://ooni.io/nettest/tor/) or [RiseupVPN](https://ooni.io/nettest/riseupvpn/) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_Circumvention_Overview_Paragraph">Athugaðu hvort [Psiphon](https://ooni.io/nettest/psiphon/), [Tor](https://ooni.io/nettest/tor/) eða [RiseupVPN](https://ooni.io/nettest/riseupvpn/) verði fyrir hindrunum.\n\nNiðurstöðurnar þínar verða birtar í [OONI Explorer](https://explorer.ooni.org/) og [OONI API](https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>
@@ -237,11 +237,11 @@
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Handshake">Handaband</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Hero_Title">Líklega hindrað</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Hero_Title">Í vinnslu</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Content_Paragraph">[RiseupVPN](https://riseup.net/vpn) appears to be blocked.</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Content_Paragraph">We were able to successfully connect to RiseupVPN\'s bootstrap server and VPN gateways. This means that [RiseupVPN](https://riseup.net/vpn) should work.</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Api">Bootstrap server</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Openvpn">OpenVPN connections</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Bridge">Bridged connections</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Content_Paragraph">Það lítur út fyrir að [RiseupVPN](https://riseup.net/vpn) sé hindrað.</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Content_Paragraph">Okkur tókst að sjálfræsa (bootstrap) RiseupVPN-tengingu. Það þýðir að [RiseupVPN](https://riseup.net/vpn) ætti að virka.</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Api">Sjálfræsiþjónn (bootstrap server)</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Openvpn">OpenVPN-tengingar</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Bridge">Brúaðar tengingar</string>
   <string name="TestResults_Overview_Circumvention_RiseupVPN_Api_Blocked">Hindrað</string>
   <string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Singular">%1$s hindranir</string>
   <string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Plural">%1$s hindranir</string>
@@ -313,7 +313,7 @@
   <string name="Test_FacebookMessenger_Fullname">Prófun Facebook Messenger</string>
   <string name="Test_Psiphon_Fullname">Prófun Psiphon</string>
   <string name="Test_Tor_Fullname">Prófun Tor</string>
-  <string name="Test_RiseupVPN_Fullname">RiseupVPN Test</string>
+  <string name="Test_RiseupVPN_Fullname">Prófun á RiseupVPN</string>
   <string name="Settings_Title">Stillingar</string>
   <string name="Settings_Error_TestDurationTooLow">Tíminn sem þú settir sem lengd prófunar er of lítill.</string>
   <string name="Settings_About_Label">Um OONI</string>
@@ -378,7 +378,7 @@
   <string name="Settings_Performance_DashServerPort">Gátt DASH-netþjóns</string>
   <string name="Settings_Circumvention_TestPsiphon">Prófa Psiphon</string>
   <string name="Settings_Circumvention_TestTor">Prófa Tor</string>
-  <string name="Settings_Circumvention_TestRiseupVPN">Test RiseupVPN</string>
+  <string name="Settings_Circumvention_TestRiseupVPN">Prófa RiseupVPN</string>
   <string name="Settings_SendEmail_Label">Senda tölvupóst til að fá aðstoð</string>
   <string name="Settings_SendEmail_Error">Sentu tölvupóst til bugs@openobservatory.org með upplýsingum um forritið og útgáfu þína af iOS. Ýttu á \"Afrita á klippispjald\" hér fyrir neðan til að afrita tölvupóstfangið okkar.</string>
   <string name="Settings_Language_Current">Núverandi tungumál forritsins er %1$s</string>
