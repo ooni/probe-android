@@ -60,7 +60,7 @@
   <string name="Dashboard_InstantMessaging_Card_Description">Teste das Blockieren von Instant Messaging-Apps</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">Überprüfen Sie ob [WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) und [Telegram](https://ooni.io/nettest/telegram/) blockiert werden.\n\nIhre Ergebnisse werden auf [OONI Explorer](https://explorer.ooni.io/world/) und [OONI API](https://api.ooni.io/) veröffentlicht.</string>
   <string name="Dashboard_Circumvention_Card_Description">Test auf Blockierung der Instrumente zur Zensurumgehung </string>
-  <string name="Dashboard_Circumvention_Overview_Paragraph">Check whether [Psiphon](https://ooni.io/nettest/psiphon/), [Tor](https://ooni.io/nettest/tor/) or [RiseupVPN](https://ooni.io/nettest/riseupvpn/) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_Circumvention_Overview_Paragraph">Überprüfe ob [Psiphon](https://ooni.io/nettest/psiphon/), [Tor](https://ooni.io/nettest/tor/) oder [RiseupVPN](https://ooni.io/nettest/riseupvpn/) blockiert werden.\n\nDeine Ergebnisse werden pubiziert auf dem [OONI Explorer](https://explorer.ooni.org/) und dem [OONI API](https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>
@@ -237,11 +237,11 @@
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Handshake">Handschlag</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Hero_Title">Wahrscheinlich blockiert</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Hero_Title">Funktioniert</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Content_Paragraph">[RiseupVPN](https://riseup.net/vpn) appears to be blocked.</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Content_Paragraph">We were able to successfully connect to RiseupVPN\'s bootstrap server and VPN gateways. This means that [RiseupVPN](https://riseup.net/vpn) should work.</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Api">Bootstrap server</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Openvpn">OpenVPN connections</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Bridge">Bridged connections</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Content_Paragraph">[RiseupVPN](https://riseup.net/vpn) scheint blockiert zu werden.</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Content_Paragraph">Wir sind in der Lage, uns erfolgreich mit RiseupVPN\'s Bootstrap Server und VPN-Gateways zu verbinden. Das bedeutet, dass [RiseupVPN](https://riseup.net/vpn) funktionieren sollte.</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Api">Bootstrap Server</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Openvpn">OpenVPN Verbindungen</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Bridge">Überbrückte Verbindungen</string>
   <string name="TestResults_Overview_Circumvention_RiseupVPN_Api_Blocked">Gesperrt</string>
   <string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Singular">%1$s blockiert</string>
   <string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Plural">%1$s blockiert</string>
@@ -378,7 +378,7 @@
   <string name="Settings_Performance_DashServerPort">DASH-Serverport</string>
   <string name="Settings_Circumvention_TestPsiphon">Psiphon testen</string>
   <string name="Settings_Circumvention_TestTor">Tor Testen</string>
-  <string name="Settings_Circumvention_TestRiseupVPN">Test RiseupVPN</string>
+  <string name="Settings_Circumvention_TestRiseupVPN">Teste RiseupVPN</string>
   <string name="Settings_SendEmail_Label">E-Mail an den Support senden</string>
   <string name="Settings_SendEmail_Error">Bitte senden Sie eine E-Mail an bugs@openobservatory.org mit Informationen zur App und iOS-Version. Tippen Sie unten auf \"In Zwischenablage kopieren\", um unsere E-Mail Adresse zu kopieren.</string>
   <string name="Settings_Language_Current">Aktuelle App-Sprache ist %1$s</string>
