@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.util.Log;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -62,6 +63,9 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 	}
 
 	private void registerConnChange() {
+		if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+			return;
+		}
 		manager = (ConnectivityManager) this.app.getSystemService(Context.CONNECTIVITY_SERVICE);
 		networkCallback = new ConnectivityManager.NetworkCallback() {
 			@Override
@@ -81,6 +85,9 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 	}
 
 	private void unregisterConnChange() {
+		if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+			return;
+		}
 		manager.unregisterNetworkCallback(networkCallback);
 	}
 
