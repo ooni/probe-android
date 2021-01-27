@@ -109,7 +109,9 @@ dependencies {
 	implementation 'com.github.florent37:shapeofview:1.3.2'
 
 // Flavor
-	fullImplementation 'com.google.firebase:firebase-messaging:20.1.4'
+	fullImplementation platform('com.google.firebase:firebase-bom:26.3.0')
+	fullImplementation 'com.google.firebase:firebase-messaging:21.0.1'
+	fullImplementation 'com.google.firebase:firebase-analytics'
 
 // Testing
 	testImplementation 'junit:junit:4.12'
