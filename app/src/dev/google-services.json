@@ -33,20 +33,21 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
               "client_id": "951667061699-2aq9bnbot04qdjbed2bpnl9ee4ro0c39.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "951667061699-tuprsdjjv9eje6506lkvkski1p6v87lp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.openobservatory.ooniprobe.dev",
+                "app_store_id": "1199566366"
+              }
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }
