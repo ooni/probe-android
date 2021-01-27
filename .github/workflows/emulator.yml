@@ -9,11 +9,15 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
+        version:
+            - "StableFullRelease"
+            - "StableFdroidRelease"
         api-level: [29]
         target: [google_apis]
     steps:
     - name: checkout
       uses: actions/checkout@v2
+    - run: ./gradlew build${{ matrix.version }}
     - name: run tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
