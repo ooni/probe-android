@@ -14,8 +14,6 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v2
-    - run: ./gradlew buildStableFullRelease && ./gradlew clean
-    - run: ./gradlew buildStableFdroidRelease && ./gradlew clean
     - name: run tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
