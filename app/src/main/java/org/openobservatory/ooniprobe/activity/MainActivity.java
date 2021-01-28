@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -29,6 +30,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     private static final String RES_ITEM = "resItem";
     private static final String ANALYTICS_DIALOG = "analytics";
     public static final String NOTIFICATION_DIALOG = "notification";
+    public static final int MODE_NIGHT_FOLLOW_SYSTEM = -1;
 
     @BindView(R.id.bottomNavigation)
     BottomNavigationView bottomNavigation;
@@ -90,6 +92,8 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                         .build().show(getSupportFragmentManager(), null);
             }
         }
+
+        AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM);
     }
 
 	@Override protected void onResume() {

@@ -135,4 +135,8 @@
 	<style name="TextAppearance.Widget.AppCompat.Toolbar.Title.App">
 		<item name="android:textSize">12sp</item>
 	</style>
+
+	<style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
+	</style>
+    
 </resources>
