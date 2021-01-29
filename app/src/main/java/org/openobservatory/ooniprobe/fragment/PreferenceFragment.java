@@ -49,6 +49,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
         fragment.getArguments().putInt(ARG_PREFERENCES_RES_ID, preferencesResId);
         fragment.getArguments().putInt(ARG_CONTAINER_RES_ID, preferencesContainerResId);
         fragment.getArguments().putString(ARG_PREFERENCE_ROOT, rootKey);
+
         return fragment;
     }
 
@@ -65,6 +66,13 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
         setPreferencesFromResource(getArguments().getInt(ARG_PREFERENCES_RES_ID), getArguments().getInt(ARG_CONTAINER_RES_ID), getArguments().getString(ARG_PREFERENCE_ROOT));
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         getActivity().setTitle(getPreferenceScreen().getTitle());
+
+        if (android.os.Build.VERSION.SDK_INT >= 29){
+            Preference themeDark = findPreference(getString(R.string.theme_enabled));
+            assert themeDark != null;
+            themeDark.setEnabled(false);
+            themeDark.setVisible(false);
+        }
 
         for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++) {
             if (getPreferenceScreen().getPreference(i) instanceof EditTextPreference) {
