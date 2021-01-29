@@ -123,7 +123,6 @@
 					android:scheme="ooni" />
 			</intent-filter>
 		</activity>
-
 		<service
 			android:name=".common.service.RunTestService"
 			android:icon="@drawable/notification_icon"

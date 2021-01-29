@@ -324,6 +324,10 @@
   <string name="Settings_Notifications_Enabled">Enabled</string>
   <string name="Settings_Notifications_OnTestCompletion">Notify upon test completion</string>
   <string name="Settings_Notifications_OnNews">News Feed</string>
+
+  <string name="Settings_Theme_Label">Dark Theme</string>
+  <string name="Settings_Theme_Enabled">Enable Dark Theme</string>
+
   <string name="Settings_AutomatedTesting_Label">Automated testing</string>
   <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Run tests only on WiFi</string>

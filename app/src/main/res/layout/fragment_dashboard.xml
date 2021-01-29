@@ -70,7 +70,8 @@
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintTop_toBottomOf="@id/run_all"
-		android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
+		android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+		android:textColor="@color/color_black"/>
 
 	<androidx.recyclerview.widget.RecyclerView
 		android:id="@+id/recycler"

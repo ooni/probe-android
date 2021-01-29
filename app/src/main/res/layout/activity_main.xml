@@ -14,6 +14,7 @@
 	<com.google.android.material.bottomnavigation.BottomNavigationView
 		android:id="@+id/bottomNavigation"
 		android:layout_width="match_parent"
+		app:itemRippleColor="?attr/colorOnSurface"
 		android:layout_height="wrap_content"
 		android:background="?android:attr/colorBackground"
 		app:elevation="8dp"

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<color name="color_background">#fff</color>
+	<color name="color_all_white">#fff</color>
 	<color name="color_base">#0588cb</color>
 	<color name="color_black">#000000</color>
 	<color name="color_gray0">#f8f9fa</color>
@@ -58,7 +60,7 @@
 	<color name="color_pink3">#faa2c1</color>
 	<color name="color_pink4">#f783ac</color>
 	<color name="color_pink5">#f06595</color>
-	<color name="color_pink6">#e64980</color>
+	<color name="color_pink6">#f277a3</color>
 	<color name="color_pink7">#d6336c</color>
 	<color name="color_pink8">#c2255c</color>
 	<color name="color_pink9">#a61e4d</color>

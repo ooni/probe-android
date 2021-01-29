@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.text.TextUtils;
 
+import androidx.appcompat.app.AppCompatDelegate;
+
 import org.openobservatory.engine.Engine;
 import org.openobservatory.ooniprobe.R;
 
@@ -108,6 +110,12 @@ public class PreferenceManager {
 	public boolean isNotifications() {
 		return sp.getBoolean(r.getString(R.string.notifications_enabled), false);
 	}
+
+
+	public boolean isDarkTheme() {
+		return sp.getBoolean(r.getString(R.string.theme_enabled), false);
+	}
+
 
 	public void setNotificationsFromDialog(boolean notifications) {
 		//set notification value and increment app open

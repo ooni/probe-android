@@ -39,13 +39,15 @@
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:gravity="center_horizontal"
-						android:text="@string/TestResults_Overview_Hero_Tests" />
+						android:text="@string/TestResults_Overview_Hero_Tests"
+						android:textColor="@color/color_all_white"/>
 
 					<TextView
 						android:id="@+id/tests"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:gravity="center_horizontal"
+						android:textColor="@color/color_all_white"
 						android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4" />
 				</LinearLayout>
 
@@ -59,13 +61,15 @@
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:gravity="center_horizontal"
-						android:text="@string/TestResults_Overview_Hero_Networks" />
+						android:text="@string/TestResults_Overview_Hero_Networks"
+						android:textColor="@color/color_all_white"/>
 
 					<TextView
 						android:id="@+id/networks"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:gravity="center_horizontal"
+						android:textColor="@color/color_all_white"
 						android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4" />
 				</LinearLayout>
 
@@ -79,6 +83,7 @@
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:gravity="center_horizontal"
+						android:textColor="@color/color_all_white"
 						android:text="@string/TestResults_Overview_Hero_DataUsage" />
 
 					<LinearLayout
@@ -98,10 +103,12 @@
 								android:layout_height="wrap_content"
 								android:drawableStart="@drawable/download_white"
 								android:drawablePadding="4dp"
+								android:textColor="@color/color_all_white"
 								android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
 							<TextView
 								android:id="@+id/upload"
+								android:textColor="@color/color_all_white"
 								android:layout_width="wrap_content"
 								android:layout_height="wrap_content"
 								android:drawableStart="@drawable/upload_white"

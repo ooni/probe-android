@@ -7,6 +7,9 @@
 		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 		<item name="fontFamily">@font/firasans</item>
 		<item name="android:alertDialogTheme">@style/AlertDialogCustom</item>
+		<item name="android:colorBackground">@color/color_background</item>
+		<item name="android:textColor">@color/color_black</item>
+		<item name="colorOnSurface">@color/color_gray9</item>
 	</style>
 
 	<style name="Theme.MaterialComponents.NoActionBar.App">
@@ -30,7 +33,7 @@
 	</style>
 
 	<style name="AlertDialogCustom" parent="android:Theme.Material.Light.Dialog.Alert">
-		<item name="colorPrimary">#FF212121</item>
+		<item name="colorPrimary">@color/color_base</item>
 		<item name="colorPrimaryDark">@android:color/black</item>
 		<item name="colorAccent">#FF80CBC4</item>
 	</style>
@@ -136,7 +139,10 @@
 		<item name="android:textSize">12sp</item>
 	</style>
 
+
+
 	<style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
 	</style>
-    
+
+
 </resources>
