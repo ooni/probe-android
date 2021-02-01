@@ -123,7 +123,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
             getPreferenceManager().setNotificationsFromDialog(i == DialogInterface.BUTTON_POSITIVE);
             //If positive answer reload consents and init notification
             if (i == DialogInterface.BUTTON_POSITIVE){
-                CountlyManager.reloadConsent(((Application) getApplication()).getPreferenceManager());
+                CountlyManager.reloadConsent(this, ((Application) getApplication()).getPreferenceManager());
                 NotificationService.initNotification((Application) getApplication());
                 CountlyManager.recordEvent("NotificationModal_Accepted");
             }

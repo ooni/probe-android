@@ -17,14 +17,14 @@ public class CountlyManager {
             ly.count.android.sdk.Countly.CountlyFeatureNames.location,
     };
 
-    private static String[] analyticsFeatures = new String[]{
+    public static String[] analyticsFeatures = new String[]{
             ly.count.android.sdk.Countly.CountlyFeatureNames.sessions,
             ly.count.android.sdk.Countly.CountlyFeatureNames.views,
             ly.count.android.sdk.Countly.CountlyFeatureNames.events
             //TODO evaluate scrolls, clicks, forms, attribution
     };
 
-    private static String[] crashFeatures = new String[]{
+    public static String[] crashFeatures = new String[]{
             ly.count.android.sdk.Countly.CountlyFeatureNames.crashes,
     };
 
@@ -48,7 +48,7 @@ public class CountlyManager {
 
     public static String[] getConsentsEnabled(PreferenceManager preferenceManager) {
         List<String> consents = new ArrayList(Arrays.asList(basicFeatures));
-        if (preferenceManager.isSendCrash())
+        if (preferenceManager.isSendCrash() && BuildConfig.FLAVOR_license.equals("fdroid"))
             consents.addAll(Arrays.asList(crashFeatures));
         if (preferenceManager.isSendAnalytics())
             consents.addAll(Arrays.asList(analyticsFeatures));
@@ -57,8 +57,8 @@ public class CountlyManager {
         return consents.toArray((new String[0]));
     }
 
-    public static void reloadConsent(PreferenceManager preferenceManager){
-        Countly.sharedInstance().consent().setConsent(crashFeatures, preferenceManager.isSendCrash());
+    public static void reloadConsent(Context ctx, PreferenceManager preferenceManager){
+        FlavorApplication.reloadCrashConsent(ctx, preferenceManager);
         Countly.sharedInstance().consent().setConsent(analyticsFeatures, preferenceManager.isSendAnalytics());
         Countly.sharedInstance().consent().setConsent(pushFeatures, preferenceManager.isNotifications());
     }
