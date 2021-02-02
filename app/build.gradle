@@ -113,6 +113,7 @@ dependencies {
 	fullImplementation 'com.google.firebase:firebase-messaging'
 	fullImplementation 'com.google.firebase:firebase-analytics'
 	fullImplementation 'com.google.firebase:firebase-crashlytics'
+	fullImplementation 'io.sentry:sentry-android:4.0.0'
 
 // Testing
 	testImplementation 'junit:junit:4.12'
