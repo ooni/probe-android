@@ -1,6 +1,8 @@
 package org.openobservatory.ooniprobe.test.test;
 
 import android.content.Context;
+import android.system.ErrnoException;
+import android.system.OsConstants;
 import android.util.Log;
 import android.util.SparseArray;
 
@@ -14,6 +16,7 @@ import com.google.gson.Gson;
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.engine.Engine;
 import org.openobservatory.engine.OONIMKTask;
+import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.ExceptionManager;
 import org.openobservatory.ooniprobe.common.MKException;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
@@ -173,6 +176,13 @@ public abstract class AbstractTest implements Serializable {
                         break;
                 }
             } catch (Exception e) {
+                if (e.getCause() instanceof ErrnoException) {
+                    int errorNumber = ((ErrnoException) e.getCause()).errno;
+                    if (errorNumber == OsConstants.ENOSPC) {
+                        // Out of space Exception
+                        testCallback.onError(e.getLocalizedMessage());
+                    }
+                }
                 e.printStackTrace();
                 ExceptionManager.logException(e);
             }
@@ -290,5 +300,7 @@ public abstract class AbstractTest implements Serializable {
         void onProgress(int progress);
 
         void onLog(String log);
+
+        void onError(String error);
     }
 }

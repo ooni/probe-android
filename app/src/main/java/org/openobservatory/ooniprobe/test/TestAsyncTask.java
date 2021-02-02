@@ -177,6 +177,10 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 		    publishProgress(LOG, log);
 	}
 
+	@Override public final void onError(String error) {
+		publishProgress(ERR, error);
+	}
+
 	@Override
 	protected void onProgressUpdate(String... values) {
 		//Send broadcast to the RunningActivity
