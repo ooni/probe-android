@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="General_AppName">OONI</string>
+  <string name="General_AppName">OONI Probe</string>
   <string name="Onboarding_WhatIsOONIProbe_Title">OONI คืออะไร</string>
   <string name="Onboarding_WhatIsOONIProbe_Paragraph">เเอปเพื่อตรวจหาการปิดกั้นอินเทอร์เน็ตเว็บไซต์และสื่อสังคมถูกปิดกั้นหรือไม่? การเชื่อมต่ออินเทอร์เน็ตของคุณช้ากว่าปกติรึเปล่า?ให้ OONI Probe ทำงานเพื่อหาคำตอบ!</string>
   <string name="Onboarding_WhatIsOONIProbe_GotIt">รับทราบ!</string>
@@ -60,7 +60,7 @@
   <string name="Dashboard_InstantMessaging_Card_Description">ทดสอบการปิดกั้นบริการสนทนาด่วนทันใจ</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">ตรวจสอบว่า [วอทเเอพ](https://ooni.io/nettest/whatsapp/), [เฟสบุ๊คเเมสเซนเจอร์](https://ooni.io/nettest/facebook-messenger/) และ [เทเลเเกรม](https://ooni.io/nettest/telegram/) ถูกปิดกั้นหรือไม่ผลลัพธ์ของคุณจะถูกเผยแพร่บน [การสำรวจOONI](https://explorer.ooni.org/) และ [OONI เอพีไอ](https://api.ooni.io/)</string>
   <string name="Dashboard_Circumvention_Card_Description">ทดสอบเครื่องมือการหลบเลี่ยงเเละหลีกเลี่ยงการปิดกั้นเเละการตรวจสอบเนื้อหา</string>
-  <string name="Dashboard_Circumvention_Overview_Paragraph">กำลังตรวจสอบ [ไซฟอน](https://ooni.io/nettest/psiphon/), [ทอร์](https://ooni.io/nettest/tor/) หรือ [ไรซ์อัปวีพีเอ็น](https://ooni.io/nettest/riseupvpn/) ถูกบล็อคหรือไม่.ผลการทดสอบของคุณจะถูกเผยเเพร่บน [การสำรวจOONI](https://explorer.ooni.org/) เเละ [OONI เอพีไอ](https://api.ooni.io/).</string>
+  <string name="Dashboard_Circumvention_Overview_Paragraph">กำลังตรวจสอบ [ไซฟอน](https://ooni.io/nettest/psiphon/), [ทอร์](https://ooni.io/nettest/tor/) หรือ [ไรซ์อัพวีพีเอ็น](https://ooni.io/nettest/riseupvpn/) ถูกบล็อคหรือไม่.ผลการทดสอบของคุณจะถูกเผยเเพร่บน [การสำรวจOONI] (https://explorer.ooni.org/) เเละ [OONI เอพีไอ](https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">จิกะบิตต่อวินาที</string>
   <string name="TestResults_Mbps">เมกะบิต</string>
   <string name="TestResults_Kbps">กิโลบิตต่อวินาที</string>
@@ -237,8 +237,8 @@
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Handshake">เเฮนด์เชก</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Hero_Title">น่าจะถูกปิดกั้น</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Hero_Title">กำลังทำงาน</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Content_Paragraph">[ไรซ์อัปวีพีเอ็น](https://riseup.net/vpn) ปรากฎว่าถูกปิดกั้น</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Content_Paragraph">เราประสบความสำเร็จที่สามารถเชื่อมต่อกับเซิร์ฟเวอร์บูทสแตร๊ปของไรซ์อัป เเละ วีพีเอ็นเกตเวย์. นั้นหมายถึง [ไรซ์อัปวีพีเอ็น](https://riseup.net/vpn) นั้นทำงานได้ตามปกติ.</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Content_Paragraph">[Riseup VPN](https://riseup.net/vpn) ปรากฎว่าถูกปิดกั้น</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Content_Paragraph">เราประสบความสำเร็จที่สามารถเชื่อมต่อกับเซิร์ฟเวอร์บูทสแตร๊ปของไรซ์อัพ เเละ วีพีเอ็นเกตเวย์. นั้นหมายถึง [ไรซ์อัพวีพีเอ็น](https://riseup.net/vpn) นั้นทำงานได้ตามปกติ.</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Api">เซิร์ฟเวอร์บูทสแตร๊ป</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Openvpn">การเชื่อมต่อโอเพ่นวีพีเอ็น</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Bridge">การเชื่อมต่อบริดจ์</string>
