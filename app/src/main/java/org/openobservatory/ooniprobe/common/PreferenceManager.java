@@ -85,6 +85,12 @@ public class PreferenceManager {
 				.apply();
 	}
 
+	public void acceptDefaultSettings() {
+		sp.edit().putBoolean(r.getString(R.string.send_analytics), true)
+				.putBoolean(r.getString(R.string.send_crash), true)
+				.apply();
+	}
+
 	/*
 	 * This method is used to ask user to share app usage to old users.
 	 */

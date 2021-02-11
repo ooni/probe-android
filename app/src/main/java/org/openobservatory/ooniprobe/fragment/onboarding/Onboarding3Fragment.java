@@ -37,6 +37,7 @@ public class Onboarding3Fragment extends Fragment {
 
 	@OnClick(R.id.master) void masterClick() {
 		((Application) getActivity().getApplication()).getPreferenceManager().setShowOnboarding(false);
+		((Application) getActivity().getApplication()).getPreferenceManager().acceptDefaultSettings();
 		startActivity(MainActivity.newIntent(getActivity(), R.id.dashboard));
 		getActivity().finish();
 	}
