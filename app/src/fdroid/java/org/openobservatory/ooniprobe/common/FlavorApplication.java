@@ -10,6 +10,5 @@ class FlavorApplication {
 	}
 
 	public static void reloadCrashConsent(Context ctx, PreferenceManager preferenceManager) {
-		Countly.sharedInstance().consent().setConsent(CountlyManager.crashFeatures, preferenceManager.isSendCrash());
 	}
 }

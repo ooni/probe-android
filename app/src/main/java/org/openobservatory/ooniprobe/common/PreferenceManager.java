@@ -64,11 +64,11 @@ public class PreferenceManager {
 	}
 
 	public boolean isSendCrash() {
-		return sp.getBoolean(r.getString(R.string.send_crash), true);
+		return sp.getBoolean(r.getString(R.string.send_crash), false);
 	}
 
 	public boolean isSendAnalytics() {
-		return sp.getBoolean(r.getString(R.string.send_analytics), true);
+		return sp.getBoolean(r.getString(R.string.send_analytics), false);
 	}
 
 	public void setSendAnalytics(boolean analytics) {
@@ -82,6 +82,12 @@ public class PreferenceManager {
 	public void setShowOnboarding(boolean showIntro) {
 		sp.edit().putBoolean(SHOW_ONBOARDING, showIntro)
 				.putBoolean(IS_ANALYTICS_DIALOG, showIntro)
+				.apply();
+	}
+
+	public void acceptDefaultSettings() {
+		sp.edit().putBoolean(r.getString(R.string.send_analytics), true)
+				.putBoolean(r.getString(R.string.send_crash), true)
 				.apply();
 	}
 

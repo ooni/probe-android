@@ -48,8 +48,6 @@ public class CountlyManager {
 
     public static String[] getConsentsEnabled(PreferenceManager preferenceManager) {
         List<String> consents = new ArrayList(Arrays.asList(basicFeatures));
-        if (preferenceManager.isSendCrash() && BuildConfig.FLAVOR_license.equals("fdroid"))
-            consents.addAll(Arrays.asList(crashFeatures));
         if (preferenceManager.isSendAnalytics())
             consents.addAll(Arrays.asList(analyticsFeatures));
         if (preferenceManager.isNotifications())
