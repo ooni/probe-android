@@ -112,7 +112,6 @@ dependencies {
 // Flavor
 	fullImplementation platform('com.google.firebase:firebase-bom:26.3.0')
 	fullImplementation 'com.google.firebase:firebase-messaging'
-	fullImplementation 'com.google.firebase:firebase-analytics'
 	fullImplementation 'com.google.firebase:firebase-crashlytics'
 
 // Testing
