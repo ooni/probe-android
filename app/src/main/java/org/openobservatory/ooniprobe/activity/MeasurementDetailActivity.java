@@ -225,7 +225,9 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     }
 
     private void load() {
-        if (!measurement.is_failed && (!measurement.is_uploaded || measurement.report_id == null))
+        if (!measurement.is_failed
+                && (!measurement.is_uploaded || measurement.report_id == null)
+                && measurement.hasReportFile(this))
             snackbar.show();
         else
             snackbar.dismiss();

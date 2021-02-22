@@ -161,7 +161,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 
     @OnItemSelected(R.id.filterTests)
     void queryList() {
-        if (Measurement.selectUploadable().count() != 0)
+        if (Measurement.hasReport(getContext(), Measurement.selectUploadable()))
             snackbar.show();
         else
             snackbar.dismiss();
