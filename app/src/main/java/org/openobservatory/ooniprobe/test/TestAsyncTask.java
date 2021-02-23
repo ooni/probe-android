@@ -128,6 +128,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 		}
 	}
 
+	//TODO use wrapper
 	private void downloadURLs(){
 		//Try/Catch to resolve probeCC only
 		String probeCC = "XX";

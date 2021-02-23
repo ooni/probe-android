@@ -94,6 +94,8 @@ public class Application extends android.app.Application {
 		}
 		return okHttpClient;
 	}
+
+	@Deprecated
 	public OONIOrchestraClient getOrchestraClientWithUrl(String url) {
 		if (orchestraClient == null) {
 			orchestraClient = new Retrofit.Builder()
@@ -105,7 +107,9 @@ public class Application extends android.app.Application {
 		return orchestraClient;
 	}
 
+	@Deprecated
 	public OONIOrchestraClient getOrchestraClient() {
+		//TODO remove OONI_ORCHESTRATE_BASE_URL
 		return getOrchestraClientWithUrl(BuildConfig.OONI_ORCHESTRATE_BASE_URL);
 	}
 
