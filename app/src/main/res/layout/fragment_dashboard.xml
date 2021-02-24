@@ -47,7 +47,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="56dp"
 		android:layout_marginTop="24dp"
-		android:backgroundTint="@color/color_white_fixed"
+		android:backgroundTint="@android:color/white"
 		android:stateListAnimator="@null"
 		android:elevation="5dp"
 		android:translationZ="5dp"

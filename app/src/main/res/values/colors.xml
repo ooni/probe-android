@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<color name="color_white_fixed">#fff</color>
 	<color name="color_black">#000000</color>
 	<color name="color_white">#ffffff</color>
 	<color name="color_base">#0588cb</color> <!-- color_blue5 -->
@@ -30,7 +29,7 @@
 	<color name="color_indigo3">#91a7ff</color>   <!-- not_used -->
 	<color name="color_indigo4">#748ffc</color>   <!-- not_used -->
 	<color name="color_indigo5">#5c7cfa</color>   <!-- not_used -->
-	<color name="color_indigo6">#4c6ef5</color>
+	<color name="color_indigo6">#4c6ef5</color>   <!-- Websites Suite -->
 	<color name="color_indigo7">#4263eb</color>   <!-- not_used -->
 	<color name="color_indigo8">#3b5bdb</color>   <!-- not_used -->
 	<color name="color_indigo9">#364fc7</color>
@@ -42,7 +41,7 @@
 	<color name="color_violet5">#845ef7</color>   <!-- not_used -->
 	<color name="color_violet6">#7950f2</color>   <!-- not_used -->
 	<color name="color_violet7">#7048e8</color>   <!-- not_used -->
-	<color name="color_violet8">#6741d9</color>
+	<color name="color_violet8">#6741d9</color>   <!-- MB Suite -->
 	<color name="color_violet9">#5f3dc4</color>
 	<color name="color_fuchsia0">#f8f0fc</color>   <!-- not_used -->
 	<color name="color_fuchsia1">#f3d9fa</color>   <!-- not_used -->
@@ -50,7 +49,7 @@
 	<color name="color_fuchsia3">#e599f7</color>   <!-- not_used -->
 	<color name="color_fuchsia4">#da77f2</color>   <!-- not_used -->
 	<color name="color_fuchsia5">#cc5de8</color>   <!-- not_used -->
-	<color name="color_fuchsia6">#be4bdb</color>
+	<color name="color_fuchsia6">#be4bdb</color>   <!-- Perf Suite -->
 	<color name="color_fuchsia7">#ae3ec9</color>   <!-- not_used -->
 	<color name="color_fuchsia8">#9c36b5</color>   <!-- not_used -->
 	<color name="color_fuchsia9">#862e9c</color>
@@ -60,7 +59,7 @@
 	<color name="color_pink3">#faa2c1</color>   <!-- not_used -->
 	<color name="color_pink4">#f783ac</color>   <!-- not_used -->
 	<color name="color_pink5">#f06595</color>   <!-- not_used -->
-	<color name="color_pink6">#e64980</color>
+	<color name="color_pink6">#e64980</color>   <!-- Circ Suite -->
 	<color name="color_pink7">#d6336c</color>   <!-- not_used -->
 	<color name="color_pink8">#c2255c</color>   <!-- not_used -->
 	<color name="color_pink9">#a61e4d</color>
@@ -130,7 +129,7 @@
 	<color name="color_cyan3">#66d9e8</color>   <!-- not_used -->
 	<color name="color_cyan4">#3bc9db</color>   <!-- not_used -->
 	<color name="color_cyan5">#22b8cf</color>   <!-- not_used -->
-	<color name="color_cyan6">#15aabf</color>
+	<color name="color_cyan6">#15aabf</color>   <!-- IM Suite -->
 	<color name="color_cyan7">#1098ad</color>   <!-- not_used -->
 	<color name="color_cyan8">#0c8599</color>   <!-- not_used -->
 	<color name="color_cyan9">#0b7285</color>

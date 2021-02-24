@@ -6,11 +6,14 @@
 		<item name="colorAccent">@color/color_blue4</item>
 		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 		<item name="fontFamily">@font/firasans</item>
-		<item name="android:alertDialogTheme">@style/AlertDialogCustom</item>
 		<item name="android:colorBackground">@color/color_white</item>
 		<item name="android:textColor">@color/color_black</item>
 		<item name="android:textColorSecondary">@color/color_gray9</item>
 		<item name="colorOnSurface">@color/color_gray9</item>
+		<item name="alertDialogTheme">@style/AlertDialogCustom</item>
+		<item name="android:alertDialogTheme">?alertDialogTheme</item>
+		<item name="dialogTheme">?alertDialogTheme</item>
+		<item name="android:dialogTheme">?alertDialogTheme</item>
 	</style>
 
 	<style name="Theme.MaterialComponents.NoActionBar.App">
@@ -21,7 +24,10 @@
 		<item name="fontFamily">@font/firasans</item>
 		<item name="android:textColor">@color/color_white</item>
 		<item name="android:textColorSecondary">@color/color_gray9</item>
-		<item name="android:alertDialogTheme">@style/AlertDialogCustom</item>
+		<item name="alertDialogTheme">@style/AlertDialogCustom</item>
+		<item name="android:alertDialogTheme">?alertDialogTheme</item>
+		<item name="dialogTheme">?alertDialogTheme</item>
+		<item name="android:dialogTheme">?alertDialogTheme</item>
 	</style>
 
 	<style name="Theme.MaterialComponents.Light.NoActionBar.App">
@@ -31,13 +37,19 @@
 		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 		<item name="fontFamily">@font/firasans</item>
 		<item name="android:colorEdgeEffect" tools:targetApi="lollipop">@color/color_gray6</item>
-		<item name="android:alertDialogTheme">@style/AlertDialogCustom</item>
+		<item name="alertDialogTheme">@style/AlertDialogCustom</item>
+		<item name="android:alertDialogTheme">?alertDialogTheme</item>
+		<item name="dialogTheme">?alertDialogTheme</item>
+		<item name="android:dialogTheme">?alertDialogTheme</item>
 	</style>
 
 	<style name="AlertDialogCustom" parent="android:Theme.Material.Light.Dialog.Alert">
 		<item name="colorPrimary">@color/color_base</item>
-		<item name="colorPrimaryDark">@android:color/black</item>
-		<item name="colorAccent">#FF80CBC4</item>
+		<item name="colorPrimaryDark">@color/color_black</item>
+		<item name="android:textColor">@color/color_black</item>
+		<item name="android:textColorPrimary">@color/color_gray9</item>
+		<item name="android:background">@color/color_white</item>
+		<item name="colorAccent">@color/color_teal3</item>
 	</style>
 
 	<style name="Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
@@ -141,10 +153,7 @@
 		<item name="android:textSize">12sp</item>
 	</style>
 
-
-
 	<style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
 	</style>
-
 
 </resources>
