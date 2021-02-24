@@ -69,9 +69,10 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 
         if (android.os.Build.VERSION.SDK_INT >= 29){
             Preference themeDark = findPreference(getString(R.string.theme_enabled));
-            assert themeDark != null;
-            themeDark.setEnabled(false);
-            themeDark.setVisible(false);
+            if(themeDark != null) {
+                themeDark.setEnabled(false);
+                themeDark.setVisible(false);
+            }
         }
 
         for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++) {
