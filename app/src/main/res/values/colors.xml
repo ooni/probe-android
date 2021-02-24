@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<color name="color_background">#fff</color>
-	<color name="color_all_white">#fff</color>
-	<color name="color_base">#0588cb</color>
+	<color name="color_white_fixed">#fff</color>
 	<color name="color_black">#000000</color>
+	<color name="color_white">#ffffff</color>
+	<color name="color_base">#0588cb</color> <!-- color_blue5 -->
 	<color name="color_gray0">#f8f9fa</color>
 	<color name="color_gray1">#f1f3f5</color>
 	<color name="color_gray2">#e9ecef</color>
@@ -134,5 +134,4 @@
 	<color name="color_cyan7">#1098ad</color>
 	<color name="color_cyan8">#0c8599</color>
 	<color name="color_cyan9">#0b7285</color>
-	<color name="color_white">#ffffff</color>
 </resources>

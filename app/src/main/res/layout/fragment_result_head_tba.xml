@@ -22,14 +22,14 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
-			android:textColor="@color/color_all_white"
+			android:textColor="@color/color_white_fixed"
 			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4" />
 
 		<TextView
 			android:id="@+id/testedTag"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:textColor="@color/color_all_white"
+			android:textColor="@color/color_white_fixed"
 			android:gravity="center_horizontal" />
 	</LinearLayout>
 
@@ -41,7 +41,7 @@
 
 		<TextView
 			android:id="@+id/blocked"
-			android:textColor="@color/color_all_white"
+			android:textColor="@color/color_white_fixed"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
@@ -51,7 +51,7 @@
 			android:id="@+id/blockedTag"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:textColor="@color/color_all_white"
+			android:textColor="@color/color_white_fixed"
 			android:gravity="center_horizontal" />
 	</LinearLayout>
 
@@ -63,7 +63,7 @@
 
 		<TextView
 			android:id="@+id/available"
-			android:textColor="@color/color_all_white"
+			android:textColor="@color/color_white_fixed"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
@@ -71,7 +71,7 @@
 
 		<TextView
 			android:id="@+id/availableTag"
-			android:textColor="@color/color_all_white"
+			android:textColor="@color/color_white_fixed"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal" />
