@@ -27,7 +27,7 @@
 					android:layout_width="48dp"
 					android:layout_height="48dp"
 					android:layout_gravity="center_horizontal"
-					android:tint="@color/color_gray9" />
+					app:tint="@color/color_gray9" />
 
 				<TextView
 					android:id="@+id/title"
@@ -61,7 +61,7 @@
 		android:layout_marginEnd="-64dp"
 		android:layout_marginBottom="64dp"
 		android:scaleType="fitCenter"
-		android:tint="@color/color_gray4" />
+		app:tint="@color/color_gray4" />
 
 	<androidx.recyclerview.widget.RecyclerView
 		android:id="@+id/recycler"
@@ -79,5 +79,6 @@
 		android:layout_margin="16dp"
 		android:text="@string/OONIRun_Run"
 		android:textAllCaps="false"
+		android:backgroundTint="@color/color_base"
 		app:cornerRadius="24dp" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout><!-- app:layout_scrollFlags="scroll|exitUntilCollapsed|snap" -->
