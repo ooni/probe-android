@@ -9,11 +9,13 @@
 		<item name="android:colorBackground">@color/color_white</item>
 		<item name="android:textColor">@color/color_black</item>
 		<item name="android:textColorSecondary">@color/color_gray9</item>
-		<item name="colorOnSurface">@color/color_gray8</item>
+		<item name="colorOnSurface">@color/color_gray6</item>
+		<item name="android:colorForeground">@color/color_gray3</item>
 		<item name="alertDialogTheme">@style/AlertDialogCustom</item>
 		<item name="android:alertDialogTheme">?alertDialogTheme</item>
 		<item name="dialogTheme">?alertDialogTheme</item>
 		<item name="android:dialogTheme">?alertDialogTheme</item>
+		<item name="snackbarStyle">@style/SnackBarStyle</item>
 	</style>
 
 	<style name="Theme.MaterialComponents.NoActionBar.App">
@@ -51,6 +53,10 @@
 		<item name="android:textColorPrimary">@color/color_gray9</item>
 		<item name="android:background">@color/color_white</item>
 		<item name="colorAccent">@color/color_teal3</item>
+	</style>
+
+	<style name="SnackBarStyle" parent="Widget.MaterialComponents.Snackbar">
+		<item name="android:background">@color/color_gray8</item>
 	</style>
 
 	<style name="Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
