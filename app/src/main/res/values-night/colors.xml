@@ -12,7 +12,7 @@
 	<color name="color_gray6">#868e96</color>  <!-- failed measurement tint -->
 	<color name="color_gray7">#868e96</color>   <!-- color_gray6 -->
 	<color name="color_gray8">#343a40</color>  <!-- onboarding buttons -->
-	<color name="color_gray9">#adb5bd</color>  <!-- color_gray5 -->
+	<color name="color_gray9">#f8f9fa</color>  <!-- color_gray0 -->
 	<color name="color_blue0">#e7f5ff</color>   <!-- not_used -->
 	<color name="color_blue1">#c9e8ff</color>   <!-- not_used -->
 	<color name="color_blue2">#94d1ff</color>   <!-- not_used -->
@@ -83,7 +83,7 @@
 	<color name="color_orange7">#f76707</color>   <!-- not_used -->
 	<color name="color_orange8">#e8590c</color>
 	<color name="color_orange9">#d9480f</color>
-	<color name="color_yellow0">#fff9db</color>   <!-- recent_test -->
+	<color name="color_yellow0">#343a40</color>   <!-- recent_test -->  <!-- color_gray8 -->
 	<color name="color_yellow1">#fff3bf</color>   <!-- not_used -->
 	<color name="color_yellow2">#ffec99</color>   <!-- not_used -->
 	<color name="color_yellow3">#ffe066</color>   <!-- not_used -->
