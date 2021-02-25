@@ -22,7 +22,7 @@
 		<item name="colorAccent">@color/color_white</item>
 		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 		<item name="fontFamily">@font/firasans</item>
-		<item name="android:textColor">@color/color_black</item>
+		<item name="android:textColor">@android:color/white</item>
 		<item name="android:textColorSecondary">@color/color_gray9</item>
 		<item name="alertDialogTheme">@style/AlertDialogCustom</item>
 		<item name="android:alertDialogTheme">?alertDialogTheme</item>
