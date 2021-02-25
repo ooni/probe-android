@@ -22,7 +22,7 @@
 		<item name="colorAccent">@color/color_white</item>
 		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 		<item name="fontFamily">@font/firasans</item>
-		<item name="android:textColor">@color/color_white</item>
+		<item name="android:textColor">@color/color_black</item>
 		<item name="android:textColorSecondary">@color/color_gray9</item>
 		<item name="alertDialogTheme">@style/AlertDialogCustom</item>
 		<item name="android:alertDialogTheme">?alertDialogTheme</item>
@@ -34,6 +34,7 @@
 		<item name="colorPrimary">@color/color_gray2</item>
 		<item name="colorPrimaryDark">@color/color_gray4</item>
 		<item name="colorAccent">@color/color_blue4</item>
+		<item name="android:textColor">@color/color_black</item>
 		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 		<item name="fontFamily">@font/firasans</item>
 		<item name="android:colorEdgeEffect" tools:targetApi="lollipop">@color/color_gray6</item>

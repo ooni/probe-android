@@ -28,6 +28,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginTop="?attr/actionBarSize"
 			android:gravity="center_horizontal"
+			android:textColor="@color/color_gray4"
 			android:text="@string/Dashboard_Running_Running"
 			android:textStyle="bold" />
 	</RelativeLayout>

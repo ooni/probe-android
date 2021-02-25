@@ -3,6 +3,6 @@
 	android:id="@+id/textView"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:background="@color/color_gray1"
+	android:background="@color/color_gray0"
 	android:padding="8dp"
 	android:textAllCaps="true" />

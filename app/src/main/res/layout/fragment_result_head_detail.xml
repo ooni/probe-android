@@ -16,14 +16,12 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="2"
-			android:textColor="@android:color/white"
 			android:text="@string/TestResults_Summary_Hero_DateAndTime"
 			android:textStyle="bold" />
 
 		<TextView
 			android:id="@+id/startTime"
 			android:layout_width="0dp"
-			android:textColor="@android:color/white"
 			android:layout_height="wrap_content"
 			android:layout_weight="3" />
 	</LinearLayout>
@@ -38,7 +36,6 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="2"
-			android:textColor="@android:color/white"
 			android:text="@string/TestResults_Summary_Hero_DataUsage"
 			android:textStyle="bold" />
 
@@ -53,14 +50,12 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginStart="-1dp"
-				android:textColor="@android:color/white"
 				android:drawableStart="@drawable/download_white"
 				android:drawablePadding="4dp" />
 
 			<TextView
 				android:id="@+id/upload"
 				android:layout_width="wrap_content"
-				android:textColor="@android:color/white"
 				android:layout_height="wrap_content"
 				android:layout_marginStart="8dp"
 				android:drawableStart="@drawable/upload_white"
@@ -79,13 +74,11 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="2"
-			android:textColor="@android:color/white"
 			android:textStyle="bold" />
 
 		<TextView
 			android:id="@+id/runtime"
 			android:layout_width="0dp"
-			android:textColor="@android:color/white"
 			android:layout_height="wrap_content"
 			android:layout_weight="3" />
 	</LinearLayout>
@@ -100,14 +93,12 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="2"
-			android:textColor="@android:color/white"
 			android:text="@string/TestResults_Summary_Hero_Country"
 			android:textStyle="bold" />
 
 		<TextView
 			android:id="@+id/country"
 			android:layout_width="0dp"
-			android:textColor="@android:color/white"
 			android:layout_height="wrap_content"
 			android:layout_weight="3" />
 	</LinearLayout>
@@ -122,7 +113,6 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="2"
-			android:textColor="@android:color/white"
 			android:text="@string/TestResults_Summary_Hero_Network"
 			android:textStyle="bold" />
 
@@ -135,14 +125,12 @@
 			<TextView
 				android:id="@+id/networkName"
 				android:layout_width="match_parent"
-				android:textColor="@android:color/white"
 				android:layout_height="wrap_content"
 				android:ellipsize="end"
 				android:maxLines="1" />
 
 			<TextView
 				android:id="@+id/networkDetail"
-				android:textColor="@android:color/white"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:maxLines="1" />
