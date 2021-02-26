@@ -10,7 +10,7 @@
 	<color name="color_gray4">#ced4da</color>  <!-- ooni run -->
 	<color name="color_gray5">#adb5bd</color>  <!-- failed measurement text -->
 	<color name="color_gray6">#868e96</color>  <!-- failed measurement tint -->
-	<color name="color_gray7">#495057</color>  <!-- icon tint -->
+	<color name="color_gray7">#495057</color>  <!-- text color and icon tint -->
 	<color name="color_gray8">#343a40</color>  <!-- onboarding buttons -->
 	<color name="color_gray9">#212529</color>  <!-- used as light black -->
 	<color name="color_blue0">#e7f5ff</color>   <!-- not_used -->

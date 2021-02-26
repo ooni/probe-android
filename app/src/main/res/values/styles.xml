@@ -7,8 +7,8 @@
 		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 		<item name="fontFamily">@font/firasans</item>
 		<item name="android:colorBackground">@color/color_white</item>
-		<item name="android:textColor">@color/color_black</item>
-		<item name="android:textColorSecondary">@color/color_gray9</item>
+		<item name="android:textColor">@color/color_gray7</item>
+		<item name="android:textColorSecondary">@color/color_gray7</item>
 		<item name="colorOnSurface">@color/color_gray5</item>
 		<item name="android:colorForeground">@color/color_gray3</item>
 		<item name="alertDialogTheme">@style/AlertDialogCustom</item>
@@ -25,18 +25,19 @@
 		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 		<item name="fontFamily">@font/firasans</item>
 		<item name="android:textColor">@android:color/white</item>
-		<item name="android:textColorSecondary">@color/color_gray9</item>
+		<item name="android:textColorSecondary">@color/color_gray7</item>
 		<item name="alertDialogTheme">@style/AlertDialogCustom</item>
 		<item name="android:alertDialogTheme">?alertDialogTheme</item>
 		<item name="dialogTheme">?alertDialogTheme</item>
 		<item name="android:dialogTheme">?alertDialogTheme</item>
+		<item name="android:listDivider">@drawable/recycle_item_divider</item>
 	</style>
 
 	<style name="Theme.MaterialComponents.Light.NoActionBar.App">
 		<item name="colorPrimary">@color/color_gray2</item>
 		<item name="colorPrimaryDark">@color/color_gray4</item>
 		<item name="colorAccent">@color/color_blue4</item>
-		<item name="android:textColor">@color/color_black</item>
+		<item name="android:textColor">@color/color_gray7</item>
 		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 		<item name="fontFamily">@font/firasans</item>
 		<item name="android:colorEdgeEffect" tools:targetApi="lollipop">@color/color_gray6</item>
@@ -44,6 +45,7 @@
 		<item name="android:alertDialogTheme">?alertDialogTheme</item>
 		<item name="dialogTheme">?alertDialogTheme</item>
 		<item name="android:dialogTheme">?alertDialogTheme</item>
+		<item name="android:listDivider">@drawable/recycle_item_divider</item>
 	</style>
 
 	<style name="AlertDialogCustom" parent="android:Theme.Material.Light.Dialog.Alert">
