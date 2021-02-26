@@ -30,7 +30,6 @@
 		<item name="android:alertDialogTheme">?alertDialogTheme</item>
 		<item name="dialogTheme">?alertDialogTheme</item>
 		<item name="android:dialogTheme">?alertDialogTheme</item>
-		<item name="android:listDivider">@drawable/recycle_item_divider</item>
 	</style>
 
 	<style name="Theme.MaterialComponents.Light.NoActionBar.App">
@@ -45,7 +44,6 @@
 		<item name="android:alertDialogTheme">?alertDialogTheme</item>
 		<item name="dialogTheme">?alertDialogTheme</item>
 		<item name="android:dialogTheme">?alertDialogTheme</item>
-		<item name="android:listDivider">@drawable/recycle_item_divider</item>
 	</style>
 
 	<style name="AlertDialogCustom" parent="android:Theme.Material.Light.Dialog.Alert">
