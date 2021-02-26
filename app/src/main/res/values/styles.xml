@@ -10,7 +10,7 @@
 		<item name="android:textColor">@color/color_gray7</item>
 		<item name="android:textColorSecondary">@color/color_gray7</item>
 		<item name="colorOnSurface">@color/color_gray5</item>
-		<item name="android:colorForeground">@color/color_gray3</item>
+		<item name="android:colorForeground">@color/color_gray7</item>
 		<item name="alertDialogTheme">@style/AlertDialogCustom</item>
 		<item name="android:alertDialogTheme">?alertDialogTheme</item>
 		<item name="dialogTheme">?alertDialogTheme</item>
