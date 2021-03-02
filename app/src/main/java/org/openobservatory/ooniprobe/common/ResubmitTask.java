@@ -93,7 +93,8 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
         if (params[1] != null) {
             msmQuery.and(Measurement_Table.id.eq(params[1]));
         }
-        List<Measurement> measurements = msmQuery.queryList();
+        //Get a list of measurements with report file
+        List<Measurement> measurements = Measurement.withReport(getActivity(), msmQuery);
         totUploads = measurements.size();
         try {
             OONISession session = Engine.newSession(Engine.getDefaultSessionConfig(

@@ -85,7 +85,7 @@ public class Measurement extends BaseModel implements Serializable {
 
 	public static Where<Measurement> selectUploadable() {
 		// We check on both the report_id and is_uploaded as we
-		// may have some unuploaded measurements which are marked
+		// may have some non-uploaded measurements which are marked
 		// as is_uploaded = true, but we always know that those with
 		// report_id set to null are not uploaded
 		return SQLite.select().from(Measurement.class)
@@ -104,6 +104,29 @@ public class Measurement extends BaseModel implements Serializable {
 						.or(Measurement_Table.report_id.isNotNull())
 				);
 	}
+
+	/*
+	 * Given a sql query, check whenever at least a non upload measurement set has the report file on disk
+	 * This is needed to avoid showing the snackbar when there are measurements marked as non uploaded but with no file on disk
+	 */
+	public static boolean hasReport(Context c, Where<Measurement> msmQuery) {
+		List<Measurement> measurements = msmQuery.queryList();
+		for (Measurement measurement : measurements){
+			if (measurement.hasReportFile(c))
+				return true;
+		}
+		return false;
+	}
+
+	public static List<Measurement> withReport(Context c, Where<Measurement> msmQuery) {
+		List<Measurement> measurements = msmQuery.queryList();
+		for (Measurement measurement : measurements){
+			if (!measurement.hasReportFile(c))
+				measurements.remove(measurement);
+		}
+		return measurements;
+	}
+
 
 	public static Where<Measurement> selectUploadableWithResultId(int resultId) {
 		return Measurement.selectUploadable().and(Measurement_Table.result_id.eq(resultId));
