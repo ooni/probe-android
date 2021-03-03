@@ -191,6 +191,17 @@ public class PreferenceManager {
 		}
 	}
 
+	public ArrayList<String> getEnabledCategoryArr() {
+		ArrayList<String> list = new ArrayList<>(31);
+		for (String key : r.getStringArray(R.array.CategoryCodes)) {
+			if (sp.getBoolean(key, true)) {
+				list.add(key);
+			}
+		}
+		return list;
+	}
+
+
 	public Integer countEnabledCategory() {
 		int count = 0;
 		for (String key : r.getStringArray(R.array.CategoryCodes))

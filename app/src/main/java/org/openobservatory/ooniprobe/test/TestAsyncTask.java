@@ -11,6 +11,11 @@ import android.util.Log;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import org.openobservatory.engine.Engine;
+import org.openobservatory.engine.LoggerArray;
+import org.openobservatory.engine.OONICheckInConfig;
+import org.openobservatory.engine.OONICheckInResults;
+import org.openobservatory.engine.OONIContext;
+import org.openobservatory.engine.OONISession;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
@@ -128,8 +133,38 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 		}
 	}
 
-	//TODO use wrapper
+	//This uses the wrapper
 	private void downloadURLs(){
+		String probeCC = "XX";
+		try {
+			OONISession session = Engine.newSession(Engine.getDefaultSessionConfig(
+					app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray()));
+			OONIContext ooniContext = session.newContextWithTimeout(30);
+			session.maybeUpdateResources(ooniContext);
+			OONICheckInConfig config = new OONICheckInConfig(
+					BuildConfig.SOFTWARE_NAME,
+					BuildConfig.VERSION_NAME,
+					app.getPreferenceManager().getEnabledCategoryArr());
+			OONICheckInResults results = session.checkIn(ooniContext, config);
+			ArrayList<String> inputs = new ArrayList<>();
+			for (OONICheckInResults.OONICheckInInfoWebConnectivity.OONIURLInfo url : results.webConnectivity.urls){
+				System.out.println("GOT URL: " + url.url);
+				inputs.add(Url.checkExistingUrl(url.url, url.category_code, url.country_code).url);
+
+			}
+			currentTest.setInputs(inputs);
+			if (currentTest.getMax_runtime() == null)
+				currentTest.setMax_runtime(app.getPreferenceManager().getMaxRuntime());
+			publishProgress(URL);
+
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			ExceptionManager.logException(e);
+		}
+	}
+
+	private void downloadURLsOLD(){
 		//Try/Catch to resolve probeCC only
 		String probeCC = "XX";
 		try {

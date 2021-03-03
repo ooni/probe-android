@@ -25,4 +25,7 @@ public interface OONISession {
 
     /** submit submits a measurement and returns the submission results. */
     OONISubmitResults submit(OONIContext ctx, String measurement) throws Exception;
+
+    /** checkIn function is called by probes asking if there are tests to be run. */
+    OONICheckInResults checkIn(OONIContext ctx, OONICheckInConfig config) throws Exception;
 }

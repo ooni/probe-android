@@ -29,4 +29,8 @@ final class PESession implements OONISession {
     public OONISubmitResults submit(OONIContext ctx, String measurement) throws Exception {
         return new OONISubmitResults(session.submit(ctx.ctx, measurement));
     }
+
+    public OONICheckInResults checkIn(OONIContext ctx, OONICheckInConfig config) throws Exception {
+        return new OONICheckInResults(session.checkIn(ctx.ctx, config.toOonimkallCheckInConfig()));
+    }
 }
