@@ -28,4 +28,7 @@ public interface OONISession {
 
     /** checkIn function is called by probes asking if there are tests to be run. */
     OONICheckInResults checkIn(OONIContext ctx, OONICheckInConfig config) throws Exception;
+
+    /** FetchURLList fetches the list of URLs to test */
+    OONIURLListResult fetchURLList(OONIContext ctx, OONIURLListConfig config) throws Exception;
 }

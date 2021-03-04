@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import oonimkall.CheckInInfo;
 import oonimkall.CheckInInfoWebConnectivity;
-import oonimkall.URLInfo;
 
 public class OONICheckInResults {
     /** CheckInInfo contains the return test objects from the checkin API. */
@@ -25,19 +24,5 @@ public class OONICheckInResults {
                 urls.add(new OONIURLInfo(r.at(i)));
             }
         }
-
-        public class OONIURLInfo {
-            public String url;
-            public String category_code;
-            public String country_code;
-
-            protected OONIURLInfo(URLInfo urlInfo) {
-                url = urlInfo.getURL();
-                category_code = urlInfo.getCategoryCode();
-                country_code = urlInfo.getCountryCode();
-            }
-
-        }
-
     }
 }

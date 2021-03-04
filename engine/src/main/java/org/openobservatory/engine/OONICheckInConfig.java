@@ -17,7 +17,6 @@ public final class OONICheckInConfig {
      */
     boolean onWiFi;
 
-
     /**
      * Platform of the probe
      */
@@ -47,7 +46,7 @@ public final class OONICheckInConfig {
 
     public OONICheckInConfig(String softwareName,
                                 String softwareVersion,
-                                ArrayList<String> categories) {
+                                String[] categories) {
         this.charging = true;
         this.onWiFi = true;
         this.platform = "android";
