@@ -24,11 +24,6 @@ public abstract class AbstractActivity extends AppCompatActivity {
 		return ((Application) getApplication()).isTestRunning();
 	}
 
-	@Deprecated
-	public OONIOrchestraClient getOrchestraClient() {
-		return ((Application) getApplication()).getOrchestraClient();
-	}
-
 	public OONIAPIClient getApiClient() {
 		return ((Application) getApplication()).getApiClient();
 	}

@@ -12,7 +12,6 @@ android {
 		versionName '2.9.3'
 		versionCode 72
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-		buildConfigField 'String', 'OONI_ORCHESTRATE_BASE_URL', '"https://orchestrate.ooni.io/"'
 		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://countly.ooni.io"'
 		resValue "string", "APP_NAME", "OONI Probe"

@@ -147,50 +147,13 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 			ArrayList<String> inputs = new ArrayList<>();
 			for (OONIURLInfo url : results.urls){
 				inputs.add(Url.checkExistingUrl(url.url, url.category_code, url.country_code).url);
-
 			}
 			currentTest.setInputs(inputs);
 			if (currentTest.getMax_runtime() == null)
 				currentTest.setMax_runtime(app.getPreferenceManager().getMaxRuntime());
 			publishProgress(URL);
-
 		}
 		catch (Exception e) {
-			e.printStackTrace();
-			ExceptionManager.logException(e);
-		}
-	}
-
-	private void downloadURLsOLD(){
-		//Try/Catch to resolve probeCC only
-		String probeCC = "XX";
-		try {
-			probeCC = Engine.resolveProbeCC(
-					app,
-					BuildConfig.SOFTWARE_NAME,
-					BuildConfig.VERSION_NAME,
-					30
-			);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			ExceptionManager.logException(e);
-		}
-
-		//Try/Catch for the downloader
-		try {
-			Response<UrlList> response = app.getOrchestraClient().getUrls(probeCC, app.getPreferenceManager().getEnabledCategory()).execute();
-			if (response.isSuccessful() && response.body() != null && response.body().results != null) {
-				ArrayList<String> inputs = new ArrayList<>();
-				for (Url url : response.body().results)
-					inputs.add(Url.checkExistingUrl(url.url, url.category_code, url.country_code).url);
-				currentTest.setInputs(inputs);
-				if (currentTest.getMax_runtime() == null)
-					currentTest.setMax_runtime(app.getPreferenceManager().getMaxRuntime());
-				publishProgress(URL);
-			}
-		}
-		catch (IOException e) {
 			e.printStackTrace();
 			ExceptionManager.logException(e);
 		}
