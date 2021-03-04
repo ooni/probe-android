@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.gson.Gson;
 
 import org.openobservatory.ooniprobe.client.OONIAPIClient;
-import org.openobservatory.ooniprobe.client.OONIOrchestraClient;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 
