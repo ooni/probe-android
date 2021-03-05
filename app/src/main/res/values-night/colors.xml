@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<color name="color_black">#000000</color>
-	<color name="color_white">#ffffff</color>
-	<color name="color_base">#0588cb</color> <!-- color_blue5 -->
-	<color name="color_gray0">#f8f9fa</color>  <!-- test suite background -->
+	<color name="color_black">#fff</color>
+	<color name="color_white">#1b1b1b</color>
+	<color name="color_base">#056aa6</color>  <!-- color_blue7 -->
+	<color name="color_gray0">#343a40</color>   <!-- color_gray8 -->
 	<color name="color_gray1">#f1f3f5</color>  <!-- failed measurement background -->
 	<color name="color_gray2">#e9ecef</color>  <!-- background failed test; continue button -->
 	<color name="color_gray3">#dee2e6</color>  <!-- progress_bar -->
 	<color name="color_gray4">#ced4da</color>  <!-- ooni run -->
 	<color name="color_gray5">#adb5bd</color>  <!-- failed measurement text -->
 	<color name="color_gray6">#868e96</color>  <!-- failed measurement tint -->
-	<color name="color_gray7">#495057</color>  <!-- text color and icon tint -->
+	<color name="color_gray7">#ced4da</color>  <!-- text color and icon tint --> <!-- color_gray4 -->
 	<color name="color_gray8">#343a40</color>  <!-- onboarding buttons -->
-	<color name="color_gray9">#212529</color>  <!-- used as light black -->
+	<color name="color_gray9">#f8f9fa</color>  <!-- color_gray0 -->
 	<color name="color_blue0">#e7f5ff</color>   <!-- not_used -->
 	<color name="color_blue1">#c9e8ff</color>   <!-- not_used -->
 	<color name="color_blue2">#94d1ff</color>   <!-- not_used -->
@@ -83,7 +83,7 @@
 	<color name="color_orange7">#f76707</color>   <!-- not_used -->
 	<color name="color_orange8">#e8590c</color>
 	<color name="color_orange9">#d9480f</color>
-	<color name="color_yellow0">#fff9db</color>   <!-- recent_test -->
+	<color name="color_yellow0">#343a40</color>   <!-- recent_test -->  <!-- color_gray8 -->
 	<color name="color_yellow1">#fff3bf</color>   <!-- not_used -->
 	<color name="color_yellow2">#ffec99</color>   <!-- not_used -->
 	<color name="color_yellow3">#ffe066</color>   <!-- not_used -->

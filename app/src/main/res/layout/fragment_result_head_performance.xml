@@ -21,6 +21,7 @@
 			android:id="@+id/videoLabel"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:textColor="@android:color/white"
 			android:gravity="center_horizontal"
 			android:text="@string/TestResults_Summary_Performance_Hero_Video" />
 
@@ -29,6 +30,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
+			android:textColor="@android:color/white"
 			android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
 		<TextView
@@ -36,6 +38,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
+			android:textColor="@android:color/white"
 			android:text="@string/TestResults_Summary_Performance_Hero_Video_Quality" />
 	</LinearLayout>
 
@@ -47,6 +50,7 @@
 
 		<TextView
 			android:id="@+id/downloadLabel"
+			android:textColor="@android:color/white"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
@@ -57,12 +61,14 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
+			android:textColor="@android:color/white"
 			android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
 		<TextView
 			android:id="@+id/downloadUnit"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:textColor="@android:color/white"
 			android:gravity="center_horizontal" />
 	</LinearLayout>
 
@@ -77,6 +83,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
+			android:textColor="@android:color/white"
 			android:text="@string/TestResults_Summary_Performance_Hero_Upload" />
 
 		<TextView
@@ -84,12 +91,14 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
+			android:textColor="@android:color/white"
 			android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
 		<TextView
 			android:id="@+id/uploadUnit"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:textColor="@android:color/white"
 			android:gravity="center_horizontal" />
 	</LinearLayout>
 
@@ -103,11 +112,13 @@
 			android:id="@+id/pingLabel"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:textColor="@android:color/white"
 			android:gravity="center_horizontal"
 			android:text="@string/TestResults_Summary_Performance_Hero_Ping" />
 
 		<TextView
 			android:id="@+id/ping"
+			android:textColor="@android:color/white"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
@@ -115,6 +126,7 @@
 
 		<TextView
 			android:id="@+id/pingUnit"
+			android:textColor="@android:color/white"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"

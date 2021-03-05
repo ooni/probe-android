@@ -24,7 +24,7 @@
 			android:id="@+id/icon"
 			android:layout_width="96dp"
 			android:layout_height="96dp"
-			android:tint="@color/color_white"
+			android:tint="@android:color/white"
 			android:transitionName="@string/transitionNameIcon" />
 
 		<LinearLayout
@@ -95,7 +95,7 @@
 			android:layout_height="wrap_content"
 			android:text="@string/Dashboard_Overview_ChooseWebsites"
 			android:textAllCaps="false"
-			android:textColor="@color/color_white"
+			android:textColor="@android:color/white"
 			app:cornerRadius="24dp"
 			app:rippleColor="@color/ripple_material_dark"
 			app:strokeColor="@android:color/white" />

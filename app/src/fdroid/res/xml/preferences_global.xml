@@ -288,6 +288,10 @@
 		android:title="@string/Settings_Advanced_Label">
 		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="false"
+			android:key="@string/theme_enabled"
+			android:title="@string/Settings_DarkMode_Label" />
+		<androidx.preference.SwitchPreferenceCompat
+			android:defaultValue="false"
 			android:key="@string/debugLogs"
 			android:title="@string/Settings_Advanced_DebugLogs" />
 		<Preference

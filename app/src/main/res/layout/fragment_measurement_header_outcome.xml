@@ -6,4 +6,4 @@
 	android:layout_height="wrap_content"
 	android:drawablePadding="8dp"
 	android:gravity="center_horizontal"
-	android:textColor="@color/color_white" />
+	android:textColor="@android:color/white" />

@@ -3,9 +3,11 @@ package org.openobservatory.ooniprobe.activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -89,7 +91,19 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                         .withExtra(NOTIFICATION_DIALOG)
                         .build().show(getSupportFragmentManager(), null);
             }
+
         }
+
+        if (android.os.Build.VERSION.SDK_INT >= 29){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+        } else{
+            if (getPreferenceManager().isDarkTheme()) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
+        }
+
     }
 
 	@Override protected void onResume() {
