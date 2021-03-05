@@ -293,6 +293,11 @@
   <string name="Modal_Error_JsonEmpty">Súbor JSON je prázdny</string>
   <string name="Modal_InterruptTest_Title">Do you want to interrupt this test?</string>
   <string name="Modal_InterruptTest_Paragraph">This will interrupt the current test from this moment.</string>
+  <string name="Modal_Autorun_Modal_Title">Would you like to run tests automatically?</string>
+  <string name="Modal_Autorun_Modal_Text">By enabling automatic testing, OONI Probe tests will run automatically on a regular basis (and you don’t need to remember to manually run tests).</string>
+  <string name="Modal_Autorun_Modal_Button_No">Nie, ďakujem</string>
+  <string name="Modal_Autorun_Modal_Button_RemindLater">Remind me later</string>
+  <string name="Modal_Autorun_Modal_Button_Yes">Sounds great</string>
   <string name="Toast_CopiedToClipboard">Skopírované do schránky</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Nenahrané</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Nahrať</string>
@@ -343,6 +348,7 @@
   <string name="Settings_Privacy_CollectAnalytics">Share app usage metrics</string>
   <string name="Settings_Privacy_SendCrashReports">Odosielať správy o zlyhaní</string>
   <string name="Settings_Advanced_Label">Rozšírené</string>
+  <string name="Settings_DarkMode_Label">Dark Mode</string>
   <string name="Settings_Advanced_DebugLogs">Denníky ladenia</string>
   <string name="Settings_Advanced_UseDomainFronting">Vždy používať domain fronting</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Obmedziť trvanie testu</string>

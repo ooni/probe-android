@@ -293,6 +293,11 @@
   <string name="Modal_Error_JsonEmpty">JSON пуст</string>
   <string name="Modal_InterruptTest_Title">Вы хотите прервать тест?</string>
   <string name="Modal_InterruptTest_Paragraph">Это прекратит текущий тест с этого момента.</string>
+  <string name="Modal_Autorun_Modal_Title">Would you like to run tests automatically?</string>
+  <string name="Modal_Autorun_Modal_Text">By enabling automatic testing, OONI Probe tests will run automatically on a regular basis (and you don’t need to remember to manually run tests).</string>
+  <string name="Modal_Autorun_Modal_Button_No">Нет, спасибо</string>
+  <string name="Modal_Autorun_Modal_Button_RemindLater">Напомнить позже</string>
+  <string name="Modal_Autorun_Modal_Button_Yes">Звучит отлично</string>
   <string name="Toast_CopiedToClipboard">Скопировано в буфер обмена</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Не загружено</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Загрузить</string>
@@ -343,6 +348,7 @@
   <string name="Settings_Privacy_CollectAnalytics">Поделиться статистикой использования приложения</string>
   <string name="Settings_Privacy_SendCrashReports">Отправить отчет об ошибке</string>
   <string name="Settings_Advanced_Label">Расширенные настройки</string>
+  <string name="Settings_DarkMode_Label">Dark Mode</string>
   <string name="Settings_Advanced_DebugLogs">Журналы отладки</string>
   <string name="Settings_Advanced_UseDomainFronting">Всегда использовать прикрытие доменом</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Ограничить продолжительность теста</string>

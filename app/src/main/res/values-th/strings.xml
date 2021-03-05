@@ -293,6 +293,11 @@
   <string name="Modal_Error_JsonEmpty">JSON ว่างเปล่า</string>
   <string name="Modal_InterruptTest_Title">คุณต้องการหยุดการทดสอบนี้กลางคันหรือไม่?</string>
   <string name="Modal_InterruptTest_Paragraph">นี่จะขัดจังหวะการทดสอบปัจจุบัน นับจากจุดนี้</string>
+  <string name="Modal_Autorun_Modal_Title">Would you like to run tests automatically?</string>
+  <string name="Modal_Autorun_Modal_Text">เมื่อเปิดการใช้งานทดสอบอัตโนมัติ, OONI Probe จะทำการทดสอบอัตโนมัติเป็นปกติ (เเละคุณไม่จำเป็นต้องจำว่าต้องทำการทดสอบด้วยตนเอง)</string>
+  <string name="Modal_Autorun_Modal_Button_No">ไม่, ขอบคุณ</string>
+  <string name="Modal_Autorun_Modal_Button_RemindLater">Remind me later</string>
+  <string name="Modal_Autorun_Modal_Button_Yes">น่าจะดี</string>
   <string name="Toast_CopiedToClipboard">คัดลอกไปยังคลิปบอร์ดแล้ว</string>
   <string name="Snackbar_ResultsNotUploaded_Text">ไม่ถูกอัปโหลด</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">อัปโหลด</string>
@@ -343,6 +348,7 @@
   <string name="Settings_Privacy_CollectAnalytics">แบ่งปันสถิติการใช้แอป</string>
   <string name="Settings_Privacy_SendCrashReports">ส่งรายงานการพังของแอป</string>
   <string name="Settings_Advanced_Label">ขั้นสูง</string>
+  <string name="Settings_DarkMode_Label">โหมดมืด</string>
   <string name="Settings_Advanced_DebugLogs">ปูมบันทึกดีบัค</string>
   <string name="Settings_Advanced_UseDomainFronting">ใช้การนำหน้าโดเมนเสมอ</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">จำกัดระยะเวลาทดสอบ</string>

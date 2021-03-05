@@ -293,6 +293,11 @@
   <string name="Modal_Error_JsonEmpty">Tómt JSON</string>
   <string name="Modal_InterruptTest_Title">Viltu stöðva þessa prófun?</string>
   <string name="Modal_InterruptTest_Paragraph">Þetta mun stöðva á þessu þrepi prófunina sem nú er í gangi.</string>
+  <string name="Modal_Autorun_Modal_Title">Would you like to run tests automatically?</string>
+  <string name="Modal_Autorun_Modal_Text">Með því að virkja sjálfvirkar prófanir, verða prófanir OONI Probe keyrðar sjálfvirkt með reglubundnum hætti (og þú þarft þá ekki að muna eftir að setja þær í gang).</string>
+  <string name="Modal_Autorun_Modal_Button_No">Nei takk</string>
+  <string name="Modal_Autorun_Modal_Button_RemindLater">Remind me later</string>
+  <string name="Modal_Autorun_Modal_Button_Yes">Hljómar vel</string>
   <string name="Toast_CopiedToClipboard">Afritað á klippispjald</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Ekki sent inn</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Senda inn</string>
@@ -343,6 +348,7 @@
   <string name="Settings_Privacy_CollectAnalytics">Deila tölfræði um notkun forrits</string>
   <string name="Settings_Privacy_SendCrashReports">Senda hrunskýrslur</string>
   <string name="Settings_Advanced_Label">Ítarlegra</string>
+  <string name="Settings_DarkMode_Label">Dökkur hamur</string>
   <string name="Settings_Advanced_DebugLogs">Villuskrár</string>
   <string name="Settings_Advanced_UseDomainFronting">Alltaf nota lénaframhlið (domain fronting)</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Takmarka tímalengd prófunar</string>

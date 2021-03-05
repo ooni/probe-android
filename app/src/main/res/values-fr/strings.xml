@@ -293,6 +293,11 @@
   <string name="Modal_Error_JsonEmpty">Le JSON est vide</string>
   <string name="Modal_InterruptTest_Title">Voulez-vous interrompre ce test ?</string>
   <string name="Modal_InterruptTest_Paragraph">Le test en cours sera interrompu à partir de maintenant.</string>
+  <string name="Modal_Autorun_Modal_Title">Voulez-vous effectuer les tests manuellement ?</string>
+  <string name="Modal_Autorun_Modal_Text">En activant les tests automatiques, les tests d’OONI Probe auront lieu automatiquement et périodiquement (et vous n’aurez pas à vous rappeler de les effectuer manuellement).</string>
+  <string name="Modal_Autorun_Modal_Button_No">Non, merci</string>
+  <string name="Modal_Autorun_Modal_Button_RemindLater">Me rappeler plus tard</string>
+  <string name="Modal_Autorun_Modal_Button_Yes">C’est parfait</string>
   <string name="Toast_CopiedToClipboard">Copié dans le presse-papiers</string>
   <string name="Snackbar_ResultsNotUploaded_Text">N’a pas été téléversé</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Téléversement</string>
@@ -343,6 +348,7 @@
   <string name="Settings_Privacy_CollectAnalytics">Partager les mesures d’utilisation de l’appli</string>
   <string name="Settings_Privacy_SendCrashReports">Envoyer des relevés de plantage</string>
   <string name="Settings_Advanced_Label">Avancés</string>
+  <string name="Settings_DarkMode_Label">Mode sombre</string>
   <string name="Settings_Advanced_DebugLogs">Journaux de débogage</string>
   <string name="Settings_Advanced_UseDomainFronting">Toujours utiliser un domaine-écran</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Limiter la durée du test</string>
