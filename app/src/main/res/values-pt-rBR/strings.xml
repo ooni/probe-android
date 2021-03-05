@@ -237,11 +237,11 @@
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Handshake">Handshake</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Hero_Title">Provavelmente bloqueados</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Hero_Title">Funcionando</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Content_Paragraph">[RiseupVPN](https://riseup.net/vpn) appears to be blocked.</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Content_Paragraph">[RiseupVPN](https://riseup.net/vpn) parece estar bloqueado.</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Content_Paragraph">We were able to successfully connect to RiseupVPN\'s bootstrap server and VPN gateways. This means that [RiseupVPN](https://riseup.net/vpn) should work.</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Api">Bootstrap server</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Api">Servidor de bootstrap</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Openvpn">Conexões OpenVPN</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Bridge">Bridged connections</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Bridge">Conexões em ponte</string>
   <string name="TestResults_Overview_Circumvention_RiseupVPN_Api_Blocked">Bloqueado</string>
   <string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Singular">%1$s bloqueados</string>
   <string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Plural">%1$s bloqueados</string>
@@ -293,6 +293,11 @@
   <string name="Modal_Error_JsonEmpty">JSON vazio</string>
   <string name="Modal_InterruptTest_Title">Você quer interromper este teste?</string>
   <string name="Modal_InterruptTest_Paragraph">Isso interromperá o atual teste imediatamente.</string>
+  <string name="Modal_Autorun_Modal_Title">Você gostaria de executar testes automaticamente?</string>
+  <string name="Modal_Autorun_Modal_Text">Ao ativar o teste automático, os testes OONI Probe serão executados automaticamente em uma base regular (e você não precisa se lembrar de executar os testes manualmente).</string>
+  <string name="Modal_Autorun_Modal_Button_No">Não, agradeço</string>
+  <string name="Modal_Autorun_Modal_Button_RemindLater">Lembre-me depois</string>
+  <string name="Modal_Autorun_Modal_Button_Yes">Parece ótimo</string>
   <string name="Toast_CopiedToClipboard">Copiado para a área de transferência</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Não Carregado</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Carregar</string>
@@ -343,6 +348,7 @@
   <string name="Settings_Privacy_CollectAnalytics">Compartilhar métricas de uso do aplicativo</string>
   <string name="Settings_Privacy_SendCrashReports">Enviar relatórios de erros</string>
   <string name="Settings_Advanced_Label">Avançado</string>
+  <string name="Settings_DarkMode_Label">Modo escuro</string>
   <string name="Settings_Advanced_DebugLogs">Registros de depuração</string>
   <string name="Settings_Advanced_UseDomainFronting">Sempre usar \"domain fronting\"</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Limitar a duração do teste</string>

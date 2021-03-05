@@ -14,8 +14,6 @@ import com.raizlabs.android.dbflow.config.FlowManager;
 
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.client.OONIAPIClient;
-import org.openobservatory.ooniprobe.client.OONIOrchestraClient;
-import org.openobservatory.ooniprobe.client.OONITestClient;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
@@ -24,6 +22,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import io.sentry.android.core.SentryAndroid;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -37,7 +36,6 @@ public class Application extends android.app.Application {
 	private PreferenceManager preferenceManager;
 	private Gson gson;
 	private OkHttpClient okHttpClient;
-	private OONIOrchestraClient orchestraClient;
 	private OONIAPIClient apiClient;
 	private OONITestClient testClient;
 
@@ -52,6 +50,20 @@ public class Application extends android.app.Application {
 		FlavorApplication.onCreate(this);
 		if (BuildConfig.DEBUG)
 			FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
+		else {
+			SentryAndroid.init(this,
+					options -> {
+						options.setDsn("https://9dcd83d9519844188803aa817cdcd416@o155150.ingest.sentry.io/5619989");
+						options.setBeforeSend(
+								(event, hint) -> {
+									// Drop an event altogether:
+									if (!preferenceManager.isSendCrash()) {
+										return null;
+									}
+									return event;
+								});
+					});
+		}
 		if (preferenceManager.canCallDeleteJson())
 			Measurement.deleteUploadedJsons(this);
 		Measurement.deleteOldLogs(this);
@@ -80,21 +92,6 @@ public class Application extends android.app.Application {
                     .build();
 		}
 		return okHttpClient;
-	}
-
-	public OONIOrchestraClient getOrchestraClientWithUrl(String url) {
-		if (orchestraClient == null) {
-			orchestraClient = new Retrofit.Builder()
-					.baseUrl(url)
-					.addConverterFactory(GsonConverterFactory.create())
-					.client(getOkHttpClient())
-					.build().create(OONIOrchestraClient.class);
-		}
-		return orchestraClient;
-	}
-
-	public OONIOrchestraClient getOrchestraClient() {
-		return getOrchestraClientWithUrl(BuildConfig.OONI_ORCHESTRATE_BASE_URL);
 	}
 
 	public OONIAPIClient getApiClientWithUrl(String url) {

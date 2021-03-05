@@ -2,18 +2,21 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_margin="8dp"
 	android:orientation="horizontal">
 
 	<com.google.android.material.textfield.TextInputLayout
 		style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="wrap_content"
+		app:errorEnabled="true">
 
 		<com.google.android.material.textfield.TextInputEditText
 			android:id="@+id/editText"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:textColor="@android:color/black"
 			android:hint="@string/Settings_Websites_CustomURL_URL"
 			android:inputType="textUri"
 			android:paddingEnd="48dp"

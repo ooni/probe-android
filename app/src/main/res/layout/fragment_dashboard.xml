@@ -47,7 +47,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="56dp"
 		android:layout_marginTop="24dp"
-		android:backgroundTint="@color/color_white"
+		android:backgroundTint="@android:color/white"
 		android:stateListAnimator="@null"
 		android:elevation="5dp"
 		android:translationZ="5dp"
@@ -70,7 +70,8 @@
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintTop_toBottomOf="@id/run_all"
-		android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
+		android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+		android:textColor="@color/color_black"/>
 
 	<androidx.recyclerview.widget.RecyclerView
 		android:id="@+id/recycler"

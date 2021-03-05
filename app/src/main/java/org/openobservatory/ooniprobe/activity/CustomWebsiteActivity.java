@@ -45,6 +45,8 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
         deletes = new ArrayList<>();
         bottomBar.inflateMenu(R.menu.run);
         bottomBar.setOnMenuItemClickListener(item -> {
+            if (!checkPrefix())
+                return false;
             ArrayList<String> urls = new ArrayList<>(editTexts.size());
             for (EditText editText : editTexts) {
                 String value = editText.getText().toString();
@@ -80,6 +82,17 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
                     .build().show(getSupportFragmentManager(), null);
         else
             super.onBackPressed();
+    }
+
+    public boolean checkPrefix(){
+        boolean prefix = true;
+        for (EditText editText : editTexts)
+            if (!editText.getText().toString().contains("http://")
+                    && !editText.getText().toString().contains("https://")) {
+                prefix = false;
+                editText.setError(getString(R.string.Settings_Websites_CustomURL_NoURLEntered));
+            }
+        return prefix;
     }
 
     @Override

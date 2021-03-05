@@ -293,6 +293,11 @@
   <string name="Modal_Error_JsonEmpty">JSON ist leer</string>
   <string name="Modal_InterruptTest_Title">Möchten Sie diesen Test unterbrechen?</string>
   <string name="Modal_InterruptTest_Paragraph">Dies wird den laufenden Test ab diesem Zeitpunkt unterbrechen.</string>
+  <string name="Modal_Autorun_Modal_Title">Would you like to run tests automatically?</string>
+  <string name="Modal_Autorun_Modal_Text">Wenn Sie automatische Tests aktivieren, werden die Tests der OONI-Sonde regelmässig automatisch ausgeführt (und Sie müssen nicht daran denken, Tests manuell auszuführen).</string>
+  <string name="Modal_Autorun_Modal_Button_No">Nein, danke</string>
+  <string name="Modal_Autorun_Modal_Button_RemindLater">Später erinnern</string>
+  <string name="Modal_Autorun_Modal_Button_Yes">Hört sich toll an</string>
   <string name="Toast_CopiedToClipboard">In Zwischenablage kopiert</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Nicht hochgeladen</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Hochladen</string>
@@ -343,6 +348,7 @@
   <string name="Settings_Privacy_CollectAnalytics">Metriken zur App-Nutzung teilen</string>
   <string name="Settings_Privacy_SendCrashReports">Sende Absturzberichte</string>
   <string name="Settings_Advanced_Label">Erweitert</string>
+  <string name="Settings_DarkMode_Label">Dunkelmodus</string>
   <string name="Settings_Advanced_DebugLogs">Fehlerprotokolle</string>
   <string name="Settings_Advanced_UseDomainFronting">Immer Domain Fronting benutzen</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Testdauer begrenzen</string>

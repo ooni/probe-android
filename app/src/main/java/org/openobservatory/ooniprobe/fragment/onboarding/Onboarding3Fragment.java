@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.CountlyManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,6 +38,8 @@ public class Onboarding3Fragment extends Fragment {
 
 	@OnClick(R.id.master) void masterClick() {
 		((Application) getActivity().getApplication()).getPreferenceManager().setShowOnboarding(false);
+		((Application) getActivity().getApplication()).getPreferenceManager().acceptDefaultSettings();
+		CountlyManager.reloadConsent(getActivity(), ((Application) getActivity().getApplication()).getPreferenceManager());
 		startActivity(MainActivity.newIntent(getActivity(), R.id.dashboard));
 		getActivity().finish();
 	}

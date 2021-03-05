@@ -4,6 +4,8 @@
 	<string name="preferences" translatable="false">preferences</string>
 	<string name="notifications" translatable="false">notifications</string>
 	<string name="automated_testing" translatable="false">automated_testing</string>
+	<string name="theme" translatable="false">theme</string>
+	<string name="theme_enabled" translatable="false">theme_enabled</string>
 	<string name="sharing" translatable="false">sharing</string>
 	<string name="test_options" translatable="false">test_options</string>
 	<string name="privacy" translatable="false">privacy</string>

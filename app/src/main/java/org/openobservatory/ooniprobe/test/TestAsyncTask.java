@@ -5,11 +5,18 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.util.Log;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import org.openobservatory.engine.Engine;
+import org.openobservatory.engine.LoggerArray;
+import org.openobservatory.engine.OONIContext;
+import org.openobservatory.engine.OONISession;
+import org.openobservatory.engine.OONIURLInfo;
+import org.openobservatory.engine.OONIURLListConfig;
+import org.openobservatory.engine.OONIURLListResult;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
@@ -62,6 +69,9 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 	}
 
 	private void registerConnChange() {
+		if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+			return;
+		}
 		manager = (ConnectivityManager) this.app.getSystemService(Context.CONNECTIVITY_SERVICE);
 		networkCallback = new ConnectivityManager.NetworkCallback() {
 			@Override
@@ -81,6 +91,9 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 	}
 
 	private void unregisterConnChange() {
+		if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+			return;
+		}
 		manager.unregisterNetworkCallback(networkCallback);
 	}
 
@@ -121,36 +134,26 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 		}
 	}
 
+	//This uses the wrapper
 	private void downloadURLs(){
-		//Try/Catch to resolve probeCC only
-		String probeCC = "XX";
 		try {
-			probeCC = Engine.resolveProbeCC(
-					app,
-					BuildConfig.SOFTWARE_NAME,
-					BuildConfig.VERSION_NAME,
-					30
-			);
+			OONISession session = Engine.newSession(Engine.getDefaultSessionConfig(
+					app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray()));
+			OONIContext ooniContext = session.newContextWithTimeout(30);
+			session.maybeUpdateResources(ooniContext);
+			OONIURLListConfig config = new OONIURLListConfig();
+			config.setCategories(app.getPreferenceManager().getEnabledCategoryArr().toArray(new String[0]));
+			OONIURLListResult results = session.fetchURLList(ooniContext, config);
+			ArrayList<String> inputs = new ArrayList<>();
+			for (OONIURLInfo url : results.urls){
+				inputs.add(Url.checkExistingUrl(url.url, url.category_code, url.country_code).url);
+			}
+			currentTest.setInputs(inputs);
+			if (currentTest.getMax_runtime() == null)
+				currentTest.setMax_runtime(app.getPreferenceManager().getMaxRuntime());
+			publishProgress(URL);
 		}
 		catch (Exception e) {
-			e.printStackTrace();
-			ExceptionManager.logException(e);
-		}
-
-		//Try/Catch for the downloader
-		try {
-			Response<UrlList> response = app.getOrchestraClient().getUrls(probeCC, app.getPreferenceManager().getEnabledCategory()).execute();
-			if (response.isSuccessful() && response.body() != null && response.body().results != null) {
-				ArrayList<String> inputs = new ArrayList<>();
-				for (Url url : response.body().results)
-					inputs.add(Url.checkExistingUrl(url.url, url.category_code, url.country_code).url);
-				currentTest.setInputs(inputs);
-				if (currentTest.getMax_runtime() == null)
-					currentTest.setMax_runtime(app.getPreferenceManager().getMaxRuntime());
-				publishProgress(URL);
-			}
-		}
-		catch (IOException e) {
 			e.printStackTrace();
 			ExceptionManager.logException(e);
 		}
@@ -168,6 +171,10 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 	@Override public final void onLog(String log) {
 		if (!isInterrupted())
 		    publishProgress(LOG, log);
+	}
+
+	@Override public final void onError(String error) {
+		publishProgress(ERR, error);
 	}
 
 	@Override

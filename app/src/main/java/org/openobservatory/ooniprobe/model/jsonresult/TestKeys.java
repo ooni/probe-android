@@ -194,10 +194,13 @@ public class TestKeys {
 					blockedConnection++;
 				}
 			}
-			return context.getResources().getQuantityString(R.plurals.TestResults_Overview_Circumvention_RiseupVPN_Blocked, blockedConnection);
-		} else {
-			return context.getString(R.string.TestResults_Details_Circumvention_RiseupVPN_Reachable_Okay);
+			if (blockedConnection == 0) {
+				return context.getString(R.string.TestResults_Details_Circumvention_RiseupVPN_Reachable_Okay);
+			}
+			return context.getResources().getQuantityString(R.plurals.TestResults_Overview_Circumvention_RiseupVPN_Blocked, blockedConnection, String.valueOf(blockedConnection));
 		}
+
+		return context.getString(R.string.TestResults_Details_Circumvention_RiseupVPN_Reachable_Okay);
 	}
 
 	public Boolean isNdt7() {

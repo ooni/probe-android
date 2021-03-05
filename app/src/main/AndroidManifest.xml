@@ -125,7 +125,6 @@
 					android:scheme="ooni" />
 			</intent-filter>
 		</activity>
-
 		<service
 			android:name=".common.service.RunTestService"
 			android:icon="@drawable/notification_icon"
@@ -144,5 +143,9 @@
 				<action android:name="android.intent.action.BOOT_COMPLETED" />
 			</intent-filter>
 		</receiver>
+		<meta-data
+			android:name="io.sentry.dsn"
+			android:value="https://9dcd83d9519844188803aa817cdcd416@o155150.ingest.sentry.io/5619989" />
+
 	</application>
 </manifest>

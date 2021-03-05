@@ -293,6 +293,11 @@
   <string name="Modal_Error_JsonEmpty">जॆसन खाली</string>
   <string name="Modal_InterruptTest_Title">Do you want to interrupt this test?</string>
   <string name="Modal_InterruptTest_Paragraph">This will interrupt the current test from this moment.</string>
+  <string name="Modal_Autorun_Modal_Title">Would you like to run tests automatically?</string>
+  <string name="Modal_Autorun_Modal_Text">By enabling automatic testing, OONI Probe tests will run automatically on a regular basis (and you don’t need to remember to manually run tests).</string>
+  <string name="Modal_Autorun_Modal_Button_No">जी नहीं, धन्यवाद</string>
+  <string name="Modal_Autorun_Modal_Button_RemindLater">Remind me later</string>
+  <string name="Modal_Autorun_Modal_Button_Yes">Sounds great</string>
   <string name="Toast_CopiedToClipboard">क्लिपबोर्ड में कॉपी किया गया</string>
   <string name="Snackbar_ResultsNotUploaded_Text">अपलोड नहीं किया गया</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">अपलोड करें</string>
@@ -343,6 +348,7 @@
   <string name="Settings_Privacy_CollectAnalytics">Share app usage metrics</string>
   <string name="Settings_Privacy_SendCrashReports">क्रैश रिपोर्ट भेजें</string>
   <string name="Settings_Advanced_Label">उन्नत</string>
+  <string name="Settings_DarkMode_Label">Dark Mode</string>
   <string name="Settings_Advanced_DebugLogs">दोषमार्जन लॉग</string>
   <string name="Settings_Advanced_UseDomainFronting">हमेशा डोमेन फ्रंटिंग का उपयोग करें</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">परीक्षण अवधि सीमित करें</string>

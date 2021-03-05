@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.text.TextUtils;
 
+import androidx.appcompat.app.AppCompatDelegate;
+
 import org.openobservatory.engine.Engine;
 import org.openobservatory.ooniprobe.R;
 
@@ -64,11 +66,11 @@ public class PreferenceManager {
 	}
 
 	public boolean isSendCrash() {
-		return sp.getBoolean(r.getString(R.string.send_crash), true);
+		return sp.getBoolean(r.getString(R.string.send_crash), false);
 	}
 
 	public boolean isSendAnalytics() {
-		return sp.getBoolean(r.getString(R.string.send_analytics), true);
+		return sp.getBoolean(r.getString(R.string.send_analytics), false);
 	}
 
 	public void setSendAnalytics(boolean analytics) {
@@ -82,6 +84,12 @@ public class PreferenceManager {
 	public void setShowOnboarding(boolean showIntro) {
 		sp.edit().putBoolean(SHOW_ONBOARDING, showIntro)
 				.putBoolean(IS_ANALYTICS_DIALOG, showIntro)
+				.apply();
+	}
+
+	public void acceptDefaultSettings() {
+		sp.edit().putBoolean(r.getString(R.string.send_analytics), true)
+				.putBoolean(r.getString(R.string.send_crash), true)
 				.apply();
 	}
 
@@ -108,6 +116,12 @@ public class PreferenceManager {
 	public boolean isNotifications() {
 		return sp.getBoolean(r.getString(R.string.notifications_enabled), false);
 	}
+
+
+	public boolean isDarkTheme() {
+		return sp.getBoolean(r.getString(R.string.theme_enabled), false);
+	}
+
 
 	public void setNotificationsFromDialog(boolean notifications) {
 		//set notification value and increment app open
@@ -184,6 +198,17 @@ public class PreferenceManager {
 			return TextUtils.join(",", list);
 		}
 	}
+
+	public ArrayList<String> getEnabledCategoryArr() {
+		ArrayList<String> list = new ArrayList<>(31);
+		for (String key : r.getStringArray(R.array.CategoryCodes)) {
+			if (sp.getBoolean(key, true)) {
+				list.add(key);
+			}
+		}
+		return list;
+	}
+
 
 	public Integer countEnabledCategory() {
 		int count = 0;

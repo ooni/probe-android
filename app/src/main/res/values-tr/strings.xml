@@ -293,6 +293,11 @@
   <string name="Modal_Error_JsonEmpty">JSON boş</string>
   <string name="Modal_InterruptTest_Title">Bu sınamayı durdurmak istediğinize emin misiniz?</string>
   <string name="Modal_InterruptTest_Paragraph">Bu işlem şu anda yapılmakta olan sınamayı durduracak.</string>
+  <string name="Modal_Autorun_Modal_Title">Would you like to run tests automatically?</string>
+  <string name="Modal_Autorun_Modal_Text">Otomatik sınama etkinleştirildiğinde, düzenli olarak otomatik OONI Probe sınamaları yapılır (sınamaları el ile yapmayı anımsamanız gerekmez).</string>
+  <string name="Modal_Autorun_Modal_Button_No">Hayır, teşekkürler</string>
+  <string name="Modal_Autorun_Modal_Button_RemindLater">Beni hatırla</string>
+  <string name="Modal_Autorun_Modal_Button_Yes">Harika görünüyor</string>
   <string name="Toast_CopiedToClipboard">Panoya kopyalandı</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Yüklenmemiş</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Yükle</string>
@@ -343,6 +348,7 @@
   <string name="Settings_Privacy_CollectAnalytics">Uygulama kullanımı istatistikleri paylaşılsın</string>
   <string name="Settings_Privacy_SendCrashReports">Çökme raporları gönderilsin</string>
   <string name="Settings_Advanced_Label">Gelişmiş</string>
+  <string name="Settings_DarkMode_Label">Karanlık Kip</string>
   <string name="Settings_Advanced_DebugLogs">Hata ayıklama günlükleri</string>
   <string name="Settings_Advanced_UseDomainFronting">Araya her zaman alan adı eklensin (Domain Fronting)</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Sınama süresi sınırlansın</string>

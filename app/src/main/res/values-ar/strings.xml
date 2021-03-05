@@ -293,6 +293,11 @@
   <string name="Modal_Error_JsonEmpty">JSON فارغ</string>
   <string name="Modal_InterruptTest_Title">Do you want to interrupt this test?</string>
   <string name="Modal_InterruptTest_Paragraph">This will interrupt the current test from this moment.</string>
+  <string name="Modal_Autorun_Modal_Title">Would you like to run tests automatically?</string>
+  <string name="Modal_Autorun_Modal_Text">By enabling automatic testing, OONI Probe tests will run automatically on a regular basis (and you don’t need to remember to manually run tests).</string>
+  <string name="Modal_Autorun_Modal_Button_No">لا، شكراً</string>
+  <string name="Modal_Autorun_Modal_Button_RemindLater">ذكرني لاحقا</string>
+  <string name="Modal_Autorun_Modal_Button_Yes">Sounds great</string>
   <string name="Toast_CopiedToClipboard">نسخ إلى الحافظة</string>
   <string name="Snackbar_ResultsNotUploaded_Text">لم يتمّ الرفع</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">رفع</string>
@@ -343,6 +348,7 @@
   <string name="Settings_Privacy_CollectAnalytics">Share app usage metrics</string>
   <string name="Settings_Privacy_SendCrashReports">أرسل تقارير حول تعطل التطبيق</string>
   <string name="Settings_Advanced_Label">متقدم</string>
+  <string name="Settings_DarkMode_Label">Dark Mode</string>
   <string name="Settings_Advanced_DebugLogs">أظهر سجلات التصحيح</string>
   <string name="Settings_Advanced_UseDomainFronting">دائمًا استخدم وسيط في اتصال النطاق Domain Fronting</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">قيّد مدة الاختبار</string>

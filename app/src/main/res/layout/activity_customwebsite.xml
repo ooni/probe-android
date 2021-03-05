@@ -31,9 +31,9 @@
 				android:layout_height="wrap_content"
 				android:text="@string/Settings_Websites_CustomURL_Add"
 				android:textAllCaps="false"
-				android:textColor="?android:attr/textColorSecondary"
+				android:textColor="@color/color_black"
 				app:icon="@drawable/ic_baseline_add_36"
-				app:iconTint="?android:attr/textColorSecondary" />
+				app:iconTint="@color/color_black" />
 		</LinearLayout>
 	</ScrollView>
 

@@ -19,7 +19,7 @@
 			android:layout_margin="8dp"
 			android:minWidth="0dp"
 			android:src="@drawable/close"
-			android:tint="@color/color_white" />
+			android:tint="@android:color/white" />
 
 		<TextView
 			android:id="@+id/running"
@@ -28,6 +28,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginTop="?attr/actionBarSize"
 			android:gravity="center_horizontal"
+			android:textColor="@color/color_gray4"
 			android:text="@string/Dashboard_Running_Running"
 			android:textStyle="bold" />
 	</RelativeLayout>
@@ -54,10 +55,12 @@
 		android:layout_height="wrap_content"
 		android:layout_marginHorizontal="32dp"
 		android:layout_marginBottom="?attr/actionBarSize"
-		android:progressDrawable="@drawable/progress" />
+		android:progressDrawable="@drawable/progress"
+		android:indeterminateTint="@android:color/white" />
 
 	<TextView
 		android:id="@+id/Dashboard_Running_EstimatedTimeLeft"
+		android:textColor="@android:color/white"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:gravity="center_horizontal"
@@ -66,6 +69,7 @@
 	<TextView
 		android:id="@+id/eta"
 		style="@style/TextAppearance.AppCompat.Large"
+		android:textColor="@android:color/white"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:gravity="center_horizontal"
@@ -73,6 +77,7 @@
 
 	<TextView
 		android:id="@+id/log"
+		android:textColor="@android:color/white"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginHorizontal="32dp"

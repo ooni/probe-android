@@ -9,10 +9,9 @@ android {
 		applicationId 'org.openobservatory.ooniprobe'
 		minSdkVersion 21
 		targetSdkVersion 29
-		versionName '2.9.0'
-		versionCode 69
+		versionName '2.9.3'
+		versionCode 72
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-		buildConfigField 'String', 'OONI_ORCHESTRATE_BASE_URL', '"https://orchestrate.ooni.io/"'
 		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://countly.ooni.io"'
 		buildConfigField 'String', 'OONI_TEST_BASE_URL', '"https://ams-pg-test.ooni.org"'
@@ -82,11 +81,11 @@ dependencies {
 
 // AndroidX
 	implementation 'androidx.appcompat:appcompat:1.2.0'
-	implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+	implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 	implementation 'androidx.lifecycle:lifecycle-process:2.2.0'
 	implementation 'androidx.preference:preference:1.1.1'
 	implementation 'com.google.android.material:material:1.2.1'
-	implementation "androidx.constraintlayout:constraintlayout:1.1.3"
+	implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
 
 // Third-party
 	annotationProcessor 'com.github.Raizlabs.DBFlow:dbflow-processor:4.2.4'
@@ -106,11 +105,14 @@ dependencies {
 	implementation 'ru.noties:markwon:2.0.1'
 	implementation 'commons-io:commons-io:2.6'
 	implementation 'ly.count.android:sdk:20.11.1'
+	implementation 'io.sentry:sentry-android:4.0.0'
 	//arcview to fragment_dashboard
 	implementation 'com.github.florent37:shapeofview:1.3.2'
 
 // Flavor
-	fullImplementation 'com.google.firebase:firebase-messaging:20.1.4'
+	fullImplementation platform('com.google.firebase:firebase-bom:26.3.0')
+	fullImplementation 'com.google.firebase:firebase-messaging'
+	fullImplementation 'com.google.firebase:firebase-crashlytics'
 
 // Testing
 	testImplementation 'junit:junit:4.12'
@@ -141,4 +143,5 @@ static def versionNameDate() {
 if (!getGradle().getStartParameter().getTaskRequests()
 		.toString().contains("Fdroid")){
 	apply plugin: 'com.google.gms.google-services'
+	apply plugin: 'com.google.firebase.crashlytics'
 }

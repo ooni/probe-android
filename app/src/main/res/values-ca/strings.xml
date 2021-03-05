@@ -293,6 +293,11 @@
   <string name="Modal_Error_JsonEmpty">JSON buit</string>
   <string name="Modal_InterruptTest_Title">Voleu interrompre aquesta prova?</string>
   <string name="Modal_InterruptTest_Paragraph">Això interromprà la prova actual a partir d\'aquest moment.</string>
+  <string name="Modal_Autorun_Modal_Title">Would you like to run tests automatically?</string>
+  <string name="Modal_Autorun_Modal_Text">By enabling automatic testing, OONI Probe tests will run automatically on a regular basis (and you don’t need to remember to manually run tests).</string>
+  <string name="Modal_Autorun_Modal_Button_No">No, gràcies</string>
+  <string name="Modal_Autorun_Modal_Button_RemindLater">Recordeu-m\'ho més tard</string>
+  <string name="Modal_Autorun_Modal_Button_Yes">Sona bé</string>
   <string name="Toast_CopiedToClipboard">S\'ha copiat al porta-retalls</string>
   <string name="Snackbar_ResultsNotUploaded_Text">No s\'ha pujat</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Pujada</string>
@@ -343,6 +348,7 @@
   <string name="Settings_Privacy_CollectAnalytics">Comparteix les mètriques d\'ús de l\'aplicació</string>
   <string name="Settings_Privacy_SendCrashReports">Envia informes d\'errors</string>
   <string name="Settings_Advanced_Label">Avançat</string>
+  <string name="Settings_DarkMode_Label">Dark Mode</string>
   <string name="Settings_Advanced_DebugLogs">Registres de depuració</string>
   <string name="Settings_Advanced_UseDomainFronting">Utilitza sempre el camuflatge del domini</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Límit de durada de la prova</string>
