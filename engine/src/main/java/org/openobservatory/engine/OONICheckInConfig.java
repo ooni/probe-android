@@ -45,10 +45,12 @@ public final class OONICheckInConfig {
     CheckInConfigWebConnectivity webConnectivity;
 
     public OONICheckInConfig(String softwareName,
-                                String softwareVersion,
-                                String[] categories) {
-        this.charging = true;
-        this.onWiFi = true;
+                             String softwareVersion,
+                             Boolean charging,
+                             Boolean onWiFi,
+                             String[] categories) {
+        this.charging = charging;
+        this.onWiFi = onWiFi;
         this.platform = "android";
         this.runType = "timed";
         this.softwareName = softwareName;

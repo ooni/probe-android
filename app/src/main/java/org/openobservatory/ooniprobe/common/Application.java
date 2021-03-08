@@ -37,7 +37,6 @@ public class Application extends android.app.Application {
 	private Gson gson;
 	private OkHttpClient okHttpClient;
 	private OONIAPIClient apiClient;
-	private OONITestClient testClient;
 
 	@Override public void onCreate() {
 		super.onCreate();
@@ -107,21 +106,6 @@ public class Application extends android.app.Application {
 
 	public OONIAPIClient getApiClient() {
 		return getApiClientWithUrl(BuildConfig.OONI_API_BASE_URL);
-	}
-
-	public OONITestClient getTestClientWithUrl(String url) {
-		if (testClient == null) {
-			testClient = new Retrofit.Builder()
-					.baseUrl(url)
-					.addConverterFactory(GsonConverterFactory.create())
-					.client(getOkHttpClient())
-					.build().create(OONITestClient.class);
-		}
-		return testClient;
-	}
-
-	public OONITestClient getTestClient() {
-		return getTestClientWithUrl(BuildConfig.OONI_TEST_BASE_URL);
 	}
 
 	public PreferenceManager getPreferenceManager() {

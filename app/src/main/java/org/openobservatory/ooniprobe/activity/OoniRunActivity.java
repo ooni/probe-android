@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.CountlyManager;
 import org.openobservatory.ooniprobe.item.TextItem;
 import org.openobservatory.ooniprobe.model.database.Url;
@@ -122,7 +123,9 @@ public class OoniRunActivity extends AbstractActivity {
 			if (versionCompare(version_name, mv) >= 0) {
 				try {
 					Attribute attribute = new Gson().fromJson(ta, Attribute.class);
-					AbstractSuite suite = getSuite(tn, attribute == null ? null : attribute.urls);
+					AbstractSuite suite = AbstractSuite.getSuite(((Application)getApplication()), tn,
+							attribute == null ? null : attribute.urls,
+							"ooni-run");
 					if (suite != null) {
 						icon.setImageResource(suite.getIcon());
 						title.setText(suite.getTestList(getPreferenceManager())[0].getLabelResId());
@@ -182,21 +185,6 @@ public class OoniRunActivity extends AbstractActivity {
 			iconBig.setVisibility(View.VISIBLE);
 			run.setOnClickListener(v -> finish());
 		}
-	}
-
-	private AbstractSuite getSuite(String tn, @Nullable List<String> urls) {
-		for (AbstractSuite suite : TestAsyncTask.SUITES)
-			for (AbstractTest test : suite.getTestList(getPreferenceManager()))
-				if (test.getName().equals(tn)) {
-					if (urls != null)
-						for (String url : urls)
-							Url.checkExistingUrl(url);
-					test.setInputs(urls);
-					test.setOrigin("ooni-run");
-					suite.setTestList(test);
-					return suite;
-				}
-		return null;
 	}
 
 	static class Attribute {

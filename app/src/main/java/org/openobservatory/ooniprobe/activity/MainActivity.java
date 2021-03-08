@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.app.ActivityCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -95,23 +96,6 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
 
         }
 
-        /*
-        Thread thread = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                try  {
-                    Application app = ((Application)getApplicationContext());
-                    ServiceUtil.callAPITest(app);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        thread.start();
-         */
-
-
         if (android.os.Build.VERSION.SDK_INT >= 29){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         } else{
@@ -126,8 +110,12 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
 
 	@Override protected void onResume() {
 		super.onResume();
-		//TODO-SERVICE show RunningActivity
-		//if (isTestRunning())
+		if (isTestRunning()){
+            Intent intent = RunningActivity.newIntent(this, null);
+            if (intent != null)
+                ActivityCompat.startActivity(this, intent, null);
+        }
+
 	}
 
     @Override

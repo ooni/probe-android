@@ -4,6 +4,7 @@ import android.app.NotificationManager;
 import android.app.job.JobParameters;
 import android.app.job.JobService;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import androidx.core.content.ContextCompat;
@@ -23,6 +24,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 
+import io.sentry.protocol.App;
+
 public class RunTestJobService extends JobService {
     private static final String TAG = "SyncService";
 
@@ -38,21 +41,25 @@ public class RunTestJobService extends JobService {
         NotificationService.setChannel(getApplicationContext(), "RunTestService", app.getString(R.string.Settings_AutomatedTesting_Label), false, false, false);
         NotificationService.sendNotification(getApplicationContext(), "RunTestService", "Should run test", "Time is "+currentTime);
 */
-
+/*
         //TEST2 call the API
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 try  {
                     Application app = ((Application)getApplicationContext());
-                    ServiceUtil.callAPITest(app);
+                    ServiceUtil.callCheckInAPI(app);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
         thread.start();
+*/
+        new JobTask(this, app).execute(params);
 
+        //TODO
+        //jobFinished(jobParams, needResheduleBoolean);
         /*
         //TODO-SERVICE-BK log stuff in countly
         PreferenceManager pm = app.getPreferenceManager();
@@ -74,6 +81,37 @@ public class RunTestJobService extends JobService {
 
     @Override
     public boolean onStopJob(JobParameters params) {
+        System.out.println("SyncService onStopJob");
+        //jobFinished(params, true);
         return true;
     }
+
+    private static class JobTask extends AsyncTask<JobParameters, Void, JobParameters> {
+        private final JobService jobService;
+        private final Application app;
+
+        public JobTask(JobService jobService, Application app) {
+            this.jobService = jobService;
+            this.app = app;
+        }
+
+        @Override
+        protected JobParameters doInBackground(JobParameters... params) {
+            System.out.println("SyncService doInBackground");
+            ServiceUtil.callCheckInAPI(app);
+            return params[0];
+        }
+
+        @Override
+        protected void onPostExecute(JobParameters jobParameters) {
+            System.out.println("SyncService onPostExecute");
+            /*
+             * In cases where the background work fails (it could be because of an HTTP request that failed, for example),
+             * you may want to retry before the next expected execution of the job.
+             * That's when you pass true for jobFinished's needsReschedule.
+             */
+            jobService.jobFinished(jobParameters, false);
+        }
+    }
+
 }

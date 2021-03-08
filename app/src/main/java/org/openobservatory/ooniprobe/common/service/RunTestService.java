@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.common.service;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.KeyguardManager;
 import android.app.PendingIntent;
@@ -80,6 +81,7 @@ public class RunTestService extends Service {
         return START_NOT_STICKY;
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     public void onDestroy() {
         super.onDestroy();
