@@ -109,7 +109,7 @@ public class ServiceUtil {
                     inputs.add(Url.checkExistingUrl(url.url, url.category_code, url.country_code).url);
                 }
                 AbstractSuite suite = AbstractSuite.getSuite(app, "web_connectivity",
-                        inputs,"checkin");
+                        inputs,"autorun");
                 if (suite != null) {
                     Intent serviceIntent = new Intent(app, RunTestService.class);
                     serviceIntent.putExtra("testSuites", suite.asArray());
