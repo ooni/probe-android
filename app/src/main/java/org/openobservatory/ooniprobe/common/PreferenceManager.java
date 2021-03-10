@@ -248,6 +248,15 @@ public class PreferenceManager {
 		return sp.getLong(IS_NOTIFICATION_DIALOG, 0);
 	}
 
+	public boolean isAutomaticTestEnabled() {
+		return sp.getBoolean(r.getString(R.string.automated_testing_enabled), false);
+	}
+
+	public void disableAutomaticTest() {
+		sp.edit().putBoolean(r.getString(R.string.automated_testing_enabled), false)
+				.apply();
+	}
+
 	public boolean testWifiOnly() {
 		return sp.getBoolean(r.getString(R.string.automated_testing_wifionly), true);
 	}

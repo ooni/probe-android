@@ -35,6 +35,7 @@ public class ServiceUtil {
     private static final int id = 100;
 
     public static void scheduleJob(Context context) {
+        //TODO remove comments
         System.out.println("SyncService scheduleJob");
         Application app = ((Application)context.getApplicationContext());
         PreferenceManager pm = app.getPreferenceManager();
@@ -45,6 +46,8 @@ public class ServiceUtil {
         int networkConstraint = pm.testWifiOnly() ? JobInfo.NETWORK_TYPE_UNMETERED : JobInfo.NETWORK_TYPE_ANY;
         builder.setRequiredNetworkType(networkConstraint);
         builder.setRequiresCharging(pm.testChargingOnly());
+        //TODO as soon as it gets activated it start a test, making the app unusable
+        //builder.setRequiresDeviceIdle(true);
 
         /*
         * Specify that this job should recur with the provided interval, not more than once per period.
