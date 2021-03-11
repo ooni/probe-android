@@ -134,15 +134,6 @@
 			android:label="Run Test Service"
 			android:permission="android.permission.BIND_JOB_SERVICE">
 		</service>
-		<receiver
-			android:name=".common.service.OnBootReceiver"
-			android:enabled="true"
-			android:exported="false"
-			android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
-			<intent-filter>
-				<action android:name="android.intent.action.BOOT_COMPLETED" />
-			</intent-filter>
-		</receiver>
 		<meta-data
 			android:name="io.sentry.dsn"
 			android:value="https://9dcd83d9519844188803aa817cdcd416@o155150.ingest.sentry.io/5619989" />
