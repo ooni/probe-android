@@ -1,8 +1,8 @@
 <androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:key="@string/preferences"
-	android:title="@string/Settings_Title"
-	xmlns:app="">
-	<androidx.preference.PreferenceScreen
+	android:title="@string/Settings_Title">
+<androidx.preference.PreferenceScreen
 		android:icon="@drawable/automated_testing"
 		android:key="@string/automated_testing"
 		android:title="@string/Settings_AutomatedTesting_Label">
