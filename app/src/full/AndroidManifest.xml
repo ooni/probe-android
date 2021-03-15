@@ -23,5 +23,8 @@
 			<action android:name="com.google.firebase.MESSAGING_EVENT" />
 		</intent-filter>
 		</service>
+		<meta-data
+			android:name="io.sentry.dsn"
+			android:value="https://9dcd83d9519844188803aa817cdcd416@o155150.ingest.sentry.io/5619989" />
 	</application>
 </manifest>

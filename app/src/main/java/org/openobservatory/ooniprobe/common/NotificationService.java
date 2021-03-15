@@ -9,12 +9,8 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
-import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
-
-import ly.count.android.sdk.Countly;
-import ly.count.android.sdk.messaging.CountlyPush;
 
 public class NotificationService {
     private static final String TEST_RUN = "TEST_RUN";
@@ -23,9 +19,7 @@ public class NotificationService {
         PreferenceManager preferenceManager = app.getPreferenceManager();
         if (!preferenceManager.isNotifications())
             return;
-        CountlyPush.init(app, BuildConfig.DEBUG? Countly.CountlyMessagingMode.TEST:Countly.CountlyMessagingMode.PRODUCTION);
-        NotificationService.setChannel(app, CountlyPush.CHANNEL_ID, app.getString(R.string.Settings_Notifications_Label), true, true, true);
-        NotificationService.setToken(app);
+        CountlyManager.initPush(app);
     }
 
     /*
@@ -50,9 +44,9 @@ public class NotificationService {
         notificationManager.notify(1, b.build());
     }
 
-    private static void setToken(Application a){
+    public static void setToken(Application a){
         if (a.getPreferenceManager().getToken() != null)
-            CountlyPush.onTokenRefresh(a.getPreferenceManager().getToken());
+            CountlyManager.setToken(a.getPreferenceManager().getToken());
     }
 
     // Register the channel with the system

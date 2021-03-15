@@ -1,9 +1,5 @@
 package org.openobservatory.ooniprobe.fragment;
 
-import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -14,11 +10,9 @@ import android.widget.Toast;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.XmlRes;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
-import androidx.preference.PreferenceManager;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.SwitchPreferenceCompat;
 import org.apache.commons.io.FileUtils;
@@ -32,8 +26,6 @@ import org.openobservatory.ooniprobe.common.NotificationService;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Objects;
 
 import localhost.toolkit.app.fragment.MessageDialogFragment;
 import localhost.toolkit.preference.ExtendedPreferenceFragment;

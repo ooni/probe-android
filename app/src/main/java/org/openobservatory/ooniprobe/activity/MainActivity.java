@@ -3,7 +3,6 @@ package org.openobservatory.ooniprobe.activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -25,7 +24,6 @@ import java.io.Serializable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
-import ly.count.android.sdk.Countly;
 
 public class MainActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String RES_ITEM = "resItem";
@@ -153,12 +151,12 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     @Override
     public void onStart() {
         super.onStart();
-        Countly.sharedInstance().onStart(this);
+        CountlyManager.onStart(this);
     }
 
     @Override
     public void onStop() {
-        Countly.sharedInstance().onStop();
+        CountlyManager.onStop();
         super.onStop();
     }
 

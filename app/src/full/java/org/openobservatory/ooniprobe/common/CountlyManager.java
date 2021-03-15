@@ -1,8 +1,10 @@
 package org.openobservatory.ooniprobe.common;
 
+import android.app.Activity;
 import android.content.Context;
 
 import org.openobservatory.ooniprobe.BuildConfig;
+import org.openobservatory.ooniprobe.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,6 +13,7 @@ import java.util.List;
 
 import ly.count.android.sdk.Countly;
 import ly.count.android.sdk.CountlyConfig;
+import ly.count.android.sdk.messaging.CountlyPush;
 
 public class CountlyManager {
     private static String[] basicFeatures = new String[]{
@@ -56,20 +59,42 @@ public class CountlyManager {
     }
 
     public static void reloadConsent(Context ctx, PreferenceManager preferenceManager){
+        //TODO check countly is init
         FlavorApplication.reloadCrashConsent(ctx, preferenceManager);
         Countly.sharedInstance().consent().setConsent(analyticsFeatures, preferenceManager.isSendAnalytics());
         Countly.sharedInstance().consent().setConsent(pushFeatures, preferenceManager.isNotifications());
     }
 
     public static void recordEvent(String title) {
+        //TODO check countly is init
         Countly.sharedInstance().events().recordEvent(title);
     }
 
     public static void recordEvent(String title, HashMap<String, Object> segmentation) {
+        //TODO check countly is init
         Countly.sharedInstance().events().recordEvent(title, segmentation);
     }
 
     public static void recordView(String title) {
+        //TODO check countly is init
         Countly.sharedInstance().views().recordView(title);
     }
+
+    public static void onStart(Activity activity){
+        Countly.sharedInstance().onStart(activity);
+    }
+
+    public static void onStop(){
+        Countly.sharedInstance().onStop();
+    }
+
+    public static void setToken(String token){
+    }
+
+    public static void initPush(Application app){
+        CountlyPush.init(app, BuildConfig.DEBUG? Countly.CountlyMessagingMode.TEST:Countly.CountlyMessagingMode.PRODUCTION);
+        NotificationService.setChannel(app, CountlyPush.CHANNEL_ID, app.getString(R.string.Settings_Notifications_Label), true, true, true);
+        NotificationService.setToken(app);
+    }
+
 }

@@ -22,7 +22,6 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-import io.sentry.android.core.SentryAndroid;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -47,22 +46,6 @@ public class Application extends android.app.Application {
 		ProcessLifecycleOwner.get().getLifecycle().addObserver(appLifecycleObserver);
 		gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateAdapter()).registerTypeAdapter(TestKeys.Tampering.class, new TamperingJsonDeserializer()).create();
 		FlavorApplication.onCreate(this);
-		if (BuildConfig.DEBUG)
-			FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
-		else {
-			SentryAndroid.init(this,
-					options -> {
-						options.setDsn("https://9dcd83d9519844188803aa817cdcd416@o155150.ingest.sentry.io/5619989");
-						options.setBeforeSend(
-								(event, hint) -> {
-									// Drop an event altogether:
-									if (!preferenceManager.isSendCrash()) {
-										return null;
-									}
-									return event;
-								});
-					});
-		}
 		if (preferenceManager.canCallDeleteJson())
 			Measurement.deleteUploadedJsons(this);
 		Measurement.deleteOldLogs(this);
