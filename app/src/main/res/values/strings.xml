@@ -319,6 +319,7 @@
   <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Test_Tor_Fullname">Tor Test</string>
   <string name="Test_RiseupVPN_Fullname">RiseupVPN Test</string>
+  <string name="Test_Signal_Fullname">Signal Test</string>
   <string name="Settings_Title">Settings</string>
   <string name="Settings_Error_TestDurationTooLow">The amount of time you have set for the test duration is too low.</string>
   <string name="Settings_About_Label">About OONI</string>
@@ -386,6 +387,7 @@
   <string name="Settings_Circumvention_TestTor">Test Tor</string>
   <string name="Settings_Circumvention_TestRiseupVPN">Test RiseupVPN</string>
   <string name="Settings_SendEmail_Label">Send email to support</string>
+  <string name="Settings_SendEmail_Message">Please describe the problem you are experiencing:</string>
   <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap \"Copy to clipboard\" below to copy our email address.</string>
   <string name="Settings_Language_Current">Current app language is %1$s</string>
   <string name="Settings_Language_Label">Language</string>

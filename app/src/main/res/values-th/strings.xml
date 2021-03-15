@@ -319,6 +319,7 @@
   <string name="Test_Psiphon_Fullname">การทดสอบไซฟอน</string>
   <string name="Test_Tor_Fullname">การทดสอบทอร์</string>
   <string name="Test_RiseupVPN_Fullname">การทดสอบไรซ์อัปวีพีเอ็น</string>
+  <string name="Test_Signal_Fullname">Signal Test</string>
   <string name="Settings_Title">การตั้งค่า</string>
   <string name="Settings_Error_TestDurationTooLow">จำนวนระยะเวลาที่คุณตั้งไว้ทดสอบนั้นต่ำไป</string>
   <string name="Settings_About_Label">เกี่ยวกับ OONI</string>
@@ -386,6 +387,7 @@
   <string name="Settings_Circumvention_TestTor">ทดสอบ ทอร์</string>
   <string name="Settings_Circumvention_TestRiseupVPN">ทดสอบ ไรซ์อัฟวีพีเอ็น</string>
   <string name="Settings_SendEmail_Label">ส่งอีเมลล์ขอความช่วยเหลือ</string>
+  <string name="Settings_SendEmail_Message">Please describe the problem you are experiencing:</string>
   <string name="Settings_SendEmail_Error">กรุณาส่งอีเมลล์ไปที่ bugs@openobservatory.org พร้อมกับข้อมูลจากแอปและรุ่นของ iOS แตะ \"คัดลอกไปยังคลิปบอร์ด\" ด้านล่างเพื่อคัดลอกที่อยู่อีเมลของเรา</string>
   <string name="Settings_Language_Current">ภาษาปัจจุบันของแอพพลิเคชั่นคือ %1$s</string>
   <string name="Settings_Language_Label">ภาษา</string>

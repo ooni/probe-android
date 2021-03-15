@@ -319,6 +319,7 @@
   <string name="Test_Psiphon_Fullname">赛风测试</string>
   <string name="Test_Tor_Fullname">Tor 测试</string>
   <string name="Test_RiseupVPN_Fullname">RiseupVPN 测试</string>
+  <string name="Test_Signal_Fullname">Signal Test</string>
   <string name="Settings_Title">设置</string>
   <string name="Settings_Error_TestDurationTooLow">您设置的测试持续时间太短。</string>
   <string name="Settings_About_Label">关于 OONI</string>
@@ -386,6 +387,7 @@
   <string name="Settings_Circumvention_TestTor">测试 Tor</string>
   <string name="Settings_Circumvention_TestRiseupVPN">测试 RiseupVPN</string>
   <string name="Settings_SendEmail_Label">发送邮件给支持团队</string>
+  <string name="Settings_SendEmail_Message">Please describe the problem you are experiencing:</string>
   <string name="Settings_SendEmail_Error">请将应用和 iOS 版本号通过邮件发送至 bugs@openobservatory.org。点击下方“复制到剪贴板”来复制我们邮箱地址。</string>
   <string name="Settings_Language_Current">当前语言为 %1$s</string>
   <string name="Settings_Language_Label">语言</string>

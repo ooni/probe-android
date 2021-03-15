@@ -293,8 +293,8 @@
   <string name="Modal_Error_JsonEmpty">JSON ist leer</string>
   <string name="Modal_InterruptTest_Title">Möchten Sie diesen Test unterbrechen?</string>
   <string name="Modal_InterruptTest_Paragraph">Dies wird den laufenden Test ab diesem Zeitpunkt unterbrechen.</string>
-  <string name="Modal_Autorun_Modal_Title">Would you like to run tests automatically?</string>
-  <string name="Modal_Autorun_Modal_Text">Wenn Sie automatische Tests aktivieren, werden die Tests der OONI-Sonde regelmässig automatisch ausgeführt (und Sie müssen nicht daran denken, Tests manuell auszuführen).</string>
+  <string name="Modal_Autorun_Modal_Title">Möchtest du Tests automatisch ausführen lassen?</string>
+  <string name="Modal_Autorun_Modal_Text">Wenn du automatische Tests aktivierst, werden die Tests der OONI-Sonde regelmässig automatisch ausgeführt (und Du musst nicht daran denken, Tests manuell auszuführen).</string>
   <string name="Modal_Autorun_Modal_Button_No">Nein, danke</string>
   <string name="Modal_Autorun_Modal_Button_RemindLater">Später erinnern</string>
   <string name="Modal_Autorun_Modal_Button_Yes">Hört sich toll an</string>
@@ -319,6 +319,7 @@
   <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Test_Tor_Fullname">Tor Test</string>
   <string name="Test_RiseupVPN_Fullname">RiseupVPN Test</string>
+  <string name="Test_Signal_Fullname">Signal Test</string>
   <string name="Settings_Title">Einstellungen</string>
   <string name="Settings_Error_TestDurationTooLow">Die eingestellte Zeit für den Test ist zu kurz.</string>
   <string name="Settings_About_Label">Über OONI</string>
@@ -386,6 +387,7 @@
   <string name="Settings_Circumvention_TestTor">Tor Testen</string>
   <string name="Settings_Circumvention_TestRiseupVPN">Teste RiseupVPN</string>
   <string name="Settings_SendEmail_Label">E-Mail an den Support senden</string>
+  <string name="Settings_SendEmail_Message">Please describe the problem you are experiencing:</string>
   <string name="Settings_SendEmail_Error">Bitte senden Sie eine E-Mail an bugs@openobservatory.org mit Informationen zur App und iOS-Version. Tippen Sie unten auf \"In Zwischenablage kopieren\", um unsere E-Mail Adresse zu kopieren.</string>
   <string name="Settings_Language_Current">Aktuelle App-Sprache ist %1$s</string>
   <string name="Settings_Language_Label">Sprache</string>

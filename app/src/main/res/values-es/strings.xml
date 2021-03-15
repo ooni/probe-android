@@ -293,7 +293,7 @@
   <string name="Modal_Error_JsonEmpty">JSON vacío</string>
   <string name="Modal_InterruptTest_Title">¿Deseas interrumpir esta prueba?</string>
   <string name="Modal_InterruptTest_Paragraph">Esto interrumpirá la prueba actual a partir de este momento.</string>
-  <string name="Modal_Autorun_Modal_Title">Would you like to run tests automatically?</string>
+  <string name="Modal_Autorun_Modal_Title">¿Desearías ejecutar pruebas automáticamente?</string>
   <string name="Modal_Autorun_Modal_Text">Al habilitar las pruebas automáticas, OONI Probe las ejecutará automáticamente en forma regular (y no necesitarás recordar ejecutarlas manualmente).</string>
   <string name="Modal_Autorun_Modal_Button_No">No, gracias</string>
   <string name="Modal_Autorun_Modal_Button_RemindLater">Recordármelo más tarde</string>
@@ -319,6 +319,7 @@
   <string name="Test_Psiphon_Fullname">Prueba de Psiphon</string>
   <string name="Test_Tor_Fullname">Prueba de Tor</string>
   <string name="Test_RiseupVPN_Fullname">Prueba RiseupVPN</string>
+  <string name="Test_Signal_Fullname">Signal Test</string>
   <string name="Settings_Title">Configuración</string>
   <string name="Settings_Error_TestDurationTooLow">La cantidad de tiempo que haz establecido para la duración de la prueba es demasiado baja.</string>
   <string name="Settings_About_Label">Acerca de OONI</string>
@@ -386,6 +387,7 @@
   <string name="Settings_Circumvention_TestTor">Probar Tor</string>
   <string name="Settings_Circumvention_TestRiseupVPN">Probar RiseupVPN</string>
   <string name="Settings_SendEmail_Label">Enviar correo electrónico al soporte</string>
+  <string name="Settings_SendEmail_Message">Please describe the problem you are experiencing:</string>
   <string name="Settings_SendEmail_Error">Por favor envíe un correo electrónico a bugs@openobservatory.org con información sobre la aplicación y versión de iOS. Pulse \"Copiar al portapapeles\" abajo para copiar nuestro correo electrónico.</string>
   <string name="Settings_Language_Current">El idioma actual de la aplicación es %1$s</string>
   <string name="Settings_Language_Label">Idioma</string>

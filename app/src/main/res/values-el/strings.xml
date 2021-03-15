@@ -319,6 +319,7 @@
   <string name="Test_Psiphon_Fullname">Δοκιμή Psiphon</string>
   <string name="Test_Tor_Fullname">Δοκιμή Tor</string>
   <string name="Test_RiseupVPN_Fullname">RiseupVPN Test</string>
+  <string name="Test_Signal_Fullname">Signal Test</string>
   <string name="Settings_Title">Ρυθμίσεις</string>
   <string name="Settings_Error_TestDurationTooLow">Ο χρόνος που έχεις ρυθμίσει για τη διάρκεια εκτέλεσης της δοκιμής είναι πολύ χαμηλός.</string>
   <string name="Settings_About_Label">Σχετικά με το OONI</string>
@@ -386,6 +387,7 @@
   <string name="Settings_Circumvention_TestTor">Δοκίμασε το Tor</string>
   <string name="Settings_Circumvention_TestRiseupVPN">Test RiseupVPN</string>
   <string name="Settings_SendEmail_Label">Αποστολή email στην υποστήριξη</string>
+  <string name="Settings_SendEmail_Message">Please describe the problem you are experiencing:</string>
   <string name="Settings_SendEmail_Error">Παρακαλούμε στείλτε ένα email στη διεύθυνση bugs@openobservatory.org με πληροφορίες σχετικά με την έκδοση της εφαρμογής και του iOS. Πατήστε \"Αντιγραφή στο πρόχειρο\" παρακάτω για να αντιγράψετε τη διεύθυνση email μας.</string>
   <string name="Settings_Language_Current">Η τρέχουσα γλώσσα εφαρμογής είναι %1$s</string>
   <string name="Settings_Language_Label">Γλώσσα</string>

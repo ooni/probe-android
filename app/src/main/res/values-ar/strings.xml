@@ -319,6 +319,7 @@
   <string name="Test_Psiphon_Fullname">اختبار Psiphon</string>
   <string name="Test_Tor_Fullname">اختبار تور</string>
   <string name="Test_RiseupVPN_Fullname">RiseupVPN Test</string>
+  <string name="Test_Signal_Fullname">Signal Test</string>
   <string name="Settings_Title">الإعدادات</string>
   <string name="Settings_Error_TestDurationTooLow">المدة التي حددتها لفترة الاختبار قصيرة جدًا </string>
   <string name="Settings_About_Label">عن OONI</string>
@@ -386,6 +387,7 @@
   <string name="Settings_Circumvention_TestTor">إختبار Tor</string>
   <string name="Settings_Circumvention_TestRiseupVPN">Test RiseupVPN</string>
   <string name="Settings_SendEmail_Label">إرسال إيميل لفريق الدعم </string>
+  <string name="Settings_SendEmail_Message">Please describe the problem you are experiencing:</string>
   <string name="Settings_SendEmail_Error">من فضلك أرسل رسالة إلكترونية إلى bugs@openobservatory.org تحتوى على معلومات عن اصدار البرنامج وإصدار iOS. اضغط على \"نسخ إلى الحافظة\" فى الأسفل لنسخ عنوان بريدنا الإلكتروني.</string>
   <string name="Settings_Language_Current">اللغة الحالية للتطبيق هي %1$s</string>
   <string name="Settings_Language_Label">اللغة</string>

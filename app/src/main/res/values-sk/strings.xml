@@ -319,6 +319,7 @@
   <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Test_Tor_Fullname">Test siete Tor</string>
   <string name="Test_RiseupVPN_Fullname">RiseupVPN Test</string>
+  <string name="Test_Signal_Fullname">Signal Test</string>
   <string name="Settings_Title">Nastavenia</string>
   <string name="Settings_Error_TestDurationTooLow">Doba trvania testu, ktorú si nastavil/a, je príliš krátka.</string>
   <string name="Settings_About_Label">O projekte OONI</string>
@@ -386,6 +387,7 @@
   <string name="Settings_Circumvention_TestTor">Test Tor</string>
   <string name="Settings_Circumvention_TestRiseupVPN">Test RiseupVPN</string>
   <string name="Settings_SendEmail_Label">Poslať e-mail na podporu</string>
+  <string name="Settings_SendEmail_Message">Please describe the problem you are experiencing:</string>
   <string name="Settings_SendEmail_Error">Pošli, prosím, e-mail s informáciami o aplikácii a verzii iOS na bugs@openobservatory.org. Pre skopírovanie našej e-mailovej adresy ťukni na „Kopírovať do schránky“ nižšie.</string>
   <string name="Settings_Language_Current">Current app language is %1$s</string>
   <string name="Settings_Language_Label">Jazyk</string>
