@@ -15,6 +15,7 @@ import org.openobservatory.ooniprobe.activity.MainActivity;
 public class NotificationService {
     private static final String TEST_RUN = "TEST_RUN";
 
+    //TODO move all to CountlyManager
     public static void initNotification(Application app){
         PreferenceManager preferenceManager = app.getPreferenceManager();
         if (!preferenceManager.isNotifications())
@@ -42,11 +43,6 @@ public class NotificationService {
         b.setContentText(message);
         b.setContentIntent(PendingIntent.getActivity(c, 0, MainActivity.newIntent(c, R.id.testResults), PendingIntent.FLAG_UPDATE_CURRENT));
         notificationManager.notify(1, b.build());
-    }
-
-    public static void setToken(Application a){
-        if (a.getPreferenceManager().getToken() != null)
-            CountlyManager.setToken(a.getPreferenceManager().getToken());
     }
 
     // Register the channel with the system

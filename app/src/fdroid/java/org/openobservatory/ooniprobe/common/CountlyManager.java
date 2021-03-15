@@ -7,6 +7,7 @@ import android.content.Context;
 
 public class CountlyManager {
 
+    //TODO remove all the non needed methods
     public static void register(Context ctx, PreferenceManager preferenceManager){
     }
 
@@ -34,4 +35,7 @@ public class CountlyManager {
     public static void initPush(Application app){
     }
 
-}
+    public static void reloadCrashConsent(Application app, PreferenceManager preferenceManager) {
+    }
+
+    }

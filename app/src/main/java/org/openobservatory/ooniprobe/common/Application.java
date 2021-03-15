@@ -41,7 +41,7 @@ public class Application extends android.app.Application {
 		super.onCreate();
 		FlowManager.init(this);
 		preferenceManager = new PreferenceManager(this);
-		CountlyManager.register(this, preferenceManager);
+		CountlyManager.register(this);
 		AppLifecycleObserver appLifecycleObserver = new AppLifecycleObserver();
 		ProcessLifecycleOwner.get().getLifecycle().addObserver(appLifecycleObserver);
 		gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateAdapter()).registerTypeAdapter(TestKeys.Tampering.class, new TamperingJsonDeserializer()).create();

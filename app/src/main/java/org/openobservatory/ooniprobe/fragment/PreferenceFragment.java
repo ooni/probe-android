@@ -120,7 +120,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
         if (key.equals(getString(R.string.send_crash)) ||
                 key.equals(getString(R.string.send_analytics)) ||
                 key.equals(getString(R.string.notifications_enabled))){
-            CountlyManager.reloadConsent(getContext(), ((Application) getActivity().getApplication()).getPreferenceManager());
+            CountlyManager.reloadConsent((Application) getActivity().getApplication());
             if (key.equals(getString(R.string.notifications_enabled)))
                 NotificationService.initNotification((Application) getActivity().getApplication());
         }
