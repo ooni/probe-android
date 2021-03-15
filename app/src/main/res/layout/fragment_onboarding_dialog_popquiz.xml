@@ -17,12 +17,12 @@
 			android:layout_margin="8dp"
 			android:gravity="center_horizontal"
 			android:text="@string/Onboarding_PopQuiz_Title"
-			android:textColor="@color/color_white" />
+			android:textColor="@android:color/white" />
 
 		<View
 			android:layout_width="match_parent"
 			android:layout_height="1dp"
-			android:background="@color/color_white" />
+			android:background="@android:color/white" />
 
 		<LinearLayout
 			android:layout_width="match_parent"
@@ -36,7 +36,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:gravity="center_horizontal"
-				android:textColor="@color/color_white" />
+				android:textColor="@android:color/white" />
 
 			<TextView
 				android:id="@+id/question"
@@ -45,7 +45,7 @@
 				android:layout_height="wrap_content"
 				android:layout_marginTop="16dp"
 				android:gravity="center_horizontal"
-				android:textColor="@color/color_white" />
+				android:textColor="@android:color/white" />
 		</LinearLayout>
 
 		<LinearLayout
@@ -61,7 +61,7 @@
 				android:background="@drawable/button_true"
 				android:gravity="center"
 				android:text="@string/Onboarding_PopQuiz_True"
-				android:textColor="@color/color_white" />
+				android:textColor="@android:color/white" />
 
 			<TextView
 				android:id="@+id/negative"
@@ -71,7 +71,7 @@
 				android:background="@drawable/button_false"
 				android:gravity="center"
 				android:text="@string/Onboarding_PopQuiz_False"
-				android:textColor="@color/color_white" />
+				android:textColor="@android:color/white" />
 		</LinearLayout>
 	</LinearLayout>
 
