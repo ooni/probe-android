@@ -59,33 +59,36 @@ public class CountlyManager {
     }
 
     public static void reloadConsent(Context ctx, PreferenceManager preferenceManager){
-        //TODO check countly is init
         FlavorApplication.reloadCrashConsent(ctx, preferenceManager);
-        Countly.sharedInstance().consent().setConsent(analyticsFeatures, preferenceManager.isSendAnalytics());
-        Countly.sharedInstance().consent().setConsent(pushFeatures, preferenceManager.isNotifications());
+        if (Countly.sharedInstance().isInitialized()) {
+            Countly.sharedInstance().consent().setConsent(analyticsFeatures, preferenceManager.isSendAnalytics());
+            Countly.sharedInstance().consent().setConsent(pushFeatures, preferenceManager.isNotifications());
+        }
     }
 
     public static void recordEvent(String title) {
-        //TODO check countly is init
-        Countly.sharedInstance().events().recordEvent(title);
+        if (Countly.sharedInstance().isInitialized())
+            Countly.sharedInstance().events().recordEvent(title);
     }
 
     public static void recordEvent(String title, HashMap<String, Object> segmentation) {
-        //TODO check countly is init
-        Countly.sharedInstance().events().recordEvent(title, segmentation);
+        if (Countly.sharedInstance().isInitialized())
+            Countly.sharedInstance().events().recordEvent(title, segmentation);
     }
 
     public static void recordView(String title) {
-        //TODO check countly is init
+        if (Countly.sharedInstance().isInitialized())
         Countly.sharedInstance().views().recordView(title);
     }
 
     public static void onStart(Activity activity){
-        Countly.sharedInstance().onStart(activity);
+        if (Countly.sharedInstance().isInitialized())
+            Countly.sharedInstance().onStart(activity);
     }
 
     public static void onStop(){
-        Countly.sharedInstance().onStop();
+        if (Countly.sharedInstance().isInitialized())
+            Countly.sharedInstance().onStop();
     }
 
     public static void setToken(String token){

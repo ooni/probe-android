@@ -8,7 +8,7 @@ import io.sentry.Sentry;
 public class ExceptionManager {
     public static void logException(Exception e){
         FirebaseCrashlytics.getInstance().recordException(e);
-        //TODO check sentry is init
-        Sentry.captureException(e);
+        if (Sentry. isEnabled())
+            Sentry.captureException(e);
     }
 }
