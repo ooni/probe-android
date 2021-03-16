@@ -13,3 +13,5 @@ captures/
 /fastlane/screenshots/report.xml
 /fastlane/metadata/
 /fastlane/README.md
+app/**/debug/
+app/**/release/
