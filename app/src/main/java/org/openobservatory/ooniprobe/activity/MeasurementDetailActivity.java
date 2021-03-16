@@ -220,8 +220,6 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     @Override
     protected void onResume() {
         super.onResume();
-        CountlyManager.recordView("TestDetails");
-        CountlyManager.recordView("TestDetails_" + measurement.test_name);
     }
 
     private void load() {
@@ -255,15 +253,12 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.rawData:
-                CountlyManager.recordEvent("RawData");
                 startActivity(TextActivity.newIntent(this, TextActivity.TYPE_JSON, measurement));
                 return true;
             case R.id.viewLog:
-                CountlyManager.recordEvent("ViewLog");
                 startActivity(TextActivity.newIntent(this, TextActivity.TYPE_LOG, measurement));
                 return true;
             case R.id.shareExplorerUrl:
-                CountlyManager.recordEvent("ShareExplorerURL");
                 Intent share = new Intent(Intent.ACTION_SEND);
                 share.putExtra(Intent.EXTRA_TEXT, getExplorerUrl());
                 share.setType("text/plain");
@@ -271,7 +266,6 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                 startActivity(shareIntent);
                 return true;
             case R.id.copyExplorerUrl:
-                CountlyManager.recordEvent("CopyExplorerURL");
                 ((ClipboardManager) getSystemService(CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText(getString(R.string.General_AppName), getExplorerUrl()));
                 Toast.makeText(this, R.string.Toast_CopiedToClipboard, Toast.LENGTH_SHORT).show();
                 return true;
@@ -289,7 +283,6 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
 
     @OnClick(R.id.methodology)
     void methodologyClick() {
-        CountlyManager.recordEvent("Methodology");
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(measurement.getTest().getUrlResId()))));
     }
 

@@ -14,21 +14,6 @@ public class CountlyManager {
     public static void reloadConsent(Context ctx, PreferenceManager preferenceManager){
     }
 
-    public static void recordEvent(String title) {
-    }
-
-    public static void recordEvent(String title, HashMap<String, Object> segmentation) {
-    }
-
-    public static void recordView(String title) {
-    }
-
-    public static void onStart(Activity activity){
-    }
-
-    public static void onStop(){
-    }
-
     public static void setToken(String token){
     }
 

@@ -1,8 +1,5 @@
 package org.openobservatory.ooniprobe.common;
 
-import android.app.Activity;
-import android.content.Context;
-
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import org.openobservatory.ooniprobe.BuildConfig;
@@ -10,17 +7,15 @@ import org.openobservatory.ooniprobe.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 import io.sentry.Sentry;
 import io.sentry.android.core.SentryAndroid;
-import io.sentry.protocol.App;
 import ly.count.android.sdk.Countly;
 import ly.count.android.sdk.CountlyConfig;
 import ly.count.android.sdk.messaging.CountlyPush;
 
-//TODO rename in
+//TODO rename in ThirdPartyServices
 public class CountlyManager {
     private static String[] basicFeatures = new String[]{
             ly.count.android.sdk.Countly.CountlyFeatureNames.location,
@@ -77,6 +72,7 @@ public class CountlyManager {
         return consents.toArray((new String[0]));
     }
 
+    //TODO call it reloadNotificationConsent or enableDisableNotification
     public static void reloadConsent(Application app){
         reloadCrashConsent(app);
         if (Countly.sharedInstance().isInitialized()) {
@@ -86,41 +82,16 @@ public class CountlyManager {
         else register(app);
     }
 
-    public static void recordEvent(String title) {
-        if (Countly.sharedInstance().isInitialized())
-            Countly.sharedInstance().events().recordEvent(title);
-    }
-
-    public static void recordEvent(String title, HashMap<String, Object> segmentation) {
-        if (Countly.sharedInstance().isInitialized())
-            Countly.sharedInstance().events().recordEvent(title, segmentation);
-    }
-
-    public static void recordView(String title) {
-        if (Countly.sharedInstance().isInitialized())
-        Countly.sharedInstance().views().recordView(title);
-    }
-
-    public static void onStart(Activity activity){
-        if (Countly.sharedInstance().isInitialized())
-            Countly.sharedInstance().onStart(activity);
-    }
-
-    public static void onStop(){
-        if (Countly.sharedInstance().isInitialized())
-            Countly.sharedInstance().onStop();
+    public static void reloadCrashConsent(Application app) {
+        if (Sentry. isEnabled() && app.getPreferenceManager().isSendCrash())
+            FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(app.getPreferenceManager().isSendCrash());
+        else
+            initSentry(app);
     }
 
     public static void setToken(Application app){
         if (app.getPreferenceManager().getToken() != null)
             CountlyPush.onTokenRefresh(app.getPreferenceManager().getToken());
-    }
-
-    public static void reloadCrashConsent(Application app) {
-        if (Sentry. isEnabled() && app.getPreferenceManager().isSendCrash())
-            FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(app.getPreferenceManager().isSendCrash());
-        else
-	        initSentry(app);
     }
 
 	public static void initSentry(Application app){

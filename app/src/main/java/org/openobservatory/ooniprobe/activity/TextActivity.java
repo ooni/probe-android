@@ -57,7 +57,6 @@ public class TextActivity extends AbstractActivity {
 		setContentView(R.layout.text);
 		ButterKnife.bind(this);
 		showText();
-		CountlyManager.recordView("DataView");
 	}
 
 	@Override public boolean onCreateOptionsMenu(Menu menu) {

@@ -117,8 +117,6 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
     protected void onResume() {
         super.onResume();
         load();
-        CountlyManager.recordView("TestSummary");
-        CountlyManager.recordView("TestSummary_" + result.test_group_name);
     }
 
     @Override

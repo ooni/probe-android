@@ -137,28 +137,13 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
             if (i == DialogInterface.BUTTON_POSITIVE){
                 CountlyManager.reloadConsent((Application) getApplication());
                 NotificationService.initNotification((Application) getApplication());
-                CountlyManager.recordEvent("NotificationModal_Accepted");
             }
             else if (i == DialogInterface.BUTTON_NEUTRAL){
                 getPreferenceManager().disableAskNotificationDialog();
-                CountlyManager.recordEvent("NotificationModal_DontAskAgain");
             }
-            else
-                CountlyManager.recordEvent("NotificationModal_Declined");
         }
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        CountlyManager.onStart(this);
-    }
-
-    @Override
-    public void onStop() {
-        CountlyManager.onStop();
-        super.onStop();
-    }
 
     public boolean isUITestRunning() {
         try {

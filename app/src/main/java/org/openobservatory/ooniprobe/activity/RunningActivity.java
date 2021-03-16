@@ -80,7 +80,6 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         setTheme(R.style.Theme_MaterialComponents_NoActionBar_App);
         setContentView(R.layout.activity_running);
         ButterKnife.bind(this);
-        CountlyManager.recordView("TestRunning");
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

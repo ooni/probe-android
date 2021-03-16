@@ -125,7 +125,6 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     @Override
     public void onResume() {
         super.onResume();
-        CountlyManager.recordView("TestResults");
         if (refresh) {
             queryList();
             refresh = false;
@@ -245,7 +244,6 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
                 ((Result) serializable).delete(getActivity());
             else if (serializable.equals(R.id.delete)) {
                 //From https://guides.codepath.com/android/using-dialogfragment
-                CountlyManager.recordEvent("DeleteAllTests");
                 ProgressDialog pd = new ProgressDialog(getContext());
                 pd.setCancelable(false);
                 pd.show();

@@ -60,7 +60,6 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
 	@Override public void onResume() {
 		super.onResume();
-		CountlyManager.recordView("Dashboard");
 		PreferenceManager pm = ((Application) getActivity().getApplication()).getPreferenceManager();
 		items.clear();
 		testSuites.clear();
@@ -84,7 +83,6 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 	}
 
 	public void runAll(){
-		CountlyManager.recordEvent("Run_All");
 		Intent intent = RunningActivity.newIntent((AbstractActivity) getActivity(), testSuites);
 		if (intent != null)
 			ActivityCompat.startActivity(getActivity(), intent, null);

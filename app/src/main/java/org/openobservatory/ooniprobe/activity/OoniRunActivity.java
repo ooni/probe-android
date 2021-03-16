@@ -81,7 +81,6 @@ public class OoniRunActivity extends AbstractActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_oonirun);
 		ButterKnife.bind(this);
-		CountlyManager.recordView("OONIRun");
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setDisplayShowHomeEnabled(true);

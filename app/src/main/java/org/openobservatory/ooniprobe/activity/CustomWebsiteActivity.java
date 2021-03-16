@@ -40,7 +40,6 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customwebsite);
         ButterKnife.bind(this);
-        CountlyManager.recordView("CustomURL");
         editTexts = new ArrayList<>();
         deletes = new ArrayList<>();
         bottomBar.inflateMenu(R.menu.run);

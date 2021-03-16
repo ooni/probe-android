@@ -56,7 +56,6 @@ public class PreferenceActivity extends AbstractActivity implements ConfirmDialo
 	public void onConfirmation(Serializable serializable, int i) {
 		if (i == DialogInterface.BUTTON_POSITIVE) {
 			if (serializable.equals(R.id.delete)) {
-				CountlyManager.recordEvent("ClearStorage");
 				//From https://guides.codepath.com/android/using-dialogfragment
 				ProgressDialog pd = new ProgressDialog(this);
 				pd.setCancelable(false);
