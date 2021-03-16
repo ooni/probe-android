@@ -319,6 +319,7 @@
   <string name="Test_Psiphon_Fullname">تست سایفون</string>
   <string name="Test_Tor_Fullname">تست تور</string>
   <string name="Test_RiseupVPN_Fullname">آزمون RiseupVPN</string>
+  <string name="Test_Signal_Fullname">Signal Test</string>
   <string name="Settings_Title">تنظیمات</string>
   <string name="Settings_Error_TestDurationTooLow">زمانی که برای مدت این تست مشخص کرده‌اید خیلی کوتاه می‌باشد.</string>
   <string name="Settings_About_Label">درباره‌ی اونی</string>
@@ -386,6 +387,7 @@
   <string name="Settings_Circumvention_TestTor">تست تور</string>
   <string name="Settings_Circumvention_TestRiseupVPN">آزمون RiseupVPN</string>
   <string name="Settings_SendEmail_Label">ارسال ایمیل به پشتیبانی</string>
+  <string name="Settings_SendEmail_Message">Please describe the problem you are experiencing:</string>
   <string name="Settings_SendEmail_Error">لطفا یک ایمیل به bugs@openobservatory.org همراه با اطلاعات برنامه و نسخه‌ی iOS ارسال کنید. بر روی «کپی در حافظه‌ی موقت» در پایین بزنید تا آدرس ایمیل کپی شود.</string>
   <string name="Settings_Language_Current">زبان فعلی برنامه %1$s است</string>
   <string name="Settings_Language_Label">زبان</string>

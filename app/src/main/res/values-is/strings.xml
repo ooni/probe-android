@@ -293,10 +293,10 @@
   <string name="Modal_Error_JsonEmpty">Tómt JSON</string>
   <string name="Modal_InterruptTest_Title">Viltu stöðva þessa prófun?</string>
   <string name="Modal_InterruptTest_Paragraph">Þetta mun stöðva á þessu þrepi prófunina sem nú er í gangi.</string>
-  <string name="Modal_Autorun_Modal_Title">Would you like to run tests automatically?</string>
+  <string name="Modal_Autorun_Modal_Title">Viltu keyra prófanir sjálfvirkt?</string>
   <string name="Modal_Autorun_Modal_Text">Með því að virkja sjálfvirkar prófanir, verða prófanir OONI Probe keyrðar sjálfvirkt með reglubundnum hætti (og þú þarft þá ekki að muna eftir að setja þær í gang).</string>
   <string name="Modal_Autorun_Modal_Button_No">Nei takk</string>
-  <string name="Modal_Autorun_Modal_Button_RemindLater">Remind me later</string>
+  <string name="Modal_Autorun_Modal_Button_RemindLater">Minna mig á síðar</string>
   <string name="Modal_Autorun_Modal_Button_Yes">Hljómar vel</string>
   <string name="Toast_CopiedToClipboard">Afritað á klippispjald</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Ekki sent inn</string>
@@ -319,6 +319,7 @@
   <string name="Test_Psiphon_Fullname">Prófun Psiphon</string>
   <string name="Test_Tor_Fullname">Prófun Tor</string>
   <string name="Test_RiseupVPN_Fullname">Prófun á RiseupVPN</string>
+  <string name="Test_Signal_Fullname">Signal Test</string>
   <string name="Settings_Title">Stillingar</string>
   <string name="Settings_Error_TestDurationTooLow">Tíminn sem þú settir sem lengd prófunar er of lítill.</string>
   <string name="Settings_About_Label">Um OONI</string>
@@ -386,6 +387,7 @@
   <string name="Settings_Circumvention_TestTor">Prófa Tor</string>
   <string name="Settings_Circumvention_TestRiseupVPN">Prófa RiseupVPN</string>
   <string name="Settings_SendEmail_Label">Senda tölvupóst til að fá aðstoð</string>
+  <string name="Settings_SendEmail_Message">Please describe the problem you are experiencing:</string>
   <string name="Settings_SendEmail_Error">Sentu tölvupóst til bugs@openobservatory.org með upplýsingum um forritið og útgáfu þína af iOS. Ýttu á \"Afrita á klippispjald\" hér fyrir neðan til að afrita tölvupóstfangið okkar.</string>
   <string name="Settings_Language_Current">Núverandi tungumál forritsins er %1$s</string>
   <string name="Settings_Language_Label">Tungumál</string>

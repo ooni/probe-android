@@ -319,6 +319,7 @@
   <string name="Test_Psiphon_Fullname">Psiphon 測試</string>
   <string name="Test_Tor_Fullname">Tor 測試</string>
   <string name="Test_RiseupVPN_Fullname">RiseupVPN Test</string>
+  <string name="Test_Signal_Fullname">Signal Test</string>
   <string name="Settings_Title">設定</string>
   <string name="Settings_Error_TestDurationTooLow">所設置的測試時間期過低。　</string>
   <string name="Settings_About_Label">關於 OONI</string>
@@ -386,6 +387,7 @@
   <string name="Settings_Circumvention_TestTor">測試Tor</string>
   <string name="Settings_Circumvention_TestRiseupVPN">Test RiseupVPN</string>
   <string name="Settings_SendEmail_Label">寄求助郵件</string>
+  <string name="Settings_SendEmail_Message">Please describe the problem you are experiencing:</string>
   <string name="Settings_SendEmail_Error">請將應用程式與  iOS 相關資訊寄送到此信箱 bugs@openobservatory.org ，下方的\"複製到剪貼簿\"分頁可直接複此電子郵址。 </string>
   <string name="Settings_Language_Current">目前的應用程式語言是 %1$s</string>
   <string name="Settings_Language_Label">語言</string>
