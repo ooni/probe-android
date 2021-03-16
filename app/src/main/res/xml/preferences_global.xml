@@ -1,4 +1,5 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:key="@string/preferences"
 	android:title="@string/Settings_Title">
 		<PreferenceScreen
@@ -8,8 +9,11 @@
 		<SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="@string/notifications_enabled"
-			android:title="@string/Settings_Notifications_Enabled" />
-			<PreferenceCategory android:title="@string/Modal_EnableNotifications_Paragraph" />
+			android:title="@string/Settings_Notifications_Enabled"
+			app:iconSpaceReserved="false" />
+			<PreferenceCategory
+				android:title="@string/Modal_EnableNotifications_Paragraph"
+				app:iconSpaceReserved="false" />
 		</PreferenceScreen>
 	<PreferenceScreen
 		android:icon="@drawable/test_options"
@@ -21,7 +25,8 @@
 			android:title="@string/Test_Websites_Fullname">
 			<PreferenceScreen
 				android:key="@string/Settings_Websites_Categories_Label"
-				android:title="@string/Settings_Websites_Categories_Label">
+				android:title="@string/Settings_Websites_Categories_Label"
+				app:iconSpaceReserved="false">
 				<SwitchPreferenceCompat
 					android:defaultValue="true"
 					android:icon="@drawable/category_anon"
@@ -212,12 +217,14 @@
 			<SwitchPreferenceCompat
 				android:defaultValue="true"
 				android:key="@string/max_runtime_enabled"
-				android:title="@string/Settings_Websites_MaxRuntimeEnabled" />
+				android:title="@string/Settings_Websites_MaxRuntimeEnabled"
+				app:iconSpaceReserved="false" />
 			<EditTextPreference
 				android:defaultValue="90"
 				android:dependency="@string/max_runtime_enabled"
 				android:key="@string/max_runtime"
-				android:title="@string/Settings_Websites_MaxRuntime" />
+				android:title="@string/Settings_Websites_MaxRuntime"
+				app:iconSpaceReserved="false" />
 		</PreferenceScreen>
 		<PreferenceScreen
 			android:icon="@drawable/settings_instant_messaging"
@@ -226,15 +233,18 @@
 			<SwitchPreferenceCompat
 				android:defaultValue="true"
 				android:key="@string/test_whatsapp"
-				android:title="@string/Settings_InstantMessaging_TestWhatsApp" />
+				android:title="@string/Settings_InstantMessaging_TestWhatsApp"
+				app:iconSpaceReserved="false" />
 			<SwitchPreferenceCompat
 				android:defaultValue="true"
 				android:key="@string/test_telegram"
-				android:title="@string/Settings_InstantMessaging_TestTelegram" />
+				android:title="@string/Settings_InstantMessaging_TestTelegram"
+				app:iconSpaceReserved="false" />
 			<SwitchPreferenceCompat
 				android:defaultValue="true"
 				android:key="@string/test_facebook_messenger"
-				android:title="@string/Settings_InstantMessaging_TestFacebookMessenger" />
+				android:title="@string/Settings_InstantMessaging_TestFacebookMessenger"
+				app:iconSpaceReserved="false" />
 		</PreferenceScreen>
 		<PreferenceScreen
 			android:icon="@drawable/settings_circumvention"
@@ -243,15 +253,18 @@
 			<SwitchPreferenceCompat
 				android:defaultValue="true"
 				android:key="@string/test_psiphon"
-				android:title="@string/Settings_Circumvention_TestPsiphon"/>
+				android:title="@string/Settings_Circumvention_TestPsiphon"
+				app:iconSpaceReserved="false" />
 			<SwitchPreferenceCompat
 				android:defaultValue="true"
 				android:key="@string/test_tor"
-				android:title="@string/Settings_Circumvention_TestTor"/>
+				android:title="@string/Settings_Circumvention_TestTor"
+				app:iconSpaceReserved="false" />
 			<SwitchPreferenceCompat
 				android:defaultValue="true"
 				android:key="@string/test_riseupvpn"
-				android:title="@string/Settings_Circumvention_TestRiseupVPN"/>
+				android:title="@string/Settings_Circumvention_TestRiseupVPN"
+				app:iconSpaceReserved="false" />
 		</PreferenceScreen>
 		<PreferenceScreen
 			android:icon="@drawable/settings_performance"
@@ -260,19 +273,23 @@
 			<SwitchPreferenceCompat
 				android:defaultValue="true"
 				android:key="@string/run_ndt"
-				android:title="@string/Settings_Performance_TestNDT"/>
+				android:title="@string/Settings_Performance_TestNDT"
+				app:iconSpaceReserved="false" />
 			<SwitchPreferenceCompat
 				android:defaultValue="true"
 				android:key="@string/run_dash"
-				android:title="@string/Settings_Performance_TestDash"/>
+				android:title="@string/Settings_Performance_TestDash"
+				app:iconSpaceReserved="false" />
 			<SwitchPreferenceCompat
 				android:defaultValue="true"
 				android:key="@string/run_http_invalid_request_line"
-				android:title="@string/Settings_Middleboxes_TestHTTPInvalidRequestLine"/>
+				android:title="@string/Settings_Middleboxes_TestHTTPInvalidRequestLine"
+				app:iconSpaceReserved="false" />
 			<SwitchPreferenceCompat
 				android:defaultValue="true"
 				android:key="@string/run_http_header_field_manipulation"
-				android:title="@string/Settings_Middleboxes_TestHTTPHeaderFieldManipulation"/>
+				android:title="@string/Settings_Middleboxes_TestHTTPHeaderFieldManipulation"
+				app:iconSpaceReserved="false" />
 		</PreferenceScreen>
 	</PreferenceScreen>
 	<PreferenceScreen
@@ -282,15 +299,18 @@
 		<SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="@string/upload_results"
-			android:title="@string/Settings_Sharing_UploadResults" />
+			android:title="@string/Settings_Sharing_UploadResults"
+			app:iconSpaceReserved="false" />
 		<SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="@string/send_analytics"
-			android:title="@string/Settings_Privacy_CollectAnalytics" />
+			android:title="@string/Settings_Privacy_CollectAnalytics"
+			app:iconSpaceReserved="false" />
 		<SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="@string/send_crash"
-			android:title="@string/Settings_Privacy_SendCrashReports" />
+			android:title="@string/Settings_Privacy_SendCrashReports"
+			app:iconSpaceReserved="false" />
 	</PreferenceScreen>
 	<PreferenceScreen
 		android:icon="@drawable/advanced"
@@ -299,16 +319,19 @@
 		<SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="@string/theme_enabled"
-			android:title="@string/Settings_DarkMode_Label" />
+			android:title="@string/Settings_DarkMode_Label"
+			app:iconSpaceReserved="false" />
 		<SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="@string/debugLogs"
-			android:title="@string/Settings_Advanced_DebugLogs" />
+			android:title="@string/Settings_Advanced_DebugLogs"
+			app:iconSpaceReserved="false" />
 		<Preference
 			android:key="storage_usage"
 			android:title="@string/Settings_Storage_Label"
 			android:summary=""
-			android:widgetLayout="@layout/preference_button" />
+			android:widgetLayout="@layout/preference_button"
+			app:iconSpaceReserved="false" />
 	</PreferenceScreen>
 	<PreferenceScreen
 		android:icon="@drawable/send_email"
