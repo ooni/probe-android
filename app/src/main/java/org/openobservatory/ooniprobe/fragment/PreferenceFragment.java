@@ -90,7 +90,8 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
             pref.setOnPreferenceClickListener(preference -> {
                 Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse(getString(R.string.shareEmailTo)));
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.shareSubject, BuildConfig.VERSION_NAME));
-                emailIntent.putExtra(Intent.EXTRA_TEXT, "\nMANUFACTURER: " + Build.MANUFACTURER + "\nMODEL: " + Build.MODEL + "\nBOARD: " + Build.BOARD + "\nTIME: " + Build.TIME);
+                emailIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.Settings_SendEmail_Message) +
+                        "\n\n\nMANUFACTURER: " + Build.MANUFACTURER + "\nMODEL: " + Build.MODEL + "\nBOARD: " + Build.BOARD + "\nTIME: " + Build.TIME);
                 try {
                     startActivity(Intent.createChooser(emailIntent, getString(R.string.Settings_SendEmail_Label)));
                 } catch (Exception e) {
