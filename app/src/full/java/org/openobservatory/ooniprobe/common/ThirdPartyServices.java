@@ -1,6 +1,14 @@
 package org.openobservatory.ooniprobe.common;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.os.Build;
+
+
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
+import com.raizlabs.android.dbflow.config.FlowLog;
 
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
@@ -15,8 +23,16 @@ import ly.count.android.sdk.Countly;
 import ly.count.android.sdk.CountlyConfig;
 import ly.count.android.sdk.messaging.CountlyPush;
 
-//TODO rename in ThirdPartyServices
-public class CountlyManager {
+public class ThirdPartyServices {
+
+    public static void onCreateApplication(Application app) {
+        if (BuildConfig.DEBUG)
+            FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
+        FirebaseApp.initializeApp(app);
+        ThirdPartyServices.initNotification(app);
+        ThirdPartyServices.reloadCrashConsent(app);
+    }
+
     private static String[] basicFeatures = new String[]{
             ly.count.android.sdk.Countly.CountlyFeatureNames.location,
     };
@@ -57,8 +73,8 @@ public class CountlyManager {
     public static void initPush(Application app){
         if (Countly.sharedInstance().isInitialized()) {
             CountlyPush.init(app, BuildConfig.DEBUG ? Countly.CountlyMessagingMode.TEST : Countly.CountlyMessagingMode.PRODUCTION);
-            NotificationService.setChannel(app, CountlyPush.CHANNEL_ID, app.getString(R.string.Settings_Notifications_Label), true, true, true);
-            CountlyManager.setToken(app);
+            ThirdPartyServices.setChannel(app, CountlyPush.CHANNEL_ID, app.getString(R.string.Settings_Notifications_Label), true, true, true);
+            ThirdPartyServices.setToken(app);
         }
     }
 
@@ -108,4 +124,34 @@ public class CountlyManager {
                             });
                 });
     }
+
+    public static void initNotification(Application app){
+        PreferenceManager preferenceManager = app.getPreferenceManager();
+        if (!preferenceManager.isNotifications())
+            return;
+        ThirdPartyServices.initPush(app);
+    }
+
+    // Register the channel with the system
+    public static void setChannel(Context c, String channelID, String channelName,
+                                  Boolean vibration, Boolean sound, Boolean lights){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationManager notificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
+            if (notificationManager != null) {
+                NotificationChannel channel = new NotificationChannel(channelID, channelName, NotificationManager.IMPORTANCE_DEFAULT);
+                channel.enableVibration(vibration);
+                channel.enableLights(lights);
+                if (!sound)
+                    channel.setSound(null, null);
+                notificationManager.createNotificationChannel(channel);
+            }
+        }
+    }
+
+    public static void logException(Exception e){
+        FirebaseCrashlytics.getInstance().recordException(e);
+        if (Sentry. isEnabled())
+            Sentry.captureException(e);
+    }
+
 }

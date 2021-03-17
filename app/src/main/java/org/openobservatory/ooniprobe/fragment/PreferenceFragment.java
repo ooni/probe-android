@@ -21,7 +21,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.CountlyManager;
+import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.NotificationService;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 
@@ -119,7 +119,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
         if (key.equals(getString(R.string.send_crash)) ||
                 key.equals(getString(R.string.send_analytics)) ||
                 key.equals(getString(R.string.notifications_enabled))){
-            CountlyManager.reloadConsent((Application) getActivity().getApplication());
+            ThirdPartyServices.reloadConsent((Application) getActivity().getApplication());
             if (key.equals(getString(R.string.notifications_enabled)))
                 NotificationService.initNotification((Application) getActivity().getApplication());
         }

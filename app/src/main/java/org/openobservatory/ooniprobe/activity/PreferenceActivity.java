@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.XmlRes;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.common.CountlyManager;
 import org.openobservatory.ooniprobe.fragment.PreferenceFragment;
 import org.openobservatory.ooniprobe.model.database.Result;
 

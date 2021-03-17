@@ -12,7 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.CountlyManager;
+import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.NotificationService;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
@@ -135,7 +135,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
             getPreferenceManager().setNotificationsFromDialog(i == DialogInterface.BUTTON_POSITIVE);
             //If positive answer reload consents and init notification
             if (i == DialogInterface.BUTTON_POSITIVE){
-                CountlyManager.reloadConsent((Application) getApplication());
+                ThirdPartyServices.reloadConsent((Application) getApplication());
                 NotificationService.initNotification((Application) getApplication());
             }
             else if (i == DialogInterface.BUTTON_NEUTRAL){

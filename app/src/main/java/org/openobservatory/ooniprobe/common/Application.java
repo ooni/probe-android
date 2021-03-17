@@ -9,7 +9,6 @@ import androidx.lifecycle.ProcessLifecycleOwner;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.raizlabs.android.dbflow.config.FlowLog;
 import com.raizlabs.android.dbflow.config.FlowManager;
 
 import org.openobservatory.ooniprobe.BuildConfig;
@@ -41,11 +40,11 @@ public class Application extends android.app.Application {
 		super.onCreate();
 		FlowManager.init(this);
 		preferenceManager = new PreferenceManager(this);
-		CountlyManager.register(this);
+		ThirdPartyServices.onCreateApplication(this);
+		ThirdPartyServices.register(this);
 		AppLifecycleObserver appLifecycleObserver = new AppLifecycleObserver();
 		ProcessLifecycleOwner.get().getLifecycle().addObserver(appLifecycleObserver);
 		gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateAdapter()).registerTypeAdapter(TestKeys.Tampering.class, new TamperingJsonDeserializer()).create();
-		FlavorApplication.onCreate(this);
 		if (preferenceManager.canCallDeleteJson())
 			Measurement.deleteUploadedJsons(this);
 		Measurement.deleteOldLogs(this);
