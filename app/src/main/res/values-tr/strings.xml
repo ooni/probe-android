@@ -293,7 +293,7 @@
   <string name="Modal_Error_JsonEmpty">JSON boş</string>
   <string name="Modal_InterruptTest_Title">Bu sınamayı durdurmak istediğinize emin misiniz?</string>
   <string name="Modal_InterruptTest_Paragraph">Bu işlem şu anda yapılmakta olan sınamayı durduracak.</string>
-  <string name="Modal_Autorun_Modal_Title">Would you like to run tests automatically?</string>
+  <string name="Modal_Autorun_Modal_Title">Sınamalar otomatik olarak yürütülsün mü?</string>
   <string name="Modal_Autorun_Modal_Text">Otomatik sınama etkinleştirildiğinde, düzenli olarak otomatik OONI Probe sınamaları yapılır (sınamaları el ile yapmayı anımsamanız gerekmez).</string>
   <string name="Modal_Autorun_Modal_Button_No">Hayır, teşekkürler</string>
   <string name="Modal_Autorun_Modal_Button_RemindLater">Beni hatırla</string>
@@ -319,6 +319,7 @@
   <string name="Test_Psiphon_Fullname">Psiphon Sınaması</string>
   <string name="Test_Tor_Fullname">Tor Sınaması</string>
   <string name="Test_RiseupVPN_Fullname">RiseupVPN Sınaması</string>
+  <string name="Test_Signal_Fullname">Signal Test</string>
   <string name="Settings_Title">Ayarlar</string>
   <string name="Settings_Error_TestDurationTooLow">Sınama süresi için belirlediğiniz süre çok az.</string>
   <string name="Settings_About_Label">OONI Hakkında</string>
@@ -386,6 +387,7 @@
   <string name="Settings_Circumvention_TestTor">Tor Dene</string>
   <string name="Settings_Circumvention_TestRiseupVPN">RiseupVPN Sınaması</string>
   <string name="Settings_SendEmail_Label">Destek ekibine e-posta gönderin</string>
+  <string name="Settings_SendEmail_Message">Please describe the problem you are experiencing:</string>
   <string name="Settings_SendEmail_Error">Lütfen uygulama hakkındaki bilgiler ve iOS sürümünü yazarak bugs@openobservatory.org adresine bir e-posta gönderin. E-posta adresimizi kopyalamak için aşağıdaki \"Panoya kopyala\" seçeneğine dokunun.</string>
   <string name="Settings_Language_Current">Geçerli uygulama dili: %1$s</string>
   <string name="Settings_Language_Label">Dil</string>
