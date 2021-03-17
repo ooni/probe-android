@@ -286,7 +286,8 @@
 		<SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="@string/upload_results"
-			android:title="@string/Settings_Sharing_UploadResults" />
+			android:title="@string/Settings_Sharing_UploadResults"
+			app:iconSpaceReserved="false" />
 	</PreferenceScreen>
 	<PreferenceScreen
 		android:icon="@drawable/advanced"
