@@ -22,7 +22,6 @@ import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
-import org.openobservatory.ooniprobe.common.NotificationService;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 
 import java.util.Arrays;
@@ -117,11 +116,8 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Preference preference = findPreference(key);
         if (key.equals(getString(R.string.send_crash)) ||
-                key.equals(getString(R.string.send_analytics)) ||
                 key.equals(getString(R.string.notifications_enabled))){
-            ThirdPartyServices.reloadConsent((Application) getActivity().getApplication());
-            if (key.equals(getString(R.string.notifications_enabled)))
-                NotificationService.initNotification((Application) getActivity().getApplication());
+            ThirdPartyServices.reloadConsents((Application) getActivity().getApplication());
         }
         else if (preference instanceof EditTextPreference) {
             String value = sharedPreferences.getString(key, null);

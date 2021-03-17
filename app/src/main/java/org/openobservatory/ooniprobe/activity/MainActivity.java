@@ -13,7 +13,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
-import org.openobservatory.ooniprobe.common.NotificationService;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
 import org.openobservatory.ooniprobe.fragment.PreferenceGlobalFragment;
@@ -27,7 +26,6 @@ import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 
 public class MainActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String RES_ITEM = "resItem";
-    private static final String ANALYTICS_DIALOG = "analytics";
     public static final String NOTIFICATION_DIALOG = "notification";
 
     @BindView(R.id.bottomNavigation)
@@ -66,17 +64,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
             if (isUITestRunning()) {
                 return;
             }
-            if (getPreferenceManager().isShareAnalyticsDialog()) {
-                new ConfirmDialogFragment.Builder()
-                        .withTitle(getString(R.string.Modal_ShareAnalytics_Title))
-                        .withMessage(getString(R.string.Modal_ShareAnalytics_Paragraph))
-                        .withPositiveButton(getString(R.string.Modal_SoundsGreat))
-                        .withNegativeButton(getString(R.string.Modal_NoThanks))
-                        .withExtra(ANALYTICS_DIALOG)
-                        .build().show(getSupportFragmentManager(), null);
-            }
-            //we don't want to flood the user with popups
-            else if (getPreferenceManager().getAppOpenCount() != 0
+            if (getPreferenceManager().getAppOpenCount() != 0
                     && getPreferenceManager().getAppOpenCount() % PreferenceManager.NOTIFICATION_DIALOG_COUNT == 0
                     && !getPreferenceManager().isNotifications()
                     && !getPreferenceManager().isAskNotificationDialogDisabled()) {
@@ -129,14 +117,11 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     @Override
     public void onConfirmation(Serializable extra, int i) {
         if (extra == null) return;
-        if (extra.equals(ANALYTICS_DIALOG))
-            getPreferenceManager().setSendAnalytics(i == DialogInterface.BUTTON_POSITIVE);
-        else if (extra.equals(NOTIFICATION_DIALOG)) {
+        if (extra.equals(NOTIFICATION_DIALOG)) {
             getPreferenceManager().setNotificationsFromDialog(i == DialogInterface.BUTTON_POSITIVE);
             //If positive answer reload consents and init notification
             if (i == DialogInterface.BUTTON_POSITIVE){
-                ThirdPartyServices.reloadConsent((Application) getApplication());
-                NotificationService.initNotification((Application) getApplication());
+                ThirdPartyServices.reloadConsents((Application) getApplication());
             }
             else if (i == DialogInterface.BUTTON_NEUTRAL){
                 getPreferenceManager().disableAskNotificationDialog();

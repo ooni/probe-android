@@ -109,7 +109,6 @@ dependencies {
 // Flavor
 	fullImplementation platform('com.google.firebase:firebase-bom:26.3.0')
 	fullImplementation 'com.google.firebase:firebase-messaging'
-	fullImplementation 'com.google.firebase:firebase-crashlytics'
 	fullImplementation 'ly.count.android:sdk:20.11.1'
 	fullImplementation 'io.sentry:sentry-android:4.0.0'
 
