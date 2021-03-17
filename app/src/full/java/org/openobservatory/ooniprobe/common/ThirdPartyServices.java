@@ -72,7 +72,9 @@ public class ThirdPartyServices {
 
     private static void reloadNotificationConsent(Application app){
         if (Countly.sharedInstance().isInitialized()) {
-            Countly.sharedInstance().consent().setConsent(pushFeatures, app.getPreferenceManager().isNotifications());
+            Countly.sharedInstance().consent().removeConsentAll();
+            if (app.getPreferenceManager().isNotifications())
+                Countly.sharedInstance().consent().setConsent(pushFeatures, app.getPreferenceManager().isNotifications());
         }
         else initCountly(app);
     }
