@@ -8,4 +8,8 @@ public class ThirdPartyServices {
     public static void logException(Exception e){
         // does nothing
     }
+
+    public static void acceptDefaultSettings(Application app) {
+        //no need to set false, it's already the default value
+    }
 }

@@ -77,8 +77,8 @@ public class PreferenceManager {
 				.apply();
 	}
 
-	public void acceptDefaultSettings() {
-		sp.edit().putBoolean(r.getString(R.string.send_crash), true)
+	public void setSendCrash(boolean sendCrash) {
+		sp.edit().putBoolean(r.getString(R.string.send_crash), sendCrash)
 				.apply();
 	}
 
