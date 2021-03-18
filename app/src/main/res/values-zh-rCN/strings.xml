@@ -28,7 +28,8 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">国家代码（例如，IT 指代意大利）</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">网络信息（包含 ASN）</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">测试的日期和时间</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">我们尽力避免发表您的 IP 地址和其他任何潜在的个人身份信息。\n\n为了改进 OONI Probe，我们同时收集了应用使用流量和崩溃报告。\n\n阅读 [OONI 数据政策](https://ooni.io/about/data-policy/)了解更多。</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">我们尽力避免发布你的 IP 地址以及任何可能识别个人身份的信息。\n\n了解更多，请访问 [OONI 数据政策](https://ooni.io/about/data-policy/)。</string>
+  <string name="Onboarding_DefaultSettings_Paragraph_1">By tapping \"OK\", you will share crash reports to help us improve OONI Probe.</string>
   <string name="Onboarding_DefaultSettings_Button_Go">开始</string>
   <string name="Onboarding_DefaultSettings_Button_Change">更改默认值</string>
   <string name="Dashboard_Tab_Label">面板</string>
@@ -193,6 +194,10 @@
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Content_Paragraph">此测试成功连接到 Facebook 的端点并解析到 Facebook 的 IP 地址。</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Hero_Title">可能被屏蔽</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Content_Paragraph">Facebook Messenger 似乎被屏蔽。</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Hero_Title">可能被屏蔽</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Content_Paragraph">Signal appears to be blocked.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Hero_Title">测试中</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Content_Paragraph">This test successfully connected to Signal\'s endpoints.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title">没有检测到 middlebox</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Content_Paragraph">与我们的服务器通信的过程中，没有检测到网络异常。</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title">网络篡改</string>
@@ -284,8 +289,6 @@
   <string name="Modal_ManualUpload_Paragraph">该设置允许您手动重新上传尚未发布的测量结果。</string>
   <string name="Modal_ManualUpload_Enable">启用</string>
   <string name="Modal_ManualUpload_Disable">不要，谢谢</string>
-  <string name="Modal_ShareAnalytics_Title">帮助我们改进 OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">新的 OONI Probe 可以发送匿名的使用数据来帮助我们改进它。您可以随时在设置中选择退出。</string>
   <string name="Modal_UploadFailed_Title">上传失败</string>
   <string name="Modal_UploadFailed_Paragraph">%1$s/%2$s 测量结果上传失败。日志已经分享给 OONI 开发者。</string>
   <string name="Modal_Error_LogNotFound">未找到日志文件</string>
@@ -346,7 +349,6 @@
   <string name="Settings_Sharing_Footer">通过发布结果，您可以提升网络审查的透明度，并支持 OONI 社区。\n\n网络信息（如自治系统号，ASN）通过它确定因特网服务提供商（ISP）。</string>
   <string name="Settings_TestOptions_Label">测试选项</string>
   <string name="Settings_Privacy_Label">隐私</string>
-  <string name="Settings_Privacy_CollectAnalytics">分享应用使用流量</string>
   <string name="Settings_Privacy_SendCrashReports">发送崩溃报告</string>
   <string name="Settings_Advanced_Label">高级</string>
   <string name="Settings_DarkMode_Label">黑暗模式</string>

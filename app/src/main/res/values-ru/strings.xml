@@ -28,7 +28,8 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">Код страны (например, IT для Италии)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">Сетевую информацию (включая номер автономной системы)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">Время и дату тестирования</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">Мы прилагаем все силы, чтобы не раскрыть ваш IP-адрес или любые другие данные, которые могут позволить вас идентифицировать.\n\nЧтобы улучшить OONI Probe мы собираем данные об использовании и отчеты об ошибках.\n\nПодробнее об этом в [политике OONI по обращению с данными](https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">Мы прилагаем все силы, чтобы не раскрыть ваш IP-адрес и другие данные, которые в принципе могут позволить вас идентифицировать. \n\nПодробнее об этом в [политике OONI по обращению с данными](https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph_1">By tapping \"OK\", you will share crash reports to help us improve OONI Probe.</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Начнем</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Изменить настройки</string>
   <string name="Dashboard_Tab_Label">Панель приборов</string>
@@ -193,6 +194,10 @@
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Content_Paragraph">Успешно протестировано соединение с конечными точками Facebook и IP-адресами Facebook.</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Hero_Title">Похоже, заблокировано</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Content_Paragraph">Похоже, Facebook Messenger заблокирован.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Hero_Title">Похоже, заблокировано</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Content_Paragraph">Signal appears to be blocked.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Hero_Title">Работает</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Content_Paragraph">This test successfully connected to Signal\'s endpoints.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title">Устройства middlebox не обнаружены</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Content_Paragraph">При соединении с нашими серверами не отмечено аномалий в сети.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title">Вмешательство в сетевую активность</string>
@@ -284,8 +289,6 @@
   <string name="Modal_ManualUpload_Paragraph">Эта настройка позволяет вам вручную загружать неопубликованные измерения</string>
   <string name="Modal_ManualUpload_Enable">Включить</string>
   <string name="Modal_ManualUpload_Disable">Нет, спасибо</string>
-  <string name="Modal_ShareAnalytics_Title">Помогите нам улучшить OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">С помощью нового OONI Probe вы можете делиться анонимизированной статистикой использования, чтобы помочь нам улучшить приложение. Вы можете отказаться в настройках в любой момент.</string>
   <string name="Modal_UploadFailed_Title">Загрузка не удалась</string>
   <string name="Modal_UploadFailed_Paragraph">Нам не удалось загрузить измерения %1$s/%2$s. Журнал сбоев был передан разработчикам OONI.</string>
   <string name="Modal_Error_LogNotFound">Лог-файл не найден</string>
@@ -346,7 +349,6 @@
   <string name="Settings_Sharing_Footer">Публикуя результаты, вы дополняете картину помех интернет-активности и поддерживаете сообщество OONI.\n\nСетевые данные (в частности, номер автономной системы) нужны для определения провайдеров доступа к интернету.</string>
   <string name="Settings_TestOptions_Label">Варианты тестирования</string>
   <string name="Settings_Privacy_Label">Приватность</string>
-  <string name="Settings_Privacy_CollectAnalytics">Поделиться статистикой использования приложения</string>
   <string name="Settings_Privacy_SendCrashReports">Отправить отчет об ошибке</string>
   <string name="Settings_Advanced_Label">Расширенные настройки</string>
   <string name="Settings_DarkMode_Label">Dark Mode</string>

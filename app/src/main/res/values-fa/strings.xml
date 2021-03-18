@@ -28,7 +28,8 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">کد کشور (مثلا IT برای ایتالیا)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">اطلاعات شبکه (شامل شماره سیستم مستقل ASN)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">زمان و تاریخ تست</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">ما همه تلاش خود را می‌کنیم تا نشانی IP و یا هر اطلاعاتی که بالققوه قابلیت شناسایی هویت شما را دارند منتشر نکنیم.\n\nما همچنین برای بهبود OONI Probe، اطلاعات استفاده و گزارش‌های خرابی برنامه را جمع‌آوری می‌کنیم.\n\nدر [سیاست‌های داده OONI] بیشتر بخوانید (https://ooni.io/about/data-policy/) بیشتر بخوانید.</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">ما همه‌ی تلاش خود را می‌‌کنیم تا آدرس IP شما یا هر اطلاعاتی که بالقوه قابلیت شناسایی هویت شما را دارند را منتشر نکنیم.\n\nدر [سیاست‌های داده OONI] بیشتر بخوانید (https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph_1">By tapping \"OK\", you will share crash reports to help us improve OONI Probe.</string>
   <string name="Onboarding_DefaultSettings_Button_Go">بزن بریم! </string>
   <string name="Onboarding_DefaultSettings_Button_Change">تغییر پیشفرض‌ها</string>
   <string name="Dashboard_Tab_Label">پنل</string>
@@ -193,6 +194,10 @@
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Content_Paragraph">این تست با موفقیت به endpoint های فیسبوک متصل شد و آدرس‌های IP فیسبوک را حل کرد.</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Hero_Title">احتمالا مسدود</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Content_Paragraph">پیام‌رسان فیسبوک به  نظر مسدود می‌رسد.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Hero_Title">احتمالا مسدود</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Content_Paragraph">Signal appears to be blocked.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Hero_Title">کار میکنه</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Content_Paragraph">This test successfully connected to Signal\'s endpoints.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title">نشانه‌ای از middlebox پیدا نشد</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Content_Paragraph">در هنگام ارتباط با سرورهای ما، هیچ ناهنجاری در شبکه شناسایی نشد.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title">دستکاری در شبکه</string>
@@ -284,8 +289,6 @@
   <string name="Modal_ManualUpload_Paragraph">با استفاده از این تنظیم می‌توانید اندازه‌گیری‌های منتشر نشده را دوباره به صورت دستی بارگذاری کنید.</string>
   <string name="Modal_ManualUpload_Enable">فعال کن</string>
   <string name="Modal_ManualUpload_Disable">نه، ممنون</string>
-  <string name="Modal_ShareAnalytics_Title">در بهبود بخشیدن OONI Probe به ما کمک کنید</string>
-  <string name="Modal_ShareAnalytics_Paragraph">با OONI Probe جدید، شما می‌توانید اطلاعات استفاده از برنامه را به صورت گمنام در اختیار ما بگذارید و به بهبود برنامه کمک کنید. شما در هر زمانی می‌توانید از تنظیمات، انصراف دهید.</string>
   <string name="Modal_UploadFailed_Title">آپلود ناموفق بود</string>
   <string name="Modal_UploadFailed_Paragraph">ما در بارگذاری %1$s/%2$s اندازه‌گیری ناکام بودیم. گزارش این ناکامی با توسعه دهندگان OONI به اشتراک گذاشته شد.</string>
   <string name="Modal_Error_LogNotFound">فایل لاگ یافت نشد</string>
@@ -346,7 +349,6 @@
   <string name="Settings_Sharing_Footer">با انتشار نتایج شما به افزایش شفافیت نظارت بر شبکه و جامعه‌ی OONI کمک می‌‌کنید.\n\nاطلاعات شبکه (مثل Autonomous System Number) برای شناسایی سرویس‌دهنده‌ی اینترنت ضروری است.</string>
   <string name="Settings_TestOptions_Label">گزینه‌های آزمون</string>
   <string name="Settings_Privacy_Label">حریم خصوصی</string>
-  <string name="Settings_Privacy_CollectAnalytics">معیارهای استفاده از برنامه را به اشتراک بگذارید</string>
   <string name="Settings_Privacy_SendCrashReports">ارسال گزارش درباره‌ی متوقف شدن برنامه </string>
   <string name="Settings_Advanced_Label">پیشرفته </string>
   <string name="Settings_DarkMode_Label">حالت تیره</string>

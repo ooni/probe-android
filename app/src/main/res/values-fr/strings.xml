@@ -28,7 +28,8 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">Le code de pays (p. ex. IT pour Italie)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">Des renseignements sur le réseau (dont le numéro de système autonome)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">L’estampille temporelle du test</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">Nous faisons de notre mieux pour ne pas publier votre adresse IP ni aucun autre renseignement qui pourrait vous identifier.\n\nAfin d’améliorer OONI Probe, nous recueillons aussi des mesures d’utilisation de l’appli ainsi que des relevés de plantage.\n\nApprenez-en davantage dans la [Politique sur les données de l’OONI](https://ooni.io/about/data-policy/) (page en anglais).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">Nous faisons de notre mieux pour ne pas publier votre adresse IP ni aucun autre renseignement qui pourrait vous identifier.\n\nApprenez-en davantage dans la [Politique sur les données de l’OONI](https://ooni.io/about/data-policy/) (page en anglais).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph_1">By tapping \"OK\", you will share crash reports to help us improve OONI Probe.</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Allons-y</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Modifier les paramètres</string>
   <string name="Dashboard_Tab_Label">Tableau de bord</string>
@@ -193,6 +194,10 @@
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Content_Paragraph">Ce test s’est connecté avec succès aux extrémités de Facebook et a été résolu avec des adresses IP de Facebook.</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Hero_Title">Probablement bloqué</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Content_Paragraph">Facebook Messenger semble être bloqué.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Hero_Title">Probablement bloqué</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Content_Paragraph">Signal appears to be blocked.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Hero_Title">Fonctionne</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Content_Paragraph">This test successfully connected to Signal\'s endpoints.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title">Aucun boîtier intermédiaire n’a été détecté</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Content_Paragraph">Aucune anomalie réseau n’a été détectée lors de la communication avec nos serveurs.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title">Manipulation du réseau</string>
@@ -284,8 +289,6 @@
   <string name="Modal_ManualUpload_Paragraph">Ce paramètre vous permet de retéléverser manuellement les mesures non publiées.</string>
   <string name="Modal_ManualUpload_Enable">Activer</string>
   <string name="Modal_ManualUpload_Disable">Non, merci</string>
-  <string name="Modal_ShareAnalytics_Title">Aidez-nous à améliorer OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">Avec la nouvelle OONI Probe, vous pouvez envoyer des mesures d’utilisation anonymisées afin de nous aider à améliorer l’appli. Vous pouvez en tout temps retirer cette autorisation dans les paramètres.</string>
   <string name="Modal_UploadFailed_Title">Échec de téléversement</string>
   <string name="Modal_UploadFailed_Paragraph">Nous n’avons pas réussi à téléverser %1$s mesures sur %2$s. Le journal des échecs a été partagé avec les développeurs d’OONI.</string>
   <string name="Modal_Error_LogNotFound">Le fichier journal est introuvable</string>
@@ -346,7 +349,6 @@
   <string name="Settings_Sharing_Footer">En publiant les résultats, vous augmentez la transparence des interférences réseau et soutenez la communauté de l’OONI. \n\nLe renseignement sur le réseau (c.-à-d. le numéro de système autonome) est nécessaire pour identifier les fournisseurs d’accès à Internet.</string>
   <string name="Settings_TestOptions_Label">Options de test</string>
   <string name="Settings_Privacy_Label">Confidentialité</string>
-  <string name="Settings_Privacy_CollectAnalytics">Partager les mesures d’utilisation de l’appli</string>
   <string name="Settings_Privacy_SendCrashReports">Envoyer des relevés de plantage</string>
   <string name="Settings_Advanced_Label">Avancés</string>
   <string name="Settings_DarkMode_Label">Mode sombre</string>
