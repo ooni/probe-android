@@ -28,7 +28,8 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">Ülke kodu (örn: Türkiye için TR)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">Ağ Bilgileri (Otonom Sistem Numarası İle)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">Sınama tarih ve saati</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">IP adresinizi ya da kim olduğunuzu ortaya çıkarabilecek bilgileri yayınlamamak için elimizden geleni yapıyoruz.\n\nOONI Probe uygulamasını geliştirmek için ayrıca uygulama kullanım istatistiklerini ve çökme raporlarını topluyoruz.\n\nAyrıntılı bilgi almak için [OONI Veri İşleme İlkesi](https://ooni.io/about/data-policy/) bölümüne bakabilirsiniz.</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">IP adresinizi ya da kim olduğunuzu ortaya çıkarabilecek bilgileri yayınlamamak için elimizden geleni yapıyoruz.\n\nAyrıntılı bilgi almak için [OONI Veri İşleme İlkesi](https://ooni.io/about/data-policy/) bölümüne bakabilirsiniz.</string>
+  <string name="Onboarding_DefaultSettings_Paragraph_1">By tapping \"OK\", you will share crash reports to help us improve OONI Probe.</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Başlayalım</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Varsayılanları değiştir</string>
   <string name="Dashboard_Tab_Label">Pano</string>
@@ -193,6 +194,10 @@
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Content_Paragraph">Bu sınama sırasında Facebook bağlantı noktalarına başarıyla bağlanıldı ve Facebook IP adresleri çözümlendi.</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Hero_Title">Engellenmiş olabilir</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Content_Paragraph">Facebook Messenger engellenmiş gibi görünüyor.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Hero_Title">Engellenmiş olabilir</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Content_Paragraph">Signal appears to be blocked.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Hero_Title">Çalışıyor</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Content_Paragraph">This test successfully connected to Signal\'s endpoints.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title">Herhangi bir ara kutu algılanmadı</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Content_Paragraph">Sunucularımız ile bağlantı kurulurken herhangi bir ağ anormalliği bulunamadı.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title">Ağ müdahalesi</string>
@@ -284,8 +289,6 @@
   <string name="Modal_ManualUpload_Paragraph">Bu seçenek etkinleştirildiğinde, yayınlanmamış ölçümler el ile yeniden yüklenebilir.</string>
   <string name="Modal_ManualUpload_Enable">Etkinleştir</string>
   <string name="Modal_ManualUpload_Disable">Hayır, teşekkürler</string>
-  <string name="Modal_ShareAnalytics_Title">OONI Probe uygulamasını geliştirmemize katkıda bulunun</string>
-  <string name="Modal_ShareAnalytics_Paragraph">Yeni OONI Probe uygulamasını geliştirmemize yardımcı olmak için kullanım istatistiklerinizi bizimle paylaşarak katkıda bulunabilirsiniz. İstediğiniz zaman kullanım istatistiklerinizi paylaşmaktan vazgeçebilirsiniz.</string>
   <string name="Modal_UploadFailed_Title">Yükleme başarısız</string>
   <string name="Modal_UploadFailed_Paragraph">%1$s/%2$s ölçüm yüklenemedi. Sorun ile ilgili günlük kayıtları OONI geliştiricileri ile paylaşıldı.</string>
   <string name="Modal_Error_LogNotFound">Günlük dosyası bulunamadı</string>
@@ -319,7 +322,7 @@
   <string name="Test_Psiphon_Fullname">Psiphon Sınaması</string>
   <string name="Test_Tor_Fullname">Tor Sınaması</string>
   <string name="Test_RiseupVPN_Fullname">RiseupVPN Sınaması</string>
-  <string name="Test_Signal_Fullname">Signal Test</string>
+  <string name="Test_Signal_Fullname">Signal Sınaması</string>
   <string name="Settings_Title">Ayarlar</string>
   <string name="Settings_Error_TestDurationTooLow">Sınama süresi için belirlediğiniz süre çok az.</string>
   <string name="Settings_About_Label">OONI Hakkında</string>
@@ -346,7 +349,6 @@
   <string name="Settings_Sharing_Footer">Sonuçları yayınlayarak ağ müdahalelerinin daha görünür hale gelmesine yardım ederek OONI topluluğuna destek olursunuz.\n\nAğ bilgileri (Otonom Sistem Numarası gibi) İnternet Hizmeti Sağlayıcılarını belirlemek için gereklidir.</string>
   <string name="Settings_TestOptions_Label">Ayarları sına</string>
   <string name="Settings_Privacy_Label">Gizlilik</string>
-  <string name="Settings_Privacy_CollectAnalytics">Uygulama kullanımı istatistikleri paylaşılsın</string>
   <string name="Settings_Privacy_SendCrashReports">Çökme raporları gönderilsin</string>
   <string name="Settings_Advanced_Label">Gelişmiş</string>
   <string name="Settings_DarkMode_Label">Karanlık Kip</string>
@@ -387,7 +389,7 @@
   <string name="Settings_Circumvention_TestTor">Tor Dene</string>
   <string name="Settings_Circumvention_TestRiseupVPN">RiseupVPN Sınaması</string>
   <string name="Settings_SendEmail_Label">Destek ekibine e-posta gönderin</string>
-  <string name="Settings_SendEmail_Message">Please describe the problem you are experiencing:</string>
+  <string name="Settings_SendEmail_Message">Lütfen yaşadığınız sorunu anlatın:</string>
   <string name="Settings_SendEmail_Error">Lütfen uygulama hakkındaki bilgiler ve iOS sürümünü yazarak bugs@openobservatory.org adresine bir e-posta gönderin. E-posta adresimizi kopyalamak için aşağıdaki \"Panoya kopyala\" seçeneğine dokunun.</string>
   <string name="Settings_Language_Current">Geçerli uygulama dili: %1$s</string>
   <string name="Settings_Language_Label">Dil</string>

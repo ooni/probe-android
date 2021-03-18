@@ -28,7 +28,8 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">Código do país (por exemplo, IT para Italy)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">Informações de rede (incluindo o Número do Sistema Autônomo)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">Hora e data do teste</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">Fazemos o máximo possível para não publicar seu endereço IP ou qualquer outra informação individual que possa identificar você.\n\nPara melhorar o OONI Probe, também coletamos métricas de uso de aplicativos e relatórios de falhas.\n\nPara saber mais, consulte a [Política de Dados do OONI](https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">Fazemos o máximo possível para não publicar seu endereço IP ou qualquer outra informação individual que possa identificar você.\n\nPara saber mais, consulte a [Política de Dados da OONI]\n(https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph_1">By tapping \"OK\", you will share crash reports to help us improve OONI Probe.</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Vamos lá</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Alterar padrões</string>
   <string name="Dashboard_Tab_Label">P. Comando</string>
@@ -193,6 +194,10 @@
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Content_Paragraph">Este teste foi conectado com sucesso às URLs do Facebook e processado para endereços IP do Facebook.</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Hero_Title">Provavelmente bloqueado</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Content_Paragraph">Facebook Messenger parece estar bloqueado.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Hero_Title">Provavelmente bloqueados</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Content_Paragraph">Signal appears to be blocked.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Hero_Title">Funcionando</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Content_Paragraph">This test successfully connected to Signal\'s endpoints.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title">Nenhuma caixa intermediária detectada</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Content_Paragraph">Nenhuma anomalia de rede foi detectada durante a comunicação com nossos servidores.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title">Adulteração de rede</string>
@@ -284,8 +289,6 @@
   <string name="Modal_ManualUpload_Paragraph">Essa configuração permite que você carregue manualmente as medidas não publicadas.</string>
   <string name="Modal_ManualUpload_Enable">Habilitar</string>
   <string name="Modal_ManualUpload_Disable">Não, agradeço</string>
-  <string name="Modal_ShareAnalytics_Title">Ajude-nos a melhorar o OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">Com o novo OONI Probe, você pode contribuir com métricas de uso anônimo para nos ajudar a melhorar o aplicativo. Nas configurações, você pode optar por deixar de utilizar o aplicativo a qualquer momento.</string>
   <string name="Modal_UploadFailed_Title">Falha ao enviar</string>
   <string name="Modal_UploadFailed_Paragraph">Falha ao carregar %1$s/%2$s medidas. O log de falhas foi compartilhado com as pessoas que desenvolvem o OONI.</string>
   <string name="Modal_Error_LogNotFound">Arquivo de log não encontrado</string>
@@ -346,7 +349,6 @@
   <string name="Settings_Sharing_Footer">Ao publicar os resultados, você aumenta a transparência sobre a interferência da rede e dá suporte à comunidade da OONI.\n\nAs informações de rede (ou seja, o número do sistema autônomo) são necessárias para identificar os provedores de serviços de Internet.</string>
   <string name="Settings_TestOptions_Label">Opções de teste</string>
   <string name="Settings_Privacy_Label">Privacidade</string>
-  <string name="Settings_Privacy_CollectAnalytics">Compartilhar métricas de uso do aplicativo</string>
   <string name="Settings_Privacy_SendCrashReports">Enviar relatórios de erros</string>
   <string name="Settings_Advanced_Label">Avançado</string>
   <string name="Settings_DarkMode_Label">Modo escuro</string>

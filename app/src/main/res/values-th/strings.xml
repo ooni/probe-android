@@ -28,7 +28,8 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">รหัสประเทศ (เช่น IT สำหรับสาธารณรัฐอิตาลี)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">ข้อมูลเครือข่าย (รวมถึง Autonomous System Number)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">วันเเละเวลาของการทดสอบ</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">เราพยายามอย่างถึงที่สุดที่จะไม่เปิดเผยเผยแพร่ที่อยู่ไอพีหรือข้อมูลอื่นใดที่อาจใช้ระบุตัวตนคุณได้ เพื่อปรับปรุง OONI Probe เรายังคงจะจัดเก็บสถิติการใช้แอปและรายงานการหยุดทำงานอย่างผิดปกติเรียนรู้เพิ่มเติมได้ใน [นโยบายข้อมูลของ OONI](https://ooni.io/about/data-policy/)</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">เราทำอย่างดีที่สุดเพื่อจะไม่เผยแพร่ที่อยู่ไอพีของคุณหรือข้อมูลใดที่อาจใช้ระบุบุคคลได้\n\nเรียนรู้เพิ่มเติมใน [นโยบายข้อมูลของ OON](https://ooni.org/about/data-policy/)</string>
+  <string name="Onboarding_DefaultSettings_Paragraph_1">By tapping \"OK\", you will share crash reports to help us improve OONI Probe.</string>
   <string name="Onboarding_DefaultSettings_Button_Go">เริ่มกันเลย</string>
   <string name="Onboarding_DefaultSettings_Button_Change">เปลี่ยนค่าเริ่มต้น</string>
   <string name="Dashboard_Tab_Label">หน้ากระดาน</string>
@@ -193,6 +194,10 @@
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Content_Paragraph">การทดสอบนี้ได้เชื่อมต่อโดยสำเร็จไปยังจุดปลายทางของเฟซบุ๊ก และได้รับที่อยู่ไอพีของเฟซบุ๊กกลับมา</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Hero_Title">น่าจะถูกปิดกั้น</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Content_Paragraph">ปรากฎว่าเฟสบุ๊กเเมนเซนเจอร์จะถูกปิดกั้น</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Hero_Title">น่าจะถูกปิดกั้น</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Content_Paragraph">Signal appears to be blocked.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Hero_Title">กำลังทำงาน</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Content_Paragraph">This test successfully connected to Signal\'s endpoints.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title">ตรวจพบการโจมตีระหว่างกลาง</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Content_Paragraph">ตรวจไม่พบความผิดปกติของเครือข่ายระหว่างติดต่อกับเซิร์ฟเวอร์ของเรา</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title">การปลอมเเปลงเครือข่าย</string>
@@ -284,8 +289,6 @@
   <string name="Modal_ManualUpload_Paragraph">การตั้งค่านี้อนุญาตให้คุณอัปโหลดผลการตรวจสอบที่ยังไม่ถูกเผยแพร่ได้ด้วยตัวเอง</string>
   <string name="Modal_ManualUpload_Enable">เปิดใช้งาน</string>
   <string name="Modal_ManualUpload_Disable">ไม่, ขอบคุณ</string>
-  <string name="Modal_ShareAnalytics_Title">ช่วยเราปรับปรุง OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">ใน OONI Probe รุ่นใหม่ คุณสามารถแบ่งปันสถิติการใช้แอปที่ไม่ระบุตัวตน เพื่อช่วยให้เราสามารถปรับปรุงแอปได้ คุณสามารถเลือกที่จะไม่แบ่งปันข้อมูลดังกล่าวเมื่อใดก็ได้ในการตั้งค่า</string>
   <string name="Modal_UploadFailed_Title">อัพโหลดไม่สำเร็จ</string>
   <string name="Modal_UploadFailed_Paragraph">เราล้มเหลวที่จะอัปโหลด %1$s/%2$s การตรวจสอบ ปูมบันทึกความล้มเหลวได้ถูกส่งให้กับทีมพัฒนา OONI แล้ว</string>
   <string name="Modal_Error_LogNotFound">หาปูมบันทึกไม่พบ</string>
@@ -346,7 +349,6 @@
   <string name="Settings_Sharing_Footer">โดยการเผยแพร่ผล คุณจะช่วยเพิ่มความเข้าใจต่อการแทรกแซงเครือข่ายและช่วยสนับสนุนชุมชน OONI\n\nข้อมูลเครือข่าย (หรือ Autonomous System Number) นั้นจำเป็นต่อการระบุผู้ให้บริการอินเทอร์เน็ต</string>
   <string name="Settings_TestOptions_Label">ตัวเลือกการทดสอบ</string>
   <string name="Settings_Privacy_Label">ความเป็นส่วนตัว</string>
-  <string name="Settings_Privacy_CollectAnalytics">แบ่งปันสถิติการใช้แอป</string>
   <string name="Settings_Privacy_SendCrashReports">ส่งรายงานการพังของแอป</string>
   <string name="Settings_Advanced_Label">ขั้นสูง</string>
   <string name="Settings_DarkMode_Label">โหมดมืด</string>
