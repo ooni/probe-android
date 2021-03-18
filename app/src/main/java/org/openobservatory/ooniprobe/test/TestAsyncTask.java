@@ -20,9 +20,8 @@ import org.openobservatory.engine.OONIURLListResult;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.ExceptionManager;
+import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
-import org.openobservatory.ooniprobe.model.api.UrlList;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
@@ -130,7 +129,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 		} catch (Exception e) {
 			publishProgress(ERR, app.getString(R.string.Modal_Error_CantDownloadURLs));
 			e.printStackTrace();
-			ExceptionManager.logException(e);
+			ThirdPartyServices.logException(e);
 		}
 	}
 
@@ -155,7 +154,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			ExceptionManager.logException(e);
+			ThirdPartyServices.logException(e);
 		}
 	}
 

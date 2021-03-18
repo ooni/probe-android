@@ -15,7 +15,6 @@ import java.util.ArrayList;
 public class PreferenceManager {
 	static final String GEO_VER = "geo_ver";
 	public static final Integer MAX_RUNTIME_DISABLED = -1;
-	private static final String IS_ANALYTICS_DIALOG = "isAnalyticsDialog";
 	private static final String IS_NOTIFICATION_DIALOG = "isNotificationDialog";
 	public static final int NOTIFICATION_DIALOG_COUNT = 5;
 	private static final String NOTIFICATION_DIALOG_DISABLE = "isNotificationDialogDisabled";
@@ -69,35 +68,18 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.send_crash), false);
 	}
 
-	public boolean isSendAnalytics() {
-		return sp.getBoolean(r.getString(R.string.send_analytics), false);
-	}
-
-	public void setSendAnalytics(boolean analytics) {
-		sp.edit().putBoolean(IS_ANALYTICS_DIALOG, false).putBoolean(r.getString(R.string.send_analytics), analytics).apply();
-	}
-
 	public boolean isShowOnboarding() {
 		return sp.getBoolean(SHOW_ONBOARDING, true);
 	}
 
 	public void setShowOnboarding(boolean showIntro) {
 		sp.edit().putBoolean(SHOW_ONBOARDING, showIntro)
-				.putBoolean(IS_ANALYTICS_DIALOG, showIntro)
 				.apply();
 	}
 
-	public void acceptDefaultSettings() {
-		sp.edit().putBoolean(r.getString(R.string.send_analytics), true)
-				.putBoolean(r.getString(R.string.send_crash), true)
+	public void setSendCrash(boolean sendCrash) {
+		sp.edit().putBoolean(r.getString(R.string.send_crash), sendCrash)
 				.apply();
-	}
-
-	/*
-	 * This method is used to ask user to share app usage to old users.
-	 */
-	public boolean isShareAnalyticsDialog() {
-		return sp.getBoolean(IS_ANALYTICS_DIALOG, true);
 	}
 
 	/*

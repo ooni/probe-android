@@ -303,11 +303,6 @@
 			app:iconSpaceReserved="false" />
 		<SwitchPreferenceCompat
 			android:defaultValue="false"
-			android:key="@string/send_analytics"
-			android:title="@string/Settings_Privacy_CollectAnalytics"
-			app:iconSpaceReserved="false" />
-		<SwitchPreferenceCompat
-			android:defaultValue="false"
 			android:key="@string/send_crash"
 			android:title="@string/Settings_Privacy_SendCrashReports"
 			app:iconSpaceReserved="false" />

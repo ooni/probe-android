@@ -19,7 +19,6 @@ import org.apache.commons.io.FileUtils;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.client.callback.GetMeasurementJsonCallback;
 import org.openobservatory.ooniprobe.client.callback.GetMeasurementsCallback;
-import org.openobservatory.ooniprobe.common.CountlyManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
 import org.openobservatory.ooniprobe.model.database.Measurement;
@@ -57,7 +56,6 @@ public class TextActivity extends AbstractActivity {
 		setContentView(R.layout.text);
 		ButterKnife.bind(this);
 		showText();
-		CountlyManager.recordView("DataView");
 	}
 
 	@Override public boolean onCreateOptionsMenu(Menu menu) {

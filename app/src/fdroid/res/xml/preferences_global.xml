@@ -288,16 +288,6 @@
 			android:key="@string/upload_results"
 			android:title="@string/Settings_Sharing_UploadResults"
 			app:iconSpaceReserved="false" />
-		<SwitchPreferenceCompat
-			android:defaultValue="false"
-			android:key="@string/send_analytics"
-			android:title="@string/Settings_Privacy_CollectAnalytics"
-			app:iconSpaceReserved="false" />
-		<SwitchPreferenceCompat
-			android:defaultValue="false"
-			android:key="@string/send_crash"
-			android:title="@string/Settings_Privacy_SendCrashReports"
-			app:iconSpaceReserved="false" />
 	</PreferenceScreen>
 	<PreferenceScreen
 		android:icon="@drawable/advanced"

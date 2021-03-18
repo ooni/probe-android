@@ -22,7 +22,6 @@ import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.activity.OverviewActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.CountlyManager;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.item.TestsuiteItem;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -60,7 +59,6 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
 	@Override public void onResume() {
 		super.onResume();
-		CountlyManager.recordView("Dashboard");
 		PreferenceManager pm = ((Application) getActivity().getApplication()).getPreferenceManager();
 		items.clear();
 		testSuites.clear();
@@ -84,7 +82,6 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 	}
 
 	public void runAll(){
-		CountlyManager.recordEvent("Run_All");
 		Intent intent = RunningActivity.newIntent((AbstractActivity) getActivity(), testSuites);
 		if (intent != null)
 			ActivityCompat.startActivity(getActivity(), intent, null);

@@ -1,9 +1,5 @@
 package org.openobservatory.ooniprobe.fragment;
 
-import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -14,11 +10,9 @@ import android.widget.Toast;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.XmlRes;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
-import androidx.preference.PreferenceManager;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.SwitchPreferenceCompat;
 import org.apache.commons.io.FileUtils;
@@ -27,13 +21,10 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.CountlyManager;
-import org.openobservatory.ooniprobe.common.NotificationService;
+import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Objects;
 
 import localhost.toolkit.app.fragment.MessageDialogFragment;
 import localhost.toolkit.preference.ExtendedPreferenceFragment;
@@ -62,7 +53,6 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
     public void onResume() {
         assert getArguments() != null;
         super.onResume();
-        CountlyManager.recordView("Settings");
         setPreferencesFromResource(getArguments().getInt(ARG_PREFERENCES_RES_ID), getArguments().getInt(ARG_CONTAINER_RES_ID), getArguments().getString(ARG_PREFERENCE_ROOT));
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         getActivity().setTitle(getPreferenceScreen().getTitle());
@@ -127,11 +117,8 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Preference preference = findPreference(key);
         if (key.equals(getString(R.string.send_crash)) ||
-                key.equals(getString(R.string.send_analytics)) ||
                 key.equals(getString(R.string.notifications_enabled))){
-            CountlyManager.reloadConsent(getContext(), ((Application) getActivity().getApplication()).getPreferenceManager());
-            if (key.equals(getString(R.string.notifications_enabled)))
-                NotificationService.initNotification((Application) getActivity().getApplication());
+            ThirdPartyServices.reloadConsents((Application) getActivity().getApplication());
         }
         else if (preference instanceof EditTextPreference) {
             String value = sharedPreferences.getString(key, null);

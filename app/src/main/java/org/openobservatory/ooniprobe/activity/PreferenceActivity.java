@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.XmlRes;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.common.CountlyManager;
 import org.openobservatory.ooniprobe.fragment.PreferenceFragment;
 import org.openobservatory.ooniprobe.model.database.Result;
 
@@ -56,7 +55,6 @@ public class PreferenceActivity extends AbstractActivity implements ConfirmDialo
 	public void onConfirmation(Serializable serializable, int i) {
 		if (i == DialogInterface.BUTTON_POSITIVE) {
 			if (serializable.equals(R.id.delete)) {
-				CountlyManager.recordEvent("ClearStorage");
 				//From https://guides.codepath.com/android/using-dialogfragment
 				ProgressDialog pd = new ProgressDialog(this);
 				pd.setCancelable(false);

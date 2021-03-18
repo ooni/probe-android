@@ -17,7 +17,7 @@ import org.apache.commons.io.FileUtils;
 import org.openobservatory.engine.Engine;
 import org.openobservatory.engine.OONIMKTask;
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.common.ExceptionManager;
+import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.MKException;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
@@ -71,7 +71,7 @@ public abstract class AbstractTest implements Serializable {
         } catch (Exception exc) {
             //TODO call setFailureMsg here and in other point of (non) return
             exc.printStackTrace();
-            ExceptionManager.logException(exc);
+            ThirdPartyServices.logException(exc);
             return;
         }
         while (!task.isDone()){
@@ -158,10 +158,10 @@ public abstract class AbstractTest implements Serializable {
                     case "failure.startup":
                     case "failure.resolver_lookup":
                         setFailureMsg(event.value, result);
-                        ExceptionManager.logException(new MKException(event));
+                        ThirdPartyServices.logException(new MKException(event));
                         break;
                     case "bug.json_dump":
-                        ExceptionManager.logException(new MKException(event));
+                        ThirdPartyServices.logException(new MKException(event));
                         break;
                     case "task_terminated":
                         /*
@@ -184,7 +184,7 @@ public abstract class AbstractTest implements Serializable {
                     }
                 }
                 e.printStackTrace();
-                ExceptionManager.logException(e);
+                ThirdPartyServices.logException(e);
             }
         }
     }
