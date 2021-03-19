@@ -5,7 +5,9 @@ import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
 import org.openobservatory.engine.Engine;
@@ -16,27 +18,21 @@ import org.openobservatory.engine.OONIContext;
 import org.openobservatory.engine.OONISession;
 import org.openobservatory.engine.OONIURLInfo;
 import org.openobservatory.ooniprobe.BuildConfig;
-import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.CountlyManager;
-import org.openobservatory.ooniprobe.common.ExceptionManager;
-import org.openobservatory.ooniprobe.common.NotificationService;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
+import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 
 public class ServiceUtil {
     private static final int id = 100;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public static void scheduleJob(Context context) {
-        CountlyManager.recordEvent("AutomaticTest_activated");
         Application app = ((Application)context.getApplicationContext());
         PreferenceManager pm = app.getPreferenceManager();
         ComponentName serviceComponent = new ComponentName(context, RunTestJobService.class);
@@ -60,8 +56,8 @@ public class ServiceUtil {
         jobScheduler.schedule(builder.build());
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public static void stopJob(Context context) {
-        CountlyManager.recordEvent("AutomaticTest_deactivated");
         JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
         jobScheduler.cancel(id);
     }
@@ -95,7 +91,7 @@ public class ServiceUtil {
         }
         catch (Exception e) {
             e.printStackTrace();
-            ExceptionManager.logException(e);
+            ThirdPartyServices.logException(e);
         }
     }
 
