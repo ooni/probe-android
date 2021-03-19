@@ -31,7 +31,6 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
 import org.openobservatory.ooniprobe.activity.TextActivity;
-import org.openobservatory.ooniprobe.common.CountlyManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.item.CircumventionItem;
 import org.openobservatory.ooniprobe.item.DateItem;
@@ -125,7 +124,6 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     @Override
     public void onResume() {
         super.onResume();
-        CountlyManager.recordView("TestResults");
         if (refresh) {
             queryList();
             refresh = false;
@@ -245,7 +243,6 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
                 ((Result) serializable).delete(getActivity());
             else if (serializable.equals(R.id.delete)) {
                 //From https://guides.codepath.com/android/using-dialogfragment
-                CountlyManager.recordEvent("DeleteAllTests");
                 ProgressDialog pd = new ProgressDialog(getContext());
                 pd.setCancelable(false);
                 pd.show();

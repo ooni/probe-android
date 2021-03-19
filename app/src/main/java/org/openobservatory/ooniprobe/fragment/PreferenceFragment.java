@@ -25,9 +25,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.CountlyManager;
-import org.openobservatory.ooniprobe.common.NotificationService;
-import org.openobservatory.ooniprobe.common.service.ServiceUtil;
+import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 
 import java.util.Arrays;
@@ -60,7 +58,6 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
     public void onResume() {
         assert getArguments() != null;
         super.onResume();
-        CountlyManager.recordView("Settings");
         setPreferencesFromResource(getArguments().getInt(ARG_PREFERENCES_RES_ID), getArguments().getInt(ARG_CONTAINER_RES_ID), getArguments().getString(ARG_PREFERENCE_ROOT));
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         getActivity().setTitle(getPreferenceScreen().getTitle());
@@ -150,11 +147,8 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
             }
         }
         if (key.equals(getString(R.string.send_crash)) ||
-                key.equals(getString(R.string.send_analytics)) ||
                 key.equals(getString(R.string.notifications_enabled))){
-            CountlyManager.reloadConsent(getContext(), ((Application) getActivity().getApplication()).getPreferenceManager());
-            if (key.equals(getString(R.string.notifications_enabled)))
-                NotificationService.initNotification((Application) getActivity().getApplication());
+            ThirdPartyServices.reloadConsents((Application) getActivity().getApplication());
         }
         else if (preference instanceof EditTextPreference) {
             String value = sharedPreferences.getString(key, null);

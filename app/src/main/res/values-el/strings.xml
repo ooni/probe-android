@@ -28,7 +28,8 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">Κωδικό χώρας (π.χ. GR για την Ελλάδα)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">Πληροφορίες δικτύου (όπως ASN, για τον εντοπισμό πάροχου δικτύου)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">Ώρα και ημερομηνὶα εκτέλεσης δοκιμών</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">Κάνουμε ό,τι μπορούμε για να μη δημοσιευτεί η διεύθυνση IP σου ή οποιαδήποτε άλλη πιθανώς προσωπικά αναγνωρίσιμη πληροφορία.\n\nΓια τη βελτίωση του OONI Probe, συλλέγουμε επίσης στατιστικά χρήσης της εφαρμογής και αναφορές σφαλμάτων.\n\nΜάθε περισσότερα στην  [Πολιτική Δεδομένων του OONI](https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">Κάνουμε ό,τι μπορούμε ώστε να μη δημοσιευτεί η διεύθυνση IP ή άλλα (δυνητικά) προσωπικά σου δεδομένα.\n\nΜάθε περισσότερα διαβάζοντας την [Πολιτική Δεδομένων του OONI](https://ooni.io/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph_1">By tapping \"OK\", you will share crash reports to help us improve OONI Probe.</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Συνέχεια</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Αλλαγή ρυθμίσεων</string>
   <string name="Dashboard_Tab_Label">Ταμπλό</string>
@@ -193,6 +194,10 @@
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Content_Paragraph">Αυτή η δοκιμή συνδέθηκε επιτυχώς στο Facebook Messenger.</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Hero_Title">Πιθανή λογοκρισία</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Content_Paragraph">Το Facebook Messenger είναι ενδεχομένως μπλοκαρισμένο.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Hero_Title">Πιθανή λογοκρισία</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Content_Paragraph">Signal appears to be blocked.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Hero_Title">Λειτουργεί</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Content_Paragraph">This test successfully connected to Signal\'s endpoints.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title">Δεν εντοπίστηκαν middleboxes</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Content_Paragraph">Δεν εντοπίστηκε παρεμβολή δικτύου κατά την επικοινωνία με τους διακομιστές μας.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title">Παρεμβολή δικτύου</string>
@@ -284,8 +289,6 @@
   <string name="Modal_ManualUpload_Paragraph">Με αυτή τη ρύθμιση μπορείς να ανεβάσεις χειροκίνητα τις μη δημοσιευμένες μετρήσεις σου.</string>
   <string name="Modal_ManualUpload_Enable">Ενεργοποίηση</string>
   <string name="Modal_ManualUpload_Disable">Όχι, ευχαριστώ</string>
-  <string name="Modal_ShareAnalytics_Title">Βοήθησε μας να βελτιώσουμε το OONI Probe</string>
-  <string name="Modal_ShareAnalytics_Paragraph">Με το νέο OONI Probe, μπορείς να συνεισφέρεις ανώνυμα στατιστικά χρήσης για να μας βοηθήσεις να βελτιώσουμε την εφαρμογή. Μπορείς να αναιρέσεις αυτή την επιλογή από τις ρυθμίσεις ανά πάσα στιγμή.</string>
   <string name="Modal_UploadFailed_Title">Αποτυχία ανεβάσματος</string>
   <string name="Modal_UploadFailed_Paragraph">Αποτύχαμε να ανεβάσουμε %1$s/%2$s μετρήσεις. Το αρχείο καταγραφής αποτυχιών έχει μοιραστεί στους OONI developers.</string>
   <string name="Modal_Error_LogNotFound">Δεν βρέθηκε αρχείο καταγραφής</string>
@@ -346,7 +349,6 @@
   <string name="Settings_Sharing_Footer">Δημοσιεύοντας αποτελέσματα, αυξάνεις τη διαφάνεια για τυχόν παρεμβολές στο Διαδικτύο, και υποστηρίζεις την κοινότητα του OONI.\n\nΓια την αναγνώριση των παρόχων δικτύου, απαιτούνται πληροφορίες δικτύου (όπως ο Αριθμός Αυτόνομου Συστήματος ASN).</string>
   <string name="Settings_TestOptions_Label">Επιλογές δοκιμής</string>
   <string name="Settings_Privacy_Label">Απόρρητο</string>
-  <string name="Settings_Privacy_CollectAnalytics">Μοιράσου στατιστικά χρήσης εφαρμογής</string>
   <string name="Settings_Privacy_SendCrashReports">Αποστολή αναφορών σφαλμάτων</string>
   <string name="Settings_Advanced_Label">Ρυθμίσεις για προχωρημένους</string>
   <string name="Settings_DarkMode_Label">Dark Mode</string>

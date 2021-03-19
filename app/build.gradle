@@ -103,15 +103,14 @@ dependencies {
 	implementation 'com.google.code.gson:gson:2.8.6'
 	implementation 'ru.noties:markwon:2.0.1'
 	implementation 'commons-io:commons-io:2.6'
-	implementation 'ly.count.android:sdk:20.11.1'
-	implementation 'io.sentry:sentry-android:4.0.0'
 	//arcview to fragment_dashboard
 	implementation 'com.github.florent37:shapeofview:1.3.2'
 
 // Flavor
 	fullImplementation platform('com.google.firebase:firebase-bom:26.3.0')
 	fullImplementation 'com.google.firebase:firebase-messaging'
-	fullImplementation 'com.google.firebase:firebase-crashlytics'
+	fullImplementation 'ly.count.android:sdk:20.11.1'
+	fullImplementation 'io.sentry:sentry-android:4.0.0'
 
 // Testing
 	testImplementation 'junit:junit:4.12'
@@ -142,5 +141,4 @@ static def versionNameDate() {
 if (!getGradle().getStartParameter().getTaskRequests()
 		.toString().contains("Fdroid")){
 	apply plugin: 'com.google.gms.google-services'
-	apply plugin: 'com.google.firebase.crashlytics'
 }

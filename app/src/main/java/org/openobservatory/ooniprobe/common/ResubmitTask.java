@@ -56,7 +56,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            ExceptionManager.logException(e);
+            ThirdPartyServices.logException(e);
             return false;
         }
     }
@@ -119,7 +119,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
         }
        catch (Exception e){
            e.printStackTrace();
-           ExceptionManager.logException(e);
+           ThirdPartyServices.logException(e);
            return false;
        }
         return errors == 0;

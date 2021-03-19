@@ -10,7 +10,6 @@
 	<permission android:name="org.openobservatory.ooniprobe.permission.C2D_MESSAGE" android:protectionLevel="signature" />
 	<uses-permission android:name="org.openobservatory.ooniprobe.permission.C2D_MESSAGE" />
 
-
 	<application
 		android:name=".common.Application"
 		android:allowBackup="false"
@@ -134,9 +133,6 @@
 			android:label="Run Test Service"
 			android:permission="android.permission.BIND_JOB_SERVICE">
 		</service>
-		<meta-data
-			android:name="io.sentry.dsn"
-			android:value="https://9dcd83d9519844188803aa817cdcd416@o155150.ingest.sentry.io/5619989" />
 
 	</application>
 </manifest>
