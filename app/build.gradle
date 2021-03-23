@@ -1,16 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
-	compileSdkVersion 29
+	compileSdkVersion 30
 	buildToolsVersion "30.0.3"
 	ndkVersion '22.0.7026061'
 
 	defaultConfig {
 		applicationId 'org.openobservatory.ooniprobe'
 		minSdkVersion 21
-		targetSdkVersion 29
-		versionName '2.10.0'
-		versionCode 73
+		targetSdkVersion 30
+		versionName '2.10.1'
+		versionCode 74
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://countly.ooni.io"'
