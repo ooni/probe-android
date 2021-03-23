@@ -12,13 +12,11 @@
 			android:title="@string/Settings_AutomatedTesting_RunAutomatically" />
 		<SwitchPreferenceCompat
 			android:defaultValue="true"
-			app:isPreferenceVisible="false"
 			android:dependency="@string/automated_testing_enabled"
 			android:key="@string/automated_testing_wifionly"
 			android:title="@string/Settings_AutomatedTesting_RunAutomatically_WiFiOnly" />
 		<SwitchPreferenceCompat
 			android:defaultValue="true"
-			app:isPreferenceVisible="false"
 			android:dependency="@string/automated_testing_enabled"
 			android:key="@string/automated_testing_charging"
 			android:title="@string/Settings_AutomatedTesting_RunAutomatically_ChargingOnly" />
