@@ -29,7 +29,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_2">Netzwerkinformationen (einschließlich der Autonomous System Number, ASN)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">Zeit &amp; Datum des Tests</string>
   <string name="Onboarding_DefaultSettings_Paragraph">Wir geben unser Bestes, deine IP-Adresse oder andere möglicherweise personenbezogene Daten nicht zu veröffentlichen.\n\nWeitere Informationen findest du in [OONI\'s Datenrichtlinie](https://ooni.io/about/data-policy/).</string>
-  <string name="Onboarding_DefaultSettings_Paragraph_1">By tapping \"OK\", you will share crash reports to help us improve OONI Probe.</string>
+  <string name="Onboarding_DefaultSettings_Paragraph_1">Indem du auf \"OK\" tippst, teilst du Absturzberichte, um uns dabei zu helfen, OONI Probe zu verbessern.</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Auf geht\'s</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Defaults ändern</string>
   <string name="Dashboard_Tab_Label">Übersicht</string>
@@ -195,9 +195,9 @@
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Hero_Title">Wahrscheinlich blockiert</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Content_Paragraph">Facebook Messenger scheint geblockt zu sein.</string>
   <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Hero_Title">Wahrscheinlich blockiert</string>
-  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Content_Paragraph">Signal appears to be blocked.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Content_Paragraph">Signal scheint blockiert zu sein.</string>
   <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Hero_Title">Funktioniert</string>
-  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Content_Paragraph">This test successfully connected to Signal\'s endpoints.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Content_Paragraph">Dieser Test hat erfolgreich eine Verbindung zu den Endpunkten von Signal hergestellt.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title">Keine Middleboxen entdeckt</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Content_Paragraph">Bei der Kommunikation mit unseren Servern wurde keine Netzwerkanomalie festgestellt.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title">Netzwerkmanipulation</string>
@@ -322,7 +322,7 @@
   <string name="Test_Psiphon_Fullname">Psiphon Test</string>
   <string name="Test_Tor_Fullname">Tor Test</string>
   <string name="Test_RiseupVPN_Fullname">RiseupVPN Test</string>
-  <string name="Test_Signal_Fullname">Signal Test</string>
+  <string name="Test_Signal_Fullname">Signal-Test</string>
   <string name="Settings_Title">Einstellungen</string>
   <string name="Settings_Error_TestDurationTooLow">Die eingestellte Zeit für den Test ist zu kurz.</string>
   <string name="Settings_About_Label">Über OONI</string>
@@ -375,6 +375,7 @@
   <string name="Settings_InstantMessaging_TestWhatsApp">WhatsApp testen</string>
   <string name="Settings_InstantMessaging_TestTelegram">Telegram testen</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">Facebook Messenger testen</string>
+  <string name="Settings_InstantMessaging_TestSignal">Test Signal</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">Führe den HTTP Invalid Request Line Test aus</string>
   <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">Führe den HTTP Header Field Manipulation Test aus</string>
   <string name="Settings_Performance_TestNDT">Führe den NDT-Geschwindigkeitstest aus</string>
@@ -389,7 +390,7 @@
   <string name="Settings_Circumvention_TestTor">Tor Testen</string>
   <string name="Settings_Circumvention_TestRiseupVPN">Teste RiseupVPN</string>
   <string name="Settings_SendEmail_Label">E-Mail an den Support senden</string>
-  <string name="Settings_SendEmail_Message">Please describe the problem you are experiencing:</string>
+  <string name="Settings_SendEmail_Message">Beschreibe bitte das Problem, das bei dir auftritt:</string>
   <string name="Settings_SendEmail_Error">Bitte senden Sie eine E-Mail an bugs@openobservatory.org mit Informationen zur App und iOS-Version. Tippen Sie unten auf \"In Zwischenablage kopieren\", um unsere E-Mail Adresse zu kopieren.</string>
   <string name="Settings_Language_Current">Aktuelle App-Sprache ist %1$s</string>
   <string name="Settings_Language_Label">Sprache</string>

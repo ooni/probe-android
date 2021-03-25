@@ -375,6 +375,7 @@
   <string name="Settings_InstantMessaging_TestWhatsApp">Tes WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Tes Telegram</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">Tes Pesan Facebook</string>
+  <string name="Settings_InstantMessaging_TestSignal">Test Signal</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">Jalankan Tes Baris Permintaan HTTP Invalid</string>
   <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">Jalankan Tes Manipulasi Judul</string>
   <string name="Settings_Performance_TestNDT">Jalankan Tes Kecepatan NDT</string>

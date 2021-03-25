@@ -375,6 +375,7 @@
   <string name="Settings_InstantMessaging_TestWhatsApp">Тестировать WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Тестировать Telegram</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">Тестировать Facebook Messenger</string>
+  <string name="Settings_InstantMessaging_TestSignal">Test Signal</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">Начать тест HTTP Invalid Request Line</string>
   <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">Начать тест HTTP Header Field Manipulation</string>
   <string name="Settings_Performance_TestNDT">Запустить тест скорости NDT</string>

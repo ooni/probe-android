@@ -133,6 +133,10 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.test_facebook_messenger), true);
 	}
 
+	public boolean isTestSignal() {
+		return sp.getBoolean(r.getString(R.string.test_signal), true);
+	}
+
 	public boolean isTestPsiphon() {
 		return sp.getBoolean(r.getString(R.string.test_psiphon), true);
 	}

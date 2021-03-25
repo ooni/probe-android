@@ -375,6 +375,7 @@
   <string name="Settings_InstantMessaging_TestWhatsApp">اختبر واتساب</string>
   <string name="Settings_InstantMessaging_TestTelegram">اختبر تيليجرام</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">اختبر فيسبوك مسنجر</string>
+  <string name="Settings_InstantMessaging_TestSignal">Test Signal</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">تشغيل اختبار عدم صلاحية طلب الHTTP</string>
   <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">تشغيل اختبار التلاعب بخانة رأس صفحة الHTTP</string>
   <string name="Settings_Performance_TestNDT">تشغيل اختبار السرعة NDT</string>

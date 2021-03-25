@@ -30,6 +30,7 @@
 	<string name="test_whatsapp" translatable="false">test_whatsapp</string>
 	<string name="test_telegram" translatable="false">test_telegram</string>
 	<string name="test_facebook_messenger" translatable="false">test_facebook_messenger</string>
+	<string name="test_signal" translatable="false">test_signal</string>
 	<string name="test_psiphon" translatable="false">test_psiphon</string>
 	<string name="test_tor" translatable="false">test_tor</string>
 	<string name="test_riseupvpn" translatable="false">test_riseupvpn</string>
@@ -77,6 +78,7 @@
 	<string name="urlTestTor" translatable="false">https://ooni.org/nettest/tor</string>
 	<string name="urlTestPsi" translatable="false">https://ooni.org/nettest/psiphon</string>
 	<string name="urlTestRvpn" translatable="false">https://ooni.org/nettest/riseupvpn</string>
+	<string name="urlTestSig" translatable="false">https://ooni.org/nettest/signal</string>
 	<string-array name="filterTests" translatable="false">
 		<item>@string/TestResults_Overview_FilterTests_AllTests</item>
 		<item>@string/TestResults_Overview_FilterTests_Websites</item>

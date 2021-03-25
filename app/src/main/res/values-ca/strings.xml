@@ -375,6 +375,7 @@
   <string name="Settings_InstantMessaging_TestWhatsApp">Prova el WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Prova el Telegram</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">Prova el Facebook Messenger</string>
+  <string name="Settings_InstantMessaging_TestSignal">Test Signal</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">Executa la prova «HTTP Invalid Request Line»</string>
   <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">Executa la prova «HTTP Header Field Manipulation»</string>
   <string name="Settings_Performance_TestNDT">Executa la prova de velocitat NDT</string>

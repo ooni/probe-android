@@ -33,6 +33,7 @@ import org.openobservatory.ooniprobe.fragment.measurement.HttpInvalidRequestLine
 import org.openobservatory.ooniprobe.fragment.measurement.NdtFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.PsiphonFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.RiseupVPNFragment;
+import org.openobservatory.ooniprobe.fragment.measurement.SignalFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.TelegramFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.TorFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.WebConnectivityFragment;
@@ -48,6 +49,7 @@ import org.openobservatory.ooniprobe.test.test.HttpInvalidRequestLine;
 import org.openobservatory.ooniprobe.test.test.Ndt;
 import org.openobservatory.ooniprobe.test.test.Psiphon;
 import org.openobservatory.ooniprobe.test.test.RiseupVPN;
+import org.openobservatory.ooniprobe.test.test.Signal;
 import org.openobservatory.ooniprobe.test.test.Telegram;
 import org.openobservatory.ooniprobe.test.test.Tor;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
@@ -118,8 +120,8 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                     break;
                 case FacebookMessenger.NAME:
                     head = HeaderOutcomeFragment.newInstance(iconRes, getString(R.string.bold, getString(measurement.is_anomaly ?
-                            R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed :
-                            R.string.TestResults_Details_InstantMessaging_WhatsApp_Reachable_Hero_Title)));
+                            R.string.TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Hero_Title :
+                            R.string.TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Hero_Title)));
                     detail = FacebookMessengerFragment.newInstance(measurement);
                     break;
                 case HttpHeaderFieldManipulation.NAME:
@@ -140,8 +142,8 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                     break;
                 case Telegram.NAME:
                     head = HeaderOutcomeFragment.newInstance(iconRes, getString(R.string.bold, getString(measurement.is_anomaly ?
-                            R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed :
-                            R.string.TestResults_Details_InstantMessaging_WhatsApp_Reachable_Hero_Title)));
+                            R.string.TestResults_Details_InstantMessaging_Telegram_LikelyBlocked_Hero_Title :
+                            R.string.TestResults_Details_InstantMessaging_Telegram_Reachable_Hero_Title)));
                     detail = TelegramFragment.newInstance(measurement);
                     break;
                 case WebConnectivity.NAME:
@@ -153,9 +155,15 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                     break;
                 case Whatsapp.NAME:
                     head = HeaderOutcomeFragment.newInstance(iconRes, getString(R.string.bold, getString(measurement.is_anomaly ?
-                            R.string.TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed :
+                            R.string.TestResults_Details_InstantMessaging_WhatsApp_LikelyBlocked_Hero_Title :
                             R.string.TestResults_Details_InstantMessaging_WhatsApp_Reachable_Hero_Title)));
                     detail = WhatsappFragment.newInstance(measurement);
+                    break;
+                case Signal.NAME:
+                    head = HeaderOutcomeFragment.newInstance(iconRes, getString(R.string.bold, getString(measurement.is_anomaly ?
+                            R.string.TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Hero_Title :
+                            R.string.TestResults_Details_InstantMessaging_Signal_Reachable_Hero_Title)));
+                    detail = SignalFragment.newInstance(measurement);
                     break;
                 case Psiphon.NAME:
                     head = HeaderOutcomeFragment.newInstance(iconRes, getString(R.string.bold, getString(measurement.is_anomaly ?

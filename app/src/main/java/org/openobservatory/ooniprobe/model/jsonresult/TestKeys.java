@@ -37,6 +37,10 @@ public class TestKeys {
 	public Boolean telegram_tcp_blocking;
 	@SerializedName("telegram_web_status")
 	public String telegram_web_status;
+	@SerializedName("signal_backend_status")
+	public String signal_backend_status;
+	@SerializedName("signal_backend_failure")
+	public String signal_backend_failure;
 	@SerializedName("protocol")
 	public Integer protocol;
 	@SerializedName("simple")

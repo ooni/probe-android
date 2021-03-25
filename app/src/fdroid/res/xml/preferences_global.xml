@@ -232,6 +232,11 @@
 				android:key="@string/test_facebook_messenger"
 				android:title="@string/Settings_InstantMessaging_TestFacebookMessenger"
 				app:iconSpaceReserved="false" />
+			<SwitchPreferenceCompat
+				android:defaultValue="true"
+				android:key="@string/test_signal"
+				android:title="@string/Settings_InstantMessaging_TestSignal"
+				app:iconSpaceReserved="false" />
 		</PreferenceScreen>
 		<PreferenceScreen
 			android:icon="@drawable/settings_circumvention"

@@ -27,6 +27,7 @@ import org.openobservatory.ooniprobe.test.test.HttpInvalidRequestLine;
 import org.openobservatory.ooniprobe.test.test.Ndt;
 import org.openobservatory.ooniprobe.test.test.Psiphon;
 import org.openobservatory.ooniprobe.test.test.RiseupVPN;
+import org.openobservatory.ooniprobe.test.test.Signal;
 import org.openobservatory.ooniprobe.test.test.Telegram;
 import org.openobservatory.ooniprobe.test.test.Tor;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
@@ -237,6 +238,9 @@ public class Measurement extends BaseModel implements Serializable {
 					break;
 				case Whatsapp.NAME:
 					test = new Whatsapp();
+					break;
+				case Signal.NAME:
+					test = new Signal();
 					break;
 				case HttpHeaderFieldManipulation.NAME:
 					test = new HttpHeaderFieldManipulation();
