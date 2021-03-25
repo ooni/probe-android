@@ -375,6 +375,7 @@
   <string name="Settings_InstantMessaging_TestWhatsApp">टेस्ट व्हाट्सएप</string>
   <string name="Settings_InstantMessaging_TestTelegram">टेलीग्राम का परीक्षण करें</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">फेसबुक मैसेंजर का परीक्षण करें</string>
+  <string name="Settings_InstantMessaging_TestSignal">Test Signal</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">HTTP अमान्य अनुरोध रेखा परीक्षण चलाएँ</string>
   <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">HTTP शीर्ष लेख फ़ील्ड हेरफेर परीक्षण चलाएँ</string>
   <string name="Settings_Performance_TestNDT">NDT स्पीड टेस्ट चलाएं</string>

@@ -375,6 +375,7 @@
   <string name="Settings_InstantMessaging_TestWhatsApp">تست واتس‌اپ</string>
   <string name="Settings_InstantMessaging_TestTelegram">تست تلگرام</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">تست پیام‌رسان فیسبوک</string>
+  <string name="Settings_InstantMessaging_TestSignal">Test Signal</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">اجرای تست خط درخواست نامعتبر HTTP</string>
   <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">اجرای تست دستکاری فیلد هدر HTTP</string>
   <string name="Settings_Performance_TestNDT">اجرای تست سرعت NDT</string>

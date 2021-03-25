@@ -375,6 +375,7 @@
   <string name="Settings_InstantMessaging_TestWhatsApp">Testovať WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Testovať Telegram</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">Testovať Facebook Messenger</string>
+  <string name="Settings_InstantMessaging_TestSignal">Test Signal</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">Spustiť HTTP Invalid Request Line Test</string>
   <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">Spustiť HTTP Header Field Manipulation Test</string>
   <string name="Settings_Performance_TestNDT">Spustiť test rýchlosti NDT</string>

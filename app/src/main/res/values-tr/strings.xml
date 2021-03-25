@@ -29,7 +29,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_2">Ağ Bilgileri (Otonom Sistem Numarası İle)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">Sınama tarih ve saati</string>
   <string name="Onboarding_DefaultSettings_Paragraph">IP adresinizi ya da kim olduğunuzu ortaya çıkarabilecek bilgileri yayınlamamak için elimizden geleni yapıyoruz.\n\nAyrıntılı bilgi almak için [OONI Veri İşleme İlkesi](https://ooni.io/about/data-policy/) bölümüne bakabilirsiniz.</string>
-  <string name="Onboarding_DefaultSettings_Paragraph_1">By tapping \"OK\", you will share crash reports to help us improve OONI Probe.</string>
+  <string name="Onboarding_DefaultSettings_Paragraph_1">OONI Probe uygulamasını geliştirmemiz için \"Tamam\" üzerine dokunarak, çökme raporunu bizimle paylaşın.</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Başlayalım</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Varsayılanları değiştir</string>
   <string name="Dashboard_Tab_Label">Pano</string>
@@ -195,9 +195,9 @@
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Hero_Title">Engellenmiş olabilir</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Content_Paragraph">Facebook Messenger engellenmiş gibi görünüyor.</string>
   <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Hero_Title">Engellenmiş olabilir</string>
-  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Content_Paragraph">Signal appears to be blocked.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Content_Paragraph">Signal engellenmiş gibi görünüyor.</string>
   <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Hero_Title">Çalışıyor</string>
-  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Content_Paragraph">This test successfully connected to Signal\'s endpoints.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Content_Paragraph">Bu sınama, Signal uç noktaları ile sorunsuz bağlantı kurdu.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title">Herhangi bir ara kutu algılanmadı</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Content_Paragraph">Sunucularımız ile bağlantı kurulurken herhangi bir ağ anormalliği bulunamadı.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title">Ağ müdahalesi</string>
@@ -375,6 +375,7 @@
   <string name="Settings_InstantMessaging_TestWhatsApp">WhatsApp Sınaması</string>
   <string name="Settings_InstantMessaging_TestTelegram">Telegram Sınaması</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">Facebook Messenger Sınaması</string>
+  <string name="Settings_InstantMessaging_TestSignal">Signal Sınaması</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">HTTP Geçersiz İstek Hattı Sınamasını Yürüt</string>
   <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">HTTP Üst Bilgi Müdahalesi Sınamasını Yürüt</string>
   <string name="Settings_Performance_TestNDT">NDT Hız Testini Yürüt</string>

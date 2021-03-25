@@ -375,6 +375,7 @@
   <string name="Settings_InstantMessaging_TestWhatsApp">Δοκίμασε το WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Δοκίμασε το Telegram</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">Δοκίμασε το Facebook Messenger</string>
+  <string name="Settings_InstantMessaging_TestSignal">Test Signal</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">Εκτέλεσε τη δοκιμή HTTP Invalid Request Line</string>
   <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">Εκτέλεσε τη δοκιμή HTTP Header Field Manipulation</string>
   <string name="Settings_Performance_TestNDT">Εκτέλεσε τη δοκιμή ταχύτητας NDT</string>

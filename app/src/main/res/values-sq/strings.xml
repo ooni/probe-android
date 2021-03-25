@@ -375,6 +375,7 @@
   <string name="Settings_InstantMessaging_TestWhatsApp">Testo WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Testo Telegram</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">Testo Facebook Messenger</string>
+  <string name="Settings_InstantMessaging_TestSignal">Test Signal</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">Kryej testimin HTTP Invalid Request Line </string>
   <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">Kryej testimin  HTTP Header Field Manipulation</string>
   <string name="Settings_Performance_TestNDT">Kryej testimin e shpejtësisë NDT</string>

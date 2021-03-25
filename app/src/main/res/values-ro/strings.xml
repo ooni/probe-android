@@ -375,6 +375,7 @@
   <string name="Settings_InstantMessaging_TestWhatsApp">Testa WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Testare Telegram</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">Testare Facebook Messenger</string>
+  <string name="Settings_InstantMessaging_TestSignal">Test Signal</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">Rulați testul HTTP Invalid Request Line</string>
   <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">Rulați testul HTTP Header Field Manipulation</string>
   <string name="Settings_Performance_TestNDT">Executarea testului de viteză NDT</string>
