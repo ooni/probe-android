@@ -375,7 +375,7 @@
   <string name="Settings_InstantMessaging_TestWhatsApp">Prófa WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Prófa Telegram</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">Prófa Facebook Messenger</string>
-  <string name="Settings_InstantMessaging_TestSignal">Test Signal</string>
+  <string name="Settings_InstantMessaging_TestSignal">Prófa Signal</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">Keyra prófun fyrir línu með ógidri HTTP-beiðni</string>
   <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">Keyra prófun á hvort átt hafi verið við HTTP-haus</string>
   <string name="Settings_Performance_TestNDT">Keyra NDT-hraðaprófun</string>

@@ -375,7 +375,7 @@
   <string name="Settings_InstantMessaging_TestWhatsApp">WhatsApp Sınaması</string>
   <string name="Settings_InstantMessaging_TestTelegram">Telegram Sınaması</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">Facebook Messenger Sınaması</string>
-  <string name="Settings_InstantMessaging_TestSignal">Test Signal</string>
+  <string name="Settings_InstantMessaging_TestSignal">Signal Sınaması</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">HTTP Geçersiz İstek Hattı Sınamasını Yürüt</string>
   <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">HTTP Üst Bilgi Müdahalesi Sınamasını Yürüt</string>
   <string name="Settings_Performance_TestNDT">NDT Hız Testini Yürüt</string>
