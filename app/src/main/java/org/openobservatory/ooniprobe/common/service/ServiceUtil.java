@@ -83,6 +83,8 @@ public class ServiceUtil {
                 AbstractSuite suite = AbstractSuite.getSuite(app, "web_connectivity",
                         inputs,"autorun");
                 if (suite != null) {
+                    app.getPreferenceManager().setAutorunDate();
+                    app.getPreferenceManager().incrementAppOpenCount();
                     Intent serviceIntent = new Intent(app, RunTestService.class);
                     serviceIntent.putExtra("testSuites", suite.asArray());
                     ContextCompat.startForegroundService(app, serviceIntent);

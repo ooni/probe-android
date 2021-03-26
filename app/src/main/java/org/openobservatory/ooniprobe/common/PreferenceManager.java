@@ -5,8 +5,6 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.text.TextUtils;
 
-import androidx.appcompat.app.AppCompatDelegate;
-
 import org.openobservatory.engine.Engine;
 import org.openobservatory.ooniprobe.R;
 
@@ -24,6 +22,8 @@ public class PreferenceManager {
 	public static final Integer DELETE_JSON_DELAY = 86400000;
 	private static final String DELETE_JSON_KEY = "deleteUploadedJsons";
 	private static final String UUID4 = "uuid4";
+	public static final String AUTORUN_COUNT = "autorun_count";
+	public static final String AUTORUN_DATE = "autorun_last_date";
 
 	private final SharedPreferences sp;
 	private final Resources r;
@@ -245,6 +245,18 @@ public class PreferenceManager {
 
 	public boolean testChargingOnly() {
 		return sp.getBoolean(r.getString(R.string.automated_testing_charging), true);
+	}
+
+	public void incrementAutorun(){
+		sp.edit().putLong(AUTORUN_COUNT, getAutorun()+1);
+	}
+
+	public long getAutorun(){
+		return sp.getLong(AUTORUN_COUNT, 0);
+	}
+
+	public void setAutorunDate(){
+		sp.edit().putLong(AUTORUN_DATE, System.currentTimeMillis()/1000);
 	}
 
 }
