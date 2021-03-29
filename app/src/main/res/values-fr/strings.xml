@@ -28,8 +28,8 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">Le code de pays (p. ex. IT pour Italie)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">Des renseignements sur le réseau (dont le numéro de système autonome)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">L’estampille temporelle du test</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">Nous faisons de notre mieux pour ne pas publier votre adresse IP ni aucun autre renseignement qui pourrait vous identifier.\n\nApprenez-en davantage dans la [Politique sur les données de l’OONI](https://ooni.io/about/data-policy/) (page en anglais).</string>
-  <string name="Onboarding_DefaultSettings_Paragraph_1">By tapping \"OK\", you will share crash reports to help us improve OONI Probe.</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">Nous faisons de notre mieux pour ne publier ni votre adresse IP ni aucun autre renseignement qui pourrait vous identifier.\n\nApprenez-en davantage dans la [Politique sur les données de l’OONI](https://ooni.io/about/data-policy/) (page en anglais).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph_1">En touchant « Valider », vous partagerez les rapports de plantage afin de nous aider à améliorer OONI Probe.</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Allons-y</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Modifier les paramètres</string>
   <string name="Dashboard_Tab_Label">Tableau de bord</string>
@@ -59,7 +59,7 @@
   <string name="Dashboard_Middleboxes_Card_Description">Détectez les boîtiers intermédiaires dans votre réseau</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">Les fournisseurs d’accès à Internet utilisent souvent des appareils réseau (des boîtiers intermédiaires) pour diverses tâches propres au réseau (telles que la mise en cache). Ces boîtiers intermédiaires sont parfois utilisés pour censurer ou surveiller Internet.\n\nTrouvez des boîtiers intermédiaires dans votre réseau grâce aux tests de l’OONI [HTTP Ligne de requête invalide](https://ooni.io/nettest/http-invalid-request-line/) et [HTTP Manipulation du champ d’en-tête](https://ooni.io/nettest/http-header-field-manipulation/) (pages en anglais).\n\nVos résultats seront publiés dans l’[explorateur OONI](https://explorer.ooni.io/world/) et l’[API OONI](https://api.ooni.io/) (pages en anglais).</string>
   <string name="Dashboard_InstantMessaging_Card_Description">Testez le blocage des applis de messagerie instantanée</string>
-  <string name="Dashboard_InstantMessaging_Overview_Paragraph">Vérifiez si [WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) et [Telegram](https://ooni.io/nettest/telegram/) sont bloqués (pages en anglais).\n\nVos résultats seront publiés dans l’[explorateur OONI](https://explorer.ooni.io/world/) et l’[API OONI](https://api.ooni.io/) (pages en anglais).</string>
+  <string name="Dashboard_InstantMessaging_Overview_Paragraph">Check whether [WhatsApp](https://ooni.org/nettest/whatsapp/), [Facebook Messenger](https://ooni.org/nettest/facebook-messenger/), [Telegram](https://ooni.org/nettest/telegram/), and [Signal](https://ooni.org/nettest/signal) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.io/world/) and [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Circumvention_Card_Description">Testez le blocage des outils de contournement de la censure</string>
   <string name="Dashboard_Circumvention_Overview_Paragraph">Vérifiez si [Psiphon](https://ooni.io/nettest/psiphon/), [Tor](https://ooni.io/nettest/tor/) ou [RiseupVPN](https://ooni.io/nettest/riseupvpn/) sont bloqués (pages en anglais).\n\nVos résultats seront publiés dans l’[explorateur OONI](https://explorer.ooni.org/) et l’[API OONI](https://api.ooni.io/) (pages en anglais).</string>
   <string name="TestResults_Gbps">Gbit/s</string>
@@ -195,9 +195,9 @@
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Hero_Title">Probablement bloqué</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Content_Paragraph">Facebook Messenger semble être bloqué.</string>
   <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Hero_Title">Probablement bloqué</string>
-  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Content_Paragraph">Signal appears to be blocked.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Content_Paragraph">Signal semble être bloquée.</string>
   <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Hero_Title">Fonctionne</string>
-  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Content_Paragraph">This test successfully connected to Signal\'s endpoints.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Content_Paragraph">Ce test s’est connecté avec succès aux extrémités de Signal.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title">Aucun boîtier intermédiaire n’a été détecté</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Content_Paragraph">Aucune anomalie réseau n’a été détectée lors de la communication avec nos serveurs.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title">Manipulation du réseau</string>
@@ -263,6 +263,7 @@
   <string name="Modal_NoThanks">Non, merci</string>
   <string name="Modal_Error_NoInternet">Impossible d’effectuer le test. Veuillez vérifier votre connexion à Internet.</string>
   <string name="Modal_Error_CantDownloadURLs">Impossible de télécharger la liste des URL. Veuillez réessayer.</string>
+  <string name="Modal_Error_TestAlreadyRunning">Please wait for the automated tests to finish running, before starting a new test.</string>
   <string name="Modal_Error_NotificationNotEnabled">Les autorisations de notification sont nécessaires. Veuillez les activer dans les paramètres de votre téléphone, puis les activer dans votre appli OONI Probe.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Aller dans les Paramètres</string>
   <string name="Modal_Error_CantCloseScreen">Cet écran est verrouillé pendant qu’un test est en cours.</string>
@@ -322,7 +323,7 @@
   <string name="Test_Psiphon_Fullname">Test de Psiphon</string>
   <string name="Test_Tor_Fullname">Test de Tor</string>
   <string name="Test_RiseupVPN_Fullname">Test de RiseupVPN</string>
-  <string name="Test_Signal_Fullname">Signal Test</string>
+  <string name="Test_Signal_Fullname">Test de Signal</string>
   <string name="Settings_Title">Paramètres</string>
   <string name="Settings_Error_TestDurationTooLow">La durée de test que vous avez définie est trop courte.</string>
   <string name="Settings_About_Label">À propos de l’OONI</string>
@@ -335,9 +336,11 @@
   <string name="Settings_Notifications_OnNews">Fil d’actualité</string>
   <string name="Settings_AutomatedTesting_Label">Test automatisé</string>
   <string name="Settings_AutomatedTesting_RunAutomatically">Lancer les tests automatiquement</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Number">Number of automated tests run: %1$s.</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">Last automated test: %1$s.</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">N’effectuer des tests que si connecté au Wi-Fi</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">N’effectuer des tests que pendant la charge</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">En activant les tests automatiques, les tests d’OONI Probe auront lieu automatiquement et périodiquement (et vous n’aurez pas à vous rappeler d’effectuer des tests manuellement).</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Test results will automatically get published on OONI Explorer: https://explorer.ooni.org/</string>
   <string name="Settings_Sharing_Label">Partage</string>
   <string name="Settings_Sharing_UploadResults">Publier automatiquement les résultats</string>
   <string name="Settings_Sharing_UploadResultsManually">Téléversement manuel des résultats</string>
@@ -375,6 +378,7 @@
   <string name="Settings_InstantMessaging_TestWhatsApp">Tester WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Tester Telegram</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">Tester Facebook Messenger</string>
+  <string name="Settings_InstantMessaging_TestSignal">Tester Signal</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">Exécutez le test HTTP Ligne de requête invalide</string>
   <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">Exécutez le test HTTP Manipulation du champ d’en-tête</string>
   <string name="Settings_Performance_TestNDT">Exécutez le test de vitesse NDT</string>
@@ -389,7 +393,7 @@
   <string name="Settings_Circumvention_TestTor">Test de Tor</string>
   <string name="Settings_Circumvention_TestRiseupVPN">Tester RiseupVPN</string>
   <string name="Settings_SendEmail_Label">Envoyer un courriel à l’assistance</string>
-  <string name="Settings_SendEmail_Message">Please describe the problem you are experiencing:</string>
+  <string name="Settings_SendEmail_Message">Veuillez décrire le problème que vous rencontrez :</string>
   <string name="Settings_SendEmail_Error">Veuillez envoyer un courriel à bugs@openobservatory.org avec des renseignements sur la version de l’appli et d’iOS. Touchez « Copier dans le presse-papiers » ci-dessous pour copier votre adresse courriel.</string>
   <string name="Settings_Language_Current">La langue actuelle de l’appli est %1$s</string>
   <string name="Settings_Language_Label">Langue</string>

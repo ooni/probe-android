@@ -59,7 +59,7 @@
   <string name="Dashboard_Middleboxes_Card_Description">شناسایی middlebox در شبکه شما</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">سرویس‌دهنده‌های اینترنت اغلب از (middlebox) های شبکه برای اهداف مختلف (مانند گرفتن کش) استفاده می‌کنند. گاهی اوقات این middleboxها برای سانسور و/یا نظارت بر اینترنت استفاده می‌شوند.\n\nبا استفاده از تست‌های [خط درخواست نامعتبر HTTP](https://ooni.io/nettest/http-invalid-request-line/) و [دستکاری فیلد هدر HTTP](https://ooni.io/nettest/http-header-field-manipulation/) می‌توانید middleboxها در شبکه‌ی خود را بیابید.\n\nنتایج شما بر روی [OONI Explorer](https://explorer.ooni.io/world/) و [OONI API](https://api.ooni.io/) منتشر می‌شود.</string>
   <string name="Dashboard_InstantMessaging_Card_Description">تست مسدودیت پیام‌رسان‌ها</string>
-  <string name="Dashboard_InstantMessaging_Overview_Paragraph">مسدود بودن [واتس‌اپ](https://ooni.io/nettest/whatsapp/)، [پیام‌رسان فیسبوک](https://ooni.io/nettest/facebook-messenger/) و [تلگرام](https://ooni.io/nettest/telegram/) را بررسی کنید.\n\nنتایج شما بر روی [OONI Explorer](https://explorer.ooni.io/world/) و [OONI API](https://api.ooni.io/) منتشر می‌شود.</string>
+  <string name="Dashboard_InstantMessaging_Overview_Paragraph">Check whether [WhatsApp](https://ooni.org/nettest/whatsapp/), [Facebook Messenger](https://ooni.org/nettest/facebook-messenger/), [Telegram](https://ooni.org/nettest/telegram/), and [Signal](https://ooni.org/nettest/signal) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.io/world/) and [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Circumvention_Card_Description">مسدود بودن ابزارهای دور زدن سانسور را بیازمایید</string>
   <string name="Dashboard_Circumvention_Overview_Paragraph">بررسی کنید که آیا [Psiphon](https://ooni.io/nettest/psiphon/)،  [Tor](https://ooni.io/nettest/tor/) و یا [RiseupVPN](https://ooni.io/nettest/riseupvpn/) مسدود هستند.\n\nنتایج شما در [OONI Explorer](https://explorer.ooni.org/) و [OONI API](https://api.ooni.io/) منتشر خواهد شد.</string>
   <string name="TestResults_Gbps">گیگابیت بر ثانیه</string>
@@ -263,6 +263,7 @@
   <string name="Modal_NoThanks">نه، ممنون</string>
   <string name="Modal_Error_NoInternet">اجرای تست امکان‌پذیر نبود. لطفا ارتباط اینترنت خود را چک کنید.</string>
   <string name="Modal_Error_CantDownloadURLs">بارگیری لیست آدرس اینترنتی امکان‌پذیر نبود. لطفا  دوباره تلاش کنید.</string>
+  <string name="Modal_Error_TestAlreadyRunning">Please wait for the automated tests to finish running, before starting a new test.</string>
   <string name="Modal_Error_NotificationNotEnabled">اجازه‌ی اعلان ضروری است. لطفا در تنظیمات تلفن خود و سپس در اپ OONIProbe آن را فعال کنید.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">به تنظیمات بروید</string>
   <string name="Modal_Error_CantCloseScreen">این صفحه در زمان اجرای تست قفل است.</string>
@@ -335,9 +336,11 @@
   <string name="Settings_Notifications_OnNews">خوراک خبری</string>
   <string name="Settings_AutomatedTesting_Label">آزمایش خودکار</string>
   <string name="Settings_AutomatedTesting_RunAutomatically">اجرای خودکار آزمایش‌ها</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Number">Number of automated tests run: %1$s.</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">Last automated test: %1$s.</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">اجرای آزمون فقط هنگام اتصال به WiFi</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">اجرای آزمون فقط در هنگام شارژ</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">با فعالسازی آزمون خودکار، آزمون‌های OONI Probe به صورت خودکار و در بازه‌های مشخص انجام خواهند شد (و شما نیاز به خاطر سپردن انجام آزمون نیستید).</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Test results will automatically get published on OONI Explorer: https://explorer.ooni.org/</string>
   <string name="Settings_Sharing_Label">به اشتراک گذاری</string>
   <string name="Settings_Sharing_UploadResults">انتشار خودکار نتایج</string>
   <string name="Settings_Sharing_UploadResultsManually">بارگذاری دستی نتایج</string>
@@ -375,6 +378,7 @@
   <string name="Settings_InstantMessaging_TestWhatsApp">تست واتس‌اپ</string>
   <string name="Settings_InstantMessaging_TestTelegram">تست تلگرام</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">تست پیام‌رسان فیسبوک</string>
+  <string name="Settings_InstantMessaging_TestSignal">Test Signal</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">اجرای تست خط درخواست نامعتبر HTTP</string>
   <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">اجرای تست دستکاری فیلد هدر HTTP</string>
   <string name="Settings_Performance_TestNDT">اجرای تست سرعت NDT</string>

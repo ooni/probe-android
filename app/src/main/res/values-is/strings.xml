@@ -29,7 +29,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_2">Upplýsingar um netkerfið (þar með talið Autonomous System Number)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">Tími og dagsetning prófunar</string>
   <string name="Onboarding_DefaultSettings_Paragraph">Við gerum okkar besta til að birta ekki IP-vistfangið þitt eða aðrar mögulega persónugreinanlegar upplýsingar.\n\nÍtarlegri upplýsingar eru í [gagnaleyndarstefnu OONI](https://ooni.io/about/data-policy/).</string>
-  <string name="Onboarding_DefaultSettings_Paragraph_1">By tapping \"OK\", you will share crash reports to help us improve OONI Probe.</string>
+  <string name="Onboarding_DefaultSettings_Paragraph_1">Með því að ýta á \"Í lagi\" muntu deila hrunskýrslum til að hjálpa okkur við að bæta OONI Probe.</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Hefjumst handa</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Breyta sjálfgefnum gildum</string>
   <string name="Dashboard_Tab_Label">Stjórnborð</string>
@@ -59,7 +59,7 @@
   <string name="Dashboard_Middleboxes_Card_Description">Leita að millitölvum á netinu þínu</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">Internetþjónustur (ISP - Internet Service Providers) nota oft allskyns nettæki (millitölvur) fyrir ýmislegt sem tengist rekstri netkerfa (eins og t.d. biðminni - caching). Sometimes these middleboxes are used to implement internet censorship and/or surveillance.\n\nFinndu millitölvur í netkerfinu með [prófun fyrir línu með ógidri HTTP-beiðni](https://ooni.io/nettest/http-invalid-request-line/) og [prófun á hvort átt hafi verið við HTTP-haus](https://ooni.io/nettest/http-header-field-manipulation/) frá OONI.\n\nNiðurstöðurnar þínar verða birtar í [OONI Explorer](https://explorer.ooni.org/) og [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_InstantMessaging_Card_Description">Prófa hindranir fyrir skilaboðaforrit</string>
-  <string name="Dashboard_InstantMessaging_Overview_Paragraph">Athugaðu hvort [WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) og [Telegram](https://ooni.io/nettest/telegram/) verði fyrir hindrunum.\n\nNiðurstöðurnar þínar verða birtar í [OONI Explorer](https://explorer.ooni.org/) og [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_InstantMessaging_Overview_Paragraph">Check whether [WhatsApp](https://ooni.org/nettest/whatsapp/), [Facebook Messenger](https://ooni.org/nettest/facebook-messenger/), [Telegram](https://ooni.org/nettest/telegram/), and [Signal](https://ooni.org/nettest/signal) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.io/world/) and [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Circumvention_Card_Description">Prófa hindranir fyrir leiðir framhjá ritskoðun</string>
   <string name="Dashboard_Circumvention_Overview_Paragraph">Athugaðu hvort [Psiphon](https://ooni.io/nettest/psiphon/), [Tor](https://ooni.io/nettest/tor/) eða [RiseupVPN](https://ooni.io/nettest/riseupvpn/) verði fyrir hindrunum.\n\nNiðurstöðurnar þínar verða birtar í [OONI Explorer](https://explorer.ooni.org/) og [OONI API](https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">Gbit/s</string>
@@ -195,9 +195,9 @@
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Hero_Title">Líklega hindrað</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Content_Paragraph">Það lítur út fyrir að Facebook Messenger sé hindrað.</string>
   <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Hero_Title">Líklega hindrað</string>
-  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Content_Paragraph">Signal appears to be blocked.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Content_Paragraph">Það lítur út fyrir að Signal sé hindrað.</string>
   <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Hero_Title">Í vinnslu</string>
-  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Content_Paragraph">This test successfully connected to Signal\'s endpoints.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Content_Paragraph">Þessari prófun tókst að tengjast endapunktum Signal.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title">Engar millitölvur fundust</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Content_Paragraph">Engin óeðlileg netvirkni fannst þegar haft var samband við netþjóna okkar.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title">Fiktað við netkerfi (tampering)</string>
@@ -263,6 +263,7 @@
   <string name="Modal_NoThanks">Nei takk</string>
   <string name="Modal_Error_NoInternet">Ekki er hægt að keyra prófunina. Athugaðu nettenginguna þína.</string>
   <string name="Modal_Error_CantDownloadURLs">Get ekki sótt lista yfir slóðir. Reyndu aftur.</string>
+  <string name="Modal_Error_TestAlreadyRunning">Please wait for the automated tests to finish running, before starting a new test.</string>
   <string name="Modal_Error_NotificationNotEnabled">Heimildir til að birta tilkynningar eru nauðsynlegar. Virkjaðu þær í stillingum símans og síðan aftur í OONI Probe forritinu.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Fara í stillingar</string>
   <string name="Modal_Error_CantCloseScreen">Þessi skjár er læstur á meðan prófun er keyrð.</string>
@@ -335,9 +336,11 @@
   <string name="Settings_Notifications_OnNews">Fréttastreymi</string>
   <string name="Settings_AutomatedTesting_Label">Sjálfvirkar prófanir</string>
   <string name="Settings_AutomatedTesting_RunAutomatically">Keyra prófanir sjálfvirkt</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Number">Number of automated tests run: %1$s.</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">Last automated test: %1$s.</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Aðeins keyra prófanir á WiFi</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Aðeins keyra prófanir þegar verið er í hleðslu</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">Með því að virkja sjálfvirkar prófanir, verða prófanir OONI Probe keyrðar sjálfvirkt með reglubundnum hætti (og þú þarft þá ekki að muna eftir að setja þær í gang).</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Test results will automatically get published on OONI Explorer: https://explorer.ooni.org/</string>
   <string name="Settings_Sharing_Label">Deiling</string>
   <string name="Settings_Sharing_UploadResults">Sjálfvirk birting niðurstaðna</string>
   <string name="Settings_Sharing_UploadResultsManually">Handvirk innsending niðurstaðna</string>
@@ -375,6 +378,7 @@
   <string name="Settings_InstantMessaging_TestWhatsApp">Prófa WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Prófa Telegram</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">Prófa Facebook Messenger</string>
+  <string name="Settings_InstantMessaging_TestSignal">Prófa Signal</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">Keyra prófun fyrir línu með ógidri HTTP-beiðni</string>
   <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">Keyra prófun á hvort átt hafi verið við HTTP-haus</string>
   <string name="Settings_Performance_TestNDT">Keyra NDT-hraðaprófun</string>

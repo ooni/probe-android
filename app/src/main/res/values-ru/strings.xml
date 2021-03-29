@@ -59,7 +59,7 @@
   <string name="Dashboard_Middleboxes_Card_Description">Определять устройства middlebox в вашей сети</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">Провайдеры интернета часто используют сетевые устройства middlebox в решении различных сетевых задач (например, для кеширования). Бывает, что такие устройства применяются ради интернет-цензуры и/или слежки за пользователями.\n\nА у вас в сети есть устройства middlebox? OONI поможет ответить на этот вопрос с помощью теста [HTTP Invalid Request Line](https://ooni.io/nettest/http-invalid-request-line/) и теста [HTTP Header Field Manipulation](https://ooni.io/nettest/http-header-field-manipulation/).\n\nВаши результаты будут доступны на [OONI Explorer](https://explorer.ooni.io/world/) и [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_InstantMessaging_Card_Description">Определение блокировок мессенджеров</string>
-  <string name="Dashboard_InstantMessaging_Overview_Paragraph">Узнайте, заблокированы ли [WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) и [Telegram](https://ooni.io/nettest/telegram/).\n\nРезультаты будут опубликованы в [OONI Explorer](https://explorer.ooni.io/world/) и [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_InstantMessaging_Overview_Paragraph">Check whether [WhatsApp](https://ooni.org/nettest/whatsapp/), [Facebook Messenger](https://ooni.org/nettest/facebook-messenger/), [Telegram](https://ooni.org/nettest/telegram/), and [Signal](https://ooni.org/nettest/signal) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.io/world/) and [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Circumvention_Card_Description">Протестируйте блокировку инструментов обхода цензуры</string>
   <string name="Dashboard_Circumvention_Overview_Paragraph">Check whether [Psiphon](https://ooni.io/nettest/psiphon/), [Tor](https://ooni.io/nettest/tor/) or [RiseupVPN](https://ooni.io/nettest/riseupvpn/) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">Гбит/с</string>
@@ -263,6 +263,7 @@
   <string name="Modal_NoThanks">Нет, спасибо</string>
   <string name="Modal_Error_NoInternet">Ошибка теста. Пожалуйста, проверьте подключение к интернету.</string>
   <string name="Modal_Error_CantDownloadURLs">Ошибка скачивания списка адресов. Пожалуйста, попробуйте снова.</string>
+  <string name="Modal_Error_TestAlreadyRunning">Please wait for the automated tests to finish running, before starting a new test.</string>
   <string name="Modal_Error_NotificationNotEnabled">Нужно разрешить уведомления. Пожалуйста, включите их в настройках телефона, а затем в приложении OONI Probe.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Зайдите в настройки</string>
   <string name="Modal_Error_CantCloseScreen">На время теста этот экран заблокирован.</string>
@@ -335,9 +336,11 @@
   <string name="Settings_Notifications_OnNews">Новостная лента</string>
   <string name="Settings_AutomatedTesting_Label">Автоматическое тестирование</string>
   <string name="Settings_AutomatedTesting_RunAutomatically">Запускать тесты автоматически</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Number">Number of automated tests run: %1$s.</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">Last automated test: %1$s.</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Run tests only on WiFi</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Run tests only while charging</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically on a regular basis (and you don’t need to remember to manually run tests).</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Test results will automatically get published on OONI Explorer: https://explorer.ooni.org/</string>
   <string name="Settings_Sharing_Label">Обмен</string>
   <string name="Settings_Sharing_UploadResults">Автоматически публиковать результаты</string>
   <string name="Settings_Sharing_UploadResultsManually">Загрузка результата вручную</string>
@@ -375,6 +378,7 @@
   <string name="Settings_InstantMessaging_TestWhatsApp">Тестировать WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Тестировать Telegram</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">Тестировать Facebook Messenger</string>
+  <string name="Settings_InstantMessaging_TestSignal">Test Signal</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">Начать тест HTTP Invalid Request Line</string>
   <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">Начать тест HTTP Header Field Manipulation</string>
   <string name="Settings_Performance_TestNDT">Запустить тест скорости NDT</string>

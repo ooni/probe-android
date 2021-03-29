@@ -59,7 +59,7 @@
   <string name="Dashboard_Middleboxes_Card_Description">ตรวจพบการโจมตีระหว่างกลางในเครือข่ายของคุณ</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">ผู้ให้บริการอินเทอร์เน็ตมักใช้อุปกรณ์เครือข่าย (middlebox หรือ \"การโจมตีระหว่างกลาง\") เพื่อประโยชน์ทางเครือข่ายต่างๆ (เช่น ให้บริการแคช) การโจมตีระหว่างกลางถูกใช้เพื่อการปิดกั้นอินเทอร์เน็ตและ/หรือการสอดส่อง\n\nค้นหาการโจมตีระหว่างกลาง ในเครือข่ายของคุณด้วยการทดสอบ [HTTP Invalid Request Line](https://ooni.io/nettest/http-invalid-request-line/) และ [HTTP Header Field Manipulation](https://ooni.io/nettest/http-header-field-manipulation/) ของ OONI\n\nผลลัพธ์ของคุณจะถูกเผยแพร่บน [การสำรวจOONI](https://explorer.ooni.org/) และ [OONI เอพีไอ](https://api.ooni.io/)</string>
   <string name="Dashboard_InstantMessaging_Card_Description">ทดสอบการปิดกั้นบริการสนทนาด่วนทันใจ</string>
-  <string name="Dashboard_InstantMessaging_Overview_Paragraph">ตรวจสอบว่า [วอทเเอพ](https://ooni.io/nettest/whatsapp/), [เฟสบุ๊คเเมสเซนเจอร์](https://ooni.io/nettest/facebook-messenger/) และ [เทเลเเกรม](https://ooni.io/nettest/telegram/) ถูกปิดกั้นหรือไม่ผลลัพธ์ของคุณจะถูกเผยแพร่บน [การสำรวจOONI](https://explorer.ooni.org/) และ [OONI เอพีไอ](https://api.ooni.io/)</string>
+  <string name="Dashboard_InstantMessaging_Overview_Paragraph">Check whether [WhatsApp](https://ooni.org/nettest/whatsapp/), [Facebook Messenger](https://ooni.org/nettest/facebook-messenger/), [Telegram](https://ooni.org/nettest/telegram/), and [Signal](https://ooni.org/nettest/signal) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.io/world/) and [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Circumvention_Card_Description">ทดสอบเครื่องมือการหลบเลี่ยงเเละหลีกเลี่ยงการปิดกั้นเเละการตรวจสอบเนื้อหา</string>
   <string name="Dashboard_Circumvention_Overview_Paragraph">กำลังตรวจสอบ [ไซฟอน](https://ooni.io/nettest/psiphon/), [ทอร์](https://ooni.io/nettest/tor/) หรือ [ไรซ์อัพวีพีเอ็น](https://ooni.io/nettest/riseupvpn/) ถูกบล็อคหรือไม่.ผลการทดสอบของคุณจะถูกเผยเเพร่บน [การสำรวจOONI] (https://explorer.ooni.org/) เเละ [OONI เอพีไอ](https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">จิกะบิตต่อวินาที</string>
@@ -263,6 +263,7 @@
   <string name="Modal_NoThanks">ไม่, ขอบคุณ</string>
   <string name="Modal_Error_NoInternet">ไม่สามารถทำการทดสอบได้ กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ</string>
   <string name="Modal_Error_CantDownloadURLs">ไม่สามารถดาวน์โหลดรายการที่อยู่เว็บได้ กรุณาลองอีกครั้ง</string>
+  <string name="Modal_Error_TestAlreadyRunning">Please wait for the automated tests to finish running, before starting a new test.</string>
   <string name="Modal_Error_NotificationNotEnabled">จำเป็นต้องอนุญาตให้เข้าถึงการแจ้งเตือน กรุณาเปิดใช้งานในการตั้งค่าของโทรศัพท์ของคุณ และเปิดใช้งานในแอพพลิเคชั่น OONI Probe ของคุณ</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">ไปที่การตั้งค่า</string>
   <string name="Modal_Error_CantCloseScreen">หน้าจอนี้จะถูกล็อกระหว่างการทดสอบกำลังทำงาน</string>
@@ -335,9 +336,11 @@
   <string name="Settings_Notifications_OnNews">ฟีดข่าว</string>
   <string name="Settings_AutomatedTesting_Label">การทดสอบอัตโนมัติ</string>
   <string name="Settings_AutomatedTesting_RunAutomatically">เริ่มทดสอบอัตโนมัติ</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Number">Number of automated tests run: %1$s.</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">Last automated test: %1$s.</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">ทำการทดสอบเฉพาะบนเครือข่ายWiFiเท่านั้น</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">ทำการทดสอบเมื่อเสียบสายชาร์จเท่านั้น</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">เมื่อเปิดการใช้งานทดสอบอัตโนมัติ, OONI Probe จะทำการทดสอบอัตโนมัติเป็นปกติ (เเละคุณไม่จำเป็นต้องจำว่าต้องทำการทดสอบด้วยตนเอง)</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Test results will automatically get published on OONI Explorer: https://explorer.ooni.org/</string>
   <string name="Settings_Sharing_Label">เเบ่งปัน</string>
   <string name="Settings_Sharing_UploadResults">เผยแพร่ผลโดยอัตโนมัติ</string>
   <string name="Settings_Sharing_UploadResultsManually">อัปโหลดผลด้วยตัวเอง</string>
@@ -375,6 +378,7 @@
   <string name="Settings_InstantMessaging_TestWhatsApp">ทดสอบวอทเเอพ</string>
   <string name="Settings_InstantMessaging_TestTelegram">ทดสอบเทเลเเกรม</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">ทดสอบเฟสบุ๊คเเมนเซนเจอร์</string>
+  <string name="Settings_InstantMessaging_TestSignal">Test Signal</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">ทดสอบ HTTP Invalid Request Line</string>
   <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">ทดสอบ HTTP Header Field Manipulation</string>
   <string name="Settings_Performance_TestNDT">เริ่มทดสอบความเร็ว เอ็นดีที</string>
