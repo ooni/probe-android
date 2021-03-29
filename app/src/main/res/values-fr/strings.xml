@@ -59,7 +59,7 @@
   <string name="Dashboard_Middleboxes_Card_Description">Détectez les boîtiers intermédiaires dans votre réseau</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">Les fournisseurs d’accès à Internet utilisent souvent des appareils réseau (des boîtiers intermédiaires) pour diverses tâches propres au réseau (telles que la mise en cache). Ces boîtiers intermédiaires sont parfois utilisés pour censurer ou surveiller Internet.\n\nTrouvez des boîtiers intermédiaires dans votre réseau grâce aux tests de l’OONI [HTTP Ligne de requête invalide](https://ooni.io/nettest/http-invalid-request-line/) et [HTTP Manipulation du champ d’en-tête](https://ooni.io/nettest/http-header-field-manipulation/) (pages en anglais).\n\nVos résultats seront publiés dans l’[explorateur OONI](https://explorer.ooni.io/world/) et l’[API OONI](https://api.ooni.io/) (pages en anglais).</string>
   <string name="Dashboard_InstantMessaging_Card_Description">Testez le blocage des applis de messagerie instantanée</string>
-  <string name="Dashboard_InstantMessaging_Overview_Paragraph">Vérifiez si [WhatsApp](https://ooni.io/nettest/whatsapp/), [Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) et [Telegram](https://ooni.io/nettest/telegram/) sont bloqués (pages en anglais).\n\nVos résultats seront publiés dans l’[explorateur OONI](https://explorer.ooni.io/world/) et l’[API OONI](https://api.ooni.io/) (pages en anglais).</string>
+  <string name="Dashboard_InstantMessaging_Overview_Paragraph">Check whether [WhatsApp](https://ooni.org/nettest/whatsapp/), [Facebook Messenger](https://ooni.org/nettest/facebook-messenger/), [Telegram](https://ooni.org/nettest/telegram/), and [Signal](https://ooni.org/nettest/signal) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.io/world/) and [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Circumvention_Card_Description">Testez le blocage des outils de contournement de la censure</string>
   <string name="Dashboard_Circumvention_Overview_Paragraph">Vérifiez si [Psiphon](https://ooni.io/nettest/psiphon/), [Tor](https://ooni.io/nettest/tor/) ou [RiseupVPN](https://ooni.io/nettest/riseupvpn/) sont bloqués (pages en anglais).\n\nVos résultats seront publiés dans l’[explorateur OONI](https://explorer.ooni.org/) et l’[API OONI](https://api.ooni.io/) (pages en anglais).</string>
   <string name="TestResults_Gbps">Gbit/s</string>
@@ -263,6 +263,7 @@
   <string name="Modal_NoThanks">Non, merci</string>
   <string name="Modal_Error_NoInternet">Impossible d’effectuer le test. Veuillez vérifier votre connexion à Internet.</string>
   <string name="Modal_Error_CantDownloadURLs">Impossible de télécharger la liste des URL. Veuillez réessayer.</string>
+  <string name="Modal_Error_TestAlreadyRunning">Please wait for the automated tests to finish running, before starting a new test.</string>
   <string name="Modal_Error_NotificationNotEnabled">Les autorisations de notification sont nécessaires. Veuillez les activer dans les paramètres de votre téléphone, puis les activer dans votre appli OONI Probe.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Aller dans les Paramètres</string>
   <string name="Modal_Error_CantCloseScreen">Cet écran est verrouillé pendant qu’un test est en cours.</string>
@@ -335,9 +336,11 @@
   <string name="Settings_Notifications_OnNews">Fil d’actualité</string>
   <string name="Settings_AutomatedTesting_Label">Test automatisé</string>
   <string name="Settings_AutomatedTesting_RunAutomatically">Lancer les tests automatiquement</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Number">Number of automated tests run: %1$s.</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">Last automated test: %1$s.</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">N’effectuer des tests que si connecté au Wi-Fi</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">N’effectuer des tests que pendant la charge</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">En activant les tests automatiques, les tests d’OONI Probe auront lieu automatiquement et périodiquement (et vous n’aurez pas à vous rappeler d’effectuer des tests manuellement).</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Test results will automatically get published on OONI Explorer: https://explorer.ooni.org/</string>
   <string name="Settings_Sharing_Label">Partage</string>
   <string name="Settings_Sharing_UploadResults">Publier automatiquement les résultats</string>
   <string name="Settings_Sharing_UploadResultsManually">Téléversement manuel des résultats</string>

@@ -59,7 +59,7 @@
   <string name="Dashboard_Middleboxes_Card_Description">检测您网络中的 Middlebox</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">因特网服务提供商（ISP）通常使用网络应用（如 middlebox）的目的有很多（例如缓存）。有时候，这些 middlebox 用于实施网络审查和/或监视。\n\n使用 OONI 的 [HTTP Invalid Request Line](https://ooni.io/nettest/http-invalid-request-line/)和 [HTTP Header Field Manipulation](https://ooni.io/nettest/http-header-field-manipulation/)测试查找您的网络中的 middlebox。\n\n您的测试结果将发布在 [OONI Explorer](https://explorer.ooni.io/world/) 和 [OONI API](https://api.ooni.io/)。</string>
   <string name="Dashboard_InstantMessaging_Card_Description">测试即时消息应用的屏蔽情况</string>
-  <string name="Dashboard_InstantMessaging_Overview_Paragraph">检查 [WhatsApp](https://ooni.io/nettest/whatsapp/)、[Facebook Messenger](https://ooni.io/nettest/facebook-messenger/) 和 [Telegram](https://ooni.io/nettest/telegram/) 是否被屏蔽。\n\n您的结果将会发布在 [OONI Explorer](https://explorer.ooni.io/world/) 和 [OONI API](https://api.ooni.io/) 上。</string>
+  <string name="Dashboard_InstantMessaging_Overview_Paragraph">Check whether [WhatsApp](https://ooni.org/nettest/whatsapp/), [Facebook Messenger](https://ooni.org/nettest/facebook-messenger/), [Telegram](https://ooni.org/nettest/telegram/), and [Signal](https://ooni.org/nettest/signal) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.io/world/) and [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Circumvention_Card_Description">测试翻墙工具屏蔽状况</string>
   <string name="Dashboard_Circumvention_Overview_Paragraph">测试[赛风](https://ooni.io/nettest/psiphon/)、[Tor](https://ooni.io/nettest/tor/)和[RiseupVPN](https://ooni.io/nettest/riseupvpn/)是否被屏蔽。\n\n你的测试结果将会在[OONI Explorer](https://explorer.ooni.org/) 和[OONI API](https://api.ooni.io/)上发布。</string>
   <string name="TestResults_Gbps">Gbit/s</string>
@@ -263,6 +263,7 @@
   <string name="Modal_NoThanks">不要，谢谢</string>
   <string name="Modal_Error_NoInternet">无法运行测试。请复查您的因特网连接。</string>
   <string name="Modal_Error_CantDownloadURLs">无法下载 URL 列表。请重试。</string>
+  <string name="Modal_Error_TestAlreadyRunning">Please wait for the automated tests to finish running, before starting a new test.</string>
   <string name="Modal_Error_NotificationNotEnabled">需要通知权限。请在手机设置中启用，然后在 OONI Probe 应用中启用。</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">转到设置页面</string>
   <string name="Modal_Error_CantCloseScreen">有测试运行时，此屏幕将被锁定。</string>
@@ -335,9 +336,11 @@
   <string name="Settings_Notifications_OnNews">信息流</string>
   <string name="Settings_AutomatedTesting_Label">自动化测试</string>
   <string name="Settings_AutomatedTesting_RunAutomatically">自动运行测试</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Number">Number of automated tests run: %1$s.</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">Last automated test: %1$s.</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">只在连接 WiFi 时运行测试</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">只在充电时运行测试</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">启用自动测试后，OONI Probe 会自动地定期运行测试（免去每次手动运行）。</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Test results will automatically get published on OONI Explorer: https://explorer.ooni.org/</string>
   <string name="Settings_Sharing_Label">分享</string>
   <string name="Settings_Sharing_UploadResults">自动发布结果</string>
   <string name="Settings_Sharing_UploadResultsManually">手动上传结果</string>
