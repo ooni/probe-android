@@ -153,7 +153,12 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
             else {
                 ServiceUtil.stopJob(getContext());
             }
-            //TODO stop and reenable sheculer in case of wifi charging option changed
+        }
+        if (key.equals(getString(R.string.automated_testing_charging)) ||
+                key.equals(getString(R.string.automated_testing_wifionly))){
+            //stop and re-enable scheduler in case of wifi charging option changed
+            ServiceUtil.stopJob(getContext());
+            ServiceUtil.scheduleJob(getContext());
         }
         if (key.equals(getString(R.string.send_crash)) ||
                 key.equals(getString(R.string.notifications_enabled))){
