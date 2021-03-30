@@ -78,15 +78,16 @@ public class ServiceUtil {
             if (results.webConnectivity != null) {
                 ArrayList<String> inputs = new ArrayList<>();
                 for (OONIURLInfo url : results.webConnectivity.urls){
-                    inputs.add(Url.checkExistingUrl(url.url, url.category_code, url.country_code).url);
+                    inputs.add(url.url);
                 }
                 AbstractSuite suite = AbstractSuite.getSuite(app, "web_connectivity",
                         inputs,"autorun");
                 if (suite != null) {
-                    app.getPreferenceManager().setAutorunDate();
-                    app.getPreferenceManager().incrementAppOpenCount();
+                    app.getPreferenceManager().updateAutorunDate();
+                    app.getPreferenceManager().incrementAutorun();
                     Intent serviceIntent = new Intent(app, RunTestService.class);
                     serviceIntent.putExtra("testSuites", suite.asArray());
+                    serviceIntent.putExtra("storeDB", false);
                     ContextCompat.startForegroundService(app, serviceIntent);
                 }
             }

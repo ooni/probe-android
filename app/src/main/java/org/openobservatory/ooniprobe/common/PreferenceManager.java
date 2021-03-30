@@ -4,11 +4,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.text.TextUtils;
+import android.text.format.DateFormat;
 
 import org.openobservatory.engine.Engine;
 import org.openobservatory.ooniprobe.R;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class PreferenceManager {
 	static final String GEO_VER = "geo_ver";
@@ -223,7 +226,8 @@ public class PreferenceManager {
 	}
 
 	public void incrementAppOpenCount(){
-		sp.edit().putLong(IS_NOTIFICATION_DIALOG, getAppOpenCount()+1);
+		sp.edit().putLong(IS_NOTIFICATION_DIALOG, getAppOpenCount()+1)
+				.apply();
 	}
 
 	public long getAppOpenCount(){
@@ -248,15 +252,22 @@ public class PreferenceManager {
 	}
 
 	public void incrementAutorun(){
-		sp.edit().putLong(AUTORUN_COUNT, getAutorun()+1);
+		sp.edit().putLong(AUTORUN_COUNT, getAutorun()+1)
+				.apply();
 	}
 
 	public long getAutorun(){
 		return sp.getLong(AUTORUN_COUNT, 0);
 	}
 
-	public void setAutorunDate(){
-		sp.edit().putLong(AUTORUN_DATE, System.currentTimeMillis()/1000);
+	public void updateAutorunDate(){
+		sp.edit().putLong(AUTORUN_DATE, System.currentTimeMillis())
+				.apply();
+	}
+
+	public String getAutorunDate(){
+		Date date = new Date(sp.getLong(AUTORUN_DATE, 0));
+		return DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), date).toString();
 	}
 
 }

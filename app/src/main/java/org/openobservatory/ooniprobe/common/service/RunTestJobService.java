@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import org.openobservatory.ooniprobe.common.Application;
 
 public class RunTestJobService extends JobService {
-    private static final String TAG = "SyncService";
 
     @Override
     public boolean onStartJob(JobParameters params) {

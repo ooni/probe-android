@@ -66,10 +66,9 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                     .build().show(context.getSupportFragmentManager(), null);
             return null;
         } else if (context.isTestRunning()) {
-            //TODO change strings
             new MessageDialogFragment.Builder()
                     .withTitle(context.getString(R.string.Modal_Error))
-                    .withMessage(context.getString(R.string.Modal_Error_NoInternet))
+                    .withMessage(context.getString(R.string.Modal_Error_TestAlreadyRunning))
                     .build().show(context.getSupportFragmentManager(), null);
             return null;
         } else {

@@ -81,6 +81,12 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                 String count = ((Application) getActivity().getApplication()).getPreferenceManager().countEnabledCategory().toString();
                 getPreferenceScreen().getPreference(i).setSummary(getString(R.string.Settings_Websites_Categories_Description, count));
             }
+            if (getString(R.string.automated_testing_enabled).equals(getPreferenceScreen().getPreference(i).getKey())) {
+                long autorun_num = ((Application) getActivity().getApplication()).getPreferenceManager().getAutorun();
+                String autorun_date = ((Application) getActivity().getApplication()).getPreferenceManager().getAutorunDate();
+                getPreferenceScreen().getPreference(i).setSummary(getString(R.string.Settings_AutomatedTesting_RunAutomatically_Number, String.valueOf(autorun_num)) +
+                        "\n" + getString(R.string.Settings_AutomatedTesting_RunAutomatically_DateLast, autorun_date));
+            }
         }
         Preference pref = findPreference(getString(R.string.send_email));
         if (pref != null)
@@ -147,6 +153,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
             else {
                 ServiceUtil.stopJob(getContext());
             }
+            //TODO stop and reenable sheculer in case of wifi charging option changed
         }
         if (key.equals(getString(R.string.send_crash)) ||
                 key.equals(getString(R.string.notifications_enabled))){
