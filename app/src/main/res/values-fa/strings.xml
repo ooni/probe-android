@@ -29,7 +29,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_2">اطلاعات شبکه (شامل شماره سیستم مستقل ASN)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">زمان و تاریخ تست</string>
   <string name="Onboarding_DefaultSettings_Paragraph">ما همه‌ی تلاش خود را می‌‌کنیم تا آدرس IP شما یا هر اطلاعاتی که بالقوه قابلیت شناسایی هویت شما را دارند را منتشر نکنیم.\n\nدر [سیاست‌های داده OONI] بیشتر بخوانید (https://ooni.io/about/data-policy/).</string>
-  <string name="Onboarding_DefaultSettings_Paragraph_1">By tapping \"OK\", you will share crash reports to help us improve OONI Probe.</string>
+  <string name="Onboarding_DefaultSettings_Paragraph_1">با فشردن \"باشه\"، گزارش خرابی را برای کمک به بهبود OONI Probe ارسال خواهید کرد.</string>
   <string name="Onboarding_DefaultSettings_Button_Go">بزن بریم! </string>
   <string name="Onboarding_DefaultSettings_Button_Change">تغییر پیشفرض‌ها</string>
   <string name="Dashboard_Tab_Label">پنل</string>
@@ -59,7 +59,7 @@
   <string name="Dashboard_Middleboxes_Card_Description">شناسایی middlebox در شبکه شما</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">سرویس‌دهنده‌های اینترنت اغلب از (middlebox) های شبکه برای اهداف مختلف (مانند گرفتن کش) استفاده می‌کنند. گاهی اوقات این middleboxها برای سانسور و/یا نظارت بر اینترنت استفاده می‌شوند.\n\nبا استفاده از تست‌های [خط درخواست نامعتبر HTTP](https://ooni.io/nettest/http-invalid-request-line/) و [دستکاری فیلد هدر HTTP](https://ooni.io/nettest/http-header-field-manipulation/) می‌توانید middleboxها در شبکه‌ی خود را بیابید.\n\nنتایج شما بر روی [OONI Explorer](https://explorer.ooni.io/world/) و [OONI API](https://api.ooni.io/) منتشر می‌شود.</string>
   <string name="Dashboard_InstantMessaging_Card_Description">تست مسدودیت پیام‌رسان‌ها</string>
-  <string name="Dashboard_InstantMessaging_Overview_Paragraph">Check whether [WhatsApp](https://ooni.org/nettest/whatsapp/), [Facebook Messenger](https://ooni.org/nettest/facebook-messenger/), [Telegram](https://ooni.org/nettest/telegram/), and [Signal](https://ooni.org/nettest/signal) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.io/world/) and [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_InstantMessaging_Overview_Paragraph">مسدود بودن [واتس‌اپ](https://ooni.io/nettest/whatsapp/)، [پیام‌رسان فیسبوک](https://ooni.io/nettest/facebook-messenger/)، [تلگرام](https://ooni.io/nettest/telegram/) و [سیگنال](https://ooni.org/nettest/signal) را بررسی کنید.\n\nنتایج شما بر روی [OONI Explorer](https://explorer.ooni.io/world/) و [OONI API](https://api.ooni.io/) منتشر می‌شود.</string>
   <string name="Dashboard_Circumvention_Card_Description">مسدود بودن ابزارهای دور زدن سانسور را بیازمایید</string>
   <string name="Dashboard_Circumvention_Overview_Paragraph">بررسی کنید که آیا [Psiphon](https://ooni.io/nettest/psiphon/)،  [Tor](https://ooni.io/nettest/tor/) و یا [RiseupVPN](https://ooni.io/nettest/riseupvpn/) مسدود هستند.\n\nنتایج شما در [OONI Explorer](https://explorer.ooni.org/) و [OONI API](https://api.ooni.io/) منتشر خواهد شد.</string>
   <string name="TestResults_Gbps">گیگابیت بر ثانیه</string>
@@ -195,9 +195,9 @@
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Hero_Title">احتمالا مسدود</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Content_Paragraph">پیام‌رسان فیسبوک به  نظر مسدود می‌رسد.</string>
   <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Hero_Title">احتمالا مسدود</string>
-  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Content_Paragraph">Signal appears to be blocked.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Content_Paragraph">سیگنال به نظر مسدود می‌رسد.</string>
   <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Hero_Title">کار میکنه</string>
-  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Content_Paragraph">This test successfully connected to Signal\'s endpoints.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Content_Paragraph">این تست با موفقیت به پایانه‌های سیگنال متصل شد.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title">نشانه‌ای از middlebox پیدا نشد</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Content_Paragraph">در هنگام ارتباط با سرورهای ما، هیچ ناهنجاری در شبکه شناسایی نشد.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title">دستکاری در شبکه</string>
@@ -263,7 +263,7 @@
   <string name="Modal_NoThanks">نه، ممنون</string>
   <string name="Modal_Error_NoInternet">اجرای تست امکان‌پذیر نبود. لطفا ارتباط اینترنت خود را چک کنید.</string>
   <string name="Modal_Error_CantDownloadURLs">بارگیری لیست آدرس اینترنتی امکان‌پذیر نبود. لطفا  دوباره تلاش کنید.</string>
-  <string name="Modal_Error_TestAlreadyRunning">Please wait for the automated tests to finish running, before starting a new test.</string>
+  <string name="Modal_Error_TestAlreadyRunning">لطفا پیش از آغاز تست جدید، صبر کنید تا تست‌های خودکار در حال انجام به پایان برسند.</string>
   <string name="Modal_Error_NotificationNotEnabled">اجازه‌ی اعلان ضروری است. لطفا در تنظیمات تلفن خود و سپس در اپ OONIProbe آن را فعال کنید.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">به تنظیمات بروید</string>
   <string name="Modal_Error_CantCloseScreen">این صفحه در زمان اجرای تست قفل است.</string>
@@ -297,10 +297,10 @@
   <string name="Modal_Error_JsonEmpty">JSON خالی است</string>
   <string name="Modal_InterruptTest_Title">آیا می‌خواهید این آزمون را قطع کنید؟</string>
   <string name="Modal_InterruptTest_Paragraph">این کار آزمون فعلی را از این لحظه قطع خواهد کرد.</string>
-  <string name="Modal_Autorun_Modal_Title">Would you like to run tests automatically?</string>
+  <string name="Modal_Autorun_Modal_Title">آیا مایل به اجرای خودکار تست‌ها هستید؟</string>
   <string name="Modal_Autorun_Modal_Text">با فعالسازی آزمون خودکار، آزمون‌های OONI Probe به صورت خودکار و در بازه‌های مشخص انجام خواهند شد (و شما نیاز به خاطر سپردن انجام آزمون نیستید).</string>
   <string name="Modal_Autorun_Modal_Button_No">نه، ممنون</string>
-  <string name="Modal_Autorun_Modal_Button_RemindLater">Remind me later</string>
+  <string name="Modal_Autorun_Modal_Button_RemindLater">بعدا یاداوری کن</string>
   <string name="Modal_Autorun_Modal_Button_Yes">به نظر عالی میاد</string>
   <string name="Toast_CopiedToClipboard">در حافظه‌ی موقت کپی شد</string>
   <string name="Snackbar_ResultsNotUploaded_Text">بارگذاری نشدند</string>
@@ -323,7 +323,7 @@
   <string name="Test_Psiphon_Fullname">تست سایفون</string>
   <string name="Test_Tor_Fullname">تست تور</string>
   <string name="Test_RiseupVPN_Fullname">آزمون RiseupVPN</string>
-  <string name="Test_Signal_Fullname">Signal Test</string>
+  <string name="Test_Signal_Fullname">تست سیگنال</string>
   <string name="Settings_Title">تنظیمات</string>
   <string name="Settings_Error_TestDurationTooLow">زمانی که برای مدت این تست مشخص کرده‌اید خیلی کوتاه می‌باشد.</string>
   <string name="Settings_About_Label">درباره‌ی اونی</string>
@@ -336,11 +336,11 @@
   <string name="Settings_Notifications_OnNews">خوراک خبری</string>
   <string name="Settings_AutomatedTesting_Label">آزمایش خودکار</string>
   <string name="Settings_AutomatedTesting_RunAutomatically">اجرای خودکار آزمایش‌ها</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Number">Number of automated tests run: %1$s.</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">Last automated test: %1$s.</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">اجرای آزمون فقط هنگام اتصال به WiFi</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">اجرای آزمون فقط در هنگام شارژ</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Test results will automatically get published on OONI Explorer: https://explorer.ooni.org/</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Number">تعداد تست‌های خودکار: %1$s.</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">آخرین تست خودکار: %1$s.</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">تنها از طریق WiFi</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">تنها در هنگام شارژ</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">با فعالسازی تست خودکار، تست‌های OONI Probe به صورت خودکار چند بار در روز اجرا خواهند شد. نتایج تست شما به صورت خودکار بر روی OONI Explorer منتشر خواهد شد: https://explorer.ooni.org/</string>
   <string name="Settings_Sharing_Label">به اشتراک گذاری</string>
   <string name="Settings_Sharing_UploadResults">انتشار خودکار نتایج</string>
   <string name="Settings_Sharing_UploadResultsManually">بارگذاری دستی نتایج</string>
@@ -378,7 +378,7 @@
   <string name="Settings_InstantMessaging_TestWhatsApp">تست واتس‌اپ</string>
   <string name="Settings_InstantMessaging_TestTelegram">تست تلگرام</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">تست پیام‌رسان فیسبوک</string>
-  <string name="Settings_InstantMessaging_TestSignal">Test Signal</string>
+  <string name="Settings_InstantMessaging_TestSignal">تست سیگنال</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">اجرای تست خط درخواست نامعتبر HTTP</string>
   <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">اجرای تست دستکاری فیلد هدر HTTP</string>
   <string name="Settings_Performance_TestNDT">اجرای تست سرعت NDT</string>
@@ -393,7 +393,7 @@
   <string name="Settings_Circumvention_TestTor">تست تور</string>
   <string name="Settings_Circumvention_TestRiseupVPN">آزمون RiseupVPN</string>
   <string name="Settings_SendEmail_Label">ارسال ایمیل به پشتیبانی</string>
-  <string name="Settings_SendEmail_Message">Please describe the problem you are experiencing:</string>
+  <string name="Settings_SendEmail_Message">لطفا مشکل خود را توضیح دهید:</string>
   <string name="Settings_SendEmail_Error">لطفا یک ایمیل به bugs@openobservatory.org همراه با اطلاعات برنامه و نسخه‌ی iOS ارسال کنید. بر روی «کپی در حافظه‌ی موقت» در پایین بزنید تا آدرس ایمیل کپی شود.</string>
   <string name="Settings_Language_Current">زبان فعلی برنامه %1$s است</string>
   <string name="Settings_Language_Label">زبان</string>

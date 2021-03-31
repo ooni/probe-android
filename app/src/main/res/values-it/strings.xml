@@ -336,11 +336,11 @@
   <string name="Settings_Notifications_OnNews">Feed di notizie</string>
   <string name="Settings_AutomatedTesting_Label">Testing automatico</string>
   <string name="Settings_AutomatedTesting_RunAutomatically">Esegui test automaticamente</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Number">Number of automated tests run: %1$s.</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Number">Number of automated tests: %1$s.</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">Last automated test: %1$s.</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Run tests only on WiFi</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Run tests only while charging</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Test results will automatically get published on OONI Explorer: https://explorer.ooni.org/</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Only on WiFi</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Only while charging</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Your test results will automatically get published on OONI Explorer: https://explorer.ooni.org/</string>
   <string name="Settings_Sharing_Label">Condivisione</string>
   <string name="Settings_Sharing_UploadResults">Risultati Pubblicati Automaticamente</string>
   <string name="Settings_Sharing_UploadResultsManually">Caricamento Manuale dei Risultati</string>
