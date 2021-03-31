@@ -5,6 +5,7 @@ import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.BatteryManager;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
@@ -63,6 +64,15 @@ public class ServiceUtil {
     }
 
     public static void callCheckInAPI(Application app) {
+        BatteryManager batteryManager = (BatteryManager) app.getSystemService(Context.BATTERY_SERVICE);
+        PreferenceManager pm = app.getPreferenceManager();
+        //Double checks for charging and wifi
+        if (pm.testWifiOnly() &&
+                !ReachabilityManager.getNetworkType(app).equals(ReachabilityManager.WIFI))
+            return;
+        if (pm.testChargingOnly() &&
+                !batteryManager.isCharging())
+            return;
         try {
             OONISession session = Engine.newSession(Engine.getDefaultSessionConfig(
                     app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray()));
@@ -97,5 +107,4 @@ public class ServiceUtil {
             ThirdPartyServices.logException(e);
         }
     }
-
 }
