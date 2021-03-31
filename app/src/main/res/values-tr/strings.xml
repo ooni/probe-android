@@ -59,7 +59,7 @@
   <string name="Dashboard_Middleboxes_Card_Description">Ağınızdaki ara kutuları bulun</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">İnternet Hizmeti Sağlayıcıları sıklıkla bazı ağ uygulamaları için (ön bellekleme gibi) çeşitli aygıtlar (ara kutular) kullanır. Bazen bu ara kutular İnternet sansürü ve izlemesi için kullanılır.\n\nOONI [HTTP Geçersiz İstek Hattı](https://ooni.io/nettest/http-invalid-request-line/) ve [HTTP Üst Bilgi Alanı Müdahalesi](https://ooni.io/nettest/http-header-field-manipulation/) sınamalarını kullanarak ara kutuları bulabilirsiniz.\n\nSonuçlarınız [OONI Explorer](https://explorer.ooni.io/world/) ve [OONI API](https://api.ooni.io/) üzerinde yayınlanır.</string>
   <string name="Dashboard_InstantMessaging_Card_Description">Anlık ileti uygulamalarının engellenip engellenmediğini anlayın</string>
-  <string name="Dashboard_InstantMessaging_Overview_Paragraph">Check whether [WhatsApp](https://ooni.org/nettest/whatsapp/), [Facebook Messenger](https://ooni.org/nettest/facebook-messenger/), [Telegram](https://ooni.org/nettest/telegram/), and [Signal](https://ooni.org/nettest/signal) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.io/world/) and [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_InstantMessaging_Overview_Paragraph">[WhatsApp](https://ooni.org/nettest/whatsapp/), [Facebook Messenger](https://ooni.org/nettest/facebook-messenger/), [Telegram](https://ooni.org/nettest/telegram/) ve [Signal](https://ooni.org/nettest/signal) uygulamalarının engellenip engellenmediğini kontrol edebilirsiniz.\n\nSonuçlarınız [OONI Explorer](https://explorer.ooni.io/world/) ve [OONI API](https://api.ooni.io/) üzerinde yayınlanır.</string>
   <string name="Dashboard_Circumvention_Card_Description">Sansürü aşma araçları engellemesini sınayın</string>
   <string name="Dashboard_Circumvention_Overview_Paragraph">[Psiphon](https://ooni.io/nettest/psiphon/) ve [Tor](https://ooni.io/nettest/tor/) ya da [RiseupVPN](https://ooni.io/nettest/riseupvpn/) engelleniyor mu öğrenin.\n\nSonuçlarınız [OONI Explorer](https://explorer.ooni.org/) ve [OONI API](https://api.ooni.io/) sayfasında yayınlanır.</string>
   <string name="TestResults_Gbps">Gbit/s</string>
@@ -263,7 +263,7 @@
   <string name="Modal_NoThanks">Hayır, teşekkürler</string>
   <string name="Modal_Error_NoInternet">Sınama yapılamadı. Lütfen İnternet bağlantınızı denetleyin.</string>
   <string name="Modal_Error_CantDownloadURLs">Adres listesi indirilemedi. Lütfen yeniden deneyin.</string>
-  <string name="Modal_Error_TestAlreadyRunning">Please wait for the automated tests to finish running, before starting a new test.</string>
+  <string name="Modal_Error_TestAlreadyRunning">Lütfen yeni bir sınama başlatmadan önce otomatik sınamaların tamamlanmasını bekleyin.</string>
   <string name="Modal_Error_NotificationNotEnabled">Bildirim izinleri gerekli. Lütfen telefonunuzun ayarlar bölümünden gerekli izinleri verdikten sonra OONI Probe uygulamanızdan etkinleştirin.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Ayarlar Bölümüne Gidin</string>
   <string name="Modal_Error_CantCloseScreen">Bu ekran sınama sırasında kilitlidir.</string>
@@ -336,11 +336,11 @@
   <string name="Settings_Notifications_OnNews">Haber Akışı</string>
   <string name="Settings_AutomatedTesting_Label">Otomatik sınama</string>
   <string name="Settings_AutomatedTesting_RunAutomatically">Sınamalar otomatik olarak yapılsın</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Number">Number of automated tests run: %1$s.</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">Last automated test: %1$s.</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Sınamalar yalnız Wi-Fi ile yapılsın</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Sınamalar yalnız şarj olurken yapılsın</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Test results will automatically get published on OONI Explorer: https://explorer.ooni.org/</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Number">Otomatik sınama sayısı: %1$s.</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">Son otomatik sınama: %1$s.</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Yanlız Wi-Fi kullanılırken</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Yalnız şarj edilirken</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">Otomatik sınama etkinleştirildiğinde, her gün düzenli olarak otomatik OONI Probe sınamaları yapılır. Sınama sonuçlarınız otomatik olarak OONI Explorer: https://explorer.ooni.org/ üzerinde yayınlanır</string>
   <string name="Settings_Sharing_Label">Paylaşım</string>
   <string name="Settings_Sharing_UploadResults">Sonuçlar Otomatik Olarak Yayınlansın</string>
   <string name="Settings_Sharing_UploadResultsManually">Sonuçları El ile Yükle </string>

@@ -336,11 +336,11 @@
   <string name="Settings_Notifications_OnNews">ฟีดข่าว</string>
   <string name="Settings_AutomatedTesting_Label">การทดสอบอัตโนมัติ</string>
   <string name="Settings_AutomatedTesting_RunAutomatically">เริ่มทดสอบอัตโนมัติ</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Number">Number of automated tests run: %1$s.</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Number">Number of automated tests: %1$s.</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">Last automated test: %1$s.</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">ทำการทดสอบเฉพาะบนเครือข่ายWiFiเท่านั้น</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">ทำการทดสอบเมื่อเสียบสายชาร์จเท่านั้น</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Test results will automatically get published on OONI Explorer: https://explorer.ooni.org/</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Only on WiFi</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Only while charging</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Your test results will automatically get published on OONI Explorer: https://explorer.ooni.org/</string>
   <string name="Settings_Sharing_Label">เเบ่งปัน</string>
   <string name="Settings_Sharing_UploadResults">เผยแพร่ผลโดยอัตโนมัติ</string>
   <string name="Settings_Sharing_UploadResultsManually">อัปโหลดผลด้วยตัวเอง</string>
