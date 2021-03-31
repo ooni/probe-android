@@ -266,7 +266,10 @@ public class PreferenceManager {
 	}
 
 	public String getAutorunDate(){
-		Date date = new Date(sp.getLong(AUTORUN_DATE, 0));
+		long timestamp = sp.getLong(AUTORUN_DATE, 0);
+		if (timestamp == 0)
+			return r.getString(R.string.Dashboard_Overview_LastRun_Never);
+		Date date = new Date(timestamp);
 		return DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), date).toString();
 	}
 
