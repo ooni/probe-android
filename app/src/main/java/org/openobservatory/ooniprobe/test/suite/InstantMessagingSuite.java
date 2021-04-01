@@ -6,6 +6,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.FacebookMessenger;
+import org.openobservatory.ooniprobe.test.test.Signal;
 import org.openobservatory.ooniprobe.test.test.Telegram;
 import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
@@ -37,6 +38,8 @@ public class InstantMessagingSuite extends AbstractSuite {
 				list.add(new Telegram());
 			if (pm == null || pm.isTestFacebookMessenger())
 				list.add(new FacebookMessenger());
+			if (pm == null || pm.isTestSignal())
+				list.add(new Signal());
 			super.setTestList(list.toArray(new AbstractTest[0]));
 		}
 		return super.getTestList(pm);

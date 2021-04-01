@@ -24,6 +24,7 @@ import org.openobservatory.ooniprobe.test.test.FacebookMessenger;
 import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
 import org.openobservatory.ooniprobe.test.test.HttpInvalidRequestLine;
 import org.openobservatory.ooniprobe.test.test.Ndt;
+import org.openobservatory.ooniprobe.test.test.Signal;
 import org.openobservatory.ooniprobe.test.test.Telegram;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 import org.openobservatory.ooniprobe.test.test.Whatsapp;
@@ -196,7 +197,7 @@ public class Result extends BaseModel implements Serializable {
 			case WebsitesSuite.NAME:
 				return new String[]{WebConnectivity.NAME};
 			case InstantMessagingSuite.NAME:
-				return new String[]{Whatsapp.NAME, Telegram.NAME, FacebookMessenger.NAME};
+				return new String[]{Whatsapp.NAME, Telegram.NAME, FacebookMessenger.NAME, Signal.NAME};
 			case MiddleBoxesSuite.NAME:
 				return new String[]{HttpInvalidRequestLine.NAME, HttpHeaderFieldManipulation.NAME};
 			case PerformanceSuite.NAME:
