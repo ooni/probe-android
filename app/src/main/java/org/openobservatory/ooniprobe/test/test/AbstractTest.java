@@ -16,7 +16,6 @@ import com.google.gson.Gson;
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.engine.Engine;
 import org.openobservatory.engine.OONIMKTask;
-import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.MKException;
 import org.openobservatory.ooniprobe.common.PreferenceManager;

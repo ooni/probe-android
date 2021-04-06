@@ -5,8 +5,6 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.text.TextUtils;
 
-import androidx.appcompat.app.AppCompatDelegate;
-
 import org.openobservatory.engine.Engine;
 import org.openobservatory.ooniprobe.R;
 
@@ -119,6 +117,16 @@ public class PreferenceManager {
 
 	public boolean isDebugLogs() {
 		return sp.getBoolean(r.getString(R.string.debugLogs), false);
+	}
+
+	private boolean isEnableCircumvention() { return sp.getBoolean("enableCircumvention", false); }
+
+	public String getProxyURL() {
+		boolean enabled = isEnableCircumvention();
+		if (enabled) {
+			return "psiphon:///";
+		}
+		return "";
 	}
 
 	public boolean isTestWhatsapp() {

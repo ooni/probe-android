@@ -36,11 +36,17 @@ public class Settings {
 	@SerializedName("name")
 	public String name;
 
+	@SerializedName("proxy")
+	public String proxy;
+
 	@SerializedName("state_dir")
 	private String state_dir;
 
 	@SerializedName("temp_dir")
 	private String temp_dir;
+
+	@SerializedName("tunnel_dir")
+	private String tunnel_dir;
 
 	@SerializedName("version")
 	private Integer version;
@@ -51,12 +57,14 @@ public class Settings {
 		log_level = pm.isDebugLogs() ? "DEBUG2" : "INFO";
 		version = 1;
 		options = new Options(pm);
+		proxy = pm.getProxyURL();
 	}
 
 	public OONIMKTaskConfig toExperimentSettings(Gson gson, Context c) throws java.io.IOException {
 		assets_dir = Engine.getAssetsDir(c);
 		state_dir = Engine.getStateDir(c);
 		temp_dir = Engine.getTempDir(c);
+		tunnel_dir = Engine.getTunnelDir(c);
 		return new OONIMKTaskConfigAdapter(gson, this);
 	}
 

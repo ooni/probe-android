@@ -60,11 +60,13 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 	RunTestService service;
 	private ConnectivityManager manager;
 	private ConnectivityManager.NetworkCallback networkCallback;
+	private String proxy;
 
 	public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, RunTestService service) {
 		this.app = app;
 		this.testSuites = testSuites;
 		this.service = service;
+		this.proxy = app.getPreferenceManager().getProxyURL();
 	}
 
 	private void registerConnChange() {
@@ -137,7 +139,8 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 	private void downloadURLs(){
 		try {
 			OONISession session = Engine.newSession(Engine.getDefaultSessionConfig(
-					app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray()));
+					app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray(),
+					proxy));
 			OONIContext ooniContext = session.newContextWithTimeout(30);
 			session.maybeUpdateResources(ooniContext);
 			OONIURLListConfig config = new OONIURLListConfig();

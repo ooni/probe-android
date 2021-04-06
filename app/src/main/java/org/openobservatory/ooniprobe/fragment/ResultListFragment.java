@@ -258,7 +258,8 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         private WeakReference<ResultListFragment> wf;
 
         ResubmitAsyncTask(ResultListFragment f) {
-            super((AppCompatActivity) f.getActivity());
+            // TODO(bassosimone): make sure we pass the correct proxy here
+            super((AppCompatActivity) f.getActivity(), "");
             this.wf = new WeakReference<>(f);
         }
 

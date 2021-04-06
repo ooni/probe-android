@@ -16,6 +16,7 @@
 	<string name="websites" translatable="false">websites</string>
 	<string name="instant_messaging" translatable="false">instant_messaging</string>
 	<string name="circumvention" translatable="false">circumvention</string>
+	<string name="Settings_Advanced_Circumvention" translatable="false">Circumvention</string>
 	<string name="middle_boxes" translatable="false">middle_boxes</string>
 	<string name="performance" translatable="false">performance</string>
 	<string name="notifications_enabled" translatable="false">notifications_enabled</string>
@@ -23,6 +24,7 @@
 	<string name="notifications_news" translatable="false">notifications_news</string>
 	<string name="upload_results" translatable="false">upload_results</string>
 	<string name="debugLogs" translatable="false">debugLogs</string>
+	<string name="enableCircumvention" translatable="false">enableCircumvention</string>
 	<string name="storage_usage" translatable="false">storage_usage</string>
 	<string name="send_crash" translatable="false">send_crash</string>
 	<string name="run_http_invalid_request_line" translatable="false">run_http_invalid_request_line</string>

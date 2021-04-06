@@ -202,7 +202,8 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 
     private static class ResubmitAsyncTask extends ResubmitTask<ResultDetailActivity> {
         ResubmitAsyncTask(ResultDetailActivity activity) {
-            super(activity);
+            // TODO(bassosimone): make sure we pass the correct proxy here
+            super(activity, "");
         }
 
         @Override

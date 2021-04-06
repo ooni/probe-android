@@ -29,6 +29,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
     protected Integer totUploads;
     protected Integer errors;
     protected LoggerArray logger;
+    private String proxy;
 
     /**
      * Use this class to resubmit a measurement, use result_id and measurement_id to filter list of value
@@ -36,8 +37,9 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
      *
      * @param activity from which this task are executed
      */
-    public ResubmitTask(A activity) {
+    public ResubmitTask(A activity, String proxyURL) {
         super(activity, true, false);
+        proxy = proxyURL;
     }
 
     private boolean perform(Context c, Measurement m, OONISession session)  {
@@ -98,7 +100,8 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
         totUploads = measurements.size();
         try {
             OONISession session = Engine.newSession(Engine.getDefaultSessionConfig(
-                    getActivity(), BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, logger));
+                    getActivity(), BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, logger,
+                    proxy));
             // Updating resources with no timeout because we don't know for sure how much
             // it will take to download them and choosing a timeout may prevent the operation
             // to ever complete. (Ideally the user should be able to interrupt the process

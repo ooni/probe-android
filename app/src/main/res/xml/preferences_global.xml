@@ -332,6 +332,11 @@
 			android:summary=""
 			android:widgetLayout="@layout/preference_button"
 			app:iconSpaceReserved="false" />
+		<SwitchPreferenceCompat
+			android:defaultValue="false"
+			android:key="@string/enableCircumvention"
+			android:title="@string/Settings_Advanced_Circumvention"
+			app:iconSpaceReserved="false" />
 	</PreferenceScreen>
 	<PreferenceScreen
 		android:icon="@drawable/send_email"
