@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import org.openobservatory.ooniprobe.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class TestKeys {
@@ -85,6 +86,8 @@ public class TestKeys {
 	public Boolean ca_cert_status;
 	@SerializedName("failing_gateways")
 	public GatewayConnection[] failing_gateways;
+	@SerializedName("transport_status")
+	public HashMap<String, String> transport_status;
 
 	private static String setFractionalDigits(double value) {
 		return String.format(Locale.getDefault(), value < 10 ? "%.2f" : "%.1f", value);

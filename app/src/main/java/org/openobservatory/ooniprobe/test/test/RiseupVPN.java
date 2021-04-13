@@ -27,6 +27,8 @@ public class RiseupVPN extends AbstractTest {
 
     @Override public void onEntry(Context c, PreferenceManager pm, @NonNull JsonResult json, Measurement measurement) {
         super.onEntry(c, pm, json, measurement);
-        measurement.is_anomaly = !json.test_keys.ca_cert_status || json.test_keys.api_failure != null || json.test_keys.failing_gateways != null;
+        boolean isTransportBlocked = json.test_keys.transport_status.getOrDefault("openvpn", "ok").equals("blocked") ||
+                json.test_keys.transport_status.getOrDefault("obfs4", "ok").equals("blocked");
+        measurement.is_anomaly = !json.test_keys.ca_cert_status || json.test_keys.api_failure != null || isTransportBlocked;
     }
 }
