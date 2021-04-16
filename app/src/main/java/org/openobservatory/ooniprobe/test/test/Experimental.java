@@ -16,8 +16,9 @@ import org.openobservatory.ooniprobe.model.settings.Settings;
 public class Experimental extends AbstractTest {
     public static final String NAME = "experimental";
 
-    public Experimental(String name, String fullname) {
-        super(NAME, R.string.Test_Dash_Fullname, 0, R.string.urlTestDas, 45);
+    public Experimental(String name) {
+        //TODO change the string resource into string
+        super(name, R.string.Settings_About_Label, 0, 0, 45);
     }
 
     @Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, AbstractTest.TestCallback testCallback) {

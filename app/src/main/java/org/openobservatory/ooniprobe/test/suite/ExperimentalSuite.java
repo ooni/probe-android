@@ -29,8 +29,8 @@ public class ExperimentalSuite extends AbstractSuite {
     @Override public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
         if (super.getTestList(pm) == null) {
             ArrayList<AbstractTest> list = new ArrayList<>();
-            list.add(new Experimental("test", "name"));
-            list.add(new Experimental("test2", "name2"));
+            list.add(new Experimental("dnscheck"));
+            list.add(new Experimental("stunreachability"));
             super.setTestList(list.toArray(new AbstractTest[0]));
         }
         return super.getTestList(pm);
