@@ -31,6 +31,7 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
 import org.openobservatory.ooniprobe.activity.TextActivity;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.item.CircumventionItem;
 import org.openobservatory.ooniprobe.item.DateItem;
@@ -86,6 +87,11 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
     private boolean refresh;
     private Snackbar snackbar;
+    private PreferenceManager preferenceManager;
+
+    public ResultListFragment(PreferenceManager preferenceManager) {
+        this.preferenceManager = preferenceManager;
+    }
 
     @Nullable
     @Override
@@ -233,7 +239,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     public void onConfirmation(Serializable serializable, int i) {
         if (serializable.equals(R.string.Modal_ResultsNotUploaded_Title)) {
             if (i == DialogInterface.BUTTON_POSITIVE)
-                new ResubmitAsyncTask(this).execute(null, null);
+                new ResubmitAsyncTask(this, this.preferenceManager).execute(null, null);
             else if (i == DialogInterface.BUTTON_NEUTRAL)
                 startActivity(TextActivity.newIntent(getActivity(), TextActivity.TYPE_UPLOAD_LOG, (String)serializable));
             else
@@ -257,9 +263,8 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     private static class ResubmitAsyncTask extends ResubmitTask<AppCompatActivity> {
         private WeakReference<ResultListFragment> wf;
 
-        ResubmitAsyncTask(ResultListFragment f) {
-            // TODO(bassosimone): make sure we pass the correct proxy here
-            super((AppCompatActivity) f.getActivity(), "");
+        ResubmitAsyncTask(ResultListFragment f, PreferenceManager pm) {
+            super((AppCompatActivity) f.getActivity(), pm.getProxyURL());
             this.wf = new WeakReference<>(f);
         }
 

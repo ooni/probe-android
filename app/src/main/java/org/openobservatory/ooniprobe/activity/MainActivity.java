@@ -51,7 +51,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                         getSupportFragmentManager().beginTransaction().replace(R.id.content, new DashboardFragment()).commit();
                         return true;
                     case R.id.testResults:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.content, new ResultListFragment()).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.content, new ResultListFragment(getPreferenceManager())).commit();
                         return true;
                     case R.id.settings:
                         getSupportFragmentManager().beginTransaction().replace(R.id.content, new PreferenceGlobalFragment()).commit();
