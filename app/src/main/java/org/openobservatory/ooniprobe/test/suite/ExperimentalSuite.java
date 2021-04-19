@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class ExperimentalSuite extends AbstractSuite {
     public static final String NAME = "experimental";
 
-    ExperimentalSuite(String name, int title, int cardDesc, int icon, int icon_24, int color, int themeLight, int themeDark, int desc1, String anim, String dataUsage) {
+    public ExperimentalSuite() {
         super(NAME,
                 R.string.Test_Circumvention_Fullname,
                 R.string.Dashboard_Circumvention_Card_Description,
@@ -23,13 +23,13 @@ public class ExperimentalSuite extends AbstractSuite {
                 R.style.Theme_MaterialComponents_NoActionBar_App_Circumvention,
                 R.string.Dashboard_Circumvention_Overview_Paragraph,
                 "anim/circumvention.json",
-                "< 1 MB");
+                R.string.TestResults_NotAvailable);
     }
 
     @Override public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
         if (super.getTestList(pm) == null) {
             ArrayList<AbstractTest> list = new ArrayList<>();
-            list.add(new Experimental("dnscheck"));
+            //list.add(new Experimental("dnscheck"));
             list.add(new Experimental("stunreachability"));
             super.setTestList(list.toArray(new AbstractTest[0]));
         }

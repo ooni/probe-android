@@ -17,8 +17,7 @@ public class Experimental extends AbstractTest {
     public static final String NAME = "experimental";
 
     public Experimental(String name) {
-        //TODO change the string resource into string
-        super(name, R.string.Settings_About_Label, 0, 0, 45);
+        super(name, 0, 0, 0, 30);
     }
 
     @Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, AbstractTest.TestCallback testCallback) {

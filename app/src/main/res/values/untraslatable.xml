@@ -18,6 +18,11 @@
 	<string name="circumvention" translatable="false">circumvention</string>
 	<string name="middle_boxes" translatable="false">middle_boxes</string>
 	<string name="performance" translatable="false">performance</string>
+
+	<string name="websites_datausage" translatable="false">~ 8 MB</string>
+	<string name="small_datausage" translatable="false">&lt; 1 MB</string>
+	<string name="performance_datausage" translatable="false">5 - 200 MB</string>
+
 	<string name="notifications_enabled" translatable="false">notifications_enabled</string>
 	<string name="notifications_completion" translatable="false">notifications_completion</string>
 	<string name="notifications_news" translatable="false">notifications_news</string>

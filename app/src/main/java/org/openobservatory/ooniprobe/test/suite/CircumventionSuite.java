@@ -25,7 +25,7 @@ public class CircumventionSuite extends AbstractSuite {
                 R.style.Theme_MaterialComponents_NoActionBar_App_Circumvention,
                 R.string.Dashboard_Circumvention_Overview_Paragraph,
                 "anim/circumvention.json",
-                "< 1 MB");
+                R.string.small_datausage);
     }
 
     @Override public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
