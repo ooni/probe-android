@@ -2,6 +2,26 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:key="@string/preferences"
 	android:title="@string/Settings_Title">
+<PreferenceScreen
+		android:icon="@drawable/automated_testing"
+		android:key="@string/automated_testing"
+		android:title="@string/Settings_AutomatedTesting_Label">
+		<SwitchPreferenceCompat
+			android:defaultValue="false"
+			android:key="@string/automated_testing_enabled"
+			android:title="@string/Settings_AutomatedTesting_RunAutomatically" />
+		<SwitchPreferenceCompat
+			android:defaultValue="true"
+			android:dependency="@string/automated_testing_enabled"
+			android:key="@string/automated_testing_wifionly"
+			android:title="@string/Settings_AutomatedTesting_RunAutomatically_WiFiOnly" />
+		<SwitchPreferenceCompat
+			android:defaultValue="true"
+			android:dependency="@string/automated_testing_enabled"
+			android:key="@string/automated_testing_charging"
+			android:title="@string/Settings_AutomatedTesting_RunAutomatically_ChargingOnly" />
+		<PreferenceCategory android:title="@string/Settings_AutomatedTesting_RunAutomatically_Footer" />
+	</PreferenceScreen>
 	<PreferenceScreen
 		android:icon="@drawable/test_options"
 		android:key="@string/test_options"

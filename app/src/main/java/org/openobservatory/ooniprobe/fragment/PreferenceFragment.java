@@ -1,14 +1,19 @@
 package org.openobservatory.ooniprobe.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.PowerManager;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.widget.Toast;
 
 import androidx.annotation.IdRes;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.XmlRes;
 import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
@@ -22,6 +27,7 @@ import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
+import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 
 import java.util.Arrays;
@@ -32,6 +38,7 @@ import localhost.toolkit.preference.ExtendedPreferenceFragment;
 public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFragment> implements SharedPreferences.OnSharedPreferenceChangeListener {
     public static final String ARG_PREFERENCES_RES_ID = "org.openobservatory.ooniprobe.fragment.PreferenceFragment.PREF_RES_ID";
     private static final String ARG_CONTAINER_RES_ID = "org.openobservatory.ooniprobe.fragment.PreferenceFragment.CONTAINER_VIEW_ID";
+    public static final int IGNORE_OPTIMIZATION_REQUEST = 15;
     private String rootKey;
 
     public static PreferenceFragment newInstance(@XmlRes int preferencesResId, @IdRes int preferencesContainerResId, String rootKey) {
@@ -74,6 +81,12 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                 String count = ((Application) getActivity().getApplication()).getPreferenceManager().countEnabledCategory().toString();
                 getPreferenceScreen().getPreference(i).setSummary(getString(R.string.Settings_Websites_Categories_Description, count));
             }
+            if (getString(R.string.automated_testing_enabled).equals(getPreferenceScreen().getPreference(i).getKey())) {
+                long autorun_num = ((Application) getActivity().getApplication()).getPreferenceManager().getAutorun();
+                String autorun_date = ((Application) getActivity().getApplication()).getPreferenceManager().getAutorunDate();
+                getPreferenceScreen().getPreference(i).setSummary(getString(R.string.Settings_AutomatedTesting_RunAutomatically_Number, String.valueOf(autorun_num)) +
+                        "\n" + getString(R.string.Settings_AutomatedTesting_RunAutomatically_DateLast, autorun_date));
+            }
         }
         Preference pref = findPreference(getString(R.string.send_email));
         if (pref != null)
@@ -99,6 +112,14 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
         }
     }
 
+    public void disableScheduler(){
+        Preference automated_testing_enabled = findPreference(getString(R.string.automated_testing_enabled));
+        if (automated_testing_enabled != null){
+            automated_testing_enabled.setEnabled(false);
+        }
+        ((Application) getActivity().getApplication()).getPreferenceManager().disableAutomaticTest();
+    }
+
     @Override
     public void onPause() {
         super.onPause();
@@ -116,6 +137,29 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Preference preference = findPreference(key);
+        if (key.equals(getString(R.string.automated_testing_enabled))) {
+            if (sharedPreferences.getBoolean(key, false)) {
+                PowerManager pm = (PowerManager) getActivity().getSystemService(Context.POWER_SERVICE);
+                boolean isIgnoringBatteryOptimizations = pm.isIgnoringBatteryOptimizations(getActivity().getPackageName());
+                if(!isIgnoringBatteryOptimizations){
+                    Intent intent = new Intent();
+                    intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+                    intent.setData(Uri.parse("package:" + getActivity().getPackageName()));
+                    startActivityForResult(intent, IGNORE_OPTIMIZATION_REQUEST);
+                }
+                else
+                    ServiceUtil.scheduleJob(getContext());
+            }
+            else {
+                ServiceUtil.stopJob(getContext());
+            }
+        }
+        if (key.equals(getString(R.string.automated_testing_charging)) ||
+                key.equals(getString(R.string.automated_testing_wifionly))){
+            //stop and re-enable scheduler in case of wifi charging option changed
+            ServiceUtil.stopJob(getContext());
+            ServiceUtil.scheduleJob(getContext());
+        }
         if (key.equals(getString(R.string.send_crash)) ||
                 key.equals(getString(R.string.notifications_enabled))){
             ThirdPartyServices.reloadConsents((Application) getActivity().getApplication());
@@ -168,5 +212,22 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
     @Override
     protected PreferenceFragment newConcreteInstance(String rootKey) {
         return PreferenceFragment.newInstance(getArguments().getInt(ARG_PREFERENCES_RES_ID), getArguments().getInt(ARG_CONTAINER_RES_ID), rootKey);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == IGNORE_OPTIMIZATION_REQUEST) {
+            PowerManager pm = (PowerManager) getActivity().getSystemService(Context.POWER_SERVICE);
+            boolean isIgnoringBatteryOptimizations = pm.isIgnoringBatteryOptimizations(getActivity().getPackageName());
+            if (isIgnoringBatteryOptimizations) {
+                // Ignoring battery optimization
+                ServiceUtil.scheduleJob(getActivity());
+            } else {
+                // Not ignoring battery optimization
+                disableScheduler();
+            }
+        }
     }
 }

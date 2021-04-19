@@ -1,8 +1,11 @@
 package org.openobservatory.ooniprobe.common;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.BatteryManager;
 
 public class ReachabilityManager {
     public static final String WIFI = "wifi";
@@ -24,8 +27,24 @@ public class ReachabilityManager {
         }
     }
 
-    public Boolean noInternetAccess(Context context){
+    public static Boolean noInternetAccess(Context context){
         return getNetworkType(context).equals(NO_INTERNET);
     }
 
+    public static Boolean isOnWifi(Context context){
+        return getNetworkType(context).equals(WIFI);
+    }
+
+
+    /* From https://developer.android.com/training/monitoring-device-state/battery-monitoring */
+    public static Boolean isCharging(Context context) {
+        IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        Intent batteryStatus = context.registerReceiver(null, ifilter);
+
+        // Are we charging / charged?
+        int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+        boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
+                status == BatteryManager.BATTERY_STATUS_FULL;
+        return isCharging;
+    }
 }

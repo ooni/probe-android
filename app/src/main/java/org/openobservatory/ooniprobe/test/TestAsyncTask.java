@@ -61,12 +61,18 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 	private ConnectivityManager manager;
 	private ConnectivityManager.NetworkCallback networkCallback;
 	private String proxy;
+	private boolean store_db = true;
 
 	public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, RunTestService service) {
 		this.app = app;
 		this.testSuites = testSuites;
 		this.service = service;
 		this.proxy = app.getPreferenceManager().getProxyURL();
+	}
+
+	public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, RunTestService service, boolean store_db) {
+		this(app, testSuites, service);
+		this.store_db = store_db;
 	}
 
 	private void registerConnChange() {
@@ -105,9 +111,11 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 			for (int suiteIdx = 0; suiteIdx < testSuites.size(); suiteIdx++){
 				if (!interrupt){
 					currentSuite = testSuites.get(suiteIdx);
-					result = currentSuite.getResult();
-					result.is_viewed = false;
-					result.save();
+					if (store_db){
+						result = currentSuite.getResult();
+						result.is_viewed = false;
+						result.save();
+					}
 					publishProgress(START, String.valueOf(suiteIdx));
 					runTest(currentSuite.getTestList(app.getPreferenceManager()));
 				}
