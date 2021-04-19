@@ -2,15 +2,16 @@ package org.openobservatory.ooniprobe.ui;
 
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.matcher.ViewMatchers;
-import androidx.test.rule.ActivityTestRule;
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import org.junit.Before;
+import com.raizlabs.android.dbflow.config.FlowManager;
+
+import org.junit.BeforeClass;
 import org.junit.ClassRule;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 
@@ -30,19 +31,20 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.core.StringContains.containsString;
 
-@RunWith(JUnit4.class)
+@RunWith(AndroidJUnit4.class)
 public class UITests {
     @ClassRule
     public static final LocaleTestRule localeTestRule = new LocaleTestRule();
 
     @Rule
-    public ActivityTestRule<MainActivity> activityRule = new ActivityTestRule<>(MainActivity.class);
+    public ActivityScenarioRule<MainActivity> activityRule = new ActivityScenarioRule<>(MainActivity.class);
 
-    @Before
-    public void before() {
+    @BeforeClass
+    public static void beforeClass() {
+        FlowManager.reset();
     }
 
-    //@Test
+    @Test
     public void testCustomURL() {
         onView(ViewMatchers.withId(R.id.dashboard)).perform(click());
         onView(withId(R.id.recycler))
@@ -62,7 +64,7 @@ public class UITests {
         onView(withId(R.id.desc)).check(matches(withText(containsString("http://ooni.io is accessible"))));
     }
 
-
+    // TODO: Requires specific state to pass
     @Test
     public void testSettings() {
         onView(withId(R.id.settings)).perform(click());

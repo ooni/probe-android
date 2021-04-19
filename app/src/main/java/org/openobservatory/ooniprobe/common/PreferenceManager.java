@@ -6,6 +6,8 @@ import android.content.res.Resources;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 
+import androidx.annotation.VisibleForTesting;
+
 import org.openobservatory.engine.Engine;
 import org.openobservatory.ooniprobe.R;
 
@@ -236,6 +238,11 @@ public class PreferenceManager {
 
 	public long getAppOpenCount(){
 		return sp.getLong(IS_NOTIFICATION_DIALOG, 0);
+	}
+
+	@VisibleForTesting
+	public void setAppOpenCount(Long value){
+		sp.edit().putLong(IS_NOTIFICATION_DIALOG, value).apply();
 	}
 
 	public boolean isAutomaticTestEnabled() {
