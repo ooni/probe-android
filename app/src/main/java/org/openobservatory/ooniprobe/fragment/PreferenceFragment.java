@@ -26,6 +26,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.PreferenceActivity;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.model.database.Measurement;
@@ -176,6 +177,24 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                 EditTextPreference p = findPreference(key);
                 if (p != null)
                     p.setText("");
+            }
+        }
+
+        if (key.equals(getString(R.string.proxy_enable_custom)) ||
+                key.equals(getString(R.string.proxy_enable_psiphon))){
+            PreferenceManager pm = ((Application) getActivity().getApplication()).getPreferenceManager();
+            if (key.equals(getString(R.string.proxy_enable_psiphon)) &&
+                    pm.isEnableProxyPsiphon()){
+                SwitchPreferenceCompat p = findPreference(getString(R.string.proxy_enable_custom));
+                if (p != null)
+                    p.setChecked(false);
+
+            }
+            else if (key.equals(getString(R.string.proxy_enable_custom)) &&
+                    pm.isEnableProxyCustom()){
+                SwitchPreferenceCompat p = findPreference(getString(R.string.proxy_enable_psiphon));
+                if (p != null)
+                    p.setChecked(false);
             }
         }
         else if (preference instanceof SwitchPreferenceCompat) {

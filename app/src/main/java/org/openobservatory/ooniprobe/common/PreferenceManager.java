@@ -124,12 +124,20 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.debugLogs), false);
 	}
 
-	private boolean isEnableCircumvention() { return sp.getBoolean("proxyEnablePsiphon", false); }
+	public boolean isEnableProxyPsiphon() {
+		return sp.getBoolean(r.getString(R.string.proxy_enable_psiphon), false);
+	}
+
+	public boolean isEnableProxyCustom() {
+		return sp.getBoolean(r.getString(R.string.proxy_enable_custom), false);
+	}
 
 	public String getProxyURL() {
-		boolean enabled = isEnableCircumvention();
-		if (enabled) {
+		if (isEnableProxyPsiphon()) {
 			return "psiphon:///";
+		}
+		else if (isEnableProxyCustom()) {
+			return sp.getString(r.getString(R.string.proxy_enable_custom_value), "");
 		}
 		return "";
 	}
