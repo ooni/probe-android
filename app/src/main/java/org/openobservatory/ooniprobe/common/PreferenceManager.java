@@ -119,7 +119,7 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.debugLogs), false);
 	}
 
-	private boolean isEnableCircumvention() { return sp.getBoolean("enableCircumvention", false); }
+	private boolean isEnableCircumvention() { return sp.getBoolean("proxyEnablePsiphon", false); }
 
 	public String getProxyURL() {
 		boolean enabled = isEnableCircumvention();

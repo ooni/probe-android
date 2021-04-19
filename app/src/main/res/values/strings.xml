@@ -354,6 +354,8 @@
   <string name="Settings_Privacy_Label">Privacy</string>
   <string name="Settings_Privacy_SendCrashReports">Send crash reports</string>
   <string name="Settings_Advanced_Label">Advanced</string>
+  <string name="Settings_Proxy_Label">OONI backend proxy</string>
+  <string name="Settings_Proxy_Psiphon">Use Psiphon</string>
   <string name="Settings_DarkMode_Label">Dark Mode</string>
   <string name="Settings_Advanced_DebugLogs">Debug logs</string>
   <string name="Settings_Advanced_UseDomainFronting">Always use domain fronting</string>

@@ -312,6 +312,7 @@
 			android:title="@string/Settings_Privacy_SendCrashReports"
 			app:iconSpaceReserved="false" />
 	</PreferenceScreen>
+
 	<PreferenceScreen
 		android:icon="@drawable/advanced"
 		android:key="@string/advanced"
@@ -332,12 +333,19 @@
 			android:summary=""
 			android:widgetLayout="@layout/preference_button"
 			app:iconSpaceReserved="false" />
+	</PreferenceScreen>
+
+	<PreferenceScreen
+		android:icon="@drawable/proxy"
+		android:key="@string/proxy"
+		android:title="@string/Settings_Proxy_Label">
 		<SwitchPreferenceCompat
 			android:defaultValue="false"
-			android:key="@string/enableCircumvention"
-			android:title="@string/Settings_Advanced_Circumvention"
+			android:key="@string/proxyEnablePsiphon"
+			android:title="@string/Settings_Proxy_Psiphon"
 			app:iconSpaceReserved="false" />
 	</PreferenceScreen>
+
 	<PreferenceScreen
 		android:icon="@drawable/send_email"
 		android:key="@string/send_email"
