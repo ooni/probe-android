@@ -17,7 +17,8 @@ public class Experimental extends AbstractTest {
     public static final String NAME = "experimental";
 
     public Experimental(String name) {
-        super(name, 0, 0, 0, 30);
+        //TODO make it less dependant on labelResId / getLabelResId
+        super(name, R.string.Test_Experimental_Fullname, 0, 0, 30);
     }
 
     @Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, AbstractTest.TestCallback testCallback) {

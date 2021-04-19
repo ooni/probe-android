@@ -14,15 +14,15 @@ public class ExperimentalSuite extends AbstractSuite {
 
     public ExperimentalSuite() {
         super(NAME,
-                R.string.Test_Circumvention_Fullname,
-                R.string.Dashboard_Circumvention_Card_Description,
-                R.drawable.test_circumvention,
-                R.drawable.test_circumvention_24,
-                R.color.color_pink6,
-                R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Circumvention,
-                R.style.Theme_MaterialComponents_NoActionBar_App_Circumvention,
-                R.string.Dashboard_Circumvention_Overview_Paragraph,
-                "anim/circumvention.json",
+                R.string.Test_Experimental_Fullname,
+                R.string.Dashboard_Experimental_Card_Description,
+                R.drawable.test_experimental,
+                R.drawable.test_experimental_24,
+                R.color.color_gray7,
+                R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Experimental,
+                R.style.Theme_MaterialComponents_NoActionBar_App_Experimental,
+                R.string.Dashboard_Experimental_Overview_Paragraph,
+                "anim/experimental.json",
                 R.string.TestResults_NotAvailable);
     }
 

@@ -83,11 +83,7 @@ public abstract class AbstractTest implements Serializable {
                 EventResult event = gson.fromJson(json, EventResult.class);
                 switch (event.key) {
                     case "status.started":
-                        //Workaround for experimental tests not having resource strings
-                        if (labelResId != 0)
-                            testCallback.onStart(c.getString(labelResId));
-                        else
-                            testCallback.onStart(getName());
+                        testCallback.onStart(c.getString(labelResId));
                         testCallback.onProgress(Double.valueOf(index * 100).intValue());
                         break;
                     case "status.geoip_lookup":
