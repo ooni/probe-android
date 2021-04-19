@@ -87,11 +87,8 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
     private boolean refresh;
     private Snackbar snackbar;
-    private PreferenceManager preferenceManager;
 
-    public ResultListFragment(PreferenceManager preferenceManager) {
-        this.preferenceManager = preferenceManager;
-    }
+    public String proxy;
 
     @Nullable
     @Override
@@ -239,7 +236,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     public void onConfirmation(Serializable serializable, int i) {
         if (serializable.equals(R.string.Modal_ResultsNotUploaded_Title)) {
             if (i == DialogInterface.BUTTON_POSITIVE)
-                new ResubmitAsyncTask(this, this.preferenceManager).execute(null, null);
+                new ResubmitAsyncTask(this, this.proxy).execute(null, null);
             else if (i == DialogInterface.BUTTON_NEUTRAL)
                 startActivity(TextActivity.newIntent(getActivity(), TextActivity.TYPE_UPLOAD_LOG, (String)serializable));
             else
@@ -263,8 +260,8 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     private static class ResubmitAsyncTask extends ResubmitTask<AppCompatActivity> {
         private WeakReference<ResultListFragment> wf;
 
-        ResubmitAsyncTask(ResultListFragment f, PreferenceManager pm) {
-            super((AppCompatActivity) f.getActivity(), pm.getProxyURL());
+        ResubmitAsyncTask(ResultListFragment f, String proxy) {
+            super((AppCompatActivity) f.getActivity(), proxy);
             this.wf = new WeakReference<>(f);
         }
 
