@@ -5,6 +5,8 @@
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+	<uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+
 	<permission android:name="org.openobservatory.ooniprobe.permission.C2D_MESSAGE" android:protectionLevel="signature" />
 	<uses-permission android:name="org.openobservatory.ooniprobe.permission.C2D_MESSAGE" />
 
@@ -127,5 +129,10 @@
 			android:icon="@drawable/notification_icon"
 			android:label="@string/Dashboard_Card_Run">
 		</service>
+		<service android:name=".common.service.RunTestJobService"
+			android:label="Run Test Service"
+			android:permission="android.permission.BIND_JOB_SERVICE">
+		</service>
+
 	</application>
 </manifest>
