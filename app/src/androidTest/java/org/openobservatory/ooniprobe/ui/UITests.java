@@ -1,14 +1,17 @@
-package org.openobservatory.ooniprobe;
+package org.openobservatory.ooniprobe.ui;
 
 import androidx.test.espresso.contrib.RecyclerViewActions;
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.rule.ActivityTestRule;
 
 import org.junit.Before;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
+import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 
 import java.util.Random;
@@ -41,7 +44,7 @@ public class UITests {
 
     //@Test
     public void testCustomURL() {
-        onView(withId(R.id.dashboard)).perform(click());
+        onView(ViewMatchers.withId(R.id.dashboard)).perform(click());
         onView(withId(R.id.recycler))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         onView(withId(R.id.customUrl)).perform(click());

@@ -1,15 +1,18 @@
-package org.openobservatory.ooniprobe;
+package org.openobservatory.ooniprobe.ui;
 
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.contrib.RecyclerViewActions;
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.rule.ActivityTestRule;
 
 import org.junit.Before;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
+import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 
 import tools.fastlane.screengrab.Screengrab;
@@ -40,7 +43,7 @@ public class AutomateScreenshotsTest {
         Screengrab.screenshot("01_dashboard");
 
         //Test results
-        onView(withId(R.id.testResults)).perform(click());
+        onView(ViewMatchers.withId(R.id.testResults)).perform(click());
         Screengrab.screenshot("02_testResults");
 
         //Blocked Website details
