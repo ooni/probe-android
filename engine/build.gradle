@@ -16,5 +16,5 @@ android {
 }
 
 dependencies {
-    implementation project(":oonimkall")
+    implementation 'org.ooni:oonimkall:2021.04.01-183918'
 }

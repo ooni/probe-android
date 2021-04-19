@@ -5,8 +5,8 @@
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-	<permission android:name="org.openobservatory.ooniprobedev.permission.C2D_MESSAGE" android:protectionLevel="signature" />
-	<uses-permission android:name="org.openobservatory.ooniprobedev.permission.C2D_MESSAGE" />
+	<permission android:name="org.openobservatory.ooniprobe.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+	<uses-permission android:name="org.openobservatory.ooniprobe.permission.C2D_MESSAGE" />
 
 	<application
 		android:name=".common.Application"
