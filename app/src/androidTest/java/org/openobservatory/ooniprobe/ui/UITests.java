@@ -39,11 +39,6 @@ public class UITests {
     @Rule
     public ActivityScenarioRule<MainActivity> activityRule = new ActivityScenarioRule<>(MainActivity.class);
 
-    @BeforeClass
-    public static void beforeClass() {
-        FlowManager.reset();
-    }
-
     @Test
     public void testCustomURL() {
         onView(ViewMatchers.withId(R.id.dashboard)).perform(click());
