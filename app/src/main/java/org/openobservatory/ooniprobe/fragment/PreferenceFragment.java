@@ -238,6 +238,14 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
             else
                 p_runtime.setVisible(false);
         }
+        EditTextPreference p_proxy = findPreference(getString(R.string.proxy_enable_custom_value));
+        if (p_proxy != null){
+            if (pm.isEnableProxyCustom()) {
+                p_proxy.setVisible(true);
+            }
+            else
+                p_proxy.setVisible(false);
+        }
     }
 
     @Override
