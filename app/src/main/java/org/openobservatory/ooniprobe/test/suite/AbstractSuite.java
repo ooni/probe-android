@@ -9,12 +9,16 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
 
+import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.database.Result;
+import org.openobservatory.ooniprobe.model.database.Url;
+import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class AbstractSuite implements Serializable {
 	private final int title;
@@ -126,6 +130,24 @@ public abstract class AbstractSuite implements Serializable {
 		ArrayList<AbstractSuite> list = new ArrayList<>();
 		list.add(this);
 		return list;
+	}
+
+	public static AbstractSuite getSuite(Application app,
+										 String tn,
+										 @Nullable List<String> urls,
+										 String origin) {
+		for (AbstractSuite suite : TestAsyncTask.SUITES)
+			for (AbstractTest test : suite.getTestList(app.getPreferenceManager()))
+				if (test.getName().equals(tn)) {
+					if (urls != null)
+						for (String url : urls)
+							Url.checkExistingUrl(url);
+					test.setInputs(urls);
+					test.setOrigin(origin);
+					suite.setTestList(test);
+					return suite;
+				}
+		return null;
 	}
 
 }

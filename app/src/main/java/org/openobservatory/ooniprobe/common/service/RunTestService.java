@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.common.service;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.KeyguardManager;
 import android.app.PendingIntent;
@@ -19,7 +20,6 @@ import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.NotificationUtility;
-import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
@@ -48,6 +48,7 @@ public class RunTestService extends Service {
         ArrayList<AbstractSuite> testSuites = (ArrayList<AbstractSuite>) intent.getSerializableExtra("testSuites");
         if (testSuites == null || testSuites.size() == 0)
             return 0;
+        boolean store_db = intent.getBooleanExtra("storeDB", true);
         Application app = ((Application)getApplication());
         NotificationUtility.setChannel(getApplicationContext(), CHANNEL_ID, app.getString(R.string.Settings_AutomatedTesting_Label), false, false, false);
         Intent notificationIntent = new Intent(this, RunningActivity.class);
@@ -63,7 +64,7 @@ public class RunTestService extends Service {
                 .setProgress(100, 0, false)
                 .build();
 
-        task = (TestAsyncTask) new TestAsyncTask(app, testSuites, this).execute();
+        task = (TestAsyncTask) new TestAsyncTask(app, testSuites, this, store_db).execute();
         //This intent is used to manage the stop test button in the notification
         Intent broadcastIntent = new Intent();
         broadcastIntent.setAction(RunTestService.ACTION_INTERRUPT);
@@ -81,6 +82,7 @@ public class RunTestService extends Service {
         return START_NOT_STICKY;
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     public void onDestroy() {
         super.onDestroy();

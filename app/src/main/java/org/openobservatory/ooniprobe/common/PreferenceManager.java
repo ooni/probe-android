@@ -4,13 +4,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.text.TextUtils;
-
-import androidx.appcompat.app.AppCompatDelegate;
+import android.text.format.DateFormat;
 
 import org.openobservatory.engine.Engine;
 import org.openobservatory.ooniprobe.R;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class PreferenceManager {
 	static final String GEO_VER = "geo_ver";
@@ -24,6 +25,8 @@ public class PreferenceManager {
 	public static final Integer DELETE_JSON_DELAY = 86400000;
 	private static final String DELETE_JSON_KEY = "deleteUploadedJsons";
 	private static final String UUID4 = "uuid4";
+	public static final String AUTORUN_COUNT = "autorun_count";
+	public static final String AUTORUN_DATE = "autorun_last_date";
 
 	private final SharedPreferences sp;
 	private final Resources r;
@@ -227,11 +230,51 @@ public class PreferenceManager {
 	}
 
 	public void incrementAppOpenCount(){
-		sp.edit().putLong(IS_NOTIFICATION_DIALOG, getAppOpenCount()+1);
+		sp.edit().putLong(IS_NOTIFICATION_DIALOG, getAppOpenCount()+1)
+				.apply();
 	}
 
 	public long getAppOpenCount(){
 		return sp.getLong(IS_NOTIFICATION_DIALOG, 0);
+	}
+
+	public boolean isAutomaticTestEnabled() {
+		return sp.getBoolean(r.getString(R.string.automated_testing_enabled), false);
+	}
+
+	public void disableAutomaticTest() {
+		sp.edit().putBoolean(r.getString(R.string.automated_testing_enabled), false)
+				.apply();
+	}
+
+	public boolean testWifiOnly() {
+		return sp.getBoolean(r.getString(R.string.automated_testing_wifionly), true);
+	}
+
+	public boolean testChargingOnly() {
+		return sp.getBoolean(r.getString(R.string.automated_testing_charging), true);
+	}
+
+	public void incrementAutorun(){
+		sp.edit().putLong(AUTORUN_COUNT, getAutorun()+1)
+				.apply();
+	}
+
+	public long getAutorun(){
+		return sp.getLong(AUTORUN_COUNT, 0);
+	}
+
+	public void updateAutorunDate(){
+		sp.edit().putLong(AUTORUN_DATE, System.currentTimeMillis())
+				.apply();
+	}
+
+	public String getAutorunDate(){
+		long timestamp = sp.getLong(AUTORUN_DATE, 0);
+		if (timestamp == 0)
+			return r.getString(R.string.Dashboard_Overview_LastRun_Never);
+		Date date = new Date(timestamp);
+		return DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), date).toString();
 	}
 
 }

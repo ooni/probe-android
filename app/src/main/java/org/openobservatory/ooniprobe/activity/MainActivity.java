@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.app.ActivityCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -14,6 +15,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
 import org.openobservatory.ooniprobe.fragment.PreferenceGlobalFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
@@ -94,7 +96,6 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
 
 	@Override protected void onResume() {
 		super.onResume();
-		//TODO-SERVICE show RunningActivity
 	}
 
     @Override

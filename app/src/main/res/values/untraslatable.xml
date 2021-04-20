@@ -3,10 +3,9 @@
 	<integer name="default_timeout" translatable="false">30</integer>
 	<string name="preferences" translatable="false">preferences</string>
 	<string name="notifications" translatable="false">notifications</string>
-
+	<string name="automated_testing" translatable="false">automated_testing</string>
 	<string name="theme" translatable="false">theme</string>
 	<string name="theme_enabled" translatable="false">theme_enabled</string>
-
 	<string name="sharing" translatable="false">sharing</string>
 	<string name="test_options" translatable="false">test_options</string>
 	<string name="privacy" translatable="false">privacy</string>
@@ -26,6 +25,9 @@
 	<string name="notifications_enabled" translatable="false">notifications_enabled</string>
 	<string name="notifications_completion" translatable="false">notifications_completion</string>
 	<string name="notifications_news" translatable="false">notifications_news</string>
+	<string name="automated_testing_enabled" translatable="false">automated_testing_enabled</string>
+	<string name="automated_testing_wifionly" translatable="false">automated_testing_wifionly</string>
+	<string name="automated_testing_charging" translatable="false">automated_testing_charging</string>
 	<string name="upload_results" translatable="false">upload_results</string>
 	<string name="debugLogs" translatable="false">debugLogs</string>
 	<string name="storage_usage" translatable="false">storage_usage</string>

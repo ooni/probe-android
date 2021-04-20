@@ -65,6 +65,12 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                     .withMessage(context.getString(R.string.Modal_Error_NoInternet))
                     .build().show(context.getSupportFragmentManager(), null);
             return null;
+        } else if (context.isTestRunning()) {
+            new MessageDialogFragment.Builder()
+                    .withTitle(context.getString(R.string.Modal_Error))
+                    .withMessage(context.getString(R.string.Modal_Error_TestAlreadyRunning))
+                    .build().show(context.getSupportFragmentManager(), null);
+            return null;
         } else {
             Intent serviceIntent = new Intent(context, RunTestService.class);
             serviceIntent.putExtra("testSuites", testSuites);

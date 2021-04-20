@@ -16,7 +16,6 @@ import com.google.gson.Gson;
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.engine.Engine;
 import org.openobservatory.engine.OONIMKTask;
-import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.MKException;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
@@ -76,8 +75,11 @@ public abstract class AbstractTest implements Serializable {
         }
         while (!task.isDone()){
             try {
-                File logFile = Measurement.getLogFile(c, result.id, name);
-                logFile.getParentFile().mkdirs();
+                File logFile = null;
+                if (result != null) {
+                    logFile = Measurement.getLogFile(c, result.id, name);
+                    logFile.getParentFile().mkdirs();
+                }
                 String json = task.waitForNextEvent();
                 Log.d(TAG, json);
                 EventResult event = gson.fromJson(json, EventResult.class);
@@ -93,13 +95,16 @@ public abstract class AbstractTest implements Serializable {
                         reportId = event.value.report_id;
                         break;
                     case "status.measurement_start":
-                        Measurement measurement = new Measurement(result, name, reportId);
-                        if (event.value.input.length() > 0)
-                            measurement.url = Url.getUrl(event.value.input);
-                        measurements.put(event.value.idx, measurement);
-                        measurement.save();
+                        if (result != null){
+                            Measurement measurement = new Measurement(result, name, reportId);
+                            if (event.value.input.length() > 0)
+                                measurement.url = Url.getUrl(event.value.input);
+                            measurements.put(event.value.idx, measurement);
+                            measurement.save();
+                        }
                         break;
                     case "log":
+                        if (logFile == null) break;
                         FileUtils.writeStringToFile(
                                 logFile,
                                 event.value.message + "\n",
@@ -110,6 +115,7 @@ public abstract class AbstractTest implements Serializable {
                         break;
                     case "status.progress":
                         testCallback.onProgress(Double.valueOf((index + event.value.percentage) * 100).intValue());
+                        if (logFile == null) break;
                         FileUtils.writeStringToFile(
                                 logFile,
                                 event.value.message + "\n",
@@ -242,16 +248,16 @@ public abstract class AbstractTest implements Serializable {
     }
 
     private void setDataUsage(EventResult.Value value, Result result) {
+        if (result == null) return;
         result.data_usage_down = result.data_usage_down + Double.valueOf(value.downloaded_kb).longValue();
         result.data_usage_up = result.data_usage_up + Double.valueOf(value.uploaded_kb).longValue();
         result.save();
     }
 
     private void setFailureMsg(EventResult.Value value, Result result) {
-        if (result != null) {
-            result.failure_msg = value.failure;
-            result.save();
-        }
+        if (result == null) return;
+        result.failure_msg = value.failure;
+        result.save();
     }
 
     public int getLabelResId() {
