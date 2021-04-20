@@ -104,6 +104,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                 return true;
             });
         setStorage();
+        hidePreferences();
     }
 
     public void setStorage(){
@@ -208,7 +209,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
             Toast.makeText(getActivity(), "Please restart the app for apply changes.", Toast.LENGTH_LONG).show();
             getActivity().finishAffinity();
         }
-
+        hidePreferences();
     }
 
     private void checkAtLeastOneEnabled(SharedPreferences sharedPreferences, String key){
@@ -225,6 +226,17 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
             SwitchPreferenceCompat p = findPreference(key);
             if (p != null)
                 p.setChecked(true);
+        }
+    }
+
+    private void hidePreferences(){
+        PreferenceManager pm = ((Application) getActivity().getApplication()).getPreferenceManager();
+        EditTextPreference p_runtime = findPreference(getString(R.string.max_runtime));
+        if (p_runtime != null){
+            if (pm.isMaxRuntimeEnabled())
+                p_runtime.setVisible(true);
+            else
+                p_runtime.setVisible(false);
         }
     }
 
