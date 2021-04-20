@@ -125,11 +125,15 @@ public class PreferenceManager {
 	}
 
 	public boolean isEnableProxyPsiphon() {
-		return sp.getBoolean(r.getString(R.string.proxy_enable_psiphon), false);
+		return sp.getString(r.getString(R.string.proxy_enabled), "none").equals("psiphon");
 	}
 
 	public boolean isEnableProxyCustom() {
-		return sp.getBoolean(r.getString(R.string.proxy_enable_custom), false);
+		return sp.getString(r.getString(R.string.proxy_enabled), "none").equals("custom");
+	}
+
+	public String getProxySelected() {
+		return sp.getString(r.getString(R.string.proxy_enabled), "none");
 	}
 
 	public String getProxyURL() {
@@ -137,7 +141,7 @@ public class PreferenceManager {
 			return "psiphon:///";
 		}
 		else if (isEnableProxyCustom()) {
-			return sp.getString(r.getString(R.string.proxy_enable_custom_value), "");
+			return sp.getString(r.getString(R.string.proxy_custom_value), "");
 		}
 		return "";
 	}

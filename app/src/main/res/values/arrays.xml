@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="proxyLabels">
+        <item>@string/Settings_Proxy_None</item>
+        <item>@string/Settings_Proxy_Psiphon</item>
+        <item>@string/Settings_Proxy_Custom</item>
+    </string-array>
+
+    <string-array name="proxyValues">
+        <item>none</item>
+        <item>psiphon</item>
+        <item>custom</item>
+    </string-array>
+
+</resources>

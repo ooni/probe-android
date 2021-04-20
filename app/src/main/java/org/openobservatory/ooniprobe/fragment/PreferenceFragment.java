@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.XmlRes;
 import androidx.preference.EditTextPreference;
+import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceScreen;
@@ -180,7 +181,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                     p.setText("");
             }
         }
-
+/*
         if (key.equals(getString(R.string.proxy_enable_custom)) ||
                 key.equals(getString(R.string.proxy_enable_psiphon))){
             PreferenceManager pm = ((Application) getActivity().getApplication()).getPreferenceManager();
@@ -198,7 +199,8 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                     p.setChecked(false);
             }
         }
-        else if (preference instanceof SwitchPreferenceCompat) {
+ */
+        if (preference instanceof SwitchPreferenceCompat) {
             //Call this code only in case of category or tests
             if (Arrays.asList(getActivity().getResources().getStringArray(R.array.CategoryCodes)).contains(key) ||
                     Arrays.asList(getActivity().getResources().getStringArray(R.array.preferenceTestsNames)).contains(key))
@@ -238,13 +240,19 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
             else
                 p_runtime.setVisible(false);
         }
-        EditTextPreference p_proxy = findPreference(getString(R.string.proxy_enable_custom_value));
-        if (p_proxy != null){
+        ListPreference p_proxy = findPreference("proxy_enabled");
+        if (p_proxy != null) {
+            int prefIndex = p_proxy.findIndexOfValue(pm.getProxySelected());
+            p_proxy.setSummary(p_proxy.getEntries()[prefIndex]);
+        }
+
+        EditTextPreference p_customproxy = findPreference(getString(R.string.proxy_custom_value));
+        if (p_customproxy != null){
             if (pm.isEnableProxyCustom()) {
-                p_proxy.setVisible(true);
+                p_customproxy.setVisible(true);
             }
             else
-                p_proxy.setVisible(false);
+                p_customproxy.setVisible(false);
         }
     }
 

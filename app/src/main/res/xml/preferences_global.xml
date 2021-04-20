@@ -357,20 +357,17 @@
 		android:icon="@drawable/proxy"
 		android:key="@string/proxy"
 		android:title="@string/Settings_Proxy_Label">
-		<SwitchPreferenceCompat
-			android:defaultValue="false"
-			android:key="@string/proxy_enable_psiphon"
-			android:title="@string/Settings_Proxy_Psiphon"
-			app:iconSpaceReserved="false" />
-		<SwitchPreferenceCompat
-			android:defaultValue="false"
-			android:key="@string/proxy_enable_custom"
-			android:title="@string/Settings_Proxy_Custom"
+		<ListPreference
+			android:title="@string/Settings_Proxy_Enabled"
+			android:key="@string/proxy_enabled"
+			android:summary=""
+			android:defaultValue="none"
+			android:entries="@array/proxyLabels"
+			android:entryValues="@array/proxyValues"
 			app:iconSpaceReserved="false" />
 		<EditTextPreference
 			android:defaultValue=""
-			android:dependency="@string/proxy_enable_custom"
-			android:key="@string/proxy_enable_custom_value"
+			android:key="@string/proxy_custom_value"
 			android:title="@string/Settings_Proxy_Custom_Value"
 			app:iconSpaceReserved="false" />
 	</PreferenceScreen>

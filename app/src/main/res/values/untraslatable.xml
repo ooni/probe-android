@@ -16,9 +16,8 @@
 	<string name="instant_messaging" translatable="false">instant_messaging</string>
 	<string name="circumvention" translatable="false">circumvention</string>
 	<string name="proxy" translatable="false">proxy</string>
-	<string name="proxy_enable_psiphon" translatable="false">proxy_enable_psiphon</string>
-	<string name="proxy_enable_custom" translatable="false">proxy_enable_custom</string>
-	<string name="proxy_enable_custom_value" translatable="false">proxy_enable_custom_value</string>
+	<string name="proxy_enabled" translatable="false">proxy_enabled</string>
+	<string name="proxy_custom_value" translatable="false">proxy_custom_value</string>
 	<string name="middle_boxes" translatable="false">middle_boxes</string>
 	<string name="performance" translatable="false">performance</string>
 	<string name="notifications_enabled" translatable="false">notifications_enabled</string>
