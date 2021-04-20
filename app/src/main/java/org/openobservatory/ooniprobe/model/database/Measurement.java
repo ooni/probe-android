@@ -21,6 +21,7 @@ import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.Dash;
+import org.openobservatory.ooniprobe.test.test.Experimental;
 import org.openobservatory.ooniprobe.test.test.FacebookMessenger;
 import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
 import org.openobservatory.ooniprobe.test.test.HttpInvalidRequestLine;
@@ -265,6 +266,9 @@ public class Measurement extends BaseModel implements Serializable {
 					break;
 				case RiseupVPN.NAME:
 					test = new RiseupVPN();
+					break;
+				default:
+					test = new Experimental(test_name);
 					break;
 			}
 		return test;
