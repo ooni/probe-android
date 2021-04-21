@@ -62,6 +62,8 @@
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">Überprüfe ob [WhatsApp](https://ooni.org/nettest/whatsapp/), [Facebook Messenger](https://ooni.org/nettest/facebook-messenger/), [Telegram](https://ooni.org/nettest/telegram/) und [Signal](https://ooni.org/nettest/signal) gesperrt sind.\n\nDeine Ergebnisse werden auf [OONI Explorer](https://explorer.ooni.io/world/) und [OONI API](https://api.ooni.io/) veröffentlicht.</string>
   <string name="Dashboard_Circumvention_Card_Description">Test auf Blockierung der Instrumente zur Zensurumgehung </string>
   <string name="Dashboard_Circumvention_Overview_Paragraph">Überprüfe ob [Psiphon](https://ooni.io/nettest/psiphon/), [Tor](https://ooni.io/nettest/tor/) oder [RiseupVPN](https://ooni.io/nettest/riseupvpn/) blockiert werden.\n\nDeine Ergebnisse werden pubiziert auf dem [OONI Explorer](https://explorer.ooni.org/) und dem [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_Experimental_Card_Description">Run new experimental tests</string>
+  <string name="Dashboard_Experimental_Overview_Paragraph">Run the following new experimental tests developed by the OONI team:\n%1$s\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>
@@ -80,6 +82,7 @@
   <string name="TestResults_Overview_FilterTests_Performance">Performance</string>
   <string name="TestResults_Overview_FilterTests_InstantMessaging">Instant Messaging</string>
   <string name="TestResults_Overview_FilterTests_Circumvention">Umgehung</string>
+  <string name="TestResults_Overview_FilterTests_Experimental">experimentell</string>
   <string name="TestResults_Overview_NoTestsHaveBeenRun">Es wurden noch keine Tests durchgeführt. Probiere, einen auszuführen!</string>
   <string name="TestResults_Overview_Websites_Blocked_Singular">%1$s blockiert</string>
   <string name="TestResults_Overview_Websites_Blocked_Plural">%1$s blockiert</string>
@@ -251,6 +254,7 @@
   <string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Singular">%1$s blockiert</string>
   <string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Plural">%1$s blockiert</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Okay">OK</string>
+  <string name="TestResults_Details_Experimental_Hero_Title">This is an experimental test.</string>
   <string name="Feed_Tab_Label">Feed</string>
   <string name="Feed_Title">Feed</string>
   <string name="Modal_OK">OK</string>
@@ -312,6 +316,7 @@
   <string name="Test_Middleboxes_Fullname">Middleboxen</string>
   <string name="Test_Performance_Fullname">Performance</string>
   <string name="Test_Circumvention_Fullname">Umgehung</string>
+  <string name="Test_Experimental_Fullname">experimentell</string>
   <string name="Test_HTTPInvalidRequestLine_Fullname">HTTP Invalid Request Line Test</string>
   <string name="Test_HTTPHeaderFieldManipulation_Fullname">HTTP Header Field Manipulation Test</string>
   <string name="Test_WebConnectivity_Fullname">Web Connectivity Test</string>
@@ -357,6 +362,13 @@
   <string name="Settings_DarkMode_Label">Dunkelmodus</string>
   <string name="Settings_Advanced_DebugLogs">Fehlerprotokolle</string>
   <string name="Settings_Advanced_UseDomainFronting">Immer Domain Fronting benutzen</string>
+  <string name="Settings_Proxy_Label">OONI backend proxy</string>
+  <string name="Settings_Proxy_Enabled">Vermittlungsserver</string>
+  <string name="Settings_Proxy_None">Nichts</string>
+  <string name="Settings_Proxy_Psiphon">Psiphon</string>
+  <string name="Settings_Proxy_Custom">Custom Proxy</string>
+  <string name="Settings_Proxy_Custom_Value">Custom Proxy URL</string>
+  <string name="Settings_Proxy_Footer">Are you unable to use OONI Probe? Try enabling Psiphon (https://psiphon.ca/) to circumvent potential OONI Probe blocking. Alternatively, you can use a custom proxy.</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Testdauer begrenzen</string>
   <string name="Settings_Websites_MaxRuntime">Testdauer</string>
   <string name="Settings_Websites_Categories_Label">Zu testende Webseiten-Kategorien</string>

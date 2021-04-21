@@ -62,6 +62,8 @@
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">مسدود بودن [واتس‌اپ](https://ooni.io/nettest/whatsapp/)، [پیام‌رسان فیسبوک](https://ooni.io/nettest/facebook-messenger/)، [تلگرام](https://ooni.io/nettest/telegram/) و [سیگنال](https://ooni.org/nettest/signal) را بررسی کنید.\n\nنتایج شما بر روی [OONI Explorer](https://explorer.ooni.io/world/) و [OONI API](https://api.ooni.io/) منتشر می‌شود.</string>
   <string name="Dashboard_Circumvention_Card_Description">مسدود بودن ابزارهای دور زدن سانسور را بیازمایید</string>
   <string name="Dashboard_Circumvention_Overview_Paragraph">بررسی کنید که آیا [Psiphon](https://ooni.io/nettest/psiphon/)،  [Tor](https://ooni.io/nettest/tor/) و یا [RiseupVPN](https://ooni.io/nettest/riseupvpn/) مسدود هستند.\n\nنتایج شما در [OONI Explorer](https://explorer.ooni.org/) و [OONI API](https://api.ooni.io/) منتشر خواهد شد.</string>
+  <string name="Dashboard_Experimental_Card_Description">Run new experimental tests</string>
+  <string name="Dashboard_Experimental_Overview_Paragraph">Run the following new experimental tests developed by the OONI team:\n%1$s\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">گیگابیت بر ثانیه</string>
   <string name="TestResults_Mbps">مگابیت بر ثانیه</string>
   <string name="TestResults_Kbps">کیلوبیت بر ثانیه</string>
@@ -80,6 +82,7 @@
   <string name="TestResults_Overview_FilterTests_Performance">کارایی</string>
   <string name="TestResults_Overview_FilterTests_InstantMessaging">پيام رسانی سريع</string>
   <string name="TestResults_Overview_FilterTests_Circumvention">◾️ دور زدن سانسور</string>
+  <string name="TestResults_Overview_FilterTests_Experimental">آزمایشی</string>
   <string name="TestResults_Overview_NoTestsHaveBeenRun">تستی هنوز اجرا نشده. یکی را امتحان کنید!</string>
   <string name="TestResults_Overview_Websites_Blocked_Singular">%1$s مسدود شده</string>
   <string name="TestResults_Overview_Websites_Blocked_Plural">%1$s مسدود شده</string>
@@ -251,6 +254,7 @@
   <string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Singular">%1$s مسدود شده</string>
   <string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Plural">%1$s مسدود شده</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Okay">تایید</string>
+  <string name="TestResults_Details_Experimental_Hero_Title">This is an experimental test.</string>
   <string name="Feed_Tab_Label">خوراک</string>
   <string name="Feed_Title">خوراک</string>
   <string name="Modal_OK">باشه</string>
@@ -312,6 +316,7 @@
   <string name="Test_Middleboxes_Fullname">Middleboxes</string>
   <string name="Test_Performance_Fullname">کارایی</string>
   <string name="Test_Circumvention_Fullname">◾️ دور زدن سانسور</string>
+  <string name="Test_Experimental_Fullname">آزمایشی</string>
   <string name="Test_HTTPInvalidRequestLine_Fullname">تست خط درخواست نامعتبر HTTP</string>
   <string name="Test_HTTPHeaderFieldManipulation_Fullname">تست دستکاری فیلد هدر HTTP</string>
   <string name="Test_WebConnectivity_Fullname">تست اتصال به وب</string>
@@ -357,6 +362,13 @@
   <string name="Settings_DarkMode_Label">حالت تیره</string>
   <string name="Settings_Advanced_DebugLogs">ثبت اشکال زدایی‌ها</string>
   <string name="Settings_Advanced_UseDomainFronting">همواره از جعل دامنه استفاده کن</string>
+  <string name="Settings_Proxy_Label">OONI backend proxy</string>
+  <string name="Settings_Proxy_Enabled">پروکسی</string>
+  <string name="Settings_Proxy_None">هیچ</string>
+  <string name="Settings_Proxy_Psiphon">Psiphon</string>
+  <string name="Settings_Proxy_Custom">Custom Proxy</string>
+  <string name="Settings_Proxy_Custom_Value">Custom Proxy URL</string>
+  <string name="Settings_Proxy_Footer">Are you unable to use OONI Probe? Try enabling Psiphon (https://psiphon.ca/) to circumvent potential OONI Probe blocking. Alternatively, you can use a custom proxy.</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">کرانمند‌سازی مدت آزمون</string>
   <string name="Settings_Websites_MaxRuntime">مدت تست</string>
   <string name="Settings_Websites_Categories_Label">دسته‌بندی‌های وبسایت برای تست</string>
