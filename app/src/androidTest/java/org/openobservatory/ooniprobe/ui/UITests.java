@@ -9,6 +9,7 @@ import com.raizlabs.android.dbflow.config.FlowManager;
 
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -40,6 +41,7 @@ public class UITests {
     public ActivityScenarioRule<MainActivity> activityRule = new ActivityScenarioRule<>(MainActivity.class);
 
     @Test
+    @Ignore("Flaky test that needs to be re-written")
     public void testCustomURL() {
         onView(ViewMatchers.withId(R.id.dashboard)).perform(click());
         onView(withId(R.id.recycler))
