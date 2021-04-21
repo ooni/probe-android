@@ -62,6 +62,8 @@
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">Vérifiez si [WhatsApp](https://ooni.org/nettest/whatsapp/), [Facebook  Messenger](https://ooni.org/nettest/facebook-messenger/), [Telegram](https://ooni.org/nettest/telegram/) ou [Signal](https://ooni.org/nettest/signal) sont bloqués (pages en anglais)..\n\nVos résultats seront publiés dans l’[Explorateur OONI](https://explorer.ooni.io/world/) et [l’API OONI](https://api.ooni.io/) (pages en anglais).</string>
   <string name="Dashboard_Circumvention_Card_Description">Testez le blocage des outils de contournement de la censure</string>
   <string name="Dashboard_Circumvention_Overview_Paragraph">Vérifiez si [Psiphon](https://ooni.io/nettest/psiphon/), [Tor](https://ooni.io/nettest/tor/) ou [RiseupVPN](https://ooni.io/nettest/riseupvpn/) sont bloqués (pages en anglais).\n\nVos résultats seront publiés dans l’[Explorateur OONI](https://explorer.ooni.org/) et l’[API OONI](https://api.ooni.io/) (pages en anglais).</string>
+  <string name="Dashboard_Experimental_Card_Description">Run new experimental tests</string>
+  <string name="Dashboard_Experimental_Overview_Paragraph">Run the following new experimental tests developed by the OONI team:\n%1$s\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>
@@ -80,6 +82,7 @@
   <string name="TestResults_Overview_FilterTests_Performance">Performances</string>
   <string name="TestResults_Overview_FilterTests_InstantMessaging">Messagerie instantanée</string>
   <string name="TestResults_Overview_FilterTests_Circumvention">Contournement</string>
+  <string name="TestResults_Overview_FilterTests_Experimental">Expérimental</string>
   <string name="TestResults_Overview_NoTestsHaveBeenRun">Aucun test n’a encore été effectué. Essayez d’en lancer un !</string>
   <string name="TestResults_Overview_Websites_Blocked_Singular">%1$s bloqué</string>
   <string name="TestResults_Overview_Websites_Blocked_Plural">%1$s bloqués</string>
@@ -251,6 +254,7 @@
   <string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Singular">%1$s bloqué</string>
   <string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Plural">%1$s bloqués</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Okay">Valider</string>
+  <string name="TestResults_Details_Experimental_Hero_Title">This is an experimental test.</string>
   <string name="Feed_Tab_Label">Flux</string>
   <string name="Feed_Title">Flux</string>
   <string name="Modal_OK">Valider</string>
@@ -312,6 +316,7 @@
   <string name="Test_Middleboxes_Fullname">Boîtiers intermédiaires</string>
   <string name="Test_Performance_Fullname">Performances</string>
   <string name="Test_Circumvention_Fullname">Contournement</string>
+  <string name="Test_Experimental_Fullname">Expérimental</string>
   <string name="Test_HTTPInvalidRequestLine_Fullname">Test HTTP Ligne de requête invalide</string>
   <string name="Test_HTTPHeaderFieldManipulation_Fullname">Test HTTP Manipulation champ d’en-tête</string>
   <string name="Test_WebConnectivity_Fullname">Test de connectivité Web</string>
@@ -357,6 +362,13 @@
   <string name="Settings_DarkMode_Label">Mode sombre</string>
   <string name="Settings_Advanced_DebugLogs">Journaux de débogage</string>
   <string name="Settings_Advanced_UseDomainFronting">Toujours utiliser un domaine-écran</string>
+  <string name="Settings_Proxy_Label">OONI backend proxy</string>
+  <string name="Settings_Proxy_Enabled">Mandataire</string>
+  <string name="Settings_Proxy_None">Aucune</string>
+  <string name="Settings_Proxy_Psiphon">Psiphon</string>
+  <string name="Settings_Proxy_Custom">Custom Proxy</string>
+  <string name="Settings_Proxy_Custom_Value">Custom Proxy URL</string>
+  <string name="Settings_Proxy_Footer">Are you unable to use OONI Probe? Try enabling Psiphon (https://psiphon.ca/) to circumvent potential OONI Probe blocking. Alternatively, you can use a custom proxy.</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Limiter la durée du test</string>
   <string name="Settings_Websites_MaxRuntime">Durée du test</string>
   <string name="Settings_Websites_Categories_Label">Catégories de sites Web à tester</string>

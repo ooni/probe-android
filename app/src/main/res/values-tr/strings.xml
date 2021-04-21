@@ -62,6 +62,8 @@
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">[WhatsApp](https://ooni.org/nettest/whatsapp/), [Facebook Messenger](https://ooni.org/nettest/facebook-messenger/), [Telegram](https://ooni.org/nettest/telegram/) ve [Signal](https://ooni.org/nettest/signal) uygulamalarının engellenip engellenmediğini kontrol edebilirsiniz.\n\nSonuçlarınız [OONI Explorer](https://explorer.ooni.io/world/) ve [OONI API](https://api.ooni.io/) üzerinde yayınlanır.</string>
   <string name="Dashboard_Circumvention_Card_Description">Sansürü aşma araçları engellemesini sınayın</string>
   <string name="Dashboard_Circumvention_Overview_Paragraph">[Psiphon](https://ooni.io/nettest/psiphon/) ve [Tor](https://ooni.io/nettest/tor/) ya da [RiseupVPN](https://ooni.io/nettest/riseupvpn/) engelleniyor mu öğrenin.\n\nSonuçlarınız [OONI Explorer](https://explorer.ooni.org/) ve [OONI API](https://api.ooni.io/) sayfasında yayınlanır.</string>
+  <string name="Dashboard_Experimental_Card_Description">Run new experimental tests</string>
+  <string name="Dashboard_Experimental_Overview_Paragraph">Run the following new experimental tests developed by the OONI team:\n%1$s\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>
@@ -80,6 +82,7 @@
   <string name="TestResults_Overview_FilterTests_Performance">Performans</string>
   <string name="TestResults_Overview_FilterTests_InstantMessaging">Anlık İleti</string>
   <string name="TestResults_Overview_FilterTests_Circumvention">Sansür Atlatma</string>
+  <string name="TestResults_Overview_FilterTests_Experimental">Experimental</string>
   <string name="TestResults_Overview_NoTestsHaveBeenRun">Henüz bir sınama yapılmamış. Birini deneyin!</string>
   <string name="TestResults_Overview_Websites_Blocked_Singular">%1$s engellenmiş</string>
   <string name="TestResults_Overview_Websites_Blocked_Plural">%1$s engellenmiş</string>
@@ -251,6 +254,7 @@
   <string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Singular">%1$s engellenmiş</string>
   <string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Plural">%1$s engellenmiş</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Okay">Tamam</string>
+  <string name="TestResults_Details_Experimental_Hero_Title">This is an experimental test.</string>
   <string name="Feed_Tab_Label">Akış</string>
   <string name="Feed_Title">Akış</string>
   <string name="Modal_OK">Tamam</string>
@@ -312,6 +316,7 @@
   <string name="Test_Middleboxes_Fullname">Ara Kutular</string>
   <string name="Test_Performance_Fullname">Performans</string>
   <string name="Test_Circumvention_Fullname">Sansür Atlatma</string>
+  <string name="Test_Experimental_Fullname">Experimental</string>
   <string name="Test_HTTPInvalidRequestLine_Fullname">HTTP Geçersiz İstek Hattı Sınaması</string>
   <string name="Test_HTTPHeaderFieldManipulation_Fullname">HTTP Üst Bilgi Müdahalesi Sınaması</string>
   <string name="Test_WebConnectivity_Fullname">Web Bağlantı Sınaması</string>
@@ -357,6 +362,13 @@
   <string name="Settings_DarkMode_Label">Karanlık Kip</string>
   <string name="Settings_Advanced_DebugLogs">Hata ayıklama günlükleri</string>
   <string name="Settings_Advanced_UseDomainFronting">Araya her zaman alan adı eklensin (Domain Fronting)</string>
+  <string name="Settings_Proxy_Label">OONI backend proxy</string>
+  <string name="Settings_Proxy_Enabled">Vekil sunucu</string>
+  <string name="Settings_Proxy_None">Hiçbiri</string>
+  <string name="Settings_Proxy_Psiphon">Psiphon</string>
+  <string name="Settings_Proxy_Custom">Custom Proxy</string>
+  <string name="Settings_Proxy_Custom_Value">Custom Proxy URL</string>
+  <string name="Settings_Proxy_Footer">Are you unable to use OONI Probe? Try enabling Psiphon (https://psiphon.ca/) to circumvent potential OONI Probe blocking. Alternatively, you can use a custom proxy.</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Sınama süresi sınırlansın</string>
   <string name="Settings_Websites_MaxRuntime">Sınama süresi</string>
   <string name="Settings_Websites_Categories_Label">Sınanacak web sitesi kategorileri</string>

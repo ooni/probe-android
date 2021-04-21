@@ -62,6 +62,8 @@
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">Athugaðu hvort [WhatsApp](https://ooni.org/nettest/whatsapp/), [Facebook Messenger](https://ooni.org/nettest/facebook-messenger/), [Telegram](https://ooni.org/nettest/telegram/), og [Signal](https://ooni.org/nettest/signal) verði fyrir hindrunum.\n\nNiðurstöðurnar þínar verða birtar í [OONI Explorer](https://explorer.ooni.io/world/) og [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Circumvention_Card_Description">Prófa hindranir fyrir leiðir framhjá ritskoðun</string>
   <string name="Dashboard_Circumvention_Overview_Paragraph">Athugaðu hvort [Psiphon](https://ooni.io/nettest/psiphon/), [Tor](https://ooni.io/nettest/tor/) eða [RiseupVPN](https://ooni.io/nettest/riseupvpn/) verði fyrir hindrunum.\n\nNiðurstöðurnar þínar verða birtar í [OONI Explorer](https://explorer.ooni.org/) og [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_Experimental_Card_Description">Run new experimental tests</string>
+  <string name="Dashboard_Experimental_Overview_Paragraph">Run the following new experimental tests developed by the OONI team:\n%1$s\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>
@@ -80,6 +82,7 @@
   <string name="TestResults_Overview_FilterTests_Performance">Afköst</string>
   <string name="TestResults_Overview_FilterTests_InstantMessaging">Snarskilaboð</string>
   <string name="TestResults_Overview_FilterTests_Circumvention">Hjáleiðir</string>
+  <string name="TestResults_Overview_FilterTests_Experimental">Experimental</string>
   <string name="TestResults_Overview_NoTestsHaveBeenRun">Engar prófanir hafa verið keyrðar ennþá. Prófaðu að keyra eina!</string>
   <string name="TestResults_Overview_Websites_Blocked_Singular">%1$s hindranir</string>
   <string name="TestResults_Overview_Websites_Blocked_Plural">%1$s hindranir</string>
@@ -251,6 +254,7 @@
   <string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Singular">%1$s hindranir</string>
   <string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Plural">%1$s hindranir</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Okay">Í lagi</string>
+  <string name="TestResults_Details_Experimental_Hero_Title">This is an experimental test.</string>
   <string name="Feed_Tab_Label">Streymi</string>
   <string name="Feed_Title">Streymi</string>
   <string name="Modal_OK">Í lagi</string>
@@ -312,6 +316,7 @@
   <string name="Test_Middleboxes_Fullname">Millitölvur</string>
   <string name="Test_Performance_Fullname">Afköst</string>
   <string name="Test_Circumvention_Fullname">Hjáleiðir</string>
+  <string name="Test_Experimental_Fullname">Experimental</string>
   <string name="Test_HTTPInvalidRequestLine_Fullname">Prófun fyrir línu með ógidri HTTP-beiðni</string>
   <string name="Test_HTTPHeaderFieldManipulation_Fullname">Prófun á hvort átt hafi verið við HTTP-haus</string>
   <string name="Test_WebConnectivity_Fullname">Prófun veftenginga</string>
@@ -357,6 +362,13 @@
   <string name="Settings_DarkMode_Label">Dökkur hamur</string>
   <string name="Settings_Advanced_DebugLogs">Villuskrár</string>
   <string name="Settings_Advanced_UseDomainFronting">Alltaf nota lénaframhlið (domain fronting)</string>
+  <string name="Settings_Proxy_Label">OONI backend proxy</string>
+  <string name="Settings_Proxy_Enabled">Milliþjónn</string>
+  <string name="Settings_Proxy_None">Engin</string>
+  <string name="Settings_Proxy_Psiphon">Psiphon</string>
+  <string name="Settings_Proxy_Custom">Custom Proxy</string>
+  <string name="Settings_Proxy_Custom_Value">Custom Proxy URL</string>
+  <string name="Settings_Proxy_Footer">Are you unable to use OONI Probe? Try enabling Psiphon (https://psiphon.ca/) to circumvent potential OONI Probe blocking. Alternatively, you can use a custom proxy.</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Takmarka tímalengd prófunar</string>
   <string name="Settings_Websites_MaxRuntime">Tímalengd prófunar</string>
   <string name="Settings_Websites_Categories_Label">Flokkar vefsvæða sem á að prófa</string>
