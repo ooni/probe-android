@@ -16,6 +16,7 @@ import androidx.core.app.ActivityCompat;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
+import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
@@ -49,7 +50,15 @@ public class OverviewActivity extends AbstractActivity {
 		setTitle(testSuite.getTitle());
 		icon.setImageResource(testSuite.getIcon());
 		customUrl.setVisibility(testSuite.getName().equals(WebsitesSuite.NAME) ? View.VISIBLE : View.GONE);
-		Markwon.setMarkdown(desc, getString(testSuite.getDesc1()));
+		if (testSuite.getName().equals(ExperimentalSuite.NAME)) {
+			String experimentalLinks = "\n\n" +
+					"* [dnscheck](https://github.com/ooni/spec/blob/master/nettests/ts-028-dnscheck.md)" +
+					"\n" +
+					"* [stun-reachability](https://github.com/ooni/spec/blob/master/nettests/ts-025-stun-reachability.md)";
+			Markwon.setMarkdown(desc, getString(testSuite.getDesc1(), experimentalLinks));
+		}
+		else
+			Markwon.setMarkdown(desc, getString(testSuite.getDesc1()));
 		Result lastResult = Result.getLastResult(testSuite.getName());
 		if (lastResult == null)
 			lastTime.setText(R.string.Dashboard_Overview_LastRun_Never);
