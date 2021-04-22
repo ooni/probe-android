@@ -370,6 +370,7 @@
 			android:key="@string/proxy_custom_value"
 			android:title="@string/Settings_Proxy_Custom_Value"
 			app:iconSpaceReserved="false" />
+		<PreferenceCategory android:title="@string/Settings_Proxy_Footer" />
 	</PreferenceScreen>
 	<PreferenceScreen
 		android:icon="@drawable/send_email"
