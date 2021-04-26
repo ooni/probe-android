@@ -8,4 +8,4 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - run: ./gradlew testDevFullRelease
+      - run: ./gradlew testStableFullRelease

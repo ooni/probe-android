@@ -67,7 +67,7 @@ Instead to build the app to stay compliant to F-Droid use `fdroidRelease`, conta
 Run unit tests 
 
 ```
-./gradlew testDevFullDebug
+./gradlew testStableFullDebug
 ```
 
 Run instrumented tests (requires clean state in the device) 
