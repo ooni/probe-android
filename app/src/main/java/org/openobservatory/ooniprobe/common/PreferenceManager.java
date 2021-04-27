@@ -136,6 +136,12 @@ public class PreferenceManager {
 		return sp.getString(r.getString(R.string.proxy_enabled), "none");
 	}
 
+	public void setProxySelected(String selected) {
+		 sp.edit()
+			 .putString(r.getString(R.string.proxy_enabled), selected)
+			 .apply();
+	}
+
 	public String getProxyURL() {
 		if (isEnableProxyPsiphon()) {
 			return "psiphon:///";
@@ -144,6 +150,72 @@ public class PreferenceManager {
 			return sp.getString(r.getString(R.string.proxy_custom_value), "");
 		}
 		return "";
+	}
+
+	public void setProxyURL(String URL) {
+		sp.edit()
+			.putString(r.getString(R.string.proxy_custom_value), URL)
+			.apply();
+	}
+
+	public String getProxyCustomProtocol() {
+		return sp.getString(r.getString(R.string.proxy_custom_protocol), "SOCKS5");
+	}
+
+	public void setProxyCustomProtocol(String selected) {
+		sp.edit()
+			.putString(r.getString(R.string.proxy_custom_protocol), selected)
+			.apply();
+	}
+
+	public String getProxyCustomHostname() {
+		return sp.getString(r.getString(R.string.proxy_custom_hostname), "");
+	}
+
+	public void setProxyCustomHostname(String value) {
+		sp.edit()
+			.putString(r.getString(R.string.proxy_custom_hostname), value)
+			.apply();
+	}
+
+	public String getProxyCustomPort() {
+		return sp.getString(r.getString(R.string.proxy_custom_port), "");
+	}
+
+	public void setProxyCustomPort(String value) {
+		sp.edit()
+			.putString(r.getString(R.string.proxy_custom_port), value)
+			.apply();
+	}
+
+	public String getProxyCustomUsername() {
+		return sp.getString(r.getString(R.string.proxy_custom_username), "");
+	}
+
+	public void setProxyCustomUsername(String value) {
+		sp.edit()
+			.putString(r.getString(R.string.proxy_custom_username), value)
+			.apply();
+	}
+
+	public String getProxyCustomPassword() {
+		return sp.getString(r.getString(R.string.proxy_custom_password), "");
+	}
+
+	public void setProxyCustomPassword(String value) {
+		sp.edit()
+			.putString(r.getString(R.string.proxy_custom_password), value)
+			.apply();
+	}
+
+	public boolean isEnableProxyPsiphonOverCustom() {
+		return sp.getBoolean(r.getString(R.string.proxy_psiphon_over_custom), false);
+	}
+
+	public void seEnabledProxyPsiphonOverCustom(boolean isChecked) {
+		sp.edit()
+				.putBoolean(r.getString(R.string.proxy_psiphon_over_custom), isChecked)
+				.apply();
 	}
 
 	public boolean isTestWhatsapp() {

@@ -333,6 +333,66 @@
 			app:iconSpaceReserved="false" />
 	</PreferenceScreen>
 	<PreferenceScreen
+		android:icon="@drawable/proxy"
+		android:key="@string/proxy"
+		android:title="@string/Settings_Proxy_Label">
+		<ListPreference
+			android:title="@string/Settings_Proxy_Enabled"
+			android:key="@string/proxy_enabled"
+			android:summary=""
+			android:defaultValue="none"
+			android:entries="@array/proxyLabels"
+			android:entryValues="@array/proxyValues"
+			app:iconSpaceReserved="false"
+			app:isPreferenceVisible="false"/>
+		<ListPreference
+			android:title="Custom proxy protocol"
+			android:key="@string/proxy_custom_protocol"
+			android:summary=""
+			android:defaultValue="SOCKS5"
+			android:entries="@array/customProxyProtocolLabels"
+			android:entryValues="@array/customProxyProtocolValues"
+			app:iconSpaceReserved="false"
+			app:isPreferenceVisible="false"/>
+		<EditTextPreference
+			android:defaultValue=""
+			android:key="@string/proxy_custom_value"
+			android:title="@string/Settings_Proxy_Custom_Value"
+			app:iconSpaceReserved="false"
+			app:isPreferenceVisible="false"/>
+		<EditTextPreference
+			android:defaultValue=""
+			android:key="@string/proxy_custom_hostname"
+			android:title="@string/Settings_Proxy_Custom_Hostname"
+			app:iconSpaceReserved="false"
+			app:isPreferenceVisible="false"/>
+		<EditTextPreference
+			android:defaultValue=""
+			android:key="@string/proxy_custom_port"
+			android:title="@string/Settings_Proxy_Custom_Port"
+			app:iconSpaceReserved="false"
+			app:isPreferenceVisible="false"/>
+		<EditTextPreference
+			android:defaultValue=""
+			android:key="@string/proxy_custom_username"
+			android:title="@string/Settings_Proxy_Custom_Username"
+			app:iconSpaceReserved="false"
+			app:isPreferenceVisible="false"/>
+		<EditTextPreference
+			android:defaultValue=""
+			android:key="@string/proxy_custom_password"
+			android:title="@string/Settings_Proxy_Custom_Password"
+			app:iconSpaceReserved="false"
+			app:isPreferenceVisible="false"/>
+		<SwitchPreferenceCompat
+			android:defaultValue="false"
+			android:key="@string/proxy_psiphon_over_custom"
+			android:title="@string/Settings_Proxy_Psiphon_Over_Custom"
+			app:iconSpaceReserved="false"
+			app:isPreferenceVisible="false" />
+		<intent	android:action="org.openobservatory.ooniprobe.activity.ProxyActivity" />
+	</PreferenceScreen>
+	<PreferenceScreen
 		android:icon="@drawable/advanced"
 		android:key="@string/advanced"
 		android:title="@string/Settings_Advanced_Label">
@@ -352,25 +412,6 @@
 			android:summary=""
 			android:widgetLayout="@layout/preference_button"
 			app:iconSpaceReserved="false" />
-	</PreferenceScreen>
-	<PreferenceScreen
-		android:icon="@drawable/proxy"
-		android:key="@string/proxy"
-		android:title="@string/Settings_Proxy_Label">
-		<ListPreference
-			android:title="@string/Settings_Proxy_Enabled"
-			android:key="@string/proxy_enabled"
-			android:summary=""
-			android:defaultValue="none"
-			android:entries="@array/proxyLabels"
-			android:entryValues="@array/proxyValues"
-			app:iconSpaceReserved="false" />
-		<EditTextPreference
-			android:defaultValue=""
-			android:key="@string/proxy_custom_value"
-			android:title="@string/Settings_Proxy_Custom_Value"
-			app:iconSpaceReserved="false" />
-		<PreferenceCategory android:title="@string/Settings_Proxy_Footer" />
 	</PreferenceScreen>
 	<PreferenceScreen
 		android:icon="@drawable/send_email"

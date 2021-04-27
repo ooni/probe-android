@@ -12,4 +12,14 @@
         <item>custom</item>
     </string-array>
 
+    <string-array name="customProxyProtocolLabels">
+        <item>@string/Settings_Proxy_Custom_HTTP</item>
+        <item>@string/Settings_Proxy_Custom_SOCKS5</item>
+    </string-array>
+
+    <string-array name="customProxyProtocolValues">
+        <item>HTTP</item>
+        <item>SOCKS5</item>
+    </string-array>
+
 </resources>
