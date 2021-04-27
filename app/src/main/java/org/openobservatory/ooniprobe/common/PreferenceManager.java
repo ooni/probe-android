@@ -8,8 +8,8 @@ import android.text.format.DateFormat;
 
 import androidx.annotation.VisibleForTesting;
 
-import org.openobservatory.engine.Engine;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.test.EngineProvider;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -230,7 +230,7 @@ public class PreferenceManager {
 	}
 
 	public String getOrGenerateUUID4() {
-		String uuid = sp.getString(UUID4, Engine.newUUID4());
+		String uuid = sp.getString(UUID4, EngineProvider.get().newUUID4());
 		sp.edit().putString(UUID4, uuid).apply();
 		return uuid;
 	}

@@ -14,12 +14,11 @@ import androidx.annotation.StringRes;
 import com.google.gson.Gson;
 
 import org.apache.commons.io.FileUtils;
-import org.openobservatory.engine.Engine;
 import org.openobservatory.engine.OONIMKTask;
-import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.MKException;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
+import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -27,6 +26,7 @@ import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.model.jsonresult.EventResult;
 import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
 import org.openobservatory.ooniprobe.model.settings.Settings;
+import org.openobservatory.ooniprobe.test.EngineProvider;
 
 import java.io.File;
 import java.io.Serializable;
@@ -66,7 +66,7 @@ public abstract class AbstractTest implements Serializable {
         settings.annotations.origin = origin;
         measurements = new SparseArray<>();
         try {
-            task = Engine.startExperimentTask(settings.toExperimentSettings(gson, c));
+            task = EngineProvider.get().startExperimentTask(settings.toExperimentSettings(gson, c));
         } catch (Exception exc) {
             //TODO call setFailureMsg here and in other point of (non) return
             exc.printStackTrace();

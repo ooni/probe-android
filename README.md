@@ -70,10 +70,13 @@ Run unit tests
 ./gradlew testStableFullDebug
 ```
 
-Run instrumented tests (requires clean state in the device) 
+Run instrumented tests
+
+_Note: To also run the automation tests (to generate screenshots), set the Build Config flag 
+`RUN_AUTOMATION` as true._
 
 ```
-./gradlew connectedAndroidTest
+./gradlew connectedStableFullDebugAndroidTest
 ```
 
 Generate code coverage report (after all unit and instrumented tests successfully passed)

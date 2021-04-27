@@ -11,7 +11,6 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
-import org.openobservatory.engine.Engine;
 import org.openobservatory.engine.LoggerArray;
 import org.openobservatory.engine.OONICheckInConfig;
 import org.openobservatory.engine.OONICheckInResults;
@@ -23,7 +22,7 @@ import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
-import org.openobservatory.ooniprobe.model.database.Url;
+import org.openobservatory.ooniprobe.test.EngineProvider;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
 import java.util.ArrayList;
@@ -74,8 +73,10 @@ public class ServiceUtil {
                 !batteryManager.isCharging())
             return;
         try {
-            OONISession session = Engine.newSession(Engine.getDefaultSessionConfig(
-                    app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray()));
+            OONISession session = EngineProvider.get().newSession(
+                    EngineProvider.get().getDefaultSessionConfig(
+                            app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray())
+            );
             OONIContext ooniContext = session.newContextWithTimeout(30);
             session.maybeUpdateResources(ooniContext);
 			OONICheckInConfig config = new OONICheckInConfig(

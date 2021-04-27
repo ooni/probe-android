@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.di;
 
+import org.openobservatory.ooniprobe.factory.TestApplication;
+
 import javax.inject.Singleton;
 
 import dagger.Component;

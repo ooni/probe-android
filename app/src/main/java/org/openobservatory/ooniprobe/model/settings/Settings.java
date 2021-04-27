@@ -5,11 +5,11 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
-import org.openobservatory.engine.Engine;
 import org.openobservatory.engine.OONIMKTaskConfig;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
+import org.openobservatory.ooniprobe.test.EngineProvider;
 
 import java.util.Arrays;
 import java.util.List;
@@ -54,9 +54,9 @@ public class Settings {
 	}
 
 	public OONIMKTaskConfig toExperimentSettings(Gson gson, Context c) throws java.io.IOException {
-		assets_dir = Engine.getAssetsDir(c);
-		state_dir = Engine.getStateDir(c);
-		temp_dir = Engine.getTempDir(c);
+		assets_dir = EngineProvider.get().getAssetsDir(c);
+		state_dir = EngineProvider.get().getStateDir(c);
+		temp_dir = EngineProvider.get().getTempDir(c);
 		return new OONIMKTaskConfigAdapter(gson, this);
 	}
 

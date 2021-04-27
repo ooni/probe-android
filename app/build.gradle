@@ -12,12 +12,13 @@ android {
 		targetSdkVersion 30
 		versionName '3.0.0-beta.1'
 		versionCode 76
-		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+		testInstrumentationRunner "org.openobservatory.ooniprobe.TestAndroidJUnitRunner"
 		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://countly.ooni.io"'
 		resValue "string", "APP_NAME", "OONI Probe"
 		buildConfigField 'String', 'SOFTWARE_NAME', 'BASE_SOFTWARE_NAME+IS_DEBUG'
 		buildConfigField 'String', 'COUNTLY_KEY', '"146836f41172f9e3287cab6f2cc347de3f5ddf3b"'
+		buildConfigField "boolean", "RUN_AUTOMATION", "false"
 	}
 
 	buildTypes {
@@ -35,8 +36,21 @@ android {
 	}
 
 	testOptions {
+		animationsDisabled = true
 		unitTests {
 			includeAndroidResources = true
+		}
+	}
+
+	// Shared test code between Unit and Instrumented tests
+	sourceSets {
+		androidTest {
+			java.srcDirs += "src/sharedTest/java"
+			resources.srcDirs += "src/sharedTest/resources"
+		}
+		test {
+			java.srcDirs += "src/sharedTest/java"
+			resources.srcDirs += "src/sharedTest/resources"
 		}
 	}
 
@@ -122,10 +136,11 @@ dependencies {
 	fullImplementation 'io.sentry:sentry-android:4.0.0'
 
 // Dependency Injection
-	implementation 'com.google.dagger:dagger:2.35'
-	annotationProcessor 'com.google.dagger:dagger-compiler:2.35'
+	implementation 'com.google.dagger:dagger:2.35.1'
+	annotationProcessor 'com.google.dagger:dagger-compiler:2.35.1'
 
 // Testing
+
 	// Unit Testing
 	testImplementation 'junit:junit:4.13.2'
 	testImplementation 'androidx.test:core:1.3.0'
@@ -133,13 +148,16 @@ dependencies {
 	testImplementation 'androidx.test:rules:1.3.0'
 	testImplementation 'org.mockito:mockito-core:3.9.0'
 	testImplementation 'org.robolectric:robolectric:4.5.1'
-	testAnnotationProcessor "com.google.dagger:dagger-compiler:2.35"
+	testImplementation 'com.github.blocoio:faker:1.2.8'
+	testAnnotationProcessor 'com.google.dagger:dagger-compiler:2.35.1'
 
 	// Instrumentation Testing
 	androidTestImplementation 'tools.fastlane:screengrab:2.0.0'
+	androidTestImplementation 'com.github.blocoio:faker:1.2.8'
 	androidTestImplementation 'androidx.test:runner:1.3.0'
 	androidTestImplementation 'androidx.test:rules:1.3.0'
 	androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+	androidTestImplementation 'androidx.test.espresso:espresso-intents:3.3.0'
 	androidTestImplementation('androidx.test.espresso:espresso-contrib:3.3.0') {
 		exclude group: 'com.android.support', module: 'appcompat'
 		exclude group: 'com.android.support', module: 'support-v4'
@@ -150,6 +168,7 @@ dependencies {
 		exclude group: 'com.android.support', module: 'support-v4'
 		exclude module: 'recyclerview-v7'
 	}
+	androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:2.35.1"
 }
 
 static def versionCodeDate() {
