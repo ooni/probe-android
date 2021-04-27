@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.raizlabs.android.dbflow.sql.language.Where;
 
 import org.apache.commons.io.FileUtils;
-import org.openobservatory.engine.Engine;
 import org.openobservatory.engine.LoggerArray;
 import org.openobservatory.engine.OONIContext;
 import org.openobservatory.engine.OONISession;
@@ -18,6 +17,7 @@ import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Measurement_Table;
+import org.openobservatory.ooniprobe.test.EngineProvider;
 
 import java.io.File;
 import java.nio.charset.Charset;
@@ -99,9 +99,10 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
         List<Measurement> measurements = Measurement.withReport(getActivity(), msmQuery);
         totUploads = measurements.size();
         try {
-            OONISession session = Engine.newSession(Engine.getDefaultSessionConfig(
-                    getActivity(), BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, logger,
-                    proxy));
+            OONISession session = EngineProvider.get().newSession(
+                    EngineProvider.get().getDefaultSessionConfig(
+                            getActivity(), BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, logger)
+            );
             // Updating resources with no timeout because we don't know for sure how much
             // it will take to download them and choosing a timeout may prevent the operation
             // to ever complete. (Ideally the user should be able to interrupt the process

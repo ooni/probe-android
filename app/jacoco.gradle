@@ -11,8 +11,8 @@ task jacocoAndroidTestReport(type: JacocoReport) {
     fileTree(
       dir: project.buildDir,
       includes: [
-        "intermediates/javac/devFullDebug/**",
-        "tmp/kotlin-classes/devFullDebug/**"
+        "intermediates/javac/stableFullDebug/**",
+        "tmp/kotlin-classes/stableFullDebug/**"
       ],
       excludes: [
         'android/**/*.*',
@@ -28,6 +28,8 @@ task jacocoAndroidTestReport(type: JacocoReport) {
         '**/*MembersInjector*.*',
         '**/*_Provide*Factory*.*',
         '**/*_Factory.*',
+        // Butter Knife
+        '**/*_ViewBinding*',
       ]
     )
   ])

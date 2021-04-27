@@ -10,7 +10,6 @@ import android.util.Log;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import org.openobservatory.engine.Engine;
 import org.openobservatory.engine.LoggerArray;
 import org.openobservatory.engine.OONIContext;
 import org.openobservatory.engine.OONISession;
@@ -33,12 +32,9 @@ import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import retrofit2.Response;
 
 public class TestAsyncTask extends AsyncTask<Void, String, Void> implements AbstractTest.TestCallback {
 	public static final List<AbstractSuite> SUITES = Arrays.asList(new WebsitesSuite(),
@@ -133,7 +129,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 					downloadURLs();
 				}
 				if (!interrupt) {
-					Log.d(TAG, "run next stuite: "+ currentSuite.getName() + " test:" +currentTest.getName());
+					Log.d(TAG, "run next suite: "+ currentSuite.getName() + " test:" +currentTest.getName());
 					currentTest.run(app, app.getPreferenceManager(), app.getGson(), result, i, this);
 				}
 			}
@@ -147,9 +143,8 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 	//This uses the wrapper
 	private void downloadURLs(){
 		try {
-			OONISession session = Engine.newSession(Engine.getDefaultSessionConfig(
-					app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray(),
-					proxy));
+			OONISession session = engine.newSession(engine.getDefaultSessionConfig(
+					app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray()));
 			OONIContext ooniContext = session.newContextWithTimeout(30);
 			session.maybeUpdateResources(ooniContext);
 			OONIURLListConfig config = new OONIURLListConfig();

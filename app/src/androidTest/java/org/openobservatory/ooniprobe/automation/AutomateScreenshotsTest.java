@@ -1,4 +1,4 @@
-package org.openobservatory.ooniprobe.ui;
+package org.openobservatory.ooniprobe.automation;
 
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.Espresso;
@@ -6,12 +6,9 @@ import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.raizlabs.android.dbflow.config.FlowManager;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openobservatory.ooniprobe.AbstractTest;
@@ -52,6 +49,8 @@ public class AutomateScreenshotsTest extends AbstractTest {
     // TODO: Avoid the needing a clean state and to run after the WebConnectivityTest
     @Test
     public void testTakeScreenshot() {
+        onlyRunForAutomationFlag();
+
         //Dashboard
         Screengrab.screenshot("01_dashboard");
 
