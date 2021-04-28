@@ -48,7 +48,7 @@ public class Onboarding2Fragment extends Fragment implements OnboardingDialogPop
 				OnboardingDialogWarningFragment.newInstance(R.string.Onboarding_PopQuiz_1_Wrong_Paragraph).show(getChildFragmentManager(), null);
 		} else if (questionResId == R.string.Onboarding_PopQuiz_2_Question) {
 			if (positive)
-				getParentFragmentManager().beginTransaction().replace(android.R.id.content, new OnboardingCrashFragment()).commit();
+				getParentFragmentManager().beginTransaction().replace(android.R.id.content, new Onboarding3Fragment()).commit();
 			else
 				OnboardingDialogWarningFragment.newInstance(R.string.Onboarding_PopQuiz_2_Wrong_Paragraph).show(getChildFragmentManager(), null);
 		}
@@ -58,6 +58,6 @@ public class Onboarding2Fragment extends Fragment implements OnboardingDialogPop
 		if (questionResId == R.string.Onboarding_PopQuiz_1_Wrong_Paragraph)
 			OnboardingDialogPopquizFragment.newInstance(R.string.Onboarding_PopQuiz_2_Title, R.string.Onboarding_PopQuiz_2_Question).show(getChildFragmentManager(), null);
 		else if (questionResId == R.string.Onboarding_PopQuiz_2_Wrong_Paragraph)
-			getParentFragmentManager().beginTransaction().replace(android.R.id.content, new OnboardingCrashFragment()).commit();
+			getParentFragmentManager().beginTransaction().replace(android.R.id.content, new Onboarding3Fragment()).commit();
 	}
 }

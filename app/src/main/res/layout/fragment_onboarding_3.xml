@@ -71,14 +71,6 @@
 				android:text="@string/Onboarding_DefaultSettings_Paragraph"
 				android:textColor="@android:color/white" />
 
-			<TextView
-				android:id="@+id/paragraph1"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginTop="10dp"
-				android:text="@string/Onboarding_DefaultSettings_Paragraph_1"
-				android:textColor="@android:color/white" />
-
 		</LinearLayout>
 	</ScrollView>
 

@@ -9,7 +9,7 @@ public class ThirdPartyServices {
         // does nothing
     }
 
-    public static void acceptDefaultSettings(Application app) {
+    public static void acceptCrash(Application app) {
         //no need to set false, it's already the default value
     }
 }
