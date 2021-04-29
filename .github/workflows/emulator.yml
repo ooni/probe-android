@@ -1,3 +1,4 @@
+# emulator runs tests inside the android emulator
 name: emulator
 on:
   push:
