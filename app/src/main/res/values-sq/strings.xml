@@ -23,6 +23,10 @@
   <string name="Onboarding_PopQuiz_2_Question">Çdo herë që përdor OONI Probe, të dhënat për rrjetin që mbledh do të publikohen automatikisht.</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Title">Kujdes</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Paragraph">Për të rritur transparencën mbi censurimin në internet, të dhënat e rrjetit e të gjithë përdoruesve të OONI Probe publikohen automatikisht (përveç rasteve që ato e kanë përjashtuar si opsion tek rregjistrimet)</string>
+  <string name="Onboarding_Crash_Title">Crash Reporting</string>
+  <string name="Onboarding_Crash_Paragraph">To improve OONI Probe we would like to collect anonymous crash reports when the app does not work properly.\n\nWould you like yo opt-in to submitting crash reports to the OONI development team?</string>
+  <string name="Onboarding_Crash_Button_Yes">Po</string>
+  <string name="Onboarding_Crash_Button_No">Jo</string>
   <string name="Onboarding_DefaultSettings_Title">Rregullimet e parazgjedhura</string>
   <string name="Onboarding_DefaultSettings_Header">Mbledhim dhe publikojmë:</string>
   <string name="Onboarding_DefaultSettings_Bullet_1">Kodi i shtetit (psh IT për Italinë)</string>

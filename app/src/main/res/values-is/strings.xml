@@ -23,6 +23,10 @@
   <string name="Onboarding_PopQuiz_2_Question">Í hvert skipti sem ég keyri OONI Probe, verða þau gögn um netkerfið sem ég safna birt sjálfvirkt.</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Title">Aðvörun</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Paragraph">Til að auka gegnsæi upplýsinga um ritskoðun internetsins, eru netkerfisgögn allra notenda OONI Probe birtar opinberlega (nema að þeir biðji sérstaklega um annað í stillingum sínum).</string>
+  <string name="Onboarding_Crash_Title">Crash Reporting</string>
+  <string name="Onboarding_Crash_Paragraph">To improve OONI Probe we would like to collect anonymous crash reports when the app does not work properly.\n\nWould you like yo opt-in to submitting crash reports to the OONI development team?</string>
+  <string name="Onboarding_Crash_Button_Yes">Já</string>
+  <string name="Onboarding_Crash_Button_No">Nei</string>
   <string name="Onboarding_DefaultSettings_Title">Sjálfgefnar stillingar</string>
   <string name="Onboarding_DefaultSettings_Header">Við söfnum og birtum:</string>
   <string name="Onboarding_DefaultSettings_Bullet_1">Landskóði (t.d. IT fyrir Ítalíu)</string>
@@ -82,7 +86,7 @@
   <string name="TestResults_Overview_FilterTests_Performance">Afköst</string>
   <string name="TestResults_Overview_FilterTests_InstantMessaging">Snarskilaboð</string>
   <string name="TestResults_Overview_FilterTests_Circumvention">Hjáleiðir</string>
-  <string name="TestResults_Overview_FilterTests_Experimental">Experimental</string>
+  <string name="TestResults_Overview_FilterTests_Experimental">Á tilraunastigi</string>
   <string name="TestResults_Overview_NoTestsHaveBeenRun">Engar prófanir hafa verið keyrðar ennþá. Prófaðu að keyra eina!</string>
   <string name="TestResults_Overview_Websites_Blocked_Singular">%1$s hindranir</string>
   <string name="TestResults_Overview_Websites_Blocked_Plural">%1$s hindranir</string>
@@ -316,7 +320,7 @@
   <string name="Test_Middleboxes_Fullname">Millitölvur</string>
   <string name="Test_Performance_Fullname">Afköst</string>
   <string name="Test_Circumvention_Fullname">Hjáleiðir</string>
-  <string name="Test_Experimental_Fullname">Experimental</string>
+  <string name="Test_Experimental_Fullname">Á tilraunastigi</string>
   <string name="Test_HTTPInvalidRequestLine_Fullname">Prófun fyrir línu með ógidri HTTP-beiðni</string>
   <string name="Test_HTTPHeaderFieldManipulation_Fullname">Prófun á hvort átt hafi verið við HTTP-haus</string>
   <string name="Test_WebConnectivity_Fullname">Prófun veftenginga</string>
