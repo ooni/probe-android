@@ -23,6 +23,10 @@
   <string name="Onboarding_PopQuiz_2_Question">كل مرّّة أدير فيها OONI Probe، سيتم نشر بيانات الشبكة التي أجمعها أوتوماتيكيّاً. </string>
   <string name="Onboarding_PopQuiz_2_Wrong_Title">تحذير</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Paragraph">للزّيادة من شفافيّة الرّقابة على الانترنت، يتم النشر الأوتوماتيكي لجميع بيانات الشبكة التابعة لمستخدمي OONI Probe (إلا إذا اختاروا عدم المشاركة في ذلك من خلال الإعدادات).</string>
+  <string name="Onboarding_Crash_Title">Crash Reporting</string>
+  <string name="Onboarding_Crash_Paragraph">To improve OONI Probe we would like to collect anonymous crash reports when the app does not work properly.\n\nWould you like yo opt-in to submitting crash reports to the OONI development team?</string>
+  <string name="Onboarding_Crash_Button_Yes">‮نعم</string>
+  <string name="Onboarding_Crash_Button_No">‮لا</string>
   <string name="Onboarding_DefaultSettings_Title">الإعدادات الإفتراضية</string>
   <string name="Onboarding_DefaultSettings_Header">نقوم بجمع ونشر:</string>
   <string name="Onboarding_DefaultSettings_Bullet_1">رمز الدّولة (مثلاً IT لإيطاليا) </string>

@@ -23,6 +23,10 @@
   <string name="Onboarding_PopQuiz_2_Question">Chaque fois que j’exécute OONI Probe, les données réseau que je recueille seront publiées automatiquement.</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Title">Avertissement</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Paragraph">Afin d’accroître la transparence de la censure d’Internet, les données réseau de tous les utilisateurs d’OONI Probe sont publiées automatiquement (à moins qu’ils ne décident de ne pas y participer dans les paramètres).</string>
+  <string name="Onboarding_Crash_Title">Crash Reporting</string>
+  <string name="Onboarding_Crash_Paragraph">To improve OONI Probe we would like to collect anonymous crash reports when the app does not work properly.\n\nWould you like yo opt-in to submitting crash reports to the OONI development team?</string>
+  <string name="Onboarding_Crash_Button_Yes">Oui</string>
+  <string name="Onboarding_Crash_Button_No">Non</string>
   <string name="Onboarding_DefaultSettings_Title">Paramètres par défaut</string>
   <string name="Onboarding_DefaultSettings_Header">Nous recueillons et publions :</string>
   <string name="Onboarding_DefaultSettings_Bullet_1">Le code de pays (p. ex. IT pour Italie)</string>
