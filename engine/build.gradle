@@ -16,5 +16,5 @@ android {
 }
 
 dependencies {
-    implementation 'org.ooni:oonimkall:2021.04.07-180801'
+    implementation 'org.ooni:oonimkall:2021.04.29-120054'
 }
