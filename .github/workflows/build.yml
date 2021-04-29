@@ -1,7 +1,6 @@
+# build checks whether the project builds
 name: build
-
 on: [push]
-
 jobs:
   build:
     runs-on: macos-latest
