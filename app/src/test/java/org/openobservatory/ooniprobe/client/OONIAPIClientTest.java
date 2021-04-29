@@ -5,23 +5,25 @@ import com.raizlabs.android.dbflow.sql.language.Delete;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
-import org.openobservatory.ooniprobe.AbstractTest;
+import org.junit.runner.RunWith;
+import org.openobservatory.ooniprobe.RobolectricAbstractTest;
 import org.openobservatory.ooniprobe.client.callback.CheckReportIdCallback;
 import org.openobservatory.ooniprobe.client.callback.GetMeasurementJsonCallback;
 import org.openobservatory.ooniprobe.client.callback.GetMeasurementsCallback;
 import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
 import org.openobservatory.ooniprobe.model.database.Measurement;
+import org.robolectric.RobolectricTestRunner;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Request;
 
-public class OONIAPIClientTest extends AbstractTest {
+public class OONIAPIClientTest extends RobolectricAbstractTest {
+
     private static final String EXISTING_REPORT_ID = "20190113T202156Z_AS327931_CgoC3KbgM6zKajvIIt1AxxybJ1HbjwwWJjsJnlxy9rpcGY54VH";
     private static final String NONEXISTING_REPORT_ID = "EMPTY";
     private static final String CLIENT_URL = "https://ams-pg.ooni.org";
@@ -111,15 +113,6 @@ public class OONIAPIClientTest extends AbstractTest {
         }
     }
 
-    private Boolean containsMeasurement(List<Measurement> measurements, String report_id){
-        for (int i = 0; i < measurements.size(); i++) {
-            Measurement measurement = measurements.get(i);
-            if (measurement.report_id.equals(report_id))
-                return true;
-        }
-        return false;
-    }
-
     @Test
     public void getMeasurementJsonError() {
         final CountDownLatch signal = new CountDownLatch(1);
@@ -150,8 +143,8 @@ public class OONIAPIClientTest extends AbstractTest {
         measurement.is_done = true;
         measurement.is_uploaded = true;
         measurement.save();
-        if (write_file){
-            File entryFile = Measurement.getEntryFile(c, measurement.id, measurement.test_name);
+        if (write_file) {
+            File entryFile = Measurement.getEntryFile(a, measurement.id, measurement.test_name);
             entryFile.getParentFile().mkdirs();
             FileUtils.writeStringToFile(
                     entryFile,
