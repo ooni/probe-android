@@ -1,0 +1,11 @@
+name: test
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - run: ./gradlew testStableFullRelease
