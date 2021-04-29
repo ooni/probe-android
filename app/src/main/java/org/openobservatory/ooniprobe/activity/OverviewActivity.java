@@ -52,8 +52,6 @@ public class OverviewActivity extends AbstractActivity {
 		customUrl.setVisibility(testSuite.getName().equals(WebsitesSuite.NAME) ? View.VISIBLE : View.GONE);
 		if (testSuite.getName().equals(ExperimentalSuite.NAME)) {
 			String experimentalLinks = "\n\n" +
-					"* [dnscheck](https://github.com/ooni/spec/blob/master/nettests/ts-028-dnscheck.md)" +
-					"\n" +
 					"* [stun-reachability](https://github.com/ooni/spec/blob/master/nettests/ts-025-stun-reachability.md)";
 			Markwon.setMarkdown(desc, getString(testSuite.getDesc1(), experimentalLinks));
 		}
