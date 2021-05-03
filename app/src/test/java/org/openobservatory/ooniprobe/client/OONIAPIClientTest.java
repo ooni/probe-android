@@ -5,14 +5,12 @@ import com.raizlabs.android.dbflow.sql.language.Delete;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.openobservatory.ooniprobe.RobolectricAbstractTest;
 import org.openobservatory.ooniprobe.client.callback.CheckReportIdCallback;
 import org.openobservatory.ooniprobe.client.callback.GetMeasurementJsonCallback;
 import org.openobservatory.ooniprobe.client.callback.GetMeasurementsCallback;
 import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
 import org.openobservatory.ooniprobe.model.database.Measurement;
-import org.robolectric.RobolectricTestRunner;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,7 +30,7 @@ public class OONIAPIClientTest extends RobolectricAbstractTest {
     @Test
     public void getMeasurementSuccess() {
         final CountDownLatch signal = new CountDownLatch(1);
-        a.getApiClientWithUrl(CLIENT_URL).getMeasurement(EXISTING_REPORT_ID, null).enqueue(new GetMeasurementsCallback() {
+        a.getApiClient().getMeasurement(EXISTING_REPORT_ID, null).enqueue(new GetMeasurementsCallback() {
             @Override
             public void onSuccess(ApiMeasurement.Result result) {
                 Assert.assertNotNull(result);
@@ -68,7 +66,7 @@ public class OONIAPIClientTest extends RobolectricAbstractTest {
     @Test
     public void getMeasurementError() {
         final CountDownLatch signal = new CountDownLatch(1);
-        a.getApiClientWithUrl(CLIENT_URL).getMeasurement(NONEXISTING_REPORT_ID, null).enqueue(new GetMeasurementsCallback() {
+        a.getApiClient().getMeasurement(NONEXISTING_REPORT_ID, null).enqueue(new GetMeasurementsCallback() {
             @Override
             public void onSuccess(ApiMeasurement.Result result) {
                 Assert.fail();
@@ -93,7 +91,7 @@ public class OONIAPIClientTest extends RobolectricAbstractTest {
         final CountDownLatch signal = new CountDownLatch(1);
         Delete.table(Measurement.class);
         addMeasurement(EXISTING_REPORT_ID, false);
-        a.getApiClientWithUrl(CLIENT_URL).checkReportId(EXISTING_REPORT_ID).enqueue(new CheckReportIdCallback() {
+        a.getApiClient().checkReportId(EXISTING_REPORT_ID).enqueue(new CheckReportIdCallback() {
             @Override
             public void onSuccess(Boolean found) {
                 Assert.assertTrue(found);
