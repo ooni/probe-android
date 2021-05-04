@@ -373,8 +373,6 @@
   <string name="Settings_Proxy_Custom">Custom Proxy</string>
   <string name="Settings_Proxy_Custom_Value">Custom Proxy URL</string>
   <string name="Settings_Proxy_Custom_Protocol">Custom proxy protocol</string>
-  <string name="Settings_Proxy_Custom_HTTP">HTTP</string>
-  <string name="Settings_Proxy_Custom_SOCKS5">SOCKS5</string>
   <string name="Settings_Proxy_Custom_Hostname">Hostname</string>
   <string name="Settings_Proxy_Custom_Port">Port</string>
   <string name="Settings_Proxy_Custom_Username">Username (optional)</string>

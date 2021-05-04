@@ -42,7 +42,7 @@ public class ProxyActivity extends AbstractActivity {
 
         pm = getPreferenceManager();
 
-        if (pm.getProxySelected().equals("none")) {
+        if (pm.getProxySelected().equals("proxy_none")) {
             proxyNoneRB.setChecked(true);
         }else if (pm.isEnableProxyPsiphon()) {
             proxyPsiphonRB.setChecked(true);
@@ -69,13 +69,13 @@ public class ProxyActivity extends AbstractActivity {
         RadioGroup proxyRadioGroup = (RadioGroup) findViewById(R.id.proxyRadioGroup);
         proxyRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.proxyNone) {
-                pm.setProxySelected("none");
+                pm.setProxySelected("proxy_none");
                 customProxySetEnabled(false);
             } else if (checkedId == R.id.proxyPsiphon) {
-                pm.setProxySelected("psiphon");
+                pm.setProxySelected("proxy_psiphon");
                 customProxySetEnabled(false);
             } else if (checkedId == R.id.proxyCustom) {
-                pm.setProxySelected("custom");
+                pm.setProxySelected("proxy_custom");
                 customProxySetEnabled(true);
             }
         });
@@ -146,7 +146,7 @@ public class ProxyActivity extends AbstractActivity {
         pm.setProxyCustomUsername(customProxyUsername.getEditText().getText().toString());
         pm.setProxyCustomPassword(customProxyPassword.getEditText().getText().toString());
 
-        if (pm.getProxySelected().equals("none") || pm.isEnableProxyPsiphon()) {
+        if (pm.getProxySelected().equals("proxy_none") || pm.isEnableProxyPsiphon()) {
             ProxyActivity.super.onBackPressed();
         }else if (pm.isEnableProxyCustom()) {
             if (pm.getProxyCustomHostname().isEmpty()) {

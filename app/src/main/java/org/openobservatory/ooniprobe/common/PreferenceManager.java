@@ -127,15 +127,15 @@ public class PreferenceManager {
 	}
 
 	public boolean isEnableProxyPsiphon() {
-		return sp.getString(r.getString(R.string.proxy_enabled), "none").equals("psiphon");
+		return sp.getString(r.getString(R.string.proxy_enabled), "proxy_none").equals("proxy_psiphon");
 	}
 
 	public boolean isEnableProxyCustom() {
-		return sp.getString(r.getString(R.string.proxy_enabled), "none").equals("custom");
+		return sp.getString(r.getString(R.string.proxy_enabled), "proxy_none").equals("proxy_custom");
 	}
 
 	public String getProxySelected() {
-		return sp.getString(r.getString(R.string.proxy_enabled), "none");
+		return sp.getString(r.getString(R.string.proxy_enabled), "proxy_none");
 	}
 
 	public void setProxySelected(String selected) {

@@ -181,25 +181,6 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                     p.setText("");
             }
         }
-/*
-        if (key.equals(getString(R.string.proxy_enable_custom)) ||
-                key.equals(getString(R.string.proxy_enable_psiphon))){
-            PreferenceManager pm = ((Application) getActivity().getApplication()).getPreferenceManager();
-            if (key.equals(getString(R.string.proxy_enable_psiphon)) &&
-                    pm.isEnableProxyPsiphon()){
-                SwitchPreferenceCompat p = findPreference(getString(R.string.proxy_enable_custom));
-                if (p != null)
-                    p.setChecked(false);
-
-            }
-            else if (key.equals(getString(R.string.proxy_enable_custom)) &&
-                    pm.isEnableProxyCustom()){
-                SwitchPreferenceCompat p = findPreference(getString(R.string.proxy_enable_psiphon));
-                if (p != null)
-                    p.setChecked(false);
-            }
-        }
- */
         if (preference instanceof SwitchPreferenceCompat) {
             //Call this code only in case of category or tests
             if (Arrays.asList(getActivity().getResources().getStringArray(R.array.CategoryCodes)).contains(key) ||

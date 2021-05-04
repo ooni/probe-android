@@ -7,14 +7,14 @@
     </string-array>
 
     <string-array name="proxyValues">
-        <item>none</item>
-        <item>psiphon</item>
-        <item>custom</item>
+        <item>proxy_none</item>
+        <item>proxy_psiphon</item>
+        <item>proxy_custom</item>
     </string-array>
 
     <string-array name="customProxyProtocolLabels">
-        <item>@string/Settings_Proxy_Custom_HTTP</item>
-        <item>@string/Settings_Proxy_Custom_SOCKS5</item>
+        <item>@string/HTTP</item>
+        <item>@string/SOCKS5</item>
     </string-array>
 
     <string-array name="customProxyProtocolValues">
