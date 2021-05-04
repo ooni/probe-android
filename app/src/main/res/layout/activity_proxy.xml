@@ -139,7 +139,7 @@
             </RadioGroup>
 
             <TextView
-                android:id="@+id/ProxyFooter"
+                android:id="@+id/proxyFooter"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
