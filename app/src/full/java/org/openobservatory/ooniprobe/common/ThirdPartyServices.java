@@ -89,7 +89,7 @@ public class ThirdPartyServices {
             Sentry.captureException(e);
     }
 
-    public static void acceptDefaultSettings(Application app) {
+    public static void acceptCrash(Application app) {
         app.getPreferenceManager().setSendCrash(true);
     }
 }

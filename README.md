@@ -62,6 +62,26 @@ Instead to build the app to stay compliant to F-Droid use `fdroidRelease`, conta
 ./gradlew assembleFdroidRelease
 ```
 
+## Testing
+
+Run unit tests 
+
+```
+./gradlew testStableFullDebug
+```
+
+Run instrumented tests (requires clean state in the device) 
+
+```
+./gradlew connectedAndroidTest
+```
+
+Generate code coverage report (after all unit and instrumented tests successfully passed)
+
+```
+./gradlew jacocoAndroidTestReport
+``` 
+
 ## Managing translations
 
 To manage translations check out our [translation repo](https://github.com/ooni/translations) and follow the instructions there.

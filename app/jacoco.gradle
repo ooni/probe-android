@@ -1,0 +1,61 @@
+apply plugin: 'jacoco'
+
+jacoco {
+  toolVersion '0.8.5'
+}
+
+task jacocoAndroidTestReport(type: JacocoReport) {
+
+  sourceDirectories.from = files(["$project.projectDir/src/main/java"])
+  classDirectories.from = files([
+    fileTree(
+      dir: project.buildDir,
+      includes: [
+        "intermediates/javac/devFullDebug/**",
+        "tmp/kotlin-classes/devFullDebug/**"
+      ],
+      excludes: [
+        'android/**/*.*',
+        '**/R.class',
+        '**/R$*.class',
+        '**/BuildConfig.*',
+        '**/Manifest*.*',
+        // Dagger
+        '**/*Module.*',
+        '**/*Module*Factory.*',
+        '**/*Module$Companion.*',
+        '**/*Dagger*.*',
+        '**/*MembersInjector*.*',
+        '**/*_Provide*Factory*.*',
+        '**/*_Factory.*',
+      ]
+    )
+  ])
+
+  executionData.from = fileTree(dir: project.buildDir, includes: [
+    'jacoco/**/*.exec',
+    'outputs/code_coverage/*/connected/*.ec'
+  ])
+
+  if (project.hasProperty('codeCoverageDataLocation')) {
+    executionData.from += fileTree(dir: codeCoverageDataLocation, includes: ['**/*.ec'])
+  }
+
+  reports {
+    html.enabled true
+    html.destination file("${buildDir}/reports/coverage")
+    xml.enabled true
+    xml.destination file("${buildDir}/reports/coverage.xml")
+    csv.enabled false
+  }
+
+  doLast {
+    println "Wrote HTML coverage report to ${reports.html.destination}/index.html"
+  }
+}
+
+// Fix coverage for Robolectric tests
+tasks.withType(Test) {
+  jacoco.includeNoLocationClasses = true
+  jacoco.excludes = ['jdk.internal.*']
+}

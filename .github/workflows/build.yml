@@ -1,11 +1,6 @@
+# build checks whether the project builds
 name: build
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-  schedule:
-    - cron: "0 2 * * */2"
+on: [push]
 jobs:
   build:
     runs-on: macos-latest
@@ -14,8 +9,6 @@ jobs:
         version:
             - "StableFullRelease"
             - "StableFdroidRelease"
-        api-level: [29]
-        target: [google_apis]
     steps:
     - name: checkout
       uses: actions/checkout@v2
