@@ -50,6 +50,7 @@
                         android:id="@+id/customProxyHTTP"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         android:text="@string/HTTP" />
 
                     <RadioButton
@@ -97,6 +98,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
+                        android:visibility="gone"
                         android:orientation="vertical">
 
                         <com.google.android.material.textfield.TextInputLayout
@@ -133,6 +135,7 @@
                         android:id="@+id/psiphonOverCustom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         android:text="@string/Settings_Proxy_Psiphon_Over_Custom" />
 
                 </RadioGroup>
