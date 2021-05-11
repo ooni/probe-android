@@ -373,10 +373,12 @@
   <string name="Settings_Proxy_Custom">Custom Proxy</string>
   <string name="Settings_Proxy_Custom_Value">Custom Proxy URL</string>
   <string name="Settings_Proxy_Custom_Protocol">Custom proxy protocol</string>
+  <string name="Settings_Proxy_Custom_Connection">Connessione</string>
   <string name="Settings_Proxy_Custom_Hostname">Nome host</string>
   <string name="Settings_Proxy_Custom_Port">Porta</string>
-  <string name="Settings_Proxy_Custom_Username">Username (optional)</string>
-  <string name="Settings_Proxy_Custom_Password">Password (optional)</string>
+  <string name="Settings_Proxy_Custom_Credentials">Credentials (optional)</string>
+  <string name="Settings_Proxy_Custom_Username">Username</string>
+  <string name="Settings_Proxy_Custom_Password">Password</string>
   <string name="Settings_Proxy_Psiphon_Over_Custom">Use Psiphon over custom proxy</string>
   <string name="Settings_Proxy_Footer">Are you unable to use OONI Probe? Try enabling Psiphon (https://psiphon.ca/) to circumvent potential OONI Probe blocking. Alternatively, you can use a custom proxy.</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Limita la durata del test</string>

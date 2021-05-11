@@ -373,10 +373,12 @@
   <string name="Settings_Proxy_Custom">พร็อกซีกำหนดเอง</string>
   <string name="Settings_Proxy_Custom_Value">URL พร็อกซีกำหนดเอง</string>
   <string name="Settings_Proxy_Custom_Protocol">Custom proxy protocol</string>
+  <string name="Settings_Proxy_Custom_Connection">การเชื่อมต่อ</string>
   <string name="Settings_Proxy_Custom_Hostname">ชื่อโฮสต์</string>
   <string name="Settings_Proxy_Custom_Port">พอร์ต</string>
-  <string name="Settings_Proxy_Custom_Username">Username (optional)</string>
-  <string name="Settings_Proxy_Custom_Password">Password (optional)</string>
+  <string name="Settings_Proxy_Custom_Credentials">Credentials (optional)</string>
+  <string name="Settings_Proxy_Custom_Username">ชื่อผู้ใช้</string>
+  <string name="Settings_Proxy_Custom_Password">รหัสผ่าน</string>
   <string name="Settings_Proxy_Psiphon_Over_Custom">Use Psiphon over custom proxy</string>
   <string name="Settings_Proxy_Footer">ใช้ OONI Probe ไม่ได้หรือ? ลองเปิด Psiphon (https://psiphon.ca/) เพื่อหลบเลี่ยงการปิดกั้น OONI Probe ที่อาจมีอยู่ หรือลองใช้พร็อกซีที่กำหนดเอง</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">จำกัดระยะเวลาทดสอบ</string>
