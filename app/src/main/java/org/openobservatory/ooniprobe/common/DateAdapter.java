@@ -11,7 +11,7 @@ import java.text.ParseException;
 import java.text.ParsePosition;
 import java.util.Date;
 
-class DateAdapter extends TypeAdapter<Date> {
+public class DateAdapter extends TypeAdapter<Date> {
 	@Override public void write(JsonWriter out, Date value) throws IOException {
 		if (value == null) {
 			out.nullValue();
