@@ -51,7 +51,7 @@ https://bintray.com/measurement-kit/android/android-libs).
 Ensure you have Android Studio and Android SDK installed. Build `fullRelease` variant using Android Studio or this command line:
 
 ```
-./gradlew assembleFullRelease
+./gradlew assembleDevFullRelease
 ```
 
 ## Building the app for f-droid
