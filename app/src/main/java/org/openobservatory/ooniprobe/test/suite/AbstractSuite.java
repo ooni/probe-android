@@ -80,11 +80,7 @@ public abstract class AbstractSuite implements Serializable {
 	}
 
 	public int getIconGradient() {
-		if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.M){
-			return icon;
-		}else{
-			return icon_24;
-		}
+		return icon_24;
 	}
 
 	public String getAnim() {
