@@ -15,6 +15,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+@Singleton
 public class PreferenceManager {
 	static final String GEO_VER = "geo_ver";
 	public static final Integer MAX_RUNTIME_DISABLED = -1;
@@ -33,7 +37,7 @@ public class PreferenceManager {
 	private final SharedPreferences sp;
 	private final Resources r;
 
-	PreferenceManager(Context context) {
+	@Inject PreferenceManager(Context context) {
 		androidx.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_global, true);
 		sp = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context);
 		r = context.getResources();
