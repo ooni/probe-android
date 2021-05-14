@@ -221,6 +221,8 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
             else
                 p_runtime.setVisible(false);
         }
+
+        /*
         ListPreference p_proxy = findPreference("proxy_enabled");
         if (p_proxy != null) {
             int prefIndex = p_proxy.findIndexOfValue(pm.getProxySelected());
@@ -235,6 +237,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
             else
                 p_customproxy.setVisible(false);
         }
+        */
     }
 
     @Override
