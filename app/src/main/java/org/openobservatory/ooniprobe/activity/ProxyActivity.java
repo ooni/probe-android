@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -11,6 +12,8 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+
+import ru.noties.markwon.Markwon;
 
 public class ProxyActivity extends AbstractActivity {
 
@@ -25,6 +28,9 @@ public class ProxyActivity extends AbstractActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_proxy);
+
+        TextView proxyFooter = (TextView) findViewById(R.id.proxyFooter);
+        Markwon.setMarkdown(proxyFooter, getString(R.string.Settings_Proxy_Footer));
 
         RadioButton proxyNoneRB = (RadioButton) findViewById(R.id.proxyNone);
         RadioButton proxyPsiphonRB = (RadioButton) findViewById(R.id.proxyPsiphon);
