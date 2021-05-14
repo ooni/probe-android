@@ -380,7 +380,7 @@
   <string name="Settings_Proxy_Custom_Username">Notandanafn</string>
   <string name="Settings_Proxy_Custom_Password">Lykilorð</string>
   <string name="Settings_Proxy_Psiphon_Over_Custom">Nota Psiphon í gegnum sérsniðinn milliþjón</string>
-  <string name="Settings_Proxy_Footer">Nærðu ekki að nota OONI Probe? Prófaðu að virkja Psiphon (https://psiphon.ca/) til að komast framhjá mögulegum hindrunum á OONI Probe. Þú gætir líka prófað að nota annan milliþjón.</string>
+  <string name="Settings_Proxy_Footer">Are you unable to use OONI Probe? Try enabling [Psiphon](https://psiphon.ca/) to circumvent potential OONI Probe blocking. Alternatively, you can use a custom proxy.</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Takmarka tímalengd prófunar</string>
   <string name="Settings_Websites_MaxRuntime">Tímalengd prófunar</string>
   <string name="Settings_Websites_Categories_Label">Flokkar vefsvæða sem á að prófa</string>

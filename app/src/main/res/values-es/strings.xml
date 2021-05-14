@@ -380,7 +380,7 @@
   <string name="Settings_Proxy_Custom_Username">Nombre de usuario</string>
   <string name="Settings_Proxy_Custom_Password">Contraseña</string>
   <string name="Settings_Proxy_Psiphon_Over_Custom">Usar Psiphon sobre proxy personalizado</string>
-  <string name="Settings_Proxy_Footer">¿No puedes usar OONI Probe? Intenta habilitando Psiphon (https://psiphon.ca/) para evadir el bloqueo potencial de OONI Probe. Alternativamente, puedes usar un proxy personalizado.</string>
+  <string name="Settings_Proxy_Footer">Are you unable to use OONI Probe? Try enabling [Psiphon](https://psiphon.ca/) to circumvent potential OONI Probe blocking. Alternatively, you can use a custom proxy.</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Limite la duración de la prueba</string>
   <string name="Settings_Websites_MaxRuntime">Duración de la prueba</string>
   <string name="Settings_Websites_Categories_Label">Categorías de sitios web a probar</string>

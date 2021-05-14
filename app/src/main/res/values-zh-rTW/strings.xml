@@ -380,7 +380,7 @@
   <string name="Settings_Proxy_Custom_Username">用戶名</string>
   <string name="Settings_Proxy_Custom_Password">密碼</string>
   <string name="Settings_Proxy_Psiphon_Over_Custom">Use Psiphon over custom proxy</string>
-  <string name="Settings_Proxy_Footer">Are you unable to use OONI Probe? Try enabling Psiphon (https://psiphon.ca/) to circumvent potential OONI Probe blocking. Alternatively, you can use a custom proxy.</string>
+  <string name="Settings_Proxy_Footer">Are you unable to use OONI Probe? Try enabling [Psiphon](https://psiphon.ca/) to circumvent potential OONI Probe blocking. Alternatively, you can use a custom proxy.</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">限制測時持續時間</string>
   <string name="Settings_Websites_MaxRuntime">測試期間</string>
   <string name="Settings_Websites_Categories_Label">測試的網站類別</string>

@@ -380,7 +380,7 @@
   <string name="Settings_Proxy_Custom_Username">نام کاربری</string>
   <string name="Settings_Proxy_Custom_Password">گذرواژه</string>
   <string name="Settings_Proxy_Psiphon_Over_Custom">از Psiphon (سایفون) بر روی پروکسی شخصی استفاده کنید</string>
-  <string name="Settings_Proxy_Footer">آیا قادر به استفاده از OONI Probe نیستید؟ برای دور زدن مسدودیت‌های احتمای OONI Probe از Psiphon (سایفون) (https://psiphon.ca/) و یا پروکسی سفارشی خود استفاده کنید.</string>
+  <string name="Settings_Proxy_Footer">Are you unable to use OONI Probe? Try enabling [Psiphon](https://psiphon.ca/) to circumvent potential OONI Probe blocking. Alternatively, you can use a custom proxy.</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">کرانمند‌سازی مدت آزمون</string>
   <string name="Settings_Websites_MaxRuntime">مدت تست</string>
   <string name="Settings_Websites_Categories_Label">دسته‌بندی‌های وبسایت برای تست</string>

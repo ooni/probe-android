@@ -380,7 +380,7 @@
   <string name="Settings_Proxy_Custom_Username">Kullanıcı adı</string>
   <string name="Settings_Proxy_Custom_Password">Parola</string>
   <string name="Settings_Proxy_Psiphon_Over_Custom">Psiphon için özel vekil sunucu kullanın  </string>
-  <string name="Settings_Proxy_Footer">OONI Probe uygulamasını kullanamıyor musunuz? Olası OONI Probe engellemesini aşmak için Psiphon (https://psiphon.ca/) kullanmayı deneyin. Alternatif olarak özel bir vekil sunucu kullanabilirsiniz.</string>
+  <string name="Settings_Proxy_Footer">Are you unable to use OONI Probe? Try enabling [Psiphon](https://psiphon.ca/) to circumvent potential OONI Probe blocking. Alternatively, you can use a custom proxy.</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Sınama süresi sınırlansın</string>
   <string name="Settings_Websites_MaxRuntime">Sınama süresi</string>
   <string name="Settings_Websites_Categories_Label">Sınanacak web sitesi kategorileri</string>

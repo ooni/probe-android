@@ -380,7 +380,7 @@
   <string name="Settings_Proxy_Custom_Username">Emër përdoruesi</string>
   <string name="Settings_Proxy_Custom_Password">Fjalëkalim</string>
   <string name="Settings_Proxy_Psiphon_Over_Custom">Use Psiphon over custom proxy</string>
-  <string name="Settings_Proxy_Footer">Are you unable to use OONI Probe? Try enabling Psiphon (https://psiphon.ca/) to circumvent potential OONI Probe blocking. Alternatively, you can use a custom proxy.</string>
+  <string name="Settings_Proxy_Footer">Are you unable to use OONI Probe? Try enabling [Psiphon](https://psiphon.ca/) to circumvent potential OONI Probe blocking. Alternatively, you can use a custom proxy.</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Kufizo kohëzgjatjen e testimit</string>
   <string name="Settings_Websites_MaxRuntime">Kohëzgjatja e testimit</string>
   <string name="Settings_Websites_Categories_Label">Kategori faqjesh për të testuar</string>

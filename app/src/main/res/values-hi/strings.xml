@@ -380,7 +380,7 @@
   <string name="Settings_Proxy_Custom_Username">यूज़रनाम</string>
   <string name="Settings_Proxy_Custom_Password">पासवर्ड</string>
   <string name="Settings_Proxy_Psiphon_Over_Custom">Use Psiphon over custom proxy</string>
-  <string name="Settings_Proxy_Footer">Are you unable to use OONI Probe? Try enabling Psiphon (https://psiphon.ca/) to circumvent potential OONI Probe blocking. Alternatively, you can use a custom proxy.</string>
+  <string name="Settings_Proxy_Footer">Are you unable to use OONI Probe? Try enabling [Psiphon](https://psiphon.ca/) to circumvent potential OONI Probe blocking. Alternatively, you can use a custom proxy.</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">परीक्षण अवधि सीमित करें</string>
   <string name="Settings_Websites_MaxRuntime">परीक्षण अवधि</string>
   <string name="Settings_Websites_Categories_Label">परीक्षण करने के लिए वेबसाइट श्रेणियां</string>
