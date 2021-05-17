@@ -59,8 +59,6 @@ public class MeasurementAbstractTest extends AbstractTest {
 
     @Before
     public void setUp() {
-        a.getPreferenceManager().setShowOnboarding(false);
-        a.getPreferenceManager().setAppOpenCount(0L);
         DatabaseUtils.resetDatabase();
     }
 
@@ -104,6 +102,7 @@ public class MeasurementAbstractTest extends AbstractTest {
 
     void assertMeasurementOutcome(boolean wasSuccess) {
         String outcome = wasSuccess ? SUCCESSFUL_OUTCOME : BLOCKED_OUTCOME;
+        onView(isRoot()).perform(waitId(R.id.outcome, TimeUnit.SECONDS.toMillis(5)));
         onView(withId(R.id.outcome)).check(matches(withText(outcome)));
     }
 

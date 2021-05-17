@@ -5,7 +5,6 @@ import android.net.Uri;
 
 import androidx.test.core.app.ActivityScenario;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.openobservatory.ooniprobe.AbstractTest;
 import org.openobservatory.ooniprobe.BuildConfig;
@@ -20,12 +19,6 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 public class OoniRunActivityTest extends AbstractTest {
 
     private ActivityScenario<RunningActivity> scenario;
-
-    @Before
-    public void setUp() {
-        a.getPreferenceManager().setShowOnboarding(false);
-        a.getPreferenceManager().setAppOpenCount(0L);
-    }
 
     @Test
     public void openValid() {

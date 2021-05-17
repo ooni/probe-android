@@ -36,8 +36,6 @@ public class AutomateScreenshotsTest extends AbstractTest {
     public void before() {
         super.before();
         Screengrab.setDefaultScreenshotStrategy(new UiAutomatorScreenshotStrategy());
-        a.getPreferenceManager().setShowOnboarding(false);
-        a.getPreferenceManager().setAppOpenCount(0L);
         scenario = ActivityScenario.launch(MainActivity.class);
     }
 

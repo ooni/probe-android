@@ -41,8 +41,6 @@ public class RunningActivityTest extends AbstractTest {
     public void setUp() {
         DatabaseUtils.resetDatabase();
         EngineProvider.engineInterface = testEngine;
-        a.getPreferenceManager().setShowOnboarding(false);
-        a.getPreferenceManager().setAppOpenCount(0L);
     }
 
     @After

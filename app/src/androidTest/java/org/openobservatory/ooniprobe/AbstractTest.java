@@ -17,6 +17,9 @@ public class AbstractTest {
     public void before() {
         c = InstrumentationRegistry.getInstrumentation().getTargetContext();
         a = (Application) c.getApplicationContext();
+
+        a.getPreferenceManager().setShowOnboarding(false);
+        a.getPreferenceManager().setAppOpenCount(0L);
     }
 
     protected String getResourceString(int id) {
