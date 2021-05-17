@@ -14,11 +14,9 @@ import com.raizlabs.android.dbflow.config.FlowManager;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.client.OONIAPIClient;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
-import org.openobservatory.ooniprobe.di.ActivityComponent;
 import org.openobservatory.ooniprobe.di.AppComponent;
 import org.openobservatory.ooniprobe.di.ApplicationModule;
 import org.openobservatory.ooniprobe.di.DaggerAppComponent;
-import org.openobservatory.ooniprobe.di.FragmentComponent;
 import org.openobservatory.ooniprobe.di.ServiceComponent;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 
@@ -62,10 +60,6 @@ public class Application extends android.app.Application {
 	public ServiceComponent getServiceComponent() {
 		return component.serviceComponent();
 	}
-
-	public FragmentComponent getFragmentComponent() { return component.fragmentComponent(); }
-
-	public ActivityComponent getActivityComponent() { return component.activityComponent(); }
 
 	public OkHttpClient getOkHttpClient() {
 		return _okHttpClient;

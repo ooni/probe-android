@@ -29,7 +29,7 @@ public class ServiceUtil {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static void scheduleJob(Context context) {
-        Application app = ((Application) context.getApplicationContext());
+        Application app = ((Application)context.getApplicationContext());
 
         PreferenceManager pm = app.getPreferenceManager();
         ComponentName serviceComponent = new ComponentName(context, RunTestJobService.class);
@@ -53,6 +53,7 @@ public class ServiceUtil {
         jobScheduler.schedule(builder.build());
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public static void stopJob(Context context) {
         JobScheduler jobScheduler = ContextCompat.getSystemService(context, JobScheduler.class);
         jobScheduler.cancel(id);
