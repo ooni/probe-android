@@ -24,18 +24,12 @@ import javax.inject.Inject;
 public class ServiceUtil {
     private static final int id = 100;
 
-    private final Context context;
-    private final StartRunTestService startRunTestService;
-
-    @Inject
-    ServiceUtil(Context context, StartRunTestService startRunTestService) {
-        this.context = context;
-        this.startRunTestService = startRunTestService;
-    }
+    static Dependencies d = new Dependencies();
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static void scheduleJob(Context context) {
-        Application app = ((Application) context.getApplicationContext());
+        Application app = ((Application)context.getApplicationContext());
+
         PreferenceManager pm = app.getPreferenceManager();
         ComponentName serviceComponent = new ComponentName(context, RunTestJobService.class);
         JobInfo.Builder builder = new JobInfo.Builder(id, serviceComponent);
@@ -64,12 +58,14 @@ public class ServiceUtil {
         jobScheduler.cancel(id);
     }
 
-    public void callCheckInAPI(Application app) {
+    public static void callCheckInAPI(Application app) {
+        app.getServiceComponent().inject(d);
+
         BatteryManager batteryManager = (BatteryManager) app.getSystemService(Context.BATTERY_SERVICE);
         Boolean workingOnWifi = ReachabilityManager.getNetworkType(app).equals(ReachabilityManager.WIFI);
         Boolean phoneCharging = batteryManager.isCharging();
 
-        if (!startRunTestService.shouldStart(workingOnWifi, phoneCharging)) {
+        if (!d.startRunTestService.shouldStart(workingOnWifi, phoneCharging)) {
             return;
         }
 
@@ -77,12 +73,12 @@ public class ServiceUtil {
             AbstractSuite suite = AbstractSuite.getSuite(
                     app,
                     "web_connectivity",
-                    startRunTestService.getUrls(workingOnWifi, phoneCharging),
+                    d.startRunTestService.getUrls(workingOnWifi, phoneCharging),
                     "autorun"
             );
 
             if (suite != null) {
-                startRunTestService.startedRun();
+                d.startRunTestService.startedRun();
                 Intent serviceIntent = new Intent(app, RunTestService.class);
                 serviceIntent.putExtra("testSuites", suite.asArray());
                 serviceIntent.putExtra("storeDB", false);
@@ -93,5 +89,9 @@ public class ServiceUtil {
             e.printStackTrace();
             ThirdPartyServices.logException(e);
         }
+    }
+
+    public static class Dependencies {
+        @Inject StartRunTestService startRunTestService;
     }
 }
