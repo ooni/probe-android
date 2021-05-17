@@ -7,12 +7,17 @@ import android.os.Build;
 
 import org.openobservatory.ooniprobe.common.Application;
 
+import javax.inject.Inject;
+
 public class RunTestJobService extends JobService {
+
+    @Inject ServiceUtil serviceUtil;
 
     @Override
     public boolean onStartJob(JobParameters params) {
         Application app = ((Application)getApplicationContext());
-        new JobTask(this, app).execute(params);
+        app.component.serviceComponent().inject(this);
+        new JobTask(this, app, serviceUtil).execute(params);
         return true;
     }
 
@@ -22,10 +27,12 @@ public class RunTestJobService extends JobService {
     }
 
     private static class JobTask extends AsyncTask<JobParameters, Void, JobParameters> {
+        private final ServiceUtil serviceUtil;
         private final JobService jobService;
         private final Application app;
 
-        public JobTask(JobService jobService, Application app) {
+        public JobTask(JobService jobService, Application app, ServiceUtil serviceUtil) {
+            this.serviceUtil = serviceUtil;
             this.jobService = jobService;
             this.app = app;
         }
@@ -33,7 +40,7 @@ public class RunTestJobService extends JobService {
         @Override
         protected JobParameters doInBackground(JobParameters... params) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                ServiceUtil.callCheckInAPI(app);
+                serviceUtil.callCheckInAPI(app);
             }
             return params[0];
         }
