@@ -26,7 +26,7 @@ public class PerformanceSuite extends AbstractSuite {
 				R.style.Theme_MaterialComponents_NoActionBar_App_Performance,
 				R.string.Dashboard_Performance_Overview_Paragraph_Updated,
 				"anim/performance.json",
-				"5 - 200 MB");
+				R.string.performance_datausage);
 	}
 
 	@Override public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {

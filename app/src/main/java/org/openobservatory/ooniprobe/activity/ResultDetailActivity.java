@@ -42,6 +42,7 @@ import org.openobservatory.ooniprobe.model.database.Result_Table;
 import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.CircumventionSuite;
+import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
@@ -187,7 +188,10 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         Measurement measurement = (Measurement) v.getTag();
-        ActivityCompat.startActivity(this, MeasurementDetailActivity.newIntent(this, measurement.id), null);
+        if (result.test_group_name.equals(ExperimentalSuite.NAME))
+            startActivity(TextActivity.newIntent(this, TextActivity.TYPE_JSON, measurement));
+        else
+            ActivityCompat.startActivity(this, MeasurementDetailActivity.newIntent(this, measurement.id), null);
     }
 
     @Override
@@ -230,16 +234,21 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
             super(fa);
         }
 
-        @NonNull
         @Override
         public Fragment createFragment(int position) {
+            if (result.test_group_name.equals(ExperimentalSuite.NAME)){
+                if (position == 0)
+                    return ResultHeaderDetailFragment.newInstance(false, result.getFormattedDataUsageUp(), result.getFormattedDataUsageDown(), result.start_time, result.getRuntime(), true, null, null);
+                else if (position == 1)
+                    return ResultHeaderDetailFragment.newInstance(false, null, null, null, null, null, Network.getCountry(ResultDetailActivity.this, result.network), result.network);
+            }
             if (position == 1)
                 return ResultHeaderDetailFragment.newInstance(false, result.getFormattedDataUsageUp(), result.getFormattedDataUsageDown(), result.start_time, result.getRuntime(), true, null, null);
             else if (position == 2)
                 return ResultHeaderDetailFragment.newInstance(false, null, null, null, null, null, Network.getCountry(ResultDetailActivity.this, result.network), result.network);
             else switch (result.test_group_name) {
                     default: //Default can no longer be null, so we have to default to something...
-                    // NOTE: Perhaps set up a test page?
+                        // NOTE: Perhaps set up a test page?
                     case WebsitesSuite.NAME:
                         return ResultHeaderTBAFragment.newInstance(result);
                     case InstantMessagingSuite.NAME:
@@ -253,8 +262,11 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
                 }
         }
 
+
         @Override
         public int getItemCount() {
+            if (result.test_group_name.equals(ExperimentalSuite.NAME))
+                return 2;
             return 3;
         }
     }
