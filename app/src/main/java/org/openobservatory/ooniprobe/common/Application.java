@@ -30,7 +30,7 @@ public class Application extends android.app.Application {
 	@Inject OkHttpClient _okHttpClient;
 	@Inject OONIAPIClient _apiClient;
 
-	protected AppComponent component;
+	public AppComponent component;
 
 	@Override public void onCreate() {
 		super.onCreate();
