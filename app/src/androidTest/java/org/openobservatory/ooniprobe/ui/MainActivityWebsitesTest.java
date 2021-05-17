@@ -122,9 +122,6 @@ public class MainActivityWebsitesTest extends AbstractTest {
 
     @Test
     public void lunchCustomWebsiteIntentTest() {
-        // Arrange
-        Faker faker = new Faker();
-
         // Act
         launchDashboard();
         onView(withId(R.id.recycler))
