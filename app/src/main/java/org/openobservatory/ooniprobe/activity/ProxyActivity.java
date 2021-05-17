@@ -2,6 +2,8 @@ package org.openobservatory.ooniprobe.activity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -9,12 +11,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.common.net.InetAddresses;
+import com.google.common.net.InternetDomainName;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 
+import java.net.Inet6Address;
+import java.net.InetAddress;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.UnknownHostException;
 import java.util.Objects;
 
 import ru.noties.markwon.Markwon;
@@ -164,6 +171,11 @@ public class ProxyActivity extends AbstractActivity {
     // The following code helps us to bridge the representation of the proxy
     // inside the settings, which is a URL, with the view.
 
+    // see: https://stackoverflow.com/a/48782673
+    public static boolean isBlank(String str) {
+        return (str == null || "".equals(str.trim()));
+    }
+
     // InvalidProxyURL indicates that the proxy URL is not valid.
     private static class InvalidProxyURL extends Exception {
         InvalidProxyURL(String message, Throwable cause) {
@@ -203,7 +215,7 @@ public class ProxyActivity extends AbstractActivity {
 
         // If the input string is empty, this creates empty settings,
         // which in turn result to no proxy being selected.
-        if (proxyURL.isEmpty()) {
+        if (isBlank(proxyURL)) {
             return settings;
         }
 
@@ -230,13 +242,11 @@ public class ProxyActivity extends AbstractActivity {
 
         // Reject URLs that contain username and password (for now). This is
         // where we will extend the code at a later time.
-        if (!url.getUserInfo().isEmpty()) {
+        if (!isBlank(url.getUserInfo()) ) {
             throw new InvalidProxyURL("we do not support username/password yet");
         }
 
         // We are good, return to the caller.
-        settings.domain = url.getHost();
-        settings.port = String.valueOf(url.getPort());
         return settings;
     }
 
@@ -255,6 +265,8 @@ public class ProxyActivity extends AbstractActivity {
             Log.w(TAG, "newProxySettings failed: " + exc);
             settings = new ProxySettings(); // start over as documented
         }
+        settings.domain = pm.getProxyCustomHostname();
+        settings.port = String.valueOf(pm.getProxyCustomPort());
         configureInitialViewWithSettings(settings);
     }
 
@@ -262,14 +274,14 @@ public class ProxyActivity extends AbstractActivity {
     private boolean isSchemeCustom(String scheme) {
         // This is where we need to extend the implementation of we add a new scheme
         // that will not be related to a custom proxy type.
-        return !scheme.isEmpty() && !scheme.equals(SCHEME_PSIPHON);
+        return !isBlank(scheme) && !scheme.equals(SCHEME_PSIPHON);
     }
 
     // configureInitialViewWithSettings configures the view using the given settings.
     private void configureInitialViewWithSettings(ProxySettings settings) {
         // Inspect the scheme and use the scheme to choose among the
         // top-level radio buttons describing the proxy type.
-        if (settings.scheme.isEmpty()) {
+        if (isBlank(settings.scheme)) {
             proxyNoneRB.setChecked(true);
         } else if (settings.scheme.equals(SCHEME_PSIPHON)) {
             proxyPsiphonRB.setChecked(true);
@@ -286,10 +298,12 @@ public class ProxyActivity extends AbstractActivity {
 
         // If the scheme is custom, then we need to populate all
         // the editable fields describing such a scheme.
-        if (isSchemeCustom(settings.scheme)) {
+        //if (isSchemeCustom(settings.scheme)) {
+            Log.d(TAG,"hostname: " + settings.domain);
+            Log.d(TAG,"port: " + settings.port);
             Objects.requireNonNull(customProxyHostname.getEditText()).setText(settings.domain);
             Objects.requireNonNull(customProxyPort.getEditText()).setText(settings.port);
-        }
+        //}
 
         // Now we need to make the top level proxy radio group interactive
         proxyRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
@@ -299,6 +313,8 @@ public class ProxyActivity extends AbstractActivity {
                 customProxySetEnabled(false);
             } else if (checkedId == R.id.proxyCustom) {
                 customProxySetEnabled(true);
+                customProxyRadioGroup.clearCheck();
+                customProxySOCKS5.setChecked(true);
             }
         });
 
@@ -326,11 +342,55 @@ public class ProxyActivity extends AbstractActivity {
     // customProxySetEnabled reacts to the enabling or disabling of the custom
     // proxy group and changes the view accordingly to that.
     private void customProxySetEnabled(boolean flag) {
-        for (int i = 0; i < customProxyRadioGroup.getChildCount(); i++) {
-            customProxyRadioGroup.getChildAt(i).setEnabled(flag);
-        }
+        customProxySOCKS5.setEnabled(flag);
         customProxyTextInputSetEnabled(customProxyHostname, flag);
         customProxyTextInputSetEnabled(customProxyPort, flag);
+    }
+
+    private boolean isValidHostnameOrIP(String hostname) {
+        return !isBlank(hostname)
+                && ( InetAddresses.isInetAddress(hostname) || InternetDomainName.isValid(hostname));
+    }
+
+    private boolean isValidPort(String port) {
+        try {
+            if (isBlank(port) || Integer.parseInt(port) < 0 || Integer.parseInt(port) > 65535) {
+                return false;
+            }else {
+                return true;
+            }
+        } catch (NumberFormatException exc) {
+            return false;
+        }
+    }
+
+    private boolean isIPv6(String hostname){
+        try {
+            if (InetAddresses.isInetAddress(hostname) && InetAddress.getByName(hostname) instanceof Inet6Address){
+                return true;
+            }
+        } catch (UnknownHostException e) {
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            onBackPressed();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     /**
@@ -341,10 +401,14 @@ public class ProxyActivity extends AbstractActivity {
     public void onBackPressed() {
         Log.d(TAG, "about to save proxy settings");
 
+        // Get the hostname and port for the custom proxy.
+        String hostname = Objects.requireNonNull(customProxyHostname.getEditText()).getText().toString();
+        String port = Objects.requireNonNull(customProxyPort.getEditText()).getText().toString();
+
         // If no proxy is selected then just write an empty proxy
         // configuration into the settings and move on.
         if (proxyNoneRB.isChecked()) {
-            saveSettings("");
+            saveSettings("", hostname, port);
             super.onBackPressed();
             return;
         }
@@ -352,38 +416,30 @@ public class ProxyActivity extends AbstractActivity {
         // If the psiphon proxy is checked then write back the right
         // proxy configuration for psiphon and move on.
         if (proxyPsiphonRB.isChecked()) {
-            saveSettings("psiphon:///");
+            saveSettings("psiphon:///", hostname, port);
             super.onBackPressed();
             return;
         }
 
-        // If the custom proxy IS NOT checked then this is a programming
-        // error and we're going to fail miserably.
-        if (!proxyCustomRB.isChecked()) {
-            throw new RuntimeException("proxyCustomRB should be checked here");
+        // validate the hostname and port for the custom proxy.
+        String finalHostname = hostname;
+        if (!isValidHostnameOrIP(hostname)) {
+            customProxyHostname.setError("not a valid hostname or IP");
+            return;
+        }else if (isIPv6(hostname)){
+            finalHostname = "[" + hostname + "]";
         }
-
-        // Likewise, if SOCKS5 IS NOT checked, there's a programming error.
-        if (!customProxySOCKS5.isChecked()) {
-            throw new RuntimeException("customProxySOCKS5 should be checked here");
-        }
-
-        // Get the hostname and port for the custom proxy.
-        String hostname = Objects.requireNonNull(customProxyHostname.getEditText()).getText().toString();
-        int port;
-        try {
-            port = Integer.parseInt(Objects.requireNonNull(customProxyPort.getEditText()).getText().toString());
-        } catch (NumberFormatException exc) {
+        if (!isValidPort(port)) {
             customProxyPort.setError("not a valid network port");
             return;
         }
 
         // Alright, we now need to construct a new SOCKS5 URL. We are going to defer
         // doing that to the Java standard library (er, the Android stdlib).
+        String urlStr = "socks5://" + finalHostname + ":" + port + "/";
         URI url;
         try {
-            url = new URI("socks5", "", hostname,
-                    port, "/", "", "");
+            url = new URI(urlStr);
         } catch (URISyntaxException e) {
             customProxyHostname.setError("cannot construct a valid URL");
             customProxyPort.setError("cannot construct a valid URL");
@@ -391,14 +447,17 @@ public class ProxyActivity extends AbstractActivity {
         }
 
         // We're good, write back the URL and move on.
-        saveSettings(url.toASCIIString());
+        saveSettings(url.toASCIIString(), hostname, port);
         super.onBackPressed();
     }
 
     // saveSettings stores a good URL back into the preference manager.
-    private void saveSettings(String url) {
+    private void saveSettings(String url, String hostname, String port) {
         PreferenceManager pm = getPreferenceManager();
         pm.setProxyURL(url);
+        pm.setProxyCustomHostname(hostname);
+        pm.setProxyCustomPort(port);
         Log.d(TAG, "writing this proxy configuration: " + url);
     }
+
 }

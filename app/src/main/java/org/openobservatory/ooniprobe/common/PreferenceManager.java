@@ -150,6 +150,26 @@ public class PreferenceManager {
 			.apply();
 	}
 
+	public String getProxyCustomHostname() {
+		return sp.getString(r.getString(R.string.proxy_custom_hostname), "127.0.0.1");
+	}
+
+	public void setProxyCustomHostname(String value) {
+		sp.edit()
+			.putString(r.getString(R.string.proxy_custom_hostname), value)
+			.apply();
+	}
+
+	public String getProxyCustomPort() {
+		return sp.getString(r.getString(R.string.proxy_custom_port), "9050");
+	}
+
+	public void setProxyCustomPort(String value) {
+		sp.edit()
+			.putString(r.getString(R.string.proxy_custom_port), value)
+			.apply();
+	}
+
 	public boolean isTestWhatsapp() {
 		return sp.getBoolean(r.getString(R.string.test_whatsapp), true);
 	}

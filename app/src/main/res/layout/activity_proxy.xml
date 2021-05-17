@@ -20,7 +20,8 @@
                 android:id="@+id/proxyRadioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="20dp"
+                android:checkedButton="@id/proxyNone">
 
                 <RadioButton
                     android:id="@+id/proxyNone"
@@ -44,7 +45,8 @@
                     android:id="@+id/customProxyRadioGroup"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="20dp">
+                    android:layout_marginStart="20dp"
+                    android:checkedButton="@id/customProxySOCKS5">
 
                     <RadioButton
                         android:id="@+id/customProxyHTTP"
@@ -76,7 +78,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/Settings_Proxy_Custom_Hostname"
-                                android:inputType="textUri" />
+                                android:inputType="textUri"
+                                android:text="127.0.0.1" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -90,7 +93,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/Settings_Proxy_Custom_Port"
-                                android:inputType="number" />
+                                android:inputType="number"
+                                android:text="9050" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
