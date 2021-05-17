@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Measurement;
+import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 import org.openobservatory.ooniprobe.test.test.Dash;
 import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
 import org.openobservatory.ooniprobe.test.test.HttpInvalidRequestLine;
@@ -34,7 +35,10 @@ public class MeasurementPerfItem extends HeterogeneousRecyclerItem<Measurement, 
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
 		viewHolder.itemView.setTag(extra);
 		Context c = viewHolder.text.getContext();
-		viewHolder.text.setText(extra.getTest().getLabelResId());
+		if (extra.getTest().getLabelResId() == (R.string.Test_Experimental_Fullname))
+			viewHolder.text.setText(extra.getTest().getName());
+		else
+			viewHolder.text.setText(extra.getTest().getLabelResId());
 		viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, extra.is_failed || extra.isUploaded() ? 0 : R.drawable.cloudoff, 0);
 		if (extra.test_name.equals(Dash.NAME)) {
 			viewHolder.data1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.video_quality, 0, 0, 0);

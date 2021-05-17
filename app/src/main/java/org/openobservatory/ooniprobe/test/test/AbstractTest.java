@@ -27,6 +27,7 @@ import org.openobservatory.ooniprobe.model.jsonresult.EventResult;
 import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
 import org.openobservatory.ooniprobe.model.settings.Settings;
 import org.openobservatory.ooniprobe.test.EngineProvider;
+import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 
 import java.io.File;
 import java.io.Serializable;
@@ -85,7 +86,10 @@ public abstract class AbstractTest implements Serializable {
                 EventResult event = gson.fromJson(json, EventResult.class);
                 switch (event.key) {
                     case "status.started":
-                        testCallback.onStart(c.getString(labelResId));
+                        if (result.test_group_name.equals(ExperimentalSuite.NAME))
+                            testCallback.onStart(name);
+                        else
+                            testCallback.onStart(c.getString(labelResId));
                         testCallback.onProgress(Double.valueOf(index * 100).intValue());
                         break;
                     case "status.geoip_lookup":
