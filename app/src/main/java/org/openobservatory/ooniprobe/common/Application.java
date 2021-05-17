@@ -55,13 +55,9 @@ public class Application extends android.app.Application {
 		return DaggerAppComponent.builder().applicationModule(new ApplicationModule(this)).build();
 	}
 
-	public AppComponent getComponent() {
-		return component;
-	}
+	public AppComponent getComponent() { return component; }
 
-	public ServiceComponent getServiceComponent() {
-		return component.serviceComponent();
-	}
+	public ServiceComponent getServiceComponent() { return component.serviceComponent(); }
 
 	public FragmentComponent getFragmentComponent() { return component.fragmentComponent(); }
 
