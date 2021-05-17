@@ -9,6 +9,9 @@ import dagger.Subcomponent;
 @PerService
 @Subcomponent()
 public interface ServiceComponent {
+    void inject(RunTestJobService runTestJobService);
+}
+public interface ServiceComponent {
     void inject(ServiceUtil.Dependencies deps);
     void inject(RunTestJobService service);
 }
