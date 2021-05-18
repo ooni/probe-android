@@ -71,6 +71,8 @@ public class ServiceUtil {
         if (pm.testChargingOnly() &&
                 !batteryManager.isCharging())
             return;
+        if (ReachabilityManager.isVPNinUse(app))
+            return;
         try {
             OONISession session = Engine.newSession(Engine.getDefaultSessionConfig(
                     app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray()));
