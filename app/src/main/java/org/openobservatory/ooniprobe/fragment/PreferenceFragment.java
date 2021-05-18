@@ -227,7 +227,6 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
         return PreferenceFragment.newInstance(getArguments().getInt(ARG_PREFERENCES_RES_ID), getArguments().getInt(ARG_CONTAINER_RES_ID), rootKey);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
