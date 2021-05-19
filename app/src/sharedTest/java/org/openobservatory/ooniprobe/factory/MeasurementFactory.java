@@ -69,11 +69,11 @@ public class MeasurementFactory {
                 return "{\"facebook_tcp_blocking\":\"false\",\"facebook_dns_blocking\":\"ok\"}";
 
             case "signal":
-                return"{\"signal_backend_status\":\"ok\",\"signal_backend_failure\":\"ok\"}";
+                return "{\"signal_backend_status\":\"ok\",\"signal_backend_failure\":\"ok\"}";
 
             // Circumvention
             case "psiphon":
-                return "{\"bootstrap_time\":"+faker.number.positive(5.0, 100.0) +"}";
+                return "{\"bootstrap_time\":" + faker.number.positive(5.0, 100.0) + "}";
 
             case "tor":
                 return "{\"dir_port_accessible\":7,\"dir_port_total\":10,\"obfs4_accessible\":14,\"obfs4_total\":15,\"or_port_accessible\":0,\"or_port_dirauth_accessible\":10,\"or_port_dirauth_total\":10,\"or_port_total\":0}";
@@ -94,7 +94,8 @@ public class MeasurementFactory {
             case "http_header_field_manipulation":
                 return "{\"tampering\":{\"header_field_name\":\"x-content-type-options\"}}";
 
-            default: result = "{}";
+            default:
+                result = "{}";
         }
 
         return result;
@@ -134,7 +135,8 @@ public class MeasurementFactory {
                 return "";
 
             case "tor":
-            default: result = "{}";
+            default:
+                result = "{}";
         }
 
         return result;
