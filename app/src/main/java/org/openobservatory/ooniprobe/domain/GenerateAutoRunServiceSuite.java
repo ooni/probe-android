@@ -9,6 +9,7 @@ import org.openobservatory.engine.OONIURLInfo;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.test.EngineProvider;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
@@ -61,7 +62,7 @@ public class GenerateAutoRunServiceSuite {
             return null;
         } catch (Exception e) {
             e.printStackTrace();
-            //ThirdPartyServices.logException(e);
+            ThirdPartyServices.logException(e);
             return null;
         }
     }
