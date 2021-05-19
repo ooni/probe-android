@@ -13,6 +13,7 @@ import dagger.Component;
 public interface AppComponent {
 
     ActivityComponent activityComponent();
+    FragmentComponent fragmentComponent();
     ServiceComponent serviceComponent();
     void inject(Application app);
 

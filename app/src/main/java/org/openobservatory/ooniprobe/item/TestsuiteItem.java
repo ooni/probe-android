@@ -9,7 +9,6 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
 import butterknife.BindView;
@@ -18,11 +17,9 @@ import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
 public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, TestsuiteItem.ViewHolderImpl> {
 	private final View.OnClickListener onClickListener;
-	private final PreferenceManager pm;
 
-	public TestsuiteItem(AbstractSuite extra, PreferenceManager pm, View.OnClickListener onClickListener) {
+	public TestsuiteItem(AbstractSuite extra, View.OnClickListener onClickListener) {
 		super(extra);
-		this.pm = pm;
 		this.onClickListener = onClickListener;
 	}
 
