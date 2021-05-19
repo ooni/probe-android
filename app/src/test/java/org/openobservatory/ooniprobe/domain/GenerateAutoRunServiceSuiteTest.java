@@ -23,10 +23,12 @@ import io.bloco.faker.Faker;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SmallTest
-public class GenerateTestServiceSuiteAutoRun extends RobolectricAbstractTest {
+public class GenerateAutoRunServiceSuiteTest extends RobolectricAbstractTest {
 
     // Mocks
     OONICheckInInfoWebConnectivity webConnectivityMock = mock(OONICheckInInfoWebConnectivity.class);
@@ -84,6 +86,8 @@ public class GenerateTestServiceSuiteAutoRun extends RobolectricAbstractTest {
 
         // Assert
         Assert.assertNotNull(suite);
+        verify(preferenceManagerMock, times(1)).updateAutorunDate();
+        verify(preferenceManagerMock, times(1)).incrementAutorun();
         Assert.assertEquals(1, suite.getTestList(preferenceManagerMock).length);
 
         AbstractTest webTest = suite.getTestList(preferenceManagerMock)[0];
