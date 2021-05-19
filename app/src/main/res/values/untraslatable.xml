@@ -16,16 +16,11 @@
 	<string name="instant_messaging" translatable="false">instant_messaging</string>
 	<string name="circumvention" translatable="false">circumvention</string>
 	<string name="proxy" translatable="false">proxy</string>
-	<string name="proxy_enabled" translatable="false">proxy_enabled</string>
-	<string name="proxy_custom_value" translatable="false">proxy_custom_value</string>
-	<string name="proxy_custom_protocol" translatable="false">proxy_custom_protocol</string>
+	<string name="proxy_protocol" translatable="false">proxy_protocol</string>
+	<string name="proxy_hostname" translatable="false">proxy_hostname</string>
+	<string name="proxy_port" translatable="false">proxy_port</string>
 	<string name="HTTP" translatable="false">HTTP</string>
 	<string name="SOCKS5" translatable="false">SOCKS5</string>
-	<string name="proxy_custom_hostname" translatable="false">proxy_custom_hostname</string>
-	<string name="proxy_custom_port" translatable="false">proxy_custom_port</string>
-	<string name="proxy_custom_username" translatable="false">proxy_custom_username</string>
-	<string name="proxy_custom_password" translatable="false">proxy_custom_password</string>
-	<string name="proxy_psiphon_over_custom" translatable="false">proxy_psiphon_over_custom</string>
 	<string name="middle_boxes" translatable="false">middle_boxes</string>
 	<string name="performance" translatable="false">performance</string>
 	<string name="notifications_enabled" translatable="false">notifications_enabled</string>

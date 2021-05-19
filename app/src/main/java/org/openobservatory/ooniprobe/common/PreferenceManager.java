@@ -11,6 +11,7 @@ import androidx.annotation.VisibleForTesting;
 import org.openobservatory.engine.Engine;
 import org.openobservatory.ooniprobe.R;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
@@ -130,43 +131,42 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.debugLogs), false);
 	}
 
-	/**
-	 * getProxyURL returns the configured proxy URL. An empty string means that
-	 * we actually don't want any proxy. Please, refer to the documentation
-	 * of the activity.ProxyActivity class for more information.
-	 */
 	public String getProxyURL() {
-		return sp.getString(r.getString(R.string.proxy_custom_value), "");
+		try {
+			ProxySettings ps = ProxySettings.newProxySettings(this);
+			return ps.getProxyString();
+		} catch (ProxySettings.InvalidProxyURL | URISyntaxException invalidProxyURL) {
+			return "";
+		}
 	}
 
-	/**
-	 * setProxyURL configures a proxy URL. An empty string means that
-	 * we actually don't want any proxy. Please, refer to the documentation
-	 * of the activity.ProxyActivity class for more information.
-	 */
-	public void setProxyURL(String URL) {
+	public void setProxyProtocol(ProxySettings.Protocol protocol) {
 		sp.edit()
-			.putString(r.getString(R.string.proxy_custom_value), URL)
+			.putString(r.getString(R.string.proxy_protocol), protocol.getProtocol())
 			.apply();
 	}
 
-	public String getProxyCustomHostname() {
-		return sp.getString(r.getString(R.string.proxy_custom_hostname), "127.0.0.1");
+	public String getProxyProtocol() {
+		return sp.getString(r.getString(R.string.proxy_protocol), ProxySettings.Protocol.NONE.getProtocol());
 	}
 
-	public void setProxyCustomHostname(String value) {
+	public String getProxyHostname() {
+		return sp.getString(r.getString(R.string.proxy_hostname), "");
+	}
+
+	public void setProxyHostname(String value) {
 		sp.edit()
-			.putString(r.getString(R.string.proxy_custom_hostname), value)
+			.putString(r.getString(R.string.proxy_hostname), value)
 			.apply();
 	}
 
-	public String getProxyCustomPort() {
-		return sp.getString(r.getString(R.string.proxy_custom_port), "9050");
+	public String getProxyPort() {
+		return sp.getString(r.getString(R.string.proxy_port), "");
 	}
 
-	public void setProxyCustomPort(String value) {
+	public void setProxyPort(String value) {
 		sp.edit()
-			.putString(r.getString(R.string.proxy_custom_port), value)
+			.putString(r.getString(R.string.proxy_port), value)
 			.apply();
 	}
 
