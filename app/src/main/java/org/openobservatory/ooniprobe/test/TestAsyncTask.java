@@ -153,7 +153,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
             OONIURLListResult results = session.fetchURLList(ooniContext, config);
             ArrayList<String> inputs = new ArrayList<>();
             for (OONIURLInfo url : results.urls) {
-                inputs.add(Url.checkExistingUrl(url.url, url.category_code, url.country_code).url);
+                inputs.add(Url.checkExistingUrl(url.getUrl(), url.getCategoryCode(), url.getCountryCode()).url);
             }
             currentTest.setInputs(inputs);
             if (currentTest.getMax_runtime() == null)
