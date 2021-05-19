@@ -11,11 +11,12 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
+import org.openobservatory.engine.OONICheckInConfig;
+import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
-import org.openobservatory.ooniprobe.common.ThirdPartyServices;
-import org.openobservatory.ooniprobe.domain.StartRunTestService;
+import org.openobservatory.ooniprobe.domain.GenerateAutoRunServiceSuite;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
 import javax.inject.Inject;
@@ -28,7 +29,7 @@ public class ServiceUtil {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static void scheduleJob(Context context) {
-        Application app = ((Application)context.getApplicationContext());
+        Application app = ((Application) context.getApplicationContext());
 
         PreferenceManager pm = app.getPreferenceManager();
         ComponentName serviceComponent = new ComponentName(context, RunTestJobService.class);
@@ -63,35 +64,33 @@ public class ServiceUtil {
 
         BatteryManager batteryManager = (BatteryManager) app.getSystemService(Context.BATTERY_SERVICE);
         Boolean workingOnWifi = ReachabilityManager.getNetworkType(app).equals(ReachabilityManager.WIFI);
+        String[] categories = d.preferenceManager.getEnabledCategoryArr().toArray(new String[0]);
         Boolean phoneCharging = batteryManager.isCharging();
 
-        if (!d.startRunTestService.shouldStart(workingOnWifi, phoneCharging)) {
-            return;
+        OONICheckInConfig config = new OONICheckInConfig(
+                BuildConfig.SOFTWARE_NAME,
+                BuildConfig.VERSION_NAME,
+                workingOnWifi,
+                phoneCharging,
+                categories
+               );
+
+        AbstractSuite suite = d.generateAutoRunServiceSuite.generate(config, workingOnWifi, phoneCharging);
+
+        if (suite != null) {
+            Intent serviceIntent = new Intent(app, RunTestService.class);
+            serviceIntent.putExtra("testSuites", suite.asArray());
+            serviceIntent.putExtra("storeDB", false);
+            ContextCompat.startForegroundService(app, serviceIntent);
         }
 
-        try {
-            AbstractSuite suite = AbstractSuite.getSuite(
-                    app,
-                    "web_connectivity",
-                    d.startRunTestService.getUrls(workingOnWifi, phoneCharging),
-                    "autorun"
-            );
-
-            if (suite != null) {
-                d.startRunTestService.startedRun();
-                Intent serviceIntent = new Intent(app, RunTestService.class);
-                serviceIntent.putExtra("testSuites", suite.asArray());
-                serviceIntent.putExtra("storeDB", false);
-                ContextCompat.startForegroundService(app, serviceIntent);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            ThirdPartyServices.logException(e);
-        }
     }
 
     public static class Dependencies {
-        @Inject StartRunTestService startRunTestService;
+        @Inject
+        GenerateAutoRunServiceSuite generateAutoRunServiceSuite;
+
+        @Inject
+        PreferenceManager preferenceManager;
     }
 }

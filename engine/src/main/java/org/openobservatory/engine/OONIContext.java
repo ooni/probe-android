@@ -6,7 +6,7 @@ import oonimkall.Context;
 public final class OONIContext {
     Context ctx;
 
-    OONIContext(Context ctx) {
+    public OONIContext(Context ctx) {
         this.ctx = ctx;
     }
 

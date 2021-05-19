@@ -50,6 +50,7 @@ android {
 		}
 		test {
 			java.srcDirs += "src/sharedTest/java"
+			java.srcDirs += "src/sharedTest/java"
 			resources.srcDirs += "src/sharedTest/resources"
 		}
 	}
@@ -146,9 +147,11 @@ dependencies {
 	testImplementation 'androidx.test:core:1.3.0'
 	testImplementation 'androidx.test:runner:1.3.0'
 	testImplementation 'androidx.test:rules:1.3.0'
-	testImplementation 'org.mockito:mockito-core:3.9.0'
+	testImplementation 'org.mockito:mockito-core:3.10.0'
+	testImplementation 'org.mockito:mockito-inline:3.10.0'
 	testImplementation 'org.robolectric:robolectric:4.5.1'
 	testImplementation 'com.github.blocoio:faker:1.2.8'
+	testImplementation 'org.ooni:oonimkall:2021.05.13-070256'
 	testAnnotationProcessor 'com.google.dagger:dagger-compiler:2.35.1'
 
 	// Instrumentation Testing
