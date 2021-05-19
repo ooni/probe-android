@@ -26,7 +26,7 @@ public class ServiceUtil {
     static Dependencies d = new Dependencies();
 
     public static void scheduleJob(Context context) {
-        Application app = ((Application)context.getApplicationContext());
+        Application app = ((Application) context.getApplicationContext());
 
         PreferenceManager pm = app.getPreferenceManager();
         ComponentName serviceComponent = new ComponentName(context, RunTestJobService.class);
