@@ -20,7 +20,6 @@ import org.openobservatory.ooniprobe.common.ProxySettings;
 
 import java.net.Inet6Address;
 import java.net.InetAddress;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.UnknownHostException;
 import java.util.Objects;
@@ -135,6 +134,8 @@ public class ProxyActivity extends AbstractActivity {
     // customProxyPort is the port for the custom proxy.
     private TextInputLayout customProxyPort;
 
+    // settings contains a representation of the proxy settings
+    // loaded from the preference manager.
     private ProxySettings settings;
 
     /**
@@ -142,7 +143,7 @@ public class ProxyActivity extends AbstractActivity {
      * manager and shows users the current configuration.
      */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // We draw the view and store references to objects needed
@@ -162,22 +163,20 @@ public class ProxyActivity extends AbstractActivity {
         Markwon.setMarkdown(proxyFooter, getString(R.string.Settings_Proxy_Footer));
 
         // We read settings and configure the initial view.
-        configureInitialView();
+        loadSettingsAndConfigureInitialView();
     }
 
-    // The following code helps us to bridge the representation of the proxy
-    // inside the settings, which is a URL, with the view.
-
-    // see: https://stackoverflow.com/a/48782673
-    public static boolean isBlank(String str) {
-        return (str == null || "".equals(str.trim()));
+    // isNotBlank is a robust way to check whether an input field is
+    // actually blank as documented at https://stackoverflow.com/a/48782673
+    private static boolean isNotBlank(String str) {
+        return (str != null && !"".equals(str.trim()));
     }
 
-    // configureInitialView reads the URL from the preference manager and fills
-    // the state of the view depending on the configured proxy URL. If, for
+    // LoadSettingsAndConfigureInitialView loads the settings and and fills
+    // the state of the view depending on the configured proxy. If, for
     // any reason including an upgrade, we don't recognize the originally stored
-    // URL, then we behave like no proxy had been configured.
-    private void configureInitialView() {
+    // settings, then we behave like no proxy had been configured.
+    private void loadSettingsAndConfigureInitialView() {
         PreferenceManager pm = getPreferenceManager();
         try {
             settings = ProxySettings.newProxySettings(pm);
@@ -199,7 +198,9 @@ public class ProxyActivity extends AbstractActivity {
         } else if (settings.protocol == ProxySettings.Protocol.SOCKS5) {
             proxyCustomRB.setChecked(true);
         } else {
-            throw new RuntimeException("got an unhandled proxy scheme");
+            // TODO(bassosimone): this should also be reported as a bug.
+            Log.w(TAG, "got an unhandled proxy scheme");
+            return;
         }
 
         // If the scheme is custom, then we need to enable the
@@ -207,16 +208,15 @@ public class ProxyActivity extends AbstractActivity {
         customProxySetEnabled(isSchemeCustom(settings.protocol));
         customProxySOCKS5.setChecked(isSchemeCustom(settings.protocol));
 
-        // If the scheme is custom, then we need to populate all
-        // the editable fields describing such a scheme.
-        //if (isSchemeCustom(settings.protocol)) {
-            Log.d(TAG,"hostname: " + settings.hostname);
-            Log.d(TAG,"port: " + settings.port);
-            Objects.requireNonNull(customProxyHostname.getEditText()).setText(settings.hostname);
-            Objects.requireNonNull(customProxyPort.getEditText()).setText(settings.port);
-        //}
+        // Populate all the editable fields _anyway_ so the user
+        // has the feeling that everything was just as before
+        Log.d(TAG, "(from preferences) hostname: " + settings.hostname);
+        Log.d(TAG, "(from preferences) port: " + settings.port);
+        Objects.requireNonNull(customProxyHostname.getEditText()).setText(settings.hostname);
+        Objects.requireNonNull(customProxyPort.getEditText()).setText(settings.port);
 
-        // Now we need to make the top level proxy radio group interactive
+        // Now we need to make the top level proxy radio group interactive: when
+        // we change what is selected, we need the view to adapt.
         proxyRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.proxyNone) {
                 customProxySetEnabled(false);
@@ -226,6 +226,9 @@ public class ProxyActivity extends AbstractActivity {
                 customProxySetEnabled(true);
                 customProxyRadioGroup.clearCheck();
                 customProxySOCKS5.setChecked(true);
+            } else {
+                // TODO(bassosimone): this should also be reported as a bug.
+                Log.w(TAG, "unexpected state in setOnCheckedChangeListener");
             }
         });
 
@@ -265,46 +268,56 @@ public class ProxyActivity extends AbstractActivity {
         customProxyTextInputSetEnabled(customProxyPort, flag);
     }
 
+    // isValidHostnameOrIP validates its input as an IP address or hostname.
+    @SuppressWarnings("UnstableApiUsage")
     private boolean isValidHostnameOrIP(String hostname) {
-        return !isBlank(hostname)
-                && ( InetAddresses.isInetAddress(hostname) || InternetDomainName.isValid(hostname));
+        return isNotBlank(hostname)
+                && (InetAddresses.isInetAddress(hostname) || InternetDomainName.isValid(hostname));
     }
 
+    // isValidPort validates its input as a valid port.
     private boolean isValidPort(String port) {
         try {
-            if (isBlank(port) || Integer.parseInt(port) < 0 || Integer.parseInt(port) > 65535) {
-                return false;
-            }else {
-                return true;
-            }
+            return isNotBlank(port) && Integer.parseInt(port) >= 0 && Integer.parseInt(port) <= 65535;
         } catch (NumberFormatException exc) {
             return false;
         }
     }
 
-    private boolean isIPv6(String hostname){
+    // isIPv6 tells us whether the input is an IPv6 address.
+    @SuppressWarnings("UnstableApiUsage")
+    private boolean isIPv6(String hostname) {
         try {
-            if (InetAddresses.isInetAddress(hostname) && InetAddress.getByName(hostname) instanceof Inet6Address){
-                return true;
-            }
+            return InetAddresses.isInetAddress(hostname) &&
+                    InetAddress.getByName(hostname) instanceof Inet6Address;
         } catch (UnknownHostException e) {
             return false;
         }
-        return false;
     }
 
+    /**
+     * onOptionsItemSelected overrides the handling of selecting options in
+     * the menu so that we can route to onBackPressed.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
+        Log.d(TAG, "onOptionsItemSelected called");
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true; // we are consuming this event here
         }
-        return false;
+        return false; // normal menu processing
     }
 
+    /**
+     * onKeyDown overrides what we do when a key is pressed and is not
+     * otherwise handled so we can route to onBackPressed.
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // TODO(bassosimone): it is not 100% clear to me why in this
+        // case we always call super.onKeyDown().
+        Log.d(TAG, "onKeyDown called");
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             onBackPressed();
         }
@@ -312,12 +325,14 @@ public class ProxyActivity extends AbstractActivity {
     }
 
     /**
-     * onBackPressed constructs a URL from the current configuration and either
-     * emits an user visible error or stores the URL into the settings.
+     * onBackPressed is called when the users wants to go to the previous
+     * activity. This is the place where we construct a URL from the current
+     * configuration and either emits an user visible error or stores
+     * the URL into the settings.
      */
     @Override
     public void onBackPressed() {
-        Log.d(TAG, "about to save proxy settings");
+        Log.d(TAG, "onBackPressed: about to save proxy settings");
 
         // Get the hostname and port for the custom proxy.
         String hostname = Objects.requireNonNull(customProxyHostname.getEditText()).getText().toString();
@@ -346,20 +361,24 @@ public class ProxyActivity extends AbstractActivity {
         if (!isValidHostnameOrIP(hostname)) {
             customProxyHostname.setError("not a valid hostname or IP");
             return;
-        }else if (isIPv6(hostname)){
-            finalHostname = "[" + hostname + "]";
+        } else if (isIPv6(hostname)) {
+            finalHostname = "[" + hostname + "]"; // IPv6 must be quoted in URLs
         }
         if (!isValidPort(port)) {
             customProxyPort.setError("not a valid network port");
             return;
         }
 
+        // At this point we're going to assume that this is a socks5 proxy. We will
+        // need to change the code in here when we add support for http proxies.
         settings.protocol = ProxySettings.Protocol.SOCKS5;
         settings.hostname = finalHostname;
         settings.port = port;
         try {
             settings.getProxyString();
         } catch (URISyntaxException e) {
+            // okay, then, notwithstanding our efforts it still seems that we
+            // have not obtained a valid URL, so let's not proceed.
             customProxyHostname.setError("cannot construct a valid URL");
             customProxyPort.setError("cannot construct a valid URL");
             return;
@@ -377,8 +396,9 @@ public class ProxyActivity extends AbstractActivity {
         try {
             Log.d(TAG, "writing this proxy configuration: " + settings.getProxyString());
         } catch (URISyntaxException e) {
-            e.printStackTrace();
+            // This error condition is rather impossible given the way in which the code
+            // in onBackPressed behaves, so it's fine to just log this error.
+            Log.w(TAG, "it seems a URL we just constructed and validated is not valid?! "+ e);
         }
     }
-
 }

@@ -3,8 +3,13 @@ package org.openobservatory.ooniprobe.common;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-// ProxySettings contains the settings configured inside the proxy.
+/**
+ * ProxySettings contains the settings configured inside the proxy. Please, see the
+ * documentation of proxy activity for the design rationale.
+ */
 public class ProxySettings {
+
+    /** Protocol enumerates all the kind of proxy we support. */
     public enum Protocol {
         NONE("none"),
         PSIPHON("psiphon"),
@@ -21,18 +26,19 @@ public class ProxySettings {
         }
     }
 
-    // scheme is the proxy scheme (e.g., "psiphon", "socks5").
+    /** scheme is the proxy scheme (e.g., "psiphon", "socks5"). */
     public Protocol protocol = Protocol.NONE;
 
-    // hostname is the hostname for custom proxies.
+    /** hostname is the hostname for custom proxies. */
     public String hostname = "";
 
-    // port is the port for custom proxies.
+    /** port is the port for custom proxies. */
     public String port = "";
 
-    // newProxySettings creates a new instance of the proxy settings from the current Preferences.
+    /** newProxySettings creates a new instance of the proxy settings from the current Preferences. */
     public static ProxySettings newProxySettings(PreferenceManager pm) throws InvalidProxyURL {
         ProxySettings settings = new ProxySettings();
+
         // Make sure the protocol is one of the schemes we recognize.
         String protocol = pm.getProxyProtocol();
         if (protocol.equals(Protocol.NONE.getProtocol())) {
@@ -53,18 +59,20 @@ public class ProxySettings {
         return settings;
     }
 
-    public void saveProxy(PreferenceManager pm){
+    /** saveProxy saves the current state into the preference manager. */
+    public void saveProxy(PreferenceManager pm) {
         pm.setProxyProtocol(protocol);
         pm.setProxyHostname(hostname);
         pm.setProxyPort(port);
     }
 
+    /** getProxyString returns to you the proxy string you should pass to oonimkall. */
     public String getProxyString() throws URISyntaxException {
         if (protocol == Protocol.NONE)
             return "";
-        else if (protocol == Protocol.PSIPHON)
+        if (protocol == Protocol.PSIPHON)
             return "psiphon://";
-        else if (protocol == Protocol.SOCKS5){
+        if (protocol == Protocol.SOCKS5) {
             // Alright, we now need to construct a new SOCKS5 URL. We are going to defer
             // doing that to the Java standard library (er, the Android stdlib).
             String urlStr = "socks5://" + hostname + ":" + port + "/";
@@ -74,7 +82,7 @@ public class ProxySettings {
         return "";
     }
 
-    // InvalidProxyURL indicates that the proxy URL is not valid.
+    /** InvalidProxyURL indicates that the proxy URL is not valid. */
     public static class InvalidProxyURL extends Exception {
         InvalidProxyURL(String message, Throwable cause) {
             super(message, cause);
