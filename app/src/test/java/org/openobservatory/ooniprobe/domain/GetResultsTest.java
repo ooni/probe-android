@@ -82,8 +82,6 @@ public class GetResultsTest extends RobolectricAbstractTest {
         assertEquals(all.get(1).getResultsList().get(0).test_group_name, CircumventionSuite.NAME);
         assertEquals(all.get(2).getResultsList().get(0).test_group_name, InstantMessagingSuite.NAME);
         assertEquals(all.get(3).getResultsList().get(0).test_group_name, WebsitesSuite.NAME);
-
-
     }
 
 
