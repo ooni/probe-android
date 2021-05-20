@@ -181,7 +181,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                     p.setText("");
             }
         }
-        if (preference instanceof SwitchPreferenceCompat) {
+        else if (preference instanceof SwitchPreferenceCompat) {
             //Call this code only in case of category or tests
             if (Arrays.asList(getActivity().getResources().getStringArray(R.array.CategoryCodes)).contains(key) ||
                     Arrays.asList(getActivity().getResources().getStringArray(R.array.preferenceTestsNames)).contains(key))
