@@ -89,6 +89,11 @@
 		<item name="colorPrimaryDark">@color/color_fuchsia9</item>
 	</style>
 
+	<style name="Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar.Experimental">
+		<item name="colorPrimary">@color/color_gray7</item>
+		<item name="colorPrimaryDark">@color/color_gray8</item>
+	</style>
+
 	<style name="Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar.Success">
 		<item name="colorPrimary">@color/color_green8</item>
 		<item name="colorPrimaryDark">@color/color_green9</item>
@@ -132,6 +137,12 @@
 		<item name="colorPrimary">@color/color_fuchsia6</item>
 		<item name="colorPrimaryDark">@color/color_fuchsia9</item>
 		<item name="android:windowBackground">@color/color_fuchsia6</item>
+	</style>
+
+	<style name="Theme.MaterialComponents.NoActionBar.App.Experimental">
+		<item name="colorPrimary">@color/color_gray7</item>
+		<item name="colorPrimaryDark">@color/color_gray8</item>
+		<item name="android:windowBackground">@color/color_gray7</item>
 	</style>
 
 	<style name="Theme.MaterialComponents.Light.Transparent">

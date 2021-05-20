@@ -15,6 +15,7 @@ import org.apache.commons.io.FileUtils;
 import org.openobservatory.ooniprobe.common.AppDatabase;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.CircumventionSuite;
+import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
@@ -187,6 +188,8 @@ public class Result extends BaseModel implements Serializable {
 				return new PerformanceSuite();
 			case CircumventionSuite.NAME:
 				return new CircumventionSuite();
+			case ExperimentalSuite.NAME:
+				return new ExperimentalSuite();
 			default:
 				return null;
 		}
