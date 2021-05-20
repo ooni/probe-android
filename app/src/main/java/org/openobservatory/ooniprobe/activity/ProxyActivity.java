@@ -34,27 +34,27 @@ public class ProxyActivity extends AbstractActivity {
     // TODO(bassosimone): find way to write unit tests for this class.
 
     /*
-     * Implementation note: the general idea of this class is that we store the proxy
-     * into the settings as a URL. This means that, to show the view, we will need
-     * to parse the URL into components and draw the view using components. This means
-     * that, when leaving thw view, we need to reconstruct a URL and save it.
+     * Implementation note: we store the components of the URL into the settings
+     * via the common.ProxySettings class. In turn, this class allows us to get
+     * a URL to describe the proxy, which is what oonimkall wants.
      *
-     * Using a URL to describe the proxy is what also oonimkall does.
+     * This comment is here to explain what is the current status of proxying
+     * and what could be future improvements in this area.
+     *
+     * Current design
      *
      * As of 2021-05-15, the ooni/probe-cli's oonimkall recognizes these proxies:
      *
      * 1. an empty string means no proxy;
      *
-     * 2. "psiphon:///" means that we wanna use psiphon;
+     * 2. "psiphon://" means that we wanna use psiphon;
      *
      * 3. "socks5://1.2.3.4:5678" or "socks5://[::1]:5678" or "socks5://d.com:5678"
      * means that we wanna use the given socks5 proxy.
      *
-     * An important design consideration to apply here is how much the current
-     * strategy of storing the proxy as a URL is future proof. (We would like to
-     * avoid migrating the URL settings very often.)
+     * Future improvements
      *
-     * So, let us describe what are the future directions regarding proxies.
+     * In the future, we would like to extend this design as follows.
      *
      * We want to combine psiphon and socks5. This means that we will tell psiphon to
      * use a possibly-password protected socks5 proxy. The URL will in this case be:
@@ -66,7 +66,7 @@ public class ProxyActivity extends AbstractActivity {
      * This implies we can trivially support a vanilla socks5 proxy with username and
      * password by just replacing `psiphon+socks5` with `socks5`.
      *
-     * We also want to support vanilla tor, using `tor:///`.
+     * We also want to support vanilla tor, using `tor://`.
      *
      * We also want to support vanilla tor with socks5, which is trivially doable
      * using as a scheme the `tor+socks5` scheme.
@@ -79,23 +79,19 @@ public class ProxyActivity extends AbstractActivity {
      * where <bridge> could either be the base64 of a bridge line or alternatively
      * just a quoted bridge line (both solutions should work fine).
      *
-     * We are using a standard concept, the URI. Golang has really excellent
-     * functionality for that. I would assume also Android has. If it turns out
-     * Android does not have this functionality, then what we can do is that
-     * we expose Golang's parse to Android code using oonimkall.
+     * Compatibility issues
+     *
+     * We are using a standard concept, the URI. There are some pitfalls in
+     * constructing URIs, though. We try to overcome this pitfalls by parsing
+     * the components of the URL and fixing the output where needed. The
+     * most pressing concern at the moment is that we need to quote IPv6 addrs
+     * using `[` and `]` when we're constructing a URL.
      *
      * Acknowledgments
      *
      * The design and implementation of this class owes to the code contributed
      * by and the suggestion from friendly anonymous users. Thank you!
      */
-
-    // Implementation note: the current implementation distinguishes between
-    // "psiphon:///" and "", which are trivially handled, and the custom proxies
-    // which are more complex to handle. When we will add support for combining
-    // different proxy features, as described above, for sure we need to modify
-    // the code to deal with psiphon proxies in a more complex way. That said,
-    // it feels like premature optimisation to do that _now_.
 
     // TAG is the tag used for logging.
     private final static String TAG = "ProxyActivity";
@@ -278,7 +274,8 @@ public class ProxyActivity extends AbstractActivity {
     // isValidPort validates its input as a valid port.
     private boolean isValidPort(String port) {
         try {
-            return isNotBlank(port) && Integer.parseInt(port) >= 0 && Integer.parseInt(port) <= 65535;
+            return isNotBlank(port) && Integer.parseInt(port) >= 0 &&
+                    Integer.parseInt(port) <= 65535;
         } catch (NumberFormatException exc) {
             return false;
         }
@@ -288,12 +285,23 @@ public class ProxyActivity extends AbstractActivity {
     @SuppressWarnings("UnstableApiUsage")
     private boolean isIPv6(String hostname) {
         try {
+            // The UnknownHostException may suggest we're doing a domain
+            // name resolution here. While this is possible in theory, we
+            // check whether we're dealing with a literal IP address in
+            // advance. In such a case getByName won't attempt to resolve
+            // anything because it's already given an IP address.
             return InetAddresses.isInetAddress(hostname) &&
                     InetAddress.getByName(hostname) instanceof Inet6Address;
         } catch (UnknownHostException e) {
             return false;
         }
     }
+
+    // Implementation note: there are multiple ways to go back on Android. The
+    // following set of public overridden methods attempt to ensure that we really
+    // get the "go back" event and properly route it. Should we receive any
+    // issue report regarding this screen not working properly when doing back,
+    // then it seems this is where we need to intervene to improve.
 
     /**
      * onOptionsItemSelected overrides the handling of selecting options in
@@ -310,13 +318,17 @@ public class ProxyActivity extends AbstractActivity {
     }
 
     /**
-     * onKeyDown overrides what we do when a key is pressed and is not
-     * otherwise handled so we can route to onBackPressed.
+     * onKeyDown overrides what we do when a key is pressed and there is
+     * no other element in the view handling it. In such a case, we check
+     * whether it's "back" and we route the call to onBackPressed.
      */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // TODO(bassosimone): it is not 100% clear to me why in this
-        // case we always call super.onKeyDown().
+        // case we always call super.onKeyDown(). We may probably wanna
+        // just return false in the case in which we've got the key
+        // that we excepted. Either that, or I don't fully grasp the
+        // problem. For this reason, I'm adding this comment.
         Log.d(TAG, "onKeyDown called");
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             onBackPressed();
@@ -328,7 +340,7 @@ public class ProxyActivity extends AbstractActivity {
      * onBackPressed is called when the users wants to go to the previous
      * activity. This is the place where we construct a URL from the current
      * configuration and either emits an user visible error or stores
-     * the URL into the settings.
+     * the valid URL components into the settings.
      */
     @Override
     public void onBackPressed() {
@@ -398,7 +410,7 @@ public class ProxyActivity extends AbstractActivity {
         } catch (URISyntaxException e) {
             // This error condition is rather impossible given the way in which the code
             // in onBackPressed behaves, so it's fine to just log this error.
-            Log.w(TAG, "it seems a URL we just constructed and validated is not valid?! "+ e);
+            Log.w(TAG, "it seems a URL we just constructed and validated is not valid?! " + e);
         }
     }
 }
