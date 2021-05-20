@@ -151,7 +151,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
             config.setCategories(app.getPreferenceManager().getEnabledCategoryArr().toArray(new String[0]));
             OONIURLListResult results = session.fetchURLList(ooniContext, config);
             ArrayList<String> inputs = new ArrayList<>();
-            for (OONIURLInfo url : results.urls) {
+            for (OONIURLInfo url : results.getUrls()) {
                 inputs.add(Url.checkExistingUrl(url.getUrl(), url.getCategoryCode(), url.getCountryCode()).url);
             }
             currentTest.setInputs(inputs);
@@ -197,21 +197,21 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
         switch (key) {
             case TestAsyncTask.RUN:
                 Log.d(TAG, "TestAsyncTask.RUN");
-				serviceRef.get().builder.setContentText(value)
+                serviceRef.get().builder.setContentText(value)
                         .setProgress(currentSuite.getTestList(app.getPreferenceManager()).length * 100, 0, false);
-				serviceRef.get().notificationManager.notify(RunTestService.NOTIFICATION_ID, serviceRef.get().builder.build());
+                serviceRef.get().notificationManager.notify(RunTestService.NOTIFICATION_ID, serviceRef.get().builder.build());
                 break;
             case TestAsyncTask.PRG:
                 Log.d(TAG, "TestAsyncTask.PRG " + value);
                 int prgs = Integer.parseInt(value);
-				serviceRef.get().builder.setProgress(currentSuite.getTestList(app.getPreferenceManager()).length * 100, prgs, false);
-				serviceRef.get().notificationManager.notify(RunTestService.NOTIFICATION_ID, serviceRef.get().builder.build());
+                serviceRef.get().builder.setProgress(currentSuite.getTestList(app.getPreferenceManager()).length * 100, prgs, false);
+                serviceRef.get().notificationManager.notify(RunTestService.NOTIFICATION_ID, serviceRef.get().builder.build());
                 break;
             case TestAsyncTask.INT:
                 Log.d(TAG, "TestAsyncTask.INT");
-				serviceRef.get().builder.setContentText(app.getString(R.string.Dashboard_Running_Stopping_Title))
+                serviceRef.get().builder.setContentText(app.getString(R.string.Dashboard_Running_Stopping_Title))
                         .setProgress(0, 0, true);
-				serviceRef.get().notificationManager.notify(RunTestService.NOTIFICATION_ID, serviceRef.get().builder.build());
+                serviceRef.get().notificationManager.notify(RunTestService.NOTIFICATION_ID, serviceRef.get().builder.build());
                 break;
         }
     }
@@ -220,7 +220,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
         sendBroadcast(END);
-		serviceRef.get().stopSelf();
+        serviceRef.get().stopSelf();
         unregisterConnChange();
     }
 
