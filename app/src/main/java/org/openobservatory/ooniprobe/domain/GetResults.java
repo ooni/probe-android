@@ -25,17 +25,13 @@ public class GetResults {
     @Inject
     GetResults() { }
 
-    public Result get(int id) {
-        return SQLite.select().from(Result.class).where(Result_Table.id.eq(id)).querySingle();
-    }
-
     public List<Result> getOrderedByTime(@Nullable String testGroupNameFilter) {
-        SQLOperator[] conditions = (testGroupNameFilter != null && !testGroupNameFilter.isEmpty())
-                ? new SQLOperator[]{ Result_Table.test_group_name.is(testGroupNameFilter) }
-                : new SQLOperator[0];
+       List<Operator<String>> conditions = (testGroupNameFilter != null && !testGroupNameFilter.isEmpty())
+               ? Collections.singletonList(Result_Table.test_group_name.is(testGroupNameFilter))
+               : Collections.emptyList();
 
         return  SQLite.select().from(Result.class)
-                .where(conditions)
+                .where(conditions.toArray(new SQLOperator[0]))
                 .orderBy(Result_Table.start_time, false)
                 .queryList();
     }
