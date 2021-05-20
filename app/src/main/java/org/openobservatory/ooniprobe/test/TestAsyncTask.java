@@ -151,7 +151,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
             config.setCategories(app.getPreferenceManager().getEnabledCategoryArr().toArray(new String[0]));
             OONIURLListResult results = session.fetchURLList(ooniContext, config);
             ArrayList<String> inputs = new ArrayList<>();
-            for (OONIURLInfo url : results.urls) {
+            for (OONIURLInfo url : results.getUrls()) {
                 inputs.add(Url.checkExistingUrl(url.getUrl(), url.getCategoryCode(), url.getCountryCode()).url);
             }
             currentTest.setInputs(inputs);
