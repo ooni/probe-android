@@ -31,7 +31,7 @@ public class MiddleBoxesSuite extends AbstractSuite {
 				R.style.Theme_MaterialComponents_NoActionBar_App_MiddleBoxes,
 				R.string.Dashboard_Middleboxes_Overview_Paragraph,
 				"anim/middle_boxes.json",
-				"< 1 MB");
+				R.string.small_datausage);
 	}
 
 	@Override public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {

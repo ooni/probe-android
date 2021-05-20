@@ -21,7 +21,7 @@ public class WebsitesSuite extends AbstractSuite {
 				R.style.Theme_MaterialComponents_NoActionBar_App_Websites,
 				R.string.Dashboard_Websites_Overview_Paragraph,
 				"anim/websites.json",
-				"~ 8 MB");
+				R.string.websites_datausage);
 	}
 
 	@Override public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {

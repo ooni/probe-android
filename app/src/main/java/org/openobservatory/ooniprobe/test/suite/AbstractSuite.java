@@ -31,11 +31,11 @@ public abstract class AbstractSuite implements Serializable {
 	private final int desc1;
 	private final String anim;
 	private final String name;
-	private final String dataUsage;
+	private final int dataUsage;
 	private AbstractTest[] testList;
 	private Result result;
 
-	AbstractSuite(String name, @StringRes int title, @StringRes int cardDesc, @DrawableRes int icon, @DrawableRes int icon_24, @ColorRes int color, @StyleRes int themeLight, @StyleRes int themeDark, @StringRes int desc1, String anim, String dataUsage) {
+	AbstractSuite(String name, @StringRes int title, @StringRes int cardDesc, @DrawableRes int icon, @DrawableRes int icon_24, @ColorRes int color, @StyleRes int themeLight, @StyleRes int themeDark, @StringRes int desc1, String anim, int dataUsage) {
 		this.title = title;
 		this.cardDesc = cardDesc;
 		this.icon = icon;
@@ -80,11 +80,7 @@ public abstract class AbstractSuite implements Serializable {
 	}
 
 	public int getIconGradient() {
-		if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.M){
-			return icon;
-		}else{
-			return icon_24;
-		}
+		return icon_24;
 	}
 
 	public String getAnim() {
@@ -111,7 +107,7 @@ public abstract class AbstractSuite implements Serializable {
 		return name;
 	}
 
-	public String getDataUsage() {
+	public int getDataUsage() {
 		return dataUsage;
 	}
 

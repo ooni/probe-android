@@ -29,6 +29,7 @@ import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
+import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -108,8 +109,10 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         animation.playAnimation();
         progress.setIndeterminate(true);
         eta.setText(R.string.Dashboard_Running_CalculatingETA);
-
-        name.setText(getString(service.task.currentTest.getLabelResId()));
+        if (service.task.currentSuite.getName().equals(ExperimentalSuite.NAME))
+            name.setText(service.task.currentTest.getName());
+        else
+            name.setText(getString(service.task.currentTest.getLabelResId()));
         runtime = service.task.currentSuite.getRuntime(getPreferenceManager());
         getWindow().setBackgroundDrawableResource(service.task.currentSuite.getColor());
         if (Build.VERSION.SDK_INT >= 21) {

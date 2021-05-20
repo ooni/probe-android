@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Measurement;
+import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
@@ -49,7 +50,10 @@ public class MeasurementItem extends HeterogeneousRecyclerItem<Measurement, Meas
 			viewHolder.text.setText(extra.url.url);
 			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(extra.url.getCategoryIcon(viewHolder.text.getContext()), 0, endDrawable, 0);
 		} else {
-			viewHolder.text.setText(test.getLabelResId());
+			if (extra.getTest().getLabelResId() == (R.string.Test_Experimental_Fullname))
+				viewHolder.text.setText(extra.getTest().getName());
+			else
+				viewHolder.text.setText(test.getLabelResId());
 			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(test.getIconResId(), 0, endDrawable, 0);
 		}
 		Drawable drawable = viewHolder.text.getCompoundDrawablesRelative()[0];
