@@ -8,9 +8,10 @@ import androidx.test.core.app.ActivityScenario;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.intent.Intents;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.rule.ServiceTestRule;
 
-import org.junit.ClassRule;
+import com.schibsted.spain.barista.rule.flaky.AllowFlaky;
+import com.schibsted.spain.barista.rule.flaky.FlakyTestRule;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +21,6 @@ import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
 
 import io.bloco.faker.Faker;
-import tools.fastlane.screengrab.locale.LocaleTestRule;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -42,14 +42,10 @@ import static org.openobservatory.ooniprobe.ui.utils.ViewMatchers.withIndex;
 @RunWith(AndroidJUnit4.class)
 public class MainActivityWebsitesTest extends AbstractTest {
 
-    @ClassRule
-    public static final LocaleTestRule localeTestRule = new LocaleTestRule();
+    public ActivityScenario<MainActivity> scenario;
 
     @Rule
-    public final ServiceTestRule serviceRule = new ServiceTestRule();
-
-
-    public ActivityScenario<MainActivity> scenario;
+    public FlakyTestRule flakyRule = new FlakyTestRule();
 
     @Test
     public void addCustomWebsiteTest() {
@@ -84,6 +80,7 @@ public class MainActivityWebsitesTest extends AbstractTest {
     }
 
     @Test
+    @AllowFlaky(attempts = 3)
     public void deleteCustomWebsiteTest() {
         // Arrange
         Faker faker = new Faker();
