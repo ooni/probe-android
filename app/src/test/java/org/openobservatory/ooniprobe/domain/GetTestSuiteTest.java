@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.openobservatory.ooniprobe.RobolectricAbstractTest;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.domain.models.Attribute;
+import org.openobservatory.ooniprobe.factory.ResultFactory;
+import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
@@ -23,7 +25,6 @@ public class GetTestSuiteTest extends RobolectricAbstractTest {
         // Arrange
         Faker faker = new Faker();
         GetTestSuite getSuite = build();
-
         PreferenceManager pm = mock(PreferenceManager.class);
 
         Attribute attribute = new Attribute();
@@ -48,7 +49,6 @@ public class GetTestSuiteTest extends RobolectricAbstractTest {
     public void testWithoutAttributes() {
         // Arrange
         GetTestSuite getSuite = build();
-
         PreferenceManager pm = mock(PreferenceManager.class);
 
         // Act
@@ -59,6 +59,24 @@ public class GetTestSuiteTest extends RobolectricAbstractTest {
         Assert.assertEquals(WebsitesSuite.NAME, suite.getName());
         Assert.assertEquals(1, tests.length);
         Assert.assertNull(tests[0].getInputs());
+    }
+
+    @Test
+    public void testGetFromResult() {
+        // Arrange
+        GetTestSuite getTestSuite = build();
+        Result result = ResultFactory.createAndSave(new WebsitesSuite());
+        int measurementsUrls = result.getMeasurements().size();
+        PreferenceManager pm = mock(PreferenceManager.class);
+
+        // Act
+        AbstractSuite value = getTestSuite.getFrom(result);
+        AbstractTest[] tests = value.getTestList(pm);
+
+        // Assert
+        Assert.assertNotNull(value);
+        Assert.assertEquals(1, tests.length);
+        Assert.assertEquals(measurementsUrls, tests[0].getInputs().size());
     }
 
     public GetTestSuite build() {
