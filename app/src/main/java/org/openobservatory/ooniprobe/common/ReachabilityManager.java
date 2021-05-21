@@ -10,8 +10,6 @@ import android.net.NetworkInfo;
 import android.os.BatteryManager;
 import android.os.Build;
 
-import androidx.annotation.RequiresApi;
-
 public class ReachabilityManager {
     public static final String WIFI = "wifi";
     public static final String MOBILE = "mobile";
@@ -42,8 +40,11 @@ public class ReachabilityManager {
 
 
     public static Boolean isVPNinUse(Context context){
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
+            return false;
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        Network activeNetwork = connectivityManager.getActiveNetwork();
+        Network activeNetwork = null;
+        activeNetwork = connectivityManager.getActiveNetwork();
         NetworkCapabilities caps = connectivityManager.getNetworkCapabilities(activeNetwork);
         if (caps == null) return false;
         return caps.hasTransport(NetworkCapabilities.TRANSPORT_VPN);
