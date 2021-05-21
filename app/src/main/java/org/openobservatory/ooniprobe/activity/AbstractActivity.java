@@ -26,26 +26,38 @@ public abstract class AbstractActivity extends AppCompatActivity {
 		return getApp().getActivityComponent();
 	}
 
-	@Deprecated
-	public PreferenceManager getPreferenceManager() {
-		return ((Application) getApplication()).getPreferenceManager();
-	}
-
-	@Deprecated
-	public Gson getGson() {
-		return ((Application) getApplication()).getGson();
-	}
-
 	boolean isTestRunning() {
 		return ((Application) getApplication()).isTestRunning();
 	}
 
 	@Deprecated
+	/*
+	 * @deprecated migration to Dagger2 dependency injection in progress
+	 */
+	public PreferenceManager getPreferenceManager() {
+		return ((Application) getApplication()).getPreferenceManager();
+	}
+
+	@Deprecated
+	/*
+	 * @deprecated migration to Dagger2 dependency injection in progress
+	 */
+	public Gson getGson() {
+		return ((Application) getApplication()).getGson();
+	}
+
+	@Deprecated
+	/*
+	 * @deprecated migration to Dagger2 dependency injection in progress
+	 */
 	public OONIAPIClient getApiClient() {
 		return ((Application) getApplication()).getApiClient();
 	}
 
 	@Deprecated
+	/*
+	 * @deprecated migration to Dagger2 dependency injection in progress
+	 */
 	public OkHttpClient getOkHttpClient() {
 		return ((Application) getApplication()).getOkHttpClient();
 	}
