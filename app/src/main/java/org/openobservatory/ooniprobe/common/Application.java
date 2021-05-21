@@ -63,6 +63,10 @@ public class Application extends android.app.Application {
 
 	public ActivityComponent getActivityComponent() { return component.activityComponent(); }
 
+	public FragmentComponent getFragmentComponent() { return component.fragmentComponent(); }
+
+	public ActivityComponent getActivityComponent() { return component.activityComponent(); }
+
 	public OkHttpClient getOkHttpClient() {
 		return _okHttpClient;
 	}
