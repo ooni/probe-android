@@ -7,7 +7,17 @@ public class ApiMeasurement {
     public List<Result> results = null;
     public Boolean found;
 
-    public class Metadata {
+    public boolean hasResultWithMeasurements() {
+        return results != null &&
+                results.size() == 1 &&
+                results.get(0).measurement_url != null;
+    }
+
+    public Result firstResult() {
+        return results.get(0);
+    }
+
+    public static class Metadata {
         public Integer count;
         public Integer current_page;
         public Integer limit;
@@ -17,7 +27,7 @@ public class ApiMeasurement {
         public Double query_time;
     }
 
-    public class Result {
+    public static class Result {
         public Boolean anomaly;
         public Boolean confirmed;
         public Boolean failure;
