@@ -34,7 +34,7 @@ import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.domain.GetResults;
-import org.openobservatory.ooniprobe.domain.HasUploadabledReports;
+import org.openobservatory.ooniprobe.domain.MeasurementsManager;
 import org.openobservatory.ooniprobe.domain.models.DatedResults;
 import org.openobservatory.ooniprobe.item.CircumventionItem;
 import org.openobservatory.ooniprobe.item.DateItem;
@@ -57,8 +57,6 @@ import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import java.io.Serializable;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashSet;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -95,7 +93,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     private Snackbar snackbar;
 
     @Inject
-    HasUploadabledReports uploadabledReports;
+    MeasurementsManager measurementsManager;
 
     @Inject
     GetResults getResults;
@@ -176,7 +174,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 
     @OnItemSelected(R.id.filterTests)
     void queryList() {
-        if (uploadabledReports.hasUploadables()) {
+        if (measurementsManager.hasUploadables()) {
             snackbar.show();
         } else {
             snackbar.dismiss();
