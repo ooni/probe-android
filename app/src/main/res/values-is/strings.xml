@@ -345,7 +345,7 @@
   <string name="Settings_Notifications_OnNews">Fréttastreymi</string>
   <string name="Settings_AutomatedTesting_Label">Sjálfvirkar prófanir</string>
   <string name="Settings_AutomatedTesting_RunAutomatically">Keyra prófanir sjálfvirkt</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Number">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Your test results will automatically get published on [OONI Explorer](https://explorer.ooni.org/)\n\nImportant: If you have a VPN enabled, OONI Probe will not run tests automatically. Please turn off your VPN for automated OONI Probe testing. [Learn more](https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn)</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Number">Fjöldi sjálfvirkra prófana: %1$s.</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">Síðasta sjálfvirka prófun: %1$s.</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Aðeins á WiFi</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Aðeins þegar verið er í hleðslu</string>
