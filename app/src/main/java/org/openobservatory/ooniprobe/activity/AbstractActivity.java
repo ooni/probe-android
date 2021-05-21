@@ -26,10 +26,12 @@ public abstract class AbstractActivity extends AppCompatActivity {
 		return getApp().getActivityComponent();
 	}
 
+	@Deprecated
 	public PreferenceManager getPreferenceManager() {
 		return ((Application) getApplication()).getPreferenceManager();
 	}
 
+	@Deprecated
 	public Gson getGson() {
 		return ((Application) getApplication()).getGson();
 	}
@@ -38,10 +40,12 @@ public abstract class AbstractActivity extends AppCompatActivity {
 		return ((Application) getApplication()).isTestRunning();
 	}
 
+	@Deprecated
 	public OONIAPIClient getApiClient() {
 		return ((Application) getApplication()).getApiClient();
 	}
 
+	@Deprecated
 	public OkHttpClient getOkHttpClient() {
 		return ((Application) getApplication()).getOkHttpClient();
 	}
