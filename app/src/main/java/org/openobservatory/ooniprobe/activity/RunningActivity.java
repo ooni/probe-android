@@ -25,6 +25,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.airbnb.lottie.LottieAnimationView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
@@ -33,6 +34,8 @@ import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,6 +62,9 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     private TestRunBroadRequestReceiver receiver;
     boolean isBound = false;
 
+    @Inject
+    PreferenceManager preferenceManager;
+
     public static Intent newIntent(AbstractActivity context, ArrayList<AbstractSuite> testSuites) {
         if (ReachabilityManager.getNetworkType(context).equals(ReachabilityManager.NO_INTERNET)) {
             new MessageDialogFragment.Builder()
@@ -83,6 +89,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActivityComponent().inject(this);
         setTheme(R.style.Theme_MaterialComponents_NoActionBar_App);
         setContentView(R.layout.activity_running);
         ButterKnife.bind(this);
@@ -113,13 +120,13 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
             name.setText(service.task.currentTest.getName());
         else
             name.setText(getString(service.task.currentTest.getLabelResId()));
-        runtime = service.task.currentSuite.getRuntime(getPreferenceManager());
+        runtime = service.task.currentSuite.getRuntime(preferenceManager);
         getWindow().setBackgroundDrawableResource(service.task.currentSuite.getColor());
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(service.task.currentSuite.getColor());
         }
         animation.setAnimation(service.task.currentSuite.getAnim());
-        progress.setMax(service.task.currentSuite.getTestList(getPreferenceManager()).length * 100);
+        progress.setMax(service.task.currentSuite.getTestList(preferenceManager).length * 100);
     }
 
     @Override
@@ -204,7 +211,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                     break;
                 case TestAsyncTask.URL:
                     progress.setIndeterminate(false);
-                    runtime = service.task.currentSuite.getRuntime(getPreferenceManager());
+                    runtime = service.task.currentSuite.getRuntime(preferenceManager);
                     break;
                 case TestAsyncTask.INT:
                     running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
