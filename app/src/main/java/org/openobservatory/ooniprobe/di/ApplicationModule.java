@@ -49,11 +49,16 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    Gson provideGson() {
+    GsonBuilder provideGsonBuilder() {
         return new GsonBuilder()
                 .registerTypeAdapter(Date.class, new DateAdapter())
-                .registerTypeAdapter(TestKeys.Tampering.class, new TamperingJsonDeserializer())
-                .create();
+                .registerTypeAdapter(TestKeys.Tampering.class, new TamperingJsonDeserializer());
+    }
+
+    @Provides
+    @Singleton
+    Gson provideGson(GsonBuilder gsonBuilder) {
+        return gsonBuilder.create();
     }
 
     @Provides

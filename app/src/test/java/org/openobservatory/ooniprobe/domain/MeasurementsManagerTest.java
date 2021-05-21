@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.openobservatory.ooniprobe.RobolectricAbstractTest;
 import org.openobservatory.ooniprobe.client.OONIAPIClient;
 import org.openobservatory.ooniprobe.client.callback.CheckReportIdCallback;
+import org.openobservatory.ooniprobe.common.JsonPrinter;
 import org.openobservatory.ooniprobe.factory.MeasurementFactory;
 import org.openobservatory.ooniprobe.factory.ResultFactory;
 import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
@@ -15,6 +16,7 @@ import org.openobservatory.ooniprobe.utils.DatabaseUtils;
 
 import java.util.List;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -32,6 +34,8 @@ import static org.mockito.Mockito.when;
 public class MeasurementsManagerTest extends RobolectricAbstractTest {
 
     OONIAPIClient apiClient = mock(OONIAPIClient.class);
+    OkHttpClient httpClient = mock(OkHttpClient.class);
+    JsonPrinter jsonPrinter = mock(JsonPrinter.class);
 
     @Override
     public void setUp() {
@@ -260,7 +264,7 @@ public class MeasurementsManagerTest extends RobolectricAbstractTest {
     }
 
     public MeasurementsManager build() {
-        return new MeasurementsManager(c, apiClient);
+        return new MeasurementsManager(c, jsonPrinter, apiClient, httpClient);
     }
 
 }
