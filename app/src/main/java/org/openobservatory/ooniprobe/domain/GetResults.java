@@ -25,12 +25,16 @@ public class GetResults {
     @Inject
     GetResults() { }
 
-    public List<Result> getOrderedByTime(@Nullable String testGroupNameFilter) {
-       List<Operator<String>> conditions = (testGroupNameFilter != null && !testGroupNameFilter.isEmpty())
-               ? Collections.singletonList(Result_Table.test_group_name.is(testGroupNameFilter))
-               : Collections.emptyList();
+    public Result get(int id) {
+        return SQLite.select().from(Result.class).where(Result_Table.id.eq(id)).querySingle();
+    }
 
-        return  SQLite.select().from(Result.class)
+    public List<Result> getOrderedByTime(@Nullable String testGroupNameFilter) {
+        List<Operator<String>> conditions = (testGroupNameFilter != null && !testGroupNameFilter.isEmpty())
+                ? Collections.singletonList(Result_Table.test_group_name.is(testGroupNameFilter))
+                : Collections.emptyList();
+
+        return SQLite.select().from(Result.class)
                 .where(conditions.toArray(new SQLOperator[0]))
                 .orderBy(Result_Table.start_time, false)
                 .queryList();
@@ -43,7 +47,7 @@ public class GetResults {
         List<Result> sameDateResults = new ArrayList<>();
         int lastDateIdentifier = -1;
 
-        for (Result result: results) {
+        for (Result result : results) {
             int newDateIdentifier = getUniqueIdentifierFromDate(result.start_time);
 
             if (newDateIdentifier != lastDateIdentifier) {
@@ -62,5 +66,4 @@ public class GetResults {
         c.setTime(date);
         return c.get(Calendar.YEAR) * 100 + c.get(Calendar.MONTH);
     }
-
 }
