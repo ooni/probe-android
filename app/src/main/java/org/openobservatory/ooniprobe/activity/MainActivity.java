@@ -7,20 +7,21 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.app.ActivityCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
-import org.openobservatory.ooniprobe.common.service.ServiceUtil;
+import org.openobservatory.ooniprobe.common.ThirdPartyServices;
+import org.openobservatory.ooniprobe.domain.models.UpdatesNotificationManager;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
 import org.openobservatory.ooniprobe.fragment.PreferenceGlobalFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
 
 import java.io.Serializable;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +34,12 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     @BindView(R.id.bottomNavigation)
     BottomNavigationView bottomNavigation;
 
+    @Inject
+    UpdatesNotificationManager notificationManager;
+
+    @Inject
+    PreferenceManager preferenceManager;
+
     public static Intent newIntent(Context context, int resItem) {
         return new Intent(context, MainActivity.class).putExtra(RES_ITEM, resItem).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
     }
@@ -40,7 +47,8 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getPreferenceManager().isShowOnboarding()) {
+        getActivityComponent().inject(this);
+        if (preferenceManager.isShowOnboarding()) {
             startActivity(new Intent(MainActivity.this, OnboardingActivity.class));
             finish();
         }
@@ -63,10 +71,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 }
             });
             bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
-            if (getPreferenceManager().getAppOpenCount() != 0
-                    && getPreferenceManager().getAppOpenCount() % PreferenceManager.NOTIFICATION_DIALOG_COUNT == 0
-                    && !getPreferenceManager().isNotifications()
-                    && !getPreferenceManager().isAskNotificationDialogDisabled()) {
+            if (notificationManager.shouldShow()) {
                 new ConfirmDialogFragment.Builder()
                         .withTitle(getString(R.string.Modal_EnableNotifications_Title))
                         .withMessage(getString(R.string.Modal_EnableNotifications_Paragraph))
@@ -82,7 +87,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
         if (android.os.Build.VERSION.SDK_INT >= 29){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         } else{
-            if (getPreferenceManager().isDarkTheme()) {
+            if (preferenceManager.isDarkTheme()) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -116,13 +121,14 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     public void onConfirmation(Serializable extra, int i) {
         if (extra == null) return;
         if (extra.equals(NOTIFICATION_DIALOG)) {
-            getPreferenceManager().setNotificationsFromDialog(i == DialogInterface.BUTTON_POSITIVE);
+            notificationManager.getUpdates(i == DialogInterface.BUTTON_POSITIVE);
+
             //If positive answer reload consents and init notification
             if (i == DialogInterface.BUTTON_POSITIVE){
                 ThirdPartyServices.reloadConsents((Application) getApplication());
             }
             else if (i == DialogInterface.BUTTON_NEUTRAL){
-                getPreferenceManager().disableAskNotificationDialog();
+                notificationManager.disableAskNotificationDialog();
             }
         }
     }
