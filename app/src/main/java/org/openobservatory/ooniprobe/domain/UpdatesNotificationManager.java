@@ -1,4 +1,4 @@
-package org.openobservatory.ooniprobe.domain.models;
+package org.openobservatory.ooniprobe.domain;
 
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 
@@ -9,7 +9,7 @@ public class UpdatesNotificationManager {
     private final PreferenceManager pm;
 
     @Inject
-    UpdatesNotificationManager(PreferenceManager pm) {
+    public UpdatesNotificationManager(PreferenceManager pm) {
         this.pm = pm;
     }
 
