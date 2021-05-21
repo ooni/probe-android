@@ -21,8 +21,10 @@ import com.google.android.material.snackbar.Snackbar;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.client.OONIAPIClient;
 import org.openobservatory.ooniprobe.client.callback.CheckReportIdCallback;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
+import org.openobservatory.ooniprobe.domain.MeasurementsManager;
 import org.openobservatory.ooniprobe.fragment.measurement.DashFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.FacebookMessengerFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.FailedFragment;
@@ -57,6 +59,8 @@ import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
 import java.io.Serializable;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -72,6 +76,12 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     private Snackbar snackbar;
     private Boolean isInExplorer;
 
+    @Inject
+    OONIAPIClient apiClient;
+
+    @Inject
+    MeasurementsManager measurementsManager;
+
     public static Intent newIntent(Context context, int id) {
         return new Intent(context, MeasurementDetailActivity.class).putExtra(ID, id);
     }
@@ -79,8 +89,8 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        measurement = SQLite.select().from(Measurement.class)
-                .where(Measurement_Table.id.eq(getIntent().getIntExtra(ID, 0))).querySingle();
+        getActivityComponent().inject(this);
+        measurement = measurementsManager.get(getIntent().getIntExtra(ID, 0));
         assert measurement != null;
         measurement.result.load();
         setTheme(measurement.is_failed ?
@@ -203,20 +213,18 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                 .setAction(R.string.Snackbar_ResultsNotUploaded_Upload, v1 -> runAsyncTask());
         Context c = this;
         isInExplorer = !measurement.hasReportFile(c);
-        if (measurement.hasReportFile(c)){
-            getApiClient().checkReportId(measurement.report_id).enqueue(new CheckReportIdCallback() {
-                @Override
-                public void onSuccess(Boolean found) {
-                    if (found)
-                        Measurement.deleteMeasurementWithReportId(c, measurement.report_id);
-                    isInExplorer = found;
-                }
-                @Override
-                public void onError(String msg) {
-                    isInExplorer = false;
-                }
-            });
-        }
+
+        measurementsManager.checkReportAndDeleteIt(measurement, new CheckReportIdCallback() {
+            @Override
+            public void onSuccess(Boolean found) {
+                isInExplorer = found;
+            }
+
+            @Override
+            public void onError(String msg) {
+                isInExplorer = false;
+            }
+        });
         load();
     }
 
@@ -230,9 +238,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     }
 
     private void load() {
-        if (!measurement.is_failed
-                && (!measurement.is_uploaded || measurement.report_id == null)
-                && measurement.hasReportFile(this))
+        if (measurementsManager.canUpload(measurement))
             snackbar.show();
         else
             snackbar.dismiss();
@@ -248,8 +254,8 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     public boolean onPrepareOptionsMenu(Menu menu) {
         invalidateOptionsMenu();
         if (!measurement.hasLogFile(this))
-                menu.findItem(R.id.viewLog).setVisible(false);
-        if (measurement.report_id == null || measurement.report_id.isEmpty()) {
+            menu.findItem(R.id.viewLog).setVisible(false);
+        if (!measurementsManager.hasReportId(measurement)) {
             menu.findItem(R.id.shareExplorerUrl).setVisible(false);
             menu.findItem(R.id.copyExplorerUrl).setVisible(false);
         }
@@ -267,25 +273,18 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                 return true;
             case R.id.shareExplorerUrl:
                 Intent share = new Intent(Intent.ACTION_SEND);
-                share.putExtra(Intent.EXTRA_TEXT, getExplorerUrl());
+                share.putExtra(Intent.EXTRA_TEXT, measurementsManager.getExplorerUrl(measurement));
                 share.setType("text/plain");
-                Intent shareIntent = Intent.createChooser(share, null);
+                Intent shareIntent = Intent. createChooser(share, null);
                 startActivity(shareIntent);
                 return true;
             case R.id.copyExplorerUrl:
-                ((ClipboardManager) getSystemService(CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText(getString(R.string.General_AppName), getExplorerUrl()));
+                ((ClipboardManager) getSystemService(CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText(getString(R.string.General_AppName), measurementsManager.getExplorerUrl(measurement)));
                 Toast.makeText(this, R.string.Toast_CopiedToClipboard, Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private String getExplorerUrl(){
-        String url = "https://explorer.ooni.io/measurement/" + measurement.report_id;
-        if (measurement.test_name.equals("web_connectivity"))
-            url = url + "?input=" + measurement.url.url;
-        return url;
     }
 
     @OnClick(R.id.methodology)
@@ -298,7 +297,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
         if (buttonClicked == DialogInterface.BUTTON_POSITIVE)
             runAsyncTask();
         else if (buttonClicked == DialogInterface.BUTTON_NEUTRAL)
-            startActivity(TextActivity.newIntent(this, TextActivity.TYPE_UPLOAD_LOG, (String)extra));
+            startActivity(TextActivity.newIntent(this, TextActivity.TYPE_UPLOAD_LOG, (String) extra));
     }
 
     private static class ResubmitAsyncTask extends ResubmitTask<MeasurementDetailActivity> {
