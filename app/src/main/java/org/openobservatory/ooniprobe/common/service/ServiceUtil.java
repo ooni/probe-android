@@ -32,6 +32,7 @@ import java.util.ArrayList;
 public class ServiceUtil {
     private static final int id = 100;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public static void scheduleJob(Context context) {
         Application app = ((Application)context.getApplicationContext());
         PreferenceManager pm = app.getPreferenceManager();
@@ -56,6 +57,7 @@ public class ServiceUtil {
         jobScheduler.schedule(builder.build());
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public static void stopJob(Context context) {
         JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
         jobScheduler.cancel(id);
