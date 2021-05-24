@@ -18,10 +18,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ProxySettings;
 
-import java.net.Inet6Address;
-import java.net.InetAddress;
 import java.net.URISyntaxException;
-import java.net.UnknownHostException;
 import java.util.Objects;
 
 import ru.noties.markwon.Markwon;
@@ -281,22 +278,6 @@ public class ProxyActivity extends AbstractActivity {
         }
     }
 
-    // isIPv6 tells us whether the input is an IPv6 address.
-    @SuppressWarnings("UnstableApiUsage")
-    private boolean isIPv6(String hostname) {
-        try {
-            // The UnknownHostException may suggest we're doing a domain
-            // name resolution here. While this is possible in theory, we
-            // check whether we're dealing with a literal IP address in
-            // advance. In such a case getByName won't attempt to resolve
-            // anything because it's already given an IP address.
-            return InetAddresses.isInetAddress(hostname) &&
-                    InetAddress.getByName(hostname) instanceof Inet6Address;
-        } catch (UnknownHostException e) {
-            return false;
-        }
-    }
-
     // Implementation note: there are multiple ways to go back on Android. The
     // following set of public overridden methods attempt to ensure that we really
     // get the "go back" event and properly route it. Should we receive any
@@ -349,6 +330,8 @@ public class ProxyActivity extends AbstractActivity {
         // Get the hostname and port for the custom proxy.
         String hostname = Objects.requireNonNull(customProxyHostname.getEditText()).getText().toString();
         String port = Objects.requireNonNull(customProxyPort.getEditText()).getText().toString();
+        settings.hostname = hostname;
+        settings.port = port;
 
         // If no proxy is selected then just write an empty proxy
         // configuration into the settings and move on.
@@ -368,14 +351,13 @@ public class ProxyActivity extends AbstractActivity {
             return;
         }
 
-        // validate the hostname and port for the custom proxy.
-        String finalHostname = hostname;
+        // validate the hostname for the custom proxy.
         if (!isValidHostnameOrIP(hostname)) {
             customProxyHostname.setError("not a valid hostname or IP");
             return;
-        } else if (isIPv6(hostname)) {
-            finalHostname = "[" + hostname + "]"; // IPv6 must be quoted in URLs
         }
+
+        // validate the port for the custom proxy.
         if (!isValidPort(port)) {
             customProxyPort.setError("not a valid network port");
             return;
@@ -384,8 +366,6 @@ public class ProxyActivity extends AbstractActivity {
         // At this point we're going to assume that this is a socks5 proxy. We will
         // need to change the code in here when we add support for http proxies.
         settings.protocol = ProxySettings.Protocol.SOCKS5;
-        settings.hostname = finalHostname;
-        settings.port = port;
         try {
             settings.getProxyString();
         } catch (URISyntaxException e) {
