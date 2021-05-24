@@ -14,6 +14,7 @@ import org.openobservatory.ooniprobe.test.EngineProvider;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -54,7 +55,7 @@ public class GenerateAutoRunServiceSuite {
             OONICheckInResults results = session.checkIn(ooniContext, config);
 
             if (results.getWebConnectivity() != null) {
-                ArrayList<String> inputs = new ArrayList<>();
+                List<String> inputs = new ArrayList<>();
                 for (OONIURLInfo url : results.getWebConnectivity().getUrls()) {
                     inputs.add(url.getUrl());
                 }
