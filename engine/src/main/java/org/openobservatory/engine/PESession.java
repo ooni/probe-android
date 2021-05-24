@@ -3,7 +3,7 @@ package org.openobservatory.engine;
 import oonimkall.Oonimkall;
 import oonimkall.Session;
 
-public final class PESession implements OONISession {
+final class PESession implements OONISession {
     private Session session;
 
     public PESession(OONISessionConfig config) throws Exception {
