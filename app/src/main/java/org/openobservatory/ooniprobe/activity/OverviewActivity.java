@@ -14,11 +14,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,12 +38,16 @@ public class OverviewActivity extends AbstractActivity {
 	@BindView(R.id.customUrl) Button customUrl;
 	private AbstractSuite testSuite;
 
+	@Inject
+	PreferenceManager preferenceManager;
+
 	public static Intent newIntent(Context context, AbstractSuite testSuite) {
 		return new Intent(context, OverviewActivity.class).putExtra(TEST, testSuite);
 	}
 
 	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		getActivityComponent().inject(this);
 		testSuite = (AbstractSuite) getIntent().getSerializableExtra(TEST);
 		setTheme(testSuite.getThemeLight());
 		setContentView(R.layout.activity_overview);
@@ -67,8 +74,8 @@ public class OverviewActivity extends AbstractActivity {
 	@Override protected void onResume() {
 		super.onResume();
 		testSuite.setTestList((AbstractTest[]) null);
-		testSuite.getTestList(getPreferenceManager());
-		runtime.setText(getString(R.string.twoParam, getString(testSuite.getDataUsage()), getString(R.string.Dashboard_Card_Seconds, testSuite.getRuntime(getPreferenceManager()).toString())));
+		testSuite.getTestList(preferenceManager);
+		runtime.setText(getString(R.string.twoParam, getString(testSuite.getDataUsage()), getString(R.string.Dashboard_Card_Seconds, testSuite.getRuntime(preferenceManager).toString())));
 	}
 
 	@Override
