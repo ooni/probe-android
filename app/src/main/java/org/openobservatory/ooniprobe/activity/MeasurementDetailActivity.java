@@ -211,6 +211,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
         Context c = this;
         isInExplorer = !measurement.hasReportFile(c);
 
+        // TODO: add domain callback
         measurementsManager.checkReportAndDeleteIt(measurement, new CheckReportIdCallback() {
             @Override
             public void onSuccess(Boolean found) {
