@@ -30,12 +30,12 @@ public class GetResults {
     }
 
     public List<Result> getOrderedByTime(@Nullable String testGroupNameFilter) {
-        List<Operator<String>> conditions = (testGroupNameFilter != null && !testGroupNameFilter.isEmpty())
-                ? Collections.singletonList(Result_Table.test_group_name.is(testGroupNameFilter))
-                : Collections.emptyList();
+        SQLOperator[] conditions = (testGroupNameFilter != null && !testGroupNameFilter.isEmpty())
+                ? new SQLOperator[]{ Result_Table.test_group_name.is(testGroupNameFilter) }
+                : new SQLOperator[0];
 
-        return SQLite.select().from(Result.class)
-                .where(conditions.toArray(new SQLOperator[0]))
+        return  SQLite.select().from(Result.class)
+                .where(conditions)
                 .orderBy(Result_Table.start_time, false)
                 .queryList();
     }
@@ -47,7 +47,7 @@ public class GetResults {
         List<Result> sameDateResults = new ArrayList<>();
         int lastDateIdentifier = -1;
 
-        for (Result result : results) {
+        for (Result result: results) {
             int newDateIdentifier = getUniqueIdentifierFromDate(result.start_time);
 
             if (newDateIdentifier != lastDateIdentifier) {
