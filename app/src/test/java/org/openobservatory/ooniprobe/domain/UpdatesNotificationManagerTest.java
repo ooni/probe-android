@@ -2,7 +2,6 @@ package org.openobservatory.ooniprobe.domain;
 
 import org.junit.Test;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
-import org.openobservatory.ooniprobe.domain.UpdatesNotificationManager;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
