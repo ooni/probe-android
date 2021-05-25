@@ -6,7 +6,9 @@ import org.openobservatory.ooniprobe.client.OONIAPIClient;
 import org.openobservatory.ooniprobe.client.callback.CheckReportIdCallback;
 import org.openobservatory.ooniprobe.common.JsonPrinter;
 import org.openobservatory.ooniprobe.domain.callback.DomainCallback;
+import org.openobservatory.ooniprobe.domain.callback.GetMeasurementsCallback;
 import org.openobservatory.ooniprobe.factory.MeasurementFactory;
+import org.openobservatory.ooniprobe.factory.ResponseFactory;
 import org.openobservatory.ooniprobe.factory.ResultFactory;
 import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
 import org.openobservatory.ooniprobe.model.database.Measurement;
@@ -15,9 +17,12 @@ import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.utils.DatabaseUtils;
 
+import java.io.IOException;
 import java.util.List;
 
+import io.bloco.faker.Faker;
 import okhttp3.OkHttpClient;
+import okhttp3.Response;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -34,6 +39,7 @@ import static org.mockito.Mockito.when;
 
 public class MeasurementsManagerTest extends RobolectricAbstractTest {
 
+    Faker faker = new Faker();
     OONIAPIClient apiClient = mock(OONIAPIClient.class);
     OkHttpClient httpClient = mock(OkHttpClient.class);
     JsonPrinter jsonPrinter = mock(JsonPrinter.class);
@@ -262,6 +268,124 @@ public class MeasurementsManagerTest extends RobolectricAbstractTest {
 
         // Assert
         assertTrue(hasReportId);
+    }
+
+    @Test
+    public void downloadReportSuccessTest() {
+        // Arrange
+        MeasurementsManager manager = build();
+        Measurement measurement = ResultFactory.createAndSave(new WebsitesSuite()).getMeasurements().get(0);
+        ApiMeasurement.Result result = new ApiMeasurement.Result();
+        result.measurement_url = faker.internet.url();
+        String successCallbackResponse = "{}";
+
+        DomainCallback<String> callback = mock(DomainCallback.class);
+        Call<ApiMeasurement> measurementCallback = mock(Call.class);
+        okhttp3.Call httpCallback = mock(okhttp3.Call.class);
+
+        when(apiClient.getMeasurement(measurement.report_id, measurement.getUrlString()))
+                .thenReturn(measurementCallback);
+
+        doAnswer(invocation -> {
+            GetMeasurementsCallback getMeasurementsCallback =
+                    (GetMeasurementsCallback) invocation.getArgument(0);
+            getMeasurementsCallback.onSuccess(result);
+            return null;
+        }).when(measurementCallback).enqueue(any(Callback.class));
+
+        when(httpClient.newCall(any())).thenReturn(httpCallback);
+
+        doAnswer(invocation -> {
+            okhttp3.Callback newCallCallback =
+                    (okhttp3.Callback) invocation.getArgument(0);
+
+            Response response = ResponseFactory.successWithValue(
+                    successCallbackResponse,
+                    result.measurement_url
+            );
+
+            newCallCallback.onResponse(mock(okhttp3.Call.class), response);
+            return null;
+        }).when(httpCallback).enqueue(any(okhttp3.Callback.class));
+
+        when(jsonPrinter.prettyText(successCallbackResponse)).thenReturn(successCallbackResponse);
+
+        // Act
+        manager.downloadReport(measurement, callback);
+
+        // Assert
+        verify(callback, times(1)).onSuccess(successCallbackResponse);
+    }
+
+    @Test
+    public void downloadReportFailTest() {
+        // Arrange
+        MeasurementsManager manager = build();
+        Measurement measurement = ResultFactory.createAndSave(new WebsitesSuite()).getMeasurements().get(0);
+        ApiMeasurement.Result result = new ApiMeasurement.Result();
+        result.measurement_url = faker.internet.url();
+        String failedCallbackResponse = "Something went wrong";
+
+        DomainCallback<String> callback = mock(DomainCallback.class);
+        Call<ApiMeasurement> measurementCallback = mock(Call.class);
+        okhttp3.Call httpCallback = mock(okhttp3.Call.class);
+
+        when(apiClient.getMeasurement(measurement.report_id, measurement.getUrlString()))
+                .thenReturn(measurementCallback);
+
+        doAnswer(invocation -> {
+            GetMeasurementsCallback getMeasurementsCallback =
+                    (GetMeasurementsCallback) invocation.getArgument(0);
+            getMeasurementsCallback.onError(failedCallbackResponse);
+            return null;
+        }).when(measurementCallback).enqueue(any(Callback.class));
+
+        // Act
+        manager.downloadReport(measurement, callback);
+
+        // Assert
+        verify(callback, times(1)).onError(failedCallbackResponse);
+    }
+
+    @Test
+    public void downloadReportMeasurementFailTest() {
+        // Arrange
+        MeasurementsManager manager = build();
+        Measurement measurement = ResultFactory.createAndSave(new WebsitesSuite()).getMeasurements().get(0);
+        ApiMeasurement.Result result = new ApiMeasurement.Result();
+        result.measurement_url = faker.internet.url();
+        String successCallbackResponse = "{}";
+
+        DomainCallback<String> callback = mock(DomainCallback.class);
+        Call<ApiMeasurement> measurementCallback = mock(Call.class);
+        okhttp3.Call httpCallback = mock(okhttp3.Call.class);
+
+        when(apiClient.getMeasurement(measurement.report_id, measurement.getUrlString()))
+                .thenReturn(measurementCallback);
+
+        doAnswer(invocation -> {
+            GetMeasurementsCallback getMeasurementsCallback =
+                    (GetMeasurementsCallback) invocation.getArgument(0);
+            getMeasurementsCallback.onSuccess(result);
+            return null;
+        }).when(measurementCallback).enqueue(any(Callback.class));
+
+        when(httpClient.newCall(any())).thenReturn(httpCallback);
+
+        doAnswer(invocation -> {
+            okhttp3.Callback newCallCallback =
+                    (okhttp3.Callback) invocation.getArgument(0);
+            newCallCallback.onFailure(mock(okhttp3.Call.class), new IOException());
+            return null;
+        }).when(httpCallback).enqueue(any(okhttp3.Callback.class));
+
+        when(jsonPrinter.prettyText(successCallbackResponse)).thenReturn(successCallbackResponse);
+
+        // Act
+        manager.downloadReport(measurement, callback);
+
+        // Assert
+        verify(callback, times(1)).onError(any());
     }
 
     public MeasurementsManager build() {

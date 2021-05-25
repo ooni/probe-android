@@ -35,7 +35,7 @@ public class RunningActivityTest extends AbstractTest {
     private final TestEngineInterface testEngine = new TestEngineInterface();
 
     @Rule
-    private final ServiceTestRule serviceRule = new ServiceTestRule();
+    public final ServiceTestRule serviceRule = new ServiceTestRule();
 
     @Before
     public void setUp() {
