@@ -14,6 +14,7 @@ import org.openobservatory.ooniprobe.test.EngineProvider;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -44,7 +45,7 @@ public class GenerateAutoRunServiceSuite {
             OONICheckInResults results = session.checkIn(ooniContext, config);
 
             if (results.getWebConnectivity() != null) {
-                ArrayList<String> inputs = new ArrayList<>();
+                List<String> inputs = new ArrayList<>();
                 for (OONIURLInfo url : results.getWebConnectivity().getUrls()) {
                     inputs.add(url.getUrl());
                 }
@@ -68,12 +69,7 @@ public class GenerateAutoRunServiceSuite {
     }
 
     private boolean shouldStart(Boolean isWifi, Boolean isCharging) {
-        if (pm.testWifiOnly() && !isWifi)
-            return false;
-        if (pm.testChargingOnly() && !isCharging)
-            return false;
-
-        return true;
+        return (pm.testWifiOnly() && isWifi) || (pm.testChargingOnly() && isCharging);
     }
 
     private void markAsRan() {
