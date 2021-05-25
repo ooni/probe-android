@@ -5,6 +5,7 @@ import org.openobservatory.ooniprobe.RobolectricAbstractTest;
 import org.openobservatory.ooniprobe.client.OONIAPIClient;
 import org.openobservatory.ooniprobe.client.callback.CheckReportIdCallback;
 import org.openobservatory.ooniprobe.common.JsonPrinter;
+import org.openobservatory.ooniprobe.domain.callback.DomainCallback;
 import org.openobservatory.ooniprobe.factory.MeasurementFactory;
 import org.openobservatory.ooniprobe.factory.ResultFactory;
 import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
@@ -151,7 +152,7 @@ public class MeasurementsManagerTest extends RobolectricAbstractTest {
         }).when(call).enqueue(any(Callback.class));
 
 
-        CheckReportIdCallback callback = mock(CheckReportIdCallback.class);
+        DomainCallback<Boolean> callback = mock(DomainCallback.class);
 
         // Act
         manager.checkReportAndDeleteIt(measurement, callback);
@@ -181,7 +182,7 @@ public class MeasurementsManagerTest extends RobolectricAbstractTest {
         }).when(call).enqueue(any(Callback.class));
 
 
-        CheckReportIdCallback callback = mock(CheckReportIdCallback.class);
+        DomainCallback callback = mock(DomainCallback.class);
 
         // Act
         manager.checkReportAndDeleteIt(measurement, callback);
@@ -213,7 +214,7 @@ public class MeasurementsManagerTest extends RobolectricAbstractTest {
         }).when(call).enqueue(any(Callback.class));
 
 
-        CheckReportIdCallback callback = mock(CheckReportIdCallback.class);
+        DomainCallback callback = mock(DomainCallback.class);
 
         // Act
         manager.checkReportAndDeleteIt(measurement, callback);

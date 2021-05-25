@@ -66,7 +66,7 @@ public class MeasurementsManager {
         return url;
     }
 
-    public void checkReportAndDeleteIt(Measurement measurement, @Nullable CheckReportIdCallback checkReportIdCallback) {
+    public void checkReportAndDeleteIt(Measurement measurement, @Nullable DomainCallback<Boolean> checkReportIdCallback) {
         if (!measurement.hasReportFile(context)) {
             return;
         }
@@ -106,6 +106,7 @@ public class MeasurementsManager {
     }
 
     public void downloadReport(Measurement measurement, DomainCallback<String> callback) {
+        //measurement.getUrlString will return null when the measurement is not a web_connectivity
         apiClient.getMeasurement(measurement.report_id, measurement.getUrlString()).enqueue(new GetMeasurementsCallback() {
             @Override
             public void onSuccess(ApiMeasurement.Result result) {
