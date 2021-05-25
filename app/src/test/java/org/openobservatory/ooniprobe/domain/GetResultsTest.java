@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class GetResultsTest extends RobolectricAbstractTest {
 
@@ -25,10 +26,26 @@ public class GetResultsTest extends RobolectricAbstractTest {
         DatabaseUtils.resetDatabase();
     }
 
+    @Test
+    public void getterTest() {
+        // Arrange
+        Result result = ResultFactory.createAndSave(new WebsitesSuite());
+        GetResults getResults = build();
+
+        // Act
+        Result value = getResults.get(result.id);
+
+        // Assert
+        assertNotNull(value);
+        assertEquals(result.id, value.id);
+        assertEquals(result.test_group_name, value.test_group_name);
+        assertEquals(result.getMeasurements().size(), value.getMeasurements().size());
+    }
+
     @Test public void orderedByTimeTest() {
         // Arrange
         createDatedResults();
-        GetResults getResults = new GetResults();
+        GetResults getResults = build();
 
         // Act
         List<Result> all = getResults.getOrderedByTime(null);
@@ -52,7 +69,7 @@ public class GetResultsTest extends RobolectricAbstractTest {
     @Test public void groupedByMonth() {
         // Arrange
         createDatedResults();
-        GetResults getResults = new GetResults();
+        GetResults getResults = build();
 
         // Act
         List<DatedResults> all = getResults.getGroupedByMonth(null);
@@ -101,6 +118,10 @@ public class GetResultsTest extends RobolectricAbstractTest {
         Result performance = ResultFactory.createAndSave(new PerformanceSuite());
         performance.start_time = getDateFrom(1, Calendar.APRIL, 2020);
         performance.save();
+    }
+
+    public GetResults build() {
+        return new GetResults();
     }
 
     public Date getDateFrom(int day, int month, int year) {

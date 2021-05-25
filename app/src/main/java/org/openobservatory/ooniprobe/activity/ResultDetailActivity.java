@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
@@ -29,6 +28,8 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
+import org.openobservatory.ooniprobe.domain.GetResults;
+import org.openobservatory.ooniprobe.domain.GetTestSuite;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderMiddleboxFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderPerformanceFragment;
@@ -39,19 +40,18 @@ import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
-import org.openobservatory.ooniprobe.model.database.Url;
-import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.CircumventionSuite;
 import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
-import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -78,6 +78,12 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
     private Result result;
     private Snackbar snackbar;
 
+    @Inject
+    GetTestSuite getTestSuite;
+
+    @Inject
+    GetResults getResults;
+
     public static Intent newIntent(Context context, int id) {
         return new Intent(context, ResultDetailActivity.class).putExtra(ID, id);
     }
@@ -85,8 +91,8 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        result = SQLite.select().from(Result.class)
-                .where(Result_Table.id.eq(getIntent().getIntExtra(ID, 0))).querySingle();
+        getActivityComponent().inject(this);
+        result = getResults.get(getIntent().getIntExtra(ID, 0));
         assert result != null;
         setTheme(result.getTestSuite().getThemeLight());
         setContentView(R.layout.activity_result_detail);
@@ -149,15 +155,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
     }
 
     private void reTestWebsites() {
-        AbstractSuite testSuite = result.getTestSuite();
-        WebConnectivity test = new WebConnectivity();
-        ArrayList<String> urls = new ArrayList<>();
-        for (Measurement m : result.getMeasurements()){
-            urls.add(Url.checkExistingUrl(m.url.url, m.url.category_code, m.url.country_code).url);
-        }
-        test.setInputs(urls);
-        testSuite.setTestList(test);
-        Intent intent = RunningActivity.newIntent((AbstractActivity) this, testSuite.asArray());
+        Intent intent = RunningActivity.newIntent((AbstractActivity) this, getTestSuite.getFrom(result).asArray());
         if (intent != null) {
             startActivity(intent);
             this.finish();
@@ -169,7 +167,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
     }
 
     private void load() {
-        result = SQLite.select().from(Result.class).where(Result_Table.id.eq(result.id)).querySingle();
+        result = getResults.get(result.id);
         assert result != null;
         boolean isPerf = result.test_group_name.equals(PerformanceSuite.NAME);
         items.clear();
