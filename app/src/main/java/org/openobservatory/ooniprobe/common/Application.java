@@ -17,6 +17,7 @@ import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.di.AppComponent;
 import org.openobservatory.ooniprobe.di.ApplicationModule;
 import org.openobservatory.ooniprobe.di.DaggerAppComponent;
+import org.openobservatory.ooniprobe.di.ServiceComponent;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 
 import javax.inject.Inject;
@@ -50,6 +51,14 @@ public class Application extends android.app.Application {
 
 	protected AppComponent buildDagger() {
 		return DaggerAppComponent.builder().applicationModule(new ApplicationModule(this)).build();
+	}
+
+	public AppComponent getComponent() {
+		return component;
+	}
+
+	public ServiceComponent getServiceComponent() {
+		return component.serviceComponent();
 	}
 
 	public OkHttpClient getOkHttpClient() {

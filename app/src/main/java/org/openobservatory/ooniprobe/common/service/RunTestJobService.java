@@ -3,6 +3,7 @@ package org.openobservatory.ooniprobe.common.service;
 import android.app.job.JobParameters;
 import android.app.job.JobService;
 import android.os.AsyncTask;
+
 import org.openobservatory.ooniprobe.common.Application;
 
 public class RunTestJobService extends JobService {
