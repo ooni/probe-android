@@ -21,7 +21,6 @@ import com.google.android.material.snackbar.Snackbar;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.client.OONIAPIClient;
 import org.openobservatory.ooniprobe.client.callback.CheckReportIdCallback;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.domain.MeasurementsManager;
@@ -211,7 +210,6 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
         Context c = this;
         isInExplorer = !measurement.hasReportFile(c);
 
-        // TODO: add domain callback
         measurementsManager.checkReportAndDeleteIt(measurement, new CheckReportIdCallback() {
             @Override
             public void onSuccess(Boolean found) {

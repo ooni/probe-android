@@ -6,14 +6,10 @@ import androidx.test.core.app.ActivityScenario;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ServiceTestRule;
 
-import com.schibsted.spain.barista.rule.flaky.AllowFlaky;
-import com.schibsted.spain.barista.rule.flaky.FlakyTestRule;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.RuleChain;
 import org.junit.runner.RunWith;
 import org.openobservatory.ooniprobe.AbstractTest;
 import org.openobservatory.ooniprobe.activity.MainActivity;
@@ -38,12 +34,8 @@ public class RunningActivityTest extends AbstractTest {
     private ActivityScenario<RunningActivity> scenario;
     private final TestEngineInterface testEngine = new TestEngineInterface();
 
-    private final FlakyTestRule flakyRule = new FlakyTestRule();
-    private final ServiceTestRule serviceRule = new ServiceTestRule();
-
     @Rule
-    public RuleChain chain = RuleChain.outerRule(flakyRule)
-            .around(serviceRule);
+    private final ServiceTestRule serviceRule = new ServiceTestRule();
 
     @Before
     public void setUp() {
