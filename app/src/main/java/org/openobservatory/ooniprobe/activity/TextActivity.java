@@ -116,7 +116,6 @@ public class TextActivity extends AbstractActivity {
                         .build().show(getSupportFragmentManager(), null);
                 return;
             }
-            //measurement.getUrlString will return null when the measurement is not a web_connectivity
             measurementsManager.downloadReport(measurement, new DomainCallback<String>() {
                 @Override
                 public void onSuccess(String result) {
