@@ -112,6 +112,4 @@ public class TestAsyncTaskTest extends RobolectricAbstractTest {
         assertEquals(test.getInputs().get(1), url2);
         assertEquals(test.getInputs().get(2), url3);
     }
-
-
 }
