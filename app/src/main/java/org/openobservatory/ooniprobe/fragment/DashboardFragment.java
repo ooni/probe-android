@@ -21,8 +21,6 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.activity.OverviewActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
-import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.item.TestsuiteItem;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
@@ -59,12 +57,11 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
 	@Override public void onResume() {
 		super.onResume();
-		PreferenceManager pm = ((Application) getActivity().getApplication()).getPreferenceManager();
 		items.clear();
 		testSuites.clear();
 		testSuites.addAll(TestAsyncTask.SUITES);
 		for (AbstractSuite testSuite : testSuites)
-			items.add(new TestsuiteItem(testSuite, pm, this));
+			items.add(new TestsuiteItem(testSuite, this));
 		setLastTest();
 		adapter.notifyTypesChanged();
 	}
