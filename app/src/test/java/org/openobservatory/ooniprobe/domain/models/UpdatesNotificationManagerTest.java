@@ -1,11 +1,11 @@
 package org.openobservatory.ooniprobe.domain.models;
 
-import org.junit.Assert;
 import org.junit.Test;
-import org.mockito.Mockito;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertFalse;
+import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
@@ -26,7 +26,7 @@ public class UpdatesNotificationManagerTest {
         boolean value = manager.shouldShow();
 
         // Assert
-        Assert.assertTrue(value);
+        assertTrue(value);
     }
 
     @Test
@@ -83,7 +83,7 @@ public class UpdatesNotificationManagerTest {
         manager.getUpdates(true);
 
         // Assert
-        Mockito.verify(preferenceManagerMock, times(1)).setNotificationsFromDialog(true);
+        verify(preferenceManagerMock, times(1)).setNotificationsFromDialog(true);
     }
 
     @Test
@@ -95,10 +95,8 @@ public class UpdatesNotificationManagerTest {
         manager.getUpdates(false);
 
         // Assert
-        Mockito.verify(preferenceManagerMock, times(1)).setNotificationsFromDialog(false);
+        verify(preferenceManagerMock, times(1)).setNotificationsFromDialog(false);
     }
-
-
 
     @Test
     public void testDisableAskNotificationDialog() {
@@ -109,7 +107,7 @@ public class UpdatesNotificationManagerTest {
         manager.disableAskNotificationDialog();
 
         // Assert
-        Mockito.verify(preferenceManagerMock, times(1)).disableAskNotificationDialog();
+        verify(preferenceManagerMock, times(1)).disableAskNotificationDialog();
     }
 
     private UpdatesNotificationManager build() {
