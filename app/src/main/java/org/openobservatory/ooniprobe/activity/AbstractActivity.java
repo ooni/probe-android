@@ -14,51 +14,103 @@ import okhttp3.OkHttpClient;
 
 public abstract class AbstractActivity extends AppCompatActivity {
 
-	public Application getApp() {
-		return ((Application) getApplication());
-	}
+    public Application getApp() {
+        return ((Application) getApplication());
+    }
 
-	public AppComponent getComponent() {
-		return getApp().getComponent();
-	}
+    public AppComponent getComponent() {
+        return getApp().getComponent();
+    }
 
-	public ActivityComponent getActivityComponent() {
-		return getApp().getActivityComponent();
-	}
+    public ActivityComponent getActivityComponent() {
+        return getApp().getActivityComponent();
+    }
 
-	boolean isTestRunning() {
-		return ((Application) getApplication()).isTestRunning();
-	}
+    boolean isTestRunning() {
+        return ((Application) getApplication()).isTestRunning();
+    }
 
-	@Deprecated
-	/*
-	 * @deprecated migration to Dagger2 dependency injection in progress
-	 */
-	public PreferenceManager getPreferenceManager() {
-		return ((Application) getApplication()).getPreferenceManager();
-	}
+    @Deprecated
+    /*
+     * @deprecated migration to Dagger2 dependency injection in progress
+     *
+     * Use: Dagger 2 to inject the dependency
+     * // Example with Activity
+     *
+     * // Declare variable
+     * @Inject PreferenceManager preferenceManager;
+     *
+     * // Inject in the flow
+     * @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
+     *	 super.onCreate(savedInstanceState);
+     *	 getActivityComponent().inject(this);
+     *  ...
+     * }
+     */
+    public PreferenceManager getPreferenceManager() {
+        return ((Application) getApplication()).getPreferenceManager();
+    }
 
-	@Deprecated
-	/*
-	 * @deprecated migration to Dagger2 dependency injection in progress
-	 */
-	public Gson getGson() {
-		return ((Application) getApplication()).getGson();
-	}
+    @Deprecated
+    /*
+     * @deprecated migration to Dagger2 dependency injection in progress
+     *
+     * Use: Dagger 2 to inject the dependency
+     * // Example with Activity
+     *
+     * // Declare variable
+     * @Inject Gson gson;
+     *
+     * // Inject in the flow
+     * @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
+     *	 super.onCreate(savedInstanceState);
+     *	 getActivityComponent().inject(this);
+     *  ...
+     * }
+     */
+    public Gson getGson() {
+        return ((Application) getApplication()).getGson();
+    }
 
-	@Deprecated
-	/*
-	 * @deprecated migration to Dagger2 dependency injection in progress
-	 */
-	public OONIAPIClient getApiClient() {
-		return ((Application) getApplication()).getApiClient();
-	}
+    @Deprecated
+    /*
+     * @deprecated migration to Dagger2 dependency injection in progress
+     *
+     * Use: Dagger 2 to inject the dependency
+     * // Example with Activity
+     *
+     * // Declare variable
+     * @Inject OONIAPIClient apiClient;
+     *
+     * // Inject in the flow
+     * @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
+     *	 super.onCreate(savedInstanceState);
+     *	 getActivityComponent().inject(this);
+     *  ...
+     * }
+     */
+    public OONIAPIClient getApiClient() {
+        return ((Application) getApplication()).getApiClient();
+    }
 
-	@Deprecated
-	/*
-	 * @deprecated migration to Dagger2 dependency injection in progress
-	 */
-	public OkHttpClient getOkHttpClient() {
-		return ((Application) getApplication()).getOkHttpClient();
-	}
+    @Deprecated
+    /*
+     * @deprecated migration to Dagger2 dependency injection in progress
+     *
+     * Use: Dagger 2 to inject the dependency
+     * // Example with Activity
+     *
+     * // Declare variable
+     * @Inject OkHttpClient httpClient;
+     *
+     * // Inject in the flow
+     * @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
+     *	 super.onCreate(savedInstanceState);
+     *	 getActivityComponent().inject(this);
+     *  ...
+     * }
+     */
+    public OkHttpClient getOkHttpClient() {
+        return ((Application) getApplication()).getOkHttpClient();
+    }
 }

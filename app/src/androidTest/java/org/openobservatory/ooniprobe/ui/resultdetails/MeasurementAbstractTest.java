@@ -7,7 +7,6 @@ import androidx.test.core.app.ActivityScenario;
 import androidx.test.core.app.ApplicationProvider;
 
 import org.junit.Before;
-import org.junit.ClassRule;
 import org.openobservatory.ooniprobe.AbstractTest;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
@@ -19,8 +18,6 @@ import org.openobservatory.ooniprobe.utils.DatabaseUtils;
 import org.openobservatory.ooniprobe.utils.FormattingUtils;
 
 import java.util.concurrent.TimeUnit;
-
-import tools.fastlane.screengrab.locale.LocaleTestRule;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -51,9 +48,6 @@ public class MeasurementAbstractTest extends AbstractTest {
 
     protected final String BLOCKED_OUTCOME
             = getResourceString(R.string.TestResults_Details_Websites_LikelyBlocked_Hero_Title);
-
-    @ClassRule
-    public static final LocaleTestRule localeTestRule = new LocaleTestRule();
 
     public ActivityScenario<ResultDetailActivity> scenario;
 

@@ -77,9 +77,6 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     private Boolean isInExplorer;
 
     @Inject
-    OONIAPIClient apiClient;
-
-    @Inject
     MeasurementsManager measurementsManager;
 
     public static Intent newIntent(Context context, int id) {
@@ -214,6 +211,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
         Context c = this;
         isInExplorer = !measurement.hasReportFile(c);
 
+        // TODO: add domain callback
         measurementsManager.checkReportAndDeleteIt(measurement, new CheckReportIdCallback() {
             @Override
             public void onSuccess(Boolean found) {

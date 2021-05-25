@@ -6,10 +6,14 @@ import androidx.test.core.app.ActivityScenario;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ServiceTestRule;
 
+import com.schibsted.spain.barista.rule.flaky.AllowFlaky;
+import com.schibsted.spain.barista.rule.flaky.FlakyTestRule;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.RuleChain;
 import org.junit.runner.RunWith;
 import org.openobservatory.ooniprobe.AbstractTest;
 import org.openobservatory.ooniprobe.activity.MainActivity;
@@ -19,7 +23,7 @@ import org.openobservatory.ooniprobe.engine.TestEngineInterface;
 import org.openobservatory.ooniprobe.model.jsonresult.EventResult;
 import org.openobservatory.ooniprobe.test.EngineProvider;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
-import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
+import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.utils.DatabaseUtils;
 
 import java.util.ArrayList;
@@ -31,11 +35,15 @@ import static org.openobservatory.ooniprobe.testing.ActivityAssertions.waitForCu
 @RunWith(AndroidJUnit4.class)
 public class RunningActivityTest extends AbstractTest {
 
-    @Rule
-    public ServiceTestRule serviceRule = new ServiceTestRule();
-
     private ActivityScenario<RunningActivity> scenario;
     private final TestEngineInterface testEngine = new TestEngineInterface();
+
+    private final FlakyTestRule flakyRule = new FlakyTestRule();
+    private final ServiceTestRule serviceRule = new ServiceTestRule();
+
+    @Rule
+    public RuleChain chain = RuleChain.outerRule(flakyRule)
+            .around(serviceRule);
 
     @Before
     public void setUp() {
@@ -77,7 +85,7 @@ public class RunningActivityTest extends AbstractTest {
             serviceRule.startService(
                     new Intent(c, RunTestService.class)
                             .putExtra("testSuites", new ArrayList<AbstractSuite>() {{
-                                add(new WebsitesSuite());
+                                add(new InstantMessagingSuite());
                             }})
             );
         } catch (TimeoutException e) {

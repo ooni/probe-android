@@ -19,6 +19,7 @@ import org.openobservatory.ooniprobe.test.EngineProvider;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.utils.DatabaseUtils;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 
@@ -38,7 +39,7 @@ public class ResubmitTaskTest extends RobolectricAbstractTest {
     }
 
     @Test
-    @Ignore("WIP")
+    @Ignore("Test no finished, task will suffer further alterations")
     public void submitNotUploadedMeasurementsTest() {
         // Arrange
         Result testResult = ResultFactory.createAndSave(new WebsitesSuite(), 5, 0, false);
@@ -54,8 +55,8 @@ public class ResubmitTaskTest extends RobolectricAbstractTest {
         idleTaskUntilFinished(resubmitTask);
 
         // Assert
-        Assert.assertEquals(5, resubmitTask.totUploads.intValue());
-        Assert.assertEquals(0, resubmitTask.errors.intValue());
+        assertEquals(5, resubmitTask.totUploads.intValue());
+        assertEquals(0, resubmitTask.errors.intValue());
     }
 
     @Test
