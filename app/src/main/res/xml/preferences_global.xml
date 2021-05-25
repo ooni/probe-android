@@ -333,6 +333,12 @@
 			app:iconSpaceReserved="false" />
 	</PreferenceScreen>
 	<PreferenceScreen
+		android:icon="@drawable/proxy"
+		android:key="@string/ooni_backend_proxy"
+		android:title="@string/Settings_Proxy_Label">
+		<intent	android:action="org.openobservatory.ooniprobe.activity.ProxyActivity" />
+	</PreferenceScreen>
+	<PreferenceScreen
 		android:icon="@drawable/advanced"
 		android:key="@string/advanced"
 		android:title="@string/Settings_Advanced_Label">

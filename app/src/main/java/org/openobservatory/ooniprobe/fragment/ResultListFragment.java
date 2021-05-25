@@ -31,6 +31,8 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
 import org.openobservatory.ooniprobe.activity.TextActivity;
+import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.item.CircumventionItem;
 import org.openobservatory.ooniprobe.item.DateItem;
@@ -237,10 +239,13 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     @Override
     public void onConfirmation(Serializable serializable, int i) {
         if (serializable.equals(R.string.Modal_ResultsNotUploaded_Title)) {
-            if (i == DialogInterface.BUTTON_POSITIVE)
-                new ResubmitAsyncTask(this).execute(null, null);
-            else if (i == DialogInterface.BUTTON_NEUTRAL)
-                startActivity(TextActivity.newIntent(getActivity(), TextActivity.TYPE_UPLOAD_LOG, (String)serializable));
+            if (i == DialogInterface.BUTTON_POSITIVE) {
+                PreferenceManager pm = ((Application) getActivity().getApplication()).getPreferenceManager();
+                new ResubmitAsyncTask(this, pm.getProxyURL()).execute(null, null);
+            }
+            else if (i == DialogInterface.BUTTON_NEUTRAL) {
+                startActivity(TextActivity.newIntent(getActivity(), TextActivity.TYPE_UPLOAD_LOG, (String) serializable));
+            }
             else
                 snackbar.show();
         } else if (i == DialogInterface.BUTTON_POSITIVE) {
@@ -262,8 +267,8 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     private static class ResubmitAsyncTask extends ResubmitTask<AppCompatActivity> {
         private WeakReference<ResultListFragment> wf;
 
-        ResubmitAsyncTask(ResultListFragment f) {
-            super((AppCompatActivity) f.getActivity());
+        ResubmitAsyncTask(ResultListFragment f, String proxy) {
+            super((AppCompatActivity) f.getActivity(), proxy);
             this.wf = new WeakReference<>(f);
         }
 

@@ -15,3 +15,6 @@ captures/
 /fastlane/README.md
 app/**/debug/
 app/**/release/
+.project
+.classpath
+.settings

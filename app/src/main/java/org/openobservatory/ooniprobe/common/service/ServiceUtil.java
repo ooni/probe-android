@@ -73,9 +73,11 @@ public class ServiceUtil {
             return;
         if (ReachabilityManager.isVPNinUse(app))
             return;
+        String proxy = app.getPreferenceManager().getProxyURL();
         try {
             OONISession session = Engine.newSession(Engine.getDefaultSessionConfig(
-                    app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray()));
+                    app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray(),
+                    proxy));
             OONIContext ooniContext = session.newContextWithTimeout(30);
             session.maybeUpdateResources(ooniContext);
 			OONICheckInConfig config = new OONICheckInConfig(
