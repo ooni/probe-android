@@ -337,7 +337,7 @@
 	</PreferenceScreen>
 	<PreferenceScreen
 		android:icon="@drawable/proxy"
-		android:key="@string/proxy"
+		android:key="@string/ooni_backend_proxy"
 		android:title="@string/Settings_Proxy_Label">
 		<intent	android:action="org.openobservatory.ooniprobe.activity.ProxyActivity" />
 	</PreferenceScreen>
