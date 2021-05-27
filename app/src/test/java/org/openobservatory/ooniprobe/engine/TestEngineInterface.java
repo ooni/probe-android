@@ -34,7 +34,6 @@ public class TestEngineInterface extends EngineInterface {
         return experimentTask;
     }
 
-
     @Override
     public OONISession newSession(OONISessionConfig config) {
         return session;

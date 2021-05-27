@@ -15,11 +15,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,9 +37,13 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
     private ArrayList<EditText> editTexts;
     private ArrayList<ImageButton> deletes;
 
+    @Inject
+    PreferenceManager preferenceManager;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActivityComponent().inject(this);
         setContentView(R.layout.activity_customwebsite);
         ButterKnife.bind(this);
         editTexts = new ArrayList<>();
@@ -54,7 +61,7 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
                     urls.add(Url.checkExistingUrl(sanitizedUrl).toString());
             }
             WebsitesSuite suite = new WebsitesSuite();
-            suite.getTestList(getPreferenceManager())[0].setInputs(urls);
+            suite.getTestList(preferenceManager)[0].setInputs(urls);
             Intent intent = RunningActivity.newIntent(CustomWebsiteActivity.this, suite.asArray());
             if (intent != null) {
                 ActivityCompat.startActivity(CustomWebsiteActivity.this, intent, null);

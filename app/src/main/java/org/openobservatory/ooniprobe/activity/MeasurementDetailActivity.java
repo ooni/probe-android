@@ -22,8 +22,10 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.client.callback.CheckReportIdCallback;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.domain.MeasurementsManager;
+import org.openobservatory.ooniprobe.domain.callback.DomainCallback;
 import org.openobservatory.ooniprobe.fragment.measurement.DashFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.FacebookMessengerFragment;
 import org.openobservatory.ooniprobe.fragment.measurement.FailedFragment;
@@ -77,6 +79,9 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
 
     @Inject
     MeasurementsManager measurementsManager;
+
+    @Inject
+    PreferenceManager pm;
 
     public static Intent newIntent(Context context, int id) {
         return new Intent(context, MeasurementDetailActivity.class).putExtra(ID, id);
@@ -210,7 +215,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
         Context c = this;
         isInExplorer = !measurement.hasReportFile(c);
 
-        measurementsManager.checkReportAndDeleteIt(measurement, new CheckReportIdCallback() {
+        measurementsManager.checkReportAndDeleteIt(measurement, new DomainCallback<Boolean>() {
             @Override
             public void onSuccess(Boolean found) {
                 isInExplorer = found;
@@ -225,7 +230,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     }
 
     private void runAsyncTask() {
-        new ResubmitAsyncTask(this).execute(null, measurement.id);
+        new ResubmitAsyncTask(this, pm.getProxyURL()).execute(null, measurement.id);
     }
 
     @Override
@@ -297,8 +302,8 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     }
 
     private static class ResubmitAsyncTask extends ResubmitTask<MeasurementDetailActivity> {
-        ResubmitAsyncTask(MeasurementDetailActivity activity) {
-            super(activity, activity.getPreferenceManager().getProxyURL());
+        ResubmitAsyncTask(MeasurementDetailActivity activity, String proxy) {
+            super(activity, proxy);
         }
 
         @Override
