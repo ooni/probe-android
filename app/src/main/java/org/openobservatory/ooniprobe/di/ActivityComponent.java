@@ -16,12 +16,12 @@ import dagger.Subcomponent;
 @PerActivity
 @Subcomponent()
 public interface ActivityComponent {
+    void inject(CustomWebsiteActivity activity);
     void inject(MainActivity activity);
-    void inject(OoniRunActivity activity);
     void inject(MeasurementDetailActivity activity);
+    void inject(OoniRunActivity activity);
+    void inject(OverviewActivity activity);
     void inject(ResultDetailActivity activity);
     void inject(RunningActivity activity);
     void inject(TextActivity activity);
-    void inject(CustomWebsiteActivity activity);
-    void inject(OverviewActivity activity);
 }

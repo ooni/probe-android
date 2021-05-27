@@ -126,9 +126,7 @@ public class OONIAPIClientTest extends RobolectricAbstractTest {
                     new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create()
                             .toJson(JsonParser.parseString(response.body().string()));
                     Assert.fail();
-                } catch (Exception e) {
-                    Assert.assertTrue(true);
-                }
+                } catch (Exception ignored) { }
                 signal.countDown();
             }
 
