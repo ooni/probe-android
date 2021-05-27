@@ -1,4 +1,4 @@
-package org.openobservatory.ooniprobe.client.callback;
+package org.openobservatory.ooniprobe.domain.callback;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
@@ -12,10 +12,8 @@ public abstract class GetMeasurementsCallback implements Callback<ApiMeasurement
     public void onResponse(Call<ApiMeasurement> call, Response<ApiMeasurement> response) {
         if (response.isSuccessful() &&
                 response.body() != null &&
-                response.body().results != null &&
-                response.body().results.size() == 1 &&
-                response.body().results.get(0).measurement_url != null) {
-            onSuccess(response.body().results.get(0));
+                response.body().hasResultWithMeasurements()) {
+            onSuccess(response.body().firstResult());
         } else {
             onError(Integer.toString(R.string.Modal_Error_JsonEmpty));
         }
