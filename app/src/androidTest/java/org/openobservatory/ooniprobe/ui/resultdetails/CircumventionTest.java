@@ -100,14 +100,17 @@ public class CircumventionTest extends MeasurementAbstractTest {
         Result testResult = ResultFactory.createAndSave(new CircumventionSuite(), 0, 3);
         Measurement measurement = testResult.getMeasurement("tor");
 
+        String formattedBridges = FormattingUtils.getFormattedBridges(measurement);
+        String formattedAuthorities = FormattingUtils.getFormattedAuthorities(measurement);
+
         // Act
         launchDetails(testResult.id);
         onView(withText("Tor Test")).check(matches(isDisplayed())).perform(click());
 
         // Assert
         assertMeasurementOutcome(false);
-        onView(withId(R.id.bridges)).check(matches(withText(TEST_RESULTS_NOT_AVAILABLE)));
-        onView(withId(R.id.authorities)).check(matches(withText(TEST_RESULTS_NOT_AVAILABLE)));
+        onView(withId(R.id.bridges)).check(matches(withText(formattedBridges)));
+        onView(withId(R.id.authorities)).check(matches(withText(formattedAuthorities)));
         assertMeasurementRuntimeAndNetwork(measurement, testResult.network);
     }
 

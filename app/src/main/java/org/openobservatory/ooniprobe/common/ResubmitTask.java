@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.VisibleForTesting;
 
 import com.raizlabs.android.dbflow.sql.language.Where;
 
@@ -15,6 +15,9 @@ import org.openobservatory.engine.OONISession;
 import org.openobservatory.engine.OONISubmitResults;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.AbstractActivity;
+import org.openobservatory.ooniprobe.domain.GetResults;
+import org.openobservatory.ooniprobe.domain.MeasurementsManager;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 import org.openobservatory.ooniprobe.test.EngineProvider;
@@ -23,22 +26,31 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import localhost.toolkit.os.NetworkProgressAsyncTask;
 
-public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAsyncTask<A, Integer, Boolean> {
+public class ResubmitTask<A extends AbstractActivity> extends NetworkProgressAsyncTask<A, Integer, Boolean> {
     protected Integer totUploads;
     protected Integer errors;
     protected LoggerArray logger;
     private String proxy;
 
+    protected Dependencies d = new Dependencies();
+
+    @VisibleForTesting
+    // In testing, publishProgress can not be mocked by robolectric
+    protected boolean publishProgress = true;
+
     /**
      * Use this class to resubmit a measurement, use result_id and measurement_id to filter list of value
      * {@code new MKCollectorResubmitTask(activity).execute(@Nullable result_id, @Nullable measurement_id);}
      *
-     * @param activity from which this task are ex ecuted
+     * @param activity from which this task are executed
      */
     public ResubmitTask(A activity, String proxyURL) {
         super(activity, true, false);
+        activity.getComponent().serviceComponent().inject(d);
         proxy = proxyURL;
     }
 
@@ -50,8 +62,8 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
         try {
             input = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
             OONISubmitResults results = session.submit(ooniContext, input);
-            FileUtils.writeStringToFile(file, results.updatedMeasurement, StandardCharsets.UTF_8);
-            m.report_id = results.updatedReportID;
+            FileUtils.writeStringToFile(file, results.getUpdatedMeasurement(), StandardCharsets.UTF_8);
+            m.report_id = results.getUpdatedReportID();
             m.is_uploaded = true;
             m.is_upload_failed = false;
             m.save();
@@ -110,13 +122,15 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
             session.maybeUpdateResources(session.newContext());
             for (int i = 0; i < measurements.size(); i++) {
                 A activity = getActivity();
-                if (activity == null)
+                if (activity ==  null)
                     break;
                 String paramOfParam = activity.getString(R.string.paramOfParam, Integer.toString(i + 1), Integer.toString(measurements.size()));
-                publishProgress(activity.getString(R.string.Modal_ResultsNotUploaded_Uploading, paramOfParam));
+                if (publishProgress) {
+                    publishProgress(activity.getString(R.string.Modal_ResultsNotUploaded_Uploading, paramOfParam));
+                }
                 Measurement m = measurements.get(i);
                 m.result.load();
-                if (!perform(activity, m, session)) {
+                if(!d.measurementsManager.reSubmit(m, session)){
                     errors++;
                 }
             }
@@ -137,5 +151,13 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
             Toast.makeText(activity, activity.getString(R.string.Toast_ResultsUploaded), Toast.LENGTH_SHORT).show();
             activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
+    }
+
+    public static class Dependencies {
+        @Inject
+        public MeasurementsManager measurementsManager;
+
+        @Inject
+        public GetResults getResults;
     }
 }

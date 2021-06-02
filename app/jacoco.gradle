@@ -24,10 +24,15 @@ task jacocoAndroidTestReport(type: JacocoReport) {
         '**/*Module.*',
         '**/*Module*Factory.*',
         '**/*Module$Companion.*',
+        '**/*Dependencies.class',
         '**/*Dagger*.*',
         '**/*MembersInjector*.*',
         '**/*_Provide*Factory*.*',
         '**/*_Factory.*',
+         // DBFlow
+        '**/*_Table*.*',
+        '**/*AppDatabaseAppDatabase_Database*.*',
+        '**/*GeneratedDatabaseHolder*.*',
         // Butter Knife
         '**/*_ViewBinding*',
       ]

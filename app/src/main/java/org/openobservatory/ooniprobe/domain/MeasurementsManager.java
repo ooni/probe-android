@@ -8,9 +8,13 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
+import org.openobservatory.engine.OONIContext;
+import org.openobservatory.engine.OONISession;
+import org.openobservatory.engine.OONISubmitResults;
 import org.openobservatory.ooniprobe.client.OONIAPIClient;
 import org.openobservatory.ooniprobe.client.callback.CheckReportIdCallback;
 import org.openobservatory.ooniprobe.common.JsonPrinter;
+import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.domain.callback.DomainCallback;
 import org.openobservatory.ooniprobe.domain.callback.GetMeasurementsCallback;
 import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
@@ -138,4 +142,28 @@ public class MeasurementsManager {
         });
     }
 
+    public boolean reSubmit(Measurement m, OONISession session) {
+        File file = Measurement.getEntryFile(context, m.id, m.test_name);
+        String input;
+        long uploadTimeout = getTimeout(file.length());
+        OONIContext ooniContext = session.newContextWithTimeout(uploadTimeout);
+        try {
+            input = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+            OONISubmitResults results = session.submit(ooniContext, input);
+            FileUtils.writeStringToFile(file, results.getUpdatedMeasurement(), StandardCharsets.UTF_8);
+            m.report_id = results.getUpdatedReportID();
+            m.is_uploaded = true;
+            m.is_upload_failed = false;
+            m.save();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            ThirdPartyServices.logException(e);
+            return false;
+        }
+    }
+
+    public long getTimeout(long length) {
+        return length / 2000 + 10;
+    }
 }

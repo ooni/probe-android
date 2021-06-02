@@ -1,8 +1,6 @@
-package org.openobservatory.ooniprobe.factory;
+package org.openobservatory.ooniprobe.di;
 
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.di.AppComponent;
-import org.openobservatory.ooniprobe.di.TestAppModule;
 import org.openobservatory.ooniprobe.di.DaggerTestAppComponent;
 
 public class TestApplication extends Application {

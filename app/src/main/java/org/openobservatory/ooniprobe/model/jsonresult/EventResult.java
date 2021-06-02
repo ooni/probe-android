@@ -6,7 +6,7 @@ public class EventResult implements Serializable {
 	public String key;
 	public Value value;
 
-	public class Value implements Serializable {
+	public static class Value implements Serializable {
 		public double key;
 		public String message;
 		public double percentage;

@@ -42,18 +42,17 @@ android {
 		}
 	}
 
-	// Shared test code between Unit and Instrumented tests
-	sourceSets {
-		androidTest {
-			java.srcDirs += "src/sharedTest/java"
-			resources.srcDirs += "src/sharedTest/resources"
-		}
-		test {
-			java.srcDirs += "src/sharedTest/java"
-			java.srcDirs += "src/sharedTest/java"
-			resources.srcDirs += "src/sharedTest/resources"
-		}
-	}
+    // Shared test code between Unit and Instrumented tests
+    sourceSets {
+        androidTest {
+            java.srcDirs += "src/sharedTest/java"
+            resources.srcDirs += "src/sharedTest/resources"
+        }
+        test {
+            java.srcDirs += "src/sharedTest/java"
+            resources.srcDirs += "src/sharedTest/resources"
+        }
+    }
 
 	flavorDimensions 'testing', 'license'
 	productFlavors {
@@ -99,7 +98,7 @@ android {
 }
 
 dependencies {
-	implementation project(path: ':engine')
+    implementation project(path: ':engine')
 
 // AndroidX
 	implementation 'androidx.appcompat:appcompat:1.2.0'
@@ -138,8 +137,8 @@ dependencies {
 	fullImplementation 'io.sentry:sentry-android:4.0.0'
 
 // Dependency Injection
-	implementation 'com.google.dagger:dagger:2.35.1'
-	annotationProcessor 'com.google.dagger:dagger-compiler:2.35.1'
+    implementation 'com.google.dagger:dagger:2.36'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.36'
 
 // Testing
 	// Unit Testing

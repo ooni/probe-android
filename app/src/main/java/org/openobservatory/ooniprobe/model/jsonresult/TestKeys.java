@@ -210,7 +210,7 @@ public class TestKeys {
 		return context.getString(R.string.TestResults_Details_Circumvention_RiseupVPN_Reachable_Okay);
 	}
 
-	public Boolean isNdt7() {
+	private Boolean isNdt7() {
 		return protocol != null && protocol == 7;
 	}
 	

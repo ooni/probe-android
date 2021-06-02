@@ -68,6 +68,14 @@ public class Settings {
 		return new OONIMKTaskConfigAdapter(gson, this);
 	}
 
+	public void setMaxRuntime(Integer max_runtime) {
+		options.max_runtime = max_runtime;
+	}
+
+	public void setOrigin(String origin) {
+		annotations.origin = origin;
+	}
+
 	private class OONIMKTaskConfigAdapter implements OONIMKTaskConfig {
 		private String serialized;
 		private Settings settings;

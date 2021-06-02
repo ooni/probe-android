@@ -18,7 +18,6 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.client.callback.CheckReportIdCallback;
@@ -43,7 +42,6 @@ import org.openobservatory.ooniprobe.fragment.measurement.WebConnectivityFragmen
 import org.openobservatory.ooniprobe.fragment.measurement.WhatsappFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment;
 import org.openobservatory.ooniprobe.model.database.Measurement;
-import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.test.Dash;
 import org.openobservatory.ooniprobe.test.test.FacebookMessenger;
@@ -233,11 +231,6 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
         new ResubmitAsyncTask(this, pm.getProxyURL()).execute(null, measurement.id);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
     private void load() {
         if (measurementsManager.canUpload(measurement))
             snackbar.show();
@@ -301,7 +294,8 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
             startActivity(TextActivity.newIntent(this, TextActivity.TYPE_UPLOAD_LOG, (String) extra));
     }
 
-    private static class ResubmitAsyncTask extends ResubmitTask<MeasurementDetailActivity> {
+    public static class ResubmitAsyncTask extends ResubmitTask<MeasurementDetailActivity> {
+
         ResubmitAsyncTask(MeasurementDetailActivity activity, String proxy) {
             super(activity, proxy);
         }
@@ -311,8 +305,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
             super.onPostExecute(result);
             MeasurementDetailActivity activity = getActivity();
             if (activity != null) {
-                activity.measurement = SQLite.select().from(Measurement.class)
-                        .where(Measurement_Table.id.eq(activity.measurement.id)).querySingle();
+                activity.measurement = d.measurementsManager.get(activity.measurement.id);
                 activity.load();
                 if (!result)
                     new ConfirmDialogFragment.Builder()

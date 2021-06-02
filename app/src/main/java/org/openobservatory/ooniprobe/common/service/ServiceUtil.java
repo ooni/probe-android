@@ -27,15 +27,15 @@ public class ServiceUtil {
 
     public static void scheduleJob(Context context) {
         Application app = ((Application) context.getApplicationContext());
+        app.getServiceComponent().inject(d);
 
-        PreferenceManager pm = app.getPreferenceManager();
         ComponentName serviceComponent = new ComponentName(context, RunTestJobService.class);
         JobInfo.Builder builder = new JobInfo.Builder(id, serviceComponent);
 
         //Options explication https://www.coderzheaven.com/2016/11/22/how-to-create-a-simple-repeating-job-using-jobscheduler-in-android/
-        int networkConstraint = pm.testWifiOnly() ? JobInfo.NETWORK_TYPE_UNMETERED : JobInfo.NETWORK_TYPE_ANY;
+        int networkConstraint = d.preferenceManager.testWifiOnly() ? JobInfo.NETWORK_TYPE_UNMETERED : JobInfo.NETWORK_TYPE_ANY;
         builder.setRequiredNetworkType(networkConstraint);
-        builder.setRequiresCharging(pm.testChargingOnly());
+        builder.setRequiresCharging(d.preferenceManager.testChargingOnly());
 
         /*
         * Specify that this job should recur with the provided interval, not more than once per period.

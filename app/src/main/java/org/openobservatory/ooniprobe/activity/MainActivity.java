@@ -109,10 +109,6 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
 
     }
 
-	@Override protected void onResume() {
-		super.onResume();
-	}
-
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);

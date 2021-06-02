@@ -113,9 +113,6 @@ public class Application extends android.app.Application {
 			_preferenceManager.incrementAppOpenCount();
 		}
 
-		@OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-		public void onEnterBackground() {
-		}
 	}
 
 }

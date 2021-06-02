@@ -1,7 +1,13 @@
 package org.openobservatory.ooniprobe.test;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+
+import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 import org.openobservatory.engine.OONISession;
 import org.openobservatory.engine.OONIURLInfo;
 import org.openobservatory.engine.OONIURLListResult;
@@ -10,9 +16,12 @@ import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.engine.TestEngineInterface;
 import org.openobservatory.ooniprobe.factory.ResultFactory;
 import org.openobservatory.ooniprobe.model.database.Result;
+import org.openobservatory.ooniprobe.model.jsonresult.EventResult;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
+import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
+import org.openobservatory.ooniprobe.test.test.Experimental;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 import org.openobservatory.ooniprobe.utils.DatabaseUtils;
 
@@ -21,31 +30,58 @@ import java.util.Arrays;
 
 import io.bloco.faker.Faker;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.anyBoolean;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.atLeast;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class TestAsyncTaskTest extends RobolectricAbstractTest {
 
-    RunTestService runServiceMock = mock(RunTestService.class);
+    private final RunTestService runService = mock(RunTestService.class);
+    private final OONISession ooniSessionMock = mock(OONISession.class);
+    private final TestEngineInterface mockedEngine = new TestEngineInterface(ooniSessionMock);
+    private final NotificationCompat.Builder builder = mock(NotificationCompat.Builder.class);
+    private final NotificationManagerCompat notificationManager = mock(NotificationManagerCompat.class);
 
+    @Override
+    @Before
+    public void setUp() {
+        super.setUp();
+        EngineProvider.engineInterface = mockedEngine;
 
-    @Test public void storesTestSuitInDb() {
+        runService.builder = builder;
+        when(builder.setContentText(any())).thenReturn(builder);
+        when(builder.setProgress(anyInt(), anyInt(), anyBoolean())).thenReturn(mock(NotificationCompat.Builder.class));
+        when(builder.build()).thenReturn(mock(Notification.class));
+        runService.notificationManager = notificationManager;
+    }
+
+    @Test
+    public void storesTestSuitInDb() {
         // Arrange
         ArrayList<AbstractSuite> suiteList = new ArrayList<>();
         AbstractSuite mockedSuite = mock(WebsitesSuite.class);
         suiteList.add(mockedSuite);
-        TestAsyncTask task = new TestAsyncTask(a, suiteList, runServiceMock);
-        Result testResult = ResultFactory.build(new WebsitesSuite(), true);
+        TestAsyncTask task = new TestAsyncTask(a, suiteList, runService);
+        Result testResult = ResultFactory.build(new WebsitesSuite(), true, true);
 
-        Mockito.when(mockedSuite.getTestList(any())).thenReturn(new AbstractTest[0]);
+        when(mockedSuite.getTestList(any())).thenReturn(new AbstractTest[0]);
 
-        Mockito.when(mockedSuite.getResult()).thenReturn(testResult);
+        when(mockedSuite.getResult()).thenReturn(testResult);
 
         // Act
+        mockedEngine.isTaskDone = true;
         task.execute();
         idleTaskUntilFinished(task);
 
@@ -53,51 +89,49 @@ public class TestAsyncTaskTest extends RobolectricAbstractTest {
 
         // Assert
         assertNotNull(databaseResult);
-        assertEquals(databaseResult.id, testResult.id);
+        assertEquals(testResult.id, databaseResult.id);
         assertFalse(databaseResult.is_viewed);
     }
 
-    @Test public void downloadsWebSuitUrls() throws Exception {
+    @Test
+    public void downloadsWebSuitUrls() throws Exception {
         // Arrange
         Faker faker = new Faker();
-        OONISession ooniSessionMock = mock(OONISession.class);
-        TestEngineInterface mockedEngine = new TestEngineInterface(ooniSessionMock);
-        EngineProvider.engineInterface = mockedEngine;
-
         ArrayList<AbstractSuite> suiteList = new ArrayList<>();
         AbstractSuite mockedSuite = mock(WebsitesSuite.class);
         suiteList.add(mockedSuite);
-        TestAsyncTask task = new TestAsyncTask(a, suiteList, runServiceMock);
-        Result testResult = ResultFactory.build(new WebsitesSuite(), true);
+        TestAsyncTask task = new TestAsyncTask(a, suiteList, runService);
+        Result testResult = ResultFactory.build(new WebsitesSuite(), true, true);
 
         WebConnectivity test = new WebConnectivity();
         test.setInputs(null);
 
-        Mockito.when(mockedSuite.getTestList(any())).thenReturn(new WebConnectivity[]{test});
-        Mockito.when(mockedSuite.getResult()).thenReturn(testResult);
+        when(mockedSuite.getTestList(any())).thenReturn(new WebConnectivity[]{test});
+        when(mockedSuite.getResult()).thenReturn(testResult);
 
-        OONIURLListResult listResult = Mockito.mock(OONIURLListResult.class);
-        Mockito.when(ooniSessionMock.fetchURLList(any(),any())).thenReturn(listResult);
+        OONIURLListResult listResult = mock(OONIURLListResult.class);
+        when(ooniSessionMock.fetchURLList(any(), any())).thenReturn(listResult);
 
         String url1 = faker.internet.url();
-        OONIURLInfo firstUrl = Mockito.mock(OONIURLInfo.class);
-        Mockito.when(firstUrl.getUrl()).thenReturn(url1);
-        Mockito.when(firstUrl.getCategoryCode()).thenReturn("");
-        Mockito.when(firstUrl.getCountryCode()).thenReturn(faker.address.countryCode());
+        OONIURLInfo firstUrl = mock(OONIURLInfo.class);
+        when(firstUrl.getUrl()).thenReturn(url1);
+        when(firstUrl.getCategoryCode()).thenReturn("");
+        when(firstUrl.getCountryCode()).thenReturn(faker.address.countryCode());
 
         String url2 = faker.internet.url();
-        OONIURLInfo secondUrl = Mockito.mock(OONIURLInfo.class);
-        Mockito.when(secondUrl.getUrl()).thenReturn(url2);
-        Mockito.when(secondUrl.getCategoryCode()).thenReturn("");
-        Mockito.when(secondUrl.getCountryCode()).thenReturn(faker.address.countryCode());
+        OONIURLInfo secondUrl = mock(OONIURLInfo.class);
+        when(secondUrl.getUrl()).thenReturn(url2);
+        when(secondUrl.getCategoryCode()).thenReturn("");
+        when(secondUrl.getCountryCode()).thenReturn(faker.address.countryCode());
 
         String url3 = faker.internet.url();
-        OONIURLInfo thirdUrl = Mockito.mock(OONIURLInfo.class);
-        Mockito.when(thirdUrl.getUrl()).thenReturn(url3);
-        Mockito.when(thirdUrl.getCategoryCode()).thenReturn("");
-        Mockito.when(thirdUrl.getCountryCode()).thenReturn(faker.address.countryCode());
+        OONIURLInfo thirdUrl = mock(OONIURLInfo.class);
+        when(thirdUrl.getUrl()).thenReturn(url3);
+        when(thirdUrl.getCategoryCode()).thenReturn("");
+        when(thirdUrl.getCountryCode()).thenReturn(faker.address.countryCode());
 
-        when(listResult.getUrls()).thenReturn(new ArrayList<>(Arrays.asList(firstUrl, secondUrl, thirdUrl)));
+        when(listResult.getUrls())
+                .thenReturn(new ArrayList<>(Arrays.asList(firstUrl, secondUrl, thirdUrl)));
 
         // Act
         mockedEngine.isTaskDone = true;
@@ -106,10 +140,74 @@ public class TestAsyncTaskTest extends RobolectricAbstractTest {
         idleTaskUntilFinished(task);
 
         // Assert
-        assertEquals(testResult.id, testResult.id);
-        assertEquals(test.getInputs().size(), 3);
-        assertEquals(test.getInputs().get(0), url1);
-        assertEquals(test.getInputs().get(1), url2);
-        assertEquals(test.getInputs().get(2), url3);
+        assertArrayEquals(new Object[]{url1, url2, url3}, test.getInputs().toArray());
+    }
+
+    @Test
+    public void runTest_withProgress() {
+        // Arrange
+        ArrayList<AbstractSuite> suiteList = new ArrayList<>();
+        AbstractSuite mockedSuite = mock(ExperimentalSuite.class);
+        suiteList.add(mockedSuite);
+        AbstractTest test = mock(AbstractTest.class);
+        when(mockedSuite.getTestList(any())).thenReturn(new AbstractTest[]{test});
+
+        TestAsyncTask task = new TestAsyncTask(a, suiteList, runService, false);
+
+        // Act
+        task.execute();
+        idleTaskUntilFinished(task);
+        task.onStart("test");
+        task.onProgress(50);
+        idleTaskUntilFinished(task);
+
+        // Assert
+        verify(builder).setContentText("test");
+        verify(builder, atLeast(2)).setProgress(anyInt(), anyInt(), anyBoolean());
+        verify(notificationManager, atLeast(2)).notify(anyInt(), any());
+    }
+
+
+    @Test
+    public void runTest_withError() {
+        // Arrange
+        ArrayList<AbstractSuite> suiteList = new ArrayList<>();
+        AbstractSuite mockedSuite = mock(ExperimentalSuite.class);
+        suiteList.add(mockedSuite);
+        AbstractTest test = mock(AbstractTest.class);
+        when(mockedSuite.getTestList(any())).thenReturn(new AbstractTest[]{test});
+        doThrow(new RuntimeException("")).when(test).run(any(), any(), any(), any(), anyInt(), any());
+
+        TestAsyncTask task = new TestAsyncTask(a, suiteList, runService, false);
+
+        // Act
+        task.execute();
+        idleTaskUntilFinished(task);
+
+        // Assert
+        verify(runService).stopSelf();
+    }
+
+    @Test
+    public void runTest_interrupt() {
+        // Arrange
+        ArrayList<AbstractSuite> suiteList = new ArrayList<>();
+        AbstractSuite mockedSuite = mock(ExperimentalSuite.class);
+        suiteList.add(mockedSuite);
+        AbstractTest test = mock(AbstractTest.class);
+        when(mockedSuite.getTestList(any())).thenReturn(new AbstractTest[]{test});
+        when(test.canInterrupt()).thenReturn(true);
+
+        TestAsyncTask task = new TestAsyncTask(a, suiteList, runService, false);
+
+        // Act
+        task.execute();
+        idleTaskUntilFinished(task);
+        task.interrupt();
+        idleTaskUntilFinished(task);
+
+        // Assert
+        verify(test).interrupt();
+        assertTrue(task.isInterrupted());
     }
 }

@@ -25,7 +25,7 @@ public class TestEngineInterface extends EngineInterface {
     private boolean taskInterrupted = false;
 
     @Override
-    public OONIMKTask startExperimentTask(OONIMKTaskConfig settings) throws Exception {
+    public OONIMKTask startExperimentTask(OONIMKTaskConfig settings) {
         return experimentTask;
     }
 
