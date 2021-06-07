@@ -7,17 +7,14 @@ import android.os.Build;
 
 import org.openobservatory.ooniprobe.common.Application;
 
-import javax.inject.Inject;
+import java.lang.ref.WeakReference;
 
 public class RunTestJobService extends JobService {
-
-    @Inject ServiceUtil serviceUtil;
 
     @Override
     public boolean onStartJob(JobParameters params) {
         Application app = ((Application)getApplicationContext());
-        app.component.serviceComponent().inject(this);
-        new JobTask(this, app, serviceUtil).execute(params);
+        new JobTask(this, app).execute(params);
         return true;
     }
 
@@ -27,20 +24,18 @@ public class RunTestJobService extends JobService {
     }
 
     private static class JobTask extends AsyncTask<JobParameters, Void, JobParameters> {
-        private final ServiceUtil serviceUtil;
-        private final JobService jobService;
+        private final WeakReference<JobService> jobServiceRef;
         private final Application app;
 
-        public JobTask(JobService jobService, Application app, ServiceUtil serviceUtil) {
-            this.serviceUtil = serviceUtil;
-            this.jobService = jobService;
+        public JobTask(JobService jobService, Application app) {
+            this.jobServiceRef = new WeakReference<>(jobService);
             this.app = app;
         }
 
         @Override
         protected JobParameters doInBackground(JobParameters... params) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                serviceUtil.callCheckInAPI(app);
+                ServiceUtil.callCheckInAPI(app);
             }
             return params[0];
         }
@@ -52,7 +47,7 @@ public class RunTestJobService extends JobService {
              * you may want to retry before the next expected execution of the job.
              * That's when you pass true for jobFinished's needsReschedule.
              */
-            jobService.jobFinished(jobParameters, false);
+            jobServiceRef.get().jobFinished(jobParameters, false);
         }
     }
 

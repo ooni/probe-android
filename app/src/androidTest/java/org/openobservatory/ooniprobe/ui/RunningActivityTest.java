@@ -35,7 +35,7 @@ public class RunningActivityTest extends AbstractTest {
     private final TestEngineInterface testEngine = new TestEngineInterface();
 
     @Rule
-    private final ServiceTestRule serviceRule = new ServiceTestRule();
+    public final ServiceTestRule serviceRule = new ServiceTestRule();
 
     @Before
     public void setUp() {
@@ -50,7 +50,6 @@ public class RunningActivityTest extends AbstractTest {
     }
 
     @Test
-    @AllowFlaky()
     public void startAndDone() {
         launch();
         assertCurrentActivity(RunningActivity.class);

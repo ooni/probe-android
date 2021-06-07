@@ -50,13 +50,17 @@ public class ServiceUtil {
 
         //JobScheduler is specifically designed for inexact timing, so it can combine jobs from multiple apps, to try to reduce power consumption.
         JobScheduler jobScheduler = ContextCompat.getSystemService(context, JobScheduler.class);;
-        jobScheduler.schedule(builder.build());
+        if (jobScheduler != null) {
+            jobScheduler.schedule(builder.build());
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static void stopJob(Context context) {
         JobScheduler jobScheduler = ContextCompat.getSystemService(context, JobScheduler.class);
-        jobScheduler.cancel(id);
+        if (jobScheduler != null) {
+            jobScheduler.cancel(id);
+        }
     }
 
     public static void callCheckInAPI(Application app) {

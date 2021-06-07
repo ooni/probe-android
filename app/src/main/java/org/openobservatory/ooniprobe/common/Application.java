@@ -18,6 +18,7 @@ import org.openobservatory.ooniprobe.di.ActivityComponent;
 import org.openobservatory.ooniprobe.di.AppComponent;
 import org.openobservatory.ooniprobe.di.ApplicationModule;
 import org.openobservatory.ooniprobe.di.DaggerAppComponent;
+import org.openobservatory.ooniprobe.di.FragmentComponent;
 import org.openobservatory.ooniprobe.di.ServiceComponent;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 
@@ -32,7 +33,7 @@ public class Application extends android.app.Application {
 	@Inject OkHttpClient _okHttpClient;
 	@Inject OONIAPIClient _apiClient;
 
-	protected AppComponent component;
+	public AppComponent component;
 
 	@Override public void onCreate() {
 		super.onCreate();
