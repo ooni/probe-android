@@ -75,7 +75,6 @@ public class TestResultsMainScreenTest extends MeasurementAbstractTest {
     }
 
     @Test
-    @AllowFlaky(attempts = 3)
     public void testListOfResults() {
         // Arrange
         Result websites = ResultFactory.createAndSave(new WebsitesSuite());

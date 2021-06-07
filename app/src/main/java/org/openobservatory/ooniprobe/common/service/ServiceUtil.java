@@ -60,7 +60,7 @@ public class ServiceUtil {
         }
     }
 
-    public static void callCheckInAPI(Application app) {
+    public void callCheckInAPI(Application app) {
         app.getServiceComponent().inject(d);
 
         BatteryManager batteryManager = (BatteryManager) app.getSystemService(Context.BATTERY_SERVICE);
