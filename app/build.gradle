@@ -2,9 +2,9 @@ apply plugin: 'com.android.application'
 apply from: 'jacoco.gradle'
 
 android {
-	compileSdkVersion 30
-	buildToolsVersion "30.0.3"
-	ndkVersion '22.0.7026061'
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+    ndkVersion '22.0.7026061'
 
 	defaultConfig {
 		applicationId 'org.openobservatory.ooniprobe'
@@ -21,26 +21,26 @@ android {
 		buildConfigField "boolean", "RUN_AUTOMATION", "false"
 	}
 
-	buildTypes {
-		debug {
-			testCoverageEnabled true
-			buildConfigField 'String', 'IS_DEBUG', '"-debug"'
-			buildConfigField 'String', 'COUNTLY_KEY', '"e6c2cfe53e85951d50567467cef3f9fa2eab32c3"'
-		}
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+            buildConfigField 'String', 'IS_DEBUG', '"-debug"'
+            buildConfigField 'String', 'COUNTLY_KEY', '"e6c2cfe53e85951d50567467cef3f9fa2eab32c3"'
+        }
 
-		release {
-			minifyEnabled false
-			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-			buildConfigField 'String', 'IS_DEBUG', '""'
-		}
-	}
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'IS_DEBUG', '""'
+        }
+    }
 
-	testOptions {
-		animationsDisabled = true
-		unitTests {
-			includeAndroidResources = true
-		}
-	}
+    testOptions {
+        animationsDisabled = true
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 
     // Shared test code between Unit and Instrumented tests
     sourceSets {
@@ -54,47 +54,47 @@ android {
         }
     }
 
-	flavorDimensions 'testing', 'license'
-	productFlavors {
-		stable {
-			dimension 'testing'
-			buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android"'
-		}
-		dev {
-			dimension 'testing'
-			applicationIdSuffix '.dev'
-			versionName versionNameDate()
-			versionCode versionCodeDate()
-			buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-dev"'
-			resValue "string", "APP_NAME", "OONI Dev"
-			buildConfigField 'String', 'COUNTLY_KEY', '"e6c2cfe53e85951d50567467cef3f9fa2eab32c3"'
-		}
-		experimental {
-			dimension 'testing'
-			applicationIdSuffix '.experimental'
-			versionName versionNameDate()
-			versionCode versionCodeDate()
-			buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-experimental"'
-			resValue "string", "APP_NAME", "OONI Exp"
-			buildConfigField 'String', 'COUNTLY_KEY', '"e6c2cfe53e85951d50567467cef3f9fa2eab32c3"'
-		}
-		fdroid {
-			dimension 'license'
-		}
-		full {
-			dimension 'license'
-		}
-	}
-	variantFilter { variant ->
-		def names = variant.flavors*.name
-		if (names.contains("fdroid") && (names.contains("experimental") || names.contains("dev"))) {
-			setIgnore(true)
-		}
-	}
-	compileOptions {
-		sourceCompatibility JavaVersion.VERSION_1_8
-		targetCompatibility JavaVersion.VERSION_1_8
-	}
+    flavorDimensions 'testing', 'license'
+    productFlavors {
+        stable {
+            dimension 'testing'
+            buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android"'
+        }
+        dev {
+            dimension 'testing'
+            applicationIdSuffix '.dev'
+            versionName versionNameDate()
+            versionCode versionCodeDate()
+            buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-dev"'
+            resValue "string", "APP_NAME", "OONI Dev"
+            buildConfigField 'String', 'COUNTLY_KEY', '"e6c2cfe53e85951d50567467cef3f9fa2eab32c3"'
+        }
+        experimental {
+            dimension 'testing'
+            applicationIdSuffix '.experimental'
+            versionName versionNameDate()
+            versionCode versionCodeDate()
+            buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-experimental"'
+            resValue "string", "APP_NAME", "OONI Exp"
+            buildConfigField 'String', 'COUNTLY_KEY', '"e6c2cfe53e85951d50567467cef3f9fa2eab32c3"'
+        }
+        fdroid {
+            dimension 'license'
+        }
+        full {
+            dimension 'license'
+        }
+    }
+    variantFilter { variant ->
+        def names = variant.flavors*.name
+        if (names.contains("fdroid") && (names.contains("experimental") || names.contains("dev"))) {
+            setIgnore(true)
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -175,14 +175,14 @@ dependencies {
 }
 
 static def versionCodeDate() {
-	return new Date().format("yyyyMMdd").toInteger()
+    return new Date().format("yyyyMMdd").toInteger()
 }
 
 static def versionNameDate() {
-	return new Date().format("yyyy.MM.dd-HH")
+    return new Date().format("yyyy.MM.dd-HH")
 }
 
 if (!getGradle().getStartParameter().getTaskRequests()
-		.toString().contains("Fdroid")){
-	apply plugin: 'com.google.gms.google-services'
+  .toString().contains("Fdroid")){
+    apply plugin: 'com.google.gms.google-services'
 }
