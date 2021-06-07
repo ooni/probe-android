@@ -64,7 +64,7 @@ public class Settings {
 		assets_dir = EngineProvider.get().getAssetsDir(c);
 		state_dir = EngineProvider.get().getStateDir(c);
 		temp_dir = EngineProvider.get().getTempDir(c);
-		tunnel_dir = Engine.getTunnelDir(c);
+		tunnel_dir = EngineProvider.get().getTunnelDir(c);
 		return new OONIMKTaskConfigAdapter(gson, this);
 	}
 

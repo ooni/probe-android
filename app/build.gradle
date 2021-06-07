@@ -12,7 +12,7 @@ android {
 		targetSdkVersion 30
 		versionName '3.0.0'
 		versionCode 77
-		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+		testInstrumentationRunner "org.openobservatory.ooniprobe.TestAndroidJUnitRunner"
 		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://countly.ooni.io"'
 		resValue "string", "APP_NAME", "OONI Probe"

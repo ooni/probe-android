@@ -58,7 +58,7 @@ public class RunningActivityTest extends AbstractTest {
     }
 
     @Test
-    @AllowFlaky(attempts = 3)
+    @AllowFlaky()
     public void startAndDone() {
         launch();
         assertCurrentActivity(RunningActivity.class);

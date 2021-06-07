@@ -21,13 +21,6 @@ public class EngineInterface {
         return Engine.startExperimentTask(settings);
     }
 
-    public String resolveProbeCC(Context ctx,
-                                 String softwareName,
-                                 String softwareVersion,
-                                 long timeout) throws Exception {
-        return Engine.resolveProbeCC(ctx, softwareName, softwareVersion, timeout);
-    }
-
     public OONISession newSession(OONISessionConfig config) throws Exception {
         return Engine.newSession(config);
     }
@@ -35,8 +28,9 @@ public class EngineInterface {
     public OONISessionConfig getDefaultSessionConfig(Context ctx,
                                                      String softwareName,
                                                      String softwareVersion,
-                                                     OONILogger logger) throws Exception {
-        return Engine.getDefaultSessionConfig(ctx, softwareName, softwareVersion, logger);
+                                                     OONILogger logger,
+                                                     String proxy) throws Exception {
+        return Engine.getDefaultSessionConfig(ctx, softwareName, softwareVersion, logger, proxy);
     }
 
     public String getAssetsDir(Context ctx) throws IOException {
@@ -49,5 +43,9 @@ public class EngineInterface {
 
     public String getTempDir(Context ctx) throws IOException {
         return Engine.getTempDir(ctx);
+    }
+
+    public String getTunnelDir(Context ctx) throws IOException {
+        return Engine.getTunnelDir(ctx);
     }
 }

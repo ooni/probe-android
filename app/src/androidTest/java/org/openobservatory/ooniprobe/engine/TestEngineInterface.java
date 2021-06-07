@@ -30,18 +30,13 @@ public class TestEngineInterface extends EngineInterface {
     }
 
     @Override
-    public String resolveProbeCC(Context ctx, String softwareName, String softwareVersion, long timeout) throws Exception {
-        return super.resolveProbeCC(ctx, softwareName, softwareVersion, timeout);
-    }
-
-    @Override
     public OONISession newSession(OONISessionConfig config) throws Exception {
         return super.newSession(config);
     }
 
     @Override
-    public OONISessionConfig getDefaultSessionConfig(Context ctx, String softwareName, String softwareVersion, OONILogger logger) throws Exception {
-        return super.getDefaultSessionConfig(ctx, softwareName, softwareVersion, logger);
+    public OONISessionConfig getDefaultSessionConfig(Context ctx, String softwareName, String softwareVersion, OONILogger logger, String proxy) throws Exception {
+        return super.getDefaultSessionConfig(ctx, softwareName, softwareVersion, logger, proxy);
     }
 
     public void sendNextEvent(EventResult nextEvent) {
