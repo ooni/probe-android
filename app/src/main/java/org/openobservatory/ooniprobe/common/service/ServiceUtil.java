@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.BatteryManager;
 import android.os.Build;
 
-import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
 import org.openobservatory.engine.LoggerArray;
@@ -31,7 +30,6 @@ import java.util.ArrayList;
 public class ServiceUtil {
     private static final int id = 100;
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     public static void scheduleJob(Context context) {
         Application app = ((Application)context.getApplicationContext());
         PreferenceManager pm = app.getPreferenceManager();
@@ -52,13 +50,12 @@ public class ServiceUtil {
         builder.setPersisted(true); //Job scheduled to work after reboot
         
         //JobScheduler is specifically designed for inexact timing, so it can combine jobs from multiple apps, to try to reduce power consumption.
-        JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
+        JobScheduler jobScheduler = ContextCompat.getSystemService(context, JobScheduler.class);;
         jobScheduler.schedule(builder.build());
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     public static void stopJob(Context context) {
-        JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
+        JobScheduler jobScheduler = ContextCompat.getSystemService(context, JobScheduler.class);
         jobScheduler.cancel(id);
     }
 
@@ -69,13 +66,18 @@ public class ServiceUtil {
         if (pm.testWifiOnly() &&
                 !ReachabilityManager.getNetworkType(app).equals(ReachabilityManager.WIFI))
             return;
-        if (pm.testChargingOnly() &&
-                !batteryManager.isCharging())
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (pm.testChargingOnly() &&
+                    !batteryManager.isCharging())
+                return;
+        }
+        if (ReachabilityManager.isVPNinUse(app))
             return;
+        String proxy = app.getPreferenceManager().getProxyURL();
         try {
             OONISession session = EngineProvider.get().newSession(
                     EngineProvider.get().getDefaultSessionConfig(
-                            app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray())
+                            app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray(), proxy)
             );
             OONIContext ooniContext = session.newContextWithTimeout(30);
             session.maybeUpdateResources(ooniContext);

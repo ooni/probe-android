@@ -11,6 +11,7 @@ import androidx.annotation.VisibleForTesting;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.test.EngineProvider;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
@@ -128,6 +129,45 @@ public class PreferenceManager {
 
 	public boolean isDebugLogs() {
 		return sp.getBoolean(r.getString(R.string.debugLogs), false);
+	}
+
+	public String getProxyURL() {
+		try {
+			ProxySettings ps = ProxySettings.newProxySettings(this);
+			return ps.getProxyString();
+		} catch (ProxySettings.InvalidProxyURL | URISyntaxException invalidProxyURL) {
+			return "";
+		}
+	}
+
+	public void setProxyProtocol(ProxySettings.Protocol protocol) {
+		sp.edit()
+			.putString(r.getString(R.string.proxy_protocol), protocol.getProtocol())
+			.apply();
+	}
+
+	public String getProxyProtocol() {
+		return sp.getString(r.getString(R.string.proxy_protocol), ProxySettings.Protocol.NONE.getProtocol());
+	}
+
+	public String getProxyHostname() {
+		return sp.getString(r.getString(R.string.proxy_hostname), "");
+	}
+
+	public void setProxyHostname(String value) {
+		sp.edit()
+			.putString(r.getString(R.string.proxy_hostname), value)
+			.apply();
+	}
+
+	public String getProxyPort() {
+		return sp.getString(r.getString(R.string.proxy_port), "");
+	}
+
+	public void setProxyPort(String value) {
+		sp.edit()
+			.putString(r.getString(R.string.proxy_port), value)
+			.apply();
 	}
 
 	public boolean isTestWhatsapp() {

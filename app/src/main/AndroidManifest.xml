@@ -1,13 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="org.openobservatory.ooniprobe">
 
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-	<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-	<uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+	<uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
-	<permission android:name="org.openobservatory.ooniprobe.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+	<permission
+		android:name="org.openobservatory.ooniprobe.permission.C2D_MESSAGE"
+		android:protectionLevel="signature" />
+
 	<uses-permission android:name="org.openobservatory.ooniprobe.permission.C2D_MESSAGE" />
 
 	<application
@@ -24,6 +28,7 @@
 			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
+
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
@@ -69,6 +74,19 @@
 			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
 			<intent-filter>
 				<action android:name="org.openobservatory.ooniprobe.activity.InfoActivity" />
+
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+		<activity
+			android:name=".activity.ProxyActivity"
+			android:label="Proxy"
+			android:parentActivityName=".activity.PreferenceActivity"
+			android:screenOrientation="userPortrait"
+			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App">
+			<intent-filter>
+				<action android:name="org.openobservatory.ooniprobe.activity.ProxyActivity" />
+
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
 		</activity>
@@ -79,6 +97,7 @@
 			android:screenOrientation="userPortrait">
 			<intent-filter>
 				<action android:name="org.openobservatory.ooniprobe.activity.CustomWebsiteActivity" />
+
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
 		</activity>
@@ -96,6 +115,7 @@
 				<category android:name="android.intent.category.BROWSABLE" />
 
 				<action android:name="org.openobservatory.ooniprobe.nettest" />
+
 				<data
 					android:host="run.ooni.io"
 					android:pathPrefix="/nettest"
@@ -108,6 +128,7 @@
 				<category android:name="android.intent.category.BROWSABLE" />
 
 				<action android:name="org.openobservatory.ooniprobe.nettest" />
+
 				<data
 					android:host="run.ooni.io"
 					android:pathPrefix="/nettest"
@@ -124,15 +145,15 @@
 					android:scheme="ooni" />
 			</intent-filter>
 		</activity>
+
 		<service
 			android:name=".common.service.RunTestService"
 			android:icon="@drawable/notification_icon"
-			android:label="@string/Dashboard_Card_Run">
-		</service>
-		<service android:name=".common.service.RunTestJobService"
+			android:label="@string/Dashboard_Card_Run"></service>
+		<service
+			android:name=".common.service.RunTestJobService"
 			android:label="Run Test Service"
-			android:permission="android.permission.BIND_JOB_SERVICE">
-		</service>
-
+			android:permission="android.permission.BIND_JOB_SERVICE"></service>
 	</application>
+
 </manifest>

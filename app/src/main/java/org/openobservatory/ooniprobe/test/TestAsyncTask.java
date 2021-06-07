@@ -10,6 +10,7 @@ import android.util.Log;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import org.openobservatory.engine.Engine;
 import org.openobservatory.engine.LoggerArray;
 import org.openobservatory.engine.OONIContext;
 import org.openobservatory.engine.OONISession;
@@ -32,38 +33,43 @@ import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TestAsyncTask extends AsyncTask<Void, String, Void> implements AbstractTest.TestCallback {
-    public static final List<AbstractSuite> SUITES = Arrays.asList(new WebsitesSuite(),
-            new InstantMessagingSuite(), new CircumventionSuite(), new PerformanceSuite(), new ExperimentalSuite());
-    private static final String TAG = "TestAsyncTask";
-    public static final String START = "START";
-    public static final String PRG = "PRG";
-    public static final String LOG = "LOG";
-    public static final String RUN = "RUN";
-    public static final String ERR = "ERR";
-    public static final String END = "END";
-    public static final String URL = "URL";
-    public static final String INT = "INT";
-    protected final Application app;
-    private Result result;
-    ArrayList<AbstractSuite> testSuites;
-    public AbstractSuite currentSuite;
-    public AbstractTest currentTest;
-    private boolean interrupt;
-    RunTestService service;
-    private ConnectivityManager manager;
-    private ConnectivityManager.NetworkCallback networkCallback;
-    private boolean store_db = true;
+import retrofit2.Response;
 
-    public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, RunTestService service) {
-        this.app = app;
-        this.testSuites = testSuites;
-        this.service = service;
-    }
+public class TestAsyncTask extends AsyncTask<Void, String, Void> implements AbstractTest.TestCallback {
+	public static final List<AbstractSuite> SUITES = Arrays.asList(new WebsitesSuite(),
+			new InstantMessagingSuite(), new CircumventionSuite(), new PerformanceSuite(), new ExperimentalSuite());
+	private static final String TAG = "TestAsyncTask";
+	public static final String START = "START";
+	public static final String PRG = "PRG";
+	public static final String LOG = "LOG";
+	public static final String RUN = "RUN";
+	public static final String ERR = "ERR";
+	public static final String END = "END";
+	public static final String URL = "URL";
+	public static final String INT = "INT";
+	protected final Application app;
+	private Result result;
+	ArrayList<AbstractSuite> testSuites;
+	public AbstractSuite currentSuite;
+	public AbstractTest currentTest;
+	private boolean interrupt;
+	RunTestService service;
+	private ConnectivityManager manager;
+	private ConnectivityManager.NetworkCallback networkCallback;
+	private String proxy;
+	private boolean store_db = true;
+
+	public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, RunTestService service) {
+		this.app = app;
+		this.testSuites = testSuites;
+		this.service = service;
+		this.proxy = app.getPreferenceManager().getProxyURL();
+	}
 
     public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, RunTestService service, boolean store_db) {
         this(app, testSuites, service);
@@ -143,7 +149,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     private void downloadURLs() {
         try {
             OONISession session = EngineProvider.get().newSession(EngineProvider.get().getDefaultSessionConfig(
-                    app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray()));
+                    app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray(), proxy));
             OONIContext ooniContext = session.newContextWithTimeout(30);
             session.maybeUpdateResources(ooniContext);
             OONIURLListConfig config = new OONIURLListConfig();

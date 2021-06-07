@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.annotation.XmlRes;
 import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
@@ -141,8 +140,12 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
         Preference preference = findPreference(key);
         if (key.equals(getString(R.string.automated_testing_enabled))) {
             if (sharedPreferences.getBoolean(key, false)) {
-                PowerManager pm = (PowerManager) getActivity().getSystemService(Context.POWER_SERVICE);
-                boolean isIgnoringBatteryOptimizations = pm.isIgnoringBatteryOptimizations(getActivity().getPackageName());
+                //For API < 23 we ignore battery optimization
+                boolean isIgnoringBatteryOptimizations = true;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                    PowerManager pm = (PowerManager) getActivity().getSystemService(Context.POWER_SERVICE);
+                    isIgnoringBatteryOptimizations = pm.isIgnoringBatteryOptimizations(getActivity().getPackageName());
+                }
                 if(!isIgnoringBatteryOptimizations){
                     Intent intent = new Intent();
                     intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
@@ -227,13 +230,16 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
         return PreferenceFragment.newInstance(getArguments().getInt(ARG_PREFERENCES_RES_ID), getArguments().getInt(ARG_CONTAINER_RES_ID), rootKey);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == IGNORE_OPTIMIZATION_REQUEST) {
             PowerManager pm = (PowerManager) getActivity().getSystemService(Context.POWER_SERVICE);
-            boolean isIgnoringBatteryOptimizations = pm.isIgnoringBatteryOptimizations(getActivity().getPackageName());
+            //For API < 23 we ignore battery optimization
+            boolean isIgnoringBatteryOptimizations = true;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                isIgnoringBatteryOptimizations = pm.isIgnoringBatteryOptimizations(getActivity().getPackageName());
+            }
             if (isIgnoringBatteryOptimizations) {
                 // Ignoring battery optimization
                 ServiceUtil.scheduleJob(getActivity());

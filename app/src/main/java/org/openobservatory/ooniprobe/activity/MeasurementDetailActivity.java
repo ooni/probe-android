@@ -303,7 +303,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
 
     private static class ResubmitAsyncTask extends ResubmitTask<MeasurementDetailActivity> {
         ResubmitAsyncTask(MeasurementDetailActivity activity) {
-            super(activity);
+            super(activity, activity.getPreferenceManager().getProxyURL());
         }
 
         @Override

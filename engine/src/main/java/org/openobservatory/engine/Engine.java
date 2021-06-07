@@ -19,20 +19,6 @@ public final class Engine {
         return new PEMKTask(oonimkall.Oonimkall.startTask(settings.serialization()));
     }
 
-    /** resolveProbeCC returns the probeCC. */
-    public static String resolveProbeCC(Context ctx, String softwareName,
-                                        String softwareVersion, long timeout) throws Exception {
-        OONISession session = newSession(Engine.getDefaultSessionConfig(
-                ctx, softwareName, softwareVersion, new LoggerNull()
-        ));
-        // Updating resources with no timeout because we don't know for sure how much
-        // it will take to download them and choosing a timeout may prevent the operation
-        // to ever complete. (Ideally the user should be able to interrupt the process
-        // and there should be no timeout here.)
-        session.maybeUpdateResources(session.newContext());
-        return session.geolocate(session.newContextWithTimeout(timeout)).country;
-    }
-
     /** newSession returns a new OONISession instance. */
     public static OONISession newSession(OONISessionConfig config) throws Exception {
         return new PESession(config);
@@ -42,15 +28,18 @@ public final class Engine {
     public static OONISessionConfig getDefaultSessionConfig(Context ctx,
                                                             String softwareName,
                                                             String softwareVersion,
-                                                            OONILogger logger) throws Exception {
+                                                            OONILogger logger,
+                                                            String optionalProxy) throws Exception {
         OONISessionConfig config = new OONISessionConfig();
         config.logger = new LoggerComposed(logger, new LoggerAndroid());
+        config.proxy = optionalProxy;
         config.softwareName = softwareName;
         config.softwareVersion = softwareVersion;
         config.verbose = false;
         config.assetsDir = Engine.getAssetsDir(ctx);
         config.stateDir = Engine.getStateDir(ctx);
         config.tempDir = Engine.getTempDir(ctx);
+        config.tunnelDir = Engine.getTunnelDir(ctx);
         return config;
     }
 
@@ -79,5 +68,12 @@ public final class Engine {
      */
     public static String getTempDir(Context ctx) throws IOException {
         return new java.io.File(ctx.getCacheDir(), "").getCanonicalPath();
+    }
+
+    /**
+     * getTunnelDir returns the directory where to store persistent tunnel state.
+     */
+    public static String getTunnelDir(Context ctx) throws IOException {
+        return new java.io.File(ctx.getFilesDir(), "tunnel").getCanonicalPath();
     }
 }

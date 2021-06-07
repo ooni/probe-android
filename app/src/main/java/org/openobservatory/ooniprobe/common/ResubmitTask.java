@@ -29,6 +29,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
     protected Integer totUploads;
     protected Integer errors;
     protected LoggerArray logger;
+    private String proxy;
 
     /**
      * Use this class to resubmit a measurement, use result_id and measurement_id to filter list of value
@@ -36,8 +37,9 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
      *
      * @param activity from which this task are executed
      */
-    public ResubmitTask(A activity) {
+    public ResubmitTask(A activity, String proxyURL) {
         super(activity, true, false);
+        proxy = proxyURL;
     }
 
     private boolean perform(Context c, Measurement m, OONISession session)  {
