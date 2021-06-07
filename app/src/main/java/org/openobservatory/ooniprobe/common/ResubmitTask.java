@@ -20,7 +20,7 @@ import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 import org.openobservatory.ooniprobe.test.EngineProvider;
 
 import java.io.File;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import localhost.toolkit.os.NetworkProgressAsyncTask;
@@ -48,9 +48,9 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
         long uploadTimeout = getTimeout(file.length());
         OONIContext ooniContext = session.newContextWithTimeout(uploadTimeout);
         try {
-            input = FileUtils.readFileToString(file, Charset.forName("UTF-8"));
+            input = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
             OONISubmitResults results = session.submit(ooniContext, input);
-            FileUtils.writeStringToFile(file, results.updatedMeasurement, Charset.forName("UTF-8"));
+            FileUtils.writeStringToFile(file, results.updatedMeasurement, StandardCharsets.UTF_8);
             m.report_id = results.updatedReportID;
             m.is_uploaded = true;
             m.is_upload_failed = false;
@@ -101,7 +101,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
         try {
             OONISession session = EngineProvider.get().newSession(
                     EngineProvider.get().getDefaultSessionConfig(
-                            getActivity(), BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, logger)
+                            getActivity(), BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, logger, proxy)
             );
             // Updating resources with no timeout because we don't know for sure how much
             // it will take to download them and choosing a timeout may prevent the operation
