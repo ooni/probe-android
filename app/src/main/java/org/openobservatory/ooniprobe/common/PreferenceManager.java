@@ -26,6 +26,7 @@ public class PreferenceManager {
 	private static final String IS_NOTIFICATION_DIALOG = "isNotificationDialog";
 	public static final int NOTIFICATION_DIALOG_COUNT = 5;
 	private static final String NOTIFICATION_DIALOG_DISABLE = "isNotificationDialogDisabled";
+	private static final String NOTIFICATION_AUTOTEST_DISABLE = "isAutomaticTestDialogDisabled";
 	private static final String TOKEN = "token";
 	private static final String SHOW_ONBOARDING = "first_run";
 	//This is in ms, set to one day
@@ -104,11 +105,9 @@ public class PreferenceManager {
 				.apply();
 	}
 
-
 	public boolean isNotifications() {
 		return sp.getBoolean(r.getString(R.string.notifications_enabled), false);
 	}
-
 
 	public boolean isDarkTheme() {
 		return sp.getBoolean(r.getString(R.string.theme_enabled), false);
@@ -287,6 +286,18 @@ public class PreferenceManager {
 	@VisibleForTesting
 	public void setAppOpenCount(Long value){
 		sp.edit().putLong(IS_NOTIFICATION_DIALOG, value).apply();
+	}
+
+	/*
+	 * This method is used to ask user to enable push notifications.
+	 */
+	public boolean isAskAutomaticTestDialogDisabled() {
+		return sp.getBoolean(NOTIFICATION_AUTOTEST_DISABLE, false);
+	}
+
+	public void disableAskAutomaticTestDialog() {
+		sp.edit().putBoolean(NOTIFICATION_AUTOTEST_DISABLE, true)
+				.apply();
 	}
 
 	public boolean isAutomaticTestEnabled() {

@@ -29,6 +29,7 @@ import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 public class MainActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String RES_ITEM = "resItem";
     public static final String NOTIFICATION_DIALOG = "notification";
+    public static final String AUTOTEST_DIALOG = "automatic_testing";
 
     @BindView(R.id.bottomNavigation)
     BottomNavigationView bottomNavigation;
@@ -70,13 +71,25 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 new ConfirmDialogFragment.Builder()
                         .withTitle(getString(R.string.Modal_EnableNotifications_Title))
                         .withMessage(getString(R.string.Modal_EnableNotifications_Paragraph))
-                        .withPositiveButton(getString(R.string.Modal_OK))
+                        .withPositiveButton(getString(R.string.Modal_SoundsGreat))
                         .withNegativeButton(getString(R.string.Modal_NoThanks))
                         .withNeutralButton(getString(R.string.Modal_DontAskAgain))
                         .withExtra(NOTIFICATION_DIALOG)
                         .build().show(getSupportFragmentManager(), null);
             }
-
+            else if (getPreferenceManager().getAppOpenCount() != 0
+                    && getPreferenceManager().getAppOpenCount() % PreferenceManager.NOTIFICATION_DIALOG_COUNT == 0
+                    && !getPreferenceManager().isAutomaticTestEnabled()
+                    && !getPreferenceManager().isAskAutomaticTestDialogDisabled()) {
+                new ConfirmDialogFragment.Builder()
+                        .withTitle(getString(R.string.Modal_Autorun_Modal_Title))
+                        .withMessage(getString(R.string.Modal_Autorun_Modal_Text))
+                        .withPositiveButton(getString(R.string.Modal_SoundsGreat))
+                        .withNegativeButton(getString(R.string.Modal_NoThanks))
+                        .withNeutralButton(getString(R.string.Modal_DontAskAgain))
+                        .withExtra(AUTOTEST_DIALOG)
+                        .build().show(getSupportFragmentManager(), null);
+            }
         }
 
         if (android.os.Build.VERSION.SDK_INT >= 29){
@@ -123,6 +136,15 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
             }
             else if (i == DialogInterface.BUTTON_NEUTRAL){
                 getPreferenceManager().disableAskNotificationDialog();
+            }
+        }
+        if (extra.equals(AUTOTEST_DIALOG)) {
+            getPreferenceManager().setNotificationsFromDialog(i == DialogInterface.BUTTON_POSITIVE);
+            if (i == DialogInterface.BUTTON_POSITIVE){
+                //TODO this is complicated because we need to disable battery optimization
+            }
+            else if (i == DialogInterface.BUTTON_NEUTRAL){
+                getPreferenceManager().disableAskAutomaticTestDialog();
             }
         }
     }
