@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_white"
     tools:context=".activity.ProxyActivity">
 
     <ScrollView
@@ -27,18 +28,21 @@
                     android:id="@+id/proxyNone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/color_black"
                     android:text="@string/Settings_Proxy_None" />
 
                 <RadioButton
                     android:id="@+id/proxyPsiphon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/color_black"
                     android:text="@string/Settings_Proxy_Psiphon" />
 
                 <RadioButton
                     android:id="@+id/proxyCustom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/color_black"
                     android:text="@string/Settings_Proxy_Custom" />
 
                 <RadioGroup
@@ -52,6 +56,7 @@
                         android:id="@+id/customProxySOCKS5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/color_black"
                         android:text="@string/SOCKS5"/>
 
                     <LinearLayout
@@ -71,6 +76,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/Settings_Proxy_Custom_Hostname"
+                                android:textColorHint="@color/color_gray6"
+                                android:textColor="@android:color/black"
                                 android:inputType="textUri"
                                 />
 
@@ -86,6 +93,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/Settings_Proxy_Custom_Port"
+                                android:textColorHint="@color/color_gray6"
+                                android:textColor="@android:color/black"
                                 android:inputType="number"
                                 />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -99,6 +108,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/color_blue1"
+                android:textColor="@color/color_gray6"
                 android:padding="20dp"
                 android:text="@string/Settings_Proxy_Footer" />
         </LinearLayout>
