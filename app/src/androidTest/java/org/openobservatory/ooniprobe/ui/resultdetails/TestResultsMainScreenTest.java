@@ -46,6 +46,7 @@ public class TestResultsMainScreenTest extends MeasurementAbstractTest {
     public FlakyTestRule flakyRule = new FlakyTestRule();
 
     @Test
+    @AllowFlaky(attempts = 3)
     public void testHeaderData() {
         // Arrange
         Result websites = ResultFactory.createAndSave(new WebsitesSuite());
@@ -204,6 +205,7 @@ public class TestResultsMainScreenTest extends MeasurementAbstractTest {
     }
 
     @Test
+    @AllowFlaky(attempts = 3)
     public void filterTest() {
         // Arrange
         Result websites = ResultFactory.createAndSave(new WebsitesSuite());
