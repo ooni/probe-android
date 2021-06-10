@@ -3,11 +3,13 @@ package org.openobservatory.ooniprobe.activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.PowerManager;
+import android.provider.Settings;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.app.ActivityCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -141,11 +143,44 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
         if (extra.equals(AUTOTEST_DIALOG)) {
             getPreferenceManager().setNotificationsFromDialog(i == DialogInterface.BUTTON_POSITIVE);
             if (i == DialogInterface.BUTTON_POSITIVE){
-                //TODO this is complicated because we need to disable battery optimization
+                //For API < 23 we ignore battery optimization
+                boolean isIgnoringBatteryOptimizations = true;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                    PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+                    isIgnoringBatteryOptimizations = pm.isIgnoringBatteryOptimizations(getPackageName());
+                }
+                if(!isIgnoringBatteryOptimizations){
+                    Intent intent = new Intent();
+                    intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+                    intent.setData(Uri.parse("package:" + getPackageName()));
+                    startActivityForResult(intent, PreferenceManager.IGNORE_OPTIMIZATION_REQUEST);
+                }
+                else {
+                    getPreferenceManager().enableAutomatedTesting();
+                    ServiceUtil.scheduleJob(this);
+                }
             }
             else if (i == DialogInterface.BUTTON_NEUTRAL){
                 getPreferenceManager().disableAskAutomaticTestDialog();
             }
         }
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PreferenceManager.IGNORE_OPTIMIZATION_REQUEST) {
+            PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+            //For API < 23 we ignore battery optimization
+            boolean isIgnoringBatteryOptimizations = true;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                isIgnoringBatteryOptimizations = pm.isIgnoringBatteryOptimizations(getPackageName());
+            }
+            if (isIgnoringBatteryOptimizations) {
+                getPreferenceManager().enableAutomatedTesting();
+                ServiceUtil.scheduleJob(this);
+            }
+        }
+    }
+
 }

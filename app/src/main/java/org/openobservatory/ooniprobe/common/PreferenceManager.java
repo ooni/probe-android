@@ -35,6 +35,7 @@ public class PreferenceManager {
 	private static final String UUID4 = "uuid4";
 	public static final String AUTORUN_COUNT = "autorun_count";
 	public static final String AUTORUN_DATE = "autorun_last_date";
+	public static final int IGNORE_OPTIMIZATION_REQUEST = 15;
 
 	private final SharedPreferences sp;
 	private final Resources r;
@@ -302,6 +303,11 @@ public class PreferenceManager {
 
 	public boolean isAutomaticTestEnabled() {
 		return sp.getBoolean(r.getString(R.string.automated_testing_enabled), false);
+	}
+
+	public void enableAutomatedTesting() {
+		sp.edit().putBoolean(r.getString(R.string.automated_testing_enabled), true)
+				.apply();
 	}
 
 	public void disableAutomaticTest() {
