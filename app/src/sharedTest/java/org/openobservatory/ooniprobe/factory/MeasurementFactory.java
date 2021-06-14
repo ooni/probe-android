@@ -135,8 +135,7 @@ public class MeasurementFactory {
                 return "";
 
             case "tor":
-            default:
-                result = "{}";
+            default: result = "{}";
         }
 
         return result;

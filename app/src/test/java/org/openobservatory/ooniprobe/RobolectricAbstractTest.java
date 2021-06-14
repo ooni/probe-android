@@ -19,9 +19,6 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
-import java.util.Calendar;
-import java.util.Date;
-
 import static org.robolectric.Shadows.shadowOf;
 
 @Config(application = TestApplication.class)

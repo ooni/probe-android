@@ -9,6 +9,10 @@ import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.intent.Intents;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.schibsted.spain.barista.rule.flaky.AllowFlaky;
+import com.schibsted.spain.barista.rule.flaky.FlakyTestRule;
+
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openobservatory.ooniprobe.AbstractTest;
@@ -39,6 +43,9 @@ import static org.openobservatory.ooniprobe.ui.utils.ViewMatchers.withIndex;
 public class MainActivityWebsitesTest extends AbstractTest {
 
     public ActivityScenario<MainActivity> scenario;
+
+    @Rule
+    public FlakyTestRule flakyRule = new FlakyTestRule();
 
     @Test
     public void addCustomWebsiteTest() {
@@ -73,6 +80,7 @@ public class MainActivityWebsitesTest extends AbstractTest {
     }
 
     @Test
+    @AllowFlaky(attempts = 3)
     public void deleteCustomWebsiteTest() {
         // Arrange
         Faker faker = new Faker();
