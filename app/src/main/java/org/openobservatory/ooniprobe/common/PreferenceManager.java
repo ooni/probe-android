@@ -27,7 +27,7 @@ public class PreferenceManager {
 	public static final int NOTIFICATION_DIALOG_COUNT = 7;
 	public static final int AUTOTEST_DIALOG_COUNT = 5;
 	private static final String NOTIFICATION_DIALOG_DISABLE = "isNotificationDialogDisabled";
-	private static final String NOTIFICATION_AUTOTEST_DISABLE = "isAutomaticTestDialogDisabled";
+	private static final String AUTOTEST_DIALOG_DISABLE = "isAutomaticTestDialogDisabled";
 	private static final String TOKEN = "token";
 	private static final String SHOW_ONBOARDING = "first_run";
 	//This is in ms, set to one day
@@ -294,11 +294,11 @@ public class PreferenceManager {
 	 * This method is used to ask user to enable push notifications.
 	 */
 	public boolean isAskAutomaticTestDialogDisabled() {
-		return sp.getBoolean(NOTIFICATION_AUTOTEST_DISABLE, false);
+		return sp.getBoolean(AUTOTEST_DIALOG_DISABLE, false);
 	}
 
 	public void disableAskAutomaticTestDialog() {
-		sp.edit().putBoolean(NOTIFICATION_AUTOTEST_DISABLE, true)
+		sp.edit().putBoolean(AUTOTEST_DIALOG_DISABLE, true)
 				.apply();
 	}
 
