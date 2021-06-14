@@ -17,6 +17,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
+import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.domain.models.UpdatesNotificationManager;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
 import org.openobservatory.ooniprobe.fragment.PreferenceGlobalFragment;
@@ -150,7 +151,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                     startActivityForResult(intent, PreferenceManager.IGNORE_OPTIMIZATION_REQUEST);
                 }
                 else {
-                    getPreferenceManager().enableAutomatedTesting();
+                    preferenceManager.enableAutomatedTesting();
                     ServiceUtil.scheduleJob(this);
                 }
             }

@@ -4,11 +4,11 @@ import org.junit.Test;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.domain.UpdatesNotificationManager;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertFalse;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class UpdatesNotificationManagerTest {
@@ -18,7 +18,7 @@ public class UpdatesNotificationManagerTest {
     @Test
     public void testShouldShow() {
         // Arrange
-        when(preferenceManagerMock.getAppOpenCount()).thenReturn(5L);
+        when(preferenceManagerMock.getAppOpenCount()).thenReturn(7L);
         when(preferenceManagerMock.isNotifications()).thenReturn(false);
         when(preferenceManagerMock.isAskNotificationDialogDisabled()).thenReturn(false);
 
