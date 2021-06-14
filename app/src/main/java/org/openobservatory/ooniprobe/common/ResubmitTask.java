@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.raizlabs.android.dbflow.sql.language.Where;
 
 import org.apache.commons.io.FileUtils;
-import org.openobservatory.engine.Engine;
 import org.openobservatory.engine.LoggerArray;
 import org.openobservatory.engine.OONIContext;
 import org.openobservatory.engine.OONISession;
@@ -18,9 +17,10 @@ import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Measurement_Table;
+import org.openobservatory.ooniprobe.test.EngineProvider;
 
 import java.io.File;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import localhost.toolkit.os.NetworkProgressAsyncTask;
@@ -48,9 +48,9 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
         long uploadTimeout = getTimeout(file.length());
         OONIContext ooniContext = session.newContextWithTimeout(uploadTimeout);
         try {
-            input = FileUtils.readFileToString(file, Charset.forName("UTF-8"));
+            input = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
             OONISubmitResults results = session.submit(ooniContext, input);
-            FileUtils.writeStringToFile(file, results.updatedMeasurement, Charset.forName("UTF-8"));
+            FileUtils.writeStringToFile(file, results.updatedMeasurement, StandardCharsets.UTF_8);
             m.report_id = results.updatedReportID;
             m.is_uploaded = true;
             m.is_upload_failed = false;
@@ -99,9 +99,10 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
         List<Measurement> measurements = Measurement.withReport(getActivity(), msmQuery);
         totUploads = measurements.size();
         try {
-            OONISession session = Engine.newSession(Engine.getDefaultSessionConfig(
-                    getActivity(), BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, logger,
-                    proxy));
+            OONISession session = EngineProvider.get().newSession(
+                    EngineProvider.get().getDefaultSessionConfig(
+                            getActivity(), BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, logger, proxy)
+            );
             // Updating resources with no timeout because we don't know for sure how much
             // it will take to download them and choosing a timeout may prevent the operation
             // to ever complete. (Ideally the user should be able to interrupt the process

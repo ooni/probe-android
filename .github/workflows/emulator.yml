@@ -25,3 +25,9 @@ jobs:
         arch: x86_64
         profile: Nexus 6
         script: ./gradlew connectedStableFullDebugAndroidTest
+    - name: uploads test results
+      uses: actions/upload-artifact@v2
+      if: failure()
+      with:
+        name: emulator-test-results
+        path: app/build/reports/androidTests/connected/flavors/stableFullDebugAndroidTest
