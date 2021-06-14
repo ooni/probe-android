@@ -38,7 +38,6 @@ import localhost.toolkit.preference.ExtendedPreferenceFragment;
 public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFragment> implements SharedPreferences.OnSharedPreferenceChangeListener {
     public static final String ARG_PREFERENCES_RES_ID = "org.openobservatory.ooniprobe.fragment.PreferenceFragment.PREF_RES_ID";
     private static final String ARG_CONTAINER_RES_ID = "org.openobservatory.ooniprobe.fragment.PreferenceFragment.CONTAINER_VIEW_ID";
-    public static final int IGNORE_OPTIMIZATION_REQUEST = 15;
     private String rootKey;
 
     public static PreferenceFragment newInstance(@XmlRes int preferencesResId, @IdRes int preferencesContainerResId, String rootKey) {
@@ -150,7 +149,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                     Intent intent = new Intent();
                     intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
                     intent.setData(Uri.parse("package:" + getActivity().getPackageName()));
-                    startActivityForResult(intent, IGNORE_OPTIMIZATION_REQUEST);
+                    startActivityForResult(intent, PreferenceManager.IGNORE_OPTIMIZATION_REQUEST);
                 }
                 else
                     ServiceUtil.scheduleJob(getContext());
@@ -233,7 +232,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == IGNORE_OPTIMIZATION_REQUEST) {
+        if (requestCode == PreferenceManager.IGNORE_OPTIMIZATION_REQUEST) {
             PowerManager pm = (PowerManager) getActivity().getSystemService(Context.POWER_SERVICE);
             //For API < 23 we ignore battery optimization
             boolean isIgnoringBatteryOptimizations = true;
