@@ -67,6 +67,19 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
             });
             bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
             if (getPreferenceManager().getAppOpenCount() != 0
+                    && getPreferenceManager().getAppOpenCount() % PreferenceManager.AUTOTEST_DIALOG_COUNT == 0
+                    && !getPreferenceManager().isAutomaticTestEnabled()
+                    && !getPreferenceManager().isAskAutomaticTestDialogDisabled()) {
+                new ConfirmDialogFragment.Builder()
+                        .withTitle(getString(R.string.Modal_Autorun_Modal_Title))
+                        .withMessage(getString(R.string.Modal_Autorun_Modal_Text))
+                        .withPositiveButton(getString(R.string.Modal_SoundsGreat))
+                        .withNegativeButton(getString(R.string.Modal_NoThanks))
+                        .withNeutralButton(getString(R.string.Modal_DontAskAgain))
+                        .withExtra(AUTOTEST_DIALOG)
+                        .build().show(getSupportFragmentManager(), null);
+            }
+            else if (getPreferenceManager().getAppOpenCount() != 0
                     && getPreferenceManager().getAppOpenCount() % PreferenceManager.NOTIFICATION_DIALOG_COUNT == 0
                     && !getPreferenceManager().isNotifications()
                     && !getPreferenceManager().isAskNotificationDialogDisabled()) {
@@ -77,19 +90,6 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                         .withNegativeButton(getString(R.string.Modal_NoThanks))
                         .withNeutralButton(getString(R.string.Modal_DontAskAgain))
                         .withExtra(NOTIFICATION_DIALOG)
-                        .build().show(getSupportFragmentManager(), null);
-            }
-            else if (getPreferenceManager().getAppOpenCount() != 0
-                    && getPreferenceManager().getAppOpenCount() % PreferenceManager.NOTIFICATION_DIALOG_COUNT == 0
-                    && !getPreferenceManager().isAutomaticTestEnabled()
-                    && !getPreferenceManager().isAskAutomaticTestDialogDisabled()) {
-                new ConfirmDialogFragment.Builder()
-                        .withTitle(getString(R.string.Modal_Autorun_Modal_Title))
-                        .withMessage(getString(R.string.Modal_Autorun_Modal_Text))
-                        .withPositiveButton(getString(R.string.Modal_SoundsGreat))
-                        .withNegativeButton(getString(R.string.Modal_NoThanks))
-                        .withNeutralButton(getString(R.string.Modal_DontAskAgain))
-                        .withExtra(AUTOTEST_DIALOG)
                         .build().show(getSupportFragmentManager(), null);
             }
         }

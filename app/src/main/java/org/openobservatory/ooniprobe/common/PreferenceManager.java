@@ -24,7 +24,8 @@ public class PreferenceManager {
 	static final String GEO_VER = "geo_ver";
 	public static final Integer MAX_RUNTIME_DISABLED = -1;
 	private static final String IS_NOTIFICATION_DIALOG = "isNotificationDialog";
-	public static final int NOTIFICATION_DIALOG_COUNT = 5;
+	public static final int NOTIFICATION_DIALOG_COUNT = 7;
+	public static final int AUTOTEST_DIALOG_COUNT = 5;
 	private static final String NOTIFICATION_DIALOG_DISABLE = "isNotificationDialogDisabled";
 	private static final String NOTIFICATION_AUTOTEST_DISABLE = "isAutomaticTestDialogDisabled";
 	private static final String TOKEN = "token";
