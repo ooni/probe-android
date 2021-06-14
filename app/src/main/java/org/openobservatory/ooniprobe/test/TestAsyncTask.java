@@ -146,7 +146,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     private void downloadURLs() {
         try {
             OONISession session = EngineProvider.get().newSession(EngineProvider.get().getDefaultSessionConfig(
-                    app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray()));
+                    app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray(), proxy));
             OONIContext ooniContext = session.newContextWithTimeout(30);
             session.maybeUpdateResources(ooniContext);
             OONIURLListConfig config = new OONIURLListConfig();

@@ -27,6 +27,7 @@ import org.openobservatory.ooniprobe.model.jsonresult.EventResult;
 import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
 import org.openobservatory.ooniprobe.model.settings.Settings;
 import org.openobservatory.ooniprobe.test.EngineProvider;
+import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 
 import java.io.File;
 import java.io.Serializable;
