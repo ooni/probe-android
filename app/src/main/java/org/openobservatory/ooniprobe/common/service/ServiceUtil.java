@@ -55,7 +55,6 @@ public class ServiceUtil {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     public static void stopJob(Context context) {
         JobScheduler jobScheduler = ContextCompat.getSystemService(context, JobScheduler.class);
         if (jobScheduler != null) {

@@ -64,7 +64,7 @@ public class MeasurementAbstractTest extends AbstractTest {
 
         scenario = ActivityScenario.launch(intent);
         // To avoid flaky testing
-        onView(isRoot()).perform(waitId(R.id.pager, TimeUnit.MILLISECONDS.toMillis(200)));
+        onView(isRoot()).perform(waitId(R.id.pager, TimeUnit.SECONDS.toMillis(1)));
     }
 
     public void launchResults() {

@@ -2,6 +2,10 @@ package org.openobservatory.ooniprobe.ui.resultdetails;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.schibsted.spain.barista.rule.flaky.AllowFlaky;
+import com.schibsted.spain.barista.rule.flaky.FlakyTestRule;
+
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openobservatory.ooniprobe.R;
@@ -32,7 +36,11 @@ import static org.openobservatory.ooniprobe.ui.utils.RecyclerViewMatcher.withRec
 @RunWith(AndroidJUnit4.class)
 public class PerformanceTest extends MeasurementAbstractTest {
 
+    @Rule
+    public FlakyTestRule flakyRule = new FlakyTestRule();
+
     @Test
+    @AllowFlaky(attempts = 3)
     public void testHeaderData() {
         // Arrange
         Result testResult = ResultFactory.createAndSave(new PerformanceSuite());

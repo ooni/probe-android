@@ -1,11 +1,9 @@
 package org.openobservatory.ooniprobe.testing;
 
-import kotlin.jvm.functions.Function0;
-
 public class WaitFor {
 
     public static void waitFor(Check check) {
-        Long initialTime = System.currentTimeMillis();
+        long initialTime = System.currentTimeMillis();
         Throwable lastError;
         do {
             try {
@@ -24,7 +22,7 @@ public class WaitFor {
     }
 
     public interface Check {
-        public void invoke();
+        void invoke();
     }
 
     private final static Long TIMEOUT = 10000L;

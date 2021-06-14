@@ -24,8 +24,10 @@ public class PreferenceManager {
 	static final String GEO_VER = "geo_ver";
 	public static final Integer MAX_RUNTIME_DISABLED = -1;
 	private static final String IS_NOTIFICATION_DIALOG = "isNotificationDialog";
-	public static final int NOTIFICATION_DIALOG_COUNT = 5;
+	public static final int NOTIFICATION_DIALOG_COUNT = 7;
+	public static final int AUTOTEST_DIALOG_COUNT = 5;
 	private static final String NOTIFICATION_DIALOG_DISABLE = "isNotificationDialogDisabled";
+	private static final String AUTOTEST_DIALOG_DISABLE = "isAutomaticTestDialogDisabled";
 	private static final String TOKEN = "token";
 	private static final String SHOW_ONBOARDING = "first_run";
 	//This is in ms, set to one day
@@ -34,6 +36,7 @@ public class PreferenceManager {
 	private static final String UUID4 = "uuid4";
 	public static final String AUTORUN_COUNT = "autorun_count";
 	public static final String AUTORUN_DATE = "autorun_last_date";
+	public static final int IGNORE_OPTIMIZATION_REQUEST = 15;
 
 	private final SharedPreferences sp;
 	private final Resources r;
@@ -104,11 +107,9 @@ public class PreferenceManager {
 				.apply();
 	}
 
-
 	public boolean isNotifications() {
 		return sp.getBoolean(r.getString(R.string.notifications_enabled), false);
 	}
-
 
 	public boolean isDarkTheme() {
 		return sp.getBoolean(r.getString(R.string.theme_enabled), false);
@@ -289,8 +290,25 @@ public class PreferenceManager {
 		sp.edit().putLong(IS_NOTIFICATION_DIALOG, value).apply();
 	}
 
+	/*
+	 * This method is used to ask user to enable push notifications.
+	 */
+	public boolean isAskAutomaticTestDialogDisabled() {
+		return sp.getBoolean(AUTOTEST_DIALOG_DISABLE, false);
+	}
+
+	public void disableAskAutomaticTestDialog() {
+		sp.edit().putBoolean(AUTOTEST_DIALOG_DISABLE, true)
+				.apply();
+	}
+
 	public boolean isAutomaticTestEnabled() {
 		return sp.getBoolean(r.getString(R.string.automated_testing_enabled), false);
+	}
+
+	public void enableAutomatedTesting() {
+		sp.edit().putBoolean(r.getString(R.string.automated_testing_enabled), true)
+				.apply();
 	}
 
 	public void disableAutomaticTest() {

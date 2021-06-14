@@ -3,7 +3,10 @@ package org.openobservatory.ooniprobe.activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.PowerManager;
+import android.provider.Settings;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -30,6 +33,7 @@ import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 public class MainActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String RES_ITEM = "resItem";
     public static final String NOTIFICATION_DIALOG = "notification";
+    public static final String AUTOTEST_DIALOG = "automatic_testing";
 
     @BindView(R.id.bottomNavigation)
     BottomNavigationView bottomNavigation;
@@ -75,13 +79,12 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 new ConfirmDialogFragment.Builder()
                         .withTitle(getString(R.string.Modal_EnableNotifications_Title))
                         .withMessage(getString(R.string.Modal_EnableNotifications_Paragraph))
-                        .withPositiveButton(getString(R.string.Modal_OK))
+                        .withPositiveButton(getString(R.string.Modal_SoundsGreat))
                         .withNegativeButton(getString(R.string.Modal_NoThanks))
                         .withNeutralButton(getString(R.string.Modal_DontAskAgain))
                         .withExtra(NOTIFICATION_DIALOG)
                         .build().show(getSupportFragmentManager(), null);
             }
-
         }
 
         if (android.os.Build.VERSION.SDK_INT >= 29){
@@ -131,5 +134,47 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 notificationManager.disableAskNotificationDialog();
             }
         }
+        if (extra.equals(AUTOTEST_DIALOG)) {
+            preferenceManager.setNotificationsFromDialog(i == DialogInterface.BUTTON_POSITIVE);
+            if (i == DialogInterface.BUTTON_POSITIVE){
+                //For API < 23 we ignore battery optimization
+                boolean isIgnoringBatteryOptimizations = true;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                    PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+                    isIgnoringBatteryOptimizations = pm.isIgnoringBatteryOptimizations(getPackageName());
+                }
+                if(!isIgnoringBatteryOptimizations){
+                    Intent intent = new Intent();
+                    intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+                    intent.setData(Uri.parse("package:" + getPackageName()));
+                    startActivityForResult(intent, PreferenceManager.IGNORE_OPTIMIZATION_REQUEST);
+                }
+                else {
+                    getPreferenceManager().enableAutomatedTesting();
+                    ServiceUtil.scheduleJob(this);
+                }
+            }
+            else if (i == DialogInterface.BUTTON_NEUTRAL){
+                preferenceManager.disableAskAutomaticTestDialog();
+            }
+        }
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PreferenceManager.IGNORE_OPTIMIZATION_REQUEST) {
+            PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+            //For API < 23 we ignore battery optimization
+            boolean isIgnoringBatteryOptimizations = true;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                isIgnoringBatteryOptimizations = pm.isIgnoringBatteryOptimizations(getPackageName());
+            }
+            if (isIgnoringBatteryOptimizations) {
+                preferenceManager.enableAutomatedTesting();
+                ServiceUtil.scheduleJob(this);
+            }
+        }
+    }
+
 }

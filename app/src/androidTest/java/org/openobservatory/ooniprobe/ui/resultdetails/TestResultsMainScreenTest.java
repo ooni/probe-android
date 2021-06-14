@@ -2,6 +2,10 @@ package org.openobservatory.ooniprobe.ui.resultdetails;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.schibsted.spain.barista.rule.flaky.AllowFlaky;
+import com.schibsted.spain.barista.rule.flaky.FlakyTestRule;
+
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openobservatory.ooniprobe.R;
@@ -38,7 +42,11 @@ import static org.openobservatory.ooniprobe.ui.utils.ViewMatchers.waitPartialTex
 @RunWith(AndroidJUnit4.class)
 public class TestResultsMainScreenTest extends MeasurementAbstractTest {
 
+    @Rule
+    public FlakyTestRule flakyRule = new FlakyTestRule();
+
     @Test
+    @AllowFlaky(attempts = 3)
     public void testHeaderData() {
         // Arrange
         Result websites = ResultFactory.createAndSave(new WebsitesSuite());
@@ -67,6 +75,7 @@ public class TestResultsMainScreenTest extends MeasurementAbstractTest {
     }
 
     @Test
+    @AllowFlaky(attempts = 3)
     public void testListOfResults() {
         // Arrange
         Result websites = ResultFactory.createAndSave(new WebsitesSuite());
@@ -177,6 +186,7 @@ public class TestResultsMainScreenTest extends MeasurementAbstractTest {
     }
 
     @Test
+    @AllowFlaky(attempts = 3)
     public void deleteResultsTest() {
         // Arrange
         ResultFactory.createAndSave(new WebsitesSuite());
@@ -195,6 +205,7 @@ public class TestResultsMainScreenTest extends MeasurementAbstractTest {
     }
 
     @Test
+    @AllowFlaky(attempts = 3)
     public void filterTest() {
         // Arrange
         Result websites = ResultFactory.createAndSave(new WebsitesSuite());
