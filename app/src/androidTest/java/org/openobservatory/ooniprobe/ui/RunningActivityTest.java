@@ -10,7 +10,6 @@ import com.schibsted.spain.barista.rule.flaky.AllowFlaky;
 import com.schibsted.spain.barista.rule.flaky.FlakyTestRule;
 
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.RuleChain;
@@ -46,8 +45,9 @@ public class RunningActivityTest extends AbstractTest {
     public RuleChain chain = RuleChain.outerRule(flakyRule)
             .around(serviceRule);
 
-    @Before
-    public void setUp() {
+    @Override
+    public void before() {
+        super.before();
         DatabaseUtils.resetDatabase();
         EngineProvider.engineInterface = testEngine;
     }
