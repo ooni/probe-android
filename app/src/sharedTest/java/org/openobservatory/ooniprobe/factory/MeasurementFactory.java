@@ -10,7 +10,7 @@ import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.List;
 
@@ -49,21 +49,6 @@ public class MeasurementFactory {
         temp.url = url;
 
         return temp;
-    }
-
-    public static Measurement buildWithName(String testName) {
-        Measurement measurement = new Measurement();
-        measurement.test_name = testName;
-        measurement.start_time = new Date();
-        return measurement;
-    }
-
-    private static String getTestKeyFrom(AbstractTest testType, boolean hasFailed) {
-        if (hasFailed) {
-            return getBlockedTestKeyFrom(testType);
-        }
-
-        return getAccessibleTestKeyFrom(testType);
     }
 
     private static String getAccessibleTestKeyFrom(AbstractTest testType) {
@@ -146,7 +131,23 @@ public class MeasurementFactory {
                 return "";
 
             case "tor":
-            default: result = "{}";
+            default:
+                result = "{}";
+        }
+
+        return result;
+    }
+
+    public static Measurement buildWithName(String testName) {
+        Measurement measurement = new Measurement();
+        measurement.test_name = testName;
+        measurement.start_time = new Date();
+        return measurement;
+    }
+
+    private static String getTestKeyFrom(AbstractTest testType, boolean hasFailed) {
+        if (hasFailed) {
+            return getBlockedStringFrom(testType);
         }
 
         return getAccessibleStringFrom(testType);
@@ -171,7 +172,7 @@ public class MeasurementFactory {
             FileUtils.writeStringToFile(
                     entryFile,
                     "test",
-                    Charset.forName("UTF-8")
+                    StandardCharsets.UTF_8
             );
         } catch (IOException e) {
             return false;

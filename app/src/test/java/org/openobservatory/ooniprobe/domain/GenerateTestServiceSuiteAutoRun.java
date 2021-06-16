@@ -52,7 +52,7 @@ public class GenerateTestServiceSuiteAutoRun extends RobolectricAbstractTest {
     @Test
     public void shouldNotStartTest() {
         // Act
-        AbstractSuite suite = generateSuite.generate(ooniCheckConfigMock);
+        AbstractSuite suite = generateSuite.generate(ooniCheckConfigMock, false, false, true);
 
         // Assert
         Assert.assertNull(suite);
@@ -80,7 +80,7 @@ public class GenerateTestServiceSuiteAutoRun extends RobolectricAbstractTest {
         when(ooniSessionMock.checkIn(any(), any())).thenReturn(ooniResultsMock);
 
         // Act
-        AbstractSuite suite = generateSuite.generate(ooniCheckConfigMock);
+        AbstractSuite suite = generateSuite.generate(ooniCheckConfigMock, true, true, false);
 
         // Assert
         Assert.assertNotNull(suite);
@@ -92,7 +92,7 @@ public class GenerateTestServiceSuiteAutoRun extends RobolectricAbstractTest {
         Assert.assertEquals(suiteUrls.size(), webTest.getInputs().size());
 
         for (int i = 0; i < webTest.getInputs().size(); i++) {
-            Assert.assertEquals( webTest.getInputs().get(i), suiteUrls.get(i).getUrl());
+            Assert.assertEquals(webTest.getInputs().get(i), suiteUrls.get(i).getUrl());
         }
     }
 
@@ -108,7 +108,7 @@ public class GenerateTestServiceSuiteAutoRun extends RobolectricAbstractTest {
         OONIURLInfo url3 = mock(OONIURLInfo.class);
         when(url1.getUrl()).thenReturn(faker.internet.url());
 
-        return new ArrayList<OONIURLInfo>(){
+        return new ArrayList<OONIURLInfo>() {
             {
                 add(url1);
                 add(url2);

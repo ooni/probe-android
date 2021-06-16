@@ -23,12 +23,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
-import static org.openobservatory.ooniprobe.common.PreferenceManager.AUTORUN_COUNT;
 import static org.openobservatory.ooniprobe.common.PreferenceManager.AUTORUN_DATE;
 import static org.openobservatory.ooniprobe.common.PreferenceManager.DELETE_JSON_DELAY;
 import static org.openobservatory.ooniprobe.common.PreferenceManager.DELETE_JSON_KEY;
-import static org.openobservatory.ooniprobe.common.PreferenceManager.NOTIFICATION_DIALOG_DISABLE;
-import static org.openobservatory.ooniprobe.common.PreferenceManager.SHOW_ONBOARDING;
 import static org.openobservatory.ooniprobe.common.PreferenceManager.UUID4;
 
 public class PreferenceManagerTest extends RobolectricAbstractTest {
