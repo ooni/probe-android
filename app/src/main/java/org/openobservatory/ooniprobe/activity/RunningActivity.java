@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.view.View;
 import android.view.animation.Animation;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -52,6 +53,8 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     ProgressBar progress;
     @BindView(R.id.close)
     ImageButton close;
+    @BindView(R.id.stop)
+    Button stop;
     @BindView(R.id.animation)
     LottieAnimationView animation;
     private Integer runtime;
@@ -87,6 +90,12 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         setContentView(R.layout.activity_running);
         ButterKnife.bind(this);
         close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new ConfirmDialogFragment.Builder()
