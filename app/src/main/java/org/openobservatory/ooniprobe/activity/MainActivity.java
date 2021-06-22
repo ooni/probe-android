@@ -18,7 +18,7 @@ import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.service.ServiceUtil;
-import org.openobservatory.ooniprobe.domain.models.UpdatesNotificationManager;
+import org.openobservatory.ooniprobe.domain.UpdatesNotificationManager;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
 import org.openobservatory.ooniprobe.fragment.PreferenceGlobalFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
@@ -84,6 +84,16 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                         .withNegativeButton(getString(R.string.Modal_NoThanks))
                         .withNeutralButton(getString(R.string.Modal_DontAskAgain))
                         .withExtra(NOTIFICATION_DIALOG)
+                        .build().show(getSupportFragmentManager(), null);
+            }
+            if (notificationManager.shouldShowAutoTest()) {
+                new ConfirmDialogFragment.Builder()
+                        .withTitle(getString(R.string.Modal_Autorun_Modal_Title))
+                        .withMessage(getString(R.string.Modal_Autorun_Modal_Text))
+                        .withPositiveButton(getString(R.string.Modal_SoundsGreat))
+                        .withNegativeButton(getString(R.string.Modal_NoThanks))
+                        .withNeutralButton(getString(R.string.Modal_DontAskAgain))
+                        .withExtra(AUTOTEST_DIALOG)
                         .build().show(getSupportFragmentManager(), null);
             }
         }

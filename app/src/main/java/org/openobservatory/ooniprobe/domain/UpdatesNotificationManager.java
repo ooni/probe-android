@@ -20,6 +20,13 @@ public class UpdatesNotificationManager {
                 && !pm.isAskNotificationDialogDisabled();
     }
 
+    public boolean shouldShowAutoTest() {
+        return pm.getAppOpenCount() != 0
+                && pm.getAppOpenCount() % PreferenceManager.AUTOTEST_DIALOG_COUNT == 0
+                && !pm.isAutomaticTestEnabled()
+                && !pm.isAskAutomaticTestDialogDisabled();
+    }
+
     public void getUpdates(boolean notificationUpdates) {
         pm.setNotificationsFromDialog(notificationUpdates);
     }

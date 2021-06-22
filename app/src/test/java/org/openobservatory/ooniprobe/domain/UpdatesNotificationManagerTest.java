@@ -1,8 +1,7 @@
-package org.openobservatory.ooniprobe.domain.models;
+package org.openobservatory.ooniprobe.domain;
 
 import org.junit.Test;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
-import org.openobservatory.ooniprobe.domain.UpdatesNotificationManager;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -25,6 +24,21 @@ public class UpdatesNotificationManagerTest {
         UpdatesNotificationManager manager = build();
         // Act
         boolean value = manager.shouldShow();
+
+        // Assert
+        assertTrue(value);
+    }
+
+    @Test
+    public void testShouldShowAutoTest() {
+        // Arrange
+        when(preferenceManagerMock.getAppOpenCount()).thenReturn(5L);
+        when(preferenceManagerMock.isAutomaticTestEnabled()).thenReturn(false);
+        when(preferenceManagerMock.isAskAutomaticTestDialogDisabled()).thenReturn(false);
+
+        UpdatesNotificationManager manager = build();
+        // Act
+        boolean value = manager.shouldShowAutoTest();
 
         // Assert
         assertTrue(value);
@@ -55,6 +69,21 @@ public class UpdatesNotificationManagerTest {
         UpdatesNotificationManager manager = build();
         // Act
         boolean value = manager.shouldShow();
+
+        // Assert
+        assertFalse(value);
+    }
+
+    @Test
+    public void testShouldNotShowAutoTestWhenAskingDisabled() {
+        // Arrange
+        when(preferenceManagerMock.getAppOpenCount()).thenReturn(5L);
+        when(preferenceManagerMock.isAutomaticTestEnabled()).thenReturn(false);
+        when(preferenceManagerMock.isAskAutomaticTestDialogDisabled()).thenReturn(true);
+
+        UpdatesNotificationManager manager = build();
+        // Act
+        boolean value = manager.shouldShowAutoTest();
 
         // Assert
         assertFalse(value);
