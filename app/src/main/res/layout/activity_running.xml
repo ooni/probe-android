@@ -10,6 +10,7 @@
 	<RelativeLayout
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content">
+
 		<ImageButton
 			android:id="@+id/close"
 			style="@style/Widget.MaterialComponents.Button.OutlinedButton"
@@ -42,6 +43,27 @@
 		android:layout_marginHorizontal="32dp"
 		android:gravity="center_horizontal"
 		android:text="@string/Dashboard_Running_PreparingTest" />
+	<RelativeLayout
+		android:id="@+id/proxy_icon"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
+		android:layout_marginHorizontal="32dp">
+		<TextView
+			style="@style/TextAppearance.AppCompat.Small"
+			android:layout_centerInParent="true"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@drawable/rounded_corner"
+			android:drawablePadding="4dp"
+			android:paddingHorizontal="8dp"
+			app:drawableStartCompat="@drawable/settings_circumvention"
+			app:cornerRadius="24dp"
+			android:textColor="@color/color_gray7"
+			android:gravity="center"
+			android:text="@string/Dashboard_Running_ProxyInUse"
+			android:textStyle="bold" />
+	</RelativeLayout>
 
 	<com.airbnb.lottie.LottieAnimationView
 		android:id="@+id/animation"

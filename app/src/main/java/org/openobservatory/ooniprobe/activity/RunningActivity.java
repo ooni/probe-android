@@ -16,6 +16,7 @@ import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,6 +58,8 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     Button stop;
     @BindView(R.id.animation)
     LottieAnimationView animation;
+    @BindView(R.id.proxy_icon)
+    RelativeLayout proxy_icon;
     private Integer runtime;
     private RunTestService service;
     private TestRunBroadRequestReceiver receiver;
@@ -89,6 +92,8 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         setTheme(R.style.Theme_MaterialComponents_NoActionBar_App);
         setContentView(R.layout.activity_running);
         ButterKnife.bind(this);
+        if (getPreferenceManager().getProxyURL().isEmpty())
+            proxy_icon.setVisibility(View.GONE);
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
