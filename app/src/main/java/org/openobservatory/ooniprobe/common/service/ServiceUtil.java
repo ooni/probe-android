@@ -6,9 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.BatteryManager;
-import android.os.Build;
 
-import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
 import org.openobservatory.engine.OONICheckInConfig;
@@ -27,7 +25,6 @@ public class ServiceUtil {
 
     static Dependencies d = new Dependencies();
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     public static void scheduleJob(Context context) {
         Application app = ((Application) context.getApplicationContext());
 

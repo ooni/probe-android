@@ -3,7 +3,6 @@ package org.openobservatory.ooniprobe.common.service;
 import android.app.job.JobParameters;
 import android.app.job.JobService;
 import android.os.AsyncTask;
-import android.os.Build;
 
 import org.openobservatory.ooniprobe.common.Application;
 
@@ -34,9 +33,7 @@ public class RunTestJobService extends JobService {
 
         @Override
         protected JobParameters doInBackground(JobParameters... params) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                ServiceUtil.callCheckInAPI(app);
-            }
+            ServiceUtil.callCheckInAPI(app);
             return params[0];
         }
 
