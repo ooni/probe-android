@@ -52,6 +52,7 @@
   <string name="Dashboard_Running_CloseLog">Cerrar registro</string>
   <string name="Dashboard_Running_Stopping_Title">Deteniendo prueba...</string>
   <string name="Dashboard_Running_Stopping_Notice">Finalizando las pruebas actualmente pendientes, por favor espera...</string>
+  <string name="Dashboard_Running_ProxyInUse">Proxy in use</string>
   <string name="Dashboard_Card_Subtitle">Pulsar tarjeta por más</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">Probar el bloqueo de sitios web</string>
@@ -307,9 +308,7 @@
   <string name="Modal_InterruptTest_Paragraph">Esto interrumpirá la prueba actual a partir de este momento.</string>
   <string name="Modal_Autorun_Modal_Title">¿Desearías ejecutar pruebas automáticamente?</string>
   <string name="Modal_Autorun_Modal_Text">Al habilitar las pruebas automáticas, OONI Probe las ejecutará automáticamente en forma regular (y no necesitarás recordar ejecutarlas manualmente).</string>
-  <string name="Modal_Autorun_Modal_Button_No">No, gracias</string>
   <string name="Modal_Autorun_Modal_Button_RemindLater">Recordármelo más tarde</string>
-  <string name="Modal_Autorun_Modal_Button_Yes">Suena genial</string>
   <string name="Toast_CopiedToClipboard">Se ha copiado al portapapeles</string>
   <string name="Snackbar_ResultsNotUploaded_Text">No subido</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Subir</string>

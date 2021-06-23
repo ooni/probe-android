@@ -52,6 +52,7 @@
   <string name="Dashboard_Running_CloseLog">关闭日志</string>
   <string name="Dashboard_Running_Stopping_Title">Stopping test…</string>
   <string name="Dashboard_Running_Stopping_Notice">Finishing the currently pending tests, please wait…</string>
+  <string name="Dashboard_Running_ProxyInUse">Proxy in use</string>
   <string name="Dashboard_Card_Subtitle">触击选项卡以查看详情</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">测试网站是否被屏蔽</string>
@@ -307,9 +308,7 @@
   <string name="Modal_InterruptTest_Paragraph">这将中断当前的测试。</string>
   <string name="Modal_Autorun_Modal_Title">Would you like to run tests automatically?</string>
   <string name="Modal_Autorun_Modal_Text">启用自动测试后，OONI Probe 会自动地定期运行测试（免去每次手动运行）。</string>
-  <string name="Modal_Autorun_Modal_Button_No">不要，谢谢</string>
   <string name="Modal_Autorun_Modal_Button_RemindLater">Remind me later</string>
-  <string name="Modal_Autorun_Modal_Button_Yes">似乎不错</string>
   <string name="Toast_CopiedToClipboard">已复制到剪贴板</string>
   <string name="Snackbar_ResultsNotUploaded_Text">未上传</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">上传</string>

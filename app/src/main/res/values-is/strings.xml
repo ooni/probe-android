@@ -52,6 +52,7 @@
   <string name="Dashboard_Running_CloseLog">Loka atvikaskrá</string>
   <string name="Dashboard_Running_Stopping_Title">Stopping test…</string>
   <string name="Dashboard_Running_Stopping_Notice">Finishing the currently pending tests, please wait…</string>
+  <string name="Dashboard_Running_ProxyInUse">Proxy in use</string>
   <string name="Dashboard_Card_Subtitle">Ýttu á spjaldið til að sjá meira</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">Prófa hindranir fyrir vefsíður</string>
@@ -307,9 +308,7 @@
   <string name="Modal_InterruptTest_Paragraph">Þetta mun stöðva á þessu þrepi prófunina sem nú er í gangi.</string>
   <string name="Modal_Autorun_Modal_Title">Viltu keyra prófanir sjálfvirkt?</string>
   <string name="Modal_Autorun_Modal_Text">Með því að virkja sjálfvirkar prófanir, verða prófanir OONI Probe keyrðar sjálfvirkt með reglubundnum hætti (og þú þarft þá ekki að muna eftir að setja þær í gang).</string>
-  <string name="Modal_Autorun_Modal_Button_No">Nei takk</string>
   <string name="Modal_Autorun_Modal_Button_RemindLater">Minna mig á síðar</string>
-  <string name="Modal_Autorun_Modal_Button_Yes">Hljómar vel</string>
   <string name="Toast_CopiedToClipboard">Afritað á klippispjald</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Ekki sent inn</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Senda inn</string>

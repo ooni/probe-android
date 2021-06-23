@@ -52,6 +52,7 @@
   <string name="Dashboard_Running_CloseLog">أغلِق السجل</string>
   <string name="Dashboard_Running_Stopping_Title">إيقاف الاختبار جار ... </string>
   <string name="Dashboard_Running_Stopping_Notice">يرجى الانتظار حتى الانتهاء من الاختبارات الجارية حاليّاً</string>
+  <string name="Dashboard_Running_ProxyInUse">Proxy in use</string>
   <string name="Dashboard_Card_Subtitle">انقر البطاقة للمزيد</string>
   <string name="Dashboard_Card_Seconds">~%1$sث</string>
   <string name="Dashboard_Websites_Card_Description">اختبار حجب المواقع</string>
@@ -307,9 +308,7 @@
   <string name="Modal_InterruptTest_Paragraph">هذا سيعطّل الاختبار الجاري فوراً </string>
   <string name="Modal_Autorun_Modal_Title">هل تودّون إجراء الاختبارات أوتوماتكياً؟ </string>
   <string name="Modal_Autorun_Modal_Text">عند تفعيل الاختبارات الأوتوماتيكيّة، ستجري اختبارات OONI Probe بشكل تلقائي ودوري (ولن يجب عليكم إجراؤها يدوياً). </string>
-  <string name="Modal_Autorun_Modal_Button_No">لا، شكراً</string>
   <string name="Modal_Autorun_Modal_Button_RemindLater">ذكرني لاحقا</string>
-  <string name="Modal_Autorun_Modal_Button_Yes">رائع </string>
   <string name="Toast_CopiedToClipboard">نسخ إلى الحافظة</string>
   <string name="Snackbar_ResultsNotUploaded_Text">لم يتمّ الرفع</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">رفع</string>

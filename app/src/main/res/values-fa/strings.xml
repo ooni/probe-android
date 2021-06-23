@@ -52,6 +52,7 @@
   <string name="Dashboard_Running_CloseLog">بستن رویداد</string>
   <string name="Dashboard_Running_Stopping_Title">در حال توقف تست...</string>
   <string name="Dashboard_Running_Stopping_Notice">در حال اتمام تست‌های در حال انتظار. لطفا صبر کنید...</string>
+  <string name="Dashboard_Running_ProxyInUse">Proxy in use</string>
   <string name="Dashboard_Card_Subtitle">برای اطلاعات بیشتر کارت را بفشارید</string>
   <string name="Dashboard_Card_Seconds">~%1$s</string>
   <string name="Dashboard_Websites_Card_Description">تست مسدودیت وبسایت‌ها</string>
@@ -307,9 +308,7 @@
   <string name="Modal_InterruptTest_Paragraph">این کار آزمون فعلی را از این لحظه قطع خواهد کرد.</string>
   <string name="Modal_Autorun_Modal_Title">آیا مایل به اجرای خودکار تست‌ها هستید؟</string>
   <string name="Modal_Autorun_Modal_Text">با فعالسازی آزمون خودکار، آزمون‌های OONI Probe به صورت خودکار و در بازه‌های مشخص انجام خواهند شد (و شما نیاز به خاطر سپردن انجام آزمون نیستید).</string>
-  <string name="Modal_Autorun_Modal_Button_No">نه، ممنون</string>
   <string name="Modal_Autorun_Modal_Button_RemindLater">بعدا یاداوری کن</string>
-  <string name="Modal_Autorun_Modal_Button_Yes">به نظر عالی میاد</string>
   <string name="Toast_CopiedToClipboard">در حافظه‌ی موقت کپی شد</string>
   <string name="Snackbar_ResultsNotUploaded_Text">بارگذاری نشدند</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">آپلود</string>

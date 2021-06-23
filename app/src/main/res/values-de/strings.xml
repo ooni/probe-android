@@ -52,6 +52,7 @@
   <string name="Dashboard_Running_CloseLog">Log schliessen</string>
   <string name="Dashboard_Running_Stopping_Title">Test wird gestoppt …</string>
   <string name="Dashboard_Running_Stopping_Notice">Fertigstellung der aktuell ausstehenden Tests, bitte warten ...</string>
+  <string name="Dashboard_Running_ProxyInUse">Proxy in use</string>
   <string name="Dashboard_Card_Subtitle">Tippe auf die Schaltfläche, um mehr zu erfahren</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">Teste die Blockierung von Webseiten</string>
@@ -307,9 +308,7 @@
   <string name="Modal_InterruptTest_Paragraph">Dies wird den laufenden Test ab diesem Zeitpunkt unterbrechen.</string>
   <string name="Modal_Autorun_Modal_Title">Möchtest du Tests automatisch ausführen lassen?</string>
   <string name="Modal_Autorun_Modal_Text">Wenn du automatische Tests aktivierst, werden die Tests der OONI-Sonde regelmässig automatisch ausgeführt (und Du musst nicht daran denken, Tests manuell auszuführen).</string>
-  <string name="Modal_Autorun_Modal_Button_No">Nein, danke</string>
   <string name="Modal_Autorun_Modal_Button_RemindLater">Später erinnern</string>
-  <string name="Modal_Autorun_Modal_Button_Yes">Hört sich toll an</string>
   <string name="Toast_CopiedToClipboard">In Zwischenablage kopiert</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Nicht hochgeladen</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Hochladen</string>

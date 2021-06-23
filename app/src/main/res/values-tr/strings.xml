@@ -52,6 +52,7 @@
   <string name="Dashboard_Running_CloseLog">Günlüğü Kapat</string>
   <string name="Dashboard_Running_Stopping_Title">Sınama durduruluyor…</string>
   <string name="Dashboard_Running_Stopping_Notice">Bekleyen sınamalar tamamlanıyor. Lütfen bekleyin…</string>
+  <string name="Dashboard_Running_ProxyInUse">Proxy in use</string>
   <string name="Dashboard_Card_Subtitle">Ayrıntılar için karta dokunun</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">Web sitesi engellemelerini sınayın</string>
@@ -307,9 +308,7 @@
   <string name="Modal_InterruptTest_Paragraph">Bu işlem şu anda yapılmakta olan sınamayı durduracak.</string>
   <string name="Modal_Autorun_Modal_Title">Sınamalar otomatik olarak yürütülsün mü?</string>
   <string name="Modal_Autorun_Modal_Text">Otomatik sınama etkinleştirildiğinde, düzenli olarak otomatik OONI Probe sınamaları yapılır (sınamaları el ile yapmayı anımsamanız gerekmez).</string>
-  <string name="Modal_Autorun_Modal_Button_No">Hayır, teşekkürler</string>
   <string name="Modal_Autorun_Modal_Button_RemindLater">Beni hatırla</string>
-  <string name="Modal_Autorun_Modal_Button_Yes">Harika görünüyor</string>
   <string name="Toast_CopiedToClipboard">Panoya kopyalandı</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Yüklenmemiş</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Yükle</string>

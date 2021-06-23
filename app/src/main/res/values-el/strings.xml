@@ -52,6 +52,7 @@
   <string name="Dashboard_Running_CloseLog">Κλείσιμο αρχείου καταγραφής</string>
   <string name="Dashboard_Running_Stopping_Title">Η δοκιμή σταματάει...</string>
   <string name="Dashboard_Running_Stopping_Notice">Τελειώνουμε τις δοκιμές που εκκρεμούν, παρακαλώ περίμενε...</string>
+  <string name="Dashboard_Running_ProxyInUse">Proxy in use</string>
   <string name="Dashboard_Card_Subtitle">Πάτα την κάρτα για περισσότερα</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">Έλεγξε το μπλοκάρισμα ιστοσελιδών</string>
@@ -307,9 +308,7 @@
   <string name="Modal_InterruptTest_Paragraph">Αυτό θα διακόψει την τρέχουσα δοκιμή από αυτή τη στιγμή.</string>
   <string name="Modal_Autorun_Modal_Title">Θέλεις να τρέχεις δοκιμές αυτοματοποιημένα;</string>
   <string name="Modal_Autorun_Modal_Text">Ενεργοποιώντας τις αυτοματοποιημένες δοκιμές, οι δοκιμές του OONI Probe θα εκτελούνται αυτόματα σε τακτά χρονικά διαστήματα (και δεν θα χρειάζεται να θυμάσαι να τις τρέξεις χειροκίνητα).</string>
-  <string name="Modal_Autorun_Modal_Button_No">Όχι, ευχαριστώ</string>
   <string name="Modal_Autorun_Modal_Button_RemindLater">Υπενθύμιση αργότερα</string>
-  <string name="Modal_Autorun_Modal_Button_Yes">Ναι, αμέ!</string>
   <string name="Toast_CopiedToClipboard">Αντιγράφηκε στο πρόχειρο</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Δεν ανέβηκαν</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">Ανέβασμα</string>

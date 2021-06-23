@@ -52,6 +52,7 @@
   <string name="Dashboard_Running_CloseLog">ปิดปูม</string>
   <string name="Dashboard_Running_Stopping_Title">กำลังหยุดทดสอบ...</string>
   <string name="Dashboard_Running_Stopping_Notice">กำลังทำการทดสอบที่ค้างอยู่ให้เสร็จ กรุณารอสักครู่...</string>
+  <string name="Dashboard_Running_ProxyInUse">Proxy in use</string>
   <string name="Dashboard_Card_Subtitle">เเตะเพื่อดูเพิ่ม</string>
   <string name="Dashboard_Card_Seconds">~%1$s วินาที</string>
   <string name="Dashboard_Websites_Card_Description">ทดสอบการปิดกั้นเว็บไซต์</string>
@@ -307,9 +308,7 @@
   <string name="Modal_InterruptTest_Paragraph">นี่จะขัดจังหวะการทดสอบปัจจุบัน นับจากจุดนี้</string>
   <string name="Modal_Autorun_Modal_Title">คุณต้องการดำเนินการทดสอบโดยอัตโนมัติหรือไม่?</string>
   <string name="Modal_Autorun_Modal_Text">เมื่อเปิดการใช้การทดสอบอัตโนมัติ OONI Probe จะทดสอบโดยอัตโนมัติเป็นปกติ (เเละคุณไม่ต้องจำแล้วว่าต้องทำการทดสอบด้วยตนเอง)</string>
-  <string name="Modal_Autorun_Modal_Button_No">ไม่เอา ขอบคุณ</string>
   <string name="Modal_Autorun_Modal_Button_RemindLater">แล้วค่อยเตือนฉัน</string>
-  <string name="Modal_Autorun_Modal_Button_Yes">น่าจะดี</string>
   <string name="Toast_CopiedToClipboard">คัดลอกไปคลิปบอร์ดแล้ว</string>
   <string name="Snackbar_ResultsNotUploaded_Text">ไม่ถูกอัปโหลด</string>
   <string name="Snackbar_ResultsNotUploaded_Upload">อัปโหลด</string>
