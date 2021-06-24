@@ -76,16 +76,6 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 }
             });
             bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
-            if (notificationManager.shouldShow()) {
-                new ConfirmDialogFragment.Builder()
-                        .withTitle(getString(R.string.Modal_EnableNotifications_Title))
-                        .withMessage(getString(R.string.Modal_EnableNotifications_Paragraph))
-                        .withPositiveButton(getString(R.string.Modal_SoundsGreat))
-                        .withNegativeButton(getString(R.string.Modal_NoThanks))
-                        .withNeutralButton(getString(R.string.Modal_DontAskAgain))
-                        .withExtra(NOTIFICATION_DIALOG)
-                        .build().show(getSupportFragmentManager(), null);
-            }
             if (notificationManager.shouldShowAutoTest()) {
                 new ConfirmDialogFragment.Builder()
                         .withTitle(getString(R.string.Modal_Autorun_Modal_Title))
@@ -94,6 +84,15 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                         .withNegativeButton(getString(R.string.Modal_NoThanks))
                         .withNeutralButton(getString(R.string.Modal_DontAskAgain))
                         .withExtra(AUTOTEST_DIALOG)
+                        .build().show(getSupportFragmentManager(), null);
+            } else if (notificationManager.shouldShow()) {
+                new ConfirmDialogFragment.Builder()
+                        .withTitle(getString(R.string.Modal_EnableNotifications_Title))
+                        .withMessage(getString(R.string.Modal_EnableNotifications_Paragraph))
+                        .withPositiveButton(getString(R.string.Modal_SoundsGreat))
+                        .withNegativeButton(getString(R.string.Modal_NoThanks))
+                        .withNeutralButton(getString(R.string.Modal_DontAskAgain))
+                        .withExtra(NOTIFICATION_DIALOG)
                         .build().show(getSupportFragmentManager(), null);
             }
         }

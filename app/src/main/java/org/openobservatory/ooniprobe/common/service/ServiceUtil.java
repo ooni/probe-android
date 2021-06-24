@@ -66,10 +66,14 @@ public class ServiceUtil {
         boolean workingOnWifi = ReachabilityManager.getNetworkType(app).equals(ReachabilityManager.WIFI);
         boolean phoneCharging = false;
         String[] categories = d.preferenceManager.getEnabledCategoryArr().toArray(new String[0]);
-        Boolean isVPNInUse = ReachabilityManager.isVPNinUse(app);
+        boolean isVPNInUse = ReachabilityManager.isVPNinUse(app);
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             phoneCharging = batteryManager.isCharging();
+        }
+
+        if (!d.generateAutoRunServiceSuite.shouldStart(workingOnWifi,phoneCharging, isVPNInUse)) {
+            return;
         }
 
         OONICheckInConfig config = new OONICheckInConfig(
@@ -80,12 +84,7 @@ public class ServiceUtil {
                 categories
                );
 
-        AbstractSuite suite = d.generateAutoRunServiceSuite.generate(
-                config,
-                workingOnWifi,
-                phoneCharging,
-                isVPNInUse
-        );
+        AbstractSuite suite = d.generateAutoRunServiceSuite.generate(config);
 
         if (suite != null) {
             Intent serviceIntent = new Intent(app, RunTestService.class);

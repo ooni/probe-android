@@ -30,14 +30,8 @@ public class GenerateAutoRunServiceSuite {
     }
 
     public AbstractSuite generate(
-            OONICheckInConfig config,
-            boolean workingOnWifi,
-            boolean phoneCharging,
-            boolean isVPNInUse
+            OONICheckInConfig config
     ) {
-        if (!shouldStart(workingOnWifi, phoneCharging, isVPNInUse)) {
-            return null;
-        }
 
         try {
             OONISession session = EngineProvider.get().newSession(
