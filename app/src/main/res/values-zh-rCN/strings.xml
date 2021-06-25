@@ -272,7 +272,7 @@
   <string name="Modal_NoThanks">不要，谢谢</string>
   <string name="Modal_Error_NoInternet">无法运行测试。请复查您的因特网连接。</string>
   <string name="Modal_Error_CantDownloadURLs">无法下载 URL 列表。请重试。</string>
-  <string name="Modal_Error_TestAlreadyRunning">Please wait for the automated tests to finish running, before starting a new test.</string>
+  <string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a new test.</string>
   <string name="Modal_Error_NotificationNotEnabled">需要通知权限。请在手机设置中启用，然后在 OONI Probe 应用中启用。</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">转到设置页面</string>
   <string name="Modal_Error_CantCloseScreen">有测试运行时，此屏幕将被锁定。</string>

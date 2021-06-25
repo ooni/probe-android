@@ -272,7 +272,7 @@
   <string name="Modal_NoThanks">Não, agradeço</string>
   <string name="Modal_Error_NoInternet">Não foi possível executar o teste. Por favor, verifique sua conexão com a Internet.</string>
   <string name="Modal_Error_CantDownloadURLs">Não foi possível baixar a lista de URL\'s. Por favor, tente novamente.</string>
-  <string name="Modal_Error_TestAlreadyRunning">Please wait for the automated tests to finish running, before starting a new test.</string>
+  <string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a new test.</string>
   <string name="Modal_Error_NotificationNotEnabled">Permissões de notificação são necessárias. Por favor, habilite-as nas Configurações do seu telefone e, em seguida, habilite-as em seu aplicativo OONI Probe.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Abrir Configurações</string>
   <string name="Modal_Error_CantCloseScreen">Esta tela é bloqueada enquanto um teste é executado.</string>

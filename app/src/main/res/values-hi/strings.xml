@@ -272,7 +272,7 @@
   <string name="Modal_NoThanks">जी नहीं, धन्यवाद</string>
   <string name="Modal_Error_NoInternet">परीक्षण चलाने में असमर्थ। कृपया अपनी इंटरनेट कनेक्टिविटी की जांच करें।</string>
   <string name="Modal_Error_CantDownloadURLs">यूआरएल सूची डाउनलोड करने में असमर्थ। कृपया पुन: प्रयास करें।</string>
-  <string name="Modal_Error_TestAlreadyRunning">Please wait for the automated tests to finish running, before starting a new test.</string>
+  <string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a new test.</string>
   <string name="Modal_Error_NotificationNotEnabled">अधिसूचना की अनुमति आवश्यक है। कृपया उन्हें अपने फ़ोन की सेटिंग में सक्षम करें और फिर उन्हें अपने OONI जांच ऐप में सक्षम करें।</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">सेटिंग्स पर जाएं</string>
   <string name="Modal_Error_CantCloseScreen">एक परीक्षण चल रहा है, जबकि यह स्क्रीन लॉक है।</string>

@@ -272,7 +272,7 @@
   <string name="Modal_NoThanks">Tidak, terima kasih</string>
   <string name="Modal_Error_NoInternet">Tidak bisa menjalankan tes. Mohon cek konektivitas internet Anda.</string>
   <string name="Modal_Error_CantDownloadURLs">Gagal mengunduh daftar URL. Coba lagi.</string>
-  <string name="Modal_Error_TestAlreadyRunning">Please wait for the automated tests to finish running, before starting a new test.</string>
+  <string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a new test.</string>
   <string name="Modal_Error_NotificationNotEnabled">Anda perlu izin untuk mengaktifkan notifikasi. Tolong aktifkan dalam Penyetelan di ponsel Anda dan kemudian aktikan di aplikasi OONI Probe Anda.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Pergi ke Pengaturan</string>
   <string name="Modal_Error_CantCloseScreen">Layar ini terkunci ketika tes sedang berjalan.</string>

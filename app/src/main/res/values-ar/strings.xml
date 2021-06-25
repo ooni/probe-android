@@ -272,7 +272,7 @@
   <string name="Modal_NoThanks">لا، شكراً</string>
   <string name="Modal_Error_NoInternet">التطبيق غير قادر على إجراء الاختبار. من فضلك تحقق من اتصال الإنترنت.</string>
   <string name="Modal_Error_CantDownloadURLs">التطبيق غير قادر على تحميل قائمة المواقع. من فضلك حاول مرة أخرى.</string>
-  <string name="Modal_Error_TestAlreadyRunning">يرجي الانتظار ريثما تنتهي الاختبارات الجارية قبل البدء باختبار جديد. </string>
+  <string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a new test.</string>
   <string name="Modal_Error_NotificationNotEnabled">التطبيق بحاجة الى تصريح التنبيهات. من فضلك قم بإعطاء التطبيق تصريح التنبيهات من خلال إعدادات هاتفك ثم اسمح بها في تطبيق OONI Probe.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">اذهب إلى الإعدادات</string>
   <string name="Modal_Error_CantCloseScreen">هذه الواجهة مغلقة لحين الإنتهاء من الاختبار.</string>

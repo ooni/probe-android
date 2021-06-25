@@ -272,7 +272,7 @@
   <string name="Modal_NoThanks">Nu, mulțumesc</string>
   <string name="Modal_Error_NoInternet">Imposibil de efectuat testul. Verificați conectivitatea la internet.</string>
   <string name="Modal_Error_CantDownloadURLs">Imposibil de descărcat lista URL. Vă rugăm să încercați din nou.</string>
-  <string name="Modal_Error_TestAlreadyRunning">Please wait for the automated tests to finish running, before starting a new test.</string>
+  <string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a new test.</string>
   <string name="Modal_Error_NotificationNotEnabled">Permisele de notificare sunt necesare. Vă rugăm să le activați în Setările telefonului dvs. și apoi să le activați în aplicația dvs. OONI Sonda.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Accesați Setările</string>
   <string name="Modal_Error_CantCloseScreen">Acest ecran este blocat în timpul rulării unui test.</string>

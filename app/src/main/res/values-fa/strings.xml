@@ -272,7 +272,7 @@
   <string name="Modal_NoThanks">نه، ممنون</string>
   <string name="Modal_Error_NoInternet">اجرای تست امکان‌پذیر نبود. لطفا ارتباط اینترنت خود را چک کنید.</string>
   <string name="Modal_Error_CantDownloadURLs">بارگیری لیست آدرس اینترنتی امکان‌پذیر نبود. لطفا  دوباره تلاش کنید.</string>
-  <string name="Modal_Error_TestAlreadyRunning">لطفا پیش از آغاز تست جدید، صبر کنید تا تست‌های خودکار در حال انجام به پایان برسند.</string>
+  <string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a new test.</string>
   <string name="Modal_Error_NotificationNotEnabled">اجازه‌ی اعلان ضروری است. لطفا در تنظیمات تلفن خود و سپس در اپ OONIProbe آن را فعال کنید.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">به تنظیمات بروید</string>
   <string name="Modal_Error_CantCloseScreen">این صفحه در زمان اجرای تست قفل است.</string>

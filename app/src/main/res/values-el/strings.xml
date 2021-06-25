@@ -272,7 +272,7 @@
   <string name="Modal_NoThanks">Όχι, ευχαριστώ</string>
   <string name="Modal_Error_NoInternet">Δεν είναι δυνατή η εκτέλεση της δοκιμής. Έλεγξε τη σύνδεσή σου στο Διαδίκτυο.</string>
   <string name="Modal_Error_CantDownloadURLs">Δεν είναι δυνατή η λήψη της λίστας ιστοσελιδών. Παρακαλώ προσπάθησε ξανά.</string>
-  <string name="Modal_Error_TestAlreadyRunning">Παρακαλώ περίμενε μέχρι να τελειώσουν οι αυτοματοποιημένες δοκιμές, πριν ξεκινήσεις μια νέα δοκιμή.</string>
+  <string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a new test.</string>
   <string name="Modal_Error_NotificationNotEnabled">Χρειάζονται δικαιώματα ειδοποιήσεων. Ενεργοποίησέ τα στις Ρυθμίσεις του τηλεφώνου σου και στην εφαρμογή του OONI Probe.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Πήγαινε στις Ρυθμίσεις</string>
   <string name="Modal_Error_CantCloseScreen">Αυτή η οθόνη είναι κλειδωμένη όσο εκτελείται κάποια δοκιμή.</string>

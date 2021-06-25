@@ -272,7 +272,7 @@
   <string name="Modal_NoThanks">Jo, faleminderit</string>
   <string name="Modal_Error_NoInternet">E pamundur për t\'u bërë testi. Ju lutem kontrolli lidhjen tuaj të internetit.</string>
   <string name="Modal_Error_CantDownloadURLs">E pamundur për të shkarkuar listën e URL. Ju lutem përvoni përsëri.</string>
-  <string name="Modal_Error_TestAlreadyRunning">Please wait for the automated tests to finish running, before starting a new test.</string>
+  <string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a new test.</string>
   <string name="Modal_Error_NotificationNotEnabled">Nevojitet të drejta njoftimesh. Ju lutem aktivizojini ato tek Rregullimit e telefonit tuaj dhe më pas aktivizojini tek tek aplikacioni juaj OONI Probe.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Shko tek Rregullimet</string>
   <string name="Modal_Error_CantCloseScreen">Ky ekran është i kyçur ndërkohë që po kryhet testimi.</string>

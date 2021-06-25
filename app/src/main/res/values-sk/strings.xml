@@ -272,7 +272,7 @@
   <string name="Modal_NoThanks">Nie, ďakujem</string>
   <string name="Modal_Error_NoInternet">Nie je možné spustiť test. Skontroluj internetovú pripojiteľnosť.</string>
   <string name="Modal_Error_CantDownloadURLs">Nepodarilo sa stiahnuť zoznam URL adries. Skús to znova.</string>
-  <string name="Modal_Error_TestAlreadyRunning">Please wait for the automated tests to finish running, before starting a new test.</string>
+  <string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a new test.</string>
   <string name="Modal_Error_NotificationNotEnabled">Vyžadujú sa povolenia oznámení. Prosím, povoľ ich v Nastaveniach svojho telefónu a potom ich povoľ v aplikácii OONI Probe.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Prejsť do Nastavení</string>
   <string name="Modal_Error_CantCloseScreen">Táto obrazovka je zamknutá, kým prebieha test.</string>
