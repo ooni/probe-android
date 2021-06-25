@@ -52,7 +52,7 @@ public class GenerateTestServiceSuiteAutoRun extends RobolectricAbstractTest {
     @Test
     public void shouldNotStartTest() {
         // Act
-        AbstractSuite suite = generateSuite.generate(ooniCheckConfigMock, false, false, true);
+        AbstractSuite suite = generateSuite.generate(ooniCheckConfigMock);
 
         // Assert
         Assert.assertNull(suite);
@@ -80,7 +80,7 @@ public class GenerateTestServiceSuiteAutoRun extends RobolectricAbstractTest {
         when(ooniSessionMock.checkIn(any(), any())).thenReturn(ooniResultsMock);
 
         // Act
-        AbstractSuite suite = generateSuite.generate(ooniCheckConfigMock, true, true, false);
+        AbstractSuite suite = generateSuite.generate(ooniCheckConfigMock);
 
         // Assert
         Assert.assertNotNull(suite);
