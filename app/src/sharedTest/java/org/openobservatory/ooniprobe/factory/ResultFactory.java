@@ -38,6 +38,10 @@ public class ResultFactory {
     private static final int DEFAULT_FAILED_MEASUREMENTS = 0;
 
     public static Result build(AbstractSuite suite) {
+        return build(suite, true);
+    }
+
+    public static Result build(AbstractSuite suite, boolean wasViewed) {
         Result temp = new Result();
         temp.id = faker.number.positive();
         temp.test_group_name = suite.getName();
@@ -45,6 +49,7 @@ public class ResultFactory {
         temp.data_usage_up = faker.number.positive();
         temp.start_time = faker.date.forward();
         temp.is_done = true;
+        temp.is_viewed = wasViewed;
 
         temp.failure_msg = null;
         return temp;

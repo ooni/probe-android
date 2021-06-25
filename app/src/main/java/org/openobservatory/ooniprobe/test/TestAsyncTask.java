@@ -10,7 +10,6 @@ import android.util.Log;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import org.openobservatory.engine.Engine;
 import org.openobservatory.engine.LoggerArray;
 import org.openobservatory.engine.OONIContext;
 import org.openobservatory.engine.OONISession;
@@ -33,43 +32,41 @@ import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
-import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import retrofit2.Response;
-
 public class TestAsyncTask extends AsyncTask<Void, String, Void> implements AbstractTest.TestCallback {
-	public static final List<AbstractSuite> SUITES = Arrays.asList(new WebsitesSuite(),
-			new InstantMessagingSuite(), new CircumventionSuite(), new PerformanceSuite(), new ExperimentalSuite());
-	private static final String TAG = "TestAsyncTask";
-	public static final String START = "START";
-	public static final String PRG = "PRG";
-	public static final String LOG = "LOG";
-	public static final String RUN = "RUN";
-	public static final String ERR = "ERR";
-	public static final String END = "END";
-	public static final String URL = "URL";
-	public static final String INT = "INT";
-	protected final Application app;
-	private Result result;
-	ArrayList<AbstractSuite> testSuites;
-	public AbstractSuite currentSuite;
-	public AbstractTest currentTest;
-	private boolean interrupt;
-	RunTestService service;
-	private ConnectivityManager manager;
-	private ConnectivityManager.NetworkCallback networkCallback;
-	private String proxy;
-	private boolean store_db = true;
+    public static final List<AbstractSuite> SUITES = Arrays.asList(new WebsitesSuite(),
+            new InstantMessagingSuite(), new CircumventionSuite(), new PerformanceSuite(), new ExperimentalSuite());
+    private static final String TAG = "TestAsyncTask";
+    public static final String START = "START";
+    public static final String PRG = "PRG";
+    public static final String LOG = "LOG";
+    public static final String RUN = "RUN";
+    public static final String ERR = "ERR";
+    public static final String END = "END";
+    public static final String URL = "URL";
+    public static final String INT = "INT";
+    protected final Application app;
+    private Result result;
+    ArrayList<AbstractSuite> testSuites;
+    public AbstractSuite currentSuite;
+    public AbstractTest currentTest;
+    private boolean interrupt;
+    WeakReference<RunTestService> serviceRef;
+    private ConnectivityManager manager;
+    private ConnectivityManager.NetworkCallback networkCallback;
+    private String proxy;
+    private boolean store_db = true;
 
-	public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, RunTestService service) {
-		this.app = app;
-		this.testSuites = testSuites;
-		this.service = service;
-		this.proxy = app.getPreferenceManager().getProxyURL();
-	}
+    public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, RunTestService service) {
+        this.app = app;
+        this.testSuites = testSuites;
+        this.serviceRef = new WeakReference<>(service);
+        this.proxy = app.getPreferenceManager().getProxyURL();
+    }
 
     public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, RunTestService service, boolean store_db) {
         this(app, testSuites, service);
@@ -156,8 +153,8 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
             config.setCategories(app.getPreferenceManager().getEnabledCategoryArr().toArray(new String[0]));
             OONIURLListResult results = session.fetchURLList(ooniContext, config);
             ArrayList<String> inputs = new ArrayList<>();
-            for (OONIURLInfo url : results.urls) {
-                inputs.add(Url.checkExistingUrl(url.url, url.category_code, url.country_code).url);
+            for (OONIURLInfo url : results.getUrls()) {
+                inputs.add(Url.checkExistingUrl(url.getUrl(), url.getCategoryCode(), url.getCountryCode()).url);
             }
             currentTest.setInputs(inputs);
             if (currentTest.getMax_runtime() == null)
@@ -202,21 +199,21 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
         switch (key) {
             case TestAsyncTask.RUN:
                 Log.d(TAG, "TestAsyncTask.RUN");
-                service.builder.setContentText(value)
+                serviceRef.get().builder.setContentText(value)
                         .setProgress(currentSuite.getTestList(app.getPreferenceManager()).length * 100, 0, false);
-                service.notificationManager.notify(RunTestService.NOTIFICATION_ID, service.builder.build());
+                serviceRef.get().notificationManager.notify(RunTestService.NOTIFICATION_ID, serviceRef.get().builder.build());
                 break;
             case TestAsyncTask.PRG:
                 Log.d(TAG, "TestAsyncTask.PRG " + value);
                 int prgs = Integer.parseInt(value);
-                service.builder.setProgress(currentSuite.getTestList(app.getPreferenceManager()).length * 100, prgs, false);
-                service.notificationManager.notify(RunTestService.NOTIFICATION_ID, service.builder.build());
+                serviceRef.get().builder.setProgress(currentSuite.getTestList(app.getPreferenceManager()).length * 100, prgs, false);
+                serviceRef.get().notificationManager.notify(RunTestService.NOTIFICATION_ID, serviceRef.get().builder.build());
                 break;
             case TestAsyncTask.INT:
                 Log.d(TAG, "TestAsyncTask.INT");
-                service.builder.setContentText(app.getString(R.string.Dashboard_Running_Stopping_Title))
+                serviceRef.get().builder.setContentText(app.getString(R.string.Dashboard_Running_Stopping_Title))
                         .setProgress(0, 0, true);
-                service.notificationManager.notify(RunTestService.NOTIFICATION_ID, service.builder.build());
+                serviceRef.get().notificationManager.notify(RunTestService.NOTIFICATION_ID, serviceRef.get().builder.build());
                 break;
         }
     }
@@ -225,7 +222,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
         sendBroadcast(END);
-        service.stopSelf();
+        serviceRef.get().stopSelf();
         unregisterConnChange();
     }
 

@@ -3,7 +3,10 @@ package org.openobservatory.ooniprobe.common.service;
 import android.app.job.JobParameters;
 import android.app.job.JobService;
 import android.os.AsyncTask;
+
 import org.openobservatory.ooniprobe.common.Application;
+
+import java.lang.ref.WeakReference;
 
 public class RunTestJobService extends JobService {
 
@@ -20,11 +23,11 @@ public class RunTestJobService extends JobService {
     }
 
     private static class JobTask extends AsyncTask<JobParameters, Void, JobParameters> {
-        private final JobService jobService;
+        private final WeakReference<JobService> jobServiceRef;
         private final Application app;
 
         public JobTask(JobService jobService, Application app) {
-            this.jobService = jobService;
+            this.jobServiceRef = new WeakReference<>(jobService);
             this.app = app;
         }
 
@@ -41,7 +44,7 @@ public class RunTestJobService extends JobService {
              * you may want to retry before the next expected execution of the job.
              * That's when you pass true for jobFinished's needsReschedule.
              */
-            jobService.jobFinished(jobParameters, false);
+            jobServiceRef.get().jobFinished(jobParameters, false);
         }
     }
 

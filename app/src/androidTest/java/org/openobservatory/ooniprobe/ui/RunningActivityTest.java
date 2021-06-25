@@ -38,8 +38,9 @@ public class RunningActivityTest extends AbstractTest {
     private ActivityScenario<RunningActivity> scenario;
     private final TestEngineInterface testEngine = new TestEngineInterface();
 
+    @Rule
+    public final ServiceTestRule serviceRule = new ServiceTestRule();
     private final FlakyTestRule flakyRule = new FlakyTestRule();
-    private final ServiceTestRule serviceRule = new ServiceTestRule();
 
     @Rule
     public RuleChain chain = RuleChain.outerRule(flakyRule)

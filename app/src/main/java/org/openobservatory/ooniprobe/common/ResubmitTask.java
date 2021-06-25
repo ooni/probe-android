@@ -35,7 +35,7 @@ public class ResubmitTask<A extends AppCompatActivity> extends NetworkProgressAs
      * Use this class to resubmit a measurement, use result_id and measurement_id to filter list of value
      * {@code new MKCollectorResubmitTask(activity).execute(@Nullable result_id, @Nullable measurement_id);}
      *
-     * @param activity from which this task are executed
+     * @param activity from which this task are ex ecuted
      */
     public ResubmitTask(A activity, String proxyURL) {
         super(activity, true, false);

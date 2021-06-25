@@ -1,9 +1,17 @@
 package org.openobservatory.ooniprobe.factory;
 
+import android.content.Context;
+
+import org.apache.commons.io.FileUtils;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.List;
 
 import io.bloco.faker.Faker;
 
@@ -130,6 +138,34 @@ public class MeasurementFactory {
         }
 
         return result;
+    }
+
+    public static void addEntryFiles(Context context, List<Measurement> measurements, Boolean markUploaded) {
+        measurements.forEach(measurement -> {
+            String entryName = String.format("%d_%d", faker.number.positive(), faker.number.positive());
+            addEntryFile(context, entryName, measurement, markUploaded);
+        });
+    }
+
+    public static boolean addEntryFile(Context context, String reportId, Measurement measurement, Boolean markUploaded) {
+        try {
+            //Simulating measurement done and uploaded
+            measurement.report_id = reportId;
+            measurement.is_done = true;
+            measurement.is_uploaded = markUploaded;
+            measurement.save();
+            File entryFile = Measurement.getEntryFile(context, measurement.id, measurement.test_name);
+            entryFile.getParentFile().mkdirs();
+            FileUtils.writeStringToFile(
+                    entryFile,
+                    "",
+                    Charset.forName("UTF-8")
+            );
+        } catch (IOException e) {
+            return false;
+        }
+
+        return true;
     }
 
 }

@@ -25,7 +25,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.raizlabs.android.dbflow.sql.language.Method;
-import com.raizlabs.android.dbflow.sql.language.SQLOperator;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
@@ -34,6 +33,9 @@ import org.openobservatory.ooniprobe.activity.TextActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
+import org.openobservatory.ooniprobe.domain.GetResults;
+import org.openobservatory.ooniprobe.domain.MeasurementsManager;
+import org.openobservatory.ooniprobe.domain.models.DatedResults;
 import org.openobservatory.ooniprobe.item.CircumventionItem;
 import org.openobservatory.ooniprobe.item.DateItem;
 import org.openobservatory.ooniprobe.item.ExperimentalItem;
@@ -42,7 +44,6 @@ import org.openobservatory.ooniprobe.item.InstantMessagingItem;
 import org.openobservatory.ooniprobe.item.MiddleboxesItem;
 import org.openobservatory.ooniprobe.item.PerformanceItem;
 import org.openobservatory.ooniprobe.item.WebsiteItem;
-import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
@@ -56,9 +57,9 @@ import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import java.io.Serializable;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashSet;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -91,11 +92,21 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     private boolean refresh;
     private Snackbar snackbar;
 
+    @Inject
+    MeasurementsManager measurementsManager;
+
+    @Inject
+    GetResults getResults;
+
+    @Inject
+    PreferenceManager pm;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_result_list, container, false);
         ButterKnife.bind(this, v);
+        ((Application) getActivity().getApplication()).getFragmentComponent().inject(this);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         setHasOptionsMenu(true);
         getActivity().setTitle(R.string.TestResults_Overview_Title);
@@ -163,54 +174,49 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 
     @OnItemSelected(R.id.filterTests)
     void queryList() {
-        if (Measurement.hasReport(getContext(), Measurement.selectUploadable()))
+        if (measurementsManager.hasUploadables()) {
             snackbar.show();
-        else
+        } else {
             snackbar.dismiss();
-        HashSet<Integer> set = new HashSet<>();
+        }
+
         items.clear();
-        ArrayList<SQLOperator> where = new ArrayList<>();
+
         String filter = getResources().getStringArray(R.array.filterTestValues)[filterTests.getSelectedItemPosition()];
-        if (!filter.isEmpty())
-            where.add(Result_Table.test_group_name.is(filter));
-        List<Result> list = SQLite.select().from(Result.class).where(where.toArray(new SQLOperator[0]))
-                .orderBy(Result_Table.start_time, false).queryList();
+        List<DatedResults> list = getResults.getGroupedByMonth(filter);
+
         if (list.isEmpty()) {
             emptyState.setVisibility(View.VISIBLE);
             recycler.setVisibility(View.GONE);
         } else {
             emptyState.setVisibility(View.GONE);
             recycler.setVisibility(View.VISIBLE);
-            for (Result result : list) {
-                Calendar c = Calendar.getInstance();
-                c.setTime(result.start_time);
-                int key = c.get(Calendar.YEAR) * 100 + c.get(Calendar.MONTH);
-                if (!set.contains(key)) {
-                    items.add(new DateItem(result.start_time));
-                    set.add(key);
-                }
-                if (result.countTotalMeasurements() == 0)
-                    items.add(new FailedItem(result, this, this));
-                else {
-                    switch (result.test_group_name) {
-                        case WebsitesSuite.NAME:
-                            items.add(new WebsiteItem(result, this, this));
-                            break;
-                        case InstantMessagingSuite.NAME:
-                            items.add(new InstantMessagingItem(result, this, this));
-                            break;
-                        case MiddleBoxesSuite.NAME:
-                            items.add(new MiddleboxesItem(result, this, this));
-                            break;
-                        case PerformanceSuite.NAME:
-                            items.add(new PerformanceItem(result, this, this));
-                            break;
-                        case CircumventionSuite.NAME:
-                            items.add(new CircumventionItem(result, this, this));
-                            break;
-                        case ExperimentalSuite.NAME:
-                            items.add(new ExperimentalItem(result, this, this));
-                            break;
+            for (DatedResults group : list) {
+                items.add(new DateItem(group.getGroupedDate()));
+                for (Result result : group.getResultsList()) {
+                    if (result.countTotalMeasurements() == 0)
+                        items.add(new FailedItem(result, this, this));
+                    else {
+                        switch (result.test_group_name) {
+                            case WebsitesSuite.NAME:
+                                items.add(new WebsiteItem(result, this, this));
+                                break;
+                            case InstantMessagingSuite.NAME:
+                                items.add(new InstantMessagingItem(result, this, this));
+                                break;
+                            case MiddleBoxesSuite.NAME:
+                                items.add(new MiddleboxesItem(result, this, this));
+                                break;
+                            case PerformanceSuite.NAME:
+                                items.add(new PerformanceItem(result, this, this));
+                                break;
+                            case CircumventionSuite.NAME:
+                                items.add(new CircumventionItem(result, this, this));
+                                break;
+                            case ExperimentalSuite.NAME:
+                                items.add(new ExperimentalItem(result, this, this));
+                                break;
+                        }
                     }
                 }
             }
@@ -240,7 +246,6 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     public void onConfirmation(Serializable serializable, int i) {
         if (serializable.equals(R.string.Modal_ResultsNotUploaded_Title)) {
             if (i == DialogInterface.BUTTON_POSITIVE) {
-                PreferenceManager pm = ((Application) getActivity().getApplication()).getPreferenceManager();
                 new ResubmitAsyncTask(this, pm.getProxyURL()).execute(null, null);
             }
             else if (i == DialogInterface.BUTTON_NEUTRAL) {
