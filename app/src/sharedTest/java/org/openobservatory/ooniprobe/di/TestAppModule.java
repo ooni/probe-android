@@ -1,7 +1,7 @@
 
 package org.openobservatory.ooniprobe.di;
 
-import android.app.Application;
+import org.openobservatory.ooniprobe.common.Application;
 
 import dagger.Module;
 
