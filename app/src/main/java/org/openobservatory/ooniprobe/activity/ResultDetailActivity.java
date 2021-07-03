@@ -24,7 +24,6 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
@@ -39,7 +38,6 @@ import org.openobservatory.ooniprobe.item.MeasurementPerfItem;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
-import org.openobservatory.ooniprobe.model.database.Result_Table;
 import org.openobservatory.ooniprobe.test.suite.CircumventionSuite;
 import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
@@ -211,8 +209,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
         protected void onPostExecute(Boolean result) {
             super.onPostExecute(result);
             if (getActivity() != null) {
-                getActivity().result = SQLite.select().from(Result.class)
-                        .where(Result_Table.id.eq(getActivity().result.id)).querySingle();
+                getActivity().result = d.getResults.get(getActivity().result.id);
                 getActivity().load();
                 if (!result)
                     new ConfirmDialogFragment.Builder()

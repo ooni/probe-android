@@ -1,24 +1,29 @@
 package org.openobservatory.ooniprobe.client;
 
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParser;
 import com.raizlabs.android.dbflow.sql.language.Delete;
 
 import org.apache.commons.io.FileUtils;
+import org.jetbrains.annotations.NotNull;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openobservatory.ooniprobe.RobolectricAbstractTest;
 import org.openobservatory.ooniprobe.client.callback.CheckReportIdCallback;
-import org.openobservatory.ooniprobe.client.callback.GetMeasurementJsonCallback;
-import org.openobservatory.ooniprobe.client.callback.GetMeasurementsCallback;
+import org.openobservatory.ooniprobe.domain.callback.GetMeasurementsCallback;
 import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.Request;
+import okhttp3.Response;
 
 public class OONIAPIClientTest extends RobolectricAbstractTest {
 
@@ -34,15 +39,15 @@ public class OONIAPIClientTest extends RobolectricAbstractTest {
             @Override
             public void onSuccess(ApiMeasurement.Result result) {
                 Assert.assertNotNull(result);
-                a.getOkHttpClient().newCall(new Request.Builder().url(result.measurement_url).build()).enqueue(new GetMeasurementJsonCallback() {
+                a.getOkHttpClient().newCall(new Request.Builder().url(result.measurement_url).build()).enqueue(new Callback() {
                     @Override
-                    public void onSuccess(String json) {
-                        Assert.assertNotNull(json);
+                    public void onResponse(@NotNull Call call, @NotNull Response response) {
+                        Assert.assertNotNull(response.body());
                         signal.countDown();
                     }
 
                     @Override
-                    public void onError(String msg) {
+                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
                         Assert.fail();
                         signal.countDown();
                     }
@@ -114,15 +119,19 @@ public class OONIAPIClientTest extends RobolectricAbstractTest {
     @Test
     public void getMeasurementJsonError() {
         final CountDownLatch signal = new CountDownLatch(1);
-        a.getOkHttpClient().newCall(new Request.Builder().url(NON_EXISTING_MEASUREMENT_URL).build()).enqueue(new GetMeasurementJsonCallback() {
+        a.getOkHttpClient().newCall(new Request.Builder().url(NON_EXISTING_MEASUREMENT_URL).build()).enqueue(new Callback() {
             @Override
-            public void onSuccess(String json) {
-                Assert.fail();
+            public void onResponse(@NotNull Call call, @NotNull Response response) {
+                try {
+                    new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create()
+                            .toJson(JsonParser.parseString(response.body().string()));
+                    Assert.fail();
+                } catch (Exception ignored) { }
                 signal.countDown();
             }
 
             @Override
-            public void onError(String msg) {
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
                 signal.countDown();
             }
         });
@@ -143,11 +152,17 @@ public class OONIAPIClientTest extends RobolectricAbstractTest {
         measurement.save();
         if (write_file) {
             File entryFile = Measurement.getEntryFile(a, measurement.id, measurement.test_name);
-            entryFile.getParentFile().mkdirs();
+            File parentFile = entryFile.getParentFile();
+
+            if (parentFile == null) {
+                return measurement;
+            }
+
+            parentFile.mkdirs();
             FileUtils.writeStringToFile(
                     entryFile,
                     "",
-                    Charset.forName("UTF-8")
+                    StandardCharsets.UTF_8
             );
         }
         return measurement;

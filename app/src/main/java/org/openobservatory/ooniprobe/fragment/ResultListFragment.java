@@ -28,6 +28,7 @@ import com.raizlabs.android.dbflow.sql.language.Method;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
 import org.openobservatory.ooniprobe.activity.TextActivity;
 import org.openobservatory.ooniprobe.common.Application;
@@ -269,11 +270,11 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         }
     }
 
-    private static class ResubmitAsyncTask extends ResubmitTask<AppCompatActivity> {
+    private static class ResubmitAsyncTask extends ResubmitTask<AbstractActivity> {
         private WeakReference<ResultListFragment> wf;
 
         ResubmitAsyncTask(ResultListFragment f, String proxy) {
-            super((AppCompatActivity) f.getActivity(), proxy);
+            super((AbstractActivity) f.getActivity(), proxy);
             this.wf = new WeakReference<>(f);
         }
 

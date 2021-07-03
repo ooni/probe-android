@@ -26,14 +26,14 @@ public class PreferenceManager {
 	private static final String IS_NOTIFICATION_DIALOG = "isNotificationDialog";
 	public static final int NOTIFICATION_DIALOG_COUNT = 7;
 	public static final int AUTOTEST_DIALOG_COUNT = 5;
-	private static final String NOTIFICATION_DIALOG_DISABLE = "isNotificationDialogDisabled";
+	static final String NOTIFICATION_DIALOG_DISABLE = "isNotificationDialogDisabled";
 	private static final String AUTOTEST_DIALOG_DISABLE = "isAutomaticTestDialogDisabled";
 	private static final String TOKEN = "token";
-	private static final String SHOW_ONBOARDING = "first_run";
+	static final String SHOW_ONBOARDING = "first_run";
 	//This is in ms, set to one day
 	public static final Integer DELETE_JSON_DELAY = 86400000;
-	private static final String DELETE_JSON_KEY = "deleteUploadedJsons";
-	private static final String UUID4 = "uuid4";
+	static final String DELETE_JSON_KEY = "deleteUploadedJsons";
+	static final String UUID4 = "uuid4";
 	public static final String AUTORUN_COUNT = "autorun_count";
 	public static final String AUTORUN_DATE = "autorun_last_date";
 	public static final int IGNORE_OPTIMIZATION_REQUEST = 15;

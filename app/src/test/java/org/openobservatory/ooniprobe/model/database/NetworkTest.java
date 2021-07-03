@@ -2,12 +2,22 @@ package org.openobservatory.ooniprobe.model.database;
 
 import androidx.test.filters.SmallTest;
 
+import com.raizlabs.android.dbflow.sql.language.SQLite;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.RobolectricAbstractTest;
+import org.openobservatory.ooniprobe.common.ReachabilityManager;
+import org.openobservatory.ooniprobe.factory.NetworkFactory;
+import org.openobservatory.ooniprobe.factory.ResultFactory;
+import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 @SmallTest
 public class NetworkTest extends RobolectricAbstractTest {
@@ -56,5 +66,63 @@ public class NetworkTest extends RobolectricAbstractTest {
         assertEquals(Network.getCountry(c, n), unknown);
         n.country_code = COUNTRY_CODE;
         assertEquals(Network.getCountry(c, n), COUNTRY_CODE);
+    }
+
+    @Test
+    public void toStringTest() {
+        // Arrange
+        Network network = new Network();
+        network.asn = "asn";
+        network.network_name = "network";
+
+        // Act
+        String value = Network.toString(c, network);
+
+        // Assert
+        assertEquals("asn - network", value);
+    }
+
+    @Test
+    public void deleteTest() {
+        // Arrange
+        Network noResultNetwork = NetworkFactory.build();
+        noResultNetwork.save();
+        Network resultNetwork = ResultFactory.createAndSave(new WebsitesSuite()).network;
+
+        // Act
+        boolean noResultDelete = noResultNetwork.delete();
+        boolean resultDelete = resultNetwork.delete();
+
+        Network noResultDatabase = SQLite.select().from(Network.class).where(Network_Table.ip.eq(noResultNetwork.ip)).querySingle();
+        Network resultDatabase = SQLite.select().from(Network.class).where(Network_Table.ip.eq(resultNetwork.ip)).querySingle();
+
+        // Assert
+        assertTrue(noResultDelete);
+        assertFalse(resultDelete);
+        assertNull(noResultDatabase);
+        assertNotNull(resultDatabase);
+    }
+
+    @Test
+    public void getLocalizedTypeTest() {
+        // Arrange
+        Network mobileNetwork = new Network();
+        mobileNetwork.network_type = ReachabilityManager.MOBILE;
+
+        Network wifiNetwork = new Network();
+        wifiNetwork.network_type = ReachabilityManager.WIFI;
+
+        Network noNetwork = new Network();
+        noNetwork.network_type = ReachabilityManager.NO_INTERNET;
+
+        Network unknownNetwork = new Network();
+        unknownNetwork.network_type = "loremIpsum";
+
+        // Act / Assert
+        assertEquals(unknown, Network.getLocalizedNetworkType(c, null));
+        assertEquals(c.getString(R.string.TestResults_Summary_Hero_Mobile), Network.getLocalizedNetworkType(c, mobileNetwork));
+        assertEquals(c.getString(R.string.TestResults_Summary_Hero_WiFi), Network.getLocalizedNetworkType(c, wifiNetwork));
+        assertEquals(c.getString(R.string.TestResults_Summary_Hero_NoInternet), Network.getLocalizedNetworkType(c, noNetwork));
+        assertEquals(unknown, Network.getLocalizedNetworkType(c, unknownNetwork));
     }
 }

@@ -40,6 +40,7 @@ public class InstantMessagingTest extends MeasurementAbstractTest {
     }
 
     @Test
+    @AllowFlaky(attempts = 2)
     public void testSuccessWhatsApp() {
         // Arrange
         Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite());

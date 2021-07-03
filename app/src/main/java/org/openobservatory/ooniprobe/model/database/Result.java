@@ -195,7 +195,7 @@ public class Result extends BaseModel implements Serializable {
 		}
 	}
 
-	public String[] getTestOrder() {
+	private String[] getTestOrder() {
 		switch (test_group_name) {
 			case WebsitesSuite.NAME:
 				return new String[]{WebConnectivity.NAME};

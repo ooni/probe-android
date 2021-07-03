@@ -5,7 +5,7 @@ import android.content.Context;
 
 import androidx.test.runner.AndroidJUnitRunner;
 
-import org.openobservatory.ooniprobe.factory.TestApplication;
+import org.openobservatory.ooniprobe.di.TestApplication;
 
 public class TestAndroidJUnitRunner extends AndroidJUnitRunner {
 

@@ -12,7 +12,8 @@ public class RunTestJobService extends JobService {
 
     @Override
     public boolean onStartJob(JobParameters params) {
-        Application app = ((Application)getApplicationContext());
+        Application app = ((Application) getApplicationContext());
+        app.component.serviceComponent().inject(this);
         new JobTask(this, app).execute(params);
         return true;
     }

@@ -32,6 +32,7 @@ import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 import java.io.File;
 import java.io.Serializable;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public abstract class AbstractTest implements Serializable {
@@ -63,8 +64,8 @@ public abstract class AbstractTest implements Serializable {
         //Checking for resources before running any test
         settings.name = name;
         settings.inputs = inputs;
-        settings.options.max_runtime = max_runtime;
-        settings.annotations.origin = origin;
+        settings.setMaxRuntime(max_runtime);
+        settings.setOrigin(origin);
         measurements = new SparseArray<>();
         try {
             task = EngineProvider.get().startExperimentTask(settings.toExperimentSettings(gson, c));
@@ -123,7 +124,7 @@ public abstract class AbstractTest implements Serializable {
                         FileUtils.writeStringToFile(
                                 logFile,
                                 event.value.message + "\n",
-                                Charset.forName("UTF-8"),
+                                StandardCharsets.UTF_8,
                                 /*append*/true
                         );
                         testCallback.onLog(event.value.message);

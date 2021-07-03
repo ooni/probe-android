@@ -79,7 +79,7 @@ public class Measurement extends BaseModel implements Serializable {
 		start_time = new java.util.Date();
 	}
 
-	public static Where<Measurement> selectDone() {
+	private static Where<Measurement> selectDone() {
 		return SQLite.select().from(Measurement.class)
 				.where(Measurement_Table.is_rerun.eq(false))
 				.and(Measurement_Table.is_done.eq(true));
@@ -90,9 +90,7 @@ public class Measurement extends BaseModel implements Serializable {
 		// may have some non-uploaded measurements which are marked
 		// as is_uploaded = true, but we always know that those with
 		// report_id set to null are not uploaded
-		return SQLite.select().from(Measurement.class)
-				.where(Measurement_Table.is_rerun.eq(false))
-				.and(Measurement_Table.is_done.eq(true))
+		return selectDone()
 				.and(OperatorGroup.clause()
 						.or(Measurement_Table.is_uploaded.eq(false))
 						.or(Measurement_Table.report_id.isNull())
@@ -134,11 +132,11 @@ public class Measurement extends BaseModel implements Serializable {
 		return Measurement.selectUploadable().and(Measurement_Table.result_id.eq(resultId));
 	}
 
-	public static Where<Measurement> selectWithReportId(String report_id) {
+	private static Where<Measurement> selectWithReportId(String report_id) {
 		return Measurement.selectUploaded().and(Measurement_Table.report_id.eq(report_id));
 	}
 
-	public static Set<String> getReportsUploaded(Context c) {
+	private static Set<String> getReportsUploaded(Context c) {
 		Where<Measurement> msmQuery = Measurement.selectUploaded();
 		Set<String> reportIds = new HashSet<>();
 		List<Measurement> measurements = msmQuery.queryList();
@@ -149,12 +147,12 @@ public class Measurement extends BaseModel implements Serializable {
 		return reportIds;
 	}
 
-	public static List<Measurement> selectMeasurementsWithLog(Context c) {
+	private static List<Measurement> selectMeasurementsWithLog(Context c) {
 		Where<Measurement> msmQuery = Measurement.selectDone();
 		List<Measurement> measurementsLog = new ArrayList<>();
 		List<Measurement> measurements = msmQuery.queryList();
 		for (Measurement measurement : measurements){
-			if (measurement.hasReportFile(c))
+			if (measurement.hasLogFile(c))
 				measurementsLog.add(measurement);
 		}
 		return measurementsLog;
@@ -212,7 +210,7 @@ public class Measurement extends BaseModel implements Serializable {
 				c.getDatabasePath(database + "-wal").length();
 	}
 
-	public static long getFolderSize(File f) {
+	private static long getFolderSize(File f) {
 		long size = 0;
 		if (f.isDirectory()) {
 			for (File file : f.listFiles()) {
@@ -286,6 +284,7 @@ public class Measurement extends BaseModel implements Serializable {
 
 	public void setTestKeys(TestKeys testKeys) {
 		test_keys = new Gson().toJson(testKeys);
+		this.testKeys = testKeys;
 	}
 
 	public static void deleteUploadedJsons(Application a){

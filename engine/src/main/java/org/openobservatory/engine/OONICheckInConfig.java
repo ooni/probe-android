@@ -1,7 +1,5 @@
 package org.openobservatory.engine;
 
-import java.util.ArrayList;
-
 import oonimkall.CheckInConfig;
 import oonimkall.CheckInConfigWebConnectivity;
 

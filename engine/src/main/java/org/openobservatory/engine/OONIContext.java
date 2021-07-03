@@ -10,7 +10,4 @@ public final class OONIContext {
         this.ctx = ctx;
     }
 
-    void cancel() {
-        ctx.cancel();
-    }
 }

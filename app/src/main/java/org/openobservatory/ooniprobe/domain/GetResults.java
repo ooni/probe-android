@@ -2,7 +2,6 @@ package org.openobservatory.ooniprobe.domain;
 
 import androidx.annotation.Nullable;
 
-import com.raizlabs.android.dbflow.sql.language.Operator;
 import com.raizlabs.android.dbflow.sql.language.SQLOperator;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
@@ -12,7 +11,6 @@ import org.openobservatory.ooniprobe.model.database.Result_Table;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 

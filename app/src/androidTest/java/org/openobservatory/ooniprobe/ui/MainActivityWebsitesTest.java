@@ -48,6 +48,7 @@ public class MainActivityWebsitesTest extends AbstractTest {
     public FlakyTestRule flakyRule = new FlakyTestRule();
 
     @Test
+    @AllowFlaky(attempts = 3)
     public void addCustomWebsiteTest() {
         // Arrange
         Faker faker = new Faker();
@@ -118,6 +119,7 @@ public class MainActivityWebsitesTest extends AbstractTest {
     }
 
     @Test
+    @AllowFlaky(attempts = 3)
     public void lunchCustomWebsiteIntentTest() {
         // Act
         launchDashboard();

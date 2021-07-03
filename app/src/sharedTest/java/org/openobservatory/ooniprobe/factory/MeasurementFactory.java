@@ -10,10 +10,14 @@ import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.Date;
 import java.util.List;
 
 import io.bloco.faker.Faker;
+
+import static org.openobservatory.ooniprobe.factory.TestKeyFactory.getAccessibleStringFrom;
+import static org.openobservatory.ooniprobe.factory.TestKeyFactory.getBlockedStringFrom;
 
 public class MeasurementFactory {
 
@@ -47,14 +51,6 @@ public class MeasurementFactory {
         return temp;
     }
 
-    private static String getTestKeyFrom(AbstractTest testType, boolean hasFailed) {
-        if (hasFailed) {
-            return getBlockedTestKeyFrom(testType);
-        }
-
-        return getAccessibleTestKeyFrom(testType);
-    }
-
     private static String getAccessibleTestKeyFrom(AbstractTest testType) {
         String result;
         switch (testType.getName()) {
@@ -69,11 +65,11 @@ public class MeasurementFactory {
                 return "{\"facebook_tcp_blocking\":\"false\",\"facebook_dns_blocking\":\"ok\"}";
 
             case "signal":
-                return"{\"signal_backend_status\":\"ok\",\"signal_backend_failure\":\"ok\"}";
+                return "{\"signal_backend_status\":\"ok\",\"signal_backend_failure\":\"ok\"}";
 
             // Circumvention
             case "psiphon":
-                return "{\"bootstrap_time\":"+faker.number.positive(5.0, 100.0) +"}";
+                return "{\"bootstrap_time\":" + faker.number.positive(5.0, 100.0) + "}";
 
             case "tor":
                 return "{\"dir_port_accessible\":7,\"dir_port_total\":10,\"obfs4_accessible\":14,\"obfs4_total\":15,\"or_port_accessible\":0,\"or_port_dirauth_accessible\":10,\"or_port_dirauth_total\":10,\"or_port_total\":0}";
@@ -94,7 +90,8 @@ public class MeasurementFactory {
             case "http_header_field_manipulation":
                 return "{\"tampering\":{\"header_field_name\":\"x-content-type-options\"}}";
 
-            default: result = "{}";
+            default:
+                result = "{}";
         }
 
         return result;
@@ -134,10 +131,26 @@ public class MeasurementFactory {
                 return "";
 
             case "tor":
-            default: result = "{}";
+            default:
+                result = "{}";
         }
 
         return result;
+    }
+
+    public static Measurement buildWithName(String testName) {
+        Measurement measurement = new Measurement();
+        measurement.test_name = testName;
+        measurement.start_time = new Date();
+        return measurement;
+    }
+
+    private static String getTestKeyFrom(AbstractTest testType, boolean hasFailed) {
+        if (hasFailed) {
+            return getBlockedStringFrom(testType);
+        }
+
+        return getAccessibleStringFrom(testType);
     }
 
     public static void addEntryFiles(Context context, List<Measurement> measurements, Boolean markUploaded) {
@@ -158,8 +171,8 @@ public class MeasurementFactory {
             entryFile.getParentFile().mkdirs();
             FileUtils.writeStringToFile(
                     entryFile,
-                    "",
-                    Charset.forName("UTF-8")
+                    "test",
+                    StandardCharsets.UTF_8
             );
         } catch (IOException e) {
             return false;

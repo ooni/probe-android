@@ -14,15 +14,14 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.factory.TestApplication;
+import org.openobservatory.ooniprobe.di.TestApplication;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
-import java.util.Calendar;
-import java.util.Date;
-
 import static org.robolectric.Shadows.shadowOf;
+import static org.robolectric.shadows.ShadowLooper.idleMainLooper;
+import static org.robolectric.shadows.ShadowLooper.runMainLooperToNextTask;
 
 @Config(application = TestApplication.class)
 @RunWith(RobolectricTestRunner.class)
@@ -49,11 +48,14 @@ public abstract class RobolectricAbstractTest {
 
     @SuppressWarnings("rawtypes")
     public void idleTaskUntilFinished(AsyncTask task) {
+        idleMainLooper();
         try {
             while (task.getStatus() != AsyncTask.Status.FINISHED) {
                 shadowOf(Looper.getMainLooper()).idle();
             }
         } catch (Exception e) {
+            idleMainLooper();
+            runMainLooperToNextTask();
             e.printStackTrace();
         }
     }

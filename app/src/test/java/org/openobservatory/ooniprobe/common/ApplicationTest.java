@@ -5,7 +5,7 @@ import androidx.test.filters.SmallTest;
 import org.junit.Test;
 import org.openobservatory.ooniprobe.RobolectricAbstractTest;
 import org.openobservatory.ooniprobe.di.TestAppComponent;
-import org.openobservatory.ooniprobe.factory.TestApplication;
+import org.openobservatory.ooniprobe.di.TestApplication;
 
 import static org.junit.Assert.assertTrue;
 

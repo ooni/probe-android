@@ -4,7 +4,7 @@ import android.content.Context;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 
-import org.openobservatory.ooniprobe.factory.TestApplication;
+import org.openobservatory.ooniprobe.di.TestApplication;
 
 public class TestApplicationProvider {
     public static Context context() {
