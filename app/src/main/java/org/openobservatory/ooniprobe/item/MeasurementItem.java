@@ -46,8 +46,10 @@ public class MeasurementItem extends HeterogeneousRecyclerItem<Measurement, Meas
 		else
 			endDrawable = R.drawable.tick_green_cloudoff;
 		if (extra.test_name.equals(WebConnectivity.NAME)) {
-			viewHolder.text.setText(extra.url.url);
-			viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(extra.url.getCategoryIcon(viewHolder.text.getContext()), 0, endDrawable, 0);
+			if (extra.url != null) {
+				viewHolder.text.setText(extra.url.url);
+				viewHolder.text.setCompoundDrawablesRelativeWithIntrinsicBounds(extra.url.getCategoryIcon(viewHolder.text.getContext()), 0, endDrawable, 0);
+			}
 		} else {
 			if (extra.getTest().getLabelResId() == (R.string.Test_Experimental_Fullname))
 				viewHolder.text.setText(extra.getTest().getName());
