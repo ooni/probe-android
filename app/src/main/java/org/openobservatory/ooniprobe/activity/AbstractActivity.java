@@ -26,7 +26,7 @@ public abstract class AbstractActivity extends AppCompatActivity {
         return getApp().getActivityComponent();
     }
 
-    boolean isTestRunning() {
+    public boolean isTestRunning() {
         return ((Application) getApplication()).isTestRunning();
     }
 

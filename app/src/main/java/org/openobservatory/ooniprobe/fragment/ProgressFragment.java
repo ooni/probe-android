@@ -7,8 +7,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.AbstractActivity;
+import org.openobservatory.ooniprobe.common.Application;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +31,9 @@ public class ProgressFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    //private AbstractActivity context;
+    @BindView(R.id.test_label)
+    TextView test_label;
 
     public ProgressFragment() {
         // Required empty public constructor
@@ -60,7 +69,16 @@ public class ProgressFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_progress, container, false);
+        ButterKnife.bind(this, v);
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_progress, container, false);
+        if (((Application)getActivity().getApplication()).isTestRunning())
+            test_label.setVisibility(View.VISIBLE);
+        else
+            test_label.setVisibility(View.GONE);
+
+
+        return v;
     }
 }

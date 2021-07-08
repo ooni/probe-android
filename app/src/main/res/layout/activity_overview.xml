@@ -107,7 +107,7 @@
 		<ScrollView
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:layout_above="@id/progress_fragment">
+			android:layout_above="@+id/progress_fragment">
 
 			<TextView
 				android:id="@+id/desc"
@@ -118,7 +118,7 @@
 
 		<fragment
 			android:name="org.openobservatory.ooniprobe.fragment.ProgressFragment"
-			android:id="@id/progress_fragment"
+			android:id="@+id/progress_fragment"
 			android:layout_alignParentBottom="true"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content" />
