@@ -100,15 +100,28 @@
 			app:rippleColor="@color/ripple_material_dark"
 			app:strokeColor="@android:color/white" />
 	</com.google.android.material.appbar.AppBarLayout>
-
-	<ScrollView
+	<RelativeLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
 
-		<TextView
-			android:id="@+id/desc"
+		<ScrollView
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:padding="32dp" />
-	</ScrollView>
+			android:layout_height="match_parent"
+			android:layout_above="@id/progress_fragment">
+
+			<TextView
+				android:id="@+id/desc"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="32dp" />
+		</ScrollView>
+
+		<fragment
+			android:name="org.openobservatory.ooniprobe.fragment.ProgressFragment"
+			android:id="@id/progress_fragment"
+			android:layout_alignParentBottom="true"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content" />
+
+	</RelativeLayout>
 </LinearLayout>

@@ -21,6 +21,7 @@ import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.domain.UpdatesNotificationManager;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
 import org.openobservatory.ooniprobe.fragment.PreferenceGlobalFragment;
+import org.openobservatory.ooniprobe.fragment.ProgressFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
 
 import java.io.Serializable;
@@ -39,6 +40,9 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     @BindView(R.id.bottomNavigation)
     BottomNavigationView bottomNavigation;
 
+    @BindView(R.id.progress_fragment)
+    ProgressFragment progressFragment;
+
     @Inject
     UpdatesNotificationManager notificationManager;
 
@@ -53,6 +57,12 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActivityComponent().inject(this);
+        /*if (isTestRunning())
+			progressFragment.setVisibility(View.VISIBLE);
+		else
+			progressFragment.setVisibility(View.GONE);
+		 */
+
         if (preferenceManager.isShowOnboarding()) {
             startActivity(new Intent(MainActivity.this, OnboardingActivity.class));
             finish();
