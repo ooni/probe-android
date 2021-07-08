@@ -15,6 +15,8 @@ import android.os.IBinder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
@@ -42,9 +44,14 @@ public class ProgressFragment extends Fragment implements ServiceConnection {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    //private AbstractActivity context;
-    @BindView(R.id.test_label)
-    TextView test_label;
+    @BindView(R.id.progress_layout)
+    FrameLayout progress_layout;
+    @BindView(R.id.progress)
+    ProgressBar progress;
+    @BindView(R.id.running)
+    TextView running;
+    @BindView(R.id.name)
+    TextView name;
 
     public ProgressFragment() {
         // Required empty public constructor
@@ -85,10 +92,9 @@ public class ProgressFragment extends Fragment implements ServiceConnection {
 
         // Inflate the layout for this fragment
         if (((Application)getActivity().getApplication()).isTestRunning())
-            test_label.setVisibility(View.VISIBLE);
+            progress_layout.setVisibility(View.VISIBLE);
         else
-            test_label.setVisibility(View.GONE);
-
+            progress_layout.setVisibility(View.GONE);
 
         return v;
     }
@@ -114,10 +120,10 @@ public class ProgressFragment extends Fragment implements ServiceConnection {
             System.out.println("ProgressFragment onResume isTestRunning");
             Intent intent = new Intent(getActivity(), RunTestService.class);
             getActivity().bindService(intent, this, Context.BIND_AUTO_CREATE);
-            test_label.setVisibility(View.VISIBLE);
+            progress_layout.setVisibility(View.VISIBLE);
         }
         else
-            test_label.setVisibility(View.GONE);
+            progress_layout.setVisibility(View.GONE);
     }
 
     @Override
@@ -158,9 +164,9 @@ public class ProgressFragment extends Fragment implements ServiceConnection {
             System.out.println("ProgressFragment TestRunBroadRequestReceiver ");
             //TODO hide on test .END
             if (((Application)getActivity().getApplication()).isTestRunning())
-                test_label.setVisibility(View.VISIBLE);
+                progress_layout.setVisibility(View.VISIBLE);
             else
-                test_label.setVisibility(View.GONE);
+                progress_layout.setVisibility(View.GONE);
 
             String key = intent.getStringExtra("key");
             System.out.println("ProgressFragment TestRunBroadRequestReceiver "+ key);
