@@ -153,7 +153,6 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
             testEnded(this);
             return;
         }
-        //TODO change
         IntentFilter filter = new IntentFilter("org.openobservatory.ooniprobe.activity.RunningActivity");
         receiver = new TestRunBroadRequestReceiver();
         LocalBroadcastManager.getInstance(this).registerReceiver(receiver, filter);
