@@ -21,7 +21,11 @@ import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
+import org.openobservatory.ooniprobe.test.TestAsyncTask;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,6 +44,9 @@ public class ProgressFragment extends Fragment implements ServiceConnection {
     private RunTestService service;
     private ProgressFragment.TestRunBroadRequestReceiver receiver;
     boolean isBound = false;
+
+    @Inject
+    PreferenceManager preferenceManager;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -89,7 +96,7 @@ public class ProgressFragment extends Fragment implements ServiceConnection {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_progress, container, false);
         ButterKnife.bind(this, v);
-
+        ((Application) getActivity().getApplication()).getFragmentComponent().inject(this);
         // Inflate the layout for this fragment
         if (((Application)getActivity().getApplication()).isTestRunning())
             progress_layout.setVisibility(View.VISIBLE);
@@ -126,6 +133,15 @@ public class ProgressFragment extends Fragment implements ServiceConnection {
             progress_layout.setVisibility(View.GONE);
     }
 
+    private void updateUI(){
+        if (service != null && service.task != null){
+            if (service.task.currentSuite != null)
+                progress.setMax(service.task.currentSuite.getTestList(preferenceManager).length * 100);
+            if (service.task.currentTest != null)
+                name.setText(getString(service.task.currentTest.getLabelResId()));
+        }
+    }
+
     @Override
     public void onPause() {
         super.onPause();
@@ -150,6 +166,8 @@ public class ProgressFragment extends Fragment implements ServiceConnection {
         RunTestService.TestBinder b = (RunTestService.TestBinder) binder;
         service = b.getService();
         isBound = true;
+        if (((Application)getActivity().getApplication()).isTestRunning())
+            updateUI();
     }
 
 
@@ -173,7 +191,26 @@ public class ProgressFragment extends Fragment implements ServiceConnection {
 
             String value = intent.getStringExtra("value");
             switch (key) {
-
+                case TestAsyncTask.START:
+                    progress.setIndeterminate(true);
+                    progress.setMax(service.task.currentSuite.getTestList(preferenceManager).length * 100);
+                    break;
+                case TestAsyncTask.RUN:
+                    name.setText(value);
+                    break;
+                case TestAsyncTask.PRG:
+                    if (progress.isIndeterminate())
+                        progress.setMax(service.task.currentSuite.getTestList(preferenceManager).length * 100);
+                    int prgs = Integer.parseInt(value);
+                    progress.setIndeterminate(false);
+                    progress.setProgress(prgs);
+                    break;
+                case TestAsyncTask.URL:
+                    progress.setIndeterminate(false);
+                    break;
+                case TestAsyncTask.INT:
+                    running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
+                    break;
             }
         }
     }
