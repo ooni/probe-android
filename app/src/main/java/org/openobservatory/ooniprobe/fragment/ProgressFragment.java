@@ -8,11 +8,13 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.os.IBinder;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -20,6 +22,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.AbstractActivity;
+import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
@@ -89,15 +93,20 @@ public class ProgressFragment extends Fragment implements ServiceConnection {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        System.out.println("ProgressFragment onCreateView");
+
         View v = inflater.inflate(R.layout.fragment_progress, container, false);
         ButterKnife.bind(this, v);
         ((Application) getActivity().getApplication()).getFragmentComponent().inject(this);
-        // Inflate the layout for this fragment
-        if (((Application)getActivity().getApplication()).isTestRunning())
-            progress_layout.setVisibility(View.VISIBLE);
-        else
-            progress_layout.setVisibility(View.GONE);
-
+        v.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                    Intent intent = new Intent(getContext(), RunningActivity.class);
+                    ActivityCompat.startActivity(getActivity(), intent, null);
+                }
+                return true;
+            }
+        });
         return v;
     }
 
@@ -166,9 +175,9 @@ public class ProgressFragment extends Fragment implements ServiceConnection {
     public class TestRunBroadRequestReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            System.out.println("ProgressFragment TestRunBroadRequestReceiver ");
+            //System.out.println("ProgressFragment TestRunBroadRequestReceiver ");
             String key = intent.getStringExtra("key");
-            System.out.println("ProgressFragment TestRunBroadRequestReceiver "+ key);
+            //System.out.println("ProgressFragment TestRunBroadRequestReceiver "+ key);
             String value = intent.getStringExtra("value");
             switch (key) {
                 case TestAsyncTask.START:

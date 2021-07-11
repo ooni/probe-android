@@ -232,7 +232,6 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
         broadcastIntent.putExtra("key", values[0]);
         if (values.length > 1)
             broadcastIntent.putExtra("value", values[1]);
-        //TODO change
         broadcastIntent.setAction("org.openobservatory.ooniprobe.activity.RunningActivity");
         LocalBroadcastManager.getInstance(app).sendBroadcast(broadcastIntent);
     }
