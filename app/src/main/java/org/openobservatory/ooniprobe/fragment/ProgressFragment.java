@@ -30,11 +30,6 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProgressFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ProgressFragment extends Fragment implements ServiceConnection {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -110,14 +105,6 @@ public class ProgressFragment extends Fragment implements ServiceConnection {
     public void onResume() {
         super.onResume();
         System.out.println("ProgressFragment onResume");
-
-        /*if (!isTestRunning()) {
-            NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-            assert notificationManager != null;
-            notificationManager.cancel(RunTestService.NOTIFICATION_ID);
-            testEnded(this);
-            return;
-        }*/
         //TODO change
         IntentFilter filter = new IntentFilter("org.openobservatory.ooniprobe.activity.RunningActivity");
         receiver = new ProgressFragment.TestRunBroadRequestReceiver();
@@ -180,15 +167,8 @@ public class ProgressFragment extends Fragment implements ServiceConnection {
         @Override
         public void onReceive(Context context, Intent intent) {
             System.out.println("ProgressFragment TestRunBroadRequestReceiver ");
-            //TODO hide on test .END
-            if (((Application)getActivity().getApplication()).isTestRunning())
-                progress_layout.setVisibility(View.VISIBLE);
-            else
-                progress_layout.setVisibility(View.GONE);
-
             String key = intent.getStringExtra("key");
             System.out.println("ProgressFragment TestRunBroadRequestReceiver "+ key);
-
             String value = intent.getStringExtra("value");
             switch (key) {
                 case TestAsyncTask.START:
@@ -210,6 +190,9 @@ public class ProgressFragment extends Fragment implements ServiceConnection {
                     break;
                 case TestAsyncTask.INT:
                     running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
+                    break;
+                case TestAsyncTask.END:
+                    progress_layout.setVisibility(View.GONE);
                     break;
             }
         }
