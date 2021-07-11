@@ -14,6 +14,8 @@
         <ProgressBar
             android:id="@+id/progress"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:minHeight="10dp"
+            android:maxHeight="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:progressDrawable="@drawable/progress_blue"
