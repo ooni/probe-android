@@ -25,6 +25,8 @@ import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
 import java.util.ArrayList;
 
+import static android.app.PendingIntent.FLAG_IMMUTABLE;
+
 public class RunTestService extends Service {
     public static final String CHANNEL_ID = "RunTestService";
     public static final int NOTIFICATION_ID = 1;
@@ -52,8 +54,18 @@ public class RunTestService extends Service {
         Application app = ((Application)getApplication());
         NotificationUtility.setChannel(getApplicationContext(), CHANNEL_ID, app.getString(R.string.Settings_AutomatedTesting_Label), false, false, false);
         Intent notificationIntent = new Intent(this, RunningActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this,
-                0, notificationIntent, 0);
+        notificationIntent.setPackage("org.openobservatory.ooniprobe");
+        PendingIntent pendingIntent;
+        //From https://support.google.com/faqs/answer/10437428
+        if (android.os.Build.VERSION.SDK_INT >= 23) {
+            // Create a PendingIntent using FLAG_IMMUTABLE
+            pendingIntent = PendingIntent.getActivity(this,
+                    0, notificationIntent, FLAG_IMMUTABLE);
+        } else {
+            // Existing code that creates a PendingIntent
+            pendingIntent = PendingIntent.getActivity(this,
+                    0, notificationIntent, 0);
+        }
         notificationManager = NotificationManagerCompat.from(this);
         builder = new NotificationCompat.Builder(this, CHANNEL_ID);
         builder.setContentTitle(getApplication().getString(R.string.Dashboard_Running_Running))
