@@ -272,7 +272,7 @@
   <string name="Modal_NoThanks">No, grazie</string>
   <string name="Modal_Error_NoInternet">Non è stato possibile eseguire il test. Controlla la tua connessione internet.</string>
   <string name="Modal_Error_CantDownloadURLs">Non è stato possibile scaricare la lista di URL. Riprova.</string>
-  <string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a new test.</string>
+  <string name="Modal_Error_TestAlreadyRunning">Per favore, attendi la fine del test attuale prima di avviarne uno nuovo.</string>
   <string name="Modal_Error_NotificationNotEnabled">Servono i permessi di notifica. Per favore attivali nelle impostazioni del tuo telefono e poi abilita le notifiche dentro l\'app OONI Probe.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Vai alle impostazioni</string>
   <string name="Modal_Error_CantCloseScreen">Lo schermo è bloccato quando un test è in corso.</string>
@@ -420,8 +420,8 @@
   <string name="Settings_SendEmail_Error">Per favore manda un email a bugs@openobservatory.org con i la versione dell\'app e iOS. Tappa su \"Copia nella clipboard\" per copiare il nostro indirizzo email.</string>
   <string name="Settings_Language_Current">La lingua attuale dell\'app è %1$s</string>
   <string name="Settings_Language_Label">Lingua</string>
-  <string name="Settings_Storage_Label">Storage usage</string>
-  <string name="Settings_Storage_Usage_Label">Storage used</string>
+  <string name="Settings_Storage_Label">Utilizzo spazio di archiviazione</string>
+  <string name="Settings_Storage_Usage_Label">Spazio di archiviazione utilizzato</string>
   <string name="Settings_Storage_Delete">Rimuovi</string>
   <string name="Settings_Storage_Clear">Elimina</string>
   <string name="Settings_Storage_Confirmation_Paragraph">Stai per cancellare tutte le misurazioni di OONI dal tuo apparato. Se queste sono già state caricate, continueranno ad essere disponibili su [OONI Explorer](https://explorer.ooni.org)</string>

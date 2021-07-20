@@ -272,7 +272,7 @@
   <string name="Modal_NoThanks">Hayır, teşekkürler</string>
   <string name="Modal_Error_NoInternet">Sınama yapılamadı. Lütfen İnternet bağlantınızı denetleyin.</string>
   <string name="Modal_Error_CantDownloadURLs">Adres listesi indirilemedi. Lütfen yeniden deneyin.</string>
-  <string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a new test.</string>
+  <string name="Modal_Error_TestAlreadyRunning">Lütfen yeni bir sınama başlatmadan önce yapılmakta olan sınamaların tamamlanmasını bekleyin.</string>
   <string name="Modal_Error_NotificationNotEnabled">Bildirim izinleri gerekli. Lütfen telefonunuzun ayarlar bölümünden gerekli izinleri verdikten sonra OONI Probe uygulamanızdan etkinleştirin.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Ayarlar Bölümüne Gidin</string>
   <string name="Modal_Error_CantCloseScreen">Bu ekran sınama sırasında kilitlidir.</string>

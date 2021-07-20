@@ -272,7 +272,7 @@
   <string name="Modal_NoThanks">Nei takk</string>
   <string name="Modal_Error_NoInternet">Ekki er hægt að keyra prófunina. Athugaðu nettenginguna þína.</string>
   <string name="Modal_Error_CantDownloadURLs">Get ekki sótt lista yfir slóðir. Reyndu aftur.</string>
-  <string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a new test.</string>
+  <string name="Modal_Error_TestAlreadyRunning">Bíddu eftir að fyrirliggjandi prófunum ljúki áður en þú framkvæmir nýja prófun.</string>
   <string name="Modal_Error_NotificationNotEnabled">Heimildir til að birta tilkynningar eru nauðsynlegar. Virkjaðu þær í stillingum símans og síðan aftur í OONI Probe forritinu.</string>
   <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Fara í stillingar</string>
   <string name="Modal_Error_CantCloseScreen">Þessi skjár er læstur á meðan prófun er keyrð.</string>
@@ -348,7 +348,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">Síðasta sjálfvirka prófun: %1$s.</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Aðeins á WiFi</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Aðeins þegar verið er í hleðslu</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Your test results will automatically get published on [OONI Explorer](https://explorer.ooni.org/)\n\nImportant: If you have a VPN enabled, OONI Probe will not run tests automatically. Please turn off your VPN for automated OONI Probe testing. [Learn more](https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn)</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">Þegar sjálfvirkar prófanir eru virkjaðar, munu OONI Probe prófanir keyra sjálfkrafa nokkrum sinnum á dag. Prófunarniðurstöður þínar verða birtar á [OONI Explorer](https://explorer.ooni.org/)\n\nMikilvægt: Ef þú hefur virkjað VPN, verða OONI Probe prófanir ekki keyra sjálfkrafa. Slökktu á VPN til að keyra sjálfvirkar OONI Probe prófanir. [Kanna nánar](https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn)</string>
   <string name="Settings_Sharing_Label">Deiling</string>
   <string name="Settings_Sharing_UploadResults">Sjálfvirk birting niðurstaðna</string>
   <string name="Settings_Sharing_UploadResultsManually">Handvirk innsending niðurstaðna</string>
