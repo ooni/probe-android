@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.URLUtil;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -137,8 +138,10 @@ public class OoniRunActivity extends AbstractActivity {
 		title.setText(suite.getTestList(preferenceManager)[0].getLabelResId());
 		desc.setText(getString(R.string.OONIRun_YouAreAboutToRun));
 		if (attribute != null && attribute.urls != null) {
-			for (String url : attribute.urls)
-				items.add(new TextItem(url));
+			for (String url : attribute.urls) {
+				if (URLUtil.isValidUrl(url))
+					items.add(new TextItem(url));
+			}
 			adapter.notifyTypesChanged();
 			iconBig.setVisibility(View.GONE);
 		} else {
