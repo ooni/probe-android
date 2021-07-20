@@ -108,7 +108,7 @@ public class RunTestService extends Service {
                     .setProgress(100,100,false);
             notificationManager.notify(1, builder.build());
         }
-        else
+        else if (notificationManager != null)
             notificationManager.cancel(NOTIFICATION_ID);
         this.unregisterReceiver(receiver);
     }
