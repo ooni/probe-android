@@ -160,6 +160,7 @@
   <string name="TestResults_Details_Failed_Title">Başarısız</string>
   <string name="TestResults_Details_Failed_Paragraph"> Bu sınamayı yeniden çalıştırmayı deneyebilirsiniz</string>
   <string name="TestResults_Details_Failed_TryAgain">Yeniden Dene</string>
+  <string name="TestResults_Details_Methodology_Paragraph">Learn how this test works [here](%1$s).</string>
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Erişilebilir</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s erişilebilir.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Engellenmiş olabilir</string>
@@ -348,7 +349,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">Son otomatik sınama: %1$s.</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Yanlız Wi-Fi kullanılırken</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Yalnız şarj edilirken</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">Otomatik sınama etkinleştirildiğinde, OONI Probe sınamaları her gün birkaç kez yapılır. Sınama sonuçlarınız otomatik olarak [OONI Explorer](https://explorer.ooni.org/) sitesinde yayınlanır\n\nÖnemli: VPN kullanıyorsanız, OONI Probe sınamaları otomatik olarak yapmaz. Otomatik OONI Probe sınamalarının yapılabilmesi için VPN bağlantınızı kapatın. [Ayrıntılı bilgi almak için buraya bakabilirsiniz](https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn)</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Your test results will automatically get published on OONI Explorer: https://explorer.ooni.org/ \n\nImportant: If you have a VPN enabled, OONI Probe will not run tests automatically. Please turn off your VPN for automated OONI Probe testing. Learn more: https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn</string>
   <string name="Settings_Sharing_Label">Paylaşım</string>
   <string name="Settings_Sharing_UploadResults">Sonuçlar Otomatik Olarak Yayınlansın</string>
   <string name="Settings_Sharing_UploadResultsManually">Sonuçları El ile Yükle </string>

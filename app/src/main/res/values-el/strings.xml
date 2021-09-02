@@ -54,7 +54,7 @@
   <string name="Dashboard_Running_Stopping_Notice">Τελειώνουμε τις δοκιμές που εκκρεμούν, παρακαλώ περίμενε...</string>
   <string name="Dashboard_Running_ProxyInUse">Χρησιμοποιείται proxy</string>
   <string name="Dashboard_Card_Subtitle">Πάτα την κάρτα για περισσότερα</string>
-  <string name="Dashboard_Card_Seconds">~%1$s\'\'</string>
+  <string name="Dashboard_Card_Seconds">~%1$s\''</string>
   <string name="Dashboard_Websites_Card_Description">Έλεγξε το μπλοκάρισμα ιστοσελιδών</string>
   <string name="Dashboard_Websites_Overview_Paragraph">Δες αν έχουν μπλοκαριστεί ιστοσελίδες, χρησιμοποιώντας τη δοκιμή [Web Connectivity](https://ooni.org/nettest/web-connectivity/) του OONI.\n\nΚάθε φορά που πατάς Εκτέλεση, ελέγχεις διαφορετικές ιστοσελίδες από την [παγκόσμια](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) και τις [εθνικές](https://github.com/citizenlab/test-lists/tree/master/lists) λίστες του Citizen Lab.\n\nΓια να ελέγξεις όποιες ιστοσελίδες θες, πάτα το κουμπί \"Επέλεξε ιστοσελίδες\" ή διάλεξε κατηγορίες ιστοσελιδών μέσω των ρυθμίσεων αυτής της κάρτας.\n\nΑυτή η δοκιμή εξετάζει αν ιστοσελίδες έχουν μπλοκαριστεί μέσω τροποποίησης του DNS, μπλοκάρισμα σε επίπεδο TCP/IP ή μέσω διάφανου HTTP proxy.\n\nΤα αποτελέσματα των δοκιμών σου θα δημοσιευτούν στο [OONI Explorer](https://explorer.ooni.org/world/) και στο [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Websites_Overview_Paragraph_Desktop">Δες αν έχουν μπλοκαριστεί ιστοσελίδες, χρησιμοποιώντας τη δοκιμή [Web Connectivity](https://ooni.org/nettest/web-connectivity/) του OONI.\n\nΘα κάνεις δοκιμές στις ιστοσελίδες που περιλαμβάνονται στην [παγκόσμια](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) και τις [εθνικές](https://github.com/citizenlab/test-lists/tree/master/lists) λίστες του Citizen Lab.\n\nΓια να ελέγξεις όποιες ιστοσελίδες θες, πάτα το κουμπί \"Επέλεξε ιστοσελίδες\" ή διάλεξε κατηγορίες ιστοσελιδών μέσω των ρυθμίσεων αυτής της κάρτας.\n\nΑυτή η δοκιμή εξετάζει αν ιστοσελίδες έχουν μπλοκαριστεί μέσω τροποποίησης του DNS, μπλοκάρισμα σε επίπεδο TCP/IP ή μέσω διάφανου HTTP proxy.\n\nΤα αποτελέσματα των δοκιμών σου θα δημοσιευτούν στο [OONI Explorer](https://explorer.ooni.org/world/) και στο [OONI API](https://api.ooni.io/).</string>
@@ -160,6 +160,7 @@
   <string name="TestResults_Details_Failed_Title">Απέτυχε</string>
   <string name="TestResults_Details_Failed_Paragraph">Μπορείς να επανεκτελέσεις αυτή τη δοκιμή</string>
   <string name="TestResults_Details_Failed_TryAgain">Προσπάθησε ξανά</string>
+  <string name="TestResults_Details_Methodology_Paragraph">Learn how this test works [here](%1$s).</string>
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Προσβάσιμη</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">Η ιστοσελίδα %1$s είναι προσβάσιμη.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Πιθανή λογοκρισία</string>
@@ -234,7 +235,7 @@
   <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph">Η σύνδεση στο [Psiphon] (https://psiphon.ca/) φαίνεται να έχει μπλοκαριστεί.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph">Η σύνδεση στο [Psiphon](https://psiphon.ca/) ήταν επιτυχής, και επομένως πρέπει να λειτουργεί.</string>
   <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Χρόνος εκκίνησης</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s \'\'</string>
+  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s \''</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Hero_Title">Πιθανή λογοκρισία</string>
   <string name="TestResults_Details_Circumvention_Tor_Reachable_Hero_Title">Λειτουργεί</string>
   <string name="TestResults_Details_Circumvention_Tor_Blocked_Content_Paragraph">Η σύνδεση στο [Tor](https://www.torproject.org/) φαίνεται να έχει μπλοκαριστεί.</string>
@@ -348,7 +349,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">Τελευταία αυτοματοποιημένη δοκιμή: %1$s.</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Μόνο μέσω WiFi</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Μόνο όταν φορτίζει</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">Ενεργοποιώντας τις αυτοματοποιημένες δοκιμές, οι δοκιμές του OONI Probe θα εκτελούνται αυτόματα πολλές φορές ανά ημέρα. Τα αποτελέσματα των δοκιμών σου θα δημοσιεύονται αυτόματα στο [OONI Explorer](https://explorer.ooni.org/)\n\nΣημαντικό: Αν έχεις ενεργοποιημένο κάποιο VPN, το OONI Probe δεν θα εκτελεί τις δοκιμές αυτόματα. Παρακαλούμε απενεργοποίησε το VPN σου για τις αυτοματοποιημένες δοκιμές του OONI Probe. [Μάθε περισσότερα](https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn)</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Your test results will automatically get published on OONI Explorer: https://explorer.ooni.org/ \n\nImportant: If you have a VPN enabled, OONI Probe will not run tests automatically. Please turn off your VPN for automated OONI Probe testing. Learn more: https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn</string>
   <string name="Settings_Sharing_Label">Κοινή χρήση</string>
   <string name="Settings_Sharing_UploadResults">Αυτόματη δημοσίευση αποτελεσμάτων</string>
   <string name="Settings_Sharing_UploadResultsManually">Χειροκίνητο ανέβασμα αποτελεσμάτων</string>

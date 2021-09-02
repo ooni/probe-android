@@ -160,6 +160,7 @@
   <string name="TestResults_Details_Failed_Title">ناموفق</string>
   <string name="TestResults_Details_Failed_Paragraph">می‌توانید این تست را دوباره انجام دهید</string>
   <string name="TestResults_Details_Failed_TryAgain">دوباره سعی کنید</string>
+  <string name="TestResults_Details_Methodology_Paragraph">Learn how this test works [here](%1$s).</string>
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">در دسترس</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s در دسترس است.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">احتمالا مسدود</string>
@@ -348,7 +349,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">آخرین تست خودکار: %1$s.</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">تنها از طریق WiFi</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">تنها در هنگام شارژ</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">با فعال سازی تست اتوماتیک، کاوشگر OONI به صورت اتوماتیک چندین بار در روز تست ها را اجرا خواهد کرد. نتایج تست های شما به صورت اتوماتیک در [OONI Explorer](https://explorer.ooni.org/) منتشر خواهد شد.\n\nنکته‌ی مهم: اگر VPN شما فعال باشد، کاوشگر OONI تست های اتوماتیک را اجرا نخواهد کرد. برای انجام تست های اتوماتیک توسط کاوشگر OONI، لطفا VPN خود را خاموش کنید. [بیشتر بیاموزید](https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn)</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Your test results will automatically get published on OONI Explorer: https://explorer.ooni.org/ \n\nImportant: If you have a VPN enabled, OONI Probe will not run tests automatically. Please turn off your VPN for automated OONI Probe testing. Learn more: https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn</string>
   <string name="Settings_Sharing_Label">به اشتراک گذاری</string>
   <string name="Settings_Sharing_UploadResults">انتشار خودکار نتایج</string>
   <string name="Settings_Sharing_UploadResultsManually">بارگذاری دستی نتایج</string>

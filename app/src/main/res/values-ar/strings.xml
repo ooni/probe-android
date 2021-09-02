@@ -160,6 +160,7 @@
   <string name="TestResults_Details_Failed_Title">فشل</string>
   <string name="TestResults_Details_Failed_Paragraph">باستطاعتك إجراء هذا الاختبار من جديد </string>
   <string name="TestResults_Details_Failed_TryAgain">الرجاء المحاولة مجددًا</string>
+  <string name="TestResults_Details_Methodology_Paragraph">Learn how this test works [here](%1$s).</string>
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">مُتاح</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s مُتاح.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">محجوب على الأرجح</string>
@@ -348,7 +349,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">آخر اختبار أوتوماتيكي %1$s.</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">فقط عند الاتصال عبر الواي الفاي </string>
   <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">فقط عند الشحن </string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">عند تفعيل الاختبارات الاوتوماتيكية، ستجري اختبارات OONI Probe الأوتوماتيكية تلقائياً عدّة مرّات يوميّاً. وسيتم نشر نتائجها بشكل تلقائي أيضاً على [OONI Explorer](https://explorer.ooni.org/)\n\nمهم: إذا كانت هناك خدمة الشبكة الافتراضية الخاصة أو VPN مشغّل لديكم، لن يقوم OONI Probe بإجراء فحوصات أوتوماتيكية. يرجى إيقاف الشبكة الافتراضية الخاصة  لإجراء لاختبارات التلقائية. [المزيد من المعلومات](https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn)</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Your test results will automatically get published on OONI Explorer: https://explorer.ooni.org/ \n\nImportant: If you have a VPN enabled, OONI Probe will not run tests automatically. Please turn off your VPN for automated OONI Probe testing. Learn more: https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn</string>
   <string name="Settings_Sharing_Label">المشاركة</string>
   <string name="Settings_Sharing_UploadResults">نشر النتائج أوتوماتيكيّاً </string>
   <string name="Settings_Sharing_UploadResultsManually">رفع النتائج يدويّاً </string>

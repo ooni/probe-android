@@ -160,6 +160,7 @@
   <string name="TestResults_Details_Failed_Title">ล้มเหลว</string>
   <string name="TestResults_Details_Failed_Paragraph">คุณสามารถลองการทดสอบนี้อีกครั้ง</string>
   <string name="TestResults_Details_Failed_TryAgain">ลองอีกครั้ง</string>
+  <string name="TestResults_Details_Methodology_Paragraph">Learn how this test works [here](%1$s).</string>
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">เข้าถึงได้</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s สามารถเข้าถึงได้</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">น่าจะถูกปิดกั้น</string>
@@ -348,7 +349,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">การทดสอบอัตโนมัติครั้งสุดท้าย: %1$s</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">เฉพาะบนไวไฟ</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">เฉพาะเมื่อชาร์จอยู่</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">เมื่อเปิดใช้การทดสอบอัตโนมัติ การทดสอบของ OONI Probe จะทำงานอัตโนมัติหลายครั้งต่อวัน ผลทดสอบของคุณจะถูกเผยแพร่โดยอัตโนมัติบน [OONI Explorer](https://explorer.ooni.org/)\n\nสำคัญ: ถ้าคุณเปิดใช้ VPN อยู่ OONI Probe จะไม่ทำการทดสอบโดยอัตโนมัติ กรุณาปิด VPN ของคุณเพื่อทำการทดสอบบน OONI Probe โดยอัตโนมัติ [เรียนรู้เพิ่มเติม](https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn)</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Your test results will automatically get published on OONI Explorer: https://explorer.ooni.org/ \n\nImportant: If you have a VPN enabled, OONI Probe will not run tests automatically. Please turn off your VPN for automated OONI Probe testing. Learn more: https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn</string>
   <string name="Settings_Sharing_Label">เเบ่งปัน</string>
   <string name="Settings_Sharing_UploadResults">เผยแพร่ผลโดยอัตโนมัติ</string>
   <string name="Settings_Sharing_UploadResultsManually">อัปโหลดผลด้วยตัวเอง</string>

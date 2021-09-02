@@ -160,6 +160,7 @@
   <string name="TestResults_Details_Failed_Title">Failed</string>
   <string name="TestResults_Details_Failed_Paragraph">You can try to run this test again</string>
   <string name="TestResults_Details_Failed_TryAgain">Try Again</string>
+  <string name="TestResults_Details_Methodology_Paragraph">Learn how this test works [here](%1$s).</string>
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Accessible</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s is accessible.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Likely blocked</string>
@@ -348,7 +349,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">Last automated test: %1$s.</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Only on WiFi</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Only while charging</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Your test results will automatically get published on [OONI Explorer](https://explorer.ooni.org/)\n\nImportant: If you have a VPN enabled, OONI Probe will not run tests automatically. Please turn off your VPN for automated OONI Probe testing. [Learn more](https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn)</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Your test results will automatically get published on OONI Explorer: https://explorer.ooni.org/ \n\nImportant: If you have a VPN enabled, OONI Probe will not run tests automatically. Please turn off your VPN for automated OONI Probe testing. Learn more: https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn</string>
   <string name="Settings_Sharing_Label">Sharing</string>
   <string name="Settings_Sharing_UploadResults">Automatically Publish Results</string>
   <string name="Settings_Sharing_UploadResultsManually">Manual Result Upload</string>

@@ -160,6 +160,7 @@
   <string name="TestResults_Details_Failed_Title">Fallito</string>
   <string name="TestResults_Details_Failed_Paragraph">Puoi provare ad effettuare di nuovo il test</string>
   <string name="TestResults_Details_Failed_TryAgain">Riprova</string>
+  <string name="TestResults_Details_Methodology_Paragraph">Learn how this test works [here](%1$s).</string>
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Accessibile</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s è accessibile</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Probabilmente bloccato</string>
@@ -348,7 +349,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">Ultimo test automatico: %1$s.</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Solo su WiFi</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Solo durante il caricamento</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">Abilitando i test automatici, questi saranno eseguiti diverse volte al giorno. I risultati dei tuoi test saranno automaticamente pubblicati su [OONI Explorer](https://explorer.ooni.org/)\n\nImportante: Se hai abilitato una VPN, OONI Proble non eseguirà i test automaticamente. Per favore, disabilita la tua VPN per consentire i test automatici di OONI Probe. [Maggiori informazioni](https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn)</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Your test results will automatically get published on OONI Explorer: https://explorer.ooni.org/ \n\nImportant: If you have a VPN enabled, OONI Probe will not run tests automatically. Please turn off your VPN for automated OONI Probe testing. Learn more: https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn</string>
   <string name="Settings_Sharing_Label">Condivisione</string>
   <string name="Settings_Sharing_UploadResults">Risultati Pubblicati Automaticamente</string>
   <string name="Settings_Sharing_UploadResultsManually">Caricamento Manuale dei Risultati</string>
