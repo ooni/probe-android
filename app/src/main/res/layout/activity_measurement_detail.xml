@@ -51,19 +51,44 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginHorizontal="24dp"
-				android:layout_marginVertical="16dp" />
+				android:layout_marginTop="16dp" />
 
 			<Button
-				android:id="@+id/methodology"
+				android:id="@+id/log"
+				style="@style/Widget.MaterialComponents.Button.TextButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginHorizontal="24dp"
+				android:textColor="@color/color_base"
+				android:text="@string/TestResults_Details_ViewLog" />
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp"
+			android:orientation="horizontal">
+
+			<Button
+				android:id="@+id/data"
 				style="@style/Widget.MaterialComponents.Button.OutlinedButton"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginHorizontal="24dp"
 				android:textColor="@color/color_base"
-				android:text="@string/TestResults_Details_Methodology"
+				android:text="@string/TestResults_Details_RawData"
 				app:cornerRadius="24dp" />
+			<Button
+				android:id="@+id/explorer"
+				style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginHorizontal="24dp"
+				android:textColor="@color/color_base"
+				android:text="@string/TestResults_Details_ShowInExplorer"
+				app:cornerRadius="24dp" />
+		</LinearLayout>
 
-			<FrameLayout
+		<FrameLayout
 				android:id="@+id/footer"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"

@@ -1,7 +1,5 @@
 package org.openobservatory.ooniprobe.activity;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,7 +7,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -20,7 +19,6 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.client.callback.CheckReportIdCallback;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.domain.MeasurementsManager;
@@ -74,6 +72,12 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     private Measurement measurement;
     private Snackbar snackbar;
     private Boolean isInExplorer;
+    @BindView(R.id.log)
+    Button log;
+    @BindView(R.id.explorer)
+    Button explorer;
+    @BindView(R.id.data)
+    Button data;
 
     @Inject
     MeasurementsManager measurementsManager;
@@ -224,6 +228,11 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                 isInExplorer = false;
             }
         });
+
+        if (!measurement.hasLogFile(this))
+            log.setVisibility(View.GONE);
+        if (!measurementsManager.hasReportId(measurement))
+            explorer.setVisibility(View.GONE);
         load();
     }
 
@@ -240,31 +249,13 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.measurement, menu);
+        getMenuInflater().inflate(R.menu.share, menu);
         return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        invalidateOptionsMenu();
-        if (!measurement.hasLogFile(this))
-            menu.findItem(R.id.viewLog).setVisible(false);
-        if (!measurementsManager.hasReportId(measurement)) {
-            menu.findItem(R.id.shareExplorerUrl).setVisible(false);
-            menu.findItem(R.id.copyExplorerUrl).setVisible(false);
-        }
-        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.rawData:
-                startActivity(TextActivity.newIntent(this, TextActivity.TYPE_JSON, measurement));
-                return true;
-            case R.id.viewLog:
-                startActivity(TextActivity.newIntent(this, TextActivity.TYPE_LOG, measurement));
-                return true;
             case R.id.shareExplorerUrl:
                 Intent share = new Intent(Intent.ACTION_SEND);
                 share.putExtra(Intent.EXTRA_TEXT, measurementsManager.getExplorerUrl(measurement));
@@ -272,18 +263,29 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                 Intent shareIntent = Intent. createChooser(share, null);
                 startActivity(shareIntent);
                 return true;
-            case R.id.copyExplorerUrl:
-                ((ClipboardManager) getSystemService(CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText(getString(R.string.General_AppName), measurementsManager.getExplorerUrl(measurement)));
-                Toast.makeText(this, R.string.Toast_CopiedToClipboard, Toast.LENGTH_SHORT).show();
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    @OnClick(R.id.methodology)
+    /*@OnClick(R.id.methodology)
     void methodologyClick() {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(measurement.getTest().getUrlResId()))));
+    }*/
+
+    @OnClick(R.id.log)
+    void logClick() {
+        startActivity(TextActivity.newIntent(this, TextActivity.TYPE_LOG, measurement));
+    }
+
+    @OnClick(R.id.data)
+    void dataClick() {
+        startActivity(TextActivity.newIntent(this, TextActivity.TYPE_JSON, measurement));
+    }
+
+    @OnClick(R.id.explorer)
+    void explorerClick() {
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(measurementsManager.getExplorerUrl(measurement))));
     }
 
     @Override
