@@ -124,6 +124,14 @@
 				android:layout_width="match_parent"
 				android:layout_height="?attr/actionBarSize"
 				app:layout_collapseMode="pin" />
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="end|bottom"
+				android:alpha="0.6"
+				android:layout_marginEnd="-18dp"
+				android:layout_marginBottom="-18dp"
+				android:src="@drawable/ooni_bw" />
 		</com.google.android.material.appbar.CollapsingToolbarLayout>
 	</com.google.android.material.appbar.AppBarLayout>
 
