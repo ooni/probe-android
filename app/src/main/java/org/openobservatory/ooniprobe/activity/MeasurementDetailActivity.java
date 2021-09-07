@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -62,6 +63,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
+import ru.noties.markwon.Markwon;
 
 public class MeasurementDetailActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String ID = "id";
@@ -78,6 +80,8 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     Button explorer;
     @BindView(R.id.data)
     Button data;
+    @BindView(R.id.methodology)
+    TextView methodology;
 
     @Inject
     MeasurementsManager measurementsManager;
@@ -233,6 +237,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
             log.setVisibility(View.GONE);
         if (!measurementsManager.hasReportId(measurement))
             explorer.setVisibility(View.GONE);
+        Markwon.setMarkdown(methodology, getString(R.string.TestResults_Details_Methodology_Paragraph, getString(measurement.getTest().getUrlResId())));
         load();
     }
 
@@ -267,11 +272,6 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                 return super.onOptionsItemSelected(item);
         }
     }
-
-    /*@OnClick(R.id.methodology)
-    void methodologyClick() {
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(measurement.getTest().getUrlResId()))));
-    }*/
 
     @OnClick(R.id.log)
     void logClick() {
