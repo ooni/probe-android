@@ -265,7 +265,7 @@
   <string name="Feed_Title">Informačný kanál</string>
   <string name="Modal_OK">OK</string>
   <string name="Modal_Cancel">Zrušiť</string>
-  <string name="Modal_DontAskAgain">Don\'t ask again</string>
+  <string name="Modal_DontAskAgain">Nepýtať sa znova</string>
   <string name="Modal_Delete">Odstrániť</string>
   <string name="Modal_Error">Chyba</string>
   <string name="Modal_Retry">Opakovať</string>
