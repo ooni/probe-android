@@ -160,7 +160,7 @@
   <string name="TestResults_Details_Failed_Title">Fehlgeschlagen</string>
   <string name="TestResults_Details_Failed_Paragraph">Du kannst versuchen, diesen Test erneut auszuführen</string>
   <string name="TestResults_Details_Failed_TryAgain">Noch einmal versuchen</string>
-  <string name="TestResults_Details_Methodology_Paragraph">Learn how this test works [here](%1$s).</string>
+  <string name="TestResults_Details_Methodology_Paragraph">Erfahre [hier](%1$s), wie dieser Test funktioniert.</string>
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Zugänglich</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s ist zugänglich.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Wahrscheinlich blockiert</string>
@@ -349,7 +349,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">Letzter automatisierter Test: %1$s.</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Nur bei WLAN</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Nur während des Ladevorgangs</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Your test results will automatically get published on OONI Explorer: https://explorer.ooni.org/ \n\nImportant: If you have a VPN enabled, OONI Probe will not run tests automatically. Please turn off your VPN for automated OONI Probe testing. Learn more: https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">Wenn du das automatische Testen aktivierst, werden die OONI Probe-Tests automatisch mehrmals am Tag ausgeführt. Deine Testergebnisse werden automatisch im OONI Explorer veröffentlicht: https://explorer.ooni.org/ \n\nWichtig: Wenn du ein VPN aktiviert hast, wird OONI Probe die Tests nicht automatisch ausführen. Bitte schalte dein VPN für automatische OONI Probe-Tests aus. Mehr dazu: https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn</string>
   <string name="Settings_Sharing_Label">Teilen</string>
   <string name="Settings_Sharing_UploadResults">Ergebnisse automatisch veröffentlichen</string>
   <string name="Settings_Sharing_UploadResultsManually">Manuelles Hochladen der Ergebnisse</string>
