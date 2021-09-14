@@ -12,4 +12,8 @@ public class ThirdPartyServices {
     public static void acceptCrash(Application app) {
         //no need to set false, it's already the default value
     }
+    
+    public static void checkUpdates(Activity activity){
+        // does nothing
+    }
 }

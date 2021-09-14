@@ -136,6 +136,7 @@ dependencies {
 	fullImplementation 'com.google.firebase:firebase-messaging'
 	fullImplementation 'ly.count.android:sdk:20.11.1'
 	fullImplementation 'io.sentry:sentry-android:4.0.0'
+	fullImplementation 'com.google.android.play:core:1.8.0'
 
 // Dependency Injection
     implementation 'com.google.dagger:dagger:2.36'
