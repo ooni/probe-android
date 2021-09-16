@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.common;
 
+import android.app.Activity;
 
 public class ThirdPartyServices {
     public static void reloadConsents(Application app) {
