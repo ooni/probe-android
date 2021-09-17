@@ -204,7 +204,7 @@
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Hero_Title">Waarschijnlijk geblokkeerd</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Content_Paragraph">Facebook Messenger lijkt te zijn geblokkeerd.</string>
   <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Hero_Title">Waarschijnlijk geblokkeerd</string>
-  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Content_Paragraph">Signaal lijkt geblokkeerd.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Content_Paragraph">Signal lijkt geblokkeerd.</string>
   <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Hero_Title">Werkend</string>
   <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Content_Paragraph">Deze test is succesvol verbonden met de eindpunten van Signal.</string>
   <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title">Geen middenboxen gedetecteerd</string>
@@ -265,7 +265,7 @@
   <string name="Feed_Title">Feed</string>
   <string name="Modal_OK">OK</string>
   <string name="Modal_Cancel">Annuleren</string>
-  <string name="Modal_DontAskAgain">Vraag niet nog een keer</string>
+  <string name="Modal_DontAskAgain">Vraag niet opnieuw</string>
   <string name="Modal_Delete">Verwijderen</string>
   <string name="Modal_Error">Fout</string>
   <string name="Modal_Retry">Opnieuw proberen</string>
