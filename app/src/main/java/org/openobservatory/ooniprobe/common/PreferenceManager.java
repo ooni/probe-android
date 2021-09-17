@@ -37,6 +37,7 @@ public class PreferenceManager {
 	public static final String AUTORUN_COUNT = "autorun_count";
 	public static final String AUTORUN_DATE = "autorun_last_date";
 	public static final int IGNORE_OPTIMIZATION_REQUEST = 15;
+	public static final int ASK_UPDATE_APP = 16;
 
 	private final SharedPreferences sp;
 	private final Resources r;

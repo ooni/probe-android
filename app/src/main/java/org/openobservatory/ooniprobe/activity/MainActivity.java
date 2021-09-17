@@ -95,6 +95,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                         .withExtra(NOTIFICATION_DIALOG)
                         .build().show(getSupportFragmentManager(), null);
             }
+            ThirdPartyServices.checkUpdates(this);
         }
 
         if (android.os.Build.VERSION.SDK_INT >= 29){
@@ -181,6 +182,10 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 ServiceUtil.scheduleJob(this);
             }
         }
+        else if (requestCode == PreferenceManager.ASK_UPDATE_APP) {
+            if (resultCode != RESULT_OK) {
+                //We don't need to check the result for now
+            }
+        }
     }
-
 }
