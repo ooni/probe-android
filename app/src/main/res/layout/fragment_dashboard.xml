@@ -73,6 +73,17 @@
 		android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
 		android:textColor="@color/color_black"/>
 
+	<TextView
+		android:id="@+id/vpn"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/Dashboard_Overview_LatestTest"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/last_tested"
+		android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+		android:textColor="@color/color_black"/>
+
 	<androidx.recyclerview.widget.RecyclerView
 		android:id="@+id/recycler"
 		android:layout_width="match_parent"

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +22,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.activity.OverviewActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
+import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.item.TestsuiteItem;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
@@ -37,7 +39,9 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.last_tested) TextView lastTested;
     @BindView(R.id.run_all) TextView runAll;
-    private ArrayList<TestsuiteItem> items;
+	@BindView(R.id.vpn) TextView vpn;
+
+	private ArrayList<TestsuiteItem> items;
 	private ArrayList<AbstractSuite> testSuites;
 	private HeterogeneousRecyclerAdapter<TestsuiteItem> adapter;
 
@@ -64,6 +68,11 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 			items.add(new TestsuiteItem(testSuite, this));
 		setLastTest();
 		adapter.notifyTypesChanged();
+		if (ReachabilityManager.isVPNinUse(this.getContext())){
+			vpn.setText("You are connected to a VPN");
+		}
+		else
+			vpn.setText("You are NOT connected to a VPN");
 	}
 
 	private void setLastTest() {
