@@ -181,6 +181,9 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 preferenceManager.enableAutomatedTesting();
                 ServiceUtil.scheduleJob(this);
             }
+            else {
+                //What to do when the user says "No"?
+            }
         }
         else if (requestCode == PreferenceManager.ASK_UPDATE_APP) {
             if (resultCode != RESULT_OK) {
