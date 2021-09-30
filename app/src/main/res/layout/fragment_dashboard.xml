@@ -75,9 +75,12 @@
 
 	<TextView
 		android:id="@+id/vpn"
-		android:layout_width="wrap_content"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="@string/Dashboard_Overview_LatestTest"
+		android:text="You are connected to a VPN"
+		android:gravity="center_horizontal"
+		android:background="@color/color_red7"
+		android:layout_margin="8dp"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintTop_toBottomOf="@id/last_tested"
@@ -93,7 +96,7 @@
 		android:paddingTop="5dp"
 		android:paddingBottom="16dp"
 		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintTop_toBottomOf="@id/last_tested"
+		app:layout_constraintTop_toBottomOf="@id/vpn"
 		tools:listitem="@layout/item_testsuite"
 		android:clipToPadding="false" />
 
