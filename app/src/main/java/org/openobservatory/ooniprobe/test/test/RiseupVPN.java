@@ -7,11 +7,14 @@ import androidx.annotation.NonNull;
 import com.google.gson.Gson;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.MapUtility;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
 import org.openobservatory.ooniprobe.model.settings.Settings;
+
+import java.util.HashMap;
 
 public class RiseupVPN extends AbstractTest {
     public static final String NAME = "riseupvpn";
@@ -27,8 +30,10 @@ public class RiseupVPN extends AbstractTest {
 
     @Override public void onEntry(Context c, PreferenceManager pm, @NonNull JsonResult json, Measurement measurement) {
         super.onEntry(c, pm, json, measurement);
-        boolean isTransportBlocked = json.test_keys.transport_status.getOrDefault("openvpn", "ok").equals("blocked") ||
-                json.test_keys.transport_status.getOrDefault("obfs4", "ok").equals("blocked");
+        boolean isTransportBlocked = false;
+            isTransportBlocked = MapUtility.getOrDefaultCompat(json.test_keys.transport_status, "openvpn", "ok").equals("blocked") ||
+                    MapUtility.getOrDefaultCompat(json.test_keys.transport_status, "obfs4", "ok").equals("blocked");
         measurement.is_anomaly = !json.test_keys.ca_cert_status || json.test_keys.api_failure != null || isTransportBlocked;
     }
+
 }
