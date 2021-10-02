@@ -282,6 +282,9 @@
   <string name="Modal_ResultsNotUploaded_Paragraph">Sommige van uw testresultaten zijn niet geüpload naar de OONI-servers. Als je wilt bijdragen aan de dataset van OONI, upload deze dan a.u.b.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Uploaden</string>
   <string name="Modal_ResultsNotUploaded_Uploading">%1$s uploaden...</string>
+  <string name="Modal_Autorun_BatteryOptimization">OONI Probe cannot run automatically without battery optimization. Do you want to try again?</string>
+  <string name="Modal_DisableVPN_Title">Please disable your VPN connection.</string>
+  <string name="Modal_DisableVPN_Message">If you run OONI Probe with a VPN enabled, the test results may appear to come from the wrong country. Please disable your VPN connection.</string>
   <string name="Toast_ResultsUploaded">Succesvol geupload</string>
   <string name="Modal_DisplayFailureLog">Storingslogboek weergeven</string>
   <string name="Modal_EnableNotifications_Title">Ontvang updates over internetcensuur</string>

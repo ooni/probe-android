@@ -282,6 +282,9 @@
   <string name="Modal_ResultsNotUploaded_Paragraph">ผลทดสอบบางส่วนของคุณยังไม่ได้ถูกอัปโหลดไปยังเซิร์ฟเวอร์ของ OONI ถ้าคุณต้องการสมทบเข้าชุดข้อมูลของ OONI กรุณาอัปโหลดข้อมูลเหล่านั้น</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">อัปโหลด</string>
   <string name="Modal_ResultsNotUploaded_Uploading">กำลังอัปโหลด %1$s ...</string>
+  <string name="Modal_Autorun_BatteryOptimization">OONI Probe cannot run automatically without battery optimization. Do you want to try again?</string>
+  <string name="Modal_DisableVPN_Title">Please disable your VPN connection.</string>
+  <string name="Modal_DisableVPN_Message">If you run OONI Probe with a VPN enabled, the test results may appear to come from the wrong country. Please disable your VPN connection.</string>
   <string name="Toast_ResultsUploaded">อัปโหลดสำเร็จ</string>
   <string name="Modal_DisplayFailureLog">แสดงปูมความล้มเหลว</string>
   <string name="Modal_EnableNotifications_Title">รับข่าวสารเกี่ยวกับการปิดกั้นอินเทอร์เน็ต</string>

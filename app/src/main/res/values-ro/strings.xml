@@ -282,6 +282,9 @@
   <string name="Modal_ResultsNotUploaded_Paragraph">Unele dintre rezultatele testului dvs. nu au fost încărcate pe serverele OONI. Dacă doriți să contribuiți la setul de date OONI, vă rugăm să le încărcați.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Încarcă</string>
   <string name="Modal_ResultsNotUploaded_Uploading">Se încarcă %1$s ...</string>
+  <string name="Modal_Autorun_BatteryOptimization">OONI Probe cannot run automatically without battery optimization. Do you want to try again?</string>
+  <string name="Modal_DisableVPN_Title">Please disable your VPN connection.</string>
+  <string name="Modal_DisableVPN_Message">If you run OONI Probe with a VPN enabled, the test results may appear to come from the wrong country. Please disable your VPN connection.</string>
   <string name="Toast_ResultsUploaded">Încărcare realizată cu succes</string>
   <string name="Modal_DisplayFailureLog">Afișare jurnal de erori</string>
   <string name="Modal_EnableNotifications_Title">Get updates on internet censorship</string>

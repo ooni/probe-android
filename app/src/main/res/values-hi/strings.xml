@@ -282,6 +282,9 @@
   <string name="Modal_ResultsNotUploaded_Paragraph">आपके कुछ परीक्षा परिणाम OONI सर्वर पर अपलोड नहीं किए गए हैं। यदि आप OONI के डेटासेट में योगदान करना चाहते हैं, तो कृपया उन्हें अपलोड करें।</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">अपलोड करें</string>
   <string name="Modal_ResultsNotUploaded_Uploading">अपलोड कर रहे हें %1$s ...</string>
+  <string name="Modal_Autorun_BatteryOptimization">OONI Probe cannot run automatically without battery optimization. Do you want to try again?</string>
+  <string name="Modal_DisableVPN_Title">Please disable your VPN connection.</string>
+  <string name="Modal_DisableVPN_Message">If you run OONI Probe with a VPN enabled, the test results may appear to come from the wrong country. Please disable your VPN connection.</string>
   <string name="Toast_ResultsUploaded">अपलोड सफल रहा।</string>
   <string name="Modal_DisplayFailureLog">विफलता लॉग प्रदर्शित करें</string>
   <string name="Modal_EnableNotifications_Title">इंटरनेट सेंसरशिप पर नई जानकारी प्राप्त करें</string>

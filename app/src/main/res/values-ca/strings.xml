@@ -282,6 +282,9 @@
   <string name="Modal_ResultsNotUploaded_Paragraph">Alguns dels resultats de les vostres proves no s\'han pujat als servidors d\'OONI. Si desitgeu contribuir al conjunt de dades d\'OONI, pugueu-los.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Pujada</string>
   <string name="Modal_ResultsNotUploaded_Uploading">S\'està pujant %1$s...</string>
+  <string name="Modal_Autorun_BatteryOptimization">OONI Probe cannot run automatically without battery optimization. Do you want to try again?</string>
+  <string name="Modal_DisableVPN_Title">Please disable your VPN connection.</string>
+  <string name="Modal_DisableVPN_Message">If you run OONI Probe with a VPN enabled, the test results may appear to come from the wrong country. Please disable your VPN connection.</string>
   <string name="Toast_ResultsUploaded">S\'ha pujat amb èxit</string>
   <string name="Modal_DisplayFailureLog">Mostra el registre d\'errors</string>
   <string name="Modal_EnableNotifications_Title">Obtingueu actualitzacions sobre la censura a Internet</string>
