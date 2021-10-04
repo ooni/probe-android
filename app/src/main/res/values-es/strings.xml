@@ -160,7 +160,7 @@
   <string name="TestResults_Details_Failed_Title">Falló</string>
   <string name="TestResults_Details_Failed_Paragraph">Puedes ejecutar esta prueba de nuevo</string>
   <string name="TestResults_Details_Failed_TryAgain">Intenta otra vez</string>
-  <string name="TestResults_Details_Methodology_Paragraph">Learn how this test works [here](%1$s).</string>
+  <string name="TestResults_Details_Methodology_Paragraph">Aprende cómo funciona esta prueba [aquí](%1$s).</string>
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Accesible</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s es accesible.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Probablemente bloqueado</string>
@@ -282,9 +282,9 @@
   <string name="Modal_ResultsNotUploaded_Paragraph">Algunos de los resultados de tus pruebas no han sido subidos a los servidores OONI. Si te gustaría contribuir al conjunto de datos de OONI, por favor súbelos.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Subir</string>
   <string name="Modal_ResultsNotUploaded_Uploading">Subiendo %1$s ...</string>
-  <string name="Modal_Autorun_BatteryOptimization">OONI Probe cannot run automatically without battery optimization. Do you want to try again?</string>
-  <string name="Modal_DisableVPN_Title">Please disable your VPN connection.</string>
-  <string name="Modal_DisableVPN_Message">If you run OONI Probe with a VPN enabled, the test results may appear to come from the wrong country. Please disable your VPN connection.</string>
+  <string name="Modal_Autorun_BatteryOptimization">OONI Probe no se puede ejecutar automáticamente sin optimización de batería. ¿Quieres intentarlo de nuevo?</string>
+  <string name="Modal_DisableVPN_Title">Por favor deshabilita tu conexión VPN.</string>
+  <string name="Modal_DisableVPN_Message">Si ejecutas OONI Probe con una VPN habilitada, los resultados de la prueba podrían aparecer como proviniendo desde el país incorrecto. Por favor deshabilita tu conexión VPN.</string>
   <string name="Toast_ResultsUploaded">Subida exitosa</string>
   <string name="Modal_DisplayFailureLog">Mostrar registro de fallos</string>
   <string name="Modal_EnableNotifications_Title">Obtiene actualizaciones sobre censura en Internet</string>
@@ -352,7 +352,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">Última prueba automatizada: %1$s.</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Sólo sobre WiFi</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Sólo cuando se está cargando</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Your test results will automatically get published on OONI Explorer: https://explorer.ooni.org/ \n\nImportant: If you have a VPN enabled, OONI Probe will not run tests automatically. Please turn off your VPN for automated OONI Probe testing. Learn more: https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">Al habilitar pruebas automáticas, OONI Probe las ejecutará automáticamente múltiples veces por día. Los resultados de tus pruebas serán automáticamente publicados en el Explorador OONI: https://explorer.ooni.org/\n\nImportante: Si tienes una VPN habilitada, OONI Probe no ejecutará pruebas automáticamente. Por favor desactiva tu VPN para efectuar pruebas automatizadas con OONI Probe. Aprende más: https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn</string>
   <string name="Settings_Sharing_Label">Compartir</string>
   <string name="Settings_Sharing_UploadResults">Publicar resultados automáticamente</string>
   <string name="Settings_Sharing_UploadResultsManually">Subida Manual de Resultado</string>
