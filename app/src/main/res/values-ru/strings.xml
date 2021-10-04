@@ -282,6 +282,9 @@
   <string name="Modal_ResultsNotUploaded_Paragraph">Некоторые из ваших результатов теста не были загружены на серверы OONI. Если вы хотите помочь проекту OONI с исследовательскими данными, пожалуйста, загрузите результаты на сервер.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Загрузить</string>
   <string name="Modal_ResultsNotUploaded_Uploading">Загружаем %1$s ...</string>
+  <string name="Modal_Autorun_BatteryOptimization">OONI Probe cannot run automatically without battery optimization. Do you want to try again?</string>
+  <string name="Modal_DisableVPN_Title">Please disable your VPN connection.</string>
+  <string name="Modal_DisableVPN_Message">If you run OONI Probe with a VPN enabled, the test results may appear to come from the wrong country. Please disable your VPN connection.</string>
   <string name="Toast_ResultsUploaded">Загрузка успешно завершена</string>
   <string name="Modal_DisplayFailureLog">Показать список ошибок</string>
   <string name="Modal_EnableNotifications_Title">Получайте обновления об интернет-цензуре</string>

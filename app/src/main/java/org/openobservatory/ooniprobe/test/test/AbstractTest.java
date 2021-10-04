@@ -87,7 +87,8 @@ public abstract class AbstractTest implements Serializable {
                 EventResult event = gson.fromJson(json, EventResult.class);
                 switch (event.key) {
                     case "status.started":
-                        if (result.test_group_name.equals(ExperimentalSuite.NAME))
+                        if (result != null &&
+                                result.test_group_name.equals(ExperimentalSuite.NAME))
                             testCallback.onStart(name);
                         else
                             testCallback.onStart(c.getString(labelResId));
