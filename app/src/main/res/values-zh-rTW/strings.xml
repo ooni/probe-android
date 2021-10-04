@@ -282,6 +282,9 @@
   <string name="Modal_ResultsNotUploaded_Paragraph">部份測試結果尚未上傳到 ONNI 伺服器，若願意提交 OONI  數據資料，請上傳之。</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">上傳</string>
   <string name="Modal_ResultsNotUploaded_Uploading">上傳 %1$s ...</string>
+  <string name="Modal_Autorun_BatteryOptimization">OONI Probe cannot run automatically without battery optimization. Do you want to try again?</string>
+  <string name="Modal_DisableVPN_Title">Please disable your VPN connection.</string>
+  <string name="Modal_DisableVPN_Message">If you run OONI Probe with a VPN enabled, the test results may appear to come from the wrong country. Please disable your VPN connection.</string>
   <string name="Toast_ResultsUploaded">成功上傳</string>
   <string name="Modal_DisplayFailureLog">Display failure log</string>
   <string name="Modal_EnableNotifications_Title">取得最新網路審查動態</string>

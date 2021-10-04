@@ -282,6 +282,9 @@
   <string name="Modal_ResultsNotUploaded_Paragraph">بعضی از نتایج تست‌ها به سرورهای OONI  بارگذاری نشده‌اند. اگر مایل به مشارکت در مجموع داده‌‌های OONI هستید، لطفا آن‌ها را بارگذاری کنید.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">آپلود</string>
   <string name="Modal_ResultsNotUploaded_Uploading">بارگذاری %1$s ...</string>
+  <string name="Modal_Autorun_BatteryOptimization">OONI Probe cannot run automatically without battery optimization. Do you want to try again?</string>
+  <string name="Modal_DisableVPN_Title">Please disable your VPN connection.</string>
+  <string name="Modal_DisableVPN_Message">If you run OONI Probe with a VPN enabled, the test results may appear to come from the wrong country. Please disable your VPN connection.</string>
   <string name="Toast_ResultsUploaded">بارگذاری با موفقیت انجام شد.</string>
   <string name="Modal_DisplayFailureLog">نمایش گزارش خرابی</string>
   <string name="Modal_EnableNotifications_Title">دریافت به‌روزرسانی سانسور اینترنت</string>
