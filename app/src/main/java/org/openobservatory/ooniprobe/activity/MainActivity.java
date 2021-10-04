@@ -35,6 +35,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     private static final String RES_ITEM = "resItem";
     public static final String NOTIFICATION_DIALOG = "notification";
     public static final String AUTOTEST_DIALOG = "automatic_testing";
+    public static final String BATTERY_DIALOG = "battery_optimization";
 
     @BindView(R.id.bottomNavigation)
     BottomNavigationView bottomNavigation;
@@ -165,6 +166,15 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 preferenceManager.disableAskAutomaticTestDialog();
             }
         }
+        if (extra.equals(BATTERY_DIALOG)) {
+            preferenceManager.setNotificationsFromDialog(i == DialogInterface.BUTTON_POSITIVE);
+            if (i == DialogInterface.BUTTON_POSITIVE) {
+                Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+                intent.setData(Uri.parse("package:" + getPackageName()));
+                startActivityForResult(intent, PreferenceManager.IGNORE_OPTIMIZATION_REQUEST);
+            }
+        }
     }
 
     @Override
@@ -180,6 +190,14 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
             if (isIgnoringBatteryOptimizations) {
                 preferenceManager.enableAutomatedTesting();
                 ServiceUtil.scheduleJob(this);
+            }
+            else {
+                new ConfirmDialogFragment.Builder()
+                        .withMessage(getString(R.string.Modal_Autorun_BatteryOptimization))
+                        .withPositiveButton(getString(R.string.Modal_OK))
+                        .withNegativeButton(getString(R.string.Modal_Cancel))
+                        .withExtra(BATTERY_DIALOG)
+                        .build().show(getSupportFragmentManager(), null);
             }
         }
         else if (requestCode == PreferenceManager.ASK_UPDATE_APP) {
