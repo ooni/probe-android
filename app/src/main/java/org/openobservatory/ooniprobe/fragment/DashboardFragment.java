@@ -68,11 +68,10 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 			items.add(new TestsuiteItem(testSuite, this));
 		setLastTest();
 		adapter.notifyTypesChanged();
-		if (ReachabilityManager.isVPNinUse(this.getContext())){
-			vpn.setText("You are connected to a VPN");
-		}
+		if (ReachabilityManager.isVPNinUse(this.getContext()))
+			vpn.setVisibility(View.VISIBLE);
 		else
-			vpn.setText("You are NOT connected to a VPN");
+			vpn.setVisibility(View.GONE);
 	}
 
 	private void setLastTest() {

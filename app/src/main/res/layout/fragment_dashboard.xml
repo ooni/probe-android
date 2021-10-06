@@ -73,19 +73,29 @@
 		android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
 		android:textColor="@color/color_black"/>
 
-	<TextView
-		android:id="@+id/vpn"
+	<RelativeLayout
+		android:id="@+id/vpnLayout"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="You are connected to a VPN"
-		android:gravity="center_horizontal"
-		android:background="@color/color_red7"
 		android:layout_margin="8dp"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintTop_toBottomOf="@id/last_tested"
-		android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-		android:textColor="@color/color_black"/>
+		app:layout_constraintTop_toBottomOf="@id/last_tested">
+
+		<TextView
+			android:id="@+id/vpn"
+			app:drawableStartCompat="@android:drawable/ic_dialog_alert"
+			android:drawablePadding="8dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerInParent="true"
+			android:padding="5dp"
+			android:background="@color/color_red8"
+			android:gravity="center"
+			android:text="@string/Modal_DisableVPN_Title"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+			android:textColor="@color/color_white" />
+	</RelativeLayout>
 
 	<androidx.recyclerview.widget.RecyclerView
 		android:id="@+id/recycler"
@@ -96,7 +106,7 @@
 		android:paddingTop="5dp"
 		android:paddingBottom="16dp"
 		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintTop_toBottomOf="@id/vpn"
+		app:layout_constraintTop_toBottomOf="@id/vpnLayout"
 		tools:listitem="@layout/item_testsuite"
 		android:clipToPadding="false" />
 
