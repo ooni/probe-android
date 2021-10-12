@@ -32,6 +32,8 @@ public class PreferenceManager {
 	static final String SHOW_ONBOARDING = "first_run";
 	//This is in ms, set to one day
 	public static final Integer DELETE_JSON_DELAY = 86400000;
+	//One week
+	public static final Integer DELETE_LOGS_DELAY = 604800000;
 	static final String DELETE_JSON_KEY = "deleteUploadedJsons";
 	static final String UUID4 = "uuid4";
 	public static final String AUTORUN_COUNT = "autorun_count";
