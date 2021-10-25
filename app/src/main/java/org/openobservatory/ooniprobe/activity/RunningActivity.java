@@ -99,6 +99,12 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         setTheme(R.style.Theme_MaterialComponents_NoActionBar_App);
         setContentView(R.layout.activity_running);
         ButterKnife.bind(this);
+        if (ReachabilityManager.isVPNinUse(this)){
+            new ConfirmDialogFragment.Builder()
+                    .withTitle(getString(R.string.Modal_DisableVPN_Title))
+                    .withMessage(getString(R.string.Modal_DisableVPN_Message))
+                    .build().show(getSupportFragmentManager(), null);
+        }
         if (getPreferenceManager().getProxyURL().isEmpty())
             proxy_icon.setVisibility(View.GONE);
         close.setOnClickListener(new View.OnClickListener() {
