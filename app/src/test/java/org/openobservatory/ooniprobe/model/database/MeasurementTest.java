@@ -222,7 +222,7 @@ public class MeasurementTest extends RobolectricAbstractTest {
         measurement.deleteLogFileAfterAWeek(c);
         assertTrue(measurement.hasLogFile(c));
 
-        measurement.start_time = new Date(System.currentTimeMillis() - PreferenceManager.DELETE_JSON_DELAY - 1);
+        measurement.start_time = new Date(System.currentTimeMillis() - PreferenceManager.DELETE_LOGS_DELAY - 1);
         measurement.deleteLogFileAfterAWeek(c);
         assertFalse(measurement.hasLogFile(c));
     }
