@@ -45,7 +45,8 @@ public class RunTestJobService extends JobService {
              * you may want to retry before the next expected execution of the job.
              * That's when you pass true for jobFinished's needsReschedule.
              */
-            jobServiceRef.get().jobFinished(jobParameters, false);
+            if (this.jobServiceRef == null || this.jobServiceRef.get() == null) return;
+            this.jobServiceRef.get().jobFinished(jobParameters, false);
         }
     }
 
