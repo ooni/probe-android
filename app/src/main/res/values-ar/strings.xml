@@ -23,6 +23,8 @@
   <string name="Onboarding_PopQuiz_2_Question">كل مرّّة أدير فيها OONI Probe، سيتم نشر بيانات الشبكة التي أجمعها أوتوماتيكيّاً. </string>
   <string name="Onboarding_PopQuiz_2_Wrong_Title">تحذير</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Paragraph">للزّيادة من شفافيّة الرّقابة على الانترنت، يتم النشر الأوتوماتيكي لجميع بيانات الشبكة التابعة لمستخدمي OONI Probe (إلا إذا اختاروا عدم المشاركة في ذلك من خلال الإعدادات).</string>
+  <string name="Onboarding_AutomatedTesting_Title">الاختبارات الأوتوماتيكيّة </string>
+  <string name="Onboarding_AutomatedTesting_Paragraph">To measure internet censorship every day, please enable automated testing so that OONI Probe can run tests periodically.\n\nDon\'t worry, we\'ll be mindful of battery usage. \n\nYou can disable automated testing from the settings at any time.</string>
   <string name="Onboarding_Crash_Title">التبليغ عن التعطيلات </string>
   <string name="Onboarding_Crash_Paragraph">لتحسين خدمات OONI Probe نود تجميع تقارير حول تعطيلات في عمل التطبيق بمجهوليّة.\n\nهل تودّون بالمشاركة في إرسال التبليغات عن التعطيلات لفريق مطوّري OONI؟ </string>
   <string name="Onboarding_Crash_Button_Yes">‮نعم</string>
@@ -265,12 +267,13 @@
   <string name="Feed_Title">التغذية</string>
   <string name="Modal_OK">موافقة</string>
   <string name="Modal_Cancel">إلغاء</string>
-  <string name="Modal_DontAskAgain">عدم الطلب مرة أخرى</string>
+  <string name="Modal_DontAskAgain">No, don\'t ask again</string>
   <string name="Modal_Delete">حذف</string>
   <string name="Modal_Error">خطأ</string>
   <string name="Modal_Retry">حاول مجددا</string>
   <string name="Modal_SoundsGreat">رائع ! </string>
   <string name="Modal_NoThanks">لا، شكراً</string>
+  <string name="Modal_NotNow">Not now</string>
   <string name="Modal_Error_NoInternet">التطبيق غير قادر على إجراء الاختبار. من فضلك تحقق من اتصال الإنترنت.</string>
   <string name="Modal_Error_CantDownloadURLs">التطبيق غير قادر على تحميل قائمة المواقع. من فضلك حاول مرة أخرى.</string>
   <string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a new test.</string>
@@ -311,7 +314,8 @@
   <string name="Modal_InterruptTest_Title">هل تود.ين إيقاف هذا الاختبار؟ </string>
   <string name="Modal_InterruptTest_Paragraph">هذا سيعطّل الاختبار الجاري فوراً </string>
   <string name="Modal_Autorun_Modal_Title">هل تودّون إجراء الاختبارات أوتوماتكياً؟ </string>
-  <string name="Modal_Autorun_Modal_Text">عند تفعيل الاختبارات الأوتوماتيكيّة، ستجري اختبارات OONI Probe بشكل تلقائي ودوري (ولن يجب عليكم إجراؤها يدوياً). </string>
+  <string name="Modal_Autorun_Modal_Text">By enabling automated testing, you will contribute OONI measurements on a regular basis.</string>
+  <string name="Modal_Autorun_Modal_Text_Android">Please allow the app to run in the background.</string>
   <string name="Modal_Autorun_Modal_Button_RemindLater">ذكرني لاحقا</string>
   <string name="Toast_CopiedToClipboard">نسخ إلى الحافظة</string>
   <string name="Snackbar_ResultsNotUploaded_Text">لم يتمّ الرفع</string>

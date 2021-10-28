@@ -23,6 +23,8 @@
   <string name="Onboarding_PopQuiz_2_Question">Bei jedem Start von OONI Probe werden die von mir gesammelten Netzwerkdaten automatisch veröffentlicht.</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Title">Warnung</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Paragraph">Um Transparenz im Hinblick auf Internetzensur zu erhöhen, werden die Netzwerkdaten aller OONI Probe-Benutzer automatisch veröffentlicht (sofern dies nicht in den Einstellungen deaktiviert wird).</string>
+  <string name="Onboarding_AutomatedTesting_Title">Automatisches Testen</string>
+  <string name="Onboarding_AutomatedTesting_Paragraph">To measure internet censorship every day, please enable automated testing so that OONI Probe can run tests periodically.\n\nDon\'t worry, we\'ll be mindful of battery usage. \n\nYou can disable automated testing from the settings at any time.</string>
   <string name="Onboarding_Crash_Title">Absturz-Berichterstattung</string>
   <string name="Onboarding_Crash_Paragraph">Um OONI Probe zu verbessern, würden wir gerne anonyme Absturzberichte sammeln, wenn die App nicht richtig funktioniert.\n\nMöchtest du dich für das Einsenden von Absturzberichten an das OONI-Entwicklungsteam entscheiden?</string>
   <string name="Onboarding_Crash_Button_Yes">Ja</string>
@@ -265,12 +267,13 @@
   <string name="Feed_Title">Feed</string>
   <string name="Modal_OK">OK</string>
   <string name="Modal_Cancel">Abbrechen</string>
-  <string name="Modal_DontAskAgain">Nicht erneut nachfragen</string>
+  <string name="Modal_DontAskAgain">No, don\'t ask again</string>
   <string name="Modal_Delete">Entfernen</string>
   <string name="Modal_Error">Fehler</string>
   <string name="Modal_Retry">Versuche erneut</string>
   <string name="Modal_SoundsGreat">Hört sich toll an</string>
   <string name="Modal_NoThanks">Nein, danke</string>
+  <string name="Modal_NotNow">Not now</string>
   <string name="Modal_Error_NoInternet">Test konnte nicht ausgeführt werden. Bitte überprüfe deine Internetverbindung.</string>
   <string name="Modal_Error_CantDownloadURLs">URL-Liste kann nicht heruntergeladen werden. Bitte versuche es erneut.</string>
   <string name="Modal_Error_TestAlreadyRunning">Bitte warte, bis die laufenden Tests beendet sind, bevor du einen neuen Test startest.</string>
@@ -282,9 +285,9 @@
   <string name="Modal_ResultsNotUploaded_Paragraph">Manche deiner Testergebnisse wurden nicht auf OONI-Server hochgeladen. Wenn du zu OONIs Datensatz beitragen möchtest, lade sie bitte hoch.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Hochladen</string>
   <string name="Modal_ResultsNotUploaded_Uploading">Hochladen von %1$s ...</string>
-  <string name="Modal_Autorun_BatteryOptimization">OONI Probe cannot run automatically without battery optimization. Do you want to try again?</string>
-  <string name="Modal_DisableVPN_Title">Please disable your VPN connection.</string>
-  <string name="Modal_DisableVPN_Message">If you run OONI Probe with a VPN enabled, the test results may appear to come from the wrong country. Please disable your VPN connection.</string>
+  <string name="Modal_Autorun_BatteryOptimization">OONI Probe kann nicht automatisch ohne Batterieoptimierung laufen. Möchtest du es noch einmal versuchen?</string>
+  <string name="Modal_DisableVPN_Title">Bitte deaktiviere deine VPN-Verbindung.</string>
+  <string name="Modal_DisableVPN_Message">Wenn du OONI Probe mit aktiviertem VPN ausführst, kann es sein, dass die Testergebnisse aus dem falschen Land stammen. Bitte deaktiviere deine VPN-Verbindung.</string>
   <string name="Toast_ResultsUploaded">Hochladen war erfolgreich</string>
   <string name="Modal_DisplayFailureLog">Fehlerlog anzeigen</string>
   <string name="Modal_EnableNotifications_Title">Aktuelle Informationen zur Internetzensur</string>
@@ -311,7 +314,8 @@
   <string name="Modal_InterruptTest_Title">Möchten Sie diesen Test unterbrechen?</string>
   <string name="Modal_InterruptTest_Paragraph">Dies wird den laufenden Test ab diesem Zeitpunkt unterbrechen.</string>
   <string name="Modal_Autorun_Modal_Title">Möchtest du Tests automatisch ausführen lassen?</string>
-  <string name="Modal_Autorun_Modal_Text">Wenn du automatische Tests aktivierst, werden die Tests der OONI-Sonde regelmässig automatisch ausgeführt (und Du musst nicht daran denken, Tests manuell auszuführen).</string>
+  <string name="Modal_Autorun_Modal_Text">By enabling automated testing, you will contribute OONI measurements on a regular basis.</string>
+  <string name="Modal_Autorun_Modal_Text_Android">Please allow the app to run in the background.</string>
   <string name="Modal_Autorun_Modal_Button_RemindLater">Später erinnern</string>
   <string name="Toast_CopiedToClipboard">In Zwischenablage kopiert</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Nicht hochgeladen</string>

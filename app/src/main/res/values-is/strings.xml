@@ -23,6 +23,8 @@
   <string name="Onboarding_PopQuiz_2_Question">Í hvert skipti sem ég keyri OONI Probe, verða þau gögn um netkerfið sem ég safna birt sjálfvirkt.</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Title">Aðvörun</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Paragraph">Til að auka gegnsæi upplýsinga um ritskoðun internetsins, eru netkerfisgögn allra notenda OONI Probe birtar opinberlega (nema að þeir biðji sérstaklega um annað í stillingum sínum).</string>
+  <string name="Onboarding_AutomatedTesting_Title">Sjálfvirkar prófanir</string>
+  <string name="Onboarding_AutomatedTesting_Paragraph">To measure internet censorship every day, please enable automated testing so that OONI Probe can run tests periodically.\n\nDon\'t worry, we\'ll be mindful of battery usage. \n\nYou can disable automated testing from the settings at any time.</string>
   <string name="Onboarding_Crash_Title">Hrunskýrslur</string>
   <string name="Onboarding_Crash_Paragraph">Til að bæta OONI Probe myndum við vilja safna nafnlausum hrunskýrslum þegar forritið virkar ekki sem skyldi.\n\nVilt þú bjóðast til að senda hrunskýrslur til OONI-þróunarteymisins?</string>
   <string name="Onboarding_Crash_Button_Yes">Já</string>
@@ -265,12 +267,13 @@
   <string name="Feed_Title">Streymi</string>
   <string name="Modal_OK">Í lagi</string>
   <string name="Modal_Cancel">Hætta við</string>
-  <string name="Modal_DontAskAgain">Ekki spyrja aftur</string>
+  <string name="Modal_DontAskAgain">No, don\'t ask again</string>
   <string name="Modal_Delete">Eyða</string>
   <string name="Modal_Error">Villa</string>
   <string name="Modal_Retry">Reyna aftur</string>
   <string name="Modal_SoundsGreat">Hljómar vel</string>
   <string name="Modal_NoThanks">Nei takk</string>
+  <string name="Modal_NotNow">Not now</string>
   <string name="Modal_Error_NoInternet">Ekki er hægt að keyra prófunina. Athugaðu nettenginguna þína.</string>
   <string name="Modal_Error_CantDownloadURLs">Get ekki sótt lista yfir slóðir. Reyndu aftur.</string>
   <string name="Modal_Error_TestAlreadyRunning">Bíddu eftir að fyrirliggjandi prófunum ljúki áður en þú framkvæmir nýja prófun.</string>
@@ -282,9 +285,9 @@
   <string name="Modal_ResultsNotUploaded_Paragraph">Einhverjar niðurstöður prófana sem þú hefur gert hafa ekki verið sendar inn á vefþjóna OONI. Ef þú vilt leggja þitt af mörkum í gagnasett OONI, skaltu senda þær inn.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Senda inn</string>
   <string name="Modal_ResultsNotUploaded_Uploading">Sendi inn… %1$s ...</string>
-  <string name="Modal_Autorun_BatteryOptimization">OONI Probe cannot run automatically without battery optimization. Do you want to try again?</string>
-  <string name="Modal_DisableVPN_Title">Please disable your VPN connection.</string>
-  <string name="Modal_DisableVPN_Message">If you run OONI Probe with a VPN enabled, the test results may appear to come from the wrong country. Please disable your VPN connection.</string>
+  <string name="Modal_Autorun_BatteryOptimization">OONI Probe getur ekki keyrt á þess að rafhlöðunotkun sé bestuð. Viltu prófa aftur?</string>
+  <string name="Modal_DisableVPN_Title">Gerðu VPN-tenginguna þína óvirka.</string>
+  <string name="Modal_DisableVPN_Message">Ef þú keyrir OONI Probe með virku VPN, geta niðurstöður prófana litið út fyrir að koma frá röngu landi. Gerðu VPN-tenginguna þína óvirka.</string>
   <string name="Toast_ResultsUploaded">Innsending tókst</string>
   <string name="Modal_DisplayFailureLog">Birta mistakaskrá</string>
   <string name="Modal_EnableNotifications_Title">Fáðu vísbendingar um ritskoðun internetsins</string>
@@ -311,7 +314,8 @@
   <string name="Modal_InterruptTest_Title">Viltu stöðva þessa prófun?</string>
   <string name="Modal_InterruptTest_Paragraph">Þetta mun stöðva á þessu þrepi prófunina sem nú er í gangi.</string>
   <string name="Modal_Autorun_Modal_Title">Viltu keyra prófanir sjálfvirkt?</string>
-  <string name="Modal_Autorun_Modal_Text">Með því að virkja sjálfvirkar prófanir, verða prófanir OONI Probe keyrðar sjálfvirkt með reglubundnum hætti (og þú þarft þá ekki að muna eftir að setja þær í gang).</string>
+  <string name="Modal_Autorun_Modal_Text">By enabling automated testing, you will contribute OONI measurements on a regular basis.</string>
+  <string name="Modal_Autorun_Modal_Text_Android">Please allow the app to run in the background.</string>
   <string name="Modal_Autorun_Modal_Button_RemindLater">Minna mig á síðar</string>
   <string name="Toast_CopiedToClipboard">Afritað á klippispjald</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Ekki sent inn</string>

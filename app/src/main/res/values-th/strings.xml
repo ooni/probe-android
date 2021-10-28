@@ -23,6 +23,8 @@
   <string name="Onboarding_PopQuiz_2_Question">ทุกครั้งที่ฉันเรียกใช้ OONI Probe ข้อมูลเครือข่ายที่ฉันเก็บรวบรวมจะถูกเผยแพร่โดยอัตโนมัติ</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Title">คำเตือน</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Paragraph">เพื่อเพิ่มความโปร่งใสของการปิดกั้นอินเทอร์เน็ต ข้อมูลเครือข่ายของผู้ใช้ OONI Probe ทุกรายจะถูกเผยแพร่โดยอัตโนมัติ (เว้นเสียแต่ว่าพวกเขาได้เลือก ไม่เข้าร่วม ในการตั้งค่า)</string>
+  <string name="Onboarding_AutomatedTesting_Title">การทดสอบอัตโนมัติ</string>
+  <string name="Onboarding_AutomatedTesting_Paragraph">To measure internet censorship every day, please enable automated testing so that OONI Probe can run tests periodically.\n\nDon\'t worry, we\'ll be mindful of battery usage. \n\nYou can disable automated testing from the settings at any time.</string>
   <string name="Onboarding_Crash_Title">รายงานแอปพัง</string>
   <string name="Onboarding_Crash_Paragraph">เพื่อปรับปรุง OONI Probe เราอยากรวบรวมรายงานการพังของแอป เมื่อแอปไม่ทำงานตามปกติ\n\nคุณอยากสมัครใจส่งรายงานการพังของแอปให้กับทีมพัฒนาของ OONI หรือไม่?</string>
   <string name="Onboarding_Crash_Button_Yes">ใช่</string>
@@ -265,12 +267,13 @@
   <string name="Feed_Title">ฟีด</string>
   <string name="Modal_OK">ตกลง</string>
   <string name="Modal_Cancel">ยกเลิก</string>
-  <string name="Modal_DontAskAgain">ไม่ต้องถามอีก</string>
+  <string name="Modal_DontAskAgain">No, don\'t ask again</string>
   <string name="Modal_Delete">ลบ</string>
   <string name="Modal_Error">ข้อผิดพลาด</string>
   <string name="Modal_Retry">ลองใหม่อีกครั้ง</string>
   <string name="Modal_SoundsGreat">น่าจะดี</string>
   <string name="Modal_NoThanks">ไม่เอา ขอบคุณ</string>
+  <string name="Modal_NotNow">Not now</string>
   <string name="Modal_Error_NoInternet">ไม่สามารถทำการทดสอบได้ กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ</string>
   <string name="Modal_Error_CantDownloadURLs">ไม่สามารถดาวน์โหลดรายการที่อยู่เว็บได้ กรุณาลองอีกครั้ง</string>
   <string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a new test.</string>
@@ -311,7 +314,8 @@
   <string name="Modal_InterruptTest_Title">คุณต้องการหยุดการทดสอบนี้กลางคันหรือไม่?</string>
   <string name="Modal_InterruptTest_Paragraph">นี่จะขัดจังหวะการทดสอบปัจจุบัน นับจากจุดนี้</string>
   <string name="Modal_Autorun_Modal_Title">คุณต้องการดำเนินการทดสอบโดยอัตโนมัติหรือไม่?</string>
-  <string name="Modal_Autorun_Modal_Text">เมื่อเปิดการใช้การทดสอบอัตโนมัติ OONI Probe จะทดสอบโดยอัตโนมัติเป็นปกติ (เเละคุณไม่ต้องจำแล้วว่าต้องทำการทดสอบด้วยตนเอง)</string>
+  <string name="Modal_Autorun_Modal_Text">By enabling automated testing, you will contribute OONI measurements on a regular basis.</string>
+  <string name="Modal_Autorun_Modal_Text_Android">Please allow the app to run in the background.</string>
   <string name="Modal_Autorun_Modal_Button_RemindLater">แล้วค่อยเตือนฉัน</string>
   <string name="Toast_CopiedToClipboard">คัดลอกไปคลิปบอร์ดแล้ว</string>
   <string name="Snackbar_ResultsNotUploaded_Text">ไม่ถูกอัปโหลด</string>

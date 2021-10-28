@@ -23,6 +23,8 @@
   <string name="Onboarding_PopQuiz_2_Question">Kila wakati ninapoendesha OONI Probe, data ya mtandao ninayokusanya itachapishwa kiatomati.</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Title">Onyo</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Paragraph">Ili kuongeza uwazi wa udhibiti wa mtandao, data ya mtandao ya watumiaji wote wa OONI Probe inachapishwa kiatomati (isipokuwa wata chagua katika mipangilio).</string>
+  <string name="Onboarding_AutomatedTesting_Title">Upimaji wa kiotomatiki</string>
+  <string name="Onboarding_AutomatedTesting_Paragraph">To measure internet censorship every day, please enable automated testing so that OONI Probe can run tests periodically.\n\nDon\'t worry, we\'ll be mindful of battery usage. \n\nYou can disable automated testing from the settings at any time.</string>
   <string name="Onboarding_Crash_Title">Taarifa ya Ajali</string>
   <string name="Onboarding_Crash_Paragraph">Ili kuboresha OONI Probe tungependa kukusanya ripoti zisizojulikana za ajali wakati programu haifanyi kazi vizuri.\n\nJe! Ungependa kuchagua kutuma ripoti za ajali kwa timu ya maendeleo ya OONI?</string>
   <string name="Onboarding_Crash_Button_Yes">Ndio</string>
@@ -265,12 +267,13 @@
   <string name="Feed_Title">Kulisha  </string>
   <string name="Modal_OK">sawa</string>
   <string name="Modal_Cancel">Cancel</string>
-  <string name="Modal_DontAskAgain">usiulize tena </string>
+  <string name="Modal_DontAskAgain">No, don\'t ask again</string>
   <string name="Modal_Delete">Futa</string>
   <string name="Modal_Error">kosa</string>
   <string name="Modal_Retry">Kujaribu</string>
   <string name="Modal_SoundsGreat">Inasikika sana</string>
   <string name="Modal_NoThanks">Hapana, asante</string>
+  <string name="Modal_NotNow">Not now</string>
   <string name="Modal_Error_NoInternet">Imeshindwa kutekeleza jaribio. Tafadhali angalia muunganisho wako wa mtandao.</string>
   <string name="Modal_Error_CantDownloadURLs">Imeshindwa kupakua orodha ya URL. Tafadhali jaribu tena.</string>
   <string name="Modal_Error_TestAlreadyRunning">Tafadhali subiri majaribio ya sasa ya kukimbia kumaliza, kabla ya kuanza jaribio jipya.</string>
@@ -311,7 +314,8 @@
   <string name="Modal_InterruptTest_Title">Je! Unataka kukatisha jaribio hili?</string>
   <string name="Modal_InterruptTest_Paragraph">Hii itakatisha jaribio la sasa kutoka wakati huu.</string>
   <string name="Modal_Autorun_Modal_Title">Je! Ungependa kujaribu vipimo moja kwa moja?</string>
-  <string name="Modal_Autorun_Modal_Text">Kwa kuwezesha upimaji wa moja kwa moja, vipimo vya OONI Probe vitaendesha kiatomati mara kwa mara (na hauitaji kukumbuka kuendesha vipimo kwa mikono).</string>
+  <string name="Modal_Autorun_Modal_Text">By enabling automated testing, you will contribute OONI measurements on a regular basis.</string>
+  <string name="Modal_Autorun_Modal_Text_Android">Please allow the app to run in the background.</string>
   <string name="Modal_Autorun_Modal_Button_RemindLater">Nikumbushe baadaye</string>
   <string name="Toast_CopiedToClipboard">Imenakiliwa kwenye ubao wa kunakili</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Haijapakiwa</string>

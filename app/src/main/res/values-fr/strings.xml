@@ -23,6 +23,8 @@
   <string name="Onboarding_PopQuiz_2_Question">Chaque fois que j’exécute OONI Probe, les données réseau que je recueille seront publiées automatiquement.</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Title">Avertissement</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Paragraph">Afin d’accroître la transparence de la censure d’Internet, les données réseau de tous les utilisateurs d’OONI Probe sont publiées automatiquement (à moins qu’ils ne décident de ne pas y participer dans les paramètres).</string>
+  <string name="Onboarding_AutomatedTesting_Title">Test automatisé</string>
+  <string name="Onboarding_AutomatedTesting_Paragraph">To measure internet censorship every day, please enable automated testing so that OONI Probe can run tests periodically.\n\nDon\'t worry, we\'ll be mindful of battery usage. \n\nYou can disable automated testing from the settings at any time.</string>
   <string name="Onboarding_Crash_Title">Signalement de plantage</string>
   <string name="Onboarding_Crash_Paragraph">Afin d’améliorer OONI Probe, nous souhaitons recueillir des rapports de plantage anonymes quand l’appli ne fonctionne pas correctement. Acceptez-vous d’envoyer des rapports de plantage à l’équipe de développement d’OONI ?</string>
   <string name="Onboarding_Crash_Button_Yes">Oui</string>
@@ -68,7 +70,7 @@
   <string name="Dashboard_Circumvention_Card_Description">Testez le blocage des outils de contournement de la censure</string>
   <string name="Dashboard_Circumvention_Overview_Paragraph">Vérifiez si [Psiphon](https://ooni.org/nettest/psiphon/), [Tor](https://ooni.org/nettest/tor/) ou [RiseupVPN](https://ooni.org/nettest/riseupvpn/) sont bloqués (site en anglais).\n\nVos résultats seront publiés dans l’[Explorateur OONI](https://explorer.ooni.org/) et l’[API d’OONI](https://api.ooni.io/) (site en anglais).</string>
   <string name="Dashboard_Experimental_Card_Description">Effectuer les nouveaux tests expérimentaux</string>
-  <string name="Dashboard_Experimental_Overview_Paragraph">Effectuer les nouveaux tests expérimentaux suivants conçus par l\'équipe d’OONI:\n%1$s\n\nVos résultats seront publiés dans l’[Explorateur OONI](https://explorer.ooni.org/) et l’[API d’OONI](https://api.ooni.io/) (site en anglais).</string>
+  <string name="Dashboard_Experimental_Overview_Paragraph">Effectuer les nouveaux tests expérimentaux suivants conçus par l’équipe d’OONI :\n%1$s\n\nVos résultats seront publiés dans l’[Explorateur OONI](https://explorer.ooni.org/) et l’[API d’OONI](https://api.ooni.io/) (site en anglais).</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>
@@ -160,7 +162,7 @@
   <string name="TestResults_Details_Failed_Title">Échec</string>
   <string name="TestResults_Details_Failed_Paragraph">Vous pouvez essayer de relancer ce test</string>
   <string name="TestResults_Details_Failed_TryAgain">Réessayer</string>
-  <string name="TestResults_Details_Methodology_Paragraph">Learn how this test works [here](%1$s).</string>
+  <string name="TestResults_Details_Methodology_Paragraph">Apprenez [ici](%1$s) comment ce test fonctionne.</string>
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">Accessible</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s est accessible.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Probablement bloqué</string>
@@ -265,12 +267,13 @@
   <string name="Feed_Title">Flux</string>
   <string name="Modal_OK">Valider</string>
   <string name="Modal_Cancel">Annuler</string>
-  <string name="Modal_DontAskAgain">Ne plus demander</string>
+  <string name="Modal_DontAskAgain">No, don\'t ask again</string>
   <string name="Modal_Delete">Supprimer</string>
   <string name="Modal_Error">Erreur</string>
   <string name="Modal_Retry">Réessayer</string>
   <string name="Modal_SoundsGreat">C’est parfait</string>
   <string name="Modal_NoThanks">Non, merci</string>
+  <string name="Modal_NotNow">Not now</string>
   <string name="Modal_Error_NoInternet">Impossible d’effectuer le test. Veuillez vérifier votre connexion à Internet.</string>
   <string name="Modal_Error_CantDownloadURLs">Impossible de télécharger la liste des URL. Veuillez réessayer.</string>
   <string name="Modal_Error_TestAlreadyRunning">Veuillez attendre la fin du test en cours avant de lancer un nouveau test.</string>
@@ -282,9 +285,9 @@
   <string name="Modal_ResultsNotUploaded_Paragraph">Certains de vos résultats de test n’ont pas été téléversés vers les serveurs de l’OONI. Si vous souhaitez contribuer à l’ensemble de données de l’OONI, veuillez les téléverser.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Téléversement</string>
   <string name="Modal_ResultsNotUploaded_Uploading">Téléversement de %1$s…</string>
-  <string name="Modal_Autorun_BatteryOptimization">OONI Probe cannot run automatically without battery optimization. Do you want to try again?</string>
-  <string name="Modal_DisableVPN_Title">Please disable your VPN connection.</string>
-  <string name="Modal_DisableVPN_Message">If you run OONI Probe with a VPN enabled, the test results may appear to come from the wrong country. Please disable your VPN connection.</string>
+  <string name="Modal_Autorun_BatteryOptimization">OONI Probe ne peut pas fonctionner automatiquement sans optimisation de la pile. Voulez-vous réessayer ?</string>
+  <string name="Modal_DisableVPN_Title">Veuillez désactiver votre connexion RPV.</string>
+  <string name="Modal_DisableVPN_Message">Si vous exécutez OONI Probe alors qu’un RPV (réseau privé virtuel) est activé, les résultats des tests pourraient sembler provenir du mauvais pays. Veuillez désactiver votre connexion RPV.</string>
   <string name="Toast_ResultsUploaded">Téléversement réussi</string>
   <string name="Modal_DisplayFailureLog">Afficher le journal des échecs</string>
   <string name="Modal_EnableNotifications_Title">Obtenez des mises à jour sur la censure d’Internet</string>
@@ -311,7 +314,8 @@
   <string name="Modal_InterruptTest_Title">Voulez-vous interrompre ce test ?</string>
   <string name="Modal_InterruptTest_Paragraph">Le test en cours sera interrompu à partir de maintenant.</string>
   <string name="Modal_Autorun_Modal_Title">Voulez-vous effectuer les tests manuellement ?</string>
-  <string name="Modal_Autorun_Modal_Text">En activant les tests automatiques, les tests d’OONI Probe auront lieu automatiquement et périodiquement (et vous n’aurez pas à vous rappeler de les effectuer manuellement).</string>
+  <string name="Modal_Autorun_Modal_Text">By enabling automated testing, you will contribute OONI measurements on a regular basis.</string>
+  <string name="Modal_Autorun_Modal_Text_Android">Please allow the app to run in the background.</string>
   <string name="Modal_Autorun_Modal_Button_RemindLater">Me rappeler plus tard</string>
   <string name="Toast_CopiedToClipboard">Copié dans le presse-papiers</string>
   <string name="Snackbar_ResultsNotUploaded_Text">N’a pas été téléversé</string>
@@ -352,7 +356,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">Dernier test automatisé : %1$s.</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Seulement par Wi-Fi</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Seulement pendant la charge</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Your test results will automatically get published on OONI Explorer: https://explorer.ooni.org/ \n\nImportant: If you have a VPN enabled, OONI Probe will not run tests automatically. Please turn off your VPN for automated OONI Probe testing. Learn more: https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">En activant les tests automatiques, les tests d’OONI Probe auront lieu automatiquement plusieurs fois par jour. Les résultats de vos tests seront publiés automatiquement sur l’Explorateur OONI : https://explorer.ooni.org/ (site en anglais)\n\nImportant : Si vous utilisez un RPV et qu’il est activé, OONI Probe n’effectuera pas de test automatique. Afin que les tests automatisés d’OONI Probe aient lieu, veuillez désactiver votre RPV. Apprenez-en davantage : https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn (site en anglais)</string>
   <string name="Settings_Sharing_Label">Partage</string>
   <string name="Settings_Sharing_UploadResults">Publier automatiquement les résultats</string>
   <string name="Settings_Sharing_UploadResultsManually">Téléversement manuel des résultats</string>

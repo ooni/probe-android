@@ -23,6 +23,8 @@
   <string name="Onboarding_PopQuiz_2_Question">每次執行 OONI Probe，所收集的網路數據會自動地發佈。</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Title">警告  </string>
   <string name="Onboarding_PopQuiz_2_Wrong_Paragraph">為提高網路審查的透明度，所有 ONNI Probe 用戶的網路數據會自動公開(除非用戶刻意關閉此設定)</string>
+  <string name="Onboarding_AutomatedTesting_Title">Automated testing</string>
+  <string name="Onboarding_AutomatedTesting_Paragraph">To measure internet censorship every day, please enable automated testing so that OONI Probe can run tests periodically.\n\nDon\'t worry, we\'ll be mindful of battery usage. \n\nYou can disable automated testing from the settings at any time.</string>
   <string name="Onboarding_Crash_Title">Crash Reporting</string>
   <string name="Onboarding_Crash_Paragraph">To improve OONI Probe we would like to collect anonymous crash reports when the app does not work properly.\n\nWould you like to opt-in to submitting crash reports to the OONI development team?</string>
   <string name="Onboarding_Crash_Button_Yes">是</string>
@@ -265,12 +267,13 @@
   <string name="Feed_Title">訂閱推送</string>
   <string name="Modal_OK">OK</string>
   <string name="Modal_Cancel">取消</string>
-  <string name="Modal_DontAskAgain">不再詢問</string>
+  <string name="Modal_DontAskAgain">No, don\'t ask again</string>
   <string name="Modal_Delete">刪除</string>
   <string name="Modal_Error">錯誤</string>
   <string name="Modal_Retry">重試</string>
   <string name="Modal_SoundsGreat">聽起來不錯</string>
   <string name="Modal_NoThanks">不用，謝謝</string>
+  <string name="Modal_NotNow">Not now</string>
   <string name="Modal_Error_NoInternet">無法執行測試，請檢查網路連線是否正常。</string>
   <string name="Modal_Error_CantDownloadURLs">無法下載 URL 清單，請再試一次。</string>
   <string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a new test.</string>
@@ -311,7 +314,8 @@
   <string name="Modal_InterruptTest_Title">請問您想要中斷這次測試嗎？</string>
   <string name="Modal_InterruptTest_Paragraph">This will interrupt the current test from this moment.</string>
   <string name="Modal_Autorun_Modal_Title">Would you like to run tests automatically?</string>
-  <string name="Modal_Autorun_Modal_Text">By enabling automatic testing, OONI Probe tests will run automatically on a regular basis (and you don’t need to remember to manually run tests).</string>
+  <string name="Modal_Autorun_Modal_Text">By enabling automated testing, you will contribute OONI measurements on a regular basis.</string>
+  <string name="Modal_Autorun_Modal_Text_Android">Please allow the app to run in the background.</string>
   <string name="Modal_Autorun_Modal_Button_RemindLater">Remind me later</string>
   <string name="Toast_CopiedToClipboard">複製到剪貼簿</string>
   <string name="Snackbar_ResultsNotUploaded_Text">未上傳的</string>
