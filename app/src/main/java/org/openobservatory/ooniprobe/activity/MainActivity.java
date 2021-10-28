@@ -80,9 +80,10 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
             if (notificationManager.shouldShowAutoTest()) {
                 new ConfirmDialogFragment.Builder()
                         .withTitle(getString(R.string.Modal_Autorun_Modal_Title))
-                        .withMessage(getString(R.string.Modal_Autorun_Modal_Text))
+                        .withMessage(getString(R.string.Modal_Autorun_Modal_Text)
+                                + "\n" + getString(R.string.Modal_Autorun_Modal_Text_Android))
                         .withPositiveButton(getString(R.string.Modal_SoundsGreat))
-                        .withNegativeButton(getString(R.string.Modal_NoThanks))
+                        .withNegativeButton(getString(R.string.Modal_NotNow))
                         .withNeutralButton(getString(R.string.Modal_DontAskAgain))
                         .withExtra(AUTOTEST_DIALOG)
                         .build().show(getSupportFragmentManager(), null);
@@ -91,7 +92,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                         .withTitle(getString(R.string.Modal_EnableNotifications_Title))
                         .withMessage(getString(R.string.Modal_EnableNotifications_Paragraph))
                         .withPositiveButton(getString(R.string.Modal_SoundsGreat))
-                        .withNegativeButton(getString(R.string.Modal_NoThanks))
+                        .withNegativeButton(getString(R.string.Modal_NotNow))
                         .withNeutralButton(getString(R.string.Modal_DontAskAgain))
                         .withExtra(NOTIFICATION_DIALOG)
                         .build().show(getSupportFragmentManager(), null);
