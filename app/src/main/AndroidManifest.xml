@@ -24,6 +24,7 @@
 		<activity
 			android:name=".activity.MainActivity"
 			android:launchMode="singleTop"
+			android:exported="true"
 			android:screenOrientation="userPortrait"
 			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
 			<intent-filter>
@@ -69,6 +70,7 @@
 		<activity
 			android:name=".activity.InfoActivity"
 			android:label="@string/Settings_About_Label"
+			android:exported="false"
 			android:parentActivityName=".activity.PreferenceActivity"
 			android:screenOrientation="userPortrait"
 			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
@@ -81,6 +83,7 @@
 		<activity
 			android:name=".activity.ProxyActivity"
 			android:label="Proxy"
+			android:exported="false"
 			android:parentActivityName=".activity.PreferenceActivity"
 			android:screenOrientation="userPortrait"
 			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App">
@@ -93,6 +96,7 @@
 		<activity
 			android:name=".activity.CustomWebsiteActivity"
 			android:label="@string/Settings_Websites_CustomURL_Title"
+			android:exported="false"
 			android:parentActivityName=".activity.PreferenceActivity"
 			android:screenOrientation="userPortrait">
 			<intent-filter>
@@ -104,6 +108,7 @@
 		<activity
 			android:name=".activity.OoniRunActivity"
 			android:label="@string/APP_NAME"
+			android:exported="true"
 			android:launchMode="singleTop"
 			android:parentActivityName=".activity.MainActivity"
 			android:screenOrientation="userPortrait"
@@ -149,11 +154,11 @@
 		<service
 			android:name=".common.service.RunTestService"
 			android:icon="@drawable/notification_icon"
-			android:label="@string/Dashboard_Card_Run"></service>
+			android:label="@string/Dashboard_Card_Run"/>
 		<service
 			android:name=".common.service.RunTestJobService"
 			android:label="Run Test Service"
-			android:permission="android.permission.BIND_JOB_SERVICE"></service>
+			android:permission="android.permission.BIND_JOB_SERVICE"/>
 	</application>
 
 </manifest>
