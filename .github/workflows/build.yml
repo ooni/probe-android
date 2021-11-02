@@ -10,6 +10,10 @@ jobs:
             - "StableFullRelease"
             - "StableFdroidRelease"
     steps:
+    - uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'temurin'
     - name: checkout
       uses: actions/checkout@v2
     - run: ./gradlew build${{ matrix.version }} && ./gradlew clean
