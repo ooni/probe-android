@@ -8,9 +8,6 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - run: ./gradlew testStableFullRelease
-        uses: actions/setup-java@v2
-        with:
-          java-version: '11'
       - name: uploads test results
         uses: actions/upload-artifact@v2
         if: failure()
