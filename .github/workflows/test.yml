@@ -5,10 +5,10 @@ jobs:
   test:
     runs-on: macos-latest
     steps:
-     - uses: actions/setup-java@v2
-       with:
-         java-version: '11'
-         distribution: 'temurin'
+      - uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'temurin'
       - name: checkout
         uses: actions/checkout@v2
       - run: ./gradlew testStableFullRelease
