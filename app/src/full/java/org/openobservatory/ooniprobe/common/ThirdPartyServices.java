@@ -99,6 +99,10 @@ public class ThirdPartyServices {
             Sentry.captureException(e);
     }
 
+    public static boolean shouldShowOnboardingCrash() {
+        return true;
+    }
+
     public static void acceptCrash(Application app) {
         app.getPreferenceManager().setSendCrash(true);
     }
