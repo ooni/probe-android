@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.test.test;
 
+import static org.openobservatory.ooniprobe.model.jsonresult.TestKeys.BLOCKED;
+
 import android.content.Context;
 
 import androidx.annotation.NonNull;
@@ -36,8 +38,8 @@ public class RiseupVPN extends AbstractTest {
             return;
         }
         boolean isTransportBlocked = false;
-            isTransportBlocked = MapUtility.getOrDefaultCompat(json.test_keys.transport_status, "openvpn", "ok").equals("blocked") ||
-                    MapUtility.getOrDefaultCompat(json.test_keys.transport_status, "obfs4", "ok").equals("blocked");
+            isTransportBlocked = MapUtility.getOrDefaultCompat(json.test_keys.transport_status, "openvpn", "ok").equals(BLOCKED) ||
+                    MapUtility.getOrDefaultCompat(json.test_keys.transport_status, "obfs4", "ok").equals(BLOCKED);
         measurement.is_anomaly = !json.test_keys.ca_cert_status || json.test_keys.api_failure != null || isTransportBlocked;
     }
 
