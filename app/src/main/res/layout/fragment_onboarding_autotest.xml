@@ -29,17 +29,22 @@
 		android:layout_marginVertical="8dp"
 		android:layout_weight="1">
 
-		<TextView
+		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/Onboarding_AutomatedTesting_Paragraph"
-			android:textColor="@android:color/white" />
+			android:orientation="vertical">
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/Onboarding_AutomatedTesting_Paragraph"
+				android:textColor="@android:color/white" />
 
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/Modal_Autorun_Modal_Text_Android"
-			android:textColor="@android:color/white" />
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/Modal_Autorun_Modal_Text_Android"
+				android:textColor="@android:color/white" />
+		</LinearLayout>
 	</ScrollView>
 
 	<LinearLayout

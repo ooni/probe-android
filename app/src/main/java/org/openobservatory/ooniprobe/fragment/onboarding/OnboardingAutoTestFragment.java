@@ -16,10 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
-import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 
 import java.io.Serializable;
 
@@ -29,9 +27,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 
-public class OnboardingAutoTestFragment extends Fragment {
-    @Inject
-    PreferenceManager preferenceManager;
+public class OnboardingAutoTestFragment extends Fragment implements ConfirmDialogFragment.OnConfirmedListener {
+    @Inject PreferenceManager preferenceManager;
     public static final String BATTERY_DIALOG = "battery_optimization";
 
     @Nullable
@@ -42,7 +39,7 @@ public class OnboardingAutoTestFragment extends Fragment {
     }
 
     @OnClick(R.id.master) void masterClick() {
-        ThirdPartyServices.acceptCrash((Application) getActivity().getApplication());
+        enableAutoTest();
     }
 
     @OnClick(R.id.slave) void slaveClick() {
@@ -98,6 +95,21 @@ public class OnboardingAutoTestFragment extends Fragment {
                         .withNegativeButton(getString(R.string.Modal_Cancel))
                         .withExtra(BATTERY_DIALOG)
                         .build().show(getChildFragmentManager(), null);
+            }
+        }
+    }
+
+    @Override
+    public void onConfirmation(Serializable serializable, int i) {
+        if (serializable == null) return;
+        if (serializable.equals(BATTERY_DIALOG)) {
+            //TODO 'void org.openobservatory.ooniprobe.common.PreferenceManager.setNotificationsFromDialog(boolean)' on a null object reference
+            preferenceManager.setNotificationsFromDialog(i == DialogInterface.BUTTON_POSITIVE);
+            if (i == DialogInterface.BUTTON_POSITIVE) {
+                Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+                intent.setData(Uri.parse("package:" + getActivity().getPackageName()));
+                startActivityForResult(intent, PreferenceManager.IGNORE_OPTIMIZATION_REQUEST);
             }
         }
     }
