@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 
@@ -33,6 +34,8 @@ public class OnboardingAutoTestFragment extends Fragment implements ConfirmDialo
 
     @Nullable
     @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ((Application) getActivity().getApplication()).getFragmentComponent().inject(this);
+
         View v = inflater.inflate(R.layout.fragment_onboarding_autotest, container, false);
         ButterKnife.bind(this, v);
         return v;
@@ -104,7 +107,8 @@ public class OnboardingAutoTestFragment extends Fragment implements ConfirmDialo
         if (serializable == null) return;
         if (serializable.equals(BATTERY_DIALOG)) {
             //TODO 'void org.openobservatory.ooniprobe.common.PreferenceManager.setNotificationsFromDialog(boolean)' on a null object reference
-            preferenceManager.setNotificationsFromDialog(i == DialogInterface.BUTTON_POSITIVE);
+            //if (preferenceManager != null)
+                preferenceManager.setNotificationsFromDialog(i == DialogInterface.BUTTON_POSITIVE);
             if (i == DialogInterface.BUTTON_POSITIVE) {
                 Intent intent = new Intent();
                 intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
