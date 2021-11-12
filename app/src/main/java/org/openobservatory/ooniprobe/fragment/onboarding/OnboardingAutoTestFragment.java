@@ -106,9 +106,7 @@ public class OnboardingAutoTestFragment extends Fragment implements ConfirmDialo
     public void onConfirmation(Serializable serializable, int i) {
         if (serializable == null) return;
         if (serializable.equals(BATTERY_DIALOG)) {
-            //TODO 'void org.openobservatory.ooniprobe.common.PreferenceManager.setNotificationsFromDialog(boolean)' on a null object reference
-            //if (preferenceManager != null)
-                preferenceManager.setNotificationsFromDialog(i == DialogInterface.BUTTON_POSITIVE);
+            preferenceManager.setNotificationsFromDialog(i == DialogInterface.BUTTON_POSITIVE);
             if (i == DialogInterface.BUTTON_POSITIVE) {
                 Intent intent = new Intent();
                 intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
