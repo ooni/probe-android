@@ -153,8 +153,11 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
             OONIURLListConfig config = new OONIURLListConfig();
             config.setCategories(app.getPreferenceManager().getEnabledCategoryArr().toArray(new String[0]));
             OONIURLListResult results = session.fetchURLList(ooniContext, config);
-            if (results.getUrls().size() == 0)
+            if (results.getUrls().size() == 0) {
+                publishProgress(ERR, app.getString(R.string.Modal_Error_CantDownloadURLs));
                 ThirdPartyServices.logException(new MKException(results));
+                return;
+            }
             ArrayList<String> inputs = new ArrayList<>();
             for (OONIURLInfo url : results.getUrls()) {
                 inputs.add(Url.checkExistingUrl(url.getUrl(), url.getCategoryCode(), url.getCountryCode()).url);
