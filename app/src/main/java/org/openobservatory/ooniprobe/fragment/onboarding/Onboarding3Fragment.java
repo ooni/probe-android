@@ -15,6 +15,7 @@ import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
+import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 
 import javax.inject.Inject;
 
@@ -47,13 +48,20 @@ public class Onboarding3Fragment extends Fragment {
 	@OnClick(R.id.master) void masterClick() {
 		preferenceManager.setShowOnboarding(false);
 		ThirdPartyServices.reloadConsents((Application) getActivity().getApplication());
+		startAutoTestIfNeeded();
 		startActivity(MainActivity.newIntent(getActivity(), R.id.dashboard));
 		getActivity().finish();
 	}
 
 	@OnClick(R.id.slave) void slaveClick() {
 		preferenceManager.setShowOnboarding(false);
+		startAutoTestIfNeeded();
 		startActivity(MainActivity.newIntent(getActivity(), R.id.settings));
 		getActivity().finish();
+	}
+
+	private void startAutoTestIfNeeded(){
+		if	(preferenceManager.isAutomaticTestEnabled())
+			ServiceUtil.scheduleJob(getActivity());
 	}
 }

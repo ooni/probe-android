@@ -10,6 +10,10 @@ public class ThirdPartyServices {
         // does nothing
     }
 
+    public static boolean shouldShowOnboardingCrash() {
+        return false;
+    }
+
     public static void acceptCrash(Application app) {
         //no need to set false, it's already the default value
     }
