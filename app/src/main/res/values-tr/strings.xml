@@ -24,7 +24,7 @@
   <string name="Onboarding_PopQuiz_2_Wrong_Title">Uyarı</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Paragraph">İnternet sansürü şeffaflığını sağlamak için tüm OONI Probe kullanıcılarının ağ verileri otomatik olarak yayınlanır (ayarlardan devre dışı bırakılmadıkça).</string>
   <string name="Onboarding_AutomatedTesting_Title">Otomatik sınama</string>
-  <string name="Onboarding_AutomatedTesting_Paragraph">To measure internet censorship every day, please enable automated testing so that OONI Probe can run tests periodically.\n\nDon\'t worry, we\'ll be mindful of battery usage. \n\nYou can disable automated testing from the settings at any time.</string>
+  <string name="Onboarding_AutomatedTesting_Paragraph">Lütfen İnternet sansürünün OONI Probe tarafından günlük olarak ölçülebilmesi için otomatik sınamayı etkinleştirin.\n\nEndişelenmeyin, pil kullanımına dikkat edeceğiz.\n\nOtomatik sınamayı istediğiniz zaman ayarlardan devre dışı bırakabilirsiniz.</string>
   <string name="Onboarding_Crash_Title">Çökme Bildirimleri</string>
   <string name="Onboarding_Crash_Paragraph">OONI Probe uygulamasını iyileştirmek için, sorun çıktığında kişisel veri içermeyen anonim çökme bildirimleri almak istiyoruz.\n\nÇökme bildirimlerinin OONI geliştirme ekibine gönderilmesini ister misiniz?</string>
   <string name="Onboarding_Crash_Button_Yes">Evet</string>
@@ -267,13 +267,13 @@
   <string name="Feed_Title">Akış</string>
   <string name="Modal_OK">Tamam</string>
   <string name="Modal_Cancel">İptal</string>
-  <string name="Modal_DontAskAgain">No, don\'t ask again</string>
+  <string name="Modal_DontAskAgain">Hayır, bir daha sorma</string>
   <string name="Modal_Delete">Sil</string>
   <string name="Modal_Error">Hata</string>
   <string name="Modal_Retry">Yeniden Dene</string>
   <string name="Modal_SoundsGreat">Harika görünüyor</string>
   <string name="Modal_NoThanks">Hayır, teşekkürler</string>
-  <string name="Modal_NotNow">Not now</string>
+  <string name="Modal_NotNow">Şimdi değil</string>
   <string name="Modal_Error_NoInternet">Sınama yapılamadı. Lütfen İnternet bağlantınızı denetleyin.</string>
   <string name="Modal_Error_CantDownloadURLs">Adres listesi indirilemedi. Lütfen yeniden deneyin.</string>
   <string name="Modal_Error_TestAlreadyRunning">Lütfen yeni bir sınama başlatmadan önce yapılmakta olan sınamaların tamamlanmasını bekleyin.</string>
@@ -314,8 +314,8 @@
   <string name="Modal_InterruptTest_Title">Bu sınamayı durdurmak istediğinize emin misiniz?</string>
   <string name="Modal_InterruptTest_Paragraph">Bu işlem şu anda yapılmakta olan sınamayı durduracak.</string>
   <string name="Modal_Autorun_Modal_Title">Sınamalar otomatik olarak yürütülsün mü?</string>
-  <string name="Modal_Autorun_Modal_Text">By enabling automated testing, you will contribute OONI measurements on a regular basis.</string>
-  <string name="Modal_Autorun_Modal_Text_Android">Please allow the app to run in the background.</string>
+  <string name="Modal_Autorun_Modal_Text">Otomatik sınamayı etkinleştirerek, OONI ölçümlerinin düzenli olarak yapılmasına katkıda bulunacaksınız.</string>
+  <string name="Modal_Autorun_Modal_Text_Android">Lütfen uygulamanın arka planda çalışmasına izin verin.</string>
   <string name="Modal_Autorun_Modal_Button_RemindLater">Beni hatırla</string>
   <string name="Toast_CopiedToClipboard">Panoya kopyalandı</string>
   <string name="Snackbar_ResultsNotUploaded_Text">Yüklenmemiş</string>
