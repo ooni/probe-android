@@ -108,7 +108,7 @@ public class TestKeyFactory {
                 return "{\"facebook_tcp_blocking\":\"true\",\"facebook_dns_blocking\":\"true\"}";
 
             case Signal.NAME:
-                return "{\"signal_backend_status\":\"blocking\",\"signal_backend_failure\":\"blocked\"}";
+                return "{\"signal_backend_status\":\"blocked\",\"signal_backend_failure\":\"blocked\"}";
 
             // Circumvention
             case RiseupVPN.NAME:

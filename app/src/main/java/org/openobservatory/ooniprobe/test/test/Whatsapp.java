@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.test.test;
 
+import static org.openobservatory.ooniprobe.model.jsonresult.TestKeys.BLOCKED;
+
 import android.content.Context;
 
 import androidx.annotation.NonNull;
@@ -30,6 +32,6 @@ public class Whatsapp extends AbstractTest {
 		if (json.test_keys.whatsapp_endpoints_status == null || json.test_keys.whatsapp_web_status == null || json.test_keys.registration_server_status == null)
 			measurement.is_failed = true;
 		else
-			measurement.is_anomaly = json.test_keys.whatsapp_endpoints_status.equals("blocked") || json.test_keys.whatsapp_web_status.equals("blocked") || json.test_keys.registration_server_status.equals("blocked");
+			measurement.is_anomaly = json.test_keys.whatsapp_endpoints_status.equals(BLOCKED) || json.test_keys.whatsapp_web_status.equals(BLOCKED) || json.test_keys.registration_server_status.equals(BLOCKED);
 	}
 }

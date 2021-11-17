@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.test.test;
 
+import static org.openobservatory.ooniprobe.model.jsonresult.TestKeys.BLOCKED;
+
 import android.content.Context;
 
 import androidx.annotation.NonNull;
@@ -30,6 +32,6 @@ public class Telegram extends AbstractTest {
 		if (json.test_keys.telegram_http_blocking == null || json.test_keys.telegram_tcp_blocking == null || json.test_keys.telegram_web_status == null)
 			measurement.is_failed = true;
 		else
-			measurement.is_anomaly = json.test_keys.telegram_http_blocking || json.test_keys.telegram_tcp_blocking || json.test_keys.telegram_web_status.equals("blocked");
+			measurement.is_anomaly = json.test_keys.telegram_http_blocking || json.test_keys.telegram_tcp_blocking || json.test_keys.telegram_web_status.equals(BLOCKED);
 	}
 }
