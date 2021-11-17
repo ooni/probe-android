@@ -19,6 +19,7 @@ import org.openobservatory.engine.OONIURLListResult;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.MKException;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -152,6 +153,11 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
             OONIURLListConfig config = new OONIURLListConfig();
             config.setCategories(app.getPreferenceManager().getEnabledCategoryArr().toArray(new String[0]));
             OONIURLListResult results = session.fetchURLList(ooniContext, config);
+            if (results.getUrls().size() == 0) {
+                publishProgress(ERR, app.getString(R.string.Modal_Error_CantDownloadURLs));
+                ThirdPartyServices.logException(new MKException(results));
+                return;
+            }
             ArrayList<String> inputs = new ArrayList<>();
             for (OONIURLInfo url : results.getUrls()) {
                 inputs.add(Url.checkExistingUrl(url.getUrl(), url.getCategoryCode(), url.getCountryCode()).url);
