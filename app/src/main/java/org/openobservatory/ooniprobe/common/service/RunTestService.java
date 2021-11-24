@@ -80,7 +80,12 @@ public class RunTestService extends Service {
         //This intent is used to manage the stop test button in the notification
         Intent broadcastIntent = new Intent();
         broadcastIntent.setAction(RunTestService.ACTION_INTERRUPT);
-        PendingIntent pIntent = PendingIntent.getBroadcast(this,1, broadcastIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pIntent;
+        if (android.os.Build.VERSION.SDK_INT >= 23) {
+            pIntent = PendingIntent.getBroadcast(this, 1, broadcastIntent, PendingIntent.FLAG_IMMUTABLE);
+        } else {
+            pIntent = PendingIntent.getBroadcast(this, 1, broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        }
         builder.addAction(0, getApplicationContext().getString(R.string.Notification_StopTest), pIntent);
         startForeground(NOTIFICATION_ID, builder.build());
         /*
