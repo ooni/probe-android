@@ -25,8 +25,6 @@ import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
 import java.util.ArrayList;
 
-import static android.app.PendingIntent.FLAG_IMMUTABLE;
-
 public class RunTestService extends Service {
     public static final String CHANNEL_ID = "RunTestService";
     public static final int NOTIFICATION_ID = 1;
@@ -55,17 +53,9 @@ public class RunTestService extends Service {
         NotificationUtility.setChannel(getApplicationContext(), CHANNEL_ID, app.getString(R.string.Settings_AutomatedTesting_Label), false, false, false);
         Intent notificationIntent = new Intent(this, RunningActivity.class);
         notificationIntent.setPackage("org.openobservatory.ooniprobe");
-        PendingIntent pendingIntent;
-        //From https://support.google.com/faqs/answer/10437428
-        if (android.os.Build.VERSION.SDK_INT >= 23) {
-            // Create a PendingIntent using FLAG_IMMUTABLE
-            pendingIntent = PendingIntent.getActivity(this,
-                    0, notificationIntent, FLAG_IMMUTABLE);
-        } else {
-            // Existing code that creates a PendingIntent
-            pendingIntent = PendingIntent.getActivity(this,
-                    0, notificationIntent, 0);
-        }
+        PendingIntent pendingIntent = pendingIntentGetActivity(
+                this, 0, notificationIntent
+        );
         notificationManager = NotificationManagerCompat.from(this);
         builder = new NotificationCompat.Builder(this, CHANNEL_ID);
         builder.setContentTitle(getApplication().getString(R.string.Dashboard_Running_Running))
@@ -80,12 +70,7 @@ public class RunTestService extends Service {
         //This intent is used to manage the stop test button in the notification
         Intent broadcastIntent = new Intent();
         broadcastIntent.setAction(RunTestService.ACTION_INTERRUPT);
-        PendingIntent pIntent;
-        if (android.os.Build.VERSION.SDK_INT >= 23) {
-            pIntent = PendingIntent.getBroadcast(this, 1, broadcastIntent, PendingIntent.FLAG_IMMUTABLE);
-        } else {
-            pIntent = PendingIntent.getBroadcast(this, 1, broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        }
+        PendingIntent pIntent = pendingIntentGetBroadcast(this, 1, broadcastIntent);
         builder.addAction(0, getApplicationContext().getString(R.string.Notification_StopTest), pIntent);
         startForeground(NOTIFICATION_ID, builder.build());
         /*
@@ -103,9 +88,11 @@ public class RunTestService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (shouldShowNotification(this)){
-            PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),
-                    0, MainActivity.newIntent(getApplicationContext(), R.id.testResults), 0);
+        if (shouldShowNotification(this)) {
+            PendingIntent pendingIntent = pendingIntentGetActivity(
+                    getApplicationContext(), 0,
+                    MainActivity.newIntent(getApplicationContext(), R.id.testResults)
+            );
             builder.mActions.clear();
             builder.setContentTitle(getApplicationContext().getString(R.string.Notification_FinishedRunning))
                     .setContentIntent(pendingIntent)
@@ -116,6 +103,28 @@ public class RunTestService extends Service {
         else if (notificationManager != null)
             notificationManager.cancel(NOTIFICATION_ID);
         this.unregisterReceiver(receiver);
+    }
+
+    // pendingIntentGetActivity is a factory to correctly call PendingIntent.getActivity
+    // with the correct mutability flags depending on the SDK version.
+    private static PendingIntent pendingIntentGetActivity(Context ctx, int requestCode, Intent intent) {
+        int flags = 0;
+        if (android.os.Build.VERSION.SDK_INT >= 23) {
+            flags |= PendingIntent.FLAG_IMMUTABLE;
+        }
+        return PendingIntent.getActivity(ctx, requestCode, intent, flags);
+    }
+
+    // pendingIntentGetBroadcast is factory to correctly call PendingIntent.getBroadcast
+    // with the correct mutability flags depending on the SDK version using.
+    private static PendingIntent pendingIntentGetBroadcast(Context ctx, int requestCode, Intent intent) {
+        int flags;
+        if (android.os.Build.VERSION.SDK_INT >= 23) {
+            flags = PendingIntent.FLAG_IMMUTABLE;
+        } else {
+            flags = PendingIntent.FLAG_UPDATE_CURRENT;
+        }
+        return PendingIntent.getBroadcast(ctx, requestCode, intent, flags);
     }
 
     @Override
