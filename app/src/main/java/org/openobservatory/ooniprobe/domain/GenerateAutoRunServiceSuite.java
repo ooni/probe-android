@@ -9,6 +9,7 @@ import org.openobservatory.engine.OONIURLInfo;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.test.EngineProvider;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
@@ -77,7 +78,8 @@ public class GenerateAutoRunServiceSuite {
             return false;
         if (pm.testChargingOnly() && !isCharging)
             return false;
-
+        if(ReachabilityManager.getChargingLevel(app) < 20)
+            return false;
         if (isVPNInUse) {
             return false;
         }
