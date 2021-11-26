@@ -78,7 +78,7 @@ public class GenerateAutoRunServiceSuite {
             return false;
         if (pm.testChargingOnly() && !isCharging)
             return false;
-        if(ReachabilityManager.getChargingLevel(app) < 20)
+        if(ReachabilityManager.getChargingLevel(app) < 20 && !isCharging)
             return false;
         if (isVPNInUse) {
             return false;
