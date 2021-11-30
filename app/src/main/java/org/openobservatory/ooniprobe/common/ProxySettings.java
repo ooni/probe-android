@@ -14,25 +14,8 @@ import java.net.UnknownHostException;
  */
 public class ProxySettings {
 
-    /** Protocol enumerates all the kind of proxy we support. */
-    public enum Protocol {
-        NONE("none"),
-        PSIPHON("psiphon"),
-        SOCKS5("socks5");
-
-        private String protocol;
-
-        Protocol(String protocol) {
-            this.protocol = protocol;
-        }
-
-        public String getProtocol() {
-            return protocol;
-        }
-    }
-
     /** scheme is the proxy scheme (e.g., "psiphon", "socks5"). */
-    public Protocol protocol = Protocol.NONE;
+    public ProxyProtocol protocol = ProxyProtocol.NONE;
 
     /** hostname is the hostname for custom proxies. */
     public String hostname = "";
@@ -46,12 +29,12 @@ public class ProxySettings {
 
         // Make sure the protocol is one of the schemes we recognize.
         String protocol = pm.getProxyProtocol();
-        if (protocol.equals(Protocol.NONE.getProtocol())) {
-            settings.protocol = Protocol.NONE;
-        } else if (protocol.equals(Protocol.PSIPHON.getProtocol())) {
-            settings.protocol = Protocol.PSIPHON;
-        } else if (protocol.equals(Protocol.SOCKS5.getProtocol())) {
-            settings.protocol = Protocol.SOCKS5;
+        if (protocol.equals(ProxyProtocol.NONE.getProtocol())) {
+            settings.protocol = ProxyProtocol.NONE;
+        } else if (protocol.equals(ProxyProtocol.PSIPHON.getProtocol())) {
+            settings.protocol = ProxyProtocol.PSIPHON;
+        } else if (protocol.equals(ProxyProtocol.SOCKS5.getProtocol())) {
+            settings.protocol = ProxyProtocol.SOCKS5;
         } else {
             // This is where we will extend the code to add support for
             // more proxies, e.g., HTTP proxies.
@@ -89,11 +72,11 @@ public class ProxySettings {
 
     /** getProxyString returns to you the proxy string you should pass to oonimkall. */
     public String getProxyString() throws URISyntaxException {
-        if (protocol == Protocol.NONE)
+        if (protocol == ProxyProtocol.NONE)
             return "";
-        if (protocol == Protocol.PSIPHON)
+        if (protocol == ProxyProtocol.PSIPHON)
             return "psiphon://";
-        if (protocol == Protocol.SOCKS5) {
+        if (protocol == ProxyProtocol.SOCKS5) {
             // Alright, we now need to construct a new SOCKS5 URL. We are going to defer
             // doing that to the Java standard library (er, the Android stdlib).
             String urlStr = "socks5://" + hostname + ":" + port + "/";

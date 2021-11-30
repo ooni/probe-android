@@ -144,14 +144,14 @@ public class PreferenceManager {
 		}
 	}
 
-	public void setProxyProtocol(ProxySettings.Protocol protocol) {
+	public void setProxyProtocol(ProxyProtocol protocol) {
 		sp.edit()
 			.putString(r.getString(R.string.proxy_protocol), protocol.getProtocol())
 			.apply();
 	}
 
 	public String getProxyProtocol() {
-		return sp.getString(r.getString(R.string.proxy_protocol), ProxySettings.Protocol.NONE.getProtocol());
+		return sp.getString(r.getString(R.string.proxy_protocol), ProxyProtocol.NONE.getProtocol());
 	}
 
 	public String getProxyHostname() {
