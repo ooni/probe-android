@@ -16,6 +16,7 @@ import com.google.common.net.InternetDomainName;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.common.ProxyProtocol;
 import org.openobservatory.ooniprobe.common.ProxySettings;
 
 import java.net.URISyntaxException;
@@ -184,11 +185,11 @@ public class ProxyActivity extends AbstractActivity {
     private void configureInitialViewWithSettings(ProxySettings settings) {
         // Inspect the scheme and use the scheme to choose among the
         // top-level radio buttons describing the proxy type.
-        if (settings.protocol == ProxySettings.Protocol.NONE) {
+        if (settings.protocol == ProxyProtocol.NONE) {
             proxyNoneRB.setChecked(true);
-        } else if (settings.protocol == ProxySettings.Protocol.PSIPHON) {
+        } else if (settings.protocol == ProxyProtocol.PSIPHON) {
             proxyPsiphonRB.setChecked(true);
-        } else if (settings.protocol == ProxySettings.Protocol.SOCKS5) {
+        } else if (settings.protocol == ProxyProtocol.SOCKS5) {
             proxyCustomRB.setChecked(true);
         } else {
             // TODO(bassosimone): this should also be reported as a bug.
@@ -239,10 +240,10 @@ public class ProxyActivity extends AbstractActivity {
     }
 
     // isSchemeCustom tells us whether a given scheme is for a custom proxy.
-    private boolean isSchemeCustom(ProxySettings.Protocol protocol) {
+    private boolean isSchemeCustom(ProxyProtocol protocol) {
         // This is where we need to extend the implementation of we add a new scheme
         // that will not be related to a custom proxy type.
-        return protocol == ProxySettings.Protocol.SOCKS5;
+        return protocol == ProxyProtocol.SOCKS5;
     }
 
     // customProxyTextInputSetEnabled is a helper function that changes the
@@ -336,7 +337,7 @@ public class ProxyActivity extends AbstractActivity {
         // If no proxy is selected then just write an empty proxy
         // configuration into the settings and move on.
         if (proxyNoneRB.isChecked()) {
-            settings.protocol = ProxySettings.Protocol.NONE;
+            settings.protocol = ProxyProtocol.NONE;
             saveSettings();
             super.onBackPressed();
             return;
@@ -345,7 +346,7 @@ public class ProxyActivity extends AbstractActivity {
         // If the psiphon proxy is checked then write back the right
         // proxy configuration for psiphon and move on.
         if (proxyPsiphonRB.isChecked()) {
-            settings.protocol = ProxySettings.Protocol.PSIPHON;
+            settings.protocol = ProxyProtocol.PSIPHON;
             saveSettings();
             super.onBackPressed();
             return;
@@ -365,7 +366,7 @@ public class ProxyActivity extends AbstractActivity {
 
         // At this point we're going to assume that this is a socks5 proxy. We will
         // need to change the code in here when we add support for http proxies.
-        settings.protocol = ProxySettings.Protocol.SOCKS5;
+        settings.protocol = ProxyProtocol.SOCKS5;
         try {
             settings.getProxyString();
         } catch (URISyntaxException e) {
