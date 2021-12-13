@@ -13,8 +13,28 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    flavorDimensions 'testing'
+    productFlavors {
+        stable {
+            dimension 'testing'
+        }
+        experimental {
+            dimension 'testing'
+        }
+        dev {
+            dimension 'testing'
+        }
+    }
 }
 
 dependencies {
-    implementation 'org.ooni:oonimkall:2021.11.23-142059'
+    // For the stable and dev app flavours we're using the library
+    // build published at Maven Central.
+    stableImplementation 'org.ooni:oonimkall:2021.11.23-142059'
+    devImplementation 'org.ooni:oonimkall:2021.11.23-142059'
+
+    // For the experimental flavour, you need to compile your own
+    // oonimkall.aar and put it into the ../engine-experimental dir
+    experimentalImplementation project(":engine-experimental")
 }
