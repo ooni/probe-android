@@ -61,4 +61,14 @@ public class ReachabilityManager {
                 status == BatteryManager.BATTERY_STATUS_FULL;
         return isCharging;
     }
+
+    /* From https://developer.android.com/training/monitoring-device-state/battery-monitoring#DetermineChargeState */
+    public static float getChargingLevel(Context context) {
+        IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        Intent batteryStatus = context.registerReceiver(null, ifilter);
+        int level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+        int scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
+        float batteryPct = level * 100 / (float)scale;
+        return batteryPct;
+    }
 }
