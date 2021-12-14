@@ -97,7 +97,7 @@ public class ServiceUtil {
 
         if (suite != null) {
             Intent serviceIntent = new Intent(app, RunTestService.class);
-            serviceIntent.putExtra("testSuites", suite.asArray());
+            serviceIntent.putExtra("testSuites", testSuites);
             serviceIntent.putExtra("storeDB", false);
             ContextCompat.startForegroundService(app, serviceIntent);
         }
