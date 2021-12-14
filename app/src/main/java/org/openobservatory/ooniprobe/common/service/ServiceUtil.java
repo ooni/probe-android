@@ -15,7 +15,12 @@ import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.domain.GenerateAutoRunServiceSuite;
+import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
+import org.openobservatory.ooniprobe.test.suite.CircumventionSuite;
+import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -85,10 +90,14 @@ public class ServiceUtil {
                );
 
         AbstractSuite suite = d.generateAutoRunServiceSuite.generate(config);
+        ArrayList<AbstractSuite> testSuites = new ArrayList<>();
+        testSuites.add(suite);
+        testSuites.add(new InstantMessagingSuite());
+        testSuites.add(new CircumventionSuite());
 
         if (suite != null) {
             Intent serviceIntent = new Intent(app, RunTestService.class);
-            serviceIntent.putExtra("testSuites", suite.asArray());
+            serviceIntent.putExtra("testSuites", testSuites);
             serviceIntent.putExtra("storeDB", false);
             ContextCompat.startForegroundService(app, serviceIntent);
         }
