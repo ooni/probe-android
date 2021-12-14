@@ -35,20 +35,26 @@ censorship and other forms of network interference.
 
 [Click here to report a bug](https://github.com/ooni/probe/issues/new)
 
-Other supported platforms: [iOS](https://github.com/ooni/probe-ios), [Desktop](https://github.com/ooni/probe-desktop), [CLI](https://github.com/ooni/probe-cli)
+Other supported platforms: [iOS](https://github.com/ooni/probe-ios),
+[Desktop](https://github.com/ooni/probe-desktop), [CLI](https://github.com/ooni/probe-cli)
 
 ## Developer information
 
 This application requires Android Studio. We use gradle and, as part of the
 initial gradle sync, Android studio will download all the required
-dependencies. The most important dependency is [measurement-kit](
-https://github.com/measurement-kit/measurement-kit) which is fetched
-from our [Bintray jcenter repository](
-https://bintray.com/measurement-kit/android/android-libs).
+dependencies.
+
+The most important dependency is `oonimkall`. This dependency contains
+the network measurement engine. Its sources are at
+[ooni/probe-cli](https://github.com/ooni/probe-cli). We fetch it
+from [Maven central](https://search.maven.org/artifact/org.ooni/oonimkall).
+
+(You may need to set the `ANDROID_SDK_ROOT` environment variable.)
 
 ## Building an apk
 
-Ensure you have Android Studio and Android SDK installed. Build `fullRelease` variant using Android Studio or this command line:
+Ensure you have Android Studio and Android SDK installed. Build the `devFullRelease`
+variant using Android Studio or this command line:
 
 ```
 ./gradlew assembleDevFullRelease
@@ -56,10 +62,11 @@ Ensure you have Android Studio and Android SDK installed. Build `fullRelease` va
 
 ## Building the app for f-droid
 
-Instead to build the app to stay compliant to F-Droid use `fdroidRelease`, contains small tweaks required to have the app accepted by [f-droid](https://f-droid.org/).
+Instead to build the app to stay compliant to F-Droid use `fdroid`, which
+contains small tweaks required to have the app accepted by [f-droid](https://f-droid.org/).
 
 ```
-./gradlew assembleFdroidRelease
+./gradlew assembleFdroid
 ```
 
 ## Testing
@@ -87,7 +94,8 @@ Generate code coverage report (after all unit and instrumented tests successfull
 
 ## Managing translations
 
-To manage translations check out our [translation repo](https://github.com/ooni/translations) and follow the instructions there.
+To manage translations check out our [translation repo](https://github.com/ooni/translations)
+and follow the instructions there.
 
 ## Contributing
 

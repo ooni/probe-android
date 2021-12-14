@@ -129,7 +129,6 @@ public class ProgressFragment extends Fragment implements ServiceConnection {
             updateUI();
     }
 
-
     @Override
     public void onServiceDisconnected(ComponentName name) {
         service = null;
@@ -143,14 +142,16 @@ public class ProgressFragment extends Fragment implements ServiceConnection {
             switch (key) {
                 case TestAsyncTask.START:
                     progress.setIndeterminate(true);
-                    progress.setMax(service.task.currentSuite.getTestList(preferenceManager).length * 100);
+                    if (service != null && service.task != null && service.task.currentSuite != null)
+                        progress.setMax(service.task.currentSuite.getTestList(preferenceManager).length * 100);
                     break;
                 case TestAsyncTask.RUN:
                     name.setText(value);
                     break;
                 case TestAsyncTask.PRG:
                     if (progress.isIndeterminate())
-                        progress.setMax(service.task.currentSuite.getTestList(preferenceManager).length * 100);
+                        if (service != null && service.task != null && service.task.currentSuite != null)
+                            progress.setMax(service.task.currentSuite.getTestList(preferenceManager).length * 100);
                     int prgs = Integer.parseInt(value);
                     progress.setIndeterminate(false);
                     progress.setProgress(prgs);
