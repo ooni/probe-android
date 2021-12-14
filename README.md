@@ -40,16 +40,65 @@ Other supported platforms: [iOS](https://github.com/ooni/probe-ios),
 
 ## Developer information
 
-This application requires Android Studio. We use gradle and, as part of the
+This application requires Android Studio. We use Gradle and, as part of the
 initial gradle sync, Android studio will download all the required
 dependencies.
 
 The most important dependency is `oonimkall`. This dependency contains
 the network measurement engine. Its sources are at
-[ooni/probe-cli](https://github.com/ooni/probe-cli). We fetch it
-from [Maven central](https://search.maven.org/artifact/org.ooni/oonimkall).
+[ooni/probe-cli](https://github.com/ooni/probe-cli).
 
-(You may need to set the `ANDROID_SDK_ROOT` environment variable.)
+When using Gradle from the command line, you will need to set the
+`ANDROID_SDK_ROOT` environment variable to point to the directory in
+which you have installed the Android SDK.
+
+## Build variants
+
+We use the classic `debug` and `release` build types. We also
+implement the following flavours:
+
+- `stable`, `dev`, and `experimental` (dimension: `testing`);
+
+- `full` and `fdroid` (dimension: `license`).
+
+The `testing` dimension controls whether we're building a release
+or a more unstable version. We build releases using the `stable`
+flavour. The `dev` flavour builds the version of the app that should
+be released on the store as the beta channel. The `experimental`
+flavour, instead, allows a developer to build a one-off version of
+the app that uses a custom build of the `oonimkall` library.
+
+For `stable` and `dev`, we fetch `oonimkall` from the
+[Maven central](https://search.maven.org/artifact/org.ooni/oonimkall)
+repository. The `experimental` flavour, instead, requires you to
+put the `oonimkall.aar` you built inside `engine-experimental`.
+
+The `license` dimension controls which proprietary libraries to include
+into the build. The `full` flavour includes all such dependencies,
+while the `fdroid` flavour does not include any of them.
+
+The variant names are therefore:
+
+- `experimentalFullDebug`
+- `experimentalFullRelease`
+- `devFullDebug`
+- `devFullRelease`
+- `stableFullDebug`
+- `stableFullRelease`
+
+We additionally have `stableFdroidDebug` and `stableFdroidRelease`.
+
+All of this is controlled by [app/build.gradle](app/build.gradle).
+
+## Gradle modules
+
+- [app](app) contains the mobile app;
+- [engine](engine) contains wrappers for `oonimkall`, the
+measurement engine library;
+- [engine-experimental](engine-experimental) allows us
+to implement the `experimental` build flavour where you
+put the `oonimkall.aar` file you built inside `engine-experimental`
+rather than downloading it from Maven Central.
 
 ## Building an apk
 
