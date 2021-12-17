@@ -74,7 +74,7 @@ public class ApplicationModule {
         return chain -> {
             Request request = chain.request().newBuilder()
                     .addHeader("User-Agent", "ooniprobe-android/" + BuildConfig.VERSION_NAME)
-                    .addHeader("Connection", "Close")
+                    .addHeader("Connection", "Close") // TODO(https://github.com/ooni/probe/issues/1922)
                     .build();
             return chain.proceed(request);
         };
@@ -88,7 +88,7 @@ public class ApplicationModule {
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
-                .retryOnConnectionFailure(false)
+                .retryOnConnectionFailure(false) // TODO(https://github.com/ooni/probe/issues/1923)
                 .addInterceptor(logging)
                 .addInterceptor(headerInterceptor)
                 .build();
