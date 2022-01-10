@@ -28,6 +28,14 @@ public class InfoActivity extends AbstractActivity {
 		version.setText(getString(R.string.version, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME));
 	}
 
+	@OnClick(R.id.blog) void onBlogClick() {
+		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://ooni.org/blog/")));
+	}
+
+	@OnClick(R.id.reports) void onReportsClick() {
+		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://ooni.org/reports/")));
+	}
+
 	@OnClick(R.id.learnMore) void onLearnMoreClick() {
 		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://ooni.io/")));
 	}
