@@ -345,6 +345,8 @@
   <string name="Settings_About_Label">Rreth OONI</string>
   <string name="Settings_About_Content_Paragraph">Open Observatory of Network Interference (OONI) është një projekt free software i The Tor Project që synon të rrisi transparencen e censurimit të internetit në mbarë botën.\n\nQë nga viti 2012, komuniteti global i OONI mat rrjetin në më shumë se 20 shtete. Disa nga këto majtet shërbejnë edhe si evidencë për censurimin e internetit.</string>
   <string name="Settings_About_Content_LearnMore">Meso me teper</string>
+  <string name="Settings_About_Content_Blog">Blog</string>
+  <string name="Settings_About_Content_Reports">Podania</string>
   <string name="Settings_About_Content_DataPolicy">Politika e të dhënave të OONI</string>
   <string name="Settings_Notifications_Label">Njoftime</string>
   <string name="Settings_Notifications_Enabled">Mundësuar</string>

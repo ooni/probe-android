@@ -55,7 +55,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="16dp"
-			android:text="Blog"
+			android:text="@string/Settings_About_Content_Blog"
 			android:textAllCaps="false"
 			app:cornerRadius="24dp" />
 
@@ -64,7 +64,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="16dp"
-			android:text="reports"
+			android:text="@string/Settings_About_Content_Reports"
 			android:textAllCaps="false"
 			app:cornerRadius="24dp" />
 
