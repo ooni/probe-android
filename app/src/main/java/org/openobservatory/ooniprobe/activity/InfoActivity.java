@@ -37,10 +37,10 @@ public class InfoActivity extends AbstractActivity {
 	}
 
 	@OnClick(R.id.learnMore) void onLearnMoreClick() {
-		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://ooni.io/")));
+		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://ooni.org/")));
 	}
 
 	@OnClick(R.id.dataPolicy) void onDataPolicyClick() {
-		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://ooni.io/about/data-policy/")));
+		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://ooni.org/about/data-policy/")));
 	}
 }
