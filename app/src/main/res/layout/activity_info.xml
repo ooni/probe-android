@@ -64,7 +64,6 @@
 			style="@style/Widget.MaterialComponents.Button.TextButton"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginTop="16dp"
 			android:text="@string/Settings_About_Content_Blog"
 			android:textAllCaps="false"
 			app:cornerRadius="24dp" />
@@ -74,7 +73,6 @@
 			style="@style/Widget.MaterialComponents.Button.TextButton"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginTop="16dp"
 			android:text="@string/Settings_About_Content_Reports"
 			android:textAllCaps="false"
 			app:cornerRadius="24dp" />
