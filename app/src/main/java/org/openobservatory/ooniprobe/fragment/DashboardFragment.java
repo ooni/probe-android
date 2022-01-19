@@ -87,9 +87,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 	}
 
 	public void runAll(){
-		Intent intent = RunningActivity.newIntent((AbstractActivity) getActivity(), testSuites);
-		if (intent != null)
-			ActivityCompat.startActivity(getActivity(), intent, null);
+		RunningActivity.runAsForegroundService((AbstractActivity) getActivity(), testSuites);
 	}
 
 	@Override public void onClick(View v) {

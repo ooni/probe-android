@@ -71,6 +71,10 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     @Inject
     PreferenceManager preferenceManager;
 
+    public static void runAsForegroundService(AbstractActivity context, ArrayList<AbstractSuite> testSuites) {
+        newIntent(context, testSuites);
+    }
+
     public static Intent newIntent(AbstractActivity context, ArrayList<AbstractSuite> testSuites) {
         if (ReachabilityManager.getNetworkType(context).equals(ReachabilityManager.NO_INTERNET)) {
             new MessageDialogFragment.Builder()
