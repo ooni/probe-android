@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
+import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.OverviewActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
@@ -88,6 +89,11 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
 	public void runAll(){
 		RunningActivity.runAsForegroundService((AbstractActivity) getActivity(), testSuites);
+		try {
+			((AbstractActivity)getActivity()).bindTestService();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override public void onClick(View v) {
