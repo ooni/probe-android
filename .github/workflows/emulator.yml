@@ -28,6 +28,7 @@ jobs:
         target: ${{ matrix.target }}
         arch: x86_64
         profile: Nexus 6
+        ram-size: 2048M
         script: ./gradlew connectedStableFullDebugAndroidTest
     - name: uploads test results
       uses: actions/upload-artifact@v2
