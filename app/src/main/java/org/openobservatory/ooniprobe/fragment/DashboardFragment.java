@@ -33,6 +33,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.sentry.Sentry;
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerAdapter;
 
 public class DashboardFragment extends Fragment implements View.OnClickListener {
@@ -93,6 +94,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 			((AbstractActivity)getActivity()).bindTestService();
 		} catch (Exception e) {
 			e.printStackTrace();
+			Sentry.captureException(e);
 		}
 	}
 
