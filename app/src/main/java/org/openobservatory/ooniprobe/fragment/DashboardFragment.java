@@ -100,9 +100,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		AbstractSuite testSuite = (AbstractSuite) v.getTag();
 		switch (v.getId()) {
 			case R.id.run:
-				Intent intent = RunningActivity.newIntent((AbstractActivity) getActivity(), testSuite.asArray());
-				if (intent != null)
-					ActivityCompat.startActivity(getActivity(), intent, null);
+				RunningActivity.runAsForegroundService((AbstractActivity) getActivity(), testSuite.asArray());
 				break;
 			default:
 				ActivityCompat.startActivity(getActivity(), OverviewActivity.newIntent(getActivity(), testSuite), null);
