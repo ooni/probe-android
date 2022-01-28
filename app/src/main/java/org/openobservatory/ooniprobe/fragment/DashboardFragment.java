@@ -24,6 +24,7 @@ import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.OverviewActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
+import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.item.TestsuiteItem;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
@@ -33,7 +34,6 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.sentry.Sentry;
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerAdapter;
 
 public class DashboardFragment extends Fragment implements View.OnClickListener {
@@ -94,7 +94,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 			((AbstractActivity)getActivity()).bindTestService();
 		} catch (Exception e) {
 			e.printStackTrace();
-			Sentry.captureException(e);
+			ThirdPartyServices.logException(e);
 		}
 	}
 
