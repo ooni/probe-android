@@ -9,10 +9,10 @@
 	<uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
 	<permission
-		android:name="org.openobservatory.ooniprobe.permission.C2D_MESSAGE"
+		android:name="${applicationId}.permission.C2D_MESSAGE"
 		android:protectionLevel="signature" />
 
-	<uses-permission android:name="org.openobservatory.ooniprobe.permission.C2D_MESSAGE" />
+	<uses-permission android:name="${applicationId}.permission.C2D_MESSAGE" />
 
 	<application
 		android:name=".common.Application"
@@ -75,7 +75,7 @@
 			android:screenOrientation="userPortrait"
 			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
 			<intent-filter>
-				<action android:name="org.openobservatory.ooniprobe.activity.InfoActivity" />
+				<action android:name="${applicationId}.activity.InfoActivity" />
 
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
@@ -88,7 +88,7 @@
 			android:screenOrientation="userPortrait"
 			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App">
 			<intent-filter>
-				<action android:name="org.openobservatory.ooniprobe.activity.ProxyActivity" />
+				<action android:name="${applicationId}.activity.ProxyActivity" />
 
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
@@ -100,7 +100,7 @@
 			android:parentActivityName=".activity.PreferenceActivity"
 			android:screenOrientation="userPortrait">
 			<intent-filter>
-				<action android:name="org.openobservatory.ooniprobe.activity.CustomWebsiteActivity" />
+				<action android:name="${applicationId}.activity.CustomWebsiteActivity" />
 
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
@@ -119,7 +119,7 @@
 				<category android:name="android.intent.category.DEFAULT" />
 				<category android:name="android.intent.category.BROWSABLE" />
 
-				<action android:name="org.openobservatory.ooniprobe.nettest" />
+				<action android:name="${applicationId}.nettest" />
 
 				<data
 					android:host="run.ooni.io"
@@ -132,7 +132,7 @@
 				<category android:name="android.intent.category.DEFAULT" />
 				<category android:name="android.intent.category.BROWSABLE" />
 
-				<action android:name="org.openobservatory.ooniprobe.nettest" />
+				<action android:name="${applicationId}.nettest" />
 
 				<data
 					android:host="run.ooni.io"
