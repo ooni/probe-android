@@ -20,7 +20,8 @@
 			android:layout_alignParentEnd="true"
 			android:layout_margin="8dp"
 			android:minWidth="0dp"
-			android:src="@drawable/close"
+			android:src="@drawable/chevron_right"
+			android:rotation="90"
 			android:tint="@android:color/white" />
 
 		<TextView
