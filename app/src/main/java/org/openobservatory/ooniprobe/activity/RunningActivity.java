@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.activity;
 
+import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -11,6 +12,7 @@ import android.content.ServiceConnection;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.provider.Settings;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.Button;
@@ -82,11 +84,29 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                     .withTitle(context.getString(R.string.Modal_Error))
                     .withMessage(context.getString(R.string.Modal_Error_TestAlreadyRunning))
                     .build().show(context.getSupportFragmentManager(), null);
+        } else if (ReachabilityManager.isVPNinUse(context)) {
+            new AlertDialog.Builder(context)
+                    .setTitle(context.getString(R.string.Modal_DisableVPN_Title))
+                    .setMessage(context.getString(R.string.Modal_DisableVPN_Message))
+                    .setPositiveButton("Run anyways", (dialogInterface, i) -> {
+                        startRunTestService(context,testSuites);
+                    })
+                    .setNegativeButton("Disable VPN", (dialogInterface, i) -> {
+                        // TODO (aanorbel): register for results.
+                        //   check if VPN is DISABLED and run tests.
+                        context.startActivity(new Intent(Settings.ACTION_VPN_SETTINGS));
+
+                    })
+                    .show();
         } else {
-            Intent serviceIntent = new Intent(context, RunTestService.class);
-            serviceIntent.putExtra("testSuites", testSuites);
-            ContextCompat.startForegroundService(context, serviceIntent);
+            startRunTestService(context,testSuites);
         }
+    }
+
+    private static void startRunTestService(AbstractActivity context, ArrayList<AbstractSuite> testSuites){
+        Intent serviceIntent = new Intent(context, RunTestService.class);
+        serviceIntent.putExtra("testSuites", testSuites);
+        ContextCompat.startForegroundService(context, serviceIntent);
     }
 
     @Override
@@ -96,12 +116,15 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         setTheme(R.style.Theme_MaterialComponents_NoActionBar_App);
         setContentView(R.layout.activity_running);
         ButterKnife.bind(this);
-        if (ReachabilityManager.isVPNinUse(this)){
-            new ConfirmDialogFragment.Builder()
-                    .withTitle(getString(R.string.Modal_DisableVPN_Title))
-                    .withMessage(getString(R.string.Modal_DisableVPN_Message))
-                    .build().show(getSupportFragmentManager(), null);
-        }
+        /*
+        TODO: Analyze best way to handle
+            if (ReachabilityManager.isVPNinUse(this)){
+                new ConfirmDialogFragment.Builder()
+                        .withTitle(getString(R.string.Modal_DisableVPN_Title))
+                        .withMessage(getString(R.string.Modal_DisableVPN_Message))
+                        .build().show(getSupportFragmentManager(), null);
+            }
+        */
         if (getPreferenceManager().getProxyURL().isEmpty())
             proxy_icon.setVisibility(View.GONE);
         close.setOnClickListener(new View.OnClickListener() {
