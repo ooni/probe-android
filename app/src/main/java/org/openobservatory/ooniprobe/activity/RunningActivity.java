@@ -71,24 +71,21 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     @Inject
     PreferenceManager preferenceManager;
 
-    public static Intent newIntent(AbstractActivity context, ArrayList<AbstractSuite> testSuites) {
+    public static void runAsForegroundService(AbstractActivity context, ArrayList<AbstractSuite> testSuites) {
         if (ReachabilityManager.getNetworkType(context).equals(ReachabilityManager.NO_INTERNET)) {
             new MessageDialogFragment.Builder()
                     .withTitle(context.getString(R.string.Modal_Error))
                     .withMessage(context.getString(R.string.Modal_Error_NoInternet))
                     .build().show(context.getSupportFragmentManager(), null);
-            return null;
         } else if (context.isTestRunning()) {
             new MessageDialogFragment.Builder()
                     .withTitle(context.getString(R.string.Modal_Error))
                     .withMessage(context.getString(R.string.Modal_Error_TestAlreadyRunning))
                     .build().show(context.getSupportFragmentManager(), null);
-            return null;
         } else {
             Intent serviceIntent = new Intent(context, RunTestService.class);
             serviceIntent.putExtra("testSuites", testSuites);
             ContextCompat.startForegroundService(context, serviceIntent);
-            return new Intent(context, RunningActivity.class);
         }
     }
 
