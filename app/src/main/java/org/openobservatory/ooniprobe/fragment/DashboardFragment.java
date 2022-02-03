@@ -21,6 +21,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.activity.OverviewActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
+import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.item.TestsuiteItem;
@@ -56,14 +57,8 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		recycler.setAdapter(adapter);
 		recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
 		runAll.setOnClickListener(v1 -> runAll());
-		vpn.setOnClickListener(view -> openVPNSettings());
+		vpn.setOnClickListener(view -> ((Application) getActivity().getApplication()).openVPNSettings());
 		return v;
-	}
-
-	private void openVPNSettings() {
-		Intent intent = new Intent("android.net.vpn.SETTINGS");
-		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		startActivity(intent);
 	}
 
 	@Override public void onResume() {

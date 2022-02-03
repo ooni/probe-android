@@ -28,6 +28,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.airbnb.lottie.LottieAnimationView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
@@ -93,9 +94,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                         startRunTestService(context, testSuites,onTestServiceStartedListener);
                     })
                     .setPositiveButton(R.string.Modal_DisableVPN, (dialogInterface, i) -> {
-                        Intent intent = new Intent("android.net.vpn.SETTINGS");
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(intent);
+                        ((Application) context.getApplication()).openVPNSettings();
                     })
                     .show();
         } else {
