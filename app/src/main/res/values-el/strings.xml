@@ -274,6 +274,8 @@
   <string name="Modal_SoundsGreat">Ναι, αμέ!</string>
   <string name="Modal_NoThanks">Όχι, ευχαριστώ</string>
   <string name="Modal_NotNow">Not now</string>
+  <string name="Modal_RunAnyway">Run anyways</string>
+  <string name="Modal_DisableVPN">Disable VPN</string>
   <string name="Modal_Error_NoInternet">Δεν είναι δυνατή η εκτέλεση της δοκιμής. Έλεγξε τη σύνδεσή σου στο Διαδίκτυο.</string>
   <string name="Modal_Error_CantDownloadURLs">Δεν είναι δυνατή η λήψη της λίστας ιστοσελιδών. Παρακαλώ προσπάθησε ξανά.</string>
   <string name="Modal_Error_TestAlreadyRunning">Παρακαλώ περίμενε μέχρι να τελειώσουν οι δοκιμές που εκτελούνται τώρα, πριν ξεκινήσεις μια νέα δοκιμή.</string>

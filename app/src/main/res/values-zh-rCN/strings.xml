@@ -274,6 +274,8 @@
   <string name="Modal_SoundsGreat">似乎不错</string>
   <string name="Modal_NoThanks">不要，谢谢</string>
   <string name="Modal_NotNow">Not now</string>
+  <string name="Modal_RunAnyway">Run anyways</string>
+  <string name="Modal_DisableVPN">Disable VPN</string>
   <string name="Modal_Error_NoInternet">无法运行测试。请复查您的因特网连接。</string>
   <string name="Modal_Error_CantDownloadURLs">无法下载 URL 列表。请重试。</string>
   <string name="Modal_Error_TestAlreadyRunning">请等待当前运行的测试完成后再开始新的测试。</string>

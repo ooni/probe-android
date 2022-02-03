@@ -274,6 +274,8 @@
   <string name="Modal_SoundsGreat">Kedengarannya bagus</string>
   <string name="Modal_NoThanks">Tidak, terima kasih</string>
   <string name="Modal_NotNow">Tidak sekarang</string>
+  <string name="Modal_RunAnyway">Run anyways</string>
+  <string name="Modal_DisableVPN">Disable VPN</string>
   <string name="Modal_Error_NoInternet">Tidak bisa menjalankan tes. Mohon cek konektivitas internet Anda.</string>
   <string name="Modal_Error_CantDownloadURLs">Gagal mengunduh daftar URL. Coba lagi.</string>
   <string name="Modal_Error_TestAlreadyRunning">Mohon tunggu tes yang sedang berlangsung untuk selesai sebelum memulai tes yang baru.</string>

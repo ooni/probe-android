@@ -274,6 +274,8 @@
   <string name="Modal_SoundsGreat">Parece ótimo</string>
   <string name="Modal_NoThanks">Não, agradeço</string>
   <string name="Modal_NotNow">Not now</string>
+  <string name="Modal_RunAnyway">Run anyways</string>
+  <string name="Modal_DisableVPN">Disable VPN</string>
   <string name="Modal_Error_NoInternet">Não foi possível executar o teste. Por favor, verifique sua conexão com a Internet.</string>
   <string name="Modal_Error_CantDownloadURLs">Não foi possível baixar a lista de URL\'s. Por favor, tente novamente.</string>
   <string name="Modal_Error_TestAlreadyRunning">Aguarde a conclusão dos testes em execução antes de iniciar um novo teste.</string>

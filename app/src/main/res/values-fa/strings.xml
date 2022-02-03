@@ -274,6 +274,8 @@
   <string name="Modal_SoundsGreat">به نظر عالی میاد</string>
   <string name="Modal_NoThanks">نه، ممنون</string>
   <string name="Modal_NotNow">الآن نه</string>
+  <string name="Modal_RunAnyway">Run anyways</string>
+  <string name="Modal_DisableVPN">Disable VPN</string>
   <string name="Modal_Error_NoInternet">اجرای تست امکان‌پذیر نبود. لطفا ارتباط اینترنت خود را چک کنید.</string>
   <string name="Modal_Error_CantDownloadURLs">بارگیری لیست آدرس اینترنتی امکان‌پذیر نبود. لطفا  دوباره تلاش کنید.</string>
   <string name="Modal_Error_TestAlreadyRunning">لطفا پیش از آغاز تست جدید، صبر کنید تا تست‌های در حال انجام به پایان برسند.</string>

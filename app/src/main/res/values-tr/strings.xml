@@ -274,6 +274,8 @@
   <string name="Modal_SoundsGreat">Harika görünüyor</string>
   <string name="Modal_NoThanks">Hayır, teşekkürler</string>
   <string name="Modal_NotNow">Şimdi değil</string>
+  <string name="Modal_RunAnyway">Run anyways</string>
+  <string name="Modal_DisableVPN">Disable VPN</string>
   <string name="Modal_Error_NoInternet">Sınama yapılamadı. Lütfen İnternet bağlantınızı denetleyin.</string>
   <string name="Modal_Error_CantDownloadURLs">Adres listesi indirilemedi. Lütfen yeniden deneyin.</string>
   <string name="Modal_Error_TestAlreadyRunning">Lütfen yeni bir sınama başlatmadan önce yapılmakta olan sınamaların tamamlanmasını bekleyin.</string>
