@@ -90,8 +90,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                     .setTitle(context.getString(R.string.Modal_DisableVPN_Title))
                     .setMessage(context.getString(R.string.Modal_DisableVPN_Message))
                     .setNegativeButton(R.string.Modal_RunAnyway, (dialogInterface, i) -> {
-                        startRunTestService(context, testSuites);
-                        onTestServiceStartedListener.onTestServiceStarted();
+                        startRunTestService(context, testSuites,onTestServiceStartedListener);
                     })
                     .setPositiveButton(R.string.Modal_DisableVPN, (dialogInterface, i) -> {
                         Intent intent = new Intent("android.net.vpn.SETTINGS");
@@ -100,15 +99,17 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                     })
                     .show();
         } else {
-            startRunTestService(context, testSuites);
-            onTestServiceStartedListener.onTestServiceStarted();
+            startRunTestService(context, testSuites,onTestServiceStartedListener);
         }
     }
 
-    private static void startRunTestService(AbstractActivity context, ArrayList<AbstractSuite> testSuites) {
+    private static void startRunTestService(AbstractActivity context,
+                                            ArrayList<AbstractSuite> testSuites,
+                                            OnTestServiceStartedListener onTestServiceStartedListener) {
         Intent serviceIntent = new Intent(context, RunTestService.class);
         serviceIntent.putExtra("testSuites", testSuites);
         ContextCompat.startForegroundService(context, serviceIntent);
+        onTestServiceStartedListener.onTestServiceStarted();
     }
 
     @Override
@@ -118,15 +119,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         setTheme(R.style.Theme_MaterialComponents_NoActionBar_App);
         setContentView(R.layout.activity_running);
         ButterKnife.bind(this);
-        /*
-        TODO: Analyze best way to handle
-            if (ReachabilityManager.isVPNinUse(this)){
-                new ConfirmDialogFragment.Builder()
-                        .withTitle(getString(R.string.Modal_DisableVPN_Title))
-                        .withMessage(getString(R.string.Modal_DisableVPN_Message))
-                        .build().show(getSupportFragmentManager(), null);
-            }
-        */
+
         if (getPreferenceManager().getProxyURL().isEmpty())
             proxy_icon.setVisibility(View.GONE);
         close.setOnClickListener(new View.OnClickListener() {
