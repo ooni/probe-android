@@ -345,6 +345,8 @@
   <string name="Settings_About_Label">Kuhusu OONI</string>
   <string name="Settings_About_Content_Paragraph">Uchunguzi wa Wazi wa Uingiliano wa Mtandao (OONI) ni mradi wa programu ya bure chini ya Mradi wa Tor ambao unakusudia kuongeza uwazi wa udhibiti wa mtandao kote ulimwenguni.\n\nTangu 2012, jamii ya kimataifa ya OONI imekuwa ikipima mitandao katika nchi zaidi ya 200. Baadhi ya vipimo hivi hutumika kama ushahidi wa udhibiti wa mtandao.</string>
   <string name="Settings_About_Content_LearnMore">Kujifunza zaidi</string>
+  <string name="Settings_About_Content_Blog">Blogi</string>
+  <string name="Settings_About_Content_Reports">Ripoti</string>
   <string name="Settings_About_Content_DataPolicy">Sera ya Takwimu ya OONI</string>
   <string name="Settings_Notifications_Label">Arifu</string>
   <string name="Settings_Notifications_Enabled">Kuwezesha</string>

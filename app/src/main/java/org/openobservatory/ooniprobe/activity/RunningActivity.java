@@ -12,7 +12,6 @@ import android.content.ServiceConnection;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.provider.Settings;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.Button;
@@ -89,21 +88,20 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                     .setTitle(context.getString(R.string.Modal_DisableVPN_Title))
                     .setMessage(context.getString(R.string.Modal_DisableVPN_Message))
                     .setPositiveButton("Run anyways", (dialogInterface, i) -> {
-                        startRunTestService(context,testSuites);
+                        startRunTestService(context, testSuites);
                     })
                     .setNegativeButton("Disable VPN", (dialogInterface, i) -> {
-                        // TODO (aanorbel): register for results.
-                        //   check if VPN is DISABLED and run tests.
-                        context.startActivity(new Intent(Settings.ACTION_VPN_SETTINGS));
-
+                        Intent intent = new Intent("android.net.vpn.SETTINGS");
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
                     })
                     .show();
         } else {
-            startRunTestService(context,testSuites);
+            startRunTestService(context, testSuites);
         }
     }
 
-    private static void startRunTestService(AbstractActivity context, ArrayList<AbstractSuite> testSuites){
+    private static void startRunTestService(AbstractActivity context, ArrayList<AbstractSuite> testSuites) {
         Intent serviceIntent = new Intent(context, RunTestService.class);
         serviceIntent.putExtra("testSuites", testSuites);
         ContextCompat.startForegroundService(context, serviceIntent);

@@ -345,6 +345,8 @@
   <string name="Settings_About_Label">关于 OONI</string>
   <string name="Settings_About_Content_Paragraph">OONI 是 Tor Project 下属的一个自由软件项目，旨在提升全球的网络审查的透明度。\n\nOONI 全球社区从 2012 年起测量两百多个国家的网络。一些测量结果甚至成为了网络审查的证据。</string>
   <string name="Settings_About_Content_LearnMore">详细了解</string>
+  <string name="Settings_About_Content_Blog">博客</string>
+  <string name="Settings_About_Content_Reports">报告</string>
   <string name="Settings_About_Content_DataPolicy">OONI 数据政策</string>
   <string name="Settings_Notifications_Label">通知</string>
   <string name="Settings_Notifications_Enabled">启用</string>

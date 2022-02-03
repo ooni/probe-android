@@ -345,6 +345,8 @@
   <string name="Settings_About_Label">OONI Hakkında</string>
   <string name="Settings_About_Content_Paragraph">Open Observatory of Network Interference (OONI, Ağ Müdahalesi Açık Gözlemevi) Tor Projesi altında yürütülen bir özgür yazılım projesidir ve dünya çapında İnternet sansürünü ortaya daha görünür hale getirmeyi amaçlamıştır.\n\nKüresel OONI topluluğu 2012 yılından beri 200 üzerinde ülkedeki milyonlarca ağ ile ilgili ölçüm sonucunu toplayarak ağ müdahalelerini açığa çıkarmıştır.</string>
   <string name="Settings_About_Content_LearnMore">Ayrıntılı bilgi alın</string>
+  <string name="Settings_About_Content_Blog">Günlük</string>
+  <string name="Settings_About_Content_Reports">Raporlar</string>
   <string name="Settings_About_Content_DataPolicy">OONI Veri İşleme İlkesi</string>
   <string name="Settings_Notifications_Label">Bildirimler</string>
   <string name="Settings_Notifications_Enabled">Etkin</string>

@@ -345,6 +345,8 @@
   <string name="Settings_About_Label">عن OONI</string>
   <string name="Settings_About_Content_Paragraph">المرصد المفتوح للتدخل في الشبكات (OONI) هو مشروع برنامج مجاني تحت مظلة مشروع تور الذي يهدف إلى تعزيز الشفافية حول ممارسات الرقابة على الانترنت حول العالم.\n\nمنذ عام 2012، يقوم مجتمع OONI العالمي بقياس الشبكات في أكثر من 200 دولة. بعض هذه المقاييس تعتبر أدلة على الرقابة على الانترنت. </string>
   <string name="Settings_About_Content_LearnMore">تعرف على المزيد</string>
+  <string name="Settings_About_Content_Blog">مدونة</string>
+  <string name="Settings_About_Content_Reports">التقارير</string>
   <string name="Settings_About_Content_DataPolicy">سياسة OONI في البيانات   </string>
   <string name="Settings_Notifications_Label">التنبيهات</string>
   <string name="Settings_Notifications_Enabled">‮مُفعّل</string>

@@ -345,6 +345,8 @@
   <string name="Settings_About_Label">OONI बारे में</string>
   <string name="Settings_About_Content_Paragraph">द ओपन ऑब्जर्वेटरी ऑफ नेटवर्क इंटरफेरेंस (OONI) द टोर प्रोजेक्ट के तहत एक मुफ्त सॉफ्टवेयर परियोजना है जिसका उद्देश्य दुनिया भर में इंटरनेट सेंसरशिप की पारदर्शिता को बढ़ाना है।\n\n2012 से, OONI का वैश्विक समुदाय 200 से अधिक देशों में नेटवर्क को माप रहा है। इनमें से कुछ माप इंटरनेट सेंसरशिप के सबूत के रूप में काम करते हैं।</string>
   <string name="Settings_About_Content_LearnMore">और अधिक जानें</string>
+  <string name="Settings_About_Content_Blog">ब्लॉग</string>
+  <string name="Settings_About_Content_Reports">Reports</string>
   <string name="Settings_About_Content_DataPolicy">OONI डेटा नीति</string>
   <string name="Settings_Notifications_Label">सूचनाएं</string>
   <string name="Settings_Notifications_Enabled">सक्षम</string>

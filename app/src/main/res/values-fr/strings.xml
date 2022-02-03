@@ -25,8 +25,8 @@
   <string name="Onboarding_PopQuiz_2_Wrong_Paragraph">Afin d’accroître la transparence de la censure d’Internet, les données réseau de tous les utilisateurs d’OONI Probe sont publiées automatiquement (à moins qu’ils ne décident de ne pas y participer dans les paramètres).</string>
   <string name="Onboarding_AutomatedTesting_Title">Test automatisé</string>
   <string name="Onboarding_AutomatedTesting_Paragraph">Pour mesurer la censure d’Internet tous les jours, veuillez activer les tests automatisés afin qu’OONI Probe puisse effectuer des tests régulièrement. Ne vous inquiétez pas, nous ferons attention à l’utilisation de la pile. Vous pouvez désactiver les tests automatisés n’importe quand dans les paramètres.</string>
-  <string name="Onboarding_Crash_Title">Signalement de plantage</string>
-  <string name="Onboarding_Crash_Paragraph">Afin d’améliorer OONI Probe, nous souhaitons recueillir des rapports de plantage anonymes quand l’appli ne fonctionne pas correctement. Acceptez-vous d’envoyer des rapports de plantage à l’équipe de développement d’OONI ?</string>
+  <string name="Onboarding_Crash_Title">Signaler un plantage</string>
+  <string name="Onboarding_Crash_Paragraph">Afin d’améliorer OONI Probe, nous souhaitons recueillir des relevés anonymes de plantage quand l’appli ne fonctionne pas correctement. Acceptez-vous d’envoyer des rapports de plantage à l’équipe de développement d’OONI ?</string>
   <string name="Onboarding_Crash_Button_Yes">Oui</string>
   <string name="Onboarding_Crash_Button_No">Non</string>
   <string name="Onboarding_DefaultSettings_Title">Paramètres par défaut</string>
@@ -35,7 +35,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_2">Des renseignements sur le réseau (dont le numéro de système autonome)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">L’estampille temporelle du test</string>
   <string name="Onboarding_DefaultSettings_Paragraph">Nous faisons de notre mieux pour ne publier ni votre adresse IP ni aucun autre renseignement qui pourrait vous identifier.\n\nApprenez-en davantage dans la [Politique sur les données de l’OONI](https://ooni.org/about/data-policy/) (page en anglais).</string>
-  <string name="Onboarding_DefaultSettings_Paragraph_1">En touchant « Valider », vous partagerez les rapports de plantage afin de nous aider à améliorer OONI Probe.</string>
+  <string name="Onboarding_DefaultSettings_Paragraph_1">En touchant « Valider », vous partagerez les relevés de plantage afin de nous aider à améliorer OONI Probe.</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Allons-y</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Modifier les paramètres</string>
   <string name="Dashboard_Tab_Label">Tableau de bord</string>
@@ -345,6 +345,8 @@
   <string name="Settings_About_Label">À propos de l’OONI</string>
   <string name="Settings_About_Content_Paragraph">L’observatoire ouvert des interférences réseau (« Open Observatory of Network Interference » OONI) est un projet de logiciel libre, dans le cadre du projet Tor, qui vise à accroître la transparence de la censure d’Internet dans le monde entier.\n\nDepuis 2012, la communauté internationale de l’OONI prend des mesures des réseaux dans plus de 200 pays. Certaines de ces mesures servent de preuve de censure d’Internet.</string>
   <string name="Settings_About_Content_LearnMore">En apprendre davantage</string>
+  <string name="Settings_About_Content_Blog">Blogue</string>
+  <string name="Settings_About_Content_Reports">Rapports</string>
   <string name="Settings_About_Content_DataPolicy">OONI Politique sur les données</string>
   <string name="Settings_Notifications_Label">Notifications</string>
   <string name="Settings_Notifications_Enabled">Activées</string>

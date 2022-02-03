@@ -345,6 +345,8 @@
   <string name="Settings_About_Label">Um OONI</string>
   <string name="Settings_About_Content_Paragraph">Open Observatory of Network Interference (OONI) er frjálst hugbúnaðarverkefni undir merkjum Tor-verkefnisins og miðar að því að auka gegnsæi upplýsinga um ritskoðun internetsins út um allan heim.\n\nSíðan árið 2012, hafa aðilar á vegum OONI um víða veröld verið að mæla netkerfi í meira en 200 löndum. Sumar þessara mælinga eru sönnunargögn um ritskoðun á internetinu.</string>
   <string name="Settings_About_Content_LearnMore">Fræðast frekar</string>
+  <string name="Settings_About_Content_Blog">Blogg</string>
+  <string name="Settings_About_Content_Reports">Skýrslur</string>
   <string name="Settings_About_Content_DataPolicy">Gagnaleyndarstefna OONI</string>
   <string name="Settings_Notifications_Label">Tilkynningar</string>
   <string name="Settings_Notifications_Enabled">Virkt</string>
