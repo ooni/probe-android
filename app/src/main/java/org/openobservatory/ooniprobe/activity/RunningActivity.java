@@ -72,7 +72,9 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     @Inject
     PreferenceManager preferenceManager;
 
-    public static void runAsForegroundService(AbstractActivity context, ArrayList<AbstractSuite> testSuites) {
+    public static void runAsForegroundService(AbstractActivity context,
+                                              ArrayList<AbstractSuite> testSuites,
+                                              OnTestServiceStartedListener onTestServiceStartedListener) {
         if (ReachabilityManager.getNetworkType(context).equals(ReachabilityManager.NO_INTERNET)) {
             new MessageDialogFragment.Builder()
                     .withTitle(context.getString(R.string.Modal_Error))
@@ -89,6 +91,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                     .setMessage(context.getString(R.string.Modal_DisableVPN_Message))
                     .setPositiveButton(R.string.Modal_RunAnyway, (dialogInterface, i) -> {
                         startRunTestService(context, testSuites);
+                        onTestServiceStartedListener.onTestServiceStarted();
                     })
                     .setNegativeButton(R.string.Modal_DisableVPN, (dialogInterface, i) -> {
                         Intent intent = new Intent("android.net.vpn.SETTINGS");
@@ -98,6 +101,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                     .show();
         } else {
             startRunTestService(context, testSuites);
+            onTestServiceStartedListener.onTestServiceStarted();
         }
     }
 
@@ -274,4 +278,9 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                 service.task.interrupt();
         }
     }
+
+    public interface OnTestServiceStartedListener {
+        void onTestServiceStarted();
+    }
+
 }

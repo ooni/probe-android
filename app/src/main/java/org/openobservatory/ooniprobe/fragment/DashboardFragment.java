@@ -93,21 +93,28 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 					DateUtils.getRelativeTimeSpanString(lastResult.start_time.getTime()));
 	}
 
-	public void runAll(){
-		RunningActivity.runAsForegroundService((AbstractActivity) getActivity(), testSuites);
-		try {
-			((AbstractActivity)getActivity()).bindTestService();
-		} catch (Exception e) {
-			e.printStackTrace();
-			ThirdPartyServices.logException(e);
-		}
-	}
+    public void runAll() {
+        RunningActivity.runAsForegroundService((AbstractActivity) getActivity(), testSuites, this::onTestServiceStartedListener);
+    }
+
+    private void onTestServiceStartedListener() {
+        try {
+            ((AbstractActivity) getActivity()).bindTestService();
+        } catch (Exception e) {
+            e.printStackTrace();
+            ThirdPartyServices.logException(e);
+        }
+    }
 
 	@Override public void onClick(View v) {
 		AbstractSuite testSuite = (AbstractSuite) v.getTag();
 		switch (v.getId()) {
 			case R.id.run:
-				RunningActivity.runAsForegroundService((AbstractActivity) getActivity(), testSuite.asArray());
+                RunningActivity.runAsForegroundService(
+                        (AbstractActivity) getActivity(),
+                        testSuite.asArray(),
+                        this::onTestServiceStartedListener
+                );
 				break;
 			default:
 				ActivityCompat.startActivity(getActivity(), OverviewActivity.newIntent(getActivity(), testSuite), null);

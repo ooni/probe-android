@@ -153,10 +153,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
     }
 
     private void reTestWebsites() {
-
-        RunningActivity.runAsForegroundService((AbstractActivity) this, getTestSuite.getFrom(result).asArray());
-        this.finish();
-
+        RunningActivity.runAsForegroundService(this, getTestSuite.getFrom(result).asArray(),this::finish);
     }
 
     private void runAsyncTask() {
