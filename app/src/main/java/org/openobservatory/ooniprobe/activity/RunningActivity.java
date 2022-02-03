@@ -89,11 +89,11 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
             new AlertDialog.Builder(context)
                     .setTitle(context.getString(R.string.Modal_DisableVPN_Title))
                     .setMessage(context.getString(R.string.Modal_DisableVPN_Message))
-                    .setPositiveButton(R.string.Modal_RunAnyway, (dialogInterface, i) -> {
+                    .setNegativeButton(R.string.Modal_RunAnyway, (dialogInterface, i) -> {
                         startRunTestService(context, testSuites);
                         onTestServiceStartedListener.onTestServiceStarted();
                     })
-                    .setNegativeButton(R.string.Modal_DisableVPN, (dialogInterface, i) -> {
+                    .setPositiveButton(R.string.Modal_DisableVPN, (dialogInterface, i) -> {
                         Intent intent = new Intent("android.net.vpn.SETTINGS");
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
