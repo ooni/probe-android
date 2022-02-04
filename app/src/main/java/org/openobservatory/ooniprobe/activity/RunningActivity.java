@@ -87,7 +87,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                     .withMessage(context.getString(R.string.Modal_Error_TestAlreadyRunning))
                     .build().show(context.getSupportFragmentManager(), null);
         } else if (ReachabilityManager.isVPNinUse(context)) {
-            new AlertDialog.Builder(context)
+            new AlertDialog.Builder(context, R.style.MaterialAlertDialogCustom)
                     .setTitle(context.getString(R.string.Modal_DisableVPN_Title))
                     .setMessage(context.getString(R.string.Modal_DisableVPN_Message))
                     .setNegativeButton(R.string.Modal_RunAnyway, (dialogInterface, i) -> {
