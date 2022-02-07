@@ -68,7 +68,7 @@
   <string name="Dashboard_InstantMessaging_Card_Description">Prófa hindranir fyrir skilaboðaforrit</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">Athugaðu hvort [WhatsApp](https://ooni.org/nettest/whatsapp/), [Facebook Messenger](https://ooni.org/nettest/facebook-messenger/), [Telegram](https://ooni.org/nettest/telegram/), og [Signal](https://ooni.org/nettest/signal) verði fyrir hindrunum.\n\nNiðurstöðurnar þínar verða birtar í [OONI Explorer](https://explorer.ooni.org/world/) og [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Circumvention_Card_Description">Prófa hindranir fyrir leiðir framhjá ritskoðun</string>
-  <string name="Dashboard_Circumvention_Overview_Paragraph">Check whether [Psiphon](https://ooni.org/nettest/psiphon/) or [Tor](https://ooni.org/nettest/tor/) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_Circumvention_Overview_Paragraph">Athugaðu hvort [Psiphon](https://ooni.org/nettest/psiphon/), [Tor](https://ooni.org/nettest/tor/) eða [RiseupVPN](https://ooni.org/nettest/riseupvpn/) verði fyrir hindrunum.\n\nNiðurstöðurnar þínar verða birtar í [OONI Explorer](https://explorer.ooni.org/) og [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Experimental_Card_Description">Keyra nýjar prófanir á tilraunastigi</string>
   <string name="Dashboard_Experimental_Overview_Paragraph">Keyrðu eftirfarandi tilraunaprófanir sem þróaðar hafa verið af OONI-teyminu:\n%1$s\n\nNiðurstöðurnar þínar verða birtar í [OONI Explorer](https://explorer.ooni.org/) og [OONI API](https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">Gbit/s</string>

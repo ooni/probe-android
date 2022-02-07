@@ -68,7 +68,7 @@
   <string name="Dashboard_InstantMessaging_Card_Description">اختبار حجب برامج المراسلة الفورية</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">تحقّقوا من حجب  [WhatsApp](https://ooni.org/nettest/whatsapp/), [Facebook Messenger](https://ooni.org/nettest/facebook-messenger/), [Telegram](https://ooni.org/nettest/telegram/), and [Signal](https://ooni.org/nettest/signal) are blocked. \n\nستنشر نتائج اختبارك على [متصفح OONI](https://explorer.ooni.org/) و على [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Circumvention_Card_Description">اختبار حجب وسائل تجاوز الرقابة.</string>
-  <string name="Dashboard_Circumvention_Overview_Paragraph">Check whether [Psiphon](https://ooni.org/nettest/psiphon/) or [Tor](https://ooni.org/nettest/tor/) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_Circumvention_Overview_Paragraph">تحققوا من حجب [Psiphon](https://ooni.io/nettest/psiphon/) و [تور](https://ooni.io/nettest/tor/).\n\nستنشر نتائج اختبارك على [متصفح OONI](https://explorer.ooni.org/) و على [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Experimental_Card_Description">إجراء الاختبارات التجريبيّة الجديدة</string>
   <string name="Dashboard_Experimental_Overview_Paragraph">يمكنكم إجراء بعض الاختبارات التجريبيّة الجديدة المطوّرة من قبل فريق OONI: \n%1$s\n\nسيتم نشر نتائج اختباراتكم على كل من [مكتشف OONI](https://explorer.ooni.org) و [واجهة تطبيق OONI](https://api.ooni.io/)</string>
   <string name="TestResults_Gbps">غيغابت/ثا</string>

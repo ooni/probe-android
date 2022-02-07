@@ -68,7 +68,7 @@
   <string name="Dashboard_InstantMessaging_Card_Description">Jaribu uzuiaji wa programu za ujumbe wa papo hapo</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">Angalia ikiwa [WhatsApp] (https://ooni.org/nettest/whatsapp/), [Facebook Messenger] (https://ooni.org/nettest/facebook-messenger/), [Telegram] (https: // ooni .org / nettest / telegram /), na [Signal] (https://ooni.org/nettest/signal) zimezuiwa.\n\nMatokeo yako yatachapishwa kwenye [OONI Explorer] (https://explorer.ooni.org/world/) na [OONI API] (https://api.ooni.io/).</string>
   <string name="Dashboard_Circumvention_Card_Description">Jaribu kuzuia vifaa vya kuzuia uzuiaji</string>
-  <string name="Dashboard_Circumvention_Overview_Paragraph">Check whether [Psiphon](https://ooni.org/nettest/psiphon/) or [Tor](https://ooni.org/nettest/tor/) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_Circumvention_Overview_Paragraph">Angalia ikiwa [Psiphon] (https://ooni.org/nettest/psiphon/), [Tor] (https://ooni.org/nettest/tor/) au [RiseupVPN] (https://ooni.org/ nettest / riseupvpn /) zimezuiwa.\n\nMatokeo yako yatachapishwa kwenye [OONI Explorer] (https://explorer.ooni.org/) na [OONI API] (https://api.ooni.io/).</string>
   <string name="Dashboard_Experimental_Card_Description">Endesha majaribio mapya ya majaribio</string>
   <string name="Dashboard_Experimental_Overview_Paragraph">Tumia majaribio mapya ya majaribio yaliyotengenezwa na timu ya OONI:\n{orodha ya majaribio_ya majaribio}\n\nMatokeo yako yatachapishwa kwenye [OONI Explorer] (https://explorer.ooni.org/) na [OONI API] (https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">Gbit / s</string>
