@@ -11,6 +11,7 @@ import android.os.BatteryManager;
 import android.os.Build;
 
 public class ReachabilityManager {
+    public static final String VPN = "vpn";
     public static final String WIFI = "wifi";
     public static final String MOBILE = "mobile";
     public static final String NO_INTERNET = "no_internet";
@@ -19,7 +20,9 @@ public class ReachabilityManager {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivityManager == null)
             return NO_INTERNET;
-        else {
+        else if (isVPNinUse(context)){
+            return VPN;
+        } else {
             NetworkInfo info = connectivityManager.getActiveNetworkInfo();
             if (info != null && info.getType() == ConnectivityManager.TYPE_WIFI)
                 return WIFI;

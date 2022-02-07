@@ -60,6 +60,24 @@
 			app:cornerRadius="24dp" />
 
 		<Button
+			android:id="@+id/blog"
+			style="@style/Widget.MaterialComponents.Button.TextButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/Settings_About_Content_Blog"
+			android:textAllCaps="false"
+			app:cornerRadius="24dp" />
+
+		<Button
+			android:id="@+id/reports"
+			style="@style/Widget.MaterialComponents.Button.TextButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/Settings_About_Content_Reports"
+			android:textAllCaps="false"
+			app:cornerRadius="24dp" />
+
+		<Button
 			android:id="@+id/dataPolicy"
 			style="@style/Widget.MaterialComponents.Button.TextButton"
 			android:layout_width="wrap_content"
