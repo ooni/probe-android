@@ -274,6 +274,8 @@
   <string name="Modal_SoundsGreat">बढ़िया है</string>
   <string name="Modal_NoThanks">जी नहीं, धन्यवाद</string>
   <string name="Modal_NotNow">Not now</string>
+  <string name="Modal_RunAnyway">Run anyways</string>
+  <string name="Modal_DisableVPN">Disable VPN</string>
   <string name="Modal_Error_NoInternet">परीक्षण चलाने में असमर्थ। कृपया अपनी इंटरनेट कनेक्टिविटी की जांच करें।</string>
   <string name="Modal_Error_CantDownloadURLs">यूआरएल सूची डाउनलोड करने में असमर्थ। कृपया पुन: प्रयास करें।</string>
   <string name="Modal_Error_TestAlreadyRunning">नया परीक्षण शुरू करने से पहले, कृपया वर्तमान चल रहे परीक्षणों के समाप्त होने की प्रतीक्षा करें।</string>

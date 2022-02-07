@@ -55,6 +55,15 @@
 		<item name="colorAccent">@color/color_teal3</item>
 	</style>
 
+	<style name="MaterialAlertDialogCustom" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+		<item name="colorPrimary">@color/color_base</item>
+		<item name="colorPrimaryDark">@color/color_black</item>
+		<item name="android:textColor">@color/color_black</item>
+		<item name="android:textColorPrimary">@color/color_gray9</item>
+		<item name="android:background">@color/color_white</item>
+		<item name="colorAccent">@color/color_teal3</item>
+	</style>
+
 	<style name="SnackBarStyle" parent="Widget.MaterialComponents.Snackbar">
 		<item name="android:background">@color/color_gray8</item>
 	</style>

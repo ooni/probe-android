@@ -274,6 +274,8 @@
   <string name="Modal_SoundsGreat">رائع ! </string>
   <string name="Modal_NoThanks">لا، شكراً</string>
   <string name="Modal_NotNow">Not now</string>
+  <string name="Modal_RunAnyway">Run anyways</string>
+  <string name="Modal_DisableVPN">Disable VPN</string>
   <string name="Modal_Error_NoInternet">التطبيق غير قادر على إجراء الاختبار. من فضلك تحقق من اتصال الإنترنت.</string>
   <string name="Modal_Error_CantDownloadURLs">التطبيق غير قادر على تحميل قائمة المواقع. من فضلك حاول مرة أخرى.</string>
   <string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a new test.</string>

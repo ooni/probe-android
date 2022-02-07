@@ -274,6 +274,8 @@
   <string name="Modal_SoundsGreat">Sounds great</string>
   <string name="Modal_NoThanks">Nie, ďakujem</string>
   <string name="Modal_NotNow">Not now</string>
+  <string name="Modal_RunAnyway">Run anyways</string>
+  <string name="Modal_DisableVPN">Disable VPN</string>
   <string name="Modal_Error_NoInternet">Nie je možné spustiť test. Skontroluj internetovú pripojiteľnosť.</string>
   <string name="Modal_Error_CantDownloadURLs">Nepodarilo sa stiahnuť zoznam URL adries. Skús to znova.</string>
   <string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a new test.</string>

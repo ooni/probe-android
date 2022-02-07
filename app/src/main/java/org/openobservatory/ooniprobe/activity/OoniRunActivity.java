@@ -150,8 +150,7 @@ public class OoniRunActivity extends AbstractActivity {
 		}
 		run.setOnClickListener(v -> {
 
-			RunningActivity.runAsForegroundService(OoniRunActivity.this, suite.asArray());
-			finish();
+			RunningActivity.runAsForegroundService(OoniRunActivity.this, suite.asArray(),this::finish);
 
 		});
 	}

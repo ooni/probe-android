@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,9 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
-import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.OverviewActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
+import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.item.TestsuiteItem;
@@ -58,6 +57,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		recycler.setAdapter(adapter);
 		recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
 		runAll.setOnClickListener(v1 -> runAll());
+		vpn.setOnClickListener(view -> ((Application) getActivity().getApplication()).openVPNSettings());
 		return v;
 	}
 
@@ -88,21 +88,28 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 					DateUtils.getRelativeTimeSpanString(lastResult.start_time.getTime()));
 	}
 
-	public void runAll(){
-		RunningActivity.runAsForegroundService((AbstractActivity) getActivity(), testSuites);
-		try {
-			((AbstractActivity)getActivity()).bindTestService();
-		} catch (Exception e) {
-			e.printStackTrace();
-			ThirdPartyServices.logException(e);
-		}
-	}
+    public void runAll() {
+        RunningActivity.runAsForegroundService((AbstractActivity) getActivity(), testSuites, this::onTestServiceStartedListener);
+    }
+
+    private void onTestServiceStartedListener() {
+        try {
+            ((AbstractActivity) getActivity()).bindTestService();
+        } catch (Exception e) {
+            e.printStackTrace();
+            ThirdPartyServices.logException(e);
+        }
+    }
 
 	@Override public void onClick(View v) {
 		AbstractSuite testSuite = (AbstractSuite) v.getTag();
 		switch (v.getId()) {
 			case R.id.run:
-				RunningActivity.runAsForegroundService((AbstractActivity) getActivity(), testSuite.asArray());
+                RunningActivity.runAsForegroundService(
+                        (AbstractActivity) getActivity(),
+                        testSuite.asArray(),
+                        this::onTestServiceStartedListener
+                );
 				break;
 			default:
 				ActivityCompat.startActivity(getActivity(), OverviewActivity.newIntent(getActivity(), testSuite), null);
