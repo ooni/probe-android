@@ -274,6 +274,8 @@
   <string name="Modal_SoundsGreat">น่าจะดี</string>
   <string name="Modal_NoThanks">ไม่เอา ขอบคุณ</string>
   <string name="Modal_NotNow">Not now</string>
+  <string name="Modal_RunAnyway">Run anyways</string>
+  <string name="Modal_DisableVPN">Disable VPN</string>
   <string name="Modal_Error_NoInternet">ไม่สามารถทำการทดสอบได้ กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ</string>
   <string name="Modal_Error_CantDownloadURLs">ไม่สามารถดาวน์โหลดรายการที่อยู่เว็บได้ กรุณาลองอีกครั้ง</string>
   <string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a new test.</string>
@@ -345,6 +347,8 @@
   <string name="Settings_About_Label">เกี่ยวกับ OONI</string>
   <string name="Settings_About_Content_Paragraph">Open Observatory of Network Interference (OONI) เป็นโครงการซอฟต์แวร์เสรีภายใต้ Tor Project ที่มีเป้าหมายเพิ่มความโปร่งใสเกี่ยวกับการปิดกั้นอินเทอร์เน็ตทั่วโลก\n\nนับตั้งแต่ปี 2012 ชุมชนระดับโลกของ OONI ได้ตรวจวัดเครือข่ายในมากกว่า 200 ประเทศ การตรวจวัดบางส่วนจากจำนวนนี้ได้กลายเป็นหลักฐานที่บ่งชี้ถึงการปิดกั้นอินเทอร์เน็ต</string>
   <string name="Settings_About_Content_LearnMore">เรียนรู้เพิ่มเติม</string>
+  <string name="Settings_About_Content_Blog">บล็อก</string>
+  <string name="Settings_About_Content_Reports">รายงาน</string>
   <string name="Settings_About_Content_DataPolicy">นโยบายข้อมูลของ OONI</string>
   <string name="Settings_Notifications_Label">การเเจ้งเตือน</string>
   <string name="Settings_Notifications_Enabled">ถูกเปิดใช้</string>

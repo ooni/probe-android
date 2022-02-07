@@ -274,6 +274,8 @@
   <string name="Modal_SoundsGreat">به نظر عالی میاد</string>
   <string name="Modal_NoThanks">نه، ممنون</string>
   <string name="Modal_NotNow">الآن نه</string>
+  <string name="Modal_RunAnyway">Run anyways</string>
+  <string name="Modal_DisableVPN">Disable VPN</string>
   <string name="Modal_Error_NoInternet">اجرای تست امکان‌پذیر نبود. لطفا ارتباط اینترنت خود را چک کنید.</string>
   <string name="Modal_Error_CantDownloadURLs">بارگیری لیست آدرس اینترنتی امکان‌پذیر نبود. لطفا  دوباره تلاش کنید.</string>
   <string name="Modal_Error_TestAlreadyRunning">لطفا پیش از آغاز تست جدید، صبر کنید تا تست‌های در حال انجام به پایان برسند.</string>
@@ -345,6 +347,8 @@
   <string name="Settings_About_Label">درباره‌ی اونی</string>
   <string name="Settings_About_Content_Paragraph">رصد خانه‌‌ی آزاد تداخل در شبکه (OONI) یک پروژه‌ی نرم افزار رایگان تحت پروژه‌ی Tor است که هدف آن افزایش شفافیت در سانسور اینترنت در جهان است.\n\nاز سال 2012، جامعه‌ی جهانی OONI شبکه‌های بیش از 200 کشور را مورد سنجش قرار داده‌اند. بعضی از این سنجش‌ها شواهد سانسور اینترنت هستند.</string>
   <string name="Settings_About_Content_LearnMore">اطلاعات بیشتر</string>
+  <string name="Settings_About_Content_Blog">وبلاگ</string>
+  <string name="Settings_About_Content_Reports">گزارش‌ها</string>
   <string name="Settings_About_Content_DataPolicy">سیاست داده OONI</string>
   <string name="Settings_Notifications_Label">نوتیفیکیشن ها</string>
   <string name="Settings_Notifications_Enabled">فعال است</string>

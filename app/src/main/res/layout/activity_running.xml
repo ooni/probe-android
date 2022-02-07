@@ -16,11 +16,12 @@
 			style="@style/Widget.MaterialComponents.Button.OutlinedButton"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_gravity="end|bottom"
-			android:layout_alignParentEnd="true"
+			android:layout_gravity="start|bottom"
+			android:layout_alignParentStart="true"
 			android:layout_margin="8dp"
 			android:minWidth="0dp"
-			android:src="@drawable/close"
+			android:src="@drawable/chevron_right"
+			android:rotation="90"
 			android:tint="@android:color/white" />
 
 		<TextView

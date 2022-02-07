@@ -84,6 +84,10 @@ public class ProgressFragment extends Fragment implements ServiceConnection {
         receiver = new ProgressFragment.TestRunBroadRequestReceiver();
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(receiver, filter);
         //Bind the RunTestService
+        this.bindTestService();
+    }
+
+    public void bindTestService() {
         if (((Application)getActivity().getApplication()).isTestRunning()) {
             Intent intent = new Intent(getActivity(), RunTestService.class);
             getActivity().bindService(intent, this, Context.BIND_AUTO_CREATE);

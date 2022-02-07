@@ -85,9 +85,7 @@ public class OverviewActivity extends AbstractActivity {
 	}
 
 	@OnClick(R.id.run) void onRunClick() {
-		Intent intent = RunningActivity.newIntent(this, testSuite.asArray());
-		if (intent != null)
-			ActivityCompat.startActivity(this, intent, null);
+		RunningActivity.runAsForegroundService(this, testSuite.asArray(), this::bindTestService);
 	}
 
 	@OnClick(R.id.customUrl) void customUrlClick() {

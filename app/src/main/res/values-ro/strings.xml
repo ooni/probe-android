@@ -274,6 +274,8 @@
   <string name="Modal_SoundsGreat">Sounds great</string>
   <string name="Modal_NoThanks">Nu, mulțumesc</string>
   <string name="Modal_NotNow">Not now</string>
+  <string name="Modal_RunAnyway">Run anyways</string>
+  <string name="Modal_DisableVPN">Disable VPN</string>
   <string name="Modal_Error_NoInternet">Imposibil de efectuat testul. Verificați conectivitatea la internet.</string>
   <string name="Modal_Error_CantDownloadURLs">Imposibil de descărcat lista URL. Vă rugăm să încercați din nou.</string>
   <string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a new test.</string>
@@ -345,6 +347,8 @@
   <string name="Settings_About_Label">Despre OONI</string>
   <string name="Settings_About_Content_Paragraph">Open Observatory of Network Interference (OONI) este un program gratuit este un proiect de software gratuit din Tor Project care are drept scop creșterea transparenței cenzurii pe internetul din întreaga lume.\n\nDin 2012, comunitatea globală OONI a măsurat rețelele din peste 200 de țări. Unele dintre aceste măsurători servesc drept dovadă a cenzurii pe internet.</string>
   <string name="Settings_About_Content_LearnMore">Află mai mult</string>
+  <string name="Settings_About_Content_Blog">Blog</string>
+  <string name="Settings_About_Content_Reports">Sesizări</string>
   <string name="Settings_About_Content_DataPolicy">Politica de date OONI</string>
   <string name="Settings_Notifications_Label">Notificări</string>
   <string name="Settings_Notifications_Enabled">Activat</string>

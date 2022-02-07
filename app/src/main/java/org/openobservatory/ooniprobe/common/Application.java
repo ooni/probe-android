@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.common;
 
 import android.app.ActivityManager;
+import android.content.Intent;
 
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
@@ -81,6 +82,15 @@ public class Application extends android.app.Application {
 
 	public boolean isTestRunning() {
 		return checkServiceRunning(RunTestService.class);
+	}
+
+	/**
+	 * Open phone VPN settings.
+	 */
+	public void openVPNSettings() {
+		Intent intent = new Intent("android.net.vpn.SETTINGS");
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(intent);
 	}
 
 	/**
