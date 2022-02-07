@@ -274,6 +274,8 @@
   <string name="Modal_SoundsGreat">Звучит отлично</string>
   <string name="Modal_NoThanks">Нет, спасибо</string>
   <string name="Modal_NotNow">Not now</string>
+  <string name="Modal_RunAnyway">Run anyways</string>
+  <string name="Modal_DisableVPN">Disable VPN</string>
   <string name="Modal_Error_NoInternet">Ошибка теста. Пожалуйста, проверьте подключение к интернету.</string>
   <string name="Modal_Error_CantDownloadURLs">Ошибка скачивания списка адресов. Пожалуйста, попробуйте снова.</string>
   <string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a new test.</string>
@@ -345,6 +347,8 @@
   <string name="Settings_About_Label">Об OONI</string>
   <string name="Settings_About_Content_Paragraph">The Open Observatory of Network Interference (OONI) - бесплатный программный проект под эгидой The Tor Project. Задача проекта - повысить прозрачность интернет-цензуры по всему миру.\n\nС 2012 года в рамках OONI проводился анализ сетевой активности в 200 странах мира. Некоторые тесты показывают присутствие онлайновой цензуры.</string>
   <string name="Settings_About_Content_LearnMore">Подробнее </string>
+  <string name="Settings_About_Content_Blog">Блог</string>
+  <string name="Settings_About_Content_Reports">Отчеты</string>
   <string name="Settings_About_Content_DataPolicy">Политика данных OONI</string>
   <string name="Settings_Notifications_Label">Уведомления</string>
   <string name="Settings_Notifications_Enabled">Включено</string>

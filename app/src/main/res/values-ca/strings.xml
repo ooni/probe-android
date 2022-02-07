@@ -274,6 +274,8 @@
   <string name="Modal_SoundsGreat">Sona bé</string>
   <string name="Modal_NoThanks">No, gràcies</string>
   <string name="Modal_NotNow">Not now</string>
+  <string name="Modal_RunAnyway">Run anyways</string>
+  <string name="Modal_DisableVPN">Disable VPN</string>
   <string name="Modal_Error_NoInternet">No s\'ha pogut executar la prova. Verifiqueu la connexió a Internet.</string>
   <string name="Modal_Error_CantDownloadURLs">No s\'ha pogut baixar la llista d\'URL. Torneu-ho a provar.</string>
   <string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a new test.</string>
@@ -345,6 +347,8 @@
   <string name="Settings_About_Label">Quant a l\'OONI</string>
   <string name="Settings_About_Content_Paragraph">L\'Open Observatory of Network Interference (OONI) és un projecte de programari lliure en el marc del Projecte Tor que té com a objectiu augmentar la transparència de la censura d\'Internet a tot el món.\n\nDes de 2012, la comunitat global d\'OONI ha estat mesurant xarxes en més de 200 països. Algunes d\'aquestes mesures serveixen com a evidència de la censura d\'Internet.</string>
   <string name="Settings_About_Content_LearnMore">Aprèn més</string>
+  <string name="Settings_About_Content_Blog">Blog</string>
+  <string name="Settings_About_Content_Reports">Informes</string>
   <string name="Settings_About_Content_DataPolicy">Política de dades d\'OONI</string>
   <string name="Settings_Notifications_Label">Notificacions</string>
   <string name="Settings_Notifications_Enabled">Activades</string>

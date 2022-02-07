@@ -274,6 +274,8 @@
   <string name="Modal_SoundsGreat">Sounds great</string>
   <string name="Modal_NoThanks">Jo, faleminderit</string>
   <string name="Modal_NotNow">Not now</string>
+  <string name="Modal_RunAnyway">Run anyways</string>
+  <string name="Modal_DisableVPN">Disable VPN</string>
   <string name="Modal_Error_NoInternet">E pamundur për t\'u bërë testi. Ju lutem kontrolli lidhjen tuaj të internetit.</string>
   <string name="Modal_Error_CantDownloadURLs">E pamundur për të shkarkuar listën e URL. Ju lutem përvoni përsëri.</string>
   <string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a new test.</string>
@@ -345,6 +347,8 @@
   <string name="Settings_About_Label">Rreth OONI</string>
   <string name="Settings_About_Content_Paragraph">Open Observatory of Network Interference (OONI) është një projekt free software i The Tor Project që synon të rrisi transparencen e censurimit të internetit në mbarë botën.\n\nQë nga viti 2012, komuniteti global i OONI mat rrjetin në më shumë se 20 shtete. Disa nga këto majtet shërbejnë edhe si evidencë për censurimin e internetit.</string>
   <string name="Settings_About_Content_LearnMore">Meso me teper</string>
+  <string name="Settings_About_Content_Blog">Blog</string>
+  <string name="Settings_About_Content_Reports">Podania</string>
   <string name="Settings_About_Content_DataPolicy">Politika e të dhënave të OONI</string>
   <string name="Settings_Notifications_Label">Njoftime</string>
   <string name="Settings_Notifications_Enabled">Mundësuar</string>

@@ -274,6 +274,8 @@
   <string name="Modal_SoundsGreat">Inasikika sana</string>
   <string name="Modal_NoThanks">Hapana, asante</string>
   <string name="Modal_NotNow">Not now</string>
+  <string name="Modal_RunAnyway">Run anyways</string>
+  <string name="Modal_DisableVPN">Disable VPN</string>
   <string name="Modal_Error_NoInternet">Imeshindwa kutekeleza jaribio. Tafadhali angalia muunganisho wako wa mtandao.</string>
   <string name="Modal_Error_CantDownloadURLs">Imeshindwa kupakua orodha ya URL. Tafadhali jaribu tena.</string>
   <string name="Modal_Error_TestAlreadyRunning">Tafadhali subiri majaribio ya sasa ya kukimbia kumaliza, kabla ya kuanza jaribio jipya.</string>
@@ -345,6 +347,8 @@
   <string name="Settings_About_Label">Kuhusu OONI</string>
   <string name="Settings_About_Content_Paragraph">Uchunguzi wa Wazi wa Uingiliano wa Mtandao (OONI) ni mradi wa programu ya bure chini ya Mradi wa Tor ambao unakusudia kuongeza uwazi wa udhibiti wa mtandao kote ulimwenguni.\n\nTangu 2012, jamii ya kimataifa ya OONI imekuwa ikipima mitandao katika nchi zaidi ya 200. Baadhi ya vipimo hivi hutumika kama ushahidi wa udhibiti wa mtandao.</string>
   <string name="Settings_About_Content_LearnMore">Kujifunza zaidi</string>
+  <string name="Settings_About_Content_Blog">Blogi</string>
+  <string name="Settings_About_Content_Reports">Ripoti</string>
   <string name="Settings_About_Content_DataPolicy">Sera ya Takwimu ya OONI</string>
   <string name="Settings_Notifications_Label">Arifu</string>
   <string name="Settings_Notifications_Enabled">Kuwezesha</string>
