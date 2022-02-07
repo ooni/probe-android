@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.activity;
 
+import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -27,6 +28,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.airbnb.lottie.LottieAnimationView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
@@ -71,7 +73,9 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     @Inject
     PreferenceManager preferenceManager;
 
-    public static void runAsForegroundService(AbstractActivity context, ArrayList<AbstractSuite> testSuites) {
+    public static void runAsForegroundService(AbstractActivity context,
+                                              ArrayList<AbstractSuite> testSuites,
+                                              OnTestServiceStartedListener onTestServiceStartedListener) {
         if (ReachabilityManager.getNetworkType(context).equals(ReachabilityManager.NO_INTERNET)) {
             new MessageDialogFragment.Builder()
                     .withTitle(context.getString(R.string.Modal_Error))
@@ -82,11 +86,29 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                     .withTitle(context.getString(R.string.Modal_Error))
                     .withMessage(context.getString(R.string.Modal_Error_TestAlreadyRunning))
                     .build().show(context.getSupportFragmentManager(), null);
+        } else if (ReachabilityManager.isVPNinUse(context)) {
+            new AlertDialog.Builder(context, R.style.MaterialAlertDialogCustom)
+                    .setTitle(context.getString(R.string.Modal_DisableVPN_Title))
+                    .setMessage(context.getString(R.string.Modal_DisableVPN_Message))
+                    .setNegativeButton(R.string.Modal_RunAnyway, (dialogInterface, i) -> {
+                        startRunTestService(context, testSuites,onTestServiceStartedListener);
+                    })
+                    .setPositiveButton(R.string.Modal_DisableVPN, (dialogInterface, i) -> {
+                        ((Application) context.getApplication()).openVPNSettings();
+                    })
+                    .show();
         } else {
-            Intent serviceIntent = new Intent(context, RunTestService.class);
-            serviceIntent.putExtra("testSuites", testSuites);
-            ContextCompat.startForegroundService(context, serviceIntent);
+            startRunTestService(context, testSuites,onTestServiceStartedListener);
         }
+    }
+
+    private static void startRunTestService(AbstractActivity context,
+                                            ArrayList<AbstractSuite> testSuites,
+                                            OnTestServiceStartedListener onTestServiceStartedListener) {
+        Intent serviceIntent = new Intent(context, RunTestService.class);
+        serviceIntent.putExtra("testSuites", testSuites);
+        ContextCompat.startForegroundService(context, serviceIntent);
+        onTestServiceStartedListener.onTestServiceStarted();
     }
 
     @Override
@@ -96,12 +118,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         setTheme(R.style.Theme_MaterialComponents_NoActionBar_App);
         setContentView(R.layout.activity_running);
         ButterKnife.bind(this);
-        if (ReachabilityManager.isVPNinUse(this)){
-            new ConfirmDialogFragment.Builder()
-                    .withTitle(getString(R.string.Modal_DisableVPN_Title))
-                    .withMessage(getString(R.string.Modal_DisableVPN_Message))
-                    .build().show(getSupportFragmentManager(), null);
-        }
+
         if (getPreferenceManager().getProxyURL().isEmpty())
             proxy_icon.setVisibility(View.GONE);
         close.setOnClickListener(new View.OnClickListener() {
@@ -253,4 +270,9 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                 service.task.interrupt();
         }
     }
+
+    public interface OnTestServiceStartedListener {
+        void onTestServiceStarted();
+    }
+
 }
