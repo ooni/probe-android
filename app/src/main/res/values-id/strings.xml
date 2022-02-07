@@ -345,6 +345,8 @@
   <string name="Settings_About_Label">Tentang OONI</string>
   <string name="Settings_About_Content_Paragraph">The Open Observatory of Network Interference (OONI) is a free software project under The Tor Project that aims to increase transparency of internet censorship around the world.\n\nSince 2012, OONI\'s global community has been measuring networks in more than 200 countries. Some of these measurements serve as evidence of internet censorship.</string>
   <string name="Settings_About_Content_LearnMore">Pelajari Selengkapnya</string>
+  <string name="Settings_About_Content_Blog">Blog</string>
+  <string name="Settings_About_Content_Reports">Laporan</string>
   <string name="Settings_About_Content_DataPolicy">Kebijakan Data OONI</string>
   <string name="Settings_Notifications_Label">Notifikasi</string>
   <string name="Settings_Notifications_Enabled">Diaktifkan</string>
