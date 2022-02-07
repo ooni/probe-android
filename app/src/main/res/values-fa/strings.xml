@@ -68,7 +68,7 @@
   <string name="Dashboard_InstantMessaging_Card_Description">تست مسدودیت پیام‌رسان‌ها</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">بررسی کنید که آیا [واتس‌اپ](https://ooni.org/nettest/whatsapp/)، [پیام‌رسان فیسبوک](https://ooni.org/nettest/facebook-messenger/)، [تلگرام](https://ooni.org/nettest/telegram/) و [سیگنال](https://ooni.org/nettest/signal) مسدود هستند و یا خیر.\n\nنتایج تست های شما بر روی [OONI Explorer](https://explorer.ooni.org/world/) و [OONI API](https://api.ooni.io/) منتشر خواهند شد.</string>
   <string name="Dashboard_Circumvention_Card_Description">مسدود بودن ابزارهای دور زدن سانسور را بیازمایید</string>
-  <string name="Dashboard_Circumvention_Overview_Paragraph">بررسی کنید که آیا [Psiphon](https://ooni.org/nettest/psiphon/)،  [Tor](https://ooni.org/nettest/tor/) و یا [RiseupVPN](https://ooni.org/nettest/riseupvpn/) مسدود هستند یا خیر.\n\nنتایج تست های شما در [OONI Explorer](https://explorer.ooni.org/) و [OONI API](https://api.ooni.io/) منتشر خواهند شد.</string>
+  <string name="Dashboard_Circumvention_Overview_Paragraph">Check whether [Psiphon](https://ooni.org/nettest/psiphon/) or [Tor](https://ooni.org/nettest/tor/) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Experimental_Card_Description">اجرای تست‌های آزمایشی جدید</string>
   <string name="Dashboard_Experimental_Overview_Paragraph">این تست‌های آزمایشی جدید توسعه یافته توسط تیم OONI را اجرا کنید:\n%1$s\n\nنتایج شما بر روی [OONI Explorer](https://explorer.ooni.org/) و [OONI API](https://api.ooni.io/) منتشر خواهند شد.</string>
   <string name="TestResults_Gbps">گیگابیت بر ثانیه</string>

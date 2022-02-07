@@ -68,7 +68,7 @@
   <string name="Dashboard_InstantMessaging_Card_Description">ทดสอบการปิดกั้นแอปสนทนา</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">ตรวจสอบว่า [WhatsApp](https://ooni.org/nettest/whatsapp/), [Facebook Messenger](https://ooni.org/nettest/facebook-messenger/), [Telegram](https://ooni.org/nettest/telegram/), และ [Signal](https://ooni.org/nettest/signal) ถูกปิดกั้นหรือไม่\n\nผลทดสอบของคุณจะถูกเผยแพร่บน [OONI Explorer](https://explorer.ooni.io/world/) และ [OONI API](https://api.ooni.io/)</string>
   <string name="Dashboard_Circumvention_Card_Description">ทดสอบการปิดกั้นเครื่องมือหลบเลี่ยง</string>
-  <string name="Dashboard_Circumvention_Overview_Paragraph">ตรวจสอบว่า [Psiphon](https://ooni.io/nettest/psiphon/), [Tor](https://ooni.io/nettest/tor/) และ [RiseupVPN](https://ooni.io/nettest/riseupvpn/) ถูกปิดกั้นหรือไม่\n\nผลทดสอบของคุณจะถูกเผยเเพร่บน [OONI Explorer](https://explorer.ooni.org/) เเละ [OONI API](https://api.ooni.io/)</string>
+  <string name="Dashboard_Circumvention_Overview_Paragraph">Check whether [Psiphon](https://ooni.org/nettest/psiphon/) or [Tor](https://ooni.org/nettest/tor/) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Experimental_Card_Description">เริ่มการทดสอบขั้นทดลองตัวใหม่</string>
   <string name="Dashboard_Experimental_Overview_Paragraph">ดำเนินการทดสอบชุดใหม่ ซึ่งยังอยู่ในขั้นทดลองโดยทีมงาน OONI ดังนี้:\n%1$s\n\nผลทดสอบของคุณจะถูกเผยแพร่บน [OONI Explorer](https://explorer.ooni.org/) และ [OONI API](https://api.ooni.io/)</string>
   <string name="TestResults_Gbps">จิกะบิต/วิ</string>

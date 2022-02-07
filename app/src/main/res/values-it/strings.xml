@@ -68,7 +68,7 @@
   <string name="Dashboard_InstantMessaging_Card_Description">Verifica il blocco di app di messaggistica</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">Controlla se [WhatsApp](https://ooni.org/nettest/whatsapp/), [Facebook Messenger](https://ooni.org/nettest/facebook-messenger/) o [Telegram](https://ooni.org/nettest/telegram/) sono bloccati.\n\nI risultati dei tuoi test saranno pubblicati su [OONI Explorer](https://explorer.ooni.org/world/) e [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Circumvention_Card_Description">Testa il blocco degli strumenti d\'elusione della censura</string>
-  <string name="Dashboard_Circumvention_Overview_Paragraph">Controlla se [Psiphon](https://ooni.org/nettest/psiphon/), [Tor](https://ooni.org/nettest/tor/) o [RiseupVPN](https://ooni.org/nettest/riseupvpn/) sono bloccati.\n\nI tuoi risultati saranno pubblicati in [OONI Explorer](https://explorer.ooni.org/) e [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_Circumvention_Overview_Paragraph">Check whether [Psiphon](https://ooni.org/nettest/psiphon/) or [Tor](https://ooni.org/nettest/tor/) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Experimental_Card_Description">Esegui nuovi test sperimentali</string>
   <string name="Dashboard_Experimental_Overview_Paragraph">Esegui i seguenti nuovi test sperimentali sviluppati dal team di OONI:\n%1$s\n\nI risultati saranno pubblicati su [OONI Explorer](https://explorer.ooni.org/) e [OONI API](https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">Gbit/s</string>

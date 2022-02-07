@@ -68,7 +68,7 @@
   <string name="Dashboard_InstantMessaging_Card_Description">Teste das Blockieren von Instant Messaging-Apps</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">Prüfe, ob [WhatsApp](https://ooni.org/nettest/whatsapp/), [Facebook Messenger](https://ooni.org/nettest/facebook-messenger/), [Telegram](https://ooni.org/nettest/telegram/) und [Signal](https://ooni.org/nettest/signal) blockiert sind.\n\nDeine Ergebnisse werden auf dem [OONI Explorer](https://explorer.ooni.org/world/) und [OONI API](https://api.ooni.io/) veröffentlicht.</string>
   <string name="Dashboard_Circumvention_Card_Description">Test auf Blockierung der Instrumente zur Zensurumgehung </string>
-  <string name="Dashboard_Circumvention_Overview_Paragraph">Prüfe, ob [Psiphon](https://ooni.org/nettest/psiphon/), [Tor](https://ooni.org/nettest/tor/) oder [RiseupVPN](https://ooni.org/nettest/riseupvpn/) blockiert sind.\n\nDeine Ergebnisse werden auf dem [OONI Explorer](https://explorer.ooni.org/) und [OONI API](https://api.ooni.io/) veröffentlicht.</string>
+  <string name="Dashboard_Circumvention_Overview_Paragraph">Check whether [Psiphon](https://ooni.org/nettest/psiphon/) or [Tor](https://ooni.org/nettest/tor/) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Experimental_Card_Description">Neue experimentelle Tests durchführen</string>
   <string name="Dashboard_Experimental_Overview_Paragraph">Führe die folgenden neuen, vom OONI-Team entwickelten experimentellen Tests durch:\n%1$s\n\nDeine Ergebnisse werden im [OONI Explorer] veröffentlicht.(https://explorer.ooni.org/) und [OONI API](https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">Gbit/s</string>
@@ -274,8 +274,8 @@
   <string name="Modal_SoundsGreat">Hört sich toll an</string>
   <string name="Modal_NoThanks">Nein, danke</string>
   <string name="Modal_NotNow">Nicht jetzt</string>
-  <string name="Modal_RunAnyway">Run anyways</string>
-  <string name="Modal_DisableVPN">Disable VPN</string>
+  <string name="Modal_RunAnyway">Trotzdem ausführen</string>
+  <string name="Modal_DisableVPN">VPN deaktivieren</string>
   <string name="Modal_Error_NoInternet">Test konnte nicht ausgeführt werden. Bitte überprüfe deine Internetverbindung.</string>
   <string name="Modal_Error_CantDownloadURLs">URL-Liste kann nicht heruntergeladen werden. Bitte versuche es erneut.</string>
   <string name="Modal_Error_TestAlreadyRunning">Bitte warte, bis die laufenden Tests beendet sind, bevor du einen neuen Test startest.</string>

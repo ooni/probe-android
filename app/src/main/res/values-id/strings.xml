@@ -68,7 +68,7 @@
   <string name="Dashboard_InstantMessaging_Card_Description">Tes pengeblok aplikasi pesan instan</string>
   <string name="Dashboard_InstantMessaging_Overview_Paragraph">Cek apakah [WhatsApp](https://ooni.org/nettest/whatsapp/), [Facebook Messenger](https://ooni.org/nettest/facebook-messenger/), [Telegram](https://ooni.org/nettest/telegram/), dan [Signal](https://ooni.org/nettest/signal) diblokir.\n\nHasil Anda akan dipublikasikan di [OONI Explorer](https://explorer.ooni.org/world/) dan [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Circumvention_Card_Description">Tes peralatan pengalihan pengeblokan penyensoran</string>
-  <string name="Dashboard_Circumvention_Overview_Paragraph">Cek apakah [Psiphon](https://ooni.org/nettest/psiphon/), [Tor](https://ooni.org/nettest/tor/) atau [RiseupVPN](https://ooni.org/nettest/riseupvpn/) diblokir.\n\nHasil Anda akan dipublikasikan di [OONI Explorer](https://explorer.ooni.org/) dan [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_Circumvention_Overview_Paragraph">Check whether [Psiphon](https://ooni.org/nettest/psiphon/) or [Tor](https://ooni.org/nettest/tor/) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Experimental_Card_Description">Jalankan tes percobaan baru</string>
   <string name="Dashboard_Experimental_Overview_Paragraph">Jalankan tes eksperimen baru ini yang dikembangkan oleh tim OONI:\n%1$s\n\nHasil Anda akan dipubikasikan di [OONI Explorer](https://explorer.ooni.org/) dan [OONI API](https://api.ooni.io/).</string>
   <string name="TestResults_Gbps">Gbit/s</string>
