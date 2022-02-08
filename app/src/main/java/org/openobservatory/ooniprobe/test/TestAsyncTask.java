@@ -133,6 +133,10 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                 }
                 if (!interrupt) {
                     Log.d(TAG, "run next suite: " + currentSuite.getName() + " test:" + currentTest.getName());
+
+                    ThirdPartyServices.addLogExtra("name", currentTest.getName());
+                    ThirdPartyServices.addLogExtra("_result", app.getGson().toJson(result));
+
                     currentTest.run(app, app.getPreferenceManager(), app.getGson(), result, i, this);
                 }
             }
