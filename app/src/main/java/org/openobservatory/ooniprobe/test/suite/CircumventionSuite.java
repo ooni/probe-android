@@ -35,8 +35,11 @@ public class CircumventionSuite extends AbstractSuite {
                 list.add(new Psiphon());
             if (pm == null || pm.isTestTor())
                 list.add(new Tor());
-            if (pm == null || pm.isTestRiseupVPN())
-                list.add(new RiseupVPN());
+            /* TODO (aanorbel): Riseup VPN Disabled.
+                The riseupvpn experiment has been quite flaky for quite some time.
+                To be enabled only when test is fixed or removed if deemed necessary.
+                if (pm == null || pm.isTestRiseupVPN())
+                list.add(new RiseupVPN());*/
             super.setTestList(list.toArray(new AbstractTest[0]));
         }
         return super.getTestList(pm);

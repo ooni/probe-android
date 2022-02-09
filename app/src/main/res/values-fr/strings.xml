@@ -203,9 +203,9 @@
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_DNS_Label_Failed">Échec</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Hero_Title">Fonctionne</string>
   <string name="TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Content_Paragraph">Ce test s’est connecté avec succès aux extrémités de Facebook et a été résolu avec des adresses IP de Facebook.</string>
-  <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Hero_Title">Probablement bloqué</string>
-  <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Content_Paragraph">Facebook Messenger semble être bloqué.</string>
-  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Hero_Title">Probablement bloqué</string>
+  <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Hero_Title">Probablement bloquée</string>
+  <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Content_Paragraph">Facebook Messenger semble être bloquée.</string>
+  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Hero_Title">Probablement bloquée</string>
   <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Content_Paragraph">Signal semble être bloquée.</string>
   <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Hero_Title">Fonctionne</string>
   <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Content_Paragraph">Ce test s’est connecté avec succès aux extrémités de Signal.</string>
@@ -274,8 +274,8 @@
   <string name="Modal_SoundsGreat">C’est parfait</string>
   <string name="Modal_NoThanks">Non, merci</string>
   <string name="Modal_NotNow">Pas maintenant</string>
-  <string name="Modal_RunAnyway">Run anyways</string>
-  <string name="Modal_DisableVPN">Disable VPN</string>
+  <string name="Modal_RunAnyway">Lancer quand même</string>
+  <string name="Modal_DisableVPN">Désactiver le RPV</string>
   <string name="Modal_Error_NoInternet">Impossible d’effectuer le test. Veuillez vérifier votre connexion à Internet.</string>
   <string name="Modal_Error_CantDownloadURLs">Impossible de télécharger la liste des URL. Veuillez réessayer.</string>
   <string name="Modal_Error_TestAlreadyRunning">Veuillez attendre la fin du test en cours avant de lancer un nouveau test.</string>
@@ -348,7 +348,7 @@
   <string name="Settings_About_Content_Paragraph">L’observatoire ouvert des interférences réseau (« Open Observatory of Network Interference » OONI) est un projet de logiciel libre, dans le cadre du projet Tor, qui vise à accroître la transparence de la censure d’Internet dans le monde entier.\n\nDepuis 2012, la communauté internationale de l’OONI prend des mesures des réseaux dans plus de 200 pays. Certaines de ces mesures servent de preuve de censure d’Internet.</string>
   <string name="Settings_About_Content_LearnMore">En apprendre davantage</string>
   <string name="Settings_About_Content_Blog">Blogue</string>
-  <string name="Settings_About_Content_Reports">Rapports</string>
+  <string name="Settings_About_Content_Reports">Relevés</string>
   <string name="Settings_About_Content_DataPolicy">OONI Politique sur les données</string>
   <string name="Settings_Notifications_Label">Notifications</string>
   <string name="Settings_Notifications_Enabled">Activées</string>

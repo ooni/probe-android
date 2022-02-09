@@ -274,8 +274,8 @@
   <string name="Modal_SoundsGreat">Hljómar vel</string>
   <string name="Modal_NoThanks">Nei takk</string>
   <string name="Modal_NotNow">Ekki núna</string>
-  <string name="Modal_RunAnyway">Run anyways</string>
-  <string name="Modal_DisableVPN">Disable VPN</string>
+  <string name="Modal_RunAnyway">Keyra samt</string>
+  <string name="Modal_DisableVPN">Gera VPN óvirkt</string>
   <string name="Modal_Error_NoInternet">Ekki er hægt að keyra prófunina. Athugaðu nettenginguna þína.</string>
   <string name="Modal_Error_CantDownloadURLs">Get ekki sótt lista yfir slóðir. Reyndu aftur.</string>
   <string name="Modal_Error_TestAlreadyRunning">Bíddu eftir að fyrirliggjandi prófunum ljúki áður en þú framkvæmir nýja prófun.</string>
