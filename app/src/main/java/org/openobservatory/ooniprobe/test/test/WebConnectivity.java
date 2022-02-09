@@ -7,7 +7,9 @@ import androidx.annotation.NonNull;
 import com.google.gson.Gson;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
@@ -22,6 +24,9 @@ public class WebConnectivity extends AbstractTest {
 
 	@Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback) {
 		Settings settings = new Settings(c, pm);
+
+		ThirdPartyServices.addLogExtra("_settings", ((Application) c.getApplicationContext()).getGson().toJson(settings));
+
 		run(c, pm, gson, settings, result, index, testCallback);
 	}
 
