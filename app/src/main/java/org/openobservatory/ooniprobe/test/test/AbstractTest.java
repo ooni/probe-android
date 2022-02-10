@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.engine.OONIMKTask;
+import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.MKException;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
@@ -67,6 +68,9 @@ public abstract class AbstractTest implements Serializable {
         settings.setMaxRuntime(max_runtime);
         settings.setOrigin(origin);
         measurements = new SparseArray<>();
+
+        ThirdPartyServices.addLogExtra("settings", ((Application) c.getApplicationContext()).getGson().toJson(settings));
+
         try {
             task = EngineProvider.get().startExperimentTask(settings.toExperimentSettings(gson, c));
         } catch (Exception exc) {
@@ -85,6 +89,9 @@ public abstract class AbstractTest implements Serializable {
                 String json = task.waitForNextEvent();
                 Log.d(TAG, json);
                 EventResult event = gson.fromJson(json, EventResult.class);
+
+                ThirdPartyServices.addLogExtra(event.key, json);
+
                 switch (event.key) {
                     case "status.started":
                         if (result != null &&
