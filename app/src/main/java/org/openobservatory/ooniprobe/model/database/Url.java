@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.config.DatabaseDefinition;
+import com.raizlabs.android.dbflow.config.FlowManager;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
@@ -16,6 +18,9 @@ import org.openobservatory.ooniprobe.common.AppDatabase;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
 
 @Table(database = AppDatabase.class)
 public class Url extends BaseModel implements Serializable {
@@ -28,7 +33,7 @@ public class Url extends BaseModel implements Serializable {
 	public Url() {
 	}
 
-	private Url(String url, String categoryCode, String countryCode) {
+	public Url(String url, String categoryCode, String countryCode) {
 		this.url = url;
 		this.category_code = categoryCode;
 		this.country_code = countryCode;
@@ -36,6 +41,15 @@ public class Url extends BaseModel implements Serializable {
 
 	public static Url getUrl(String input) {
 		return SQLite.select().from(Url.class).where(Url_Table.url.eq(input)).querySingle();
+	}
+
+	public static List<Url> getExistingUrls(Collection<String> urls) {
+		return SQLite.select().from(Url.class).where(Url_Table.url.in(urls)).queryList();
+	}
+
+	public static void saveAll(Collection<Url> urls) {
+		final DatabaseDefinition database = FlowManager.getDatabase(AppDatabase.class);
+		database.executeTransaction(databaseWrapper -> Objects.requireNonNull(database.getModelAdapterForTable(Url.class)).saveAll(urls));
 	}
 
 	public static Url checkExistingUrl(String input) {
