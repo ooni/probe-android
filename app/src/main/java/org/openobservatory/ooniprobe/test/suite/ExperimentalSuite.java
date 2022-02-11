@@ -31,8 +31,7 @@ public class ExperimentalSuite extends AbstractSuite {
             ArrayList<AbstractTest> list = new ArrayList<>();
             list.add(new Experimental("stunreachability"));
             list.add(new Experimental("dnscheck"));
-            // TODO: add once torsf is considered stable
-            //  list.add(new Experimental("torsf"));
+            list.add(new Experimental("torsf"));
             super.setTestList(list.toArray(new AbstractTest[0]));
         }
         return super.getTestList(pm);
