@@ -75,10 +75,16 @@ public class Url extends BaseModel implements Serializable {
 		return url;
 	}
 
-	// This function saves or updates input urls into the database and returns the
-	// list of strings used internally to perform this operation, where each string
-	// is the `.url` value of each URL. We return this list of strings because they are
-	// actually useful to continue processing the input URLs.
+
+	/**
+	 * This function saves or updates input urls ({@code List<Url>}) into the database and returns the
+	 * list of strings ({@code List<String>}) used internally to perform this operation, where each string
+	 * actually useful to continue processing the input URLs.
+	 *
+	 * @param urls
+	 *        List of urls to save.
+	 * @return list of url strings.
+	 */
 	public static List<String> saveOrUpdate(List<Url> urls) {
 
 		Map<String, Url> resultUrlsMap = Maps.uniqueIndex(
