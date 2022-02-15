@@ -12,11 +12,11 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 import org.openobservatory.engine.LoggerArray;
 import org.openobservatory.engine.OONIContext;
 import org.openobservatory.engine.OONISession;
-import org.openobservatory.engine.OONIURLInfo;
 import org.openobservatory.engine.OONIURLListConfig;
 import org.openobservatory.engine.OONIURLListResult;
 import org.openobservatory.ooniprobe.BuildConfig;
@@ -40,6 +40,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class TestAsyncTask extends AsyncTask<Void, String, Void> implements AbstractTest.TestCallback {
     public static final List<AbstractSuite> SUITES = Arrays.asList(new WebsitesSuite(),
@@ -172,36 +173,10 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                 return;
             }
 
-            long startTime =   System.nanoTime();
+            List<Url> urls = Lists.transform(results.getUrls(), url -> new Url(url.getUrl(), url.getCategoryCode(), url.getCountryCode()));
+            List<String> inputs = Url.saveOrUpdate(urls);
 
-            List<OONIURLInfo> resultUrls = results.getUrls();
-            List<String> resultUrlsStrings = Lists.transform(resultUrls, OONIURLInfo::getUrl);
-
-            List<Url> existingUrls = Url.getExistingUrls(resultUrlsStrings);
-            // TODO(aanorbel): Update existing URLS
-            List<String> existingUrlStrings = Lists.transform(existingUrls, input-> input.url);
-
-            List<OONIURLInfo> newResultUrls = Lists.newArrayList(Iterables.filter(resultUrls,input -> !existingUrlStrings.contains(input.getUrl())));
-
-            List<Url> newUrls = Lists.transform(newResultUrls,url -> new Url(url.getUrl(), url.getCategoryCode(), url.getCountryCode()));
-            Url.saveAll(newUrls);
-
-            List<Url> allSavedUrls = Url.getExistingUrls(resultUrlsStrings);
-            List<String> _inputs = Lists.transform(allSavedUrls,input -> input.url);
-            currentTest.setInputs(_inputs);
-            Log.e(TestAsyncTask.TAG, "TASK took : " +  ((System.nanoTime()-startTime)/1000000)+ "mS\n");
-
-/*
-            long _startTime =   System.nanoTime();
-
-            ArrayList<String> inputs = new ArrayList<>();
-            for (OONIURLInfo url : results.getUrls()) {
-                inputs.add(Url.checkExistingUrl(url.getUrl(), url.getCategoryCode(), url.getCountryCode()).url);
-            }
             currentTest.setInputs(inputs);
-
-            Log.e(TestAsyncTask.TAG, "TASK2 took : " +  ((System.nanoTime()-_startTime)/1000000)+ "mS\n");
-*/
 
             if (currentTest.getMax_runtime() == null)
                 currentTest.setMax_runtime(app.getPreferenceManager().getMaxRuntime());

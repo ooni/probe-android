@@ -5,6 +5,9 @@ import android.content.res.TypedArray;
 
 import androidx.annotation.NonNull;
 
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
@@ -17,9 +20,11 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.AppDatabase;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @Table(database = AppDatabase.class)
@@ -68,6 +73,43 @@ public class Url extends BaseModel implements Serializable {
 			url.save();
 		}
 		return url;
+	}
+
+	public static List<String> saveOrUpdate(List<Url> urls) {
+
+		Map<String, Url> resultUrlsMap = Maps.uniqueIndex(
+				urls,
+				input -> input.url
+		);
+
+		List<Url> existingUrls = Url.getExistingUrls(resultUrlsMap.keySet());
+
+		List<Url> existingUrlsToUpdate = Lists.newArrayList(Iterables.filter(existingUrls, input -> {
+			Url incomingChanges = resultUrlsMap.get(input.url);
+			if (incomingChanges != null) {
+				return ((!input.category_code.equals(incomingChanges.category_code)
+						&& !incomingChanges.category_code.equals("MISC"))
+						|| (!input.country_code.equals(incomingChanges.country_code)
+						&& !incomingChanges.country_code.equals("XX")));
+			} else {
+				return false;
+			}
+		}));
+
+		if (!existingUrlsToUpdate.isEmpty()) {
+			Url.saveAll(Lists.newArrayList(existingUrlsToUpdate));
+		}
+
+		if (existingUrls.size() != resultUrlsMap.size()) {
+
+			List<String> existingUrlStrings = Lists.newArrayList(Iterables.transform(existingUrls, input -> input.url));
+			Map<String, Url> newResultUrls = Maps.filterEntries(resultUrlsMap, input -> !existingUrlStrings.contains(input.getKey()));
+
+			Url.saveAll(newResultUrls.values());
+
+		}
+
+		return new ArrayList<>(resultUrlsMap.keySet());
 	}
 
 	public int getCategoryIcon(Context c) {
