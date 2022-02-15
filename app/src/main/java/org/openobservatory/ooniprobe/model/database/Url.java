@@ -101,6 +101,7 @@ public class Url extends BaseModel implements Serializable {
 			if (incomingChanges == null) {
 				return false;
 			}
+			// TODO(aanorbel): Evaluate conditions compared below. Also see `Url.checkExistingUrl`
 			return ((!input.category_code.equals(incomingChanges.category_code)
 					&& !incomingChanges.category_code.equals("MISC"))
 					|| (!input.country_code.equals(incomingChanges.country_code)
