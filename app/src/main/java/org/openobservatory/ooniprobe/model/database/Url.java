@@ -48,11 +48,11 @@ public class Url extends BaseModel implements Serializable {
 		return SQLite.select().from(Url.class).where(Url_Table.url.eq(input)).querySingle();
 	}
 
-	public static List<Url> getExistingUrls(Collection<String> urls) {
+	private static List<Url> getExistingUrls(Collection<String> urls) {
 		return SQLite.select().from(Url.class).where(Url_Table.url.in(urls)).queryList();
 	}
 
-	public static void saveAll(Collection<Url> urls) {
+	private static void saveAll(Collection<Url> urls) {
 		final DatabaseDefinition database = FlowManager.getDatabase(AppDatabase.class);
 		database.executeTransaction(databaseWrapper -> Objects.requireNonNull(database.getModelAdapterForTable(Url.class)).saveAll(urls));
 	}
@@ -75,6 +75,10 @@ public class Url extends BaseModel implements Serializable {
 		return url;
 	}
 
+	// This function saves or updates input urls into the database and returns the
+	// list of strings used internally to perform this operation, where each string
+	// is the `.url` value of each URL. We return this list of strings because they are
+	// actually useful to continue processing the input URLs.
 	public static List<String> saveOrUpdate(List<Url> urls) {
 
 		Map<String, Url> resultUrlsMap = Maps.uniqueIndex(
@@ -86,14 +90,13 @@ public class Url extends BaseModel implements Serializable {
 
 		List<Url> existingUrlsToUpdate = Lists.newArrayList(Iterables.filter(existingUrls, input -> {
 			Url incomingChanges = resultUrlsMap.get(input.url);
-			if (incomingChanges != null) {
-				return ((!input.category_code.equals(incomingChanges.category_code)
-						&& !incomingChanges.category_code.equals("MISC"))
-						|| (!input.country_code.equals(incomingChanges.country_code)
-						&& !incomingChanges.country_code.equals("XX")));
-			} else {
+			if (incomingChanges == null) {
 				return false;
 			}
+			return ((!input.category_code.equals(incomingChanges.category_code)
+					&& !incomingChanges.category_code.equals("MISC"))
+					|| (!input.country_code.equals(incomingChanges.country_code)
+					&& !incomingChanges.country_code.equals("XX")));
 		}));
 
 		if (!existingUrlsToUpdate.isEmpty()) {
