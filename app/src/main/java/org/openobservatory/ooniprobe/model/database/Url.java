@@ -23,9 +23,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 @Table(database = AppDatabase.class)
 public class Url extends BaseModel implements Serializable {
@@ -110,11 +112,13 @@ public class Url extends BaseModel implements Serializable {
 		}
 
 		if (existingUrls.size() != resultUrlsMap.size()) {
+			Set<String> existingUrlSet = new HashSet<>(Lists.newArrayList(Iterables.transform(existingUrls, input -> input.url)));
+			Set<String> newUrlSet = new HashSet<>(resultUrlsMap.keySet());
+			newUrlSet.removeAll(existingUrlSet);
 
-			List<String> existingUrlStrings = Lists.newArrayList(Iterables.transform(existingUrls, input -> input.url));
-			Map<String, Url> newResultUrls = Maps.filterEntries(resultUrlsMap, input -> !existingUrlStrings.contains(input.getKey()));
+			List<Url> urlsToSave = Lists.transform(Lists.newArrayList(newUrlSet), resultUrlsMap::get);
 
-			Url.saveAll(newResultUrls.values());
+			Url.saveAll(urlsToSave);
 
 		}
 
