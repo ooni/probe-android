@@ -1,4 +1,4 @@
-package org.openobservatory.ooniprobe.reciver;
+package org.openobservatory.ooniprobe.receiver;
 
 
 import android.content.BroadcastReceiver;

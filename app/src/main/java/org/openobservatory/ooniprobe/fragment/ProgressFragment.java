@@ -25,7 +25,7 @@ import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
-import org.openobservatory.ooniprobe.reciver.TestRunBroadRequestReceiver;
+import org.openobservatory.ooniprobe.receiver.TestRunBroadRequestReceiver;
 
 import javax.inject.Inject;
 

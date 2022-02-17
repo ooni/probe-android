@@ -30,7 +30,7 @@ import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
-import org.openobservatory.ooniprobe.reciver.TestRunBroadRequestReceiver;
+import org.openobservatory.ooniprobe.receiver.TestRunBroadRequestReceiver;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 
