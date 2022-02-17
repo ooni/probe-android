@@ -2,16 +2,12 @@ package org.openobservatory.ooniprobe.activity;
 
 import android.app.AlertDialog;
 import android.app.NotificationManager;
-import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.ServiceConnection;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.Button;
@@ -34,15 +30,12 @@ import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
-import org.openobservatory.ooniprobe.test.TestAsyncTask;
+import org.openobservatory.ooniprobe.reciver.TestRunBroadRequestReceiver;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
-import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -51,7 +44,7 @@ import butterknife.ButterKnife;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 import localhost.toolkit.app.fragment.MessageDialogFragment;
 
-public class RunningActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener, ServiceConnection {
+public class RunningActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     @BindView(R.id.running)
     TextView running;
     @BindView(R.id.name)
@@ -70,10 +63,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     LottieAnimationView animation;
     @BindView(R.id.proxy_icon)
     RelativeLayout proxy_icon;
-    private Integer runtime;
-    private RunTestService service;
     private TestRunBroadRequestReceiver receiver;
-    boolean isBound = false;
 
     @Inject
     PreferenceManager preferenceManager;
@@ -145,7 +135,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         });
     }
 
-    private void applyUIChanges(){
+    private void applyUIChanges(RunTestService service) {
         if (service == null || service.task == null ||
             service.task.currentSuite == null || service.task.currentTest == null) {
             return;
@@ -159,8 +149,6 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
             name.setText(service.task.currentTest.getName());
         else
             name.setText(getString(service.task.currentTest.getLabelResId()));
-//        runtime = service.task.currentSuite.getRuntime(preferenceManager);
-        runtime = (int) Stats.of(Lists.transform(service.task.testSuites, input -> input.getRuntime(preferenceManager))).sum();
         getWindow().setBackgroundDrawableResource(service.task.currentSuite.getColor());
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(service.task.currentSuite.getColor());
@@ -183,19 +171,20 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
             return;
         }
         IntentFilter filter = new IntentFilter("org.openobservatory.ooniprobe.activity.RunningActivity");
-        receiver = new TestRunBroadRequestReceiver();
+        receiver = new TestRunBroadRequestReceiver(preferenceManager, new TestRunnerEventListener());
         LocalBroadcastManager.getInstance(this).registerReceiver(receiver, filter);
         //Bind the RunTestService
         Intent intent = new Intent(this, RunTestService.class);
-        bindService(intent, this, Context.BIND_AUTO_CREATE);
+//        bindService(intent, this, Context.BIND_AUTO_CREATE);
+        bindService(intent, receiver, Context.BIND_AUTO_CREATE);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        if (isBound) {
-            unbindService(this);
-            isBound = false;
+        if (receiver.isBound()) {
+            unbindService(receiver);
+            receiver.setBound(false);
         }
         LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
     }
@@ -211,76 +200,6 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         Toast.makeText(this, getString(R.string.Modal_Error_CantCloseScreen), Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onServiceConnected(ComponentName cname, IBinder binder) {
-        //Bind the service to this activity
-        RunTestService.TestBinder b = (RunTestService.TestBinder) binder;
-        service = b.getService();
-        isBound = true;
-        applyUIChanges();
-    }
-
-
-    @Override
-    public void onServiceDisconnected(ComponentName name) {
-        service = null;
-    }
-
-    public class TestRunBroadRequestReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String key = intent.getStringExtra("key");
-            String value = intent.getStringExtra("value");
-            switch (key) {
-                case TestAsyncTask.START:
-                    applyUIChanges();
-                    break;
-                case TestAsyncTask.RUN:
-                    name.setText(value);
-                    break;
-                case TestAsyncTask.PRG:
-                    List<AbstractSuite> previousTestSuits =
-                            service.task.testSuites.subList(0,service.task.testSuites.indexOf(service.task.currentSuite));
-                    int previousTestProgress = (int)Stats.of(Lists.transform(
-                            previousTestSuits,
-                            input -> input.getTestList(preferenceManager).length * 100
-                    )).sum();
-                    int previousTestRuntime = (int)Stats.of(Lists.transform(
-                            previousTestSuits,
-                            input -> input.getRuntime(preferenceManager)
-                    )).sum();
-                    int prgs = Integer.parseInt(value);
-                    int currentTestRuntime = service.task.currentSuite.getRuntime(preferenceManager);
-                    int currentTestMax = service.task.currentSuite.getTestList(preferenceManager).length * 100;
-                    double timeLeft = runtime - ((((double) prgs) / currentTestMax * currentTestRuntime) + previousTestRuntime);
-
-                    progress.setIndeterminate(false);
-                    progress.setProgress(previousTestProgress+prgs);
-                    if (runtime != null)
-                        eta.setText(getString(R.string.Dashboard_Running_Seconds,
-                                String.valueOf(Math.round(timeLeft))));
-                    break;
-                case TestAsyncTask.LOG:
-                    log.setText(value);
-                    break;
-                case TestAsyncTask.ERR:
-                    Toast.makeText(context, value, Toast.LENGTH_SHORT).show();
-                    break;
-                case TestAsyncTask.URL:
-                    progress.setIndeterminate(false);
-//                    runtime = service.task.currentSuite.getRuntime(preferenceManager);
-                    break;
-                case TestAsyncTask.INT:
-                    running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
-                    log.setText(getString(R.string.Dashboard_Running_Stopping_Notice));
-                    break;
-                case TestAsyncTask.END:
-                    testEnded(context);
-                    break;
-            }
-        }
-    }
-
     private void testEnded(Context context) {
         startActivity(MainActivity.newIntent(context, R.id.testResults));
         finish();
@@ -289,8 +208,8 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     @Override
     public void onConfirmation(Serializable serializable, int i) {
         if (i == DialogInterface.BUTTON_POSITIVE) {
-            if (service != null)
-                service.task.interrupt();
+            if (receiver.service != null)
+                receiver.service.task.interrupt();
         }
     }
 
@@ -298,4 +217,49 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         void onTestServiceStarted();
     }
 
+    private class TestRunnerEventListener implements TestRunBroadRequestReceiver.EventListener {
+        @Override
+        public void onStart(RunTestService service) {
+            applyUIChanges(service);
+        }
+
+        @Override
+        public void onRun(String value) {
+            name.setText(value);
+        }
+
+        @Override
+        public void onProgress(int state, double timeLeft) {
+            progress.setIndeterminate(false);
+            progress.setProgress(state);
+            eta.setText(getString(R.string.Dashboard_Running_Seconds,
+                    String.valueOf(Math.round(timeLeft))));
+        }
+
+        @Override
+        public void onLog(String value) {
+            log.setText(value);
+        }
+
+        @Override
+        public void onError(String value) {
+            Toast.makeText(RunningActivity.this, value, Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onUrl() {
+            progress.setIndeterminate(false);
+        }
+
+        @Override
+        public void onInt() {
+            running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
+            log.setText(getString(R.string.Dashboard_Running_Stopping_Notice));
+        }
+
+        @Override
+        public void onEnd(Context context) {
+            testEnded(context);
+        }
+    }
 }
