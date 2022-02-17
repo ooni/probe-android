@@ -26,6 +26,8 @@ import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.google.common.collect.Lists;
+import com.google.common.math.Stats;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
@@ -35,9 +37,12 @@ import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
+import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -154,13 +159,17 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
             name.setText(service.task.currentTest.getName());
         else
             name.setText(getString(service.task.currentTest.getLabelResId()));
-        runtime = service.task.currentSuite.getRuntime(preferenceManager);
+//        runtime = service.task.currentSuite.getRuntime(preferenceManager);
+        runtime = (int) Stats.of(Lists.transform(service.task.testSuites, input -> input.getRuntime(preferenceManager))).sum();
         getWindow().setBackgroundDrawableResource(service.task.currentSuite.getColor());
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(service.task.currentSuite.getColor());
         }
         animation.setAnimation(service.task.currentSuite.getAnim());
-        progress.setMax(service.task.currentSuite.getTestList(preferenceManager).length * 100);
+        progress.setMax((int)Stats.of(Lists.transform(
+                service.task.testSuites,
+                input -> input.getTestList(preferenceManager).length * 100
+        )).sum());
     }
 
     @Override
@@ -230,12 +239,26 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                     name.setText(value);
                     break;
                 case TestAsyncTask.PRG:
+                    List<AbstractSuite> previousTestSuits =
+                            service.task.testSuites.subList(0,service.task.testSuites.indexOf(service.task.currentSuite));
+                    int previousTestProgress = (int)Stats.of(Lists.transform(
+                            previousTestSuits,
+                            input -> input.getTestList(preferenceManager).length * 100
+                    )).sum();
+                    int previousTestRuntime = (int)Stats.of(Lists.transform(
+                            previousTestSuits,
+                            input -> input.getRuntime(preferenceManager)
+                    )).sum();
                     int prgs = Integer.parseInt(value);
+                    int currentTestRuntime = service.task.currentSuite.getRuntime(preferenceManager);
+                    int currentTestMax = service.task.currentSuite.getTestList(preferenceManager).length * 100;
+                    double timeLeft = runtime - ((((double) prgs) / currentTestMax * currentTestRuntime) + previousTestRuntime);
+
                     progress.setIndeterminate(false);
-                    progress.setProgress(prgs);
+                    progress.setProgress(previousTestProgress+prgs);
                     if (runtime != null)
                         eta.setText(getString(R.string.Dashboard_Running_Seconds,
-                                String.valueOf(Math.round(runtime - ((double) prgs) / progress.getMax() * runtime))));
+                                String.valueOf(Math.round(timeLeft))));
                     break;
                 case TestAsyncTask.LOG:
                     log.setText(value);
@@ -245,7 +268,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                     break;
                 case TestAsyncTask.URL:
                     progress.setIndeterminate(false);
-                    runtime = service.task.currentSuite.getRuntime(preferenceManager);
+//                    runtime = service.task.currentSuite.getRuntime(preferenceManager);
                     break;
                 case TestAsyncTask.INT:
                     running.setText(getString(R.string.Dashboard_Running_Stopping_Title));

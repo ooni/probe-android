@@ -52,7 +52,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     public static final String INT = "INT";
     protected final Application app;
     private Result result;
-    ArrayList<AbstractSuite> testSuites;
+    public ArrayList<AbstractSuite> testSuites;
     public AbstractSuite currentSuite;
     public AbstractTest currentTest;
     private boolean interrupt;
