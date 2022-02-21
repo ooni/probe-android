@@ -18,6 +18,10 @@ import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
 import java.util.List;
 
+/**
+ * Code that receives and handles broadcast intents sent by {@link RunTestService}.
+ * @see RunTestService.ActionReceiver#onReceive(Context, Intent) ActionReceiver#onReceive.
+ */
 public class TestRunBroadRequestReceiver extends BroadcastReceiver implements ServiceConnection {
     private final EventListener listener;
     private final PreferenceManager preferenceManager;
@@ -42,14 +46,14 @@ public class TestRunBroadRequestReceiver extends BroadcastReceiver implements Se
                 listener.onRun(value);
                 break;
             case TestAsyncTask.PRG:
-                List<AbstractSuite> previousTestSuits =
+                List<AbstractSuite> previousTestSuites =
                         service.task.testSuites.subList(0, service.task.testSuites.indexOf(service.task.currentSuite));
                 int previousTestProgress = (int) Stats.of(Lists.transform(
-                        previousTestSuits,
+                        previousTestSuites,
                         input -> input.getTestList(preferenceManager).length * 100
                 )).sum();
                 int previousTestRuntime = (int) Stats.of(Lists.transform(
-                        previousTestSuits,
+                        previousTestSuites,
                         input -> input.getRuntime(preferenceManager)
                 )).sum();
                 int prgs = Integer.parseInt(value);
@@ -69,7 +73,7 @@ public class TestRunBroadRequestReceiver extends BroadcastReceiver implements Se
                 listener.onUrl();
                 break;
             case TestAsyncTask.INT:
-                listener.onInt();
+                listener.onInterrupt();
                 break;
             case TestAsyncTask.END:
                 listener.onEnd(context);
@@ -102,6 +106,9 @@ public class TestRunBroadRequestReceiver extends BroadcastReceiver implements Se
         isBound = bound;
     }
 
+    /**
+     * Callback for {@link RunTestService} events.
+     */
     public interface EventListener {
         void onStart(RunTestService service);
 
@@ -115,7 +122,7 @@ public class TestRunBroadRequestReceiver extends BroadcastReceiver implements Se
 
         void onUrl();
 
-        void onInt();
+        void onInterrupt();
 
         void onEnd(Context context);
     }

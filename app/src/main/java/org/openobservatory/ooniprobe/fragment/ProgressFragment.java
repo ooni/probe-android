@@ -33,7 +33,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Monitors and displays progress of {@code RunTestService}.
+ * Monitors and displays progress of {@link RunTestService}.
  */
 public class ProgressFragment extends Fragment {
     private TestRunBroadRequestReceiver receiver;
@@ -159,7 +159,7 @@ public class ProgressFragment extends Fragment {
         }
 
         @Override
-        public void onInt() {
+        public void onInterrupt() {
             running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
         }
 

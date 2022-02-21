@@ -269,7 +269,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         }
 
         @Override
-        public void onInt() {
+        public void onInterrupt() {
             running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
             log.setText(getString(R.string.Dashboard_Running_Stopping_Notice));
         }
