@@ -32,6 +32,9 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * Monitors and displays progress of {@code RunTestService}.
+ */
 public class ProgressFragment extends Fragment {
     private TestRunBroadRequestReceiver receiver;
 
@@ -97,15 +100,15 @@ public class ProgressFragment extends Fragment {
         if (((Application)getActivity().getApplication()).isTestRunning()){
 
             progress.setIndeterminate(true);
-        if (service != null && service.task != null){
-            if (service.task.currentSuite != null)
-            progress.setMax((int)Stats.of(Lists.transform(
-                    service.task.testSuites,
-                    input -> input.getTestList(preferenceManager).length * 100
-            )).sum());
-            if (service.task.currentTest != null)
-                name.setText(getString(service.task.currentTest.getLabelResId()));
-        }
+            if (service != null && service.task != null){
+                if (service.task.currentSuite != null)
+                progress.setMax((int)Stats.of(Lists.transform(
+                        service.task.testSuites,
+                        testSuite -> testSuite.getTestList(preferenceManager).length * 100
+                )).sum());
+                if (service.task.currentTest != null)
+                    name.setText(getString(service.task.currentTest.getLabelResId()));
+            }
         }
     }
 
