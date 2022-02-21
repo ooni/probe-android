@@ -20,7 +20,8 @@ import java.util.List;
 
 /**
  * Code that receives and handles broadcast intents sent by {@link RunTestService}.
- * @see RunTestService.ActionReceiver#onReceive(Context, Intent) ActionReceiver#onReceive.
+ *
+ * @see RunTestService.ActionReceiver#onReceive(Context, Intent) RunTestService.ActionReceiver#onReceive(Context, Intent)ActionReceiver#onReceive.
  */
 public class TestRunBroadRequestReceiver extends BroadcastReceiver implements ServiceConnection {
     private final EventListener listener;
@@ -29,6 +30,12 @@ public class TestRunBroadRequestReceiver extends BroadcastReceiver implements Se
     private boolean isBound;
     private Integer runtime;
 
+    /**
+     * Instantiates a new Test run broad request receiver.
+     *
+     * @param preferenceManager the preference manager
+     * @param listener          the listener
+     */
     public TestRunBroadRequestReceiver(PreferenceManager preferenceManager, EventListener listener) {
         this.preferenceManager = preferenceManager;
         this.listener = listener;
@@ -109,20 +116,61 @@ public class TestRunBroadRequestReceiver extends BroadcastReceiver implements Se
      * Callback for {@link RunTestService} events.
      */
     public interface EventListener {
+        /**
+         * On test suite started.
+         *
+         * @param service the service
+         */
         void onStart(RunTestService service);
 
+        /**
+         * Experiment {@code status.started} received from {@link org.openobservatory.ooniprobe.test.EngineProvider} event.
+         *
+         * @param value the value
+         */
         void onRun(String value);
 
+        /**
+         * Experiment {@code status.progress} received from {@link org.openobservatory.ooniprobe.test.EngineProvider} event.
+         *
+         * @param state the state
+         * @param eta   the eta
+         */
         void onProgress(int state, double eta);
 
+        /**
+         * Experiment {@code log} received from {@link org.openobservatory.ooniprobe.test.EngineProvider} event.
+         *
+         * @param value the value
+         */
         void onLog(String value);
 
+        /**
+         * Error running experiment.
+         *
+         * @param value the value
+         */
         void onError(String value);
 
+        /**
+         * Invoked when {@link TestAsyncTask#downloadURLs()} completes successfully.
+         */
         void onUrl();
 
+        /**
+         * Called when background tasked is interrupted.
+         *
+         * when {@link TestAsyncTask#interrupt()} is called.
+         */
         void onInterrupt();
 
+        /**
+         * Called when background task is completed.
+         *
+         * when {@link TestAsyncTask#onPostExecute(Void)} is called.
+         *
+         * @param context the context
+         */
         void onEnd(Context context);
     }
 }
