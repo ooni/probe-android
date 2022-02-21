@@ -44,6 +44,12 @@ import butterknife.ButterKnife;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 import localhost.toolkit.app.fragment.MessageDialogFragment;
 
+/**
+ * Serves to display progress of {@code RunTestService} running in in the background on a screen.
+ *
+ * Also contains {@link #runAsForegroundService(AbstractActivity, ArrayList<AbstractSuite>,OnTestServiceStartedListener) runAsForegroundService}
+ *   used to start {@code RunTestService} in the background.
+ */
 public class RunningActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     @BindView(R.id.running)
     TextView running;
@@ -68,6 +74,17 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     @Inject
     PreferenceManager preferenceManager;
 
+    /**
+     * Starts {@code RunTestService} in the background.
+     *
+     * @param context
+     *  AbstractActivity of caller used in checking if test is already running,show dialog prompts
+     *  as well as argument for ContextCompat#startForegroundService(Context,Intent).
+     * @param testSuites
+     *    List of test suites to run by {@code RunTestService}
+     * @param onTestServiceStartedListener
+     *    Listener for successful start of {@code RunTestService}
+     */
     public static void runAsForegroundService(AbstractActivity context,
                                               ArrayList<AbstractSuite> testSuites,
                                               OnTestServiceStartedListener onTestServiceStartedListener) {
