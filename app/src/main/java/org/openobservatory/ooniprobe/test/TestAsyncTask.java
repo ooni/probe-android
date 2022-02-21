@@ -256,6 +256,10 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
         return interrupt;
     }
 
+    /**
+     * Checks if current task can be interrupted before interrupting the task and
+     * broadcast onInterrupt to listeners ( {@code sendBroadcast(INT) } )
+     */
     public synchronized void interrupt() {
         if (currentTest != null && currentTest.canInterrupt()) {
             currentTest.interrupt();

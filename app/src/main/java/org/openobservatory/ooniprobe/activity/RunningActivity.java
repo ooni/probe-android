@@ -173,7 +173,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         animation.setAnimation(service.task.currentSuite.getAnim());
         progress.setMax((int)Stats.of(Lists.transform(
                 service.task.testSuites,
-                input -> input.getTestList(preferenceManager).length * 100
+                testSuite -> testSuite.getTestList(preferenceManager).length * 100
         )).sum());
     }
 
@@ -226,7 +226,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     public void onConfirmation(Serializable serializable, int i) {
         if (i == DialogInterface.BUTTON_POSITIVE) {
             if (receiver.service != null)
-                receiver.service.task.interrupt();
+                receiver.service.interrupt();
         }
     }
 
