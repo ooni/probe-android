@@ -192,7 +192,6 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         LocalBroadcastManager.getInstance(this).registerReceiver(receiver, filter);
         //Bind the RunTestService
         Intent intent = new Intent(this, RunTestService.class);
-//        bindService(intent, this, Context.BIND_AUTO_CREATE);
         bindService(intent, receiver, Context.BIND_AUTO_CREATE);
     }
 

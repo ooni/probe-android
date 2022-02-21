@@ -148,10 +148,14 @@ public class ProgressFragment extends Fragment {
         }
 
         @Override
-        public void onLog(String value) {}
+        public void onLog(String value) {
+            /* nothing */
+        }
 
         @Override
-        public void onError(String value) {}
+        public void onError(String value) {
+            /* nothing */
+        }
 
         @Override
         public void onUrl() {

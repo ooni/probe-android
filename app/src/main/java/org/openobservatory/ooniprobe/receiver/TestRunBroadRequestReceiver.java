@@ -89,7 +89,6 @@ public class TestRunBroadRequestReceiver extends BroadcastReceiver implements Se
         isBound = true;
         listener.onStart(service);
         runtime = (int) Stats.of(Lists.transform(service.task.testSuites, input -> input.getRuntime(preferenceManager))).sum();
-
     }
 
 
