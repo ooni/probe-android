@@ -22,13 +22,12 @@ import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.google.common.collect.Lists;
-import com.google.common.math.Stats;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
+import org.openobservatory.ooniprobe.common.TestProgressRepository;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.receiver.TestRunBroadRequestReceiver;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
@@ -73,6 +72,8 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
 
     @Inject
     PreferenceManager preferenceManager;
+    @Inject
+    TestProgressRepository testProgressRepository;
 
     /**
      * Starts {@code RunTestService} in the background.
@@ -131,6 +132,14 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         setContentView(R.layout.activity_running);
         ButterKnife.bind(this);
 
+        testProgressRepository.getProgress().observe(this, progressValue -> {
+            progress.setProgress(progressValue);
+        });
+        testProgressRepository.getEta().observe(this,etaValue -> {
+            eta.setText(getString(R.string.Dashboard_Running_Seconds,
+                    String.valueOf(Math.round(etaValue))));
+        });
+
         if (getPreferenceManager().getProxyURL().isEmpty())
             proxy_icon.setVisibility(View.GONE);
         close.setOnClickListener(new View.OnClickListener() {
@@ -160,8 +169,21 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         animation.setImageAssetsFolder("anim/");
         animation.setRepeatCount(Animation.INFINITE);
         animation.playAnimation();
-        progress.setIndeterminate(true);
-        eta.setText(R.string.Dashboard_Running_CalculatingETA);
+        Integer progressLevel = testProgressRepository.getProgress().getValue();
+        if (progressLevel != null) {
+            progress.setProgress(progressLevel);
+        } else {
+            progress.setIndeterminate(true);
+        }
+
+        Double etaValue = testProgressRepository.getEta().getValue();
+        if (etaValue!=null){
+            eta.setText(getString(R.string.Dashboard_Running_Seconds,
+                    String.valueOf(Math.round(etaValue))));
+        }else {
+            eta.setText(R.string.Dashboard_Running_CalculatingETA);
+        }
+
         if (service.task.currentSuite.getName().equals(ExperimentalSuite.NAME))
             name.setText(service.task.currentTest.getName());
         else
@@ -185,7 +207,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
             return;
         }
         IntentFilter filter = new IntentFilter("org.openobservatory.ooniprobe.activity.RunningActivity");
-        receiver = new TestRunBroadRequestReceiver(preferenceManager, new TestRunnerEventListener());
+        receiver = new TestRunBroadRequestReceiver(preferenceManager, new TestRunnerEventListener(), testProgressRepository);
         LocalBroadcastManager.getInstance(this).registerReceiver(receiver, filter);
         //Bind the RunTestService
         Intent intent = new Intent(this, RunTestService.class);

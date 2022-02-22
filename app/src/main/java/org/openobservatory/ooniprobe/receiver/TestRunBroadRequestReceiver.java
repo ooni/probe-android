@@ -12,6 +12,7 @@ import com.google.common.collect.Lists;
 import com.google.common.math.Stats;
 
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.common.TestProgressRepository;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
@@ -26,19 +27,21 @@ import java.util.List;
 public class TestRunBroadRequestReceiver extends BroadcastReceiver implements ServiceConnection {
     private final EventListener listener;
     private final PreferenceManager preferenceManager;
+    private final TestProgressRepository testProgressRepository;
     public RunTestService service;
     private boolean isBound;
     private Integer runtime;
 
     /**
      * Instantiates a new Test run broad request receiver.
-     *
-     * @param preferenceManager the preference manager
+     *  @param preferenceManager the preference manager
      * @param listener          the listener
+     * @param testProgressRepository
      */
-    public TestRunBroadRequestReceiver(PreferenceManager preferenceManager, EventListener listener) {
+    public TestRunBroadRequestReceiver(PreferenceManager preferenceManager, EventListener listener, TestProgressRepository testProgressRepository) {
         this.preferenceManager = preferenceManager;
         this.listener = listener;
+        this.testProgressRepository = testProgressRepository;
     }
 
     @Override
@@ -67,8 +70,10 @@ public class TestRunBroadRequestReceiver extends BroadcastReceiver implements Se
                 int currentTestRuntime = service.task.currentSuite.getRuntime(preferenceManager);
                 int currentTestMax = service.task.currentSuite.getTestList(preferenceManager).length * 100;
                 double timeLeft = runtime - ((((double) prgs) / currentTestMax * currentTestRuntime) + previousTestRuntime);
-
-                listener.onProgress(previousTestProgress + prgs, timeLeft);
+                int progress = previousTestProgress + prgs;
+                testProgressRepository.updateProgress(progress);
+                testProgressRepository.updateEta(timeLeft);
+                listener.onProgress(progress, timeLeft);
                 break;
             case TestAsyncTask.LOG:
                 listener.onLog(value);
@@ -83,6 +88,8 @@ public class TestRunBroadRequestReceiver extends BroadcastReceiver implements Se
                 listener.onInterrupt();
                 break;
             case TestAsyncTask.END:
+                testProgressRepository.updateProgress(null);
+                testProgressRepository.updateEta(null);
                 listener.onEnd(context);
                 break;
         }
