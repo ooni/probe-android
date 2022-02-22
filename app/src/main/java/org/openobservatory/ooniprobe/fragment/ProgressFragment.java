@@ -102,10 +102,7 @@ public class ProgressFragment extends Fragment {
             progress.setIndeterminate(true);
             if (service != null && service.task != null){
                 if (service.task.currentSuite != null)
-                progress.setMax((int)Stats.of(Lists.transform(
-                        service.task.testSuites,
-                        testSuite -> testSuite.getTestList(preferenceManager).length * 100
-                )).sum());
+                progress.setMax(service.task.getMax(preferenceManager));
                 if (service.task.currentTest != null)
                     name.setText(getString(service.task.currentTest.getLabelResId()));
             }

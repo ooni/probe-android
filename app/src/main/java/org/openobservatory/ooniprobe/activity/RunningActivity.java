@@ -171,10 +171,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
             getWindow().setStatusBarColor(service.task.currentSuite.getColor());
         }
         animation.setAnimation(service.task.currentSuite.getAnim());
-        progress.setMax((int)Stats.of(Lists.transform(
-                service.task.testSuites,
-                testSuite -> testSuite.getTestList(preferenceManager).length * 100
-        )).sum());
+        progress.setMax(service.task.getMax(preferenceManager));
     }
 
     @Override

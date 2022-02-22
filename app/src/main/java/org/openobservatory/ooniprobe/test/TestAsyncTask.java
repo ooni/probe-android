@@ -10,6 +10,9 @@ import android.util.Log;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.google.common.collect.Lists;
+import com.google.common.math.Stats;
+
 import org.openobservatory.engine.LoggerArray;
 import org.openobservatory.engine.OONIContext;
 import org.openobservatory.engine.OONISession;
@@ -20,6 +23,7 @@ import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.MKException;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -266,5 +270,12 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
         }
         interrupt = true;
         sendBroadcast(INT);
+    }
+
+    public int getMax(PreferenceManager preferenceManager) {
+        return (int) Stats.of(Lists.transform(
+                testSuites,
+                testSuite -> testSuite.getTestList(preferenceManager).length * 100
+        )).sum();
     }
 }
