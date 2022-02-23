@@ -17,13 +17,11 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.google.common.collect.Lists;
-import com.google.common.math.Stats;
-
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.common.TestProgressRepository;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.receiver.TestRunBroadRequestReceiver;
 
@@ -40,6 +38,8 @@ public class ProgressFragment extends Fragment {
 
     @Inject
     PreferenceManager preferenceManager;
+    @Inject
+    TestProgressRepository testProgressRepository;
     @BindView(R.id.progress_layout)
     FrameLayout progress_layout;
     @BindView(R.id.progress)
@@ -73,6 +73,9 @@ public class ProgressFragment extends Fragment {
                 return true;
             }
         });
+        testProgressRepository.getProgress().observe(getViewLifecycleOwner(),integer -> {
+            progress.setProgress(integer);
+        });
         return v;
     }
 
@@ -80,7 +83,7 @@ public class ProgressFragment extends Fragment {
     public void onResume() {
         super.onResume();
         IntentFilter filter = new IntentFilter("org.openobservatory.ooniprobe.activity.RunningActivity");
-        receiver = new TestRunBroadRequestReceiver(preferenceManager, new TestRunnerEventListener());
+        receiver = new TestRunBroadRequestReceiver(preferenceManager, new TestRunnerEventListener(),testProgressRepository);
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(receiver, filter);
         //Bind the RunTestService
         this.bindTestService();
@@ -99,7 +102,12 @@ public class ProgressFragment extends Fragment {
     private void updateUI(RunTestService service){
         if (((Application)getActivity().getApplication()).isTestRunning()){
 
-            progress.setIndeterminate(true);
+            Integer progressLevel = testProgressRepository.getProgress().getValue();
+            if (progressLevel != null) {
+                progress.setProgress(progressLevel);
+            } else {
+                progress.setIndeterminate(true);
+            }
             if (service != null && service.task != null){
                 if (service.task.currentSuite != null)
                 progress.setMax(service.task.getMax(preferenceManager));
