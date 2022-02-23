@@ -133,11 +133,15 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         ButterKnife.bind(this);
 
         testProgressRepository.getProgress().observe(this, progressValue -> {
-            progress.setProgress(progressValue);
+            if (progressValue!=null) {
+                progress.setProgress(progressValue);
+            }
         });
         testProgressRepository.getEta().observe(this,etaValue -> {
-            eta.setText(getString(R.string.Dashboard_Running_Seconds,
-                    String.valueOf(Math.round(etaValue))));
+            if (etaValue!=null) {
+                eta.setText(getString(R.string.Dashboard_Running_Seconds,
+                        String.valueOf(Math.round(etaValue))));
+            }
         });
 
         if (getPreferenceManager().getProxyURL().isEmpty())

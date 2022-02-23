@@ -73,8 +73,10 @@ public class ProgressFragment extends Fragment {
                 return true;
             }
         });
-        testProgressRepository.getProgress().observe(getViewLifecycleOwner(),integer -> {
-            progress.setProgress(integer);
+        testProgressRepository.getProgress().observe(getViewLifecycleOwner(),progressValue -> {
+            if (progressValue!=null) {
+                progress.setProgress(progressValue);
+            }
         });
         return v;
     }
