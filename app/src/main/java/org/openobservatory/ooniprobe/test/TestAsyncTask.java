@@ -10,6 +10,9 @@ import android.util.Log;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.google.common.collect.Lists;
+import com.google.common.math.Stats;
+
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -23,6 +26,7 @@ import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.MKException;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -56,7 +60,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     public static final String INT = "INT";
     protected final Application app;
     private Result result;
-    ArrayList<AbstractSuite> testSuites;
+    public ArrayList<AbstractSuite> testSuites;
     public AbstractSuite currentSuite;
     public AbstractTest currentTest;
     private boolean interrupt;
@@ -261,11 +265,22 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
         return interrupt;
     }
 
+    /**
+     * Checks if current task can be interrupted before interrupting the task and
+     * broadcast onInterrupt to listeners ( {@code sendBroadcast(INT) } )
+     */
     public synchronized void interrupt() {
         if (currentTest != null && currentTest.canInterrupt()) {
             currentTest.interrupt();
         }
         interrupt = true;
         sendBroadcast(INT);
+    }
+
+    public int getMax(PreferenceManager preferenceManager) {
+        return (int) Stats.of(Lists.transform(
+                testSuites,
+                testSuite -> testSuite.getTestList(preferenceManager).length * 100
+        )).sum();
     }
 }
