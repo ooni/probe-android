@@ -13,10 +13,13 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.google.common.collect.Lists;
 import com.google.common.math.Stats;
 
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+
 import org.openobservatory.engine.LoggerArray;
 import org.openobservatory.engine.OONIContext;
 import org.openobservatory.engine.OONISession;
-import org.openobservatory.engine.OONIURLInfo;
 import org.openobservatory.engine.OONIURLListConfig;
 import org.openobservatory.engine.OONIURLListResult;
 import org.openobservatory.ooniprobe.BuildConfig;
@@ -41,6 +44,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class TestAsyncTask extends AsyncTask<Void, String, Void> implements AbstractTest.TestCallback {
     public static final List<AbstractSuite> SUITES = Arrays.asList(new WebsitesSuite(),
@@ -172,11 +176,12 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                 ThirdPartyServices.logException(new MKException(results));
                 return;
             }
-            ArrayList<String> inputs = new ArrayList<>();
-            for (OONIURLInfo url : results.getUrls()) {
-                inputs.add(Url.checkExistingUrl(url.getUrl(), url.getCategoryCode(), url.getCountryCode()).url);
-            }
+
+            List<Url> urls = Lists.transform(results.getUrls(), url -> new Url(url.getUrl(), url.getCategoryCode(), url.getCountryCode()));
+            List<String> inputs = Url.saveOrUpdate(urls);
+
             currentTest.setInputs(inputs);
+
             if (currentTest.getMax_runtime() == null)
                 currentTest.setMax_runtime(app.getPreferenceManager().getMaxRuntime());
             publishProgress(URL);
