@@ -23,6 +23,7 @@ jobs:
       uses: actions/checkout@v2
     - name: run tests
       uses: reactivecircus/android-emulator-runner@v2
+      continue-on-error: true
       with:
         api-level: ${{ matrix.api-level }}
         target: ${{ matrix.target }}
