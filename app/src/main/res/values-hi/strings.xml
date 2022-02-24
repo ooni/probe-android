@@ -274,6 +274,8 @@
   <string name="Modal_SoundsGreat">बढ़िया है</string>
   <string name="Modal_NoThanks">जी नहीं, धन्यवाद</string>
   <string name="Modal_NotNow">Not now</string>
+  <string name="Modal_RunAnyway">Run anyways</string>
+  <string name="Modal_DisableVPN">Disable VPN</string>
   <string name="Modal_Error_NoInternet">परीक्षण चलाने में असमर्थ। कृपया अपनी इंटरनेट कनेक्टिविटी की जांच करें।</string>
   <string name="Modal_Error_CantDownloadURLs">यूआरएल सूची डाउनलोड करने में असमर्थ। कृपया पुन: प्रयास करें।</string>
   <string name="Modal_Error_TestAlreadyRunning">नया परीक्षण शुरू करने से पहले, कृपया वर्तमान चल रहे परीक्षणों के समाप्त होने की प्रतीक्षा करें।</string>
@@ -345,6 +347,8 @@
   <string name="Settings_About_Label">OONI बारे में</string>
   <string name="Settings_About_Content_Paragraph">द ओपन ऑब्जर्वेटरी ऑफ नेटवर्क इंटरफेरेंस (OONI) द टोर प्रोजेक्ट के तहत एक मुफ्त सॉफ्टवेयर परियोजना है जिसका उद्देश्य दुनिया भर में इंटरनेट सेंसरशिप की पारदर्शिता को बढ़ाना है।\n\n2012 से, OONI का वैश्विक समुदाय 200 से अधिक देशों में नेटवर्क को माप रहा है। इनमें से कुछ माप इंटरनेट सेंसरशिप के सबूत के रूप में काम करते हैं।</string>
   <string name="Settings_About_Content_LearnMore">और अधिक जानें</string>
+  <string name="Settings_About_Content_Blog">ब्लॉग</string>
+  <string name="Settings_About_Content_Reports">Reports</string>
   <string name="Settings_About_Content_DataPolicy">OONI डेटा नीति</string>
   <string name="Settings_Notifications_Label">सूचनाएं</string>
   <string name="Settings_Notifications_Enabled">सक्षम</string>

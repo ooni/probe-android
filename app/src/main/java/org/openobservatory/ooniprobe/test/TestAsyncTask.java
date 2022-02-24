@@ -10,16 +10,23 @@ import android.util.Log;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.google.common.collect.Lists;
+import com.google.common.math.Stats;
+
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+
 import org.openobservatory.engine.LoggerArray;
 import org.openobservatory.engine.OONIContext;
 import org.openobservatory.engine.OONISession;
-import org.openobservatory.engine.OONIURLInfo;
 import org.openobservatory.engine.OONIURLListConfig;
 import org.openobservatory.engine.OONIURLListResult;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.MKException;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -37,6 +44,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class TestAsyncTask extends AsyncTask<Void, String, Void> implements AbstractTest.TestCallback {
     public static final List<AbstractSuite> SUITES = Arrays.asList(new WebsitesSuite(),
@@ -52,7 +60,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     public static final String INT = "INT";
     protected final Application app;
     private Result result;
-    ArrayList<AbstractSuite> testSuites;
+    public ArrayList<AbstractSuite> testSuites;
     public AbstractSuite currentSuite;
     public AbstractTest currentTest;
     private boolean interrupt;
@@ -133,6 +141,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                 }
                 if (!interrupt) {
                     Log.d(TAG, "run next suite: " + currentSuite.getName() + " test:" + currentTest.getName());
+
                     currentTest.run(app, app.getPreferenceManager(), app.getGson(), result, i, this);
                 }
             }
@@ -149,20 +158,30 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
             OONISession session = EngineProvider.get().newSession(EngineProvider.get().getDefaultSessionConfig(
                     app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray(), proxy));
             OONIContext ooniContext = session.newContextWithTimeout(30);
+
+            ThirdPartyServices.addLogExtra("ooniContext", app.getGson().toJson(ooniContext));
+
             session.maybeUpdateResources(ooniContext);
             OONIURLListConfig config = new OONIURLListConfig();
             config.setCategories(app.getPreferenceManager().getEnabledCategoryArr().toArray(new String[0]));
+
+            ThirdPartyServices.addLogExtra("config", app.getGson().toJson(config));
+
             OONIURLListResult results = session.fetchURLList(ooniContext, config);
+
+            ThirdPartyServices.addLogExtra("results", app.getGson().toJson(results));
+
             if (results.getUrls().size() == 0) {
                 publishProgress(ERR, app.getString(R.string.Modal_Error_CantDownloadURLs));
                 ThirdPartyServices.logException(new MKException(results));
                 return;
             }
-            ArrayList<String> inputs = new ArrayList<>();
-            for (OONIURLInfo url : results.getUrls()) {
-                inputs.add(Url.checkExistingUrl(url.getUrl(), url.getCategoryCode(), url.getCountryCode()).url);
-            }
+
+            List<Url> urls = Lists.transform(results.getUrls(), url -> new Url(url.getUrl(), url.getCategoryCode(), url.getCountryCode()));
+            List<String> inputs = Url.saveOrUpdate(urls);
+
             currentTest.setInputs(inputs);
+
             if (currentTest.getMax_runtime() == null)
                 currentTest.setMax_runtime(app.getPreferenceManager().getMaxRuntime());
             publishProgress(URL);
@@ -246,11 +265,22 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
         return interrupt;
     }
 
+    /**
+     * Checks if current task can be interrupted before interrupting the task and
+     * broadcast onInterrupt to listeners ( {@code sendBroadcast(INT) } )
+     */
     public synchronized void interrupt() {
         if (currentTest != null && currentTest.canInterrupt()) {
             currentTest.interrupt();
         }
         interrupt = true;
         sendBroadcast(INT);
+    }
+
+    public int getMax(PreferenceManager preferenceManager) {
+        return (int) Stats.of(Lists.transform(
+                testSuites,
+                testSuite -> testSuite.getTestList(preferenceManager).length * 100
+        )).sum();
     }
 }

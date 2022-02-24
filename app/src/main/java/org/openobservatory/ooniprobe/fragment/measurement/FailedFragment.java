@@ -1,6 +1,5 @@
 package org.openobservatory.ooniprobe.fragment.measurement;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
+import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
@@ -51,10 +51,16 @@ public class FailedFragment extends Fragment {
 		testSuite.setTestList(abstractTest);
 		testSuite.setResult(failedMeasurement.result);
 		failedMeasurement.setReRun(getContext());
-		Intent intent = RunningActivity.newIntent((AbstractActivity) getActivity(), testSuite.asArray());
-		if (intent != null) {
-			startActivity(intent);
-			getActivity().finish();
-		}
+
+		RunningActivity.runAsForegroundService((AbstractActivity) getActivity(),
+				testSuite.asArray(),
+				() -> {
+					try {
+						getActivity().finish();
+					} catch (NullPointerException exception){
+						exception.printStackTrace();
+						ThirdPartyServices.logException(exception);
+					}
+				});
 	}
 }

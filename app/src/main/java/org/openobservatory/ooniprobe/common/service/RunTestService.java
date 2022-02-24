@@ -167,4 +167,13 @@ public class RunTestService extends Service {
         }
     }
 
+    /**
+     * Interrupt running task by calling  TestAsyncTask#interrupt()
+     *
+     * @see TestAsyncTask#interrupt()
+     */
+    public synchronized void interrupt() {
+        task.interrupt();
+    }
+
 }

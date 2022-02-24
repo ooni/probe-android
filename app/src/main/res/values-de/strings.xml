@@ -274,6 +274,8 @@
   <string name="Modal_SoundsGreat">Hört sich toll an</string>
   <string name="Modal_NoThanks">Nein, danke</string>
   <string name="Modal_NotNow">Nicht jetzt</string>
+  <string name="Modal_RunAnyway">Trotzdem ausführen</string>
+  <string name="Modal_DisableVPN">VPN deaktivieren</string>
   <string name="Modal_Error_NoInternet">Test konnte nicht ausgeführt werden. Bitte überprüfe deine Internetverbindung.</string>
   <string name="Modal_Error_CantDownloadURLs">URL-Liste kann nicht heruntergeladen werden. Bitte versuche es erneut.</string>
   <string name="Modal_Error_TestAlreadyRunning">Bitte warte, bis die laufenden Tests beendet sind, bevor du einen neuen Test startest.</string>
@@ -345,6 +347,8 @@
   <string name="Settings_About_Label">Über OONI</string>
   <string name="Settings_About_Content_Paragraph">Open Observatory of Network Interference (OONI)  ist ein freies Software Projekt im Rahmen des Tor Projektes und versucht Internetzensur auf der Welt sichtbar zu machen.\n\nSeit 2012 hat OONI\'s globale Gemineschaft Netzwerke in über 200 Ländern vermessen. Manche dieser Messungen zeigen Beweise für Internetzensur.</string>
   <string name="Settings_About_Content_LearnMore">Erfahre mehr</string>
+  <string name="Settings_About_Content_Blog">Blog</string>
+  <string name="Settings_About_Content_Reports">Berichte</string>
   <string name="Settings_About_Content_DataPolicy">OONI Datenschutzbestimmungen</string>
   <string name="Settings_Notifications_Label">Benachrichtigungen</string>
   <string name="Settings_Notifications_Enabled">Aktiviert</string>

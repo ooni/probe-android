@@ -12,6 +12,7 @@ import com.google.android.play.core.install.model.UpdateAvailability;
 import com.google.android.play.core.tasks.Task;
 import com.google.firebase.FirebaseApp;
 
+import org.jetbrains.annotations.NotNull;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 
@@ -97,6 +98,11 @@ public class ThirdPartyServices {
     public static void logException(Exception e){
         if (Sentry.isEnabled())
             Sentry.captureException(e);
+    }
+
+    public static void addLogExtra(final @NotNull String key, final @NotNull String value){
+        if (Sentry.isEnabled())
+            Sentry.setExtra(key,value);
     }
 
     public static boolean shouldShowOnboardingCrash() {

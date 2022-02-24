@@ -1,18 +1,14 @@
 package org.openobservatory.ooniprobe.fragment;
 
-import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.ServiceConnection;
 import android.os.Bundle;
 
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import android.os.IBinder;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,25 +18,28 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.common.TestProgressRepository;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
-import org.openobservatory.ooniprobe.test.TestAsyncTask;
+import org.openobservatory.ooniprobe.receiver.TestRunBroadRequestReceiver;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ProgressFragment extends Fragment implements ServiceConnection {
-    private RunTestService service;
-    private ProgressFragment.TestRunBroadRequestReceiver receiver;
-    boolean isBound = false;
+/**
+ * Monitors and displays progress of {@link RunTestService}.
+ */
+public class ProgressFragment extends Fragment {
+    private TestRunBroadRequestReceiver receiver;
 
     @Inject
     PreferenceManager preferenceManager;
+    @Inject
+    TestProgressRepository testProgressRepository;
     @BindView(R.id.progress_layout)
     FrameLayout progress_layout;
     @BindView(R.id.progress)
@@ -74,6 +73,11 @@ public class ProgressFragment extends Fragment implements ServiceConnection {
                 return true;
             }
         });
+        testProgressRepository.getProgress().observe(getViewLifecycleOwner(),progressValue -> {
+            if (progressValue!=null) {
+                progress.setProgress(progressValue);
+            }
+        });
         return v;
     }
 
@@ -81,34 +85,46 @@ public class ProgressFragment extends Fragment implements ServiceConnection {
     public void onResume() {
         super.onResume();
         IntentFilter filter = new IntentFilter("org.openobservatory.ooniprobe.activity.RunningActivity");
-        receiver = new ProgressFragment.TestRunBroadRequestReceiver();
+        receiver = new TestRunBroadRequestReceiver(preferenceManager, new TestRunnerEventListener(),testProgressRepository);
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(receiver, filter);
         //Bind the RunTestService
+        this.bindTestService();
+    }
+
+    public void bindTestService() {
         if (((Application)getActivity().getApplication()).isTestRunning()) {
             Intent intent = new Intent(getActivity(), RunTestService.class);
-            getActivity().bindService(intent, this, Context.BIND_AUTO_CREATE);
+            getActivity().bindService(intent, receiver, Context.BIND_AUTO_CREATE);
             progress_layout.setVisibility(View.VISIBLE);
         }
         else
             progress_layout.setVisibility(View.GONE);
     }
 
-    private void updateUI(){
-        progress.setIndeterminate(true);
-        if (service != null && service.task != null){
-            if (service.task.currentSuite != null)
-                progress.setMax(service.task.currentSuite.getTestList(preferenceManager).length * 100);
-            if (service.task.currentTest != null)
-                name.setText(getString(service.task.currentTest.getLabelResId()));
+    private void updateUI(RunTestService service){
+        if (((Application)getActivity().getApplication()).isTestRunning()){
+
+            Integer progressLevel = testProgressRepository.getProgress().getValue();
+            if (progressLevel != null) {
+                progress.setProgress(progressLevel);
+            } else {
+                progress.setIndeterminate(true);
+            }
+            if (service != null && service.task != null){
+                if (service.task.currentSuite != null)
+                progress.setMax(service.task.getMax(preferenceManager));
+                if (service.task.currentTest != null)
+                    name.setText(getString(service.task.currentTest.getLabelResId()));
+            }
         }
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        if (isBound) {
-            getActivity().unbindService(this);
-            isBound = false;
+        if (receiver.isBound()) {
+            getActivity().unbindService(receiver);
+            receiver.setBound(false);
         }
         LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(receiver);
     }
@@ -119,53 +135,48 @@ public class ProgressFragment extends Fragment implements ServiceConnection {
         LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(receiver);
     }
 
-    @Override
-    public void onServiceConnected(ComponentName cname, IBinder binder) {
-        //Bind the service to this activity
-        RunTestService.TestBinder b = (RunTestService.TestBinder) binder;
-        service = b.getService();
-        isBound = true;
-        if (((Application)getActivity().getApplication()).isTestRunning())
-            updateUI();
-    }
-
-    @Override
-    public void onServiceDisconnected(ComponentName name) {
-        service = null;
-    }
-
-    public class TestRunBroadRequestReceiver extends BroadcastReceiver {
+    private class TestRunnerEventListener implements TestRunBroadRequestReceiver.EventListener {
         @Override
-        public void onReceive(Context context, Intent intent) {
-            String key = intent.getStringExtra("key");
-            String value = intent.getStringExtra("value");
-            switch (key) {
-                case TestAsyncTask.START:
-                    progress.setIndeterminate(true);
-                    if (service != null && service.task != null && service.task.currentSuite != null)
-                        progress.setMax(service.task.currentSuite.getTestList(preferenceManager).length * 100);
-                    break;
-                case TestAsyncTask.RUN:
-                    name.setText(value);
-                    break;
-                case TestAsyncTask.PRG:
-                    if (progress.isIndeterminate())
-                        if (service != null && service.task != null && service.task.currentSuite != null)
-                            progress.setMax(service.task.currentSuite.getTestList(preferenceManager).length * 100);
-                    int prgs = Integer.parseInt(value);
-                    progress.setIndeterminate(false);
-                    progress.setProgress(prgs);
-                    break;
-                case TestAsyncTask.URL:
-                    progress.setIndeterminate(false);
-                    break;
-                case TestAsyncTask.INT:
-                    running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
-                    break;
-                case TestAsyncTask.END:
-                    progress_layout.setVisibility(View.GONE);
-                    break;
-            }
+        public void onStart(RunTestService service) {
+            updateUI(service);
+        }
+
+        @Override
+        public void onRun(String value) {
+            name.setText(value);
+        }
+
+        @Override
+        public void onProgress(int state, double eta) {
+            if (progress.isIndeterminate())
+                updateUI(receiver.service);
+            progress.setIndeterminate(false);
+            progress.setProgress(state);
+        }
+
+        @Override
+        public void onLog(String value) {
+            /* nothing */
+        }
+
+        @Override
+        public void onError(String value) {
+            /* nothing */
+        }
+
+        @Override
+        public void onUrl() {
+            progress.setIndeterminate(false);
+        }
+
+        @Override
+        public void onInterrupt() {
+            running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
+        }
+
+        @Override
+        public void onEnd(Context context) {
+            progress_layout.setVisibility(View.GONE);
         }
     }
 }
