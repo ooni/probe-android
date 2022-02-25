@@ -58,12 +58,10 @@ public class OverviewActivity extends AbstractActivity {
 		icon.setImageResource(testSuite.getIcon());
 		customUrl.setVisibility(testSuite.getName().equals(WebsitesSuite.NAME) ? View.VISIBLE : View.GONE);
 		if (testSuite.getName().equals(ExperimentalSuite.NAME)) {
-			String experimentalLinks = "\n\n" +
-					"* [stun-reachability](https://github.com/ooni/spec/blob/master/nettests/ts-025-stun-reachability.md)" +
-					"\n\n" +
-					"* [dnscheck](https://github.com/ooni/spec/blob/master/nettests/ts-028-dnscheck.md)" +
-					"\n\n" +
-					"* [torsf](https://github.com/ooni/spec/blob/master/nettests/ts-030-torsf.md)";
+			String experimentalLinks =
+					"\n\n* [STUN Reachability](https://github.com/ooni/spec/blob/master/nettests/ts-025-stun-reachability.md)" +
+					"\n\n* [DNS Check](https://github.com/ooni/spec/blob/master/nettests/ts-028-dnscheck.md)" +
+					"\n\n* [Tor Snowflake](https://ooni.org/nettest/tor-snowflake/)";
 			Markwon.setMarkdown(desc, getString(testSuite.getDesc1(), experimentalLinks));
 		}
 		else
