@@ -10,6 +10,11 @@ import org.openobservatory.ooniprobe.factory.UrlFactory;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class UrlTest extends RobolectricAbstractTest {
 
     static final String EXAMPLE_URL = "https://www.example.org";
@@ -65,6 +70,30 @@ public class UrlTest extends RobolectricAbstractTest {
         assertEquals(updatedUrl.url, EXAMPLE_URL);
         assertEquals(updatedUrl.category_code, newCategory);
         assertEquals(updatedUrl.country_code, newCountry);
+        assertEquals(dataBaseUrl.url, EXAMPLE_URL);
+        assertEquals(dataBaseUrl.category_code, newCategory);
+        assertEquals(dataBaseUrl.country_code, newCountry);
+    }
+
+    @Test
+    public void updateCategoryCodeAndCountryCodeWhenSaveOrUpdatingTest() {
+        // Arrange
+        Url url = new Url(EXAMPLE_URL,"ALDR","PT");
+        url.save();
+
+        String newCategory = "REL";
+        String newCountry = "US";
+
+        url.category_code = newCategory;
+        url.country_code = newCountry;
+
+        // Act
+        List<String> updatedUrls = Url.saveOrUpdate(Collections.singletonList(url));
+        Url dataBaseUrl = SQLite.select().from(Url.class).where(Url_Table.url.eq(EXAMPLE_URL)).querySingle();
+
+        // Assert
+        assertNotNull(dataBaseUrl);
+        assertEquals(updatedUrls.get(0), EXAMPLE_URL);
         assertEquals(dataBaseUrl.url, EXAMPLE_URL);
         assertEquals(dataBaseUrl.category_code, newCategory);
         assertEquals(dataBaseUrl.country_code, newCountry);
