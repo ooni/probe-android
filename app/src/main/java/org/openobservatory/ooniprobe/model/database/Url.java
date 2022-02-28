@@ -109,7 +109,18 @@ public class Url extends BaseModel implements Serializable {
 		}));
 
 		if (!existingUrlsToUpdate.isEmpty()) {
-			Url.saveAll(Lists.newArrayList(existingUrlsToUpdate));
+			ArrayList<Url> updates = Lists.newArrayList(
+					Lists.transform(existingUrlsToUpdate, urlToUpdate -> {
+						Url values = resultUrlsMap.get(urlToUpdate.url);
+						if (values != null) {
+							urlToUpdate.category_code = values.category_code;
+							urlToUpdate.country_code = values.country_code;
+							return urlToUpdate;
+						}
+						return urlToUpdate;
+					})
+			);
+			Url.saveAll(updates);
 		}
 
 		if (existingUrls.size() != resultUrlsMap.size()) {
