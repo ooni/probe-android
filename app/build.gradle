@@ -10,8 +10,8 @@ android {
 		applicationId 'org.openobservatory.ooniprobe'
 		minSdkVersion 21
 		targetSdkVersion 31
-		versionName '3.5.0'
-		versionCode 84
+        versionName '3.6.0'
+        versionCode 88
 		testInstrumentationRunner "org.openobservatory.ooniprobe.TestAndroidJUnitRunner"
 		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://countly.ooni.io"'
