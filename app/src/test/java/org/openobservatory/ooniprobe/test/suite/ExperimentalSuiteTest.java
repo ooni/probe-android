@@ -20,8 +20,12 @@ public class ExperimentalSuiteTest {
     public void getTestList() {
         List<AbstractTest> tests = Arrays.asList(suite.getTestList(pm));
 
-        assertEquals(1, tests.size());
+        assertEquals(3, tests.size());
         assertEquals(Experimental.class, tests.get(0).getClass());
+        assertEquals(Experimental.class, tests.get(1).getClass());
+        assertEquals(Experimental.class, tests.get(2).getClass());
         assertEquals("stunreachability", tests.get(0).getName());
+        assertEquals("dnscheck", tests.get(1).getName());
+        assertEquals("torsf", tests.get(2).getName());
     }
 }
