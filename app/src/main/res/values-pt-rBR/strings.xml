@@ -24,7 +24,7 @@
   <string name="Onboarding_PopQuiz_2_Wrong_Title">Atenção</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Paragraph">Para aumentar a transparência sobre a censura na Internet, os dados de rede de todos os usuários do OONI Probe são publicados automaticamente (exceto se essa opção for desativada nas configurações).</string>
   <string name="Onboarding_AutomatedTesting_Title">Teste automatizado</string>
-  <string name="Onboarding_AutomatedTesting_Paragraph">Para medir a censura na Internet todos os dias, ative os testes automatizados para que o OONI Probe possa executar testes periodicamente. \n\nNão se preocupe, estaremos atentos ao uso da bateria. \n\nÉ possível desativar o teste automatizado nas configurações a qualquer momento.</string>
+  <string name="Onboarding_AutomatedTesting_Paragraph">Para medir a censura na Internet todos os dias, ative os testes automatizados para que o OONI Probe possa executar testes periodicamente.\n\nNão se preocupe, estaremos atentos ao uso da bateria. \n\nÉ possível desativar o teste automatizado nas configurações a qualquer momento.</string>
   <string name="Onboarding_Crash_Title">Relatar falhas</string>
   <string name="Onboarding_Crash_Paragraph">Para melhorar o OONI Probe, gostaríamos de coletar relatórios de falhas anônimos quando o aplicativo não funciona corretamente.\n\nVocê gostaria de optar por enviar relatórios de falha para a equipe de desenvolvimento OONI?</string>
   <string name="Onboarding_Crash_Button_Yes">Sim</string>
@@ -34,7 +34,7 @@
   <string name="Onboarding_DefaultSettings_Bullet_1">Código do país (por exemplo, IT para Italy)</string>
   <string name="Onboarding_DefaultSettings_Bullet_2">Informações de rede (incluindo o Número do Sistema Autônomo)</string>
   <string name="Onboarding_DefaultSettings_Bullet_3">Hora e data do teste</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">Fazemos o possível para não publicar seu endereço IP ou qualquer outra informação potencialmente identificável pessoalmente.\n\nAprenda mais através da [política de dados da OONI](https://ooni.org/about/data-policy/).</string>
+  <string name="Onboarding_DefaultSettings_Paragraph">Fazemos o possível para não publicar seu endereço IP ou qualquer outra informação que identifique você pessoalmente.\n\nAprenda mais através da [política de dados da OONI](https://ooni.org/about/data-policy/).</string>
   <string name="Onboarding_DefaultSettings_Paragraph_1">Ao tocar em \"OK\", você compartilhará relatórios de falhas para nos ajudar a melhorar o OONI Probe.</string>
   <string name="Onboarding_DefaultSettings_Button_Go">Vamos lá</string>
   <string name="Onboarding_DefaultSettings_Button_Change">Alterar padrões</string>
@@ -58,10 +58,10 @@
   <string name="Dashboard_Card_Subtitle">Clique para ver outras opções </string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">Teste o bloqueio de sites</string>
-  <string name="Dashboard_Websites_Overview_Paragraph">Verifique se os websites estão bloqueados usando o [Teste de Conectividade Web](https://ooni.org/nettest/web-connectivity/) da OONI.\n\nToda vez que você clica em Executar, você testa diferentes websites das listas de testes [globais](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) e [específicas de cada país](https://github.com/citizenlab/test-lists/tree/master/lists) do Laboratório Citizen.\n\nPara testar os sites de sua escolha, toque no botão Escolher sites ou selecione categorias de sites através das configurações deste cartão.\n\nEste teste mede se os sites são bloqueados por meio de manipulação de DNS, bloqueio TCP/IP ou por um proxy HTTP transparente.\n\nSeus resultados serão publicados em [Explorador OONI](https://explorer.ooni.org/world/) e [API OONI](https://api.ooni.io/).</string>
+  <string name="Dashboard_Websites_Overview_Paragraph">Verifique se os websites estão bloqueados usando o [Teste de Conectividade Web](https://ooni.org/nettest/web-connectivity/) da OONI.\n\nToda vez que você clica em Executar, você testa diferentes websites das listas de testes [globais](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) e [específicas de cada país](https://github.com/citizenlab/test-lists/tree/master/lists) do Citizen Lab.\n\nPara testar os sites de sua escolha, toque no botão Escolher sites ou selecione categorias de sites através das configurações deste cartão.\n\nEste teste mede se os sites são bloqueados por meio de manipulação de DNS, bloqueio TCP/IP ou por um proxy HTTP transparente.\n\nSeus resultados serão publicados em [Explorador OONI](https://explorer.ooni.org/world/) e [API OONI](https://api.ooni.io/).</string>
   <string name="Dashboard_Websites_Overview_Paragraph_Desktop">Check whether websites are blocked using OONI\'s [Web Connectivity test](https://ooni.org/nettest/web-connectivity/).\n\nYou will test the websites included in the Citizen Lab\'s [global](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) and [country-specific](https://github.com/citizenlab/test-lists/tree/master/lists) test lists.\n\nThis test measures whether websites are blocked by means of DNS tampering, TCP/IP blocking or by a transparent HTTP proxy.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Performance_Card_Description">Teste a velocidade e o desempenho de sua rede</string>
-  <string name="Dashboard_Performance_Overview_Paragraph">Meça a velocidade e o desempenho da sua rede usando o teste [NDT](https://ooni.org/nettest/ndt/).\n\nMeça o desempenho da streaming de vídeo usando o [DASH](https://ooni.org/nettest/dash/).\n\nEsses testes consomem dados dependendo da velocidade da sua rede.\n\nSeus resultados serão publicados no [OONI Explorer](https://explorer.ooni.org/world/) e [OONI API](https://api.ooni.io/).\n\nIsenção de responsabilidade: Esses testes dependem de servidores de terceiros. Portanto, não podemos garantir que seu endereço IP não seja coletado.</string>
+  <string name="Dashboard_Performance_Overview_Paragraph">Meça a velocidade e o desempenho da sua rede usando o teste [NDT](https://ooni.org/nettest/ndt/).\n\nMeça o desempenho da streaming de vídeo usando o [DASH](https://ooni.org/nettest/dash/).\n\nEsses testes consomem dados dependendo da velocidade da sua rede.\n\nSeus resultados serão publicados no [OONI Explorer](https://explorer.ooni.org/world/) e na [OONI API](https://api.ooni.io/).\n\nIsenção de responsabilidade: Esses testes dependem de servidores de terceiros. Portanto, não podemos garantir que seu endereço IP não seja coletado.</string>
   <string name="Dashboard_Performance_Overview_Paragraph_Updated">Ao executar os testes neste cartão, você\n\n- Medirá a velocidade e o desempenho da sua rede ([Teste de NDT](https://ooni.org/nettest/ndt/))\n- Avaliará o desempenho do streaming de vídeo ([Teste de DASH](https://ooni.org/nettest/dash/))\n- Verificará a presença de [tecnologias de caixa intermediária](https://ooni.org/support/glossary/#middlebox) na sua rede ([Linha de solicitação inválida de HTTP](https://ooni.org/nettest/http-invalid-request-line/) e [Teste de manipulação de campo de cabeçalho HTTP](https://ooni.org/nettest/http-header-field-manipulation/))\n\nEsses testes consomem dados de acordo com a velocidade da sua rede.\n\nOs resultados dos seus testes serão publicados no [OONI Explorer](https://explorer.ooni.org/) e no [OONI API](https://api.ooni.io/).\n\n**Isenção de responsabilidade:** Os testes de [NDT](https://ooni.org/nettest/ndt/) e [DASH](https://ooni.org/nettest/dash/) são realizados com servidores de terceiros, fornecidos pela [Measurement Lab (M-Lab)](https://www.measurementlab.net/). Se você executar esses testes, o M-Lab coletará e publicará seu endereço IP (para fins de pesquisa), independentemente das configurações do seu OONI Probe. Saiba mais sobre a governança de dados da M-Lab através de sua [declaração de privacidade](https://www.measurementlab.net/privacy/).</string>
   <string name="Dashboard_Middleboxes_Card_Description">Detectar caixas intermediárias na sua rede</string>
   <string name="Dashboard_Middleboxes_Overview_Paragraph">Internet Service Providers often use network appliances (middleboxes) for various networking purposes (such as caching). Sometimes these middleboxes are used to implement internet censorship and/or surveillance.\n\nFind middleboxes in your network using OONI\'s [HTTP Invalid Request Line](https://ooni.org/nettest/http-invalid-request-line/) and [HTTP Header Field Manipulation](https://ooni.org/nettest/http-header-field-manipulation/) tests.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/world/) and [OONI API](https://api.ooni.io/).</string>
@@ -254,7 +254,7 @@
   <string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Hero_Title">Provavelmente bloqueados</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Hero_Title">Funcionando</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Content_Paragraph">[RiseupVPN](https://riseup.net/vpn) parece estar bloqueado.</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Content_Paragraph">Conseguimos nos conectar com sucesso ao servidor de bootstrap do RiseupVPN e aos gateways VPN. Isso significa que [RiseupVPN](https://riseup.net/vpn) deveria trabalhar.</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Content_Paragraph">Conseguimos nos conectar com sucesso ao servidor de bootstrap do RiseupVPN e aos gateways VPN. Isso significa que [RiseupVPN](https://riseup.net/vpn) deveria funcionar.</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Api">Servidor de bootstrap</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Openvpn">Conexões OpenVPN</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Bridge">Conexões em ponte</string>
@@ -274,7 +274,7 @@
   <string name="Modal_SoundsGreat">Parece ótimo</string>
   <string name="Modal_NoThanks">Não, agradeço</string>
   <string name="Modal_NotNow">Agora não</string>
-  <string name="Modal_RunAnyway">Execute de qualquer maneira</string>
+  <string name="Modal_RunAnyway">Execute mesmo assim</string>
   <string name="Modal_DisableVPN">Desativar VPN</string>
   <string name="Modal_Error_NoInternet">Não foi possível executar o teste. Por favor, verifique sua conexão com a Internet.</string>
   <string name="Modal_Error_CantDownloadURLs">Não foi possível baixar a lista de URL\'s. Por favor, tente novamente.</string>
@@ -287,7 +287,7 @@
   <string name="Modal_ResultsNotUploaded_Paragraph">Alguns dos seus resultados de teste não foram enviados para servidores da OONI. Se você quiser contribuir com o banco de dados da OONI, carregue-os.</string>
   <string name="Modal_ResultsNotUploaded_Button_Upload">Carregar</string>
   <string name="Modal_ResultsNotUploaded_Uploading">Fazendo upload de %1$s ...</string>
-  <string name="Modal_Autorun_BatteryOptimization">OONI Probe não pode funcionar automaticamente sem a otimização da bateria. Você quer tentar novamente?</string>
+  <string name="Modal_Autorun_BatteryOptimization">OONI Probe não pode ser executado automaticamente sem a otimização da bateria. Você quer tentar novamente?</string>
   <string name="Modal_DisableVPN_Title">Por favor, desative sua conexão VPN.</string>
   <string name="Modal_DisableVPN_Message">Se você executar OONI Probe com uma VPN habilitada, os resultados do teste podem parecer que vêm do país errado. Por favor, desabilite sua conexão VPN.</string>
   <string name="Toast_ResultsUploaded">Carregamento bem-sucedido</string>
@@ -341,7 +341,7 @@
   <string name="Test_Psiphon_Fullname">Teste do Psiphon</string>
   <string name="Test_Tor_Fullname">Teste do Tor</string>
   <string name="Test_RiseupVPN_Fullname">Teste RiseupVPN</string>
-  <string name="Test_Signal_Fullname">Teste de sinal</string>
+  <string name="Test_Signal_Fullname">Teste do Signal</string>
   <string name="Settings_Title">Configurações</string>
   <string name="Settings_Error_TestDurationTooLow">A quantidade de tempo que você definiu para a duração do teste é muito baixa.</string>
   <string name="Settings_About_Label">Sobre OONI</string>
@@ -385,13 +385,13 @@
   <string name="Settings_Proxy_Custom_Value">URL de proxy personalizado</string>
   <string name="Settings_Proxy_Custom_Protocol">Protocolo de proxy personalizado</string>
   <string name="Settings_Proxy_Custom_Connection">Conexão</string>
-  <string name="Settings_Proxy_Custom_Hostname">Nome do alojamento</string>
+  <string name="Settings_Proxy_Custom_Hostname">Nome do hospedeiro</string>
   <string name="Settings_Proxy_Custom_Port">Porta</string>
   <string name="Settings_Proxy_Custom_Credentials">Credenciais (opcional)</string>
   <string name="Settings_Proxy_Custom_Username">Usuário</string>
   <string name="Settings_Proxy_Custom_Password">Senha</string>
   <string name="Settings_Proxy_Psiphon_Over_Custom">Usar Psiphon em vez de proxy personalizado</string>
-  <string name="Settings_Proxy_Footer">Você não consegue usar o OONI Probe? Tente habilitar [Psiphon](https://psiphon.ca/) para contornar o bloqueio potencial da Sonda OONI. Como alternativa, você pode usar um proxy personalizado.</string>
+  <string name="Settings_Proxy_Footer">Não está conseguindo usar o OONI Probe? Tente habilitar [Psiphon](https://psiphon.ca/) para contornar o bloqueio potencial da Sonda OONI. Como alternativa, você pode usar um proxy personalizado.</string>
   <string name="Settings_Websites_MaxRuntimeEnabled">Limitar a duração do teste</string>
   <string name="Settings_Websites_MaxRuntime">Duração do teste</string>
   <string name="Settings_Websites_Categories_Label">Categorias de sites para testar</string>
@@ -413,7 +413,7 @@
   <string name="Settings_InstantMessaging_TestWhatsApp">Teste do WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Teste do Telegram</string>
   <string name="Settings_InstantMessaging_TestFacebookMessenger">Teste do Facebook Messenger</string>
-  <string name="Settings_InstantMessaging_TestSignal">Teste de sinal</string>
+  <string name="Settings_InstantMessaging_TestSignal">Testar o Signal</string>
   <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">Executar o teste \"HTTP Invalid Request Line\"</string>
   <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">Executar o teste \"HTTP Header Field Manipulation\"</string>
   <string name="Settings_Performance_TestNDT">Execute o teste de velocidade NDT</string>
@@ -426,7 +426,7 @@
   <string name="Settings_Performance_DashServerPort">Porta do servidor DASH</string>
   <string name="Settings_Circumvention_TestPsiphon">Teste Psiphon</string>
   <string name="Settings_Circumvention_TestTor">Teste Tor</string>
-  <string name="Settings_Circumvention_TestRiseupVPN">Teste RiseupVPN</string>
+  <string name="Settings_Circumvention_TestRiseupVPN">Testar o RiseupVPN</string>
   <string name="Settings_SendEmail_Label">Enviar e-mail para suporte</string>
   <string name="Settings_SendEmail_Message">Descreva o problema que você está enfrentando:</string>
   <string name="Settings_SendEmail_Error">Por favor, envie um e-mail para bugs@openobservatory.org com informações sobre o aplicativo e a versão do iOS. Toque em \"Copiar para área de transferência,\" abaixo, para copiar nosso endereço de e-mail.</string>

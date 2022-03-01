@@ -331,7 +331,7 @@
   <string name="Test_Circumvention_Fullname">Pengelakan</string>
   <string name="Test_Experimental_Fullname">Experimental </string>
   <string name="Test_HTTPInvalidRequestLine_Fullname">Tes Permintaan HTTP yang Tidak Sahih</string>
-  <string name="Test_HTTPHeaderFieldManipulation_Fullname">HTTP Header Field Manipulation Test</string>
+  <string name="Test_HTTPHeaderFieldManipulation_Fullname">Tes Manipulasi Bidang Header HTTP</string>
   <string name="Test_WebConnectivity_Fullname">Tes Konektivitas Web</string>
   <string name="Test_NDT_Fullname">Tes Kecepatan NDT</string>
   <string name="Test_Dash_Fullname">Tes Arus DASH</string>

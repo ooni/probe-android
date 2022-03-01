@@ -452,9 +452,9 @@
   <string name="OONIRun_Update">Mettre à jour</string>
   <string name="OONIRun_Close">Fermer</string>
   <string name="OONIRun_InvalidParameter">Un paramètre est invalide</string>
-  <string name="OONIRun_InvalidParameter_Msg">Soit le lien OONI Run est malformé soit votre appli n’est pas à jour.</string>
+  <string name="OONIRun_InvalidParameter_Msg">Soit le lien OONI Run est malformé soit votre appli n’est pas à jour.</string>
   <string name="OONIRun_RandomSamplingOfURLs">Vous testerez un échantillon aléatoire de sites Web.</string>
-  <string name="OONIRun_TestRunningError">Veuillez attendre la fin du test avant d’ouvrir un lien OONI Run.</string>
+  <string name="OONIRun_TestRunningError">Veuillez attendre la fin du test avant d’ouvrir un lien OONI Run.</string>
   <string name="CategoryCode_ALDR_Name">Drogues et alcool</string>
   <string name="CategoryCode_REL_Name">Religion</string>
   <string name="CategoryCode_PORN_Name">Pornographie</string>
