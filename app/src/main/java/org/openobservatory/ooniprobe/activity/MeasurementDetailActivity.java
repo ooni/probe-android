@@ -242,7 +242,10 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     }
 
     private void runAsyncTask() {
-        new ResubmitAsyncTask(this, pm.getProxyURL()).execute(null, measurement.id);
+        measurementsManager.syncMeasurements(this, () -> {
+            new ResubmitAsyncTask(this, pm.getProxyURL()).execute(null, measurement.id);
+            this.load();
+        }, this::load, null, measurement.id);
     }
 
     private void load() {
@@ -265,7 +268,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                 Intent share = new Intent(Intent.ACTION_SEND);
                 share.putExtra(Intent.EXTRA_TEXT, measurementsManager.getExplorerUrl(measurement));
                 share.setType("text/plain");
-                Intent shareIntent = Intent. createChooser(share, null);
+                Intent shareIntent = Intent.createChooser(share, null);
                 startActivity(shareIntent);
                 return true;
             default:

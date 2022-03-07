@@ -290,6 +290,8 @@
   <string name="Modal_Autorun_BatteryOptimization">如果没有优化电池，OONI无法自动运行。你想再试一次吗</string>
   <string name="Modal_DisableVPN_Title">请关闭您的VPN连接。</string>
   <string name="Modal_DisableVPN_Message">如果您在启用VPN的情况下运行OONI，测试结果可能看起来来自错误的国家。请关闭您的VPN连接。</string>
+  <string name="Modal_UploadVPNResults_Title">Some measurements were taken over VPN.</string>
+  <string name="Modal_UploadVPNResults_Message">If you upload measurements taken when VPN enabled, the test results may appear to come from the wrong country.</string>
   <string name="Toast_ResultsUploaded">上传成功</string>
   <string name="Modal_DisplayFailureLog">显示失败日志</string>
   <string name="Modal_EnableNotifications_Title">获取网络审查的动态</string>

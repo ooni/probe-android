@@ -290,6 +290,8 @@
   <string name="Modal_Autorun_BatteryOptimization">OONI Probe kann nicht automatisch ohne Batterieoptimierung laufen. Möchtest du es noch einmal versuchen?</string>
   <string name="Modal_DisableVPN_Title">Bitte deaktiviere deine VPN-Verbindung.</string>
   <string name="Modal_DisableVPN_Message">Wenn du OONI Probe mit aktiviertem VPN ausführst, kann es sein, dass die Testergebnisse aus dem falschen Land stammen. Bitte deaktiviere deine VPN-Verbindung.</string>
+  <string name="Modal_UploadVPNResults_Title">Some measurements were taken over VPN.</string>
+  <string name="Modal_UploadVPNResults_Message">If you upload measurements taken when VPN enabled, the test results may appear to come from the wrong country.</string>
   <string name="Toast_ResultsUploaded">Hochladen war erfolgreich</string>
   <string name="Modal_DisplayFailureLog">Fehlerlog anzeigen</string>
   <string name="Modal_EnableNotifications_Title">Aktuelle Informationen zur Internetzensur</string>

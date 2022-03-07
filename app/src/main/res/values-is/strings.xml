@@ -290,6 +290,8 @@
   <string name="Modal_Autorun_BatteryOptimization">OONI Probe getur ekki keyrt á þess að rafhlöðunotkun sé bestuð. Viltu prófa aftur?</string>
   <string name="Modal_DisableVPN_Title">Gerðu VPN-tenginguna þína óvirka.</string>
   <string name="Modal_DisableVPN_Message">Ef þú keyrir OONI Probe með virku VPN, geta niðurstöður prófana litið út fyrir að koma frá röngu landi. Gerðu VPN-tenginguna þína óvirka.</string>
+  <string name="Modal_UploadVPNResults_Title">Some measurements were taken over VPN.</string>
+  <string name="Modal_UploadVPNResults_Message">If you upload measurements taken when VPN enabled, the test results may appear to come from the wrong country.</string>
   <string name="Toast_ResultsUploaded">Innsending tókst</string>
   <string name="Modal_DisplayFailureLog">Birta mistakaskrá</string>
   <string name="Modal_EnableNotifications_Title">Fáðu vísbendingar um ritskoðun internetsins</string>

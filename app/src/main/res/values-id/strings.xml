@@ -290,6 +290,8 @@
   <string name="Modal_Autorun_BatteryOptimization">OONI Probe tidak dapat berjalan dengan otomatis tanpa pengoptimalan baterai. Apakah Anda ingin mencoba lagi?</string>
   <string name="Modal_DisableVPN_Title">Mohon nonaktifkan koneksi VPN Anda.</string>
   <string name="Modal_DisableVPN_Message">Jika Anda menjalankan tes OONI Probe dengan VPN yang diaktifkan, hasil tes akan terlihat berasal dari negara yang salah. Mohon nonaktifkan koneksi VPN.</string>
+  <string name="Modal_UploadVPNResults_Title">Some measurements were taken over VPN.</string>
+  <string name="Modal_UploadVPNResults_Message">If you upload measurements taken when VPN enabled, the test results may appear to come from the wrong country.</string>
   <string name="Toast_ResultsUploaded">Unggahan berhasil</string>
   <string name="Modal_DisplayFailureLog">Tampilkan log kesalahan</string>
   <string name="Modal_EnableNotifications_Title">Dapatkan informasi terbaru mengenai penyensoran Internet</string>

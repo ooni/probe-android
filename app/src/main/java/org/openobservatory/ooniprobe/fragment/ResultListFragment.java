@@ -173,13 +173,18 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         }
     }
 
-    @OnItemSelected(R.id.filterTests)
-    void queryList() {
+    private void load() {
         if (measurementsManager.hasUploadables()) {
             snackbar.show();
         } else {
             snackbar.dismiss();
         }
+    }
+
+
+    @OnItemSelected(R.id.filterTests)
+    void queryList() {
+        this.load();
 
         items.clear();
 
@@ -247,12 +252,13 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     public void onConfirmation(Serializable serializable, int i) {
         if (serializable.equals(R.string.Modal_ResultsNotUploaded_Title)) {
             if (i == DialogInterface.BUTTON_POSITIVE) {
-                new ResubmitAsyncTask(this, pm.getProxyURL()).execute(null, null);
-            }
-            else if (i == DialogInterface.BUTTON_NEUTRAL) {
+                measurementsManager.syncMeasurements(getActivity(), () -> {
+                    new ResubmitAsyncTask(this, pm.getProxyURL()).execute(null, null);
+                    this.load();
+                }, this::load, null, null);
+            } else if (i == DialogInterface.BUTTON_NEUTRAL) {
                 startActivity(TextActivity.newIntent(getActivity(), TextActivity.TYPE_UPLOAD_LOG, (String) serializable));
-            }
-            else
+            } else
                 snackbar.show();
         } else if (i == DialogInterface.BUTTON_POSITIVE) {
             if (serializable instanceof Result)

@@ -290,6 +290,8 @@
   <string name="Modal_Autorun_BatteryOptimization">OONI Probe بدون بهینه‌سازی باتری قادر به اجرای خودکار نیست. آیا می‌خواهید دوباره تلاش کنید؟</string>
   <string name="Modal_DisableVPN_Title">لطفا اتصال VPN خود را غیرفعال کنید.</string>
   <string name="Modal_DisableVPN_Message">اگر OONI Probe را در حالی که متصل به VPN هستید اجرا کنید، نتایج ممکن است برای کشور اشتباهی نمایش داده شوند. لطفا اتصال VPN خود را غیرفعال کنید.</string>
+  <string name="Modal_UploadVPNResults_Title">Some measurements were taken over VPN.</string>
+  <string name="Modal_UploadVPNResults_Message">If you upload measurements taken when VPN enabled, the test results may appear to come from the wrong country.</string>
   <string name="Toast_ResultsUploaded">بارگذاری با موفقیت انجام شد.</string>
   <string name="Modal_DisplayFailureLog">نمایش گزارش خرابی</string>
   <string name="Modal_EnableNotifications_Title">دریافت به‌روزرسانی سانسور اینترنت</string>

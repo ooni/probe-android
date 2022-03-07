@@ -290,6 +290,8 @@
   <string name="Modal_Autorun_BatteryOptimization">OONI Probe, pil iyileştirmesi olmadan otomatik olarak çalışamaz. Yeniden denemek ister misiniz?</string>
   <string name="Modal_DisableVPN_Title">Lütfen VPN bağlantınızı kapatın.</string>
   <string name="Modal_DisableVPN_Message">OONI Probe uygulamasını VPN açıkken çalıştırırsanız, sınama sonuçları yanlış ülkeden geliyormuş gibi görünebilir. Lütfen VPN bağlantınızı kapatın.</string>
+  <string name="Modal_UploadVPNResults_Title">Some measurements were taken over VPN.</string>
+  <string name="Modal_UploadVPNResults_Message">If you upload measurements taken when VPN enabled, the test results may appear to come from the wrong country.</string>
   <string name="Toast_ResultsUploaded">Yüklendi</string>
   <string name="Modal_DisplayFailureLog">Hata günlüğünü görüntüle</string>
   <string name="Modal_EnableNotifications_Title">İnternet sansürleri hakkında güncel bilgileri alın</string>

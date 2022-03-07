@@ -330,4 +330,13 @@ public class Measurement extends BaseModel implements Serializable {
 		this.is_rerun = true;
 		this.save();
 	}
+
+	public class DataRoot {
+		public Annotations annotations;
+
+		public class Annotations {
+			public String network_type;
+		}
+	}
+
 }

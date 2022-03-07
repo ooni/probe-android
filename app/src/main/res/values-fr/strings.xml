@@ -290,6 +290,8 @@
   <string name="Modal_Autorun_BatteryOptimization">OONI Probe ne peut pas fonctionner automatiquement sans optimisation de la pile. Voulez-vous réessayer ?</string>
   <string name="Modal_DisableVPN_Title">Veuillez désactiver votre connexion RPV.</string>
   <string name="Modal_DisableVPN_Message">Si vous exécutez OONI Probe alors qu’un RPV (réseau privé virtuel) est activé, les résultats des tests pourraient sembler provenir du mauvais pays. Veuillez désactiver votre connexion RPV.</string>
+  <string name="Modal_UploadVPNResults_Title">Some measurements were taken over VPN.</string>
+  <string name="Modal_UploadVPNResults_Message">If you upload measurements taken when VPN enabled, the test results may appear to come from the wrong country.</string>
   <string name="Toast_ResultsUploaded">Téléversement réussi</string>
   <string name="Modal_DisplayFailureLog">Afficher le journal des échecs</string>
   <string name="Modal_EnableNotifications_Title">Obtenez des mises à jour sur la censure d’Internet</string>

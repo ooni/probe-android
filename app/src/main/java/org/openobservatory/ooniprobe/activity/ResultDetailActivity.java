@@ -30,6 +30,7 @@ import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.domain.GetResults;
 import org.openobservatory.ooniprobe.domain.GetTestSuite;
+import org.openobservatory.ooniprobe.domain.MeasurementsManager;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderMiddleboxFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderPerformanceFragment;
@@ -85,6 +86,9 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 
     @Inject
     PreferenceManager preferenceManager;
+
+    @Inject
+    MeasurementsManager measurementsManager;
 
     public static Intent newIntent(Context context, int id) {
         return new Intent(context, ResultDetailActivity.class).putExtra(ID, id);
@@ -157,11 +161,14 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
     }
 
     private void reTestWebsites() {
-        RunningActivity.runAsForegroundService(this, getTestSuite.getFrom(result).asArray(),this::finish, preferenceManager);
+        RunningActivity.runAsForegroundService(this, getTestSuite.getFrom(result).asArray(), this::finish, preferenceManager);
     }
 
     private void runAsyncTask() {
-        new ResubmitAsyncTask(this).execute(result.id, null);
+        measurementsManager.syncMeasurements(this, () -> {
+            new ResubmitAsyncTask(this).execute(result.id, null);
+            this.load();
+        }, this::load, result.id, null);
     }
 
     private void load() {
@@ -197,7 +204,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
         else if (buttonClicked == DialogInterface.BUTTON_POSITIVE && extra.equals(RERUN_KEY))
             reTestWebsites();
         else if (buttonClicked == DialogInterface.BUTTON_NEUTRAL)
-            startActivity(TextActivity.newIntent(this, TextActivity.TYPE_UPLOAD_LOG, (String)extra));
+            startActivity(TextActivity.newIntent(this, TextActivity.TYPE_UPLOAD_LOG, (String) extra));
     }
 
     private static class ResubmitAsyncTask extends ResubmitTask<ResultDetailActivity> {
@@ -231,7 +238,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 
         @Override
         public Fragment createFragment(int position) {
-            if (result.test_group_name.equals(ExperimentalSuite.NAME)){
+            if (result.test_group_name.equals(ExperimentalSuite.NAME)) {
                 if (position == 0)
                     return ResultHeaderDetailFragment.newInstance(false, result.getFormattedDataUsageUp(), result.getFormattedDataUsageDown(), result.start_time, result.getRuntime(), true, null, null);
                 else if (position == 1)
