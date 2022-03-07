@@ -63,7 +63,7 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
             WebsitesSuite suite = new WebsitesSuite();
             suite.getTestList(preferenceManager)[0].setInputs(urls);
 
-            RunningActivity.runAsForegroundService(CustomWebsiteActivity.this, suite.asArray(), this::finish);
+            RunningActivity.runAsForegroundService(CustomWebsiteActivity.this, suite.asArray(), this::finish, preferenceManager);
             return true;
         });
         add();

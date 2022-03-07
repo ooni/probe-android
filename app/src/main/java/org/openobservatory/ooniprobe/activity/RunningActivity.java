@@ -88,7 +88,8 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
      */
     public static void runAsForegroundService(AbstractActivity context,
                                               ArrayList<AbstractSuite> testSuites,
-                                              OnTestServiceStartedListener onTestServiceStartedListener) {
+                                              OnTestServiceStartedListener onTestServiceStartedListener,
+                                              PreferenceManager _preferenceManager) {
         if (ReachabilityManager.getNetworkType(context).equals(ReachabilityManager.NO_INTERNET)) {
             new MessageDialogFragment.Builder()
                     .withTitle(context.getString(R.string.Modal_Error))
@@ -99,7 +100,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                     .withTitle(context.getString(R.string.Modal_Error))
                     .withMessage(context.getString(R.string.Modal_Error_TestAlreadyRunning))
                     .build().show(context.getSupportFragmentManager(), null);
-        } else if (ReachabilityManager.isVPNinUse(context)) {
+        } else if (ReachabilityManager.isVPNinUse(context) && _preferenceManager.isUploadResults()) {
             new AlertDialog.Builder(context, R.style.MaterialAlertDialogCustom)
                     .setTitle(context.getString(R.string.Modal_DisableVPN_Title))
                     .setMessage(context.getString(R.string.Modal_DisableVPN_Message))
