@@ -89,7 +89,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     public static void runAsForegroundService(AbstractActivity context,
                                               ArrayList<AbstractSuite> testSuites,
                                               OnTestServiceStartedListener onTestServiceStartedListener,
-                                              PreferenceManager _preferenceManager) {
+                                              PreferenceManager iPreferenceManager) {
         if (ReachabilityManager.getNetworkType(context).equals(ReachabilityManager.NO_INTERNET)) {
             new MessageDialogFragment.Builder()
                     .withTitle(context.getString(R.string.Modal_Error))
@@ -100,11 +100,15 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                     .withTitle(context.getString(R.string.Modal_Error))
                     .withMessage(context.getString(R.string.Modal_Error_TestAlreadyRunning))
                     .build().show(context.getSupportFragmentManager(), null);
-        } else if (ReachabilityManager.isVPNinUse(context) && _preferenceManager.isUploadResults()) {
+        } else if (ReachabilityManager.isVPNinUse(context) && iPreferenceManager.isWarnVPNInUse()) {
             new AlertDialog.Builder(context, R.style.MaterialAlertDialogCustom)
                     .setTitle(context.getString(R.string.Modal_DisableVPN_Title))
                     .setMessage(context.getString(R.string.Modal_DisableVPN_Message))
-                    .setNegativeButton(R.string.Modal_RunAnyway, (dialogInterface, i) -> {
+                    .setNeutralButton(R.string.Modal_RunAnyway, (dialogInterface, i) -> {
+                        startRunTestService(context, testSuites,onTestServiceStartedListener);
+                    })
+                    .setNegativeButton(R.string.Modal_AlwaysRun,(dialog, which) -> {
+                        iPreferenceManager.setWarnVPNInUse(false);
                         startRunTestService(context, testSuites,onTestServiceStartedListener);
                     })
                     .setPositiveButton(R.string.Modal_DisableVPN, (dialogInterface, i) -> {

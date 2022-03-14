@@ -80,7 +80,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		setLastTest();
 		adapter.notifyTypesChanged();
 		if (ReachabilityManager.isVPNinUse(this.getContext())
-				&& preferenceManager.isUploadResults())
+				&& preferenceManager.isWarnVPNInUse())
 			vpn.setVisibility(View.VISIBLE);
 		else
 			vpn.setVisibility(View.GONE);
