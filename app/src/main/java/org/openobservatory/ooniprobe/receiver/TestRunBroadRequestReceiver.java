@@ -56,24 +56,26 @@ public class TestRunBroadRequestReceiver extends BroadcastReceiver implements Se
                 listener.onRun(value);
                 break;
             case TestAsyncTask.PRG:
-                List<AbstractSuite> previousTestSuites =
-                        service.task.testSuites.subList(0, service.task.testSuites.indexOf(service.task.currentSuite));
-                int previousTestProgress = (int) Stats.of(Lists.transform(
-                        previousTestSuites,
-                        input -> input.getTestList(preferenceManager).length * 100
-                )).sum();
-                int previousTestRuntime = (int) Stats.of(Lists.transform(
-                        previousTestSuites,
-                        input -> input.getRuntime(preferenceManager)
-                )).sum();
-                int prgs = Integer.parseInt(value);
-                int currentTestRuntime = service.task.currentSuite.getRuntime(preferenceManager);
-                int currentTestMax = service.task.currentSuite.getTestList(preferenceManager).length * 100;
-                double timeLeft = runtime - ((((double) prgs) / currentTestMax * currentTestRuntime) + previousTestRuntime);
-                int progress = previousTestProgress + prgs;
-                testProgressRepository.updateProgress(progress);
-                testProgressRepository.updateEta(timeLeft);
-                listener.onProgress(progress, timeLeft);
+                if (service != null) {
+                    List<AbstractSuite> previousTestSuites =
+                            service.task.testSuites.subList(0, service.task.testSuites.indexOf(service.task.currentSuite));
+                    int previousTestProgress = (int) Stats.of(Lists.transform(
+                            previousTestSuites,
+                            input -> input.getTestList(preferenceManager).length * 100
+                    )).sum();
+                    int previousTestRuntime = (int) Stats.of(Lists.transform(
+                            previousTestSuites,
+                            input -> input.getRuntime(preferenceManager)
+                    )).sum();
+                    int prgs = Integer.parseInt(value);
+                    int currentTestRuntime = service.task.currentSuite.getRuntime(preferenceManager);
+                    int currentTestMax = service.task.currentSuite.getTestList(preferenceManager).length * 100;
+                    double timeLeft = runtime - ((((double) prgs) / currentTestMax * currentTestRuntime) + previousTestRuntime);
+                    int progress = previousTestProgress + prgs;
+                    testProgressRepository.updateProgress(progress);
+                    testProgressRepository.updateEta(timeLeft);
+                    listener.onProgress(progress, timeLeft);
+                }
                 break;
             case TestAsyncTask.LOG:
                 listener.onLog(value);
