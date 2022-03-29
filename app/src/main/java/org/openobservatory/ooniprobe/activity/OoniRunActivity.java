@@ -3,6 +3,7 @@ package org.openobservatory.ooniprobe.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.webkit.URLUtil;
 import android.widget.Button;
@@ -27,6 +28,8 @@ import org.openobservatory.ooniprobe.item.TextItem;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -94,6 +97,20 @@ public class OoniRunActivity extends AbstractActivity {
 			String ta = uri == null ? null : uri.getQueryParameter("ta");
 			loadScreen(mv, tn, ta);
 		}
+		else if (Intent.ACTION_SEND.equals(intent.getAction())) {
+			String url = intent.getStringExtra(Intent.EXTRA_TEXT);
+			if (url != null && Patterns.WEB_URL.matcher(url).matches()) {
+				List<String> urls = Collections.singletonList(url);
+				AbstractSuite suite = getSuite.get("web_connectivity", urls);
+				if (suite != null) {
+					loadSuite(suite, urls);
+				} else {
+					loadInvalidAttributes();
+				}
+			} else {
+				loadInvalidAttributes();
+			}
+		}
 	}
 
 	private void loadScreen(String mv, String tn, String ta){
@@ -103,9 +120,13 @@ public class OoniRunActivity extends AbstractActivity {
 			if (versionCompare.compare(version_name, mv) >= 0) {
 				try {
 					Attribute attribute = gson.fromJson(ta, Attribute.class);
-					AbstractSuite suite = getSuite.get(tn, attribute);
-					if (suite != null) {
-						loadSuite(suite, attribute);
+					if (attribute!=null){
+						AbstractSuite suite = getSuite.get(tn, attribute.urls);
+						if (suite != null) {
+							loadSuite(suite, attribute.urls);
+						} else {
+							loadInvalidAttributes();
+						}
 					} else {
 						loadInvalidAttributes();
 					}
@@ -133,12 +154,12 @@ public class OoniRunActivity extends AbstractActivity {
 		});
 	}
 
-	private void loadSuite(AbstractSuite suite, Attribute attribute) {
+	private void loadSuite(AbstractSuite suite, List<String> urls) {
 		icon.setImageResource(suite.getIcon());
 		title.setText(suite.getTestList(preferenceManager)[0].getLabelResId());
 		desc.setText(getString(R.string.OONIRun_YouAreAboutToRun));
-		if (attribute != null && attribute.urls != null) {
-			for (String url : attribute.urls) {
+		if (urls != null) {
+			for (String url : urls) {
 				if (URLUtil.isValidUrl(url))
 					items.add(new TextItem(url));
 			}

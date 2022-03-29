@@ -114,6 +114,14 @@
 			android:screenOrientation="userPortrait"
 			android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.App">
 			<intent-filter>
+				<action android:name="android.intent.action.SEND" />
+				<category android:name="android.intent.category.DEFAULT" />
+
+				<action android:name="org.openobservatory.ooniprobe.nettest" />
+
+				<data android:mimeType="text/plain" />
+			</intent-filter>
+			<intent-filter>
 				<action android:name="android.intent.action.VIEW" />
 
 				<category android:name="android.intent.category.DEFAULT" />
