@@ -155,21 +155,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     //This uses the wrapper
     private void downloadURLs() {
         try {
-            OONISession session = EngineProvider.get().newSession(EngineProvider.get().getDefaultSessionConfig(
-                    app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray(), proxy));
-            OONIContext ooniContext = session.newContextWithTimeout(30);
-
-            ThirdPartyServices.addLogExtra("ooniContext", app.getGson().toJson(ooniContext));
-
-            session.maybeUpdateResources(ooniContext);
-            OONIURLListConfig config = new OONIURLListConfig();
-            config.setCategories(app.getPreferenceManager().getEnabledCategoryArr().toArray(new String[0]));
-
-            ThirdPartyServices.addLogExtra("config", app.getGson().toJson(config));
-
-            OONIURLListResult results = session.fetchURLList(ooniContext, config);
-
-            ThirdPartyServices.addLogExtra("results", app.getGson().toJson(results));
+            OONIURLListResult results = app.getUrlsManager().downloadUrls();
 
             if (results.getUrls().size() == 0) {
                 publishProgress(ERR, app.getString(R.string.Modal_Error_CantDownloadURLs));

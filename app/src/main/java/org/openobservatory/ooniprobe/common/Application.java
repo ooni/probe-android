@@ -21,6 +21,7 @@ import org.openobservatory.ooniprobe.di.ApplicationModule;
 import org.openobservatory.ooniprobe.di.DaggerAppComponent;
 import org.openobservatory.ooniprobe.di.FragmentComponent;
 import org.openobservatory.ooniprobe.di.ServiceComponent;
+import org.openobservatory.ooniprobe.domain.UrlsManager;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 
 import javax.inject.Inject;
@@ -33,7 +34,7 @@ public class Application extends android.app.Application {
 	@Inject Gson _gson;
 	@Inject OkHttpClient _okHttpClient;
 	@Inject OONIAPIClient _apiClient;
-
+	@Inject UrlsManager urlsManager;
 	public AppComponent component;
 
 	@Override public void onCreate() {
@@ -78,6 +79,10 @@ public class Application extends android.app.Application {
 
 	public Gson getGson() {
 		return _gson;
+	}
+
+	public UrlsManager getUrlsManager() {
+		return urlsManager;
 	}
 
 	public boolean isTestRunning() {
