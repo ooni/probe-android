@@ -9,6 +9,7 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.common.collect.Lists;
 
 import org.openobservatory.engine.OONIURLInfo;
@@ -103,7 +104,32 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
     }
 
     void loadFromWebConnectivity() {
-        new FetchUrlsAndAddToList().execute();
+        new FetchUrlsAsyncTask(urlsManager, new FetchUrlListener() {
+            @Override
+            public void onPreExecute() {
+
+                binding.loadFromWebConnectivity.setVisibility(View.INVISIBLE);
+                binding.progressIndicator.setVisibility(View.VISIBLE);
+                binding.bottomBar.getMenu().findItem(R.id.runButton).setEnabled(false);
+            }
+
+            @Override
+            public void onPostExecute(OONIURLListResult result) {
+
+                if (result != null) {
+                    adapter.addAll(Lists.transform(result.getUrls(), OONIURLInfo::getUrl));
+                    adapter.notifyDataSetChanged();
+                    binding.bottomBar.setTitle(getString(R.string.OONIRun_URLs, Integer.toString(adapter.getItemCount())));
+                    CustomWebsiteActivity.this.scrollToBottom();
+                } else {
+                    Snackbar.make(binding.getRoot(), R.string.Modal_Error_CantDownloadURLs, Snackbar.LENGTH_LONG).show();
+                    binding.loadFromWebConnectivity.setVisibility(View.VISIBLE);
+                }
+
+                binding.progressIndicator.setVisibility(View.INVISIBLE);
+                binding.bottomBar.getMenu().findItem(R.id.runButton).setEnabled(true);
+            }
+        }).execute();
     }
 
     void scrollToBottom() {
@@ -117,13 +143,25 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
             super.onBackPressed();
     }
 
-    private final class FetchUrlsAndAddToList extends AsyncTask<Void, Void, OONIURLListResult> {
+    interface FetchUrlListener {
+        void onPreExecute();
+
+        void onPostExecute(OONIURLListResult result);
+    }
+
+    private final static class FetchUrlsAsyncTask extends AsyncTask<Void, Void, OONIURLListResult> {
+        private final FetchUrlListener listener;
+        private final UrlsManager urlsManager;
+
+        public FetchUrlsAsyncTask(UrlsManager urlsManager, FetchUrlListener listener) {
+            this.listener = listener;
+            this.urlsManager = urlsManager;
+        }
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            binding.loadFromWebConnectivity.setVisibility(View.INVISIBLE);
-            binding.progressIndicator.setVisibility(View.VISIBLE);
-            binding.bottomBar.getMenu().findItem(R.id.runButton).setEnabled(false);
+            listener.onPreExecute();
         }
 
         @Override
@@ -140,15 +178,7 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
 
         @Override
         protected void onPostExecute(OONIURLListResult result) {
-            if (result != null) {
-                adapter.addAll(Lists.transform(result.getUrls(), OONIURLInfo::getUrl));
-                adapter.notifyDataSetChanged();
-                binding.bottomBar.setTitle(getString(R.string.OONIRun_URLs, Integer.toString(adapter.getItemCount())));
-                CustomWebsiteActivity.this.scrollToBottom();
-            }
-
-            binding.progressIndicator.setVisibility(View.INVISIBLE);
-            binding.bottomBar.getMenu().findItem(R.id.runButton).setEnabled(true);
+            listener.onPostExecute(result);
         }
     }
 }
