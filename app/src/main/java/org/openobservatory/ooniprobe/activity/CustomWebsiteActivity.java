@@ -5,8 +5,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,15 +32,13 @@ import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 
 public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
 
-    private ActivityCustomwebsiteBinding binding;
-    private ArrayList<EditText> editTexts;
-    private ArrayList<ImageButton> deletes;
-
     @Inject
     PreferenceManager preferenceManager;
 
     @Inject
     UrlsManager urlsManager;
+
+    private ActivityCustomwebsiteBinding binding;
 
     private CustomWebsiteRecyclerViewAdapter adapter;
 
@@ -50,29 +46,21 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActivityComponent().inject(this);
-//        setContentView(R.layout.activity_customwebsite);
         binding = ActivityCustomwebsiteBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-//        ButterKnife.bind(this);
-        editTexts = new ArrayList<>();
-        deletes = new ArrayList<>();
         binding.bottomBar.inflateMenu(R.menu.run);
         binding.bottomBar.setOnMenuItemClickListener(item -> {
-            int itemSize = adapter.getItemCount();
             List<String> items = adapter.getItems();
-            if (!checkPrefix())
-                return false;
-            ArrayList<String> urls = new ArrayList<>(editTexts.size());
-            for (EditText editText : editTexts) {
-                String value = editText.getText().toString();
+            ArrayList<String> urls = new ArrayList<>(items.size());
+            for (String value : items) {
                 String sanitizedUrl = value.replaceAll("\\r\\n|\\r|\\n", " ");
                 //https://support.microsoft.com/en-us/help/208427/maximum-url-length-is-2-083-characters-in-internet-explorer
                 if (Patterns.WEB_URL.matcher(sanitizedUrl).matches() && sanitizedUrl.length() < 2084)
                     urls.add(Url.checkExistingUrl(sanitizedUrl).toString());
             }
             WebsitesSuite suite = new WebsitesSuite();
-            suite.getTestList(preferenceManager)[0].setInputs(items);
+            suite.getTestList(preferenceManager)[0].setInputs(urls);
 
             RunningActivity.runAsForegroundService(CustomWebsiteActivity.this, suite.asArray(), this::finish);
             return true;
@@ -81,8 +69,9 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
         binding.loadFromWebConnectivity.setOnClickListener(v -> loadFromWebConnectivity());
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         binding.urlContainer.setLayoutManager(layoutManager);
-//        items = new ArrayList<>();
-        adapter = new CustomWebsiteRecyclerViewAdapter(new ArrayList<>());
+        adapter = new CustomWebsiteRecyclerViewAdapter(input -> {
+            binding.bottomBar.setTitle(getString(R.string.OONIRun_URLs, Integer.toString(adapter.getItemCount())));
+        });
         binding.urlContainer.setAdapter(adapter);
         add();
     }
@@ -90,29 +79,14 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
     @Override
     public void onBackPressed() {
         String base = getString(R.string.http);
-        boolean edited = false;
-        for (EditText editText : editTexts)
-            if (!editText.getText().toString().equals(base)) {
-                edited = true;
-                break;
-            }
+        boolean edited = adapter.getItemCount() > 0 && !adapter.getItems().get(0).equals(base);
+
         if (edited)
             new ConfirmDialogFragment.Builder()
                     .withMessage(getString(R.string.Modal_CustomURL_NotSaved))
                     .build().show(getSupportFragmentManager(), null);
         else
             super.onBackPressed();
-    }
-
-    public boolean checkPrefix() {
-        boolean prefix = true;
-        for (EditText editText : editTexts)
-            if (!editText.getText().toString().contains("http://")
-                    && !editText.getText().toString().contains("https://")) {
-                prefix = false;
-                editText.setError(getString(R.string.Settings_Websites_CustomURL_NoURLEntered));
-            }
-        return prefix;
     }
 
     @Override
@@ -122,33 +96,19 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
     }
 
     void add() {
-        /*ViewGroup urlBox = (ViewGroup) getLayoutInflater().inflate(R.layout.edittext_url, binding.urlContainer, false);
-        EditText editText = urlBox.findViewById(R.id.editText);
-        editTexts.add(editText);
-        binding.urlContainer.addView(urlBox);
-        ImageButton delete = urlBox.findViewById(R.id.delete);
-        deletes.add(delete);
-        delete.setTag(editText);
-        delete.setOnClickListener(v -> {
-            EditText tag = (EditText) v.getTag();
-            ((View) v.getParent()).setVisibility(View.GONE);
-            editTexts.remove(tag);
-            deletes.remove(v);
-            binding.bottomBar.setTitle(getString(R.string.OONIRun_URLs, Integer.toString(editTexts.size())));
-            setVisibilityDelete();
-        });
-        setVisibilityDelete();*/
-        adapter.addAll(Collections.singletonList("http://google.com"));
+        adapter.addAll(Collections.singletonList(getString(R.string.http)));
         binding.bottomBar.setTitle(getString(R.string.OONIRun_URLs, Integer.toString(adapter.getItemCount())));
+        adapter.notifyDataSetChanged();
+        this.scrollToBottom();
     }
 
     void loadFromWebConnectivity() {
         new FetchUrlsAndAddToList().execute();
     }
 
-    private void setVisibilityDelete() {
-        for (ImageButton delete : deletes)
-            delete.setVisibility(deletes.size() > 1 ? View.VISIBLE : View.INVISIBLE);
+    void scrollToBottom() {
+        binding.urlContainer.scrollToPosition(adapter.getItemCount() - 1);
+        binding.urlsList.post(() -> binding.urlsList.fullScroll(View.FOCUS_DOWN));
     }
 
     @Override
@@ -158,6 +118,13 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
     }
 
     private final class FetchUrlsAndAddToList extends AsyncTask<Void, Void, OONIURLListResult> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            binding.loadFromWebConnectivity.setVisibility(View.INVISIBLE);
+            binding.progressIndicator.setVisibility(View.VISIBLE);
+            binding.bottomBar.getMenu().findItem(R.id.runButton).setEnabled(false);
+        }
 
         @Override
         protected OONIURLListResult doInBackground(Void... params) {
@@ -177,28 +144,12 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
                 adapter.addAll(Lists.transform(result.getUrls(), OONIURLInfo::getUrl));
                 adapter.notifyDataSetChanged();
                 binding.bottomBar.setTitle(getString(R.string.OONIRun_URLs, Integer.toString(adapter.getItemCount())));
-
-                /*for (OONIURLInfo ooniurlInfo : result.getUrls()) {
-                    ViewGroup urlBox = (ViewGroup) getLayoutInflater().inflate(R.layout.edittext_url, binding.urlContainer, false);
-                    EditText editText = urlBox.findViewById(R.id.editText);
-                    editText.setText(ooniurlInfo.getUrl());
-                    editTexts.add(editText);
-                    binding.urlContainer.addView(urlBox);
-                    ImageButton delete = urlBox.findViewById(R.id.delete);
-                    deletes.add(delete);
-                    delete.setTag(editText);
-                    delete.setOnClickListener(v -> {
-                        EditText tag = (EditText) v.getTag();
-                        ((View) v.getParent()).setVisibility(View.GONE);
-                        editTexts.remove(tag);
-                        deletes.remove(v);
-                        binding.bottomBar.setTitle(getString(R.string.OONIRun_URLs, Integer.toString(editTexts.size())));
-                        setVisibilityDelete();
-                    });
-                    setVisibilityDelete();
-                    binding.bottomBar.setTitle(getString(R.string.OONIRun_URLs, Integer.toString(editTexts.size())));
-                }*/
+                CustomWebsiteActivity.this.scrollToBottom();
             }
+
+            binding.loadFromWebConnectivity.setVisibility(View.VISIBLE);
+            binding.progressIndicator.setVisibility(View.INVISIBLE);
+            binding.bottomBar.getMenu().findItem(R.id.runButton).setEnabled(true);
         }
     }
 }

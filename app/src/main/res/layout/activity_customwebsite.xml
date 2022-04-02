@@ -47,8 +47,14 @@
 					android:textAllCaps="false"
 					android:layout_gravity="end"
 					android:textColor="@color/color_black"
-					app:icon="@drawable/ic_baseline_add_36"
+					app:icon="@drawable/rerun"
 					app:iconTint="@color/color_black" />
+				<ProgressBar
+					android:id="@+id/progressIndicator"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:visibility="gone"
+					android:indeterminateOnly="true"/>
 			</LinearLayout>
 		</LinearLayout>
 	</ScrollView>
