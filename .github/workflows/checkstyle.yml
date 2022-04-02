@@ -1,6 +1,6 @@
 # Runs [checkstyle](https://github.com/checkstyle/checkstyle) with [reviewdog](https://github.com/reviewdog/reviewdog) on pull requests.
 name: checkstyle
-on: [push]
+on: pull_request
 jobs:
   checkstyle_job:
     runs-on: ubuntu-latest
