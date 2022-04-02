@@ -147,7 +147,6 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
                 CustomWebsiteActivity.this.scrollToBottom();
             }
 
-            binding.loadFromWebConnectivity.setVisibility(View.VISIBLE);
             binding.progressIndicator.setVisibility(View.INVISIBLE);
             binding.bottomBar.getMenu().findItem(R.id.runButton).setEnabled(true);
         }
