@@ -358,6 +358,11 @@
 			android:summary=""
 			android:widgetLayout="@layout/preference_button"
 			app:iconSpaceReserved="false" />
+		<SwitchPreferenceCompat
+			android:defaultValue="true"
+			android:key="@string/warn_vpn_in_use"
+			android:title="@string/Settings_WarmVPNInUse_Label"
+			app:iconSpaceReserved="false" />
 	</PreferenceScreen>
 	<PreferenceScreen
 		android:icon="@drawable/send_email"

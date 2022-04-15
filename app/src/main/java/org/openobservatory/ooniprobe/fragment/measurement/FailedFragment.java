@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
@@ -19,11 +20,16 @@ import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
 import java.util.Collections;
 
+import javax.inject.Inject;
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class FailedFragment extends Fragment {
 	private static final String MEASUREMENT = "measurement";
+
+	@Inject
+	PreferenceManager preferenceManager;
 
 	public static FailedFragment newInstance(Measurement measurement) {
 		Bundle args = new Bundle();
@@ -61,6 +67,6 @@ public class FailedFragment extends Fragment {
 						exception.printStackTrace();
 						ThirdPartyServices.logException(exception);
 					}
-				});
+				},preferenceManager);
 	}
 }

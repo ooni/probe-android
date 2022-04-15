@@ -87,7 +87,7 @@ public class OverviewActivity extends AbstractActivity {
 	}
 
 	@OnClick(R.id.run) void onRunClick() {
-		RunningActivity.runAsForegroundService(this, testSuite.asArray(), this::bindTestService);
+		RunningActivity.runAsForegroundService(this, testSuite.asArray(), this::bindTestService, preferenceManager);
 	}
 
 	@OnClick(R.id.customUrl) void customUrlClick() {
