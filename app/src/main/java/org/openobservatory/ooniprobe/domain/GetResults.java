@@ -4,7 +4,6 @@ import androidx.annotation.Nullable;
 
 import com.raizlabs.android.dbflow.sql.language.SQLOperator;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
-
 import org.openobservatory.ooniprobe.domain.models.DatedResults;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;

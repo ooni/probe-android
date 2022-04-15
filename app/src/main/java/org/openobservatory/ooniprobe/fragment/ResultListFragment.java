@@ -19,6 +19,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,6 +32,8 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
 import org.openobservatory.ooniprobe.activity.TextActivity;
+import org.openobservatory.ooniprobe.adapters.ResultListAdapter;
+import org.openobservatory.ooniprobe.adapters.diff.ResultComparator;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
@@ -66,7 +69,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnItemSelected;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
-import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerAdapter;
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
 public class ResultListFragment extends Fragment implements View.OnClickListener, View.OnLongClickListener, ConfirmDialogFragment.OnConfirmedListener {
@@ -88,19 +90,18 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     RecyclerView recycler;
     @BindView(R.id.emptyState)
     TextView emptyState;
-    private ArrayList<HeterogeneousRecyclerItem> items;
-    private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
-    private boolean refresh;
-    private Snackbar snackbar;
-
     @Inject
     MeasurementsManager measurementsManager;
-
     @Inject
     GetResults getResults;
-
     @Inject
     PreferenceManager pm;
+    private ArrayList<HeterogeneousRecyclerItem> items;
+    //    private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
+    private ResultListAdapter mAdapter;
+    private boolean refresh;
+    private Snackbar snackbar;
+    private ResultListViewModel mViewModel;
 
     @Nullable
     @Override
@@ -109,6 +110,9 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         ButterKnife.bind(this, v);
         ((Application) getActivity().getApplication()).getFragmentComponent().inject(this);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        // Create ViewModel
+        mViewModel = new ViewModelProvider(this).get(ResultListViewModel.class);
+
         setHasOptionsMenu(true);
         getActivity().setTitle(R.string.TestResults_Overview_Title);
         reloadHeader();
@@ -116,8 +120,12 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         recycler.setLayoutManager(layoutManager);
         recycler.addItemDecoration(new DividerItemDecoration(getActivity(), layoutManager.getOrientation()));
         items = new ArrayList<>();
-        adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
-        recycler.setAdapter(adapter);
+//        adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
+        mAdapter = new ResultListAdapter(new ResultComparator(), this, this);
+        mViewModel.pagingData.observe(getViewLifecycleOwner(), resultPagingData -> {
+            mAdapter.submitData(getLifecycle(), resultPagingData);
+        });
+        recycler.setAdapter(mAdapter);
         snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsSomeNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll, v1 ->
                         new ConfirmDialogFragment.Builder()
@@ -184,6 +192,10 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         items.clear();
 
         String filter = getResources().getStringArray(R.array.filterTestValues)[filterTests.getSelectedItemPosition()];
+        mViewModel.init(filter);
+        mViewModel.pagingData.observe(getViewLifecycleOwner(), resultPagingData -> {
+            mAdapter.submitData(getLifecycle(), resultPagingData);
+        });
         List<DatedResults> list = getResults.getGroupedByMonth(filter);
 
         if (list.isEmpty()) {
@@ -221,7 +233,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
                     }
                 }
             }
-            adapter.notifyTypesChanged();
+//            adapter.notifyTypesChanged();
         }
     }
 
@@ -248,11 +260,9 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         if (serializable.equals(R.string.Modal_ResultsNotUploaded_Title)) {
             if (i == DialogInterface.BUTTON_POSITIVE) {
                 new ResubmitAsyncTask(this, pm.getProxyURL()).execute(null, null);
-            }
-            else if (i == DialogInterface.BUTTON_NEUTRAL) {
+            } else if (i == DialogInterface.BUTTON_NEUTRAL) {
                 startActivity(TextActivity.newIntent(getActivity(), TextActivity.TYPE_UPLOAD_LOG, (String) serializable));
-            }
-            else
+            } else
                 snackbar.show();
         } else if (i == DialogInterface.BUTTON_POSITIVE) {
             if (serializable instanceof Result)
