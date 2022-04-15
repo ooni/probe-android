@@ -99,7 +99,7 @@
 	</style>
 
 	<style name="Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar.Experimental">
-		<item name="colorPrimary">@color/color_gray7</item>
+		<item name="colorPrimary">@color/color_gray7_1</item>
 		<item name="colorPrimaryDark">@color/color_gray8</item>
 	</style>
 
@@ -149,7 +149,7 @@
 	</style>
 
 	<style name="Theme.MaterialComponents.NoActionBar.App.Experimental">
-		<item name="colorPrimary">@color/color_gray7</item>
+		<item name="colorPrimary">@color/color_gray7_1</item>
 		<item name="colorPrimaryDark">@color/color_gray8</item>
 		<item name="android:windowBackground">@color/color_gray7</item>
 	</style>
