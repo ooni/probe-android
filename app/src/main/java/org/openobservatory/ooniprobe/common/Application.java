@@ -23,6 +23,8 @@ import org.openobservatory.ooniprobe.di.FragmentComponent;
 import org.openobservatory.ooniprobe.di.ServiceComponent;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 
+import java.util.Locale;
+
 import javax.inject.Inject;
 
 import okhttp3.OkHttpClient;
@@ -50,6 +52,9 @@ public class Application extends android.app.Application {
 			Measurement.deleteUploadedJsons(this);
 		Measurement.deleteOldLogs(this);
 		ThirdPartyServices.reloadConsents(this);
+
+		LocaleUtils.setLocale(new Locale(_preferenceManager.getSettingsLanguage()));
+		LocaleUtils.updateConfig(this, getBaseContext().getResources().getConfiguration());
 	}
 
 	protected AppComponent buildDagger() {

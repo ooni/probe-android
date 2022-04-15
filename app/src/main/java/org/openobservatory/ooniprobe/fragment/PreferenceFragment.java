@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -189,7 +190,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                 checkAtLeastOneEnabled(sharedPreferences, key);
         }
 
-        if (key.equals(getString(R.string.theme_enabled))) {
+        if (key.equals(getString(R.string.theme_enabled)) || key.equals(getString(R.string.language_setting))) {
             Toast.makeText(getActivity(), "Please restart the app for apply changes.", Toast.LENGTH_LONG).show();
             getActivity().finishAffinity();
         }
