@@ -19,9 +19,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
+import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.OverviewActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.item.TestsuiteItem;
@@ -30,6 +32,9 @@ import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
 import java.util.ArrayList;
+import java.util.Objects;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,6 +47,9 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     @BindView(R.id.run_all) TextView runAll;
 	@BindView(R.id.vpn) TextView vpn;
 
+	@Inject
+	PreferenceManager preferenceManager;
+
 	private ArrayList<TestsuiteItem> items;
 	private ArrayList<AbstractSuite> testSuites;
 	private HeterogeneousRecyclerAdapter<TestsuiteItem> adapter;
@@ -49,6 +57,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_dashboard, container, false);
 		ButterKnife.bind(this, v);
+		((Application) getActivity().getApplication()).getFragmentComponent().inject(this);
 		((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 		((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(null);
 		items = new ArrayList<>();
@@ -70,7 +79,8 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 			items.add(new TestsuiteItem(testSuite, this));
 		setLastTest();
 		adapter.notifyTypesChanged();
-		if (ReachabilityManager.isVPNinUse(this.getContext()))
+		if (ReachabilityManager.isVPNinUse(this.getContext())
+				&& preferenceManager.isWarnVPNInUse())
 			vpn.setVisibility(View.VISIBLE);
 		else
 			vpn.setVisibility(View.GONE);
@@ -89,7 +99,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 	}
 
     public void runAll() {
-        RunningActivity.runAsForegroundService((AbstractActivity) getActivity(), testSuites, this::onTestServiceStartedListener);
+        RunningActivity.runAsForegroundService((AbstractActivity) getActivity(), testSuites, this::onTestServiceStartedListener, preferenceManager);
     }
 
     private void onTestServiceStartedListener() {
@@ -108,7 +118,8 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                 RunningActivity.runAsForegroundService(
                         (AbstractActivity) getActivity(),
                         testSuite.asArray(),
-                        this::onTestServiceStartedListener
+                        this::onTestServiceStartedListener,
+						preferenceManager
                 );
 				break;
 			default:

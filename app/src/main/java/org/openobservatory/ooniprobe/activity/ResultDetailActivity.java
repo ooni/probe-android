@@ -26,6 +26,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.domain.GetResults;
 import org.openobservatory.ooniprobe.domain.GetTestSuite;
@@ -81,6 +82,9 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 
     @Inject
     GetResults getResults;
+
+    @Inject
+    PreferenceManager preferenceManager;
 
     public static Intent newIntent(Context context, int id) {
         return new Intent(context, ResultDetailActivity.class).putExtra(ID, id);
@@ -153,7 +157,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
     }
 
     private void reTestWebsites() {
-        RunningActivity.runAsForegroundService(this, getTestSuite.getFrom(result).asArray(),this::finish);
+        RunningActivity.runAsForegroundService(this, getTestSuite.getFrom(result).asArray(),this::finish, preferenceManager);
     }
 
     private void runAsyncTask() {
