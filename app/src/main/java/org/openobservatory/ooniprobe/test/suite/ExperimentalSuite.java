@@ -18,7 +18,7 @@ public class ExperimentalSuite extends AbstractSuite {
                 R.string.Dashboard_Experimental_Card_Description,
                 R.drawable.test_experimental,
                 R.drawable.test_experimental_24,
-                R.color.color_gray7,
+                R.color.color_gray7_1,
                 R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Experimental,
                 R.style.Theme_MaterialComponents_NoActionBar_App_Experimental,
                 R.string.Dashboard_Experimental_Overview_Paragraph,
