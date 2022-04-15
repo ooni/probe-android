@@ -316,6 +316,14 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.automated_testing_enabled), false);
 	}
 
+	public String getSettingsLanguage() {
+		String language = sp.getString(r.getString(R.string.language_setting), Locale.getDefault().getLanguage());
+		if (language.equals("auto")) {
+			return Locale.getDefault().getLanguage();
+		}
+		return language;
+	}
+
 	public void enableAutomatedTesting() {
 		sp.edit().putBoolean(r.getString(R.string.automated_testing_enabled), true)
 				.apply();
