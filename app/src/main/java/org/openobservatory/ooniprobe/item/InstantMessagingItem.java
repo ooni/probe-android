@@ -21,6 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
+@Deprecated
 public class InstantMessagingItem extends HeterogeneousRecyclerItem<Result, InstantMessagingItem.ViewHolder> {
 	private final View.OnClickListener onClickListener;
 	private final View.OnLongClickListener onLongClickListener;

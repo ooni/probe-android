@@ -39,29 +39,12 @@ import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.domain.GetResults;
 import org.openobservatory.ooniprobe.domain.MeasurementsManager;
-import org.openobservatory.ooniprobe.domain.models.DatedResults;
-import org.openobservatory.ooniprobe.item.CircumventionItem;
-import org.openobservatory.ooniprobe.item.DateItem;
-import org.openobservatory.ooniprobe.item.ExperimentalItem;
-import org.openobservatory.ooniprobe.item.FailedItem;
-import org.openobservatory.ooniprobe.item.InstantMessagingItem;
-import org.openobservatory.ooniprobe.item.MiddleboxesItem;
-import org.openobservatory.ooniprobe.item.PerformanceItem;
-import org.openobservatory.ooniprobe.item.WebsiteItem;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
-import org.openobservatory.ooniprobe.test.suite.CircumventionSuite;
-import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
-import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
-import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
-import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
-import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
 import java.io.Serializable;
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -69,7 +52,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnItemSelected;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
-import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
 public class ResultListFragment extends Fragment implements View.OnClickListener, View.OnLongClickListener, ConfirmDialogFragment.OnConfirmedListener {
     @BindView(R.id.coordinatorLayout)
@@ -96,8 +78,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     GetResults getResults;
     @Inject
     PreferenceManager pm;
-    private ArrayList<HeterogeneousRecyclerItem> items;
-    //    private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
+
     private ResultListAdapter mAdapter;
     private boolean refresh;
     private Snackbar snackbar;
@@ -119,12 +100,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recycler.setLayoutManager(layoutManager);
         recycler.addItemDecoration(new DividerItemDecoration(getActivity(), layoutManager.getOrientation()));
-        items = new ArrayList<>();
-//        adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
         mAdapter = new ResultListAdapter(new ResultComparator(), this, this);
-        mViewModel.pagingData.observe(getViewLifecycleOwner(), resultPagingData -> {
-            mAdapter.submitData(getLifecycle(), resultPagingData);
-        });
         recycler.setAdapter(mAdapter);
         snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsSomeNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll, v1 ->
@@ -189,52 +165,11 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
             snackbar.dismiss();
         }
 
-        items.clear();
-
         String filter = getResources().getStringArray(R.array.filterTestValues)[filterTests.getSelectedItemPosition()];
         mViewModel.init(filter);
         mViewModel.pagingData.observe(getViewLifecycleOwner(), resultPagingData -> {
             mAdapter.submitData(getLifecycle(), resultPagingData);
         });
-        List<DatedResults> list = getResults.getGroupedByMonth(filter);
-
-        if (list.isEmpty()) {
-            emptyState.setVisibility(View.VISIBLE);
-            recycler.setVisibility(View.GONE);
-        } else {
-            emptyState.setVisibility(View.GONE);
-            recycler.setVisibility(View.VISIBLE);
-            for (DatedResults group : list) {
-                items.add(new DateItem(group.getGroupedDate()));
-                for (Result result : group.getResultsList()) {
-                    if (result.countTotalMeasurements() == 0)
-                        items.add(new FailedItem(result, this, this));
-                    else {
-                        switch (result.test_group_name) {
-                            case WebsitesSuite.NAME:
-                                items.add(new WebsiteItem(result, this, this));
-                                break;
-                            case InstantMessagingSuite.NAME:
-                                items.add(new InstantMessagingItem(result, this, this));
-                                break;
-                            case MiddleBoxesSuite.NAME:
-                                items.add(new MiddleboxesItem(result, this, this));
-                                break;
-                            case PerformanceSuite.NAME:
-                                items.add(new PerformanceItem(result, this, this));
-                                break;
-                            case CircumventionSuite.NAME:
-                                items.add(new CircumventionItem(result, this, this));
-                                break;
-                            case ExperimentalSuite.NAME:
-                                items.add(new ExperimentalItem(result, this, this));
-                                break;
-                        }
-                    }
-                }
-            }
-//            adapter.notifyTypesChanged();
-        }
     }
 
     @Override
@@ -281,7 +216,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     }
 
     private static class ResubmitAsyncTask extends ResubmitTask<AbstractActivity> {
-        private WeakReference<ResultListFragment> wf;
+        private final WeakReference<ResultListFragment> wf;
 
         ResubmitAsyncTask(ResultListFragment f, String proxy) {
             super((AbstractActivity) f.getActivity(), proxy);

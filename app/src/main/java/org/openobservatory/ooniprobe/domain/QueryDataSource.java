@@ -33,19 +33,16 @@ public class QueryDataSource extends PagingSource<Integer, Result> {
     public LoadResult.Page<Integer, Result> load(@NonNull LoadParams<Integer> loadParams, @NonNull Continuation<? super LoadResult<Integer, Result>> continuation) {
         // Key may be null during a refresh, if no explicit key is passed into Pager
         // construction. Use 0 as default, because our API is indexed started at index 0
-        int pageNumber = loadParams.getKey() != null ? loadParams.getKey() : 1;
+        int pageNumber = loadParams.getKey() != null ? loadParams.getKey() : 0;
 
         SQLOperator[] conditions = (testGroupNameFilter != null && !testGroupNameFilter.isEmpty())
                 ? new SQLOperator[]{Result_Table.test_group_name.is(testGroupNameFilter)}
                 : new SQLOperator[0];
 
-        // Suspending network load via Retrofit. This doesn't need to be wrapped in a
-        // withContext(Dispatcher.IO) { ... } block since Retrofit's Coroutine
-        // CallAdapter dispatches on a worker thread.
         List<Result> response = SQLite.select().from(Result.class)
                 .where(conditions)
                 .limit(20)
-                .offset((pageNumber - 1) * 20)
+                .offset(pageNumber * 20)
                 .orderBy(Result_Table.start_time, false)
                 .queryList();
 
