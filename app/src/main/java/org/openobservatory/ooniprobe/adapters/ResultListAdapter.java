@@ -53,29 +53,29 @@ public class ResultListAdapter extends PagingDataAdapter<ResultListAdapter.UiMod
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ViewBinding binding;
-        switch (viewType) {
-            case -2:
+        switch (ViewItemType.valueOfViewType(viewType)) {
+            case separator:
                 binding = ItemDateBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
                 break;
-            case -1:
+            case failed:
                 binding = ItemFailedBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
                 break;
-            case 0:
+            case website:
                 binding = ItemWebsitesBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
                 break;
-            case 1:
+            case instantMessaging:
                 binding = ItemInstantmessagingBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
                 break;
-            case 2:
+            case middleBox:
                 binding = ItemMiddleboxesBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
                 break;
-            case 3:
+            case performance:
                 binding = ItemPerformanceBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
                 break;
-            case 4:
+            case circumvention:
                 binding = ItemCircumventionBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
                 break;
-            case 5:
+            case experimental:
             default:
                 binding = ItemExperimentalBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
                 break;
@@ -96,8 +96,8 @@ public class ResultListAdapter extends PagingDataAdapter<ResultListAdapter.UiMod
                 holder.itemView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), result.is_viewed ? android.R.color.transparent : R.color.color_yellow0));
 
                 Context context = holder.itemView.getContext();
-                switch (holder.getItemViewType()) {
-                    case -1: {
+                switch (ViewItemType.valueOfViewType(holder.getItemViewType())) {
+                    case failed: {
                         ViewHolder<ItemFailedBinding> vHolder = (ViewHolder<ItemFailedBinding>) holder;
                         vHolder.itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.color_gray2));
                         vHolder.binding.testName.setTextColor(ContextCompat.getColor(context, R.color.color_gray6));
@@ -110,7 +110,7 @@ public class ResultListAdapter extends PagingDataAdapter<ResultListAdapter.UiMod
                         vHolder.binding.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), result.start_time));
                     }
                     break;
-                    case 0: {
+                    case website: {
                         ViewHolder<ItemWebsitesBinding> websitesBinding = (ViewHolder<ItemWebsitesBinding>) holder;
                         websitesBinding.binding.asnName.setText(Network.toString(websitesBinding.binding.asnName.getContext(), result.network));
                         websitesBinding.binding.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), result.start_time));
@@ -128,7 +128,7 @@ public class ResultListAdapter extends PagingDataAdapter<ResultListAdapter.UiMod
 
                     }
                     break;
-                    case 1: {
+                    case instantMessaging: {
                         ViewHolder<ItemInstantmessagingBinding> iBinding = (ViewHolder<ItemInstantmessagingBinding>) holder;
                         iBinding.binding.asnName.setText(Network.toString(iBinding.binding.asnName.getContext(), result.network));
                         iBinding.binding.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), result.start_time));
@@ -144,7 +144,7 @@ public class ResultListAdapter extends PagingDataAdapter<ResultListAdapter.UiMod
                         iBinding.binding.startTime.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, allUploaded ? 0 : R.drawable.cloudoff, 0);
                     }
                     break;
-                    case 2: {
+                    case middleBox: {
                         ViewHolder<ItemMiddleboxesBinding> mBinding = (ViewHolder<ItemMiddleboxesBinding>) holder;
                         mBinding.binding.asnName.setText(Network.toString(mBinding.binding.asnName.getContext(), result.network));
                         mBinding.binding.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), result.start_time));
@@ -168,7 +168,7 @@ public class ResultListAdapter extends PagingDataAdapter<ResultListAdapter.UiMod
 
                     }
                     break;
-                    case 3: {
+                    case performance: {
                         ViewHolder<ItemPerformanceBinding> pBinding = (ViewHolder<ItemPerformanceBinding>) holder;
                         pBinding.binding.asnName.setText(Network.toString(pBinding.binding.asnName.getContext(), result.network));
                         pBinding.binding.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), result.start_time));
@@ -187,7 +187,7 @@ public class ResultListAdapter extends PagingDataAdapter<ResultListAdapter.UiMod
 
                     }
                     break;
-                    case 4: {
+                    case circumvention: {
                         ViewHolder<ItemCircumventionBinding> cBinding = (ViewHolder<ItemCircumventionBinding>) holder;
                         cBinding.binding.asnName.setText(Network.toString(cBinding.binding.asnName.getContext(), result.network));
                         cBinding.binding.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), result.start_time));
@@ -204,7 +204,7 @@ public class ResultListAdapter extends PagingDataAdapter<ResultListAdapter.UiMod
 
                     }
                     break;
-                    case 5:
+                    case experimental:
                     default: {
                         ViewHolder<ItemExperimentalBinding> defaultHolder = (ViewHolder<ItemExperimentalBinding>) holder;
                         defaultHolder.binding.asnName.setText(Network.toString(defaultHolder.binding.asnName.getContext(), result.network));
@@ -229,26 +229,45 @@ public class ResultListAdapter extends PagingDataAdapter<ResultListAdapter.UiMod
     public int getItemViewType(int position) {
         UiModel iResult = Objects.requireNonNull(getItem(position));
         if (iResult instanceof UiModel.SeparatorModel) {
-            return -2;
+            return ViewItemType.separator.viewType;
         }
         Result result = ((UiModel.ResultModel) iResult).item;
         if (result.countTotalMeasurements() == 0) {
-            return -1;
+            return ViewItemType.failed.viewType;
         }
         switch (result.test_group_name) {
             case WebsitesSuite.NAME:
-                return 0;
+                return ViewItemType.website.viewType;
             case InstantMessagingSuite.NAME:
-                return 1;
+                return ViewItemType.instantMessaging.viewType;
             case MiddleBoxesSuite.NAME:
-                return 2;
+                return ViewItemType.middleBox.viewType;
             case PerformanceSuite.NAME:
-                return 3;
+                return ViewItemType.performance.viewType;
             case CircumventionSuite.NAME:
-                return 4;
+                return ViewItemType.circumvention.viewType;
             case ExperimentalSuite.NAME:
             default:
-                return 5;
+                return ViewItemType.experimental.viewType;
+        }
+    }
+
+    public enum ViewItemType {
+        website(0), instantMessaging(1), middleBox(2), performance(3), circumvention(4), experimental(5), failed(-1), separator(-2);
+
+        private final int viewType;
+
+        ViewItemType(int viewType) {
+            this.viewType = viewType;
+        }
+
+        public static ViewItemType valueOfViewType(int viewType) {
+            for (ViewItemType viewItemType : values()) {
+                if (viewItemType.viewType == viewType) {
+                    return viewItemType;
+                }
+            }
+            return ViewItemType.experimental;
         }
     }
 
