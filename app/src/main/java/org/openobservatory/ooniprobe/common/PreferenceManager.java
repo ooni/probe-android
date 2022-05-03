@@ -165,6 +165,14 @@ public class PreferenceManager {
 		return sp.getString(r.getString(R.string.proxy_hostname), "");
 	}
 
+	public void setLastKnownNetwork(String network) {
+		sp.edit().putString("last_known_network", network).apply();
+	}
+
+	public String getLastKnownNetwork() {
+		return sp.getString("last_known_network", "");
+	}
+
 	public void setProxyHostname(String value) {
 		sp.edit()
 			.putString(r.getString(R.string.proxy_hostname), value)
