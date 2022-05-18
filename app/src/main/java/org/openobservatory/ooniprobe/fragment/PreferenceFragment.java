@@ -159,6 +159,13 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                 ServiceUtil.stopJob(getContext());
             }
         }
+        if (key.equals(getString(R.string.automatically_run_test_on_network_change))) {
+            if (sharedPreferences.getBoolean(key, false)) {
+                ServiceUtil.scheduleConnectivityChangeService(getContext());
+            } else {
+                ServiceUtil.stopConnectivityChangeService(getContext());
+            }
+        }
         if (key.equals(getString(R.string.automated_testing_charging)) ||
                 key.equals(getString(R.string.automated_testing_wifionly))){
             //stop and re-enable scheduler in case of wifi charging option changed

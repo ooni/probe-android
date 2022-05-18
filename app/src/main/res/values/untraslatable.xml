@@ -38,6 +38,7 @@
 	<string name="storage_usage" translatable="false">storage_usage</string>
 	<string name="send_crash" translatable="false">send_crash</string>
 	<string name="warn_vpn_in_use" translatable="false">warn_vpn_in_use</string>
+	<string name="automatically_run_test_on_network_change" translatable="false">automatically_run_test_on_network_change</string>
 	<string name="run_http_invalid_request_line" translatable="false">run_http_invalid_request_line</string>
 	<string name="run_http_header_field_manipulation" translatable="false">run_http_header_field_manipulation</string>
 	<string name="test_whatsapp" translatable="false">test_whatsapp</string>

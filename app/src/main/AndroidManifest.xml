@@ -159,6 +159,10 @@
 			android:name=".common.service.RunTestJobService"
 			android:label="Run Test Service"
 			android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service
+            android:name=".common.service.ConnectivityChangeService"
+            android:enabled="true"
+            android:exported="true"/>
 	</application>
 
 </manifest>

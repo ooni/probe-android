@@ -372,6 +372,11 @@
 			android:key="@string/warn_vpn_in_use"
 			android:title="@string/Settings_WarmVPNInUse_Label"
 			app:iconSpaceReserved="false" />
+		<SwitchPreferenceCompat
+			android:defaultValue="true"
+			android:key="@string/automatically_run_test_on_network_change"
+			android:title="@string/automatically_run_test_on_network_change"
+			app:iconSpaceReserved="false" />
 	</PreferenceScreen>
 	<PreferenceScreen
 		android:icon="@drawable/send_email"

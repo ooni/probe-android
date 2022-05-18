@@ -104,6 +104,16 @@ public class ServiceUtil {
 
     }
 
+    public static void scheduleConnectivityChangeService(Context context) {
+        Intent backgroundService = new Intent(context.getApplicationContext(), ConnectivityChangeService.class);
+        context.startService(backgroundService);
+    }
+
+    public static void stopConnectivityChangeService(Context context) {
+        Intent myService = new Intent(context, ConnectivityChangeService.class);
+        context.stopService(myService);
+    }
+
     public static class Dependencies {
         @Inject
         GenerateAutoRunServiceSuite generateAutoRunServiceSuite;

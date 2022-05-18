@@ -2,7 +2,6 @@ package org.openobservatory.ooniprobe.common;
 
 import android.app.ActivityManager;
 import android.content.Intent;
-import android.content.IntentFilter;
 
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
@@ -15,7 +14,9 @@ import com.raizlabs.android.dbflow.config.FlowManager;
 
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.client.OONIAPIClient;
+import org.openobservatory.ooniprobe.common.service.ConnectivityChangeService;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
+import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.di.ActivityComponent;
 import org.openobservatory.ooniprobe.di.AppComponent;
 import org.openobservatory.ooniprobe.di.ApplicationModule;
@@ -23,7 +24,6 @@ import org.openobservatory.ooniprobe.di.DaggerAppComponent;
 import org.openobservatory.ooniprobe.di.FragmentComponent;
 import org.openobservatory.ooniprobe.di.ServiceComponent;
 import org.openobservatory.ooniprobe.model.database.Measurement;
-import org.openobservatory.ooniprobe.receiver.ConnectivityReceiver;
 
 import java.util.Locale;
 
@@ -55,17 +55,12 @@ public class Application extends android.app.Application {
 		Measurement.deleteOldLogs(this);
 		ThirdPartyServices.reloadConsents(this);
 
-		registerReceiver();
+		if (_preferenceManager.isAutomaticallyRunTestOnNetworkChange()){
+			ServiceUtil.scheduleConnectivityChangeService(this);
+		}
 
 		LocaleUtils.setLocale(new Locale(_preferenceManager.getSettingsLanguage()));
 		LocaleUtils.updateConfig(this, getBaseContext().getResources().getConfiguration());
-	}
-
-	private void registerReceiver() {
-		ConnectivityReceiver receiver = new ConnectivityReceiver();
-		IntentFilter filter = new IntentFilter();
-		filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
-		this.registerReceiver(receiver, filter);
 	}
 
 	protected AppComponent buildDagger() {

@@ -315,6 +315,10 @@ public class PreferenceManager {
 		return sp.getBoolean(AUTOTEST_DIALOG_DISABLE, false);
 	}
 
+	public boolean isAutomaticallyRunTestOnNetworkChange(){
+		return sp.getBoolean(r.getString(R.string.automatically_run_test_on_network_change), true);
+	}
+
 	public void disableAskAutomaticTestDialog() {
 		sp.edit().putBoolean(AUTOTEST_DIALOG_DISABLE, true)
 				.apply();
