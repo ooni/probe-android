@@ -26,6 +26,7 @@ android {
             dimension 'testing'
         }
     }
+    namespace 'org.openobservatory.engine'
 }
 
 dependencies {
