@@ -257,54 +257,54 @@
 	<string name="language_setting" translatable="false">language_setting</string>
 	<string-array name="language_sort_options">
 		<item>Automatic</item>
+		<item>Albanian</item>
 		<item>Arabic</item>
 		<item>Catalan</item>
-		<item>German</item>
-		<item>Greek</item>
-		<item>Spanish</item>
+		<item>Chinese (S)</item>
+		<item>Chinese (T)</item>
+		<item>Dutch</item>
 		<item>English</item>
 		<item>Farsi</item>
 		<item>French</item>
+		<item>German</item>
+		<item>Greek</item>
 		<item>Hindi</item>
-		<item>Indonesian</item>
 		<item>Icelandic</item>
+		<item>Indonesian</item>
 		<item>Italian</item>
-		<item>Dutch</item>
 		<item>Portuguese</item>
 		<item>Romanian</item>
 		<item>Russian</item>
-		<item>Swahili</item>
 		<item>Slovak</item>
-		<item>Albanian</item>
+		<item>Spanish</item>
+		<item>Swahili</item>
 		<item>Thai</item>
 		<item>Turkish</item>
-		<item>Chinese (S)</item>
-		<item>Chinese (T)</item>
 	</string-array>
 	<string-array name="language_sort_options_values">
 		<item>auto</item>
+		<item>sq</item>
 		<item>ar</item>
 		<item>ca</item>
-		<item>de</item>
-		<item>el</item>
-		<item>es</item>
+		<item>zh_CN</item>
+		<item>zh_TW</item>
+		<item>nl</item>
 		<item>en</item>
 		<item>fa</item>
 		<item>fr</item>
+		<item>de</item>
+		<item>el</item>
 		<item>hi</item>
-		<item>id</item>
 		<item>is</item>
+		<item>id</item>
 		<item>it</item>
-		<item>nl</item>
 		<item>pt_BR</item>
 		<item>ro</item>
 		<item>ru</item>
-		<item>sw</item>
 		<item>sk</item>
-		<item>sq</item>
+		<item>es</item>
+		<item>sw</item>
 		<item>th</item>
 		<item>tr</item>
-		<item>zh_CN</item>
-		<item>zh_TW</item>
 	</string-array>
 </resources>
