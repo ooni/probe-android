@@ -258,28 +258,28 @@
 	<string-array name="language_sort_options">
 		<item>Automatic</item>
 		<item>Albanian</item>
-		<item>Arabic</item>
-		<item>Catalan</item>
-		<item>Chinese (S)</item>
-		<item>Chinese (T)</item>
-		<item>Dutch</item>
+		<item>العربية</item>
+		<item>Català</item>
+		<item>中文 (S)</item>
+		<item>中文 (T)</item>
+		<item>Nederlands</item>
 		<item>English</item>
-		<item>Farsi</item>
-		<item>French</item>
-		<item>German</item>
-		<item>Greek</item>
-		<item>Hindi</item>
+		<item>فارسی</item>
+		<item>Français</item>
+		<item>Deutsch</item>
+		<item>Ελληνικά</item>
+		<item>हिन्दी</item>
 		<item>Icelandic</item>
-		<item>Indonesian</item>
-		<item>Italian</item>
-		<item>Portuguese</item>
-		<item>Romanian</item>
-		<item>Russian</item>
-		<item>Slovak</item>
-		<item>Spanish</item>
-		<item>Swahili</item>
-		<item>Thai</item>
-		<item>Turkish</item>
+		<item>Indonesia</item>
+		<item>Italiano</item>
+		<item>Português</item>
+		<item>Română</item>
+		<item>Pусский</item>
+		<item>Slovenčina</item>
+		<item>Español</item>
+		<item>Kiswahili</item>
+		<item>ไทย</item>
+		<item>Türkçe</item>
 	</string-array>
 	<string-array name="language_sort_options_values">
 		<item>auto</item>
