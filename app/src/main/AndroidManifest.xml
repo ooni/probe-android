@@ -151,6 +151,18 @@
 			</intent-filter>
 		</activity>
 
+        <activity
+            android:name=".activity.LogActivity"
+            android:exported="false"
+            android:label="LogActivity"
+            android:parentActivityName=".activity.PreferenceActivity">
+            <intent-filter>
+                <action android:name="org.openobservatory.ooniprobe.activity.LogActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
 		<service
 			android:name=".common.service.RunTestService"
 			android:icon="@drawable/notification_icon"

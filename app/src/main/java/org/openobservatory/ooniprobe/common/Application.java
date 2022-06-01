@@ -37,6 +37,7 @@ public class Application extends android.app.Application {
 	@Inject OONIAPIClient _apiClient;
 
 	public AppComponent component;
+	@Inject AppLogger logger;
 
 	@Override public void onCreate() {
 		super.onCreate();
@@ -79,6 +80,10 @@ public class Application extends android.app.Application {
 
 	public PreferenceManager getPreferenceManager() {
 		return _preferenceManager;
+	}
+
+	public AppLogger getLogger() {
+		return logger;
 	}
 
 	public Gson getGson() {

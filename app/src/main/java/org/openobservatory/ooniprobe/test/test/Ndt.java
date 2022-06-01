@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import com.google.gson.Gson;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.AppLogger;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -22,10 +23,10 @@ public class Ndt extends AbstractTest {
 		super(NAME, R.string.Test_NDT_Fullname, 0, R.string.urlTestNdt, 45);
 	}
 
-	@Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback) {
+	@Override public void run(Context c, PreferenceManager pm, AppLogger logger, Gson gson, Result result, int index, TestCallback testCallback) {
 		countries = c.getResources().getStringArray(R.array.countries);
 		Settings settings = new Settings(c, pm);
-		run(c, pm, gson, settings, result, index, testCallback);
+		run(c, pm,logger, gson, settings, result, index, testCallback);
 	}
 
 	@Override public void onEntry(Context c, PreferenceManager pm, @NonNull JsonResult json, Measurement measurement) {
