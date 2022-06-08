@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class ExperimentalSuite extends AbstractSuite {
     public static final String NAME = "experimental";
+    private boolean autoRun;
 
     public ExperimentalSuite() {
         super(NAME,
@@ -26,14 +27,33 @@ public class ExperimentalSuite extends AbstractSuite {
                 R.string.TestResults_NotAvailable);
     }
 
-    @Override public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
+    public static ExperimentalSuite initForAutoRun() {
+        ExperimentalSuite suite = new ExperimentalSuite();
+        suite.setAutoRun(true);
+        return suite;
+    }
+
+
+    @Override
+    public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
         if (super.getTestList(pm) == null) {
             ArrayList<AbstractTest> list = new ArrayList<>();
+            if (getAutoRun()) {
+                list.add(new Experimental("torsf"));
+                list.add(new Experimental("vanilla_tor"));
+            }
             list.add(new Experimental("stunreachability"));
             list.add(new Experimental("dnscheck"));
-            list.add(new Experimental("torsf"));
-            list.add(new Experimental("vanilla_tor"));
             super.setTestList(list.toArray(new AbstractTest[0]));
         }
         return super.getTestList(pm);
-    }}
+    }
+
+    public boolean getAutoRun() {
+        return autoRun;
+    }
+
+    public void setAutoRun(boolean autoRun) {
+        this.autoRun = autoRun;
+    }
+}
