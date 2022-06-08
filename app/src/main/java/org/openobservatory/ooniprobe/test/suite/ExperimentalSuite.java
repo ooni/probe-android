@@ -41,10 +41,9 @@ public class ExperimentalSuite extends AbstractSuite {
             if (getAutoRun()) {
                 list.add(new Experimental("torsf"));
                 list.add(new Experimental("vanilla_tor"));
-            } else {
-                list.add(new Experimental("stunreachability"));
-                list.add(new Experimental("dnscheck"));
             }
+            list.add(new Experimental("stunreachability"));
+            list.add(new Experimental("dnscheck"));
             super.setTestList(list.toArray(new AbstractTest[0]));
         }
         return super.getTestList(pm);
