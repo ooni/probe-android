@@ -18,6 +18,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
@@ -41,6 +42,7 @@ import org.openobservatory.ooniprobe.fragment.measurement.WebConnectivityFragmen
 import org.openobservatory.ooniprobe.fragment.measurement.WhatsappFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment;
 import org.openobservatory.ooniprobe.model.database.Measurement;
+import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.test.Dash;
 import org.openobservatory.ooniprobe.test.test.FacebookMessenger;
@@ -203,19 +205,36 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
             }
         }
         assert detail != null && head != null;
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.footer, ResultHeaderDetailFragment.newInstance(
-                        true,
-                        null,
-                        null,
-                        measurement.start_time,
-                        measurement.runtime,
-                        false,
-                        measurement.result.network.country_code,
-                        measurement.result.network))
-                .replace(R.id.body, detail)
-                .replace(R.id.head, head)
-                .commit();
+        if (measurement.rerun_network!=null && !measurement.rerun_network.isEmpty()){
+            Network network = new Gson().fromJson(measurement.rerun_network,Network.class);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.footer, ResultHeaderDetailFragment.newInstance(
+                            true,
+                            null,
+                            null,
+                            measurement.start_time,
+                            measurement.runtime,
+                            false,
+                            network.country_code,
+                            network))
+                    .replace(R.id.body, detail)
+                    .replace(R.id.head, head)
+                    .commit();
+        }else {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.footer, ResultHeaderDetailFragment.newInstance(
+                            true,
+                            null,
+                            null,
+                            measurement.start_time,
+                            measurement.runtime,
+                            false,
+                            measurement.result.network.country_code,
+                            measurement.result.network))
+                    .replace(R.id.body, detail)
+                    .replace(R.id.head, head)
+                    .commit();
+        }
         snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.Snackbar_ResultsNotUploaded_Upload, v1 -> runAsyncTask());
         Context c = this;

@@ -55,6 +55,7 @@ public class Measurement extends BaseModel implements Serializable {
 	@Column public boolean is_upload_failed;
 	@Column public String upload_failure_msg;
 	@Column public boolean is_rerun;
+	@Column public String rerun_network;
 	@Column public String report_id;
 	@Column public boolean is_anomaly;
 	@Column public String test_keys;
