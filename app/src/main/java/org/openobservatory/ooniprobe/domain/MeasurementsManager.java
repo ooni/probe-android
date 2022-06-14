@@ -125,24 +125,6 @@ public class MeasurementsManager {
         });
     }
 
-    private void downloadMeasurement(ApiMeasurement.Result result, DomainCallback<String> callback) {
-        httpClient.newCall(new Request.Builder().url(result.measurement_url).build()).enqueue(new Callback() {
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) {
-                try {
-                    callback.onSuccess(jsonPrinter.prettyText(response.body().string()));
-                } catch (Exception e) {
-                    callback.onError(e.getMessage());
-                }
-            }
-
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                callback.onError(e.getLocalizedMessage());
-            }
-        });
-    }
-
     public boolean reSubmit(Measurement m, OONISession session) {
         File file = Measurement.getEntryFile(context, m.id, m.test_name);
         String input;
