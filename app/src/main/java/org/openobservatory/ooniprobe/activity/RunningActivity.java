@@ -149,7 +149,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
             }
         });
 
-        if (getPreferenceManager().getProxyURL().isEmpty())
+        if (preferenceManager.getProxyURL().isEmpty())
             proxy_icon.setVisibility(View.GONE);
         close.setOnClickListener(new View.OnClickListener() {
             @Override
