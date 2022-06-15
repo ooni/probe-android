@@ -98,6 +98,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    namespace 'org.openobservatory.ooniprobe'
 }
 
 dependencies {
