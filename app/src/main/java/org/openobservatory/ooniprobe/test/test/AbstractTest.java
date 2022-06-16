@@ -109,7 +109,7 @@ public abstract class AbstractTest implements Serializable {
                         testCallback.onProgress(Double.valueOf(index * 100).intValue());
                         break;
                     case "status.geoip_lookup":
-                        if (is_rerun){
+                        if (is_rerun) {
                             this.network = new Network();
                             network.network_name = event.value.probe_network_name;
                             network.asn = event.value.probe_asn;
