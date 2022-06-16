@@ -162,7 +162,7 @@ public abstract class AbstractTest implements Serializable {
                                 m.is_failed = true;
                             else
                                 onEntry(c, pm, jr, m);
-                            if (network!=null){
+                            if (network!=null ){
                                 m.rerun_network = gson.toJson(network);
                             }
                             m.save();
