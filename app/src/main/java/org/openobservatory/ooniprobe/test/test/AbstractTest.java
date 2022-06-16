@@ -116,7 +116,7 @@ public abstract class AbstractTest implements Serializable {
                             network.ip = event.value.probe_ip;
                             network.country_code = event.value.probe_cc;
                             network.network_type = ReachabilityManager.getNetworkType(c);
-                        }else {
+                        } else {
                             this.network=null;
                         }
                         saveNetworkInfo(event.value, result, c);
