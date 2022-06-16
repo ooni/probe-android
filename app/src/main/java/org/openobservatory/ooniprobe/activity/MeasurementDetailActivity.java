@@ -205,36 +205,26 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
             }
         }
         assert detail != null && head != null;
-        if (measurement.rerun_network!=null && !measurement.rerun_network.isEmpty()){
+        var net = measurement.result.network;
+        var cc = measurement.result.network.country_code;
+        if (measurement.rerun_network != null && !measurement.rerun_network.isEmpty()) {
             Network network = new Gson().fromJson(measurement.rerun_network,Network.class);
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.footer, ResultHeaderDetailFragment.newInstance(
-                            true,
-                            null,
-                            null,
-                            measurement.start_time,
-                            measurement.runtime,
-                            false,
-                            network.country_code,
-                            network))
-                    .replace(R.id.body, detail)
-                    .replace(R.id.head, head)
-                    .commit();
-        }else {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.footer, ResultHeaderDetailFragment.newInstance(
-                            true,
-                            null,
-                            null,
-                            measurement.start_time,
-                            measurement.runtime,
-                            false,
-                            measurement.result.network.country_code,
-                            measurement.result.network))
-                    .replace(R.id.body, detail)
-                    .replace(R.id.head, head)
-                    .commit();
+            net = network;
+            cc = network.country_code;
         }
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.footer, ResultHeaderDetailFragment.newInstance(
+                       true,
+                       null,
+                       null,
+                       measurement.start_time,
+                       measurement.runtime,
+                       false,
+                       cc,
+                       net))
+                .replace(R.id.body, detail)
+                .replace(R.id.head, head)
+                .commit();
         snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.Snackbar_ResultsNotUploaded_Upload, v1 -> runAsyncTask());
         Context c = this;
