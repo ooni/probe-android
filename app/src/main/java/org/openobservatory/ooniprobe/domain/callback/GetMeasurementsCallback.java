@@ -14,8 +14,7 @@ public abstract class GetMeasurementsCallback implements Callback<ResponseBody> 
     @Override
     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
         if (response.isSuccessful() &&
-                response.body() != null &&
-                response.isSuccessful()) {
+                response.body() != null) {
             try {
                 onSuccess(response.body().string());
             } catch (IOException e) {
