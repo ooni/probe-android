@@ -18,6 +18,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
@@ -41,6 +42,7 @@ import org.openobservatory.ooniprobe.fragment.measurement.WebConnectivityFragmen
 import org.openobservatory.ooniprobe.fragment.measurement.WhatsappFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment;
 import org.openobservatory.ooniprobe.model.database.Measurement;
+import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.test.Dash;
 import org.openobservatory.ooniprobe.test.test.FacebookMessenger;
@@ -203,16 +205,23 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
             }
         }
         assert detail != null && head != null;
+        var net = measurement.result.network;
+        var cc = measurement.result.network.country_code;
+        if (measurement.rerun_network != null && !measurement.rerun_network.isEmpty()) {
+            Network network = new Gson().fromJson(measurement.rerun_network,Network.class);
+            net = network;
+            cc = network.country_code;
+        }
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.footer, ResultHeaderDetailFragment.newInstance(
-                        true,
-                        null,
-                        null,
-                        measurement.start_time,
-                        measurement.runtime,
-                        false,
-                        measurement.result.network.country_code,
-                        measurement.result.network))
+                       true,
+                       null,
+                       null,
+                       measurement.start_time,
+                       measurement.runtime,
+                       false,
+                       cc,
+                       net))
                 .replace(R.id.body, detail)
                 .replace(R.id.head, head)
                 .commit();
