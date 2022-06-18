@@ -205,8 +205,8 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
             }
         }
         assert detail != null && head != null;
-        var net = measurement.result.network;
-        var cc = measurement.result.network.country_code;
+        Network net = measurement.result.network;
+        String cc = measurement.result.network.country_code;
         if (measurement.rerun_network != null && !measurement.rerun_network.isEmpty()) {
             Network network = new Gson().fromJson(measurement.rerun_network,Network.class);
             net = network;
