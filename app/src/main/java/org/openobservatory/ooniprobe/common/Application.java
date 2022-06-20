@@ -2,6 +2,7 @@ package org.openobservatory.ooniprobe.common;
 
 import android.app.ActivityManager;
 import android.content.Intent;
+import android.util.TimingLogger;
 
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
@@ -24,6 +25,8 @@ import org.openobservatory.ooniprobe.di.ServiceComponent;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.inject.Inject;
 
@@ -35,26 +38,35 @@ public class Application extends android.app.Application {
 	@Inject Gson _gson;
 	@Inject OkHttpClient _okHttpClient;
 	@Inject OONIAPIClient _apiClient;
+	ExecutorService executorService = Executors.newFixedThreadPool(4);
 
 	public AppComponent component;
 
 	@Override public void onCreate() {
 		super.onCreate();
+		TimingLogger timings = new TimingLogger(Application.class.getSimpleName(), "app-on-create");
 		component = buildDagger();
 		component.inject(this);
+		timings.addSplit("dagger-init");
 
 		FlowManager.init(this);
 		if (BuildConfig.DEBUG)
 			FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
+		timings.addSplit("flow-init");
 		AppLifecycleObserver appLifecycleObserver = new AppLifecycleObserver();
 		ProcessLifecycleOwner.get().getLifecycle().addObserver(appLifecycleObserver);
-		if (_preferenceManager.canCallDeleteJson())
-			Measurement.deleteUploadedJsons(this);
-		Measurement.deleteOldLogs(this);
-		ThirdPartyServices.reloadConsents(this);
-
+		timings.addSplit("lifecycle-init");
+		executorService.execute(() -> {
+			if (_preferenceManager.canCallDeleteJson())
+				Measurement.deleteUploadedJsons(Application.this);
+			Measurement.deleteOldLogs(Application.this);
+			ThirdPartyServices.reloadConsents(Application.this);
+		});
+		timings.addSplit("measurement-init");
 		LocaleUtils.setLocale(new Locale(_preferenceManager.getSettingsLanguage()));
 		LocaleUtils.updateConfig(this, getBaseContext().getResources().getConfiguration());
+		timings.addSplit("locale-init");
+		timings.dumpToLog();
 	}
 
 	protected AppComponent buildDagger() {
