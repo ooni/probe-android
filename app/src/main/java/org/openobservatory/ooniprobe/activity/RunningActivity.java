@@ -239,11 +239,6 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
     }
 
-    @Override
-    public void onBackPressed() {
-        Toast.makeText(this, getString(R.string.Modal_Error_CantCloseScreen), Toast.LENGTH_SHORT).show();
-    }
-
     private void testEnded(Context context) {
         startActivity(MainActivity.newIntent(context, R.id.testResults));
         finish();
