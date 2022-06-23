@@ -60,9 +60,10 @@ public class Application extends android.app.Application {
 			if (_preferenceManager.canCallDeleteJson())
 				Measurement.deleteUploadedJsons(Application.this);
 			Measurement.deleteOldLogs(Application.this);
-			ThirdPartyServices.reloadConsents(Application.this);
 		});
 		timings.addSplit("measurement-init");
+		ThirdPartyServices.reloadConsents(Application.this);
+		timings.addSplit("third-party-services-init");
 		LocaleUtils.setLocale(new Locale(_preferenceManager.getSettingsLanguage()));
 		LocaleUtils.updateConfig(this, getBaseContext().getResources().getConfiguration());
 		timings.addSplit("locale-init");
