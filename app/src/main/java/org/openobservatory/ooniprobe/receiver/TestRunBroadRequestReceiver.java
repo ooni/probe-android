@@ -13,6 +13,7 @@ import com.google.common.math.Stats;
 
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.TestProgressRepository;
+import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
@@ -56,25 +57,29 @@ public class TestRunBroadRequestReceiver extends BroadcastReceiver implements Se
                 listener.onRun(value);
                 break;
             case TestAsyncTask.PRG:
-                if (service != null) {
-                    List<AbstractSuite> previousTestSuites =
-                            service.task.testSuites.subList(0, service.task.testSuites.indexOf(service.task.currentSuite));
-                    int previousTestProgress = (int) Stats.of(Lists.transform(
-                            previousTestSuites,
-                            input -> input.getTestList(preferenceManager).length * 100
-                    )).sum();
-                    int previousTestRuntime = (int) Stats.of(Lists.transform(
-                            previousTestSuites,
-                            input -> input.getRuntime(preferenceManager)
-                    )).sum();
-                    int prgs = Integer.parseInt(value);
-                    int currentTestRuntime = service.task.currentSuite.getRuntime(preferenceManager);
-                    int currentTestMax = service.task.currentSuite.getTestList(preferenceManager).length * 100;
-                    double timeLeft = runtime - ((((double) prgs) / currentTestMax * currentTestRuntime) + previousTestRuntime);
-                    int progress = previousTestProgress + prgs;
-                    testProgressRepository.updateProgress(progress);
-                    testProgressRepository.updateEta(timeLeft);
-                    listener.onProgress(progress, timeLeft);
+                try {
+                    if (service != null) {
+                        List<AbstractSuite> previousTestSuites =
+                                service.task.testSuites.subList(0, service.task.testSuites.indexOf(service.task.currentSuite));
+                        int previousTestProgress = (int) Stats.of(Lists.transform(
+                                previousTestSuites,
+                                input -> input.getTestList(preferenceManager).length * 100
+                        )).sum();
+                        int previousTestRuntime = (int) Stats.of(Lists.transform(
+                                previousTestSuites,
+                                input -> input.getRuntime(preferenceManager)
+                        )).sum();
+                        int prgs = Integer.parseInt(value);
+                        int currentTestRuntime = service.task.currentSuite.getRuntime(preferenceManager);
+                        int currentTestMax = service.task.currentSuite.getTestList(preferenceManager).length * 100;
+                        double timeLeft = runtime - ((((double) prgs) / currentTestMax * currentTestRuntime) + previousTestRuntime);
+                        int progress = previousTestProgress + prgs;
+                        testProgressRepository.updateProgress(progress);
+                        testProgressRepository.updateEta(timeLeft);
+                        listener.onProgress(progress, timeLeft);
+                    }
+                }catch (Exception e){
+                    ThirdPartyServices.logException(e);
                 }
                 break;
             case TestAsyncTask.LOG:
