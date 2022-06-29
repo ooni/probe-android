@@ -51,14 +51,14 @@ public class Settings {
 	@SerializedName("version")
 	private Integer version;
 
-	public Settings(Context c, PreferenceManager pm) {
-		annotations = new Annotations(c);
-		disabled_events = Arrays.asList("status.queued", "status.update.websites", "failure.report_close");
-		log_level = pm.isDebugLogs() ? "DEBUG2" : "INFO";
-		version = 1;
-		options = new Options(pm);
-		proxy = pm.getProxyURL();
-	}
+    public Settings(Context c, PreferenceManager pm, boolean isAutoRun) {
+        annotations = new Annotations(c);
+        disabled_events = Arrays.asList("status.queued", "status.update.websites", "failure.report_close");
+        log_level = pm.isDebugLogs() ? "DEBUG2" : "INFO";
+        version = 1;
+        options = new Options(pm, isAutoRun);
+        proxy = pm.getProxyURL();
+    }
 
 	public OONIMKTaskConfig toExperimentSettings(Gson gson, Context c) throws java.io.IOException {
 		assets_dir = EngineProvider.get().getAssetsDir(c);
@@ -120,10 +120,10 @@ public class Settings {
 		@SerializedName("probe_services_base_url")
 		public String probe_services_base_url;
 
-		public Options(PreferenceManager pm) {
-			no_collector = !pm.isUploadResults();
-			software_name = BuildConfig.SOFTWARE_NAME;
-			software_version = BuildConfig.VERSION_NAME;
-		}
-	}
+        public Options(PreferenceManager pm, boolean isAutoRun) {
+            no_collector = !pm.isUploadResults();
+            software_name = BuildConfig.SOFTWARE_NAME + (isAutoRun ? "-unattended" : "");
+            software_version = BuildConfig.VERSION_NAME;
+        }
+    }
 }

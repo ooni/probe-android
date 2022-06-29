@@ -92,14 +92,14 @@ public class ServiceUtil {
         AbstractSuite suite = d.generateAutoRunServiceSuite.generate(config);
         ArrayList<AbstractSuite> testSuites = new ArrayList<>();
         testSuites.add(suite);
-        testSuites.add(new InstantMessagingSuite());
-        testSuites.add(new CircumventionSuite());
+        testSuites.add(InstantMessagingSuite.initForAutoRun());
+        testSuites.add(CircumventionSuite.initForAutoRun());
         testSuites.add(ExperimentalSuite.initForAutoRun());
 
         if (suite != null) {
             Intent serviceIntent = new Intent(app, RunTestService.class);
             serviceIntent.putExtra("testSuites", testSuites);
-            serviceIntent.putExtra("storeDB", false);
+            serviceIntent.putExtra("storeDB", true);
             ContextCompat.startForegroundService(app, serviceIntent);
         }
 

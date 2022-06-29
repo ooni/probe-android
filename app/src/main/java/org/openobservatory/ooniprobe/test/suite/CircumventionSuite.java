@@ -2,11 +2,12 @@ package org.openobservatory.ooniprobe.test.suite;
 
 import androidx.annotation.Nullable;
 
+import com.google.common.collect.Lists;
+
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.Psiphon;
-import org.openobservatory.ooniprobe.test.test.RiseupVPN;
 import org.openobservatory.ooniprobe.test.test.Tor;
 
 import java.util.ArrayList;
@@ -28,6 +29,13 @@ public class CircumventionSuite extends AbstractSuite {
                 R.string.small_datausage);
     }
 
+
+    public static CircumventionSuite initForAutoRun() {
+        CircumventionSuite suite = new CircumventionSuite();
+        suite.setAutoRun(true);
+        return suite;
+    }
+
     @Override public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
         if (super.getTestList(pm) == null) {
             ArrayList<AbstractTest> list = new ArrayList<>();
@@ -40,7 +48,10 @@ public class CircumventionSuite extends AbstractSuite {
                 To be enabled only when test is fixed or removed if deemed necessary.
                 if (pm == null || pm.isTestRiseupVPN())
                 list.add(new RiseupVPN());*/
-            super.setTestList(list.toArray(new AbstractTest[0]));
+            super.setTestList(Lists.transform(list, test -> {
+                if (getAutoRun()) test.setOrigin(AbstractTest.AUTORUN);
+                return test;
+            }).toArray(new AbstractTest[0]));
         }
         return super.getTestList(pm);
     }
