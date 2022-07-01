@@ -25,7 +25,7 @@ public class WebsitesSuite extends AbstractSuite {
 	}
 
 	@Override public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
-		if (super.getTestList(pm) == null){
+		if (super.getTestList(pm) == null) {
 			WebConnectivity test = new WebConnectivity();
 			if (getAutoRun()) test.setOrigin(AbstractTest.AUTORUN);
 			super.setTestList(test);
