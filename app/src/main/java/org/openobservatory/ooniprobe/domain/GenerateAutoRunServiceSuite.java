@@ -39,7 +39,7 @@ public class GenerateAutoRunServiceSuite {
             OONISession session = EngineProvider.get().newSession(
                     EngineProvider.get().getDefaultSessionConfig(
                             app,
-                            BuildConfig.SOFTWARE_NAME + "-unattended",
+                            String.join("-",BuildConfig.SOFTWARE_NAME, AbstractTest.UNATTENDED),
                             BuildConfig.VERSION_NAME,
                             new LoggerArray(),
                             pm.getProxyURL()

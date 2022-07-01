@@ -10,6 +10,7 @@ import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.test.EngineProvider;
+import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
 import java.util.Arrays;
 import java.util.List;
@@ -122,7 +123,7 @@ public class Settings {
 
         public Options(PreferenceManager pm, boolean isAutoRun) {
             no_collector = !pm.isUploadResults();
-            software_name = BuildConfig.SOFTWARE_NAME + (isAutoRun ? "-unattended" : "");
+            software_name = BuildConfig.SOFTWARE_NAME + (isAutoRun ? "-"+AbstractTest.UNATTENDED : "");
             software_version = BuildConfig.VERSION_NAME;
         }
     }
