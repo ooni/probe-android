@@ -248,7 +248,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                     serviceRef.get().builder.setContentText(app.getString(R.string.Dashboard_Running_Stopping_Title))
                             .setProgress(0, 0, true);
                     serviceRef.get().notificationManager.notify(RunTestService.NOTIFICATION_ID, serviceRef.get().builder.build());
-                } catch (Exception e){
+                } catch (Exception e) {
                     ThirdPartyServices.logException(e);
                 }
                 break;
