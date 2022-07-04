@@ -1,8 +1,15 @@
 package org.openobservatory.ooniprobe.model.database;
 
+import android.app.usage.StorageStats;
+import android.app.usage.StorageStatsManager;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.os.UserHandle;
+import android.os.storage.StorageManager;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.annotation.Column;
@@ -14,10 +21,12 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.sql.language.Where;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
+import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.client.callback.CheckReportIdCallback;
 import org.openobservatory.ooniprobe.common.AppDatabase;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.Dash;
@@ -35,12 +44,14 @@ import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 @Table(database = AppDatabase.class)
 public class Measurement extends BaseModel implements Serializable {
@@ -204,11 +215,32 @@ public class Measurement extends BaseModel implements Serializable {
 	}
 
 	public static long getStorageUsed(Context c){
+		if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+			try {
+				return getStorageStatsManagerStorageUsed(c);
+			} catch (Exception exception){
+				ThirdPartyServices.logException(exception);
+				return getFileStorageUsed(c);
+			}
+		}
+		return getFileStorageUsed(c);
+	}
+
+	@RequiresApi(api = Build.VERSION_CODES.O)
+	private static long getStorageStatsManagerStorageUsed(Context context) throws Exception {
+		StorageStatsManager storageStatsManager = (StorageStatsManager) context.getSystemService(Context.STORAGE_STATS_SERVICE);
+		final UserHandle user = android.os.Process.myUserHandle();
+		final UUID uuid = StorageManager.UUID_DEFAULT;
+		final StorageStats storageStats = storageStatsManager.queryStatsForPackage(uuid, context.getApplicationInfo().packageName, user);
+		return storageStats.getAppBytes() + storageStats.getDataBytes() + storageStats.getCacheBytes();
+	}
+
+	private static long getFileStorageUsed(Context context) {
 		String database = AppDatabase.NAME + ".db";
-		return getFolderSize(getMeasurementDir(c)) +
-				c.getDatabasePath(database).length() +
-				c.getDatabasePath(database + "-shm").length() +
-				c.getDatabasePath(database + "-wal").length();
+		return getFolderSize(getMeasurementDir(context)) +
+				context.getDatabasePath(database).length() +
+				context.getDatabasePath(database + "-shm").length() +
+				context.getDatabasePath(database + "-wal").length();
 	}
 
 	private static long getFolderSize(File f) {
