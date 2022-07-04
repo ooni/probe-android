@@ -78,7 +78,7 @@ public class TestRunBroadRequestReceiver extends BroadcastReceiver implements Se
                         testProgressRepository.updateEta(timeLeft);
                         listener.onProgress(progress, timeLeft);
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     ThirdPartyServices.logException(e);
                 }
                 break;
