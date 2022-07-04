@@ -27,22 +27,21 @@ public class GetTestSuiteTest extends RobolectricAbstractTest {
         GetTestSuite getSuite = build();
         PreferenceManager pm = mock(PreferenceManager.class);
 
-        Attribute attribute = new Attribute();
-        attribute.urls = new ArrayList<>();
-        attribute.urls.add(faker.internet.url());
-        attribute.urls.add(faker.internet.url());
-        attribute.urls.add(faker.internet.url());
+        ArrayList<String> urls = new ArrayList<>();
+        urls.add(faker.internet.url());
+        urls.add(faker.internet.url());
+        urls.add(faker.internet.url());
 
         // Act
-        AbstractSuite suite = getSuite.get(WebConnectivity.NAME, attribute);
+        AbstractSuite suite = getSuite.get(WebConnectivity.NAME, urls);
         AbstractTest[] tests = suite.getTestList(pm);
 
         // Assert
         Assert.assertEquals(WebsitesSuite.NAME, suite.getName());
         Assert.assertEquals(1, tests.length);
-        Assert.assertEquals(attribute.urls.get(0), tests[0].getInputs().get(0));
-        Assert.assertEquals(attribute.urls.get(1), tests[0].getInputs().get(1));
-        Assert.assertEquals(attribute.urls.get(2), tests[0].getInputs().get(2));
+        Assert.assertEquals(urls.get(0), tests[0].getInputs().get(0));
+        Assert.assertEquals(urls.get(1), tests[0].getInputs().get(1));
+        Assert.assertEquals(urls.get(2), tests[0].getInputs().get(2));
     }
 
     @Test
