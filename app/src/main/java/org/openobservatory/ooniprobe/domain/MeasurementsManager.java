@@ -32,6 +32,7 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 public class MeasurementsManager {
 
@@ -113,31 +114,13 @@ public class MeasurementsManager {
         //measurement.getUrlString will return null when the measurement is not a web_connectivity
         apiClient.getMeasurement(measurement.report_id, measurement.getUrlString()).enqueue(new GetMeasurementsCallback() {
             @Override
-            public void onSuccess(ApiMeasurement.Result result) {
-                downloadMeasurement(result, callback);
+            public void onSuccess(String result) {
+                callback.onSuccess(jsonPrinter.prettyText(result));
             }
 
             @Override
             public void onError(String msg) {
                 callback.onError(msg);
-            }
-        });
-    }
-
-    private void downloadMeasurement(ApiMeasurement.Result result, DomainCallback<String> callback) {
-        httpClient.newCall(new Request.Builder().url(result.measurement_url).build()).enqueue(new Callback() {
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) {
-                try {
-                    callback.onSuccess(jsonPrinter.prettyText(response.body().string()));
-                } catch (Exception e) {
-                    callback.onError(e.getMessage());
-                }
-            }
-
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                callback.onError(e.getLocalizedMessage());
             }
         });
     }

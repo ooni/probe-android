@@ -224,21 +224,33 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
         switch (key) {
             case TestAsyncTask.RUN:
                 Log.d(TAG, "TestAsyncTask.RUN");
-                serviceRef.get().builder.setContentText(value)
-                        .setProgress(currentSuite.getTestList(app.getPreferenceManager()).length * 100, 0, false);
-                serviceRef.get().notificationManager.notify(RunTestService.NOTIFICATION_ID, serviceRef.get().builder.build());
+                try {
+                    serviceRef.get().builder.setContentText(value)
+                            .setProgress(currentSuite.getTestList(app.getPreferenceManager()).length * 100, 0, false);
+                    serviceRef.get().notificationManager.notify(RunTestService.NOTIFICATION_ID, serviceRef.get().builder.build());
+                } catch (Exception e) {
+                    ThirdPartyServices.logException(e);
+                }
                 break;
             case TestAsyncTask.PRG:
                 Log.d(TAG, "TestAsyncTask.PRG " + value);
-                int prgs = Integer.parseInt(value);
-                serviceRef.get().builder.setProgress(currentSuite.getTestList(app.getPreferenceManager()).length * 100, prgs, false);
-                serviceRef.get().notificationManager.notify(RunTestService.NOTIFICATION_ID, serviceRef.get().builder.build());
+                try {
+                    int prgs = Integer.parseInt(value);
+                    serviceRef.get().builder.setProgress(currentSuite.getTestList(app.getPreferenceManager()).length * 100, prgs, false);
+                    serviceRef.get().notificationManager.notify(RunTestService.NOTIFICATION_ID, serviceRef.get().builder.build());
+                } catch (Exception e) {
+                    ThirdPartyServices.logException(e);
+                }
                 break;
             case TestAsyncTask.INT:
                 Log.d(TAG, "TestAsyncTask.INT");
-                serviceRef.get().builder.setContentText(app.getString(R.string.Dashboard_Running_Stopping_Title))
-                        .setProgress(0, 0, true);
-                serviceRef.get().notificationManager.notify(RunTestService.NOTIFICATION_ID, serviceRef.get().builder.build());
+                try {
+                    serviceRef.get().builder.setContentText(app.getString(R.string.Dashboard_Running_Stopping_Title))
+                            .setProgress(0, 0, true);
+                    serviceRef.get().notificationManager.notify(RunTestService.NOTIFICATION_ID, serviceRef.get().builder.build());
+                } catch (Exception e) {
+                    ThirdPartyServices.logException(e);
+                }
                 break;
         }
     }

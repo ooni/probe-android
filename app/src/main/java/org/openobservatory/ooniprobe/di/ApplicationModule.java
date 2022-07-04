@@ -74,7 +74,6 @@ public class ApplicationModule {
         return chain -> {
             Request request = chain.request().newBuilder()
                     .addHeader("User-Agent", "ooniprobe-android/" + BuildConfig.VERSION_NAME)
-                    .addHeader("Connection", "Close") // TODO(https://github.com/ooni/probe/issues/1922)
                     .build();
             return chain.proceed(request);
         };

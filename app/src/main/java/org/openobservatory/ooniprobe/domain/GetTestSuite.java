@@ -24,9 +24,9 @@ public class GetTestSuite {
         this.application = application;
     }
 
-    public AbstractSuite get(String testName, @Nullable Attribute attribute) {
+    public AbstractSuite get(String testName, @Nullable List<String> urls) {
         return AbstractSuite.getSuite(application, testName,
-                attribute == null ? null : attribute.urls,
+                urls,
                 "ooni-run");
     }
 

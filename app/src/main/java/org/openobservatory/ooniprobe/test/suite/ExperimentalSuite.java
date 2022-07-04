@@ -2,6 +2,8 @@ package org.openobservatory.ooniprobe.test.suite;
 
 import androidx.annotation.Nullable;
 
+import com.google.common.collect.Lists;
+
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
@@ -18,7 +20,7 @@ public class ExperimentalSuite extends AbstractSuite {
                 R.string.Dashboard_Experimental_Card_Description,
                 R.drawable.test_experimental,
                 R.drawable.test_experimental_24,
-                R.color.color_gray7,
+                R.color.color_gray7_1,
                 R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Experimental,
                 R.style.Theme_MaterialComponents_NoActionBar_App_Experimental,
                 R.string.Dashboard_Experimental_Overview_Paragraph,
@@ -26,13 +28,29 @@ public class ExperimentalSuite extends AbstractSuite {
                 R.string.TestResults_NotAvailable);
     }
 
-    @Override public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
+    public static ExperimentalSuite initForAutoRun() {
+        ExperimentalSuite suite = new ExperimentalSuite();
+        suite.setAutoRun(true);
+        return suite;
+    }
+
+
+    @Override
+    public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
         if (super.getTestList(pm) == null) {
             ArrayList<AbstractTest> list = new ArrayList<>();
+            if (getAutoRun()) {
+                list.add(new Experimental("torsf"));
+                list.add(new Experimental("vanilla_tor"));
+            }
             list.add(new Experimental("stunreachability"));
             list.add(new Experimental("dnscheck"));
-            list.add(new Experimental("torsf"));
-            super.setTestList(list.toArray(new AbstractTest[0]));
+            super.setTestList(Lists.transform(list, test->{
+                if (getAutoRun()) test.setOrigin(AbstractTest.AUTORUN);
+                return test;
+            }).toArray(new AbstractTest[0]));
         }
         return super.getTestList(pm);
-    }}
+    }
+
+}

@@ -61,7 +61,9 @@ public class OverviewActivity extends AbstractActivity {
 			String experimentalLinks =
 					"\n\n* [STUN Reachability](https://github.com/ooni/spec/blob/master/nettests/ts-025-stun-reachability.md)" +
 					"\n\n* [DNS Check](https://github.com/ooni/spec/blob/master/nettests/ts-028-dnscheck.md)" +
-					"\n\n* [Tor Snowflake](https://ooni.org/nettest/tor-snowflake/)";
+					String.format("\n\n %s \n\n", getString(R.string.Dashboard_Experimental_Overview_Paragraph_AutomatedTesting)) +
+					"\n\n* [Tor Snowflake](https://ooni.org/nettest/tor-snowflake/)" +
+					"\n\n* [Vanilla Tor](https://github.com/ooni/spec/blob/master/nettests/ts-016-vanilla-tor.md)";
 			Markwon.setMarkdown(desc, getString(testSuite.getDesc1(), experimentalLinks));
 		}
 		else
@@ -87,7 +89,7 @@ public class OverviewActivity extends AbstractActivity {
 	}
 
 	@OnClick(R.id.run) void onRunClick() {
-		RunningActivity.runAsForegroundService(this, testSuite.asArray(), this::bindTestService);
+		RunningActivity.runAsForegroundService(this, testSuite.asArray(), this::bindTestService, preferenceManager);
 	}
 
 	@OnClick(R.id.customUrl) void customUrlClick() {

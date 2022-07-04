@@ -22,6 +22,8 @@ import org.openobservatory.ooniprobe.common.ProxySettings;
 import java.net.URISyntaxException;
 import java.util.Objects;
 
+import javax.inject.Inject;
+
 import ru.noties.markwon.Markwon;
 
 /**
@@ -94,6 +96,8 @@ public class ProxyActivity extends AbstractActivity {
     // TAG is the tag used for logging.
     private final static String TAG = "ProxyActivity";
 
+    @Inject
+    PreferenceManager preferenceManager;
     // The following radio group describes the top level choice
     // in terms of proxying: no proxy, psiphon, or custom.
 
@@ -139,6 +143,7 @@ public class ProxyActivity extends AbstractActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActivityComponent().inject(this);
 
         // We draw the view and store references to objects needed
         // when configuring the initial view or modifying it.
@@ -171,9 +176,8 @@ public class ProxyActivity extends AbstractActivity {
     // any reason including an upgrade, we don't recognize the originally stored
     // settings, then we behave like no proxy had been configured.
     private void loadSettingsAndConfigureInitialView() {
-        PreferenceManager pm = getPreferenceManager();
         try {
-            settings = ProxySettings.newProxySettings(pm);
+            settings = ProxySettings.newProxySettings(preferenceManager);
         } catch (ProxySettings.InvalidProxyURL exc) {
             Log.w(TAG, "newProxySettings failed: " + exc);
             settings = new ProxySettings(); // start over as documented
@@ -384,8 +388,7 @@ public class ProxyActivity extends AbstractActivity {
 
     // saveSettings stores a good URL back into the preference manager.
     private void saveSettings() {
-        PreferenceManager pm = getPreferenceManager();
-        settings.saveProxy(pm);
+        settings.saveProxy(preferenceManager);
         try {
             Log.d(TAG, "writing this proxy configuration: " + settings.getProxyString());
         } catch (URISyntaxException e) {

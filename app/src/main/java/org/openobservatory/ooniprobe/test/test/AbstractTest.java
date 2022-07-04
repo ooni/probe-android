@@ -35,10 +35,13 @@ import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class AbstractTest implements Serializable {
     private static final String UNUSED_KEY = "UNUSED_KEY";
     private static final String TAG = "MK_EVENT";
+    public static final String AUTORUN = "autorun";
+    public static final String UNATTENDED = "unattended";
     private final String name;
     private final int labelResId;
     private final int iconResId;
@@ -46,6 +49,13 @@ public abstract class AbstractTest implements Serializable {
     private final int runtime;
     private List<String> inputs;
     private Integer max_runtime;
+    private Network network;
+
+    public void setIsRerun(boolean is_rerun) {
+        this.is_rerun = is_rerun;
+    }
+
+    private boolean is_rerun;
     private SparseArray<Measurement> measurements;
     private String reportId;
     private String origin;
@@ -102,6 +112,16 @@ public abstract class AbstractTest implements Serializable {
                         testCallback.onProgress(Double.valueOf(index * 100).intValue());
                         break;
                     case "status.geoip_lookup":
+                        if (is_rerun) {
+                            this.network = new Network();
+                            network.network_name = event.value.probe_network_name;
+                            network.asn = event.value.probe_asn;
+                            network.ip = event.value.probe_ip;
+                            network.country_code = event.value.probe_cc;
+                            network.network_type = ReachabilityManager.getNetworkType(c);
+                        } else {
+                            this.network=null;
+                        }
                         saveNetworkInfo(event.value, result, c);
                         break;
                     case "status.report_create":
@@ -145,6 +165,9 @@ public abstract class AbstractTest implements Serializable {
                                 m.is_failed = true;
                             else
                                 onEntry(c, pm, jr, m);
+                            if (network!=null ){
+                                m.rerun_network = gson.toJson(network);
+                            }
                             m.save();
                             File entryFile = Measurement.getEntryFile(c, m.id, m.test_name);
                             entryFile.getParentFile().mkdirs();
@@ -311,6 +334,10 @@ public abstract class AbstractTest implements Serializable {
 
     public void setOrigin(String origin) {
         this.origin = origin;
+    }
+
+    public boolean isAutoRun() {
+        return Objects.equals(origin, AUTORUN);
     }
 
     public interface TestCallback {

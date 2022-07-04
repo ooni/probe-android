@@ -21,7 +21,7 @@ public class Tor extends AbstractTest {
     }
 
     @Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, AbstractTest.TestCallback testCallback) {
-        Settings settings = new Settings(c, pm);
+        Settings settings = new Settings(c, pm, isAutoRun());
         run(c, pm, gson, settings, result, index, testCallback);
     }
 
