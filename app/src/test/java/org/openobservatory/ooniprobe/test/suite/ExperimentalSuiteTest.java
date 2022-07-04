@@ -21,7 +21,6 @@ public class ExperimentalSuiteTest {
         List<AbstractTest> tests = Arrays.asList(suite.getTestList(pm));
 
         assertEquals(2, tests.size());
-//        assertEquals(3, tests.size());
         assertEquals(Experimental.class, tests.get(0).getClass());
         assertEquals(Experimental.class, tests.get(1).getClass());
 //        assertEquals(Experimental.class, tests.get(2).getClass());
