@@ -2,6 +2,8 @@ package org.openobservatory.ooniprobe.test.suite;
 
 import androidx.annotation.Nullable;
 
+import com.google.common.collect.Lists;
+
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
@@ -11,7 +13,6 @@ import java.util.ArrayList;
 
 public class ExperimentalSuite extends AbstractSuite {
     public static final String NAME = "experimental";
-    private boolean autoRun;
 
     public ExperimentalSuite() {
         super(NAME,
@@ -44,16 +45,12 @@ public class ExperimentalSuite extends AbstractSuite {
             }
             list.add(new Experimental("stunreachability"));
             list.add(new Experimental("dnscheck"));
-            super.setTestList(list.toArray(new AbstractTest[0]));
+            super.setTestList(Lists.transform(list, test->{
+                if (getAutoRun()) test.setOrigin(AbstractTest.AUTORUN);
+                return test;
+            }).toArray(new AbstractTest[0]));
         }
         return super.getTestList(pm);
     }
 
-    public boolean getAutoRun() {
-        return autoRun;
-    }
-
-    public void setAutoRun(boolean autoRun) {
-        this.autoRun = autoRun;
-    }
 }

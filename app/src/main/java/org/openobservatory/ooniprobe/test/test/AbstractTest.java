@@ -35,10 +35,13 @@ import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class AbstractTest implements Serializable {
     private static final String UNUSED_KEY = "UNUSED_KEY";
     private static final String TAG = "MK_EVENT";
+    public static final String AUTORUN = "autorun";
+    public static final String UNATTENDED = "unattended";
     private final String name;
     private final int labelResId;
     private final int iconResId;
@@ -331,6 +334,10 @@ public abstract class AbstractTest implements Serializable {
 
     public void setOrigin(String origin) {
         this.origin = origin;
+    }
+
+    public boolean isAutoRun() {
+        return Objects.equals(origin, AUTORUN);
     }
 
     public interface TestCallback {
