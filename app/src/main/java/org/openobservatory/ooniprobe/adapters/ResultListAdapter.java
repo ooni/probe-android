@@ -121,6 +121,7 @@ public class ResultListAdapter extends PagingDataAdapter<ResultListAdapter.UiMod
                         websitesBinding.binding.testedMeasurements.setText(websitesBinding.binding.failedMeasurements.getContext().getResources().getQuantityString(R.plurals.TestResults_Overview_Websites_Tested, tested.intValue(), tested.toString()));
                         websitesBinding.binding.failedMeasurements.setTextColor(ContextCompat.getColor(websitesBinding.binding.failedMeasurements.getContext(), blocked == 0 ? R.color.color_gray9 : R.color.color_yellow9));
                         DrawableCompat.setTint(DrawableCompat.wrap(websitesBinding.binding.failedMeasurements.getCompoundDrawablesRelative()[0]).mutate(), ContextCompat.getColor(websitesBinding.binding.failedMeasurements.getContext(), blocked == 0 ? R.color.color_gray9 : R.color.color_yellow9));
+                        // TODO(aanorbel): update implementation to be more performant.
                         boolean allUploaded = true;
                         for (Measurement m : result.getMeasurements())
                             allUploaded = allUploaded && (m.isUploaded() || m.is_failed);
@@ -138,6 +139,7 @@ public class ResultListAdapter extends PagingDataAdapter<ResultListAdapter.UiMod
                         iBinding.binding.okMeasurements.setText(iBinding.binding.failedMeasurements.getContext().getResources().getQuantityString(R.plurals.TestResults_Overview_InstantMessaging_Available, available.intValue(), available.toString()));
                         iBinding.binding.failedMeasurements.setTextColor(ContextCompat.getColor(iBinding.binding.failedMeasurements.getContext(), blocked == 0 ? R.color.color_gray9 : R.color.color_yellow9));
                         DrawableCompat.setTint(DrawableCompat.wrap(iBinding.binding.failedMeasurements.getCompoundDrawablesRelative()[0]).mutate(), ContextCompat.getColor(iBinding.binding.failedMeasurements.getContext(), blocked == 0 ? R.color.color_gray9 : R.color.color_yellow9));
+                        // TODO(aanorbel): update implementation to be more performant.
                         boolean allUploaded = true;
                         for (Measurement m : result.getMeasurements())
                             allUploaded = allUploaded && (m.isUploaded() || m.is_failed);
@@ -161,6 +163,7 @@ public class ResultListAdapter extends PagingDataAdapter<ResultListAdapter.UiMod
                             mBinding.binding.status.setTextColor(ContextCompat.getColor(mBinding.binding.status.getContext(), R.color.color_gray9));
                             DrawableCompat.setTint(DrawableCompat.wrap(mBinding.binding.status.getCompoundDrawablesRelative()[0]).mutate(), ContextCompat.getColor(mBinding.binding.status.getContext(), R.color.color_gray9));
                         }
+                        // TODO(aanorbel): update implementation to be more performant.
                         boolean allUploaded = true;
                         for (Measurement m : result.getMeasurements())
                             allUploaded = allUploaded && (m.isUploaded() || m.is_failed);
@@ -180,6 +183,7 @@ public class ResultListAdapter extends PagingDataAdapter<ResultListAdapter.UiMod
                         pBinding.binding.quality.setAlpha(dashM == null ? ResultHeaderPerformanceFragment.ALPHA_DIS : ResultHeaderPerformanceFragment.ALPHA_ENA);
                         pBinding.binding.upload.setAlpha(ndtM == null ? ResultHeaderPerformanceFragment.ALPHA_DIS : ResultHeaderPerformanceFragment.ALPHA_ENA);
                         pBinding.binding.download.setAlpha(ndtM == null ? ResultHeaderPerformanceFragment.ALPHA_DIS : ResultHeaderPerformanceFragment.ALPHA_ENA);
+                        // TODO(aanorbel): update implementation to be more performant.
                         boolean allUploaded = true;
                         for (Measurement m : result.getMeasurements())
                             allUploaded = allUploaded && (m.isUploaded() || m.is_failed);
@@ -197,6 +201,7 @@ public class ResultListAdapter extends PagingDataAdapter<ResultListAdapter.UiMod
                         cBinding.binding.okMeasurements.setText(cBinding.binding.failedMeasurements.getContext().getResources().getQuantityString(R.plurals.TestResults_Overview_Circumvention_Available, available.intValue(), available.toString()));
                         cBinding.binding.failedMeasurements.setTextColor(ContextCompat.getColor(cBinding.binding.failedMeasurements.getContext(), blocked == 0 ? R.color.color_gray9 : R.color.color_yellow9));
                         DrawableCompat.setTint(DrawableCompat.wrap(cBinding.binding.failedMeasurements.getCompoundDrawablesRelative()[0]).mutate(), ContextCompat.getColor(cBinding.binding.failedMeasurements.getContext(), blocked == 0 ? R.color.color_gray9 : R.color.color_yellow9));
+                        // TODO(aanorbel): update implementation to be more performant.
                         boolean allUploaded = true;
                         for (Measurement m : result.getMeasurements())
                             allUploaded = allUploaded && (m.isUploaded() || m.is_failed);
@@ -209,6 +214,7 @@ public class ResultListAdapter extends PagingDataAdapter<ResultListAdapter.UiMod
                         ViewHolder<ItemExperimentalBinding> defaultHolder = (ViewHolder<ItemExperimentalBinding>) holder;
                         defaultHolder.binding.asnName.setText(Network.toString(defaultHolder.binding.asnName.getContext(), result.network));
                         defaultHolder.binding.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), result.start_time));
+                        // TODO(aanorbel): update implementation to be more performant.
                         boolean allUploaded = true;
                         for (Measurement m : result.getMeasurements())
                             allUploaded = allUploaded && (m.isUploaded() || m.is_failed);
