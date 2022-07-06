@@ -16,8 +16,6 @@ import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
 import org.openobservatory.ooniprobe.model.settings.Settings;
 
-import java.util.HashMap;
-
 public class RiseupVPN extends AbstractTest {
     public static final String NAME = "riseupvpn";
 
@@ -26,7 +24,7 @@ public class RiseupVPN extends AbstractTest {
     }
 
     @Override public void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, AbstractTest.TestCallback testCallback) {
-        Settings settings = new Settings(c, pm);
+        Settings settings = new Settings(c, pm, isAutoRun());
         run(c, pm, gson, settings, result, index, testCallback);
     }
 

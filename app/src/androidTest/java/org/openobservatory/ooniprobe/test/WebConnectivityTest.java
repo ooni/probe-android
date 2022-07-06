@@ -27,7 +27,7 @@ public class WebConnectivityTest extends AbstractTest {
         String report_id_1 = "r1";
         String report_id_2 = "r2";
         OONIMKTask task = null;
-        Settings settings = new Settings(c, a.getPreferenceManager());
+        Settings settings = new Settings(c, a.getPreferenceManager(),false);
         Gson gson = a.getGson();
         settings.name = EXPERIMENT_NAME;
         settings.inputs = Collections.singletonList("http://mail.google.com");

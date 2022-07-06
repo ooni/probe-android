@@ -143,6 +143,7 @@ public class ProxyActivity extends AbstractActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActivityComponent().inject(this);
 
         // We draw the view and store references to objects needed
         // when configuring the initial view or modifying it.
