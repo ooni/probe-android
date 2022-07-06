@@ -155,7 +155,7 @@ dependencies {
 	testImplementation 'org.mockito:mockito-inline:3.10.0'
 	testImplementation 'org.robolectric:robolectric:4.5.1'
 	testImplementation 'com.github.blocoio:faker:1.2.8'
-	testImplementation 'org.ooni:oonimkall:2021.05.13-070256'
+	testImplementation 'org.ooni:oonimkall:2022.07.04-102558'
 	testAnnotationProcessor 'com.google.dagger:dagger-compiler:2.36'
 
 	// Instrumentation Testing
