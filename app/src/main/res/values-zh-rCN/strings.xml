@@ -71,6 +71,7 @@
   <string name="Dashboard_Circumvention_Overview_Paragraph">Check whether [Psiphon](https://ooni.org/nettest/psiphon/), [Tor](https://ooni.org/nettest/tor/) or [RiseupVPN](https://ooni.org/nettest/riseupvpn/) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Experimental_Card_Description">进行新的实验测试\n</string>
   <string name="Dashboard_Experimental_Overview_Paragraph">Run the following new experimental tests developed by the OONI team:\n%1$s\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_Experimental_Overview_Paragraph_AutomatedTesting">The following tests will only be run as part of automated testing:</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>
@@ -276,6 +277,7 @@
   <string name="Modal_NotNow">Not now</string>
   <string name="Modal_RunAnyway">Run anyways</string>
   <string name="Modal_DisableVPN">Disable VPN</string>
+  <string name="Modal_AlwaysRun">Always Run</string>
   <string name="Modal_Error_NoInternet">无法运行测试。请复查您的因特网连接。</string>
   <string name="Modal_Error_CantDownloadURLs">无法下载 URL 列表。请重试。</string>
   <string name="Modal_Error_TestAlreadyRunning">请等待当前运行的测试完成后再开始新的测试。</string>
@@ -290,6 +292,8 @@
   <string name="Modal_Autorun_BatteryOptimization">如果没有优化电池，OONI无法自动运行。你想再试一次吗</string>
   <string name="Modal_DisableVPN_Title">请关闭您的VPN连接。</string>
   <string name="Modal_DisableVPN_Message">如果您在启用VPN的情况下运行OONI，测试结果可能看起来来自错误的国家。请关闭您的VPN连接。</string>
+  <string name="Modal_UploadVPNResults_Title">Some measurements were taken over VPN.</string>
+  <string name="Modal_UploadVPNResults_Message">If you upload measurements taken when VPN enabled, the test results may appear to come from the wrong country.</string>
   <string name="Toast_ResultsUploaded">上传成功</string>
   <string name="Modal_DisplayFailureLog">显示失败日志</string>
   <string name="Modal_EnableNotifications_Title">获取网络审查的动态</string>
@@ -376,6 +380,8 @@
   <string name="Settings_Advanced_Label">高级</string>
   <string name="Settings_DarkMode_Label">黑暗模式</string>
   <string name="Settings_Advanced_DebugLogs">调试日志</string>
+  <string name="Settings_Advanced_LanguageSettings_Title">Language Setting</string>
+  <string name="Settings_Advanced_LanguageSettings_PopUp">选择语言</string>
   <string name="Settings_Advanced_UseDomainFronting">始终使用 domain fronting</string>
   <string name="Settings_Proxy_Label">OONI backend proxy</string>
   <string name="Settings_Proxy_Enabled">代理</string>
@@ -409,6 +415,7 @@
   <string name="Settings_Websites_CustomURL_NoURLEntered">没有输入 URL</string>
   <string name="Settings_Websites_CustomURL_Run">运行</string>
   <string name="Settings_Websites_CustomURL_Add">添加网站</string>
+  <string name="Settings_Websites_CustomURL_LoadFromTemplate">Load from template</string>
   <string name="Settings_Websites_TestCount">测试网站数（0为全选）</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">测试 WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">测试 Telegram</string>
@@ -427,6 +434,7 @@
   <string name="Settings_Circumvention_TestPsiphon">测试赛风</string>
   <string name="Settings_Circumvention_TestTor">测试 Tor</string>
   <string name="Settings_Circumvention_TestRiseupVPN">测试 RiseupVPN</string>
+  <string name="Settings_WarmVPNInUse_Label">Warn when VPN is in use</string>
   <string name="Settings_SendEmail_Label">发送邮件给支持团队</string>
   <string name="Settings_SendEmail_Message">Please describe the problem you are experiencing:</string>
   <string name="Settings_SendEmail_Error">请将应用和 iOS 版本号通过邮件发送至 bugs@openobservatory.org。点击下方“复制到剪贴板”来复制我们邮箱地址。</string>

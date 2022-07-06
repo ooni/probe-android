@@ -292,6 +292,8 @@
   <string name="Modal_Autorun_BatteryOptimization">OONI Probe cannot run automatically without battery optimization. Do you want to try again?</string>
   <string name="Modal_DisableVPN_Title">Please disable your VPN connection.</string>
   <string name="Modal_DisableVPN_Message">If you run OONI Probe with a VPN enabled, the test results may appear to come from the wrong country. Please disable your VPN connection.</string>
+  <string name="Modal_UploadVPNResults_Title">Some measurements were taken over VPN.</string>
+  <string name="Modal_UploadVPNResults_Message">If you upload measurements taken when VPN enabled, the test results may appear to come from the wrong country.</string>
   <string name="Toast_ResultsUploaded">Upload successful</string>
   <string name="Modal_DisplayFailureLog">Display failure log</string>
   <string name="Modal_EnableNotifications_Title">Get updates on internet censorship</string>
@@ -413,6 +415,7 @@
   <string name="Settings_Websites_CustomURL_NoURLEntered">No URLs entered</string>
   <string name="Settings_Websites_CustomURL_Run">Run</string>
   <string name="Settings_Websites_CustomURL_Add">Add website</string>
+  <string name="Settings_Websites_CustomURL_LoadFromTemplate">Load from template</string>
   <string name="Settings_Websites_TestCount">Number of tested websites (0 means all)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">Test WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Test Telegram</string>

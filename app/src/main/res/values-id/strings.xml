@@ -71,6 +71,7 @@
   <string name="Dashboard_Circumvention_Overview_Paragraph">Cek apakah [Psiphon](https://ooni.org/nettest/psiphon/), [Tor](https://ooni.org/nettest/tor/) atau [RiseupVPN](https://ooni.org/nettest/riseupvpn/) diblokir.\n\nHasil Anda akan dipublikasikan di [OONI Explorer](https://explorer.ooni.org/) dan [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Experimental_Card_Description">Jalankan tes percobaan baru</string>
   <string name="Dashboard_Experimental_Overview_Paragraph">Jalankan tes eksperimen baru ini yang dikembangkan oleh tim OONI:\n%1$s\n\nHasil Anda akan dipubikasikan di [OONI Explorer](https://explorer.ooni.org/) dan [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_Experimental_Overview_Paragraph_AutomatedTesting">The following tests will only be run as part of automated testing:</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>
@@ -276,6 +277,7 @@
   <string name="Modal_NotNow">Tidak sekarang</string>
   <string name="Modal_RunAnyway">Run anyways</string>
   <string name="Modal_DisableVPN">Disable VPN</string>
+  <string name="Modal_AlwaysRun">Always Run</string>
   <string name="Modal_Error_NoInternet">Tidak bisa menjalankan tes. Mohon cek konektivitas internet Anda.</string>
   <string name="Modal_Error_CantDownloadURLs">Gagal mengunduh daftar URL. Coba lagi.</string>
   <string name="Modal_Error_TestAlreadyRunning">Mohon tunggu tes yang sedang berlangsung untuk selesai sebelum memulai tes yang baru.</string>
@@ -290,6 +292,8 @@
   <string name="Modal_Autorun_BatteryOptimization">OONI Probe tidak dapat berjalan dengan otomatis tanpa pengoptimalan baterai. Apakah Anda ingin mencoba lagi?</string>
   <string name="Modal_DisableVPN_Title">Mohon nonaktifkan koneksi VPN Anda.</string>
   <string name="Modal_DisableVPN_Message">Jika Anda menjalankan tes OONI Probe dengan VPN yang diaktifkan, hasil tes akan terlihat berasal dari negara yang salah. Mohon nonaktifkan koneksi VPN.</string>
+  <string name="Modal_UploadVPNResults_Title">Some measurements were taken over VPN.</string>
+  <string name="Modal_UploadVPNResults_Message">If you upload measurements taken when VPN enabled, the test results may appear to come from the wrong country.</string>
   <string name="Toast_ResultsUploaded">Unggahan berhasil</string>
   <string name="Modal_DisplayFailureLog">Tampilkan log kesalahan</string>
   <string name="Modal_EnableNotifications_Title">Dapatkan informasi terbaru mengenai penyensoran Internet</string>
@@ -376,6 +380,8 @@
   <string name="Settings_Advanced_Label">Advanced </string>
   <string name="Settings_DarkMode_Label">Mode Gelap</string>
   <string name="Settings_Advanced_DebugLogs">Log Debug</string>
+  <string name="Settings_Advanced_LanguageSettings_Title">Language Setting</string>
+  <string name="Settings_Advanced_LanguageSettings_PopUp">Pilih Bahasa</string>
   <string name="Settings_Advanced_UseDomainFronting">Always use domain fronting</string>
   <string name="Settings_Proxy_Label">OONI backend proxy</string>
   <string name="Settings_Proxy_Enabled">Proksi</string>
@@ -409,6 +415,7 @@
   <string name="Settings_Websites_CustomURL_NoURLEntered">URL belum dimasukkan</string>
   <string name="Settings_Websites_CustomURL_Run">Jalankan</string>
   <string name="Settings_Websites_CustomURL_Add">Tambah laman</string>
+  <string name="Settings_Websites_CustomURL_LoadFromTemplate">Load from template</string>
   <string name="Settings_Websites_TestCount">Jumlah laman yang sudah dites (0 artinya semua)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">Tes WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Tes Telegram</string>
@@ -427,6 +434,7 @@
   <string name="Settings_Circumvention_TestPsiphon">Tes Psiphon</string>
   <string name="Settings_Circumvention_TestTor">Tes Tor</string>
   <string name="Settings_Circumvention_TestRiseupVPN">Tes RiseupVPN</string>
+  <string name="Settings_WarmVPNInUse_Label">Warn when VPN is in use</string>
   <string name="Settings_SendEmail_Label">Kirim surel ke pendukung</string>
   <string name="Settings_SendEmail_Message">Silakan deskripsikan masalah yang Anda alami:</string>
   <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap \"Copy to clipboard\" below to copy our email address.</string>
