@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="General_AppName">OONI Probe</string>
-  <string name="Onboarding_WhatIsOONIProbe_Title">Qu’est-ce qu’OONI Probe ?</string>
+  <string name="Onboarding_WhatIsOONIProbe_Title">Qu’est-ce qu’OONI Probe ?</string>
   <string name="Onboarding_WhatIsOONIProbe_Paragraph">Votre appli pour mesurer la censure d’Internet. \n\nLes sites Web et les applis de médias sociaux sont-ils bloqués ? Votre connexion Internet est-elle anormalement lente ?\n\nLancez OONI Probe pour le savoir !</string>
   <string name="Onboarding_WhatIsOONIProbe_GotIt">D’accord</string>
   <string name="Onboarding_ThingsToKnow_Title">À savoir !</string>
@@ -71,6 +71,7 @@
   <string name="Dashboard_Circumvention_Overview_Paragraph">Vérifiez si [Psiphon](https://ooni.org/nettest/psiphon/), [Tor](https://ooni.org/nettest/tor/) ou [RiseupVPN](https://ooni.org/nettest/riseupvpn/) sont bloqués (site en anglais).\n\nVos résultats seront publiés dans l’[Explorateur OONI](https://explorer.ooni.org/) et l’[API d’OONI](https://api.ooni.io/) (site en anglais).</string>
   <string name="Dashboard_Experimental_Card_Description">Effectuer les nouveaux tests expérimentaux</string>
   <string name="Dashboard_Experimental_Overview_Paragraph">Effectuer les nouveaux tests expérimentaux suivants conçus par l’équipe d’OONI :\n%1$s\n\nVos résultats seront publiés dans l’[Explorateur OONI](https://explorer.ooni.org/) et l’[API d’OONI](https://api.ooni.io/) (site en anglais).</string>
+  <string name="Dashboard_Experimental_Overview_Paragraph_AutomatedTesting">Les tests suivants ne seront exécutés que dans le cadre des tests automatisés :</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>
@@ -276,6 +277,7 @@
   <string name="Modal_NotNow">Pas maintenant</string>
   <string name="Modal_RunAnyway">Lancer quand même</string>
   <string name="Modal_DisableVPN">Désactiver le RPV</string>
+  <string name="Modal_AlwaysRun">Toujours exécuter</string>
   <string name="Modal_Error_NoInternet">Impossible d’effectuer le test. Veuillez vérifier votre connexion à Internet.</string>
   <string name="Modal_Error_CantDownloadURLs">Impossible de télécharger la liste des URL. Veuillez réessayer.</string>
   <string name="Modal_Error_TestAlreadyRunning">Veuillez attendre la fin du test en cours avant de lancer un nouveau test.</string>
@@ -290,6 +292,8 @@
   <string name="Modal_Autorun_BatteryOptimization">OONI Probe ne peut pas fonctionner automatiquement sans optimisation de la pile. Voulez-vous réessayer ?</string>
   <string name="Modal_DisableVPN_Title">Veuillez désactiver votre connexion RPV.</string>
   <string name="Modal_DisableVPN_Message">Si vous exécutez OONI Probe alors qu’un RPV (réseau privé virtuel) est activé, les résultats des tests pourraient sembler provenir du mauvais pays. Veuillez désactiver votre connexion RPV.</string>
+  <string name="Modal_UploadVPNResults_Title">Certaines mesures ont été prises connecté à un RPV.</string>
+  <string name="Modal_UploadVPNResults_Message">Si vous téléversez des mesures prises alors qu’un RPV est activé, les résultats du test pourraient sembler provenir du mauvais pays.</string>
   <string name="Toast_ResultsUploaded">Téléversement réussi</string>
   <string name="Modal_DisplayFailureLog">Afficher le journal des échecs</string>
   <string name="Modal_EnableNotifications_Title">Obtenez des mises à jour sur la censure d’Internet</string>
@@ -315,7 +319,7 @@
   <string name="Modal_Error_JsonEmpty">Le JSON est vide</string>
   <string name="Modal_InterruptTest_Title">Voulez-vous interrompre ce test ?</string>
   <string name="Modal_InterruptTest_Paragraph">Le test en cours sera interrompu à partir de maintenant.</string>
-  <string name="Modal_Autorun_Modal_Title">Voulez-vous effectuer les tests manuellement ?</string>
+  <string name="Modal_Autorun_Modal_Title">Voulez-vous effectuer les tests automatiquement ?</string>
   <string name="Modal_Autorun_Modal_Text">En activant les tests automatisés, vous enverrez des mesures OONI sur une base régulière.</string>
   <string name="Modal_Autorun_Modal_Text_Android">Veuillez autoriser l’appli à fonctionner en arrière-plan.</string>
   <string name="Modal_Autorun_Modal_Button_RemindLater">Me rappeler plus tard</string>
@@ -376,6 +380,8 @@
   <string name="Settings_Advanced_Label">Avancés</string>
   <string name="Settings_DarkMode_Label">Mode sombre</string>
   <string name="Settings_Advanced_DebugLogs">Journaux de débogage</string>
+  <string name="Settings_Advanced_LanguageSettings_Title">Paramètres de langue</string>
+  <string name="Settings_Advanced_LanguageSettings_PopUp">Sélectionner une langue</string>
   <string name="Settings_Advanced_UseDomainFronting">Toujours utiliser un domaine-écran</string>
   <string name="Settings_Proxy_Label">Mandataire vers la dorsale d’OONI</string>
   <string name="Settings_Proxy_Enabled">Mandataire</string>
@@ -409,6 +415,7 @@
   <string name="Settings_Websites_CustomURL_NoURLEntered">Aucune URL n’a été saisie</string>
   <string name="Settings_Websites_CustomURL_Run">Lancer</string>
   <string name="Settings_Websites_CustomURL_Add">Ajouter le site Web</string>
+  <string name="Settings_Websites_CustomURL_LoadFromTemplate">Charger d’un modèle</string>
   <string name="Settings_Websites_TestCount">Nombre de sites Web testés (0 signifie tout)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">Tester WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Tester Telegram</string>
@@ -427,6 +434,7 @@
   <string name="Settings_Circumvention_TestPsiphon">Test de Psiphon</string>
   <string name="Settings_Circumvention_TestTor">Test de Tor</string>
   <string name="Settings_Circumvention_TestRiseupVPN">Tester RiseupVPN</string>
+  <string name="Settings_WarmVPNInUse_Label">Avertir quand un RPV est utilisé</string>
   <string name="Settings_SendEmail_Label">Envoyer un courriel à l’assistance</string>
   <string name="Settings_SendEmail_Message">Veuillez décrire le problème que vous rencontrez :</string>
   <string name="Settings_SendEmail_Error">Veuillez envoyer un courriel à bugs@openobservatory.org avec des renseignements sur la version de l’appli et d’iOS. Touchez « Copier dans le presse-papiers » ci-dessous pour copier votre adresse courriel.</string>
