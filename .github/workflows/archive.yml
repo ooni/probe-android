@@ -1,5 +1,5 @@
 # build checks whether the project builds
-name: build
+name: archive
 on: [push]
 jobs:
   build:
@@ -13,7 +13,7 @@ jobs:
       uses: actions/checkout@v2
     - run: ./gradlew clean && ./gradlew assembleDevFullRelease
     - name: uploads dev apk
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: dev-apk
         path: app/build/outputs/apk/devFull/release
