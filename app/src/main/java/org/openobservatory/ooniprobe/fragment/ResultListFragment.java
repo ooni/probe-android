@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.common.collect.Iterables;
 import com.raizlabs.android.dbflow.sql.language.Method;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
@@ -45,6 +46,7 @@ import org.openobservatory.ooniprobe.item.InstantMessagingItem;
 import org.openobservatory.ooniprobe.item.MiddleboxesItem;
 import org.openobservatory.ooniprobe.item.PerformanceItem;
 import org.openobservatory.ooniprobe.item.WebsiteItem;
+import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
@@ -255,9 +257,14 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
             else
                 snackbar.show();
         } else if (i == DialogInterface.BUTTON_POSITIVE) {
-            if (serializable instanceof Result)
-                ((Result) serializable).delete(getActivity());
-            else if (serializable.equals(R.id.delete)) {
+            if (serializable instanceof Result) {
+                Result result = ((Result) serializable);
+                for (Measurement measurement : result.getMeasurements()) {
+                    measurement.deleteEntryFile(getContext());
+                    measurement.deleteLogFile(getContext());
+                }
+                result.delete(getActivity());
+            } else if (serializable.equals(R.id.delete)) {
                 //From https://guides.codepath.com/android/using-dialogfragment
                 ProgressDialog pd = new ProgressDialog(getContext());
                 pd.setCancelable(false);

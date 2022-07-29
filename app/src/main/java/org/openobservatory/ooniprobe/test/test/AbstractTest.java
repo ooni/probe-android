@@ -186,10 +186,10 @@ public abstract class AbstractTest implements Serializable {
 						*/
                         break;
                     case "status.measurement_submission":
-                        setUploaded(true, event.value);
+                        setUploaded(true, event.value, c);
                         break;
                     case "failure.measurement_submission":
-                        setUploaded(false, event.value);
+                        setUploaded(false, event.value , c);
                         break;
                     case "status.measurement_done":
                         setDone(event.value);
@@ -260,13 +260,16 @@ public abstract class AbstractTest implements Serializable {
         }
     }
 
-    private void setUploaded(Boolean uploaded, EventResult.Value value) {
+    private void setUploaded(Boolean uploaded, EventResult.Value value, Context context) {
         Measurement measurement = measurements.get(value.idx);
         if (measurement != null) {
             measurement.is_uploaded = uploaded;
             if (!uploaded) {
                 measurement.report_id = null;
                 measurement.is_upload_failed = true;
+            } else {
+                measurement.deleteEntryFile(context);
+                measurement.deleteLogFile(context);
             }
             String failure = value.failure;
             if (failure != null)

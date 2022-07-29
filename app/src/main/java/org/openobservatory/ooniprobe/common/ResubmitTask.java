@@ -78,6 +78,8 @@ public class ResubmitTask<A extends AbstractActivity> extends NetworkProgressAsy
             OONISubmitResults results = session.submit(ooniContext, input);
             FileUtils.writeStringToFile(file, results.getUpdatedMeasurement(), StandardCharsets.UTF_8);
             m.report_id = results.getUpdatedReportID();
+            m.deleteEntryFile(c);
+            m.deleteLogFile(c);
             m.is_uploaded = true;
             m.is_upload_failed = false;
             m.save();
