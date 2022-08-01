@@ -48,9 +48,7 @@ public class Application extends android.app.Application {
 			FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
 		AppLifecycleObserver appLifecycleObserver = new AppLifecycleObserver();
 		ProcessLifecycleOwner.get().getLifecycle().addObserver(appLifecycleObserver);
-		if (_preferenceManager.canCallDeleteJson())
-			Measurement.deleteUploadedJsons(this);
-		Measurement.deleteOldLogs(this);
+
 		ThirdPartyServices.reloadConsents(this);
 
 		LocaleUtils.setLocale(new Locale(_preferenceManager.getSettingsLanguage()));
