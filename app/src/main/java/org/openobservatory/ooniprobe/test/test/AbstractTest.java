@@ -289,7 +289,6 @@ public abstract class AbstractTest implements Serializable {
         if (measurement != null) {
             if(measurement.is_uploaded){
                 measurement.deleteEntryFile(context);
-                measurement.deleteLogFile(context);
             }
         }
     }

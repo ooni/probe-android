@@ -79,7 +79,6 @@ public class ResubmitTask<A extends AbstractActivity> extends NetworkProgressAsy
             FileUtils.writeStringToFile(file, results.getUpdatedMeasurement(), StandardCharsets.UTF_8);
             m.report_id = results.getUpdatedReportID();
             m.deleteEntryFile(c);
-            m.deleteLogFile(c);
             m.is_uploaded = true;
             m.is_upload_failed = false;
             m.save();
@@ -156,7 +155,6 @@ public class ResubmitTask<A extends AbstractActivity> extends NetworkProgressAsy
                     errors++;
                 }else {
                     m.deleteEntryFile(getActivity());
-                    m.deleteLogFile(getActivity());
                 }
             }
         }
