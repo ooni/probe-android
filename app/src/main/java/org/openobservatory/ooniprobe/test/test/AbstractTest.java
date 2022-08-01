@@ -186,10 +186,10 @@ public abstract class AbstractTest implements Serializable {
 						*/
                         break;
                     case "status.measurement_submission":
-                        setUploaded(true, event.value, c);
+                        setUploaded(true, event.value);
                         break;
                     case "failure.measurement_submission":
-                        setUploaded(false, event.value , c);
+                        setUploaded(false, event.value );
                         break;
                     case "status.measurement_done":
                         setDone(event.value);
@@ -206,6 +206,7 @@ public abstract class AbstractTest implements Serializable {
                         ThirdPartyServices.logException(new MKException(event));
                         break;
                     case "task_terminated":
+                        onTaskTerminated(event.value, c);
                         /*
                          * The task will be interrupted so the current
                          * measurement data will not show up.
@@ -260,16 +261,13 @@ public abstract class AbstractTest implements Serializable {
         }
     }
 
-    private void setUploaded(Boolean uploaded, EventResult.Value value, Context context) {
+    private void setUploaded(Boolean uploaded, EventResult.Value value) {
         Measurement measurement = measurements.get(value.idx);
         if (measurement != null) {
             measurement.is_uploaded = uploaded;
             if (!uploaded) {
                 measurement.report_id = null;
                 measurement.is_upload_failed = true;
-            } else {
-                measurement.deleteEntryFile(context);
-                measurement.deleteLogFile(context);
             }
             String failure = value.failure;
             if (failure != null)
@@ -283,6 +281,16 @@ public abstract class AbstractTest implements Serializable {
         if (measurement != null) {
             measurement.is_done = true;
             measurement.save();
+        }
+    }
+
+    protected void onTaskTerminated(EventResult.Value value, Context context){
+        Measurement measurement = measurements.get(value.idx);
+        if (measurement != null) {
+            if(measurement.is_uploaded){
+                measurement.deleteEntryFile(context);
+                measurement.deleteLogFile(context);
+            }
         }
     }
 
