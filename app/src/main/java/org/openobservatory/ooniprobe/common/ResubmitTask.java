@@ -154,6 +154,9 @@ public class ResubmitTask<A extends AbstractActivity> extends NetworkProgressAsy
                 m.result.load();
                 if(!d.measurementsManager.reSubmit(m, session)){
                     errors++;
+                }else {
+                    m.deleteEntryFile(getActivity());
+                    m.deleteLogFile(getActivity());
                 }
             }
         }
