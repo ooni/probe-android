@@ -28,7 +28,7 @@ import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.MKException;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
-import org.openobservatory.ooniprobe.common.service.RunTestService;
+import org.openobservatory.ooniprobe.common.service.  RunTestService;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
@@ -64,7 +64,6 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     public AbstractSuite currentSuite;
     public AbstractTest currentTest;
     private boolean interrupt;
-    WeakReference<RunTestService> serviceRef;
     private ConnectivityManager manager;
     private ConnectivityManager.NetworkCallback networkCallback;
     private String proxy;
@@ -73,7 +72,6 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, RunTestService service) {
         this.app = app;
         this.testSuites = testSuites;
-        this.serviceRef = new WeakReference<>(service);
         this.proxy = app.getPreferenceManager().getProxyURL();
     }
 
@@ -217,49 +215,12 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     protected void onProgressUpdate(String... values) {
         //Send broadcast to the RunningActivity
         sendBroadcast(values);
-        //And update the notification
-        String key = values[0];
-        if (values.length <= 1) return;
-        String value = values[1];
-        switch (key) {
-            case TestAsyncTask.RUN:
-                Log.d(TAG, "TestAsyncTask.RUN");
-                try {
-                    serviceRef.get().builder.setContentText(value)
-                            .setProgress(currentSuite.getTestList(app.getPreferenceManager()).length * 100, 0, false);
-                    serviceRef.get().notificationManager.notify(RunTestService.NOTIFICATION_ID, serviceRef.get().builder.build());
-                } catch (Exception e) {
-                    ThirdPartyServices.logException(e);
-                }
-                break;
-            case TestAsyncTask.PRG:
-                Log.d(TAG, "TestAsyncTask.PRG " + value);
-                try {
-                    int prgs = Integer.parseInt(value);
-                    serviceRef.get().builder.setProgress(currentSuite.getTestList(app.getPreferenceManager()).length * 100, prgs, false);
-                    serviceRef.get().notificationManager.notify(RunTestService.NOTIFICATION_ID, serviceRef.get().builder.build());
-                } catch (Exception e) {
-                    ThirdPartyServices.logException(e);
-                }
-                break;
-            case TestAsyncTask.INT:
-                Log.d(TAG, "TestAsyncTask.INT");
-                try {
-                    serviceRef.get().builder.setContentText(app.getString(R.string.Dashboard_Running_Stopping_Title))
-                            .setProgress(0, 0, true);
-                    serviceRef.get().notificationManager.notify(RunTestService.NOTIFICATION_ID, serviceRef.get().builder.build());
-                } catch (Exception e) {
-                    ThirdPartyServices.logException(e);
-                }
-                break;
-        }
     }
 
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
         sendBroadcast(END);
-        serviceRef.get().stopSelf();
         unregisterConnChange();
     }
 
