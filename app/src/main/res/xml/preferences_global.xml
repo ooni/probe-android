@@ -163,12 +163,6 @@
 					android:title="@string/CategoryCode_MMED_Name" />
 				<SwitchPreferenceCompat
 					android:defaultValue="true"
-					android:icon="@drawable/category_misc"
-					android:key="@string/CategoryCode_MISC_Key"
-					android:summary="@string/CategoryCode_MISC_Description"
-					android:title="@string/CategoryCode_MISC_Name" />
-				<SwitchPreferenceCompat
-					android:defaultValue="true"
 					android:icon="@drawable/category_news"
 					android:key="@string/CategoryCode_NEWS_Key"
 					android:summary="@string/CategoryCode_NEWS_Description"
