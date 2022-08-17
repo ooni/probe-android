@@ -52,6 +52,7 @@
 
 		<Button
 			android:id="@+id/learnMore"
+			android:textColor="#057ACB"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="16dp"
