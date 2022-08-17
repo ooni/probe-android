@@ -108,7 +108,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/color_blue1"
-                android:textColor="@color/color_gray6"
+                android:textColor="#5F646A"
                 android:padding="20dp"
                 android:text="@string/Settings_Proxy_Footer" />
         </LinearLayout>
