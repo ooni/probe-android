@@ -47,7 +47,7 @@ public class RunTestService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         ArrayList<AbstractSuite> testSuites = (ArrayList<AbstractSuite>) intent.getSerializableExtra("testSuites");
         if (testSuites == null || testSuites.size() == 0)
-            return 0;
+            return START_STICKY_COMPATIBILITY;
         boolean store_db = intent.getBooleanExtra("storeDB", true);
         Application app = ((Application)getApplication());
         NotificationUtility.setChannel(getApplicationContext(), CHANNEL_ID, app.getString(R.string.Settings_AutomatedTesting_Label), false, false, false);
@@ -159,6 +159,7 @@ public class RunTestService extends Service {
             }
             //This is used to close the notification tray
             Intent it = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
+            // TODO (aanorbel): system permission required here https://developer.android.com/about/versions/12/behavior-changes-all?msclkid=3ad37f25cf7411ecb536010741f51e42#close-system-dialogs
             context.sendBroadcast(it);
         }
 
