@@ -25,6 +25,7 @@ import org.openobservatory.engine.OONIURLListResult;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.ListUtility;
 import org.openobservatory.ooniprobe.common.MKException;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
@@ -251,9 +252,9 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     }
 
     public int getMax(PreferenceManager preferenceManager) {
-        return (int) Stats.of(Lists.transform(
+        return ListUtility.sum(Lists.transform(
                 testSuites,
                 testSuite -> testSuite.getTestList(preferenceManager).length * 100
-        )).sum();
+        ));
     }
 }
