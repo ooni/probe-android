@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.model.database;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 import android.content.Context;
 
 import androidx.annotation.NonNull;
@@ -55,6 +57,7 @@ public class Measurement extends BaseModel implements Serializable {
 	@Column public boolean is_upload_failed;
 	@Column public String upload_failure_msg;
 	@Column public boolean is_rerun;
+	@Column public String rerun_network;
 	@Column public String report_id;
 	@Column public boolean is_anomaly;
 	@Column public String test_keys;
@@ -120,10 +123,12 @@ public class Measurement extends BaseModel implements Serializable {
 
 	public static List<Measurement> withReport(Context c, Where<Measurement> msmQuery) {
 		List<Measurement> measurements = msmQuery.queryList();
+		List<Measurement> toRemove = newArrayList();
 		for (Measurement measurement : measurements){
 			if (!measurement.hasReportFile(c))
-				measurements.remove(measurement);
+				toRemove.add(measurement);
 		}
+		measurements.removeAll(toRemove);
 		return measurements;
 	}
 

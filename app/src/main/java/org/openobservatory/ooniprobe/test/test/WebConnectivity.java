@@ -24,7 +24,7 @@ public class WebConnectivity extends AbstractTest {
 	}
 
 	@Override public void run(Context c, PreferenceManager pm, AppLogger logger, Gson gson, Result result, int index, TestCallback testCallback) {
-		Settings settings = new Settings(c, pm);
+		Settings settings = new Settings(c, pm, isAutoRun());
 
 		ThirdPartyServices.addLogExtra("_settings", ((Application) c.getApplicationContext()).getGson().toJson(settings));
 

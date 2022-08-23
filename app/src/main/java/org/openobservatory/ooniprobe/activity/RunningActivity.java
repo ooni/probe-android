@@ -149,7 +149,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
             }
         });
 
-        if (getPreferenceManager().getProxyURL().isEmpty())
+        if (preferenceManager.getProxyURL().isEmpty())
             proxy_icon.setVisibility(View.GONE);
         close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -237,11 +237,6 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     protected void onDestroy() {
         super.onDestroy();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
-    }
-
-    @Override
-    public void onBackPressed() {
-        Toast.makeText(this, getString(R.string.Modal_Error_CantCloseScreen), Toast.LENGTH_SHORT).show();
     }
 
     private void testEnded(Context context) {

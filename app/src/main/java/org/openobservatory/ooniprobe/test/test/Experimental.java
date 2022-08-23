@@ -23,7 +23,7 @@ public class Experimental extends AbstractTest {
     }
 
     @Override public void run(Context c, PreferenceManager pm, AppLogger logger, Gson gson, Result result, int index, AbstractTest.TestCallback testCallback) {
-        Settings settings = new Settings(c, pm);
+        Settings settings = new Settings(c, pm, isAutoRun());
         run(c, pm,logger, gson, settings, result, index, testCallback);
     }
 

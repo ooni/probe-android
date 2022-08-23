@@ -25,7 +25,7 @@ public class Ndt extends AbstractTest {
 
 	@Override public void run(Context c, PreferenceManager pm, AppLogger logger, Gson gson, Result result, int index, TestCallback testCallback) {
 		countries = c.getResources().getStringArray(R.array.countries);
-		Settings settings = new Settings(c, pm);
+		Settings settings = new Settings(c, pm, isAutoRun());
 		run(c, pm,logger, gson, settings, result, index, testCallback);
 	}
 

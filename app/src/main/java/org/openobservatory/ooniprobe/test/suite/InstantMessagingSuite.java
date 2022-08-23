@@ -2,6 +2,8 @@ package org.openobservatory.ooniprobe.test.suite;
 
 import androidx.annotation.Nullable;
 
+import com.google.common.collect.Lists;
+
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
@@ -29,6 +31,12 @@ public class InstantMessagingSuite extends AbstractSuite {
 				R.string.small_datausage);
 	}
 
+	public static InstantMessagingSuite initForAutoRun() {
+		InstantMessagingSuite suite = new InstantMessagingSuite();
+		suite.setAutoRun(true);
+		return suite;
+	}
+
 	@Override public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
 		if (super.getTestList(pm) == null) {
 			ArrayList<AbstractTest> list = new ArrayList<>();
@@ -40,7 +48,10 @@ public class InstantMessagingSuite extends AbstractSuite {
 				list.add(new FacebookMessenger());
 			if (pm == null || pm.isTestSignal())
 				list.add(new Signal());
-			super.setTestList(list.toArray(new AbstractTest[0]));
+			super.setTestList(Lists.transform(list, test->{
+				if (getAutoRun()) test.setOrigin(AbstractTest.AUTORUN);
+				return test;
+			}).toArray(new AbstractTest[0]));
 		}
 		return super.getTestList(pm);
 	}

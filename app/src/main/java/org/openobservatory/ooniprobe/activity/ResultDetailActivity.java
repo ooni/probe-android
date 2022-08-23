@@ -202,7 +202,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 
     private static class ResubmitAsyncTask extends ResubmitTask<ResultDetailActivity> {
         ResubmitAsyncTask(ResultDetailActivity activity) {
-            super(activity, activity.getPreferenceManager().getProxyURL());
+            super(activity, activity.preferenceManager.getProxyURL());
         }
 
         @Override

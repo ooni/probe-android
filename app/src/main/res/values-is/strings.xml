@@ -71,6 +71,7 @@
   <string name="Dashboard_Circumvention_Overview_Paragraph">Athugaðu hvort [Psiphon](https://ooni.org/nettest/psiphon/), [Tor](https://ooni.org/nettest/tor/) eða [RiseupVPN](https://ooni.org/nettest/riseupvpn/) verði fyrir hindrunum.\n\nNiðurstöðurnar þínar verða birtar í [OONI Explorer](https://explorer.ooni.org/) og [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Experimental_Card_Description">Keyra nýjar prófanir á tilraunastigi</string>
   <string name="Dashboard_Experimental_Overview_Paragraph">Keyrðu eftirfarandi tilraunaprófanir sem þróaðar hafa verið af OONI-teyminu:\n%1$s\n\nNiðurstöðurnar þínar verða birtar í [OONI Explorer](https://explorer.ooni.org/) og [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_Experimental_Overview_Paragraph_AutomatedTesting">The following tests will only be run as part of automated testing:</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>
@@ -276,6 +277,7 @@
   <string name="Modal_NotNow">Ekki núna</string>
   <string name="Modal_RunAnyway">Keyra samt</string>
   <string name="Modal_DisableVPN">Gera VPN óvirkt</string>
+  <string name="Modal_AlwaysRun">Alltaf keyra</string>
   <string name="Modal_Error_NoInternet">Ekki er hægt að keyra prófunina. Athugaðu nettenginguna þína.</string>
   <string name="Modal_Error_CantDownloadURLs">Get ekki sótt lista yfir slóðir. Reyndu aftur.</string>
   <string name="Modal_Error_TestAlreadyRunning">Bíddu eftir að fyrirliggjandi prófunum ljúki áður en þú framkvæmir nýja prófun.</string>
@@ -290,6 +292,8 @@
   <string name="Modal_Autorun_BatteryOptimization">OONI Probe getur ekki keyrt á þess að rafhlöðunotkun sé bestuð. Viltu prófa aftur?</string>
   <string name="Modal_DisableVPN_Title">Gerðu VPN-tenginguna þína óvirka.</string>
   <string name="Modal_DisableVPN_Message">Ef þú keyrir OONI Probe með virku VPN, geta niðurstöður prófana litið út fyrir að koma frá röngu landi. Gerðu VPN-tenginguna þína óvirka.</string>
+  <string name="Modal_UploadVPNResults_Title">Sumar mælingar fóru fram yfir VPN.</string>
+  <string name="Modal_UploadVPNResults_Message">Ef þú sendir inn mælingar á meðan VPN er virkt, geta niðurstöður prófunar litið út fyrir að koma frá röngu landi.</string>
   <string name="Toast_ResultsUploaded">Innsending tókst</string>
   <string name="Modal_DisplayFailureLog">Birta mistakaskrá</string>
   <string name="Modal_EnableNotifications_Title">Fáðu vísbendingar um ritskoðun internetsins</string>
@@ -376,6 +380,8 @@
   <string name="Settings_Advanced_Label">Ítarlegra</string>
   <string name="Settings_DarkMode_Label">Dökkur hamur</string>
   <string name="Settings_Advanced_DebugLogs">Villuskrár</string>
+  <string name="Settings_Advanced_LanguageSettings_Title">Tungumálastillingar</string>
+  <string name="Settings_Advanced_LanguageSettings_PopUp">Veldu tungumál</string>
   <string name="Settings_Advanced_UseDomainFronting">Alltaf nota lénaframhlið (domain fronting)</string>
   <string name="Settings_Proxy_Label">Milliþjónn OONI-bakenda</string>
   <string name="Settings_Proxy_Enabled">Milliþjónn</string>
@@ -409,6 +415,7 @@
   <string name="Settings_Websites_CustomURL_NoURLEntered">Engar slóðir settar inn</string>
   <string name="Settings_Websites_CustomURL_Run">Keyra</string>
   <string name="Settings_Websites_CustomURL_Add">Bæta við vefsvæði</string>
+  <string name="Settings_Websites_CustomURL_LoadFromTemplate">Load from template</string>
   <string name="Settings_Websites_TestCount">Fjöldi prófaðra vefsvæða (0 þýðir allt)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">Prófa WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Prófa Telegram</string>
@@ -427,6 +434,7 @@
   <string name="Settings_Circumvention_TestPsiphon">Prófa Psiphon</string>
   <string name="Settings_Circumvention_TestTor">Prófa Tor</string>
   <string name="Settings_Circumvention_TestRiseupVPN">Prófa RiseupVPN</string>
+  <string name="Settings_WarmVPNInUse_Label">Aðvara þegar VPN er í notkun</string>
   <string name="Settings_SendEmail_Label">Senda tölvupóst til að fá aðstoð</string>
   <string name="Settings_SendEmail_Message">Lýstu hvaða vandamál þú átt við að eiga:</string>
   <string name="Settings_SendEmail_Error">Sentu tölvupóst til bugs@openobservatory.org með upplýsingum um forritið og útgáfu þína af iOS. Ýttu á \"Afrita á klippispjald\" hér fyrir neðan til að afrita tölvupóstfangið okkar.</string>
