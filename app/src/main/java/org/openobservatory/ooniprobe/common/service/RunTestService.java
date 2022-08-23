@@ -11,15 +11,18 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Binder;
 import android.os.IBinder;
+import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.NotificationUtility;
+import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
@@ -34,6 +37,7 @@ public class RunTestService extends Service {
     public NotificationCompat.Builder builder;
     public NotificationManagerCompat notificationManager;
     ActionReceiver receiver;
+    private static final String TAG = RunTestService.class.getSimpleName();
 
     @Override
     public void onCreate() {
@@ -41,6 +45,57 @@ public class RunTestService extends Service {
         IntentFilter filter = new IntentFilter(ACTION_INTERRUPT);
         receiver = new ActionReceiver();
         this.registerReceiver(receiver, filter);
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+                new BroadcastReceiver() {
+                    @Override
+                    public void onReceive(Context context, Intent intent) {
+                        String key = intent.getStringExtra("key");
+                        String value = intent.getStringExtra("value");
+                        switch (key) {
+                            case TestAsyncTask.RUN:
+                                Log.d(TAG, "TestAsyncTask.RUN");
+                                try {
+                                    builder.setContentText(value)
+                                            .setProgress(task.currentSuite.getTestList(((Application) getApplication()).getPreferenceManager()).length * 100, 0, false);
+                                    notificationManager.notify(RunTestService.NOTIFICATION_ID, builder.build());
+                                } catch (Exception e) {
+                                    ThirdPartyServices.logException(e);
+                                }
+                                break;
+                            case TestAsyncTask.PRG:
+                                Log.d(TAG, "TestAsyncTask.PRG " + value);
+                                try {
+                                    int prgs = Integer.parseInt(value);
+                                    builder.setProgress(task.currentSuite.getTestList(((Application) getApplication()).getPreferenceManager()).length * 100, prgs, false);
+                                    notificationManager.notify(RunTestService.NOTIFICATION_ID, builder.build());
+                                } catch (Exception e) {
+                                    ThirdPartyServices.logException(e);
+                                }
+                                break;
+                            case TestAsyncTask.INT:
+                                Log.d(TAG, "TestAsyncTask.INT");
+                                try {
+                                    builder.setContentText(getString(R.string.Dashboard_Running_Stopping_Title))
+                                            .setProgress(0, 0, true);
+                                    notificationManager.notify(RunTestService.NOTIFICATION_ID, builder.build());
+                                } catch (Exception e) {
+                                    ThirdPartyServices.logException(e);
+                                }
+                                break;
+                            case TestAsyncTask.END:
+                                Log.d(TAG, "TestAsyncTask.END");
+                                try {
+                                    stopSelf();
+                                } catch (Exception e) {
+                                    ThirdPartyServices.logException(e);
+                                }
+                                break;
+                        }
+                    }
+                },
+                new IntentFilter("org.openobservatory.ooniprobe.activity.RunningActivity")
+        );
     }
 
     @Override
@@ -49,7 +104,7 @@ public class RunTestService extends Service {
         if (testSuites == null || testSuites.size() == 0)
             return START_STICKY_COMPATIBILITY;
         boolean store_db = intent.getBooleanExtra("storeDB", true);
-        Application app = ((Application)getApplication());
+        Application app = ((Application) getApplication());
         NotificationUtility.setChannel(getApplicationContext(), CHANNEL_ID, app.getString(R.string.Settings_AutomatedTesting_Label), false, false, false);
         Intent notificationIntent = new Intent(this, RunningActivity.class);
         notificationIntent.setPackage("org.openobservatory.ooniprobe");
@@ -97,10 +152,9 @@ public class RunTestService extends Service {
             builder.setContentTitle(getApplicationContext().getString(R.string.Notification_FinishedRunning))
                     .setContentIntent(pendingIntent)
                     .setAutoCancel(true)
-                    .setProgress(100,100,false);
+                    .setProgress(100, 100, false);
             notificationManager.notify(1, builder.build());
-        }
-        else if (notificationManager != null)
+        } else if (notificationManager != null)
             notificationManager.cancel(NOTIFICATION_ID);
         this.unregisterReceiver(receiver);
     }
@@ -154,7 +208,7 @@ public class RunTestService extends Service {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if(action != null && action.equals("interrupt_test")){
+            if (action != null && action.equals("interrupt_test")) {
                 stopTest();
             }
             //This is used to close the notification tray
@@ -163,7 +217,7 @@ public class RunTestService extends Service {
             context.sendBroadcast(it);
         }
 
-        public void stopTest(){
+        public void stopTest() {
             task.interrupt();
         }
     }

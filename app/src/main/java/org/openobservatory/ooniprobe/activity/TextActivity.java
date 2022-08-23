@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
@@ -93,7 +94,7 @@ public class TextActivity extends AbstractActivity {
 
     private void showLog() {
         try {
-            text =  measurementsManager.getReadableLog(measurement);
+            text = measurementsManager.getReadableLog(measurement);
             textView.setText(text);
         } catch (Exception e) {
             new MessageDialogFragment.Builder()
@@ -110,10 +111,13 @@ public class TextActivity extends AbstractActivity {
         } catch (Exception e) {
             e.printStackTrace();
             if (ReachabilityManager.getNetworkType(this).equals(ReachabilityManager.NO_INTERNET)) {
-                new MessageDialogFragment.Builder()
-                        .withTitle(getString(R.string.Modal_Error))
-                        .withMessage(getString(R.string.Modal_Error_RawDataNoInternet))
-                        .build().show(getSupportFragmentManager(), null);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                if (!fragmentManager.isDestroyed()) {
+                    new MessageDialogFragment.Builder()
+                            .withTitle(getString(R.string.Modal_Error))
+                            .withMessage(getString(R.string.Modal_Error_RawDataNoInternet))
+                            .build().show(fragmentManager, null);
+                }
                 return;
             }
             measurementsManager.downloadReport(measurement, new DomainCallback<String>() {
@@ -140,9 +144,12 @@ public class TextActivity extends AbstractActivity {
     }
 
     private void showError(String msg) {
-        new MessageDialogFragment.Builder()
-                .withTitle(getString(R.string.Modal_Error))
-                .withMessage(msg)
-                .build().show(getSupportFragmentManager(), null);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        if (!fragmentManager.isDestroyed()) {
+            new MessageDialogFragment.Builder()
+                    .withTitle(getString(R.string.Modal_Error))
+                    .withMessage(msg)
+                    .build().show(fragmentManager, null);
+        }
     }
 }
