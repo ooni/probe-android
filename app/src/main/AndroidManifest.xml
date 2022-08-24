@@ -178,6 +178,18 @@
 			android:name=".common.service.RunTestJobService"
 			android:label="Run Test Service"
 			android:permission="android.permission.BIND_JOB_SERVICE"/>
+
+		<provider
+			android:name="androidx.core.content.FileProvider"
+			android:authorities="org.openobservatory.ooniprobe.provider"
+			android:exported="false"
+			android:grantUriPermissions="true">
+			<!-- ressource file to create -->
+			<meta-data
+				android:name="android.support.FILE_PROVIDER_PATHS"
+				android:resource="@xml/file_paths">
+			</meta-data>
+		</provider>
 	</application>
 
 </manifest>

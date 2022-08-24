@@ -6,6 +6,10 @@ import androidx.annotation.NonNull;
 
 import com.velmurugan.inapplogger.InAppLogger;
 
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -33,5 +37,21 @@ public class AppLogger {
 
     public void i(String tag, String message) {
         logger.i(String.format("%s : %s", tag, message));
+    }
+
+    public void deleteOldLog() {
+        logger.deleteOldLog();
+    }
+
+    public File getLogFile() {
+        return logger.getLogFile();
+    }
+
+    public List<String> getLog(String tag) {
+        return Arrays.asList(logger.getLog(tag).toString().split("\n"));
+    }
+
+    public StringBuilder getLogText(String tag) {
+        return logger.getLog(tag);
     }
 }

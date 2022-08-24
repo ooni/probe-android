@@ -5,11 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.LogActivity">
-    <com.velmurugan.inapplogger.InAppLogView
-        android:id="@+id/tv"
+
+    <Spinner
+        android:id="@+id/spinnerTag"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dialog"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/support_simple_spinner_dropdown_item" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingHorizontal="16dp"
+        tools:listitem="@layout/item_text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerTag" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
