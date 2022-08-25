@@ -19,7 +19,7 @@ import com.velmurugan.inapplogger.LogType;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.AppLogger;
-import org.openobservatory.ooniprobe.common.adapter.LogRecyclerViewAdapter;
+import org.openobservatory.ooniprobe.adapters.LogRecyclerViewAdapter;
 import org.openobservatory.ooniprobe.databinding.ActivityLogBinding;
 
 import java.io.File;

@@ -1,4 +1,4 @@
-package org.openobservatory.ooniprobe.common.adapter;
+package org.openobservatory.ooniprobe.adapters;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -18,7 +18,7 @@ import java.util.List;
 
 public class LogRecyclerViewAdapter extends RecyclerView.Adapter<LogRecyclerViewAdapter.ViewHolder> {
 
-    private List<String> localDataSet;
+    private final List<String> items;
 
     /**
      * Provide a reference to the type of views that you are using
@@ -36,11 +36,11 @@ public class LogRecyclerViewAdapter extends RecyclerView.Adapter<LogRecyclerView
     /**
      * Initialize the dataset of the Adapter.
      *
-     * @param dataSet List<String> containing the data to populate views to be used
+     * @param data List<String> containing the data to populate views to be used
      *                by RecyclerView.
      */
-    public LogRecyclerViewAdapter(List<String> dataSet) {
-        localDataSet = dataSet;
+    public LogRecyclerViewAdapter(List<String> data) {
+        items = data;
     }
 
     @NonNull
@@ -56,12 +56,12 @@ public class LogRecyclerViewAdapter extends RecyclerView.Adapter<LogRecyclerView
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         Context context = viewHolder.binding.getRoot().getContext();
-        viewHolder.binding.textView.setText(Html.fromHtml(localDataSet.get(position).trim()));
+        viewHolder.binding.textView.setText(Html.fromHtml(items.get(position).trim()));
         viewHolder.binding.textView.setPadding(0, 0, 0, 0);
         viewHolder.binding.getRoot().setOnLongClickListener(v -> {
             ((ClipboardManager) context
                     .getSystemService(Context.CLIPBOARD_SERVICE))
-                    .setPrimaryClip(ClipData.newPlainText(context.getString(R.string.General_AppName), Html.fromHtml(localDataSet.get(position).trim())));
+                    .setPrimaryClip(ClipData.newPlainText(context.getString(R.string.General_AppName), Html.fromHtml(items.get(position).trim())));
             Toast.makeText(context, R.string.Toast_CopiedToClipboard, Toast.LENGTH_SHORT).show();
 
             return false;
@@ -70,6 +70,6 @@ public class LogRecyclerViewAdapter extends RecyclerView.Adapter<LogRecyclerView
 
     @Override
     public int getItemCount() {
-        return localDataSet.size();
+        return items.size();
     }
 }
