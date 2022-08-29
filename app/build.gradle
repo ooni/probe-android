@@ -9,8 +9,8 @@ android {
 		applicationId 'org.openobservatory.ooniprobe'
         minSdk 21
         targetSdk 32
-        versionName '3.7.0'
-        versionCode 91
+        versionName '3.7.1'
+        versionCode 92
 		testInstrumentationRunner "org.openobservatory.ooniprobe.TestAndroidJUnitRunner"
 		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://countly.ooni.io"'
@@ -137,7 +137,7 @@ dependencies {
 // Flavor
 	fullImplementation platform('com.google.firebase:firebase-bom:26.3.0')
 	fullImplementation 'com.google.firebase:firebase-messaging'
-	fullImplementation 'ly.count.android:sdk:20.11.1'
+	fullImplementation 'ly.count.android:sdk:21.11.0'
 	fullImplementation 'io.sentry:sentry-android:6.3.0'
 	fullImplementation 'com.google.android.play:core:1.10.3'
 
