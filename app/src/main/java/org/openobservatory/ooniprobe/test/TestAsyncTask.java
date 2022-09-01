@@ -86,7 +86,6 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
             return;
         }
         manager = (ConnectivityManager) this.app.getSystemService(Context.CONNECTIVITY_SERVICE);
-        // TODO (aanorbel): add `android.permission.ACCESS_NETWORK_STATE`
         networkCallback = new ConnectivityManager.NetworkCallback() {
             @Override
             public void onAvailable(Network network) {
