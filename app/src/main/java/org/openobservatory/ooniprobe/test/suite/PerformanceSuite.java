@@ -31,6 +31,12 @@ public class PerformanceSuite extends AbstractSuite {
 				R.string.performance_datausage);
 	}
 
+	public static PerformanceSuite initForAutoRun() {
+		PerformanceSuite suite = new PerformanceSuite();
+		suite.setAutoRun(true);
+		return suite;
+	}
+
 	@Override public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
 		if (super.getTestList(pm) == null) {
 			ArrayList<AbstractTest> list = new ArrayList<>();

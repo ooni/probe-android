@@ -364,4 +364,8 @@ public class PreferenceManager {
 		return DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), date).toString();
 	}
 
+	public  boolean isExperimentalOn(){
+		return sp.getBoolean(r.getString(R.string.experimental), true);
+	}
+
 }

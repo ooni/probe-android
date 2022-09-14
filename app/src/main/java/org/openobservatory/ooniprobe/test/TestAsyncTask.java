@@ -123,8 +123,12 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                         result.is_viewed = false;
                         result.save();
                     }
-                    publishProgress(START, String.valueOf(suiteIdx));
-                    runTest(currentSuite.getTestList(app.getPreferenceManager()));
+
+                    AbstractTest[] tests = currentSuite.getTestList(app.getPreferenceManager());
+                    if (tests.length > 0){
+                        publishProgress(START, String.valueOf(suiteIdx));
+                        runTest(currentSuite.getTestList(app.getPreferenceManager()));
+                    }
                 }
             }
         }
