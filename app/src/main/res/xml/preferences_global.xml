@@ -321,7 +321,9 @@
 			android:key="@string/experimental"
 			android:title="@string/Test_Experimental_Fullname"
 			android:icon="@drawable/test_experimental" />
-
+		<PreferenceCategory
+			app:iconSpaceReserved="false"
+			android:title="@string/Settings_TestOptions_Footer" />
 	</PreferenceScreen>
 	<PreferenceScreen
 		android:icon="@drawable/privacy"
