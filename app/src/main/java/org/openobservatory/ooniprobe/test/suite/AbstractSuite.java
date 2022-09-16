@@ -133,6 +133,10 @@ public abstract class AbstractSuite implements Serializable {
 		return list;
 	}
 
+	public boolean isTestEmpty() {
+		return testList.length == 0;
+	}
+
 	public boolean getAutoRun() {
 		return autoRun;
 	}

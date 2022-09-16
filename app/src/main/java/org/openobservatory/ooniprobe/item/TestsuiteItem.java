@@ -33,6 +33,9 @@ public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, Test
 		holder.icon.setImageResource(extra.getIconGradient());
 		holder.itemView.setOnClickListener(onClickListener);
 		holder.itemView.setTag(extra);
+		if(extra.isTestEmpty()) {
+			holder.itemView.setAlpha(0.4F);
+		}
 	}
 
 	class ViewHolderImpl extends RecyclerView.ViewHolder {

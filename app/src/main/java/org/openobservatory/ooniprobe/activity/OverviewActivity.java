@@ -36,6 +36,7 @@ public class OverviewActivity extends AbstractActivity {
 	@BindView(R.id.lastTime) TextView lastTime;
 	@BindView(R.id.desc) TextView desc;
 	@BindView(R.id.customUrl) Button customUrl;
+	@BindView(R.id.run) Button run;
 	private AbstractSuite testSuite;
 
 	@Inject
@@ -57,6 +58,10 @@ public class OverviewActivity extends AbstractActivity {
 		setTitle(testSuite.getTitle());
 		icon.setImageResource(testSuite.getIcon());
 		customUrl.setVisibility(testSuite.getName().equals(WebsitesSuite.NAME) ? View.VISIBLE : View.GONE);
+		if(testSuite.isTestEmpty()){
+			run.setAlpha(0.5F);
+			run.setEnabled(false);
+		}
 		if (testSuite.getName().equals(ExperimentalSuite.NAME)) {
 			String experimentalLinks =
 					"\n\n* [STUN Reachability](https://github.com/ooni/spec/blob/master/nettests/ts-025-stun-reachability.md)" +
@@ -89,7 +94,9 @@ public class OverviewActivity extends AbstractActivity {
 	}
 
 	@OnClick(R.id.run) void onRunClick() {
-		RunningActivity.runAsForegroundService(this, testSuite.asArray(), this::bindTestService, preferenceManager);
+		if(!testSuite.isTestEmpty()){
+			RunningActivity.runAsForegroundService(this, testSuite.asArray(), this::bindTestService, preferenceManager);
+		}
 	}
 
 	@OnClick(R.id.customUrl) void customUrlClick() {
