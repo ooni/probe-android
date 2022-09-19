@@ -303,6 +303,19 @@
 				android:title="@string/Settings_Middleboxes_TestHTTPHeaderFieldManipulation"
 				app:iconSpaceReserved="false" />
 		</PreferenceScreen>
+		<PreferenceScreen
+			android:icon="@drawable/test_experimental"
+			android:key="@string/experimental"
+			android:title="@string/Test_Experimental_Fullname">
+			<SwitchPreferenceCompat
+				android:defaultValue="true"
+				android:key="@string/experimental"
+				android:title="@string/Test_Experimental_Fullname"
+				android:icon="@drawable/test_experimental" />
+		</PreferenceScreen>
+		<PreferenceCategory
+			app:iconSpaceReserved="false"
+			android:title="@string/Settings_TestOptions_Footer" />
 	</PreferenceScreen>
 	<PreferenceScreen
 		android:icon="@drawable/privacy"
