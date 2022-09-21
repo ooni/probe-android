@@ -189,7 +189,7 @@ public abstract class AbstractTest implements Serializable {
                         setUploaded(true, event.value);
                         break;
                     case "failure.measurement_submission":
-                        setUploaded(false, event.value );
+                        setUploaded(false, event.value);
                         break;
                     case "status.measurement_done":
                         setDone(event.value);
