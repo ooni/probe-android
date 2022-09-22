@@ -313,6 +313,10 @@
 				android:title="@string/Test_Experimental_Fullname"
 				android:icon="@drawable/test_experimental" />
 		</PreferenceScreen>
+		<SwitchPreferenceCompat
+			android:defaultValue="false"
+			android:key="@string/long_running_tests_in_foreground"
+			android:title="@string/long_running_tests_in_foreground" />
 		<PreferenceCategory
 			app:iconSpaceReserved="false"
 			android:title="@string/Settings_TestOptions_Footer" />

@@ -368,4 +368,8 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.experimental), true);
 	}
 
+	public  boolean isLongRunningTestsInForeground(){
+		return sp.getBoolean(r.getString(R.string.long_running_tests_in_foreground), true);
+	}
+
 }
