@@ -66,8 +66,8 @@ public class OverviewActivity extends AbstractActivity {
 			String experimentalLinks =
 					"\n\n* [STUN Reachability](https://github.com/ooni/spec/blob/master/nettests/ts-025-stun-reachability.md)" +
 					"\n\n* [DNS Check](https://github.com/ooni/spec/blob/master/nettests/ts-028-dnscheck.md)" +
-					"\n\n* [Tor Snowflake](https://ooni.org/nettest/tor-snowflake/)" +
-					"\n\n* [Vanilla Tor](https://github.com/ooni/spec/blob/master/nettests/ts-016-vanilla-tor.md)";
+					"\n\n* [Tor Snowflake](https://ooni.org/nettest/tor-snowflake/) "+ String.format(" ( %s )",getString(R.string.Settings_TestOptions_LongRunningTest))+
+					"\n\n* [Vanilla Tor](https://github.com/ooni/spec/blob/master/nettests/ts-016-vanilla-tor.md) " + String.format(" ( %s )",getString(R.string.Settings_TestOptions_LongRunningTest));
 			Markwon.setMarkdown(desc, getString(testSuite.getDesc1(), experimentalLinks));
 		}
 		else
