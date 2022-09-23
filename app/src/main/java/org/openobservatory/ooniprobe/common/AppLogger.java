@@ -32,7 +32,7 @@ public class AppLogger {
     }
 
     public void w(String tag, String message) {
-        logger.w(String.format("%s : %s", tag, message));
+        logger.w(String.format("%s: %s", tag, message));
     }
 
     public void i(String tag, String message) {
