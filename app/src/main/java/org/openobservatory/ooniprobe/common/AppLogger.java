@@ -36,7 +36,7 @@ public class AppLogger {
     }
 
     public void i(String tag, String message) {
-        logger.i(String.format("%s : %s", tag, message));
+        logger.i(String.format("%s: %s", tag, message));
     }
 
     public void deleteOldLog() {
