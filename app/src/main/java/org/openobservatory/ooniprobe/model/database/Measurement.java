@@ -159,20 +159,20 @@ public class Measurement extends BaseModel implements Serializable {
 		return measurementsLog;
 	}
 
-	public static File getEntryFile(Context c, int measurementId, String test_name) {
+	public static File getReportFile(Context c, int measurementId, String test_name) {
 		return new File(getMeasurementDir(c), measurementId + "_" + test_name + ".json");
 	}
 
-	public void deleteEntryFile(Context c){
+	public void deleteReportFile(Context c){
 		try {
-			Measurement.getEntryFile(c, this.id, this.test_name).delete();
+			Measurement.getReportFile(c, this.id, this.test_name).delete();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	public Boolean hasReportFile(Context c){
-		return Measurement.getEntryFile(c, this.id, this.test_name).exists();
+		return Measurement.getReportFile(c, this.id, this.test_name).exists();
 	}
 
 	public Boolean hasLogFile(Context c){
@@ -313,7 +313,7 @@ public class Measurement extends BaseModel implements Serializable {
 		List<Measurement> measurements = msmQuery.queryList();
 		for (int i = 0; i < measurements.size(); i++) {
 			Measurement measurement = measurements.get(i);
-			measurement.deleteEntryFile(c);
+			measurement.deleteReportFile(c);
 		}
 	}
 
@@ -326,7 +326,7 @@ public class Measurement extends BaseModel implements Serializable {
 	}
 
 	public void setReRun(Context c){
-		this.deleteEntryFile(c);
+		this.deleteReportFile(c);
 		this.deleteLogFile(c);
 		this.is_rerun = true;
 		this.save();

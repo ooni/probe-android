@@ -184,7 +184,7 @@ public class MeasurementTest extends RobolectricAbstractTest {
         writeReport(measurement);
         assertTrue(measurement.hasReportFile(c));
 
-        measurement.deleteEntryFile(c);
+        measurement.deleteReportFile(c);
         assertFalse(measurement.hasReportFile(c));
     }
 
@@ -464,7 +464,7 @@ public class MeasurementTest extends RobolectricAbstractTest {
 
     private void writeReport(Measurement measurement) {
         writeFile(
-                Measurement.getEntryFile(c, measurement.id, measurement.test_name)
+                Measurement.getReportFile(c, measurement.id, measurement.test_name)
         );
     }
 

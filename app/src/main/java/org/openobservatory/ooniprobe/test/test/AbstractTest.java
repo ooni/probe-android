@@ -169,7 +169,7 @@ public abstract class AbstractTest implements Serializable {
                                 m.rerun_network = gson.toJson(network);
                             }
                             m.save();
-                            File entryFile = Measurement.getEntryFile(c, m.id, m.test_name);
+                            File entryFile = Measurement.getReportFile(c, m.id, m.test_name);
                             entryFile.getParentFile().mkdirs();
                             FileUtils.writeStringToFile(
                                     entryFile,
@@ -288,7 +288,7 @@ public abstract class AbstractTest implements Serializable {
         Measurement measurement = measurements.get(value.idx);
         if (measurement != null) {
             if(measurement.is_uploaded){
-                measurement.deleteEntryFile(context);
+                measurement.deleteReportFile(context);
             }
         }
     }
