@@ -1,6 +1,8 @@
 package org.openobservatory.ooniprobe.activity;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -80,10 +82,17 @@ public class LogActivity extends AbstractActivity {
             Intent intentShareFile = new Intent(Intent.ACTION_SEND);
 
             intentShareFile.setType(URLConnection.guessContentTypeFromName(file.getName()));
-            intentShareFile.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(
-                            this,
-                            "org.openobservatory.ooniprobe.provider", //(use your app signature + ".provider" )
-                            file)
+            Uri uri = FileProvider.getUriForFile(this, "org.openobservatory.ooniprobe.provider", file);
+            intentShareFile.putExtra(Intent.EXTRA_STREAM, uri);
+            intentShareFile.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            Intent chooser = Intent.createChooser(intentShareFile, "Share File");
+
+            List<ResolveInfo> resInfoList = this.getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
+
+            for (ResolveInfo resolveInfo : resInfoList) {
+                String packageName = resolveInfo.activityInfo.packageName;
+                this.grantUriPermission(packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            }
 
             startActivity(Intent.createChooser(intentShareFile, "Share File"));
             return true;
