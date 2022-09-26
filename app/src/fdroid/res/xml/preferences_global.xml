@@ -323,6 +323,15 @@
 			android:key="@string/theme_enabled"
 			android:title="@string/Settings_DarkMode_Label"
 			app:iconSpaceReserved="false" />
+		<ListPreference
+			android:dialogTitle="@string/Settings_Advanced_LanguageSettings_PopUp"
+			android:entries="@array/language_sort_options"
+			android:entryValues="@array/language_sort_options_values"
+			android:key="@string/language_setting"
+			android:summary=""
+			android:title="@string/Settings_Advanced_LanguageSettings_Title"
+			android:defaultValue="auto"
+			app:iconSpaceReserved="false"/>
 		<SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="@string/debugLogs"
@@ -333,6 +342,11 @@
 			android:title="@string/Settings_Storage_Label"
 			android:summary=""
 			android:widgetLayout="@layout/preference_button"
+			app:iconSpaceReserved="false" />
+		<SwitchPreferenceCompat
+			android:defaultValue="true"
+			android:key="@string/warn_vpn_in_use"
+			android:title="@string/Settings_WarmVPNInUse_Label"
 			app:iconSpaceReserved="false" />
 	</PreferenceScreen>
 	<PreferenceScreen
