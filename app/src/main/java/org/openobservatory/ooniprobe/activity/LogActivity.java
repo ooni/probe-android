@@ -94,7 +94,7 @@ public class LogActivity extends AbstractActivity {
                 this.grantUriPermission(packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
             }
 
-            startActivity(Intent.createChooser(intentShareFile, "Share File"));
+            startActivity(chooser);
             return true;
         } else if (itemId == R.id.delete) {
             logger.deleteOldLog();
