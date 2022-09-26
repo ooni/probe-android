@@ -360,7 +360,7 @@
 			android:defaultValue="false"
 			app:iconSpaceReserved="false"
 			android:key="logs"
-			android:title="@string/Settings_Advanced_DebugLogs">
+			android:title="@string/Settings_Advanced_RecentLogs">
 			<intent android:action="org.openobservatory.ooniprobe.activity.LogActivity" />
 		</PreferenceScreen>
 		<SwitchPreferenceCompat

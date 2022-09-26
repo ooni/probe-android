@@ -380,6 +380,7 @@
   <string name="Settings_Advanced_Label">Advanced</string>
   <string name="Settings_DarkMode_Label">Dark Mode</string>
   <string name="Settings_Advanced_DebugLogs">Debug logs</string>
+  <string name="Settings_Advanced_RecentLogs">See recent logs</string>
   <string name="Settings_Advanced_LanguageSettings_Title">Language Setting</string>
   <string name="Settings_Advanced_LanguageSettings_PopUp">Select Language</string>
   <string name="Settings_Advanced_UseDomainFronting">Always use domain fronting</string>
