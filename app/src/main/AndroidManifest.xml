@@ -184,7 +184,7 @@
 			android:authorities="org.openobservatory.ooniprobe.provider"
 			android:exported="false"
 			android:grantUriPermissions="true">
-			<!-- ressource file to create -->
+			<!-- resource file to create -->
 			<meta-data
 				android:name="android.support.FILE_PROVIDER_PATHS"
 				android:resource="@xml/file_paths">
