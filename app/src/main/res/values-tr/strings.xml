@@ -374,12 +374,16 @@
   <string name="Settings_Sharing_IncludeCountryCode">Ülke kodu katılsın</string>
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Bu bilgi ölçümlerin hangi ülkeden (Türkiye için TR gibi) yapıldığını belirlemek için istenmektedir. Bu seçeneği devre dışı bırakmak istediğinize emin misiniz?</string>
   <string name="Settings_Sharing_Footer">Sonuçları yayınlayarak ağ müdahalelerinin daha görünür hale gelmesine yardım ederek OONI topluluğuna destek olursunuz.\n\nAğ bilgileri (Otonom Sistem Numarası gibi) İnternet hizmeti sağlayıcılarını belirlemek için gereklidir.</string>
-  <string name="Settings_TestOptions_Label">Ayarları sına</string>
+  <string name="Settings_TestOptions_Label">Sınama ayarları</string>
+  <string name="Settings_TestOptions_Footer">Yukarıdaki sınama ayarları ile yapılandırdığınız şey (örneğin WhatsApp sınamasını devre dışı bırakmak), el ile yürütülen sınamaların yanında otomatik olarak yürütülen sınamalara da (otomatik sınama etkinleştirilmişse) uygulanır.</string>
+  <string name="Settings_TestOptions_LongRunningTest">Uzun süreli sınama</string>
+  <string name="Settings_TestOptions_RunLongRunningTests">Arka planda uzun süreli sınama yapılsın mı?</string>
   <string name="Settings_Privacy_Label">Gizlilik</string>
   <string name="Settings_Privacy_SendCrashReports">Çökme raporları gönderilsin</string>
   <string name="Settings_Advanced_Label">Gelişmiş</string>
   <string name="Settings_DarkMode_Label">Koyu kip</string>
   <string name="Settings_Advanced_DebugLogs">Hata ayıklama günlükleri</string>
+  <string name="Settings_Advanced_RecentLogs">Son günlükleri görüntüle</string>
   <string name="Settings_Advanced_LanguageSettings_Title">Dil ayarı</string>
   <string name="Settings_Advanced_LanguageSettings_PopUp">Dil seçin</string>
   <string name="Settings_Advanced_UseDomainFronting">Araya her zaman etki alanı eklensin (domain fronting)</string>
