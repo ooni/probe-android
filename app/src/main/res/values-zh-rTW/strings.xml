@@ -274,7 +274,7 @@
   <string name="Modal_Retry">重試</string>
   <string name="Modal_SoundsGreat">聽起來不錯</string>
   <string name="Modal_NoThanks">不用，謝謝</string>
-  <string name="Modal_NotNow">Not now</string>
+  <string name="Modal_NotNow">暂不</string>
   <string name="Modal_RunAnyway">Run anyways</string>
   <string name="Modal_DisableVPN">Disable VPN</string>
   <string name="Modal_AlwaysRun">Always Run</string>
@@ -375,11 +375,15 @@
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">需要這類資訊（例如 IT 代表義大利）以辨別網路計量是自哪個國家收集。是否要關閉此選項？</string>
   <string name="Settings_Sharing_Footer">出版評量結果，參與者共同提高了網路干涉的透明度與對 OONI  社群的支持。\n\n辬識網路連線服務商需要有網路資訊（例如網路自治系統編號 ASN）。</string>
   <string name="Settings_TestOptions_Label">測試選項</string>
+  <string name="Settings_TestOptions_Footer">What you configure through the above test settings (e.g. disabling the WhatsApp test) will apply to tests run manually, as well as to tests run automatically (when automated testing is enabled).</string>
+  <string name="Settings_TestOptions_LongRunningTest">Long running test</string>
+  <string name="Settings_TestOptions_RunLongRunningTests">Run long running tests in foreground?</string>
   <string name="Settings_Privacy_Label">隱私</string>
   <string name="Settings_Privacy_SendCrashReports">送出出錯崩潰報告</string>
   <string name="Settings_Advanced_Label">進階的</string>
-  <string name="Settings_DarkMode_Label">Dark Mode</string>
+  <string name="Settings_DarkMode_Label">黑暗模式</string>
   <string name="Settings_Advanced_DebugLogs">調試記錄</string>
+  <string name="Settings_Advanced_RecentLogs">See recent logs</string>
   <string name="Settings_Advanced_LanguageSettings_Title">Language Setting</string>
   <string name="Settings_Advanced_LanguageSettings_PopUp">選取語言</string>
   <string name="Settings_Advanced_UseDomainFronting">皆使用域名前列</string>

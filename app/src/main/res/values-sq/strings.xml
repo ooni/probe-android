@@ -375,11 +375,15 @@
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Ky informacion (psh IT për Itali) kërkohet për të identifikuar nga cili shtet po mblidhen të dhënat. Jeni të sigurt që e çaktivizoni këtë opsion?</string>
   <string name="Settings_Sharing_Footer">Duke publikuar rezultatet ti rrit transaprencën të ndërhyrjes në rrjet dhe mbështet komunitetin e OONI. \n\nInformacioni i rrjetit (psh Numri i Sistemit Autonom) kërkohet për të identifikuar Ofruesit e Shërbimit të Internetit.</string>
   <string name="Settings_TestOptions_Label">Mundësitë e testimit</string>
+  <string name="Settings_TestOptions_Footer">What you configure through the above test settings (e.g. disabling the WhatsApp test) will apply to tests run manually, as well as to tests run automatically (when automated testing is enabled).</string>
+  <string name="Settings_TestOptions_LongRunningTest">Long running test</string>
+  <string name="Settings_TestOptions_RunLongRunningTests">Run long running tests in foreground?</string>
   <string name="Settings_Privacy_Label">Privatësi</string>
   <string name="Settings_Privacy_SendCrashReports">Dërgo raportime dështimi</string>
   <string name="Settings_Advanced_Label">Të mëtejshme</string>
   <string name="Settings_DarkMode_Label">Dark Mode</string>
   <string name="Settings_Advanced_DebugLogs">Kontrollo regjistrat për gabime</string>
+  <string name="Settings_Advanced_RecentLogs">See recent logs</string>
   <string name="Settings_Advanced_LanguageSettings_Title">Language Setting</string>
   <string name="Settings_Advanced_LanguageSettings_PopUp">Përzgjidhni Gjuhë</string>
   <string name="Settings_Advanced_UseDomainFronting">Gjithmonë përdor front domain</string>

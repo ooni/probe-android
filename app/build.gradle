@@ -2,15 +2,15 @@ apply plugin: 'com.android.application'
 apply from: 'jacoco.gradle'
 
 android {
-    compileSdk 32
+    compileSdk 33
     ndkVersion '22.0.7026061'
 
 	defaultConfig {
 		applicationId 'org.openobservatory.ooniprobe'
         minSdk 21
-        targetSdk 32
-        versionName '3.7.1'
-        versionCode 92
+        targetSdk 33
+        versionName '3.7.2'
+        versionCode 94
 		testInstrumentationRunner "org.openobservatory.ooniprobe.TestAndroidJUnitRunner"
 		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://countly.ooni.io"'

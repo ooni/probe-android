@@ -375,11 +375,15 @@
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Ces renseignements (p. ex. IT pour Italie) sont nécessaires pour identifier le pays d’origine des mesures recueillies. Voulez-vous vraiment désactiver cette option ?</string>
   <string name="Settings_Sharing_Footer">En publiant les résultats, vous augmentez la transparence des interférences réseau et soutenez la communauté de l’OONI. \n\nLe renseignement sur le réseau (c.-à-d. le numéro de système autonome) est nécessaire pour identifier les fournisseurs d’accès à Internet.</string>
   <string name="Settings_TestOptions_Label">Options de test</string>
+  <string name="Settings_TestOptions_Footer">Le paramétrage de tests ci-dessus (p. ex. désactiver le test de WhatsApp) s’appliquera aussi aux tests effectués manuellement, ainsi qu’aux tests effectués automatiquement (quand les tests automatisés sont activés).</string>
+  <string name="Settings_TestOptions_LongRunningTest">Test long</string>
+  <string name="Settings_TestOptions_RunLongRunningTests">Faire tourner les tests longs en avant-plan ?</string>
   <string name="Settings_Privacy_Label">Confidentialité</string>
   <string name="Settings_Privacy_SendCrashReports">Envoyer des relevés de plantage</string>
   <string name="Settings_Advanced_Label">Avancés</string>
   <string name="Settings_DarkMode_Label">Mode sombre</string>
   <string name="Settings_Advanced_DebugLogs">Journaux de débogage</string>
+  <string name="Settings_Advanced_RecentLogs">Voir les journaux récents</string>
   <string name="Settings_Advanced_LanguageSettings_Title">Paramètres de langue</string>
   <string name="Settings_Advanced_LanguageSettings_PopUp">Sélectionner une langue</string>
   <string name="Settings_Advanced_UseDomainFronting">Toujours utiliser un domaine-écran</string>
