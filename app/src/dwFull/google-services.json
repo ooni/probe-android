@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "708895543415",
+    "project_id": "ooni-tests",
+    "storage_bucket": "ooni-tests.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:708895543415:android:568cf99ae9a76d22413672",
+        "android_client_info": {
+          "package_name": "com.dw.ooniprobe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "708895543415-fj1hn6148ttdgnokal8sas1k76cn83h5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIY7yOH7sAJLSYPI_mmjKO5H2WEUk0tTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "708895543415-fj1hn6148ttdgnokal8sas1k76cn83h5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

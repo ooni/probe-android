@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="General_AppName">DW Probe</string>
+    <string name="Onboarding_WhatIsOONIProbe_Title">What is DW Media Probe?</string>
+</resources>

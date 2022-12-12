@@ -25,6 +25,9 @@ android {
         dev {
             dimension 'testing'
         }
+        dw {
+            dimension 'testing'
+        }
     }
     namespace 'org.openobservatory.engine'
 }
@@ -33,6 +36,7 @@ dependencies {
     // For the stable and dev app flavours we're using the library
     // build published at Maven Central.
     stableImplementation 'org.ooni:oonimkall:2022.10.31-184318'
+    dwImplementation 'org.ooni:oonimkall:2022.10.31-184318'
     devImplementation 'org.ooni:oonimkall:2022.10.31-184318'
 
     // For the experimental flavour, you need to compile your own
