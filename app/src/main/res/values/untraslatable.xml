@@ -49,6 +49,8 @@
 	<string name="test_riseupvpn" translatable="false">test_riseupvpn</string>
 	<string name="run_ndt" translatable="false">run_ndt</string>
 	<string name="run_dash" translatable="false">run_dash</string>
+	<string name="experimental" translatable="false">experimental</string>
+	<string name="long_running_tests_in_foreground" translatable="false">long_running_tests_in_foreground</string>
 	<string name="max_runtime_enabled" translatable="false">max_runtime_enabled</string>
 	<string name="max_runtime" translatable="false">max_runtime</string>
 	<string name="d" translatable="false">%1$d</string>
