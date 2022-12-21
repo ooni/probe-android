@@ -48,8 +48,8 @@ import java.util.List;
 import java.util.Map;
 
 public class TestAsyncTask extends AsyncTask<Void, String, Void> implements AbstractTest.TestCallback {
-    public static final List<AbstractSuite> SUITES = Arrays.asList(new WebsitesSuite(),
-            new InstantMessagingSuite(), new CircumventionSuite(), new PerformanceSuite(), new ExperimentalSuite());
+
+
     private static final String TAG = "TestAsyncTask";
     public static final String START = "START";
     public static final String PRG = "PRG";
@@ -69,6 +69,11 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     private ConnectivityManager.NetworkCallback networkCallback;
     private String proxy;
     private boolean store_db = true;
+
+    public static List<AbstractSuite> getSuites() {
+        return  Arrays.asList(new WebsitesSuite(),
+                new InstantMessagingSuite(), new CircumventionSuite(), new PerformanceSuite(), new ExperimentalSuite());
+    }
 
     public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, RunTestService service) {
         this.app = app;
@@ -123,8 +128,12 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                         result.is_viewed = false;
                         result.save();
                     }
-                    publishProgress(START, String.valueOf(suiteIdx));
-                    runTest(currentSuite.getTestList(app.getPreferenceManager()));
+
+                    AbstractTest[] tests = currentSuite.getTestList(app.getPreferenceManager());
+                    if (tests.length > 0){
+                        publishProgress(START, String.valueOf(suiteIdx));
+                        runTest(currentSuite.getTestList(app.getPreferenceManager()));
+                    }
                 }
             }
         }
