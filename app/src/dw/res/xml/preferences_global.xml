@@ -251,22 +251,22 @@
 			android:key="@string/instant_messaging"
 			android:title="@string/Test_InstantMessaging_Fullname">
 			<SwitchPreferenceCompat
-				android:defaultValue="true"
+				android:defaultValue="false"
 				android:key="@string/test_whatsapp"
 				android:title="@string/Settings_InstantMessaging_TestWhatsApp"
 				app:iconSpaceReserved="false" />
 			<SwitchPreferenceCompat
-				android:defaultValue="true"
+				android:defaultValue="false"
 				android:key="@string/test_telegram"
 				android:title="@string/Settings_InstantMessaging_TestTelegram"
 				app:iconSpaceReserved="false" />
 			<SwitchPreferenceCompat
-				android:defaultValue="true"
+				android:defaultValue="false"
 				android:key="@string/test_facebook_messenger"
 				android:title="@string/Settings_InstantMessaging_TestFacebookMessenger"
 				app:iconSpaceReserved="false" />
 			<SwitchPreferenceCompat
-				android:defaultValue="true"
+				android:defaultValue="false"
 				android:key="@string/test_signal"
 				android:title="@string/Settings_InstantMessaging_TestSignal"
 				app:iconSpaceReserved="false" />
@@ -276,17 +276,17 @@
 			android:key="@string/circumvention"
 			android:title="@string/Test_Circumvention_Fullname">
 			<SwitchPreferenceCompat
-				android:defaultValue="true"
+				android:defaultValue="false"
 				android:key="@string/test_psiphon"
 				android:title="@string/Settings_Circumvention_TestPsiphon"
 				app:iconSpaceReserved="false" />
 			<SwitchPreferenceCompat
-				android:defaultValue="true"
+				android:defaultValue="false"
 				android:key="@string/test_tor"
 				android:title="@string/Settings_Circumvention_TestTor"
 				app:iconSpaceReserved="false" />
 			<SwitchPreferenceCompat
-				android:defaultValue="true"
+				android:defaultValue="false"
 				android:key="@string/test_riseupvpn"
 				android:title="@string/Settings_Circumvention_TestRiseupVPN"
 				app:iconSpaceReserved="false" />
@@ -296,22 +296,22 @@
 			android:key="@string/performance"
 			android:title="@string/Test_Performance_Fullname">
 			<SwitchPreferenceCompat
-				android:defaultValue="true"
+				android:defaultValue="false"
 				android:key="@string/run_ndt"
 				android:title="@string/Settings_Performance_TestNDT"
 				app:iconSpaceReserved="false" />
 			<SwitchPreferenceCompat
-				android:defaultValue="true"
+				android:defaultValue="false"
 				android:key="@string/run_dash"
 				android:title="@string/Settings_Performance_TestDash"
 				app:iconSpaceReserved="false" />
 			<SwitchPreferenceCompat
-				android:defaultValue="true"
+				android:defaultValue="false"
 				android:key="@string/run_http_invalid_request_line"
 				android:title="@string/Settings_Middleboxes_TestHTTPInvalidRequestLine"
 				app:iconSpaceReserved="false" />
 			<SwitchPreferenceCompat
-				android:defaultValue="true"
+				android:defaultValue="false"
 				android:key="@string/run_http_header_field_manipulation"
 				android:title="@string/Settings_Middleboxes_TestHTTPHeaderFieldManipulation"
 				app:iconSpaceReserved="false" />
@@ -321,7 +321,7 @@
 			android:key="@string/experimental"
 			android:title="@string/Test_Experimental_Fullname">
 			<SwitchPreferenceCompat
-				android:defaultValue="true"
+				android:defaultValue="false"
 				android:key="@string/experimental"
 				android:title="@string/Test_Experimental_Fullname"
 				android:icon="@drawable/test_experimental" />
@@ -354,7 +354,7 @@
 		android:icon="@drawable/proxy"
 		android:key="@string/ooni_backend_proxy"
 		android:title="@string/Settings_Proxy_Label">
-		<intent	android:action="org.openobservatory.ooniprobe.activity.ProxyActivity" />
+		<intent	android:action=".activity.ProxyActivity" />
 	</PreferenceScreen>
 	<PreferenceScreen
 		android:icon="@drawable/advanced"
@@ -399,6 +399,6 @@
 		android:icon="@drawable/about_ooni"
 		android:key="@string/about_ooni"
 		android:title="@string/Settings_About_Label">
-		<intent android:action="org.openobservatory.ooniprobe.activity.InfoActivity" />
+		<intent android:action=".activity.InfoActivity" />
 	</PreferenceScreen>
 </PreferenceScreen>

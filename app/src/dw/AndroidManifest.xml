@@ -1,0 +1,43 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <application>
+        <activity
+            android:name=".activity.InfoActivity"
+            android:exported="false"
+            android:label="@string/Settings_About_Label"
+            android:parentActivityName=".activity.PreferenceActivity"
+            android:screenOrientation="userPortrait"
+            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
+            <intent-filter>
+                <action android:name=".activity.InfoActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.ProxyActivity"
+            android:exported="false"
+            android:label="Proxy"
+            android:parentActivityName=".activity.PreferenceActivity"
+            android:screenOrientation="userPortrait"
+            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App">
+            <intent-filter>
+                <action android:name=".activity.ProxyActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.CustomWebsiteActivity"
+            android:exported="false"
+            android:label="@string/Settings_Websites_CustomURL_Title"
+            android:parentActivityName=".activity.PreferenceActivity"
+            android:screenOrientation="userPortrait">
+            <intent-filter>
+                <action android:name=".activity.CustomWebsiteActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

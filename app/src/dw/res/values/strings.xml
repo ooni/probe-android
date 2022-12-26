@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="General_AppName">DW Probe</string>
+    <string name="General_AppName">DW Media Probe</string>
     <string name="Onboarding_WhatIsOONIProbe_Title">What is DW Media Probe?</string>
+    <string name="Settings_About_Label">About DW Media Probe</string>
+    <string name="Settings_About_Content_Paragraph">Developed in partnership with Open Observatory of Network Interference (OONI).</string>
 </resources>

@@ -88,6 +88,8 @@ android {
             applicationId 'com.dw.ooniprobe'
             resValue "string", "APP_NAME", "DW Media Probe"
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"dw-media-probe-android"'
+            versionName '0.0.1'
+            versionCode 1
         }
     }
     variantFilter { variant ->
