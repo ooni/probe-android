@@ -121,7 +121,7 @@ public class RunTestService extends Service {
                 .setProgress(100, 0, false)
                 .build();
 
-        task = (TestAsyncTask) new TestAsyncTask(app, testSuites, this, store_db).execute();
+        task = (TestAsyncTask) new TestAsyncTask(app, testSuites, store_db).execute();
         //This intent is used to manage the stop test button in the notification
         Intent broadcastIntent = new Intent();
         broadcastIntent.setAction(RunTestService.ACTION_INTERRUPT);
