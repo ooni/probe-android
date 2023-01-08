@@ -55,7 +55,7 @@ public final class OONICheckInConfig {
         this.softwareVersion = softwareVersion;
         webConnectivity = new CheckInConfigWebConnectivity();
         for (String category : categories) {
-            this.webConnectivity.add(category);
+            this.webConnectivity.addCategory(category);
         }
     }
 

@@ -7,12 +7,6 @@ package org.openobservatory.engine;
  * session, use it immediately, and then forget about it.
  */
 public interface OONISession {
-    /** geolocate returns the probe geolocation. */
-    OONIGeolocateResults geolocate(OONIContext ctx) throws Exception;
-
-    /** maybeUpdateResources updates resources if needed. */
-    void maybeUpdateResources(OONIContext ctx) throws Exception;
-
     /** newContext creates a new OONIContext instance. */
     OONIContext newContext();
 
@@ -28,7 +22,4 @@ public interface OONISession {
 
     /** checkIn function is called by probes asking if there are tests to be run. */
     OONICheckInResults checkIn(OONIContext ctx, OONICheckInConfig config) throws Exception;
-
-    /** FetchURLList fetches the list of URLs to test */
-    OONIURLListResult fetchURLList(OONIContext ctx, OONIURLListConfig config) throws Exception;
 }
