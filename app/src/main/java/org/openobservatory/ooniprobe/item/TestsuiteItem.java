@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.item;
 
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.openobservatory.ooniprobe.R;
@@ -38,11 +40,12 @@ public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, Test
 		holder.itemView.setTag(extra);
 		if(extra.isTestEmpty()) {
 			((CardView)holder.itemView).setElevation(0);
-			holder.title.setTextColor(Color.LTGRAY);
-			holder.desc.setTextColor(Color.LTGRAY);
-			holder.icon.setColorFilter(Color.LTGRAY, PorterDuff.Mode.SRC_IN);
+			Resources resources = holder.itemView.getContext().getResources();
+			((CardView)holder.itemView).setCardBackgroundColor(resources.getColor(R.color.disabled_test_background));
+			holder.title.setTextColor(resources.getColor(R.color.disabled_test_text));
+			holder.desc.setTextColor(resources.getColor(R.color.disabled_test_text));
+			holder.icon.setColorFilter(resources.getColor(R.color.disabled_test_text), PorterDuff.Mode.SRC_IN);
 			holder.setIsRecyclable(false);
-
 		}
 	}
 
