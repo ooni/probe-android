@@ -1,11 +1,14 @@
 package org.openobservatory.ooniprobe.item;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.openobservatory.ooniprobe.R;
@@ -34,7 +37,12 @@ public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, Test
 		holder.itemView.setOnClickListener(onClickListener);
 		holder.itemView.setTag(extra);
 		if(extra.isTestEmpty()) {
-			holder.itemView.setAlpha(0.4F);
+			((CardView)holder.itemView).setElevation(0);
+			holder.title.setTextColor(Color.LTGRAY);
+			holder.desc.setTextColor(Color.LTGRAY);
+			holder.icon.setColorFilter(Color.LTGRAY, PorterDuff.Mode.SRC_IN);
+			holder.setIsRecyclable(false);
+
 		}
 	}
 
