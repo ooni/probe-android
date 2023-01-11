@@ -53,4 +53,28 @@ public class GetTestSuite {
 
         return testSuite;
     }
+
+    public AbstractSuite getFrom(Result result, List<String> inputs) {
+        AbstractSuite testSuite = result.getTestSuite();
+        WebConnectivity test = new WebConnectivity();
+
+        // possible NPE from measurements whose url's are null.
+        List<Url> urls = Lists.transform(
+                Lists.newArrayList(
+                        Iterables.filter(result.getMeasurements(), input -> input.url != null)
+                ),
+                measurement -> new Url(
+                        measurement.url.url,
+                        measurement.url.category_code,
+                        measurement.url.country_code
+                )
+        );
+
+        Url.saveOrUpdate(urls);
+
+        test.setInputs(inputs);
+        testSuite.setTestList(test);
+
+        return testSuite;
+    }
 }
