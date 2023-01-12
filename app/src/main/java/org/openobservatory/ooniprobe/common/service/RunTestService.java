@@ -214,7 +214,8 @@ public class RunTestService extends Service {
             // INFO: No need to use ACTION_CLOSE_SYSTEM_DIALOGS in this situation.
             // That's because, if your app calls startActivity()
             // while a window is on top of the notification drawer,
-            // the system closes the notification drawer automatically.
+            // the system closes the notification drawer automatically
+            // and this happens on _any_ Android version.
             // https://developer.android.com/about/versions/12/behavior-changes-all?msclkid=3ad37f25cf7411ecb536010741f51e42#close-system-dialogs-exceptions
         }
 
