@@ -23,7 +23,6 @@ import com.google.gson.Gson;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
-import org.openobservatory.ooniprobe.domain.GetResults;
 import org.openobservatory.ooniprobe.domain.GetTestSuite;
 import org.openobservatory.ooniprobe.domain.MeasurementsManager;
 import org.openobservatory.ooniprobe.domain.callback.DomainCallback;
@@ -61,6 +60,7 @@ import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -276,7 +276,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.share, menu);
-        if (measurement.is_anomaly) {
+        if (Objects.equals(measurement.test_name, WebConnectivity.NAME) && measurement.is_anomaly) {
             MenuItem reRunItem = menu.findItem(R.id.reRun);
             reRunItem.setVisible(true);
         }
@@ -325,7 +325,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
         if (buttonClicked == DialogInterface.BUTTON_POSITIVE && extra.equals(RERUN_KEY))
             RunningActivity.runAsForegroundService(
                     this,
-                    getTestSuite.getFrom(measurement.result, Collections.singletonList(measurement.url.url)).asArray(),
+                    getTestSuite.getForWebConnectivityReRunFrom(measurement.result, Collections.singletonList(measurement.url.url)).asArray(),
                     this::finish,
                     preferenceManager);
         else if (buttonClicked == DialogInterface.BUTTON_POSITIVE)

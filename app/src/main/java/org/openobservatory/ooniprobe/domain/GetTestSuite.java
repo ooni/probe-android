@@ -9,9 +9,11 @@ import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
+import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -54,27 +56,31 @@ public class GetTestSuite {
         return testSuite;
     }
 
-    public AbstractSuite getFrom(Result result, List<String> inputs) {
-        AbstractSuite testSuite = result.getTestSuite();
-        WebConnectivity test = new WebConnectivity();
+    public AbstractSuite getForWebConnectivityReRunFrom(Result result, List<String> inputs) {
+        if (Objects.equals(result.getTestSuite().getName(), WebsitesSuite.NAME)){
+            AbstractSuite testSuite = result.getTestSuite();
+            WebConnectivity test = new WebConnectivity();
 
-        // possible NPE from measurements whose url's are null.
-        List<Url> urls = Lists.transform(
-                Lists.newArrayList(
-                        Iterables.filter(result.getMeasurements(), input -> input.url != null)
-                ),
-                measurement -> new Url(
-                        measurement.url.url,
-                        measurement.url.category_code,
-                        measurement.url.country_code
-                )
-        );
+            // possible NPE from measurements whose url's are null.
+            List<Url> urls = Lists.transform(
+                    Lists.newArrayList(
+                            Iterables.filter(result.getMeasurements(), input -> input.url != null)
+                    ),
+                    measurement -> new Url(
+                            measurement.url.url,
+                            measurement.url.category_code,
+                            measurement.url.country_code
+                    )
+            );
 
-        Url.saveOrUpdate(urls);
+            Url.saveOrUpdate(urls);
 
-        test.setInputs(inputs);
-        testSuite.setTestList(test);
+            test.setInputs(inputs);
+            testSuite.setTestList(test);
 
-        return testSuite;
+            return testSuite;
+        } else {
+            return null;
+        }
     }
 }
