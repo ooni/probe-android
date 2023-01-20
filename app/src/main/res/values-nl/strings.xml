@@ -375,11 +375,15 @@
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Deze informatie (bijvoorbeeld IT voor Italië) is nodig om te bepalen uit welk land de metingen worden verzameld. Weet u zeker dat u deze optie wilt uitschakelen?</string>
   <string name="Settings_Sharing_Footer">Door resultaten te publiceren, vergroot u de transparantie van netwerkinterferentie en ondersteunt u de OONI-gemeenschap.\n\nNetwerkinformatie (d.w.z. autonoom systeemnummer) is vereist voor het identificeren van internetproviders.</string>
   <string name="Settings_TestOptions_Label">Testopties</string>
+  <string name="Settings_TestOptions_Footer">What you configure through the above test settings (e.g. disabling the WhatsApp test) will apply to tests run manually, as well as to tests run automatically (when automated testing is enabled).</string>
+  <string name="Settings_TestOptions_LongRunningTest">Long running test</string>
+  <string name="Settings_TestOptions_RunLongRunningTests">Run long running tests in foreground?</string>
   <string name="Settings_Privacy_Label">Privacy</string>
   <string name="Settings_Privacy_SendCrashReports">Crashrapporten versturen</string>
   <string name="Settings_Advanced_Label">Geavanceerd</string>
   <string name="Settings_DarkMode_Label">Donkere Modus</string>
   <string name="Settings_Advanced_DebugLogs">Debug-logs</string>
+  <string name="Settings_Advanced_RecentLogs">See recent logs</string>
   <string name="Settings_Advanced_LanguageSettings_Title">Taalinstelling</string>
   <string name="Settings_Advanced_LanguageSettings_PopUp">Selecteer taal</string>
   <string name="Settings_Advanced_UseDomainFronting">Gebruik altijd domeinfronting</string>

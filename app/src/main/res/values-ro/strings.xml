@@ -375,11 +375,15 @@
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Aceste informații (de exemplu, IT pentru Italia) sunt necesare pentru a identifica din ce țară sunt colectate măsurătorile. Sigur doriți să dezactivați această opțiune?</string>
   <string name="Settings_Sharing_Footer">Prin publicarea rezultatelor, sporiți transparența interferenței rețelei și sprijiniți comunitatea OONI. \n\nInformațiile de rețea (adică numărul de sistem autonom) sunt necesare pentru identificarea furnizorilor de servicii Internet.</string>
   <string name="Settings_TestOptions_Label">Opțiuni de testare</string>
+  <string name="Settings_TestOptions_Footer">What you configure through the above test settings (e.g. disabling the WhatsApp test) will apply to tests run manually, as well as to tests run automatically (when automated testing is enabled).</string>
+  <string name="Settings_TestOptions_LongRunningTest">Long running test</string>
+  <string name="Settings_TestOptions_RunLongRunningTests">Run long running tests in foreground?</string>
   <string name="Settings_Privacy_Label">Confidențialitate</string>
   <string name="Settings_Privacy_SendCrashReports">Trimitere rapoarte de avarie</string>
   <string name="Settings_Advanced_Label">Avansat</string>
   <string name="Settings_DarkMode_Label">Dark Mode</string>
   <string name="Settings_Advanced_DebugLogs">Jurnale de depanare</string>
+  <string name="Settings_Advanced_RecentLogs">See recent logs</string>
   <string name="Settings_Advanced_LanguageSettings_Title">Language Setting</string>
   <string name="Settings_Advanced_LanguageSettings_PopUp">Selectați limba</string>
   <string name="Settings_Advanced_UseDomainFronting">Utilizați întotdeauna fronting de domeniu</string>
