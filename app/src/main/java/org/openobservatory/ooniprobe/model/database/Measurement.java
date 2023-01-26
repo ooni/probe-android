@@ -2,6 +2,8 @@ package org.openobservatory.ooniprobe.model.database;
 
 import static com.google.common.collect.Lists.newArrayList;
 
+import android.app.usage.StorageStats;
+import android.app.usage.StorageStatsManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
