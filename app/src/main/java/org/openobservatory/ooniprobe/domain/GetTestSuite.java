@@ -2,10 +2,10 @@ package org.openobservatory.ooniprobe.domain;
 
 import androidx.annotation.Nullable;
 
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.domain.models.Attribute;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
@@ -34,8 +34,11 @@ public class GetTestSuite {
         AbstractSuite testSuite = result.getTestSuite();
         WebConnectivity test = new WebConnectivity();
 
+        // possible NPE from measurements whose url's are null.
         List<Url> urls = Lists.transform(
-                result.getMeasurements(),
+                Lists.newArrayList(
+                        Iterables.filter(result.getMeasurements(), input -> input.url != null)
+                ),
                 measurement -> new Url(
                         measurement.url.url,
                         measurement.url.category_code,

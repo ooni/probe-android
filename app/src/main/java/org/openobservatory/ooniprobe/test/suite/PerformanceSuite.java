@@ -19,30 +19,37 @@ public class PerformanceSuite extends AbstractSuite {
 
 	public PerformanceSuite() {
 		super(NAME,
-				R.string.Test_Performance_Fullname,
-				R.string.Dashboard_Performance_Card_Description,
-				R.drawable.test_performance,
-				R.drawable.test_performance_24,
-				R.color.color_fuchsia6,
-				R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Performance,
-				R.style.Theme_MaterialComponents_NoActionBar_App_Performance,
-				R.string.Dashboard_Performance_Overview_Paragraph_Updated,
-				"anim/performance.json",
-				R.string.performance_datausage);
+			R.string.Test_Performance_Fullname,
+			R.string.Dashboard_Performance_Card_Description,
+			R.drawable.test_performance,
+			R.drawable.test_performance_24,
+			R.color.color_fuchsia6,
+			R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Performance,
+			R.style.Theme_MaterialComponents_NoActionBar_App_Performance,
+			R.string.Dashboard_Performance_Overview_Paragraph_Updated,
+			"anim/performance.json",
+			R.string.performance_datausage);
 	}
 
-	@Override public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
+	public static PerformanceSuite initForAutoRun() {
+		PerformanceSuite suite = new PerformanceSuite();
+		suite.setAutoRun(true);
+		return suite;
+	}
+
+	@Override
+	public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
 		if (super.getTestList(pm) == null) {
 			ArrayList<AbstractTest> list = new ArrayList<>();
 			if (pm == null || pm.isRunNdt())
 				list.add(new Ndt());
 			if (pm == null || pm.isRunDash())
 				list.add(new Dash());
-			if (pm == null || pm.isRunHttpHeaderFieldManipulation())
+			if ((pm == null || pm.isRunHttpHeaderFieldManipulation()) && !getAutoRun())
 				list.add(new HttpHeaderFieldManipulation());
-			if (pm == null || pm.isRunHttpInvalidRequestLine())
+			if ((pm == null || pm.isRunHttpInvalidRequestLine()) && !getAutoRun())
 				list.add(new HttpInvalidRequestLine());
-			super.setTestList(Lists.transform(list, test->{
+			super.setTestList(Lists.transform(list, test -> {
 				if (getAutoRun()) test.setOrigin(AbstractTest.AUTORUN);
 				return test;
 			}).toArray(new AbstractTest[0]));

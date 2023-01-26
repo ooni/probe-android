@@ -9,8 +9,8 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 
 import com.google.common.collect.Lists;
-import com.google.common.math.Stats;
 
+import org.openobservatory.ooniprobe.common.ListUtility;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.TestProgressRepository;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
@@ -61,14 +61,14 @@ public class TestRunBroadRequestReceiver extends BroadcastReceiver implements Se
                     if (service != null && service.task.testSuites.indexOf(service.task.currentSuite) > 0) {
                         List<AbstractSuite> previousTestSuites =
                                 service.task.testSuites.subList(0, service.task.testSuites.indexOf(service.task.currentSuite));
-                        int previousTestProgress = (int) Stats.of(Lists.transform(
+                        int previousTestProgress = ListUtility.sum(Lists.transform(
                                 previousTestSuites,
                                 input -> input.getTestList(preferenceManager).length * 100
-                        )).sum();
-                        int previousTestRuntime = (int) Stats.of(Lists.transform(
+                        ));
+                        int previousTestRuntime = ListUtility.sum(Lists.transform(
                                 previousTestSuites,
                                 input -> input.getRuntime(preferenceManager)
-                        )).sum();
+                        ));
                         int prgs = Integer.parseInt(value);
                         int currentTestRuntime = service.task.currentSuite.getRuntime(preferenceManager);
                         int currentTestMax = service.task.currentSuite.getTestList(preferenceManager).length * 100;
@@ -109,7 +109,7 @@ public class TestRunBroadRequestReceiver extends BroadcastReceiver implements Se
         service = b.getService();
         isBound = true;
         listener.onStart(service);
-        runtime = (int) Stats.of(Lists.transform(service.task.testSuites, input -> input.getRuntime(preferenceManager))).sum();
+        runtime = ListUtility.sum(Lists.transform(service.task.testSuites, input -> input.getRuntime(preferenceManager)));
     }
 
 
