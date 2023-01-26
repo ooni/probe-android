@@ -50,7 +50,7 @@ public class ServiceUtil {
         */
         builder.setPeriodic(60 * 60 * 1000);
         builder.setPersisted(true); //Job scheduled to work after reboot
-        
+
         //JobScheduler is specifically designed for inexact timing, so it can combine jobs from multiple apps, to try to reduce power consumption.
         JobScheduler jobScheduler = ContextCompat.getSystemService(context, JobScheduler.class);;
         if (jobScheduler != null) {
