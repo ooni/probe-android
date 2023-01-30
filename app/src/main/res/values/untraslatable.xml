@@ -221,7 +221,6 @@
 		<item>@string/CategoryCode_COMM_Key</item>
 		<item>@string/CategoryCode_CTRL_Key</item>
 		<item>@string/CategoryCode_IGO_Key</item>
-		<item>@string/CategoryCode_MISC_Key</item>
 	</string-array>
 	<array name="CategoryIcons" translatable="false">
 		<item>@drawable/category_aldr</item>
