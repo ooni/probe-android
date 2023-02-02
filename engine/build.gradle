@@ -32,8 +32,8 @@ android {
 dependencies {
     // For the stable and dev app flavours we're using the library
     // build published at Maven Central.
-    stableImplementation 'org.ooni:oonimkall:2022.12.08-092817'
-    devImplementation 'org.ooni:oonimkall:2022.12.08-092817'
+    stableImplementation 'org.ooni:oonimkall:2023.01.27-095434'
+    devImplementation 'org.ooni:oonimkall:2023.01.27-095434'
 
     // For the experimental flavour, you need to compile your own
     // oonimkall.aar and put it into the ../engine-experimental dir
