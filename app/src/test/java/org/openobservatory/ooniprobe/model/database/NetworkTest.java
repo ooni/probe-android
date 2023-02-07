@@ -80,7 +80,7 @@ public class NetworkTest extends RobolectricAbstractTest {
         String value = Network.toString(c, network);
 
         // Assert
-        assertEquals("network, country_code ,ISP (asn)", value);
+        assertEquals("network, country_code (asn)", value);
     }
 
     @Test
