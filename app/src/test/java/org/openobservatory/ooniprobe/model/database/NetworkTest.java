@@ -73,13 +73,14 @@ public class NetworkTest extends RobolectricAbstractTest {
         // Arrange
         Network network = new Network();
         network.asn = "asn";
+        network.country_code = "country_code";
         network.network_name = "network";
 
         // Act
         String value = Network.toString(c, network);
 
         // Assert
-        assertEquals("asn - network", value);
+        assertEquals("network, country_code ,ISP (asn)", value);
     }
 
     @Test
