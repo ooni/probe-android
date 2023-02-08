@@ -70,4 +70,12 @@ public final class OONICheckInConfig {
         c.setWebConnectivity(webConnectivity);
         return c;
     }
+
+    public boolean isCharging() {
+        return charging;
+    }
+
+    public boolean isOnWiFi() {
+        return onWiFi;
+    }
 }

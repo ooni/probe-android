@@ -25,6 +25,7 @@ import org.openobservatory.ooniprobe.common.MKException;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
+import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
@@ -160,16 +161,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                     app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray(), proxy));
             OONIContext ooniContext = session.newContextWithTimeout(30);
 
-            /* TODO(bassosimone,aanorbel): figure out how to initialize onWifi
-                and charging by inspecting ServiceUtil.java
-             */
-            OONICheckInConfig config = new OONICheckInConfig(
-                BuildConfig.SOFTWARE_NAME,
-                BuildConfig.VERSION_NAME,
-                false, /* TODO(bassosimone,aanorbel): see above. */
-                false, /* TODO(bassosimone,aanorbel): see above. */
-                app.getPreferenceManager().getEnabledCategoryArr().toArray(new String[0])
-            );
+            OONICheckInConfig config = ServiceUtil.getOONICheckInConfig(app);
 
             ThirdPartyServices.addLogExtra("config", app.getGson().toJson(config));
 
