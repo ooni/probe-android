@@ -8,6 +8,7 @@ import androidx.core.app.NotificationManagerCompat;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.openobservatory.engine.OONICheckInResults;
 import org.openobservatory.engine.OONISession;
 import org.openobservatory.engine.OONIURLInfo;
 import org.openobservatory.ooniprobe.RobolectricAbstractTest;
@@ -105,8 +106,8 @@ public class TestAsyncTaskTest extends RobolectricAbstractTest {
         when(mockedSuite.getTestList(any())).thenReturn(new WebConnectivity[]{test});
         when(mockedSuite.getResult()).thenReturn(testResult);
 
-        OONIURLListResult listResult = mock(OONIURLListResult.class);
-        when(ooniSessionMock.fetchURLList(any(), any())).thenReturn(listResult);
+        OONICheckInResults listResult = mock(OONICheckInResults.class);
+        OONICheckInResults.OONICheckInInfoWebConnectivity ooniCheckInInfoWebConnectivity = mock(OONICheckInResults.OONICheckInInfoWebConnectivity.class);
 
         String url1 = faker.internet.url();
         OONIURLInfo firstUrl = mock(OONIURLInfo.class);
@@ -126,8 +127,15 @@ public class TestAsyncTaskTest extends RobolectricAbstractTest {
         when(thirdUrl.getCategoryCode()).thenReturn("");
         when(thirdUrl.getCountryCode()).thenReturn(faker.address.countryCode());
 
-        when(listResult.getUrls())
+        when(ooniCheckInInfoWebConnectivity.getUrls())
                 .thenReturn(new ArrayList<>(Arrays.asList(firstUrl, secondUrl, thirdUrl)));
+
+        when(listResult.getWebConnectivity())
+                .thenReturn(ooniCheckInInfoWebConnectivity);
+        when(ooniSessionMock.checkIn(any(), any())).thenReturn(listResult);
+
+//        when(listResult.getWebConnectivity().getUrls())
+//                .thenReturn(new ArrayList<>(Arrays.asList(firstUrl, secondUrl, thirdUrl)));
 
         // Act
         mockedEngine.isTaskDone = true;
@@ -136,6 +144,7 @@ public class TestAsyncTaskTest extends RobolectricAbstractTest {
         idleTaskUntilFinished(task);
 
         // Assert
+        assertNotNull(test.getInputs());
         assertArrayEquals(new Object[]{url1, url2, url3}, test.getInputs().toArray());
     }
 
