@@ -69,14 +69,14 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                 new InstantMessagingSuite(), new CircumventionSuite(), new PerformanceSuite(), new ExperimentalSuite());
     }
 
-    public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, RunTestService service) {
+    public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites) {
         this.app = app;
         this.testSuites = testSuites;
         this.proxy = app.getPreferenceManager().getProxyURL();
     }
 
-    public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, RunTestService service, boolean store_db) {
-        this(app, testSuites, service);
+    public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, boolean store_db) {
+        this(app, testSuites);
         this.store_db = store_db;
     }
 
