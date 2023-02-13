@@ -8,11 +8,16 @@ import androidx.core.app.NotificationManagerCompat;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
+import org.openobservatory.engine.OONICheckInConfig;
 import org.openobservatory.engine.OONICheckInResults;
 import org.openobservatory.engine.OONISession;
 import org.openobservatory.engine.OONIURLInfo;
+import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.RobolectricAbstractTest;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
+import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.engine.TestEngineInterface;
 import org.openobservatory.ooniprobe.factory.ResultFactory;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -133,9 +138,6 @@ public class TestAsyncTaskTest extends RobolectricAbstractTest {
         when(listResult.getWebConnectivity())
                 .thenReturn(ooniCheckInInfoWebConnectivity);
         when(ooniSessionMock.checkIn(any(), any())).thenReturn(listResult);
-
-//        when(listResult.getWebConnectivity().getUrls())
-//                .thenReturn(new ArrayList<>(Arrays.asList(firstUrl, secondUrl, thirdUrl)));
 
         // Act
         mockedEngine.isTaskDone = true;

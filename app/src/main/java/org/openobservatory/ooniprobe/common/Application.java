@@ -1,7 +1,9 @@
 package org.openobservatory.ooniprobe.common;
 
 import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
+import android.os.BatteryManager;
 
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
@@ -12,6 +14,7 @@ import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.config.FlowLog;
 import com.raizlabs.android.dbflow.config.FlowManager;
 
+import org.openobservatory.engine.OONICheckInConfig;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.client.OONIAPIClient;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
@@ -59,6 +62,26 @@ public class Application extends android.app.Application {
 
 	protected AppComponent buildDagger() {
 		return DaggerAppComponent.builder().applicationModule(new ApplicationModule(this)).build();
+	}
+
+	public OONICheckInConfig getOONICheckInConfig() {
+
+		BatteryManager batteryManager = (BatteryManager) this.getSystemService(Context.BATTERY_SERVICE);
+		boolean workingOnWifi = ReachabilityManager.getNetworkType(this).equals(ReachabilityManager.WIFI);
+		boolean phoneCharging = false;
+		String[] categories = getPreferenceManager().getEnabledCategoryArr().toArray(new String[0]);
+
+		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+			phoneCharging = batteryManager.isCharging();
+		}
+
+        return new OONICheckInConfig(
+                BuildConfig.SOFTWARE_NAME,
+                BuildConfig.VERSION_NAME,
+                workingOnWifi,
+                phoneCharging,
+                categories
+        );
 	}
 
 	public AppComponent getComponent() { return component; }

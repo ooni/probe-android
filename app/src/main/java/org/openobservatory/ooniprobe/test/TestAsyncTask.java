@@ -161,7 +161,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                     app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray(), proxy));
             OONIContext ooniContext = session.newContextWithTimeout(30);
 
-            OONICheckInConfig config = ServiceUtil.getOONICheckInConfig(app);
+            OONICheckInConfig config = app.getOONICheckInConfig();
 
             ThirdPartyServices.addLogExtra("config", app.getGson().toJson(config));
 

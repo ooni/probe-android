@@ -65,33 +65,12 @@ public class ServiceUtil {
         }
     }
 
-    public static OONICheckInConfig getOONICheckInConfig(Application app) {
-        app.getServiceComponent().inject(d);
-
-        BatteryManager batteryManager = (BatteryManager) app.getSystemService(Context.BATTERY_SERVICE);
-        boolean workingOnWifi = ReachabilityManager.getNetworkType(app).equals(ReachabilityManager.WIFI);
-        boolean phoneCharging = false;
-        String[] categories = d.preferenceManager.getEnabledCategoryArr().toArray(new String[0]);
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            phoneCharging = batteryManager.isCharging();
-        }
-
-        return new OONICheckInConfig(
-                BuildConfig.SOFTWARE_NAME,
-                BuildConfig.VERSION_NAME,
-                workingOnWifi,
-                phoneCharging,
-                categories
-        );
-    }
-
     public static void callCheckInAPI(Application app) {
         app.getServiceComponent().inject(d);
 
         boolean isVPNInUse = ReachabilityManager.isVPNinUse(app);
 
-        OONICheckInConfig config = getOONICheckInConfig(app);
+        OONICheckInConfig config = app.getOONICheckInConfig();
 
         if (!d.generateAutoRunServiceSuite.shouldStart(config.isOnWiFi(),config.isCharging(), isVPNInUse)) {
             return;
