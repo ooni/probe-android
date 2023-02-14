@@ -25,6 +25,7 @@ import org.openobservatory.engine.OONIURLListResult;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.ListUtility;
 import org.openobservatory.ooniprobe.common.MKException;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
@@ -47,8 +48,8 @@ import java.util.List;
 import java.util.Map;
 
 public class TestAsyncTask extends AsyncTask<Void, String, Void> implements AbstractTest.TestCallback {
-    public static final List<AbstractSuite> SUITES = Arrays.asList(new WebsitesSuite(),
-            new InstantMessagingSuite(), new CircumventionSuite(), new PerformanceSuite(), new ExperimentalSuite());
+
+
     private static final String TAG = "TestAsyncTask";
     public static final String START = "START";
     public static final String PRG = "PRG";
@@ -64,21 +65,24 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     public AbstractSuite currentSuite;
     public AbstractTest currentTest;
     private boolean interrupt;
-    WeakReference<RunTestService> serviceRef;
     private ConnectivityManager manager;
     private ConnectivityManager.NetworkCallback networkCallback;
     private String proxy;
     private boolean store_db = true;
 
-    public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, RunTestService service) {
+    public static List<AbstractSuite> getSuites() {
+        return  Arrays.asList(new WebsitesSuite(),
+                new InstantMessagingSuite(), new CircumventionSuite(), new PerformanceSuite(), new ExperimentalSuite());
+    }
+
+    public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites) {
         this.app = app;
         this.testSuites = testSuites;
-        this.serviceRef = new WeakReference<>(service);
         this.proxy = app.getPreferenceManager().getProxyURL();
     }
 
-    public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, RunTestService service, boolean store_db) {
-        this(app, testSuites, service);
+    public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, boolean store_db) {
+        this(app, testSuites);
         this.store_db = store_db;
     }
 
@@ -124,8 +128,12 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                         result.is_viewed = false;
                         result.save();
                     }
-                    publishProgress(START, String.valueOf(suiteIdx));
-                    runTest(currentSuite.getTestList(app.getPreferenceManager()));
+
+                    AbstractTest[] tests = currentSuite.getTestList(app.getPreferenceManager());
+                    if (tests.length > 0){
+                        publishProgress(START, String.valueOf(suiteIdx));
+                        runTest(currentSuite.getTestList(app.getPreferenceManager()));
+                    }
                 }
             }
         }
@@ -217,37 +225,12 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     protected void onProgressUpdate(String... values) {
         //Send broadcast to the RunningActivity
         sendBroadcast(values);
-        //And update the notification
-        String key = values[0];
-        if (values.length <= 1) return;
-        String value = values[1];
-        switch (key) {
-            case TestAsyncTask.RUN:
-                Log.d(TAG, "TestAsyncTask.RUN");
-                serviceRef.get().builder.setContentText(value)
-                        .setProgress(currentSuite.getTestList(app.getPreferenceManager()).length * 100, 0, false);
-                serviceRef.get().notificationManager.notify(RunTestService.NOTIFICATION_ID, serviceRef.get().builder.build());
-                break;
-            case TestAsyncTask.PRG:
-                Log.d(TAG, "TestAsyncTask.PRG " + value);
-                int prgs = Integer.parseInt(value);
-                serviceRef.get().builder.setProgress(currentSuite.getTestList(app.getPreferenceManager()).length * 100, prgs, false);
-                serviceRef.get().notificationManager.notify(RunTestService.NOTIFICATION_ID, serviceRef.get().builder.build());
-                break;
-            case TestAsyncTask.INT:
-                Log.d(TAG, "TestAsyncTask.INT");
-                serviceRef.get().builder.setContentText(app.getString(R.string.Dashboard_Running_Stopping_Title))
-                        .setProgress(0, 0, true);
-                serviceRef.get().notificationManager.notify(RunTestService.NOTIFICATION_ID, serviceRef.get().builder.build());
-                break;
-        }
     }
 
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
         sendBroadcast(END);
-        serviceRef.get().stopSelf();
         unregisterConnChange();
     }
 
@@ -278,9 +261,9 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     }
 
     public int getMax(PreferenceManager preferenceManager) {
-        return (int) Stats.of(Lists.transform(
+        return ListUtility.sum(Lists.transform(
                 testSuites,
                 testSuite -> testSuite.getTestList(preferenceManager).length * 100
-        )).sum();
+        ));
     }
 }

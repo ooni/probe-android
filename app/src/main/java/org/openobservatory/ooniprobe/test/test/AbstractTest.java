@@ -35,10 +35,13 @@ import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class AbstractTest implements Serializable {
     private static final String UNUSED_KEY = "UNUSED_KEY";
     private static final String TAG = "MK_EVENT";
+    public static final String AUTORUN = "autorun";
+    public static final String UNATTENDED = "unattended";
     private final String name;
     private final int labelResId;
     private final int iconResId;
@@ -166,7 +169,7 @@ public abstract class AbstractTest implements Serializable {
                                 m.rerun_network = gson.toJson(network);
                             }
                             m.save();
-                            File entryFile = Measurement.getEntryFile(c, m.id, m.test_name);
+                            File entryFile = Measurement.getReportFile(c, m.id, m.test_name);
                             entryFile.getParentFile().mkdirs();
                             FileUtils.writeStringToFile(
                                     entryFile,
@@ -203,6 +206,7 @@ public abstract class AbstractTest implements Serializable {
                         ThirdPartyServices.logException(new MKException(event));
                         break;
                     case "task_terminated":
+                        onTaskTerminated(event.value, c);
                         /*
                          * The task will be interrupted so the current
                          * measurement data will not show up.
@@ -280,6 +284,15 @@ public abstract class AbstractTest implements Serializable {
         }
     }
 
+    protected void onTaskTerminated(EventResult.Value value, Context context){
+        Measurement measurement = measurements.get(value.idx);
+        if (measurement != null) {
+            if(measurement.is_uploaded){
+                measurement.deleteReportFile(context);
+            }
+        }
+    }
+
     private void setDataUsage(EventResult.Value value, Result result) {
         if (result == null) return;
         result.data_usage_down = result.data_usage_down + Double.valueOf(value.downloaded_kb).longValue();
@@ -331,6 +344,10 @@ public abstract class AbstractTest implements Serializable {
 
     public void setOrigin(String origin) {
         this.origin = origin;
+    }
+
+    public boolean isAutoRun() {
+        return Objects.equals(origin, AUTORUN);
     }
 
     public interface TestCallback {

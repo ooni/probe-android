@@ -55,6 +55,9 @@ public class Application extends android.app.Application {
 		timings.addSplit("flow-init");
 		AppLifecycleObserver appLifecycleObserver = new AppLifecycleObserver();
 		ProcessLifecycleOwner.get().getLifecycle().addObserver(appLifecycleObserver);
+		Measurement.deleteOldLogs(this);
+		ThirdPartyServices.reloadConsents(this);
+
 		timings.addSplit("lifecycle-init");
 		executorService.execute(() -> {
 			if (_preferenceManager.canCallDeleteJson())

@@ -167,7 +167,7 @@ public class MeasurementFactory {
             measurement.is_done = true;
             measurement.is_uploaded = markUploaded;
             measurement.save();
-            File entryFile = Measurement.getEntryFile(context, measurement.id, measurement.test_name);
+            File entryFile = Measurement.getReportFile(context, measurement.id, measurement.test_name);
             entryFile.getParentFile().mkdirs();
             FileUtils.writeStringToFile(
                     entryFile,

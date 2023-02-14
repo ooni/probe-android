@@ -212,7 +212,7 @@ public class Result extends BaseModel implements Serializable {
 
 	public void delete(Context c) {
 		for (Measurement measurement : getAllMeasurements()) {
-			measurement.deleteEntryFile(c);
+			measurement.deleteReportFile(c);
 			measurement.deleteLogFile(c);
 			measurement.delete();
 		}
