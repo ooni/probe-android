@@ -176,7 +176,7 @@ public abstract class AbstractTest implements Serializable {
                                 m.rerun_network = gson.toJson(network);
                             }
                             m.save();
-                            File entryFile = Measurement.getEntryFile(c, m.id, m.test_name);
+                            File entryFile = Measurement.getReportFile(c, m.id, m.test_name);
                             entryFile.getParentFile().mkdirs();
                             FileUtils.writeStringToFile(
                                     entryFile,
@@ -213,6 +213,7 @@ public abstract class AbstractTest implements Serializable {
                         ThirdPartyServices.logException(new MKException(event));
                         break;
                     case "task_terminated":
+                        onTaskTerminated(event.value, c);
                         /*
                          * The task will be interrupted so the current
                          * measurement data will not show up.
@@ -288,6 +289,15 @@ public abstract class AbstractTest implements Serializable {
         if (measurement != null) {
             measurement.is_done = true;
             measurement.save();
+        }
+    }
+
+    protected void onTaskTerminated(EventResult.Value value, Context context){
+        Measurement measurement = measurements.get(value.idx);
+        if (measurement != null) {
+            if(measurement.is_uploaded){
+                measurement.deleteReportFile(context);
+            }
         }
     }
 

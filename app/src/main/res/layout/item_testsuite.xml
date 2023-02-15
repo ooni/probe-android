@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="6dp"
     android:layout_marginTop="16dp"
-    app:cardBackgroundColor="@color/color_white"
+    app:cardBackgroundColor="@color/color_gray0"
     app:cardElevation="5dp"
     android:foreground="?android:attr/selectableItemBackground"
     android:clickable="true"
@@ -13,11 +13,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/color_gray0" >
+        android:layout_height="match_parent">
 
         <ImageView
             android:layout_width="72dp"

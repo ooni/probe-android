@@ -375,11 +375,15 @@
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Tali informazioni (es. IT per Italia) sono necessarie per determinare da quale Paese provengono le misurazioni. Sei sicuro di voler disabilitare quest\'opzione?</string>
   <string name="Settings_Sharing_Footer">Pubblicando i risultati, contribuisci alla trasparenza sulle interferenze di rete e dai supporto alla comunità di OONI.\n\nLe informazioni sulla rete (i.e. l\'Autonomous System Number) sono necessarie per poter identificare i provider di servizi internet (ISP).</string>
   <string name="Settings_TestOptions_Label">Opzioni dei test</string>
+  <string name="Settings_TestOptions_Footer">What you configure through the above test settings (e.g. disabling the WhatsApp test) will apply to tests run manually, as well as to tests run automatically (when automated testing is enabled).</string>
+  <string name="Settings_TestOptions_LongRunningTest">Long running test</string>
+  <string name="Settings_TestOptions_RunLongRunningTests">Run long running tests in foreground?</string>
   <string name="Settings_Privacy_Label">Privacy</string>
   <string name="Settings_Privacy_SendCrashReports">Manda rapporto sui crash</string>
   <string name="Settings_Advanced_Label">Avanzate</string>
   <string name="Settings_DarkMode_Label">Modo scuro</string>
   <string name="Settings_Advanced_DebugLogs">Log di debug</string>
+  <string name="Settings_Advanced_RecentLogs">See recent logs</string>
   <string name="Settings_Advanced_LanguageSettings_Title">Language Setting</string>
   <string name="Settings_Advanced_LanguageSettings_PopUp">Seleziona lingua</string>
   <string name="Settings_Advanced_UseDomainFronting">Usa sempre il domain fronting</string>

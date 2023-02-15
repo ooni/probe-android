@@ -19,6 +19,7 @@ import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.CircumventionSuite;
 import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
+import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 
 import java.util.ArrayList;
 
@@ -49,7 +50,7 @@ public class ServiceUtil {
         */
         builder.setPeriodic(60 * 60 * 1000);
         builder.setPersisted(true); //Job scheduled to work after reboot
-        
+
         //JobScheduler is specifically designed for inexact timing, so it can combine jobs from multiple apps, to try to reduce power consumption.
         JobScheduler jobScheduler = ContextCompat.getSystemService(context, JobScheduler.class);;
         if (jobScheduler != null) {
@@ -94,6 +95,7 @@ public class ServiceUtil {
         testSuites.add(suite);
         testSuites.add(InstantMessagingSuite.initForAutoRun());
         testSuites.add(CircumventionSuite.initForAutoRun());
+        testSuites.add(PerformanceSuite.initForAutoRun());
         testSuites.add(ExperimentalSuite.initForAutoRun());
 
         if (suite != null) {
