@@ -11,6 +11,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.velmurugan.inapplogger.LogType;
+import com.velmurugan.inapplogger.LoggerManager;
+
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.databinding.ItemTextBinding;
 
@@ -56,7 +59,7 @@ public class LogRecyclerViewAdapter extends RecyclerView.Adapter<LogRecyclerView
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         Context context = viewHolder.binding.getRoot().getContext();
-        viewHolder.binding.textView.setText(Html.fromHtml(items.get(position).trim()));
+        viewHolder.binding.textView.setText(items.get(position).trim());
         viewHolder.binding.textView.setPadding(0, 0, 0, 0);
         viewHolder.binding.getRoot().setOnLongClickListener(v -> {
             ((ClipboardManager) context
@@ -66,6 +69,25 @@ public class LogRecyclerViewAdapter extends RecyclerView.Adapter<LogRecyclerView
 
             return false;
         });
+        try {
+            switch (LogType.valueOf(LoggerManager.getTag(items.get(position).trim()))){
+                case ERROR:
+                    viewHolder.binding.textView.setTextColor(context.getResources().getColor(R.color.color_red9));
+                    break;
+                case WARNING:
+                    viewHolder.binding.textView.setTextColor(context.getResources().getColor(R.color.color_orange9));
+                    break;
+                case INFO:
+                    viewHolder.binding.textView.setTextColor(context.getResources().getColor(R.color.color_green9));
+                    break;
+                case API:
+                    viewHolder.binding.textView.setTextColor(context.getResources().getColor(R.color.color_blue9));
+                    break;
+            }
+        }catch (Exception e){
+            System.out.println(items.get(position).trim());
+            e.printStackTrace();
+        }
     }
 
     @Override
