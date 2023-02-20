@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
+import org.openobservatory.ooniprobe.domain.GetTestSuite;
 import org.openobservatory.ooniprobe.domain.MeasurementsManager;
 import org.openobservatory.ooniprobe.domain.callback.DomainCallback;
 import org.openobservatory.ooniprobe.fragment.measurement.DashFragment;
@@ -58,6 +59,8 @@ import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -69,6 +72,8 @@ import ru.noties.markwon.Markwon;
 
 public class MeasurementDetailActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String ID = "id";
+    private static final String RERUN_KEY = "rerun";
+
     @BindView(R.id.coordinatorLayout)
     CoordinatorLayout coordinatorLayout;
     @BindView(R.id.toolbar)
@@ -90,6 +95,13 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
 
     @Inject
     PreferenceManager pm;
+
+    @Inject
+    GetTestSuite getTestSuite;
+
+    @Inject
+    PreferenceManager preferenceManager;
+
 
     public static Intent newIntent(Context context, int id) {
         return new Intent(context, MeasurementDetailActivity.class).putExtra(ID, id);
@@ -264,6 +276,10 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.share, menu);
+        if (Objects.equals(measurement.test_name, WebConnectivity.NAME) && measurement.is_anomaly) {
+            MenuItem reRunItem = menu.findItem(R.id.reRun);
+            reRunItem.setVisible(true);
+        }
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -276,6 +292,13 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                 share.setType("text/plain");
                 Intent shareIntent = Intent. createChooser(share, null);
                 startActivity(shareIntent);
+                return true;
+            case R.id.reRun:
+                new ConfirmDialogFragment.Builder()
+                        .withExtra(RERUN_KEY)
+                        .withMessage(getString(R.string.Modal_ReRun_Title))
+                        .withPositiveButton(getString(R.string.Modal_ReRun_Websites_Run))
+                        .build().show(getSupportFragmentManager(), null);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -299,7 +322,13 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
 
     @Override
     public void onConfirmation(Serializable extra, int buttonClicked) {
-        if (buttonClicked == DialogInterface.BUTTON_POSITIVE)
+        if (buttonClicked == DialogInterface.BUTTON_POSITIVE && extra.equals(RERUN_KEY))
+            RunningActivity.runAsForegroundService(
+                    this,
+                    getTestSuite.getForWebConnectivityReRunFrom(measurement.result, Collections.singletonList(measurement.url.url)).asArray(),
+                    this::finish,
+                    preferenceManager);
+        else if (buttonClicked == DialogInterface.BUTTON_POSITIVE)
             runAsyncTask();
         else if (buttonClicked == DialogInterface.BUTTON_NEUTRAL)
             startActivity(TextActivity.newIntent(this, TextActivity.TYPE_UPLOAD_LOG, (String) extra));

@@ -255,9 +255,9 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
             else
                 snackbar.show();
         } else if (i == DialogInterface.BUTTON_POSITIVE) {
-            if (serializable instanceof Result)
+            if (serializable instanceof Result) {
                 ((Result) serializable).delete(getActivity());
-            else if (serializable.equals(R.id.delete)) {
+            } else if (serializable.equals(R.id.delete)) {
                 //From https://guides.codepath.com/android/using-dialogfragment
                 ProgressDialog pd = new ProgressDialog(getContext());
                 pd.setCancelable(false);

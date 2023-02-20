@@ -47,53 +47,7 @@ public class RunTestService extends Service {
         this.registerReceiver(receiver, filter);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(
-                new BroadcastReceiver() {
-                    @Override
-                    public void onReceive(Context context, Intent intent) {
-                        String key = intent.getStringExtra("key");
-                        String value = intent.getStringExtra("value");
-                        switch (key) {
-                            case TestAsyncTask.RUN:
-                                Log.d(TAG, "TestAsyncTask.RUN");
-                                try {
-                                    builder.setContentText(value)
-                                            .setProgress(task.currentSuite.getTestList(((Application) getApplication()).getPreferenceManager()).length * 100, 0, false);
-                                    notificationManager.notify(RunTestService.NOTIFICATION_ID, builder.build());
-                                } catch (Exception e) {
-                                    ThirdPartyServices.logException(e);
-                                }
-                                break;
-                            case TestAsyncTask.PRG:
-                                Log.d(TAG, "TestAsyncTask.PRG " + value);
-                                try {
-                                    int prgs = Integer.parseInt(value);
-                                    builder.setProgress(task.currentSuite.getTestList(((Application) getApplication()).getPreferenceManager()).length * 100, prgs, false);
-                                    notificationManager.notify(RunTestService.NOTIFICATION_ID, builder.build());
-                                } catch (Exception e) {
-                                    ThirdPartyServices.logException(e);
-                                }
-                                break;
-                            case TestAsyncTask.INT:
-                                Log.d(TAG, "TestAsyncTask.INT");
-                                try {
-                                    builder.setContentText(getString(R.string.Dashboard_Running_Stopping_Title))
-                                            .setProgress(0, 0, true);
-                                    notificationManager.notify(RunTestService.NOTIFICATION_ID, builder.build());
-                                } catch (Exception e) {
-                                    ThirdPartyServices.logException(e);
-                                }
-                                break;
-                            case TestAsyncTask.END:
-                                Log.d(TAG, "TestAsyncTask.END");
-                                try {
-                                    stopSelf();
-                                } catch (Exception e) {
-                                    ThirdPartyServices.logException(e);
-                                }
-                                break;
-                        }
-                    }
-                },
+                new ProgressBroadcastReceiver(),
                 new IntentFilter("org.openobservatory.ooniprobe.activity.RunningActivity")
         );
     }
@@ -102,7 +56,7 @@ public class RunTestService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         ArrayList<AbstractSuite> testSuites = (ArrayList<AbstractSuite>) intent.getSerializableExtra("testSuites");
         if (testSuites == null || testSuites.size() == 0)
-            return 0;
+            return START_STICKY_COMPATIBILITY;
         boolean store_db = intent.getBooleanExtra("storeDB", true);
         Application app = ((Application) getApplication());
         NotificationUtility.setChannel(getApplicationContext(), CHANNEL_ID, app.getString(R.string.Settings_AutomatedTesting_Label), false, false, false);
@@ -121,7 +75,7 @@ public class RunTestService extends Service {
                 .setProgress(100, 0, false)
                 .build();
 
-        task = (TestAsyncTask) new TestAsyncTask(app, testSuites, this, store_db).execute();
+        task = (TestAsyncTask) new TestAsyncTask(app, testSuites, store_db).execute();
         //This intent is used to manage the stop test button in the notification
         Intent broadcastIntent = new Intent();
         broadcastIntent.setAction(RunTestService.ACTION_INTERRUPT);
@@ -211,9 +165,12 @@ public class RunTestService extends Service {
             if (action != null && action.equals("interrupt_test")) {
                 stopTest();
             }
-            //This is used to close the notification tray
-            Intent it = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
-            context.sendBroadcast(it);
+            // INFO: No need to use ACTION_CLOSE_SYSTEM_DIALOGS in this situation.
+            // That's because, if your app calls startActivity()
+            // while a window is on top of the notification drawer,
+            // the system closes the notification drawer automatically
+            // and this happens on _any_ Android version.
+            // https://developer.android.com/about/versions/12/behavior-changes-all?msclkid=3ad37f25cf7411ecb536010741f51e42#close-system-dialogs-exceptions
         }
 
         public void stopTest() {
@@ -230,4 +187,51 @@ public class RunTestService extends Service {
         task.interrupt();
     }
 
+    private class ProgressBroadcastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String key = intent.getStringExtra("key");
+            String value = intent.getStringExtra("value");
+            switch (key) {
+                case TestAsyncTask.RUN:
+                    Log.d(TAG, "TestAsyncTask.RUN");
+                    try {
+                        builder.setContentText(value);
+                        builder.setProgress(task.currentSuite.getTestList(((Application) getApplication()).getPreferenceManager()).length * 100, 0, false);
+                        notificationManager.notify(RunTestService.NOTIFICATION_ID, builder.build());
+                    } catch (Exception e) {
+                        ThirdPartyServices.logException(e);
+                    }
+                    break;
+                case TestAsyncTask.PRG:
+                    Log.d(TAG, "TestAsyncTask.PRG " + value);
+                    try {
+                        int prgs = Integer.parseInt(value);
+                        builder.setProgress(task.currentSuite.getTestList(((Application) getApplication()).getPreferenceManager()).length * 100, prgs, false);
+                        notificationManager.notify(RunTestService.NOTIFICATION_ID, builder.build());
+                    } catch (Exception e) {
+                        ThirdPartyServices.logException(e);
+                    }
+                    break;
+                case TestAsyncTask.INT:
+                    Log.d(TAG, "TestAsyncTask.INT");
+                    try {
+                        builder.setContentText(getString(R.string.Dashboard_Running_Stopping_Title))
+                                .setProgress(0, 0, true);
+                        notificationManager.notify(RunTestService.NOTIFICATION_ID, builder.build());
+                    } catch (Exception e) {
+                        ThirdPartyServices.logException(e);
+                    }
+                    break;
+                case TestAsyncTask.END:
+                    Log.d(TAG, "TestAsyncTask.END");
+                    try {
+                        stopSelf();
+                    } catch (Exception e) {
+                        ThirdPartyServices.logException(e);
+                    }
+                    break;
+            }
+        }
+    }
 }

@@ -50,7 +50,7 @@ public class ServiceUtil {
         */
         builder.setPeriodic(60 * 60 * 1000);
         builder.setPersisted(true); //Job scheduled to work after reboot
-        
+
         //JobScheduler is specifically designed for inexact timing, so it can combine jobs from multiple apps, to try to reduce power consumption.
         JobScheduler jobScheduler = ContextCompat.getSystemService(context, JobScheduler.class);;
         if (jobScheduler != null) {
@@ -101,7 +101,7 @@ public class ServiceUtil {
         if (suite != null) {
             Intent serviceIntent = new Intent(app, RunTestService.class);
             serviceIntent.putExtra("testSuites", testSuites);
-            serviceIntent.putExtra("storeDB", true);
+            serviceIntent.putExtra("storeDB", false);
             ContextCompat.startForegroundService(app, serviceIntent);
         }
 
