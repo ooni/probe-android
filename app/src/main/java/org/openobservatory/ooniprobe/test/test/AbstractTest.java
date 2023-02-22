@@ -103,7 +103,6 @@ public abstract class AbstractTest implements Serializable {
                 }
                 String json = task.waitForNextEvent();
                 Log.d(TAG, json);
-                logger.i(TAG,json);
 
                 EventResult event = gson.fromJson(json, EventResult.class);
 
@@ -144,6 +143,7 @@ public abstract class AbstractTest implements Serializable {
                         }
                         break;
                     case "log":
+                        logger.i(TAG,json);
                         if (logFile == null) break;
                         FileUtils.writeStringToFile(
                                 logFile,
