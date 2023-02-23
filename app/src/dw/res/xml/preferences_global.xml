@@ -132,7 +132,7 @@
 					android:summary="@string/CategoryCode_HATE_Description"
 					android:title="@string/CategoryCode_HATE_Name" />
 				<SwitchPreferenceCompat
-					android:defaultValue="true"
+					android:defaultValue="false"
 					android:icon="@drawable/category_host"
 					android:key="@string/CategoryCode_HOST_Key"
 					android:summary="@string/CategoryCode_HOST_Description"
