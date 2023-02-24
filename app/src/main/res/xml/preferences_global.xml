@@ -368,6 +368,13 @@
 			android:title="@string/Settings_Advanced_LanguageSettings_Title"
 			android:defaultValue="auto"
 			app:iconSpaceReserved="false"/>
+		<PreferenceScreen
+			android:defaultValue="false"
+			app:iconSpaceReserved="false"
+			android:key="logs"
+			android:title="@string/Settings_Advanced_RecentLogs">
+			<intent android:action="org.openobservatory.ooniprobe.activity.LogActivity" />
+		</PreferenceScreen>
 		<SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="@string/debugLogs"

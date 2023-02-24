@@ -96,6 +96,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
             public void onAvailable(Network network) {
                 super.onAvailable(network);
                 Log.i(TAG, "connected to " + (manager.isActiveNetworkMetered() ? "LTE" : "WIFI"));
+                app.getLogger().i(TAG, "connected to " + (manager.isActiveNetworkMetered() ? "LTE" : "WIFI"));
             }
 
             @Override
@@ -103,6 +104,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                 super.onLost(network);
                 //losing active connection stop test
                 Log.i(TAG, "losing active connection");
+                app.getLogger().i(TAG, "losing active connection");
                 interrupt();
             }
         };
@@ -150,7 +152,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                 if (!interrupt) {
                     Log.d(TAG, "run next suite: " + currentSuite.getName() + " test:" + currentTest.getName());
 
-                    currentTest.run(app, app.getPreferenceManager(), app.getGson(), result, i, this);
+                    currentTest.run(app, app.getPreferenceManager(),app.getLogger(), app.getGson(), result, i, this);
                 }
             }
         } catch (Exception e) {

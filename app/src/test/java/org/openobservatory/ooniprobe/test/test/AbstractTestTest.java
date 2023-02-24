@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.openobservatory.engine.OONISession;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.RobolectricAbstractTest;
+import org.openobservatory.ooniprobe.common.AppLogger;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.engine.TestEngineInterface;
@@ -55,6 +56,8 @@ public class AbstractTestTest extends RobolectricAbstractTest {
     TestCallback mockedCallback = mock(TestCallback.class);
     OONISession mockedSession = mock(OONISession.class);
     Settings mockedSettings = mock(Settings.class);
+
+    AppLogger appLogger = mock(AppLogger.class);
     Gson gson = new Gson();
 
     TestEngineInterface testEngine = new TestEngineInterface(mockedSession);
@@ -82,7 +85,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         testEngine.sendNextEvent(EventResultFactory.buildStarted());
         testEngine.sendNextEvent(EventResultFactory.buildEnded());
 
-        test.run(c, mockPreferenceManager, gson, mockedSettings, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager, appLogger, gson, mockedSettings, result, 1, mockedCallback);
 
         // Assert
         verify(mockedCallback, times(1)).onStart(c.getString(R.string.Test_WebConnectivity_Fullname));
@@ -117,7 +120,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         testEngine.sendNextEvent(EventResultFactory.buildDataUsage(measurementDownload, measurementUpload));
         testEngine.sendNextEvent(EventResultFactory.buildEnded());
 
-        test.run(c, mockPreferenceManager, gson, mockedSettings, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, mockedSettings, result, 1, mockedCallback);
 
         // Assert
         verify(mockedCallback, times(1)).onStart(c.getString(R.string.Test_WebConnectivity_Fullname));
@@ -160,7 +163,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         testEngine.sendNextEvent(EventResultFactory.buildIpLookup(networkName, ip, asn, countryCode));
         testEngine.sendNextEvent(EventResultFactory.buildEnded());
 
-        test.run(c, mockPreferenceManager, gson, mockedSettings, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, mockedSettings, result, 1, mockedCallback);
         Result updatedResult = SQLite.select().from(Result.class).where(Result_Table.id.eq(result.id)).querySingle();
 
         // Assert
@@ -186,7 +189,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         testEngine.sendNextEvent(EventResultFactory.buildLog(message));
         testEngine.sendNextEvent(EventResultFactory.buildEnded());
 
-        test.run(c, mockPreferenceManager, gson, mockedSettings, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, mockedSettings, result, 1, mockedCallback);
 
         File logFile = Measurement.getLogFile(c, result.id, test.getName());
         String content = FileUtils.readFileToString(logFile, StandardCharsets.UTF_8).replace("\n", "");
@@ -210,7 +213,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         testEngine.sendNextEvent(EventResultFactory.buildProgress(0D, message));
         testEngine.sendNextEvent(EventResultFactory.buildEnded());
 
-        test.run(c, mockPreferenceManager, gson, mockedSettings, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, mockedSettings, result, 1, mockedCallback);
 
         File logFile = Measurement.getLogFile(c, result.id, test.getName());
         String content = FileUtils.readFileToString(logFile, StandardCharsets.UTF_8).replace("\n", "");
@@ -235,7 +238,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         testEngine.sendNextEvent(EventResultFactory.resolverFailure(message));
         testEngine.sendNextEvent(EventResultFactory.buildEnded());
 
-        test.run(c, mockPreferenceManager, gson, mockedSettings, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, mockedSettings, result, 1, mockedCallback);
         Result updatedResult = SQLite.select().from(Result.class).where(Result_Table.id.eq(result.id)).querySingle();
 
         // Assert
@@ -260,7 +263,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         testEngine.sendNextEvent(EventResultFactory.buildStarted());
         testEngine.sendNextEvent(EventResultFactory.buildEnded());
 
-        test.run(c, mockPreferenceManager, gson, mockedSettings, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, mockedSettings, result, 1, mockedCallback);
 
         boolean value = test.canInterrupt();
         test.interrupt();
@@ -277,7 +280,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         Result result = setupTestRun(test, true);
 
         // Act
-        test.run(c, mockPreferenceManager, gson, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, result, 1, mockedCallback);
         Measurement updatedMeasurement = SQLite.select().from(Measurement.class).where(Measurement_Table.report_id.eq(REPORT_ID)).querySingle();
 
         // Assert
@@ -296,7 +299,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         Result result = setupTestRun(test, true);
 
         // Act
-        test.run(c, mockPreferenceManager, gson, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, result, 1, mockedCallback);
         Measurement updatedMeasurement = SQLite.select().from(Measurement.class).where(Measurement_Table.report_id.eq(REPORT_ID)).querySingle();
 
         // Assert
@@ -311,7 +314,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         Result result = setupTestRun(test, false);
 
         // Act
-        test.run(c, mockPreferenceManager, gson, mockedSettings, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, mockedSettings, result, 1, mockedCallback);
         Measurement updatedMeasurement = SQLite.select().from(Measurement.class).where(Measurement_Table.report_id.eq(REPORT_ID)).querySingle();
 
         // Assert
@@ -326,7 +329,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         Result result = setupTestRun(test, true);
 
         // Act
-        test.run(c, mockPreferenceManager, gson, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, result, 1, mockedCallback);
         Measurement updatedMeasurement = SQLite.select().from(Measurement.class).where(Measurement_Table.report_id.eq(REPORT_ID)).querySingle();
 
         // Assert
@@ -341,7 +344,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         Result result = setupTestRun(test, false);
 
         // Act
-        test.run(c, mockPreferenceManager, gson, mockedSettings, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, mockedSettings, result, 1, mockedCallback);
         Measurement updatedMeasurement = SQLite.select().from(Measurement.class).where(Measurement_Table.report_id.eq(REPORT_ID)).querySingle();
 
         // Assert
@@ -356,7 +359,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         Result result = setupTestRun(test, true);
 
         // Act
-        test.run(c, mockPreferenceManager, gson, mockedSettings, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, mockedSettings, result, 1, mockedCallback);
         Measurement updatedMeasurement = SQLite.select().from(Measurement.class).where(Measurement_Table.report_id.eq(REPORT_ID)).querySingle();
 
         // Assert
@@ -371,7 +374,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         Result result = setupTestRun(test, false);
 
         // Act
-        test.run(c, mockPreferenceManager, gson, mockedSettings, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, mockedSettings, result, 1, mockedCallback);
         Measurement updatedMeasurement = SQLite.select().from(Measurement.class).where(Measurement_Table.report_id.eq(REPORT_ID)).querySingle();
 
         // Assert
@@ -386,7 +389,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         Result result = setupTestRun(test, true);
 
         // Act
-        test.run(c, mockPreferenceManager, gson, mockedSettings, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, mockedSettings, result, 1, mockedCallback);
         Measurement updatedMeasurement = SQLite.select().from(Measurement.class).where(Measurement_Table.report_id.eq(REPORT_ID)).querySingle();
 
         // Assert
@@ -401,7 +404,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         Result result = setupTestRun(test, false);
 
         // Act
-        test.run(c, mockPreferenceManager, gson, mockedSettings, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, mockedSettings, result, 1, mockedCallback);
         Measurement updatedMeasurement = SQLite.select().from(Measurement.class).where(Measurement_Table.report_id.eq(REPORT_ID)).querySingle();
 
         // Assert
@@ -416,7 +419,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         Result result = setupTestRun(test, true);
 
         // Act
-        test.run(c, mockPreferenceManager, gson, mockedSettings, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, mockedSettings, result, 1, mockedCallback);
         Measurement updatedMeasurement = SQLite.select().from(Measurement.class).where(Measurement_Table.report_id.eq(REPORT_ID)).querySingle();
 
         // Assert
@@ -431,7 +434,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         Result result = setupTestRun(test, false);
 
         // Act
-        test.run(c, mockPreferenceManager, gson, mockedSettings, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, mockedSettings, result, 1, mockedCallback);
         Measurement updatedMeasurement = SQLite.select().from(Measurement.class).where(Measurement_Table.report_id.eq(REPORT_ID)).querySingle();
 
         // Assert
@@ -446,7 +449,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         Result result = setupTestRun(test, true);
 
         // Act
-        test.run(c, mockPreferenceManager, gson, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, result, 1, mockedCallback);
         Measurement updatedMeasurement = SQLite.select().from(Measurement.class).where(Measurement_Table.report_id.eq(REPORT_ID)).querySingle();
 
         // Assert
@@ -461,7 +464,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         Result result = setupTestRun(test, false);
 
         // Act
-        test.run(c, mockPreferenceManager, gson, mockedSettings, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, mockedSettings, result, 1, mockedCallback);
         Measurement updatedMeasurement = SQLite.select().from(Measurement.class).where(Measurement_Table.report_id.eq(REPORT_ID)).querySingle();
 
         // Assert
@@ -476,7 +479,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         Result result = setupTestRun(test, true);
 
         // Act
-        test.run(c, mockPreferenceManager, gson, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, result, 1, mockedCallback);
         Measurement updatedMeasurement = SQLite.select().from(Measurement.class).where(Measurement_Table.report_id.eq(REPORT_ID)).querySingle();
 
         // Assert
@@ -491,7 +494,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         Result result = setupTestRun(test, false);
 
         // Act
-        test.run(c, mockPreferenceManager, gson, mockedSettings, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, mockedSettings, result, 1, mockedCallback);
         Measurement updatedMeasurement = SQLite.select().from(Measurement.class).where(Measurement_Table.report_id.eq(REPORT_ID)).querySingle();
 
         // Assert
@@ -506,7 +509,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         Result result = setupTestRun(test, true);
 
         // Act
-        test.run(c, mockPreferenceManager, gson, mockedSettings, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, mockedSettings, result, 1, mockedCallback);
         Measurement updatedMeasurement = SQLite.select().from(Measurement.class).where(Measurement_Table.report_id.eq(REPORT_ID)).querySingle();
 
         // Assert
@@ -521,7 +524,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         Result result = setupTestRun(test, false);
 
         // Act
-        test.run(c, mockPreferenceManager, gson, mockedSettings, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, mockedSettings, result, 1, mockedCallback);
         Measurement updatedMeasurement = SQLite.select().from(Measurement.class).where(Measurement_Table.report_id.eq(REPORT_ID)).querySingle();
 
         // Assert
@@ -536,7 +539,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         Result result = setupTestRun(test, true);
 
         // Act
-        test.run(c, mockPreferenceManager, gson, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, result, 1, mockedCallback);
         Measurement updatedMeasurement = SQLite.select().from(Measurement.class).where(Measurement_Table.report_id.eq(REPORT_ID)).querySingle();
 
         // Assert
@@ -552,7 +555,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         Result result = setupTestRun(test, false);
 
         // Act
-        test.run(c, mockPreferenceManager, gson, mockedSettings, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, mockedSettings, result, 1, mockedCallback);
         Measurement updatedMeasurement = SQLite.select().from(Measurement.class).where(Measurement_Table.report_id.eq(REPORT_ID)).querySingle();
 
         // Assert
@@ -567,7 +570,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         Result result = setupTestRun(test, true);
 
         // Act
-        test.run(c, mockPreferenceManager, gson, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, result, 1, mockedCallback);
         Measurement updatedMeasurement = SQLite.select().from(Measurement.class).where(Measurement_Table.report_id.eq(REPORT_ID)).querySingle();
 
         // Assert
@@ -582,7 +585,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         Result result = setupTestRun(test, false);
 
         // Act
-        test.run(c, mockPreferenceManager, gson, mockedSettings, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, mockedSettings, result, 1, mockedCallback);
         Measurement updatedMeasurement = SQLite.select().from(Measurement.class).where(Measurement_Table.report_id.eq(REPORT_ID)).querySingle();
 
         // Assert
@@ -597,7 +600,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         Result result = setupTestRun(test, true);
 
         // Act
-        test.run(c, mockPreferenceManager, gson, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, result, 1, mockedCallback);
         Measurement updatedMeasurement = SQLite.select().from(Measurement.class).where(Measurement_Table.report_id.eq(REPORT_ID)).querySingle();
 
         // Assert
@@ -619,7 +622,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
         testEngine.sendNextEvent(EventResultFactory.buildMeasurementEntry(MEASUREMENT_ID, ""));
 
         // Act
-        test.run(c, mockPreferenceManager, gson, mockedSettings, result, 1, mockedCallback);
+        test.run(c, mockPreferenceManager,appLogger , gson, mockedSettings, result, 1, mockedCallback);
         Measurement updatedMeasurement = SQLite.select().from(Measurement.class).where(Measurement_Table.report_id.eq(REPORT_ID)).querySingle();
 
         // Assert
