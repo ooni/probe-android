@@ -145,6 +145,9 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.36'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.36'
 
+// Logger
+    implementation project(':applogger')
+
 // Testing
 	// Unit Testing
 	testImplementation 'junit:junit:4.13.2'

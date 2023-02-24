@@ -134,4 +134,6 @@
 	<color name="color_cyan7">#1098ad</color>   <!-- not_used -->
 	<color name="color_cyan8">#0c8599</color>   <!-- not_used -->
 	<color name="color_cyan9">#0b7285</color>
+	<color name="disabled_test_text">@color/color_gray4</color>
+	<color name="disabled_test_background">#f8f9fa</color>
 </resources>

@@ -17,6 +17,9 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
@@ -54,8 +57,11 @@ public class RunTestService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        ArrayList<AbstractSuite> testSuites = (ArrayList<AbstractSuite>) intent.getSerializableExtra("testSuites");
-        if (testSuites == null || testSuites.size() == 0)
+        ArrayList<AbstractSuite> iTestSuites = (ArrayList<AbstractSuite>) intent.getSerializableExtra("testSuites");
+        if (iTestSuites == null)
+            return START_STICKY_COMPATIBILITY;
+        ArrayList<AbstractSuite> testSuites = Lists.newArrayList(Iterables.filter(iTestSuites, testSuite -> !testSuite.isTestEmpty()));
+        if (testSuites.size() == 0)
             return START_STICKY_COMPATIBILITY;
         boolean store_db = intent.getBooleanExtra("storeDB", true);
         Application app = ((Application) getApplication());

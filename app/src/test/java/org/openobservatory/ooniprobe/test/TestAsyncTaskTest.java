@@ -187,7 +187,7 @@ public class TestAsyncTaskTest extends RobolectricAbstractTest {
         suiteList.add(mockedSuite);
         AbstractTest test = mock(AbstractTest.class);
         when(mockedSuite.getTestList(any())).thenReturn(new AbstractTest[]{test});
-        doThrow(new RuntimeException("")).when(test).run(any(), any(), any(), any(), anyInt(), any());
+        doThrow(new RuntimeException("")).when(test).run(any(), any(), any(), any(), any(), anyInt(), any());
 
         TestAsyncTask task = new TestAsyncTask(a, suiteList,false);
 

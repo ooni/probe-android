@@ -3,7 +3,6 @@ package org.openobservatory.ooniprobe.domain;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.apache.commons.io.FileUtils;
-import org.junit.After;
 import org.junit.Test;
 import org.openobservatory.engine.OONIContext;
 import org.openobservatory.engine.OONISession;
@@ -21,9 +20,7 @@ import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 import org.openobservatory.ooniprobe.model.database.Result;
-import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
-import org.openobservatory.ooniprobe.utils.DatabaseUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -446,7 +443,7 @@ public class MeasurementsManagerTest extends RobolectricAbstractTest {
             // Act
             boolean value = manager.reSubmit(measurement, ooniSession);
             Measurement updatedMeasurement = SQLite.select().from(Measurement.class).where(Measurement_Table.report_id.eq(newReportId)).querySingle();
-            File updatedFile = Measurement.getEntryFile(c, updatedMeasurement.id, updatedMeasurement.test_name);
+            File updatedFile = Measurement.getReportFile(c, updatedMeasurement.id, updatedMeasurement.test_name);
             String updatedFileContent = FileUtils.readFileToString(updatedFile, StandardCharsets.UTF_8);
 
             // Assert

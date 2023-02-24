@@ -69,7 +69,7 @@ public class ResubmitTask<A extends AbstractActivity> extends NetworkProgressAsy
     }
 
     private boolean perform(Context c, Measurement m, OONISession session) {
-        File file = Measurement.getEntryFile(c, m.id, m.test_name);
+        File file = Measurement.getReportFile(c, m.id, m.test_name);
         String input;
         long uploadTimeout = getTimeout(file.length());
         OONIContext ooniContext = session.newContextWithTimeout(uploadTimeout);
@@ -78,6 +78,7 @@ public class ResubmitTask<A extends AbstractActivity> extends NetworkProgressAsy
             OONISubmitResults results = session.submit(ooniContext, input);
             FileUtils.writeStringToFile(file, results.getUpdatedMeasurement(), StandardCharsets.UTF_8);
             m.report_id = results.getUpdatedReportID();
+            m.deleteReportFile(c);
             m.is_uploaded = true;
             m.is_upload_failed = false;
             m.save();
@@ -147,6 +148,8 @@ public class ResubmitTask<A extends AbstractActivity> extends NetworkProgressAsy
                 m.result.load();
                 if(!d.measurementsManager.reSubmit(m, session)){
                     errors++;
+                }else {
+                    m.deleteReportFile(getActivity());
                 }
             }
         }
