@@ -285,7 +285,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
             if (getActivity() != null && f != null) {
                 if (f.isAdded())
                     f.queryList();
-                if (!result)
+                if (!result && !getActivity().isFinishing())
                     new ConfirmDialogFragment.Builder()
                             .withTitle(getActivity().getString(R.string.Modal_UploadFailed_Title))
                             .withMessage(getActivity().getString(R.string.Modal_UploadFailed_Paragraph, errors.toString(), totUploads.toString()))
