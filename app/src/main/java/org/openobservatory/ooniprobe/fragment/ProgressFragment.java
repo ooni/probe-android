@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -92,7 +93,8 @@ public class ProgressFragment extends Fragment {
     }
 
     public void bindTestService() {
-        if (((Application)getActivity().getApplication()).isTestRunning()) {
+        Activity activity = getActivity();
+        if (activity!=null && ((Application)activity.getApplication()).isTestRunning()) {
             Intent intent = new Intent(getActivity(), RunTestService.class);
             getActivity().bindService(intent, receiver, Context.BIND_AUTO_CREATE);
             progress_layout.setVisibility(View.VISIBLE);
@@ -102,7 +104,8 @@ public class ProgressFragment extends Fragment {
     }
 
     private void updateUI(RunTestService service){
-        if (((Application)getActivity().getApplication()).isTestRunning()){
+        Activity activity = getActivity();
+        if (activity!=null && ((Application)activity.getApplication()).isTestRunning()){
 
             Integer progressLevel = testProgressRepository.getProgress().getValue();
             if (progressLevel != null) {

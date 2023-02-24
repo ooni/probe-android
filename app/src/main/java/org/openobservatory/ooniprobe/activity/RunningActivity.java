@@ -226,7 +226,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     @Override
     protected void onPause() {
         super.onPause();
-        if (receiver.isBound()) {
+        if (receiver!=null && receiver.isBound()) {
             unbindService(receiver);
             receiver.setBound(false);
         }
