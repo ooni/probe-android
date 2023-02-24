@@ -146,7 +146,7 @@ dependencies {
     annotationProcessor 'com.google.dagger:dagger-compiler:2.36'
 
 // Logger
-    implementation 'com.github.aanorbel:inapplogger:v1.7'
+    implementation project(':applogger')
 
 // Testing
 	// Unit Testing

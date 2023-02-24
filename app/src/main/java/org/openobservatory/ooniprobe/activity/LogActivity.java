@@ -17,7 +17,7 @@ import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.common.collect.Lists;
-import com.velmurugan.inapplogger.LogType;
+import org.openobservatory.applogger.LogType;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.AppLogger;

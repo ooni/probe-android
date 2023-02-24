@@ -11,8 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.velmurugan.inapplogger.LogType;
-import com.velmurugan.inapplogger.LoggerManager;
+import org.openobservatory.applogger.LogType;
+import org.openobservatory.applogger.LoggerManager;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.databinding.ItemTextBinding;

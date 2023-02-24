@@ -4,7 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import com.velmurugan.inapplogger.InAppLogger;
+import org.openobservatory.applogger.InAppLogger;
 
 import java.io.File;
 import java.util.Arrays;
