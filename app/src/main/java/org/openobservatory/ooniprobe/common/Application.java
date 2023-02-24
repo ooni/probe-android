@@ -44,33 +44,25 @@ public class Application extends android.app.Application {
 
 	@Override public void onCreate() {
 		super.onCreate();
-		TimingLogger timings = new TimingLogger(Application.class.getSimpleName(), "app-on-create");
 		component = buildDagger();
 		component.inject(this);
-		timings.addSplit("dagger-init");
 
 		FlowManager.init(this);
 		if (BuildConfig.DEBUG)
 			FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
-		timings.addSplit("flow-init");
 		AppLifecycleObserver appLifecycleObserver = new AppLifecycleObserver();
 		ProcessLifecycleOwner.get().getLifecycle().addObserver(appLifecycleObserver);
 		Measurement.deleteOldLogs(this);
 		ThirdPartyServices.reloadConsents(this);
 
-		timings.addSplit("lifecycle-init");
 		executorService.execute(() -> {
 			if (_preferenceManager.canCallDeleteJson())
 				Measurement.deleteUploadedJsons(Application.this);
 			Measurement.deleteOldLogs(Application.this);
 		});
-		timings.addSplit("measurement-init");
 		ThirdPartyServices.reloadConsents(Application.this);
-		timings.addSplit("third-party-services-init");
 		LocaleUtils.setLocale(new Locale(_preferenceManager.getSettingsLanguage()));
 		LocaleUtils.updateConfig(this, getBaseContext().getResources().getConfiguration());
-		timings.addSplit("locale-init");
-		timings.dumpToLog();
 	}
 
 	protected AppComponent buildDagger() {
