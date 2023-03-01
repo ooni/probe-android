@@ -116,7 +116,7 @@
 				<action android:name="android.intent.action.SEND" />
 				<category android:name="android.intent.category.DEFAULT" />
 
-				<action android:name="org.openobservatory.ooniprobe.nettest" />
+				<action android:name="${applicationId}.nettest" />
 
 				<data android:mimeType="text/plain" />
 			</intent-filter>
@@ -164,7 +164,7 @@
             android:label="LogActivity"
             android:parentActivityName=".activity.PreferenceActivity">
             <intent-filter>
-                <action android:name="org.openobservatory.ooniprobe.activity.LogActivity" />
+                <action android:name="${applicationId}.activity.LogActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -181,7 +181,7 @@
 
 		<provider
 			android:name="androidx.core.content.FileProvider"
-			android:authorities="org.openobservatory.ooniprobe.provider"
+			android:authorities="${applicationId}.provider"
 			android:exported="false"
 			android:grantUriPermissions="true">
 			<!-- resource file to create -->
