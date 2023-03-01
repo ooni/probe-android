@@ -15,12 +15,15 @@ import com.google.common.net.InetAddresses;
 import com.google.common.net.InternetDomainName;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.AppLogger;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ProxyProtocol;
 import org.openobservatory.ooniprobe.common.ProxySettings;
 
 import java.net.URISyntaxException;
 import java.util.Objects;
+
+import javax.inject.Inject;
 
 import ru.noties.markwon.Markwon;
 
@@ -90,10 +93,13 @@ public class ProxyActivity extends AbstractActivity {
      * The design and implementation of this class owes to the code contributed
      * by and the suggestion from friendly anonymous users. Thank you!
      */
-
+    @Inject
+    AppLogger logger;
     // TAG is the tag used for logging.
     private final static String TAG = "ProxyActivity";
 
+    @Inject
+    PreferenceManager preferenceManager;
     // The following radio group describes the top level choice
     // in terms of proxying: no proxy, psiphon, or custom.
 
@@ -139,6 +145,7 @@ public class ProxyActivity extends AbstractActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActivityComponent().inject(this);
 
         // We draw the view and store references to objects needed
         // when configuring the initial view or modifying it.
@@ -171,11 +178,11 @@ public class ProxyActivity extends AbstractActivity {
     // any reason including an upgrade, we don't recognize the originally stored
     // settings, then we behave like no proxy had been configured.
     private void loadSettingsAndConfigureInitialView() {
-        PreferenceManager pm = getPreferenceManager();
         try {
-            settings = ProxySettings.newProxySettings(pm);
+            settings = ProxySettings.newProxySettings(preferenceManager);
         } catch (ProxySettings.InvalidProxyURL exc) {
             Log.w(TAG, "newProxySettings failed: " + exc);
+            logger.w(TAG, "newProxySettings failed: " + exc);
             settings = new ProxySettings(); // start over as documented
         }
         configureInitialViewWithSettings(settings);
@@ -194,6 +201,7 @@ public class ProxyActivity extends AbstractActivity {
         } else {
             // TODO(bassosimone): this should also be reported as a bug.
             Log.w(TAG, "got an unhandled proxy scheme");
+            logger.w(TAG, "got an unhandled proxy scheme");
             return;
         }
 
@@ -205,7 +213,9 @@ public class ProxyActivity extends AbstractActivity {
         // Populate all the editable fields _anyway_ so the user
         // has the feeling that everything was just as before
         Log.d(TAG, "(from preferences) hostname: " + settings.hostname);
+        logger.i(TAG, "(from preferences) hostname: " + settings.hostname);
         Log.d(TAG, "(from preferences) port: " + settings.port);
+        logger.i(TAG, "(from preferences) port: " + settings.port);
         Objects.requireNonNull(customProxyHostname.getEditText()).setText(settings.hostname);
         Objects.requireNonNull(customProxyPort.getEditText()).setText(settings.port);
 
@@ -223,6 +233,7 @@ public class ProxyActivity extends AbstractActivity {
             } else {
                 // TODO(bassosimone): this should also be reported as a bug.
                 Log.w(TAG, "unexpected state in setOnCheckedChangeListener");
+                logger.w(TAG, "unexpected state in setOnCheckedChangeListener");
             }
         });
 
@@ -327,6 +338,7 @@ public class ProxyActivity extends AbstractActivity {
     @Override
     public void onBackPressed() {
         Log.d(TAG, "onBackPressed: about to save proxy settings");
+        logger.i(TAG, "onBackPressed: about to save proxy settings");
 
         // Get the hostname and port for the custom proxy.
         String hostname = Objects.requireNonNull(customProxyHostname.getEditText()).getText().toString();
@@ -384,8 +396,7 @@ public class ProxyActivity extends AbstractActivity {
 
     // saveSettings stores a good URL back into the preference manager.
     private void saveSettings() {
-        PreferenceManager pm = getPreferenceManager();
-        settings.saveProxy(pm);
+        settings.saveProxy(preferenceManager);
         try {
             Log.d(TAG, "writing this proxy configuration: " + settings.getProxyString());
         } catch (URISyntaxException e) {

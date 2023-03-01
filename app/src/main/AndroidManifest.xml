@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="org.openobservatory.ooniprobe">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -114,6 +113,14 @@
 			android:screenOrientation="userPortrait"
 			android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.App">
 			<intent-filter>
+				<action android:name="android.intent.action.SEND" />
+				<category android:name="android.intent.category.DEFAULT" />
+
+				<action android:name="org.openobservatory.ooniprobe.nettest" />
+
+				<data android:mimeType="text/plain" />
+			</intent-filter>
+			<intent-filter>
 				<action android:name="android.intent.action.VIEW" />
 
 				<category android:name="android.intent.category.DEFAULT" />
@@ -151,6 +158,18 @@
 			</intent-filter>
 		</activity>
 
+        <activity
+            android:name=".activity.LogActivity"
+            android:exported="false"
+            android:label="LogActivity"
+            android:parentActivityName=".activity.PreferenceActivity">
+            <intent-filter>
+                <action android:name="org.openobservatory.ooniprobe.activity.LogActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
 		<service
 			android:name=".common.service.RunTestService"
 			android:icon="@drawable/notification_icon"
@@ -159,6 +178,18 @@
 			android:name=".common.service.RunTestJobService"
 			android:label="Run Test Service"
 			android:permission="android.permission.BIND_JOB_SERVICE"/>
+
+		<provider
+			android:name="androidx.core.content.FileProvider"
+			android:authorities="org.openobservatory.ooniprobe.provider"
+			android:exported="false"
+			android:grantUriPermissions="true">
+			<!-- resource file to create -->
+			<meta-data
+				android:name="android.support.FILE_PROVIDER_PATHS"
+				android:resource="@xml/file_paths">
+			</meta-data>
+		</provider>
 	</application>
 
 </manifest>

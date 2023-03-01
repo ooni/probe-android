@@ -1,7 +1,9 @@
 package org.openobservatory.ooniprobe.common;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import androidx.annotation.VisibleForTesting;
@@ -41,6 +43,9 @@ public class ResubmitTask<A extends AbstractActivity> extends NetworkProgressAsy
     @VisibleForTesting
     // In testing, publishProgress can not be mocked by robolectric
     protected boolean publishProgress = true;
+    protected boolean interrupted = false;
+
+    private final ProgressDialog progressDialog;
 
     /**
      * Use this class to resubmit a measurement, use result_id and measurement_id to filter list of value
@@ -49,13 +54,22 @@ public class ResubmitTask<A extends AbstractActivity> extends NetworkProgressAsy
      * @param activity from which this task are executed
      */
     public ResubmitTask(A activity, String proxyURL) {
-        super(activity, true, false);
+        super(activity, false, false);
         activity.getComponent().serviceComponent().inject(d);
+        progressDialog = DialogUtil.makeProgressDialog(activity, activity.getString(localhost.toolkit.R.string.prgsMessage), true, (dialog, which) -> {
+            dialog.dismiss();
+            interrupted = true;
+            cancel(true);
+        });
         proxy = proxyURL;
     }
 
-    private boolean perform(Context c, Measurement m, OONISession session)  {
-        File file = Measurement.getEntryFile(c, m.id, m.test_name);
+    public static long getTimeout(long length) {
+        return length / 2000 + 10;
+    }
+
+    private boolean perform(Context c, Measurement m, OONISession session) {
+        File file = Measurement.getReportFile(c, m.id, m.test_name);
         String input;
         long uploadTimeout = getTimeout(file.length());
         OONIContext ooniContext = session.newContextWithTimeout(uploadTimeout);
@@ -64,6 +78,7 @@ public class ResubmitTask<A extends AbstractActivity> extends NetworkProgressAsy
             OONISubmitResults results = session.submit(ooniContext, input);
             FileUtils.writeStringToFile(file, results.getUpdatedMeasurement(), StandardCharsets.UTF_8);
             m.report_id = results.getUpdatedReportID();
+            m.deleteReportFile(c);
             m.is_uploaded = true;
             m.is_upload_failed = false;
             m.save();
@@ -75,14 +90,18 @@ public class ResubmitTask<A extends AbstractActivity> extends NetworkProgressAsy
         }
     }
 
-    public static long getTimeout(long length) {
-        return length / 2000 + 10;
-    }
-
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
         A activity = getActivity();
+        if (getActivity() != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (inputMethodManager != null)
+                inputMethodManager.hideSoftInputFromWindow(getActivity().getWindow().getDecorView().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            if (progressDialog != null) {
+                progressDialog.show();
+            }
+        }
         if (activity != null)
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
@@ -121,6 +140,8 @@ public class ResubmitTask<A extends AbstractActivity> extends NetworkProgressAsy
             // and there should be no timeout here.)
             session.maybeUpdateResources(session.newContext());
             for (int i = 0; i < measurements.size(); i++) {
+                if (interrupted) break;
+
                 A activity = getActivity();
                 if (activity ==  null)
                     break;
@@ -132,6 +153,8 @@ public class ResubmitTask<A extends AbstractActivity> extends NetworkProgressAsy
                 m.result.load();
                 if(!d.measurementsManager.reSubmit(m, session)){
                     errors++;
+                }else {
+                    m.deleteReportFile(getActivity());
                 }
             }
         }
@@ -143,6 +166,14 @@ public class ResubmitTask<A extends AbstractActivity> extends NetworkProgressAsy
         return errors == 0;
     }
 
+
+    @Override
+    protected void onProgressUpdate(String... values) {
+        super.onProgressUpdate(values);
+        if (progressDialog != null)
+            progressDialog.setMessage(values[0]);
+    }
+
     @Override
     protected void onPostExecute(Boolean result) {
         super.onPostExecute(result);
@@ -151,6 +182,23 @@ public class ResubmitTask<A extends AbstractActivity> extends NetworkProgressAsy
             Toast.makeText(activity, activity.getString(R.string.Toast_ResultsUploaded), Toast.LENGTH_SHORT).show();
             activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
+        onFinish();
+    }
+
+
+    @Override
+    protected void onCancelled(Boolean result) {
+        super.onCancelled(result);
+        onFinish();
+    }
+
+    private void onFinish() {
+        if (progressDialog != null)
+            try {
+                progressDialog.dismiss();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
     }
 
     public static class Dependencies {

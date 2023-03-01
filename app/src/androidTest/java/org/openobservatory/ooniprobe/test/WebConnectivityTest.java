@@ -19,7 +19,7 @@ public class WebConnectivityTest extends AbstractTest {
     private static final String EXPERIMENT_NAME = "WebConnectivity";
     private static final String TAG = "integration-test";
     private static final String UNUSED_KEY = "UNUSED_KEY";
-    private static final String CLIENT_URL = "https://ams-pg.ooni.org";
+    private static final String CLIENT_URL = "https://api.ooni.io";
 
     @Test
     public void runWebConnectivity() {
@@ -27,7 +27,7 @@ public class WebConnectivityTest extends AbstractTest {
         String report_id_1 = "r1";
         String report_id_2 = "r2";
         OONIMKTask task = null;
-        Settings settings = new Settings(c, a.getPreferenceManager());
+        Settings settings = new Settings(c, a.getPreferenceManager(),false);
         Gson gson = a.getGson();
         settings.name = EXPERIMENT_NAME;
         settings.inputs = Collections.singletonList("http://mail.google.com");

@@ -61,7 +61,7 @@ public class Network extends BaseModel implements Serializable {
 	}
 
 	public static String toString(Context c, Network n) {
-		return getAsn(c, n) + " - " + getName(c, n);
+		    return String.format("%s, %s (%s)", getName(c, n), getCountry(c, n), getAsn(c, n));
 	}
 
 	public static String getLocalizedNetworkType(Context c, Network n) {

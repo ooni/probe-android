@@ -11,6 +11,7 @@
 	<color name="color_gray5">#adb5bd</color>  <!-- failed measurement text -->
 	<color name="color_gray6">#868e96</color>  <!-- failed measurement tint -->
 	<color name="color_gray7">#495057</color>  <!-- text color and icon tint -->
+	<color name="color_gray7_1">#495057</color>  <!-- Experimental Suite -->
 	<color name="color_gray8">#343a40</color>  <!-- onboarding buttons -->
 	<color name="color_gray9">#212529</color>  <!-- used as light black -->
 	<color name="color_blue0">#e7f5ff</color>   <!-- not_used -->
@@ -133,4 +134,6 @@
 	<color name="color_cyan7">#1098ad</color>   <!-- not_used -->
 	<color name="color_cyan8">#0c8599</color>   <!-- not_used -->
 	<color name="color_cyan9">#0b7285</color>
+	<color name="disabled_test_text">@color/color_gray4</color>
+	<color name="disabled_test_background">#f8f9fa</color>
 </resources>

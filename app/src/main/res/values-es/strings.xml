@@ -24,10 +24,10 @@
   <string name="Onboarding_PopQuiz_2_Wrong_Title">Advertencia</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Paragraph">Para incrementar la transparencia de la censura en Internet, los datos de red de todos los usuarios de OONI Probe son automáticamente publicados (a menos que opten por no hacerlo en las configuraciones).</string>
   <string name="Onboarding_AutomatedTesting_Title">Pruebas automatizadas</string>
-  <string name="Onboarding_AutomatedTesting_Paragraph">Para medir la censura en Internet todos los días, por favor habilita las pruebas automáticas, de manera que OONI Probe pueda ejecutar pruebas periódicamente.\n\nNo te preocupes, estaremos muy conscientes del uso de la batería. \n\nPuedes deshabilitar las pryebas automáticas desde la configuración en cualquier momento.</string>
+  <string name="Onboarding_AutomatedTesting_Paragraph">Para medir la censura en Internet todos los días, por favor habilita las pruebas automáticas, de manera que OONI Probe pueda ejecutar pruebas periódicamente.\n\nNo te preocupes, estaremos muy conscientes del uso de la batería. \n\nPuedes deshabilitar las pruebas automáticas desde la configuración en cualquier momento.</string>
   <string name="Onboarding_Crash_Title">Informes de error</string>
   <string name="Onboarding_Crash_Paragraph">Para mejorar OONI Probe nos gustaría recolectar informes de error anónimos cuando la aplicación no funcione apropiadamente.\n\n¿Te gustaría optar por enviar informes de error al equipo de desarrollo de OONI?</string>
-  <string name="Onboarding_Crash_Button_Yes">Sí</string>
+  <string name="Onboarding_Crash_Button_Yes">Si</string>
   <string name="Onboarding_Crash_Button_No">No</string>
   <string name="Onboarding_DefaultSettings_Title">Configuración predeterminada</string>
   <string name="Onboarding_DefaultSettings_Header">Recopilamos y publicamos:</string>
@@ -71,6 +71,7 @@
   <string name="Dashboard_Circumvention_Overview_Paragraph">Comprueba si [Psiphon](https://ooni.org/nettest/psiphon/), [Tor](https://ooni.org/nettest/tor/) o [RiseupVPN](https://ooni.org/nettest/riseupvpn/) están bloqueados.\n\nTus resultados serán publicados en [Explorador OONI] (https://explorer.ooni.org/) y [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Experimental_Card_Description">Ejecutar nuevas pruebas experimentales</string>
   <string name="Dashboard_Experimental_Overview_Paragraph">Ejecutar las siguientes nuevas pruebas experimentales desarrolladas por el equipo OONI:\n%1$s\n\nTus resultados serán publicados en el [Explorador OONI](https://explorer.ooni.org/) y el [API OONI](https://api.ooni.io/).</string>
+  <string name="Dashboard_Experimental_Overview_Paragraph_AutomatedTesting">Las siguientes pruebas solo se ejecutarán como parte de las pruebas automatizadas:</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>
@@ -274,6 +275,9 @@
   <string name="Modal_SoundsGreat">Suena genial</string>
   <string name="Modal_NoThanks">No, gracias</string>
   <string name="Modal_NotNow">Ahora no</string>
+  <string name="Modal_RunAnyway">Ejecutar de todos modos</string>
+  <string name="Modal_DisableVPN">Deshabilitar VPN</string>
+  <string name="Modal_AlwaysRun">Siempre corre</string>
   <string name="Modal_Error_NoInternet">Incapaz de ejecutar la prueba. Por favor comprueba tu conectividad de Internet.</string>
   <string name="Modal_Error_CantDownloadURLs">Incapaz de descargar la lista de URL. Por favor intenta de nuevo.</string>
   <string name="Modal_Error_TestAlreadyRunning">Por favor espera hasta que las pruebas en ejecución terminen, antes de iniciar una nueva.</string>
@@ -288,6 +292,8 @@
   <string name="Modal_Autorun_BatteryOptimization">OONI Probe no se puede ejecutar automáticamente sin optimización de batería. ¿Quieres intentarlo de nuevo?</string>
   <string name="Modal_DisableVPN_Title">Por favor deshabilita tu conexión VPN.</string>
   <string name="Modal_DisableVPN_Message">Si ejecutas OONI Probe con una VPN habilitada, los resultados de la prueba podrían aparecer como proviniendo desde el país incorrecto. Por favor deshabilita tu conexión VPN.</string>
+  <string name="Modal_UploadVPNResults_Title">Algunas mediciones fueron tomadas sobre VPN.</string>
+  <string name="Modal_UploadVPNResults_Message">Si se suben mediciones tomadas cuando el VPN está activado, los resultados de las pruebas pueden parecer procedentes de un país equivocado.</string>
   <string name="Toast_ResultsUploaded">Subida exitosa</string>
   <string name="Modal_DisplayFailureLog">Mostrar registro de fallos</string>
   <string name="Modal_EnableNotifications_Title">Obtiene actualizaciones sobre censura en Internet</string>
@@ -345,6 +351,8 @@
   <string name="Settings_About_Label">Acerca de OONI</string>
   <string name="Settings_About_Content_Paragraph">El Observatorio Abierto de Interferencia de Red (OONI) es un proyecto de software libre bajo el Proyecto Tor que apunta a incrementar la transparencia de la censura en Internet alrededor del mundo.\n\nDesde 2012, la comunidad global de OONI ha estado midiendo redes en más de 200 países. Algunas de estas mediciones sirven como evidencia de la censura en Internet.</string>
   <string name="Settings_About_Content_LearnMore">Conocer más</string>
+  <string name="Settings_About_Content_Blog">Blog</string>
+  <string name="Settings_About_Content_Reports">Reportes</string>
   <string name="Settings_About_Content_DataPolicy">Política de datos OONI</string>
   <string name="Settings_Notifications_Label">Notificaciones</string>
   <string name="Settings_Notifications_Enabled">Activado</string>
@@ -367,11 +375,17 @@
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Esta información (ej., IT por Italia) es requerida para identificar desde qué país son recopiladas las mediciones. ¿Estás seguro que quieres deshabilitar esta opción?</string>
   <string name="Settings_Sharing_Footer">Al publicar resultados, estás incrementando la transparencia de la interferencia de red y apoyando a la comunidad de OONI.\n\nCierta información de red (ej., Número de Sistema Autónomo, ASN) es requerida para identificar a Proveedores de Servicio de Internet.</string>
   <string name="Settings_TestOptions_Label">Opciones de la prueba</string>
+  <string name="Settings_TestOptions_Footer">Lo que configure a través de los ajustes de prueba anteriores (por ejemplo, desactivar la prueba de WhatsApp) se aplicará a las pruebas ejecutadas manualmente, así como a las pruebas ejecutadas automáticamente (cuando las pruebas automatizadas están activadas).\n</string>
+  <string name="Settings_TestOptions_LongRunningTest">Prueba de larga duración</string>
+  <string name="Settings_TestOptions_RunLongRunningTests"> ¿Ejecutar pruebas de larga duración en primer plano?</string>
   <string name="Settings_Privacy_Label">Privacidad</string>
   <string name="Settings_Privacy_SendCrashReports">Enviar informes de errores</string>
   <string name="Settings_Advanced_Label">Avanzado</string>
   <string name="Settings_DarkMode_Label">Modo Oscuro</string>
   <string name="Settings_Advanced_DebugLogs">Registros de depuración</string>
+  <string name="Settings_Advanced_RecentLogs">Opción A: (Traducción literal)\n\nVer registros recientes\n\nOpción B: (más apegada a la estructura de OONI):\nVer logs recientes</string>
+  <string name="Settings_Advanced_LanguageSettings_Title">Configuración de Idioma</string>
+  <string name="Settings_Advanced_LanguageSettings_PopUp">Seleccionar idioma</string>
   <string name="Settings_Advanced_UseDomainFronting">Usar siempre Domain Fronting</string>
   <string name="Settings_Proxy_Label">Proxy de trabajo de OONI</string>
   <string name="Settings_Proxy_Enabled">Proxy</string>
@@ -405,6 +419,7 @@
   <string name="Settings_Websites_CustomURL_NoURLEntered">No se han introducido URLs</string>
   <string name="Settings_Websites_CustomURL_Run">Ejecutar</string>
   <string name="Settings_Websites_CustomURL_Add">Añadir sitio web</string>
+  <string name="Settings_Websites_CustomURL_LoadFromTemplate">Cargar desde plantilla</string>
   <string name="Settings_Websites_TestCount">Número de sitios web probados (0 significa todos)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">Probar WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Probar Telegram</string>
@@ -423,6 +438,7 @@
   <string name="Settings_Circumvention_TestPsiphon">Probar Psiphon</string>
   <string name="Settings_Circumvention_TestTor">Probar Tor</string>
   <string name="Settings_Circumvention_TestRiseupVPN">Probar RiseupVPN</string>
+  <string name="Settings_WarmVPNInUse_Label">Avisar cuando la VPN está en uso</string>
   <string name="Settings_SendEmail_Label">Enviar correo electrónico al soporte</string>
   <string name="Settings_SendEmail_Message">Por favor describe el problema que estás experimentando:</string>
   <string name="Settings_SendEmail_Error">Por favor envíe un correo electrónico a bugs@openobservatory.org con información sobre la aplicación y versión de iOS. Pulse \"Copiar al portapapeles\" abajo para copiar nuestro correo electrónico.</string>

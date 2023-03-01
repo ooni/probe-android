@@ -2,6 +2,8 @@ package org.openobservatory.ooniprobe.common;
 
 import android.app.Activity;
 
+import org.jetbrains.annotations.NotNull;
+
 public class ThirdPartyServices {
     public static void reloadConsents(Application app) {
     }
@@ -19,6 +21,10 @@ public class ThirdPartyServices {
     }
     
     public static void checkUpdates(Activity activity){
+        // does nothing
+    }
+
+    public static void addLogExtra(final @NotNull String key, final @NotNull String value){
         // does nothing
     }
 }

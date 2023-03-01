@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,19 +19,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
+import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.OverviewActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
+import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
+import org.openobservatory.ooniprobe.common.ThirdPartyServices;
+import org.openobservatory.ooniprobe.item.SeperatorItem;
 import org.openobservatory.ooniprobe.item.TestsuiteItem;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
 import java.util.ArrayList;
+import java.util.Objects;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerAdapter;
+import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
 public class DashboardFragment extends Fragment implements View.OnClickListener {
 	@BindView(R.id.recycler) RecyclerView recycler;
@@ -41,13 +49,17 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     @BindView(R.id.run_all) TextView runAll;
 	@BindView(R.id.vpn) TextView vpn;
 
-	private ArrayList<TestsuiteItem> items;
+	@Inject
+	PreferenceManager preferenceManager;
+
+	private ArrayList<HeterogeneousRecyclerItem> items;
 	private ArrayList<AbstractSuite> testSuites;
-	private HeterogeneousRecyclerAdapter<TestsuiteItem> adapter;
+	private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
 
 	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_dashboard, container, false);
 		ButterKnife.bind(this, v);
+		((Application) getActivity().getApplication()).getFragmentComponent().inject(this);
 		((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 		((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(null);
 		items = new ArrayList<>();
@@ -56,6 +68,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		recycler.setAdapter(adapter);
 		recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
 		runAll.setOnClickListener(v1 -> runAll());
+		vpn.setOnClickListener(view -> ((Application) getActivity().getApplication()).openVPNSettings());
 		return v;
 	}
 
@@ -63,12 +76,30 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		super.onResume();
 		items.clear();
 		testSuites.clear();
-		testSuites.addAll(TestAsyncTask.SUITES);
-		for (AbstractSuite testSuite : testSuites)
-			items.add(new TestsuiteItem(testSuite, this));
+		testSuites.addAll(TestAsyncTask.getSuites());
+
+		ArrayList<AbstractSuite> emptySuites = new ArrayList<>();
+		for (AbstractSuite testSuite : testSuites){
+			if(testSuite.getTestList(preferenceManager).length > 0){
+				items.add(new TestsuiteItem(testSuite, this));
+			} else {
+				emptySuites.add(testSuite);
+			}
+		}
+
+		if(!emptySuites.isEmpty()){
+			items.add(new SeperatorItem());
+
+			for(AbstractSuite emptyTest: emptySuites)
+				items.add(new TestsuiteItem(emptyTest, this));
+		}
+
+
+
 		setLastTest();
 		adapter.notifyTypesChanged();
-		if (ReachabilityManager.isVPNinUse(this.getContext()))
+		if (ReachabilityManager.isVPNinUse(this.getContext())
+				&& preferenceManager.isWarnVPNInUse())
 			vpn.setVisibility(View.VISIBLE);
 		else
 			vpn.setVisibility(View.GONE);
@@ -86,19 +117,29 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 					DateUtils.getRelativeTimeSpanString(lastResult.start_time.getTime()));
 	}
 
-	public void runAll(){
-		Intent intent = RunningActivity.newIntent((AbstractActivity) getActivity(), testSuites);
-		if (intent != null)
-			ActivityCompat.startActivity(getActivity(), intent, null);
-	}
+    public void runAll() {
+        RunningActivity.runAsForegroundService((AbstractActivity) getActivity(), testSuites, this::onTestServiceStartedListener, preferenceManager);
+    }
+
+    private void onTestServiceStartedListener() {
+        try {
+            ((AbstractActivity) getActivity()).bindTestService();
+        } catch (Exception e) {
+            e.printStackTrace();
+            ThirdPartyServices.logException(e);
+        }
+    }
 
 	@Override public void onClick(View v) {
 		AbstractSuite testSuite = (AbstractSuite) v.getTag();
 		switch (v.getId()) {
 			case R.id.run:
-				Intent intent = RunningActivity.newIntent((AbstractActivity) getActivity(), testSuite.asArray());
-				if (intent != null)
-					ActivityCompat.startActivity(getActivity(), intent, null);
+                RunningActivity.runAsForegroundService(
+                        (AbstractActivity) getActivity(),
+                        testSuite.asArray(),
+                        this::onTestServiceStartedListener,
+						preferenceManager
+                );
 				break;
 			default:
 				ActivityCompat.startActivity(getActivity(), OverviewActivity.newIntent(getActivity(), testSuite), null);

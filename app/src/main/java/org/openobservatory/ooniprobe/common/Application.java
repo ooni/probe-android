@@ -1,6 +1,8 @@
 package org.openobservatory.ooniprobe.common;
 
 import android.app.ActivityManager;
+import android.content.Intent;
+import android.util.TimingLogger;
 
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
@@ -22,6 +24,10 @@ import org.openobservatory.ooniprobe.di.FragmentComponent;
 import org.openobservatory.ooniprobe.di.ServiceComponent;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 
+import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import javax.inject.Inject;
 
 import okhttp3.OkHttpClient;
@@ -32,8 +38,10 @@ public class Application extends android.app.Application {
 	@Inject Gson _gson;
 	@Inject OkHttpClient _okHttpClient;
 	@Inject OONIAPIClient _apiClient;
+	ExecutorService executorService = Executors.newFixedThreadPool(4);
 
 	public AppComponent component;
+	@Inject AppLogger logger;
 
 	@Override public void onCreate() {
 		super.onCreate();
@@ -45,10 +53,17 @@ public class Application extends android.app.Application {
 			FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
 		AppLifecycleObserver appLifecycleObserver = new AppLifecycleObserver();
 		ProcessLifecycleOwner.get().getLifecycle().addObserver(appLifecycleObserver);
-		if (_preferenceManager.canCallDeleteJson())
-			Measurement.deleteUploadedJsons(this);
 		Measurement.deleteOldLogs(this);
 		ThirdPartyServices.reloadConsents(this);
+
+		executorService.execute(() -> {
+			if (_preferenceManager.canCallDeleteJson())
+				Measurement.deleteUploadedJsons(Application.this);
+			Measurement.deleteOldLogs(Application.this);
+		});
+		ThirdPartyServices.reloadConsents(Application.this);
+		LocaleUtils.setLocale(new Locale(_preferenceManager.getSettingsLanguage()));
+		LocaleUtils.updateConfig(this, getBaseContext().getResources().getConfiguration());
 	}
 
 	protected AppComponent buildDagger() {
@@ -75,12 +90,25 @@ public class Application extends android.app.Application {
 		return _preferenceManager;
 	}
 
+	public AppLogger getLogger() {
+		return logger;
+	}
+
 	public Gson getGson() {
 		return _gson;
 	}
 
 	public boolean isTestRunning() {
 		return checkServiceRunning(RunTestService.class);
+	}
+
+	/**
+	 * Open phone VPN settings.
+	 */
+	public void openVPNSettings() {
+		Intent intent = new Intent("android.net.vpn.SETTINGS");
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(intent);
 	}
 
 	/**

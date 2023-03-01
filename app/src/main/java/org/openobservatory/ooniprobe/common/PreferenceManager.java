@@ -131,6 +131,13 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.upload_results), true);
 	}
 
+	public boolean isWarnVPNInUse() {
+		return sp.getBoolean(r.getString(R.string.warn_vpn_in_use), false);
+	}
+
+	public void setWarnVPNInUse(Boolean warnVPNInUse) {
+		sp.edit().putBoolean(r.getString(R.string.warn_vpn_in_use), warnVPNInUse).apply();
+	}
 	public boolean isDebugLogs() {
 		return sp.getBoolean(r.getString(R.string.debugLogs), false);
 	}
@@ -309,6 +316,14 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.automated_testing_enabled), false);
 	}
 
+	public String getSettingsLanguage() {
+		String language = sp.getString(r.getString(R.string.language_setting), Locale.getDefault().getLanguage());
+		if (language.equals("auto")) {
+			return Locale.getDefault().getLanguage();
+		}
+		return language;
+	}
+
 	public void enableAutomatedTesting() {
 		sp.edit().putBoolean(r.getString(R.string.automated_testing_enabled), true)
 				.apply();
@@ -347,6 +362,14 @@ public class PreferenceManager {
 			return r.getString(R.string.Dashboard_Overview_LastRun_Never);
 		Date date = new Date(timestamp);
 		return DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), date).toString();
+	}
+
+	public  boolean isExperimentalOn(){
+		return sp.getBoolean(r.getString(R.string.experimental), true);
+	}
+
+	public  boolean isLongRunningTestsInForeground(){
+		return sp.getBoolean(r.getString(R.string.long_running_tests_in_foreground), true);
 	}
 
 }
