@@ -68,27 +68,14 @@ public class ServiceUtil {
     public static void callCheckInAPI(Application app) {
         app.getServiceComponent().inject(d);
 
-        BatteryManager batteryManager = (BatteryManager) app.getSystemService(Context.BATTERY_SERVICE);
-        boolean workingOnWifi = ReachabilityManager.getNetworkType(app).equals(ReachabilityManager.WIFI);
-        boolean phoneCharging = false;
-        String[] categories = d.preferenceManager.getEnabledCategoryArr().toArray(new String[0]);
         boolean isVPNInUse = ReachabilityManager.isVPNinUse(app);
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            phoneCharging = batteryManager.isCharging();
-        }
+        OONICheckInConfig config = app.getOONICheckInConfig();
 
-        if (!d.generateAutoRunServiceSuite.shouldStart(workingOnWifi,phoneCharging, isVPNInUse)) {
+        if (!d.generateAutoRunServiceSuite.shouldStart(config.isOnWiFi(),config.isCharging(), isVPNInUse)) {
             return;
         }
 
-        OONICheckInConfig config = new OONICheckInConfig(
-                BuildConfig.SOFTWARE_NAME,
-                BuildConfig.VERSION_NAME,
-                workingOnWifi,
-                phoneCharging,
-                categories
-               );
 
         AbstractSuite suite = d.generateAutoRunServiceSuite.generate(config);
         ArrayList<AbstractSuite> testSuites = new ArrayList<>();

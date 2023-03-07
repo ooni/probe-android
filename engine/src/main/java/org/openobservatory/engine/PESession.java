@@ -10,14 +10,6 @@ public final class PESession implements OONISession {
         session = Oonimkall.newSession(config.toOonimkallSessionConfig());
     }
 
-    public OONIGeolocateResults geolocate(OONIContext ctx) throws Exception {
-        return new OONIGeolocateResults(session.geolocate(ctx.ctx));
-    }
-
-    public void maybeUpdateResources(OONIContext ctx) throws Exception {
-        session.maybeUpdateResources(ctx.ctx);
-    }
-
     public OONIContext newContext() {
         return newContextWithTimeout(-1);
     }
@@ -32,9 +24,5 @@ public final class PESession implements OONISession {
 
     public OONICheckInResults checkIn(OONIContext ctx, OONICheckInConfig config) throws Exception {
         return new OONICheckInResults(session.checkIn(ctx.ctx, config.toOonimkallCheckInConfig()));
-    }
-
-    public OONIURLListResult fetchURLList(OONIContext ctx, OONIURLListConfig config) throws Exception {
-        return new OONIURLListResult(session.fetchURLList(ctx.ctx, config.toOonimkallURLListConfig()));
     }
 }
