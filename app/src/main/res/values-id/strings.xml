@@ -72,6 +72,7 @@
   <string name="Dashboard_Experimental_Card_Description">Jalankan tes percobaan baru</string>
   <string name="Dashboard_Experimental_Overview_Paragraph">Jalankan tes eksperimen baru ini yang dikembangkan oleh tim OONI:\n%1$s\n\nHasil Anda akan dipubikasikan di [OONI Explorer](https://explorer.ooni.org/) dan [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Experimental_Overview_Paragraph_AutomatedTesting">The following tests will only be run as part of automated testing:</string>
+  <string name="Dashboard_DisabledTests_Label">Disabled Tests</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>
