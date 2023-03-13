@@ -185,9 +185,8 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
         }
         else if (preference instanceof SwitchPreferenceCompat) {
             //Call this code only in case of category or tests
-            if (Arrays.asList(getActivity().getResources().getStringArray(R.array.CategoryCodes)).contains(key) ||
-                    Arrays.asList(getActivity().getResources().getStringArray(R.array.preferenceTestsNames)).contains(key))
-                checkAtLeastOneEnabled(sharedPreferences, key);
+            // if (Arrays.asList(getActivity().getResources().getStringArray(R.array.CategoryCodes)).contains(key) ||
+            //        Arrays.asList(getActivity().getResources().getStringArray(R.array.preferenceTestsNames)).contains(key))
         }
 
         if (key.equals(getString(R.string.theme_enabled)) || key.equals(getString(R.string.language_setting))) {
@@ -195,23 +194,6 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
             getActivity().finishAffinity();
         }
         hidePreferences();
-    }
-
-    private void checkAtLeastOneEnabled(SharedPreferences sharedPreferences, String key){
-        boolean found = false;
-        //cycle all preferences in the page and return true if at least one is enabled
-        for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++)
-            if (getPreferenceScreen().getPreference(i) instanceof SwitchPreferenceCompat)
-                found = found || sharedPreferences.getBoolean(getPreferenceScreen().getPreference(i).getKey(), true);
-        if (!found) {
-            new MessageDialogFragment.Builder()
-                    .withMessage(getString(R.string.Modal_EnableAtLeastOneTest))
-                    .build().show(getChildFragmentManager(), null);
-            sharedPreferences.edit().remove(key).apply();
-            SwitchPreferenceCompat p = findPreference(key);
-            if (p != null)
-                p.setChecked(true);
-        }
     }
 
     private void hidePreferences(){
