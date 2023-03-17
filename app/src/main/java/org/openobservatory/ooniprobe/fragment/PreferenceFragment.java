@@ -183,11 +183,6 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                     p.setText("");
             }
         }
-        else if (preference instanceof SwitchPreferenceCompat) {
-            //Call this code only in case of category or tests
-            // if (Arrays.asList(getActivity().getResources().getStringArray(R.array.CategoryCodes)).contains(key) ||
-            //        Arrays.asList(getActivity().getResources().getStringArray(R.array.preferenceTestsNames)).contains(key))
-        }
 
         if (key.equals(getString(R.string.theme_enabled)) || key.equals(getString(R.string.language_setting))) {
             Toast.makeText(getActivity(), "Please restart the app for apply changes.", Toast.LENGTH_LONG).show();
