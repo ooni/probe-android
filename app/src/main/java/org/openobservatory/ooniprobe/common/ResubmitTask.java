@@ -134,11 +134,6 @@ public class ResubmitTask<A extends AbstractActivity> extends NetworkProgressAsy
                     EngineProvider.get().getDefaultSessionConfig(
                             getActivity(), BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, logger, proxy)
             );
-            // Updating resources with no timeout because we don't know for sure how much
-            // it will take to download them and choosing a timeout may prevent the operation
-            // to ever complete. (Ideally the user should be able to interrupt the process
-            // and there should be no timeout here.)
-            session.maybeUpdateResources(session.newContext());
             for (int i = 0; i < measurements.size(); i++) {
                 if (interrupted) break;
 

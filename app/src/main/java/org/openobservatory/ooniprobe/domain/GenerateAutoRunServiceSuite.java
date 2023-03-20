@@ -46,8 +46,6 @@ public class GenerateAutoRunServiceSuite {
                     )
             );
             OONIContext ooniContext = session.newContextWithTimeout(30);
-            session.maybeUpdateResources(ooniContext);
-
             OONICheckInResults results = session.checkIn(ooniContext, config);
 
             if (results.getWebConnectivity() != null) {

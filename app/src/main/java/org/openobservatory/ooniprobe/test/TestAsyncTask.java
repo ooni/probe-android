@@ -11,17 +11,12 @@ import android.util.Log;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.common.collect.Lists;
-import com.google.common.math.Stats;
-
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 
 import org.openobservatory.engine.LoggerArray;
+import org.openobservatory.engine.OONICheckInConfig;
+import org.openobservatory.engine.OONICheckInResults;
 import org.openobservatory.engine.OONIContext;
 import org.openobservatory.engine.OONISession;
-import org.openobservatory.engine.OONIURLListConfig;
-import org.openobservatory.engine.OONIURLListResult;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
@@ -30,6 +25,7 @@ import org.openobservatory.ooniprobe.common.MKException;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
+import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
@@ -41,11 +37,9 @@ import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 public class TestAsyncTask extends AsyncTask<Void, String, Void> implements AbstractTest.TestCallback {
 
@@ -169,25 +163,26 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                     app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray(), proxy));
             OONIContext ooniContext = session.newContextWithTimeout(30);
 
-            ThirdPartyServices.addLogExtra("ooniContext", app.getGson().toJson(ooniContext));
-
-            session.maybeUpdateResources(ooniContext);
-            OONIURLListConfig config = new OONIURLListConfig();
-            config.setCategories(app.getPreferenceManager().getEnabledCategoryArr().toArray(new String[0]));
+            OONICheckInConfig config = app.getOONICheckInConfig();
 
             ThirdPartyServices.addLogExtra("config", app.getGson().toJson(config));
 
-            OONIURLListResult results = session.fetchURLList(ooniContext, config);
+            OONICheckInResults results = session.checkIn(ooniContext, config);
 
             ThirdPartyServices.addLogExtra("results", app.getGson().toJson(results));
 
-            if (results.getUrls().size() == 0) {
+            OONICheckInResults.OONICheckInInfoWebConnectivity webConnectivity = results.getWebConnectivity();
+
+            if (webConnectivity == null || webConnectivity.getUrls().size() <= 0) {
                 publishProgress(ERR, app.getString(R.string.Modal_Error_CantDownloadURLs));
                 ThirdPartyServices.logException(new MKException(results));
                 return;
             }
 
-            List<Url> urls = Lists.transform(results.getUrls(), url -> new Url(url.getUrl(), url.getCategoryCode(), url.getCountryCode()));
+            List<Url> urls = Lists.transform(
+                webConnectivity.getUrls(),
+                url -> new Url(url.getUrl(), url.getCategoryCode(), url.getCountryCode())
+            );
             List<String> inputs = Url.saveOrUpdate(urls);
 
             currentTest.setInputs(inputs);
