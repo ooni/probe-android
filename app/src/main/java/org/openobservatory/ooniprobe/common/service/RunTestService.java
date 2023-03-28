@@ -60,7 +60,7 @@ public class RunTestService extends Service {
         ArrayList<AbstractSuite> iTestSuites = (ArrayList<AbstractSuite>) intent.getSerializableExtra("testSuites");
         if (iTestSuites == null)
             return START_STICKY_COMPATIBILITY;
-        ArrayList<AbstractSuite> testSuites = Lists.newArrayList(Iterables.filter(iTestSuites, testSuite -> !testSuite.isTestEmpty()));
+        ArrayList<AbstractSuite> testSuites = Lists.newArrayList(Iterables.filter(iTestSuites, testSuite -> testSuite!=null && !testSuite.isTestEmpty()));
         if (testSuites.size() == 0)
             return START_STICKY_COMPATIBILITY;
         boolean store_db = intent.getBooleanExtra("storeDB", true);
@@ -203,7 +203,8 @@ public class RunTestService extends Service {
                     Log.d(TAG, "TestAsyncTask.RUN");
                     try {
                         builder.setContentText(value);
-                        builder.setProgress(task.currentSuite.getTestList(((Application) getApplication()).getPreferenceManager()).length * 100, 0, false);
+                        if (task.currentSuite!=null)
+                            builder.setProgress(task.currentSuite.getTestList(((Application) getApplication()).getPreferenceManager()).length * 100, 0, false);
                         notificationManager.notify(RunTestService.NOTIFICATION_ID, builder.build());
                     } catch (Exception e) {
                         ThirdPartyServices.logException(e);
@@ -213,7 +214,8 @@ public class RunTestService extends Service {
                     Log.d(TAG, "TestAsyncTask.PRG " + value);
                     try {
                         int prgs = Integer.parseInt(value);
-                        builder.setProgress(task.currentSuite.getTestList(((Application) getApplication()).getPreferenceManager()).length * 100, prgs, false);
+                        if (task.currentSuite!=null)
+                            builder.setProgress(task.currentSuite.getTestList(((Application) getApplication()).getPreferenceManager()).length * 100, prgs, false);
                         notificationManager.notify(RunTestService.NOTIFICATION_ID, builder.build());
                     } catch (Exception e) {
                         ThirdPartyServices.logException(e);

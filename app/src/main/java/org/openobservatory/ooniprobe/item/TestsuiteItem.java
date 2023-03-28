@@ -36,7 +36,6 @@ public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, Test
 		holder.title.setText(extra.getTitle());
 		holder.desc.setText(extra.getCardDesc());
 		holder.icon.setImageResource(extra.getIconGradient());
-		holder.itemView.setOnClickListener(onClickListener);
 		holder.itemView.setTag(extra);
 		if(extra.isTestEmpty()) {
 			((CardView)holder.itemView).setElevation(0);
@@ -46,6 +45,9 @@ public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, Test
 			holder.desc.setTextColor(resources.getColor(R.color.disabled_test_text));
 			holder.icon.setColorFilter(resources.getColor(R.color.disabled_test_text), PorterDuff.Mode.SRC_IN);
 			holder.setIsRecyclable(false);
+			holder.itemView.setClickable(false);
+		} else {
+			holder.itemView.setOnClickListener(onClickListener);
 		}
 	}
 

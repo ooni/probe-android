@@ -143,7 +143,14 @@ public abstract class AbstractTest implements Serializable {
                         }
                         break;
                     case "log":
-                        logger.i(TAG,json);
+                        switch (event.value.log_level) {
+                            case "WARNING":
+                                logger.w(TAG, event.value.message);
+                                break;
+                            default:
+                                logger.i(TAG, event.value.message);
+                                break;
+                        }
                         if (logFile == null) break;
                         FileUtils.writeStringToFile(
                                 logFile,
