@@ -8,6 +8,7 @@ public class EventResult implements Serializable {
 
 	public static class Value implements Serializable {
 		public double key;
+		public String log_level;
 		public String message;
 		public double percentage;
 		public String json_str;
