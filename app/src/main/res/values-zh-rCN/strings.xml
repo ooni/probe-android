@@ -52,7 +52,7 @@
   <string name="Dashboard_Running_CalculatingETA">计算完成时间</string>
   <string name="Dashboard_Running_ShowLog">显示日志</string>
   <string name="Dashboard_Running_CloseLog">关闭日志</string>
-  <string name="Dashboard_Running_Stopping_Title">停止测试……</string>
+  <string name="Dashboard_Running_Stopping_Title">正在停止测试…</string>
   <string name="Dashboard_Running_Stopping_Notice">正在结束当前待处理的测试，请稍候...</string>
   <string name="Dashboard_Running_ProxyInUse">使用中的代理</string>
   <string name="Dashboard_Card_Subtitle">触击选项卡以查看详情</string>
@@ -72,6 +72,7 @@
   <string name="Dashboard_Experimental_Card_Description">运行新的实验性测试</string>
   <string name="Dashboard_Experimental_Overview_Paragraph">运行由 OONI 团队开发的以下新的实验性测试：\n%1$s\n\n你的结果将在 [OONI Explorer](https://explorer.ooni.org/)和 [OONI API](https://api.ooni.io/)上公布。</string>
   <string name="Dashboard_Experimental_Overview_Paragraph_AutomatedTesting">以下测试将只作为自动测试的一部分来运行：</string>
+  <string name="Dashboard_DisabledTests_Label">禁用的测试</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>

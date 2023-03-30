@@ -72,6 +72,7 @@
   <string name="Dashboard_Experimental_Card_Description">Endesha majaribio mapya ya majaribio</string>
   <string name="Dashboard_Experimental_Overview_Paragraph">Tumia majaribio mapya ya majaribio yaliyotengenezwa na timu ya OONI:\n{orodha ya majaribio_ya majaribio}\n\nMatokeo yako yatachapishwa kwenye [OONI Explorer] (https://explorer.ooni.org/) na [OONI API] (https://api.ooni.io/).</string>
   <string name="Dashboard_Experimental_Overview_Paragraph_AutomatedTesting">Vipimo vyafuatavyo yataendeshwa tu kama sehemu ya majaribio ya kiotomatiki:</string>
+  <string name="Dashboard_DisabledTests_Label">Disabled Tests</string>
   <string name="TestResults_Gbps">Gbit / s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>
