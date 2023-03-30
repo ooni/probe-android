@@ -72,6 +72,7 @@
   <string name="Dashboard_Experimental_Card_Description">Εκτέλεση νέων πειραματικών δοκιμών</string>
   <string name="Dashboard_Experimental_Overview_Paragraph">Εκτέλεσε τις παρακάτω νέες πειραματικές δοκιμές που αναπτύχθηκαν από την ομάδα του OONI:\n%1$s\n\nΤα αποτελέσματά σου θα δημοσιευθούν στο [OONI Explorer](https://explorer.ooni.org/) και στο [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Experimental_Overview_Paragraph_AutomatedTesting">Οι παρακάτω δοκιμές θα εκτελούνται μόνο ως μέρος των αυτοματοποιημένων δοκιμών:</string>
+  <string name="Dashboard_DisabledTests_Label">Disabled Tests</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>

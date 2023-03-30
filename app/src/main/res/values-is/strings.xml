@@ -72,6 +72,7 @@
   <string name="Dashboard_Experimental_Card_Description">Keyra nýjar prófanir á tilraunastigi</string>
   <string name="Dashboard_Experimental_Overview_Paragraph">Keyrðu eftirfarandi tilraunaprófanir sem þróaðar hafa verið af OONI-teyminu:\n%1$s\n\nNiðurstöðurnar þínar verða birtar í [OONI Explorer](https://explorer.ooni.org/) og [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Experimental_Overview_Paragraph_AutomatedTesting">Eftirfarandi prófanir eru einungis keyrðar sem hluti af sjálfvirkum prófunum:</string>
+  <string name="Dashboard_DisabledTests_Label">Óvirkar prófanir</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>
