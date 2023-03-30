@@ -9,8 +9,8 @@ android {
 		applicationId 'org.openobservatory.ooniprobe'
         minSdk 21
         targetSdk 33
-        versionName '3.7.3'
-        versionCode 95
+        versionName '3.8.0'
+        versionCode 98
 		testInstrumentationRunner "org.openobservatory.ooniprobe.TestAndroidJUnitRunner"
 		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://countly.ooni.io"'
@@ -166,7 +166,7 @@ dependencies {
 	testImplementation 'org.mockito:mockito-inline:4.6.1'
 	testImplementation 'org.robolectric:robolectric:4.5.1'
 	testImplementation 'com.github.blocoio:faker:1.2.8'
-	testImplementation 'org.ooni:oonimkall:2023.02.20-070758'
+	testImplementation 'org.ooni:oonimkall:2023.03.16-173249'
 	testAnnotationProcessor 'com.google.dagger:dagger-compiler:2.36'
 
 	// Instrumentation Testing

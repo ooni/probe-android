@@ -72,6 +72,7 @@
   <string name="Dashboard_Experimental_Card_Description">Neue experimentelle Tests durchführen</string>
   <string name="Dashboard_Experimental_Overview_Paragraph">Führe die folgenden neuen, vom OONI-Team entwickelten experimentellen Tests durch:\n%1$s\n\nDeine Ergebnisse werden im [OONI Explorer] veröffentlicht.(https://explorer.ooni.org/) und [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Experimental_Overview_Paragraph_AutomatedTesting">Die folgenden Tests werden nur im Rahmen von automatisierten Tests durchgeführt:</string>
+  <string name="Dashboard_DisabledTests_Label">Deaktivierte Tests</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>
