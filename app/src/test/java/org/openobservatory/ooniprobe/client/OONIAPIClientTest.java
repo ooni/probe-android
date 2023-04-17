@@ -11,7 +11,6 @@ import org.junit.Test;
 import org.openobservatory.ooniprobe.RobolectricAbstractTest;
 import org.openobservatory.ooniprobe.client.callback.CheckReportIdCallback;
 import org.openobservatory.ooniprobe.domain.callback.GetMeasurementsCallback;
-import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 
 import java.io.File;
@@ -138,7 +137,7 @@ public class OONIAPIClientTest extends RobolectricAbstractTest {
         measurement.is_uploaded = true;
         measurement.save();
         if (write_file) {
-            File entryFile = Measurement.getEntryFile(a, measurement.id, measurement.test_name);
+            File entryFile = Measurement.getReportFile(a, measurement.id, measurement.test_name);
             File parentFile = entryFile.getParentFile();
 
             if (parentFile == null) {

@@ -71,6 +71,8 @@
   <string name="Dashboard_Circumvention_Overview_Paragraph">Check whether [Psiphon](https://ooni.org/nettest/psiphon/), [Tor](https://ooni.org/nettest/tor/) or [RiseupVPN](https://ooni.org/nettest/riseupvpn/) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Experimental_Card_Description">Run new experimental tests</string>
   <string name="Dashboard_Experimental_Overview_Paragraph">Run the following new experimental tests developed by the OONI team:\n%1$s\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_Experimental_Overview_Paragraph_AutomatedTesting">The following tests will only be run as part of automated testing:</string>
+  <string name="Dashboard_DisabledTests_Label">Disabled Tests</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>
@@ -276,6 +278,7 @@
   <string name="Modal_NotNow">Not now</string>
   <string name="Modal_RunAnyway">Run anyways</string>
   <string name="Modal_DisableVPN">Disable VPN</string>
+  <string name="Modal_AlwaysRun">Always Run</string>
   <string name="Modal_Error_NoInternet">E pamundur për t\'u bërë testi. Ju lutem kontrolli lidhjen tuaj të internetit.</string>
   <string name="Modal_Error_CantDownloadURLs">E pamundur për të shkarkuar listën e URL. Ju lutem përvoni përsëri.</string>
   <string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a new test.</string>
@@ -290,6 +293,8 @@
   <string name="Modal_Autorun_BatteryOptimization">OONI Probe cannot run automatically without battery optimization. Do you want to try again?</string>
   <string name="Modal_DisableVPN_Title">Please disable your VPN connection.</string>
   <string name="Modal_DisableVPN_Message">If you run OONI Probe with a VPN enabled, the test results may appear to come from the wrong country. Please disable your VPN connection.</string>
+  <string name="Modal_UploadVPNResults_Title">Some measurements were taken over VPN.</string>
+  <string name="Modal_UploadVPNResults_Message">If you upload measurements taken when VPN enabled, the test results may appear to come from the wrong country.</string>
   <string name="Toast_ResultsUploaded">Ngarkimi i sukseshëm</string>
   <string name="Modal_DisplayFailureLog">Display failure log</string>
   <string name="Modal_EnableNotifications_Title">Get updates on internet censorship</string>
@@ -371,11 +376,17 @@
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">Ky informacion (psh IT për Itali) kërkohet për të identifikuar nga cili shtet po mblidhen të dhënat. Jeni të sigurt që e çaktivizoni këtë opsion?</string>
   <string name="Settings_Sharing_Footer">Duke publikuar rezultatet ti rrit transaprencën të ndërhyrjes në rrjet dhe mbështet komunitetin e OONI. \n\nInformacioni i rrjetit (psh Numri i Sistemit Autonom) kërkohet për të identifikuar Ofruesit e Shërbimit të Internetit.</string>
   <string name="Settings_TestOptions_Label">Mundësitë e testimit</string>
+  <string name="Settings_TestOptions_Footer">What you configure through the above test settings (e.g. disabling the WhatsApp test) will apply to tests run manually, as well as to tests run automatically (when automated testing is enabled).</string>
+  <string name="Settings_TestOptions_LongRunningTest">Long running test</string>
+  <string name="Settings_TestOptions_RunLongRunningTests">Run long running tests in foreground?</string>
   <string name="Settings_Privacy_Label">Privatësi</string>
   <string name="Settings_Privacy_SendCrashReports">Dërgo raportime dështimi</string>
   <string name="Settings_Advanced_Label">Të mëtejshme</string>
   <string name="Settings_DarkMode_Label">Dark Mode</string>
   <string name="Settings_Advanced_DebugLogs">Kontrollo regjistrat për gabime</string>
+  <string name="Settings_Advanced_RecentLogs">See recent logs</string>
+  <string name="Settings_Advanced_LanguageSettings_Title">Language Setting</string>
+  <string name="Settings_Advanced_LanguageSettings_PopUp">Përzgjidhni Gjuhë</string>
   <string name="Settings_Advanced_UseDomainFronting">Gjithmonë përdor front domain</string>
   <string name="Settings_Proxy_Label">OONI backend proxy</string>
   <string name="Settings_Proxy_Enabled">Ndërmjetës</string>
@@ -409,6 +420,7 @@
   <string name="Settings_Websites_CustomURL_NoURLEntered">Nuk është vendosur asnjë URL</string>
   <string name="Settings_Websites_CustomURL_Run">Përdor</string>
   <string name="Settings_Websites_CustomURL_Add">Shto faqe</string>
+  <string name="Settings_Websites_CustomURL_LoadFromTemplate">Load from template</string>
   <string name="Settings_Websites_TestCount">Number of tested websites (0 means all)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">Testo WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Testo Telegram</string>
@@ -427,6 +439,7 @@
   <string name="Settings_Circumvention_TestPsiphon">Test Psiphon</string>
   <string name="Settings_Circumvention_TestTor">Test Tor</string>
   <string name="Settings_Circumvention_TestRiseupVPN">Test RiseupVPN</string>
+  <string name="Settings_WarmVPNInUse_Label">Warn when VPN is in use</string>
   <string name="Settings_SendEmail_Label">Dërgo email tek ndihmuesi</string>
   <string name="Settings_SendEmail_Message">Please describe the problem you are experiencing:</string>
   <string name="Settings_SendEmail_Error">Ju lutem dërgoni email tek bugs@openobservatory.org me informacionin e app dhe versionin e iOS. Zgjidh \"Kopjo në tabelën-mbledhëse\" më poshtë për të kopjuar adresën tonë të email.</string>

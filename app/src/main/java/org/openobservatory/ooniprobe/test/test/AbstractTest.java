@@ -15,10 +15,12 @@ import com.google.gson.Gson;
 
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.engine.OONIMKTask;
+import org.openobservatory.ooniprobe.common.AppLogger;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.MKException;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
+import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
@@ -36,6 +38,8 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Objects;
+
+import javax.inject.Inject;
 
 public abstract class AbstractTest implements Serializable {
     private static final String UNUSED_KEY = "UNUSED_KEY";
@@ -69,9 +73,9 @@ public abstract class AbstractTest implements Serializable {
         this.runtime = runtime;
     }
 
-    public abstract void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback);
+    public abstract void run(Context c, PreferenceManager pm, AppLogger logger, Gson gson, Result result, int index, TestCallback testCallback);
 
-    void run(Context c, PreferenceManager pm, Gson gson, Settings settings, Result result, int index, TestCallback testCallback) {
+    void run(Context c, PreferenceManager pm, AppLogger logger, Gson gson, Settings settings, Result result, int index, TestCallback testCallback) {
         //Checking for resources before running any test
         settings.name = name;
         settings.inputs = inputs;
@@ -86,6 +90,7 @@ public abstract class AbstractTest implements Serializable {
         } catch (Exception exc) {
             //TODO call setFailureMsg here and in other point of (non) return
             exc.printStackTrace();
+            logger.e(TAG,exc.getMessage());
             ThirdPartyServices.logException(exc);
             return;
         }
@@ -98,6 +103,7 @@ public abstract class AbstractTest implements Serializable {
                 }
                 String json = task.waitForNextEvent();
                 Log.d(TAG, json);
+
                 EventResult event = gson.fromJson(json, EventResult.class);
 
                 ThirdPartyServices.addLogExtra(event.key, json);
@@ -137,6 +143,14 @@ public abstract class AbstractTest implements Serializable {
                         }
                         break;
                     case "log":
+                        switch (event.value.log_level) {
+                            case "WARNING":
+                                logger.w(TAG, event.value.message);
+                                break;
+                            default:
+                                logger.i(TAG, event.value.message);
+                                break;
+                        }
                         if (logFile == null) break;
                         FileUtils.writeStringToFile(
                                 logFile,
@@ -169,7 +183,7 @@ public abstract class AbstractTest implements Serializable {
                                 m.rerun_network = gson.toJson(network);
                             }
                             m.save();
-                            File entryFile = Measurement.getEntryFile(c, m.id, m.test_name);
+                            File entryFile = Measurement.getReportFile(c, m.id, m.test_name);
                             entryFile.getParentFile().mkdirs();
                             FileUtils.writeStringToFile(
                                     entryFile,
@@ -206,6 +220,7 @@ public abstract class AbstractTest implements Serializable {
                         ThirdPartyServices.logException(new MKException(event));
                         break;
                     case "task_terminated":
+                        onTaskTerminated(event.value, c);
                         /*
                          * The task will be interrupted so the current
                          * measurement data will not show up.
@@ -215,6 +230,7 @@ public abstract class AbstractTest implements Serializable {
                         break;
                     default:
                         Log.w(UNUSED_KEY, event.key);
+                        logger.w(UNUSED_KEY,event.key);
                         break;
                 }
             } catch (Exception e) {
@@ -280,6 +296,15 @@ public abstract class AbstractTest implements Serializable {
         if (measurement != null) {
             measurement.is_done = true;
             measurement.save();
+        }
+    }
+
+    protected void onTaskTerminated(EventResult.Value value, Context context){
+        Measurement measurement = measurements.get(value.idx);
+        if (measurement != null) {
+            if(measurement.is_uploaded){
+                measurement.deleteReportFile(context);
+            }
         }
     }
 

@@ -7,7 +7,6 @@ import androidx.annotation.Nullable;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.apache.commons.io.FileUtils;
-import org.jetbrains.annotations.NotNull;
 import org.openobservatory.engine.OONIContext;
 import org.openobservatory.engine.OONISession;
 import org.openobservatory.engine.OONISubmitResults;
@@ -17,7 +16,6 @@ import org.openobservatory.ooniprobe.common.JsonPrinter;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.domain.callback.DomainCallback;
 import org.openobservatory.ooniprobe.domain.callback.GetMeasurementsCallback;
-import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 
@@ -27,12 +25,7 @@ import java.nio.charset.StandardCharsets;
 
 import javax.inject.Inject;
 
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 public class MeasurementsManager {
 
@@ -106,7 +99,7 @@ public class MeasurementsManager {
     }
 
     public String getReadableEntry(Measurement measurement) throws IOException {
-        File entryFile = Measurement.getEntryFile(context, measurement.id, measurement.test_name);
+        File entryFile = Measurement.getReportFile(context, measurement.id, measurement.test_name);
         return jsonPrinter.prettyText(FileUtils.readFileToString(entryFile, StandardCharsets.UTF_8));
     }
 
@@ -126,7 +119,7 @@ public class MeasurementsManager {
     }
 
     public boolean reSubmit(Measurement m, OONISession session) {
-        File file = Measurement.getEntryFile(context, m.id, m.test_name);
+        File file = Measurement.getReportFile(context, m.id, m.test_name);
         String input;
         long uploadTimeout = getTimeout(file.length());
         OONIContext ooniContext = session.newContextWithTimeout(uploadTimeout);

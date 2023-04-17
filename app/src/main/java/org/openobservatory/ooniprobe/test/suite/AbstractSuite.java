@@ -133,6 +133,10 @@ public abstract class AbstractSuite implements Serializable {
 		return list;
 	}
 
+	public boolean isTestEmpty() {
+		return testList.length == 0;
+	}
+
 	public boolean getAutoRun() {
 		return autoRun;
 	}
@@ -145,7 +149,7 @@ public abstract class AbstractSuite implements Serializable {
 										 String tn,
 										 @Nullable List<String> urls,
 										 String origin) {
-		for (AbstractSuite suite : TestAsyncTask.SUITES)
+		for (AbstractSuite suite : TestAsyncTask.getSuites())
 			for (AbstractTest test : suite.getTestList(app.getPreferenceManager()))
 				if (test.getName().equals(tn)) {
 					if (urls != null)

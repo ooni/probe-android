@@ -19,6 +19,7 @@ import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.CircumventionSuite;
 import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
+import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 
 import java.util.ArrayList;
 
@@ -49,7 +50,7 @@ public class ServiceUtil {
         */
         builder.setPeriodic(60 * 60 * 1000);
         builder.setPersisted(true); //Job scheduled to work after reboot
-        
+
         //JobScheduler is specifically designed for inexact timing, so it can combine jobs from multiple apps, to try to reduce power consumption.
         JobScheduler jobScheduler = ContextCompat.getSystemService(context, JobScheduler.class);;
         if (jobScheduler != null) {
@@ -67,33 +68,21 @@ public class ServiceUtil {
     public static void callCheckInAPI(Application app) {
         app.getServiceComponent().inject(d);
 
-        BatteryManager batteryManager = (BatteryManager) app.getSystemService(Context.BATTERY_SERVICE);
-        boolean workingOnWifi = ReachabilityManager.getNetworkType(app).equals(ReachabilityManager.WIFI);
-        boolean phoneCharging = false;
-        String[] categories = d.preferenceManager.getEnabledCategoryArr().toArray(new String[0]);
         boolean isVPNInUse = ReachabilityManager.isVPNinUse(app);
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            phoneCharging = batteryManager.isCharging();
-        }
+        OONICheckInConfig config = app.getOONICheckInConfig();
 
-        if (!d.generateAutoRunServiceSuite.shouldStart(workingOnWifi,phoneCharging, isVPNInUse)) {
+        if (!d.generateAutoRunServiceSuite.shouldStart(config.isOnWiFi(),config.isCharging(), isVPNInUse)) {
             return;
         }
 
-        OONICheckInConfig config = new OONICheckInConfig(
-                BuildConfig.SOFTWARE_NAME,
-                BuildConfig.VERSION_NAME,
-                workingOnWifi,
-                phoneCharging,
-                categories
-               );
 
         AbstractSuite suite = d.generateAutoRunServiceSuite.generate(config);
         ArrayList<AbstractSuite> testSuites = new ArrayList<>();
         testSuites.add(suite);
         testSuites.add(InstantMessagingSuite.initForAutoRun());
         testSuites.add(CircumventionSuite.initForAutoRun());
+        testSuites.add(PerformanceSuite.initForAutoRun());
         testSuites.add(ExperimentalSuite.initForAutoRun());
 
         if (suite != null) {

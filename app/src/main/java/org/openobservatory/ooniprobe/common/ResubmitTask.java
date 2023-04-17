@@ -69,7 +69,7 @@ public class ResubmitTask<A extends AbstractActivity> extends NetworkProgressAsy
     }
 
     private boolean perform(Context c, Measurement m, OONISession session) {
-        File file = Measurement.getEntryFile(c, m.id, m.test_name);
+        File file = Measurement.getReportFile(c, m.id, m.test_name);
         String input;
         long uploadTimeout = getTimeout(file.length());
         OONIContext ooniContext = session.newContextWithTimeout(uploadTimeout);
@@ -78,6 +78,7 @@ public class ResubmitTask<A extends AbstractActivity> extends NetworkProgressAsy
             OONISubmitResults results = session.submit(ooniContext, input);
             FileUtils.writeStringToFile(file, results.getUpdatedMeasurement(), StandardCharsets.UTF_8);
             m.report_id = results.getUpdatedReportID();
+            m.deleteReportFile(c);
             m.is_uploaded = true;
             m.is_upload_failed = false;
             m.save();
@@ -133,11 +134,6 @@ public class ResubmitTask<A extends AbstractActivity> extends NetworkProgressAsy
                     EngineProvider.get().getDefaultSessionConfig(
                             getActivity(), BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, logger, proxy)
             );
-            // Updating resources with no timeout because we don't know for sure how much
-            // it will take to download them and choosing a timeout may prevent the operation
-            // to ever complete. (Ideally the user should be able to interrupt the process
-            // and there should be no timeout here.)
-            session.maybeUpdateResources(session.newContext());
             for (int i = 0; i < measurements.size(); i++) {
                 if (interrupted) break;
 
@@ -152,6 +148,8 @@ public class ResubmitTask<A extends AbstractActivity> extends NetworkProgressAsy
                 m.result.load();
                 if(!d.measurementsManager.reSubmit(m, session)){
                     errors++;
+                }else {
+                    m.deleteReportFile(getActivity());
                 }
             }
         }

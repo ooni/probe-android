@@ -12,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.core.text.TextUtilsCompat;
+import androidx.core.view.ViewCompat;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
@@ -20,6 +22,8 @@ import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
+
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -36,6 +40,7 @@ public class OverviewActivity extends AbstractActivity {
 	@BindView(R.id.lastTime) TextView lastTime;
 	@BindView(R.id.desc) TextView desc;
 	@BindView(R.id.customUrl) Button customUrl;
+	@BindView(R.id.run) Button run;
 	private AbstractSuite testSuite;
 
 	@Inject
@@ -57,14 +62,19 @@ public class OverviewActivity extends AbstractActivity {
 		setTitle(testSuite.getTitle());
 		icon.setImageResource(testSuite.getIcon());
 		customUrl.setVisibility(testSuite.getName().equals(WebsitesSuite.NAME) ? View.VISIBLE : View.GONE);
+		if(testSuite.isTestEmpty()){
+			run.setAlpha(0.5F);
+			run.setEnabled(false);
+		}
 		if (testSuite.getName().equals(ExperimentalSuite.NAME)) {
 			String experimentalLinks =
 					"\n\n* [STUN Reachability](https://github.com/ooni/spec/blob/master/nettests/ts-025-stun-reachability.md)" +
 					"\n\n* [DNS Check](https://github.com/ooni/spec/blob/master/nettests/ts-028-dnscheck.md)" +
-					String.format("\n\n %s \n\n", getString(R.string.Dashboard_Experimental_Overview_Paragraph_AutomatedTesting)) +
-					"\n\n* [Tor Snowflake](https://ooni.org/nettest/tor-snowflake/)" +
-					"\n\n* [Vanilla Tor](https://github.com/ooni/spec/blob/master/nettests/ts-016-vanilla-tor.md)";
+					"\n\n* [Tor Snowflake](https://ooni.org/nettest/tor-snowflake/) "+ String.format(" ( %s )",getString(R.string.Settings_TestOptions_LongRunningTest))+
+					"\n\n* [Vanilla Tor](https://github.com/ooni/spec/blob/master/nettests/ts-016-vanilla-tor.md) " + String.format(" ( %s )",getString(R.string.Settings_TestOptions_LongRunningTest));
 			Markwon.setMarkdown(desc, getString(testSuite.getDesc1(), experimentalLinks));
+			if (TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL)
+				desc.setTextDirection(View.TEXT_DIRECTION_RTL);
 		}
 		else
 			Markwon.setMarkdown(desc, getString(testSuite.getDesc1()));
@@ -89,7 +99,9 @@ public class OverviewActivity extends AbstractActivity {
 	}
 
 	@OnClick(R.id.run) void onRunClick() {
-		RunningActivity.runAsForegroundService(this, testSuite.asArray(), this::bindTestService, preferenceManager);
+		if(!testSuite.isTestEmpty()){
+			RunningActivity.runAsForegroundService(this, testSuite.asArray(), this::bindTestService, preferenceManager);
+		}
 	}
 
 	@OnClick(R.id.customUrl) void customUrlClick() {
