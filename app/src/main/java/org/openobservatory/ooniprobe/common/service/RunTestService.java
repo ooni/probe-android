@@ -57,11 +57,8 @@ public class RunTestService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        ArrayList<AbstractSuite> iTestSuites = (ArrayList<AbstractSuite>) intent.getSerializableExtra("testSuites");
-        if (iTestSuites == null)
-            return START_STICKY_COMPATIBILITY;
-        ArrayList<AbstractSuite> testSuites = Lists.newArrayList(Iterables.filter(iTestSuites, testSuite -> testSuite!=null && !testSuite.isTestEmpty()));
-        if (testSuites.size() == 0)
+        ArrayList<AbstractSuite> testSuites = (ArrayList<AbstractSuite>) intent.getSerializableExtra("testSuites");
+        if (testSuites == null || testSuites.size() == 0)
             return START_STICKY_COMPATIBILITY;
         boolean store_db = intent.getBooleanExtra("storeDB", true);
         Application app = ((Application) getApplication());

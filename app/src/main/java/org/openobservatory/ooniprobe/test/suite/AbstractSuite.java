@@ -133,8 +133,9 @@ public abstract class AbstractSuite implements Serializable {
 		return list;
 	}
 
-	public boolean isTestEmpty() {
-		return testList.length == 0;
+	public boolean isTestEmpty(PreferenceManager preferenceManager) {
+		getTestList(preferenceManager);
+		return testList == null || testList.length == 0;
 	}
 
 	public boolean getAutoRun() {
