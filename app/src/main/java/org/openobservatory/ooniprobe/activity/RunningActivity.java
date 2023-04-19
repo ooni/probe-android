@@ -29,6 +29,7 @@ import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.TestProgressRepository;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
+import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.receiver.TestRunBroadRequestReceiver;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
@@ -123,9 +124,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     private static void startRunTestService(AbstractActivity context,
                                             ArrayList<AbstractSuite> testSuites,
                                             OnTestServiceStartedListener onTestServiceStartedListener) {
-        Intent serviceIntent = new Intent(context, RunTestService.class);
-        serviceIntent.putExtra("testSuites", testSuites);
-        ContextCompat.startForegroundService(context, serviceIntent);
+        ServiceUtil.startRunTestService(context, testSuites, true);
         onTestServiceStartedListener.onTestServiceStarted();
     }
 

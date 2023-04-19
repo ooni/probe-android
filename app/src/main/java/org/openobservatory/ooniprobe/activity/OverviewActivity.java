@@ -62,7 +62,7 @@ public class OverviewActivity extends AbstractActivity {
 		setTitle(testSuite.getTitle());
 		icon.setImageResource(testSuite.getIcon());
 		customUrl.setVisibility(testSuite.getName().equals(WebsitesSuite.NAME) ? View.VISIBLE : View.GONE);
-		if(testSuite.isTestEmpty()){
+		if(testSuite.isTestEmpty(preferenceManager)){
 			run.setAlpha(0.5F);
 			run.setEnabled(false);
 		}
@@ -99,7 +99,7 @@ public class OverviewActivity extends AbstractActivity {
 	}
 
 	@OnClick(R.id.run) void onRunClick() {
-		if(!testSuite.isTestEmpty()){
+		if(!testSuite.isTestEmpty(preferenceManager)){
 			RunningActivity.runAsForegroundService(this, testSuite.asArray(), this::bindTestService, preferenceManager);
 		}
 	}
