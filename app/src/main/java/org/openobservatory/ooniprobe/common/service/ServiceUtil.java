@@ -87,7 +87,7 @@ public class ServiceUtil {
         testSuites.add(CircumventionSuite.initForAutoRun());
         testSuites.add(PerformanceSuite.initForAutoRun());
         testSuites.add(ExperimentalSuite.initForAutoRun());
-        ServiceUtil.startRunTestService(app, testSuites, true);
+        ServiceUtil.startRunTestService(app, testSuites, false);
 
     }
 
