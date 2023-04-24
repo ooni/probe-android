@@ -1,4 +1,4 @@
-# build checks whether the project builds
+# archive creates and publishes an apk for testing
 name: archive
 on: [push]
 jobs:
