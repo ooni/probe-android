@@ -44,7 +44,7 @@ public class QueryDataSource extends PagingSource<Integer, Result> {
         ArrayList<SQLOperator> conditions = (testGroupNameFilter != null && !testGroupNameFilter.isEmpty())
                 ? new ArrayList<>(Collections.singletonList(Result_Table.test_group_name.is(testGroupNameFilter)))
                 : new ArrayList<>();
-        if (highestId != 0) {
+        if (highestId > 0) {
             conditions.add(Result_Table.id.lessThan(highestId));
         }
 
