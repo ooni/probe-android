@@ -9,6 +9,9 @@ import android.os.BatteryManager;
 
 import androidx.core.content.ContextCompat;
 
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+
 import org.openobservatory.engine.OONICheckInConfig;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.common.Application;
@@ -84,14 +87,20 @@ public class ServiceUtil {
         testSuites.add(CircumventionSuite.initForAutoRun());
         testSuites.add(PerformanceSuite.initForAutoRun());
         testSuites.add(ExperimentalSuite.initForAutoRun());
+        ServiceUtil.startRunTestService(app, testSuites, false);
 
-        if (suite != null) {
-            Intent serviceIntent = new Intent(app, RunTestService.class);
-            serviceIntent.putExtra("testSuites", testSuites);
-            serviceIntent.putExtra("storeDB", false);
-            ContextCompat.startForegroundService(app, serviceIntent);
-        }
+    }
 
+
+    public static void startRunTestService(Context context, ArrayList<AbstractSuite> iTestSuites, boolean storeDB) {
+        ArrayList<AbstractSuite> testSuites = Lists.newArrayList(
+                Iterables.filter(iTestSuites, testSuite -> !testSuite.isTestEmpty(d.preferenceManager))
+        );
+
+        Intent serviceIntent = new Intent(context, RunTestService.class);
+        serviceIntent.putExtra("testSuites", testSuites);
+        serviceIntent.putExtra("storeDB", storeDB);
+        ContextCompat.startForegroundService(context, serviceIntent);
     }
 
     public static class Dependencies {

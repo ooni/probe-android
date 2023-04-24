@@ -81,7 +81,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		ArrayList<AbstractSuite> emptySuites = new ArrayList<>();
 		for (AbstractSuite testSuite : testSuites){
 			if(testSuite.getTestList(preferenceManager).length > 0){
-				items.add(new TestsuiteItem(testSuite, this));
+				items.add(new TestsuiteItem(testSuite, this, preferenceManager));
 			} else {
 				emptySuites.add(testSuite);
 			}
@@ -91,7 +91,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 			items.add(new SeperatorItem());
 
 			for(AbstractSuite emptyTest: emptySuites)
-				items.add(new TestsuiteItem(emptyTest, this));
+				items.add(new TestsuiteItem(emptyTest, this, preferenceManager));
 		}
 
 
