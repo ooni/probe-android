@@ -23,16 +23,16 @@ import java.util.concurrent.Executors;
 
 public class ResultListViewModel extends ViewModel {
     public LiveData<PagingData<UiModel>> pagingData;
-    private final Executor bgExecutor = Executors.newFixedThreadPool(4);
+    private final Executor bgExecutor = Executors.newFixedThreadPool(8);
 
     public final void init(@Nullable final String testGroupNameFilter) {
         Pager<Integer, Result> pager = new Pager<>(
                 new PagingConfig(
-                        30,
                         20,
+                        60,
                         false,
-                        15,
-                        80,
+                        40,
+                        PagingConfig.MAX_SIZE_UNBOUNDED,
                         Integer.MIN_VALUE
                 ),
                 () -> new QueryDataSource(testGroupNameFilter)

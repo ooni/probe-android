@@ -14,6 +14,7 @@ import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -40,8 +41,8 @@ public class QueryDataSource extends PagingSource<Integer, Result> {
         // construction. Use 0 as default, because our API is indexed started at index 0
         int highestId = loadParams.getKey() != null ? loadParams.getKey() : 0;
 
-        List<SQLOperator> conditions = (testGroupNameFilter != null && !testGroupNameFilter.isEmpty())
-                ? Collections.singletonList(Result_Table.test_group_name.is(testGroupNameFilter))
+        ArrayList<SQLOperator> conditions = (testGroupNameFilter != null && !testGroupNameFilter.isEmpty())
+                ? new ArrayList<>(Collections.singletonList(Result_Table.test_group_name.is(testGroupNameFilter)))
                 : new ArrayList<>();
         if (highestId != 0) {
             conditions.add(Result_Table.id.lessThan(highestId));
@@ -49,15 +50,15 @@ public class QueryDataSource extends PagingSource<Integer, Result> {
 
         List<Result> response = SQLite.select().from(Result.class)
                 .where(conditions.toArray(new SQLOperator[0]))
-                .limit(20)
+                .limit(loadParams.getLoadSize())
                 .orderBy(Result_Table.id, false)
                 .queryList();
 
-        Integer prevKey;
+        Integer prevKey = null;
         try {
-            prevKey = (!response.isEmpty()) ? Objects.requireNonNull(Iterables.getFirst(response, null)).id - 20 : null;
+            if (loadParams.getKey() != null)
+              prevKey = (!response.isEmpty()) ? Objects.requireNonNull(Iterables.getFirst(response, null)).id - 20 : null;
         } catch (Exception e) {
-            prevKey = null;
             ThirdPartyServices.logException(e);
         }
         // This API defines that it's out of data when a page returns empty. When out of

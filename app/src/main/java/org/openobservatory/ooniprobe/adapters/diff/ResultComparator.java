@@ -35,6 +35,6 @@ public class ResultComparator extends DiffUtil.ItemCallback<UiModel> {
      * typically you'll implement Object#equals, and use it to compare object contents.
      */
     public boolean areContentsTheSame(@NotNull UiModel oldItem, @NotNull UiModel newItem) {
-        return oldItem.equals(newItem);
+        return Objects.equals(oldItem,newItem);
     }
 }
