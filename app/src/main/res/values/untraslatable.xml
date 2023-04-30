@@ -308,4 +308,7 @@
 		<item>th</item>
 		<item>tr</item>
 	</string-array>
+	<string name="preference_intent_about_ooni" translatable="false">org.openobservatory.ooniprobe.activity.InfoActivity</string>
+	<string name="preference_intent_proxy_activity" translatable="false">org.openobservatory.ooniprobe.activity.ProxyActivity</string>
+	<string name="preference_intent_log_activity" translatable="false">org.openobservatory.ooniprobe.activity.LogActivity</string>
 </resources>
