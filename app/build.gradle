@@ -62,7 +62,7 @@ android {
         dev {
             dimension 'testing'
             applicationIdSuffix '.dev'
-            versionName versionNameDate()
+            versionNameSuffix "-beta.1"
             versionCode versionCodeDate()
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-dev"'
             resValue "string", "APP_NAME", "OONI Dev"
@@ -71,7 +71,7 @@ android {
         experimental {
             dimension 'testing'
             applicationIdSuffix '.experimental'
-            versionName versionNameDate()
+            versionNameSuffix "-experimental.1"
             versionCode versionCodeDate()
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-experimental"'
             resValue "string", "APP_NAME", "OONI Exp"
@@ -186,10 +186,6 @@ dependencies {
 
 static def versionCodeDate() {
     return new Date().format("yyyyMMdd").toInteger()
-}
-
-static def versionNameDate() {
-    return new Date().format("yyyy.MM.dd-HH")
 }
 
 if (!getGradle().getStartParameter().getTaskRequests()

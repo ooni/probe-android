@@ -221,6 +221,7 @@
 		<item>@string/CategoryCode_COMM_Key</item>
 		<item>@string/CategoryCode_CTRL_Key</item>
 		<item>@string/CategoryCode_IGO_Key</item>
+		<item>@string/CategoryCode_MISC_Key</item>
 	</string-array>
 	<array name="CategoryIcons" translatable="false">
 		<item>@drawable/category_aldr</item>
@@ -308,4 +309,7 @@
 		<item>th</item>
 		<item>tr</item>
 	</string-array>
+	<string name="preference_intent_about_ooni" translatable="false">org.openobservatory.ooniprobe.activity.InfoActivity</string>
+	<string name="preference_intent_proxy_activity" translatable="false">org.openobservatory.ooniprobe.activity.ProxyActivity</string>
+	<string name="preference_intent_log_activity" translatable="false">org.openobservatory.ooniprobe.activity.LogActivity</string>
 </resources>
