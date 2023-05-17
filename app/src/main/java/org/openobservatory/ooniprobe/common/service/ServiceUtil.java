@@ -79,20 +79,24 @@ public class ServiceUtil {
             return;
         }
 
-
-        AbstractSuite suite = d.generateAutoRunServiceSuite.generate(config);
+        AbstractSuite suite = d.generateAutoRunServiceSuite.generate();
         ArrayList<AbstractSuite> testSuites = new ArrayList<>();
         testSuites.add(suite);
         testSuites.add(InstantMessagingSuite.initForAutoRun());
         testSuites.add(CircumventionSuite.initForAutoRun());
         testSuites.add(PerformanceSuite.initForAutoRun());
         testSuites.add(ExperimentalSuite.initForAutoRun());
-        ServiceUtil.startRunTestService(app, testSuites, false);
+        ServiceUtil.startRunTestService(app, testSuites, false, true);
+        d.generateAutoRunServiceSuite.markAsRan();
 
     }
 
 
     public static void startRunTestService(Context context, ArrayList<AbstractSuite> iTestSuites, boolean storeDB) {
+        startRunTestService(context, iTestSuites, storeDB,false);
+    }
+
+    public static void startRunTestService(Context context, ArrayList<AbstractSuite> iTestSuites, boolean storeDB, boolean unattended) {
         ArrayList<AbstractSuite> testSuites = Lists.newArrayList(
                 Iterables.filter(iTestSuites, testSuite -> !testSuite.isTestEmpty(d.preferenceManager))
         );
@@ -100,6 +104,7 @@ public class ServiceUtil {
         Intent serviceIntent = new Intent(context, RunTestService.class);
         serviceIntent.putExtra("testSuites", testSuites);
         serviceIntent.putExtra("storeDB", storeDB);
+        serviceIntent.putExtra("unattended", unattended);
         ContextCompat.startForegroundService(context, serviceIntent);
     }
 

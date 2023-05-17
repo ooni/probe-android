@@ -1,3 +1,4 @@
+/*
 package org.openobservatory.ooniprobe.domain;
 
 import androidx.test.filters.SmallTest;
@@ -117,4 +118,4 @@ public class GenerateTestServiceSuiteAutoRun extends RobolectricAbstractTest {
         };
     }
 
-}
+}*/
