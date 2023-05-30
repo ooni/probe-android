@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item
+		android:id="@+id/selectAll"
+		android:title="@string/Settings_Websites_Categories_Selection_All" />
+	<item
+		android:id="@+id/selectNone"
+		android:title="@string/Settings_Websites_Categories_Selection_None" />
+</menu>
