@@ -94,7 +94,7 @@ public class ServiceUtil {
 
     public static void startRunTestService(Context context, ArrayList<AbstractSuite> iTestSuites, boolean storeDB) {
         ArrayList<AbstractSuite> testSuites = Lists.newArrayList(
-                Iterables.filter(iTestSuites, testSuite -> !testSuite.isTestEmpty(d.preferenceManager))
+                Iterables.filter(Iterables.filter(iTestSuites,item->item!=null), testSuite -> !testSuite.isTestEmpty(d.preferenceManager))
         );
 
         Intent serviceIntent = new Intent(context, RunTestService.class);

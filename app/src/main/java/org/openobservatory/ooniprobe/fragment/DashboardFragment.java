@@ -1,6 +1,5 @@
 package org.openobservatory.ooniprobe.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -19,21 +18,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
-import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.OverviewActivity;
-import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.item.SeperatorItem;
 import org.openobservatory.ooniprobe.item.TestsuiteItem;
+import org.openobservatory.ooniprobe.model.database.TestDescriptor;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
-import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -53,7 +49,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 	PreferenceManager preferenceManager;
 
 	private ArrayList<HeterogeneousRecyclerItem> items;
-	private ArrayList<AbstractSuite> testSuites;
+	private ArrayList<TestDescriptor> testSuites;
 	private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
 
 	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -78,9 +74,9 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		testSuites.clear();
 		testSuites.addAll(TestAsyncTask.getSuites());
 
-		ArrayList<AbstractSuite> emptySuites = new ArrayList<>();
-		for (AbstractSuite testSuite : testSuites){
-			if(testSuite.getTestList(preferenceManager).length > 0){
+		ArrayList<TestDescriptor> emptySuites = new ArrayList<>();
+		for (TestDescriptor testSuite : testSuites){
+			if(testSuite.isEnabled()){
 				items.add(new TestsuiteItem(testSuite, this, preferenceManager));
 			} else {
 				emptySuites.add(testSuite);
@@ -90,7 +86,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		if(!emptySuites.isEmpty()){
 			items.add(new SeperatorItem());
 
-			for(AbstractSuite emptyTest: emptySuites)
+			for(TestDescriptor emptyTest: emptySuites)
 				items.add(new TestsuiteItem(emptyTest, this, preferenceManager));
 		}
 
@@ -118,7 +114,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 	}
 
     public void runAll() {
-        RunningActivity.runAsForegroundService((AbstractActivity) getActivity(), testSuites, this::onTestServiceStartedListener, preferenceManager);
+//        RunningActivity.runAsForegroundService((AbstractActivity) getActivity(), testSuites, this::onTestServiceStartedListener, preferenceManager);
     }
 
     private void onTestServiceStartedListener() {
@@ -131,15 +127,15 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     }
 
 	@Override public void onClick(View v) {
-		AbstractSuite testSuite = (AbstractSuite) v.getTag();
+		TestDescriptor testSuite = (TestDescriptor) v.getTag();
 		switch (v.getId()) {
 			case R.id.run:
-                RunningActivity.runAsForegroundService(
+                /*RunningActivity.runAsForegroundService(
                         (AbstractActivity) getActivity(),
                         testSuite.asArray(),
                         this::onTestServiceStartedListener,
 						preferenceManager
-                );
+                );*/
 				break;
 			default:
 				ActivityCompat.startActivity(getActivity(), OverviewActivity.newIntent(getActivity(), testSuite), null);
