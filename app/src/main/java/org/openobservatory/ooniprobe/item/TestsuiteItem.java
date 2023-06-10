@@ -1,8 +1,6 @@
 package org.openobservatory.ooniprobe.item;
 
-import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,22 +9,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
-import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
+import org.openobservatory.ooniprobe.model.database.TestDescriptor;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
-public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, TestsuiteItem.ViewHolderImpl> {
+public class TestsuiteItem extends HeterogeneousRecyclerItem<TestDescriptor, TestsuiteItem.ViewHolderImpl> {
 	private final View.OnClickListener onClickListener;
 	private final PreferenceManager preferenceManager;
 
-	public TestsuiteItem(AbstractSuite extra, View.OnClickListener onClickListener, PreferenceManager preferenceManager) {
+	public TestsuiteItem(TestDescriptor extra, View.OnClickListener onClickListener, PreferenceManager preferenceManager) {
 		super(extra);
 		this.onClickListener = onClickListener;
 		this.preferenceManager = preferenceManager;
@@ -37,13 +34,14 @@ public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, Test
 	}
 
 	@Override public void onBindViewHolder(ViewHolderImpl holder) {
-		holder.title.setText(extra.getTitle());
-		holder.desc.setText(extra.getCardDesc());
-		holder.icon.setImageResource(extra.getIconGradient());
+		Resources resources = holder.itemView.getContext().getResources();
+
+		holder.title.setText(extra.getName());
+		holder.desc.setText(extra.getShortDescription());
+		holder.icon.setImageResource(resources.getIdentifier(extra.getIcon(), "drawable", holder.itemView.getContext().getPackageName()));
 		holder.itemView.setTag(extra);
-		if(extra.isTestEmpty(preferenceManager)) {
+		if(!extra.isEnabled()) {
 			((CardView)holder.itemView).setElevation(0);
-			Resources resources = holder.itemView.getContext().getResources();
 			((CardView)holder.itemView).setCardBackgroundColor(resources.getColor(R.color.disabled_test_background));
 			holder.title.setTextColor(resources.getColor(R.color.disabled_test_text));
 			holder.desc.setTextColor(resources.getColor(R.color.disabled_test_text));
@@ -53,6 +51,7 @@ public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, Test
 		} else {
 			holder.itemView.setOnClickListener(onClickListener);
 		}
+
 	}
 
 	class ViewHolderImpl extends RecyclerView.ViewHolder {
