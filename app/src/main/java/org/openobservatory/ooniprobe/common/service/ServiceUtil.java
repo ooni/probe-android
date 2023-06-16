@@ -93,7 +93,7 @@ public class ServiceUtil {
 
 
     public static void startRunTestServiceManual(Context context, ArrayList<AbstractSuite> iTestSuites, boolean storeDB) {
-        startRunTestServiceCommon(context, iTestSuites, storeDB,false);
+        startRunTestServiceCommon(context, iTestSuites, storeDB, false);
     }
 
     private static void startRunTestServiceCommon(Context context, ArrayList<AbstractSuite> iTestSuites, boolean storeDB, boolean unattended) {
