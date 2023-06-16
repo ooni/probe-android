@@ -68,7 +68,7 @@ public class ServiceUtil {
         }
     }
 
-    public static void callCheckInAPI(Application app) {
+    public static void startRunTestServiceUnattended(Application app) {
         app.getServiceComponent().inject(d);
 
         boolean isVPNInUse = ReachabilityManager.isVPNinUse(app);
@@ -86,17 +86,17 @@ public class ServiceUtil {
         testSuites.add(CircumventionSuite.initForAutoRun());
         testSuites.add(PerformanceSuite.initForAutoRun());
         testSuites.add(ExperimentalSuite.initForAutoRun());
-        ServiceUtil.startRunTestService(app, testSuites, false, true);
+        ServiceUtil.startRunTestServiceCommon(app, testSuites, false, true);
         d.generateAutoRunServiceSuite.markAsRan();
 
     }
 
 
-    public static void startRunTestService(Context context, ArrayList<AbstractSuite> iTestSuites, boolean storeDB) {
-        startRunTestService(context, iTestSuites, storeDB,false);
+    public static void startRunTestServiceManual(Context context, ArrayList<AbstractSuite> iTestSuites, boolean storeDB) {
+        startRunTestServiceCommon(context, iTestSuites, storeDB,false);
     }
 
-    public static void startRunTestService(Context context, ArrayList<AbstractSuite> iTestSuites, boolean storeDB, boolean unattended) {
+    private static void startRunTestServiceCommon(Context context, ArrayList<AbstractSuite> iTestSuites, boolean storeDB, boolean unattended) {
         ArrayList<AbstractSuite> testSuites = Lists.newArrayList(
                 Iterables.filter(iTestSuites, testSuite -> !testSuite.isTestEmpty(d.preferenceManager))
         );
