@@ -9,8 +9,8 @@ android {
 		applicationId 'org.openobservatory.ooniprobe'
         minSdk 21
         targetSdk 33
-        versionName '3.8.0'
-        versionCode 98
+        versionName '3.8.2'
+        versionCode 100
 		testInstrumentationRunner "org.openobservatory.ooniprobe.TestAndroidJUnitRunner"
 		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://countly.ooni.io"'
@@ -62,7 +62,7 @@ android {
         dev {
             dimension 'testing'
             applicationIdSuffix '.dev'
-            versionName versionNameDate()
+            versionNameSuffix "-beta.1"
             versionCode versionCodeDate()
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-dev"'
             resValue "string", "APP_NAME", "OONI Dev"
@@ -71,7 +71,7 @@ android {
         experimental {
             dimension 'testing'
             applicationIdSuffix '.experimental'
-            versionName versionNameDate()
+            versionNameSuffix "-experimental.1"
             versionCode versionCodeDate()
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-experimental"'
             resValue "string", "APP_NAME", "OONI Exp"
@@ -166,7 +166,7 @@ dependencies {
 	testImplementation 'org.mockito:mockito-inline:4.6.1'
 	testImplementation 'org.robolectric:robolectric:4.5.1'
 	testImplementation 'com.github.blocoio:faker:1.2.8'
-	testImplementation 'org.ooni:oonimkall:2023.03.16-173249'
+	testImplementation 'org.ooni:oonimkall:2023.06.08-161352'
 	testAnnotationProcessor 'com.google.dagger:dagger-compiler:2.36'
 
 	// Instrumentation Testing
@@ -192,10 +192,6 @@ dependencies {
 
 static def versionCodeDate() {
     return new Date().format("yyyyMMdd").toInteger()
-}
-
-static def versionNameDate() {
-    return new Date().format("yyyy.MM.dd-HH")
 }
 
 if (!getGradle().getStartParameter().getTaskRequests()

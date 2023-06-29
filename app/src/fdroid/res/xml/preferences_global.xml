@@ -355,7 +355,7 @@
 			app:iconSpaceReserved="false"
 			android:key="logs"
 			android:title="@string/Settings_Advanced_RecentLogs">
-			<intent android:action="org.openobservatory.ooniprobe.activity.LogActivity" />
+			<intent android:action="@string/preference_intent_log_activity" />
 		</PreferenceScreen>
 		<SwitchPreferenceCompat
 			android:defaultValue="false"
@@ -378,7 +378,7 @@
 		android:icon="@drawable/proxy"
 		android:key="@string/ooni_backend_proxy"
 		android:title="@string/Settings_Proxy_Label">
-		<intent	android:action="org.openobservatory.ooniprobe.activity.ProxyActivity" />
+		<intent	android:action="@string/preference_intent_proxy_activity" />
 	</PreferenceScreen>
 	<PreferenceScreen
 		android:icon="@drawable/send_email"
@@ -388,6 +388,6 @@
 		android:icon="@drawable/about_ooni"
 		android:key="@string/about_ooni"
 		android:title="@string/Settings_About_Label">
-		<intent android:action="org.openobservatory.ooniprobe.activity.InfoActivity" />
+		<intent android:action="@string/preference_intent_about_ooni" />
 	</PreferenceScreen>
 </PreferenceScreen>
