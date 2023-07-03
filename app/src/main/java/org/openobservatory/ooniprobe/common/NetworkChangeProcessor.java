@@ -39,7 +39,7 @@ public class NetworkChangeProcessor {
             System.out.println(pm.getLastKnownNetwork());
             if (!Objects.equals(pm.getLastKnownNetwork(), geoLocateResults.getASN())) {
                 pm.setLastKnownNetwork(geoLocateResults.getASN());
-                ServiceUtil.scheduleJob(app);
+                ServiceUtil.callCheckInAPI(app);
             }
         } catch (Exception e) {
             e.printStackTrace();
