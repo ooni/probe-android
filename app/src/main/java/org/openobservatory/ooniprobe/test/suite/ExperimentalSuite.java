@@ -2,6 +2,8 @@ package org.openobservatory.ooniprobe.test.suite;
 
 import androidx.annotation.Nullable;
 
+import com.google.common.collect.Lists;
+
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
@@ -26,13 +28,31 @@ public class ExperimentalSuite extends AbstractSuite {
                 R.string.TestResults_NotAvailable);
     }
 
-    @Override public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
+    public static ExperimentalSuite initForAutoRun() {
+        ExperimentalSuite suite = new ExperimentalSuite();
+        suite.setAutoRun(true);
+        return suite;
+    }
+
+
+    @Override
+    public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
         if (super.getTestList(pm) == null) {
             ArrayList<AbstractTest> list = new ArrayList<>();
-            list.add(new Experimental("stunreachability"));
-            list.add(new Experimental("dnscheck"));
-            list.add(new Experimental("torsf"));
-            super.setTestList(list.toArray(new AbstractTest[0]));
+            if (pm == null || pm.isExperimentalOn()){
+				if ((pm == null || pm.isLongRunningTestsInForeground()) || getAutoRun()){
+					list.add(new Experimental("torsf"));
+					list.add(new Experimental("vanilla_tor"));
+				}
+                list.add(new Experimental("stunreachability"));
+                list.add(new Experimental("dnscheck"));
+            }
+            super.setTestList(Lists.transform(list, test -> {
+                if (getAutoRun()) test.setOrigin(AbstractTest.AUTORUN);
+                return test;
+            }).toArray(new AbstractTest[0]));
         }
         return super.getTestList(pm);
-    }}
+    }
+
+}

@@ -11,7 +11,6 @@ import org.junit.Test;
 import org.openobservatory.ooniprobe.RobolectricAbstractTest;
 import org.openobservatory.ooniprobe.client.callback.CheckReportIdCallback;
 import org.openobservatory.ooniprobe.domain.callback.GetMeasurementsCallback;
-import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 
 import java.io.File;
@@ -37,21 +36,8 @@ public class OONIAPIClientTest extends RobolectricAbstractTest {
         final CountDownLatch signal = new CountDownLatch(1);
         a.getApiClient().getMeasurement(EXISTING_REPORT_ID, null).enqueue(new GetMeasurementsCallback() {
             @Override
-            public void onSuccess(ApiMeasurement.Result result) {
+            public void onSuccess(String result) {
                 Assert.assertNotNull(result);
-                a.getOkHttpClient().newCall(new Request.Builder().url(result.measurement_url).build()).enqueue(new Callback() {
-                    @Override
-                    public void onResponse(@NotNull Call call, @NotNull Response response) {
-                        Assert.assertNotNull(response.body());
-                        signal.countDown();
-                    }
-
-                    @Override
-                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                        Assert.fail();
-                        signal.countDown();
-                    }
-                });
             }
 
             @Override
@@ -73,7 +59,7 @@ public class OONIAPIClientTest extends RobolectricAbstractTest {
         final CountDownLatch signal = new CountDownLatch(1);
         a.getApiClient().getMeasurement(NONEXISTING_REPORT_ID, null).enqueue(new GetMeasurementsCallback() {
             @Override
-            public void onSuccess(ApiMeasurement.Result result) {
+            public void onSuccess(String result) {
                 Assert.fail();
                 signal.countDown();
             }
@@ -151,7 +137,7 @@ public class OONIAPIClientTest extends RobolectricAbstractTest {
         measurement.is_uploaded = true;
         measurement.save();
         if (write_file) {
-            File entryFile = Measurement.getEntryFile(a, measurement.id, measurement.test_name);
+            File entryFile = Measurement.getReportFile(a, measurement.id, measurement.test_name);
             File parentFile = entryFile.getParentFile();
 
             if (parentFile == null) {

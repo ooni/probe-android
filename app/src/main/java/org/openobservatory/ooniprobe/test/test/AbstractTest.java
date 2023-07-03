@@ -15,10 +15,12 @@ import com.google.gson.Gson;
 
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.engine.OONIMKTask;
+import org.openobservatory.ooniprobe.common.AppLogger;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.MKException;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
+import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
@@ -35,10 +37,15 @@ import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Objects;
+
+import javax.inject.Inject;
 
 public abstract class AbstractTest implements Serializable {
     private static final String UNUSED_KEY = "UNUSED_KEY";
     private static final String TAG = "MK_EVENT";
+    public static final String AUTORUN = "autorun";
+    public static final String UNATTENDED = "unattended";
     private final String name;
     private final int labelResId;
     private final int iconResId;
@@ -46,6 +53,13 @@ public abstract class AbstractTest implements Serializable {
     private final int runtime;
     private List<String> inputs;
     private Integer max_runtime;
+    private Network network;
+
+    public void setIsRerun(boolean is_rerun) {
+        this.is_rerun = is_rerun;
+    }
+
+    private boolean is_rerun;
     private SparseArray<Measurement> measurements;
     private String reportId;
     private String origin;
@@ -59,9 +73,9 @@ public abstract class AbstractTest implements Serializable {
         this.runtime = runtime;
     }
 
-    public abstract void run(Context c, PreferenceManager pm, Gson gson, Result result, int index, TestCallback testCallback);
+    public abstract void run(Context c, PreferenceManager pm, AppLogger logger, Gson gson, Result result, int index, TestCallback testCallback);
 
-    void run(Context c, PreferenceManager pm, Gson gson, Settings settings, Result result, int index, TestCallback testCallback) {
+    void run(Context c, PreferenceManager pm, AppLogger logger, Gson gson, Settings settings, Result result, int index, TestCallback testCallback) {
         //Checking for resources before running any test
         settings.name = name;
         settings.inputs = inputs;
@@ -76,6 +90,7 @@ public abstract class AbstractTest implements Serializable {
         } catch (Exception exc) {
             //TODO call setFailureMsg here and in other point of (non) return
             exc.printStackTrace();
+            logger.e(TAG,exc.getMessage());
             ThirdPartyServices.logException(exc);
             return;
         }
@@ -88,6 +103,7 @@ public abstract class AbstractTest implements Serializable {
                 }
                 String json = task.waitForNextEvent();
                 Log.d(TAG, json);
+
                 EventResult event = gson.fromJson(json, EventResult.class);
 
                 ThirdPartyServices.addLogExtra(event.key, json);
@@ -102,6 +118,16 @@ public abstract class AbstractTest implements Serializable {
                         testCallback.onProgress(Double.valueOf(index * 100).intValue());
                         break;
                     case "status.geoip_lookup":
+                        if (is_rerun) {
+                            this.network = new Network();
+                            network.network_name = event.value.probe_network_name;
+                            network.asn = event.value.probe_asn;
+                            network.ip = event.value.probe_ip;
+                            network.country_code = event.value.probe_cc;
+                            network.network_type = ReachabilityManager.getNetworkType(c);
+                        } else {
+                            this.network=null;
+                        }
                         saveNetworkInfo(event.value, result, c);
                         break;
                     case "status.report_create":
@@ -117,6 +143,14 @@ public abstract class AbstractTest implements Serializable {
                         }
                         break;
                     case "log":
+                        switch (event.value.log_level) {
+                            case "WARNING":
+                                logger.w(TAG, event.value.message);
+                                break;
+                            default:
+                                logger.i(TAG, event.value.message);
+                                break;
+                        }
                         if (logFile == null) break;
                         FileUtils.writeStringToFile(
                                 logFile,
@@ -145,8 +179,11 @@ public abstract class AbstractTest implements Serializable {
                                 m.is_failed = true;
                             else
                                 onEntry(c, pm, jr, m);
+                            if (network!=null ){
+                                m.rerun_network = gson.toJson(network);
+                            }
                             m.save();
-                            File entryFile = Measurement.getEntryFile(c, m.id, m.test_name);
+                            File entryFile = Measurement.getReportFile(c, m.id, m.test_name);
                             entryFile.getParentFile().mkdirs();
                             FileUtils.writeStringToFile(
                                     entryFile,
@@ -183,6 +220,7 @@ public abstract class AbstractTest implements Serializable {
                         ThirdPartyServices.logException(new MKException(event));
                         break;
                     case "task_terminated":
+                        onTaskTerminated(event.value, c);
                         /*
                          * The task will be interrupted so the current
                          * measurement data will not show up.
@@ -192,6 +230,7 @@ public abstract class AbstractTest implements Serializable {
                         break;
                     default:
                         Log.w(UNUSED_KEY, event.key);
+                        logger.w(UNUSED_KEY,event.key);
                         break;
                 }
             } catch (Exception e) {
@@ -260,6 +299,15 @@ public abstract class AbstractTest implements Serializable {
         }
     }
 
+    protected void onTaskTerminated(EventResult.Value value, Context context){
+        Measurement measurement = measurements.get(value.idx);
+        if (measurement != null) {
+            if(measurement.is_uploaded){
+                measurement.deleteReportFile(context);
+            }
+        }
+    }
+
     private void setDataUsage(EventResult.Value value, Result result) {
         if (result == null) return;
         result.data_usage_down = result.data_usage_down + Double.valueOf(value.downloaded_kb).longValue();
@@ -311,6 +359,10 @@ public abstract class AbstractTest implements Serializable {
 
     public void setOrigin(String origin) {
         this.origin = origin;
+    }
+
+    public boolean isAutoRun() {
+        return Objects.equals(origin, AUTORUN);
     }
 
     public interface TestCallback {

@@ -55,7 +55,7 @@ public final class OONICheckInConfig {
         this.softwareVersion = softwareVersion;
         webConnectivity = new CheckInConfigWebConnectivity();
         for (String category : categories) {
-            this.webConnectivity.add(category);
+            this.webConnectivity.addCategory(category);
         }
     }
 
@@ -69,5 +69,13 @@ public final class OONICheckInConfig {
         c.setSoftwareVersion(softwareVersion);
         c.setWebConnectivity(webConnectivity);
         return c;
+    }
+
+    public boolean isCharging() {
+        return charging;
+    }
+
+    public boolean isOnWiFi() {
+        return onWiFi;
     }
 }

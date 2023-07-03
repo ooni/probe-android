@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="org.openobservatory.ooniprobe">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 	<uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+	<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
 	<permission
-		android:name="org.openobservatory.ooniprobe.permission.C2D_MESSAGE"
+		android:name="${applicationId}.permission.C2D_MESSAGE"
 		android:protectionLevel="signature" />
 
-	<uses-permission android:name="org.openobservatory.ooniprobe.permission.C2D_MESSAGE" />
+	<uses-permission android:name="${applicationId}.permission.C2D_MESSAGE" />
 
 	<application
 		android:name=".common.Application"
@@ -75,7 +75,7 @@
 			android:screenOrientation="userPortrait"
 			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
 			<intent-filter>
-				<action android:name="org.openobservatory.ooniprobe.activity.InfoActivity" />
+				<action android:name="${applicationId}.activity.InfoActivity" />
 
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
@@ -88,7 +88,7 @@
 			android:screenOrientation="userPortrait"
 			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App">
 			<intent-filter>
-				<action android:name="org.openobservatory.ooniprobe.activity.ProxyActivity" />
+				<action android:name="${applicationId}.activity.ProxyActivity" />
 
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
@@ -100,7 +100,7 @@
 			android:parentActivityName=".activity.PreferenceActivity"
 			android:screenOrientation="userPortrait">
 			<intent-filter>
-				<action android:name="org.openobservatory.ooniprobe.activity.CustomWebsiteActivity" />
+				<action android:name="${applicationId}.activity.CustomWebsiteActivity" />
 
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
@@ -114,32 +114,40 @@
 			android:screenOrientation="userPortrait"
 			android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.App">
 			<intent-filter>
+				<action android:name="android.intent.action.SEND" />
+				<category android:name="android.intent.category.DEFAULT" />
+
+				<action android:name="${applicationId}.nettest" />
+
+				<data android:mimeType="text/plain" />
+			</intent-filter>
+			<intent-filter android:autoVerify="true">
 				<action android:name="android.intent.action.VIEW" />
 
 				<category android:name="android.intent.category.DEFAULT" />
 				<category android:name="android.intent.category.BROWSABLE" />
 
-				<action android:name="org.openobservatory.ooniprobe.nettest" />
+				<action android:name="${applicationId}.nettest" />
 
 				<data
 					android:host="run.ooni.io"
 					android:pathPrefix="/nettest"
 					android:scheme="https" />
 			</intent-filter>
-			<intent-filter>
+			<intent-filter android:autoVerify="true">
 				<action android:name="android.intent.action.VIEW" />
 
 				<category android:name="android.intent.category.DEFAULT" />
 				<category android:name="android.intent.category.BROWSABLE" />
 
-				<action android:name="org.openobservatory.ooniprobe.nettest" />
+				<action android:name="${applicationId}.nettest" />
 
 				<data
 					android:host="run.ooni.io"
 					android:pathPrefix="/nettest"
 					android:scheme="http" />
 			</intent-filter>
-			<intent-filter>
+			<intent-filter android:autoVerify="true">
 				<action android:name="android.intent.action.VIEW" />
 
 				<category android:name="android.intent.category.DEFAULT" />
@@ -151,6 +159,18 @@
 			</intent-filter>
 		</activity>
 
+        <activity
+            android:name=".activity.LogActivity"
+            android:exported="false"
+            android:label="LogActivity"
+            android:parentActivityName=".activity.PreferenceActivity">
+            <intent-filter>
+                <action android:name="${applicationId}.activity.LogActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
 		<service
 			android:name=".common.service.RunTestService"
 			android:icon="@drawable/notification_icon"
@@ -159,10 +179,21 @@
 			android:name=".common.service.RunTestJobService"
 			android:label="Run Test Service"
 			android:permission="android.permission.BIND_JOB_SERVICE"/>
-        <service
-            android:name=".common.service.ConnectivityChangeService"
-            android:enabled="true"
-            android:exported="true"/>
+		<service
+			android:name=".common.service.ConnectivityChangeService"
+			android:enabled="true"
+			android:exported="true"/>
+		<provider
+			android:name="androidx.core.content.FileProvider"
+			android:authorities="${applicationId}.provider"
+			android:exported="false"
+			android:grantUriPermissions="true">
+			<!-- resource file to create -->
+			<meta-data
+				android:name="android.support.FILE_PROVIDER_PATHS"
+				android:resource="@xml/file_paths">
+			</meta-data>
+		</provider>
 	</application>
 
 </manifest>

@@ -39,6 +39,7 @@ public class PreferenceManager {
 	public static final String AUTORUN_COUNT = "autorun_count";
 	public static final String AUTORUN_DATE = "autorun_last_date";
 	public static final int IGNORE_OPTIMIZATION_REQUEST = 15;
+	public static final int COUNT_WEBSITE_CATEGORIES = 31;
 	public static final int ASK_UPDATE_APP = 16;
 
 	private final SharedPreferences sp;
@@ -272,6 +273,14 @@ public class PreferenceManager {
 		return count;
 	}
 
+	public void updateAllWebsiteCategories(boolean value) {
+		SharedPreferences.Editor ed = sp.edit();
+		for (String key : r.getStringArray(R.array.CategoryCodes)){
+			ed.putBoolean(key,value);
+		}
+		ed.apply();
+	}
+
 	public boolean canCallDeleteJson(){
 		long lastCalled = sp.getLong(DELETE_JSON_KEY, 0);
 
@@ -374,6 +383,14 @@ public class PreferenceManager {
 			return r.getString(R.string.Dashboard_Overview_LastRun_Never);
 		Date date = new Date(timestamp);
 		return DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), date).toString();
+	}
+
+	public  boolean isExperimentalOn(){
+		return sp.getBoolean(r.getString(R.string.experimental), true);
+	}
+
+	public  boolean isLongRunningTestsInForeground(){
+		return sp.getBoolean(r.getString(R.string.long_running_tests_in_foreground), true);
 	}
 
 }

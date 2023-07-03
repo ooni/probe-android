@@ -71,6 +71,8 @@
   <string name="Dashboard_Circumvention_Overview_Paragraph">Check whether [Psiphon](https://ooni.org/nettest/psiphon/), [Tor](https://ooni.org/nettest/tor/) or [RiseupVPN](https://ooni.org/nettest/riseupvpn/) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Experimental_Card_Description">Run new experimental tests</string>
   <string name="Dashboard_Experimental_Overview_Paragraph">Run the following new experimental tests developed by the OONI team:\n%1$s\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
+  <string name="Dashboard_Experimental_Overview_Paragraph_AutomatedTesting">The following tests will only be run as part of automated testing:</string>
+  <string name="Dashboard_DisabledTests_Label">Disabled Tests</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>
@@ -291,6 +293,8 @@
   <string name="Modal_Autorun_BatteryOptimization">OONI Probe cannot run automatically without battery optimization. Do you want to try again?</string>
   <string name="Modal_DisableVPN_Title">Please disable your VPN connection.</string>
   <string name="Modal_DisableVPN_Message">If you run OONI Probe with a VPN enabled, the test results may appear to come from the wrong country. Please disable your VPN connection.</string>
+  <string name="Modal_UploadVPNResults_Title">Some measurements were taken over VPN.</string>
+  <string name="Modal_UploadVPNResults_Message">If you upload measurements taken when VPN enabled, the test results may appear to come from the wrong country.</string>
   <string name="Toast_ResultsUploaded">Upload successful</string>
   <string name="Modal_DisplayFailureLog">Display failure log</string>
   <string name="Modal_EnableNotifications_Title">Get updates on internet censorship</string>
@@ -372,11 +376,15 @@
   <string name="Settings_Sharing_IncludeCountryCode_PopUp">This information (e.g. IT for Italy) is required to identify which country the measurements are collected from. Are you sure you want to disable this option?</string>
   <string name="Settings_Sharing_Footer">By publishing results, you are increasing transparency of network interference and supporting the OONI community. \n\nNetwork information (i.e. Autonomous System Number) is required for identifying Internet Service Providers.</string>
   <string name="Settings_TestOptions_Label">Test options</string>
+  <string name="Settings_TestOptions_Footer">What you configure through the above test settings (e.g. disabling the WhatsApp test) will apply to tests run manually, as well as to tests run automatically (when automated testing is enabled).</string>
+  <string name="Settings_TestOptions_LongRunningTest">Long running test</string>
+  <string name="Settings_TestOptions_RunLongRunningTests">Run long running tests in foreground?</string>
   <string name="Settings_Privacy_Label">Privacy</string>
   <string name="Settings_Privacy_SendCrashReports">Send crash reports</string>
   <string name="Settings_Advanced_Label">Advanced</string>
   <string name="Settings_DarkMode_Label">Dark Mode</string>
   <string name="Settings_Advanced_DebugLogs">Debug logs</string>
+  <string name="Settings_Advanced_RecentLogs">See recent logs</string>
   <string name="Settings_Advanced_LanguageSettings_Title">Language Setting</string>
   <string name="Settings_Advanced_LanguageSettings_PopUp">Select Language</string>
   <string name="Settings_Advanced_UseDomainFronting">Always use domain fronting</string>
@@ -412,6 +420,7 @@
   <string name="Settings_Websites_CustomURL_NoURLEntered">No URLs entered</string>
   <string name="Settings_Websites_CustomURL_Run">Run</string>
   <string name="Settings_Websites_CustomURL_Add">Add website</string>
+  <string name="Settings_Websites_CustomURL_LoadFromTemplate">Load from template</string>
   <string name="Settings_Websites_TestCount">Number of tested websites (0 means all)</string>
   <string name="Settings_InstantMessaging_TestWhatsApp">Test WhatsApp</string>
   <string name="Settings_InstantMessaging_TestTelegram">Test Telegram</string>

@@ -13,6 +13,7 @@ import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.test.EngineProvider;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
+import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,15 +39,13 @@ public class GenerateAutoRunServiceSuite {
             OONISession session = EngineProvider.get().newSession(
                     EngineProvider.get().getDefaultSessionConfig(
                             app,
-                            BuildConfig.SOFTWARE_NAME,
+                            String.join("-",BuildConfig.SOFTWARE_NAME, AbstractTest.UNATTENDED),
                             BuildConfig.VERSION_NAME,
                             new LoggerArray(),
                             pm.getProxyURL()
                     )
             );
             OONIContext ooniContext = session.newContextWithTimeout(30);
-            session.maybeUpdateResources(ooniContext);
-
             OONICheckInResults results = session.checkIn(ooniContext, config);
 
             if (results.getWebConnectivity() != null) {
@@ -61,7 +60,7 @@ public class GenerateAutoRunServiceSuite {
                         app,
                         "web_connectivity",
                         inputs,
-                        "autorun"
+                        AbstractTest.AUTORUN
                 );
             }
 

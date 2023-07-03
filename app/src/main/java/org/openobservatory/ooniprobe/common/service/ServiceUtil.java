@@ -9,16 +9,20 @@ import android.os.BatteryManager;
 
 import androidx.core.content.ContextCompat;
 
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+
 import org.openobservatory.engine.OONICheckInConfig;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.domain.GenerateAutoRunServiceSuite;
-import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.CircumventionSuite;
+import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
+import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 
 import java.util.ArrayList;
 
@@ -49,7 +53,7 @@ public class ServiceUtil {
         */
         builder.setPeriodic(60 * 60 * 1000);
         builder.setPersisted(true); //Job scheduled to work after reboot
-        
+
         //JobScheduler is specifically designed for inexact timing, so it can combine jobs from multiple apps, to try to reduce power consumption.
         JobScheduler jobScheduler = ContextCompat.getSystemService(context, JobScheduler.class);;
         if (jobScheduler != null) {
@@ -67,41 +71,36 @@ public class ServiceUtil {
     public static void callCheckInAPI(Application app) {
         app.getServiceComponent().inject(d);
 
-        BatteryManager batteryManager = (BatteryManager) app.getSystemService(Context.BATTERY_SERVICE);
-        boolean workingOnWifi = ReachabilityManager.getNetworkType(app).equals(ReachabilityManager.WIFI);
-        boolean phoneCharging = false;
-        String[] categories = d.preferenceManager.getEnabledCategoryArr().toArray(new String[0]);
         boolean isVPNInUse = ReachabilityManager.isVPNinUse(app);
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            phoneCharging = batteryManager.isCharging();
-        }
+        OONICheckInConfig config = app.getOONICheckInConfig();
 
-        if (!d.generateAutoRunServiceSuite.shouldStart(workingOnWifi,phoneCharging, isVPNInUse)) {
+        if (!d.generateAutoRunServiceSuite.shouldStart(config.isOnWiFi(),config.isCharging(), isVPNInUse)) {
             return;
         }
 
-        OONICheckInConfig config = new OONICheckInConfig(
-                BuildConfig.SOFTWARE_NAME,
-                BuildConfig.VERSION_NAME,
-                workingOnWifi,
-                phoneCharging,
-                categories
-               );
 
         AbstractSuite suite = d.generateAutoRunServiceSuite.generate(config);
         ArrayList<AbstractSuite> testSuites = new ArrayList<>();
         testSuites.add(suite);
-        testSuites.add(new InstantMessagingSuite());
-        testSuites.add(new CircumventionSuite());
+        testSuites.add(InstantMessagingSuite.initForAutoRun());
+        testSuites.add(CircumventionSuite.initForAutoRun());
+        testSuites.add(PerformanceSuite.initForAutoRun());
+        testSuites.add(ExperimentalSuite.initForAutoRun());
+        ServiceUtil.startRunTestService(app, testSuites, false);
 
-        if (suite != null) {
-            Intent serviceIntent = new Intent(app, RunTestService.class);
-            serviceIntent.putExtra("testSuites", testSuites);
-            serviceIntent.putExtra("storeDB", false);
-            ContextCompat.startForegroundService(app, serviceIntent);
-        }
+    }
 
+
+    public static void startRunTestService(Context context, ArrayList<AbstractSuite> iTestSuites, boolean storeDB) {
+        ArrayList<AbstractSuite> testSuites = Lists.newArrayList(
+                Iterables.filter(Iterables.filter(iTestSuites, item -> item != null), testSuite -> !testSuite.isTestEmpty(d.preferenceManager))
+        );
+
+        Intent serviceIntent = new Intent(context, RunTestService.class);
+        serviceIntent.putExtra("testSuites", testSuites);
+        serviceIntent.putExtra("storeDB", storeDB);
+        ContextCompat.startForegroundService(context, serviceIntent);
     }
 
     public static void scheduleConnectivityChangeService(Context context) {

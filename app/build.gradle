@@ -2,16 +2,15 @@ apply plugin: 'com.android.application'
 apply from: 'jacoco.gradle'
 
 android {
-    compileSdkVersion 31
-    buildToolsVersion "30.0.3"
+    compileSdk 33
     ndkVersion '22.0.7026061'
 
 	defaultConfig {
 		applicationId 'org.openobservatory.ooniprobe'
-		minSdkVersion 21
-		targetSdkVersion 31
-        versionName '3.6.1'
-        versionCode 89
+        minSdk 21
+        targetSdk 33
+        versionName '3.8.2'
+        versionCode 100
 		testInstrumentationRunner "org.openobservatory.ooniprobe.TestAndroidJUnitRunner"
 		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://countly.ooni.io"'
@@ -63,7 +62,7 @@ android {
         dev {
             dimension 'testing'
             applicationIdSuffix '.dev'
-            versionName versionNameDate()
+            versionNameSuffix "-beta.1"
             versionCode versionCodeDate()
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-dev"'
             resValue "string", "APP_NAME", "OONI Dev"
@@ -72,7 +71,7 @@ android {
         experimental {
             dimension 'testing'
             applicationIdSuffix '.experimental'
-            versionName versionNameDate()
+            versionNameSuffix "-experimental.1"
             versionCode versionCodeDate()
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-experimental"'
             resValue "string", "APP_NAME", "OONI Exp"
@@ -95,18 +94,22 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        viewBinding = true
+    }
+    namespace 'org.openobservatory.ooniprobe'
 }
 
 dependencies {
     implementation project(path: ':engine')
 
 // AndroidX
-	implementation 'androidx.appcompat:appcompat:1.3.1'
-	implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
-	implementation 'androidx.lifecycle:lifecycle-process:2.4.0'
-	implementation 'androidx.preference:preference:1.1.1'
-	implementation 'com.google.android.material:material:1.4.0'
-	implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
+	implementation 'androidx.appcompat:appcompat:1.4.2'
+	implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+	implementation 'androidx.lifecycle:lifecycle-process:2.5.1'
+	implementation 'androidx.preference:preference:1.2.0'
+	implementation 'com.google.android.material:material:1.6.1'
+	implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
 	implementation 'com.google.guava:guava:30.1.1-android'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
@@ -125,7 +128,7 @@ dependencies {
 
 	implementation 'com.github.xanscale.LocalhostToolkit:app:19.05.01'
 	implementation 'com.airbnb.android:lottie:3.0.7'
-	implementation 'com.google.code.gson:gson:2.8.6'
+	implementation 'com.google.code.gson:gson:2.8.9'
 	implementation 'ru.noties:markwon:2.0.1'
 	implementation 'commons-io:commons-io:2.6'
 	//arcview to fragment_dashboard
@@ -134,13 +137,16 @@ dependencies {
 // Flavor
 	fullImplementation platform('com.google.firebase:firebase-bom:26.3.0')
 	fullImplementation 'com.google.firebase:firebase-messaging'
-	fullImplementation 'ly.count.android:sdk:20.11.1'
-	fullImplementation 'io.sentry:sentry-android:5.2.4'
-	fullImplementation 'com.google.android.play:core:1.10.2'
+	fullImplementation 'ly.count.android:sdk:21.11.0'
+	fullImplementation 'io.sentry:sentry-android:6.3.0'
+	fullImplementation 'com.google.android.play:core:1.10.3'
 
 // Dependency Injection
     implementation 'com.google.dagger:dagger:2.36'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.36'
+
+// Logger
+    implementation project(':applogger')
 
 // Testing
 	// Unit Testing
@@ -148,11 +154,11 @@ dependencies {
 	testImplementation 'androidx.test:core:1.4.0'
 	testImplementation 'androidx.test:runner:1.4.0'
 	testImplementation 'androidx.test:rules:1.4.0'
-	testImplementation 'org.mockito:mockito-core:3.10.0'
-	testImplementation 'org.mockito:mockito-inline:3.10.0'
+	testImplementation 'org.mockito:mockito-core:4.6.1'
+	testImplementation 'org.mockito:mockito-inline:4.6.1'
 	testImplementation 'org.robolectric:robolectric:4.5.1'
 	testImplementation 'com.github.blocoio:faker:1.2.8'
-	testImplementation 'org.ooni:oonimkall:2021.05.13-070256'
+	testImplementation 'org.ooni:oonimkall:2023.06.08-161352'
 	testAnnotationProcessor 'com.google.dagger:dagger-compiler:2.36'
 
 	// Instrumentation Testing
@@ -178,10 +184,6 @@ dependencies {
 
 static def versionCodeDate() {
     return new Date().format("yyyyMMdd").toInteger()
-}
-
-static def versionNameDate() {
-    return new Date().format("yyyy.MM.dd-HH")
 }
 
 if (!getGradle().getStartParameter().getTaskRequests()

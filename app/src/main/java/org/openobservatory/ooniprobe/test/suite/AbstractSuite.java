@@ -34,6 +34,7 @@ public abstract class AbstractSuite implements Serializable {
 	private final int dataUsage;
 	private AbstractTest[] testList;
 	private Result result;
+	private boolean autoRun;
 
 	AbstractSuite(String name, @StringRes int title, @StringRes int cardDesc, @DrawableRes int icon, @DrawableRes int icon_24, @ColorRes int color, @StyleRes int themeLight, @StyleRes int themeDark, @StringRes int desc1, String anim, int dataUsage) {
 		this.title = title;
@@ -132,11 +133,24 @@ public abstract class AbstractSuite implements Serializable {
 		return list;
 	}
 
+	public boolean isTestEmpty(PreferenceManager preferenceManager) {
+		getTestList(preferenceManager);
+		return testList == null || testList.length == 0;
+	}
+
+	public boolean getAutoRun() {
+		return autoRun;
+	}
+
+	public void setAutoRun(boolean autoRun) {
+		this.autoRun = autoRun;
+	}
+
 	public static AbstractSuite getSuite(Application app,
 										 String tn,
 										 @Nullable List<String> urls,
 										 String origin) {
-		for (AbstractSuite suite : TestAsyncTask.SUITES)
+		for (AbstractSuite suite : TestAsyncTask.getSuites())
 			for (AbstractTest test : suite.getTestList(app.getPreferenceManager()))
 				if (test.getName().equals(tn)) {
 					if (urls != null)

@@ -11,24 +11,21 @@ import android.util.Log;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.common.collect.Lists;
-import com.google.common.math.Stats;
-
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 
 import org.openobservatory.engine.LoggerArray;
+import org.openobservatory.engine.OONICheckInConfig;
+import org.openobservatory.engine.OONICheckInResults;
 import org.openobservatory.engine.OONIContext;
 import org.openobservatory.engine.OONISession;
-import org.openobservatory.engine.OONIURLListConfig;
-import org.openobservatory.engine.OONIURLListResult;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.ListUtility;
 import org.openobservatory.ooniprobe.common.MKException;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
+import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
@@ -40,15 +37,13 @@ import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 public class TestAsyncTask extends AsyncTask<Void, String, Void> implements AbstractTest.TestCallback {
-    public static final List<AbstractSuite> SUITES = Arrays.asList(new WebsitesSuite(),
-            new InstantMessagingSuite(), new CircumventionSuite(), new PerformanceSuite(), new ExperimentalSuite());
+
+
     private static final String TAG = "TestAsyncTask";
     public static final String START = "START";
     public static final String PRG = "PRG";
@@ -64,21 +59,24 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     public AbstractSuite currentSuite;
     public AbstractTest currentTest;
     private boolean interrupt;
-    WeakReference<RunTestService> serviceRef;
     private ConnectivityManager manager;
     private ConnectivityManager.NetworkCallback networkCallback;
     private String proxy;
     private boolean store_db = true;
 
-    public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, RunTestService service) {
+    public static List<AbstractSuite> getSuites() {
+        return  Arrays.asList(new WebsitesSuite(),
+                new InstantMessagingSuite(), new CircumventionSuite(), new PerformanceSuite(), new ExperimentalSuite());
+    }
+
+    public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites) {
         this.app = app;
         this.testSuites = testSuites;
-        this.serviceRef = new WeakReference<>(service);
         this.proxy = app.getPreferenceManager().getProxyURL();
     }
 
-    public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, RunTestService service, boolean store_db) {
-        this(app, testSuites, service);
+    public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, boolean store_db) {
+        this(app, testSuites);
         this.store_db = store_db;
     }
 
@@ -92,6 +90,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
             public void onAvailable(Network network) {
                 super.onAvailable(network);
                 Log.i(TAG, "connected to " + (manager.isActiveNetworkMetered() ? "LTE" : "WIFI"));
+                app.getLogger().i(TAG, "connected to " + (manager.isActiveNetworkMetered() ? "LTE" : "WIFI"));
             }
 
             @Override
@@ -99,6 +98,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                 super.onLost(network);
                 //losing active connection stop test
                 Log.i(TAG, "losing active connection");
+                app.getLogger().i(TAG, "losing active connection");
                 interrupt();
             }
         };
@@ -124,8 +124,12 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                         result.is_viewed = false;
                         result.save();
                     }
-                    publishProgress(START, String.valueOf(suiteIdx));
-                    runTest(currentSuite.getTestList(app.getPreferenceManager()));
+
+                    AbstractTest[] tests = currentSuite.getTestList(app.getPreferenceManager());
+                    if (tests.length > 0){
+                        publishProgress(START, String.valueOf(suiteIdx));
+                        runTest(currentSuite.getTestList(app.getPreferenceManager()));
+                    }
                 }
             }
         }
@@ -142,7 +146,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                 if (!interrupt) {
                     Log.d(TAG, "run next suite: " + currentSuite.getName() + " test:" + currentTest.getName());
 
-                    currentTest.run(app, app.getPreferenceManager(), app.getGson(), result, i, this);
+                    currentTest.run(app, app.getPreferenceManager(),app.getLogger(), app.getGson(), result, i, this);
                 }
             }
         } catch (Exception e) {
@@ -159,25 +163,26 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                     app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray(), proxy));
             OONIContext ooniContext = session.newContextWithTimeout(30);
 
-            ThirdPartyServices.addLogExtra("ooniContext", app.getGson().toJson(ooniContext));
-
-            session.maybeUpdateResources(ooniContext);
-            OONIURLListConfig config = new OONIURLListConfig();
-            config.setCategories(app.getPreferenceManager().getEnabledCategoryArr().toArray(new String[0]));
+            OONICheckInConfig config = app.getOONICheckInConfig();
 
             ThirdPartyServices.addLogExtra("config", app.getGson().toJson(config));
 
-            OONIURLListResult results = session.fetchURLList(ooniContext, config);
+            OONICheckInResults results = session.checkIn(ooniContext, config);
 
             ThirdPartyServices.addLogExtra("results", app.getGson().toJson(results));
 
-            if (results.getUrls().size() == 0) {
+            OONICheckInResults.OONICheckInInfoWebConnectivity webConnectivity = results.getWebConnectivity();
+
+            if (webConnectivity == null || webConnectivity.getUrls().size() <= 0) {
                 publishProgress(ERR, app.getString(R.string.Modal_Error_CantDownloadURLs));
                 ThirdPartyServices.logException(new MKException(results));
                 return;
             }
 
-            List<Url> urls = Lists.transform(results.getUrls(), url -> new Url(url.getUrl(), url.getCategoryCode(), url.getCountryCode()));
+            List<Url> urls = Lists.transform(
+                webConnectivity.getUrls(),
+                url -> new Url(url.getUrl(), url.getCategoryCode(), url.getCountryCode())
+            );
             List<String> inputs = Url.saveOrUpdate(urls);
 
             currentTest.setInputs(inputs);
@@ -217,37 +222,12 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     protected void onProgressUpdate(String... values) {
         //Send broadcast to the RunningActivity
         sendBroadcast(values);
-        //And update the notification
-        String key = values[0];
-        if (values.length <= 1) return;
-        String value = values[1];
-        switch (key) {
-            case TestAsyncTask.RUN:
-                Log.d(TAG, "TestAsyncTask.RUN");
-                serviceRef.get().builder.setContentText(value)
-                        .setProgress(currentSuite.getTestList(app.getPreferenceManager()).length * 100, 0, false);
-                serviceRef.get().notificationManager.notify(RunTestService.NOTIFICATION_ID, serviceRef.get().builder.build());
-                break;
-            case TestAsyncTask.PRG:
-                Log.d(TAG, "TestAsyncTask.PRG " + value);
-                int prgs = Integer.parseInt(value);
-                serviceRef.get().builder.setProgress(currentSuite.getTestList(app.getPreferenceManager()).length * 100, prgs, false);
-                serviceRef.get().notificationManager.notify(RunTestService.NOTIFICATION_ID, serviceRef.get().builder.build());
-                break;
-            case TestAsyncTask.INT:
-                Log.d(TAG, "TestAsyncTask.INT");
-                serviceRef.get().builder.setContentText(app.getString(R.string.Dashboard_Running_Stopping_Title))
-                        .setProgress(0, 0, true);
-                serviceRef.get().notificationManager.notify(RunTestService.NOTIFICATION_ID, serviceRef.get().builder.build());
-                break;
-        }
     }
 
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
         sendBroadcast(END);
-        serviceRef.get().stopSelf();
         unregisterConnChange();
     }
 
@@ -278,9 +258,9 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     }
 
     public int getMax(PreferenceManager preferenceManager) {
-        return (int) Stats.of(Lists.transform(
+        return ListUtility.sum(Lists.transform(
                 testSuites,
                 testSuite -> testSuite.getTestList(preferenceManager).length * 100
-        )).sum();
+        ));
     }
 }

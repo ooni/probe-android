@@ -1,7 +1,9 @@
 package org.openobservatory.ooniprobe.common;
 
 import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
+import android.os.BatteryManager;
 
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
@@ -12,10 +14,12 @@ import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.config.FlowLog;
 import com.raizlabs.android.dbflow.config.FlowManager;
 
+import org.openobservatory.engine.OONICheckInConfig;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.client.OONIAPIClient;
 import org.openobservatory.ooniprobe.common.service.ConnectivityChangeService;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
+import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.di.ActivityComponent;
 import org.openobservatory.ooniprobe.di.AppComponent;
@@ -26,6 +30,8 @@ import org.openobservatory.ooniprobe.di.ServiceComponent;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.inject.Inject;
 
@@ -37,8 +43,10 @@ public class Application extends android.app.Application {
 	@Inject Gson _gson;
 	@Inject OkHttpClient _okHttpClient;
 	@Inject OONIAPIClient _apiClient;
+	ExecutorService executorService = Executors.newFixedThreadPool(4);
 
 	public AppComponent component;
+	@Inject AppLogger logger;
 
 	@Override public void onCreate() {
 		super.onCreate();
@@ -50,21 +58,44 @@ public class Application extends android.app.Application {
 			FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
 		AppLifecycleObserver appLifecycleObserver = new AppLifecycleObserver();
 		ProcessLifecycleOwner.get().getLifecycle().addObserver(appLifecycleObserver);
-		if (_preferenceManager.canCallDeleteJson())
-			Measurement.deleteUploadedJsons(this);
 		Measurement.deleteOldLogs(this);
 		ThirdPartyServices.reloadConsents(this);
 
+		executorService.execute(() -> {
+			if (_preferenceManager.canCallDeleteJson())
+				Measurement.deleteUploadedJsons(Application.this);
+			Measurement.deleteOldLogs(Application.this);
+		});
+		ThirdPartyServices.reloadConsents(Application.this);
 		if (_preferenceManager.isAutomaticallyRunTestOnNetworkChange()){
 			ServiceUtil.scheduleConnectivityChangeService(this);
 		}
-
 		LocaleUtils.setLocale(new Locale(_preferenceManager.getSettingsLanguage()));
 		LocaleUtils.updateConfig(this, getBaseContext().getResources().getConfiguration());
 	}
 
 	protected AppComponent buildDagger() {
 		return DaggerAppComponent.builder().applicationModule(new ApplicationModule(this)).build();
+	}
+
+	public OONICheckInConfig getOONICheckInConfig() {
+
+		BatteryManager batteryManager = (BatteryManager) this.getSystemService(Context.BATTERY_SERVICE);
+		boolean workingOnWifi = ReachabilityManager.getNetworkType(this).equals(ReachabilityManager.WIFI);
+		boolean phoneCharging = false;
+		String[] categories = getPreferenceManager().getEnabledCategoryArr().toArray(new String[0]);
+
+		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+			phoneCharging = batteryManager.isCharging();
+		}
+
+        return new OONICheckInConfig(
+                BuildConfig.SOFTWARE_NAME,
+                BuildConfig.VERSION_NAME,
+                workingOnWifi,
+                phoneCharging,
+                categories
+        );
 	}
 
 	public AppComponent getComponent() { return component; }
@@ -85,6 +116,10 @@ public class Application extends android.app.Application {
 
 	public PreferenceManager getPreferenceManager() {
 		return _preferenceManager;
+	}
+
+	public AppLogger getLogger() {
+		return logger;
 	}
 
 	public Gson getGson() {
