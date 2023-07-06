@@ -39,10 +39,9 @@ public class NetworkChangeProcessor {
             System.out.println(pm.getLastKnownNetwork());
             if (!Objects.equals(pm.getLastKnownNetwork(), geoLocateResults.getASN())) {
                 pm.setLastKnownNetwork(geoLocateResults.getASN());
-                ServiceUtil.callCheckInAPI(app);
+                ServiceUtil.startRunTestServiceNetworkChanged(app);
             }
         } catch (Exception e) {
-            e.printStackTrace();
             ThirdPartyServices.logException(e);
         }
     }

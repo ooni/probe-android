@@ -23,6 +23,7 @@ import org.openobservatory.ooniprobe.test.suite.CircumventionSuite;
 import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
+import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
 import java.util.ArrayList;
 
@@ -87,6 +88,25 @@ public class ServiceUtil {
         testSuites.add(CircumventionSuite.initForAutoRun());
         testSuites.add(PerformanceSuite.initForAutoRun());
         testSuites.add(ExperimentalSuite.initForAutoRun());
+        ServiceUtil.startRunTestService(app, testSuites, false);
+
+    }
+
+	/**
+	 * Start Tests on Network Changed event.
+	 * @param app
+	 * Application context used to start `RunTestService`.
+	 */
+    public static void startRunTestServiceNetworkChanged(Application app) {
+
+		// TODO: (aanorbel) - Enforce constraints required before tests are run.
+		//  Tag tests with identifier required to set Settings$Options#software_name
+        ArrayList<AbstractSuite> testSuites = new ArrayList<>();
+        testSuites.add(new WebsitesSuite());
+        testSuites.add(new InstantMessagingSuite());
+        testSuites.add(new CircumventionSuite());
+        testSuites.add(new PerformanceSuite());
+        testSuites.add(new ExperimentalSuite());
         ServiceUtil.startRunTestService(app, testSuites, false);
 
     }

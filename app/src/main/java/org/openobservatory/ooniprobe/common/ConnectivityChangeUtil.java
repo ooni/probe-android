@@ -6,6 +6,7 @@ import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
 import android.net.NetworkRequest;
+import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -38,12 +39,24 @@ public class ConnectivityChangeUtil extends ConnectivityManager.NetworkCallback 
     @Override
     public void onAvailable(@NonNull Network network) {
         super.onAvailable(network);
-        NetworkInfo networkInfo = mConnectivityManager.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected()) {
+        if (isNetworkAvailable(network)) {
             networkChangeProcessor.processNetworkPossibleNetworkChange();
         }
         Log.d(TAG, "onAvailable() called: Connected to network");
     }
+
+	private Boolean isNetworkAvailable(Network network) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			if (network == null) return false;
+			NetworkCapabilities actNw = mConnectivityManager.getNetworkCapabilities(network);
+			return actNw != null && (actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
+				|| actNw.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
+				|| actNw.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET));
+		} else {
+			NetworkInfo nwInfo = mConnectivityManager.getActiveNetworkInfo();
+			return nwInfo != null && nwInfo.isConnected();
+		}
+	}
 
     @Override
     public void onLost(@NonNull Network network) {
