@@ -16,6 +16,7 @@ import org.openobservatory.engine.LoggerArray;
 import org.openobservatory.engine.OONICheckInConfig;
 import org.openobservatory.engine.OONICheckInResults;
 import org.openobservatory.engine.OONIContext;
+import org.openobservatory.engine.OONIRunFetchResponse;
 import org.openobservatory.engine.OONISession;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
@@ -32,6 +33,7 @@ import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.CircumventionSuite;
 import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
+import org.openobservatory.ooniprobe.test.suite.OONIRunSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
@@ -64,10 +66,31 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     private String proxy;
     private boolean store_db = true;
 
-    public static List<AbstractSuite> getSuites() {
-        return  Arrays.asList(new WebsitesSuite(),
-                new InstantMessagingSuite(), new CircumventionSuite(), new PerformanceSuite(), new ExperimentalSuite());
-    }
+	public static List<AbstractSuite> getSuites(Application app) {
+		ArrayList<AbstractSuite> testSuites = new ArrayList<>(Arrays.asList(new WebsitesSuite(),
+			new InstantMessagingSuite(), new CircumventionSuite(), new PerformanceSuite(), new ExperimentalSuite()));
+		try {
+			OONISession session = EngineProvider.get().newSession(
+				EngineProvider.get().getDefaultSessionConfig(
+					app,
+					BuildConfig.SOFTWARE_NAME,
+					BuildConfig.VERSION_NAME,
+					new LoggerArray(),
+					app.getPreferenceManager().getProxyURL()
+				)
+			);
+			OONIContext ooniContext = session.newContextWithTimeout(300);
+
+			OONIRunFetchResponse response = session.ooniRunFetch(ooniContext, 297500125102L);
+			List<AbstractTest> tests = Lists.transform(response.descriptor.getNettests(), nettest -> AbstractTest.getTestByName(nettest.getName()));
+			testSuites.add(new OONIRunSuite(response.descriptor.getName(), tests.toArray(new AbstractTest[0])));
+			System.out.println(response.descriptor);
+		} catch (Exception exception) {
+			exception.printStackTrace();
+			ThirdPartyServices.logException(exception);
+		}
+		return testSuites;
+	}
 
     public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites) {
         this.app = app;

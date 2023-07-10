@@ -1,18 +1,25 @@
-apply plugin: 'com.android.library'
+plugins {
+	id 'com.android.library'
+	id 'kotlin-android'
+}
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 34
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 30
+        targetSdkVersion 34
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_11
+		targetCompatibility JavaVersion.VERSION_11
+	}
+
+	kotlinOptions {
+		jvmTarget = '11'
+	}
 
     flavorDimensions 'testing'
     productFlavors {
@@ -32,10 +39,10 @@ android {
 dependencies {
     // For the stable and dev app flavours we're using the library
     // build published at Maven Central.
-    stableImplementation 'org.ooni:oonimkall:2023.06.08-161352'
-    devImplementation 'org.ooni:oonimkall:2023.06.08-161352'
+    //stableImplementation 'org.ooni:oonimkall:2023.06.08-161352'
+    //devImplementation 'org.ooni:oonimkall:2023.06.08-161352'
 
     // For the experimental flavour, you need to compile your own
     // oonimkall.aar and put it into the ../engine-experimental dir
-    experimentalImplementation project(":engine-experimental")
+    implementation project(":engine-experimental")
 }

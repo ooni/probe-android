@@ -76,7 +76,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		super.onResume();
 		items.clear();
 		testSuites.clear();
-		testSuites.addAll(TestAsyncTask.getSuites());
+		testSuites.addAll(TestAsyncTask.getSuites((Application) getActivity().getApplication()));
 
 		ArrayList<AbstractSuite> emptySuites = new ArrayList<>();
 		for (AbstractSuite testSuite : testSuites){

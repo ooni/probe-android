@@ -14,7 +14,11 @@ public final class PESession implements OONISession {
         return newContextWithTimeout(-1);
     }
 
-    public OONIContext newContextWithTimeout(long timeout) {
+	public OONIRunFetchResponse ooniRunFetch(OONIContext ctx, long id) throws Exception {
+		return new OONIRunFetchResponse(session.ooniRunFetch(ctx.ctx,id));
+	}
+
+	public OONIContext newContextWithTimeout(long timeout) {
         return new OONIContext(session.newContextWithTimeout(timeout));
     }
 

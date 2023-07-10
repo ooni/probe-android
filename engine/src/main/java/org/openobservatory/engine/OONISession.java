@@ -17,6 +17,11 @@ public interface OONISession {
      */
     OONIContext newContextWithTimeout(long timeout);
 
+	/**
+	 *
+	 */
+	OONIRunFetchResponse ooniRunFetch(OONIContext ctx, long id) throws Exception;
+
     /** submit submits a measurement and returns the submission results. */
     OONISubmitResults submit(OONIContext ctx, String measurement) throws Exception;
 
