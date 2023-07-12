@@ -157,6 +157,32 @@
 					android:host="nettest"
 					android:scheme="ooni" />
 			</intent-filter>
+
+			<intent-filter android:autoVerify="true">
+				<action android:name="android.intent.action.VIEW" />
+
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+
+				<action android:name="${applicationId}.nettest" />
+
+				<data
+					android:host="run.test.ooni.org"
+					android:pathPrefix="/v2"
+					android:scheme="https" />
+			</intent-filter>
+
+			<intent-filter android:autoVerify="true">
+				<action android:name="android.intent.action.VIEW" />
+
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+
+				<data
+					android:host="runv2"
+					android:scheme="ooni" />
+			</intent-filter>
+
 		</activity>
 
         <activity

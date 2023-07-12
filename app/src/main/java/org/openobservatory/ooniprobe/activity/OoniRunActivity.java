@@ -16,16 +16,27 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 
+import org.openobservatory.engine.LoggerArray;
+import org.openobservatory.engine.OONIContext;
+import org.openobservatory.engine.OONIRunDescriptor;
+import org.openobservatory.engine.OONIRunFetchResponse;
+import org.openobservatory.engine.OONISession;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.domain.GetTestSuite;
 import org.openobservatory.ooniprobe.domain.VersionCompare;
 import org.openobservatory.ooniprobe.domain.models.Attribute;
 import org.openobservatory.ooniprobe.item.TextItem;
+import org.openobservatory.ooniprobe.test.EngineProvider;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
+import org.openobservatory.ooniprobe.test.suite.OONIRunSuite;
+import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -92,10 +103,44 @@ public class OoniRunActivity extends AbstractActivity {
 		}
 		else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
 			Uri uri = intent.getData();
-			String mv = uri == null ? null : uri.getQueryParameter("mv");
-			String tn = uri == null ? null : uri.getQueryParameter("tn");
-			String ta = uri == null ? null : uri.getQueryParameter("ta");
-			loadScreen(mv, tn, ta);
+			switch (uri.getHost()){
+				case "nettest":
+				case "run.ooni.io": {
+					String mv = uri == null ? null : uri.getQueryParameter("mv");
+					String tn = uri == null ? null : uri.getQueryParameter("tn");
+					String ta = uri == null ? null : uri.getQueryParameter("ta");
+					loadScreen(mv, tn, ta);
+				}
+				break;
+				case "runv2":
+				case "run.test.ooni.org": {
+					try {
+						String runId = uri.getPathSegments().get(0);
+						System.out.println(Long.parseLong(runId));
+						OONISession session = EngineProvider.get().newSession(
+								EngineProvider.get().getDefaultSessionConfig(
+										this,
+										BuildConfig.SOFTWARE_NAME,
+										BuildConfig.VERSION_NAME,
+										new LoggerArray(),
+										((Application)getApplication()).getPreferenceManager().getProxyURL()
+								)
+						);
+						OONIContext ooniContext = session.newContextWithTimeout(300);
+
+						OONIRunFetchResponse response = session.ooniRunFetch(ooniContext, Long.parseLong(runId));
+						// TODO: ( aanorbel ) Save desciptor to database.
+						loadScreen(response.descriptor);
+					} catch (Exception exception){
+						ThirdPartyServices.logException(exception);
+						loadInvalidAttributes();
+					}
+				}
+				break;
+				default:
+					loadInvalidAttributes();
+					break;
+			}
 		}
 		else if (Intent.ACTION_SEND.equals(intent.getAction())) {
 			String url = intent.getStringExtra(Intent.EXTRA_TEXT);
@@ -111,6 +156,29 @@ public class OoniRunActivity extends AbstractActivity {
 				loadInvalidAttributes();
 			}
 		}
+	}
+
+	private void loadScreen(OONIRunDescriptor descriptor) {
+		// icon.setImageResource(descriptor.getIcon());
+		icon.setImageResource(R.drawable.ooni_empty_state);
+		title.setText(descriptor.getName());
+		desc.setText(descriptor.getDescription());
+		List<AbstractTest> tests = Lists.transform(
+				descriptor.getNettests(),
+				nettest -> AbstractTest.getTestByName(nettest.getName())
+		);
+		AbstractSuite suite = new OONIRunSuite(
+				descriptor.getName(),
+				tests.toArray(new AbstractTest[0])
+		);
+		run.setOnClickListener(
+				v -> RunningActivity.runAsForegroundService(
+						OoniRunActivity.this,
+						suite.asArray(),
+						this::finish,
+						preferenceManager
+				)
+		);
 	}
 
 	private void loadScreen(String mv, String tn, String ta){
