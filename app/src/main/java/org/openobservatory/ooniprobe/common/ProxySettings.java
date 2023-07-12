@@ -13,8 +13,7 @@ import java.net.UnknownHostException;
  * documentation of proxy activity for the design rationale.
  */
 public class ProxySettings {
-
-    /** scheme is the proxy scheme (e.g., "psiphon", "socks5"). */
+    /** scheme is the proxy scheme (e.g., "psiphon", "tor", "torsf", "socks5"). */
     public ProxyProtocol protocol = ProxyProtocol.NONE;
 
     /** hostname is the hostname for custom proxies. */
@@ -33,10 +32,14 @@ public class ProxySettings {
             settings.protocol = ProxyProtocol.NONE;
         } else if (protocol.equals(ProxyProtocol.PSIPHON.getProtocol())) {
             settings.protocol = ProxyProtocol.PSIPHON;
+        } else if (protocol.equals(ProxyProtocol.TOR.getProtocol())) {
+            settings.protocol = ProxyProtocol.TOR;
+        } else if (protocol.equals(ProxyProtocol.TORSF.getProtocol())) {
+            settings.protocol = ProxyProtocol.TORSF;
         } else if (protocol.equals(ProxyProtocol.SOCKS5.getProtocol())) {
             settings.protocol = ProxyProtocol.SOCKS5;
         } else {
-            // This is where we will extend the code to add support for
+            // This exception indicates that we need to extend the code to support
             // more proxies, e.g., HTTP proxies.
             throw new InvalidProxyURL("unhandled URL scheme");
         }
@@ -72,10 +75,18 @@ public class ProxySettings {
 
     /** getProxyString returns to you the proxy string you should pass to oonimkall. */
     public String getProxyString() throws URISyntaxException {
-        if (protocol == ProxyProtocol.NONE)
+        if (protocol == ProxyProtocol.NONE) {
             return "";
-        if (protocol == ProxyProtocol.PSIPHON)
-            return "psiphon://";
+        }
+        if (protocol == ProxyProtocol.PSIPHON) {
+            return "psiphon:///";
+        }
+        if (protocol == ProxyProtocol.TOR) {
+            return "tor:///";
+        }
+        if (protocol == ProxyProtocol.TORSF) {
+            return "torsf:///";
+        }
         if (protocol == ProxyProtocol.SOCKS5) {
             // Alright, we now need to construct a new SOCKS5 URL. We are going to defer
             // doing that to the Java standard library (er, the Android stdlib).

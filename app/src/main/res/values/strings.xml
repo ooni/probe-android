@@ -392,6 +392,8 @@
   <string name="Settings_Proxy_Enabled">Proxy</string>
   <string name="Settings_Proxy_None">None</string>
   <string name="Settings_Proxy_Psiphon">Psiphon</string>
+  <string name="Settings_Proxy_Tor">Tor (vanilla)</string>
+  <string name="Settings_Proxy_TorSf">Tor with Snowflake</string>
   <string name="Settings_Proxy_Custom">Custom Proxy</string>
   <string name="Settings_Proxy_Custom_Value">Custom Proxy URL</string>
   <string name="Settings_Proxy_Custom_Protocol">Custom proxy protocol</string>

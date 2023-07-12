@@ -4,6 +4,8 @@ package org.openobservatory.ooniprobe.common;
 public enum ProxyProtocol {
     NONE("none"),
     PSIPHON("psiphon"),
+    TOR("tor"),
+    TORSF("torsf"),
     SOCKS5("socks5");
 
     private String protocol;

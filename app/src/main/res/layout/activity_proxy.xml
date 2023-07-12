@@ -39,6 +39,20 @@
                     android:text="@string/Settings_Proxy_Psiphon" />
 
                 <RadioButton
+                    android:id="@+id/proxyTor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_black"
+                    android:text="@string/Settings_Proxy_Tor" />
+
+                <RadioButton
+                    android:id="@+id/proxyTorSf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_black"
+                    android:text="@string/Settings_Proxy_TorSf" />
+
+                <RadioButton
                     android:id="@+id/proxyCustom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

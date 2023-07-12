@@ -48,9 +48,15 @@ public class ProxyActivity extends AbstractActivity {
      *
      * 1. an empty string means no proxy;
      *
-     * 2. "psiphon://" means that we wanna use psiphon;
+     * 2. "psiphon:///" means that we want to use psiphon;
      *
-     * 3. "socks5://1.2.3.4:5678" or "socks5://[::1]:5678" or "socks5://d.com:5678"
+     * 3. "tor:///" means we want to use tor without any proxy (which is possible
+     * because oonimkall embeds `libtor.a` as a dependency);
+     *
+     * 4. "torsf:///" is like "tor:///" but additionally uses the snowflake
+     * library we also bundle inside of oonimkall;
+     *
+     * 5. "socks5://1.2.3.4:5678" or "socks5://[::1]:5678" or "socks5://d.com:5678"
      * means that we wanna use the given socks5 proxy.
      *
      * Future improvements
@@ -66,8 +72,6 @@ public class ProxyActivity extends AbstractActivity {
      *
      * This implies we can trivially support a vanilla socks5 proxy with username and
      * password by just replacing `psiphon+socks5` with `socks5`.
-     *
-     * We also want to support vanilla tor, using `tor://`.
      *
      * We also want to support vanilla tor with socks5, which is trivially doable
      * using as a scheme the `tor+socks5` scheme.
@@ -93,15 +97,20 @@ public class ProxyActivity extends AbstractActivity {
      * The design and implementation of this class owes to the code contributed
      * by and the suggestion from friendly anonymous users. Thank you!
      */
+
+    // logger is the injected AppLogger instance.
     @Inject
     AppLogger logger;
+
     // TAG is the tag used for logging.
     private final static String TAG = "ProxyActivity";
 
+    // preferenceManager is the injected PreferenceManager instance.
     @Inject
     PreferenceManager preferenceManager;
-    // The following radio group describes the top level choice
-    // in terms of proxying: no proxy, psiphon, or custom.
+
+    // The following radio group describes the top level choice in terms of
+    // proxying: no proxy, psiphon, tor, torsf, or custom.
 
     // proxyRadioGroup is the top-level radio group.
     private RadioGroup proxyRadioGroup;
@@ -112,12 +121,21 @@ public class ProxyActivity extends AbstractActivity {
     // proxyPsiphonRB is the radio button selecting the "psiphon" proxy.
     private RadioButton proxyPsiphonRB;
 
+    // proxyTorRB is the radio button selecting the "tor" proxy.
+    private RadioButton proxyTorRB;
+
+    // proxyTorSfRB is the radio button selecting the "torsf" proxy.
+    private RadioButton proxyTorSfRB;
+
     // proxyCustomRB is the radio button for the "custom" proxy.
     private RadioButton proxyCustomRB;
 
     // The following radio group allows users to choose which specific
     // custom proxy they would like to use. When writing this documentation,
     // only socks5 is available but we will add more options.
+    //
+    // TODO(bassosimone): we need to implement support for HTTP proxies
+    // once https://github.com/ooni/probe-cli/pull/1162 lands.
 
     // customProxyRadioGroup allows you to choose among the different
     // kinds of custom proxies that are available.
@@ -153,6 +171,8 @@ public class ProxyActivity extends AbstractActivity {
         proxyRadioGroup = findViewById(R.id.proxyRadioGroup);
         proxyNoneRB = findViewById(R.id.proxyNone);
         proxyPsiphonRB = findViewById(R.id.proxyPsiphon);
+        proxyTorRB = findViewById(R.id.proxyTor);
+        proxyTorSfRB = findViewById(R.id.proxyTorSf);
         proxyCustomRB = findViewById(R.id.proxyCustom);
         customProxyRadioGroup = findViewById(R.id.customProxyRadioGroup);
         customProxySOCKS5 = findViewById(R.id.customProxySOCKS5);
@@ -196,6 +216,10 @@ public class ProxyActivity extends AbstractActivity {
             proxyNoneRB.setChecked(true);
         } else if (settings.protocol == ProxyProtocol.PSIPHON) {
             proxyPsiphonRB.setChecked(true);
+        } else if (settings.protocol == ProxyProtocol.TOR) {
+            proxyTorRB.setChecked(true);
+        } else if (settings.protocol == ProxyProtocol.TORSF) {
+            proxyTorSfRB.setChecked(true);
         } else if (settings.protocol == ProxyProtocol.SOCKS5) {
             proxyCustomRB.setChecked(true);
         } else {
@@ -225,6 +249,10 @@ public class ProxyActivity extends AbstractActivity {
             if (checkedId == R.id.proxyNone) {
                 customProxySetEnabled(false);
             } else if (checkedId == R.id.proxyPsiphon) {
+                customProxySetEnabled(false);
+            } else if (checkedId == R.id.proxyTor) {
+                customProxySetEnabled(false);
+            } else if (checkedId == R.id.proxyTorSf) {
                 customProxySetEnabled(false);
             } else if (checkedId == R.id.proxyCustom) {
                 customProxySetEnabled(true);
@@ -359,6 +387,24 @@ public class ProxyActivity extends AbstractActivity {
         // proxy configuration for psiphon and move on.
         if (proxyPsiphonRB.isChecked()) {
             settings.protocol = ProxyProtocol.PSIPHON;
+            saveSettings();
+            super.onBackPressed();
+            return;
+        }
+
+        // If the tor proxy is checked then write back the right
+        // proxy configuration for tor and move on.
+        if (proxyTorRB.isChecked()) {
+            settings.protocol = ProxyProtocol.TOR;
+            saveSettings();
+            super.onBackPressed();
+            return;
+        }
+
+        // If the torsf proxy is checked then write back the right
+        // proxy configuration for torsf and move on.
+        if (proxyTorSfRB.isChecked()) {
+            settings.protocol = ProxyProtocol.TORSF;
             saveSettings();
             super.onBackPressed();
             return;
