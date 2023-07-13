@@ -60,7 +60,6 @@ public class OverviewActivity extends AbstractActivity {
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		setTitle(testSuite.getTitle());
-		getResources().getString()
 		icon.setImageResource(testSuite.getIcon());
 		customUrl.setVisibility(testSuite.getName().equals(WebsitesSuite.NAME) ? View.VISIBLE : View.GONE);
 		if(testSuite.isTestEmpty(preferenceManager)){
