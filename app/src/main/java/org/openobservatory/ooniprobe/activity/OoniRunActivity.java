@@ -178,25 +178,27 @@ public class OoniRunActivity extends AbstractActivity {
 					return test;
 				}
 		);
+
+		TestDescriptor testDescriptor = TestDescriptor.Builder.aTestDescriptor()
+						.withRunId(runId)
+						.withName(descriptor.getName())
+						.withNameIntl(descriptor.getNameIntl())
+						.withShortDescription(descriptor.getShortDescription())
+						.withDescription(descriptor.getDescription())
+						.withDescriptionIntl(descriptor.getDescriptionIntl())
+						.withIcon(descriptor.getIcon())
+						.withArchived(descriptor.getArchived())
+						.withAuthor(descriptor.getAuthor())
+						.withNettests(descriptor.getNettests())
+						.build();
 		AbstractSuite suite = new OONIRunSuite(
-				descriptor.getName(),
+				testDescriptor,
 				tests.toArray(new AbstractTest[0])
 		);
 		run.setOnClickListener(
 				v -> {
 					TestDescriptorManager.save(
-							TestDescriptor.Builder.aTestDescriptor()
-									.withRunId(runId)
-									.withName(descriptor.getName())
-									.withNameIntl(descriptor.getNameIntl())
-									.withShortDescription(descriptor.getShortDescription())
-									.withDescription(descriptor.getDescription())
-									.withDescriptionIntl(descriptor.getDescriptionIntl())
-									.withIcon(descriptor.getIcon())
-									.withArchived(descriptor.getArchived())
-									.withAuthor(descriptor.getAuthor())
-									.withNettests(descriptor.getNettests())
-									.build()
+							testDescriptor
 					);
 					RunningActivity.runAsForegroundService(
 							OoniRunActivity.this,

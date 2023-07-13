@@ -179,17 +179,17 @@ public class Result extends BaseModel implements Serializable {
 	public AbstractSuite getTestSuite() {
 		switch (test_group_name) {
 			case WebsitesSuite.NAME:
-				return new WebsitesSuite();
+				return new WebsitesSuite(FlowManager.getContext().getResources());
 			case InstantMessagingSuite.NAME:
-				return new InstantMessagingSuite();
+				return new InstantMessagingSuite(FlowManager.getContext().getResources());
 			case MiddleBoxesSuite.NAME:
-				return new MiddleBoxesSuite();
+				return new MiddleBoxesSuite(FlowManager.getContext().getResources());
 			case PerformanceSuite.NAME:
-				return new PerformanceSuite();
+				return new PerformanceSuite(FlowManager.getContext().getResources());
 			case CircumventionSuite.NAME:
-				return new CircumventionSuite();
+				return new CircumventionSuite(FlowManager.getContext().getResources());
 			case ExperimentalSuite.NAME:
-				return new ExperimentalSuite();
+				return new ExperimentalSuite(FlowManager.getContext().getResources());
 			default:
 				return null;
 		}

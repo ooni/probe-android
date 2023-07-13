@@ -2,6 +2,7 @@ package org.openobservatory.ooniprobe.test;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.os.AsyncTask;
@@ -69,9 +70,9 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     private String proxy;
     private boolean store_db = true;
 
-	public static List<AbstractSuite> getSuites() {
-		ArrayList<AbstractSuite> testSuites = new ArrayList<>(Arrays.asList(new WebsitesSuite(),
-			new InstantMessagingSuite(), new CircumventionSuite(), new PerformanceSuite(), new ExperimentalSuite()));
+	public static List<AbstractSuite> getSuites(Resources resources) {
+		ArrayList<AbstractSuite> testSuites = new ArrayList<>(Arrays.asList(new WebsitesSuite(resources),
+			new InstantMessagingSuite(resources), new CircumventionSuite(resources), new PerformanceSuite(resources), new ExperimentalSuite(resources)));
 
         List<TestDescriptor> testDescriptors = TestDescriptorManager.getAll();
         testSuites.addAll(
@@ -80,7 +81,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                            (List<OONIRunNettest>)descriptor.getNettests(),
                            nettest -> AbstractTest.getTestByName(nettest.getName())
                    );
-                   return new OONIRunSuite(descriptor.getName(), tests.toArray(new AbstractTest[0]));
+                   return new OONIRunSuite(descriptor, tests.toArray(new AbstractTest[0]));
                })
        );
 		return testSuites;

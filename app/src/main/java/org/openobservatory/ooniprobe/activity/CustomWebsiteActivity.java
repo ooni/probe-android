@@ -60,7 +60,7 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
                 if (Patterns.WEB_URL.matcher(sanitizedUrl).matches() && sanitizedUrl.length() < 2084)
                     urls.add(Url.checkExistingUrl(sanitizedUrl).toString());
             }
-            WebsitesSuite suite = new WebsitesSuite();
+            WebsitesSuite suite = new WebsitesSuite(getResources());
             suite.getTestList(preferenceManager)[0].setInputs(urls);
 
             RunningActivity.runAsForegroundService(CustomWebsiteActivity.this, suite.asArray(), this::finish, preferenceManager);

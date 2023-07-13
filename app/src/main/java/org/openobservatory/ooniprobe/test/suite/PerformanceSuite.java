@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.test.suite;
 
+import android.content.res.Resources;
+
 import androidx.annotation.Nullable;
 
 import com.google.common.collect.Lists;
@@ -17,22 +19,22 @@ import java.util.ArrayList;
 public class PerformanceSuite extends AbstractSuite {
 	public static final String NAME = "performance";
 
-	public PerformanceSuite() {
+	public PerformanceSuite(Resources resources) {
 		super(NAME,
-			R.string.Test_Performance_Fullname,
-			R.string.Dashboard_Performance_Card_Description,
+			resources.getString(R.string.Test_Performance_Fullname),
+			resources.getString(R.string.Dashboard_Performance_Card_Description),
 			R.drawable.test_performance,
 			R.drawable.test_performance_24,
 			R.color.color_fuchsia6,
 			R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Performance,
 			R.style.Theme_MaterialComponents_NoActionBar_App_Performance,
-			R.string.Dashboard_Performance_Overview_Paragraph_Updated,
+			resources.getString(R.string.Dashboard_Performance_Overview_Paragraph_Updated),
 			"anim/performance.json",
 			R.string.performance_datausage);
 	}
 
-	public static PerformanceSuite initForAutoRun() {
-		PerformanceSuite suite = new PerformanceSuite();
+	public static PerformanceSuite initForAutoRun(Resources resources) {
+		PerformanceSuite suite = new PerformanceSuite(resources);
 		suite.setAutoRun(true);
 		return suite;
 	}

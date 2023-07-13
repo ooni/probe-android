@@ -83,10 +83,10 @@ public class ServiceUtil {
         AbstractSuite suite = d.generateAutoRunServiceSuite.generate(config);
         ArrayList<AbstractSuite> testSuites = new ArrayList<>();
         testSuites.add(suite);
-        testSuites.add(InstantMessagingSuite.initForAutoRun());
-        testSuites.add(CircumventionSuite.initForAutoRun());
-        testSuites.add(PerformanceSuite.initForAutoRun());
-        testSuites.add(ExperimentalSuite.initForAutoRun());
+        testSuites.add(InstantMessagingSuite.initForAutoRun(app.getResources()));
+        testSuites.add(CircumventionSuite.initForAutoRun(app.getResources()));
+        testSuites.add(PerformanceSuite.initForAutoRun(app.getResources()));
+        testSuites.add(ExperimentalSuite.initForAutoRun(app.getResources()));
         ServiceUtil.startRunTestService(app, testSuites, false);
 
     }

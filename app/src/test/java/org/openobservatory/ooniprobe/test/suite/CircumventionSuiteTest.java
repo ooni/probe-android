@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.test.suite;
 
 import org.junit.Test;
+import org.openobservatory.ooniprobe.TestApplicationProvider;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.Psiphon;
@@ -17,7 +18,7 @@ import static org.mockito.Mockito.when;
 
 public class CircumventionSuiteTest {
 
-    private final CircumventionSuite suite = new CircumventionSuite();
+    private final CircumventionSuite suite = new CircumventionSuite(TestApplicationProvider.app().getResources());
     private final PreferenceManager pm = mock(PreferenceManager.class);
 
     @Test

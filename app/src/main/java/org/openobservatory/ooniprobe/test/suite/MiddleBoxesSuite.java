@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.test.suite;
 
+import android.content.res.Resources;
+
 import androidx.annotation.Nullable;
 
 import com.google.common.collect.Lists;
@@ -22,16 +24,16 @@ import java.util.ArrayList;
 public class MiddleBoxesSuite extends AbstractSuite {
 	public static final String NAME = "middle_boxes";
 
-	public MiddleBoxesSuite() {
+	public MiddleBoxesSuite(Resources resources) {
 		super(NAME,
-				R.string.Test_Middleboxes_Fullname,
-				R.string.Dashboard_Middleboxes_Card_Description,
+				resources.getString(R.string.Test_Middleboxes_Fullname),
+				resources.getString(R.string.Dashboard_Middleboxes_Card_Description),
 				R.drawable.test_middle_boxes,
 				R.drawable.test_middle_boxes_24,
 				R.color.color_violet8,
 				R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_MiddleBoxes,
 				R.style.Theme_MaterialComponents_NoActionBar_App_MiddleBoxes,
-				R.string.Dashboard_Middleboxes_Overview_Paragraph,
+				resources.getString(R.string.Dashboard_Middleboxes_Overview_Paragraph),
 				"anim/middle_boxes.json",
 				R.string.small_datausage);
 	}
