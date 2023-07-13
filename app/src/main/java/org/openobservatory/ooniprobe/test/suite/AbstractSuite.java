@@ -150,7 +150,7 @@ public abstract class AbstractSuite implements Serializable {
 										 String tn,
 										 @Nullable List<String> urls,
 										 String origin) {
-		for (AbstractSuite suite : TestAsyncTask.getSuites(app))
+		for (AbstractSuite suite : TestAsyncTask.getSuites())
 			for (AbstractTest test : suite.getTestList(app.getPreferenceManager()))
 				if (test.getName().equals(tn)) {
 					if (urls != null)

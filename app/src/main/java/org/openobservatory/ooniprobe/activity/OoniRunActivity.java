@@ -23,6 +23,7 @@ import org.openobservatory.engine.LoggerArray;
 import org.openobservatory.engine.OONIContext;
 import org.openobservatory.engine.OONIRunDescriptor;
 import org.openobservatory.engine.OONIRunFetchResponse;
+import org.openobservatory.engine.OONIRunNettest;
 import org.openobservatory.engine.OONISession;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
@@ -30,9 +31,11 @@ import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.domain.GetTestSuite;
+import org.openobservatory.ooniprobe.domain.TestDescriptorManager;
 import org.openobservatory.ooniprobe.domain.VersionCompare;
 import org.openobservatory.ooniprobe.domain.models.Attribute;
 import org.openobservatory.ooniprobe.item.TextItem;
+import org.openobservatory.ooniprobe.model.database.TestDescriptor;
 import org.openobservatory.ooniprobe.test.EngineProvider;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.OONIRunSuite;
@@ -115,8 +118,7 @@ public class OoniRunActivity extends AbstractActivity {
 				case "runv2":
 				case "run.test.ooni.org": {
 					try {
-						String runId = uri.getPathSegments().get(0);
-						System.out.println(Long.parseLong(runId));
+						long runId = Long.parseLong(uri.getPathSegments().get(0));
 						OONISession session = EngineProvider.get().newSession(
 								EngineProvider.get().getDefaultSessionConfig(
 										this,
@@ -128,9 +130,8 @@ public class OoniRunActivity extends AbstractActivity {
 						);
 						OONIContext ooniContext = session.newContextWithTimeout(300);
 
-						OONIRunFetchResponse response = session.ooniRunFetch(ooniContext, Long.parseLong(runId));
-						// TODO: ( aanorbel ) Save desciptor to database.
-						loadScreen(response.descriptor);
+						OONIRunFetchResponse response = session.ooniRunFetch(ooniContext, runId);
+						loadScreen(response.descriptor, runId);
 					} catch (Exception exception){
 						ThirdPartyServices.logException(exception);
 						loadInvalidAttributes();
@@ -158,26 +159,52 @@ public class OoniRunActivity extends AbstractActivity {
 		}
 	}
 
-	private void loadScreen(OONIRunDescriptor descriptor) {
+	private void loadScreen(OONIRunDescriptor descriptor, long runId) {
 		// icon.setImageResource(descriptor.getIcon());
 		icon.setImageResource(R.drawable.ooni_empty_state);
 		title.setText(descriptor.getName());
 		desc.setText(descriptor.getDescription());
+		descriptor.getNettests();
+		for (OONIRunNettest nettest : descriptor.getNettests()) {
+			items.add(new TextItem(nettest.getName()));
+		}
+		adapter.notifyTypesChanged();
+		iconBig.setVisibility(View.GONE);
 		List<AbstractTest> tests = Lists.transform(
 				descriptor.getNettests(),
-				nettest -> AbstractTest.getTestByName(nettest.getName())
+				nettest -> {
+					AbstractTest test = AbstractTest.getTestByName(nettest.getName());
+					test.setInputs(nettest.getInputs());
+					return test;
+				}
 		);
 		AbstractSuite suite = new OONIRunSuite(
 				descriptor.getName(),
 				tests.toArray(new AbstractTest[0])
 		);
 		run.setOnClickListener(
-				v -> RunningActivity.runAsForegroundService(
-						OoniRunActivity.this,
-						suite.asArray(),
-						this::finish,
-						preferenceManager
-				)
+				v -> {
+					TestDescriptorManager.save(
+							TestDescriptor.Builder.aTestDescriptor()
+									.withRunId(runId)
+									.withName(descriptor.getName())
+									.withNameIntl(descriptor.getNameIntl())
+									.withShortDescription(descriptor.getShortDescription())
+									.withDescription(descriptor.getDescription())
+									.withDescriptionIntl(descriptor.getDescriptionIntl())
+									.withIcon(descriptor.getIcon())
+									.withArchived(descriptor.getArchived())
+									.withAuthor(descriptor.getAuthor())
+									.withNettests(descriptor.getNettests())
+									.build()
+					);
+					RunningActivity.runAsForegroundService(
+							OoniRunActivity.this,
+							suite.asArray(),
+							this::finish,
+							preferenceManager
+					);
+				}
 		);
 	}
 
