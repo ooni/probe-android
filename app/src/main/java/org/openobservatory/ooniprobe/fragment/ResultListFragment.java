@@ -217,7 +217,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
                                 items.add(new CircumventionItem(result, this, this));
                                 break;
                             case OONIRunSuite.NAME:
-                                items.add(new RunItem(result, null, null));
+                                items.add(new RunItem(result, this, this));
                                 break;
                             case ExperimentalSuite.NAME:
                                 items.add(new ExperimentalItem(result, this, this));

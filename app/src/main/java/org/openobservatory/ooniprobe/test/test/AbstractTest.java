@@ -138,6 +138,7 @@ public abstract class AbstractTest implements Serializable {
                             Measurement measurement = new Measurement(result, name, reportId);
                             if (event.value.input.length() > 0)
                                 measurement.url = Url.getUrl(event.value.input);
+                            System.out.println(measurement.url);
                             measurements.put(event.value.idx, measurement);
                             measurement.save();
                         }

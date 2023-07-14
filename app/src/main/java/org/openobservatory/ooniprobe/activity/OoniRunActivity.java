@@ -36,10 +36,12 @@ import org.openobservatory.ooniprobe.domain.VersionCompare;
 import org.openobservatory.ooniprobe.domain.models.Attribute;
 import org.openobservatory.ooniprobe.item.TextItem;
 import org.openobservatory.ooniprobe.model.database.TestDescriptor;
+import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.EngineProvider;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.OONIRunSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
+import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -164,21 +166,29 @@ public class OoniRunActivity extends AbstractActivity {
 		icon.setImageResource(R.drawable.ooni_empty_state);
 		title.setText(descriptor.getName());
 		desc.setText(descriptor.getDescription());
-		descriptor.getNettests();
-		for (OONIRunNettest nettest : descriptor.getNettests()) {
-			items.add(new TextItem(nettest.getName()));
-		}
-		adapter.notifyTypesChanged();
-		iconBig.setVisibility(View.GONE);
+
 		List<AbstractTest> tests = Lists.transform(
 				descriptor.getNettests(),
 				nettest -> {
 					AbstractTest test = AbstractTest.getTestByName(nettest.getName());
+					if (nettest.getName().equals(WebConnectivity.NAME)){
+						for (String url : nettest.getInputs())
+							Url.checkExistingUrl(url);
+					}
 					test.setInputs(nettest.getInputs());
 					return test;
 				}
 		);
 
+		for (AbstractTest test : tests) {
+			if (test.getLabelResId() == (R.string.Test_Experimental_Fullname))
+				items.add(new TextItem(test.getName()));
+			else
+				items.add(new TextItem(getString(test.getLabelResId())));
+		}
+
+		adapter.notifyTypesChanged();
+		iconBig.setVisibility(View.GONE);
 		TestDescriptor testDescriptor = TestDescriptor.Builder.aTestDescriptor()
 						.withRunId(runId)
 						.withName(descriptor.getName())

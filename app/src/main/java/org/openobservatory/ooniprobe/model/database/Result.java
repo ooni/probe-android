@@ -18,8 +18,10 @@ import org.openobservatory.ooniprobe.test.suite.CircumventionSuite;
 import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
+import org.openobservatory.ooniprobe.test.suite.OONIRunSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
+import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.Dash;
 import org.openobservatory.ooniprobe.test.test.FacebookMessenger;
 import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
@@ -190,6 +192,8 @@ public class Result extends BaseModel implements Serializable {
 				return new CircumventionSuite(FlowManager.getContext().getResources());
 			case ExperimentalSuite.NAME:
 				return new ExperimentalSuite(FlowManager.getContext().getResources());
+			case OONIRunSuite.NAME:
+				return new OONIRunSuite(TestDescriptor.Builder.aTestDescriptor().build());
 			default:
 				return null;
 		}
