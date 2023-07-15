@@ -4,8 +4,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion 34
-    buildToolsVersion "30.0.3"
+    compileSdk 34
 
     defaultConfig {
         minSdkVersion 19
@@ -21,7 +20,7 @@ android {
 		jvmTarget = '11'
 	}
 
-    flavorDimensions 'testing'
+    flavorDimensions = ['testing']
     productFlavors {
         stable {
             dimension 'testing'
@@ -37,6 +36,7 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.code.gson:gson:2.8.9'
     // For the stable and dev app flavours we're using the library
     // build published at Maven Central.
     stableImplementation 'org.ooni:oonimkall:2023.06.08-161352'

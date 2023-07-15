@@ -135,6 +135,7 @@ public class OoniRunActivity extends AbstractActivity {
 						OONIRunFetchResponse response = session.ooniRunFetch(ooniContext, runId);
 						loadScreen(response.descriptor, runId);
 					} catch (Exception exception){
+						exception.printStackTrace();
 						ThirdPartyServices.logException(exception);
 						loadInvalidAttributes();
 					}
@@ -195,7 +196,7 @@ public class OoniRunActivity extends AbstractActivity {
 						.withNameIntl(descriptor.getNameIntl())
 						.withShortDescription(descriptor.getShortDescription())
 						.withDescription(descriptor.getDescription())
-						.withDescriptionIntl(descriptor.getDescriptionIntl())
+						.withDescriptionIntl(descriptor.getDescriptionIntl().toString())
 						.withIcon(descriptor.getIcon())
 						.withArchived(descriptor.getArchived())
 						.withAuthor(descriptor.getAuthor())

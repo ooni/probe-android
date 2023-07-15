@@ -1,5 +1,7 @@
 package org.openobservatory.engine;
 
+import com.google.gson.Gson;
+
 import oonimkall.Oonimkall;
 import oonimkall.Session;
 
@@ -15,7 +17,7 @@ public final class PESession implements OONISession {
     }
 
 	public OONIRunFetchResponse ooniRunFetch(OONIContext ctx, long id) throws Exception {
-		return new OONIRunFetchResponse(session.ooniRunFetch(ctx.ctx,id));
+		return new Gson().fromJson(session.ooniRunFetch(ctx.ctx,id),OONIRunFetchResponse.class);
 	}
 
 	public OONIContext newContextWithTimeout(long timeout) {

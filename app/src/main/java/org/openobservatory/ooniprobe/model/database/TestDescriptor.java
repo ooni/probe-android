@@ -16,11 +16,7 @@ import java.util.List;
 
 @Table(database = AppDatabase.class)
 public class TestDescriptor extends BaseModel implements Serializable {
-    @PrimaryKey(autoincrement = true)
-    private int id;
-
-    @Column
-    @Unique(onUniqueConflict = ConflictAction.REPLACE)
+    @PrimaryKey()
     private long runId;
 
     @Column
@@ -49,14 +45,6 @@ public class TestDescriptor extends BaseModel implements Serializable {
 
     @Column(typeConverter = NettestConverter.class)
     private List nettests;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public long getRunId() {
         return runId;
@@ -140,7 +128,6 @@ public class TestDescriptor extends BaseModel implements Serializable {
 
 
     public static final class Builder {
-        private int id;
         private long runId;
         private String name;
         private String nameIntl;
@@ -157,11 +144,6 @@ public class TestDescriptor extends BaseModel implements Serializable {
 
         public static Builder aTestDescriptor() {
             return new Builder();
-        }
-
-        public Builder withId(int id) {
-            this.id = id;
-            return this;
         }
 
         public Builder withRunId(long runId) {
@@ -216,7 +198,6 @@ public class TestDescriptor extends BaseModel implements Serializable {
 
         public TestDescriptor build() {
             TestDescriptor testDescriptor = new TestDescriptor();
-            testDescriptor.setId(id);
             testDescriptor.setRunId(runId);
             testDescriptor.setName(name);
             testDescriptor.setNameIntl(nameIntl);
