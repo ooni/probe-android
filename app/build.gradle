@@ -53,7 +53,7 @@ android {
         }
     }
 
-    flavorDimensions 'testing', 'license'
+    flavorDimensions = ['testing', 'license']
     productFlavors {
         stable {
             dimension 'testing'
@@ -89,10 +89,6 @@ android {
         if (names.contains("fdroid") && (names.contains("experimental") || names.contains("dev"))) {
             setIgnore(true)
         }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
     buildFeatures {
         viewBinding = true
