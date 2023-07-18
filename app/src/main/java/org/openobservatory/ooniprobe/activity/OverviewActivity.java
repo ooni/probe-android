@@ -87,12 +87,6 @@ public class OverviewActivity extends AbstractActivity {
 		runtime.setText(getString(R.string.twoParam, getString(testSuite.getDataUsage()), getString(R.string.Dashboard_Card_Seconds, testSuite.getRuntime(preferenceManager).toString())));
 	}
 
-	@Override
-	public boolean onSupportNavigateUp() {
-		onBackPressed();
-		return true;
-	}
-
 	@OnClick(R.id.run) void onRunClick() {
 		if(!testSuite.isTestEmpty(preferenceManager)){
 			RunningActivity.runAsForegroundService(this, testSuite.asArray(), this::bindTestService, preferenceManager);

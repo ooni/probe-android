@@ -12,36 +12,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 
-import org.openobservatory.engine.LoggerArray;
-import org.openobservatory.engine.OONIContext;
-import org.openobservatory.engine.OONIRunDescriptor;
-import org.openobservatory.engine.OONIRunFetchResponse;
-import org.openobservatory.engine.OONIRunNettest;
-import org.openobservatory.engine.OONISession;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.domain.GetTestSuite;
 import org.openobservatory.ooniprobe.domain.TestDescriptorManager;
+import org.openobservatory.ooniprobe.domain.TestDescriptorManager.FetchTestDescriptorResponse;
 import org.openobservatory.ooniprobe.domain.VersionCompare;
 import org.openobservatory.ooniprobe.domain.models.Attribute;
 import org.openobservatory.ooniprobe.item.TextItem;
-import org.openobservatory.ooniprobe.model.database.TestDescriptor;
-import org.openobservatory.ooniprobe.model.database.Url;
-import org.openobservatory.ooniprobe.test.EngineProvider;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
-import org.openobservatory.ooniprobe.test.suite.OONIRunSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
-import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -121,19 +110,8 @@ public class OoniRunActivity extends AbstractActivity {
 				case "run.test.ooni.org": {
 					try {
 						long runId = Long.parseLong(uri.getPathSegments().get(0));
-						OONISession session = EngineProvider.get().newSession(
-								EngineProvider.get().getDefaultSessionConfig(
-										this,
-										BuildConfig.SOFTWARE_NAME,
-										BuildConfig.VERSION_NAME,
-										new LoggerArray(),
-										((Application)getApplication()).getPreferenceManager().getProxyURL()
-								)
-						);
-						OONIContext ooniContext = session.newContextWithTimeout(300);
-
-						OONIRunFetchResponse response = session.ooniRunFetch(ooniContext, runId);
-						loadScreen(response.descriptor, runId);
+						FetchTestDescriptorResponse response = TestDescriptorManager.fetchDataFromRunId(runId, this);
+						loadScreen(response);
 					} catch (Exception exception){
 						exception.printStackTrace();
 						ThirdPartyServices.logException(exception);
@@ -162,26 +140,14 @@ public class OoniRunActivity extends AbstractActivity {
 		}
 	}
 
-	private void loadScreen(OONIRunDescriptor descriptor, long runId) {
+	private void loadScreen(FetchTestDescriptorResponse response) {
 		// icon.setImageResource(descriptor.getIcon());
 		icon.setImageResource(R.drawable.ooni_empty_state);
-		title.setText(descriptor.getName());
-		desc.setText(descriptor.getDescription());
+		title.setText(response.suite.getName());
+		desc.setText(response.suite.getCardDesc());
 
-		List<AbstractTest> tests = Lists.transform(
-				descriptor.getNettests(),
-				nettest -> {
-					AbstractTest test = AbstractTest.getTestByName(nettest.getName());
-					if (nettest.getName().equals(WebConnectivity.NAME)){
-						for (String url : nettest.getInputs())
-							Url.checkExistingUrl(url);
-					}
-					test.setInputs(nettest.getInputs());
-					return test;
-				}
-		);
 
-		for (AbstractTest test : tests) {
+		for (AbstractTest test : response.suite.getTestList(null)) {
 			if (test.getLabelResId() == (R.string.Test_Experimental_Fullname))
 				items.add(new TextItem(test.getName()));
 			else
@@ -190,33 +156,12 @@ public class OoniRunActivity extends AbstractActivity {
 
 		adapter.notifyTypesChanged();
 		iconBig.setVisibility(View.GONE);
-		TestDescriptor testDescriptor = TestDescriptor.Builder.aTestDescriptor()
-						.withRunId(runId)
-						.withName(descriptor.getName())
-						.withNameIntl(descriptor.getNameIntl())
-						.withShortDescription(descriptor.getShortDescription())
-						.withDescription(descriptor.getDescription())
-						.withDescriptionIntl(descriptor.getDescriptionIntl().toString())
-						.withIcon(descriptor.getIcon())
-						.withArchived(descriptor.getArchived())
-						.withAuthor(descriptor.getAuthor())
-						.withNettests(descriptor.getNettests())
-						.build();
-		AbstractSuite suite = new OONIRunSuite(
-				testDescriptor,
-				tests.toArray(new AbstractTest[0])
-		);
+		// TODO: 18/07/2023 (aanorbel) Add translation
+		run.setText("Install");
 		run.setOnClickListener(
 				v -> {
-					TestDescriptorManager.save(
-							testDescriptor
-					);
-					RunningActivity.runAsForegroundService(
-							OoniRunActivity.this,
-							suite.asArray(),
-							this::finish,
-							preferenceManager
-					);
+					response.descriptor.save();
+					ActivityCompat.startActivity(this, OverviewActivity.newIntent(this, response.suite), null);
 				}
 		);
 	}
