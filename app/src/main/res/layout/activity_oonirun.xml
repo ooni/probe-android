@@ -63,8 +63,8 @@
 		android:scaleType="fitCenter"
 		app:tint="@color/color_gray4" />
 
-	<androidx.recyclerview.widget.RecyclerView
-		android:id="@+id/recycler"
+	<FrameLayout
+		android:id="@+id/items"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:paddingBottom="64dp"

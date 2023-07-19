@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply from: 'jacoco.gradle'
+apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
     compileSdk 33

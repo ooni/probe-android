@@ -13,12 +13,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 
+import org.openobservatory.engine.OONIRunNettest;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
@@ -28,6 +28,7 @@ import org.openobservatory.ooniprobe.domain.TestDescriptorManager;
 import org.openobservatory.ooniprobe.domain.TestDescriptorManager.FetchTestDescriptorResponse;
 import org.openobservatory.ooniprobe.domain.VersionCompare;
 import org.openobservatory.ooniprobe.domain.models.Attribute;
+import org.openobservatory.ooniprobe.fragment.OoniRunListFragment;
 import org.openobservatory.ooniprobe.item.TextItem;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
@@ -50,9 +51,7 @@ public class OoniRunActivity extends AbstractActivity {
 	@BindView(R.id.title) TextView title;
 	@BindView(R.id.desc) TextView desc;
 	@BindView(R.id.run) Button run;
-	@BindView(R.id.recycler) RecyclerView recycler;
-	private ArrayList<HeterogeneousRecyclerItem> items;
-	private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
+	private ArrayList<OONIRunNettest> items;
 
 	@Inject
 	PreferenceManager preferenceManager;
@@ -75,12 +74,7 @@ public class OoniRunActivity extends AbstractActivity {
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setDisplayShowHomeEnabled(true);
-		LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-		recycler.setLayoutManager(layoutManager);
-		recycler.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
 		items = new ArrayList<>();
-		adapter = new HeterogeneousRecyclerAdapter<>(this, items);
-		recycler.setAdapter(adapter);
 		manageIntent(getIntent());
 	}
 
@@ -147,14 +141,27 @@ public class OoniRunActivity extends AbstractActivity {
 		desc.setText(response.suite.getCardDesc());
 
 
+		items.addAll(
+				Lists.transform(
+						Lists.newArrayList(response.suite.getTestList(null)),
+						test -> new OONIRunNettest(
+								test.getLabelResId() == (R.string.Test_Experimental_Fullname) ? test.getName() :getString(test.getLabelResId()),
+								test.getInputs()
+						)
+				)
+		);
 		for (AbstractTest test : response.suite.getTestList(null)) {
-			if (test.getLabelResId() == (R.string.Test_Experimental_Fullname))
-				items.add(new TextItem(test.getName()));
-			else
-				items.add(new TextItem(getString(test.getLabelResId())));
+			if (test.getLabelResId() == (R.string.Test_Experimental_Fullname)) {
+				//items.add(test.getName());
+			} else {
+				//items.add(getString(test.getLabelResId()));
+			}
 		}
+		FragmentTransaction mTransactiont = getSupportFragmentManager().beginTransaction();
 
-		adapter.notifyTypesChanged();
+		mTransactiont.replace(R.id.items, OoniRunListFragment.newInstance(), OoniRunListFragment.class.getName());
+		mTransactiont.commit();
+
 		iconBig.setVisibility(View.GONE);
 		// TODO: 18/07/2023 (aanorbel) Add translation
 		run.setText("Install");
@@ -210,15 +217,20 @@ public class OoniRunActivity extends AbstractActivity {
 		desc.setText(getString(R.string.OONIRun_YouAreAboutToRun));
 		if (urls != null) {
 			for (String url : urls) {
-				if (URLUtil.isValidUrl(url))
-					items.add(new TextItem(url));
+				if (URLUtil.isValidUrl(url)) {
+					items.add(new OONIRunNettest(url,new ArrayList<>()));
+				}
 			}
-			adapter.notifyTypesChanged();
 			iconBig.setVisibility(View.GONE);
 		} else {
 			iconBig.setImageResource(suite.getIcon());
 			iconBig.setVisibility(View.VISIBLE);
 		}
+		FragmentTransaction mTransactiont = getSupportFragmentManager().beginTransaction();
+
+		mTransactiont.replace(R.id.items, OoniRunListFragment.newInstance(), OoniRunListFragment.class.getName());
+		mTransactiont.commit();
+
 		run.setOnClickListener(v -> {
 
 			RunningActivity.runAsForegroundService(OoniRunActivity.this, suite.asArray(),this::finish, preferenceManager);
@@ -234,5 +246,9 @@ public class OoniRunActivity extends AbstractActivity {
 		iconBig.setImageResource(R.drawable.question_mark);
 		iconBig.setVisibility(View.VISIBLE);
 		run.setOnClickListener(v -> finish());
+	}
+
+	public ArrayList<OONIRunNettest> getItems() {
+		return items;
 	}
 }
