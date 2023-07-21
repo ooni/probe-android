@@ -7,6 +7,7 @@ import android.widget.BaseExpandableListAdapter
 import android.widget.ExpandableListView
 import android.widget.TextView
 import org.openobservatory.engine.OONIRunNettest
+import org.openobservatory.ooniprobe.R
 
 class NettestRecyclerViewAdapter(var groups: List<OONIRunNettest>) : BaseExpandableListAdapter() {
 
@@ -30,7 +31,10 @@ class NettestRecyclerViewAdapter(var groups: List<OONIRunNettest>) : BaseExpanda
     ): View {
         val root = convertView ?: LayoutInflater.from(parent.context)
             .inflate(android.R.layout.simple_expandable_list_item_1, parent, false)
-        root.findViewById<TextView>(android.R.id.text1)?.text = groups[groupPosition].name
+        root.findViewById<TextView>(android.R.id.text1)?.apply {
+            text = groups[groupPosition].name
+            setPaddingRelative(32,0,0,0)
+        }
 
         return root
     }
@@ -44,8 +48,11 @@ class NettestRecyclerViewAdapter(var groups: List<OONIRunNettest>) : BaseExpanda
     ): View {
         val root = convertView ?: LayoutInflater.from(parent.context)
             .inflate(android.R.layout.simple_expandable_list_item_1, parent, false)
-        root.findViewById<TextView>(android.R.id.text1)?.text =
-            groups[groupPosition].inputs[childPosition]
+        root.findViewById<TextView>(android.R.id.text1)?.apply {
+            text = groups[groupPosition].inputs[childPosition]
+            setBackgroundColor(parent.context.resources.getColor(R.color.color_gray1))
+            setPaddingRelative(96,0,0,0)
+        }
         return root
     }
 

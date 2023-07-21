@@ -6,5 +6,6 @@
     android:name="org.openobservatory.ooniprobe.fragment.OoniRunListFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:groupIndicator="@null"
     app:layoutManager="LinearLayoutManager"
     tools:context=".fragment.OoniRunListFragment" />
