@@ -83,6 +83,9 @@ public class LogRecyclerViewAdapter extends RecyclerView.Adapter<LogRecyclerView
                 case API:
                     viewHolder.binding.textView.setTextColor(context.getResources().getColor(R.color.color_blue9));
                     break;
+                default:
+                    viewHolder.binding.textView.setTextColor(context.getResources().getColor(R.color.color_black));
+                    break;
             }
         }catch (Exception e){
             System.out.println(items.get(position).trim());
