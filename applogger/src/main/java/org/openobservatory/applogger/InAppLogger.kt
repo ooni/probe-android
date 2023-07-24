@@ -32,6 +32,10 @@ class InAppLogger(context: Context) : LoggerManager(context) {
         saveLog("${DateFormat.format("yyyy-MM-dd hh:mm:ss a", Date())} : ${LogType.INFO.name} : $msg", LogType.INFO.name)
     }
 
+    override fun d(msg: String) {
+        saveLog("${DateFormat.format("yyyy-MM-dd hh:mm:ss a", Date())} : ${LogType.DEBUG.name} : $msg", LogType.DEBUG.name)
+    }
+
     override fun api(msg: String) {
         saveLog("${DateFormat.format("yyyy-MM-dd hh:mm:ss a", Date())} : ${LogType.API.name} : $msg", LogType.API.name)
     }
