@@ -265,11 +265,11 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
         int itemId = item.getItemId();
         if (itemId == R.id.selectAll) {
             preferenceManager.updateAllWebsiteCategories(true);
-            getActivity().recreate();
+            getActivity().finish();
             return true;
         } else if (itemId == R.id.selectNone) {
             preferenceManager.updateAllWebsiteCategories(false);
-            getActivity().recreate();
+            getActivity().finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
