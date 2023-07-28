@@ -8,22 +8,22 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import org.openobservatory.ooniprobe.R;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import org.openobservatory.ooniprobe.databinding.FragmentContentBinding;
 
 public class PreferenceGlobalFragment extends Fragment {
-	@BindView(R.id.toolbar) Toolbar toolbar;
 
 	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_content, container, false);
-		ButterKnife.bind(this, v);
-		((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+		FragmentContentBinding binding = FragmentContentBinding.inflate(inflater);
+		((AppCompatActivity) getActivity()).setSupportActionBar(binding.toolbar);
+		return binding.getRoot();
+	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
 		getParentFragmentManager().beginTransaction().replace(R.id.subContent, PreferenceFragment.newInstance(R.xml.preferences_global, R.id.subContent, null)).commit();
-		return v;
 	}
 }
