@@ -123,7 +123,7 @@ dependencies {
 	annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
 
 	implementation 'com.github.xanscale.LocalhostToolkit:app:19.05.01'
-	implementation 'com.airbnb.android:lottie:3.0.7'
+	implementation 'com.airbnb.android:lottie:6.0.0'
 	implementation 'com.google.code.gson:gson:2.8.9'
 	implementation 'ru.noties:markwon:2.0.1'
 	implementation 'commons-io:commons-io:2.6'
@@ -133,13 +133,13 @@ dependencies {
 // Flavor
 	fullImplementation platform('com.google.firebase:firebase-bom:26.3.0')
 	fullImplementation 'com.google.firebase:firebase-messaging'
-	fullImplementation 'ly.count.android:sdk:21.11.0'
+	fullImplementation 'ly.count.android:sdk:23.6.0'
 	fullImplementation 'io.sentry:sentry-android:6.3.0'
 	fullImplementation 'com.google.android.play:core:1.10.3'
 
 // Dependency Injection
-    implementation 'com.google.dagger:dagger:2.36'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.36'
+    implementation 'com.google.dagger:dagger:2.44.2'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.44.2'
 
 // Logger
     implementation project(':applogger')
@@ -155,7 +155,7 @@ dependencies {
 	testImplementation 'org.robolectric:robolectric:4.10.3'
 	testImplementation 'com.github.blocoio:faker:1.2.8'
 	testImplementation 'org.ooni:oonimkall:2023.07.18-162729'
-	testAnnotationProcessor 'com.google.dagger:dagger-compiler:2.36'
+	testAnnotationProcessor 'com.google.dagger:dagger-compiler:2.44.2'
 
 	// Instrumentation Testing
 	androidTestImplementation 'tools.fastlane:screengrab:2.0.0'
@@ -175,7 +175,7 @@ dependencies {
 		exclude module: 'recyclerview-v7'
 	}
 	androidTestImplementation('com.schibsted.spain:barista:3.9.0')
-	androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:2.36"
+	androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:2.44.2"
 }
 
 static def versionCodeDate() {
