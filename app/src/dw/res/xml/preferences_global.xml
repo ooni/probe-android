@@ -403,7 +403,7 @@
 		android:key="@string/send_email"
 		android:title="@string/Settings_SendEmail_Label" />
 	<PreferenceScreen
-		android:icon="@drawable/about_ooni"
+		android:icon="@drawable/outline_info"
 		android:key="@string/about_ooni"
 		android:title="@string/Settings_About_Label">
 		<intent android:action=".activity.InfoActivity" />

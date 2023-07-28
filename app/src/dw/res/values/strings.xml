@@ -2,6 +2,7 @@
 <resources>
     <string name="General_AppName">DW Media Probe</string>
     <string name="Onboarding_WhatIsOONIProbe_Title">What is DW Media Probe?</string>
-    <string name="Settings_About_Label">About DW Media Probe</string>
+    <string name="Settings_About_Label">About NMS Media Probe</string>
+    <string name="Settings_Proxy_Label">NMS backend proxy</string>
     <string name="Settings_About_Content_Paragraph">Developed in partnership with Open Observatory of Network Interference (OONI).</string>
 </resources>
