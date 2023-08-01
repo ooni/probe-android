@@ -4,9 +4,26 @@
         <item name="colorPrimary">@color/color_base</item>
         <item name="colorPrimaryDark">@color/color_base</item>
         <item name="colorAccent">@color/color_base</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="fontFamily">@font/firasans</item>
+        <item name="android:colorBackground">@color/color_white</item>
+        <item name="android:textColor">@color/color_gray7</item>
+        <item name="android:textColorSecondary">@color/color_gray7</item>
+        <item name="colorOnSurface">@color/color_gray5</item>
+        <item name="android:colorForeground">@color/color_gray7</item>
+        <item name="alertDialogTheme">@style/AlertDialogCustom</item>
+        <item name="android:alertDialogTheme">?alertDialogTheme</item>
+        <item name="dialogTheme">?alertDialogTheme</item>
+        <item name="android:dialogTheme">?alertDialogTheme</item>
+        <item name="snackbarStyle">@style/SnackBarStyle</item>
     </style>
 
     <style name="Theme.MaterialComponents.NoActionBar.Onboarding">
         <item name="android:statusBarColor">@color/color_secondary</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="fontFamily">@font/firasans</item>
+        <item name="colorAccent">@android:color/white</item>
+        <item name="colorControlHighlight">@color/ripple_material_light</item>
     </style>
 </resources>
