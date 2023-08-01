@@ -8,6 +8,8 @@
     <string name="Onboarding_ThingsToKnow_Bullet_3">You will be testing news websites which might be banned in your country</string>
     <string name="Onboarding_AutomatedTesting_Paragraph">To measure internet censorship every day, please enable automated testing so that News Media Scan can run tests periodically. \n\nDon\’t worry, we\’ll be mindful of battery usage. \n\nYou can disable automated testing from the settings at any time.\n\n</string>
     <string name="Onboarding_Crash_Paragraph">To improve News Media Scan we would like to collect anonymous crash reports when the app does not work properly.\n\nWould you like to opt-in to submitting crash reports to the OONI development team?</string>
+    <string name="Onboarding_PopQuiz_1_Question">If someone is monitoring my internet activity, they will see that I am running News Media Scan.</string>
+    <string name="Onboarding_PopQuiz_2_Question">Every time I run News Media Scan, the network data I collect will automatically get published.</string>
     <string name="Settings_About_Label">About News Media Scan</string>
     <string name="Settings_Proxy_Label">Backend proxy</string>
     <string name="Settings_About_Content_Paragraph">What is News Media Scan? Your app for measuring internet censorship. \n\nAre websites and social media apps blocked? Is your internet connection unusually slow? \n\nRun News Media Scan to find out!</string>
