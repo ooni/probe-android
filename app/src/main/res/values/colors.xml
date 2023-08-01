@@ -24,6 +24,9 @@
 	<color name="color_blue7">#056aa6</color>
 	<color name="color_blue8">#005f9c</color>   <!-- not_used -->
 	<color name="color_blue9">#005a99</color>   <!-- not_used -->
+	<color name="onboarding_background">#002B54</color>
+	<color name="onboarding_background_3">#001A33</color>
+	<color name="onboarding_background_2">#0F3E74</color>
 	<color name="color_indigo0">#edf2ff</color>   <!-- not_used -->
 	<color name="color_indigo1">#dbe4ff</color>   <!-- not_used -->
 	<color name="color_indigo2">#bac8ff</color>   <!-- not_used -->

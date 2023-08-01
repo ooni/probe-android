@@ -6,4 +6,7 @@
         <item name="colorAccent">@color/color_base</item>
     </style>
 
+    <style name="Theme.MaterialComponents.NoActionBar.Onboarding">
+        <item name="android:statusBarColor">@color/color_secondary</item>
+    </style>
 </resources>

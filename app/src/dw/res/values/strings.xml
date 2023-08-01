@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="General_AppName">DW Media Probe</string>
-    <string name="Onboarding_WhatIsOONIProbe_Title">What is DW Media Probe?</string>
+    <string name="Onboarding_WhatIsOONIProbe_Title">What is News Media Scan?</string>
+    <string name="Onboarding_WhatIsOONIProbe_Paragraph">Your app for measuring internet censorship. \n\nAre websites and social media apps blocked? Is your internet connection unusually slow?\n\nRun News Media Scan to find out!</string>
+    <string name="Onboarding_ThingsToKnow_Bullet_1">Measurement data is openly published by OONI and will include your network information.</string>
+    <string name="Onboarding_ThingsToKnow_Bullet_2">Anyone monitoring your internet connection will be able to see you are running News Media Scan</string>
+    <string name="Onboarding_ThingsToKnow_Bullet_3">You will be testing news websites which might be banned in your country</string>
+    <string name="Onboarding_AutomatedTesting_Paragraph">To measure internet censorship every day, please enable automated testing so that News Media Scan can run tests periodically. \n\nDon\’t worry, we\’ll be mindful of battery usage. \n\nYou can disable automated testing from the settings at any time.\n\n</string>
+    <string name="Onboarding_Crash_Paragraph">To improve News Media Scan we would like to collect anonymous crash reports when the app does not work properly.\n\nWould you like to opt-in to submitting crash reports to the OONI development team?</string>
     <string name="Settings_About_Label">About News Media Scan</string>
     <string name="Settings_Proxy_Label">Backend proxy</string>
-    <string name="Settings_About_Content_Paragraph">Developed in partnership with Open Observatory of Network Interference (OONI).</string>
+    <string name="Settings_About_Content_Paragraph">What is News Media Scan? Your app for measuring internet censorship. \n\nAre websites and social media apps blocked? Is your internet connection unusually slow? \n\nRun News Media Scan to find out!</string>
+
 </resources>

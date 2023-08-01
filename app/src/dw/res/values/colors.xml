@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="color_base">#D32625</color>
+    <color name="color_secondary">#4B545C</color>
+    <color name="onboarding_background">@color/color_secondary</color>
+    <color name="onboarding_background_2">@color/color_secondary</color>
+    <color name="onboarding_background_3">@color/color_secondary</color>
 </resources>
