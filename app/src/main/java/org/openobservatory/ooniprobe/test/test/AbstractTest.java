@@ -148,6 +148,9 @@ public abstract class AbstractTest implements Serializable {
                             case "WARNING":
                                 logger.w(TAG, event.value.message);
                                 break;
+                            case "DEBUG":
+                                logger.d(TAG, event.value.message);
+                                break;
                             default:
                                 logger.i(TAG, event.value.message);
                                 break;
