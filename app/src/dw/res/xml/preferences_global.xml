@@ -162,12 +162,6 @@
 					android:summary="@string/CategoryCode_MMED_Description"
 					android:title="@string/CategoryCode_MMED_Name" />
 				<SwitchPreferenceCompat
-					android:defaultValue="false"
-					android:icon="@drawable/category_misc"
-					android:key="@string/CategoryCode_MISC_Key"
-					android:summary="@string/CategoryCode_MISC_Description"
-					android:title="@string/CategoryCode_MISC_Name" />
-				<SwitchPreferenceCompat
 					android:defaultValue="true"
 					android:icon="@drawable/category_news"
 					android:key="@string/CategoryCode_NEWS_Key"
@@ -354,7 +348,9 @@
 		android:icon="@drawable/proxy"
 		android:key="@string/ooni_backend_proxy"
 		android:title="@string/Settings_Proxy_Label">
-		<intent	android:action=".activity.ProxyActivity" />
+		<intent
+			android:targetPackage="@string/APP_ID"
+			android:targetClass="@string/preference_intent_proxy_activity"/>
 	</PreferenceScreen>
 	<PreferenceScreen
 		android:icon="@drawable/advanced"
@@ -379,7 +375,9 @@
 			app:iconSpaceReserved="false"
 			android:key="logs"
 			android:title="@string/Settings_Advanced_RecentLogs">
-			<intent android:action=".activity.LogActivity" />
+			<intent
+				android:targetPackage="@string/APP_ID"
+				android:targetClass="@string/preference_intent_log_activity"/>
 		</PreferenceScreen>
 		<SwitchPreferenceCompat
 			android:defaultValue="false"
@@ -406,6 +404,8 @@
 		android:icon="@drawable/outline_info"
 		android:key="@string/about_ooni"
 		android:title="@string/Settings_About_Label">
-		<intent android:action=".activity.InfoActivity" />
+		<intent
+			android:targetPackage="@string/APP_ID"
+			android:targetClass="@string/preference_intent_about_ooni" />
 	</PreferenceScreen>
 </PreferenceScreen>

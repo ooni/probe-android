@@ -89,6 +89,7 @@ android {
         dw {
             dimension 'testing'
             applicationId 'com.dw.ooniprobe'
+            resValue "string", "APP_ID", 'com.dw.ooniprobe'
             resValue "string", "APP_NAME", "News Media Scan"
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"news-media-scan-android"'
             //versionName '0.0.1'
