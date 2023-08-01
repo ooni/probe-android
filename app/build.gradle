@@ -10,10 +10,11 @@ android {
         minSdk 21
         targetSdk 34
         versionName '3.8.3'
-        versionCode 101
+        versionCode 102
 		testInstrumentationRunner "org.openobservatory.ooniprobe.TestAndroidJUnitRunner"
 		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://countly.ooni.io"'
+        resValue "string", "APP_ID", 'org.openobservatory.ooniprobe'
 		resValue "string", "APP_NAME", "OONI Probe"
 		buildConfigField 'String', 'SOFTWARE_NAME', 'BASE_SOFTWARE_NAME+IS_DEBUG'
 		buildConfigField 'String', 'COUNTLY_KEY', '"146836f41172f9e3287cab6f2cc347de3f5ddf3b"'
@@ -65,6 +66,7 @@ android {
             versionNameSuffix "-beta.1"
             versionCode versionCodeDate()
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-dev"'
+            resValue "string", "APP_ID", 'org.openobservatory.ooniprobe.dev'
             resValue "string", "APP_NAME", "OONI Dev"
             buildConfigField 'String', 'COUNTLY_KEY', '"e6c2cfe53e85951d50567467cef3f9fa2eab32c3"'
         }
@@ -74,6 +76,7 @@ android {
             versionNameSuffix "-experimental.1"
             versionCode versionCodeDate()
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-experimental"'
+            resValue "string", "APP_ID", 'org.openobservatory.ooniprobe.experimental'
             resValue "string", "APP_NAME", "OONI Exp"
             buildConfigField 'String', 'COUNTLY_KEY', '"e6c2cfe53e85951d50567467cef3f9fa2eab32c3"'
         }
