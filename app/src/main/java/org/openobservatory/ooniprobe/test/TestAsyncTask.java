@@ -70,9 +70,9 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     private String proxy;
     private boolean store_db = true;
 
-	public static List<AbstractSuite> getSuites(Resources resources) {
-		ArrayList<AbstractSuite> testSuites = new ArrayList<>(Arrays.asList(new WebsitesSuite(resources),
-			new InstantMessagingSuite(resources), new CircumventionSuite(resources), new PerformanceSuite(resources), new ExperimentalSuite(resources)));
+	public static List<AbstractSuite> getSuites(Context context) {
+		ArrayList<AbstractSuite> testSuites = new ArrayList<>(Arrays.asList(new WebsitesSuite(context.getResources()),
+			new InstantMessagingSuite(context.getResources()), new CircumventionSuite(context.getResources()), new PerformanceSuite(context.getResources()), new ExperimentalSuite(context.getResources())));
 
         List<TestDescriptor> testDescriptors = TestDescriptorManager.getAll();
         testSuites.addAll(
@@ -81,7 +81,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                            (List<OONIRunNettest>)descriptor.getNettests(),
                            nettest -> AbstractTest.getTestByName(nettest.getName())
                    );
-                   return new OONIRunSuite(descriptor, tests.toArray(new AbstractTest[0]));
+                   return new OONIRunSuite(context, descriptor, tests.toArray(new AbstractTest[0]));
                })
        );
 		return testSuites;

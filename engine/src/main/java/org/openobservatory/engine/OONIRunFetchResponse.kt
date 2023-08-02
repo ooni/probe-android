@@ -1,13 +1,14 @@
 package org.openobservatory.engine
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class OONIRunFetchResponse(
     @JvmField
     val createdTime: String,
     @JvmField
     val descriptor: OONIRunDescriptor
-)
+) : Serializable
 
 data class OONIRunDescriptor(
     val author: String,
@@ -23,11 +24,10 @@ data class OONIRunDescriptor(
     @SerializedName("short_description_intl")
     val shortDescriptionIntl:  Map<String, String>,
     val nettests: List<OONIRunNettest>
-)
-
+) : Serializable
 
 class OONIRunNettest(
     @SerializedName("test_name")
     val name: String,
     val inputs: List<String>
-)
+) : Serializable

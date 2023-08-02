@@ -8,6 +8,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 
+import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -76,14 +77,14 @@ public abstract class AbstractSuite implements Serializable {
 	}
 
 	public int getIcon() {
-		return icon;
+		return (icon > 0) ? icon : R.drawable.ooni_empty_state;
 	}
 
 	public int getIconGradient() {
 		if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.M){
-			return icon;
+			return (icon > 0) ? icon : R.drawable.ooni_empty_state;
 		}else{
-			return icon_24;
+			return (icon_24 > 0) ? icon_24 : R.drawable.ooni_empty_state;
 		}
 	}
 
@@ -149,7 +150,7 @@ public abstract class AbstractSuite implements Serializable {
 										 String tn,
 										 @Nullable List<String> urls,
 										 String origin) {
-		for (AbstractSuite suite : TestAsyncTask.getSuites(app.getResources()))
+		for (AbstractSuite suite : TestAsyncTask.getSuites(app))
 			for (AbstractTest test : suite.getTestList(app.getPreferenceManager()))
 				if (test.getName().equals(tn)) {
 					if (urls != null)

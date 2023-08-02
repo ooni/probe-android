@@ -193,7 +193,7 @@ public class Result extends BaseModel implements Serializable {
 			case ExperimentalSuite.NAME:
 				return new ExperimentalSuite(FlowManager.getContext().getResources());
 			case OONIRunSuite.NAME:
-				return new OONIRunSuite(TestDescriptor.Builder.aTestDescriptor().build());
+				return new OONIRunSuite(FlowManager.getContext(),TestDescriptor.Builder.aTestDescriptor().build());
 			default:
 				return null;
 		}

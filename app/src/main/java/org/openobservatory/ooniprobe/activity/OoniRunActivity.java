@@ -22,6 +22,7 @@ import org.openobservatory.engine.OONIRunNettest;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.common.StringUtils;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.domain.GetTestSuite;
 import org.openobservatory.ooniprobe.domain.TestDescriptorManager;
@@ -132,9 +133,14 @@ public class OoniRunActivity extends AbstractActivity {
 	}
 
 	private void loadScreen(FetchTestDescriptorResponse response) {
-		// icon.setImageResource(descriptor.getIcon());
-		icon.setImageResource(R.drawable.ooni_empty_state);
-		title.setText(response.suite.getName());
+		int imageResource = getResources().getIdentifier(StringUtils.camelToSnake(response.descriptor.getIcon()), "drawable", getPackageName());
+		if (imageResource > 0) {
+			icon.setImageResource(imageResource);
+		} else {
+			icon.setImageResource(R.drawable.ooni_empty_state);
+		}
+
+		title.setText(response.suite.getTitle());
 		desc.setText(response.suite.getCardDesc());
 
 

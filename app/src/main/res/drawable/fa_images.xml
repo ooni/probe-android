@@ -1,0 +1,9 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="576dp"
+    android:height="512dp"
+    android:viewportWidth="576"
+    android:viewportHeight="512">
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M480 416v16c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V176c0-26.51 21.49-48 48-48h16v208c0 44.11 35.89 80 80 80h336z m96-80V80c0-26.51-21.49-48-48-48H144c-26.51 0-48 21.49-48 48v256c0 26.51 21.49 48 48 48h384c26.51 0 48-21.49 48-48zM256 128c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48z m-96 144l55.52-55.52c4.68-4.68 12.28-4.68 16.97 0L272 256l135.51-135.51c4.7-4.7 12.29-4.7 16.98 0L512 208v112H160v-48z"/>
+</vector>

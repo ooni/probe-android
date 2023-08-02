@@ -72,6 +72,7 @@ public class TestDescriptorManager {
 
         return new FetchTestDescriptorResponse(
                 new OONIRunSuite(
+                        context,
                         testDescriptor,
                         tests.toArray(new AbstractTest[0])
                 ),

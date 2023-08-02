@@ -1,0 +1,9 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="512dp"
+    android:height="512dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M0 168v-16c0-13.26 10.74-24 24-24h360V80c0-21.37 25.9-32.04 40.97-16.97l80 80c9.37 9.37 9.37 24.57 0 33.94l-80 80C409.96 271.98 384 261.46 384 240v-48H24c-13.26 0-24-10.74-24-24z m488 152H128v-48c0-21.31-25.86-32.08-40.97-16.97l-80 80c-9.37 9.37-9.37 24.57 0 33.94l80 80C102.06 464 128 453.44 128 432v-48h360c13.26 0 24-10.74 24-24v-16c0-13.26-10.74-24-24-24z"/>
+</vector>
