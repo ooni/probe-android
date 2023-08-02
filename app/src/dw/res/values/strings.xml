@@ -14,4 +14,8 @@
     <string name="Settings_Proxy_Label">Backend proxy</string>
     <string name="Settings_About_Content_Paragraph">What is News Media Scan? Your app for measuring internet censorship. \n\nAre websites and social media apps blocked? Is your internet connection unusually slow? \n\nRun News Media Scan to find out!</string>
 
+
+    <string name="Test_Websites_Fullname">News Media Websites</string>
+    <string name="Dashboard_Websites_Card_Description">Checks for blocking of news media websites</string>
+
 </resources>

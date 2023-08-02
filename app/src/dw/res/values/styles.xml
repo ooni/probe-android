@@ -20,7 +20,6 @@
 
     <style name="Theme.MaterialComponents.NoActionBar.Onboarding">
         <item name="android:statusBarColor">@color/color_secondary</item>
-        <item name="android:windowTranslucentStatus">true</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="fontFamily">@font/firasans</item>
         <item name="colorAccent">@android:color/white</item>
