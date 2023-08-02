@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.common.service;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.KeyguardManager;
@@ -9,16 +10,16 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.MainActivity;
@@ -47,7 +48,7 @@ public class RunTestService extends Service {
         super.onCreate();
         IntentFilter filter = new IntentFilter(ACTION_INTERRUPT);
         receiver = new ActionReceiver();
-        this.registerReceiver(receiver, filter);
+        ContextCompat.registerReceiver(this, receiver, filter, ContextCompat.RECEIVER_NOT_EXPORTED);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(
                 new ProgressBroadcastReceiver(),
@@ -110,6 +111,12 @@ public class RunTestService extends Service {
                     .setContentIntent(pendingIntent)
                     .setAutoCancel(true)
                     .setProgress(100, 100, false);
+            if (ActivityCompat.checkSelfPermission(
+                    RunTestService.this,
+                    Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
+            ) {
+                return;
+            }
             notificationManager.notify(1, builder.build());
         } else if (notificationManager != null)
             notificationManager.cancel(NOTIFICATION_ID);
@@ -195,6 +202,12 @@ public class RunTestService extends Service {
         public void onReceive(Context context, Intent intent) {
             String key = intent.getStringExtra("key");
             String value = intent.getStringExtra("value");
+            if (ActivityCompat.checkSelfPermission(
+                    RunTestService.this,
+                    Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
+            ) {
+                return;
+            }
             switch (key) {
                 case TestAsyncTask.RUN:
                     Log.d(TAG, "TestAsyncTask.RUN");

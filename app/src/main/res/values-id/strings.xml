@@ -72,7 +72,7 @@
   <string name="Dashboard_Experimental_Card_Description">Jalankan tes percobaan baru</string>
   <string name="Dashboard_Experimental_Overview_Paragraph">Jalankan tes eksperimen baru ini yang dikembangkan oleh tim OONI:\n%1$s\n\nHasil Anda akan dipubikasikan di [OONI Explorer](https://explorer.ooni.org/) dan [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Experimental_Overview_Paragraph_AutomatedTesting">The following tests will only be run as part of automated testing:</string>
-  <string name="Dashboard_DisabledTests_Label">Disabled Tests</string>
+  <string name="Dashboard_DisabledTests_Label">Tes Dimatikan</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>
@@ -255,8 +255,8 @@
   <string name="TestResults_Details_Circumvention_Tor_Table_Header_Handshake">Handshake</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Hero_Title">Diblok juga</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Hero_Title">Bekerja</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Content_Paragraph">[RiseupVPN](https://riseup.net/vpn) appears to be blocked.</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Content_Paragraph">We were able to successfully connect to RiseupVPN\'s bootstrap server and VPN gateways. This means that [RiseupVPN](https://riseup.net/vpn) should work.</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Content_Paragraph">[RiseupVPN](https://riseup.net/vpn) sepertinya diblokir.</string>
+  <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Content_Paragraph">Kami berhasil terhubung ke server dan gateway VPN dari RiseupVPN. Ini menunjukan bahwa [RiseupVPN](https://riseup.net/vpn) berfungsi.</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Api">Bootstrap server</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Openvpn">Koneksi OpenVPN</string>
   <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Bridge">Bridged connections</string>
@@ -293,8 +293,8 @@
   <string name="Modal_Autorun_BatteryOptimization">OONI Probe tidak dapat berjalan dengan otomatis tanpa pengoptimalan baterai. Apakah Anda ingin mencoba lagi?</string>
   <string name="Modal_DisableVPN_Title">Mohon nonaktifkan koneksi VPN Anda.</string>
   <string name="Modal_DisableVPN_Message">Jika Anda menjalankan tes OONI Probe dengan VPN yang diaktifkan, hasil tes akan terlihat berasal dari negara yang salah. Mohon nonaktifkan koneksi VPN.</string>
-  <string name="Modal_UploadVPNResults_Title">Some measurements were taken over VPN.</string>
-  <string name="Modal_UploadVPNResults_Message">If you upload measurements taken when VPN enabled, the test results may appear to come from the wrong country.</string>
+  <string name="Modal_UploadVPNResults_Title">Beberapa hasil pengecekan diambil dari koneksi VPN</string>
+  <string name="Modal_UploadVPNResults_Message">Jika anda melakukan pengecekan dengan VPN, hasil tes akan terlihat datang dari negara yang berbeda.</string>
   <string name="Toast_ResultsUploaded">Unggahan berhasil</string>
   <string name="Modal_DisplayFailureLog">Tampilkan log kesalahan</string>
   <string name="Modal_EnableNotifications_Title">Dapatkan informasi terbaru mengenai penyensoran Internet</string>
