@@ -85,37 +85,32 @@ public class OoniRunActivity extends AbstractActivity {
 	}
 
 	private void manageIntent(Intent intent) {
-		if (isTestRunning()) {
+		Uri uri = intent.getData();
+		if (uri == null) return;
+
+		String host = uri.getHost();
+
+		if ("runv2".equals(host) || "run.test.ooni.org".equals(host)) {
+			try {
+				long runId = Long.parseLong(uri.getPathSegments().get(0));
+				FetchTestDescriptorResponse response = TestDescriptorManager.fetchDataFromRunId(runId, this);
+				loadScreen(response);
+			} catch (Exception exception) {
+				exception.printStackTrace();
+				ThirdPartyServices.logException(exception);
+				loadInvalidAttributes();
+			}
+		} else if (isTestRunning()) {
 			Toast.makeText(this, getString(R.string.OONIRun_TestRunningError), Toast.LENGTH_LONG).show();
 			finish();
-		}
-		else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
-			Uri uri = intent.getData();
-			switch (uri.getHost()){
-				case "nettest":
-				case "run.ooni.io": {
-					String mv = uri == null ? null : uri.getQueryParameter("mv");
-					String tn = uri == null ? null : uri.getQueryParameter("tn");
-					String ta = uri == null ? null : uri.getQueryParameter("ta");
-					loadScreen(mv, tn, ta);
-				}
-				break;
-				case "runv2":
-				case "run.test.ooni.org": {
-					try {
-						long runId = Long.parseLong(uri.getPathSegments().get(0));
-						FetchTestDescriptorResponse response = TestDescriptorManager.fetchDataFromRunId(runId, this);
-						loadScreen(response);
-					} catch (Exception exception){
-						exception.printStackTrace();
-						ThirdPartyServices.logException(exception);
-						loadInvalidAttributes();
-					}
-				}
-				break;
-				default:
-					loadInvalidAttributes();
-					break;
+		} else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
+			if ("nettest".equals(host) || "run.ooni.io".equals(host)) {
+				String mv = uri.getQueryParameter("mv");
+				String tn = uri.getQueryParameter("tn");
+				String ta = uri.getQueryParameter("ta");
+				loadScreen(mv, tn, ta);
+			} else {
+				loadInvalidAttributes();
 			}
 		}
 		else if (Intent.ACTION_SEND.equals(intent.getAction())) {
@@ -131,6 +126,8 @@ public class OoniRunActivity extends AbstractActivity {
 			} else {
 				loadInvalidAttributes();
 			}
+		} else {
+			loadInvalidAttributes();
 		}
 	}
 
