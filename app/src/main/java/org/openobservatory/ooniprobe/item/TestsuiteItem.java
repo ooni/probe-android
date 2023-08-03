@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
+import org.openobservatory.ooniprobe.test.suite.OONIRunSuite;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,6 +41,9 @@ public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, Test
 		holder.title.setText(extra.getTitle());
 		holder.desc.setText(extra.getCardDesc());
 		holder.icon.setImageResource(extra.getIconGradient());
+		if (extra.getName().equals(OONIRunSuite.NAME)){
+			holder.icon.setColorFilter(holder.itemView.getResources().getColor(R.color.color_gray7));
+		}
 		holder.itemView.setTag(extra);
 		if(extra.isTestEmpty(preferenceManager)) {
 			((CardView)holder.itemView).setElevation(0);

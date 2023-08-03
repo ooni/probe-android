@@ -32,6 +32,7 @@ import org.openobservatory.ooniprobe.domain.models.Attribute;
 import org.openobservatory.ooniprobe.fragment.OoniRunListFragment;
 import org.openobservatory.ooniprobe.item.TextItem;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
+import org.openobservatory.ooniprobe.test.suite.OONIRunSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
 import java.util.ArrayList;
@@ -133,12 +134,9 @@ public class OoniRunActivity extends AbstractActivity {
 	}
 
 	private void loadScreen(FetchTestDescriptorResponse response) {
-		int imageResource = getResources().getIdentifier(StringUtils.camelToSnake(response.descriptor.getIcon()), "drawable", getPackageName());
-		if (imageResource > 0) {
-			icon.setImageResource(imageResource);
-		} else {
-			icon.setImageResource(R.drawable.ooni_empty_state);
-		}
+
+		icon.setImageResource(response.suite.getIconGradient());
+		icon.setColorFilter(getResources().getColor(R.color.color_gray7));
 
 		title.setText(response.suite.getTitle());
 		desc.setText(response.suite.getCardDesc());
@@ -153,13 +151,7 @@ public class OoniRunActivity extends AbstractActivity {
 						)
 				)
 		);
-		for (AbstractTest test : response.suite.getTestList(null)) {
-			if (test.getLabelResId() == (R.string.Test_Experimental_Fullname)) {
-				//items.add(test.getName());
-			} else {
-				//items.add(getString(test.getLabelResId()));
-			}
-		}
+
 		FragmentTransaction mTransactiont = getSupportFragmentManager().beginTransaction();
 
 		mTransactiont.replace(R.id.items, OoniRunListFragment.newInstance(), OoniRunListFragment.class.getName());
