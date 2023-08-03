@@ -43,6 +43,7 @@ public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, Test
 		holder.icon.setImageResource(extra.getIconGradient());
 		if (extra.getName().equals(OONIRunSuite.NAME)){
 			holder.icon.setColorFilter(holder.itemView.getResources().getColor(R.color.color_gray7));
+			holder.setIsRecyclable(false);
 		}
 		holder.itemView.setTag(extra);
 		if(extra.isTestEmpty(preferenceManager)) {

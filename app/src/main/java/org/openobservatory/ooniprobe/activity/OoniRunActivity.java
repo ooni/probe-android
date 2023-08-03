@@ -121,8 +121,14 @@ public class OoniRunActivity extends AbstractActivity {
 		binding.icon.setImageResource(response.suite.getIconGradient());
 		binding.icon.setColorFilter(getResources().getColor(R.color.color_gray7));
 
-		binding.title.setText(response.suite.getTitle());
-		binding.desc.setText(response.suite.getCardDesc());
+		binding.author.setText(response.descriptor.getAuthor());
+		binding.author.setVisibility(View.VISIBLE);
+
+		binding.shortDesc.setText(response.descriptor.getShortDescription());
+		binding.shortDesc.setVisibility(View.VISIBLE);
+
+		binding.title.setText(response.descriptor.getName());
+		binding.desc.setText(response.descriptor.getDescription());
 
 
 		items.addAll(

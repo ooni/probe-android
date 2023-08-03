@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class OONIRunSuite  extends AbstractSuite {
 	public static final String NAME = "ooni-run";
 	private final AbstractTest[] tests;
+	private final TestDescriptor descriptor;
 
 	public OONIRunSuite(Context context, TestDescriptor descriptor, AbstractTest... tests) {
 		super(NAME,
@@ -32,6 +33,7 @@ public class OONIRunSuite  extends AbstractSuite {
 			"anim/experimental.json",
 			R.string.TestResults_NotAvailable);
 		this.tests = tests;
+		this.descriptor = descriptor;
 	}
 
 
@@ -41,4 +43,7 @@ public class OONIRunSuite  extends AbstractSuite {
 		return super.getTestList(pm);
 	}
 
+	public TestDescriptor getDescriptor() {
+		return descriptor;
+	}
 }

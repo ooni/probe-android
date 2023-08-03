@@ -30,6 +30,14 @@
 					app:tint="@color/color_gray9" />
 
 				<TextView
+					android:id="@+id/author"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:gravity="center_horizontal"
+					android:text="@string/OONIRun_InvalidParameter"
+					android:visibility="gone"/>
+
+				<TextView
 					android:id="@+id/title"
 					style="@style/TextAppearance.MaterialComponents.Headline6"
 					android:layout_width="match_parent"
@@ -38,10 +46,22 @@
 					android:text="@string/OONIRun_InvalidParameter" />
 
 				<TextView
+					android:id="@+id/short_desc"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:gravity="center_horizontal"
+					android:maxLines="2"
+					android:ellipsize="end"
+					android:text="@string/OONIRun_InvalidParameter"
+					android:visibility="gone"/>
+
+				<TextView
 					android:id="@+id/desc"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:gravity="center_horizontal"
+					android:maxLines="2"
+					android:ellipsize="end"
 					android:text="@string/OONIRun_YouAreAboutToRun" />
 			</LinearLayout>
 
