@@ -29,6 +29,7 @@ import org.openobservatory.ooniprobe.databinding.ActivityRunningBinding;
 import org.openobservatory.ooniprobe.receiver.TestRunBroadRequestReceiver;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
+import org.openobservatory.ooniprobe.test.suite.OONIRunSuite;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -177,7 +178,13 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(service.task.currentSuite.getColor());
         }
-        binding.animation.setAnimation(service.task.currentSuite.getAnim());
+        if (service.task.currentSuite.getName().equals(OONIRunSuite.NAME)){
+            binding.animation.setImageResource(service.task.currentSuite.getIconGradient());
+            binding.animation.setColorFilter(getResources().getColor(R.color.color_gray2));
+            binding.animation.setPadding(0,100,0,100);
+        } else {
+            binding.animation.setAnimation(service.task.currentSuite.getAnim());
+        }
         binding.progress.setMax(service.task.getMax(preferenceManager));
     }
 
