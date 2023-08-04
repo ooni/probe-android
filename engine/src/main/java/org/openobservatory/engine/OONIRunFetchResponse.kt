@@ -2,6 +2,7 @@ package org.openobservatory.engine
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
+import java.util.HashMap
 
 data class OONIRunFetchResponse(
     @JvmField
@@ -14,15 +15,16 @@ data class OONIRunDescriptor(
     val author: String,
     val description: String,
     @SerializedName("description_intl")
-    val descriptionIntl: Map<String, String>,
+    val descriptionIntl: HashMap<String, String>,
     val icon: String,
     val name: String,
-    val nameIntl: String,
+    @SerializedName("name_intl")
+    val nameIntl: HashMap<String, String>,
     val archived: Boolean,
     @SerializedName("short_description")
     val shortDescription: String,
     @SerializedName("short_description_intl")
-    val shortDescriptionIntl:  Map<String, String>,
+    val shortDescriptionIntl: HashMap<String, String>,
     val nettests: List<OONIRunNettest>
 ) : Serializable
 

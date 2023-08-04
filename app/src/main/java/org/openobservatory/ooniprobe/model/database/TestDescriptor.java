@@ -1,17 +1,18 @@
 package org.openobservatory.ooniprobe.model.database;
 
 import com.raizlabs.android.dbflow.annotation.Column;
-import com.raizlabs.android.dbflow.annotation.ConflictAction;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
-import com.raizlabs.android.dbflow.annotation.Unique;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
-import org.openobservatory.engine.OONIRunNettest;
 import org.openobservatory.ooniprobe.common.AppDatabase;
+import org.openobservatory.ooniprobe.common.LocaleUtils;
+import org.openobservatory.ooniprobe.common.MapUtility;
+import org.openobservatory.ooniprobe.domain.MapConverter;
 import org.openobservatory.ooniprobe.domain.NettestConverter;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 
 @Table(database = AppDatabase.class)
@@ -22,17 +23,20 @@ public class TestDescriptor extends BaseModel implements Serializable {
     @Column
     private String name;
 
-    @Column(name = "name_intl")
-    private String nameIntl;
-
-    @Column
-    private String description;
+    @Column(name = "name_intl", typeConverter = MapConverter.class)
+    private HashMap nameIntl;
 
     @Column(name = "short_description")
     private String shortDescription;
 
-    @Column(name = "description_intl")
-    private String descriptionIntl;
+    @Column(name = "short_description_intl", typeConverter = MapConverter.class)
+    private HashMap shortDescriptionIntl;
+
+    @Column
+    private String description;
+
+    @Column(name = "description_intl", typeConverter = MapConverter.class)
+    private HashMap descriptionIntl;
 
     @Column
     private String icon;
@@ -55,42 +59,50 @@ public class TestDescriptor extends BaseModel implements Serializable {
     }
 
     public String getName() {
-        return name;
+        return MapUtility.getOrDefaultCompat(nameIntl, LocaleUtils.sLocale.getLanguage(), name).toString();
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getNameIntl() {
+    public HashMap getNameIntl() {
         return nameIntl;
     }
 
-    public void setNameIntl(String nameIntl) {
+    public void setNameIntl(HashMap nameIntl) {
         this.nameIntl = nameIntl;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getShortDescription() {
-        return shortDescription;
+        return MapUtility.getOrDefaultCompat(shortDescriptionIntl, LocaleUtils.sLocale.getLanguage(), shortDescription).toString();
     }
 
     public void setShortDescription(String shortDescription) {
         this.shortDescription = shortDescription;
     }
 
-    public String getDescriptionIntl() {
+    public HashMap getShortDescriptionIntl() {
+        return shortDescriptionIntl;
+    }
+
+    public void setShortDescriptionIntl(HashMap shortDescriptionIntl) {
+        this.shortDescriptionIntl = shortDescriptionIntl;
+    }
+
+    public String getDescription() {
+        return MapUtility.getOrDefaultCompat(descriptionIntl, LocaleUtils.sLocale.getLanguage(), description).toString();
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public HashMap getDescriptionIntl() {
         return descriptionIntl;
     }
 
-    public void setDescriptionIntl(String descriptionIntl) {
+    public void setDescriptionIntl(HashMap descriptionIntl) {
         this.descriptionIntl = descriptionIntl;
     }
 
@@ -130,10 +142,11 @@ public class TestDescriptor extends BaseModel implements Serializable {
     public static final class Builder {
         private long runId;
         private String name;
-        private String nameIntl;
-        private String description;
+        private HashMap nameIntl;
         private String shortDescription;
-        private String descriptionIntl;
+        private HashMap shortDescriptionIntl;
+        private String description;
+        private HashMap descriptionIntl;
         private String icon;
         private String author;
         private boolean archived;
@@ -156,13 +169,8 @@ public class TestDescriptor extends BaseModel implements Serializable {
             return this;
         }
 
-        public Builder withNameIntl(String nameIntl) {
+        public Builder withNameIntl(HashMap nameIntl) {
             this.nameIntl = nameIntl;
-            return this;
-        }
-
-        public Builder withDescription(String description) {
-            this.description = description;
             return this;
         }
 
@@ -171,7 +179,17 @@ public class TestDescriptor extends BaseModel implements Serializable {
             return this;
         }
 
-        public Builder withDescriptionIntl(String descriptionIntl) {
+        public Builder withShortDescriptionIntl(HashMap shortDescriptionIntl) {
+            this.shortDescriptionIntl = shortDescriptionIntl;
+            return this;
+        }
+
+        public Builder withDescription(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Builder withDescriptionIntl(HashMap descriptionIntl) {
             this.descriptionIntl = descriptionIntl;
             return this;
         }
@@ -201,8 +219,9 @@ public class TestDescriptor extends BaseModel implements Serializable {
             testDescriptor.setRunId(runId);
             testDescriptor.setName(name);
             testDescriptor.setNameIntl(nameIntl);
-            testDescriptor.setDescription(description);
             testDescriptor.setShortDescription(shortDescription);
+            testDescriptor.setShortDescriptionIntl(shortDescriptionIntl);
+            testDescriptor.setDescription(description);
             testDescriptor.setDescriptionIntl(descriptionIntl);
             testDescriptor.setIcon(icon);
             testDescriptor.setAuthor(author);
