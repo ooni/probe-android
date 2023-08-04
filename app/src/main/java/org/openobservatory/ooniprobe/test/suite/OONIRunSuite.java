@@ -9,6 +9,7 @@ import com.google.common.collect.Lists;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.StringUtils;
+import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.TestDescriptor;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.Experimental;
@@ -45,5 +46,11 @@ public class OONIRunSuite  extends AbstractSuite {
 
 	public TestDescriptor getDescriptor() {
 		return descriptor;
+	}
+
+	public Result getResult() {
+		Result	result = super.getResult();
+		result.descriptor = descriptor;
+		return result;
 	}
 }

@@ -51,6 +51,8 @@ public class Result extends BaseModel implements Serializable {
 	@Column public String failure_msg;
 
 	@ForeignKey(saveForeignKeyModel = true) public Network network;
+
+	@ForeignKey(saveForeignKeyModel = true) public TestDescriptor descriptor;
 	private List<Measurement> measurements;
 
 	public Result() {
@@ -193,7 +195,7 @@ public class Result extends BaseModel implements Serializable {
 			case ExperimentalSuite.NAME:
 				return new ExperimentalSuite(FlowManager.getContext().getResources());
 			case OONIRunSuite.NAME:
-				return new OONIRunSuite(FlowManager.getContext(),TestDescriptor.Builder.aTestDescriptor().build());
+				return new OONIRunSuite(FlowManager.getContext(),descriptor);
 			default:
 				return null;
 		}

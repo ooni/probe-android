@@ -41,4 +41,18 @@ public class AppDatabase {
 
     }
 
+    @Migration(version = 4, database = AppDatabase.class)
+    public static class Migration4 extends AlterTableMigration<Result> {
+
+        public Migration4(Class<Result> table) {
+            super(table);
+        }
+
+        @Override
+        public void onPreMigrate() {
+            addForeignKeyColumn(SQLiteType.INTEGER, "descriptor_runId", "TestDescriptor (`runId`)");
+        }
+
+    }
+
 }

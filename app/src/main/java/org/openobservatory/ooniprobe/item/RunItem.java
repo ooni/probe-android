@@ -4,6 +4,7 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
@@ -40,6 +41,9 @@ public class RunItem extends HeterogeneousRecyclerItem<Result, RunItem.ViewHolde
 		viewHolder.itemView.setOnLongClickListener(onLongClickListener);
 		viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(viewHolder.itemView.getContext(), extra.is_viewed ? android.R.color.transparent : R.color.color_yellow0));
 		viewHolder.asnName.setText(Network.toString(viewHolder.asnName.getContext(), extra.network));
+		viewHolder.name.setText(extra.getTestSuite().getTitle());
+		viewHolder.icon.setImageDrawable(viewHolder.itemView.getContext().getDrawable(extra.getTestSuite().getIconGradient()));
+		viewHolder.icon.setColorFilter(viewHolder.itemView.getResources().getColor(R.color.color_gray7));
 		viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), extra.start_time));
 		boolean allUploaded = true;
 		for (Measurement m : extra.getMeasurements())
@@ -48,8 +52,11 @@ public class RunItem extends HeterogeneousRecyclerItem<Result, RunItem.ViewHolde
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {
+		@BindView(R.id.name) TextView name;
 		@BindView(R.id.asnName) TextView asnName;
 		@BindView(R.id.startTime) TextView startTime;
+
+		@BindView(R.id.icon) ImageView icon;
 
 		ViewHolder(View itemView) {
 			super(itemView);
