@@ -1,12 +1,14 @@
 package org.openobservatory.ooniprobe.common;
 
 import android.content.Intent;
+import android.content.res.Resources;
 
 import androidx.test.filters.SmallTest;
 
 import org.junit.Test;
 import org.openobservatory.engine.OONISession;
 import org.openobservatory.ooniprobe.RobolectricAbstractTest;
+import org.openobservatory.ooniprobe.TestApplicationProvider;
 import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
 import org.openobservatory.ooniprobe.domain.MeasurementsManager;
 import org.openobservatory.ooniprobe.engine.TestEngineInterface;
@@ -31,6 +33,8 @@ public class ResubmitTaskTest extends RobolectricAbstractTest {
     // Engine && UseCase
     EngineInterface mockedEngine = new TestEngineInterface(ooniSessionMock);
 
+    Resources resources = TestApplicationProvider.app().getResources();
+
     @Override
     public void setUp() {
         super.setUp();
@@ -41,8 +45,8 @@ public class ResubmitTaskTest extends RobolectricAbstractTest {
     @Test
     public void notUploadedMeasurementsTest() {
         // Arrange
-        Result testResult = ResultFactory.createAndSaveWithEntryFiles(c, new WebsitesSuite(), 5, 0, false);
-        ResultFactory.createAndSaveWithEntryFiles(c, new WebsitesSuite(), 5, 0, false);
+        Result testResult = ResultFactory.createAndSaveWithEntryFiles(c, new WebsitesSuite(resources), 5, 0, false);
+        ResultFactory.createAndSaveWithEntryFiles(c, new WebsitesSuite(resources), 5, 0, false);
         ResubmitTask<ResultDetailActivity> resubmitTask = build(testResult.id);
 
         when(managerMock.reSubmit(any(), any())).thenReturn(true);
@@ -59,8 +63,8 @@ public class ResubmitTaskTest extends RobolectricAbstractTest {
     @Test
     public void notUploadedByResultIdMeasurementsTest() {
         // Arrange
-        Result testResult = ResultFactory.createAndSaveWithEntryFiles(c, new WebsitesSuite(), 5, 0, false);
-        ResultFactory.createAndSaveWithEntryFiles(c, new WebsitesSuite(), 5, 0, false);
+        Result testResult = ResultFactory.createAndSaveWithEntryFiles(c, new WebsitesSuite(resources), 5, 0, false);
+        ResultFactory.createAndSaveWithEntryFiles(c, new WebsitesSuite(resources), 5, 0, false);
         ResubmitTask<ResultDetailActivity> resubmitTask = build(testResult.id);
 
         when(managerMock.reSubmit(any(), any())).thenReturn(true);
@@ -77,7 +81,7 @@ public class ResubmitTaskTest extends RobolectricAbstractTest {
     @Test
     public void notUploadedByMeasurementIdMeasurementsTest() {
         // Arrange
-        Result testResult = ResultFactory.createAndSaveWithEntryFiles(c, new WebsitesSuite(), 5, 0, false);
+        Result testResult = ResultFactory.createAndSaveWithEntryFiles(c, new WebsitesSuite(resources), 5, 0, false);
         ResubmitTask<ResultDetailActivity> resubmitTask = build(testResult.id);
 
         when(managerMock.reSubmit(any(), any())).thenReturn(true);

@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.RobolectricAbstractTest;
+import org.openobservatory.ooniprobe.TestApplicationProvider;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.factory.NetworkFactory;
 import org.openobservatory.ooniprobe.factory.ResultFactory;
@@ -19,6 +20,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import android.content.res.Resources;
+
 @SmallTest
 public class NetworkTest extends RobolectricAbstractTest {
     private static final String BLANK = "";
@@ -27,6 +30,8 @@ public class NetworkTest extends RobolectricAbstractTest {
     private static final String COUNTRY_CODE = "country_code";
 
     private String unknown;
+
+    Resources resources = TestApplicationProvider.app().getResources();
 
     @Override
     @Before
@@ -88,7 +93,7 @@ public class NetworkTest extends RobolectricAbstractTest {
         // Arrange
         Network noResultNetwork = NetworkFactory.build();
         noResultNetwork.save();
-        Network resultNetwork = ResultFactory.createAndSave(new WebsitesSuite()).network;
+        Network resultNetwork = ResultFactory.createAndSave(new WebsitesSuite(resources)).network;
 
         // Act
         boolean noResultDelete = noResultNetwork.delete();

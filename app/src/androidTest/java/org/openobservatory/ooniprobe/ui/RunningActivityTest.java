@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.ui;
 
 import android.content.Intent;
+import android.content.res.Resources;
 
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -15,6 +16,7 @@ import org.junit.Test;
 import org.junit.rules.RuleChain;
 import org.junit.runner.RunWith;
 import org.openobservatory.ooniprobe.AbstractTest;
+import org.openobservatory.ooniprobe.TestApplicationProvider;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
@@ -44,6 +46,8 @@ public class RunningActivityTest extends AbstractTest {
     @Rule
     public RuleChain chain = RuleChain.outerRule(flakyRule)
             .around(serviceRule);
+
+    Resources resources = TestApplicationProvider.app().getResources();
 
     @Override
     public void before() {
@@ -87,7 +91,7 @@ public class RunningActivityTest extends AbstractTest {
             serviceRule.startService(
                     new Intent(c, RunTestService.class)
                             .putExtra("testSuites", new ArrayList<AbstractSuite>() {{
-                                add(new InstantMessagingSuite());
+                                add(new InstantMessagingSuite(resources));
                             }})
             );
         } catch (TimeoutException e) {

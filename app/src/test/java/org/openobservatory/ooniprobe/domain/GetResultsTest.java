@@ -2,6 +2,7 @@ package org.openobservatory.ooniprobe.domain;
 
 import org.junit.Test;
 import org.openobservatory.ooniprobe.RobolectricAbstractTest;
+import org.openobservatory.ooniprobe.TestApplicationProvider;
 import org.openobservatory.ooniprobe.domain.models.DatedResults;
 import org.openobservatory.ooniprobe.factory.ResultFactory;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -18,7 +19,11 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import android.content.res.Resources;
+
 public class GetResultsTest extends RobolectricAbstractTest {
+
+    Resources resources = TestApplicationProvider.app().getResources();
 
     @Override
     public void setUp() {
@@ -29,7 +34,7 @@ public class GetResultsTest extends RobolectricAbstractTest {
     @Test
     public void getterTest() {
         // Arrange
-        Result result = ResultFactory.createAndSave(new WebsitesSuite());
+        Result result = ResultFactory.createAndSave(new WebsitesSuite(resources));
         GetResults getResults = build();
 
         // Act
@@ -103,19 +108,19 @@ public class GetResultsTest extends RobolectricAbstractTest {
 
 
     private void createDatedResults() {
-        Result websites = ResultFactory.createAndSave(new WebsitesSuite());
+        Result websites = ResultFactory.createAndSave(new WebsitesSuite(resources));
         websites.start_time = getDateFrom(1, Calendar.JANUARY, 2020);
         websites.save();
 
-        Result messaging = ResultFactory.createAndSave(new InstantMessagingSuite());
+        Result messaging = ResultFactory.createAndSave(new InstantMessagingSuite(resources));
         messaging.start_time = getDateFrom(1, Calendar.FEBRUARY, 2020);
         messaging.save();
 
-        Result circumvention = ResultFactory.createAndSave(new CircumventionSuite(), 1, 2);
+        Result circumvention = ResultFactory.createAndSave(new CircumventionSuite(resources), 1, 2);
         circumvention.start_time = getDateFrom(1, Calendar.MARCH, 2020);
         circumvention.save();
 
-        Result performance = ResultFactory.createAndSave(new PerformanceSuite());
+        Result performance = ResultFactory.createAndSave(new PerformanceSuite(resources));
         performance.start_time = getDateFrom(1, Calendar.APRIL, 2020);
         performance.save();
     }
