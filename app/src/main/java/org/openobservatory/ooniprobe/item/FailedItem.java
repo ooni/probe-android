@@ -39,13 +39,8 @@ public class FailedItem extends HeterogeneousRecyclerItem<Result, FailedItem.Vie
 		viewHolder.itemView.setOnLongClickListener(onLongClickListener);
 		viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(viewHolder.itemView.getContext(), R.color.color_gray2));
 		viewHolder.testName.setTextColor(ContextCompat.getColor(viewHolder.itemView.getContext(), R.color.color_gray6));
-		if (extra.getTestSuite()!=null){
-			viewHolder.icon.setImageResource(extra.getTestSuite().getIcon());
-			viewHolder.testName.setText(extra.getTestSuite().getTitle());
-		} else {
-			viewHolder.icon.setImageResource(R.drawable.about_ooni);
-			viewHolder.testName.setText(R.string.OONIRun_Run);
-		}
+		viewHolder.icon.setImageResource(extra.getTestSuite().getIcon());
+		viewHolder.testName.setText(extra.getTestSuite().getTitle());
 		String failure_msg = viewHolder.itemView.getContext().getString(R.string.TestResults_Overview_Error);
 		if (extra.failure_msg != null)
 			failure_msg += " - " + extra.failure_msg;

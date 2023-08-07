@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.databinding.ItemOoniRunBinding;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -32,7 +33,7 @@ public class RunItem extends HeterogeneousRecyclerItem<Result, RunItem.ViewHolde
 	}
 
 	@Override public ViewHolder onCreateViewHolder(LayoutInflater layoutInflater, ViewGroup viewGroup) {
-		return new ViewHolder(layoutInflater.inflate(R.layout.item_ooni_run, viewGroup, false));
+		return new ViewHolder(ItemOoniRunBinding.inflate(layoutInflater, viewGroup,false));
 	}
 
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
@@ -40,27 +41,24 @@ public class RunItem extends HeterogeneousRecyclerItem<Result, RunItem.ViewHolde
 		viewHolder.itemView.setOnClickListener(onClickListener);
 		viewHolder.itemView.setOnLongClickListener(onLongClickListener);
 		viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(viewHolder.itemView.getContext(), extra.is_viewed ? android.R.color.transparent : R.color.color_yellow0));
-		viewHolder.asnName.setText(Network.toString(viewHolder.asnName.getContext(), extra.network));
-		viewHolder.name.setText(extra.getTestSuite().getTitle());
-		viewHolder.icon.setImageDrawable(viewHolder.itemView.getContext().getDrawable(extra.getTestSuite().getIconGradient()));
-		viewHolder.icon.setColorFilter(viewHolder.itemView.getResources().getColor(R.color.color_gray7));
-		viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), extra.start_time));
+		viewHolder.binding.asnName.setText(Network.toString(viewHolder.binding.asnName.getContext(), extra.network));
+		viewHolder.binding.name.setText(extra.getTestSuite().getTitle());
+		viewHolder.binding.totalMeasurements.setText(String.format("%d measured", extra.countTotalMeasurements()));
+		viewHolder.binding.icon.setImageDrawable(viewHolder.itemView.getContext().getDrawable(extra.getTestSuite().getIconGradient()));
+		viewHolder.binding.icon.setColorFilter(viewHolder.itemView.getResources().getColor(R.color.color_gray7));
+		viewHolder.binding.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), extra.start_time));
 		boolean allUploaded = true;
 		for (Measurement m : extra.getMeasurements())
 			allUploaded = allUploaded && (m.isUploaded() || m.is_failed);
-		viewHolder.startTime.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, allUploaded ? 0 : R.drawable.cloudoff, 0);
+		viewHolder.binding.startTime.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, allUploaded ? 0 : R.drawable.cloudoff, 0);
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {
-		@BindView(R.id.name) TextView name;
-		@BindView(R.id.asnName) TextView asnName;
-		@BindView(R.id.startTime) TextView startTime;
+		ItemOoniRunBinding binding;
 
-		@BindView(R.id.icon) ImageView icon;
-
-		ViewHolder(View itemView) {
-			super(itemView);
-			ButterKnife.bind(this, itemView);
+		ViewHolder(ItemOoniRunBinding binding) {
+			super(binding.getRoot());
+			this.binding=binding;
 		}
 	}
 }

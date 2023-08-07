@@ -53,4 +53,19 @@
 			android:textColor="@color/color_gray7" />
 	</LinearLayout>
 
+	<LinearLayout
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_margin="8dp"
+		android:layout_weight="2"
+		android:orientation="vertical">
+
+		<TextView
+			android:id="@+id/totalMeasurements"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:drawableStart="@drawable/tab_test_results"
+			android:drawablePadding="8dp"
+			android:gravity="center_vertical"/>
+	</LinearLayout>
 </LinearLayout>
