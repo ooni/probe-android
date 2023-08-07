@@ -162,7 +162,7 @@ dependencies {
 	testAnnotationProcessor 'com.google.dagger:dagger-compiler:2.36'
 
 	// Instrumentation Testing
-	androidTestImplementation 'tools.fastlane:screengrab:2.0.0'
+	androidTestImplementation 'tools.fastlane:screengrab:2.1.1'
 	androidTestImplementation 'com.github.blocoio:faker:1.2.8'
 	androidTestImplementation 'androidx.test:runner:1.4.0'
 	androidTestImplementation 'androidx.test:rules:1.4.0'
