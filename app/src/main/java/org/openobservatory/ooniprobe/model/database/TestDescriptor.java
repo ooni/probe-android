@@ -1,15 +1,24 @@
 package org.openobservatory.ooniprobe.model.database;
 
+import android.content.Context;
+
+import com.google.common.collect.Lists;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
+import com.raizlabs.android.dbflow.sql.language.Where;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
+import org.openobservatory.engine.OONIRunNettest;
 import org.openobservatory.ooniprobe.common.AppDatabase;
 import org.openobservatory.ooniprobe.common.LocaleUtils;
 import org.openobservatory.ooniprobe.common.MapUtility;
 import org.openobservatory.ooniprobe.domain.MapConverter;
 import org.openobservatory.ooniprobe.domain.NettestConverter;
+import org.openobservatory.ooniprobe.test.suite.OONIRunSuite;
+import org.openobservatory.ooniprobe.test.test.AbstractTest;
+import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -47,6 +56,13 @@ public class TestDescriptor extends BaseModel implements Serializable {
     @Column
     private boolean archived;
 
+    @Column(name = "auto_run")
+    private boolean autoRun;
+
+    @Column(name = "auto_update")
+    private boolean autoUpdate;
+
+    private int version;
     @Column(typeConverter = NettestConverter.class)
     private List nettests;
 
@@ -130,12 +146,61 @@ public class TestDescriptor extends BaseModel implements Serializable {
         this.archived = archived;
     }
 
+    public boolean isAutoRun() {
+        return autoRun;
+    }
+
+    public void setAutoRun(boolean autoRun) {
+        this.autoRun = autoRun;
+    }
+
+    public boolean isAutoUpdate() {
+        return autoUpdate;
+    }
+
+    public void setAutoUpdate(boolean autoUpdate) {
+        this.autoUpdate = autoUpdate;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
+
     public List getNettests() {
         return nettests;
     }
 
     public void setNettests(List nettests) {
         this.nettests = nettests;
+    }
+
+    public OONIRunSuite getTestSuite(Context context) {
+        List<AbstractTest> tests = Lists.transform(
+                (List<OONIRunNettest>)getNettests(),
+                nettest -> {
+                    AbstractTest test = AbstractTest.getTestByName(nettest.getName());
+                    if (nettest.getName().equals(WebConnectivity.NAME)){
+                        for (String url : nettest.getInputs())
+                            Url.checkExistingUrl(url);
+                    }
+                    test.setInputs(nettest.getInputs());
+                    return test;
+                }
+        );
+        return new OONIRunSuite(
+                context,
+                this,
+                tests.toArray(new AbstractTest[0])
+        );
+    }
+
+    public static Where<TestDescriptor> selectAllAvailable() {
+        return SQLite.select().from(TestDescriptor.class)
+                .where(TestDescriptor_Table.archived.eq(false));
     }
 
 
@@ -150,6 +215,7 @@ public class TestDescriptor extends BaseModel implements Serializable {
         private String icon;
         private String author;
         private boolean archived;
+        private int version;
         private List nettests;
 
         private Builder() {
@@ -209,6 +275,11 @@ public class TestDescriptor extends BaseModel implements Serializable {
             return this;
         }
 
+        public Builder withVersion(int version) {
+            this.version = version;
+            return this;
+        }
+
         public Builder withNettests(List nettests) {
             this.nettests = nettests;
             return this;
@@ -226,6 +297,7 @@ public class TestDescriptor extends BaseModel implements Serializable {
             testDescriptor.setIcon(icon);
             testDescriptor.setAuthor(author);
             testDescriptor.setArchived(archived);
+            testDescriptor.setVersion(version);
             testDescriptor.setNettests(nettests);
             return testDescriptor;
         }

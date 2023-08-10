@@ -76,13 +76,10 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 
         List<TestDescriptor> testDescriptors = TestDescriptorManager.getAll();
         testSuites.addAll(
-               Lists.transform(testDescriptors,descriptor -> {
-                   List<AbstractTest> tests = Lists.transform(
-                           (List<OONIRunNettest>)descriptor.getNettests(),
-                           nettest -> AbstractTest.getTestByName(nettest.getName())
-                   );
-                   return new OONIRunSuite(context, descriptor, tests.toArray(new AbstractTest[0]));
-               })
+               Lists.transform(
+                       testDescriptors,
+                       descriptor -> descriptor.getTestSuite(context)
+               )
        );
 		return testSuites;
 	}

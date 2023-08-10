@@ -79,7 +79,7 @@ public class OoniRunActivity extends AbstractActivity {
 			try {
 				long runId = Long.parseLong(uri.getPathSegments().get(0));
 				FetchTestDescriptorResponse response = TestDescriptorManager.fetchDataFromRunId(runId, this);
-				loadScreen(response);
+				loadV2Screen(response);
 			} catch (Exception exception) {
 				exception.printStackTrace();
 				ThirdPartyServices.logException(exception);
@@ -116,8 +116,10 @@ public class OoniRunActivity extends AbstractActivity {
 		}
 	}
 
-	private void loadScreen(FetchTestDescriptorResponse response) {
+	private void loadV2Screen(FetchTestDescriptorResponse response) {
 
+		binding.v2Options.setVisibility(View.VISIBLE);
+		binding.items.setPadding(0, 0, 0, getResources().getDimensionPixelSize(R.dimen.activity_ooni_run_v2_items_margin_bottom));
 		binding.icon.setImageResource(response.suite.getIconGradient());
 		binding.icon.setColorFilter(getResources().getColor(R.color.color_gray7));
 
@@ -151,6 +153,8 @@ public class OoniRunActivity extends AbstractActivity {
 		binding.run.setText("Install");
 		binding.run.setOnClickListener(
 				v -> {
+					response.descriptor.setAutoUpdate(binding.autoUpdates.isChecked());
+					response.descriptor.setAutoRun(binding.autoRun.isChecked());
 					response.descriptor.save();
 					ActivityCompat.startActivity(this, OverviewActivity.newIntent(this, response.suite), null);
 				}

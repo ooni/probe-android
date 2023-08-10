@@ -13,11 +13,9 @@ import org.openobservatory.engine.OONISession;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.model.database.TestDescriptor;
-import org.openobservatory.ooniprobe.model.database.Url;
+import org.openobservatory.ooniprobe.model.database.TestDescriptor_Table;
 import org.openobservatory.ooniprobe.test.EngineProvider;
 import org.openobservatory.ooniprobe.test.suite.OONIRunSuite;
-import org.openobservatory.ooniprobe.test.test.AbstractTest;
-import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
 import java.util.List;
 
@@ -30,7 +28,7 @@ public class TestDescriptorManager {
         return SQLite.select().from(TestDescriptor.class).queryList();
     }
 
-    public static FetchTestDescriptorResponse fetchDataFromRunId(long runId, Context context) throws Exception{
+    public static TestDescriptor fetchDescriptorFromRunId(long runId, Context context) throws Exception{
         OONISession session = EngineProvider.get().newSession(
                 EngineProvider.get().getDefaultSessionConfig(
                         context,
@@ -45,19 +43,7 @@ public class TestDescriptorManager {
         OONIRunFetchResponse response = session.ooniRunFetch(ooniContext, runId);
         OONIRunDescriptor descriptor = response.descriptor;
 
-        List<AbstractTest> tests = Lists.transform(
-                descriptor.getNettests(),
-                nettest -> {
-                    AbstractTest test = AbstractTest.getTestByName(nettest.getName());
-                    if (nettest.getName().equals(WebConnectivity.NAME)){
-                        for (String url : nettest.getInputs())
-                            Url.checkExistingUrl(url);
-                    }
-                    test.setInputs(nettest.getInputs());
-                    return test;
-                }
-        );
-        TestDescriptor testDescriptor = TestDescriptor.Builder.aTestDescriptor()
+        return TestDescriptor.Builder.aTestDescriptor()
                 .withRunId(runId)
                 .withName(descriptor.getName())
                 .withNameIntl(descriptor.getNameIntl())
@@ -66,20 +52,34 @@ public class TestDescriptorManager {
                 .withDescription(descriptor.getDescription())
                 .withDescriptionIntl(descriptor.getDescriptionIntl())
                 .withIcon(descriptor.getIcon())
-                .withArchived(descriptor.getArchived())
+                .withArchived(response.archived)
                 .withAuthor(descriptor.getAuthor())
+                .withVersion(response.version)
                 .withNettests(descriptor.getNettests())
                 .build();
+    }
+
+    public static FetchTestDescriptorResponse fetchDataFromRunId(long runId, Context context) throws Exception{
+        TestDescriptor testDescriptor = fetchDescriptorFromRunId(runId,context);
 
         return new FetchTestDescriptorResponse(
-                new OONIRunSuite(
-                        context,
-                        testDescriptor,
-                        tests.toArray(new AbstractTest[0])
-                ),
+                testDescriptor.getTestSuite(context),
                 testDescriptor
         );
 
+    }
+
+    public static List<OONIRunSuite> descriptorsWithAutoRunEnabled(Context context){
+        List<TestDescriptor> descriptors = TestDescriptor.selectAllAvailable()
+                .and(TestDescriptor_Table.auto_run.eq(true))
+                .queryList();
+        return Lists.transform(descriptors, input -> input.getTestSuite(context));
+    }
+
+    public static List<TestDescriptor> descriptorsWithAutoUpdateEnabled(){
+        return TestDescriptor.selectAllAvailable()
+                .and(TestDescriptor_Table.auto_update.eq(true))
+                .queryList();
     }
 
     public static class FetchTestDescriptorResponse {
