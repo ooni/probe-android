@@ -96,9 +96,7 @@ public class Application extends android.app.Application {
 						UpdateDescriptorsWorker.UPDATED_DESCRIPTORS_WORK_NAME,
 						ExistingWorkPolicy.REPLACE,
 						OneTimeWorkRequest.from(UpdateDescriptorsWorker.class)
-				).then(OneTimeWorkRequest.from(UpdateDescriptorsWorker.class))
-				// Call enqueue to kick things off
-				.enqueue();*/
+				).enqueue();*/
 	}
 
 	protected AppComponent buildDagger() {

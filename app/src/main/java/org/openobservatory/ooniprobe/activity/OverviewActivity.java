@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -12,8 +13,11 @@ import androidx.core.view.ViewCompat;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.common.TaskExecutor;
 import org.openobservatory.ooniprobe.databinding.ActivityOverviewBinding;
+import org.openobservatory.ooniprobe.domain.TestDescriptorManager;
 import org.openobservatory.ooniprobe.model.database.Result;
+import org.openobservatory.ooniprobe.model.database.TestDescriptor;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 import org.openobservatory.ooniprobe.test.suite.OONIRunSuite;
@@ -28,6 +32,7 @@ import ru.noties.markwon.Markwon;
 
 public class OverviewActivity extends AbstractActivity {
 	private static final String TEST = "test";
+	private static final String TAG = OverviewActivity.class.getSimpleName();
 
 	private ActivityOverviewBinding binding;
 	private AbstractSuite testSuite;
@@ -66,6 +71,10 @@ public class OverviewActivity extends AbstractActivity {
 		if (testSuite.getName().equals(OONIRunSuite.NAME)) {
 			binding.author.setText(String.format("Author : %s",((OONIRunSuite)testSuite).getDescriptor().getAuthor()));
 			binding.author.setVisibility(View.VISIBLE);
+
+			binding.swipeRefresh.setOnRefreshListener(this::initiateRefresh);
+		} else {
+			binding.swipeRefresh.setEnabled(false);
 		}
 		Result lastResult = Result.getLastResult(testSuite.getName());
 		if (lastResult == null)
@@ -86,6 +95,46 @@ public class OverviewActivity extends AbstractActivity {
 		testSuite.setTestList((AbstractTest[]) null);
 		testSuite.getTestList(preferenceManager);
 		binding.runtime.setText(getString(R.string.twoParam, getString(testSuite.getDataUsage()), getString(R.string.Dashboard_Card_Seconds, testSuite.getRuntime(preferenceManager).toString())));
+	}
+
+
+	private void initiateRefresh() {
+		Log.i(TAG, "initiateRefresh");
+		TestDescriptor descriptorToUpdate = ((OONIRunSuite)testSuite).getDescriptor();
+
+		TaskExecutor executor = new TaskExecutor();
+		executor.executeTask(
+				() -> TestDescriptorManager.fetchDescriptorFromRunId(
+						descriptorToUpdate.getRunId(),
+						OverviewActivity.this
+				),
+				descriptor -> {
+					if (descriptor.getVersion() > descriptorToUpdate.getVersion()){
+						prepareForUpdates(descriptor, descriptorToUpdate);
+					} else {
+						noUpdatesAvailable();
+					}
+					binding.swipeRefresh.setRefreshing(false);
+					return null;
+				});
+	}
+
+	private void prepareForUpdates(TestDescriptor descriptor, TestDescriptor descriptorToUpdate) {
+		binding.refresh.setOnClickListener(v -> {
+			descriptor.setAutoUpdate(descriptorToUpdate.isAutoUpdate());
+			descriptor.setAutoRun(descriptorToUpdate.isAutoRun());
+			descriptor.save();
+			binding.refresh.setVisibility(View.GONE);
+			updateViewFromDescriptor(descriptor);
+		});
+		binding.refresh.setVisibility(android.view.View.VISIBLE);
+	}
+
+	private void noUpdatesAvailable() {
+
+	}
+
+	private void updateViewFromDescriptor(TestDescriptor descriptor) {
 	}
 
 	void onRunClick() {
