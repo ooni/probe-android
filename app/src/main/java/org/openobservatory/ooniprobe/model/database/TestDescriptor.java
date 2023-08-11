@@ -62,6 +62,7 @@ public class TestDescriptor extends BaseModel implements Serializable {
     @Column(name = "auto_update")
     private boolean autoUpdate;
 
+    @Column
     private int version;
     @Column(typeConverter = NettestConverter.class)
     private List nettests;

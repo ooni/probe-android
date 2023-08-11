@@ -11,6 +11,9 @@ import androidx.annotation.Nullable;
 import androidx.core.text.TextUtilsCompat;
 import androidx.core.view.ViewCompat;
 
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
+
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.TaskExecutor;
@@ -110,7 +113,11 @@ public class OverviewActivity extends AbstractActivity {
 				),
 				descriptor -> {
 					if (descriptor.getVersion() > descriptorToUpdate.getVersion()){
-						prepareForUpdates(descriptor, descriptorToUpdate);
+						if (descriptorToUpdate.isAutoUpdate()) {
+							updateDescriptor(descriptor, descriptorToUpdate);
+						} else {
+							prepareForUpdates(descriptor, descriptorToUpdate);
+						}
 					} else {
 						noUpdatesAvailable();
 					}
@@ -119,22 +126,34 @@ public class OverviewActivity extends AbstractActivity {
 				});
 	}
 
+	private void updateDescriptor(TestDescriptor descriptor, TestDescriptor descriptorToUpdate) {
+		descriptor.setAutoUpdate(descriptorToUpdate.isAutoUpdate());
+		descriptor.setAutoRun(descriptorToUpdate.isAutoRun());
+		descriptor.save();
+		binding.refresh.setVisibility(View.GONE);
+		updateViewFromDescriptor(descriptor);
+		Snackbar.make(
+				binding.getRoot(),
+				"Update Successful",
+				BaseTransientBottomBar.LENGTH_LONG
+		).show();
+	}
+
 	private void prepareForUpdates(TestDescriptor descriptor, TestDescriptor descriptorToUpdate) {
-		binding.refresh.setOnClickListener(v -> {
-			descriptor.setAutoUpdate(descriptorToUpdate.isAutoUpdate());
-			descriptor.setAutoRun(descriptorToUpdate.isAutoRun());
-			descriptor.save();
-			binding.refresh.setVisibility(View.GONE);
-			updateViewFromDescriptor(descriptor);
-		});
+		binding.refresh.setOnClickListener(v -> updateDescriptor(descriptor, descriptorToUpdate));
 		binding.refresh.setVisibility(android.view.View.VISIBLE);
 	}
 
 	private void noUpdatesAvailable() {
-
+		Snackbar.make(
+				binding.getRoot(),
+				"No Updates available",
+				BaseTransientBottomBar.LENGTH_LONG
+		).show();
 	}
 
 	private void updateViewFromDescriptor(TestDescriptor descriptor) {
+		// TODO use view model to update screen
 	}
 
 	void onRunClick() {
