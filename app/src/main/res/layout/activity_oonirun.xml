@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 
@@ -34,7 +35,7 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:gravity="center_horizontal"
-					android:text="@string/OONIRun_InvalidParameter"
+					tools:text="@string/OONIRun_InvalidParameter"
 					android:visibility="gone"/>
 
 				<TextView
@@ -43,7 +44,7 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:gravity="center_horizontal"
-					android:text="@string/OONIRun_InvalidParameter" />
+					tools:text="@string/OONIRun_InvalidParameter" />
 
 				<TextView
 					android:id="@+id/short_desc"
@@ -52,7 +53,7 @@
 					android:gravity="center_horizontal"
 					android:maxLines="2"
 					android:ellipsize="end"
-					android:text="@string/OONIRun_InvalidParameter"
+					tools:text="@string/OONIRun_InvalidParameter"
 					android:visibility="gone"/>
 
 				<TextView
@@ -62,7 +63,14 @@
 					android:gravity="center_horizontal"
 					android:maxLines="2"
 					android:ellipsize="end"
-					android:text="@string/OONIRun_YouAreAboutToRun" />
+					tools:text="@string/OONIRun_YouAreAboutToRun" />
+
+				<ProgressBar
+					android:id="@+id/progress_indicator"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal"
+					android:visibility="gone"/>
 			</LinearLayout>
 
 			<androidx.appcompat.widget.Toolbar
@@ -99,6 +107,8 @@
 		android:layout_margin="16dp"
 		android:text="@string/OONIRun_Run"
 		android:textAllCaps="false"
+		android:visibility="gone"
+		tools:visibility="visible"
 		android:backgroundTint="@color/color_base"
 		app:cornerRadius="24dp" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout><!-- app:layout_scrollFlags="scroll|exitUntilCollapsed|snap" -->

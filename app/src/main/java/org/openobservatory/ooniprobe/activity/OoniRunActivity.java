@@ -18,6 +18,7 @@ import org.openobservatory.engine.OONIRunNettest;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.common.TaskExecutor;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.databinding.ActivityOonirunBinding;
 import org.openobservatory.ooniprobe.domain.GetTestSuite;
@@ -59,7 +60,6 @@ public class OoniRunActivity extends AbstractActivity {
 		setSupportActionBar(binding.toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setDisplayShowHomeEnabled(true);
-		items = new ArrayList<>();
 		manageIntent(getIntent());
 	}
 
@@ -70,21 +70,40 @@ public class OoniRunActivity extends AbstractActivity {
 	}
 
 	private void manageIntent(Intent intent) {
+		items = new ArrayList<>();
+
 		Uri uri = intent.getData();
 		if (uri == null) return;
 
 		String host = uri.getHost();
 
 		if ("runv2".equals(host) || "run.test.ooni.org".equals(host)) {
-			try {
+
+				binding.progressIndicator.setVisibility(View.VISIBLE);
 				long runId = Long.parseLong(uri.getPathSegments().get(0));
-				FetchTestDescriptorResponse response = TestDescriptorManager.fetchDataFromRunId(runId, this);
-				loadScreen(response);
-			} catch (Exception exception) {
-				exception.printStackTrace();
-				ThirdPartyServices.logException(exception);
-				loadInvalidAttributes();
-			}
+
+				TaskExecutor executor = new TaskExecutor();
+				executor.executeTask(
+						() -> {
+							try {
+								return TestDescriptorManager.fetchDataFromRunId(runId, this);
+							} catch (Exception exception) {
+								exception.printStackTrace();
+								ThirdPartyServices.logException(exception);
+								return null;
+							}
+						},
+						descriptorResponse -> {
+							if (descriptorResponse!=null) {
+								binding.progressIndicator.setVisibility(View.GONE);
+								loadScreen(descriptorResponse);
+							} else {
+								binding.progressIndicator.setVisibility(View.GONE);
+								loadInvalidAttributes();
+							}
+							return null;
+						});
+
 		} else if (isTestRunning()) {
 			Toast.makeText(this, getString(R.string.OONIRun_TestRunningError), Toast.LENGTH_LONG).show();
 			finish();
@@ -149,6 +168,7 @@ public class OoniRunActivity extends AbstractActivity {
 		binding.iconBig.setVisibility(View.GONE);
 		// TODO: 18/07/2023 (aanorbel) Add translation
 		binding.run.setText("Install");
+		binding.run.setVisibility(View.VISIBLE);
 		binding.run.setOnClickListener(
 				v -> {
 					response.descriptor.save();
@@ -186,6 +206,7 @@ public class OoniRunActivity extends AbstractActivity {
 		binding.title.setText(R.string.OONIRun_OONIProbeOutOfDate);
 		binding.desc.setText(R.string.OONIRun_OONIProbeNewerVersion);
 		binding.run.setText(R.string.OONIRun_Update);
+		binding.run.setVisibility(View.VISIBLE);
 		binding.icon.setImageResource(R.drawable.update);
 		binding.iconBig.setImageResource(R.drawable.update);
 		binding.iconBig.setVisibility(View.VISIBLE);
@@ -215,6 +236,8 @@ public class OoniRunActivity extends AbstractActivity {
 		mTransactiont.replace(R.id.items, OoniRunListFragment.newInstance(), OoniRunListFragment.class.getName());
 		mTransactiont.commit();
 
+		binding.run.setText(R.string.OONIRun_Close);
+		binding.run.setVisibility(View.VISIBLE);
 		binding.run.setOnClickListener(v -> {
 
 			RunningActivity.runAsForegroundService(OoniRunActivity.this, suite.asArray(),this::finish, preferenceManager);
@@ -226,6 +249,7 @@ public class OoniRunActivity extends AbstractActivity {
 		binding.title.setText(R.string.OONIRun_InvalidParameter);
 		binding.desc.setText(R.string.OONIRun_InvalidParameter_Msg);
 		binding.run.setText(R.string.OONIRun_Close);
+		binding.run.setVisibility(View.VISIBLE);
 		binding.icon.setImageResource(R.drawable.question_mark);
 		binding.iconBig.setImageResource(R.drawable.question_mark);
 		binding.iconBig.setVisibility(View.VISIBLE);
