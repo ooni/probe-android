@@ -53,7 +53,7 @@ public class UpdateDescriptorsWorker extends Worker {
 
                 TestDescriptor updatedDescriptor = TestDescriptorManager.fetchDescriptorFromRunId(descriptor.getRunId(), applicationContext);
 
-                if (updatedDescriptor.getVersion() > descriptor.getVersion()) {
+                if (descriptor.shouldUpdate(updatedDescriptor)) {
 
                     updatedDescriptor.setAutoUpdate(descriptor.isAutoUpdate());
                     updatedDescriptor.setAutoRun(descriptor.isAutoRun());

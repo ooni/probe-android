@@ -21,6 +21,7 @@ import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -62,8 +63,11 @@ public class TestDescriptor extends BaseModel implements Serializable {
     @Column(name = "auto_update")
     private boolean autoUpdate;
 
-    @Column
-    private int version;
+    @Column(name = "creation_time")
+    private Date creationTime;
+
+    @Column(name = "translation_creation_time")
+    private Date translationCreationTime;
     @Column(typeConverter = NettestConverter.class)
     private List nettests;
 
@@ -163,12 +167,20 @@ public class TestDescriptor extends BaseModel implements Serializable {
         this.autoUpdate = autoUpdate;
     }
 
-    public int getVersion() {
-        return version;
+    public Date getCreationTime() {
+        return creationTime;
     }
 
-    public void setVersion(int version) {
-        this.version = version;
+    public void setCreationTime(Date creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public Date getTranslationCreationTime() {
+        return translationCreationTime;
+    }
+
+    public void setTranslationCreationTime(Date translationCreationTime) {
+        this.translationCreationTime = translationCreationTime;
     }
 
     public List getNettests() {
@@ -204,6 +216,11 @@ public class TestDescriptor extends BaseModel implements Serializable {
                 .where(TestDescriptor_Table.archived.eq(false));
     }
 
+    public boolean shouldUpdate(TestDescriptor updatedDescriptor) {
+        return updatedDescriptor.creationTime.after(creationTime)
+                || updatedDescriptor.translationCreationTime.after(translationCreationTime);
+    }
+
 
     public static final class Builder {
         private long runId;
@@ -216,7 +233,10 @@ public class TestDescriptor extends BaseModel implements Serializable {
         private String icon;
         private String author;
         private boolean archived;
-        private int version;
+        private boolean autoRun;
+        private boolean autoUpdate;
+        private Date creationTime;
+        private Date translationCreationTime;
         private List nettests;
 
         private Builder() {
@@ -276,8 +296,23 @@ public class TestDescriptor extends BaseModel implements Serializable {
             return this;
         }
 
-        public Builder withVersion(int version) {
-            this.version = version;
+        public Builder withAutoRun(boolean autoRun) {
+            this.autoRun = autoRun;
+            return this;
+        }
+
+        public Builder withAutoUpdate(boolean autoUpdate) {
+            this.autoUpdate = autoUpdate;
+            return this;
+        }
+
+        public Builder withCreationTime(Date creationTime) {
+            this.creationTime = creationTime;
+            return this;
+        }
+
+        public Builder withTranslationCreationTime(Date translationCreationTime) {
+            this.translationCreationTime = translationCreationTime;
             return this;
         }
 
@@ -298,7 +333,10 @@ public class TestDescriptor extends BaseModel implements Serializable {
             testDescriptor.setIcon(icon);
             testDescriptor.setAuthor(author);
             testDescriptor.setArchived(archived);
-            testDescriptor.setVersion(version);
+            testDescriptor.setAutoRun(autoRun);
+            testDescriptor.setAutoUpdate(autoUpdate);
+            testDescriptor.setCreationTime(creationTime);
+            testDescriptor.setTranslationCreationTime(translationCreationTime);
             testDescriptor.setNettests(nettests);
             return testDescriptor;
         }

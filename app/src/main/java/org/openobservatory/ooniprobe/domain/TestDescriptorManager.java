@@ -54,7 +54,8 @@ public class TestDescriptorManager {
                 .withIcon(descriptor.getIcon())
                 .withArchived(response.archived)
                 .withAuthor(descriptor.getAuthor())
-                .withVersion(response.version)
+                .withCreationTime(response.creationTime)
+                .withTranslationCreationTime(response.translationCreationTime)
                 .withNettests(descriptor.getNettests())
                 .build();
     }

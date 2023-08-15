@@ -10,10 +10,10 @@ data class OONIRunFetchResponse(
     val archived: Boolean,
     @JvmField
     @SerializedName("descriptor_creation_time")
-    val createdTime: Date,
+    val creationTime: Date,
     @JvmField
-    @SerializedName("v")
-    val version: Int,
+    @SerializedName("translation_creation_time")
+    val translationCreationTime: Date,
     @JvmField
     val descriptor: OONIRunDescriptor
 ) : Serializable

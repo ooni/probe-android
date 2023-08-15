@@ -98,6 +98,10 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    dataBinding {
+        enabled = true
+        enabledForTests = true
+    }
     namespace 'org.openobservatory.ooniprobe'
 }
 
