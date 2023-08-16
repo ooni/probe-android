@@ -40,7 +40,7 @@
 					android:id="@+id/icon"
 					android:layout_width="96dp"
 					android:layout_height="96dp"
-					app:resource="@{viewmodel.icon}"
+					app:resource="@{viewmodel.suite.icon}"
 					app:tint="@android:color/white"
 					android:transitionName="@string/transitionNameIcon" />
 
@@ -81,6 +81,8 @@
 							android:layout_height="wrap_content"
 							android:layout_gravity="center_horizontal"
 							android:textColor="@android:color/white"
+							app:dataUsage="@{viewmodel.dataUsage}"
+							app:runTime="@{viewmodel.runTime}"
 							android:textStyle="bold" />
 
 						<TextView
@@ -156,8 +158,8 @@
 
 						<TextView
 							android:id="@+id/desc"
-							app:richText="@{viewmodel.description}"
-							app:testSuiteName="@{viewmodel.name}"
+							app:richText="@{viewmodel.suite.desc1}"
+							app:testSuiteName="@{viewmodel.suite.name}"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"/>
 

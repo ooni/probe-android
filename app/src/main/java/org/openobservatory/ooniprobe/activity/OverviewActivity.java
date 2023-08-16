@@ -21,6 +21,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.overview.OverviewViewModel;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.TaskExecutor;
+import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.databinding.ActivityOverviewBinding;
 import org.openobservatory.ooniprobe.domain.TestDescriptorManager;
 import org.openobservatory.ooniprobe.model.database.TestDescriptor;
@@ -30,6 +31,7 @@ import org.openobservatory.ooniprobe.test.suite.OONIRunSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
 import java.util.Locale;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -44,7 +46,8 @@ public class OverviewActivity extends AbstractActivity {
 
 	@Inject
 	PreferenceManager preferenceManager;
-	private OverviewViewModel viewModel;
+	@Inject
+	OverviewViewModel viewModel;
 
 	public static Intent newIntent(Context context, AbstractSuite testSuite) {
 		return new Intent(context, OverviewActivity.class).putExtra(TEST, testSuite);
@@ -59,7 +62,6 @@ public class OverviewActivity extends AbstractActivity {
 		setContentView(binding.getRoot());
 		setSupportActionBar(binding.toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		viewModel = new ViewModelProvider(this).get(OverviewViewModel.class);
 		binding.setViewmodel(viewModel);
 		binding.setLifecycleOwner(this);
 		onTestSuiteChanged();
@@ -86,13 +88,6 @@ public class OverviewActivity extends AbstractActivity {
 	private void setUpOnCLickListeners() {
 		binding.run.setOnClickListener(view -> onRunClick());
 		binding.customUrl.setOnClickListener(view -> customUrlClick());
-	}
-
-	@Override protected void onResume() {
-		super.onResume();
-		testSuite.setTestList((AbstractTest[]) null);
-		testSuite.getTestList(preferenceManager);
-		binding.runtime.setText(getString(R.string.twoParam, getString(testSuite.getDataUsage()), getString(R.string.Dashboard_Card_Seconds, testSuite.getRuntime(preferenceManager).toString())));
 	}
 
 
@@ -154,18 +149,36 @@ public class OverviewActivity extends AbstractActivity {
 
 	@BindingAdapter(value = {"richText", "testSuiteName"})
 	public static void setRichText(TextView view, String richText,String testSuiteName) {
-		if (testSuiteName.equals(ExperimentalSuite.NAME)) {
-			Markwon.setMarkdown(view, richText);
-			if (TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL)
-				view.setTextDirection(View.TEXT_DIRECTION_RTL);
-		} else {
-			Markwon.setMarkdown(view, richText);
+		try {
+			if (Objects.equals(testSuiteName,ExperimentalSuite.NAME)) {
+				Markwon.setMarkdown(view, richText);
+				if (TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL)
+					view.setTextDirection(View.TEXT_DIRECTION_RTL);
+			} else {
+				Markwon.setMarkdown(view, richText);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			ThirdPartyServices.logException(e);
 		}
 	}
 
 	@BindingAdapter({"resource"})
 	public static void setImageViewResource(ImageView imageView, int resource) {
 		imageView.setImageResource(resource);
+	}
+
+	@BindingAdapter({"dataUsage", "runTime"})
+	public static void setDataUsage(TextView view, int dataUsage, String runTime) {
+		Context context = view.getContext();
+		view.setText(
+				context.getString(
+						R.string.twoParam,
+						context.getString(dataUsage),
+						context.getString(R.string.Dashboard_Card_Seconds, runTime)
+				)
+		);
+
 	}
 
 	void onRunClick() {
