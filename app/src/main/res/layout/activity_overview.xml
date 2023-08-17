@@ -1,137 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:orientation="vertical">
+	xmlns:tools="http://schemas.android.com/tools"
+	tools:context=".activity.OverviewActivity">
+	<data>
 
-	<com.google.android.material.appbar.AppBarLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:gravity="center_horizontal"
-		android:orientation="vertical"
-		android:paddingBottom="16dp"
-		android:transitionName="@string/transitionNameCard"
-		app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+		<import type="android.view.View" />
 
-		<androidx.appcompat.widget.Toolbar
-			android:id="@+id/toolbar"
-			android:layout_width="match_parent"
-			android:layout_height="?attr/actionBarSize"
-			android:transitionName="@string/transitionNameTitle" />
-
-		<ImageView
-			android:id="@+id/icon"
-			android:layout_width="96dp"
-			android:layout_height="96dp"
-			app:tint="@android:color/white"
-			android:transitionName="@string/transitionNameIcon" />
-
-		<LinearLayout
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_margin="8dp"
-			android:orientation="horizontal"
-			android:transitionName="@string/transitionNameRuntime">
-
-			<LinearLayout
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:orientation="vertical">
-
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="@string/Dashboard_Overview_Estimated"
-					android:textColor="@android:color/white" />
-
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="@string/Dashboard_Overview_LatestTest"
-					android:textColor="@android:color/white" />
-			</LinearLayout>
-
-			<LinearLayout
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginStart="16dp"
-				android:orientation="vertical">
-
-				<TextView
-					android:id="@+id/runtime"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_horizontal"
-					android:textColor="@android:color/white"
-					android:textStyle="bold" />
-
-				<TextView
-					android:id="@+id/lastTime"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:textColor="@android:color/white"
-					android:textStyle="bold" />
-			</LinearLayout>
-		</LinearLayout>
-
-		<Button
-			android:id="@+id/run"
-			style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/Dashboard_Card_Run"
-			android:textAllCaps="false"
-			android:textColor="?attr/colorPrimary"
-			android:transitionName="@string/transitionNameRun"
-			app:backgroundTint="@android:color/white"
-			app:cornerRadius="24dp"
-			app:rippleColor="@color/ripple_material_light" />
-
-		<Button
-			android:id="@+id/customUrl"
-			style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/Dashboard_Overview_ChooseWebsites"
-			android:textAllCaps="false"
-			android:textColor="@android:color/white"
-			app:cornerRadius="24dp"
-			app:rippleColor="@color/ripple_material_dark"
-			app:strokeColor="@android:color/white" />
-	</com.google.android.material.appbar.AppBarLayout>
-	<RelativeLayout
+		<variable
+			name="viewmodel"
+			type="org.openobservatory.ooniprobe.activity.overview.OverviewViewModel" />
+	</data>
+	<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+		android:id="@+id/swipe_refresh"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
-
-		<ScrollView
+		<LinearLayout
+			android:clickable="true"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:layout_above="@+id/progress_fragment">
+			android:orientation="vertical">
 
-			<LinearLayout
+			<com.google.android.material.appbar.AppBarLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:padding="32dp"
-				android:orientation="vertical">
-				<TextView
-					android:id="@+id/author"
+				android:gravity="center_horizontal"
+				android:orientation="vertical"
+				android:paddingBottom="16dp"
+				android:transitionName="@string/transitionNameCard"
+				app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+				<androidx.appcompat.widget.Toolbar
+					android:id="@+id/toolbar"
 					android:layout_width="match_parent"
+					android:layout_height="?attr/actionBarSize"
+					android:transitionName="@string/transitionNameTitle" />
+
+				<ImageView
+					android:id="@+id/icon"
+					android:layout_width="96dp"
+					android:layout_height="96dp"
+					app:resource="@{viewmodel.suite.icon}"
+					app:tint="@android:color/white"
+					android:transitionName="@string/transitionNameIcon" />
+
+				<LinearLayout
+					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
+					android:layout_margin="8dp"
+					android:orientation="horizontal"
+					android:transitionName="@string/transitionNameRuntime">
+
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:orientation="vertical">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@string/Dashboard_Overview_Estimated"
+							android:textColor="@android:color/white" />
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@string/Dashboard_Overview_LatestTest"
+							android:textColor="@android:color/white" />
+					</LinearLayout>
+
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginStart="16dp"
+						android:orientation="vertical">
+
+						<TextView
+							android:id="@+id/runtime"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_gravity="center_horizontal"
+							android:textColor="@android:color/white"
+							app:dataUsage="@{viewmodel.dataUsage}"
+							app:runTime="@{viewmodel.runTime}"
+							android:textStyle="bold" />
+
+						<TextView
+							android:id="@+id/lastTime"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textColor="@android:color/white"
+							android:text="@{viewmodel.lastTime , default = @string/Dashboard_Overview_LastRun_Never}"
+							android:textStyle="bold" />
+					</LinearLayout>
+				</LinearLayout>
+
+				<Button
+					android:id="@+id/run"
+					style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/Dashboard_Card_Run"
+					android:textAllCaps="false"
+					android:textColor="?attr/colorPrimary"
+					android:transitionName="@string/transitionNameRun"
+					app:backgroundTint="@android:color/white"
+					app:cornerRadius="24dp"
+					app:rippleColor="@color/ripple_material_light" />
+
+				<Button
+					android:id="@+id/refresh"
+					style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/OONIRun_Update"
+					android:textAllCaps="false"
+					android:textColor="@android:color/white"
+					app:cornerRadius="24dp"
+					app:rippleColor="@color/ripple_material_dark"
+					app:strokeColor="@android:color/white"
 					android:visibility="gone"/>
-				<TextView
-					android:id="@+id/desc"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"/>
-			</LinearLayout>
-		</ScrollView>
 
-		<fragment
-			android:name="org.openobservatory.ooniprobe.fragment.ProgressFragment"
-			android:id="@+id/progress_fragment"
-			android:layout_alignParentBottom="true"
+				<Button
+					android:id="@+id/customUrl"
+					style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/Dashboard_Overview_ChooseWebsites"
+					android:textAllCaps="false"
+					android:textColor="@android:color/white"
+					app:cornerRadius="24dp"
+					app:rippleColor="@color/ripple_material_dark"
+					app:strokeColor="@android:color/white"
+					android:visibility="@{viewmodel.customUrlVisibility, default = gone}"/>
+		</com.google.android.material.appbar.AppBarLayout>
+		<RelativeLayout
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content" />
+			android:layout_height="match_parent">
 
-	</RelativeLayout>
-</LinearLayout>
+				<ScrollView
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_above="@+id/progress_fragment">
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:padding="32dp"
+						android:orientation="vertical">
+
+						<TextView
+							android:id="@+id/author"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:text="@{viewmodel.author}"
+							android:visibility="@{viewmodel.authorVisibility}"/>
+
+						<TextView
+							android:id="@+id/desc"
+							app:richText="@{viewmodel.suite.desc1}"
+							app:testSuiteName="@{viewmodel.suite.name}"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"/>
+
+					</LinearLayout>
+				</ScrollView>
+
+				<fragment
+					android:name="org.openobservatory.ooniprobe.fragment.ProgressFragment"
+					android:id="@+id/progress_fragment"
+					android:layout_alignParentBottom="true"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content" />
+
+			</RelativeLayout>
+		</LinearLayout>
+	</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

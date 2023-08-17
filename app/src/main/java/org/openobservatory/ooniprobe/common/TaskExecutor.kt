@@ -13,7 +13,7 @@ typealias Task<R> = Callable<R>
 
 typealias OnTaskProgressUpdate<P> = (P) -> Unit
 
-typealias OnTaskComplete<R> = (R) -> Void
+typealias OnTaskComplete<R> = (R) -> Unit
 
 class TaskExecutor {
     private val executor = Executors.newSingleThreadExecutor()

@@ -96,7 +96,7 @@ public class OoniRunActivity extends AbstractActivity {
 						descriptorResponse -> {
 							if (descriptorResponse!=null) {
 								binding.progressIndicator.setVisibility(View.GONE);
-								loadScreen(descriptorResponse);
+								loadV2Screen(descriptorResponse);
 							} else {
 								binding.progressIndicator.setVisibility(View.GONE);
 								loadInvalidAttributes();
@@ -135,8 +135,10 @@ public class OoniRunActivity extends AbstractActivity {
 		}
 	}
 
-	private void loadScreen(FetchTestDescriptorResponse response) {
+	private void loadV2Screen(FetchTestDescriptorResponse response) {
 
+		binding.v2Options.setVisibility(View.VISIBLE);
+		binding.items.setPadding(0, 0, 0, getResources().getDimensionPixelSize(R.dimen.activity_ooni_run_v2_items_margin_bottom));
 		binding.icon.setImageResource(response.suite.getIconGradient());
 		binding.icon.setColorFilter(getResources().getColor(R.color.color_gray7));
 
@@ -171,6 +173,8 @@ public class OoniRunActivity extends AbstractActivity {
 		binding.run.setVisibility(View.VISIBLE);
 		binding.run.setOnClickListener(
 				v -> {
+					response.descriptor.setAutoUpdate(binding.autoUpdates.isChecked());
+					response.descriptor.setAutoRun(binding.autoRun.isChecked());
 					response.descriptor.save();
 					ActivityCompat.startActivity(this, OverviewActivity.newIntent(this, response.suite), null);
 				}

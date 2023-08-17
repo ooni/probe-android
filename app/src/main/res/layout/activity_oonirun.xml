@@ -3,7 +3,8 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	tools:context=".activity.OoniRunActivity">
 
 	<com.google.android.material.appbar.AppBarLayout
 		android:layout_width="match_parent"
@@ -99,16 +100,45 @@
 		android:clipToPadding="false"
 		app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-	<Button
-		android:id="@+id/run"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
+	<androidx.appcompat.widget.LinearLayoutCompat
 		android:layout_gravity="center_horizontal|bottom"
-		android:layout_margin="16dp"
-		android:text="@string/OONIRun_Run"
-		android:textAllCaps="false"
-		android:visibility="gone"
-		tools:visibility="visible"
-		android:backgroundTint="@color/color_base"
-		app:cornerRadius="24dp" />
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center_horizontal"
+		android:orientation="vertical">
+
+		<androidx.appcompat.widget.LinearLayoutCompat
+			android:id="@+id/v2Options"
+			android:visibility="gone"
+			android:gravity="center_horizontal"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+
+			<androidx.appcompat.widget.AppCompatCheckBox
+				android:id="@+id/autoUpdates"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Automatic Updates"/>
+
+			<androidx.appcompat.widget.AppCompatCheckBox
+				android:layout_marginStart="16dp"
+				android:id="@+id/autoRun"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/Settings_AutomatedTesting_Label"/>
+
+		</androidx.appcompat.widget.LinearLayoutCompat>
+
+		<Button
+			android:id="@+id/run"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="16dp"
+			android:text="@string/OONIRun_Run"
+			android:textAllCaps="false"
+			android:visibility="gone"
+			tools:visibility="visible"
+			android:backgroundTint="@color/color_base"
+			app:cornerRadius="24dp" />
+	</androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.coordinatorlayout.widget.CoordinatorLayout><!-- app:layout_scrollFlags="scroll|exitUntilCollapsed|snap" -->
