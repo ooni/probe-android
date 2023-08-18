@@ -4,17 +4,12 @@ import android.content.Context;
 
 import androidx.annotation.Nullable;
 
-import com.google.common.collect.Lists;
-
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.StringUtils;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.TestDescriptor;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
-import org.openobservatory.ooniprobe.test.test.Experimental;
-
-import java.util.ArrayList;
 
 public class OONIRunSuite  extends AbstractSuite {
 	public static final String NAME = "ooni-run";
@@ -31,7 +26,7 @@ public class OONIRunSuite  extends AbstractSuite {
 			R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Experimental,
 			R.style.Theme_MaterialComponents_NoActionBar_App_Experimental,
 			descriptor.getDescription(),
-			"anim/experimental.json",
+			descriptor.getAnimation(),
 			R.string.TestResults_NotAvailable);
 		this.tests = tests;
 		this.descriptor = descriptor;

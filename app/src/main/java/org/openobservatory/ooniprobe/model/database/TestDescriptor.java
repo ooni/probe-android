@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.model.database;
 
 import android.content.Context;
+import android.graphics.Color;
 
 import com.google.common.collect.Lists;
 import com.raizlabs.android.dbflow.annotation.Column;
@@ -221,8 +222,16 @@ public class TestDescriptor extends BaseModel implements Serializable {
                 || updatedDescriptor.translationCreationTime.after(translationCreationTime);
     }
 
+	public String getAnimation() {
+		return "anim/websites.json";
+	}
 
-    public static final class Builder {
+	public int getParsedColor() {
+		return Color.parseColor("#c92a2a");
+	}
+
+
+	public static final class Builder {
         private long runId;
         private String name;
         private HashMap nameIntl;

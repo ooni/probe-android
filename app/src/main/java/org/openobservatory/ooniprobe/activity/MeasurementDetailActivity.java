@@ -3,18 +3,16 @@ package org.openobservatory.ooniprobe.activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.view.Window;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.Toolbar;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -23,6 +21,7 @@ import com.google.gson.Gson;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
+import org.openobservatory.ooniprobe.databinding.ActivityMeasurementDetailBinding;
 import org.openobservatory.ooniprobe.domain.GetTestSuite;
 import org.openobservatory.ooniprobe.domain.MeasurementsManager;
 import org.openobservatory.ooniprobe.domain.callback.DomainCallback;
@@ -44,6 +43,7 @@ import org.openobservatory.ooniprobe.fragment.measurement.WhatsappFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
+import org.openobservatory.ooniprobe.test.suite.OONIRunSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.test.Dash;
 import org.openobservatory.ooniprobe.test.test.FacebookMessenger;
@@ -64,9 +64,6 @@ import java.util.Objects;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 import ru.noties.markwon.Markwon;
 
@@ -74,21 +71,12 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     private static final String ID = "id";
     private static final String RERUN_KEY = "rerun";
 
-    @BindView(R.id.coordinatorLayout)
-    CoordinatorLayout coordinatorLayout;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+
+	private ActivityMeasurementDetailBinding binding;
+
     private Measurement measurement;
     private Snackbar snackbar;
     private Boolean isInExplorer;
-    @BindView(R.id.log)
-    Button log;
-    @BindView(R.id.explorer)
-    Button explorer;
-    @BindView(R.id.data)
-    Button data;
-    @BindView(R.id.methodology)
-    TextView methodology;
 
     @Inject
     MeasurementsManager measurementsManager;
@@ -103,9 +91,16 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     PreferenceManager preferenceManager;
 
 
-    public static Intent newIntent(Context context, int id) {
+	public static Intent newIntent(Context context, int id) {
         return new Intent(context, MeasurementDetailActivity.class).putExtra(ID, id);
     }
+
+	public void setThemeColor(int color) {
+		Window window = getWindow();
+		window.setStatusBarColor(color);
+		binding.appbarLayout.setBackgroundColor(color);
+		binding.appbarLayout.setBackgroundColor(color);
+	}
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -114,21 +109,32 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
         measurement = measurementsManager.get(getIntent().getIntExtra(ID, 0));
         assert measurement != null;
         measurement.result.load();
-        setTheme(measurement.is_failed ?
-                R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Failed :
-                measurement.result.test_group_name.equals(PerformanceSuite.NAME) ?
-                        measurement.result.getTestSuite().getThemeLight() :
-                        measurement.is_anomaly ?
-                                R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Failure :
-                                R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Success);
-        setContentView(R.layout.activity_measurement_detail);
-        ButterKnife.bind(this);
-        setSupportActionBar(toolbar);
+		if (measurement.is_failed) {
+			setTheme(R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Failed);
+		} else {
+			if (!measurement.result.test_group_name.equals(PerformanceSuite.NAME)) {
+				if (measurement.is_anomaly) {
+					setTheme(R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Failure);
+				} else {
+					setTheme(R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Success);
+				}
+			}
+		}
+		binding = ActivityMeasurementDetailBinding.inflate(getLayoutInflater());
+		setContentView(binding.getRoot());
+        setSupportActionBar(binding.toolbar);
+
+		// TODO(aanorbel) Handle performance suite
+		if (measurement.result.test_group_name.equals(OONIRunSuite.NAME)) {
+			setThemeColor(((OONIRunSuite)measurement.result.getTestSuite()).getDescriptor().getParsedColor());
+		}
+
         ActionBar bar = getSupportActionBar();
         if (bar != null) {
             bar.setDisplayHomeAsUpEnabled(true);
             bar.setTitle(measurement.getTest().getLabelResId());
         }
+		setUpClickListeners();
         Fragment detail = null;
         Fragment head = null;
         if (measurement.is_failed) {
@@ -237,7 +243,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                 .replace(R.id.body, detail)
                 .replace(R.id.head, head)
                 .commit();
-        snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
+        snackbar = Snackbar.make(binding.coordinatorLayout, R.string.Snackbar_ResultsNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.Snackbar_ResultsNotUploaded_Upload, v1 -> runAsyncTask());
         Context c = this;
         isInExplorer = !measurement.hasReportFile(c);
@@ -255,14 +261,20 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
         });
 
         if (!measurement.hasLogFile(this))
-            log.setVisibility(View.GONE);
+            binding.log.setVisibility(View.GONE);
         if (!measurementsManager.hasReportId(measurement))
-            explorer.setVisibility(View.GONE);
-        Markwon.setMarkdown(methodology, getString(R.string.TestResults_Details_Methodology_Paragraph, getString(measurement.getTest().getUrlResId())));
+			binding.explorer.setVisibility(View.GONE);
+        Markwon.setMarkdown(binding.methodology, getString(R.string.TestResults_Details_Methodology_Paragraph, getString(measurement.getTest().getUrlResId())));
         load();
     }
 
-    private void runAsyncTask() {
+	private void setUpClickListeners() {
+		binding.log.setOnClickListener((view) -> logClick());
+		binding.data.setOnClickListener((view) -> dataClick());
+		binding.explorer.setOnClickListener((view) -> explorerClick());
+	}
+
+	private void runAsyncTask() {
         new ResubmitAsyncTask(this, pm.getProxyURL()).execute(null, measurement.id);
     }
 
@@ -305,17 +317,14 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
         }
     }
 
-    @OnClick(R.id.log)
     void logClick() {
         startActivity(TextActivity.newIntent(this, TextActivity.TYPE_LOG, measurement));
     }
 
-    @OnClick(R.id.data)
     void dataClick() {
         startActivity(TextActivity.newIntent(this, TextActivity.TYPE_JSON, measurement));
     }
 
-    @OnClick(R.id.explorer)
     void explorerClick() {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(measurementsManager.getExplorerUrl(measurement))));
     }
