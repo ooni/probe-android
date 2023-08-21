@@ -15,6 +15,7 @@ import org.openobservatory.engine.OONIRunNettest;
 import org.openobservatory.ooniprobe.common.AppDatabase;
 import org.openobservatory.ooniprobe.common.LocaleUtils;
 import org.openobservatory.ooniprobe.common.MapUtility;
+import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.domain.MapConverter;
 import org.openobservatory.ooniprobe.domain.NettestConverter;
 import org.openobservatory.ooniprobe.test.suite.OONIRunSuite;
@@ -25,6 +26,30 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.annotation.Nullable;
+
+enum Animations {
+    checkMark("anim/checkMark.json"),
+    circumvention("anim/circumvention.json"),
+    crossMark("anim/crossMark.json"),
+    experimental("anim/experimental.json"),
+    instant_messaging("anim/instant_messaging.json"),
+    middle_boxes("anim/middle_boxes.json"),
+    performance("anim/performance.json"),
+    websites("anim/websites.json");
+
+    private final String asset;
+
+    Animations(String asset) {
+        this.asset = asset;
+    }
+
+    @Override
+    public String toString() {
+        return this.asset;
+    }
+}
 
 @Table(database = AppDatabase.class)
 public class TestDescriptor extends BaseModel implements Serializable {
@@ -51,6 +76,12 @@ public class TestDescriptor extends BaseModel implements Serializable {
 
     @Column
     private String icon;
+
+    @Column
+    private String color;
+
+    @Column
+    private String animation;
 
     @Column
     private String author;
@@ -134,6 +165,37 @@ public class TestDescriptor extends BaseModel implements Serializable {
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    public String getColor() {
+        return color != null ? color : "#495057";
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getAnimation() {
+        return animation != null ? animation : "experimental";
+    }
+
+    public void setAnimation(String animation) {
+        this.animation = animation;
+    }
+
+    public int getParsedColor() {
+        return Color.parseColor(getColor());
+    }
+
+    @Nullable
+    public String getAnimationAsset() {
+        try {
+            return Animations.valueOf(getAnimation()).toString();
+        }catch (Exception e){
+            e.printStackTrace();
+            ThirdPartyServices.logException(e);
+            return null;
+        }
     }
 
     public String getAuthor() {
@@ -222,14 +284,6 @@ public class TestDescriptor extends BaseModel implements Serializable {
                 || updatedDescriptor.translationCreationTime.after(translationCreationTime);
     }
 
-	public String getAnimation() {
-		return "anim/websites.json";
-	}
-
-	public int getParsedColor() {
-		return Color.parseColor("#c92a2a");
-	}
-
 
 	public static final class Builder {
         private long runId;
@@ -240,6 +294,8 @@ public class TestDescriptor extends BaseModel implements Serializable {
         private String description;
         private HashMap descriptionIntl;
         private String icon;
+        private String color;
+        private String animation;
         private String author;
         private boolean archived;
         private boolean autoRun;
@@ -292,6 +348,16 @@ public class TestDescriptor extends BaseModel implements Serializable {
 
         public Builder withIcon(String icon) {
             this.icon = icon;
+            return this;
+        }
+
+        public Builder withColor(String color) {
+            this.color = color;
+            return this;
+        }
+
+        public Builder withAnimation(String animation) {
+            this.animation = animation;
             return this;
         }
 

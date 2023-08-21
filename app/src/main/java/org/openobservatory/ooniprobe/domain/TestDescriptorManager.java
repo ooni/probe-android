@@ -52,6 +52,8 @@ public class TestDescriptorManager {
                 .withDescription(descriptor.getDescription())
                 .withDescriptionIntl(descriptor.getDescriptionIntl())
                 .withIcon(descriptor.getIcon())
+                .withColor(descriptor.getColor())
+                .withAnimation(descriptor.getAnimation())
                 .withArchived(response.archived)
                 .withAuthor(descriptor.getAuthor())
                 .withCreationTime(response.creationTime)

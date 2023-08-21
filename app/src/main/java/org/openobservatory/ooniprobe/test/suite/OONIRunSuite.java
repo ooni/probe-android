@@ -26,7 +26,7 @@ public class OONIRunSuite  extends AbstractSuite {
 			R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Experimental,
 			R.style.Theme_MaterialComponents_NoActionBar_App_Experimental,
 			descriptor.getDescription(),
-			descriptor.getAnimation(),
+			descriptor.getAnimationAsset(),
 			R.string.TestResults_NotAvailable);
 		this.tests = tests;
 		this.descriptor = descriptor;
