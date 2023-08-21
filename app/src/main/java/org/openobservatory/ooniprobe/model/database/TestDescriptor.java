@@ -176,7 +176,7 @@ public class TestDescriptor extends BaseModel implements Serializable {
     }
 
     public String getAnimation() {
-        return animation != null ? animation : "experimental";
+        return animation;
     }
 
     public void setAnimation(String animation) {
@@ -190,7 +190,7 @@ public class TestDescriptor extends BaseModel implements Serializable {
     @Nullable
     public String getAnimationAsset() {
         try {
-            return Animations.valueOf(getAnimation()).toString();
+            return Animations.valueOf(animation).toString();
         }catch (Exception e){
             e.printStackTrace();
             ThirdPartyServices.logException(e);
