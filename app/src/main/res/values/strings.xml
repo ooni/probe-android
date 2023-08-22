@@ -530,4 +530,7 @@
   <string name="CategoryCode_CTRL_Description">Benign or innocuous content used for control</string>
   <string name="CategoryCode_IGO_Description">Intergovernmental organizations including The United Nations</string>
   <string name="CategoryCode_MISC_Description">Sites that haven\'t been categorized yet</string>
+  <string name="Prompt_DontAskAgain">Don’t ask again</string>
+  <string name="Prompt_EnableTestProgressNotifications_Title">Enable test progress notifications</string>
+  <string name="Prompt_EnableTestProgressNotifications_Paragraph">Would you like to enable notifications on OONI Probe test progress and display running tests in the notifications drawer?</string>
 </resources>

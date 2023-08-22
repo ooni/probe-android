@@ -78,10 +78,10 @@ public class PromptActivity extends AbstractActivity {
         OnPromptAction actions;
         switch (prompt) {
             case CENSORSHIP_CONSENT:
-                actions = new ConsentActions();
+                actions = new InternetCensorshipConsentActions();
                 break;
             case TEST_PROGRESS_CONSENT:
-                actions = new ConsentActions();
+                actions = new TestProgressNotificationConsentActions();
                 break;
             default:
                 actions = new OnPromptAction() {
@@ -105,7 +105,9 @@ public class PromptActivity extends AbstractActivity {
     }
 
     public void requestNotificationPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(
+                this, Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
             }
@@ -113,7 +115,8 @@ public class PromptActivity extends AbstractActivity {
     }
 
     enum Prompt {
-        CENSORSHIP_CONSENT(R.string.Modal_EnableNotifications_Title, R.string.Modal_EnableNotifications_Paragraph), TEST_PROGRESS_CONSENT(R.string.Modal_EnableNotifications_Title, R.string.Modal_EnableNotifications_Paragraph);
+        CENSORSHIP_CONSENT(R.string.Modal_EnableNotifications_Title, R.string.Modal_EnableNotifications_Paragraph),
+        TEST_PROGRESS_CONSENT(R.string.Prompt_EnableTestProgressNotifications_Title, R.string.Prompt_EnableTestProgressNotifications_Paragraph);
 
         private final int title;
         private final int paragraph;
@@ -147,12 +150,19 @@ public class PromptActivity extends AbstractActivity {
         void onClickNegative(View view);
     }
 
-    public class ConsentActions implements OnPromptAction {
+    public class InternetCensorshipConsentActions implements OnPromptAction {
 
         @Override
         public void onClickPositive(View view) {
             notificationManager.getUpdates(true);
-            PromptActivity.this.requestNotificationPermission();
+            if (ContextCompat.checkSelfPermission(
+                    PromptActivity.this,
+                    Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED){
+                PromptActivity.this.requestNotificationPermission();
+            } else {
+                setResult(Activity.RESULT_OK);
+                finish();
+            }
         }
 
         @Override
@@ -164,6 +174,34 @@ public class PromptActivity extends AbstractActivity {
         @Override
         public void onClickNegative(View view) {
             notificationManager.disableAskNotificationDialog();
+            onClickNeutral(view);
+        }
+    }
+
+    public class TestProgressNotificationConsentActions implements OnPromptAction {
+
+        @Override
+        public void onClickPositive(View view) {
+            notificationManager.setTestProgressNotificationConsent(true);
+            if (ContextCompat.checkSelfPermission(
+                    PromptActivity.this,
+                    Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED){
+                PromptActivity.this.requestNotificationPermission();
+            } else {
+                setResult(Activity.RESULT_OK);
+                finish();
+            }
+        }
+
+        @Override
+        public void onClickNeutral(View view) {
+            PromptActivity.this.setResult(Activity.RESULT_CANCELED);
+            PromptActivity.this.finish();
+        }
+
+        @Override
+        public void onClickNegative(View view) {
+            notificationManager.disableAskTestProgressNotificationConsent();
             onClickNeutral(view);
         }
     }

@@ -8,8 +8,14 @@
 		android:title="@string/Settings_Notifications_Label">
 		<SwitchPreferenceCompat
 			android:defaultValue="false"
+			app:iconSpaceReserved="false"
 			android:key="@string/notifications_enabled"
-			android:title="@string/Settings_Notifications_Enabled" />
+			android:title="@string/Modal_EnableNotifications_Title" />
+		<SwitchPreferenceCompat
+			android:defaultValue="false"
+			app:iconSpaceReserved="false"
+			android:key="@string/test_progress_notifications_enabled"
+			android:title="@string/Prompt_EnableTestProgressNotifications_Title" />
 			<PreferenceCategory
 				android:title="@string/Modal_EnableNotifications_Paragraph"
 				app:iconSpaceReserved="false" />
