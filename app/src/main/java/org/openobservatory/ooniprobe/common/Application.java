@@ -1,7 +1,5 @@
 package org.openobservatory.ooniprobe.common;
 
-import static androidx.work.WorkManager.getInstance;
-
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
@@ -11,12 +9,6 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
 import androidx.lifecycle.ProcessLifecycleOwner;
-import androidx.work.Constraints;
-import androidx.work.ExistingPeriodicWorkPolicy;
-import androidx.work.ExistingWorkPolicy;
-import androidx.work.NetworkType;
-import androidx.work.OneTimeWorkRequest;
-import androidx.work.PeriodicWorkRequest;
 
 import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.config.FlowLog;
@@ -26,7 +18,6 @@ import org.openobservatory.engine.OONICheckInConfig;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.client.OONIAPIClient;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
-import org.openobservatory.ooniprobe.common.worker.UpdateDescriptorsWorker;
 import org.openobservatory.ooniprobe.di.ActivityComponent;
 import org.openobservatory.ooniprobe.di.AppComponent;
 import org.openobservatory.ooniprobe.di.ApplicationModule;
@@ -38,7 +29,6 @@ import org.openobservatory.ooniprobe.model.database.Measurement;
 import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -76,27 +66,6 @@ public class Application extends android.app.Application {
 		ThirdPartyServices.reloadConsents(Application.this);
 		LocaleUtils.setLocale(new Locale(_preferenceManager.getSettingsLanguage()));
 		LocaleUtils.updateConfig(this, getBaseContext().getResources().getConfiguration());
-		scheduleWorkers();
-	}
-
-	private void scheduleWorkers() {
-		getInstance(this)
-				.enqueueUniquePeriodicWork(
-						UpdateDescriptorsWorker.UPDATED_DESCRIPTORS_WORK_NAME,
-						ExistingPeriodicWorkPolicy.KEEP,
-						new PeriodicWorkRequest.Builder(UpdateDescriptorsWorker.class, 24, TimeUnit.HOURS)
-								.setConstraints(
-										new Constraints.Builder()
-												.setRequiredNetworkType(NetworkType.CONNECTED)
-												.build()
-								).build()
-				);
-		/*getInstance(this)
-				.beginUniqueWork(
-						UpdateDescriptorsWorker.UPDATED_DESCRIPTORS_WORK_NAME,
-						ExistingWorkPolicy.REPLACE,
-						OneTimeWorkRequest.from(UpdateDescriptorsWorker.class)
-				).enqueue();*/
 	}
 
 	protected AppComponent buildDagger() {
