@@ -130,6 +130,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
             }
         }
         requestNotificationPermission();
+        // TODO: (aanorbel) add conditions to schedule workers.
         scheduleWorkers();
     }
 
