@@ -4,26 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.databinding.FragmentResultHeadTbaBinding;
 import org.openobservatory.ooniprobe.model.database.Result;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class ResultHeaderTBAFragment extends Fragment {
 	private static final String RESULT = "result";
-	@BindView(R.id.tested) TextView tested;
-	@BindView(R.id.blocked) TextView blocked;
-	@BindView(R.id.available) TextView available;
-	@BindView(R.id.testedTag) TextView testedTag;
-	@BindView(R.id.blockedTag) TextView blockedTag;
-	@BindView(R.id.availableTag) TextView availableTag;
 
 	public static ResultHeaderTBAFragment newInstance(Result result) {
 		Bundle args = new Bundle();
@@ -33,21 +22,22 @@ public class ResultHeaderTBAFragment extends Fragment {
 		return fragment;
 	}
 
-	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+	@Nullable
+	@Override
+	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 		assert getArguments() != null;
-		View v = inflater.inflate(R.layout.fragment_result_head_tba, container, false);
-		ButterKnife.bind(this, v);
+		FragmentResultHeadTbaBinding binding = FragmentResultHeadTbaBinding.inflate(inflater, container, false);
 		Result result = (Result) getArguments().getSerializable(RESULT);
 		assert result != null;
 		long testedCount = result.countTotalMeasurements();
 		long blockedCount = result.countAnomalousMeasurements();
 		long availableCount = result.countOkMeasurements();
-		tested.setText(getString(R.string.d, testedCount));
-		blocked.setText(getString(R.string.d, blockedCount));
-		available.setText(getString(R.string.d, availableCount));
-		testedTag.setText(getResources().getQuantityText(R.plurals.TestResults_Summary_Websites_Hero_Tested, (int) testedCount));
-		blockedTag.setText(getResources().getQuantityText(R.plurals.TestResults_Summary_Websites_Hero_Blocked, (int) blockedCount));
-		availableTag.setText(getResources().getQuantityText(R.plurals.TestResults_Summary_Websites_Hero_Reachable, (int) availableCount));
-		return v;
+		binding.tested.setText(getString(R.string.d, testedCount));
+		binding.blocked.setText(getString(R.string.d, blockedCount));
+		binding.available.setText(getString(R.string.d, availableCount));
+		binding.testedTag.setText(getResources().getQuantityText(R.plurals.TestResults_Summary_Websites_Hero_Tested, (int) testedCount));
+		binding.blockedTag.setText(getResources().getQuantityText(R.plurals.TestResults_Summary_Websites_Hero_Blocked, (int) blockedCount));
+		binding.availableTag.setText(getResources().getQuantityText(R.plurals.TestResults_Summary_Websites_Hero_Reachable, (int) availableCount));
+		return binding.getRoot();
 	}
 }
