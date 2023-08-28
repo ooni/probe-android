@@ -4,8 +4,6 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,11 +13,10 @@ import org.openobservatory.ooniprobe.databinding.ItemOoniRunBinding;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
+import org.openobservatory.ooniprobe.test.suite.OONIRunSuite;
 
 import java.util.Locale;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
 public class RunItem extends HeterogeneousRecyclerItem<Result, RunItem.ViewHolder> {
@@ -47,6 +44,11 @@ public class RunItem extends HeterogeneousRecyclerItem<Result, RunItem.ViewHolde
 		viewHolder.binding.icon.setImageDrawable(viewHolder.itemView.getContext().getDrawable(extra.getTestSuite().getIconGradient()));
 		viewHolder.binding.icon.setColorFilter(viewHolder.itemView.getResources().getColor(R.color.color_gray7));
 		viewHolder.binding.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), extra.start_time));
+		if (extra.test_group_name.equals(OONIRunSuite.NAME)) {
+			int color = ((OONIRunSuite)extra.getTestSuite()).getDescriptor().getParsedColor();
+			viewHolder.binding.icon.setColorFilter(color);
+			viewHolder.binding.name.setTextColor(color);
+		}
 		boolean allUploaded = true;
 		for (Measurement m : extra.getMeasurements())
 			allUploaded = allUploaded && (m.isUploaded() || m.is_failed);

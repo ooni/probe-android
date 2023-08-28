@@ -7,27 +7,24 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.Toolbar;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
+import org.openobservatory.ooniprobe.databinding.ActivityResultDetailBinding;
 import org.openobservatory.ooniprobe.domain.GetResults;
 import org.openobservatory.ooniprobe.domain.GetTestSuite;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment;
@@ -43,6 +40,7 @@ import org.openobservatory.ooniprobe.test.suite.CircumventionSuite;
 import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
+import org.openobservatory.ooniprobe.test.suite.OONIRunSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
@@ -52,8 +50,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerAdapter;
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
@@ -62,17 +58,9 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
     private static final String ID = "id";
     private static final String UPLOAD_KEY = "upload";
     private static final String RERUN_KEY = "rerun";
-    @BindView(R.id.coordinatorLayout)
-    CoordinatorLayout coordinatorLayout;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.tabLayout)
-    TabLayout tabLayout;
-    @BindView(R.id.pager)
-    ViewPager2 pager;
-    @BindView(R.id.recyclerView)
-    RecyclerView recycler;
-    private ArrayList<HeterogeneousRecyclerItem> items;
+	private ActivityResultDetailBinding binding;
+
+	private ArrayList<HeterogeneousRecyclerItem> items;
     private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
     private Result result;
     private Snackbar snackbar;
@@ -86,9 +74,15 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
     @Inject
     PreferenceManager preferenceManager;
 
-    public static Intent newIntent(Context context, int id) {
+	public static Intent newIntent(Context context, int id) {
         return new Intent(context, ResultDetailActivity.class).putExtra(ID, id);
     }
+	public void setThemeColor(int color) {
+		Window window = getWindow();
+		window.setStatusBarColor(color);
+		binding.appbarLayout.setBackgroundColor(color);
+		binding.tabLayout.setBackgroundColor(color);
+	}
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -96,28 +90,30 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
         getActivityComponent().inject(this);
         result = getResults.get(getIntent().getIntExtra(ID, 0));
         assert result != null;
-        setTheme(result.getTestSuite().getThemeLight());
-        setContentView(R.layout.activity_result_detail);
-        ButterKnife.bind(this);
-        setSupportActionBar(toolbar);
+		binding = ActivityResultDetailBinding.inflate(getLayoutInflater());
+		setContentView(binding.getRoot());
+        setSupportActionBar(binding.toolbar);
+		if (result.test_group_name.equals(OONIRunSuite.NAME)) {
+			setThemeColor(((OONIRunSuite)result.getTestSuite()).getDescriptor().getParsedColor());
+		}
         ActionBar bar = getSupportActionBar();
         if (bar != null) {
             bar.setDisplayHomeAsUpEnabled(true);
             bar.setTitle(result.getTestSuite().getTitle());
         }
-        pager.setAdapter(new ResultHeaderAdapter(this));
-        new TabLayoutMediator(tabLayout, pager, (tab, position) ->
+		binding.pager.setAdapter(new ResultHeaderAdapter(this));
+        new TabLayoutMediator(binding.tabLayout, binding.pager, (tab, position) ->
                 tab.setText("●")
         ).attach();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recycler.setLayoutManager(layoutManager);
-        recycler.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
+		binding.recyclerView.setLayoutManager(layoutManager);
+		binding.recyclerView.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
         result.is_viewed = true;
         result.save();
         items = new ArrayList<>();
         adapter = new HeterogeneousRecyclerAdapter<>(this, items);
-        recycler.setAdapter(adapter);
-        snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsSomeNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
+		binding.recyclerView.setAdapter(adapter);
+        snackbar = Snackbar.make(binding.coordinatorLayout, R.string.Snackbar_ResultsSomeNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll, v1 -> runAsyncTask());
     }
 

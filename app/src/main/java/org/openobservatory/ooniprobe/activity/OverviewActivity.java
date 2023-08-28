@@ -2,9 +2,11 @@ package org.openobservatory.ooniprobe.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,7 +14,6 @@ import androidx.annotation.Nullable;
 import androidx.core.text.TextUtilsCompat;
 import androidx.core.view.ViewCompat;
 import androidx.databinding.BindingAdapter;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
@@ -28,7 +29,6 @@ import org.openobservatory.ooniprobe.model.database.TestDescriptor;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 import org.openobservatory.ooniprobe.test.suite.OONIRunSuite;
-import org.openobservatory.ooniprobe.test.test.AbstractTest;
 
 import java.util.Locale;
 import java.util.Objects;
@@ -57,7 +57,6 @@ public class OverviewActivity extends AbstractActivity {
 		super.onCreate(savedInstanceState);
 		getActivityComponent().inject(this);
 		testSuite = (AbstractSuite) getIntent().getSerializableExtra(TEST);
-		setTheme(testSuite.getThemeLight());
 		binding = ActivityOverviewBinding.inflate(getLayoutInflater());
 		setContentView(binding.getRoot());
 		setSupportActionBar(binding.toolbar);
@@ -71,11 +70,19 @@ public class OverviewActivity extends AbstractActivity {
 		}
 
 		if (testSuite.getName().equals(OONIRunSuite.NAME)) {
+			setThemeColor(((OONIRunSuite)testSuite).getDescriptor().getParsedColor());
 			binding.swipeRefresh.setOnRefreshListener(this::initiateRefresh);
 		} else {
 			binding.swipeRefresh.setEnabled(false);
 		}
 		setUpOnCLickListeners();
+	}
+
+	public void setThemeColor(int color) {
+		Window window = getWindow();
+		window.setStatusBarColor(color);
+		binding.run.setTextColor(color);
+		binding.appbarLayout.setBackgroundColor(color);
 	}
 
 	private void onTestSuiteChanged() {

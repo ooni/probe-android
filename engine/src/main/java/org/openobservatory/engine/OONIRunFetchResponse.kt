@@ -24,6 +24,8 @@ data class OONIRunDescriptor(
     @SerializedName("description_intl")
     val descriptionIntl: HashMap<String, String>,
     val icon: String,
+    val color: String,
+    val animation: String,
     val name: String,
     @SerializedName("name_intl")
     val nameIntl: HashMap<String, String>,

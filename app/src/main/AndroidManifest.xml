@@ -47,16 +47,19 @@
 			android:name=".activity.OverviewActivity"
 			android:launchMode="singleTop"
 			android:parentActivityName=".activity.MainActivity"
+			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar"
 			android:screenOrientation="userPortrait" />
 		<activity
 			android:name=".activity.ResultDetailActivity"
 			android:launchMode="singleTop"
 			android:parentActivityName=".activity.MainActivity"
+			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar"
 			android:screenOrientation="userPortrait" />
 		<activity
 			android:name=".activity.MeasurementDetailActivity"
 			android:launchMode="singleTop"
 			android:parentActivityName=".activity.ResultDetailActivity"
+			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar"
 			android:screenOrientation="userPortrait" />
 		<activity
 			android:name=".activity.TextActivity"
