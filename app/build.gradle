@@ -164,7 +164,7 @@ dependencies {
 	testImplementation 'org.robolectric:robolectric:4.5.1'
 	testImplementation 'com.github.blocoio:faker:1.2.8'
 	testImplementation 'org.ooni:oonimkall:2023.07.18-162729'
-	testAnnotationProcessor 'com.google.dagger:dagger-compiler:2.45'
+    kaptTest 'com.google.dagger:dagger-compiler:2.45'
 
 	// Instrumentation Testing
 	androidTestImplementation 'tools.fastlane:screengrab:2.0.0'
@@ -184,7 +184,7 @@ dependencies {
 		exclude module: 'recyclerview-v7'
 	}
 	androidTestImplementation('com.schibsted.spain:barista:3.9.0')
-	androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:2.45"
+    kaptAndroidTest "com.google.dagger:dagger-compiler:2.45"
 }
 
 static def versionCodeDate() {
