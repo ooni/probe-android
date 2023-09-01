@@ -80,7 +80,7 @@ public class EventResultFactory {
     public static EventResult buildLog(String message) {
         EventResult.Value value = new EventResult.Value();
         value.message = message;
-
+        value.log_level = "WARNING";
         return build("log", value);
     }
     public static EventResult buildProgress(Double percentage, String message) {

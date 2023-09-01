@@ -20,7 +20,11 @@ abstract class LoggerManager(private val context: Context) : ILogger, Subject {
     companion object {
         @JvmStatic
         fun getTag(line: String): String {
-            return line.substring(24).trim().split(":").first().trim()
+            return try {
+                line.substring(24).trim().split(":").first().trim()
+            } catch (e: Exception) {
+                "DEBUG"
+            }
         }
     }
 

@@ -6,6 +6,8 @@
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 	<uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+	<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
 
 	<permission
 		android:name="${applicationId}.permission.C2D_MESSAGE"
@@ -173,6 +175,7 @@
 		<service
 			android:name=".common.service.RunTestService"
 			android:icon="@drawable/notification_icon"
+			android:foregroundServiceType="specialUse"
 			android:label="@string/Dashboard_Card_Run"/>
 		<service
 			android:name=".common.service.RunTestJobService"

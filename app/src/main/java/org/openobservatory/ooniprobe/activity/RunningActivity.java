@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.activity;
 
+import static java.util.Locale.ENGLISH;
+
 import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -17,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -143,8 +146,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         });
         testProgressRepository.getEta().observe(this,etaValue -> {
             if (etaValue!=null) {
-                eta.setText(getString(R.string.Dashboard_Running_Seconds,
-                        String.valueOf(Math.round(etaValue))));
+                eta.setText(readableTimeRemaining(etaValue));
             }
         });
 
@@ -186,8 +188,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
 
         Double etaValue = testProgressRepository.getEta().getValue();
         if (etaValue!=null){
-            eta.setText(getString(R.string.Dashboard_Running_Seconds,
-                    String.valueOf(Math.round(etaValue))));
+            eta.setText(readableTimeRemaining(etaValue));
         }else {
             eta.setText(R.string.Dashboard_Running_CalculatingETA);
         }
@@ -270,8 +271,8 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         public void onProgress(int state, double timeLeft) {
             progress.setIndeterminate(false);
             progress.setProgress(state);
-            eta.setText(getString(R.string.Dashboard_Running_Seconds,
-                    String.valueOf(Math.round(timeLeft))));
+
+            eta.setText(readableTimeRemaining(timeLeft));
         }
 
         @Override
@@ -299,5 +300,11 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         public void onEnd(Context context) {
             testEnded(context);
         }
+    }
+
+    @NonNull
+    private static String readableTimeRemaining(double timeLeft) {
+        long letaValue = Math.round(timeLeft);
+        return String.format(ENGLISH,"%dm %02ds", letaValue/60, letaValue%60);
     }
 }

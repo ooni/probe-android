@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.fragment;
 
+import static org.openobservatory.ooniprobe.common.PreferenceManager.COUNT_WEBSITE_CATEGORIES;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -10,9 +12,13 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.XmlRes;
 import androidx.preference.EditTextPreference;
@@ -32,6 +38,8 @@ import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 
 import java.util.Arrays;
+
+import javax.inject.Inject;
 
 import localhost.toolkit.app.fragment.MessageDialogFragment;
 import localhost.toolkit.preference.ExtendedPreferenceFragment;
@@ -54,6 +62,7 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         this.rootKey = rootKey;
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -225,5 +234,44 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                 disableScheduler();
             }
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        PreferenceScreen ourPreferenceScreen = findPreference(getString(R.string.Settings_Websites_Categories_Label));
+        if (getPreferenceScreen().equals(ourPreferenceScreen)) {
+            inflater.inflate(R.menu.website_categories, menu);
+        }
+        int enabledCategories = ((Application) getActivity().getApplication()).getPreferenceManager().countEnabledCategory();
+
+        if (enabledCategories>=COUNT_WEBSITE_CATEGORIES){
+            MenuItem item = menu.findItem(R.id.selectAll);
+            if (item != null) {
+                item.setVisible(false);
+            }
+        } else if (enabledCategories<=0){
+            MenuItem item = menu.findItem(R.id.selectNone);
+            if (item != null) {
+                item.setVisible(false);
+            }
+        }
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        PreferenceManager preferenceManager = ((Application) getActivity().getApplication()).getPreferenceManager();
+        int itemId = item.getItemId();
+        if (itemId == R.id.selectAll) {
+            preferenceManager.updateAllWebsiteCategories(true);
+            getActivity().finish();
+            return true;
+        } else if (itemId == R.id.selectNone) {
+            preferenceManager.updateAllWebsiteCategories(false);
+            getActivity().finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

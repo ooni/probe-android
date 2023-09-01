@@ -58,7 +58,7 @@ public class TestRunBroadRequestReceiver extends BroadcastReceiver implements Se
                 break;
             case TestAsyncTask.PRG:
                 try {
-                    if (service != null && service.task.testSuites.indexOf(service.task.currentSuite) > 0) {
+                    if (service != null && service.task.testSuites.contains(service.task.currentSuite)) {
                         List<AbstractSuite> previousTestSuites =
                                 service.task.testSuites.subList(0, service.task.testSuites.indexOf(service.task.currentSuite));
                         int previousTestProgress = ListUtility.sum(Lists.transform(
