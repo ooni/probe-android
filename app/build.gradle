@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin:  'kotlin-android'
+apply plugin:  'kotlin-kapt'
 apply from: 'jacoco.gradle'
 
 android {
@@ -94,6 +96,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
     buildFeatures {
         viewBinding = true
     }
@@ -114,7 +119,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
 // Third-party
-	annotationProcessor 'com.github.Raizlabs.DBFlow:dbflow-processor:4.2.4'
+    kapt 'com.github.Raizlabs.DBFlow:dbflow-processor:4.2.4'
 	implementation 'com.github.Raizlabs.DBFlow:dbflow-core:4.2.4'
 	implementation 'com.github.Raizlabs.DBFlow:dbflow:4.2.4'
 
@@ -124,7 +129,7 @@ dependencies {
 
 
 	implementation 'com.jakewharton:butterknife:10.2.3'
-	annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
+    kapt 'com.jakewharton:butterknife-compiler:10.2.3'
 
 	implementation 'com.github.xanscale.LocalhostToolkit:app:19.05.01'
 	implementation 'com.airbnb.android:lottie:3.0.7'
@@ -142,8 +147,8 @@ dependencies {
 	fullImplementation 'com.google.android.play:core:1.10.3'
 
 // Dependency Injection
-    implementation 'com.google.dagger:dagger:2.36'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.36'
+    implementation 'com.google.dagger:dagger:2.45'
+    kapt 'com.google.dagger:dagger-compiler:2.45'
 
 // Logger
     implementation project(':applogger')
@@ -159,7 +164,7 @@ dependencies {
 	testImplementation 'org.robolectric:robolectric:4.5.1'
 	testImplementation 'com.github.blocoio:faker:1.2.8'
 	testImplementation 'org.ooni:oonimkall:2023.07.18-162729'
-	testAnnotationProcessor 'com.google.dagger:dagger-compiler:2.36'
+    kaptTest 'com.google.dagger:dagger-compiler:2.45'
 
 	// Instrumentation Testing
 	androidTestImplementation 'tools.fastlane:screengrab:2.0.0'
@@ -179,7 +184,7 @@ dependencies {
 		exclude module: 'recyclerview-v7'
 	}
 	androidTestImplementation('com.schibsted.spain:barista:3.9.0')
-	androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:2.36"
+    kaptAndroidTest "com.google.dagger:dagger-compiler:2.45"
 }
 
 static def versionCodeDate() {

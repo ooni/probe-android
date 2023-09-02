@@ -14,7 +14,8 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			app:contentScrim="?attr/colorPrimary"
-			app:titleEnabled="false">
+			app:titleEnabled="false"
+			app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
 			<LinearLayout
 				android:layout_width="match_parent"
