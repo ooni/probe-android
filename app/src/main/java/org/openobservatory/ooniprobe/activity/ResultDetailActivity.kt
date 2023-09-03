@@ -10,17 +10,15 @@ import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import localhost.toolkit.app.fragment.ConfirmDialogFragment
 import localhost.toolkit.app.fragment.ConfirmDialogFragment.OnConfirmedListener
-import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerAdapter
-import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem
 import org.openobservatory.ooniprobe.R
+import org.openobservatory.ooniprobe.adapters.MeasurementGroup
+import org.openobservatory.ooniprobe.adapters.ResultDetailExpandableListAdapter
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.common.ResubmitTask
 import org.openobservatory.ooniprobe.databinding.ActivityResultDetailBinding
@@ -30,8 +28,6 @@ import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFra
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderMiddleboxFragment
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderPerformanceFragment
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderTBAFragment
-import org.openobservatory.ooniprobe.item.MeasurementItem
-import org.openobservatory.ooniprobe.item.MeasurementPerfItem
 import org.openobservatory.ooniprobe.model.database.Measurement
 import org.openobservatory.ooniprobe.model.database.Network
 import org.openobservatory.ooniprobe.model.database.Result
@@ -52,10 +48,9 @@ class ResultDetailActivity : AbstractActivity(), View.OnClickListener, OnConfirm
         }
     }
 
-    private var items: ArrayList<HeterogeneousRecyclerItem<*, *>>? = null
-    private var adapter: HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem<*, *>>? = null
     private lateinit var result: Result
     private lateinit var snackbar: Snackbar
+    private lateinit var binding: ActivityResultDetailBinding
 
     @Inject
     lateinit var getTestSuite: GetTestSuite
@@ -82,7 +77,7 @@ class ResultDetailActivity : AbstractActivity(), View.OnClickListener, OnConfirm
             else -> {
                 result = iResult
                 setTheme(result.testSuite.themeLight)
-                val binding = ActivityResultDetailBinding.inflate(layoutInflater)
+                binding = ActivityResultDetailBinding.inflate(layoutInflater)
                 setContentView(binding.root)
                 setSupportActionBar(binding.toolbar)
                 supportActionBar?.let { actionBar ->
@@ -98,26 +93,15 @@ class ResultDetailActivity : AbstractActivity(), View.OnClickListener, OnConfirm
                     is_viewed = true
                     save()
                 }
-                items = ArrayList()
-                adapter = HeterogeneousRecyclerAdapter(this, items)
-                binding.recyclerView.apply {
-                    val layoutManager = LinearLayoutManager(this@ResultDetailActivity)
-                    setLayoutManager(layoutManager)
-                    addItemDecoration(DividerItemDecoration(this@ResultDetailActivity, layoutManager.orientation))
-                    setAdapter(this@ResultDetailActivity.adapter)
-                }
+
                 snackbar = Snackbar.make(
                     binding.coordinatorLayout,
                     R.string.Snackbar_ResultsSomeNotUploaded_Text,
                     Snackbar.LENGTH_INDEFINITE
                 ).setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll) { runAsyncTask() }
+                load()
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        load()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -166,18 +150,28 @@ class ResultDetailActivity : AbstractActivity(), View.OnClickListener, OnConfirm
 
     private fun load() {
         result = getResults[result.id]
-        val isPerf = result.test_group_name == PerformanceSuite.NAME
-        items?.clear()
-        result.getMeasurementsSorted().let { measurements ->
-            for (measurement in measurements) items!!.add(
-                if (isPerf && !measurement.is_failed) MeasurementPerfItem(
-                    measurement,
-                    this
-                ) else MeasurementItem(measurement, this)
+
+        val groupedItemList = mutableListOf<Any>()
+        val groupedItems = result.getMeasurementsSorted().groupBy { it.test_name }
+        for ((_, itemList) in groupedItems) {
+            if (itemList.size == 1) {
+                groupedItemList.add(itemList.first())
+            } else {
+                if (groupedItems.size == 1) {
+                    groupedItemList.addAll(itemList)
+                } else {
+                    groupedItemList.add(MeasurementGroup(title = itemList.first().test.name, measurements = itemList))
+                }
+
+            }
+        }
+
+        binding.recyclerView.apply {
+            setAdapter(
+                ResultDetailExpandableListAdapter(groupedItemList, this@ResultDetailActivity)
             )
         }
 
-        adapter?.notifyTypesChanged()
         if (Measurement.hasReport(
                 this,
                 Measurement.selectUploadableWithResultId(result.id)
@@ -208,7 +202,7 @@ class ResultDetailActivity : AbstractActivity(), View.OnClickListener, OnConfirm
         }
     }
 
-    private class ResubmitAsyncTask internal constructor(activity: ResultDetailActivity) :
+    private class ResubmitAsyncTask(activity: ResultDetailActivity) :
         ResubmitTask<ResultDetailActivity?>(activity, activity.preferenceManager.proxyURL) {
         override fun onPostExecute(result: Boolean) {
             super.onPostExecute(result)
@@ -233,7 +227,7 @@ class ResultDetailActivity : AbstractActivity(), View.OnClickListener, OnConfirm
         }
     }
 
-    private inner class ResultHeaderAdapter internal constructor(fa: FragmentActivity) : FragmentStateAdapter(fa) {
+    private inner class ResultHeaderAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
         override fun createFragment(position: Int): Fragment {
             when (result.test_group_name) {
                 ExperimentalSuite.NAME -> {

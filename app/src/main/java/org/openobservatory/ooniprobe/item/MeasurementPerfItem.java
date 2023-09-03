@@ -16,7 +16,7 @@ import org.openobservatory.ooniprobe.test.test.HttpInvalidRequestLine;
 import org.openobservatory.ooniprobe.test.test.Ndt;
 
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
-
+@Deprecated
 public class MeasurementPerfItem extends HeterogeneousRecyclerItem<Measurement, MeasurementPerfItem.ViewHolder> {
 	private final View.OnClickListener onClickListener;
 
