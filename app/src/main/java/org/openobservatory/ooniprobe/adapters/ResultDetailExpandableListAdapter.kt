@@ -62,6 +62,12 @@ class ResultDetailExpandableListAdapter(
 
         measurement?.let {
             bindMeasurement(it, root)
+            root.apply {
+                setPaddingRelative(96,0,0,0)
+                setBackgroundColor(parent.context.resources.getColor(R.color.color_gray0))
+            }
+        }?: run {
+            root.visibility = View.GONE
         }
 
         return root
