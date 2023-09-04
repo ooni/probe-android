@@ -93,7 +93,7 @@ class ResultDetailExpandableListAdapter(
                 setCompoundDrawablesRelativeWithIntrinsicBounds(
                     0,
                     0,
-                    if (isExpanded) R.drawable.advanced else R.drawable.chevron_right,
+                    if (isExpanded) R.drawable.keyboard_arrow_up else R.drawable.keyboard_arrow_down,
                     0
                 )
             }
