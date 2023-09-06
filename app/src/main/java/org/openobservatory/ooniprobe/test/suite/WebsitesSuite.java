@@ -2,6 +2,7 @@ package org.openobservatory.ooniprobe.test.suite;
 
 import androidx.annotation.Nullable;
 
+import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
@@ -15,8 +16,8 @@ public class WebsitesSuite extends AbstractSuite {
 				R.string.Test_Websites_Fullname,
 				R.string.Dashboard_Websites_Card_Description,
 				R.drawable.test_websites,
-				R.drawable.test_websites_24,
-				R.color.color_indigo6,
+				BuildConfig.FLAVOR_testing.equals("dw") ? R.drawable.test_websites : R.drawable.test_websites_24,
+                BuildConfig.FLAVOR_testing.equals("dw") ? R.color.color_base : R.color.color_indigo6,
 				R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Websites,
 				R.style.Theme_MaterialComponents_NoActionBar_App_Websites,
 				R.string.Dashboard_Websites_Overview_Paragraph,

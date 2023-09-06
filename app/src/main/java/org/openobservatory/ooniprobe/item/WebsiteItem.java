@@ -40,6 +40,7 @@ public class WebsiteItem extends HeterogeneousRecyclerItem<Result, WebsiteItem.V
 		viewHolder.itemView.setOnClickListener(onClickListener);
 		viewHolder.itemView.setOnLongClickListener(onLongClickListener);
 		viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(viewHolder.itemView.getContext(), extra.is_viewed ? android.R.color.transparent : R.color.color_yellow0));
+		viewHolder.label.setTextColor(ContextCompat.getColor(viewHolder.label.getContext(),extra.getTestSuite().getColor()));
 		viewHolder.asnName.setText(Network.toString(viewHolder.asnName.getContext(), extra.network));
 		viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), extra.start_time));
 		Long blocked = extra.countAnomalousMeasurements();
@@ -55,6 +56,7 @@ public class WebsiteItem extends HeterogeneousRecyclerItem<Result, WebsiteItem.V
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {
+		@BindView(R.id.label) TextView label;
 		@BindView(R.id.asnName) TextView asnName;
 		@BindView(R.id.startTime) TextView startTime;
 		@BindView(R.id.failedMeasurements) TextView failedMeasurements;

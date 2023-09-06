@@ -25,4 +25,13 @@
         <item name="colorAccent">@android:color/white</item>
         <item name="colorControlHighlight">@color/ripple_material_light</item>
     </style>
+    <style name="Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar.Websites">
+        <item name="colorPrimary">@color/color_base</item>
+        <item name="colorPrimaryDark">@color/color_base</item>
+    </style>
+    <style name="Theme.MaterialComponents.NoActionBar.App.Websites">
+        <item name="colorPrimary">@color/color_base</item>
+        <item name="colorPrimaryDark">@color/color_base</item>
+        <item name="android:windowBackground">@color/color_base</item>
+    </style>
 </resources>
