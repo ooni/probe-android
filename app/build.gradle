@@ -19,6 +19,7 @@ android {
 		buildConfigField 'String', 'SOFTWARE_NAME', 'BASE_SOFTWARE_NAME+IS_DEBUG'
 		buildConfigField 'String', 'COUNTLY_KEY', '"146836f41172f9e3287cab6f2cc347de3f5ddf3b"'
 		buildConfigField "boolean", "RUN_AUTOMATION", "false"
+		buildConfigField "boolean", "SHOW_DISABLED_CARDS", "true"
 	}
 
     buildTypes {
@@ -92,6 +93,7 @@ android {
             resValue "string", "APP_ID", 'com.dw.ooniprobe'
             resValue "string", "APP_NAME", "News Media Scan"
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"news-media-scan-android"'
+            buildConfigField "boolean", "SHOW_DISABLED_CARDS", "false"
             //versionName '0.0.1'
             //versionCode 1
         }

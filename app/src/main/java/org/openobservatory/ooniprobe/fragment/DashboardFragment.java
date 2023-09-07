@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.activity.MainActivity;
@@ -87,7 +88,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 			}
 		}
 
-		if(!emptySuites.isEmpty()){
+		if(BuildConfig.SHOW_DISABLED_CARDS && !emptySuites.isEmpty()){
 			items.add(new SeperatorItem());
 
 			for(AbstractSuite emptyTest: emptySuites)
