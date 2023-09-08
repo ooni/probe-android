@@ -14,10 +14,12 @@ import org.openobservatory.ooniprobe.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import ru.noties.markwon.Markwon;
 
 public class InfoActivity extends AbstractActivity {
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.version) TextView version;
+	@BindView(R.id.desc) TextView description;
 
 	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -26,6 +28,7 @@ public class InfoActivity extends AbstractActivity {
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		version.setText(getString(R.string.version, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME));
+		Markwon.setMarkdown(description, getString(R.string.Settings_About_Content_Paragraph));
 	}
 
 	@OnClick(R.id.blog) void onBlogClick() {
