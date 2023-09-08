@@ -86,16 +86,13 @@ public class PromptActivity extends AbstractActivity {
             default:
                 actions = new OnPromptAction() {
                     @Override
-                    public void onClickPositive(View view) {
-                    }
+                    public void onClickPositive(View view) { /*No Implementation*/ }
 
                     @Override
-                    public void onClickNeutral(View view) {
-                    }
+                    public void onClickNeutral(View view) { /*No Implementation*/ }
 
                     @Override
-                    public void onClickNegative(View view) {
-                    }
+                    public void onClickNegative(View view) { /*No Implementation*/ }
                 };
         }
 
@@ -114,7 +111,7 @@ public class PromptActivity extends AbstractActivity {
         }
     }
 
-    enum Prompt {
+    public enum Prompt {
         CENSORSHIP_CONSENT(R.string.Modal_EnableNotifications_Title, R.string.Modal_EnableNotifications_Paragraph),
         TEST_PROGRESS_CONSENT(R.string.Prompt_EnableTestProgressNotifications_Title, R.string.Prompt_EnableTestProgressNotifications_Paragraph);
 
@@ -131,26 +128,26 @@ public class PromptActivity extends AbstractActivity {
         /**
          * Callback for View#onClick of `soundsGreat` button.
          *
-         * @param view
+         * @param view The view that was clicked.
          */
         void onClickPositive(View view);
 
         /**
          * Callback for View#onClick of `notNow` button.
          *
-         * @param view
+         * @param view The view that was clicked.
          */
         void onClickNeutral(View view);
 
         /**
          * Callback for View#onClick of `dontAskAgain` button.
          *
-         * @param view
+         * @param view The view that was clicked.
          */
         void onClickNegative(View view);
     }
 
-    public class InternetCensorshipConsentActions implements OnPromptAction {
+    private class InternetCensorshipConsentActions implements OnPromptAction {
 
         @Override
         public void onClickPositive(View view) {
@@ -178,7 +175,7 @@ public class PromptActivity extends AbstractActivity {
         }
     }
 
-    public class TestProgressNotificationConsentActions implements OnPromptAction {
+    private class TestProgressNotificationConsentActions implements OnPromptAction {
 
         @Override
         public void onClickPositive(View view) {
