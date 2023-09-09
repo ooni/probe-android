@@ -20,6 +20,7 @@ import io.sentry.Sentry;
 import io.sentry.android.core.SentryAndroid;
 import ly.count.android.sdk.Countly;
 import ly.count.android.sdk.CountlyConfig;
+import ly.count.android.sdk.messaging.CountlyConfigPush;
 import ly.count.android.sdk.messaging.CountlyPush;
 
 public class ThirdPartyServices {
@@ -48,7 +49,9 @@ public class ThirdPartyServices {
 
     public static void registerPush(Application app){
         if (Countly.sharedInstance().isInitialized()) {
-            CountlyPush.init(app, BuildConfig.DEBUG ? Countly.CountlyMessagingMode.TEST : Countly.CountlyMessagingMode.PRODUCTION);
+            CountlyConfigPush countlyConfigPush = new CountlyConfigPush(app, BuildConfig.DEBUG ? Countly.CountlyMessagingMode.TEST : Countly.CountlyMessagingMode.PRODUCTION)
+                    .setProvider(Countly.CountlyMessagingProvider.FCM);
+            CountlyPush.init(countlyConfigPush);
             NotificationUtility.setChannel(app, CountlyPush.CHANNEL_ID, app.getString(R.string.Settings_Notifications_Label), true, true, true);
             ThirdPartyServices.setToken(app);
         }
