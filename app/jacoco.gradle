@@ -1,7 +1,7 @@
 apply plugin: 'jacoco'
 
 jacoco {
-  toolVersion '0.8.7'
+  toolVersion '0.8.5'
 }
 
 task jacocoAndroidTestReport(type: JacocoReport) {
@@ -48,19 +48,13 @@ task jacocoAndroidTestReport(type: JacocoReport) {
     executionData.from += fileTree(dir: codeCoverageDataLocation, includes: ['**/*.ec'])
   }
 
-    reports {
-        html {
-            enabled true
-            destination file("${buildDir}/reports/coverage")
-        }
-        xml {
-            enabled true
-            destination file("${buildDir}/reports/coverage.xml")
-        }
-        csv {
-            enabled false
-        }
-    }
+  reports {
+    html.enabled true
+    html.destination file("${buildDir}/reports/coverage")
+    xml.enabled true
+    xml.destination file("${buildDir}/reports/coverage.xml")
+    csv.enabled false
+  }
 
   doLast {
     println "Wrote HTML coverage report to ${reports.html.destination}/index.html"

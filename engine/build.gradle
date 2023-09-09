@@ -1,11 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdk 33
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
-        minSdk 19
-        targetSdk 33
+        minSdkVersion 19
+        targetSdkVersion 30
     }
 
     compileOptions {
@@ -13,7 +14,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    flavorDimensions = ['testing']
+    flavorDimensions 'testing'
     productFlavors {
         stable {
             dimension 'testing'
