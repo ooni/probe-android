@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="General_AppName">DW Media Probe</string>
+    <string name="General_AppName">News Media Scan</string>
     <string name="Onboarding_WhatIsOONIProbe_Title">Are news media sites blocked?</string>
     <string name="Onboarding_WhatIsOONIProbe_Paragraph">Run News Media Scan to find out! News Media Scan is the #1 app to give you transparency about the news landscape in whatever country you currently find yourself. Additionally, by using the app, you are making an important contribution to the measurement of censorship around the world.\n\nThe list you see in the app is a public, community-curated list on GitHub and not curated by DW. It represents an objective range of international and national news media providers.</string>
     <string name="Onboarding_ThingsToKnow_Bullet_1">OONI will openly publish the measurement data you send, along with your network information.</string>
