@@ -6,7 +6,7 @@
     <string name="Onboarding_ThingsToKnow_Bullet_1">OONI will openly publish the measurement data you send, along with your network information.</string>
     <string name="Onboarding_ThingsToKnow_Bullet_2">Anyone monitoring your Internet connection will be able to see you are running News Media Scan.</string>
     <string name="Onboarding_ThingsToKnow_Bullet_3">You will be testing news websites that might be banned in the country where you currently find yourself.</string>
-    <string name="Onboarding_AutomatedTesting_Paragraph">To measure internet censorship every day, please enable automated testing so that News Media Scan can run tests periodically.\n\nDon’t worry, we’ll be mindful of battery usage.\n\nYou can disable automated testing from the settings at any time.\n\nPlease allow the app to run in the background.</string>
+    <string name="Onboarding_AutomatedTesting_Paragraph">To measure internet censorship every day, please enable automated testing so that News Media Scan can run tests periodically.\n\nDon’t worry, we’ll be mindful of battery usage.\n\nYou can disable automated testing from the settings at any time.</string>
     <string name="Onboarding_Crash_Paragraph">To improve News Media Scan we would like to collect anonymous crash reports when the app does not work properly.\n\nWould you like to opt-in to submitting crash reports to the OONI development team?</string>
     <string name="Onboarding_PopQuiz_1_Question">If someone is monitoring my internet activity, they will see that I am running News Media Scan.</string>
     <string name="Onboarding_PopQuiz_1_Wrong_Paragraph">News Media Scan is not a privacy tool. Anyone monitoring your internet activity will see which software you are running.</string>
