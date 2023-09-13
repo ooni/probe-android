@@ -37,7 +37,7 @@ platform :android do
   end
 
   lane :capture_screen do
-    gradle(task: "clean assembleDebug assembleAndroidTest")
+    gradle(task: "clean assembleStableFullDebug assembleStableFullDebugAndroidTest")
     capture_android_screenshots
   end
 
