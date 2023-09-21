@@ -16,9 +16,11 @@
 			app:contentInsetStart="0dp">
 
 			<ImageView
+				android:paddingTop="10dp"
+				android:paddingStart="10dp"
 				android:layout_width="wrap_content"
 				android:layout_height="match_parent"
-				android:scaleType="centerInside"
+				android:scaleType="fitStart"
 				android:src="@drawable/ooniprobe_logo" />
 
 		</androidx.appcompat.widget.Toolbar>
