@@ -42,7 +42,8 @@ public class WebsiteItem extends HeterogeneousRecyclerItem<Result, WebsiteItem.V
 		viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(viewHolder.itemView.getContext(), extra.is_viewed ? android.R.color.transparent : R.color.color_yellow0));
 		viewHolder.label.setTextColor(ContextCompat.getColor(viewHolder.label.getContext(),extra.getTestSuite().getColor()));
 		viewHolder.asnName.setText(Network.toString(viewHolder.asnName.getContext(), extra.network));
-		viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), extra.start_time));
+		// TODO(dw) viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), extra.start_time));
+		viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.ENGLISH, "yMdHm"), extra.start_time));
 		Long blocked = extra.countAnomalousMeasurements();
 		Long tested = extra.countTotalMeasurements();
 		viewHolder.failedMeasurements.setText(viewHolder.failedMeasurements.getContext().getResources().getQuantityString(R.plurals.TestResults_Overview_Websites_Blocked, blocked.intValue(), blocked.toString()));

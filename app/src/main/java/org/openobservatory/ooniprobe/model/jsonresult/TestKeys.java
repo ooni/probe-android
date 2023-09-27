@@ -90,7 +90,8 @@ public class TestKeys {
 	public HashMap<String, String> transport_status;
 
 	private static String setFractionalDigits(double value) {
-		return String.format(Locale.getDefault(), value < 10 ? "%.2f" : "%.1f", value);
+		// TODO(dw) return String.format(Locale.getDefault(), value < 10 ? "%.2f" : "%.1f", value);
+		return String.format(Locale.ENGLISH, value < 10 ? "%.2f" : "%.1f", value);
 	}
 
 	public int getWebsiteBlocking() {
@@ -266,10 +267,14 @@ public class TestKeys {
 	}
 
 	public String getPing(Context ctx) {
-		if (isNdt7() && summary != null && summary.ping != null)
-			return String.format(Locale.getDefault(), "%.1f", summary.ping);
-		if (simple != null && simple.ping != null)
-			return String.format(Locale.getDefault(), "%.1f", simple.ping);
+		if (isNdt7() && summary != null && summary.ping != null) {
+			// TODO(dw) return String.format(Locale.getDefault(), "%.1f", summary.ping);
+			return String.format(Locale.ENGLISH, "%.1f", summary.ping);
+		}
+		if (simple != null && simple.ping != null) {
+			// TODO(dw) return String.format(Locale.getDefault(), "%.1f", simple.ping);
+			return String.format(Locale.ENGLISH, "%.1f", simple.ping);
+		}
 		return ctx.getString(R.string.TestResults_NotAvailable);
 	}
 

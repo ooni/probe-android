@@ -40,7 +40,8 @@ public class ExperimentalItem extends HeterogeneousRecyclerItem<Result, Experime
 		viewHolder.itemView.setOnLongClickListener(onLongClickListener);
 		viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(viewHolder.itemView.getContext(), extra.is_viewed ? android.R.color.transparent : R.color.color_yellow0));
 		viewHolder.asnName.setText(Network.toString(viewHolder.asnName.getContext(), extra.network));
-		viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), extra.start_time));
+		// TODO(dw) viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), extra.start_time));
+		viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.ENGLISH, "yMdHm"), extra.start_time));
 		boolean allUploaded = true;
 		for (Measurement m : extra.getMeasurements())
 			allUploaded = allUploaded && (m.isUploaded() || m.is_failed);

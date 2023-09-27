@@ -45,7 +45,8 @@ public class FailedItem extends HeterogeneousRecyclerItem<Result, FailedItem.Vie
 		if (extra.failure_msg != null)
 			failure_msg += " - " + extra.failure_msg;
 		viewHolder.subtitle.setText(failure_msg);
-		viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), extra.start_time));
+		// TODO(dw) viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), extra.start_time));
+		viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.ENGLISH, "yMdHm"), extra.start_time));
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {

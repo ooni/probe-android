@@ -73,8 +73,8 @@ public class OverviewActivity extends AbstractActivity {
 					"\n\n* [Tor Snowflake](https://ooni.org/nettest/tor-snowflake/) "+ String.format(" ( %s )",getString(R.string.Settings_TestOptions_LongRunningTest))+
 					"\n\n* [Vanilla Tor](https://github.com/ooni/spec/blob/master/nettests/ts-016-vanilla-tor.md) " + String.format(" ( %s )",getString(R.string.Settings_TestOptions_LongRunningTest));
 			Markwon.setMarkdown(desc, getString(testSuite.getDesc1(), experimentalLinks));
-			if (TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL)
-				desc.setTextDirection(View.TEXT_DIRECTION_RTL);
+			// TODO(dw) if (TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL)
+			//	{ desc.setTextDirection(View.TEXT_DIRECTION_RTL); }
 		}
 		else
 			Markwon.setMarkdown(desc, getString(testSuite.getDesc1()));

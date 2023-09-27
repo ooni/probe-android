@@ -370,7 +370,8 @@ public class PreferenceManager {
 		if (timestamp == 0)
 			return r.getString(R.string.Dashboard_Overview_LastRun_Never);
 		Date date = new Date(timestamp);
-		return DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), date).toString();
+		//TODO(dw) return DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), date).toString();
+		return DateFormat.format(DateFormat.getBestDateTimePattern(Locale.ENGLISH, "yMdHm"), date).toString();
 	}
 
 	public  boolean isExperimentalOn(){

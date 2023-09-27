@@ -23,7 +23,8 @@ public class DateItem extends HeterogeneousRecyclerItem<Date, DateItem.ViewHolde
 
 	public DateItem(Date extra) {
 		super(extra);
-		SDF = new SimpleDateFormat(DateFormat.getBestDateTimePattern(Locale.getDefault(), "MMMMyyyy"), Locale.getDefault());
+		//TODO(dw) SDF = new SimpleDateFormat(DateFormat.getBestDateTimePattern(Locale.getDefault(), "MMMMyyyy"), Locale.getDefault());
+		SDF = new SimpleDateFormat(DateFormat.getBestDateTimePattern(Locale.ENGLISH, "MMMMyyyy"), Locale.getDefault());
 	}
 
 	@Override public ViewHolder onCreateViewHolder(LayoutInflater layoutInflater, ViewGroup viewGroup) {

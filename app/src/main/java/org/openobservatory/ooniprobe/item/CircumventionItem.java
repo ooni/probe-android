@@ -41,7 +41,8 @@ public class CircumventionItem extends HeterogeneousRecyclerItem<Result, Circumv
         viewHolder.itemView.setOnLongClickListener(onLongClickListener);
         viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(viewHolder.itemView.getContext(), extra.is_viewed ? android.R.color.transparent : R.color.color_yellow0));
         viewHolder.asnName.setText(Network.toString(viewHolder.asnName.getContext(), extra.network));
-        viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), extra.start_time));
+        // TODO(dw) viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), extra.start_time));
+        viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.ENGLISH, "yMdHm"), extra.start_time));
         Long blocked = extra.countAnomalousMeasurements();
         Long available = extra.countOkMeasurements();
         viewHolder.failedMeasurements.setText(viewHolder.failedMeasurements.getContext().getResources().getQuantityString(R.plurals.TestResults_Overview_Circumvention_Blocked, blocked.intValue(), blocked.toString()));

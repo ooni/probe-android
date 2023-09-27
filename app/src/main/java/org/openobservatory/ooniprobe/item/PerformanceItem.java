@@ -45,7 +45,8 @@ public class PerformanceItem extends HeterogeneousRecyclerItem<Result, Performan
 		viewHolder.itemView.setOnLongClickListener(onLongClickListener);
 		viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(c, extra.is_viewed ? android.R.color.transparent : R.color.color_yellow0));
 		viewHolder.asnName.setText(Network.toString(viewHolder.asnName.getContext(), extra.network));
-		viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), extra.start_time));
+		// TODO(dw) viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), extra.start_time));
+		viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.ENGLISH, "yMdHm"), extra.start_time));
 		Measurement dashM = extra.getMeasurement(Dash.NAME);
 		Measurement ndtM = extra.getMeasurement(Ndt.NAME);
 		viewHolder.quality.setText(dashM == null ? R.string.TestResults_NotAvailable : dashM.getTestKeys().getVideoQuality(false));

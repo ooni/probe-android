@@ -13,7 +13,8 @@ public class FormattingUtils {
 
     public static String formatStartTime(Date date) {
         return DateFormat.format(
-                DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"),
+                // TODO(dw) DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"),
+                DateFormat.getBestDateTimePattern(Locale.ENGLISH, "yMdHm"),
                 date
         ).toString();
     }

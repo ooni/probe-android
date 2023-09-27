@@ -77,9 +77,10 @@ public class ResultHeaderDetailFragment extends Fragment {
 			upload.setText(getArguments().getString(DATA_USAGE_UP));
 		} else
 			dataUsage.setVisibility(View.GONE);
-		if (getArguments().containsKey(START_TIME))
-			startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), (Date) getArguments().getSerializable(START_TIME)));
-		else
+		if (getArguments().containsKey(START_TIME)) {
+			// TODO(dw) startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), (Date) getArguments().getSerializable(START_TIME)));
+			startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.ENGLISH, "yMdHm"), (Date) getArguments().getSerializable(START_TIME)));
+		} else
 			startTimeBox.setVisibility(View.GONE);
 		if (getArguments().containsKey(RUNTIME)) {
 			runtime.setText(getString(R.string.f, getArguments().getDouble(RUNTIME)));
