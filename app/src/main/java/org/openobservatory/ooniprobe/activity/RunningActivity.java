@@ -12,18 +12,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
-import com.airbnb.lottie.LottieAnimationView;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
@@ -32,6 +25,7 @@ import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.TestProgressRepository;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.common.service.ServiceUtil;
+import org.openobservatory.ooniprobe.databinding.ActivityRunningBinding;
 import org.openobservatory.ooniprobe.receiver.TestRunBroadRequestReceiver;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
@@ -41,36 +35,19 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 import localhost.toolkit.app.fragment.MessageDialogFragment;
 
 /**
- * Serves to display progress of {@code RunTestService} running in in the background on a screen.
+ * Serves to display progress of {@code RunTestService} running in the background on a screen.
  *
  * Also contains {@link #runAsForegroundService(AbstractActivity, ArrayList<AbstractSuite>,OnTestServiceStartedListener) runAsForegroundService}
  *   used to start {@code RunTestService} in the background.
  */
 public class RunningActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
-    @BindView(R.id.running)
-    TextView running;
-    @BindView(R.id.name)
-    TextView name;
-    @BindView(R.id.log)
-    TextView log;
-    @BindView(R.id.eta)
-    TextView eta;
-    @BindView(R.id.progress)
-    ProgressBar progress;
-    @BindView(R.id.close)
-    ImageButton close;
-    @BindView(R.id.stop)
-    Button stop;
-    @BindView(R.id.animation)
-    LottieAnimationView animation;
-    @BindView(R.id.proxy_icon)
-    RelativeLayout proxy_icon;
+
+    ActivityRunningBinding binding;
+
     private TestRunBroadRequestReceiver receiver;
 
     @Inject
@@ -131,7 +108,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     private static void startRunTestService(AbstractActivity context,
                                             ArrayList<AbstractSuite> testSuites,
                                             OnTestServiceStartedListener onTestServiceStartedListener) {
-        ServiceUtil.startRunTestService(context, testSuites, true);
+        ServiceUtil.startRunTestServiceManual(context, testSuites, true);
         onTestServiceStartedListener.onTestServiceStarted();
     }
 
@@ -140,29 +117,29 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
         super.onCreate(savedInstanceState);
         getActivityComponent().inject(this);
         setTheme(R.style.Theme_MaterialComponents_NoActionBar_App);
-        setContentView(R.layout.activity_running);
-        ButterKnife.bind(this);
+        binding = ActivityRunningBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         testProgressRepository.getProgress().observe(this, progressValue -> {
             if (progressValue!=null) {
-                progress.setProgress(progressValue);
+                binding.progress.setProgress(progressValue);
             }
         });
         testProgressRepository.getEta().observe(this,etaValue -> {
             if (etaValue!=null) {
-                eta.setText(readableTimeRemaining(etaValue));
+                binding.eta.setText(readableTimeRemaining(etaValue));
             }
         });
 
         if (preferenceManager.getProxyURL().isEmpty())
-            proxy_icon.setVisibility(View.GONE);
-        close.setOnClickListener(new View.OnClickListener() {
+            binding.proxyIcon.setVisibility(View.GONE);
+        binding.close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-        stop.setOnClickListener(new View.OnClickListener() {
+        binding.stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new ConfirmDialogFragment.Builder()
@@ -180,33 +157,33 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
             service.task.currentSuite == null || service.task.currentTest == null) {
             return;
         }
-        animation.setImageAssetsFolder("anim/");
-        animation.setRepeatCount(Animation.INFINITE);
-        animation.playAnimation();
+        binding.animation.setImageAssetsFolder("anim/");
+        binding.animation.setRepeatCount(Animation.INFINITE);
+        binding.animation.playAnimation();
         Integer progressLevel = testProgressRepository.getProgress().getValue();
         if (progressLevel != null) {
-            progress.setProgress(progressLevel);
+            binding.progress.setProgress(progressLevel);
         } else {
-            progress.setIndeterminate(true);
+            binding.progress.setIndeterminate(true);
         }
 
         Double etaValue = testProgressRepository.getEta().getValue();
         if (etaValue!=null){
-            eta.setText(readableTimeRemaining(etaValue));
+            binding.eta.setText(readableTimeRemaining(etaValue));
         }else {
-            eta.setText(R.string.Dashboard_Running_CalculatingETA);
+            binding.eta.setText(R.string.Dashboard_Running_CalculatingETA);
         }
 
         if (service.task.currentSuite.getName().equals(ExperimentalSuite.NAME))
-            name.setText(service.task.currentTest.getName());
+            binding.name.setText(service.task.currentTest.getName());
         else
-            name.setText(getString(service.task.currentTest.getLabelResId()));
+            binding.name.setText(getString(service.task.currentTest.getLabelResId()));
         getWindow().setBackgroundDrawableResource(service.task.currentSuite.getColor());
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(service.task.currentSuite.getColor());
         }
-        animation.setAnimation(service.task.currentSuite.getAnim());
-        progress.setMax(service.task.getMax(preferenceManager));
+        binding.animation.setAnimation(service.task.currentSuite.getAnim());
+        binding.progress.setMax(service.task.getMax(preferenceManager));
     }
 
     @Override
@@ -268,20 +245,20 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
 
         @Override
         public void onRun(String value) {
-            name.setText(value);
+            binding.name.setText(value);
         }
 
         @Override
         public void onProgress(int state, double timeLeft) {
-            progress.setIndeterminate(false);
-            progress.setProgress(state);
+            binding.progress.setIndeterminate(false);
+            binding.progress.setProgress(state);
 
-            eta.setText(readableTimeRemaining(timeLeft));
+            binding.eta.setText(readableTimeRemaining(timeLeft));
         }
 
         @Override
         public void onLog(String value) {
-            log.setText(value);
+            binding.log.setText(value);
         }
 
         @Override
@@ -291,13 +268,13 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
 
         @Override
         public void onUrl() {
-            progress.setIndeterminate(false);
+            binding.progress.setIndeterminate(false);
         }
 
         @Override
         public void onInterrupt() {
-            running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
-            log.setText(getString(R.string.Dashboard_Running_Stopping_Notice));
+            binding.running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
+            binding.log.setText(getString(R.string.Dashboard_Running_Stopping_Notice));
         }
 
         @Override
