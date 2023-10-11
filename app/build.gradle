@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 apply from: 'jacoco.gradle'
 
 android {
-    compileSdk 34
+    compileSdk 33
     ndkVersion '22.0.7026061'
 
 	defaultConfig {
 		applicationId 'org.openobservatory.ooniprobe'
         minSdk 21
-        targetSdk 34
+        targetSdk 33
         versionName '3.8.3'
         versionCode 102
 		testInstrumentationRunner "org.openobservatory.ooniprobe.TestAndroidJUnitRunner"
@@ -54,7 +54,7 @@ android {
         }
     }
 
-    flavorDimensions 'testing', 'license'
+    flavorDimensions = ['testing', 'license']
     productFlavors {
         stable {
             dimension 'testing'
@@ -140,7 +140,7 @@ dependencies {
 // Flavor
 	fullImplementation platform('com.google.firebase:firebase-bom:26.3.0')
 	fullImplementation 'com.google.firebase:firebase-messaging'
-	fullImplementation 'ly.count.android:sdk:21.11.0'
+	fullImplementation 'ly.count.android:sdk:23.6.0'
 	fullImplementation 'io.sentry:sentry-android:6.3.0'
 	fullImplementation 'com.google.android.play:core:1.10.3'
 
