@@ -263,6 +263,7 @@ public class TestDescriptor extends BaseModel implements Serializable {
                         for (String url : nettest.getInputs())
                             Url.checkExistingUrl(url);
                     }
+                    test.setOoniRunLinkId(runId);
                     test.setInputs(nettest.getInputs());
                     return test;
                 }
