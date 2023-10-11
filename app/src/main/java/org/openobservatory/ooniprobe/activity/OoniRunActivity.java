@@ -6,21 +6,17 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.webkit.URLUtil;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.databinding.ActivityOonirunBinding;
 import org.openobservatory.ooniprobe.domain.GetTestSuite;
 import org.openobservatory.ooniprobe.domain.VersionCompare;
 import org.openobservatory.ooniprobe.domain.models.Attribute;
@@ -33,19 +29,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerAdapter;
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
 public class OoniRunActivity extends AbstractActivity {
-	@BindView(R.id.toolbar) Toolbar toolbar;
-	@BindView(R.id.icon) ImageView icon;
-	@BindView(R.id.iconBig) ImageView iconBig;
-	@BindView(R.id.title) TextView title;
-	@BindView(R.id.desc) TextView desc;
-	@BindView(R.id.run) Button run;
-	@BindView(R.id.recycler) RecyclerView recycler;
+	ActivityOonirunBinding binding;
 	private ArrayList<HeterogeneousRecyclerItem> items;
 	private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
 
@@ -65,17 +53,17 @@ public class OoniRunActivity extends AbstractActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getActivityComponent().inject(this);
-		setContentView(R.layout.activity_oonirun);
-		ButterKnife.bind(this);
-		setSupportActionBar(toolbar);
+		binding = ActivityOonirunBinding.inflate(getLayoutInflater());
+		setContentView(binding.getRoot());
+		setSupportActionBar(binding.toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setDisplayShowHomeEnabled(true);
 		LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-		recycler.setLayoutManager(layoutManager);
-		recycler.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
+		binding.recycler.setLayoutManager(layoutManager);
+		binding.recycler.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
 		items = new ArrayList<>();
 		adapter = new HeterogeneousRecyclerAdapter<>(this, items);
-		recycler.setAdapter(adapter);
+		binding.recycler.setAdapter(adapter);
 		manageIntent(getIntent());
 	}
 
@@ -139,34 +127,34 @@ public class OoniRunActivity extends AbstractActivity {
 	}
 
 	private void loadOutOfDate() {
-		title.setText(R.string.OONIRun_OONIProbeOutOfDate);
-		desc.setText(R.string.OONIRun_OONIProbeNewerVersion);
-		run.setText(R.string.OONIRun_Update);
-		icon.setImageResource(R.drawable.update);
-		iconBig.setImageResource(R.drawable.update);
-		iconBig.setVisibility(View.VISIBLE);
-		run.setOnClickListener(v -> {
+		binding.title.setText(R.string.OONIRun_OONIProbeOutOfDate);
+		binding.desc.setText(R.string.OONIRun_OONIProbeNewerVersion);
+		binding.run.setText(R.string.OONIRun_Update);
+		binding.icon.setImageResource(R.drawable.update);
+		binding.iconBig.setImageResource(R.drawable.update);
+		binding.iconBig.setVisibility(View.VISIBLE);
+		binding.run.setOnClickListener(v -> {
 			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName())));
 			finish();
 		});
 	}
 
 	private void loadSuite(AbstractSuite suite, List<String> urls) {
-		icon.setImageResource(suite.getIcon());
-		title.setText(suite.getTestList(preferenceManager)[0].getLabelResId());
-		desc.setText(getString(R.string.OONIRun_YouAreAboutToRun));
+		binding.icon.setImageResource(suite.getIcon());
+		binding.title.setText(suite.getTestList(preferenceManager)[0].getLabelResId());
+		binding.desc.setText(getString(R.string.OONIRun_YouAreAboutToRun));
 		if (urls != null) {
 			for (String url : urls) {
 				if (URLUtil.isValidUrl(url))
 					items.add(new TextItem(url));
 			}
 			adapter.notifyTypesChanged();
-			iconBig.setVisibility(View.GONE);
+			binding.iconBig.setVisibility(View.GONE);
 		} else {
-			iconBig.setImageResource(suite.getIcon());
-			iconBig.setVisibility(View.VISIBLE);
+			binding.iconBig.setImageResource(suite.getIcon());
+			binding.iconBig.setVisibility(View.VISIBLE);
 		}
-		run.setOnClickListener(v -> {
+		binding.run.setOnClickListener(v -> {
 
 			RunningActivity.runAsForegroundService(OoniRunActivity.this, suite.asArray(),this::finish, preferenceManager);
 
@@ -174,12 +162,12 @@ public class OoniRunActivity extends AbstractActivity {
 	}
 
 	private void loadInvalidAttributes() {
-		title.setText(R.string.OONIRun_InvalidParameter);
-		desc.setText(R.string.OONIRun_InvalidParameter_Msg);
-		run.setText(R.string.OONIRun_Close);
-		icon.setImageResource(R.drawable.question_mark);
-		iconBig.setImageResource(R.drawable.question_mark);
-		iconBig.setVisibility(View.VISIBLE);
-		run.setOnClickListener(v -> finish());
+		binding.title.setText(R.string.OONIRun_InvalidParameter);
+		binding.desc.setText(R.string.OONIRun_InvalidParameter_Msg);
+		binding.run.setText(R.string.OONIRun_Close);
+		binding.icon.setImageResource(R.drawable.question_mark);
+		binding.iconBig.setImageResource(R.drawable.question_mark);
+		binding.iconBig.setVisibility(View.VISIBLE);
+		binding.run.setOnClickListener(v -> finish());
 	}
 }

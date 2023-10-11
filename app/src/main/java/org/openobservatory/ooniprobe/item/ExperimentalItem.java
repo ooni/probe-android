@@ -4,21 +4,16 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
+import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.databinding.ItemExperimentalBinding;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 
 import java.util.Locale;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
 public class ExperimentalItem extends HeterogeneousRecyclerItem<Result, ExperimentalItem.ViewHolder> {
 	private final View.OnClickListener onClickListener;
@@ -31,7 +26,7 @@ public class ExperimentalItem extends HeterogeneousRecyclerItem<Result, Experime
 	}
 
 	@Override public ViewHolder onCreateViewHolder(LayoutInflater layoutInflater, ViewGroup viewGroup) {
-		return new ViewHolder(layoutInflater.inflate(R.layout.item_experimental, viewGroup, false));
+		return new ViewHolder(ItemExperimentalBinding.inflate(layoutInflater, viewGroup, false));
 	}
 
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
@@ -39,21 +34,20 @@ public class ExperimentalItem extends HeterogeneousRecyclerItem<Result, Experime
 		viewHolder.itemView.setOnClickListener(onClickListener);
 		viewHolder.itemView.setOnLongClickListener(onLongClickListener);
 		viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(viewHolder.itemView.getContext(), extra.is_viewed ? android.R.color.transparent : R.color.color_yellow0));
-		viewHolder.asnName.setText(Network.toString(viewHolder.asnName.getContext(), extra.network));
-		viewHolder.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), extra.start_time));
+		viewHolder.binding.asnName.setText(Network.toString(viewHolder.binding.asnName.getContext(), extra.network));
+		viewHolder.binding.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), extra.start_time));
 		boolean allUploaded = true;
 		for (Measurement m : extra.getMeasurements())
 			allUploaded = allUploaded && (m.isUploaded() || m.is_failed);
-		viewHolder.startTime.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, allUploaded ? 0 : R.drawable.cloudoff, 0);
+		viewHolder.binding.startTime.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, allUploaded ? 0 : R.drawable.cloudoff, 0);
 	}
 
-	class ViewHolder extends RecyclerView.ViewHolder {
-		@BindView(R.id.asnName) TextView asnName;
-		@BindView(R.id.startTime) TextView startTime;
+	public static class ViewHolder extends RecyclerView.ViewHolder {
+		ItemExperimentalBinding binding;
 
-		ViewHolder(View itemView) {
-			super(itemView);
-			ButterKnife.bind(this, itemView);
+		ViewHolder(ItemExperimentalBinding binding) {
+			super(binding.getRoot());
+			this.binding = binding;
 		}
 	}
 }

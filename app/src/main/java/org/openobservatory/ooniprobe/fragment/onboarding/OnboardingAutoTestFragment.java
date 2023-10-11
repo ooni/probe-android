@@ -10,42 +10,39 @@ import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
+import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
-
-import java.io.Serializable;
+import org.openobservatory.ooniprobe.databinding.FragmentOnboardingAutotestBinding;
 
 import javax.inject.Inject;
-
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import localhost.toolkit.app.fragment.ConfirmDialogFragment;
+import java.io.Serializable;
 
 public class OnboardingAutoTestFragment extends Fragment implements ConfirmDialogFragment.OnConfirmedListener {
     @Inject PreferenceManager preferenceManager;
     public static final String BATTERY_DIALOG = "battery_optimization";
 
     @Nullable
-    @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ((Application) getActivity().getApplication()).getFragmentComponent().inject(this);
 
-        View v = inflater.inflate(R.layout.fragment_onboarding_autotest, container, false);
-        ButterKnife.bind(this, v);
-        return v;
+        FragmentOnboardingAutotestBinding binding = FragmentOnboardingAutotestBinding.inflate(inflater, container, false);
+        binding.master.setOnClickListener(v -> masterClick());
+        binding.slave.setOnClickListener(v -> slaveClick());
+        return binding.getRoot();
     }
 
-    @OnClick(R.id.master) void masterClick() {
+    void masterClick() {
         enableAutoTest();
     }
 
-    @OnClick(R.id.slave) void slaveClick() {
+    void slaveClick() {
         next();
     }
 
