@@ -3,8 +3,9 @@ androidGradlePlugin = "7.4.1"
 barista = "3.9.0"
 countlySdk = "21.11.0"
 faker = "1.2.8"
-mockitoCore = "4.6.1"
-robolectric = "4.5.1"
+mockitoCore = "5.3.1"
+mockitoInline = "4.6.1"
+robolectric = "4.6.1"
 fastlaneScreengrab = "2.0.0"
 sentryAndroid = "6.3.0"
 xanscaleLocalhostToolkit = "19.05.01"
@@ -13,15 +14,16 @@ jacoco = "0.8.5"
 kotlin = "1.6.21"
 
 # Android X
-androidxCore = "1.4.0"
+androidxCore = "1.5.0"
+androidxRunner = "1.5.2"
 androidxAppCompat = "1.6.1"
 androidxConstraintlayout = "2.1.4"
 androidxLifecycleProcess = "2.5.1"
 androidxPreference = "1.2.0"
 androidxLocalbroadcastmanager = "1.1.0"
 androidxLegacySupportV4 = "1.0.0"
-androidxJunit = "1.1.3"
-androidxEspressoCore = "3.4.0"
+androidxJunit = "1.1.5"
+androidxEspressoCore = "3.5.1"
 
 # Google
 googleGson = "2.8.9"
@@ -64,10 +66,7 @@ commons-io = { module = "commons-io:commons-io", version.ref = "commonsIo" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
-mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockitoCore" }
-
-butterknife-core = { module = "com.jakewharton:butterknife", version.ref = "butterknifeCore" }
-butterknife-compiler = { module = "com.jakewharton:butterknife-compiler", version.ref = "butterknifeCore" }
+mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockitoInline" }
 
 lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
 markwon = { module = "ru.noties:markwon", version.ref = "markwon" }
@@ -81,7 +80,7 @@ dbflow-processor = { module = "com.github.Raizlabs.DBFlow:dbflow-processor", ver
 
 androidx-core = { module = "androidx.test:core", version.ref = "androidxCore" }
 androidx-rules = { module = "androidx.test:rules", version.ref = "androidxCore" }
-androidx-runner = { module = "androidx.test:runner", version.ref = "androidxCore" }
+androidx-runner = { module = "androidx.test:runner", version.ref = "androidxRunner" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppCompat" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidxConstraintlayout" }
 androidx-legacy-support-v4 = { module = "androidx.legacy:legacy-support-v4", version.ref = "androidxLegacySupportV4" }
