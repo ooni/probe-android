@@ -1,0 +1,116 @@
+[versions]
+androidGradlePlugin = "7.4.1"
+barista = "3.9.0"
+countlySdk = "21.11.0"
+faker = "1.2.8"
+mockitoCore = "5.3.1"
+mockitoInline = "4.6.1"
+robolectric = "4.6.1"
+fastlaneScreengrab = "2.0.0"
+sentryAndroid = "6.3.0"
+xanscaleLocalhostToolkit = "19.05.01"
+commonsIo = "2.6"
+jacoco = "0.8.5"
+kotlin = "1.6.21"
+
+# Android X
+androidxCore = "1.5.0"
+androidxRunner = "1.5.2"
+androidxAppCompat = "1.6.1"
+androidxConstraintlayout = "2.1.4"
+androidxLifecycleProcess = "2.5.1"
+androidxPreference = "1.2.0"
+androidxLocalbroadcastmanager = "1.1.0"
+androidxLegacySupportV4 = "1.0.0"
+androidxJunit = "1.1.5"
+androidxEspressoCore = "3.5.1"
+
+# Google
+googleGson = "2.8.9"
+googleGuava = "30.1.1-android"
+googleMaterial = "1.6.1"
+googleDagger = "2.36"
+googleFirebaseBon = "26.3.0"
+googlePlaycore = "1.10.3"
+
+# OONI
+compileSdk = "34"
+lottie = "3.0.7"
+markwon = "2.0.1"
+shapeofview = "1.3.2"
+targetSdk = "34"
+minSdk = "21"
+oonimkall = "2023.10.11-213148"
+
+junit = "4.13.2"
+dbflow = "4.2.4"
+retrofitCore = "2.9.0"
+retrofitLoggingInterceptor = "4.9.1"
+butterknifeCore = "10.2.3"
+
+# Firebase Services
+# https://firebase.google.com/support/release-notes/android
+gms-googleServices = "4.3.15"
+
+[libraries]
+# Dependencies of the included build-logic
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
+barista = { module = "com.schibsted.spain:barista", version.ref = "barista" }
+countly-sdk = { module = "ly.count.android:sdk", version.ref = "countlySdk" }
+faker = { module = "com.github.blocoio:faker", version.ref = "faker" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+fastlane-screengrab = { module = "tools.fastlane:screengrab", version.ref = "fastlaneScreengrab" }
+sentry-android = { module = "io.sentry:sentry-android", version.ref = "sentryAndroid" }
+xanscale-localhost-toolkit = { module = "com.github.xanscale.LocalhostToolkit:app", version.ref = "xanscaleLocalhostToolkit" }
+commons-io = { module = "commons-io:commons-io", version.ref = "commonsIo" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
+mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockitoInline" }
+
+lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
+markwon = { module = "ru.noties:markwon", version.ref = "markwon" }
+retrofit-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofitCore" }
+retrofit-logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "retrofitLoggingInterceptor" }
+retrofit-lib = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofitCore" }
+
+dbflow-lib = { module = "com.github.Raizlabs.DBFlow:dbflow", version.ref = "dbflow" }
+dbflow-core = { module = "com.github.Raizlabs.DBFlow:dbflow-core", version.ref = "dbflow" }
+dbflow-processor = { module = "com.github.Raizlabs.DBFlow:dbflow-processor", version.ref = "dbflow" }
+
+androidx-core = { module = "androidx.test:core", version.ref = "androidxCore" }
+androidx-rules = { module = "androidx.test:rules", version.ref = "androidxCore" }
+androidx-runner = { module = "androidx.test:runner", version.ref = "androidxRunner" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppCompat" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidxConstraintlayout" }
+androidx-legacy-support-v4 = { module = "androidx.legacy:legacy-support-v4", version.ref = "androidxLegacySupportV4" }
+androidx-lifecycle-process = { module = "androidx.lifecycle:lifecycle-process", version.ref = "androidxLifecycleProcess" }
+androidx-localbroadcastmanager = { module = "androidx.localbroadcastmanager:localbroadcastmanager", version.ref = "androidxLocalbroadcastmanager" }
+androidx-preference = { module = "androidx.preference:preference", version.ref = "androidxPreference" }
+androidx-junit = { module = "androidx.test.ext:junit", version.ref = "androidxJunit" }
+androidx-espresso-contrib = { module = "androidx.test.espresso:espresso-contrib", version.ref = "androidxEspressoCore" }
+androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidxEspressoCore" }
+androidx-espresso-intents = { module = "androidx.test.espresso:espresso-intents", version.ref = "androidxEspressoCore" }
+
+google-play-core = { module = "com.google.android.play:core", version.ref = "googlePlaycore" }
+google-gson = { module = "com.google.code.gson:gson", version.ref = "googleGson" }
+google-guava = { module = "com.google.guava:guava", version.ref = "googleGuava" }
+google-material = { module = "com.google.android.material:material", version.ref = "googleMaterial" }
+google-dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "googleDagger" }
+google-dagger = { module = "com.google.dagger:dagger", version.ref = "googleDagger" }
+google-firebase-messaging = { module = "com.google.firebase:firebase-messaging"}
+google-firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "googleFirebaseBon" }
+
+junit4 = { module = "junit:junit", version.ref = "junit" }
+gms-googleServices = { module = "com.google.gms:google-services", version.ref = "gms-googleServices" }
+ooni-oonimkall = { module = "org.ooni:oonimkall", version.ref = "oonimkall" }
+shapeofview = { module = "com.github.florent37:shapeofview", version.ref = "shapeofview" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
+
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
+gms-googleServices = { id = "com.google.gms.google-services", version.ref = "gms-googleServices"}
