@@ -7,23 +7,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
-
+import localhost.toolkit.app.fragment.MessageDialogFragment;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
+import org.openobservatory.ooniprobe.databinding.TextBinding;
 import org.openobservatory.ooniprobe.domain.MeasurementsManager;
 import org.openobservatory.ooniprobe.domain.callback.DomainCallback;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 
 import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import localhost.toolkit.app.fragment.MessageDialogFragment;
 
 public class TextActivity extends AbstractActivity {
     private Measurement measurement;
@@ -34,8 +29,7 @@ public class TextActivity extends AbstractActivity {
     private static final String TEST = "test";
     private static final String TYPE = "type";
     private static final String TEXT = "text";
-    @BindView(R.id.textView)
-    TextView textView;
+    private TextBinding binding;
 
     @Inject
     MeasurementsManager measurementsManager;
@@ -52,8 +46,8 @@ public class TextActivity extends AbstractActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActivityComponent().inject(this);
-        setContentView(R.layout.text);
-        ButterKnife.bind(this);
+        binding = TextBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         showText();
     }
 
@@ -95,7 +89,7 @@ public class TextActivity extends AbstractActivity {
     private void showLog() {
         try {
             text = measurementsManager.getReadableLog(measurement);
-            textView.setText(text);
+            binding.textView.setText(text);
         } catch (Exception e) {
             new MessageDialogFragment.Builder()
                     .withTitle(getString(R.string.Modal_Error_LogNotFound))
@@ -107,7 +101,7 @@ public class TextActivity extends AbstractActivity {
         //Try to open file, if it doesn't exist dont show Error dialog immediately but try to download the json from internet
         try {
             text = measurementsManager.getReadableEntry(measurement);
-            textView.setText(text);
+            binding.textView.setText(text);
         } catch (Exception e) {
             e.printStackTrace();
             if (ReachabilityManager.getNetworkType(this).equals(ReachabilityManager.NO_INTERNET)) {
@@ -125,7 +119,7 @@ public class TextActivity extends AbstractActivity {
                 public void onSuccess(String result) {
                     runOnUiThread(() -> {
                         text = result;
-                        textView.setText(result);
+                        binding.textView.setText(result);
                     });
                 }
 
@@ -140,7 +134,7 @@ public class TextActivity extends AbstractActivity {
     }
 
     private void showUploadLog() {
-        textView.setText(text);
+        binding.textView.setText(text);
     }
 
     private void showError(String msg) {

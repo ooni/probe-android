@@ -5,20 +5,15 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.databinding.FragmentResultHeadMiddleboxBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
-@Deprecated public class ResultHeaderMiddleboxFragment extends Fragment {
+@Deprecated
+public class ResultHeaderMiddleboxFragment extends Fragment {
 	private static final String ANOMALY = "anomaly";
-	@BindView(R.id.text) TextView text;
 
 	public static ResultHeaderMiddleboxFragment newInstance(boolean anomaly) {
 		Bundle args = new Bundle();
@@ -28,11 +23,20 @@ import butterknife.ButterKnife;
 		return fragment;
 	}
 
-	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+	@Nullable
+	@Override
+	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 		assert getArguments() != null;
-		View v = inflater.inflate(R.layout.fragment_result_head_middlebox, container, false);
-		ButterKnife.bind(this, v);
-		text.setText(Html.fromHtml(v.getContext().getString(R.string.normalBold, getString(R.string.Test_Middleboxes_Fullname), getString(getArguments().getBoolean(ANOMALY) ? R.string.TestResults_Summary_Middleboxes_Hero_Found : R.string.TestResults_Summary_Middleboxes_Hero_NotFound))));
-		return v;
+		FragmentResultHeadMiddleboxBinding binding = FragmentResultHeadMiddleboxBinding.inflate(inflater, container, false);
+		binding.text.setText(
+				Html.fromHtml(
+						binding.getRoot().getContext().getString(
+								R.string.normalBold,
+								getString(R.string.Test_Middleboxes_Fullname),
+								getString(getArguments().getBoolean(ANOMALY) ? R.string.TestResults_Summary_Middleboxes_Hero_Found : R.string.TestResults_Summary_Middleboxes_Hero_NotFound)
+						)
+				)
+		);
+		return binding.getRoot();
 	}
 }

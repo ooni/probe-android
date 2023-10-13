@@ -4,11 +4,9 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
+import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.databinding.ItemExperimentalBinding;
 import org.openobservatory.ooniprobe.model.database.Measurement;
@@ -16,10 +14,6 @@ import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 
 import java.util.Locale;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
 public class ExperimentalItem extends HeterogeneousRecyclerItem<Result, ExperimentalItem.ViewHolder> {
 	private final View.OnClickListener onClickListener;
@@ -49,7 +43,7 @@ public class ExperimentalItem extends HeterogeneousRecyclerItem<Result, Experime
 		viewHolder.binding.startTime.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, allUploaded ? 0 : R.drawable.cloudoff, 0);
 	}
 
-	class ViewHolder extends RecyclerView.ViewHolder {
+	public static class ViewHolder extends RecyclerView.ViewHolder {
 		ItemExperimentalBinding binding;
 
 		ViewHolder(ItemExperimentalBinding binding) {

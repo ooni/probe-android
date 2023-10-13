@@ -4,23 +4,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.databinding.FragmentMeasurementPsiphonBinding;
 import org.openobservatory.ooniprobe.model.database.Measurement;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import ru.noties.markwon.Markwon;
 
 public class PsiphonFragment extends Fragment {
 	private static final String MEASUREMENT = "measurement";
-	@BindView(R.id.bootstrap) TextView bootstrap;
-	@BindView(R.id.desc) TextView desc;
 
 	public static PsiphonFragment newInstance(Measurement measurement) {
 		Bundle args = new Bundle();
@@ -34,14 +27,13 @@ public class PsiphonFragment extends Fragment {
 		assert getArguments() != null;
 		Measurement measurement = (Measurement) getArguments().getSerializable(MEASUREMENT);
 		assert measurement != null;
-		View v = inflater.inflate(R.layout.fragment_measurement_psiphon, container, false);
-		ButterKnife.bind(this, v);
-		Markwon.setMarkdown(desc,
+		FragmentMeasurementPsiphonBinding binding = FragmentMeasurementPsiphonBinding.inflate(inflater,container,false);
+		Markwon.setMarkdown(binding.desc,
 				measurement.is_anomaly ?
 						getString(R.string.TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph) :
 						getString(R.string.TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph)
 		);
-		bootstrap.setText(measurement.getTestKeys().getBootstrapTime(getActivity()));
-		return v;
+		binding.bootstrap.setText(measurement.getTestKeys().getBootstrapTime(getActivity()));
+		return binding.getRoot();
 	}
 }

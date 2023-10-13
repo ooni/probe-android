@@ -7,24 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-
-import org.openobservatory.ooniprobe.R;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import org.openobservatory.ooniprobe.databinding.FragmentOnboardingDialogWarningBinding;
 
 public class OnboardingDialogWarningFragment extends DialogFragment {
 	private static final String QUESTION_RES_ID = "questionResId";
-	@BindView(R.id.title) @Nullable TextView title;
-	@BindView(R.id.question) TextView question;
-	@BindView(R.id.dialog) LinearLayout dialog;
 
 	public static OnboardingDialogWarningFragment newInstance(int questionResId) {
 		Bundle args = new Bundle();
@@ -46,17 +35,20 @@ public class OnboardingDialogWarningFragment extends DialogFragment {
 
 	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		assert getArguments() != null;
-		View v = inflater.inflate(R.layout.fragment_onboarding_dialog_warning, container, false);
-		ButterKnife.bind(this, v);
-		question.setText(getArguments().getInt(QUESTION_RES_ID));
-		return v;
+		FragmentOnboardingDialogWarningBinding binding = FragmentOnboardingDialogWarningBinding.inflate(inflater, container, false);
+		binding.question.setText(getArguments().getInt(QUESTION_RES_ID));
+
+		binding.positive.setOnClickListener(v -> positiveClick());
+		binding.negative.setOnClickListener(v -> negativeClick());
+
+		return binding.getRoot();
 	}
 
-	@OnClick(R.id.positive) void positiveClick() {
+	void positiveClick() {
 		dismiss();
 	}
 
-	@OnClick(R.id.negative) void negativeClick() {
+	void negativeClick() {
 		dismiss();
 		((OnboardingWarningInterface) getParentFragment()).onWarningResult(getArguments().getInt(QUESTION_RES_ID));
 	}
