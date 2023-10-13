@@ -49,22 +49,30 @@
                     android:id="@+id/customProxyRadioGroup"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="20dp"
-                    android:checkedButton="@id/customProxySOCKS5">
-
-                    <RadioButton
-                        android:id="@+id/customProxySOCKS5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/color_black"
-                        android:text="@string/SOCKS5"/>
+                    android:layout_marginStart="20dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
                         android:orientation="horizontal">
-
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:hint="@string/proxy_protocol"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="8dp"
+                                android:layout_weight="0.3"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+                            <AutoCompleteTextView
+                                    android:id="@+id/customProxyProtocol"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="none"
+                                    android:textSize="12sp"
+                                    android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                                    android:maxLines="1"
+                                    app:simpleItems="@array/proxy_protocol_list"/>
+                        </com.google.android.material.textfield.TextInputLayout>
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/customProxyHostname"
                             android:layout_width="0dp"
@@ -76,10 +84,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/Settings_Proxy_Custom_Hostname"
+                                android:textSize="12sp"
                                 android:textColorHint="@color/color_gray6"
                                 android:textColor="@android:color/black"
-                                android:inputType="textUri"
-                                />
+                                android:inputType="textUri"/>
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -93,10 +101,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/Settings_Proxy_Custom_Port"
+                                android:textSize="12sp"
                                 android:textColorHint="@color/color_gray6"
                                 android:textColor="@android:color/black"
-                                android:inputType="number"
-                                />
+                                android:inputType="number"/>
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
                 </RadioGroup>
