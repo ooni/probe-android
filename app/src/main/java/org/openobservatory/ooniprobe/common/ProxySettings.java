@@ -34,6 +34,8 @@ public class ProxySettings {
         } else if (protocol.equals(ProxyProtocol.PSIPHON.getProtocol())) {
             settings.protocol = ProxyProtocol.PSIPHON;
         } else if (protocol.equals(ProxyProtocol.SOCKS5.getProtocol()) || protocol.equals(ProxyProtocol.HTTP.getProtocol()) || protocol.equals(ProxyProtocol.HTTPS.getProtocol())) {
+            // ProxyProtocol.valueOf will only accept one of the values in ProxyProtocol
+            // as in the enum definition(uppercase).
             settings.protocol = ProxyProtocol.valueOf(protocol.toUpperCase());
         } else {
             // This is where we will extend the code to add support for
@@ -74,9 +76,11 @@ public class ProxySettings {
     public String getProxyString() throws URISyntaxException {
         if (protocol == ProxyProtocol.NONE) {
             return "";
-        } else if (protocol == ProxyProtocol.PSIPHON) {
+        }
+        if (protocol == ProxyProtocol.PSIPHON) {
             return "psiphon://";
-        } else if (protocol == ProxyProtocol.SOCKS5||protocol == ProxyProtocol.HTTP||protocol == ProxyProtocol.HTTPS) {
+        }
+        if (protocol == ProxyProtocol.SOCKS5||protocol == ProxyProtocol.HTTP||protocol == ProxyProtocol.HTTPS) {
             // Alright, we now need to construct a new SOCKS5 URL. We are going to defer
             // doing that to the Java standard library (er, the Android stdlib).
             String urlStr = protocol+"://" + hostname + ":" + port + "/";
@@ -85,9 +89,8 @@ public class ProxySettings {
             }
             URI url = new URI(urlStr);
             return url.toASCIIString();
-        } else {
-            return "";
         }
+        return "";
     }
 
     /** InvalidProxyURL indicates that the proxy URL is not valid. */

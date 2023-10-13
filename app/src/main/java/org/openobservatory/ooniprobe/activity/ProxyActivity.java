@@ -154,8 +154,8 @@ public class ProxyActivity extends AbstractActivity {
             binding.proxyNone.setChecked(true);
         } else if (settings.protocol == ProxyProtocol.PSIPHON) {
             binding.proxyPsiphon.setChecked(true);
-        } else if (Arrays.asList(getResources().getStringArray(R.array.proxy_protocol_list)).contains(settings.protocol.toString())) {
-            binding.customProxyProtocol.setText(settings.protocol.toString(),false);
+        } else if (Arrays.asList(getResources().getStringArray(R.array.proxy_protocol_list)).contains(settings.protocol.getProtocol())) {
+            binding.customProxyProtocol.setText(settings.protocol.getProtocol(),false);
             binding.proxyCustom.setChecked(true);
         } else {
             // TODO(bassosimone): this should also be reported as a bug.
@@ -334,10 +334,11 @@ public class ProxyActivity extends AbstractActivity {
             return;
         }
 
-        // At this point we're going to assume that this is a socks5 proxy. We will
-        // need to change the code in here when we add support for http proxies.
-        settings.protocol = ProxyProtocol.valueOf(binding.customProxyProtocol.getText().toString());
+        // At this point we're going to assume that this is a socks5,http,https proxy.
+        // ProxyProtocol.valueOf will only accept one of the values in ProxyProtocol
+        // as in the enum definition(uppercase).
         try {
+            settings.protocol = ProxyProtocol.valueOf(binding.customProxyProtocol.getText().toString().toUpperCase());
             settings.getProxyString();
         } catch (URISyntaxException e) {
             // okay, then, notwithstanding our efforts it still seems that we
