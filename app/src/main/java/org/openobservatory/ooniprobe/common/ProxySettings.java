@@ -83,9 +83,9 @@ public class ProxySettings {
         if (protocol == ProxyProtocol.SOCKS5||protocol == ProxyProtocol.HTTP||protocol == ProxyProtocol.HTTPS) {
             // Alright, we now need to construct a new SOCKS5 URL. We are going to defer
             // doing that to the Java standard library (er, the Android stdlib).
-            String urlStr = protocol+"://" + hostname + ":" + port + "/";
+            String urlStr = protocol.getProtocol()+"://" + hostname + ":" + port + "/";
             if (isIPv6(hostname)) {
-                urlStr = protocol+"://[" + hostname + "]:" + port + "/"; // IPv6 must be quoted in URLs
+                urlStr = protocol.getProtocol()+"://[" + hostname + "]:" + port + "/"; // IPv6 must be quoted in URLs
             }
             URI url = new URI(urlStr);
             return url.toASCIIString();
