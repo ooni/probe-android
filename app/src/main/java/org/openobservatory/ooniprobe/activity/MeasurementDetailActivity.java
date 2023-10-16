@@ -8,87 +8,41 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.Toolbar;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
-
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
-
+import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
+import org.openobservatory.ooniprobe.databinding.ActivityMeasurementDetailBinding;
 import org.openobservatory.ooniprobe.domain.GetTestSuite;
 import org.openobservatory.ooniprobe.domain.MeasurementsManager;
 import org.openobservatory.ooniprobe.domain.callback.DomainCallback;
-import org.openobservatory.ooniprobe.fragment.measurement.DashFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.FacebookMessengerFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.FailedFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.HeaderNdtFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.HeaderOutcomeFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.HttpHeaderFieldManipulationFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.HttpInvalidRequestLineFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.NdtFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.PsiphonFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.RiseupVPNFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.SignalFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.TelegramFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.TorFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.WebConnectivityFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.WhatsappFragment;
+import org.openobservatory.ooniprobe.fragment.measurement.*;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
-import org.openobservatory.ooniprobe.test.test.Dash;
-import org.openobservatory.ooniprobe.test.test.FacebookMessenger;
-import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
-import org.openobservatory.ooniprobe.test.test.HttpInvalidRequestLine;
-import org.openobservatory.ooniprobe.test.test.Ndt;
-import org.openobservatory.ooniprobe.test.test.Psiphon;
-import org.openobservatory.ooniprobe.test.test.RiseupVPN;
-import org.openobservatory.ooniprobe.test.test.Signal;
-import org.openobservatory.ooniprobe.test.test.Telegram;
-import org.openobservatory.ooniprobe.test.test.Tor;
-import org.openobservatory.ooniprobe.test.test.WebConnectivity;
-import org.openobservatory.ooniprobe.test.test.Whatsapp;
+import org.openobservatory.ooniprobe.test.test.*;
+import ru.noties.markwon.Markwon;
 
+import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Objects;
-
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import localhost.toolkit.app.fragment.ConfirmDialogFragment;
-import ru.noties.markwon.Markwon;
 
 public class MeasurementDetailActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String ID = "id";
     private static final String RERUN_KEY = "rerun";
 
-    @BindView(R.id.coordinatorLayout)
-    CoordinatorLayout coordinatorLayout;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    private Measurement measurement;
-    private Snackbar snackbar;
     private Boolean isInExplorer;
-    @BindView(R.id.log)
-    Button log;
-    @BindView(R.id.explorer)
-    Button explorer;
-    @BindView(R.id.data)
-    Button data;
-    @BindView(R.id.methodology)
-    TextView methodology;
+
+    private Measurement measurement;
+
+    private Snackbar snackbar;
 
     @Inject
     MeasurementsManager measurementsManager;
@@ -121,9 +75,9 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                         measurement.is_anomaly ?
                                 R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Failure :
                                 R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Success);
-        setContentView(R.layout.activity_measurement_detail);
-        ButterKnife.bind(this);
-        setSupportActionBar(toolbar);
+        ActivityMeasurementDetailBinding binding = ActivityMeasurementDetailBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        setSupportActionBar(binding.toolbar);
         ActionBar bar = getSupportActionBar();
         if (bar != null) {
             bar.setDisplayHomeAsUpEnabled(true);
@@ -237,7 +191,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                 .replace(R.id.body, detail)
                 .replace(R.id.head, head)
                 .commit();
-        snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
+        snackbar = Snackbar.make(binding.coordinatorLayout, R.string.Snackbar_ResultsNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.Snackbar_ResultsNotUploaded_Upload, v1 -> runAsyncTask());
         Context c = this;
         isInExplorer = !measurement.hasReportFile(c);
@@ -255,11 +209,14 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
         });
 
         if (!measurement.hasLogFile(this))
-            log.setVisibility(View.GONE);
+            binding.log.setVisibility(View.GONE);
         if (!measurementsManager.hasReportId(measurement))
-            explorer.setVisibility(View.GONE);
-        Markwon.setMarkdown(methodology, getString(R.string.TestResults_Details_Methodology_Paragraph, getString(measurement.getTest().getUrlResId())));
+            binding.explorer.setVisibility(View.GONE);
+        Markwon.setMarkdown(binding.methodology, getString(R.string.TestResults_Details_Methodology_Paragraph, getString(measurement.getTest().getUrlResId())));
         load();
+        binding.log.setOnClickListener(v -> logClick());
+        binding.data.setOnClickListener(v -> dataClick());
+        binding.explorer.setOnClickListener(v -> explorerClick());
     }
 
     private void runAsyncTask() {
@@ -305,17 +262,14 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
         }
     }
 
-    @OnClick(R.id.log)
     void logClick() {
         startActivity(TextActivity.newIntent(this, TextActivity.TYPE_LOG, measurement));
     }
 
-    @OnClick(R.id.data)
     void dataClick() {
         startActivity(TextActivity.newIntent(this, TextActivity.TYPE_JSON, measurement));
     }
 
-    @OnClick(R.id.explorer)
     void explorerClick() {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(measurementsManager.getExplorerUrl(measurement))));
     }

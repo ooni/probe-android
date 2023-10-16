@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="preference_intent_about_ooni" translatable="false">org.openobservatory.ooniprobe.experimental.activity.InfoActivity</string>
-    <string name="preference_intent_proxy_activity" translatable="false">org.openobservatory.ooniprobe.experimental.activity.ProxyActivity</string>
-    <string name="preference_intent_log_activity" translatable="false">org.openobservatory.ooniprobe.experimental.activity.LogActivity</string>
-</resources>

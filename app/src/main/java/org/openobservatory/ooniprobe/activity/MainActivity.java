@@ -1,23 +1,33 @@
 package org.openobservatory.ooniprobe.activity;
 
+import static org.openobservatory.ooniprobe.common.service.RunTestService.CHANNEL_ID;
+
+import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.provider.Settings;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.NotificationUtility;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.service.ServiceUtil;
+import org.openobservatory.ooniprobe.databinding.ActivityMainBinding;
 import org.openobservatory.ooniprobe.domain.UpdatesNotificationManager;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
 import org.openobservatory.ooniprobe.fragment.PreferenceGlobalFragment;
@@ -27,8 +37,6 @@ import java.io.Serializable;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 
 public class MainActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
@@ -37,14 +45,15 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     public static final String AUTOTEST_DIALOG = "automatic_testing";
     public static final String BATTERY_DIALOG = "battery_optimization";
 
-    @BindView(R.id.bottomNavigation)
-    BottomNavigationView bottomNavigation;
+    private ActivityMainBinding binding;
 
     @Inject
     UpdatesNotificationManager notificationManager;
 
     @Inject
     PreferenceManager preferenceManager;
+
+    private ActivityResultLauncher<String> requestPermissionLauncher;
 
     public static Intent newIntent(Context context, int resItem) {
         return new Intent(context, MainActivity.class).putExtra(RES_ITEM, resItem).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -59,9 +68,9 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
             finish();
         }
         else {
-            setContentView(R.layout.activity_main);
-            ButterKnife.bind(this);
-            bottomNavigation.setOnNavigationItemSelectedListener(item -> {
+            binding = ActivityMainBinding.inflate(getLayoutInflater());
+            setContentView(binding.getRoot());
+            binding.bottomNavigation.setOnItemSelectedListener(item -> {
                 switch (item.getItemId()) {
                     case R.id.dashboard:
                         getSupportFragmentManager().beginTransaction().replace(R.id.content, new DashboardFragment()).commit();
@@ -76,7 +85,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                         return false;
                 }
             });
-            bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
+            binding.bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
             if (notificationManager.shouldShowAutoTest()) {
                 new ConfirmDialogFragment.Builder()
                         .withTitle(getString(R.string.Modal_Autorun_Modal_Title))
@@ -109,7 +118,45 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             }
         }
+        requestNotificationPermission();
+    }
 
+    private void requestNotificationPermission() {
+
+        requestPermissionLauncher = registerForActivityResult(
+                new ActivityResultContracts.RequestPermission(),
+                (result) -> {
+                    if (!result) {
+                        Snackbar.make(
+                                binding.getRoot(),
+                                "Please grant Notification permission from App Settings",
+                                Snackbar.LENGTH_LONG
+                                ).setAction(R.string.Settings_Title, view -> {
+                                    Intent intent = new Intent();
+                                    intent.setAction("android.settings.APP_NOTIFICATION_SETTINGS");
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                                    //for Android 5-7
+                                    intent.putExtra("app_package", getPackageName());
+                                    intent.putExtra("app_uid", getApplicationInfo().uid);
+
+                                    // for Android 8 and above
+                                    intent.putExtra("android.provider.extra.APP_PACKAGE", getPackageName());
+
+                                    startActivity(intent);
+                                }).show();
+                    }
+                }
+        );
+        NotificationUtility.setChannel(getApplicationContext(), CHANNEL_ID, getString(R.string.Settings_AutomatedTesting_Label), false, false, false);
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
+        ) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+            }
+        }
     }
 
     @Override
@@ -117,7 +164,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
         super.onNewIntent(intent);
         if (intent.getExtras() != null){
             if (intent.getExtras().containsKey(RES_ITEM))
-                bottomNavigation.setSelectedItemId(intent.getIntExtra(RES_ITEM, R.id.dashboard));
+                binding.bottomNavigation.setSelectedItemId(intent.getIntExtra(RES_ITEM, R.id.dashboard));
             else if (intent.getExtras().containsKey(NOTIFICATION_DIALOG)){
                 new ConfirmDialogFragment.Builder()
                         .withTitle(intent.getExtras().getString("title"))

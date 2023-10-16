@@ -6,41 +6,36 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import org.openobservatory.ooniprobe.R;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import org.openobservatory.ooniprobe.databinding.FragmentOnboarding2Binding;
 
 public class Onboarding2Fragment extends Fragment implements OnboardingDialogPopquizFragment.OnboardingPopquizInterface, OnboardingDialogWarningFragment.OnboardingWarningInterface {
-	@BindView(R.id.bullet1) TextView bullet1;
-	@BindView(R.id.bullet2) TextView bullet2;
-	@BindView(R.id.bullet3) TextView bullet3;
 
-	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_onboarding_2, container, false);
-		ButterKnife.bind(this, v);
-		bullet1.setText(getString(R.string.bullet, getString(R.string.Onboarding_ThingsToKnow_Bullet_1)));
-		bullet2.setText(getString(R.string.bullet, getString(R.string.Onboarding_ThingsToKnow_Bullet_2)));
-		bullet3.setText(getString(R.string.bullet, getString(R.string.Onboarding_ThingsToKnow_Bullet_3)));
-		return v;
+	@Nullable
+	@Override
+	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+		FragmentOnboarding2Binding binding = FragmentOnboarding2Binding.inflate(inflater, container, false);
+		binding.bullet1.setText(getString(R.string.bullet, getString(R.string.Onboarding_ThingsToKnow_Bullet_1)));
+		binding.bullet2.setText(getString(R.string.bullet, getString(R.string.Onboarding_ThingsToKnow_Bullet_2)));
+		binding.bullet3.setText(getString(R.string.bullet, getString(R.string.Onboarding_ThingsToKnow_Bullet_3)));
+		binding.master.setOnClickListener(v -> masterClick());
+		binding.slave.setOnClickListener(v -> slaveClick());
+		return binding.getRoot();
 	}
 
-	@OnClick(R.id.master) void masterClick() {
+	void masterClick() {
 		OnboardingDialogPopquizFragment.newInstance(R.string.Onboarding_PopQuiz_1_Title, R.string.Onboarding_PopQuiz_1_Question).show(getChildFragmentManager(), null);
 	}
 
-	@OnClick(R.id.slave) void slaveClick() {
+	void slaveClick() {
 		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://ooni.io/about/risks/")));
 	}
 
-	@Override public void onPopquizResult(int questionResId, boolean positive) {
+	@Override
+	public void onPopquizResult(int questionResId, boolean positive) {
 		if (questionResId == R.string.Onboarding_PopQuiz_1_Question) {
 			if (positive)
 				OnboardingDialogPopquizFragment.newInstance(R.string.Onboarding_PopQuiz_2_Title, R.string.Onboarding_PopQuiz_2_Question).show(getChildFragmentManager(), null);
@@ -54,7 +49,8 @@ public class Onboarding2Fragment extends Fragment implements OnboardingDialogPop
 		}
 	}
 
-	@Override public void onWarningResult(int questionResId) {
+	@Override
+	public void onWarningResult(int questionResId) {
 		if (questionResId == R.string.Onboarding_PopQuiz_1_Wrong_Paragraph)
 			OnboardingDialogPopquizFragment.newInstance(R.string.Onboarding_PopQuiz_2_Title, R.string.Onboarding_PopQuiz_2_Question).show(getChildFragmentManager(), null);
 		else if (questionResId == R.string.Onboarding_PopQuiz_2_Wrong_Paragraph)
