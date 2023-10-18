@@ -141,7 +141,7 @@
 		android:orientation="vertical"
 		app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-		<FrameLayout
+		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content">
 
@@ -160,7 +160,7 @@
 				android:entries="@array/filterTests"
 				android:paddingVertical="8dp"
 				android:textAlignment="center" />
-		</FrameLayout>
+		</LinearLayout>
 
 		<TextView
 			android:id="@+id/emptyState"
