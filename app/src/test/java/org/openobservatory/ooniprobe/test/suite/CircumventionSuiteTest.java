@@ -39,11 +39,10 @@ public class CircumventionSuiteTest {
 
         List<AbstractTest> tests = Arrays.asList(suite.getTestList(pm));
 
-        // Psiphon and Tor. Riseup VPN has been temporarily disabled.
-        assertEquals(2, tests.size());
+        assertEquals(3, tests.size());
         assertTrue(findTestClass(tests, Psiphon.class));
         assertTrue(findTestClass(tests, Tor.class));
-//        assertTrue(findTestClass(tests, RiseupVPN.class));
+        assertTrue(findTestClass(tests, RiseupVPN.class));
     }
 
     private boolean findTestClass(List<AbstractTest> tests, Class<? extends AbstractTest> klass) {
