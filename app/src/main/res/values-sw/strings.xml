@@ -160,7 +160,7 @@
   <string name="TestResults_Details_CopyExplorerURL">Nakili URL ya Kichunguzi</string>
   <string name="TestResults_Details_ShareExplorerURL">Shiriki URL ya Kichunguzi</string>
   <string name="TestResults_Details_CopyToClipboard">Nakili kwenye ubao wa kunakili</string>
-  <string name="TestResults_Details_ShowInExplorer">Onyesha katika OONI Explorer</string>
+  <string name="TestResults_Details_ShowInExplorer">Katika OONI Explorer</string>
   <string name="TestResults_Details_Failed_Title">Imeshindwa</string>
   <string name="TestResults_Details_Failed_Paragraph">Unaweza kujaribu  jaribio hili tena</string>
   <string name="TestResults_Details_Failed_TryAgain">jaribu tena</string>
