@@ -13,7 +13,7 @@ android {
         minSdk libs.versions.minSdk.get().toInteger()
         targetSdk libs.versions.targetSdk.get().toInteger()
         versionName '3.8.4'
-        versionCode 104
+        versionCode 105
 		testInstrumentationRunner "org.openobservatory.ooniprobe.TestAndroidJUnitRunner"
 		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://countly.ooni.io"'
