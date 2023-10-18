@@ -31,46 +31,16 @@ public class GenerateAutoRunServiceSuite {
         this.app = application;
     }
 
-    public AbstractSuite generate(
-            OONICheckInConfig config
-    ) {
+    public AbstractSuite generate() {
 
-        try {
-            OONISession session = EngineProvider.get().newSession(
-                    EngineProvider.get().getDefaultSessionConfig(
-                            app,
-                            String.join("-",BuildConfig.SOFTWARE_NAME, AbstractTest.UNATTENDED),
-                            BuildConfig.VERSION_NAME,
-                            new LoggerArray(),
-                            pm.getProxyURL()
-                    )
-            );
-            OONIContext ooniContext = session.newContextWithTimeout(30);
-            OONICheckInResults results = session.checkIn(ooniContext, config);
-
-            if (results.getWebConnectivity() != null) {
-                List<String> inputs = new ArrayList<>();
-                for (OONIURLInfo url : results.getWebConnectivity().getUrls()) {
-                    inputs.add(url.getUrl());
-                }
-
-                markAsRan();
-
-                return AbstractSuite.getSuite(
-                        app,
-                        "web_connectivity",
-                        inputs,
-                        AbstractTest.AUTORUN
-                );
-            }
-
-            return null;
-        } catch (Exception e) {
-            e.printStackTrace();
-            ThirdPartyServices.logException(e);
-            return null;
-        }
+        return AbstractSuite.getSuite(
+                app,
+                "web_connectivity",
+                null,
+                AbstractTest.AUTORUN
+        );
     }
+
 
     public boolean shouldStart(Boolean isWifi, Boolean isCharging, Boolean isVPNInUse) {
         if (pm.testWifiOnly() && !isWifi)
@@ -86,7 +56,7 @@ public class GenerateAutoRunServiceSuite {
         return true;
     }
 
-    private void markAsRan() {
+    public void markAsRan() {
         pm.updateAutorunDate();
         pm.incrementAutorun();
     }

@@ -64,6 +64,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     private String proxy;
     private boolean store_db = true;
 
+    private boolean unattended;
     public static List<AbstractSuite> getSuites() {
         return  Arrays.asList(new WebsitesSuite(),
                 new InstantMessagingSuite(), new CircumventionSuite(), new PerformanceSuite(), new ExperimentalSuite());
@@ -75,9 +76,10 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
         this.proxy = app.getPreferenceManager().getProxyURL();
     }
 
-    public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, boolean store_db) {
+    public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, boolean store_db, boolean unattended) {
         this(app, testSuites);
         this.store_db = store_db;
+        this.unattended = unattended;
     }
 
     private void registerConnChange() {
@@ -159,8 +161,15 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     //This uses the wrapper
     private void downloadURLs() {
         try {
-            OONISession session = EngineProvider.get().newSession(EngineProvider.get().getDefaultSessionConfig(
-                    app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray(), proxy));
+            OONISession session = EngineProvider.get().newSession(
+                    EngineProvider.get().getDefaultSessionConfig(
+                            app,
+                            unattended ? String.join("-", BuildConfig.SOFTWARE_NAME, AbstractTest.UNATTENDED) : BuildConfig.SOFTWARE_NAME,
+                            BuildConfig.VERSION_NAME,
+                            new LoggerArray(),
+                            proxy
+                    )
+            );
             OONIContext ooniContext = session.newContextWithTimeout(30);
 
             OONICheckInConfig config = app.getOONICheckInConfig();

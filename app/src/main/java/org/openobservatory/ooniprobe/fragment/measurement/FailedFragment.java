@@ -37,13 +37,15 @@ public class FailedFragment extends Fragment {
 		return fragment;
 	}
 
-	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+	@Nullable
+	@Override
+	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 		binding = FragmentMeasurementFailedBinding.inflate(inflater,container,false);
 		binding.tryAgain.setOnClickListener(this::tryAgainClick);
 		return binding.getRoot();
 	}
 
- void tryAgainClick(View view) {
+	void tryAgainClick(View view) {
 		assert getArguments() != null;
 		Measurement failedMeasurement = (Measurement) getArguments().getSerializable(MEASUREMENT);
 		assert failedMeasurement != null;
