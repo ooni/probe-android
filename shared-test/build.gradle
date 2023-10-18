@@ -1,5 +1,7 @@
 plugins {
     id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -9,10 +11,8 @@ android {
     defaultConfig {
         minSdk 21
     }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
     }
     flavorDimensions = ['testing', 'license']
     productFlavors {
@@ -41,12 +41,12 @@ dependencies {
 
     // Dependency Injection (https://dagger.dev/)
 	implementation libs.google.dagger
-	annotationProcessor libs.google.dagger.compiler
+    kapt libs.google.dagger.compiler
 
     // Database Library (https://github.com/agrosner/DBFlow)
 	implementation libs.dbflow.core
 	implementation libs.dbflow.lib
-	annotationProcessor libs.dbflow.processor
+    kapt libs.dbflow.processor
 
     // Gson Serialization Library (https://github.com/google/gson)
 	implementation libs.google.gson
