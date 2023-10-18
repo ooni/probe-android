@@ -31,10 +31,7 @@ import static org.mockito.Mockito.when;
 public class GenerateAutoRunServiceSuiteTest extends RobolectricAbstractTest {
 
     // Mocks
-    OONICheckInInfoWebConnectivity webConnectivityMock = mock(OONICheckInInfoWebConnectivity.class);
     PreferenceManager preferenceManagerMock = mock(PreferenceManager.class);
-    OONICheckInConfig ooniCheckConfigMock = mock(OONICheckInConfig.class);
-    OONICheckInResults ooniResultsMock = mock(OONICheckInResults.class);
     OONISession ooniSessionMock = mock(OONISession.class);
 
     // Engine && UseCase
@@ -52,73 +49,19 @@ public class GenerateAutoRunServiceSuiteTest extends RobolectricAbstractTest {
     }
 
     @Test
-    public void shouldNotStartTest() {
+    public void generateSuite() {
         // Act
-        AbstractSuite suite = generateSuite.generate(ooniCheckConfigMock);
-
-        // Assert
-        Assert.assertNull(suite);
-    }
-
-    @Test
-    public void generateSuite() throws Exception {
-        // Arrange
-        ArrayList<OONIURLInfo> suiteUrls = getTestUrls();
-
-        when(preferenceManagerMock.getEnabledCategoryArr()).thenReturn(new ArrayList<String>() {
-            {
-                add("ALDR");
-                add("REL");
-                add("PORN");
-                add("PROV");
-                add("POLR");
-                add("HUMR");
-                add("ENV");
-            }
-        });
-
-        when(webConnectivityMock.getUrls()).thenReturn(suiteUrls);
-        when(ooniResultsMock.getWebConnectivity()).thenReturn(webConnectivityMock);
-        when(ooniSessionMock.checkIn(any(), any())).thenReturn(ooniResultsMock);
-
-        // Act
-        AbstractSuite suite = generateSuite.generate(ooniCheckConfigMock);
+        AbstractSuite suite = generateSuite.generate();
 
         // Assert
         Assert.assertNotNull(suite);
-        verify(preferenceManagerMock, times(1)).updateAutorunDate();
-        verify(preferenceManagerMock, times(1)).incrementAutorun();
         Assert.assertEquals(1, suite.getTestList(preferenceManagerMock).length);
 
         AbstractTest webTest = suite.getTestList(preferenceManagerMock)[0];
 
         Assert.assertEquals("web_connectivity", webTest.getName());
-        Assert.assertEquals(suiteUrls.size(), webTest.getInputs().size());
+        Assert.assertNull(webTest.getInputs());
 
-        for (int i = 0; i < webTest.getInputs().size(); i++) {
-            Assert.assertEquals( webTest.getInputs().get(i), suiteUrls.get(i).getUrl());
-        }
-    }
-
-    private ArrayList<OONIURLInfo> getTestUrls() {
-        Faker faker = new Faker();
-
-        OONIURLInfo url1 = mock(OONIURLInfo.class);
-        when(url1.getUrl()).thenReturn(faker.internet.url());
-
-        OONIURLInfo url2 = mock(OONIURLInfo.class);
-        when(url1.getUrl()).thenReturn(faker.internet.url());
-
-        OONIURLInfo url3 = mock(OONIURLInfo.class);
-        when(url1.getUrl()).thenReturn(faker.internet.url());
-
-        return new ArrayList<OONIURLInfo>(){
-            {
-                add(url1);
-                add(url2);
-                add(url3);
-            }
-        };
     }
 
 }

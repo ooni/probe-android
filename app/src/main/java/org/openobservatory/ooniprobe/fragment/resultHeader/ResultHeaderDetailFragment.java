@@ -5,22 +5,16 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.fragment.app.Fragment;
-
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.databinding.FragmentResultHeadDetailBinding;
 import org.openobservatory.ooniprobe.model.database.Network;
 
 import java.util.Date;
 import java.util.Locale;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class ResultHeaderDetailFragment extends Fragment {
 	private static final String NETWORK = "network";
@@ -31,19 +25,6 @@ public class ResultHeaderDetailFragment extends Fragment {
 	private static final String START_TIME = "start_time";
 	private static final String IS_TOTAL_RUNTIME = "isTotalRuntime";
 	private static final String LIGHT_THEME = "lightTheme";
-	@BindView(R.id.dataUsage) LinearLayout dataUsage;
-	@BindView(R.id.startTimeBox) LinearLayout startTimeBox;
-	@BindView(R.id.runtimeBox) LinearLayout runtimeBox;
-	@BindView(R.id.countryBox) LinearLayout countryBox;
-	@BindView(R.id.networkBox) LinearLayout networkBox;
-	@BindView(R.id.startTime) TextView startTime;
-	@BindView(R.id.upload) TextView upload;
-	@BindView(R.id.download) TextView download;
-	@BindView(R.id.runtime) TextView runtime;
-	@BindView(R.id.runtimeLabel) TextView runtimeLabel;
-	@BindView(R.id.country) TextView country;
-	@BindView(R.id.networkName) TextView networkName;
-	@BindView(R.id.networkDetail) TextView networkDetail;
 
 	public static ResultHeaderDetailFragment newInstance(boolean lightTheme, String data_usage_up, String data_usage_down, Date start_time, Double runtime, Boolean isTotalRuntime, String country_code, Network network) {
 		Bundle args = new Bundle();
@@ -67,35 +48,42 @@ public class ResultHeaderDetailFragment extends Fragment {
 		return fragment;
 	}
 
-	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+	@Nullable
+	@Override
+	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 		assert getArguments() != null;
 		int themeResId = getArguments().getBoolean(LIGHT_THEME) ? R.style.Theme_MaterialComponents_Light_NoActionBar_App : R.style.Theme_MaterialComponents_NoActionBar_App;
-		View v = inflater.cloneInContext(new ContextThemeWrapper(getActivity(), themeResId)).inflate(R.layout.fragment_result_head_detail, container, false);
-		ButterKnife.bind(this, v);
+		FragmentResultHeadDetailBinding binding = FragmentResultHeadDetailBinding.inflate(inflater.cloneInContext(new ContextThemeWrapper(getActivity(), themeResId)), container, false);
 		if (getArguments().containsKey(DATA_USAGE_DOWN) && getArguments().containsKey(DATA_USAGE_UP)) {
-			download.setText(getArguments().getString(DATA_USAGE_DOWN));
-			upload.setText(getArguments().getString(DATA_USAGE_UP));
+			binding.download.setText(getArguments().getString(DATA_USAGE_DOWN));
+			binding.upload.setText(getArguments().getString(DATA_USAGE_UP));
 		} else
-			dataUsage.setVisibility(View.GONE);
+			binding.dataUsage.setVisibility(View.GONE);
 		if (getArguments().containsKey(START_TIME))
-			startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), (Date) getArguments().getSerializable(START_TIME)));
+			binding.startTime.setText(DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yMdHm"), (Date) getArguments().getSerializable(START_TIME)));
 		else
-			startTimeBox.setVisibility(View.GONE);
+			binding.startTimeBox.setVisibility(View.GONE);
 		if (getArguments().containsKey(RUNTIME)) {
-			runtime.setText(getString(R.string.f, getArguments().getDouble(RUNTIME)));
-			runtimeLabel.setText(getArguments().getBoolean(IS_TOTAL_RUNTIME) ? R.string.TestResults_Summary_Hero_Runtime : R.string.TestResults_Details_Hero_Runtime);
+			binding.runtime.setText(getString(R.string.f, getArguments().getDouble(RUNTIME)));
+			binding.runtimeLabel.setText(getArguments().getBoolean(IS_TOTAL_RUNTIME) ? R.string.TestResults_Summary_Hero_Runtime : R.string.TestResults_Details_Hero_Runtime);
 		} else
-			runtimeBox.setVisibility(View.GONE);
+			binding.runtimeBox.setVisibility(View.GONE);
 		if (getArguments().containsKey(COUNTRY_CODE))
-			country.setText(getArguments().getString(COUNTRY_CODE));
+			binding.country.setText(getArguments().getString(COUNTRY_CODE));
 		else
-			countryBox.setVisibility(View.GONE);
+			binding.countryBox.setVisibility(View.GONE);
 		if (getArguments().containsKey(NETWORK)) {
 			Network n = (Network) getArguments().getSerializable(NETWORK);
-			networkName.setText(Network.getName(networkName.getContext(), n));
-			networkDetail.setText(networkDetail.getContext().getString(R.string.twoParamWithBrackets, Network.getAsn(networkDetail.getContext(), n), Network.getLocalizedNetworkType(networkDetail.getContext(), n)));
+			binding.networkName.setText(Network.getName(binding.networkName.getContext(), n));
+			binding.networkDetail.setText(
+					binding.networkDetail.getContext().getString(
+							R.string.twoParamWithBrackets,
+							Network.getAsn(binding.networkDetail.getContext(), n),
+							Network.getLocalizedNetworkType(binding.networkDetail.getContext(), n)
+					)
+			);
 		} else
-			networkBox.setVisibility(View.GONE);
-		return v;
+			binding.networkBox.setVisibility(View.GONE);
+		return binding.getRoot();
 	}
 }
