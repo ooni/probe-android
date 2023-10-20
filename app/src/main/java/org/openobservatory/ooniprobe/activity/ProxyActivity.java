@@ -4,28 +4,22 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
-
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.common.net.InetAddresses;
 import com.google.common.net.InternetDomainName;
-
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.AppLogger;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ProxyProtocol;
 import org.openobservatory.ooniprobe.common.ProxySettings;
-
-import java.net.URISyntaxException;
-import java.util.Objects;
+import org.openobservatory.ooniprobe.databinding.ActivityProxyBinding;
+import ru.noties.markwon.Markwon;
 
 import javax.inject.Inject;
-
-import ru.noties.markwon.Markwon;
+import java.net.URISyntaxException;
+import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * The ProxyActivity is part of the Settings. It allows users to
@@ -103,36 +97,8 @@ public class ProxyActivity extends AbstractActivity {
     // The following radio group describes the top level choice
     // in terms of proxying: no proxy, psiphon, or custom.
 
-    // proxyRadioGroup is the top-level radio group.
-    private RadioGroup proxyRadioGroup;
+    ActivityProxyBinding binding;
 
-    // proxyNoneRB is the radio button selecting the "none" proxy.
-    private RadioButton proxyNoneRB;
-
-    // proxyPsiphonRB is the radio button selecting the "psiphon" proxy.
-    private RadioButton proxyPsiphonRB;
-
-    // proxyCustomRB is the radio button for the "custom" proxy.
-    private RadioButton proxyCustomRB;
-
-    // The following radio group allows users to choose which specific
-    // custom proxy they would like to use. When writing this documentation,
-    // only socks5 is available but we will add more options.
-
-    // customProxyRadioGroup allows you to choose among the different
-    // kinds of custom proxies that are available.
-    private RadioGroup customProxyRadioGroup;
-
-    // customProxySOCKS5 selects the custom SOCKS5 proxy type.
-    private RadioButton customProxySOCKS5;
-
-    // The following settings allow users to configure the custom proxy.
-
-    // customProxyHostname is the hostname for the custom proxy.
-    private TextInputLayout customProxyHostname;
-
-    // customProxyPort is the port for the custom proxy.
-    private TextInputLayout customProxyPort;
 
     // settings contains a representation of the proxy settings
     // loaded from the preference manager.
@@ -147,21 +113,13 @@ public class ProxyActivity extends AbstractActivity {
         super.onCreate(savedInstanceState);
         getActivityComponent().inject(this);
 
+        binding = ActivityProxyBinding.inflate(getLayoutInflater());
         // We draw the view and store references to objects needed
         // when configuring the initial view or modifying it.
-        setContentView(R.layout.activity_proxy);
-        proxyRadioGroup = findViewById(R.id.proxyRadioGroup);
-        proxyNoneRB = findViewById(R.id.proxyNone);
-        proxyPsiphonRB = findViewById(R.id.proxyPsiphon);
-        proxyCustomRB = findViewById(R.id.proxyCustom);
-        customProxyRadioGroup = findViewById(R.id.customProxyRadioGroup);
-        customProxySOCKS5 = findViewById(R.id.customProxySOCKS5);
-        customProxyHostname = findViewById(R.id.customProxyHostname);
-        customProxyPort = findViewById(R.id.customProxyPort);
+        setContentView(binding.getRoot());
 
         // We fill the footer that helps users to understand this settings screen.
-        TextView proxyFooter = findViewById(R.id.proxyFooter);
-        Markwon.setMarkdown(proxyFooter, getString(R.string.Settings_Proxy_Footer));
+        Markwon.setMarkdown(binding.proxyFooter, getString(R.string.Settings_Proxy_Footer));
 
         // We read settings and configure the initial view.
         loadSettingsAndConfigureInitialView();
@@ -193,11 +151,12 @@ public class ProxyActivity extends AbstractActivity {
         // Inspect the scheme and use the scheme to choose among the
         // top-level radio buttons describing the proxy type.
         if (settings.protocol == ProxyProtocol.NONE) {
-            proxyNoneRB.setChecked(true);
+            binding.proxyNone.setChecked(true);
         } else if (settings.protocol == ProxyProtocol.PSIPHON) {
-            proxyPsiphonRB.setChecked(true);
-        } else if (settings.protocol == ProxyProtocol.SOCKS5) {
-            proxyCustomRB.setChecked(true);
+            binding.proxyPsiphon.setChecked(true);
+        } else if (Arrays.asList(getResources().getStringArray(R.array.proxy_protocol_list)).contains(settings.protocol.getProtocol())) {
+            binding.customProxyProtocol.setText(settings.protocol.getProtocol(),false);
+            binding.proxyCustom.setChecked(true);
         } else {
             // TODO(bassosimone): this should also be reported as a bug.
             Log.w(TAG, "got an unhandled proxy scheme");
@@ -208,28 +167,28 @@ public class ProxyActivity extends AbstractActivity {
         // If the scheme is custom, then we need to enable the
         // part of the view related to custom proxies.
         customProxySetEnabled(isSchemeCustom(settings.protocol));
-        customProxySOCKS5.setChecked(isSchemeCustom(settings.protocol));
 
         // Populate all the editable fields _anyway_ so the user
         // has the feeling that everything was just as before
+        Log.d(TAG, "(from preferences) protocol: " + settings.protocol);
+        logger.i(TAG, "(from preferences) protocol: " + settings.protocol);
         Log.d(TAG, "(from preferences) hostname: " + settings.hostname);
         logger.i(TAG, "(from preferences) hostname: " + settings.hostname);
         Log.d(TAG, "(from preferences) port: " + settings.port);
         logger.i(TAG, "(from preferences) port: " + settings.port);
-        Objects.requireNonNull(customProxyHostname.getEditText()).setText(settings.hostname);
-        Objects.requireNonNull(customProxyPort.getEditText()).setText(settings.port);
+        Objects.requireNonNull(binding.customProxyHostname.getEditText()).setText(settings.hostname);
+        Objects.requireNonNull(binding.customProxyPort.getEditText()).setText(settings.port);
 
         // Now we need to make the top level proxy radio group interactive: when
         // we change what is selected, we need the view to adapt.
-        proxyRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+        binding.proxyRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.proxyNone) {
                 customProxySetEnabled(false);
             } else if (checkedId == R.id.proxyPsiphon) {
                 customProxySetEnabled(false);
             } else if (checkedId == R.id.proxyCustom) {
                 customProxySetEnabled(true);
-                customProxyRadioGroup.clearCheck();
-                customProxySOCKS5.setChecked(true);
+                binding.customProxyRadioGroup.clearCheck();
             } else {
                 // TODO(bassosimone): this should also be reported as a bug.
                 Log.w(TAG, "unexpected state in setOnCheckedChangeListener");
@@ -238,14 +197,14 @@ public class ProxyActivity extends AbstractActivity {
         });
 
         // When we change the focus of text fields, clear any lingering error text.
-        Objects.requireNonNull(customProxyHostname.getEditText()).setOnFocusChangeListener((v, hasFocus) -> {
+        Objects.requireNonNull(binding.customProxyHostname.getEditText()).setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
-                customProxyHostname.setError(null);
+                binding.customProxyHostname.setError(null);
             }
         });
-        Objects.requireNonNull(customProxyPort.getEditText()).setOnFocusChangeListener((v, hasFocus) -> {
+        Objects.requireNonNull(binding.customProxyPort.getEditText()).setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
-                customProxyHostname.setError(null);
+                binding.customProxyHostname.setError(null);
             }
         });
     }
@@ -254,7 +213,7 @@ public class ProxyActivity extends AbstractActivity {
     private boolean isSchemeCustom(ProxyProtocol protocol) {
         // This is where we need to extend the implementation of we add a new scheme
         // that will not be related to a custom proxy type.
-        return protocol == ProxyProtocol.SOCKS5;
+        return protocol == ProxyProtocol.SOCKS5 || protocol == ProxyProtocol.HTTP || protocol == ProxyProtocol.HTTPS;
     }
 
     // customProxyTextInputSetEnabled is a helper function that changes the
@@ -268,9 +227,8 @@ public class ProxyActivity extends AbstractActivity {
     // customProxySetEnabled reacts to the enabling or disabling of the custom
     // proxy group and changes the view accordingly to that.
     private void customProxySetEnabled(boolean flag) {
-        customProxySOCKS5.setEnabled(flag);
-        customProxyTextInputSetEnabled(customProxyHostname, flag);
-        customProxyTextInputSetEnabled(customProxyPort, flag);
+        customProxyTextInputSetEnabled(binding.customProxyHostname, flag);
+        customProxyTextInputSetEnabled(binding.customProxyPort, flag);
     }
 
     // isValidHostnameOrIP validates its input as an IP address or hostname.
@@ -341,14 +299,14 @@ public class ProxyActivity extends AbstractActivity {
         logger.i(TAG, "onBackPressed: about to save proxy settings");
 
         // Get the hostname and port for the custom proxy.
-        String hostname = Objects.requireNonNull(customProxyHostname.getEditText()).getText().toString();
-        String port = Objects.requireNonNull(customProxyPort.getEditText()).getText().toString();
+        String hostname = Objects.requireNonNull(binding.customProxyHostname.getEditText()).getText().toString();
+        String port = Objects.requireNonNull(binding.customProxyPort.getEditText()).getText().toString();
         settings.hostname = hostname;
         settings.port = port;
 
         // If no proxy is selected then just write an empty proxy
         // configuration into the settings and move on.
-        if (proxyNoneRB.isChecked()) {
+        if (binding.proxyNone.isChecked()) {
             settings.protocol = ProxyProtocol.NONE;
             saveSettings();
             super.onBackPressed();
@@ -357,7 +315,7 @@ public class ProxyActivity extends AbstractActivity {
 
         // If the psiphon proxy is checked then write back the right
         // proxy configuration for psiphon and move on.
-        if (proxyPsiphonRB.isChecked()) {
+        if (binding.proxyPsiphon.isChecked()) {
             settings.protocol = ProxyProtocol.PSIPHON;
             saveSettings();
             super.onBackPressed();
@@ -366,26 +324,27 @@ public class ProxyActivity extends AbstractActivity {
 
         // validate the hostname for the custom proxy.
         if (!isValidHostnameOrIP(hostname)) {
-            customProxyHostname.setError("not a valid hostname or IP");
+            binding.customProxyHostname.setError("not a valid hostname or IP");
             return;
         }
 
         // validate the port for the custom proxy.
         if (!isValidPort(port)) {
-            customProxyPort.setError("not a valid network port");
+            binding.customProxyPort.setError("not a valid network port");
             return;
         }
 
-        // At this point we're going to assume that this is a socks5 proxy. We will
-        // need to change the code in here when we add support for http proxies.
-        settings.protocol = ProxyProtocol.SOCKS5;
+        // At this point we're going to assume that this is a socks5,http,https proxy.
+        // ProxyProtocol.valueOf will only accept one of the values in ProxyProtocol
+        // as in the enum definition(uppercase).
         try {
+            settings.protocol = ProxyProtocol.valueOf(binding.customProxyProtocol.getText().toString().toUpperCase());
             settings.getProxyString();
         } catch (URISyntaxException e) {
             // okay, then, notwithstanding our efforts it still seems that we
             // have not obtained a valid URL, so let's not proceed.
-            customProxyHostname.setError("cannot construct a valid URL");
-            customProxyPort.setError("cannot construct a valid URL");
+            binding.customProxyHostname.setError("cannot construct a valid URL");
+            binding.customProxyPort.setError("cannot construct a valid URL");
             return;
         }
 
