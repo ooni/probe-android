@@ -6,13 +6,17 @@ plugins {
 
 android {
     namespace 'org.openobservatory.ooniprobe.shared.test'
-    compileSdk 33
+    compileSdk libs.versions.compileSdk.get().toInteger()
 
     defaultConfig {
-        minSdk 21
+        minSdk libs.versions.minSdk.get().toInteger()
     }
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_17
+		targetCompatibility JavaVersion.VERSION_17
+	}
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
+        jvmTarget = JavaVersion.VERSION_17
     }
     flavorDimensions = ['testing', 'license']
     productFlavors {
@@ -60,6 +64,7 @@ dependencies {
 	implementation libs.retrofit.logging.interceptor
 
 	implementation libs.androidx.appcompat
+	implementation libs.xanscale.localhost.toolkit
 
     testImplementation libs.junit4
     androidTestImplementation libs.androidx.junit
