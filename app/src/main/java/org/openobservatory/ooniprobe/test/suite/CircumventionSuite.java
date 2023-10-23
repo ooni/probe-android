@@ -8,7 +8,6 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.Psiphon;
-import org.openobservatory.ooniprobe.test.test.RiseupVPN;
 import org.openobservatory.ooniprobe.test.test.Tor;
 
 import java.util.ArrayList;
@@ -44,8 +43,6 @@ public class CircumventionSuite extends AbstractSuite {
                 list.add(new Psiphon());
             if (pm == null || pm.isTestTor())
                 list.add(new Tor());
-            if (pm == null || pm.isTestRiseupVPN())
-                list.add(new RiseupVPN());
             super.setTestList(Lists.transform(list, test -> {
                 if (getAutoRun()) test.setOrigin(AbstractTest.AUTORUN);
                 return test;
