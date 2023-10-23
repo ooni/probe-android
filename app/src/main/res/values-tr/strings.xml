@@ -16,11 +16,11 @@
   <string name="Onboarding_PopQuiz_Wrong_Button_Back">Geri dön</string>
   <string name="Onboarding_PopQuiz_Wrong_Button_Continue">Devam et</string>
   <string name="Onboarding_PopQuiz_1_Title">Soru 1/2</string>
-  <string name="Onboarding_PopQuiz_1_Question">İnternet işlemlerim izleniyorsa, OONI Probe uygulamasını çalıştırdığım anlaşılabilir.</string>
+  <string name="Onboarding_PopQuiz_1_Question">İnternetim izleniyorsa, OONI Probe çalıştırdığım anlaşılabilir.</string>
   <string name="Onboarding_PopQuiz_1_Wrong_Title">Uyarı</string>
   <string name="Onboarding_PopQuiz_1_Wrong_Paragraph">OONI Probe bir kişisel gizlilik sağlama aracı değildir. İnternet işlemlerinizi izleyenler çalıştırdığınız uygulamaları görebilir.</string>
   <string name="Onboarding_PopQuiz_2_Title">Soru 2/2</string>
-  <string name="Onboarding_PopQuiz_2_Question">OONI Probe uygulamasını her çalıştırdığımda topladığım ağ verileri herkese açık olarak yayınlanır.</string>
+  <string name="Onboarding_PopQuiz_2_Question">OONI Probe uygulamasını çalıştırdığımda topladığım veriler herkese açık olarak yayınlanır.</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Title">Uyarı</string>
   <string name="Onboarding_PopQuiz_2_Wrong_Paragraph">İnternet sansürü şeffaflığını sağlamak için tüm OONI Probe kullanıcılarının ağ verileri otomatik olarak yayınlanır (ayarlardan kapatılmadıkça).</string>
   <string name="Onboarding_AutomatedTesting_Title">Otomatik sınama</string>
