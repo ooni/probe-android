@@ -2,28 +2,27 @@ package org.openobservatory.ooniprobe.activity;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Patterns;
-import android.view.View;
 import android.view.Window;
 import android.webkit.URLUtil;
 import android.widget.Toast;
 
 import androidx.core.graphics.ColorUtils;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.gson.Gson;
 
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.adapters.StringListRecyclerViewAdapter;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.databinding.ActivityOonirunBinding;
 import org.openobservatory.ooniprobe.domain.GetTestSuite;
 import org.openobservatory.ooniprobe.domain.VersionCompare;
 import org.openobservatory.ooniprobe.domain.models.Attribute;
-import org.openobservatory.ooniprobe.item.TextItem;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
 import java.util.ArrayList;
@@ -32,13 +31,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerAdapter;
-import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
-
 public class OoniRunActivity extends AbstractActivity {
 	ActivityOonirunBinding binding;
-	private ArrayList<HeterogeneousRecyclerItem> items;
-	private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
 
 	@Inject
 	PreferenceManager preferenceManager;
@@ -61,12 +55,6 @@ public class OoniRunActivity extends AbstractActivity {
 		setSupportActionBar(binding.toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setDisplayShowHomeEnabled(true);
-		LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-		binding.recycler.setLayoutManager(layoutManager);
-		binding.recycler.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
-		items = new ArrayList<>();
-		adapter = new HeterogeneousRecyclerAdapter<>(this, items);
-		binding.recycler.setAdapter(adapter);
 		manageIntent(getIntent());
 	}
 
@@ -135,8 +123,6 @@ public class OoniRunActivity extends AbstractActivity {
 		binding.desc.setText(R.string.OONIRun_OONIProbeNewerVersion);
 		binding.run.setText(R.string.OONIRun_Update);
 		binding.icon.setImageResource(R.drawable.update);
-		binding.iconBig.setImageResource(R.drawable.update);
-		binding.iconBig.setVisibility(View.VISIBLE);
 		binding.run.setOnClickListener(v -> {
 			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName())));
 			finish();
@@ -144,19 +130,17 @@ public class OoniRunActivity extends AbstractActivity {
 	}
 
 	private void loadSuite(AbstractSuite suite, List<String> urls) {
+		ArrayList<String> items = new ArrayList<>();
 		binding.icon.setImageResource(suite.getIcon());
 		binding.title.setText(suite.getTestList(preferenceManager)[0].getLabelResId());
 		binding.desc.setText(getString(R.string.OONIRun_YouAreAboutToRun));
 		if (urls != null) {
 			for (String url : urls) {
 				if (URLUtil.isValidUrl(url))
-					items.add(new TextItem(url));
+					items.add(url);
 			}
-			adapter.notifyTypesChanged();
-			binding.iconBig.setVisibility(View.GONE);
-		} else {
-			binding.iconBig.setImageResource(suite.getIcon());
-			binding.iconBig.setVisibility(View.VISIBLE);
+			binding.recycler.setLayoutManager(new LinearLayoutManager(this));
+			binding.recycler.setAdapter(new StringListRecyclerViewAdapter(items));
 		}
 		setThemeColor(getResources().getColor(suite.getColor()));
 		binding.run.setOnClickListener(v -> {
@@ -171,9 +155,9 @@ public class OoniRunActivity extends AbstractActivity {
 		window.setStatusBarColor(color);
 		binding.appbarLayout.setBackgroundColor(color);
 		if (ColorUtils.calculateLuminance(color) > 0.5) {
-			setTextColor(getResources().getColor(R.color.color_black));
+			setTextColor(Color.BLACK);
 		} else {
-			binding.title.setTextColor(getResources().getColor(R.color.color_white));
+			binding.title.setTextColor(Color.BLACK);
 		}
 	}
 
@@ -191,8 +175,6 @@ public class OoniRunActivity extends AbstractActivity {
 		binding.desc.setText(R.string.OONIRun_InvalidParameter_Msg);
 		binding.run.setText(R.string.OONIRun_Close);
 		binding.icon.setImageResource(R.drawable.question_mark);
-		binding.iconBig.setImageResource(R.drawable.question_mark);
-		binding.iconBig.setVisibility(View.VISIBLE);
 		binding.run.setOnClickListener(v -> finish());
 	}
 }
