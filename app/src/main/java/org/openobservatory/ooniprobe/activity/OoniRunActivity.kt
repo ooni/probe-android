@@ -110,7 +110,8 @@ class OoniRunActivity : AbstractActivity() {
     }
 
     private fun loadOutOfDate() {
-        setTextColor(resources.getColor(R.color.color_black))
+        setThemeColor(resources.getColor(R.color.color_gray4))
+        setTextColor(Color.BLACK)
         binding.title.setText(R.string.OONIRun_OONIProbeOutOfDate)
         binding.desc.setText(R.string.OONIRun_OONIProbeNewerVersion)
         binding.icon.setImageResource(R.drawable.update)
@@ -174,7 +175,8 @@ class OoniRunActivity : AbstractActivity() {
     }
 
     private fun loadInvalidAttributes() {
-        setTextColor(resources.getColor(R.color.color_black))
+        setThemeColor(resources.getColor(R.color.color_gray4))
+        setTextColor(Color.BLACK)
         binding.title.setText(R.string.OONIRun_InvalidParameter)
         binding.desc.setText(R.string.OONIRun_InvalidParameter_Msg)
         binding.icon.setImageResource(R.drawable.question_mark)
