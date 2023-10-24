@@ -1,13 +1,16 @@
 package org.openobservatory.ooniprobe.activity;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.Window;
 import android.webkit.URLUtil;
 import android.widget.Toast;
 
+import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -127,6 +130,7 @@ public class OoniRunActivity extends AbstractActivity {
 	}
 
 	private void loadOutOfDate() {
+		setTextColor(getResources().getColor(R.color.color_black));
 		binding.title.setText(R.string.OONIRun_OONIProbeOutOfDate);
 		binding.desc.setText(R.string.OONIRun_OONIProbeNewerVersion);
 		binding.run.setText(R.string.OONIRun_Update);
@@ -154,6 +158,7 @@ public class OoniRunActivity extends AbstractActivity {
 			binding.iconBig.setImageResource(suite.getIcon());
 			binding.iconBig.setVisibility(View.VISIBLE);
 		}
+		setThemeColor(getResources().getColor(suite.getColor()));
 		binding.run.setOnClickListener(v -> {
 
 			RunningActivity.runAsForegroundService(OoniRunActivity.this, suite.asArray(),this::finish, preferenceManager);
@@ -161,7 +166,27 @@ public class OoniRunActivity extends AbstractActivity {
 		});
 	}
 
+	public void setThemeColor(int color) {
+		Window window = getWindow();
+		window.setStatusBarColor(color);
+		binding.appbarLayout.setBackgroundColor(color);
+		if (ColorUtils.calculateLuminance(color) > 0.5) {
+			setTextColor(getResources().getColor(R.color.color_black));
+		} else {
+			binding.title.setTextColor(getResources().getColor(R.color.color_white));
+		}
+	}
+
+	public void setTextColor(int color){
+		binding.title.setTextColor(color);
+		binding.icon.setColorFilter(color);
+		binding.desc.setTextColor(color);
+		binding.run.setTextColor(color);
+		binding.run.setStrokeColor(ColorStateList.valueOf(color));
+	}
+
 	private void loadInvalidAttributes() {
+		setTextColor(getResources().getColor(R.color.color_black));
 		binding.title.setText(R.string.OONIRun_InvalidParameter);
 		binding.desc.setText(R.string.OONIRun_InvalidParameter_Msg);
 		binding.run.setText(R.string.OONIRun_Close);

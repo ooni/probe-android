@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	tools:context=".activity.OoniRunActivity"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 
 	<com.google.android.material.appbar.AppBarLayout
+		android:id="@+id/appbar_layout"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content">
 
@@ -22,27 +25,48 @@
 				android:orientation="vertical"
 				app:layout_collapseMode="parallax">
 
-				<ImageView
-					android:id="@+id/icon"
-					android:layout_width="48dp"
-					android:layout_height="48dp"
-					android:layout_gravity="center_horizontal"
-					app:tint="@color/color_gray9" />
-
 				<TextView
 					android:id="@+id/title"
-					style="@style/TextAppearance.MaterialComponents.Headline6"
+					style="@style/TextAppearance.MaterialComponents.Headline5"
+					android:textColor="@color/color_white"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:gravity="center_horizontal"
-					android:text="@string/OONIRun_InvalidParameter" />
+					android:text="@string/OONIRun_InvalidParameter"
+					tools:text="@string/OONIRun_TestName" />
+
+				<ImageView
+					android:id="@+id/icon"
+					android:layout_width="80dp"
+					android:layout_height="80dp"
+					android:layout_gravity="center_horizontal"
+					android:layout_marginTop="8dp"
+					app:tint="@color/color_white"
+					tools:src="@drawable/test_websites"/>
 
 				<TextView
 					android:id="@+id/desc"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:gravity="center_horizontal"
-					android:text="@string/OONIRun_YouAreAboutToRun" />
+					android:layout_marginTop="8dp"
+					android:text="@string/OONIRun_YouAreAboutToRun"
+					android:textColor="@color/color_white"/>
+
+				<com.google.android.material.button.MaterialButton
+					android:id="@+id/run"
+					style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal"
+					android:layout_marginTop="8dp"
+					android:layout_marginBottom="16dp"
+					android:text="@string/OONIRun_Run"
+					android:textAllCaps="false"
+					android:textColor="@android:color/white"
+					app:cornerRadius="24dp"
+					app:rippleColor="@color/ripple_material_dark"
+					app:strokeColor="@android:color/white" />
 			</LinearLayout>
 
 			<androidx.appcompat.widget.Toolbar
@@ -67,18 +91,9 @@
 		android:id="@+id/recycler"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		android:paddingTop="32dp"
 		android:paddingBottom="64dp"
 		android:clipToPadding="false"
 		app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-	<Button
-		android:id="@+id/run"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center_horizontal|bottom"
-		android:layout_margin="16dp"
-		android:text="@string/OONIRun_Run"
-		android:textAllCaps="false"
-		android:backgroundTint="@color/color_base"
-		app:cornerRadius="24dp" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout><!-- app:layout_scrollFlags="scroll|exitUntilCollapsed|snap" -->
