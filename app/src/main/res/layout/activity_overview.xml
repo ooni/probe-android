@@ -76,19 +76,6 @@
 		</LinearLayout>
 
 		<Button
-			android:id="@+id/run"
-			style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/Dashboard_Card_Run"
-			android:textAllCaps="false"
-			android:textColor="?attr/colorPrimary"
-			android:transitionName="@string/transitionNameRun"
-			app:backgroundTint="@android:color/white"
-			app:cornerRadius="24dp"
-			app:rippleColor="@color/ripple_material_light" />
-
-		<Button
 			android:id="@+id/customUrl"
 			style="@style/Widget.MaterialComponents.Button.OutlinedButton"
 			android:layout_width="wrap_content"

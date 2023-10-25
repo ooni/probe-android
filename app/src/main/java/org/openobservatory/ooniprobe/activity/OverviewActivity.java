@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.common.ReadMorePlugin;
 import org.openobservatory.ooniprobe.databinding.ActivityOverviewBinding;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
@@ -50,11 +51,9 @@ public class OverviewActivity extends AbstractActivity {
 		setTitle(testSuite.getTitle());
 		binding.icon.setImageResource(testSuite.getIcon());
 		binding.customUrl.setVisibility(testSuite.getName().equals(WebsitesSuite.NAME) ? View.VISIBLE : View.GONE);
-		if(testSuite.isTestEmpty(preferenceManager)){
-			binding.run.setAlpha(0.5F);
-			binding.run.setEnabled(false);
-		}
-		Markwon markwon = Markwon.builder(this).build();
+		Markwon markwon = Markwon.builder(this)
+				.usePlugin(new ReadMorePlugin())
+				.build();
 		if (testSuite.getName().equals(ExperimentalSuite.NAME)) {
 			String experimentalLinks =
 					"\n\n* [STUN Reachability](https://github.com/ooni/spec/blob/master/nettests/ts-025-stun-reachability.md)" +
@@ -78,7 +77,6 @@ public class OverviewActivity extends AbstractActivity {
 	}
 
 	private void setUpOnCLickListeners() {
-		binding.run.setOnClickListener(view -> onRunClick());
 		binding.customUrl.setOnClickListener(view -> customUrlClick());
 	}
 
@@ -93,12 +91,6 @@ public class OverviewActivity extends AbstractActivity {
 	public boolean onSupportNavigateUp() {
 		onBackPressed();
 		return true;
-	}
-
-	void onRunClick() {
-		if(!testSuite.isTestEmpty(preferenceManager)){
-			RunningActivity.runAsForegroundService(this, testSuite.asArray(), this::bindTestService, preferenceManager);
-		}
 	}
 
 	void customUrlClick() {
