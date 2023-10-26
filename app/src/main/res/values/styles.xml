@@ -23,6 +23,7 @@
 		<item name="colorPrimaryDark">@color/color_blue6</item>
 		<item name="colorAccent">@color/color_blue4</item>
 		<item name="fontFamily">@font/firasans</item>
+		<item name="android:colorBackground">@color/color_white</item>
 	</style>
 
 	<style name="Theme.MaterialComponents.NoActionBar.App">
