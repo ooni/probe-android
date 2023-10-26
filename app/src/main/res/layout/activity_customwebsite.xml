@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:orientation="vertical">
+	android:orientation="vertical"
+	tools:context=".activity.CustomWebsiteActivity">
+	<com.google.android.material.appbar.AppBarLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:elevation="0dp">
+
+		<androidx.appcompat.widget.Toolbar
+			android:id="@+id/toolbar"
+			android:layout_width="match_parent"
+			android:layout_height="?attr/actionBarSize"
+			android:background="@color/color_gray0" />
+	</com.google.android.material.appbar.AppBarLayout>
 
 	<ScrollView
 		android:id="@+id/urlsList"
@@ -17,12 +30,11 @@
 			android:orientation="vertical"
 			android:padding="8dp">
 
-			<LinearLayout
+			<androidx.recyclerview.widget.RecyclerView
 				android:id="@+id/urlContainer"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:animateLayoutChanges="true"
-				android:orientation="vertical" />
+				tools:listitem="@layout/edittext_url"/>
 
 			<Button
 				android:id="@+id/add"
@@ -40,13 +52,15 @@
 	<com.google.android.material.appbar.AppBarLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:theme="@style/Theme.MaterialComponents.NoActionBar.App">
+		android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.CustomWebsite">
 
 		<androidx.appcompat.widget.Toolbar
 			android:id="@+id/bottomBar"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:background="@color/color_base"
+			android:background="@color/color_gray0"
+			app:titleTextColor="@color/color_black"
+			app:menu="@menu/run"
 			app:title="@string/OONIRun_URLs"
 			app:titleTextAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title.App" />
 	</com.google.android.material.appbar.AppBarLayout>

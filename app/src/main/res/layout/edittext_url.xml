@@ -3,11 +3,11 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:layout_margin="8dp"
+	android:layout_marginHorizontal="8dp"
 	android:orientation="horizontal">
 
 	<com.google.android.material.textfield.TextInputLayout
-		style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+		style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		app:errorEnabled="true">
@@ -28,9 +28,12 @@
 		style="@style/Widget.MaterialComponents.Button.TextButton"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_gravity="end|bottom"
-		android:layout_marginVertical="8dp"
+		android:layout_gravity="center_vertical|end"
+		android:layout_marginEnd="6dp"
+		android:layout_marginBottom="6dp"
 		android:minWidth="0dp"
-		android:src="@drawable/ic_baseline_remove_circle_24"
-		android:tint="@color/color_red8" />
+		android:contentDescription="@string/Modal_Delete"
+		android:rotation="45"
+		android:src="@drawable/add_circle_outline"
+		app:tint="@color/color_red8" />
 </FrameLayout>

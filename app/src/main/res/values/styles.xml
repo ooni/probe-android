@@ -18,6 +18,13 @@
 		<item name="snackbarStyle">@style/SnackBarStyle</item>
 	</style>
 
+	<style name="Theme.MaterialComponents.Light.NoActionBar.CustomWebsite">
+		<item name="colorPrimary">@color/color_base</item>
+		<item name="colorPrimaryDark">@color/color_blue6</item>
+		<item name="colorAccent">@color/color_blue4</item>
+		<item name="fontFamily">@font/firasans</item>
+	</style>
+
 	<style name="Theme.MaterialComponents.NoActionBar.App">
 		<item name="colorPrimary">@color/color_base</item>
 		<item name="colorPrimaryDark">@color/color_blue6</item>
