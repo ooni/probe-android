@@ -62,11 +62,13 @@ public class OverviewActivity extends AbstractActivity {
 					"\n\n* [Tor Snowflake](https://ooni.org/nettest/tor-snowflake/) "+ String.format(" ( %s )",getString(R.string.Settings_TestOptions_LongRunningTest))+
 					"\n\n* [Vanilla Tor](https://github.com/ooni/spec/blob/master/nettests/ts-016-vanilla-tor.md) " + String.format(" ( %s )",getString(R.string.Settings_TestOptions_LongRunningTest));
 			markwon.setMarkdown(binding.desc, getString(testSuite.getDesc1(), experimentalLinks));
-			if (TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL)
-				binding.desc.setTextDirection(View.TEXT_DIRECTION_RTL);
+			if (TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL) {
+                binding.desc.setTextDirection(View.TEXT_DIRECTION_RTL);
+            }
 		}
-		else
-			markwon.setMarkdown(binding.desc, getString(testSuite.getDesc1()));
+		else {
+            markwon.setMarkdown(binding.desc, getString(testSuite.getDesc1()));
+        }
 		Result lastResult = Result.getLastResult(testSuite.getName());
 		if (lastResult == null)
 			binding.lastTime.setText(R.string.Dashboard_Overview_LastRun_Never);
