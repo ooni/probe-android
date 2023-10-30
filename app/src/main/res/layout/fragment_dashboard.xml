@@ -2,16 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:orientation="vertical">
+	android:orientation="vertical"
+	tools:context=".fragment.DashboardFragment">
 
 		<androidx.appcompat.widget.Toolbar
 			android:id="@+id/toolbar"
 			android:layout_width="match_parent"
-			android:layout_height="?attr/actionBarSize"
-			android:background="@color/color_base"
+			android:layout_height="wrap_content"
+			android:paddingTop="16dp"
+			android:background="@color/color_white"
+			app:layout_constraintTop_toTopOf="parent"
 			app:contentInsetEnd="0dp"
 			app:contentInsetStart="0dp">
 
@@ -21,6 +24,8 @@
 				android:scaleType="centerInside"
 				android:layout_marginLeft="15dp"
 				android:layout_marginStart="15dp"
+				android:layout_gravity="center_horizontal"
+				app:tint="@color/color_gray6"
 				android:src="@drawable/ooniprobe_logo" />
 
 		</androidx.appcompat.widget.Toolbar>
@@ -37,29 +42,29 @@
 		<View
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:background="@color/color_base"/>
+			android:background="@color/color_white"/>
 
 	</com.github.florent37.shapeofview.shapes.ArcView>
 
 	<Button
 		android:id="@+id/run_all"
-		android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+		android:textAppearance="?attr/textAppearanceHeadline6"
 		android:layout_width="wrap_content"
 		android:layout_height="56dp"
 		android:layout_marginTop="24dp"
-		android:backgroundTint="@android:color/white"
 		android:stateListAnimator="@null"
 		android:elevation="5dp"
 		android:translationZ="5dp"
+		android:text="@string/Dashboard_Card_Run"
+		android:textAllCaps="false"
+		android:transitionName="@string/transitionNameRun"
+		android:drawableEnd="@drawable/outline_timer"
+		android:drawableTint="@android:color/white"
 		app:layout_constraintTop_toTopOf="@id/arc_view"
 		app:layout_constraintEnd_toEndOf="@id/arc_view"
 		app:layout_constraintStart_toStartOf="@id/arc_view"
 		app:layout_constraintBottom_toBottomOf="@id/arc_view"
-		android:text="@string/Dashboard_Card_Run"
-		android:textAllCaps="false"
-		android:textColor="?attr/colorPrimary"
-		android:transitionName="@string/transitionNameRun"
-		app:cornerRadius="18dp"
+		app:cornerRadius="24dp"
 		app:rippleColor="@color/ripple_material_light" />
 
 	<TextView
@@ -70,7 +75,7 @@
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintTop_toBottomOf="@id/run_all"
-		android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+		android:textAppearance="?attr/textAppearanceCaption"
 		android:textColor="@color/color_black"/>
 
 	<RelativeLayout
@@ -101,8 +106,8 @@
 		android:id="@+id/recycler"
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
-		android:paddingStart="8dp"
-		android:paddingEnd="8dp"
+		android:paddingStart="14dp"
+		android:paddingEnd="14dp"
 		android:paddingTop="5dp"
 		android:paddingBottom="16dp"
 		app:layout_constraintBottom_toBottomOf="parent"

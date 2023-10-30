@@ -9,9 +9,10 @@ import org.openobservatory.ooniprobe.test.suite.AbstractSuite
 import javax.inject.Inject
 
 class DashboardViewModel @Inject constructor(private val preferenceManager: PreferenceManager) : ViewModel() {
-    private val enabledTitle: String =  "Enabled"
+    private val oonTestsTitle: String =  "OONI Tests"
+    private val oonTests = TestAsyncTask.getSuites()
     private val groupedItemList = MutableLiveData<List<Any>>()
-    val items = MutableLiveData<List<AbstractSuite>>(TestAsyncTask.getSuites())
+    val items = MutableLiveData<List<AbstractSuite>>(oonTests)
 
     fun getGroupedItemList(): LiveData<List<Any>> {
         if (groupedItemList.value == null) {
@@ -24,8 +25,8 @@ class DashboardViewModel @Inject constructor(private val preferenceManager: Pref
 
         val groupedItems = items.value!!.sortedBy { it.getTestList(preferenceManager).isEmpty() }
             .groupBy {
-                return@groupBy if ((it.getTestList(preferenceManager).isNotEmpty())) {
-                   enabledTitle
+                return@groupBy if (oonTests.contains(it)) {
+					oonTestsTitle
                 } else {
                     ""
                 }
@@ -33,9 +34,7 @@ class DashboardViewModel @Inject constructor(private val preferenceManager: Pref
 
         val groupedItemList = mutableListOf<Any>()
         groupedItems.forEach { (status, itemList) ->
-            if (status != enabledTitle){
-                groupedItemList.add(status)
-            }
+			groupedItemList.add(status)
             groupedItemList.addAll(itemList)
         }
 

@@ -48,7 +48,9 @@ class DashboardAdapter(
         val item = items[position]
         when (holder.itemViewType) {
             VIEW_TYPE_TITLE -> {
-            }
+				val separator = holder as CardGroupTitleViewHolder
+				separator.binding.root.text = item as String
+			}
 
             VIEW_TYPE_CARD -> {
                 val cardHolder = holder as CardViewHolder
@@ -56,7 +58,7 @@ class DashboardAdapter(
                     cardHolder.binding.apply {
                         title.setText(item.title)
                         desc.setText(item.cardDesc)
-                        icon.setImageResource(item.iconGradient)
+                        icon.setImageResource(item.icon)
                     }
                     holder.itemView.tag = item
                     if (item.isTestEmpty(preferenceManager)) {
