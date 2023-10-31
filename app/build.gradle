@@ -1,21 +1,23 @@
-apply plugin: 'com.android.application'
-apply plugin:  'kotlin-android'
-apply plugin:  'kotlin-kapt'
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
 apply from: 'jacoco.gradle'
 
 android {
-    compileSdk 34
+    compileSdk libs.versions.compileSdk.get().toInteger()
     ndkVersion '22.0.7026061'
 
-	defaultConfig {
-		applicationId 'org.openobservatory.ooniprobe'
-        minSdk 21
-        targetSdk 34
-        versionName '3.8.3'
-        versionCode 102
+    defaultConfig {
+        applicationId 'org.openobservatory.ooniprobe'
+        minSdk libs.versions.minSdk.get().toInteger()
+        targetSdk libs.versions.targetSdk.get().toInteger()
+        versionName '3.8.4'
+        versionCode 106
 		testInstrumentationRunner "org.openobservatory.ooniprobe.TestAndroidJUnitRunner"
 		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://countly.ooni.io"'
+        resValue "string", "APP_ID", 'org.openobservatory.ooniprobe'
 		resValue "string", "APP_NAME", "OONI Probe"
 		buildConfigField 'String', 'SOFTWARE_NAME', 'BASE_SOFTWARE_NAME+IS_DEBUG'
 		buildConfigField 'String', 'COUNTLY_KEY', '"146836f41172f9e3287cab6f2cc347de3f5ddf3b"'
@@ -43,18 +45,6 @@ android {
         }
     }
 
-    // Shared test code between Unit and Instrumented tests
-    sourceSets {
-        androidTest {
-            java.srcDirs += "src/sharedTest/java"
-            resources.srcDirs += "src/sharedTest/resources"
-        }
-        test {
-            java.srcDirs += "src/sharedTest/java"
-            resources.srcDirs += "src/sharedTest/resources"
-        }
-    }
-
     flavorDimensions 'testing', 'license'
     productFlavors {
         stable {
@@ -67,6 +57,7 @@ android {
             versionNameSuffix "-beta.1"
             versionCode versionCodeDate()
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-dev"'
+            resValue "string", "APP_ID", 'org.openobservatory.ooniprobe.dev'
             resValue "string", "APP_NAME", "OONI Dev"
             buildConfigField 'String', 'COUNTLY_KEY', '"e6c2cfe53e85951d50567467cef3f9fa2eab32c3"'
         }
@@ -76,6 +67,7 @@ android {
             versionNameSuffix "-experimental.1"
             versionCode versionCodeDate()
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-experimental"'
+            resValue "string", "APP_ID", 'org.openobservatory.ooniprobe.experimental'
             resValue "string", "APP_NAME", "OONI Exp"
             buildConfigField 'String', 'COUNTLY_KEY', '"e6c2cfe53e85951d50567467cef3f9fa2eab32c3"'
         }
@@ -96,9 +88,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
-    }
     buildFeatures {
         viewBinding = true
     }
@@ -109,82 +98,75 @@ dependencies {
     implementation project(path: ':engine')
 
 // AndroidX
-	implementation 'androidx.appcompat:appcompat:1.6.1'
-	implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-	implementation 'androidx.lifecycle:lifecycle-process:2.5.1'
-	implementation 'androidx.preference:preference:1.2.0'
-	implementation 'com.google.android.material:material:1.6.1'
-	implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
-	implementation 'com.google.guava:guava:30.1.1-android'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.constraintlayout
+    implementation libs.androidx.lifecycle.process
+    implementation libs.androidx.preference
+    implementation libs.androidx.localbroadcastmanager
+    implementation libs.androidx.legacy.support.v4
+
+// Google
+    implementation libs.google.material
+    implementation libs.google.guava
+    implementation libs.google.gson
 
 // Third-party
-    kapt 'com.github.Raizlabs.DBFlow:dbflow-processor:4.2.4'
-	implementation 'com.github.Raizlabs.DBFlow:dbflow-core:4.2.4'
-	implementation 'com.github.Raizlabs.DBFlow:dbflow:4.2.4'
+    annotationProcessor libs.dbflow.processor
+    implementation libs.dbflow.core
+    implementation libs.dbflow.lib
 
-	implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-	implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-	implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
+    implementation libs.retrofit.lib
+    implementation libs.retrofit.converter.gson
+    implementation libs.retrofit.logging.interceptor
 
 
-	implementation 'com.jakewharton:butterknife:10.2.3'
-    kapt 'com.jakewharton:butterknife-compiler:10.2.3'
-
-	implementation 'com.github.xanscale.LocalhostToolkit:app:19.05.01'
-	implementation 'com.airbnb.android:lottie:3.0.7'
-	implementation 'com.google.code.gson:gson:2.8.9'
-	implementation 'ru.noties:markwon:2.0.1'
-	implementation 'commons-io:commons-io:2.6'
-	//arcview to fragment_dashboard
-	implementation 'com.github.florent37:shapeofview:1.3.2'
+    implementation libs.xanscale.localhost.toolkit
+    implementation libs.lottie
+    implementation libs.markwon
+    implementation libs.commons.io
+    //arcview to fragment_dashboard
+    implementation libs.shapeofview
 
 // Flavor
-	fullImplementation platform('com.google.firebase:firebase-bom:26.3.0')
-	fullImplementation 'com.google.firebase:firebase-messaging'
-	fullImplementation 'ly.count.android:sdk:21.11.0'
-	fullImplementation 'io.sentry:sentry-android:6.3.0'
-	fullImplementation 'com.google.android.play:core:1.10.3'
+    fullImplementation platform(libs.google.firebase.bom)
+    fullImplementation libs.google.firebase.messaging
+    fullImplementation libs.countly.sdk
+    fullImplementation libs.sentry.android
+    fullImplementation libs.google.play.core
 
 // Dependency Injection
-    implementation 'com.google.dagger:dagger:2.45'
-    kapt 'com.google.dagger:dagger-compiler:2.45'
+    implementation libs.google.dagger
+    annotationProcessor libs.google.dagger.compiler
 
 // Logger
     implementation project(':applogger')
 
 // Testing
-	// Unit Testing
-	testImplementation 'junit:junit:4.13.2'
-	testImplementation 'androidx.test:core:1.4.0'
-	testImplementation 'androidx.test:runner:1.4.0'
-	testImplementation 'androidx.test:rules:1.4.0'
-	testImplementation 'org.mockito:mockito-core:4.6.1'
-	testImplementation 'org.mockito:mockito-inline:4.6.1'
-	testImplementation 'org.robolectric:robolectric:4.5.1'
-	testImplementation 'com.github.blocoio:faker:1.2.8'
-	testImplementation 'org.ooni:oonimkall:2023.07.18-162729'
-    kaptTest 'com.google.dagger:dagger-compiler:2.45'
+    // Unit Testing
+	testImplementation project(':shared-test')
+	testImplementation libs.junit4
+    testImplementation libs.androidx.core
+    testImplementation libs.androidx.runner
+    testImplementation libs.androidx.rules
+    testImplementation libs.mockito.core
+    testImplementation libs.mockito.inline
+    testImplementation libs.robolectric
+    testImplementation libs.faker
+    testImplementation libs.ooni.oonimkall
+    testAnnotationProcessor libs.google.dagger.compiler
 
-	// Instrumentation Testing
-	androidTestImplementation 'tools.fastlane:screengrab:2.0.0'
-	androidTestImplementation 'com.github.blocoio:faker:1.2.8'
-	androidTestImplementation 'androidx.test:runner:1.4.0'
-	androidTestImplementation 'androidx.test:rules:1.4.0'
-	androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-	androidTestImplementation 'androidx.test.espresso:espresso-intents:3.4.0'
-	androidTestImplementation('androidx.test.espresso:espresso-contrib:3.4.0') {
-		exclude group: 'com.android.support', module: 'appcompat'
-		exclude group: 'com.android.support', module: 'support-v4'
-		exclude module: 'recyclerview-v7'
-	}
-	androidTestImplementation('androidx.test.espresso:espresso-core:3.4.0') {
-		exclude group: 'com.android.support', module: 'appcompat'
-		exclude group: 'com.android.support', module: 'support-v4'
-		exclude module: 'recyclerview-v7'
-	}
-	androidTestImplementation('com.schibsted.spain:barista:3.9.0')
-    kaptAndroidTest "com.google.dagger:dagger-compiler:2.45"
+    // Instrumentation Testing
+	androidTestImplementation project(':shared-test')
+	androidTestImplementation libs.fastlane.screengrab
+    androidTestImplementation libs.faker
+    androidTestImplementation libs.androidx.runner
+    androidTestImplementation libs.androidx.rules
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.intents
+    androidTestImplementation libs.androidx.espresso.contrib
+    androidTestImplementation libs.androidx.espresso.core
+    androidTestImplementation libs.barista
+    androidTestAnnotationProcessor libs.google.dagger.compiler
 }
 
 static def versionCodeDate() {

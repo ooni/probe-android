@@ -5,31 +5,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.TestProgressRepository;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
+import org.openobservatory.ooniprobe.databinding.FragmentProgressBinding;
 import org.openobservatory.ooniprobe.receiver.TestRunBroadRequestReceiver;
 
 import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Monitors and displays progress of {@link RunTestService}.
@@ -37,18 +28,12 @@ import butterknife.ButterKnife;
 public class ProgressFragment extends Fragment {
     private TestRunBroadRequestReceiver receiver;
 
+    private FragmentProgressBinding biding;
+
     @Inject
     PreferenceManager preferenceManager;
     @Inject
     TestProgressRepository testProgressRepository;
-    @BindView(R.id.progress_layout)
-    FrameLayout progress_layout;
-    @BindView(R.id.progress)
-    ProgressBar progress;
-    @BindView(R.id.running)
-    TextView running;
-    @BindView(R.id.name)
-    TextView name;
 
     public ProgressFragment() {
         // Required empty public constructor
@@ -62,24 +47,18 @@ public class ProgressFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_progress, container, false);
-        ButterKnife.bind(this, v);
+        biding = FragmentProgressBinding.inflate(inflater, container, false);
         ((Application) getActivity().getApplication()).getFragmentComponent().inject(this);
-        v.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_DOWN){
-                    Intent intent = new Intent(getContext(), RunningActivity.class);
-                    ActivityCompat.startActivity(getActivity(), intent, null);
-                }
-                return true;
-            }
+        biding.getRoot().setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), RunningActivity.class);
+            ActivityCompat.startActivity(getActivity(), intent, null);
         });
         testProgressRepository.getProgress().observe(getViewLifecycleOwner(),progressValue -> {
             if (progressValue!=null) {
-                progress.setProgress(progressValue);
+                biding.progress.setProgress(progressValue);
             }
         });
-        return v;
+        return biding.getRoot();
     }
 
     @Override
@@ -97,10 +76,10 @@ public class ProgressFragment extends Fragment {
         if (activity!=null && ((Application)activity.getApplication()).isTestRunning()) {
             Intent intent = new Intent(getActivity(), RunTestService.class);
             getActivity().bindService(intent, receiver, Context.BIND_AUTO_CREATE);
-            progress_layout.setVisibility(View.VISIBLE);
+            biding.progressLayout.setVisibility(View.VISIBLE);
         }
         else
-            progress_layout.setVisibility(View.GONE);
+            biding.progressLayout.setVisibility(View.GONE);
     }
 
     private void updateUI(RunTestService service){
@@ -109,15 +88,15 @@ public class ProgressFragment extends Fragment {
 
             Integer progressLevel = testProgressRepository.getProgress().getValue();
             if (progressLevel != null) {
-                progress.setProgress(progressLevel);
+                biding.progress.setProgress(progressLevel);
             } else {
-                progress.setIndeterminate(true);
+                biding.progress.setIndeterminate(true);
             }
             if (service != null && service.task != null){
                 if (service.task.currentSuite != null)
-                progress.setMax(service.task.getMax(preferenceManager));
+                    biding.progress.setMax(service.task.getMax(preferenceManager));
                 if (service.task.currentTest != null)
-                    name.setText(getString(service.task.currentTest.getLabelResId()));
+                    biding.name.setText(getString(service.task.currentTest.getLabelResId()));
             }
         }
     }
@@ -146,15 +125,15 @@ public class ProgressFragment extends Fragment {
 
         @Override
         public void onRun(String value) {
-            name.setText(value);
+            biding.name.setText(value);
         }
 
         @Override
         public void onProgress(int state, double eta) {
-            if (progress.isIndeterminate())
+            if (biding.progress.isIndeterminate())
                 updateUI(receiver.service);
-            progress.setIndeterminate(false);
-            progress.setProgress(state);
+            biding.progress.setIndeterminate(false);
+            biding.progress.setProgress(state);
         }
 
         @Override
@@ -169,17 +148,17 @@ public class ProgressFragment extends Fragment {
 
         @Override
         public void onUrl() {
-            progress.setIndeterminate(false);
+            biding.progress.setIndeterminate(false);
         }
 
         @Override
         public void onInterrupt() {
-            running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
+            biding.running.setText(getString(R.string.Dashboard_Running_Stopping_Title));
         }
 
         @Override
         public void onEnd(Context context) {
-            progress_layout.setVisibility(View.GONE);
+            biding.progressLayout.setVisibility(View.GONE);
         }
     }
 }
