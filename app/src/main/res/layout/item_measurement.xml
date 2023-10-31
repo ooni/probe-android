@@ -37,5 +37,13 @@
                 android:textColor="@color/color_gray9"
                 android:drawablePadding="4dp"/>
     </LinearLayout>
+	<TextView
+		android:id="@+id/indicator"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textColor="@color/color_gray9"
+		android:visibility="gone"
+		android:drawablePadding="16dp"
+		android:paddingHorizontal="16dp"/>
 </LinearLayout>
 

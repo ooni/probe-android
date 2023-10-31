@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.model.database.Measurement
 import org.openobservatory.ooniprobe.test.test.*
@@ -63,10 +64,10 @@ class ResultDetailExpandableListAdapter(
         measurement?.let {
             bindMeasurement(it, root)
             root.apply {
-                setPaddingRelative(96,0,0,0)
+                setPaddingRelative(96, 0, 0, 0)
                 setBackgroundColor(parent.context.resources.getColor(R.color.color_gray0))
             }
-        }?: run {
+        } ?: run {
             root.visibility = View.GONE
         }
 
@@ -88,14 +89,21 @@ class ResultDetailExpandableListAdapter(
         when (groupItem) {
             is Measurement -> bindMeasurement(groupItem, root)
 
-            else -> root.findViewById<TextView>(R.id.text).apply {
-                text = groupItem.toString()
-                setCompoundDrawablesRelativeWithIntrinsicBounds(
-                    0,
-                    0,
-                    if (isExpanded) R.drawable.keyboard_arrow_up else R.drawable.keyboard_arrow_down,
-                    0
-                )
+            else -> {
+                root.findViewById<TextView>(R.id.text).text = groupItem.toString()
+                root.findViewById<TextView>(R.id.indicator).apply {
+                    visibility = View.VISIBLE
+                    text = "${(items[groupPosition] as MeasurementGroup).measurements.size} Inputs"
+                    setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        null,
+                        null,
+						ContextCompat.getDrawable(root.context,if (isExpanded) R.drawable.keyboard_arrow_up else R.drawable.keyboard_arrow_down)?.apply {
+							setTint(ContextCompat.getColor(root.context, R.color.color_black))
+						},
+                        null
+                    )
+                }
+
             }
         }
         return root
