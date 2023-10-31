@@ -103,6 +103,7 @@ dependencies {
 
 // AndroidX
     implementation libs.androidx.appcompat
+    //implementation libs.androidx.core
     implementation libs.androidx.constraintlayout
     implementation libs.androidx.lifecycle.process
     implementation libs.androidx.preference
@@ -149,7 +150,7 @@ dependencies {
     // Unit Testing
 	testImplementation project(':shared-test')
 	testImplementation libs.junit4
-    testImplementation libs.androidx.core
+    testImplementation libs.androidx.test.core
     testImplementation libs.androidx.runner
     testImplementation libs.androidx.rules
     testImplementation libs.mockito.core

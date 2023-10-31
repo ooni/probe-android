@@ -5,6 +5,7 @@
 	<color name="card_boarder">#868e96</color>
 	<color name="bottom_navigation_state_checked">@color/color_black</color>
 	<color name="bottom_navigation_state_unchecked">#DEE2E6</color>
+	<color name="progress_background">#E9ECEF</color>
 
 	<color name="color_black">#fff</color>
 	<color name="color_white">#1b1b1b</color>
