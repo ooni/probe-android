@@ -93,8 +93,13 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                         return false;
                 }
             });
+			// TODO(aanorbel): Fix change in state(theme change from notification) changing the selected item.
             binding.bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
-			if (getIntent().hasExtra(RES_SNACKBAR_MESSAGE)) {
+			/* Check if we are restoring the activity from a saved state first.
+			 * If we have a message to show, show it as a snackbar.
+			 * This is used to show the message from test completion.
+			 */
+			if (savedInstanceState == null && getIntent().hasExtra(RES_SNACKBAR_MESSAGE)) {
 				Snackbar.make(binding.getRoot(), getIntent().getStringExtra(RES_SNACKBAR_MESSAGE), Snackbar.LENGTH_SHORT)
 					.setAnchorView(binding.bottomNavigation)
 					.show();
