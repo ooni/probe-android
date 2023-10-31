@@ -4,10 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
+import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.text.bold
 import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import org.openobservatory.ooniprobe.R
@@ -18,6 +21,7 @@ import org.openobservatory.ooniprobe.common.TestProgressRepository
 import org.openobservatory.ooniprobe.common.service.RunTestService
 import org.openobservatory.ooniprobe.databinding.FragmentProgressBinding
 import org.openobservatory.ooniprobe.receiver.TestRunBroadRequestReceiver
+import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite
 import javax.inject.Inject
 
 /**
@@ -85,12 +89,58 @@ class ProgressFragment : Fragment() {
 					biding.progress.isIndeterminate = true
 				}
 			}
+			biding.testImage.setImageDrawable(null)
+			biding.testImage.visibility = View.GONE
+
 			service?.task?.let { task ->
 				task.currentSuite?.let {
 					biding.progress.max = service.task.getMax(preferenceManager)
 				}
-				task.currentTest?.let {
-					biding.name.text = getString(it.labelResId)
+				task.currentTest?.let { currentTest ->
+					when {
+						/**
+						 * If the test has no icon, use the suite icon.
+						 * Currently not used since the most suites have a larger than desired icon.
+						 */
+						/*currentTest.iconResId == 0 -> {
+							biding.testImage.apply {
+								visibility = View.VISIBLE
+								setImageDrawable(
+									ContextCompat.getDrawable(
+										requireContext(),
+										task.currentSuite.icon
+									)
+								)
+							}
+						}*/
+						/**
+						 * If the test has an icon, use it.
+						 */
+						currentTest.iconResId != 0 -> {
+							biding.testImage.apply {
+								visibility = View.VISIBLE
+								setImageDrawable(
+									ContextCompat.getDrawable(
+										requireContext(),
+										task.currentTest.iconResId
+									)
+								)
+							}
+						}
+
+						else -> {
+							biding.testImage.visibility = View.GONE
+						}
+					}
+					biding.name.text = when (task.currentSuite is ExperimentalSuite) {
+						true -> SpannableStringBuilder().bold { append(currentTest.name) }
+						false -> SpannableStringBuilder().bold { append(getString(currentTest.labelResId)) }
+					}.append(" ")
+						.append(
+							getString(R.string.Dashboard_Running_Running)
+								.replace(":", "").toLowerCase()
+						)
+
 				}
 			}
 		}
@@ -118,9 +168,8 @@ class ProgressFragment : Fragment() {
 		}
 
 		override fun onProgress(state: Int, eta: Double) {
-			if (biding.progress.isIndeterminate) {
-				updateUI(receiver.service)
-			}
+			updateUI(receiver.service)
+
 			biding.progress.apply {
 				isIndeterminate = false
 				progress = state
@@ -138,7 +187,9 @@ class ProgressFragment : Fragment() {
 		}
 
 		override fun onInterrupt() {
-			biding.running.text = getString(R.string.Dashboard_Running_Stopping_Title)
+			biding.testImage.setImageDrawable(null)
+			biding.testImage.visibility = View.GONE
+			biding.name.text = getString(R.string.Dashboard_Running_Stopping_Title)
 		}
 
 		override fun onEnd(context: Context) {
