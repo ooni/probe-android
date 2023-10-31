@@ -52,8 +52,10 @@ public class OverviewActivity extends AbstractActivity {
 		binding.icon.setImageResource(testSuite.getIcon());
 		binding.customUrl.setVisibility(testSuite.getName().equals(WebsitesSuite.NAME) ? View.VISIBLE : View.GONE);
 		Markwon markwon = Markwon.builder(this)
-				.usePlugin(new ReadMorePlugin())
-				.build();
+				.usePlugin(new ReadMorePlugin(
+					getString(R.string.OONIRun_ReadMore),
+					getString(R.string.OONIRun_ReadLess))
+				).build();
 		if (testSuite.getName().equals(ExperimentalSuite.NAME)) {
 			String experimentalLinks =
 					"\n\n* [STUN Reachability](https://github.com/ooni/spec/blob/master/nettests/ts-025-stun-reachability.md)" +

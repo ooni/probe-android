@@ -468,6 +468,8 @@
   <string name="OONIRun_InvalidParameter_Msg">The OONI Run link is either malformed or your app is out of date.</string>
   <string name="OONIRun_RandomSamplingOfURLs">You will test a random sample of websites.</string>
   <string name="OONIRun_TestRunningError">Please wait for the test to finish running before tapping on an OONI Run link.</string>
+  <string name="OONIRun_ReadMore">Read more ></string>
+  <string name="OONIRun_ReadLess">Read less ></string>
   <string name="CategoryCode_ALDR_Name">Drugs &amp; Alcohol</string>
   <string name="CategoryCode_REL_Name">Religion</string>
   <string name="CategoryCode_PORN_Name">Pornography</string>

@@ -13,10 +13,8 @@ import io.noties.markwon.AbstractMarkwonPlugin
  * Read more plugin based on text length.
  * @see <a href="https://github.com/noties/Markwon/blob/v4.6.2/app-sample/src/main/java/io/noties/markwon/app/samples/ReadMorePluginSample.java#L208C2-L208C2">ReadMorePluginSample</a>
  */
-class ReadMorePlugin : AbstractMarkwonPlugin() {
+class ReadMorePlugin(private val labelMore:String, private val labelLess:String) : AbstractMarkwonPlugin() {
     private val maxLength = 150
-    private val labelMore = "\n\nRead more >"
-    private val labelLess = "\n\nRead less >"
 
     override fun afterSetText(textView: TextView) {
         val text = textView.text
@@ -57,7 +55,8 @@ class ReadMorePlugin : AbstractMarkwonPlugin() {
         val fullText = createFullText(text, builder)
         builder.append(" ...")
         val length = builder.length
-        builder.append(labelMore)
+		builder.append("\n\n")
+		builder.append(labelMore)
         builder.setSpan(object : ClickableSpan() {
             override fun onClick(widget: View) {
                 (widget as TextView).text = fullText
@@ -76,6 +75,7 @@ class ReadMorePlugin : AbstractMarkwonPlugin() {
             val builder = SpannableStringBuilder(text)
             builder.append(' ')
             val length = builder.length
+            builder.append("\n\n")
             builder.append(labelLess)
             builder.setSpan(object : ClickableSpan() {
                 override fun onClick(widget: View) {
