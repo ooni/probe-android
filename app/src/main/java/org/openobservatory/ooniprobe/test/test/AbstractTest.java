@@ -324,8 +324,14 @@ public abstract class AbstractTest implements Serializable {
     }
 
     private void setFailureMsg(EventResult.Value value, Result result) {
-        if (result == null) return;
-        result.failure_msg = value.failure;
+        if (result == null) {
+			return;
+		}
+		if (result.failure_msg == null) {
+			result.failure_msg = value.failure;
+		} else {
+			result.failure_msg = String.format("%s\n\n%s", result.failure_msg, value.failure);
+		}
         result.save();
     }
 

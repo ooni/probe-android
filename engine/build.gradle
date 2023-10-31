@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    compileSdk 34
+    compileSdk libs.versions.compileSdk.get().toInteger()
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 34
+        minSdk libs.versions.minSdk.get().toInteger()
+        targetSdk libs.versions.targetSdk.get().toInteger()
     }
 
 	compileOptions {
@@ -36,11 +36,11 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.code.gson:gson:2.8.9'
+    implementation libs.google.gson
     // For the stable and dev app flavours we're using the library
     // build published at Maven Central.
-    stableImplementation 'org.ooni:oonimkall:2023.07.18-162729'
-    devImplementation 'org.ooni:oonimkall:2023.07.18-162729'
+    stableImplementation libs.ooni.oonimkall
+    devImplementation libs.ooni.oonimkall
 
     // For the experimental flavour, you need to compile your own
     // oonimkall.aar and put it into the ../engine-experimental dir

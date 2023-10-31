@@ -20,7 +20,9 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayoutMediator;
-
+import localhost.toolkit.app.fragment.ConfirmDialogFragment;
+import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerAdapter;
+import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
@@ -36,14 +38,9 @@ import org.openobservatory.ooniprobe.item.MeasurementPerfItem;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
-import org.openobservatory.ooniprobe.test.suite.CircumventionSuite;
-import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
-import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
-import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
-import org.openobservatory.ooniprobe.test.suite.OONIRunSuite;
-import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
-import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
+import org.openobservatory.ooniprobe.test.suite.*;
 
+import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -101,18 +98,18 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
             bar.setDisplayHomeAsUpEnabled(true);
             bar.setTitle(result.getTestSuite().getTitle());
         }
-		binding.pager.setAdapter(new ResultHeaderAdapter(this));
+        binding.pager.setAdapter(new ResultHeaderAdapter(this));
         new TabLayoutMediator(binding.tabLayout, binding.pager, (tab, position) ->
                 tab.setText("●")
         ).attach();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-		binding.recyclerView.setLayoutManager(layoutManager);
-		binding.recyclerView.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
+        binding.recyclerView.setLayoutManager(layoutManager);
+        binding.recyclerView.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
         result.is_viewed = true;
         result.save();
         items = new ArrayList<>();
         adapter = new HeterogeneousRecyclerAdapter<>(this, items);
-		binding.recyclerView.setAdapter(adapter);
+        binding.recyclerView.setAdapter(adapter);
         snackbar = Snackbar.make(binding.coordinatorLayout, R.string.Snackbar_ResultsSomeNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll, v1 -> runAsyncTask());
     }

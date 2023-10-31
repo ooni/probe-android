@@ -104,7 +104,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     private static void startRunTestService(AbstractActivity context,
                                             ArrayList<AbstractSuite> testSuites,
                                             OnTestServiceStartedListener onTestServiceStartedListener) {
-        ServiceUtil.startRunTestService(context, testSuites, true);
+        ServiceUtil.startRunTestServiceManual(context, testSuites, true);
         onTestServiceStartedListener.onTestServiceStarted();
     }
 

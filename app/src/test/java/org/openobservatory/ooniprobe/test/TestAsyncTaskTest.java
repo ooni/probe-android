@@ -165,7 +165,7 @@ public class TestAsyncTaskTest extends RobolectricAbstractTest {
         AbstractTest test = mock(AbstractTest.class);
         when(mockedSuite.getTestList(any())).thenReturn(new AbstractTest[]{test});
 
-        TestAsyncTask task = new TestAsyncTask(a, suiteList, false);
+        TestAsyncTask task = new TestAsyncTask(a, suiteList, false,false);
 
         // Act
         task.execute();
@@ -193,14 +193,14 @@ public class TestAsyncTaskTest extends RobolectricAbstractTest {
         when(mockedSuite.getTestList(any())).thenReturn(new AbstractTest[]{test});
         doThrow(new RuntimeException("")).when(test).run(any(), any(), any(), any(), any(), anyInt(), any());
 
-        TestAsyncTask task = new TestAsyncTask(a, suiteList,false);
+        TestAsyncTask task = new TestAsyncTask(a, suiteList,false,false);
 
         // Act
         task.execute();
         idleTaskUntilFinished(task);
 
         // Assert
-         verify(runService).stopSelf();
+        verify(runService).stopSelf();
     }
 
     @Test
@@ -213,7 +213,7 @@ public class TestAsyncTaskTest extends RobolectricAbstractTest {
         when(mockedSuite.getTestList(any())).thenReturn(new AbstractTest[]{test});
         when(test.canInterrupt()).thenReturn(true);
 
-        TestAsyncTask task = new TestAsyncTask(a, suiteList, false);
+        TestAsyncTask task = new TestAsyncTask(a, suiteList, false,false);
 
         // Act
         task.execute();

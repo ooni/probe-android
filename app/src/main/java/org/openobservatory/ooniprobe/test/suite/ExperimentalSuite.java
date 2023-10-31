@@ -30,6 +30,7 @@ public class ExperimentalSuite extends AbstractSuite {
                 R.style.Theme_MaterialComponents_NoActionBar_App_Experimental,
                 resources.getString(R.string.Dashboard_Experimental_Overview_Paragraph,"\n\n* [STUN Reachability](https://github.com/ooni/spec/blob/master/nettests/ts-025-stun-reachability.md)" +
                         "\n\n* [DNS Check](https://github.com/ooni/spec/blob/master/nettests/ts-028-dnscheck.md)" +
+                        "\n\n* [ECH Check](https://github.com/ooni/spec/blob/master/nettests/ts-039-echcheck.md)" +
                         "\n\n* [Tor Snowflake](https://ooni.org/nettest/tor-snowflake/) "+ String.format(" ( %s )",resources.getString(R.string.Settings_TestOptions_LongRunningTest))+
                         "\n\n* [Vanilla Tor](https://github.com/ooni/spec/blob/master/nettests/ts-016-vanilla-tor.md) " + String.format(" ( %s )",resources.getString(R.string.Settings_TestOptions_LongRunningTest))),
                 "anim/experimental.json",
@@ -48,12 +49,13 @@ public class ExperimentalSuite extends AbstractSuite {
         if (super.getTestList(pm) == null) {
             ArrayList<AbstractTest> list = new ArrayList<>();
             if (pm == null || pm.isExperimentalOn()){
+                list.add(new Experimental("stunreachability"));
+                list.add(new Experimental("dnscheck"));
+                list.add(new Experimental("echcheck"));
 				if ((pm == null || pm.isLongRunningTestsInForeground()) || getAutoRun()){
 					list.add(new Experimental("torsf"));
 					list.add(new Experimental("vanilla_tor"));
-				}
-                list.add(new Experimental("stunreachability"));
-                list.add(new Experimental("dnscheck"));
+                }
             }
             super.setTestList(Lists.transform(list, test -> {
                 if (getAutoRun()) test.setOrigin(AbstractTest.AUTORUN);

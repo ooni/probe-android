@@ -62,6 +62,7 @@ public class RunTestService extends Service {
         if (testSuites == null || testSuites.size() == 0)
             return START_STICKY_COMPATIBILITY;
         boolean store_db = intent.getBooleanExtra("storeDB", true);
+        boolean unattended = intent.getBooleanExtra("unattended", false);
         Application app = ((Application) getApplication());
         NotificationUtility.setChannel(getApplicationContext(), CHANNEL_ID, app.getString(R.string.Settings_AutomatedTesting_Label), false, false, false);
         Intent notificationIntent = new Intent(this, RunningActivity.class);
@@ -79,7 +80,7 @@ public class RunTestService extends Service {
                 .setProgress(100, 0, false)
                 .build();
 
-        task = (TestAsyncTask) new TestAsyncTask(app, testSuites, store_db).execute();
+        task = (TestAsyncTask) new TestAsyncTask(app, testSuites, store_db, unattended).execute();
         //This intent is used to manage the stop test button in the notification
         Intent broadcastIntent = new Intent();
         broadcastIntent.setAction(RunTestService.ACTION_INTERRUPT);

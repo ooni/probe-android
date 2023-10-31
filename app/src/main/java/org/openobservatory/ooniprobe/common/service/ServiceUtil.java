@@ -69,7 +69,7 @@ public class ServiceUtil {
         }
     }
 
-    public static void callCheckInAPI(Application app) {
+    public static void startRunTestServiceUnattended(Application app) {
         app.getServiceComponent().inject(d);
 
         boolean isVPNInUse = ReachabilityManager.isVPNinUse(app);
@@ -80,8 +80,7 @@ public class ServiceUtil {
             return;
         }
 
-
-        AbstractSuite suite = d.generateAutoRunServiceSuite.generate(config);
+        AbstractSuite suite = d.generateAutoRunServiceSuite.generate();
         ArrayList<AbstractSuite> testSuites = new ArrayList<>();
         testSuites.add(suite);
         testSuites.add(InstantMessagingSuite.initForAutoRun(app.getResources()));
@@ -90,12 +89,17 @@ public class ServiceUtil {
         testSuites.add(ExperimentalSuite.initForAutoRun(app.getResources()));
 
         testSuites.addAll(TestDescriptorManager.descriptorsWithAutoRunEnabled(app));
-        ServiceUtil.startRunTestService(app, testSuites, false);
+        ServiceUtil.startRunTestServiceCommon(app, testSuites, false, true);
+        d.generateAutoRunServiceSuite.markAsRan();
 
     }
 
 
-    public static void startRunTestService(Context context, ArrayList<AbstractSuite> iTestSuites, boolean storeDB) {
+    public static void startRunTestServiceManual(Context context, ArrayList<AbstractSuite> iTestSuites, boolean storeDB) {
+        startRunTestServiceCommon(context, iTestSuites, storeDB, false);
+    }
+
+    private static void startRunTestServiceCommon(Context context, ArrayList<AbstractSuite> iTestSuites, boolean storeDB, boolean unattended) {
         ArrayList<AbstractSuite> testSuites = Lists.newArrayList(
                 Iterables.filter(Iterables.filter(iTestSuites, item -> item != null), testSuite -> !testSuite.isTestEmpty(d.preferenceManager))
         );
@@ -103,6 +107,7 @@ public class ServiceUtil {
         Intent serviceIntent = new Intent(context, RunTestService.class);
         serviceIntent.putExtra("testSuites", testSuites);
         serviceIntent.putExtra("storeDB", storeDB);
+        serviceIntent.putExtra("unattended", unattended);
         ContextCompat.startForegroundService(context, serviceIntent);
     }
 

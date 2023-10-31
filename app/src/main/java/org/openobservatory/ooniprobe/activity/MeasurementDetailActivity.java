@@ -14,10 +14,9 @@ import android.view.Window;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
-
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
-
+import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
@@ -25,39 +24,16 @@ import org.openobservatory.ooniprobe.databinding.ActivityMeasurementDetailBindin
 import org.openobservatory.ooniprobe.domain.GetTestSuite;
 import org.openobservatory.ooniprobe.domain.MeasurementsManager;
 import org.openobservatory.ooniprobe.domain.callback.DomainCallback;
-import org.openobservatory.ooniprobe.fragment.measurement.DashFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.FacebookMessengerFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.FailedFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.HeaderNdtFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.HeaderOutcomeFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.HttpHeaderFieldManipulationFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.HttpInvalidRequestLineFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.NdtFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.PsiphonFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.RiseupVPNFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.SignalFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.TelegramFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.TorFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.WebConnectivityFragment;
-import org.openobservatory.ooniprobe.fragment.measurement.WhatsappFragment;
+import org.openobservatory.ooniprobe.fragment.measurement.*;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.test.suite.OONIRunSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
-import org.openobservatory.ooniprobe.test.test.Dash;
-import org.openobservatory.ooniprobe.test.test.FacebookMessenger;
-import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
-import org.openobservatory.ooniprobe.test.test.HttpInvalidRequestLine;
-import org.openobservatory.ooniprobe.test.test.Ndt;
-import org.openobservatory.ooniprobe.test.test.Psiphon;
-import org.openobservatory.ooniprobe.test.test.RiseupVPN;
-import org.openobservatory.ooniprobe.test.test.Signal;
-import org.openobservatory.ooniprobe.test.test.Telegram;
-import org.openobservatory.ooniprobe.test.test.Tor;
-import org.openobservatory.ooniprobe.test.test.WebConnectivity;
-import org.openobservatory.ooniprobe.test.test.Whatsapp;
+import org.openobservatory.ooniprobe.test.test.*;
+import ru.noties.markwon.Markwon;
 
+import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Objects;
@@ -75,6 +51,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
 	private ActivityMeasurementDetailBinding binding;
 
     private Measurement measurement;
+
     private Snackbar snackbar;
     private Boolean isInExplorer;
 
@@ -263,9 +240,12 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
         if (!measurement.hasLogFile(this))
             binding.log.setVisibility(View.GONE);
         if (!measurementsManager.hasReportId(measurement))
-			binding.explorer.setVisibility(View.GONE);
+            binding.explorer.setVisibility(View.GONE);
         Markwon.setMarkdown(binding.methodology, getString(R.string.TestResults_Details_Methodology_Paragraph, getString(measurement.getTest().getUrlResId())));
         load();
+        binding.log.setOnClickListener(v -> logClick());
+        binding.data.setOnClickListener(v -> dataClick());
+        binding.explorer.setOnClickListener(v -> explorerClick());
     }
 
 	private void setUpClickListeners() {

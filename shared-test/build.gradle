@@ -1,0 +1,67 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    namespace 'org.openobservatory.ooniprobe.shared.test'
+    compileSdk 33
+
+    defaultConfig {
+        minSdk 21
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    flavorDimensions = ['testing', 'license']
+    productFlavors {
+        stable {
+            dimension 'testing'
+        }
+        experimental {
+            dimension 'testing'
+        }
+        dev {
+            dimension 'testing'
+        }
+
+        fdroid {
+            dimension 'license'
+        }
+        full {
+            dimension 'license'
+        }
+    }
+}
+
+dependencies {
+    implementation project(":engine")
+    implementation project(":app")
+
+    // Dependency Injection (https://dagger.dev/)
+	implementation libs.google.dagger
+	annotationProcessor libs.google.dagger.compiler
+
+    // Database Library (https://github.com/agrosner/DBFlow)
+	implementation libs.dbflow.core
+	implementation libs.dbflow.lib
+	annotationProcessor libs.dbflow.processor
+
+    // Gson Serialization Library (https://github.com/google/gson)
+	implementation libs.google.gson
+
+    implementation libs.faker
+    implementation libs.commons.io
+
+    // Networking Library (https://square.github.io/retrofit/)
+	implementation libs.retrofit.lib
+	implementation libs.retrofit.converter.gson
+	implementation libs.retrofit.logging.interceptor
+
+	implementation libs.androidx.appcompat
+
+    testImplementation libs.junit4
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+}

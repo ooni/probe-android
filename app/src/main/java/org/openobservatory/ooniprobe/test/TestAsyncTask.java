@@ -70,19 +70,20 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     private String proxy;
     private boolean store_db = true;
 
-	public static List<AbstractSuite> getSuites(Context context) {
-		ArrayList<AbstractSuite> testSuites = new ArrayList<>(Arrays.asList(new WebsitesSuite(context.getResources()),
-			new InstantMessagingSuite(context.getResources()), new CircumventionSuite(context.getResources()), new PerformanceSuite(context.getResources()), new ExperimentalSuite(context.getResources())));
+    private boolean unattended;
+    public static List<AbstractSuite> getSuites(Context context) {
+        ArrayList<AbstractSuite> testSuites = new ArrayList<>(Arrays.asList(new WebsitesSuite(context.getResources()),
+                new InstantMessagingSuite(context.getResources()), new CircumventionSuite(context.getResources()), new PerformanceSuite(context.getResources()), new ExperimentalSuite(context.getResources())));
 
         List<TestDescriptor> testDescriptors = TestDescriptorManager.getAll();
         testSuites.addAll(
-               Lists.transform(
-                       testDescriptors,
-                       descriptor -> descriptor.getTestSuite(context)
-               )
-       );
-		return testSuites;
-	}
+                Lists.transform(
+                        testDescriptors,
+                        descriptor -> descriptor.getTestSuite(context)
+                )
+        );
+        return testSuites;
+    }
 
     public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites) {
         this.app = app;
@@ -90,9 +91,10 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
         this.proxy = app.getPreferenceManager().getProxyURL();
     }
 
-    public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, boolean store_db) {
+    public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites, boolean store_db, boolean unattended) {
         this(app, testSuites);
         this.store_db = store_db;
+        this.unattended = unattended;
     }
 
     private void registerConnChange() {
@@ -174,8 +176,15 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     //This uses the wrapper
     private void downloadURLs() {
         try {
-            OONISession session = EngineProvider.get().newSession(EngineProvider.get().getDefaultSessionConfig(
-                    app, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME, new LoggerArray(), proxy));
+            OONISession session = EngineProvider.get().newSession(
+                    EngineProvider.get().getDefaultSessionConfig(
+                            app,
+                            unattended ? String.join("-", BuildConfig.SOFTWARE_NAME, AbstractTest.UNATTENDED) : BuildConfig.SOFTWARE_NAME,
+                            BuildConfig.VERSION_NAME,
+                            new LoggerArray(),
+                            proxy
+                    )
+            );
             OONIContext ooniContext = session.newContextWithTimeout(30);
 
             OONICheckInConfig config = app.getOONICheckInConfig();
