@@ -3,14 +3,14 @@ package org.openobservatory.ooniprobe.activity.runtests.models
 import org.openobservatory.engine.BaseDescriptor
 import org.openobservatory.engine.BaseNettest
 
-data class ChildItem(
+class ChildItem(
 	var selected: Boolean,
-	var name: String,
-	var inputs: List<String>?
-)
+	override var name: String,
+	override var inputs: List<String>?
+) : BaseNettest(name = name, inputs = inputs)
 
-data class GroupItem(
+class GroupItem(
 	var selected: Boolean,
-	var name: String,
-	var nettests: List<ChildItem>
-)
+	override var name: String,
+	override var nettests: List<ChildItem>
+) : BaseDescriptor<ChildItem>(name = name, nettests = nettests)

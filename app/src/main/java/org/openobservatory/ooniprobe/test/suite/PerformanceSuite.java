@@ -41,13 +41,13 @@ public class PerformanceSuite extends AbstractSuite {
 	public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
 		if (super.getTestList(pm) == null) {
 			ArrayList<AbstractTest> list = new ArrayList<>();
-			if ((pm == null || pm.isRunNdt())  && !getAutoRun())
+			// if ((pm == null || pm.isRunNdt())  && !getAutoRun())
 				list.add(new Ndt());
-			if ((pm == null || pm.isRunDash())  && !getAutoRun())
+			// if ((pm == null || pm.isRunDash())  && !getAutoRun())
 				list.add(new Dash());
-			if ((pm == null || pm.isRunHttpHeaderFieldManipulation()))
+			// if ((pm == null || pm.isRunHttpHeaderFieldManipulation()))
 				list.add(new HttpHeaderFieldManipulation());
-			if ((pm == null || pm.isRunHttpInvalidRequestLine()))
+			// if ((pm == null || pm.isRunHttpInvalidRequestLine()))
 				list.add(new HttpInvalidRequestLine());
 			super.setTestList(Lists.transform(list, test -> {
 				if (getAutoRun()) test.setOrigin(AbstractTest.AUTORUN);

@@ -39,9 +39,9 @@ public class CircumventionSuite extends AbstractSuite {
     @Override public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
         if (super.getTestList(pm) == null) {
             ArrayList<AbstractTest> list = new ArrayList<>();
-            if (pm == null || pm.isTestPsiphon())
+            // if (pm == null || pm.isTestPsiphon())
                 list.add(new Psiphon());
-            if (pm == null || pm.isTestTor())
+            // if (pm == null || pm.isTestTor())
                 list.add(new Tor());
             super.setTestList(Lists.transform(list, test -> {
                 if (getAutoRun()) test.setOrigin(AbstractTest.AUTORUN);

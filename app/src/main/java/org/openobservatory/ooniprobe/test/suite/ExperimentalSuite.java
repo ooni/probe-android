@@ -39,7 +39,7 @@ public class ExperimentalSuite extends AbstractSuite {
     public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
         if (super.getTestList(pm) == null) {
             ArrayList<AbstractTest> list = new ArrayList<>();
-            if (pm == null || pm.isExperimentalOn()){
+            // if (pm == null || pm.isExperimentalOn()){
                 list.add(new Experimental("stunreachability"));
                 list.add(new Experimental("dnscheck"));
                 list.add(new Experimental("echcheck"));
@@ -47,7 +47,7 @@ public class ExperimentalSuite extends AbstractSuite {
 					list.add(new Experimental("torsf"));
 					list.add(new Experimental("vanilla_tor"));
                 }
-            }
+            // }
             super.setTestList(Lists.transform(list, test -> {
                 if (getAutoRun()) test.setOrigin(AbstractTest.AUTORUN);
                 return test;

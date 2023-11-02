@@ -40,13 +40,13 @@ public class InstantMessagingSuite extends AbstractSuite {
 	@Override public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
 		if (super.getTestList(pm) == null) {
 			ArrayList<AbstractTest> list = new ArrayList<>();
-			if (pm == null || pm.isTestWhatsapp())
+			// if (pm == null || pm.isTestWhatsapp())
 				list.add(new Whatsapp());
-			if (pm == null || pm.isTestTelegram())
+			// if (pm == null || pm.isTestTelegram())
 				list.add(new Telegram());
-			if (pm == null || pm.isTestFacebookMessenger())
+			// if (pm == null || pm.isTestFacebookMessenger())
 				list.add(new FacebookMessenger());
-			if (pm == null || pm.isTestSignal())
+			// if (pm == null || pm.isTestSignal())
 				list.add(new Signal());
 			super.setTestList(Lists.transform(list, test->{
 				if (getAutoRun()) test.setOrigin(AbstractTest.AUTORUN);

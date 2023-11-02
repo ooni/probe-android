@@ -139,6 +139,7 @@ class RunTestsExpandableListViewAdapter(
 			setOnClickListener {
 				if (childItem.selected) {
 					childItem.selected = false
+					mViewModel.disableTest(childItem.name)
 					if (isNotSelectedAnyChildItems(groupItem.nettests)) {
 						groupItem.selected = false
 					}
@@ -149,6 +150,7 @@ class RunTestsExpandableListViewAdapter(
 					}
 				} else {
 					childItem.selected = true
+					mViewModel.enableTest(childItem.name)
 					groupItem.selected = true
 					if (isSelectedAllItems(mGroupListData)) {
 						mViewModel.setSelectedAllBtnStatus(SELECT_ALL)

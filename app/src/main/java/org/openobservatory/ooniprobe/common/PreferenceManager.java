@@ -43,8 +43,8 @@ public class PreferenceManager {
 	public static final int COUNT_WEBSITE_CATEGORIES = 31;
 	public static final int ASK_UPDATE_APP = 16;
 
-	private final SharedPreferences sp;
-	private final Resources r;
+	final SharedPreferences sp;
+	final Resources r;
 
 	@Inject PreferenceManager(Context context) {
 		androidx.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_global, true);
