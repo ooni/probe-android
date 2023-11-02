@@ -39,6 +39,7 @@ class RunTestsViewModel() : ViewModel() {
 				PerformanceSuite().getTestList(preferenceManager).forEach {
 					enableTest(it.name)
 				}
+				enableTest(ExperimentalSuite.NAME)
 			}
 
 			SELECT_NONE -> {
@@ -51,6 +52,7 @@ class RunTestsViewModel() : ViewModel() {
 				PerformanceSuite().getTestList(preferenceManager).forEach {
 					disableTest(it.name)
 				}
+				disableTest(ExperimentalSuite.NAME)
 			}
 		}
 	}

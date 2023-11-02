@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.common
 
 import org.openobservatory.ooniprobe.R
+import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite
 import org.openobservatory.ooniprobe.test.test.*
 
 
@@ -88,6 +89,13 @@ fun PreferenceManager.setValue(name: String, value: Boolean) {
 		Whatsapp.NAME -> {
 			with(sp.edit()) {
 				putBoolean(r.getString(R.string.test_whatsapp), value)
+				apply()
+			}
+		}
+
+		ExperimentalSuite.NAME -> {
+			with(sp.edit()) {
+				putBoolean(r.getString(R.string.experimental), value)
 				apply()
 			}
 		}

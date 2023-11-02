@@ -61,12 +61,17 @@ class RunTestsExpandableListViewAdapter(
 			for (childItem in groupItem.nettests) {
 				childItem.selected = false
 			}
-		} else if (isSelectAllChildItems(groupItem.nettests)){
+		} else if (isSelectAllChildItems(groupItem.nettests)) {
 			groupItem.selected = true
 		}
 		if (groupItem.selected) {
 			if (isSelectAllChildItems(groupItem.nettests)) {
 				groupSelectionIndicator.setImageResource(R.drawable.check_box)
+				// NOTE: This is the only place where ExperimentalSuite.NAME is used.
+				// This doesn't follow the normal rule where the component tests make up the suite.
+				if (groupItem.name == ExperimentalSuite.NAME) {
+					mViewModel.enableTest(ExperimentalSuite.NAME)
+				}
 			} else {
 				groupSelectionIndicator.setImageResource(R.drawable.check_box_outline_blank)
 			}

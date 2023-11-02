@@ -140,7 +140,8 @@ class RunTestsActivity : AbstractActivity() {
 
 
 	private fun updateStatusIndicator() {
-		binding.bottomBar.setTitle(getString(R.string.OONIRun_URLs, getChildItemsSelectedIdList().size.toString()))
+		//TODO(aanorbel): translate status indicator
+		binding.bottomBar.setTitle("${getChildItemsSelectedIdList().size} Tests")
 	}
 
 	private fun getChildItemsSelectedIdList(): List<String> {
