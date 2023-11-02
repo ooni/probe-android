@@ -374,6 +374,24 @@ public abstract class AbstractTest implements Serializable {
         return Objects.equals(origin, AUTORUN);
     }
 
+	public static AbstractTest getTestByName(String name){
+        return switch (name) {
+            case Dash.NAME -> new Dash();
+            case FacebookMessenger.NAME -> new FacebookMessenger();
+            case HttpHeaderFieldManipulation.NAME -> new HttpHeaderFieldManipulation();
+            case HttpInvalidRequestLine.NAME -> new HttpInvalidRequestLine();
+            case Ndt.NAME -> new Ndt();
+            case Psiphon.NAME -> new Psiphon();
+            case RiseupVPN.NAME -> new RiseupVPN();
+            case Signal.NAME -> new Signal();
+            case Telegram.NAME -> new Telegram();
+            case Tor.NAME -> new Tor();
+            case WebConnectivity.NAME -> new WebConnectivity();
+            case Whatsapp.NAME -> new Whatsapp();
+            case Experimental.NAME -> new Experimental(name);
+            default -> new Experimental(name);
+        };
+	}
     public interface TestCallback {
         void onStart(String name);
 

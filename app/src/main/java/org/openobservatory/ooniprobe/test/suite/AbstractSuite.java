@@ -14,7 +14,7 @@ import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
-import org.openobservatory.ooniprobe.test.test.AbstractTest;
+import org.openobservatory.ooniprobe.test.test.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -163,5 +163,20 @@ public abstract class AbstractSuite implements Serializable {
 				}
 		return null;
 	}
-
+	public static AbstractSuite getTestSuiteByName(String name){
+		switch (name){
+			case WebsitesSuite.NAME:
+				return new WebsitesSuite();
+			case InstantMessagingSuite.NAME:
+				return new InstantMessagingSuite();
+			case CircumventionSuite.NAME:
+				return new CircumventionSuite();
+			case PerformanceSuite.NAME:
+				return new PerformanceSuite();
+			case ExperimentalSuite.NAME:
+				return new ExperimentalSuite();
+			default:
+				return new ExperimentalSuite();
+		}
+	}
 }

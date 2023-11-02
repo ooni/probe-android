@@ -1,533 +1,736 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="General_AppName">OONI Probe</string>
-  <string name="Onboarding_WhatIsOONIProbe_Title">What is OONI Probe?</string>
-  <string name="Onboarding_WhatIsOONIProbe_Paragraph">Your app for measuring internet censorship. \n\nAre websites and social media apps blocked? Is your internet connection unusually slow?\n\nRun OONI Probe to find out!</string>
-  <string name="Onboarding_WhatIsOONIProbe_GotIt">Got It</string>
-  <string name="Onboarding_ThingsToKnow_Title">Heads-up!</string>
-  <string name="Onboarding_ThingsToKnow_Bullet_1">OONI data is openly published and will include your network information.</string>
-  <string name="Onboarding_ThingsToKnow_Bullet_2">Anyone monitoring your internet activity (e.g. government or ISP) will see that you are running OONI Probe.</string>
-  <string name="Onboarding_ThingsToKnow_Bullet_3">You might test banned websites (but you can choose which sites to test).</string>
-  <string name="Onboarding_ThingsToKnow_Button">I understand</string>
-  <string name="Onboarding_ThingsToKnow_LearnMore">Learn more</string>
-  <string name="Onboarding_PopQuiz_Title">Pop Quiz</string>
-  <string name="Onboarding_PopQuiz_True">True</string>
-  <string name="Onboarding_PopQuiz_False">False</string>
-  <string name="Onboarding_PopQuiz_Wrong_Button_Back">Go back</string>
-  <string name="Onboarding_PopQuiz_Wrong_Button_Continue">Continue</string>
-  <string name="Onboarding_PopQuiz_1_Title">Question 1/2</string>
-  <string name="Onboarding_PopQuiz_1_Question">If someone is monitoring my internet activity, they will see that I am running OONI Probe.</string>
-  <string name="Onboarding_PopQuiz_1_Wrong_Title">Warning</string>
-  <string name="Onboarding_PopQuiz_1_Wrong_Paragraph">OONI Probe is not a privacy tool. Anyone monitoring your internet activity will see which software you are running.</string>
-  <string name="Onboarding_PopQuiz_2_Title">Question 2/2</string>
-  <string name="Onboarding_PopQuiz_2_Question">Every time I run OONI Probe, the network data I collect will automatically get published.</string>
-  <string name="Onboarding_PopQuiz_2_Wrong_Title">Warning</string>
-  <string name="Onboarding_PopQuiz_2_Wrong_Paragraph">To increase transparency of internet censorship, the network data of all OONI Probe users is automatically published (unless they opt-out in the settings).</string>
-  <string name="Onboarding_AutomatedTesting_Title">Automated testing</string>
-  <string name="Onboarding_AutomatedTesting_Paragraph">To measure internet censorship every day, please enable automated testing so that OONI Probe can run tests periodically.\n\nDon\'t worry, we\'ll be mindful of battery usage. \n\nYou can disable automated testing from the settings at any time.</string>
-  <string name="Onboarding_Crash_Title">Crash Reporting</string>
-  <string name="Onboarding_Crash_Paragraph">To improve OONI Probe we would like to collect anonymous crash reports when the app does not work properly.\n\nWould you like to opt-in to submitting crash reports to the OONI development team?</string>
-  <string name="Onboarding_Crash_Button_Yes">Yes</string>
-  <string name="Onboarding_Crash_Button_No">No</string>
-  <string name="Onboarding_DefaultSettings_Title">Default Settings</string>
-  <string name="Onboarding_DefaultSettings_Header">We collect and publish:</string>
-  <string name="Onboarding_DefaultSettings_Bullet_1">Country code (e.g. IT for Italy)</string>
-  <string name="Onboarding_DefaultSettings_Bullet_2">Network information (including Autonomous System Number)</string>
-  <string name="Onboarding_DefaultSettings_Bullet_3">Time &amp; date of testing</string>
-  <string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other potentially personally identifiable information.\n\nLearn more through [OONI\'s Data Policy](https://ooni.org/about/data-policy/).</string>
-  <string name="Onboarding_DefaultSettings_Paragraph_1">By tapping \"OK\", you will share crash reports to help us improve OONI Probe.</string>
-  <string name="Onboarding_DefaultSettings_Button_Go">Let\'s go</string>
-  <string name="Onboarding_DefaultSettings_Button_Change">Change defaults</string>
-  <string name="Dashboard_Tab_Label">Dashboard</string>
-  <string name="Dashboard_Card_Run">Run</string>
-  <string name="Dashboard_Overview_LastRun_Never">N/A</string>
-  <string name="Dashboard_Overview_Run">Run</string>
-  <string name="Dashboard_Overview_LatestTest">Last test:</string>
-  <string name="Dashboard_Overview_Estimated">Estimated:</string>
-  <string name="Dashboard_Overview_ChooseWebsites">Choose websites</string>
-  <string name="Dashboard_Running_Running">Running:</string>
-  <string name="Dashboard_Running_EstimatedTimeLeft">Estimated time left:</string>
-  <string name="Dashboard_Running_Seconds">%1$s seconds</string>
-  <string name="Dashboard_Running_PreparingTest">Preparing test</string>
-  <string name="Dashboard_Running_CalculatingETA">Calculating ETA</string>
-  <string name="Dashboard_Running_ShowLog">Show Log</string>
-  <string name="Dashboard_Running_CloseLog">Close Log</string>
-  <string name="Dashboard_Running_Stopping_Title">Stopping test…</string>
-  <string name="Dashboard_Running_Stopping_Notice">Finishing the currently pending tests, please wait…</string>
-  <string name="Dashboard_Running_ProxyInUse">Proxy in use</string>
-  <string name="Dashboard_Card_Subtitle">Tap card for more</string>
-  <string name="Dashboard_Card_Seconds">~%1$ss</string>
-  <string name="Dashboard_Websites_Card_Description">Test the blocking of websites</string>
-  <string name="Dashboard_Websites_Overview_Paragraph">Check whether websites are blocked using OONI\'s [Web Connectivity test](https://ooni.org/nettest/web-connectivity/).\n\nEvery time you tap Run, you test different websites from the Citizen Lab\'s [global](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) and [country-specific](https://github.com/citizenlab/test-lists/tree/master/lists) test lists.\n\nTo test the sites of your choice, tap the Choose websites button or select categories of sites via the settings of this card. \n\nThis test measures whether websites are blocked by means of DNS tampering, TCP/IP blocking or by a transparent HTTP proxy.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/world/) and [OONI API](https://api.ooni.io/).</string>
-  <string name="Dashboard_Websites_Overview_Paragraph_Desktop">Check whether websites are blocked using OONI\'s [Web Connectivity test](https://ooni.org/nettest/web-connectivity/).\n\nYou will test the websites included in the Citizen Lab\'s [global](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) and [country-specific](https://github.com/citizenlab/test-lists/tree/master/lists) test lists.\n\nThis test measures whether websites are blocked by means of DNS tampering, TCP/IP blocking or by a transparent HTTP proxy.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
-  <string name="Dashboard_Performance_Card_Description">Test your network speed and performance</string>
-  <string name="Dashboard_Performance_Overview_Paragraph">Measure the speed and performance of your network using the [NDT](https://ooni.org/nettest/ndt/) test.\n\nMeasure video streaming performance using the [DASH](https://ooni.org/nettest/dash/) test.\n\nThese tests consume data depending on your network speed.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/world/) and [OONI API](https://api.ooni.io/).\n\nDisclaimer: These tests rely on third party servers. We therefore cannot guarantee that your IP address will not be collected.</string>
-  <string name="Dashboard_Performance_Overview_Paragraph_Updated">By running the tests in this card, you will:\n\n- Measure the speed and performance of your network ([NDT](https://ooni.org/nettest/ndt/) test)\n- Measure video streaming performance ([DASH](https://ooni.org/nettest/dash/) test)\n- Check for the presence of [middlebox technologies](https://ooni.org/support/glossary/#middlebox) on your network ([HTTP Invalid Request Line](https://ooni.org/nettest/http-invalid-request-line/) and [HTTP Header Field Manipulation](https://ooni.org/nettest/http-header-field-manipulation/) tests)\n\nThese tests consume data depending on your network speed.\n\nYour test results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).\n\n**Disclaimer:** The [NDT](https://ooni.org/nettest/ndt/) and [DASH](https://ooni.org/nettest/dash/) tests are conducted against third-party servers provided by [Measurement Lab (M-Lab)](https://www.measurementlab.net/). If you run these tests, M-Lab will collect and publish your IP address (for research purposes), irrespective of your OONI Probe settings. Learn more about M-Lab’s data governance through its [privacy statement](https://www.measurementlab.net/privacy/).</string>
-  <string name="Dashboard_Middleboxes_Card_Description">Detect middleboxes in your network</string>
-  <string name="Dashboard_Middleboxes_Overview_Paragraph">Internet Service Providers often use network appliances (middleboxes) for various networking purposes (such as caching). Sometimes these middleboxes are used to implement internet censorship and/or surveillance.\n\nFind middleboxes in your network using OONI\'s [HTTP Invalid Request Line](https://ooni.org/nettest/http-invalid-request-line/) and [HTTP Header Field Manipulation](https://ooni.org/nettest/http-header-field-manipulation/) tests.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/world/) and [OONI API](https://api.ooni.io/).</string>
-  <string name="Dashboard_InstantMessaging_Card_Description">Test the blocking of instant messaging apps</string>
-  <string name="Dashboard_InstantMessaging_Overview_Paragraph">Check whether [WhatsApp](https://ooni.org/nettest/whatsapp/), [Facebook Messenger](https://ooni.org/nettest/facebook-messenger/), [Telegram](https://ooni.org/nettest/telegram/), and [Signal](https://ooni.org/nettest/signal) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/world/) and [OONI API](https://api.ooni.io/).</string>
-  <string name="Dashboard_Circumvention_Card_Description">Test the blocking of censorship circumvention tools</string>
-  <string name="Dashboard_Circumvention_Overview_Paragraph">Check whether [Psiphon](https://ooni.org/nettest/psiphon/), [Tor](https://ooni.org/nettest/tor/) or [RiseupVPN](https://ooni.org/nettest/riseupvpn/) are blocked.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
-  <string name="Dashboard_Experimental_Card_Description">Run new experimental tests</string>
-  <string name="Dashboard_Experimental_Overview_Paragraph">Run the following new experimental tests developed by the OONI team:\n%1$s\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).</string>
-  <string name="Dashboard_Experimental_Overview_Paragraph_AutomatedTesting">The following tests will only be run as part of automated testing:</string>
-  <string name="Dashboard_DisabledTests_Label">Disabled Tests</string>
-  <string name="TestResults_Gbps">Gbit/s</string>
-  <string name="TestResults_Mbps">Mbit/s</string>
-  <string name="TestResults_Kbps">kbit/s</string>
-  <string name="TestResults_ms">ms</string>
-  <string name="TestResults_NotAvailable">N/A</string>
-  <string name="TestResults_UnknownASN">Unknown</string>
-  <string name="TestResults_Overview_Title">Test Results</string>
-  <string name="TestResults_Overview_Tab_Label">Test Results</string>
-  <string name="TestResults_Overview_Hero_Tests">Tests</string>
-  <string name="TestResults_Overview_Hero_Networks">Networks</string>
-  <string name="TestResults_Overview_Hero_DataUsage">Data Usage</string>
-  <string name="TestResults_Overview_FilterTests">Filter Tests</string>
-  <string name="TestResults_Overview_FilterTests_AllTests">All Tests</string>
-  <string name="TestResults_Overview_FilterTests_Websites">Websites</string>
-  <string name="TestResults_Overview_FilterTests_MiddleBoxes">Middleboxes</string>
-  <string name="TestResults_Overview_FilterTests_Performance">Performance</string>
-  <string name="TestResults_Overview_FilterTests_InstantMessaging">Instant Messaging</string>
-  <string name="TestResults_Overview_FilterTests_Circumvention">Circumvention</string>
-  <string name="TestResults_Overview_FilterTests_Experimental">Experimental</string>
-  <string name="TestResults_Overview_NoTestsHaveBeenRun">No tests have been run yet. Try running one!</string>
-  <string name="TestResults_Overview_Websites_Blocked_Singular">%1$s blocked</string>
-  <string name="TestResults_Overview_Websites_Blocked_Plural">%1$s blocked</string>
-  <string name="TestResults_Overview_Websites_Tested_Singular">%1$s tested</string>
-  <string name="TestResults_Overview_Websites_Tested_Plural">%1$s tested</string>
-  <string name="TestResults_Overview_MiddleBoxes_Found">Detected</string>
-  <string name="TestResults_Overview_MiddleBoxes_NotFound">Not detected</string>
-  <string name="TestResults_Overview_MiddleBoxes_Failed">Failed</string>
-  <string name="TestResults_Overview_InstantMessaging_Blocked_Singular">%1$s blocked</string>
-  <string name="TestResults_Overview_InstantMessaging_Blocked_Plural">%1$s blocked</string>
-  <string name="TestResults_Overview_InstantMessaging_Available_Singular">%1$s accessible</string>
-  <string name="TestResults_Overview_InstantMessaging_Available_Plural">%1$s accessible</string>
-  <string name="TestResults_Overview_Circumvention_Blocked_Singular">%1$s blocked</string>
-  <string name="TestResults_Overview_Circumvention_Blocked_Plural">%1$s blocked</string>
-  <string name="TestResults_Overview_Circumvention_Available_Singular">%1$s available</string>
-  <string name="TestResults_Overview_Circumvention_Available_Plural">%1$s available</string>
-  <string name="TestResults_Overview_IncompleteResult">Incomplete Result</string>
-  <string name="TestResults_Overview_Error">Error</string>
-  <string name="TestResults_Summary_ErrorInMeasurement">Error in Measurement</string>
-  <string name="TestResults_Summary_NoUploaded">Results not uploaded</string>
-  <string name="TestResults_Summary_Hero_DateAndTime">Date &amp; Time</string>
-  <string name="TestResults_Summary_Hero_Network">Network</string>
-  <string name="TestResults_Summary_Hero_Country">Country</string>
-  <string name="TestResults_Summary_Hero_DataUsage">Data Usage</string>
-  <string name="TestResults_Summary_Hero_Runtime">Total Runtime</string>
-  <string name="TestResults_Summary_Hero_WiFi">WiFi</string>
-  <string name="TestResults_Summary_Hero_Mobile">Mobile Data</string>
-  <string name="TestResults_Summary_Hero_NoInternet">No internet</string>
-  <string name="TestResults_Summary_Failed">Failed</string>
-  <string name="TestResults_Summary_Websites_Hero_Tested_Singular">Tested</string>
-  <string name="TestResults_Summary_Websites_Hero_Tested_Plural">Tested</string>
-  <string name="TestResults_Summary_Websites_Hero_Blocked_Singular">Blocked</string>
-  <string name="TestResults_Summary_Websites_Hero_Blocked_Plural">Blocked</string>
-  <string name="TestResults_Summary_Websites_Hero_Sites_Singular">Website</string>
-  <string name="TestResults_Summary_Websites_Hero_Sites_Plural">Websites</string>
-  <string name="TestResults_Summary_Websites_Hero_Reachable_Singular">Accessible</string>
-  <string name="TestResults_Summary_Websites_Hero_Reachable_Plural">Accessible</string>
-  <string name="TestResults_Summary_Performance_Hero_Video">Video</string>
-  <string name="TestResults_Summary_Performance_Hero_Video_Quality">Quality</string>
-  <string name="TestResults_Summary_Performance_Hero_Upload">Upload</string>
-  <string name="TestResults_Summary_Performance_Hero_Download">Download</string>
-  <string name="TestResults_Summary_Performance_Hero_Ping">Ping</string>
-  <string name="TestResults_Summary_Middleboxes_Hero_Found">Detected</string>
-  <string name="TestResults_Summary_Middleboxes_Hero_NotFound">Not detected</string>
-  <string name="TestResults_Summary_Middleboxes_Hero_Failed">Failed</string>
-  <string name="TestResults_Summary_InstantMessaging_Hero_Tested_Singular">Tested</string>
-  <string name="TestResults_Summary_InstantMessaging_Hero_Tested_Plural">Tested</string>
-  <string name="TestResults_Summary_InstantMessaging_Hero_Blocked_Singular">Blocked</string>
-  <string name="TestResults_Summary_InstantMessaging_Hero_Blocked_Plural">Blocked</string>
-  <string name="TestResults_Summary_InstantMessaging_Hero_Reachable_Singular">Accessible</string>
-  <string name="TestResults_Summary_InstantMessaging_Hero_Reachable_Plural">Accessible</string>
-  <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">App</string>
-  <string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">Apps</string>
-  <string name="TestResults_Summary_Circumvention_Hero_Tested_Singular">Tested</string>
-  <string name="TestResults_Summary_Circumvention_Hero_Tested_Plural">Tested</string>
-  <string name="TestResults_Summary_Circumvention_Hero_Blocked_Singular">Blocked</string>
-  <string name="TestResults_Summary_Circumvention_Hero_Blocked_Plural">Blocked</string>
-  <string name="TestResults_Summary_Circumvention_Hero_Reachable_Singular">Working</string>
-  <string name="TestResults_Summary_Circumvention_Hero_Reachable_Plural">Working</string>
-  <string name="TestResults_Summary_Circumvention_Hero_Tools_Singular">Tool</string>
-  <string name="TestResults_Summary_Circumvention_Hero_Tools_Plural">Tools</string>
-  <string name="TestResults_Details_Hero_Runtime">Runtime</string>
-  <string name="TestResults_Details_Methodology">Methodology</string>
-  <string name="TestResults_Details_ViewLog">View log</string>
-  <string name="TestResults_Details_RawData">Data</string>
-  <string name="TestResults_Details_CopyExplorerURL">Copy Explorer URL</string>
-  <string name="TestResults_Details_ShareExplorerURL">Share Explorer URL</string>
-  <string name="TestResults_Details_CopyToClipboard">Copy to clipboard</string>
-  <string name="TestResults_Details_ShowInExplorer">Show in OONI Explorer</string>
-  <string name="TestResults_Details_Failed_Title">Failed</string>
-  <string name="TestResults_Details_Failed_Paragraph">You can try to run this test again</string>
-  <string name="TestResults_Details_Failed_TryAgain">Try Again</string>
-  <string name="TestResults_Details_Methodology_Paragraph">Learn how this test works [here](%1$s).</string>
-  <string name="TestResults_Details_Websites_Reachable_Hero_Title">Accessible</string>
-  <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s is accessible.</string>
-  <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Likely blocked</string>
-  <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">%1$s is likely blocked by means of %2$s.\n\nNote: False positives can occur. Learn more [here](https://ooni.org/support/faq/#what-are-false-positives).</string>
-  <string name="TestResults_Details_Websites_LikelyBlocked_Content_LearnToCircumvent">Censorship Circumvention</string>
-  <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_DNS">**DNS tampering**</string>
-  <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_TCPIP">**TCP/IP based blocking**</string>
-  <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_HTTPDiff">**HTTP blocking (a blockpage might be served)**</string>
-  <string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_HTTPFailure">**HTTP blocking (HTTP requests failed)**</string>
-  <string name="TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Title">Mobile App</string>
-  <string name="TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Okay">OK</string>
-  <string name="TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Failed">Failed</string>
-  <string name="TestResults_Details_InstantMessaging_WhatsApp_WebApp_Label_Title">WhatsApp Web</string>
-  <string name="TestResults_Details_InstantMessaging_WhatsApp_WebApp_Label_Okay">OK</string>
-  <string name="TestResults_Details_InstantMessaging_WhatsApp_WebApp_Label_Failed">Failed</string>
-  <string name="TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Title">Registration</string>
-  <string name="TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Okay">OK</string>
-  <string name="TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed">Failed</string>
-  <string name="TestResults_Details_InstantMessaging_WhatsApp_Reachable_Hero_Title">Working</string>
-  <string name="TestResults_Details_InstantMessaging_WhatsApp_Reachable_Content_Paragraph">This test successfully connected to WhatsApp\'s endpoints, registration service and web interface (web.whatsapp.com).</string>
-  <string name="TestResults_Details_InstantMessaging_WhatsApp_LikelyBlocked_Hero_Title">Likely blocked</string>
-  <string name="TestResults_Details_InstantMessaging_WhatsApp_LikelyBlocked_Content_Paragraph">WhatsApp appears to be blocked.</string>
-  <string name="TestResults_Details_InstantMessaging_Telegram_Application_Label_Title">Mobile App</string>
-  <string name="TestResults_Details_InstantMessaging_Telegram_Application_Label_Okay">OK</string>
-  <string name="TestResults_Details_InstantMessaging_Telegram_Application_Label_Failed">Failed</string>
-  <string name="TestResults_Details_InstantMessaging_Telegram_WebApp_Label_Title">Telegram Web</string>
-  <string name="TestResults_Details_InstantMessaging_Telegram_WebApp_Label_Okay">OK</string>
-  <string name="TestResults_Details_InstantMessaging_Telegram_WebApp_Label_Failed">Failed</string>
-  <string name="TestResults_Details_InstantMessaging_Telegram_Reachable_Hero_Title">Working</string>
-  <string name="TestResults_Details_InstantMessaging_Telegram_Reachable_Content_Paragraph">This test successfully connected to Telegram\'s endpoints and web interface (web.telegram.org).</string>
-  <string name="TestResults_Details_InstantMessaging_Telegram_LikelyBlocked_Hero_Title">Likely blocked</string>
-  <string name="TestResults_Details_InstantMessaging_Telegram_LikelyBlocked_Content_Paragraph">Telegram appears to be blocked.</string>
-  <string name="TestResults_Details_InstantMessaging_FacebookMessenger_TCP_Label_Title">TCP connections</string>
-  <string name="TestResults_Details_InstantMessaging_FacebookMessenger_TCP_Label_Okay">OK</string>
-  <string name="TestResults_Details_InstantMessaging_FacebookMessenger_TCP_Label_Failed">Failed</string>
-  <string name="TestResults_Details_InstantMessaging_FacebookMessenger_DNS_Label_Title">DNS lookups</string>
-  <string name="TestResults_Details_InstantMessaging_FacebookMessenger_DNS_Label_Okay">OK</string>
-  <string name="TestResults_Details_InstantMessaging_FacebookMessenger_DNS_Label_Failed">Failed</string>
-  <string name="TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Hero_Title">Working</string>
-  <string name="TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Content_Paragraph">This test successfully connected to Facebook\'s endpoints and resolved to Facebook IP addresses.</string>
-  <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Hero_Title">Likely blocked</string>
-  <string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Content_Paragraph">Facebook Messenger appears to be blocked.</string>
-  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Hero_Title">Likely blocked</string>
-  <string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Content_Paragraph">Signal appears to be blocked.</string>
-  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Hero_Title">Working</string>
-  <string name="TestResults_Details_InstantMessaging_Signal_Reachable_Content_Paragraph">This test successfully connected to Signal\'s endpoints.</string>
-  <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title">No middleboxes detected</string>
-  <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Content_Paragraph">No network anomaly was detected when communicating with our servers.</string>
-  <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title">Network tampering</string>
-  <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Content_Paragraph">Network traffic was manipulated when contacting our control servers.\n\nThis means that there may be a middlebox in your network, which could be responsible for censorship and/or surveillance.</string>
-  <string name="TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_NotFound_Hero_Title">No middleboxes detected</string>
-  <string name="TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_NotFound_Content_Paragraph">No network anomaly was detected when communicating with our servers.</string>
-  <string name="TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_Found_Hero_Title">Network tampering</string>
-  <string name="TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_Found_Content_Paragraph">Network traffic was manipulated when contacting our control servers.\n\nThis means that there may be a middlebox in your network, which could be responsible for censorship and/or surveillance.</string>
-  <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_YouSent">You Sent</string>
-  <string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_YouReceived">You Received</string>
-  <string name="TestResults_Details_Performance_NDT_Upload">Upload</string>
-  <string name="TestResults_Details_Performance_NDT_Download">Download</string>
-  <string name="TestResults_Details_Performance_NDT_Ping">Ping</string>
-  <string name="TestResults_Details_Performance_NDT_Server">Server</string>
-  <string name="TestResults_Details_Performance_NDT_PacketLoss">Retransmission Rate</string>
-  <string name="TestResults_Details_Performance_NDT_OutOfOrder">Out of Order</string>
-  <string name="TestResults_Details_Performance_NDT_AveragePing">Average Ping</string>
-  <string name="TestResults_Details_Performance_NDT_MaxPing">Max Ping Estimate</string>
-  <string name="TestResults_Details_Performance_NDT_MSS">MSS</string>
-  <string name="TestResults_Details_Performance_NDT_Timeouts">Timeouts</string>
-  <string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">You can stream up to %1$s without buffering.</string>
-  <string name="TestResults_Details_Performance_Dash_MedianBitrate">Median Bitrate</string>
-  <string name="TestResults_Details_Performance_Dash_PlayoutDelay">Playout Delay</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">Likely blocked</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">Working</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph">[Psiphon](https://psiphon.ca/) appears to be blocked.</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph">We were able to successfully bootstrap a Psiphon connection. This means that [Psiphon](https://psiphon.ca/) should work.</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
-  <string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s s</string>
-  <string name="TestResults_Details_Circumvention_Tor_Blocked_Hero_Title">Likely blocked</string>
-  <string name="TestResults_Details_Circumvention_Tor_Reachable_Hero_Title">Working</string>
-  <string name="TestResults_Details_Circumvention_Tor_Blocked_Content_Paragraph">[Tor](https://www.torproject.org/) appears to be blocked.</string>
-  <string name="TestResults_Details_Circumvention_Tor_Reachable_Content_Paragraph">We were able to successfully connect to the default Tor bridges and/or Tor directory authorities. This means that [Tor](https://www.torproject.org/) should work.</string>
-  <string name="TestResults_Details_Circumvention_Tor_BrowserBridges_Label_Title">Default Bridges</string>
-  <string name="TestResults_Details_Circumvention_Tor_BrowserBridges_Label_OK">%1$s/%2$s OK</string>
-  <string name="TestResults_Details_Circumvention_Tor_DirectoryAuthorities_Label_Title">Directory Authorities</string>
-  <string name="TestResults_Details_Circumvention_Tor_DirectoryAuthorities_Label_OK">%1$s/%2$s OK</string>
-  <string name="TestResults_Details_Circumvention_Tor_Table_Header_Name">Name</string>
-  <string name="TestResults_Details_Circumvention_Tor_Table_Header_Address">Address</string>
-  <string name="TestResults_Details_Circumvention_Tor_Table_Header_Type">Type</string>
-  <string name="TestResults_Details_Circumvention_Tor_Table_Header_Connect">Connect</string>
-  <string name="TestResults_Details_Circumvention_Tor_Table_Header_Handshake">Handshake</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Hero_Title">Likely blocked</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Hero_Title">Working</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Content_Paragraph">[RiseupVPN](https://riseup.net/vpn) appears to be blocked.</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Content_Paragraph">We were able to successfully connect to RiseupVPN\'s bootstrap server and VPN gateways. This means that [RiseupVPN](https://riseup.net/vpn) should work.</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Api">Bootstrap server</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Openvpn">OpenVPN connections</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Bridge">Bridged connections</string>
-  <string name="TestResults_Overview_Circumvention_RiseupVPN_Api_Blocked">Blocked</string>
-  <string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Singular">%1$s blocked</string>
-  <string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Plural">%1$s blocked</string>
-  <string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Okay">OK</string>
-  <string name="TestResults_Details_Experimental_Hero_Title">This is an experimental test.</string>
-  <string name="Feed_Tab_Label">Feed</string>
-  <string name="Feed_Title">Feed</string>
-  <string name="Modal_OK">OK</string>
-  <string name="Modal_Cancel">Cancel</string>
-  <string name="Modal_DontAskAgain">No, don\'t ask again</string>
-  <string name="Modal_Delete">Delete</string>
-  <string name="Modal_Error">Error</string>
-  <string name="Modal_Retry">Retry</string>
-  <string name="Modal_SoundsGreat">Sounds great</string>
-  <string name="Modal_NoThanks">No, thanks</string>
-  <string name="Modal_NotNow">Not now</string>
-  <string name="Modal_RunAnyway">Run anyways</string>
-  <string name="Modal_DisableVPN">Disable VPN</string>
-  <string name="Modal_AlwaysRun">Always Run</string>
-  <string name="Modal_Error_NoInternet">Unable to run the test. Please check your internet connectivity.</string>
-  <string name="Modal_Error_CantDownloadURLs">Unable to download URL list. Please try again.</string>
-  <string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a new test.</string>
-  <string name="Modal_Error_NotificationNotEnabled">Notification permissions are required. Please enable them in the Settings of your phone and then enable them in your OONI Probe app.</string>
-  <string name="Modal_Error_NotificationNotEnabled_GoToSettings">Go to the Settings</string>
-  <string name="Modal_Error_CantCloseScreen">This screen is locked while a test is running.</string>
-  <string name="Modal_Error_RawDataNoInternet">You need to be connected to the internet to download the raw measurement data.</string>
-  <string name="Modal_ResultsNotUploaded_Title">Results not uploaded</string>
-  <string name="Modal_ResultsNotUploaded_Paragraph">Some of your test results have not been uploaded to OONI servers. If you\'d like to contribute to OONI\'s dataset, please upload them.</string>
-  <string name="Modal_ResultsNotUploaded_Button_Upload">Upload</string>
-  <string name="Modal_ResultsNotUploaded_Uploading">Uploading %1$s ...</string>
-  <string name="Modal_Autorun_BatteryOptimization">OONI Probe cannot run automatically without battery optimization. Do you want to try again?</string>
-  <string name="Modal_DisableVPN_Title">Please disable your VPN connection.</string>
-  <string name="Modal_DisableVPN_Message">If you run OONI Probe with a VPN enabled, the test results may appear to come from the wrong country. Please disable your VPN connection.</string>
-  <string name="Modal_UploadVPNResults_Title">Some measurements were taken over VPN.</string>
-  <string name="Modal_UploadVPNResults_Message">If you upload measurements taken when VPN enabled, the test results may appear to come from the wrong country.</string>
-  <string name="Toast_ResultsUploaded">Upload successful</string>
-  <string name="Modal_DisplayFailureLog">Display failure log</string>
-  <string name="Modal_EnableNotifications_Title">Get updates on internet censorship</string>
-  <string name="Modal_EnableNotifications_Paragraph">Interested in running OONI Probe tests during emergent censorship events? Enable notifications to receive a message when we hear of internet censorship near you.</string>
-  <string name="Modal_EnableGPS">To improve the accuracy of tests, we need GPS permissions. OONI will only collect an approximation of your GPS position.</string>
-  <string name="Modal_DoYouWantToDeleteAllTests">Do you want to delete all test results?</string>
-  <string name="Modal_DoYouWantToDeleteThisTest">Do you want to delete this test?</string>
-  <string name="Modal_EnableAtLeastOneTest">Please enable at least one test</string>
-  <string name="Modal_OnlyDigits">Please insert only digits in this field.</string>
-  <string name="Modal_ReRun_Title">Re-run test</string>
-  <string name="Modal_ReRun_Paragraph">This test has failed. Re-run the test?</string>
-  <string name="Modal_ReRun_Websites_Title">You are about to re-test %1$s websites.</string>
-  <string name="Modal_ReRun_Websites_Run">Run</string>
-  <string name="Modal_CustomURL_NotSaved">Your URLs will not be saved when you leave this screen. Are you sure you want to leave this screen?</string>
-  <string name="Modal_ManualUpload_Title">Enable Manual Upload?</string>
-  <string name="Modal_ManualUpload_Paragraph">This setting allows you to manually re-upload unpublished measurements.</string>
-  <string name="Modal_ManualUpload_Enable">Enable</string>
-  <string name="Modal_ManualUpload_Disable">No, thanks</string>
-  <string name="Modal_UploadFailed_Title">Upload failed</string>
-  <string name="Modal_UploadFailed_Paragraph">We have failed to upload %1$s/%2$s measurements. The failure log has been shared with OONI developers.</string>
-  <string name="Modal_Error_LogNotFound">Log file not found</string>
-  <string name="Modal_Error_NoValidUrls">No valid URLs found</string>
-  <string name="Modal_Error_JsonEmpty">JSON empty</string>
-  <string name="Modal_InterruptTest_Title">Do you want to interrupt this test?</string>
-  <string name="Modal_InterruptTest_Paragraph">This will interrupt the current test from this moment.</string>
-  <string name="Modal_Autorun_Modal_Title">Would you like to run tests automatically?</string>
-  <string name="Modal_Autorun_Modal_Text">By enabling automated testing, you will contribute OONI measurements on a regular basis.</string>
-  <string name="Modal_Autorun_Modal_Text_Android">Please allow the app to run in the background.</string>
-  <string name="Modal_Autorun_Modal_Button_RemindLater">Remind me later</string>
-  <string name="Toast_CopiedToClipboard">Copied to clipboard</string>
-  <string name="Snackbar_ResultsNotUploaded_Text">Not uploaded</string>
-  <string name="Snackbar_ResultsNotUploaded_Upload">Upload</string>
-  <string name="Snackbar_ResultsSomeNotUploaded_Text">Some not uploaded</string>
-  <string name="Snackbar_ResultsSomeNotUploaded_UploadAll">Upload All</string>
-  <string name="Test_Websites_Fullname">Websites</string>
-  <string name="Test_InstantMessaging_Fullname">Instant Messaging</string>
-  <string name="Test_Middleboxes_Fullname">Middleboxes</string>
-  <string name="Test_Performance_Fullname">Performance</string>
-  <string name="Test_Circumvention_Fullname">Circumvention</string>
-  <string name="Test_Experimental_Fullname">Experimental</string>
-  <string name="Test_HTTPInvalidRequestLine_Fullname">HTTP Invalid Request Line Test</string>
-  <string name="Test_HTTPHeaderFieldManipulation_Fullname">HTTP Header Field Manipulation Test</string>
-  <string name="Test_WebConnectivity_Fullname">Web Connectivity Test</string>
-  <string name="Test_NDT_Fullname">NDT Speed Test</string>
-  <string name="Test_Dash_Fullname">DASH Streaming Test</string>
-  <string name="Test_WhatsApp_Fullname">WhatsApp Test</string>
-  <string name="Test_Telegram_Fullname">Telegram Test</string>
-  <string name="Test_FacebookMessenger_Fullname">Facebook Messenger Test</string>
-  <string name="Test_Psiphon_Fullname">Psiphon Test</string>
-  <string name="Test_Tor_Fullname">Tor Test</string>
-  <string name="Test_RiseupVPN_Fullname">RiseupVPN Test</string>
-  <string name="Test_Signal_Fullname">Signal Test</string>
-  <string name="Settings_Title">Settings</string>
-  <string name="Settings_Error_TestDurationTooLow">The amount of time you have set for the test duration is too low.</string>
-  <string name="Settings_About_Label">About OONI</string>
-  <string name="Settings_About_Content_Paragraph">The Open Observatory of Network Interference (OONI) is a free software project under The Tor Project that aims to increase transparency of internet censorship around the world.\n\nSince 2012, OONI\'s global community has been measuring networks in more than 200 countries. Some of these measurements serve as evidence of internet censorship.</string>
-  <string name="Settings_About_Content_LearnMore">Learn more</string>
-  <string name="Settings_About_Content_Blog">Blog</string>
-  <string name="Settings_About_Content_Reports">Reports</string>
-  <string name="Settings_About_Content_DataPolicy">OONI Data Policy</string>
-  <string name="Settings_Notifications_Label">Notifications</string>
-  <string name="Settings_Notifications_Enabled">Enabled</string>
-  <string name="Settings_Notifications_OnTestCompletion">Notify upon test completion</string>
-  <string name="Settings_Notifications_OnNews">News Feed</string>
-  <string name="Settings_AutomatedTesting_Label">Automated testing</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Number">Number of automated tests: %1$s.</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">Last automated test: %1$s.</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Only on WiFi</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Only while charging</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests will run automatically multiple times per day. Your test results will automatically get published on OONI Explorer: https://explorer.ooni.org/ \n\nImportant: If you have a VPN enabled, OONI Probe will not run tests automatically. Please turn off your VPN for automated OONI Probe testing. Learn more: https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn</string>
-  <string name="Settings_Sharing_Label">Sharing</string>
-  <string name="Settings_Sharing_UploadResults">Automatically Publish Results</string>
-  <string name="Settings_Sharing_UploadResultsManually">Manual Result Upload</string>
-  <string name="Settings_Sharing_IncludeNetwork">Include Network Info</string>
-  <string name="Settings_Sharing_GPS">Include approximate geo-location</string>
-  <string name="Settings_Sharing_IncludeIP">Include my IP address</string>
-  <string name="Settings_Sharing_IncludeCountryCode">Include Country Code</string>
-  <string name="Settings_Sharing_IncludeCountryCode_PopUp">This information (e.g. IT for Italy) is required to identify which country the measurements are collected from. Are you sure you want to disable this option?</string>
-  <string name="Settings_Sharing_Footer">By publishing results, you are increasing transparency of network interference and supporting the OONI community. \n\nNetwork information (i.e. Autonomous System Number) is required for identifying Internet Service Providers.</string>
-  <string name="Settings_TestOptions_Label">Test options</string>
-  <string name="Settings_TestOptions_Footer">What you configure through the above test settings (e.g. disabling the WhatsApp test) will apply to tests run manually, as well as to tests run automatically (when automated testing is enabled).</string>
-  <string name="Settings_TestOptions_LongRunningTest">Long running test</string>
-  <string name="Settings_TestOptions_RunLongRunningTests">Run long running tests in foreground?</string>
-  <string name="Settings_Privacy_Label">Privacy</string>
-  <string name="Settings_Privacy_SendCrashReports">Send crash reports</string>
-  <string name="Settings_Advanced_Label">Advanced</string>
-  <string name="Settings_DarkMode_Label">Dark Mode</string>
-  <string name="Settings_Advanced_DebugLogs">Debug logs</string>
-  <string name="Settings_Advanced_RecentLogs">See recent logs</string>
-  <string name="Settings_Advanced_LanguageSettings_Title">Language Setting</string>
-  <string name="Settings_Advanced_LanguageSettings_PopUp">Select Language</string>
-  <string name="Settings_Advanced_UseDomainFronting">Always use domain fronting</string>
-  <string name="Settings_Proxy_Label">OONI backend proxy</string>
-  <string name="Settings_Proxy_Enabled">Proxy</string>
-  <string name="Settings_Proxy_None">None</string>
-  <string name="Settings_Proxy_Psiphon">Psiphon</string>
-  <string name="Settings_Proxy_Custom">Custom Proxy</string>
-  <string name="Settings_Proxy_Custom_Value">Custom Proxy URL</string>
-  <string name="Settings_Proxy_Custom_Protocol">Custom proxy protocol</string>
-  <string name="Settings_Proxy_Custom_Connection">Connection</string>
-  <string name="Settings_Proxy_Custom_Hostname">Hostname</string>
-  <string name="Settings_Proxy_Custom_Port">Port</string>
-  <string name="Settings_Proxy_Custom_Credentials">Credentials (optional)</string>
-  <string name="Settings_Proxy_Custom_Username">Username</string>
-  <string name="Settings_Proxy_Custom_Password">Password</string>
-  <string name="Settings_Proxy_Psiphon_Over_Custom">Use Psiphon over custom proxy</string>
-  <string name="Settings_Proxy_Footer">Are you unable to use OONI Probe? Try enabling [Psiphon](https://psiphon.ca/) to circumvent potential OONI Probe blocking. Alternatively, you can use a custom proxy.</string>
-  <string name="Settings_Websites_MaxRuntimeEnabled">Limit test duration</string>
-  <string name="Settings_Websites_MaxRuntime">Test duration</string>
-  <string name="Settings_Websites_Categories_Label">Website categories to test</string>
-  <string name="Settings_Websites_Categories_Description">%1$s categories enabled</string>
-  <string name="Settings_Websites_Categories_Edit">Edit</string>
-  <string name="Settings_Websites_Categories_Selection_None">Deselect All</string>
-  <string name="Settings_Websites_Categories_Selection_All">Select All</string>
-  <string name="Settings_Websites_Categories_Selection_Done">Save</string>
-  <string name="Settings_Websites_Categories_Confirmation_Title">Unsaved Changes</string>
-  <string name="Settings_Websites_Categories_Confirmation_Body">You made some changes to the enabled categories. Would you like to save them?</string>
-  <string name="Settings_Websites_Categories_Confirmation_Label_Confirm">Save</string>
-  <string name="Settings_Websites_Categories_Confirmation_Label_Cancel">Discard</string>
-  <string name="Settings_Websites_CustomURL_Title">Choose websites to test</string>
-  <string name="Settings_Websites_CustomURL_URL">URL</string>
-  <string name="Settings_Websites_CustomURL_NoURLEntered">No URLs entered</string>
-  <string name="Settings_Websites_CustomURL_Run">Run</string>
-  <string name="Settings_Websites_CustomURL_Add">Add website</string>
-  <string name="Settings_Websites_CustomURL_LoadFromTemplate">Load from template</string>
-  <string name="Settings_Websites_TestCount">Number of tested websites (0 means all)</string>
-  <string name="Settings_InstantMessaging_TestWhatsApp">Test WhatsApp</string>
-  <string name="Settings_InstantMessaging_TestTelegram">Test Telegram</string>
-  <string name="Settings_InstantMessaging_TestFacebookMessenger">Test Facebook Messenger</string>
-  <string name="Settings_InstantMessaging_TestSignal">Test Signal</string>
-  <string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">Run the HTTP Invalid Request Line Test</string>
-  <string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">Run the HTTP Header Field Manipulation Test</string>
-  <string name="Settings_Performance_TestNDT">Run the NDT Speed Test</string>
-  <string name="Settings_Performance_NDTAutomaticServerSelection">Automatic NDT server selection</string>
-  <string name="Settings_Performance_NDTServerAddress">NDT server address</string>
-  <string name="Settings_Performance_NDTServerPort">NDT server port</string>
-  <string name="Settings_Performance_TestDash">Run the DASH Streaming Test</string>
-  <string name="Settings_Performance_DashAutomaticServerSelection">Automatic DASH server selection</string>
-  <string name="Settings_Performance_DashServerAddress">DASH server</string>
-  <string name="Settings_Performance_DashServerPort">DASH server port</string>
-  <string name="Settings_Circumvention_TestPsiphon">Test Psiphon</string>
-  <string name="Settings_Circumvention_TestTor">Test Tor</string>
-  <string name="Settings_Circumvention_TestRiseupVPN">Test RiseupVPN</string>
-  <string name="Settings_WarmVPNInUse_Label">Warn when VPN is in use</string>
-  <string name="Settings_SendEmail_Label">Send email to support</string>
-  <string name="Settings_SendEmail_Message">Please describe the problem you are experiencing:</string>
-  <string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app and iOS version. Tap \"Copy to clipboard\" below to copy our email address.</string>
-  <string name="Settings_Language_Current">Current app language is %1$s</string>
-  <string name="Settings_Language_Label">Language</string>
-  <string name="Settings_Storage_Label">Storage usage</string>
-  <string name="Settings_Storage_Usage_Label">Storage used</string>
-  <string name="Settings_Storage_Delete">Delete</string>
-  <string name="Settings_Storage_Clear">Clear</string>
-  <string name="Settings_Storage_Confirmation_Paragraph">You are about to delete all OONI measurements from your device. If uploaded, they will still be available on [OONI Explorer](https://explorer.ooni.org)</string>
-  <string name="Notification_FinishedRunning">Finished running</string>
-  <string name="Notification_StopTest">Stop test</string>
-  <string name="OONIBrowser_TryMirror">Try mirror</string>
-  <string name="OONIBrowser_Loading">Loading...</string>
-  <string name="OONIBrowser_Error">An unexpected error occurred. Please reload this page.</string>
-  <string name="OONIRun_YouAreAboutToRun">You are about to run an OONI Probe test.</string>
-  <string name="OONIRun_URLs">%1$s URLs</string>
-  <string name="OONIRun_TestName">Test Name</string>
-  <string name="OONIRun_TestDetails">Test Details</string>
-  <string name="OONIRun_Run">Run</string>
-  <string name="OONIRun_OONIProbeOutOfDate">Out of date</string>
-  <string name="OONIRun_OONIProbeNewerVersion">You need a newer version of OONI Probe to run this test.</string>
-  <string name="OONIRun_Update">Update</string>
-  <string name="OONIRun_Close">Close</string>
-  <string name="OONIRun_InvalidParameter">Invalid parameter</string>
-  <string name="OONIRun_InvalidParameter_Msg">The OONI Run link is either malformed or your app is out of date.</string>
-  <string name="OONIRun_RandomSamplingOfURLs">You will test a random sample of websites.</string>
-  <string name="OONIRun_TestRunningError">Please wait for the test to finish running before tapping on an OONI Run link.</string>
-  <string name="CategoryCode_ALDR_Name">Drugs &amp; Alcohol</string>
-  <string name="CategoryCode_REL_Name">Religion</string>
-  <string name="CategoryCode_PORN_Name">Pornography</string>
-  <string name="CategoryCode_PROV_Name">Provocative Attire</string>
-  <string name="CategoryCode_POLR_Name">Political Criticism</string>
-  <string name="CategoryCode_HUMR_Name">Human Rights Issues</string>
-  <string name="CategoryCode_ENV_Name">Environment</string>
-  <string name="CategoryCode_MILX_Name">Terrorism and Militants</string>
-  <string name="CategoryCode_HATE_Name">Hate Speech</string>
-  <string name="CategoryCode_NEWS_Name">News Media</string>
-  <string name="CategoryCode_XED_Name">Sex Education</string>
-  <string name="CategoryCode_PUBH_Name">Public Health</string>
-  <string name="CategoryCode_GMB_Name">Gambling</string>
-  <string name="CategoryCode_ANON_Name">Circumvention tools</string>
-  <string name="CategoryCode_DATE_Name">Online Dating</string>
-  <string name="CategoryCode_GRP_Name">Social Networking</string>
-  <string name="CategoryCode_LGBT_Name">LGBTQ+</string>
-  <string name="CategoryCode_FILE_Name">File-sharing</string>
-  <string name="CategoryCode_HACK_Name">Hacking Tools</string>
-  <string name="CategoryCode_COMT_Name">Communication Tools</string>
-  <string name="CategoryCode_MMED_Name">Media sharing</string>
-  <string name="CategoryCode_HOST_Name">Hosting and Blogging</string>
-  <string name="CategoryCode_SRCH_Name">Search Engines</string>
-  <string name="CategoryCode_GAME_Name">Gaming</string>
-  <string name="CategoryCode_CULTR_Name">Culture</string>
-  <string name="CategoryCode_ECON_Name">Economics</string>
-  <string name="CategoryCode_GOVT_Name">Government</string>
-  <string name="CategoryCode_COMM_Name">E-commerce</string>
-  <string name="CategoryCode_CTRL_Name">Control content</string>
-  <string name="CategoryCode_IGO_Name">Intergovernmental Orgs.</string>
-  <string name="CategoryCode_MISC_Name">Miscellaneous content</string>
-  <string name="CategoryCode_ALDR_Description">Use and sale of drugs and alcohol</string>
-  <string name="CategoryCode_REL_Description">Religious issues, both supportive and critical</string>
-  <string name="CategoryCode_PORN_Description">Hard-core and soft-core pornography</string>
-  <string name="CategoryCode_PROV_Description">Provocative attire and portrayal of women wearing minimal clothing</string>
-  <string name="CategoryCode_POLR_Description">Critical political viewpoints</string>
-  <string name="CategoryCode_HUMR_Description">Human rights issues</string>
-  <string name="CategoryCode_ENV_Description">Discussions on environmental issues</string>
-  <string name="CategoryCode_MILX_Description">Terrorism, violent militant or separatist movements</string>
-  <string name="CategoryCode_HATE_Description">Disparaging of particular groups based on race, sex, sexuality or other characteristics</string>
-  <string name="CategoryCode_NEWS_Description">Major news websites, regional news outlets and independent media</string>
-  <string name="CategoryCode_XED_Description">Sexual health issues including contraception, STD\'s, rape prevention and abortion</string>
-  <string name="CategoryCode_PUBH_Description">Public health issues, such as COVID-19, HIV/AIDS, Ebola</string>
-  <string name="CategoryCode_GMB_Description">Online gambling and betting</string>
-  <string name="CategoryCode_ANON_Description">Anonymization, censorship circumvention and encryption</string>
-  <string name="CategoryCode_DATE_Description">Online dating sites</string>
-  <string name="CategoryCode_GRP_Description">Online social networking tools and platforms</string>
-  <string name="CategoryCode_LGBT_Description">LGBTQ+ communities discussing related issues (excluding pornography)</string>
-  <string name="CategoryCode_FILE_Description">File sharing including cloud-based file storage, torrents and P2P</string>
-  <string name="CategoryCode_HACK_Description">Computer security tools and news</string>
-  <string name="CategoryCode_COMT_Description">Individual and group communication tools including VoIP, messaging and webmail</string>
-  <string name="CategoryCode_MMED_Description">Video, audio and photo sharing</string>
-  <string name="CategoryCode_HOST_Description">Web hosting, blogging and other online publishing</string>
-  <string name="CategoryCode_SRCH_Description">Search engines and portals</string>
-  <string name="CategoryCode_GAME_Description">Online games and gaming platforms (excluding gambling sites)</string>
-  <string name="CategoryCode_CULTR_Description">Entertainment including history, literature, music, film, satire and humour</string>
-  <string name="CategoryCode_ECON_Description">General economic development and poverty</string>
-  <string name="CategoryCode_GOVT_Description">Government-run websites, including military</string>
-  <string name="CategoryCode_COMM_Description">Commercial services and products</string>
-  <string name="CategoryCode_CTRL_Description">Benign or innocuous content used for control</string>
-  <string name="CategoryCode_IGO_Description">Intergovernmental organizations including The United Nations</string>
-  <string name="CategoryCode_MISC_Description">Sites that haven\'t been categorized yet</string>
+	<string name="General_AppName">OONI Probe</string>
+	<string name="Onboarding_WhatIsOONIProbe_Title">What is OONI Probe?</string>
+	<string name="Onboarding_WhatIsOONIProbe_Paragraph">Your app for measuring internet censorship. \n\nAre websites and
+		social media apps blocked? Is your internet connection unusually slow?\n\nRun OONI Probe to find out!
+	</string>
+	<string name="Onboarding_WhatIsOONIProbe_GotIt">Got It</string>
+	<string name="Onboarding_ThingsToKnow_Title">Heads-up!</string>
+	<string name="Onboarding_ThingsToKnow_Bullet_1">OONI data is openly published and will include your network
+		information.
+	</string>
+	<string name="Onboarding_ThingsToKnow_Bullet_2">Anyone monitoring your internet activity (e.g. government or ISP)
+		will see that you are running OONI Probe.
+	</string>
+	<string name="Onboarding_ThingsToKnow_Bullet_3">You might test banned websites (but you can choose which sites to
+		test).
+	</string>
+	<string name="Onboarding_ThingsToKnow_Button">I understand</string>
+	<string name="Onboarding_ThingsToKnow_LearnMore">Learn more</string>
+	<string name="Onboarding_PopQuiz_Title">Pop Quiz</string>
+	<string name="Onboarding_PopQuiz_True">True</string>
+	<string name="Onboarding_PopQuiz_False">False</string>
+	<string name="Onboarding_PopQuiz_Wrong_Button_Back">Go back</string>
+	<string name="Onboarding_PopQuiz_Wrong_Button_Continue">Continue</string>
+	<string name="Onboarding_PopQuiz_1_Title">Question 1/2</string>
+	<string name="Onboarding_PopQuiz_1_Question">If someone is monitoring my internet activity, they will see that I am
+		running OONI Probe.
+	</string>
+	<string name="Onboarding_PopQuiz_1_Wrong_Title">Warning</string>
+	<string name="Onboarding_PopQuiz_1_Wrong_Paragraph">OONI Probe is not a privacy tool. Anyone monitoring your
+		internet activity will see which software you are running.
+	</string>
+	<string name="Onboarding_PopQuiz_2_Title">Question 2/2</string>
+	<string name="Onboarding_PopQuiz_2_Question">Every time I run OONI Probe, the network data I collect will
+		automatically get published.
+	</string>
+	<string name="Onboarding_PopQuiz_2_Wrong_Title">Warning</string>
+	<string name="Onboarding_PopQuiz_2_Wrong_Paragraph">To increase transparency of internet censorship, the network
+		data of all OONI Probe users is automatically published (unless they opt-out in the settings).
+	</string>
+	<string name="Onboarding_AutomatedTesting_Title">Automated testing</string>
+	<string name="Onboarding_AutomatedTesting_Paragraph">To measure internet censorship every day, please enable
+		automated testing so that OONI Probe can run tests periodically.\n\nDon\'t worry, we\'ll be mindful of battery
+		usage. \n\nYou can disable automated testing from the settings at any time.
+	</string>
+	<string name="Onboarding_Crash_Title">Crash Reporting</string>
+	<string name="Onboarding_Crash_Paragraph">To improve OONI Probe we would like to collect anonymous crash reports
+		when the app does not work properly.\n\nWould you like to opt-in to submitting crash reports to the OONI
+		development team?
+	</string>
+	<string name="Onboarding_Crash_Button_Yes">Yes</string>
+	<string name="Onboarding_Crash_Button_No">No</string>
+	<string name="Onboarding_DefaultSettings_Title">Default Settings</string>
+	<string name="Onboarding_DefaultSettings_Header">We collect and publish:</string>
+	<string name="Onboarding_DefaultSettings_Bullet_1">Country code (e.g. IT for Italy)</string>
+	<string name="Onboarding_DefaultSettings_Bullet_2">Network information (including Autonomous System Number)</string>
+	<string name="Onboarding_DefaultSettings_Bullet_3">Time &amp; date of testing</string>
+	<string name="Onboarding_DefaultSettings_Paragraph">We do our best not to publish your IP address or any other
+		potentially personally identifiable information.\n\nLearn more through [OONI\'s Data
+		Policy](https://ooni.org/about/data-policy/).
+	</string>
+	<string name="Onboarding_DefaultSettings_Paragraph_1">By tapping \"OK\", you will share crash reports to help us
+		improve OONI Probe.
+	</string>
+	<string name="Onboarding_DefaultSettings_Button_Go">Let\'s go</string>
+	<string name="Onboarding_DefaultSettings_Button_Change">Change defaults</string>
+	<string name="Dashboard_Tab_Label">Dashboard</string>
+	<string name="Dashboard_Card_Run">Run</string>
+	<string name="Dashboard_Overview_LastRun_Never">N/A</string>
+	<string name="Dashboard_Overview_Run">Run</string>
+	<string name="Dashboard_Overview_LatestTest">Last test:</string>
+	<string name="Dashboard_Overview_Estimated">Estimated:</string>
+	<string name="Dashboard_Overview_ChooseWebsites">Choose websites</string>
+	<string name="Dashboard_Running_Running">Running:</string>
+	<string name="Dashboard_Running_EstimatedTimeLeft">Estimated time left:</string>
+	<string name="Dashboard_Running_Seconds">%1$s seconds</string>
+	<string name="Dashboard_Running_PreparingTest">Preparing test</string>
+	<string name="Dashboard_Running_CalculatingETA">Calculating ETA</string>
+	<string name="Dashboard_Running_ShowLog">Show Log</string>
+	<string name="Dashboard_Running_CloseLog">Close Log</string>
+	<string name="Dashboard_Running_Stopping_Title">Stopping test…</string>
+	<string name="Dashboard_Running_Stopping_Notice">Finishing the currently pending tests, please wait…</string>
+	<string name="Dashboard_Running_ProxyInUse">Proxy in use</string>
+	<string name="Dashboard_Card_Subtitle">Tap card for more</string>
+	<string name="Dashboard_Card_Seconds">~%1$ss</string>
+	<string name="Dashboard_Websites_Card_Description">Test the blocking of websites</string>
+	<string name="Dashboard_Websites_Overview_Paragraph">Check whether websites are blocked using OONI\'s [Web
+		Connectivity test](https://ooni.org/nettest/web-connectivity/).\n\nEvery time you tap Run, you test different
+		websites from the Citizen Lab\'s [global](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv)
+		and [country-specific](https://github.com/citizenlab/test-lists/tree/master/lists) test lists.\n\nTo test the
+		sites of your choice, tap the Choose websites button or select categories of sites via the settings of this
+		card. \n\nThis test measures whether websites are blocked by means of DNS tampering, TCP/IP blocking or by a
+		transparent HTTP proxy.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/world/)
+		and [OONI API](https://api.ooni.io/).
+	</string>
+	<string name="Dashboard_Websites_Overview_Paragraph_Desktop">Check whether websites are blocked using OONI\'s [Web
+		Connectivity test](https://ooni.org/nettest/web-connectivity/).\n\nYou will test the websites included in the
+		Citizen Lab\'s [global](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv) and
+		[country-specific](https://github.com/citizenlab/test-lists/tree/master/lists) test lists.\n\nThis test measures
+		whether websites are blocked by means of DNS tampering, TCP/IP blocking or by a transparent HTTP proxy.\n\nYour
+		results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).
+	</string>
+	<string name="Dashboard_Performance_Card_Description">Test your network speed and performance</string>
+	<string name="Dashboard_Performance_Overview_Paragraph">Measure the speed and performance of your network using the
+		[NDT](https://ooni.org/nettest/ndt/) test.\n\nMeasure video streaming performance using the
+		[DASH](https://ooni.org/nettest/dash/) test.\n\nThese tests consume data depending on your network
+		speed.\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/world/) and [OONI
+		API](https://api.ooni.io/).\n\nDisclaimer: These tests rely on third party servers. We therefore cannot
+		guarantee that your IP address will not be collected.
+	</string>
+	<string name="Dashboard_Performance_Overview_Paragraph_Updated">By running the tests in this card, you will:\n\n-
+		Measure the speed and performance of your network ([NDT](https://ooni.org/nettest/ndt/) test)\n- Measure video
+		streaming performance ([DASH](https://ooni.org/nettest/dash/) test)\n- Check for the presence of [middlebox
+		technologies](https://ooni.org/support/glossary/#middlebox) on your network ([HTTP Invalid Request
+		Line](https://ooni.org/nettest/http-invalid-request-line/) and [HTTP Header Field
+		Manipulation](https://ooni.org/nettest/http-header-field-manipulation/) tests)\n\nThese tests consume data
+		depending on your network speed.\n\nYour test results will be published on [OONI
+		Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).\n\n**Disclaimer:** The
+		[NDT](https://ooni.org/nettest/ndt/) and [DASH](https://ooni.org/nettest/dash/) tests are conducted against
+		third-party servers provided by [Measurement Lab (M-Lab)](https://www.measurementlab.net/). If you run these
+		tests, M-Lab will collect and publish your IP address (for research purposes), irrespective of your OONI Probe
+		settings. Learn more about M-Lab’s data governance through its [privacy
+		statement](https://www.measurementlab.net/privacy/).
+	</string>
+	<string name="Dashboard_Middleboxes_Card_Description">Detect middleboxes in your network</string>
+	<string name="Dashboard_Middleboxes_Overview_Paragraph">Internet Service Providers often use network appliances
+		(middleboxes) for various networking purposes (such as caching). Sometimes these middleboxes are used to
+		implement internet censorship and/or surveillance.\n\nFind middleboxes in your network using OONI\'s [HTTP
+		Invalid Request Line](https://ooni.org/nettest/http-invalid-request-line/) and [HTTP Header Field
+		Manipulation](https://ooni.org/nettest/http-header-field-manipulation/) tests.\n\nYour results will be published
+		on [OONI Explorer](https://explorer.ooni.org/world/) and [OONI API](https://api.ooni.io/).
+	</string>
+	<string name="Dashboard_InstantMessaging_Card_Description">Test the blocking of instant messaging apps</string>
+	<string name="Dashboard_InstantMessaging_Overview_Paragraph">Check whether
+		[WhatsApp](https://ooni.org/nettest/whatsapp/), [Facebook
+		Messenger](https://ooni.org/nettest/facebook-messenger/), [Telegram](https://ooni.org/nettest/telegram/), and
+		[Signal](https://ooni.org/nettest/signal) are blocked.\n\nYour results will be published on [OONI
+		Explorer](https://explorer.ooni.org/world/) and [OONI API](https://api.ooni.io/).
+	</string>
+	<string name="Dashboard_Circumvention_Card_Description">Test the blocking of censorship circumvention tools</string>
+	<string name="Dashboard_Circumvention_Overview_Paragraph">Check whether
+		[Psiphon](https://ooni.org/nettest/psiphon/), [Tor](https://ooni.org/nettest/tor/) or
+		[RiseupVPN](https://ooni.org/nettest/riseupvpn/) are blocked.\n\nYour results will be published on [OONI
+		Explorer](https://explorer.ooni.org/) and [OONI API](https://api.ooni.io/).
+	</string>
+	<string name="Dashboard_Experimental_Card_Description">Run new experimental tests</string>
+	<string name="Dashboard_Experimental_Overview_Paragraph">Run the following new experimental tests developed by the
+		OONI team:\n%1$s\n\nYour results will be published on [OONI Explorer](https://explorer.ooni.org/) and [OONI
+		API](https://api.ooni.io/).
+	</string>
+	<string name="Dashboard_Experimental_Overview_Paragraph_AutomatedTesting">The following tests will only be run as
+		part of automated testing:
+	</string>
+	<string name="Dashboard_DisabledTests_Label">Disabled Tests</string>
+	<string name="TestResults_Gbps">Gbit/s</string>
+	<string name="TestResults_Mbps">Mbit/s</string>
+	<string name="TestResults_Kbps">kbit/s</string>
+	<string name="TestResults_ms">ms</string>
+	<string name="TestResults_NotAvailable">N/A</string>
+	<string name="TestResults_UnknownASN">Unknown</string>
+	<string name="TestResults_Overview_Title">Test Results</string>
+	<string name="TestResults_Overview_Tab_Label">Test Results</string>
+	<string name="TestResults_Overview_Hero_Tests">Tests</string>
+	<string name="TestResults_Overview_Hero_Networks">Networks</string>
+	<string name="TestResults_Overview_Hero_DataUsage">Data Usage</string>
+	<string name="TestResults_Overview_FilterTests">Filter Tests</string>
+	<string name="TestResults_Overview_FilterTests_AllTests">All Tests</string>
+	<string name="TestResults_Overview_FilterTests_Websites">Websites</string>
+	<string name="TestResults_Overview_FilterTests_MiddleBoxes">Middleboxes</string>
+	<string name="TestResults_Overview_FilterTests_Performance">Performance</string>
+	<string name="TestResults_Overview_FilterTests_InstantMessaging">Instant Messaging</string>
+	<string name="TestResults_Overview_FilterTests_Circumvention">Circumvention</string>
+	<string name="TestResults_Overview_FilterTests_Experimental">Experimental</string>
+	<string name="TestResults_Overview_NoTestsHaveBeenRun">No tests have been run yet. Try running one!</string>
+	<string name="TestResults_Overview_Websites_Blocked_Singular">%1$s blocked</string>
+	<string name="TestResults_Overview_Websites_Blocked_Plural">%1$s blocked</string>
+	<string name="TestResults_Overview_Websites_Tested_Singular">%1$s tested</string>
+	<string name="TestResults_Overview_Websites_Tested_Plural">%1$s tested</string>
+	<string name="TestResults_Overview_MiddleBoxes_Found">Detected</string>
+	<string name="TestResults_Overview_MiddleBoxes_NotFound">Not detected</string>
+	<string name="TestResults_Overview_MiddleBoxes_Failed">Failed</string>
+	<string name="TestResults_Overview_InstantMessaging_Blocked_Singular">%1$s blocked</string>
+	<string name="TestResults_Overview_InstantMessaging_Blocked_Plural">%1$s blocked</string>
+	<string name="TestResults_Overview_InstantMessaging_Available_Singular">%1$s accessible</string>
+	<string name="TestResults_Overview_InstantMessaging_Available_Plural">%1$s accessible</string>
+	<string name="TestResults_Overview_Circumvention_Blocked_Singular">%1$s blocked</string>
+	<string name="TestResults_Overview_Circumvention_Blocked_Plural">%1$s blocked</string>
+	<string name="TestResults_Overview_Circumvention_Available_Singular">%1$s available</string>
+	<string name="TestResults_Overview_Circumvention_Available_Plural">%1$s available</string>
+	<string name="TestResults_Overview_IncompleteResult">Incomplete Result</string>
+	<string name="TestResults_Overview_Error">Error</string>
+	<string name="TestResults_Summary_ErrorInMeasurement">Error in Measurement</string>
+	<string name="TestResults_Summary_NoUploaded">Results not uploaded</string>
+	<string name="TestResults_Summary_Hero_DateAndTime">Date &amp; Time</string>
+	<string name="TestResults_Summary_Hero_Network">Network</string>
+	<string name="TestResults_Summary_Hero_Country">Country</string>
+	<string name="TestResults_Summary_Hero_DataUsage">Data Usage</string>
+	<string name="TestResults_Summary_Hero_Runtime">Total Runtime</string>
+	<string name="TestResults_Summary_Hero_WiFi">WiFi</string>
+	<string name="TestResults_Summary_Hero_Mobile">Mobile Data</string>
+	<string name="TestResults_Summary_Hero_NoInternet">No internet</string>
+	<string name="TestResults_Summary_Failed">Failed</string>
+	<string name="TestResults_Summary_Websites_Hero_Tested_Singular">Tested</string>
+	<string name="TestResults_Summary_Websites_Hero_Tested_Plural">Tested</string>
+	<string name="TestResults_Summary_Websites_Hero_Blocked_Singular">Blocked</string>
+	<string name="TestResults_Summary_Websites_Hero_Blocked_Plural">Blocked</string>
+	<string name="TestResults_Summary_Websites_Hero_Sites_Singular">Website</string>
+	<string name="TestResults_Summary_Websites_Hero_Sites_Plural">Websites</string>
+	<string name="TestResults_Summary_Websites_Hero_Reachable_Singular">Accessible</string>
+	<string name="TestResults_Summary_Websites_Hero_Reachable_Plural">Accessible</string>
+	<string name="TestResults_Summary_Performance_Hero_Video">Video</string>
+	<string name="TestResults_Summary_Performance_Hero_Video_Quality">Quality</string>
+	<string name="TestResults_Summary_Performance_Hero_Upload">Upload</string>
+	<string name="TestResults_Summary_Performance_Hero_Download">Download</string>
+	<string name="TestResults_Summary_Performance_Hero_Ping">Ping</string>
+	<string name="TestResults_Summary_Middleboxes_Hero_Found">Detected</string>
+	<string name="TestResults_Summary_Middleboxes_Hero_NotFound">Not detected</string>
+	<string name="TestResults_Summary_Middleboxes_Hero_Failed">Failed</string>
+	<string name="TestResults_Summary_InstantMessaging_Hero_Tested_Singular">Tested</string>
+	<string name="TestResults_Summary_InstantMessaging_Hero_Tested_Plural">Tested</string>
+	<string name="TestResults_Summary_InstantMessaging_Hero_Blocked_Singular">Blocked</string>
+	<string name="TestResults_Summary_InstantMessaging_Hero_Blocked_Plural">Blocked</string>
+	<string name="TestResults_Summary_InstantMessaging_Hero_Reachable_Singular">Accessible</string>
+	<string name="TestResults_Summary_InstantMessaging_Hero_Reachable_Plural">Accessible</string>
+	<string name="TestResults_Summary_InstantMessaging_Hero_Apps_Singular">App</string>
+	<string name="TestResults_Summary_InstantMessaging_Hero_Apps_Plural">Apps</string>
+	<string name="TestResults_Summary_Circumvention_Hero_Tested_Singular">Tested</string>
+	<string name="TestResults_Summary_Circumvention_Hero_Tested_Plural">Tested</string>
+	<string name="TestResults_Summary_Circumvention_Hero_Blocked_Singular">Blocked</string>
+	<string name="TestResults_Summary_Circumvention_Hero_Blocked_Plural">Blocked</string>
+	<string name="TestResults_Summary_Circumvention_Hero_Reachable_Singular">Working</string>
+	<string name="TestResults_Summary_Circumvention_Hero_Reachable_Plural">Working</string>
+	<string name="TestResults_Summary_Circumvention_Hero_Tools_Singular">Tool</string>
+	<string name="TestResults_Summary_Circumvention_Hero_Tools_Plural">Tools</string>
+	<string name="TestResults_Details_Hero_Runtime">Runtime</string>
+	<string name="TestResults_Details_Methodology">Methodology</string>
+	<string name="TestResults_Details_ViewLog">View log</string>
+	<string name="TestResults_Details_RawData">Data</string>
+	<string name="TestResults_Details_CopyExplorerURL">Copy Explorer URL</string>
+	<string name="TestResults_Details_ShareExplorerURL">Share Explorer URL</string>
+	<string name="TestResults_Details_CopyToClipboard">Copy to clipboard</string>
+	<string name="TestResults_Details_ShowInExplorer">Show in OONI Explorer</string>
+	<string name="TestResults_Details_Failed_Title">Failed</string>
+	<string name="TestResults_Details_Failed_Paragraph">You can try to run this test again</string>
+	<string name="TestResults_Details_Failed_TryAgain">Try Again</string>
+	<string name="TestResults_Details_Methodology_Paragraph">Learn how this test works [here](%1$s).</string>
+	<string name="TestResults_Details_Websites_Reachable_Hero_Title">Accessible</string>
+	<string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s is accessible.</string>
+	<string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">Likely blocked</string>
+	<string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">%1$s is likely blocked by means of
+		%2$s.\n\nNote: False positives can occur. Learn more
+		[here](https://ooni.org/support/faq/#what-are-false-positives).
+	</string>
+	<string name="TestResults_Details_Websites_LikelyBlocked_Content_LearnToCircumvent">Censorship Circumvention
+	</string>
+	<string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_DNS">**DNS tampering**</string>
+	<string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_TCPIP">**TCP/IP based blocking**</string>
+	<string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_HTTPDiff">**HTTP blocking (a blockpage might
+		be served)**
+	</string>
+	<string name="TestResults_Details_Websites_LikelyBlocked_BlockingReason_HTTPFailure">**HTTP blocking (HTTP requests
+		failed)**
+	</string>
+	<string name="TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Title">Mobile App</string>
+	<string name="TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Okay">OK</string>
+	<string name="TestResults_Details_InstantMessaging_WhatsApp_Application_Label_Failed">Failed</string>
+	<string name="TestResults_Details_InstantMessaging_WhatsApp_WebApp_Label_Title">WhatsApp Web</string>
+	<string name="TestResults_Details_InstantMessaging_WhatsApp_WebApp_Label_Okay">OK</string>
+	<string name="TestResults_Details_InstantMessaging_WhatsApp_WebApp_Label_Failed">Failed</string>
+	<string name="TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Title">Registration</string>
+	<string name="TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Okay">OK</string>
+	<string name="TestResults_Details_InstantMessaging_WhatsApp_Registrations_Label_Failed">Failed</string>
+	<string name="TestResults_Details_InstantMessaging_WhatsApp_Reachable_Hero_Title">Working</string>
+	<string name="TestResults_Details_InstantMessaging_WhatsApp_Reachable_Content_Paragraph">This test successfully
+		connected to WhatsApp\'s endpoints, registration service and web interface (web.whatsapp.com).
+	</string>
+	<string name="TestResults_Details_InstantMessaging_WhatsApp_LikelyBlocked_Hero_Title">Likely blocked</string>
+	<string name="TestResults_Details_InstantMessaging_WhatsApp_LikelyBlocked_Content_Paragraph">WhatsApp appears to be
+		blocked.
+	</string>
+	<string name="TestResults_Details_InstantMessaging_Telegram_Application_Label_Title">Mobile App</string>
+	<string name="TestResults_Details_InstantMessaging_Telegram_Application_Label_Okay">OK</string>
+	<string name="TestResults_Details_InstantMessaging_Telegram_Application_Label_Failed">Failed</string>
+	<string name="TestResults_Details_InstantMessaging_Telegram_WebApp_Label_Title">Telegram Web</string>
+	<string name="TestResults_Details_InstantMessaging_Telegram_WebApp_Label_Okay">OK</string>
+	<string name="TestResults_Details_InstantMessaging_Telegram_WebApp_Label_Failed">Failed</string>
+	<string name="TestResults_Details_InstantMessaging_Telegram_Reachable_Hero_Title">Working</string>
+	<string name="TestResults_Details_InstantMessaging_Telegram_Reachable_Content_Paragraph">This test successfully
+		connected to Telegram\'s endpoints and web interface (web.telegram.org).
+	</string>
+	<string name="TestResults_Details_InstantMessaging_Telegram_LikelyBlocked_Hero_Title">Likely blocked</string>
+	<string name="TestResults_Details_InstantMessaging_Telegram_LikelyBlocked_Content_Paragraph">Telegram appears to be
+		blocked.
+	</string>
+	<string name="TestResults_Details_InstantMessaging_FacebookMessenger_TCP_Label_Title">TCP connections</string>
+	<string name="TestResults_Details_InstantMessaging_FacebookMessenger_TCP_Label_Okay">OK</string>
+	<string name="TestResults_Details_InstantMessaging_FacebookMessenger_TCP_Label_Failed">Failed</string>
+	<string name="TestResults_Details_InstantMessaging_FacebookMessenger_DNS_Label_Title">DNS lookups</string>
+	<string name="TestResults_Details_InstantMessaging_FacebookMessenger_DNS_Label_Okay">OK</string>
+	<string name="TestResults_Details_InstantMessaging_FacebookMessenger_DNS_Label_Failed">Failed</string>
+	<string name="TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Hero_Title">Working</string>
+	<string name="TestResults_Details_InstantMessaging_FacebookMessenger_Reachable_Content_Paragraph">This test
+		successfully connected to Facebook\'s endpoints and resolved to Facebook IP addresses.
+	</string>
+	<string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Hero_Title">Likely blocked
+	</string>
+	<string name="TestResults_Details_InstantMessaging_FacebookMessenger_LikelyBlocked_Content_Paragraph">Facebook
+		Messenger appears to be blocked.
+	</string>
+	<string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Hero_Title">Likely blocked</string>
+	<string name="TestResults_Details_InstantMessaging_Signal_LikelyBlocked_Content_Paragraph">Signal appears to be
+		blocked.
+	</string>
+	<string name="TestResults_Details_InstantMessaging_Signal_Reachable_Hero_Title">Working</string>
+	<string name="TestResults_Details_InstantMessaging_Signal_Reachable_Content_Paragraph">This test successfully
+		connected to Signal\'s endpoints.
+	</string>
+	<string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title">No middleboxes detected
+	</string>
+	<string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Content_Paragraph">No network anomaly
+		was detected when communicating with our servers.
+	</string>
+	<string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title">Network tampering</string>
+	<string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Content_Paragraph">Network traffic was
+		manipulated when contacting our control servers.\n\nThis means that there may be a middlebox in your network,
+		which could be responsible for censorship and/or surveillance.
+	</string>
+	<string name="TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_NotFound_Hero_Title">No middleboxes
+		detected
+	</string>
+	<string name="TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_NotFound_Content_Paragraph">No network
+		anomaly was detected when communicating with our servers.
+	</string>
+	<string name="TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_Found_Hero_Title">Network tampering
+	</string>
+	<string name="TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_Found_Content_Paragraph">Network traffic
+		was manipulated when contacting our control servers.\n\nThis means that there may be a middlebox in your
+		network, which could be responsible for censorship and/or surveillance.
+	</string>
+	<string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_YouSent">You Sent</string>
+	<string name="TestResults_Details_Middleboxes_HTTPInvalidRequestLine_YouReceived">You Received</string>
+	<string name="TestResults_Details_Performance_NDT_Upload">Upload</string>
+	<string name="TestResults_Details_Performance_NDT_Download">Download</string>
+	<string name="TestResults_Details_Performance_NDT_Ping">Ping</string>
+	<string name="TestResults_Details_Performance_NDT_Server">Server</string>
+	<string name="TestResults_Details_Performance_NDT_PacketLoss">Retransmission Rate</string>
+	<string name="TestResults_Details_Performance_NDT_OutOfOrder">Out of Order</string>
+	<string name="TestResults_Details_Performance_NDT_AveragePing">Average Ping</string>
+	<string name="TestResults_Details_Performance_NDT_MaxPing">Max Ping Estimate</string>
+	<string name="TestResults_Details_Performance_NDT_MSS">MSS</string>
+	<string name="TestResults_Details_Performance_NDT_Timeouts">Timeouts</string>
+	<string name="TestResults_Details_Performance_Dash_VideoWithoutBuffering">You can stream up to %1$s without
+		buffering.
+	</string>
+	<string name="TestResults_Details_Performance_Dash_MedianBitrate">Median Bitrate</string>
+	<string name="TestResults_Details_Performance_Dash_PlayoutDelay">Playout Delay</string>
+	<string name="TestResults_Details_Circumvention_Psiphon_Blocked_Hero_Title">Likely blocked</string>
+	<string name="TestResults_Details_Circumvention_Psiphon_Reachable_Hero_Title">Working</string>
+	<string name="TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph">[Psiphon](https://psiphon.ca/)
+		appears to be blocked.
+	</string>
+	<string name="TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph">We were able to successfully
+		bootstrap a Psiphon connection. This means that [Psiphon](https://psiphon.ca/) should work.
+	</string>
+	<string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Label_Title">Bootstrap Time</string>
+	<string name="TestResults_Details_Circumvention_Psiphon_BootstrapTime_Unit">%1$s s</string>
+	<string name="TestResults_Details_Circumvention_Tor_Blocked_Hero_Title">Likely blocked</string>
+	<string name="TestResults_Details_Circumvention_Tor_Reachable_Hero_Title">Working</string>
+	<string name="TestResults_Details_Circumvention_Tor_Blocked_Content_Paragraph">[Tor](https://www.torproject.org/)
+		appears to be blocked.
+	</string>
+	<string name="TestResults_Details_Circumvention_Tor_Reachable_Content_Paragraph">We were able to successfully
+		connect to the default Tor bridges and/or Tor directory authorities. This means that
+		[Tor](https://www.torproject.org/) should work.
+	</string>
+	<string name="TestResults_Details_Circumvention_Tor_BrowserBridges_Label_Title">Default Bridges</string>
+	<string name="TestResults_Details_Circumvention_Tor_BrowserBridges_Label_OK">%1$s/%2$s OK</string>
+	<string name="TestResults_Details_Circumvention_Tor_DirectoryAuthorities_Label_Title">Directory Authorities</string>
+	<string name="TestResults_Details_Circumvention_Tor_DirectoryAuthorities_Label_OK">%1$s/%2$s OK</string>
+	<string name="TestResults_Details_Circumvention_Tor_Table_Header_Name">Name</string>
+	<string name="TestResults_Details_Circumvention_Tor_Table_Header_Address">Address</string>
+	<string name="TestResults_Details_Circumvention_Tor_Table_Header_Type">Type</string>
+	<string name="TestResults_Details_Circumvention_Tor_Table_Header_Connect">Connect</string>
+	<string name="TestResults_Details_Circumvention_Tor_Table_Header_Handshake">Handshake</string>
+	<string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Hero_Title">Likely blocked</string>
+	<string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Hero_Title">Working</string>
+	<string name="TestResults_Details_Circumvention_RiseupVPN_Blocked_Content_Paragraph">
+		[RiseupVPN](https://riseup.net/vpn) appears to be blocked.
+	</string>
+	<string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Content_Paragraph">We were able to successfully
+		connect to RiseupVPN\'s bootstrap server and VPN gateways. This means that [RiseupVPN](https://riseup.net/vpn)
+		should work.
+	</string>
+	<string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Api">Bootstrap server</string>
+	<string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Openvpn">OpenVPN connections</string>
+	<string name="TestResults_Details_Circumvention_RiseupVPN_Table_Header_Bridge">Bridged connections</string>
+	<string name="TestResults_Overview_Circumvention_RiseupVPN_Api_Blocked">Blocked</string>
+	<string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Singular">%1$s blocked</string>
+	<string name="TestResults_Overview_Circumvention_RiseupVPN_Blocked_Plural">%1$s blocked</string>
+	<string name="TestResults_Details_Circumvention_RiseupVPN_Reachable_Okay">OK</string>
+	<string name="TestResults_Details_Experimental_Hero_Title">This is an experimental test.</string>
+	<string name="Feed_Tab_Label">Feed</string>
+	<string name="Feed_Title">Feed</string>
+	<string name="Modal_OK">OK</string>
+	<string name="Modal_Cancel">Cancel</string>
+	<string name="Modal_DontAskAgain">No, don\'t ask again</string>
+	<string name="Modal_Delete">Delete</string>
+	<string name="Modal_Error">Error</string>
+	<string name="Modal_Retry">Retry</string>
+	<string name="Modal_SoundsGreat">Sounds great</string>
+	<string name="Modal_NoThanks">No, thanks</string>
+	<string name="Modal_NotNow">Not now</string>
+	<string name="Modal_RunAnyway">Run anyways</string>
+	<string name="Modal_DisableVPN">Disable VPN</string>
+	<string name="Modal_AlwaysRun">Always Run</string>
+	<string name="Modal_Error_NoInternet">Unable to run the test. Please check your internet connectivity.</string>
+	<string name="Modal_Error_CantDownloadURLs">Unable to download URL list. Please try again.</string>
+	<string name="Modal_Error_TestAlreadyRunning">Please wait for the current running tests to finish, before starting a
+		new test.
+	</string>
+	<string name="Modal_Error_NotificationNotEnabled">Notification permissions are required. Please enable them in the
+		Settings of your phone and then enable them in your OONI Probe app.
+	</string>
+	<string name="Modal_Error_NotificationNotEnabled_GoToSettings">Go to the Settings</string>
+	<string name="Modal_Error_CantCloseScreen">This screen is locked while a test is running.</string>
+	<string name="Modal_Error_RawDataNoInternet">You need to be connected to the internet to download the raw
+		measurement data.
+	</string>
+	<string name="Modal_ResultsNotUploaded_Title">Results not uploaded</string>
+	<string name="Modal_ResultsNotUploaded_Paragraph">Some of your test results have not been uploaded to OONI servers.
+		If you\'d like to contribute to OONI\'s dataset, please upload them.
+	</string>
+	<string name="Modal_ResultsNotUploaded_Button_Upload">Upload</string>
+	<string name="Modal_ResultsNotUploaded_Uploading">Uploading %1$s ...</string>
+	<string name="Modal_Autorun_BatteryOptimization">OONI Probe cannot run automatically without battery optimization.
+		Do you want to try again?
+	</string>
+	<string name="Modal_DisableVPN_Title">Please disable your VPN connection.</string>
+	<string name="Modal_DisableVPN_Message">If you run OONI Probe with a VPN enabled, the test results may appear to
+		come from the wrong country. Please disable your VPN connection.
+	</string>
+	<string name="Modal_UploadVPNResults_Title">Some measurements were taken over VPN.</string>
+	<string name="Modal_UploadVPNResults_Message">If you upload measurements taken when VPN enabled, the test results
+		may appear to come from the wrong country.
+	</string>
+	<string name="Toast_ResultsUploaded">Upload successful</string>
+	<string name="Modal_DisplayFailureLog">Display failure log</string>
+	<string name="Modal_EnableNotifications_Title">Get updates on internet censorship</string>
+	<string name="Modal_EnableNotifications_Paragraph">Interested in running OONI Probe tests during emergent censorship
+		events? Enable notifications to receive a message when we hear of internet censorship near you.
+	</string>
+	<string name="Modal_EnableGPS">To improve the accuracy of tests, we need GPS permissions. OONI will only collect an
+		approximation of your GPS position.
+	</string>
+	<string name="Modal_DoYouWantToDeleteAllTests">Do you want to delete all test results?</string>
+	<string name="Modal_DoYouWantToDeleteThisTest">Do you want to delete this test?</string>
+	<string name="Modal_EnableAtLeastOneTest">Please enable at least one test</string>
+	<string name="Modal_OnlyDigits">Please insert only digits in this field.</string>
+	<string name="Modal_ReRun_Title">Re-run test</string>
+	<string name="Modal_ReRun_Paragraph">This test has failed. Re-run the test?</string>
+	<string name="Modal_ReRun_Websites_Title">You are about to re-test %1$s websites.</string>
+	<string name="Modal_ReRun_Websites_Run">Run</string>
+	<string name="Modal_CustomURL_NotSaved">Your URLs will not be saved when you leave this screen. Are you sure you
+		want to leave this screen?
+	</string>
+	<string name="Modal_ManualUpload_Title">Enable Manual Upload?</string>
+	<string name="Modal_ManualUpload_Paragraph">This setting allows you to manually re-upload unpublished
+		measurements.
+	</string>
+	<string name="Modal_ManualUpload_Enable">Enable</string>
+	<string name="Modal_ManualUpload_Disable">No, thanks</string>
+	<string name="Modal_UploadFailed_Title">Upload failed</string>
+	<string name="Modal_UploadFailed_Paragraph">We have failed to upload %1$s/%2$s measurements. The failure log has
+		been shared with OONI developers.
+	</string>
+	<string name="Modal_Error_LogNotFound">Log file not found</string>
+	<string name="Modal_Error_NoValidUrls">No valid URLs found</string>
+	<string name="Modal_Error_JsonEmpty">JSON empty</string>
+	<string name="Modal_InterruptTest_Title">Do you want to interrupt this test?</string>
+	<string name="Modal_InterruptTest_Paragraph">This will interrupt the current test from this moment.</string>
+	<string name="Modal_Autorun_Modal_Title">Would you like to run tests automatically?</string>
+	<string name="Modal_Autorun_Modal_Text">By enabling automated testing, you will contribute OONI measurements on a
+		regular basis.
+	</string>
+	<string name="Modal_Autorun_Modal_Text_Android">Please allow the app to run in the background.</string>
+	<string name="Modal_Autorun_Modal_Button_RemindLater">Remind me later</string>
+	<string name="Toast_CopiedToClipboard">Copied to clipboard</string>
+	<string name="Snackbar_ResultsNotUploaded_Text">Not uploaded</string>
+	<string name="Snackbar_ResultsNotUploaded_Upload">Upload</string>
+	<string name="Snackbar_ResultsSomeNotUploaded_Text">Some not uploaded</string>
+	<string name="Snackbar_ResultsSomeNotUploaded_UploadAll">Upload All</string>
+	<string name="Test_Websites_Fullname">Websites</string>
+	<string name="Test_InstantMessaging_Fullname">Instant Messaging</string>
+	<string name="Test_Middleboxes_Fullname">Middleboxes</string>
+	<string name="Test_Performance_Fullname">Performance</string>
+	<string name="Test_Circumvention_Fullname">Circumvention</string>
+	<string name="Test_Experimental_Fullname">Experimental</string>
+	<string name="Test_HTTPInvalidRequestLine_Fullname">HTTP Invalid Request Line Test</string>
+	<string name="Test_HTTPHeaderFieldManipulation_Fullname">HTTP Header Field Manipulation Test</string>
+	<string name="Test_WebConnectivity_Fullname">Web Connectivity Test</string>
+	<string name="Test_NDT_Fullname">NDT Speed Test</string>
+	<string name="Test_Dash_Fullname">DASH Streaming Test</string>
+	<string name="Test_WhatsApp_Fullname">WhatsApp Test</string>
+	<string name="Test_Telegram_Fullname">Telegram Test</string>
+	<string name="Test_FacebookMessenger_Fullname">Facebook Messenger Test</string>
+	<string name="Test_Psiphon_Fullname">Psiphon Test</string>
+	<string name="Test_Tor_Fullname">Tor Test</string>
+	<string name="Test_RiseupVPN_Fullname">RiseupVPN Test</string>
+	<string name="Test_Signal_Fullname">Signal Test</string>
+	<string name="Settings_Title">Settings</string>
+	<string name="Settings_Error_TestDurationTooLow">The amount of time you have set for the test duration is too low.
+	</string>
+	<string name="Settings_About_Label">About OONI</string>
+	<string name="Settings_About_Content_Paragraph">The Open Observatory of Network Interference (OONI) is a free
+		software project under The Tor Project that aims to increase transparency of internet censorship around the
+		world.\n\nSince 2012, OONI\'s global community has been measuring networks in more than 200 countries. Some of
+		these measurements serve as evidence of internet censorship.
+	</string>
+	<string name="Settings_About_Content_LearnMore">Learn more</string>
+	<string name="Settings_About_Content_Blog">Blog</string>
+	<string name="Settings_About_Content_Reports">Reports</string>
+	<string name="Settings_About_Content_DataPolicy">OONI Data Policy</string>
+	<string name="Settings_Notifications_Label">Notifications</string>
+	<string name="Settings_Notifications_Enabled">Enabled</string>
+	<string name="Settings_Notifications_OnTestCompletion">Notify upon test completion</string>
+	<string name="Settings_Notifications_OnNews">News Feed</string>
+	<string name="Settings_AutomatedTesting_Label">Automated testing</string>
+	<string name="Settings_AutomatedTesting_RunAutomatically">Run tests automatically</string>
+	<string name="Settings_AutomatedTesting_RunAutomatically_Number">Number of automated tests: %1$s.</string>
+	<string name="Settings_AutomatedTesting_RunAutomatically_DateLast">Last automated test: %1$s.</string>
+	<string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Only on WiFi</string>
+	<string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Only while charging</string>
+	<string name="Settings_AutomatedTesting_RunAutomatically_Footer">By enabling automatic testing, OONI Probe tests
+		will run automatically multiple times per day. Your test results will automatically get published on OONI
+		Explorer: https://explorer.ooni.org/ \n\nImportant: If you have a VPN enabled, OONI Probe will not run tests
+		automatically. Please turn off your VPN for automated OONI Probe testing. Learn more:
+		https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn
+	</string>
+	<string name="Settings_Sharing_Label">Sharing</string>
+	<string name="Settings_Sharing_UploadResults">Automatically Publish Results</string>
+	<string name="Settings_Sharing_UploadResultsManually">Manual Result Upload</string>
+	<string name="Settings_Sharing_IncludeNetwork">Include Network Info</string>
+	<string name="Settings_Sharing_GPS">Include approximate geo-location</string>
+	<string name="Settings_Sharing_IncludeIP">Include my IP address</string>
+	<string name="Settings_Sharing_IncludeCountryCode">Include Country Code</string>
+	<string name="Settings_Sharing_IncludeCountryCode_PopUp">This information (e.g. IT for Italy) is required to
+		identify which country the measurements are collected from. Are you sure you want to disable this option?
+	</string>
+	<string name="Settings_Sharing_Footer">By publishing results, you are increasing transparency of network
+		interference and supporting the OONI community. \n\nNetwork information (i.e. Autonomous System Number) is
+		required for identifying Internet Service Providers.
+	</string>
+	<string name="Settings_TestOptions_Label">Test options</string>
+	<string name="Settings_TestOptions_Footer">What you configure through the above test settings (e.g. disabling the
+		WhatsApp test) will apply to tests run manually, as well as to tests run automatically (when automated testing
+		is enabled).
+	</string>
+	<string name="Settings_TestOptions_LongRunningTest">Long running test</string>
+	<string name="Settings_TestOptions_RunLongRunningTests">Run long running tests in foreground?</string>
+	<string name="Settings_Privacy_Label">Privacy</string>
+	<string name="Settings_Privacy_SendCrashReports">Send crash reports</string>
+	<string name="Settings_Advanced_Label">Advanced</string>
+	<string name="Settings_DarkMode_Label">Dark Mode</string>
+	<string name="Settings_Advanced_DebugLogs">Debug logs</string>
+	<string name="Settings_Advanced_RecentLogs">See recent logs</string>
+	<string name="Settings_Advanced_LanguageSettings_Title">Language Setting</string>
+	<string name="Settings_Advanced_LanguageSettings_PopUp">Select Language</string>
+	<string name="Settings_Advanced_UseDomainFronting">Always use domain fronting</string>
+	<string name="Settings_Proxy_Label">OONI backend proxy</string>
+	<string name="Settings_Proxy_Enabled">Proxy</string>
+	<string name="Settings_Proxy_None">None</string>
+	<string name="Settings_Proxy_Psiphon">Psiphon</string>
+	<string name="Settings_Proxy_Custom">Custom Proxy</string>
+	<string name="Settings_Proxy_Custom_Value">Custom Proxy URL</string>
+	<string name="Settings_Proxy_Custom_Protocol">Custom proxy protocol</string>
+	<string name="Settings_Proxy_Custom_Connection">Connection</string>
+	<string name="Settings_Proxy_Custom_Hostname">Hostname</string>
+	<string name="Settings_Proxy_Custom_Port">Port</string>
+	<string name="Settings_Proxy_Custom_Credentials">Credentials (optional)</string>
+	<string name="Settings_Proxy_Custom_Username">Username</string>
+	<string name="Settings_Proxy_Custom_Password">Password</string>
+	<string name="Settings_Proxy_Psiphon_Over_Custom">Use Psiphon over custom proxy</string>
+	<string name="Settings_Proxy_Footer">Are you unable to use OONI Probe? Try enabling [Psiphon](https://psiphon.ca/)
+		to circumvent potential OONI Probe blocking. Alternatively, you can use a custom proxy.
+	</string>
+	<string name="Settings_Websites_MaxRuntimeEnabled">Limit test duration</string>
+	<string name="Settings_Websites_MaxRuntime">Test duration</string>
+	<string name="Settings_Websites_Categories_Label">Website categories to test</string>
+	<string name="Settings_Websites_Categories_Description">%1$s categories enabled</string>
+	<string name="Settings_Websites_Categories_Edit">Edit</string>
+	<string name="Settings_Websites_Categories_Selection_None">Deselect All</string>
+	<string name="Settings_Websites_Categories_Selection_All">Select All</string>
+	<string name="Settings_Websites_Categories_Selection_Done">Save</string>
+	<string name="Settings_Websites_Categories_Confirmation_Title">Unsaved Changes</string>
+	<string name="Settings_Websites_Categories_Confirmation_Body">You made some changes to the enabled categories. Would
+		you like to save them?
+	</string>
+	<string name="Settings_Websites_Categories_Confirmation_Label_Confirm">Save</string>
+	<string name="Settings_Websites_Categories_Confirmation_Label_Cancel">Discard</string>
+	<string name="Settings_Websites_CustomURL_Title">Choose websites to test</string>
+	<string name="Settings_Websites_CustomURL_URL">URL</string>
+	<string name="Settings_Websites_CustomURL_NoURLEntered">No URLs entered</string>
+	<string name="Settings_Websites_CustomURL_Run">Run</string>
+	<string name="Settings_Websites_CustomURL_Add">Add website</string>
+	<string name="Settings_Websites_CustomURL_LoadFromTemplate">Load from template</string>
+	<string name="Settings_Websites_TestCount">Number of tested websites (0 means all)</string>
+	<string name="Settings_InstantMessaging_TestWhatsApp">Test WhatsApp</string>
+	<string name="Settings_InstantMessaging_TestTelegram">Test Telegram</string>
+	<string name="Settings_InstantMessaging_TestFacebookMessenger">Test Facebook Messenger</string>
+	<string name="Settings_InstantMessaging_TestSignal">Test Signal</string>
+	<string name="Settings_Middleboxes_TestHTTPInvalidRequestLine">Run the HTTP Invalid Request Line Test</string>
+	<string name="Settings_Middleboxes_TestHTTPHeaderFieldManipulation">Run the HTTP Header Field Manipulation Test
+	</string>
+	<string name="Settings_Performance_TestNDT">Run the NDT Speed Test</string>
+	<string name="Settings_Performance_NDTAutomaticServerSelection">Automatic NDT server selection</string>
+	<string name="Settings_Performance_NDTServerAddress">NDT server address</string>
+	<string name="Settings_Performance_NDTServerPort">NDT server port</string>
+	<string name="Settings_Performance_TestDash">Run the DASH Streaming Test</string>
+	<string name="Settings_Performance_DashAutomaticServerSelection">Automatic DASH server selection</string>
+	<string name="Settings_Performance_DashServerAddress">DASH server</string>
+	<string name="Settings_Performance_DashServerPort">DASH server port</string>
+	<string name="Settings_Circumvention_TestPsiphon">Test Psiphon</string>
+	<string name="Settings_Circumvention_TestTor">Test Tor</string>
+	<string name="Settings_Circumvention_TestRiseupVPN">Test RiseupVPN</string>
+	<string name="Settings_WarmVPNInUse_Label">Warn when VPN is in use</string>
+	<string name="Settings_SendEmail_Label">Send email to support</string>
+	<string name="Settings_SendEmail_Message">Please describe the problem you are experiencing:</string>
+	<string name="Settings_SendEmail_Error">Please send an email to bugs@openobservatory.org with information on the app
+		and iOS version. Tap \"Copy to clipboard\" below to copy our email address.
+	</string>
+	<string name="Settings_Language_Current">Current app language is %1$s</string>
+	<string name="Settings_Language_Label">Language</string>
+	<string name="Settings_Storage_Label">Storage usage</string>
+	<string name="Settings_Storage_Usage_Label">Storage used</string>
+	<string name="Settings_Storage_Delete">Delete</string>
+	<string name="Settings_Storage_Clear">Clear</string>
+	<string name="Settings_Storage_Confirmation_Paragraph">You are about to delete all OONI measurements from your
+		device. If uploaded, they will still be available on [OONI Explorer](https://explorer.ooni.org)
+	</string>
+	<string name="Notification_FinishedRunning">Finished running</string>
+	<string name="Notification_StopTest">Stop test</string>
+	<string name="OONIBrowser_TryMirror">Try mirror</string>
+	<string name="OONIBrowser_Loading">Loading...</string>
+	<string name="OONIBrowser_Error">An unexpected error occurred. Please reload this page.</string>
+	<string name="OONIRun_YouAreAboutToRun">You are about to run an OONI Probe test.</string>
+	<string name="OONIRun_URLs">%1$s URLs</string>
+	<string name="OONIRun_TestName">Test Name</string>
+	<string name="OONIRun_TestDetails">Test Details</string>
+	<string name="OONIRun_Run">Run</string>
+	<string name="OONIRun_OONIProbeOutOfDate">Out of date</string>
+	<string name="OONIRun_OONIProbeNewerVersion">You need a newer version of OONI Probe to run this test.</string>
+	<string name="OONIRun_Update">Update</string>
+	<string name="OONIRun_Close">Close</string>
+	<string name="OONIRun_InvalidParameter">Invalid parameter</string>
+	<string name="OONIRun_InvalidParameter_Msg">The OONI Run link is either malformed or your app is out of date.
+	</string>
+	<string name="OONIRun_RandomSamplingOfURLs">You will test a random sample of websites.</string>
+	<string name="OONIRun_TestRunningError">Please wait for the test to finish running before tapping on an OONI Run
+		link.
+	</string>
+	<string name="CategoryCode_ALDR_Name">Drugs &amp; Alcohol</string>
+	<string name="CategoryCode_REL_Name">Religion</string>
+	<string name="CategoryCode_PORN_Name">Pornography</string>
+	<string name="CategoryCode_PROV_Name">Provocative Attire</string>
+	<string name="CategoryCode_POLR_Name">Political Criticism</string>
+	<string name="CategoryCode_HUMR_Name">Human Rights Issues</string>
+	<string name="CategoryCode_ENV_Name">Environment</string>
+	<string name="CategoryCode_MILX_Name">Terrorism and Militants</string>
+	<string name="CategoryCode_HATE_Name">Hate Speech</string>
+	<string name="CategoryCode_NEWS_Name">News Media</string>
+	<string name="CategoryCode_XED_Name">Sex Education</string>
+	<string name="CategoryCode_PUBH_Name">Public Health</string>
+	<string name="CategoryCode_GMB_Name">Gambling</string>
+	<string name="CategoryCode_ANON_Name">Circumvention tools</string>
+	<string name="CategoryCode_DATE_Name">Online Dating</string>
+	<string name="CategoryCode_GRP_Name">Social Networking</string>
+	<string name="CategoryCode_LGBT_Name">LGBTQ+</string>
+	<string name="CategoryCode_FILE_Name">File-sharing</string>
+	<string name="CategoryCode_HACK_Name">Hacking Tools</string>
+	<string name="CategoryCode_COMT_Name">Communication Tools</string>
+	<string name="CategoryCode_MMED_Name">Media sharing</string>
+	<string name="CategoryCode_HOST_Name">Hosting and Blogging</string>
+	<string name="CategoryCode_SRCH_Name">Search Engines</string>
+	<string name="CategoryCode_GAME_Name">Gaming</string>
+	<string name="CategoryCode_CULTR_Name">Culture</string>
+	<string name="CategoryCode_ECON_Name">Economics</string>
+	<string name="CategoryCode_GOVT_Name">Government</string>
+	<string name="CategoryCode_COMM_Name">E-commerce</string>
+	<string name="CategoryCode_CTRL_Name">Control content</string>
+	<string name="CategoryCode_IGO_Name">Intergovernmental Orgs.</string>
+	<string name="CategoryCode_MISC_Name">Miscellaneous content</string>
+	<string name="CategoryCode_ALDR_Description">Use and sale of drugs and alcohol</string>
+	<string name="CategoryCode_REL_Description">Religious issues, both supportive and critical</string>
+	<string name="CategoryCode_PORN_Description">Hard-core and soft-core pornography</string>
+	<string name="CategoryCode_PROV_Description">Provocative attire and portrayal of women wearing minimal clothing
+	</string>
+	<string name="CategoryCode_POLR_Description">Critical political viewpoints</string>
+	<string name="CategoryCode_HUMR_Description">Human rights issues</string>
+	<string name="CategoryCode_ENV_Description">Discussions on environmental issues</string>
+	<string name="CategoryCode_MILX_Description">Terrorism, violent militant or separatist movements</string>
+	<string name="CategoryCode_HATE_Description">Disparaging of particular groups based on race, sex, sexuality or other
+		characteristics
+	</string>
+	<string name="CategoryCode_NEWS_Description">Major news websites, regional news outlets and independent media
+	</string>
+	<string name="CategoryCode_XED_Description">Sexual health issues including contraception, STD\'s, rape prevention
+		and abortion
+	</string>
+	<string name="CategoryCode_PUBH_Description">Public health issues, such as COVID-19, HIV/AIDS, Ebola</string>
+	<string name="CategoryCode_GMB_Description">Online gambling and betting</string>
+	<string name="CategoryCode_ANON_Description">Anonymization, censorship circumvention and encryption</string>
+	<string name="CategoryCode_DATE_Description">Online dating sites</string>
+	<string name="CategoryCode_GRP_Description">Online social networking tools and platforms</string>
+	<string name="CategoryCode_LGBT_Description">LGBTQ+ communities discussing related issues (excluding pornography)
+	</string>
+	<string name="CategoryCode_FILE_Description">File sharing including cloud-based file storage, torrents and P2P
+	</string>
+	<string name="CategoryCode_HACK_Description">Computer security tools and news</string>
+	<string name="CategoryCode_COMT_Description">Individual and group communication tools including VoIP, messaging and
+		webmail
+	</string>
+	<string name="CategoryCode_MMED_Description">Video, audio and photo sharing</string>
+	<string name="CategoryCode_HOST_Description">Web hosting, blogging and other online publishing</string>
+	<string name="CategoryCode_SRCH_Description">Search engines and portals</string>
+	<string name="CategoryCode_GAME_Description">Online games and gaming platforms (excluding gambling sites)</string>
+	<string name="CategoryCode_CULTR_Description">Entertainment including history, literature, music, film, satire and
+		humour
+	</string>
+	<string name="CategoryCode_ECON_Description">General economic development and poverty</string>
+	<string name="CategoryCode_GOVT_Description">Government-run websites, including military</string>
+	<string name="CategoryCode_COMM_Description">Commercial services and products</string>
+	<string name="CategoryCode_CTRL_Description">Benign or innocuous content used for control</string>
+	<string name="CategoryCode_IGO_Description">Intergovernmental organizations including The United Nations</string>
+	<string name="CategoryCode_MISC_Description">Sites that haven\'t been categorized yet</string>
 </resources>

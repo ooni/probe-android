@@ -17,6 +17,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.activity.OverviewActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
+import org.openobservatory.ooniprobe.activity.runtests.RunTestsActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
@@ -109,7 +110,8 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 	}
 
     public void runAll() {
-        RunningActivity.runAsForegroundService((AbstractActivity) getActivity(), testSuites, this::onTestServiceStartedListener, preferenceManager);
+		ActivityCompat.startActivity(getContext(), RunTestsActivity.newIntent(getContext(), testSuites), null);
+		//RunningActivity.runAsForegroundService((AbstractActivity) getActivity(), testSuites, this::onTestServiceStartedListener, preferenceManager);
     }
 
     private void onTestServiceStartedListener() {
@@ -125,12 +127,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 		AbstractSuite testSuite = (AbstractSuite) v.getTag();
 		switch (v.getId()) {
 			case R.id.run:
-                RunningActivity.runAsForegroundService(
-                        (AbstractActivity) getActivity(),
-                        testSuite.asArray(),
-                        this::onTestServiceStartedListener,
-						preferenceManager
-                );
+				ActivityCompat.startActivity(getContext(), RunTestsActivity.newIntent(getContext(), testSuite.asArray()), null);
 				break;
 			default:
 				ActivityCompat.startActivity(getActivity(), OverviewActivity.newIntent(getActivity(), testSuite), null);

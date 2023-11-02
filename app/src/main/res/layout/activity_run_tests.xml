@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".activity.runtests.RunTestsActivity">
+
+	<RelativeLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		app:layout_constraintStart_toStartOf="parent"
+		android:id="@+id/rlSelectAll"
+		app:layout_constraintTop_toTopOf="parent">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="50dp"
+			android:layout_centerVertical="true"
+			android:layout_marginStart="62dp"
+			android:gravity="center_vertical"
+			android:maxLines="3"
+			android:text="Select All Btn"
+			android:textColor="@color/color_base"
+			android:textSize="16sp"/>
+
+		<CheckBox
+			android:id="@+id/ckbSelectAll"
+			android:layout_width="26dp"
+			android:layout_height="26dp"
+			android:layout_marginEnd="16dp"
+			android:layout_marginTop="12dp"
+			android:layout_marginBottom="12dp"
+			android:layout_alignParentEnd="true"
+			android:layout_centerVertical="true"/>
+
+	</RelativeLayout>
+
+
+	<ExpandableListView
+		android:id="@+id/elv"
+		android:layout_width="wrap_content"
+		android:layout_height="0dp"
+		android:groupIndicator="@null"
+		android:childDivider="@color/color_gray3"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/rlSelectAll"
+		app:layout_constraintBottom_toTopOf="@+id/bottom_appbar_layout">
+
+	</ExpandableListView>
+	<com.google.android.material.appbar.AppBarLayout
+		android:id="@+id/bottom_appbar_layout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		android:theme="@style/Theme.MaterialComponents.NoActionBar.App">
+
+		<androidx.appcompat.widget.Toolbar
+			android:id="@+id/bottomBar"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@color/color_base"
+			app:menu="@menu/run"
+			app:title="@string/OONIRun_URLs"
+			app:titleTextAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title.App"/>
+	</com.google.android.material.appbar.AppBarLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
