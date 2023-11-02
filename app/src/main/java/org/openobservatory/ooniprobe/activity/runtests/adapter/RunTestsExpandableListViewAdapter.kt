@@ -29,29 +29,18 @@ class RunTestsExpandableListViewAdapter(
 		return mGroupListData.size
 	}
 
-	override fun getChildrenCount(groupPosition: Int): Int {
-		return mGroupListData[groupPosition].nettests.size
-	}
+	override fun getChildrenCount(groupPosition: Int): Int = mGroupListData[groupPosition].nettests.size
 
-	override fun getGroup(groupPosition: Int): GroupItem {
-		return mGroupListData[groupPosition]
-	}
+	override fun getGroup(groupPosition: Int): GroupItem = mGroupListData[groupPosition]
 
-	override fun getChild(groupPosition: Int, childPosition: Int): ChildItem {
-		return mGroupListData[groupPosition].nettests[childPosition]
-	}
+	override fun getChild(groupPosition: Int, childPosition: Int): ChildItem =
+		mGroupListData[groupPosition].nettests[childPosition]
 
-	override fun getGroupId(groupPosition: Int): Long {
-		return groupPosition.toLong()
-	}
+	override fun getGroupId(groupPosition: Int): Long = groupPosition.toLong()
 
-	override fun getChildId(groupPosition: Int, childPosition: Int): Long {
-		return childPosition.toLong()
-	}
+	override fun getChildId(groupPosition: Int, childPosition: Int): Long = childPosition.toLong()
 
-	override fun hasStableIds(): Boolean {
-		return false
-	}
+	override fun hasStableIds(): Boolean = false
 
 	override fun getGroupView(groupPosition: Int, isExpanded: Boolean, convertView: View?, parent: ViewGroup): View? {
 		var convertView =
@@ -73,6 +62,8 @@ class RunTestsExpandableListViewAdapter(
 			for (childItem in groupItem.nettests) {
 				childItem.selected = false
 			}
+		} else if (isSelectAllChildItems(groupItem.nettests)){
+			groupItem.selected = true
 		}
 		if (groupItem.selected) {
 			if (isSelectAllChildItems(groupItem.nettests)) {
@@ -138,12 +129,16 @@ class RunTestsExpandableListViewAdapter(
 				}
 			}
 		}
-		convertView.findViewById<CheckBox>(R.id.child_select).apply {
-			isChecked = childItem.selected
-			setOnCheckedChangeListener { buttonView, isChecked ->
-
-				childItem.selected = isChecked
+		convertView.findViewById<ImageView>(R.id.child_select).apply {
+			setImageResource(
+				when (childItem.selected) {
+					true -> R.drawable.check_box
+					false -> R.drawable.check_box_outline_blank
+				}
+			)
+			setOnClickListener {
 				if (childItem.selected) {
+					childItem.selected = false
 					if (isNotSelectedAnyChildItems(groupItem.nettests)) {
 						groupItem.selected = false
 					}
@@ -153,6 +148,7 @@ class RunTestsExpandableListViewAdapter(
 						mViewModel.setSelectedAllBtnStatus(SELECT_SOME)
 					}
 				} else {
+					childItem.selected = true
 					groupItem.selected = true
 					if (isSelectedAllItems(mGroupListData)) {
 						mViewModel.setSelectedAllBtnStatus(SELECT_ALL)
@@ -166,22 +162,11 @@ class RunTestsExpandableListViewAdapter(
 		return convertView
 	}
 
-	override fun isChildSelectable(groupPosition: Int, childPosition: Int): Boolean {
-		return false
-	}
+	override fun isChildSelectable(groupPosition: Int, childPosition: Int): Boolean = false
 
 	private fun isNotSelectedAnyGroupItem(groupItemsList: List<GroupItem>): Boolean {
 		for (groupItem in groupItemsList) {
 			if (groupItem.selected) {
-				return false
-			}
-		}
-		return true
-	}
-
-	private fun isSelectedAllGroupItems(groupItemsList: List<GroupItem>): Boolean {
-		for (groupItem in groupItemsList) {
-			if (!groupItem.selected) {
 				return false
 			}
 		}

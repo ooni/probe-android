@@ -26,8 +26,6 @@
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_vertical"
 			android:layout_marginStart="16dp"
-			android:text="@{ExpandableListViewGroupItem.mGroupName, default=my_default}"
-			android:textColor="#000000"
 			android:textSize="16sp"/>
 
 		<ImageView

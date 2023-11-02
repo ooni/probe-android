@@ -4,9 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
+import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel.Companion.NOT_SELECT_ANY
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel.Companion.SELECT_ALL
+import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel.Companion.SELECT_SOME
 import org.openobservatory.ooniprobe.activity.runtests.adapter.RunTestsExpandableListViewAdapter
 import org.openobservatory.ooniprobe.activity.runtests.models.ChildItem
 import org.openobservatory.ooniprobe.activity.runtests.models.GroupItem
@@ -18,6 +22,7 @@ import javax.inject.Inject
 
 class RunTestsActivity : AbstractActivity() {
 	lateinit var binding: ActivityRunTestsBinding
+
 	lateinit var mAdapter: RunTestsExpandableListViewAdapter
 
 	@Inject
@@ -62,14 +67,36 @@ class RunTestsActivity : AbstractActivity() {
 
 			mAdapter = RunTestsExpandableListViewAdapter(this, tsGroups, viewModel)
 
-			binding.elv.setAdapter(mAdapter)
+			binding.expandableListView.setAdapter(mAdapter)
+			binding.selectAll.setOnClickListener {
+				viewModel.selectedAllBtnStatus.value = SELECT_ALL
+				mAdapter.notifyDataSetChanged()
+				updateStatusIndicator()
+			}
 
+			binding.selectNone.setOnClickListener {
+				viewModel.selectedAllBtnStatus.value = NOT_SELECT_ANY
+				mAdapter.notifyDataSetChanged()
+				updateStatusIndicator()
+			}
+
+			// TODO(aanorbel) Update button color from theme
 			viewModel.selectedAllBtnStatus.observe(this) { selectAllBtnStatus ->
 				if (!TextUtils.isEmpty(selectAllBtnStatus)) {
-					if (selectAllBtnStatus == SELECT_ALL) {
-						binding.ckbSelectAll.isChecked = true
-					} else {
-						binding.ckbSelectAll.isChecked = false
+					when (selectAllBtnStatus) {
+						SELECT_ALL -> {
+							binding.selectNone.isActivated = true
+							binding.selectAll.isActivated = false
+						}
+						NOT_SELECT_ANY -> {
+
+							binding.selectNone.isActivated = true
+							binding.selectAll.isActivated = false
+						}
+						SELECT_SOME -> {
+							binding.selectNone.isActivated = true
+							binding.selectAll.isActivated = true
+						}
 					}
 					mAdapter.notifyDataSetChanged()
 					updateStatusIndicator()

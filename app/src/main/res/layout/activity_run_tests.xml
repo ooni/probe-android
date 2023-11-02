@@ -7,49 +7,51 @@
 	android:layout_height="match_parent"
 	tools:context=".activity.runtests.RunTestsActivity">
 
-	<RelativeLayout
+	<LinearLayout
+		android:id="@+id/control_layout"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
+		android:orientation="vertical"
 		app:layout_constraintStart_toStartOf="parent"
-		android:id="@+id/rlSelectAll"
 		app:layout_constraintTop_toTopOf="parent">
 
-		<TextView
+		<Button
+			android:id="@+id/select_all"
+			style="@style/Widget.MaterialComponents.Button.OutlinedButton"
 			android:layout_width="wrap_content"
-			android:layout_height="50dp"
-			android:layout_centerVertical="true"
-			android:layout_marginStart="62dp"
-			android:gravity="center_vertical"
-			android:maxLines="3"
-			android:text="Select All Btn"
-			android:textColor="@color/color_base"
-			android:textSize="16sp"/>
+			android:layout_height="wrap_content"
+			android:text="@string/Settings_Websites_Categories_Selection_All"
+			android:textAllCaps="false"
+			app:cornerRadius="24dp"
+			app:rippleColor="@color/ripple_material_dark"
+			app:strokeColor="@color/color_base" />
 
-		<CheckBox
-			android:id="@+id/ckbSelectAll"
-			android:layout_width="26dp"
-			android:layout_height="26dp"
-			android:layout_marginEnd="16dp"
-			android:layout_marginTop="12dp"
-			android:layout_marginBottom="12dp"
-			android:layout_alignParentEnd="true"
-			android:layout_centerVertical="true"/>
+		<Button
+			android:id="@+id/select_none"
+			style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/Settings_Websites_Categories_Selection_None"
+			android:textAllCaps="false"
+			app:cornerRadius="24dp"
+			app:rippleColor="@color/ripple_material_dark"
+			app:strokeColor="@color/color_base" />
 
-	</RelativeLayout>
+	</LinearLayout>
 
 
 	<ExpandableListView
-		android:id="@+id/elv"
+		android:id="@+id/expandable_list_view"
 		android:layout_width="wrap_content"
 		android:layout_height="0dp"
 		android:groupIndicator="@null"
-		android:childDivider="@color/color_gray3"
+		android:childDivider="@android:color/transparent"
+		android:divider="@android:color/transparent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintTop_toBottomOf="@id/rlSelectAll"
-		app:layout_constraintBottom_toTopOf="@+id/bottom_appbar_layout">
+		app:layout_constraintTop_toBottomOf="@id/control_layout"
+		app:layout_constraintBottom_toTopOf="@+id/bottom_appbar_layout"/>
 
-	</ExpandableListView>
 	<com.google.android.material.appbar.AppBarLayout
 		android:id="@+id/bottom_appbar_layout"
 		android:layout_width="match_parent"
