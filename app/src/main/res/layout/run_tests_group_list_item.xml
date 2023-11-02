@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	tools:context=".activity.runtests.adapter.RunTestsExpandableListViewAdapter">
@@ -11,12 +11,12 @@
 		android:layout_height="wrap_content"
 		android:layout_marginStart="16dp"
 		android:layout_marginTop="12dp"
-		android:layout_marginBottom="12dp">
+		android:layout_marginBottom="4dp">
 
 		<ImageView
 			android:id="@+id/group_icon"
-			android:layout_width="30dp"
-			android:layout_height="30dp"
+			android:layout_width="25dp"
+			android:layout_height="25dp"
 			tools:src="@drawable/test_circumvention"
 			android:contentDescription="@string/OONIRun_TestName"/>
 
@@ -25,13 +25,14 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_vertical"
-			android:layout_marginStart="16dp"
+			android:layout_marginStart="4dp"
+			tools:text="@string/Test_Circumvention_Fullname"
 			android:textSize="16sp"/>
 
 		<ImageView
 			android:id="@+id/group_indicator"
-			android:layout_width="26dp"
-			android:layout_height="26dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
 			android:layout_gravity="center_vertical"
 			android:layout_marginStart="5dp"
 			android:src="@drawable/expand_more"/>
@@ -46,6 +47,7 @@
 		android:layout_alignParentEnd="true"
 		android:layout_centerVertical="true"
 		android:src="@drawable/check_box_outline_blank"
+		app:tint="@color/color_base"
 		android:contentDescription="checkbox"/>
 
 </RelativeLayout>

@@ -10,6 +10,7 @@ import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.Experimental;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ExperimentalSuite extends AbstractSuite {
     public static final String NAME = "experimental";
@@ -44,8 +45,7 @@ public class ExperimentalSuite extends AbstractSuite {
                 list.add(new Experimental("dnscheck"));
                 list.add(new Experimental("echcheck"));
 				if ((pm == null || pm.isLongRunningTestsInForeground()) || getAutoRun()){
-					list.add(new Experimental("torsf"));
-					list.add(new Experimental("vanilla_tor"));
+					Collections.addAll(list, longRunningTests());
                 }
             // }
             super.setTestList(Lists.transform(list, test -> {
@@ -55,5 +55,9 @@ public class ExperimentalSuite extends AbstractSuite {
         }
         return super.getTestList(pm);
     }
+
+	public AbstractTest[] longRunningTests(){
+		return new AbstractTest[]{new Experimental("torsf"), new Experimental("vanilla_tor")};
+	}
 
 }

@@ -41,7 +41,7 @@ class RunTestsViewModel() : ViewModel() {
 				}
 			}
 
-			NOT_SELECT_ANY -> {
+			SELECT_NONE -> {
 				InstantMessagingSuite().getTestList(preferenceManager).forEach {
 					disableTest(it.name)
 				}
@@ -70,6 +70,6 @@ class RunTestsViewModel() : ViewModel() {
 	companion object {
 		const val SELECT_ALL = "SELECT_ALL"
 		const val SELECT_SOME = "SELECT_SOME"
-		const val NOT_SELECT_ANY = "NOT_SELECT_ANY"
+		const val SELECT_NONE = "SELECT_NONE"
 	}
 }

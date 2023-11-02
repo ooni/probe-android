@@ -5,12 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
-import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel
-import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel.Companion.NOT_SELECT_ANY
+import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel.Companion.SELECT_NONE
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel.Companion.SELECT_ALL
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel.Companion.SELECT_SOME
 import org.openobservatory.ooniprobe.activity.runtests.models.ChildItem
@@ -57,7 +56,7 @@ class RunTestsExpandableListViewAdapter(
 			for (childItem in groupItem.nettests) {
 				childItem.selected = true
 			}
-		} else if (selectedAllBtnStatus == NOT_SELECT_ANY) {
+		} else if (selectedAllBtnStatus == SELECT_NONE) {
 			groupItem.selected = false
 			for (childItem in groupItem.nettests) {
 				childItem.selected = false
@@ -81,7 +80,7 @@ class RunTestsExpandableListViewAdapter(
 					childItem.selected = false
 				}
 				if (isNotSelectedAnyGroupItem(mGroupListData)) {
-					mViewModel.setSelectedAllBtnStatus(NOT_SELECT_ANY)
+					mViewModel.setSelectedAllBtnStatus(SELECT_NONE)
 				} else {
 					mViewModel.setSelectedAllBtnStatus(SELECT_SOME)
 				}
@@ -144,7 +143,7 @@ class RunTestsExpandableListViewAdapter(
 						groupItem.selected = false
 					}
 					if (isNotSelectedAnyItems(mGroupListData)) {
-						mViewModel.setSelectedAllBtnStatus(NOT_SELECT_ANY)
+						mViewModel.setSelectedAllBtnStatus(SELECT_NONE)
 					} else {
 						mViewModel.setSelectedAllBtnStatus(SELECT_SOME)
 					}
