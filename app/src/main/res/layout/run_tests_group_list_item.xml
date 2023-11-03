@@ -35,7 +35,8 @@
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_vertical"
 			android:layout_marginStart="5dp"
-			android:src="@drawable/expand_more"/>
+			android:src="@drawable/expand_more"
+			app:tint="@color/color_black"/>
 
 	</LinearLayout>
 
