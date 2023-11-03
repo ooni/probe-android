@@ -42,7 +42,8 @@
 			android:label="Run tests"
 			android:name=".activity.runtests.RunTestsActivity"
 			android:parentActivityName=".activity.MainActivity"
-			android:exported="false"/>
+			android:exported="false"
+			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar"/>
 		<activity
 			android:name=".activity.PreferenceActivity"
 			android:launchMode="singleTop"

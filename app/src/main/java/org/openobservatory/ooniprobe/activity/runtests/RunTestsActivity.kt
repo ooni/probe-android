@@ -4,12 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.MenuItem
+import android.view.*
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
 import org.openobservatory.ooniprobe.activity.RunningActivity
-import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel.Companion.SELECT_NONE
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel.Companion.SELECT_ALL
+import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel.Companion.SELECT_NONE
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel.Companion.SELECT_SOME
 import org.openobservatory.ooniprobe.activity.runtests.adapter.RunTestsExpandableListViewAdapter
 import org.openobservatory.ooniprobe.activity.runtests.models.ChildItem
@@ -46,6 +46,8 @@ class RunTestsActivity : AbstractActivity() {
 		super.onCreate(savedInstanceState)
 		binding = ActivityRunTestsBinding.inflate(layoutInflater)
 		setContentView(binding.getRoot())
+
+		setSupportActionBar(binding.toolbar)
 		supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 		activityComponent?.inject(this)
@@ -75,6 +77,23 @@ class RunTestsActivity : AbstractActivity() {
 			finish()
 		}
 
+	}
+
+	override fun onCreateOptionsMenu(menu: Menu): Boolean {
+		val inflater: MenuInflater = menuInflater
+		inflater.inflate(R.menu.close, menu)
+		return true
+	}
+
+	override fun onOptionsItemSelected(item: MenuItem): Boolean {
+		return when (item.itemId) {
+			R.id.close_button -> {
+				finish()
+				true
+			}
+
+			else -> super.onOptionsItemSelected(item)
+		}
 	}
 
 	private fun onMenuItemClickListener(menuItem: MenuItem): Boolean {

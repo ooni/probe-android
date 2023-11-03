@@ -6,14 +6,25 @@
 	android:layout_height="match_parent"
 	tools:context=".activity.runtests.RunTestsActivity">
 
+	<androidx.appcompat.widget.Toolbar
+		android:id="@+id/toolbar"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/color_white"
+		app:menu="@menu/close"
+		app:layout_constraintTop_toTopOf="parent"
+		app:contentInsetEnd="0dp"
+		app:contentInsetStart="0dp" />
+
 	<LinearLayout
 		android:id="@+id/control_layout"
-		android:layout_width="wrap_content"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="vertical"
 		android:layout_marginStart="16dp"
+		app:layout_constraintTop_toBottomOf="@id/toolbar"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent">
+		app:layout_constraintEnd_toEndOf="parent">
 
 		<Button
 			android:id="@+id/select_all"
@@ -60,13 +71,13 @@
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
-		android:theme="@style/Theme.MaterialComponents.NoActionBar.App">
+		android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
 
 		<androidx.appcompat.widget.Toolbar
 			android:id="@+id/bottomBar"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:background="@color/color_base"
+			android:background="@color/color_white"
 			app:menu="@menu/run"
 			app:title="@string/OONIRun_URLs"
 			app:titleTextAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title.App" />
