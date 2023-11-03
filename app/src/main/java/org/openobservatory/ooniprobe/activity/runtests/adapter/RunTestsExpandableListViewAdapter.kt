@@ -74,9 +74,15 @@ class RunTestsExpandableListViewAdapter(
 				}
 			} else {
 				groupSelectionIndicator.setImageResource(R.drawable.check_box_outline_blank)
+				if (groupItem.name == ExperimentalSuite.NAME) {
+					mViewModel.disableTest(ExperimentalSuite.NAME)
+				}
 			}
 		} else {
 			groupSelectionIndicator.setImageResource(R.drawable.check_box_outline_blank)
+			if (groupItem.name == ExperimentalSuite.NAME) {
+				mViewModel.disableTest(ExperimentalSuite.NAME)
+			}
 		}
 		groupSelectionIndicator.setOnClickListener {
 			if (groupItem.selected && isSelectAllChildItems(groupItem.nettests)) {

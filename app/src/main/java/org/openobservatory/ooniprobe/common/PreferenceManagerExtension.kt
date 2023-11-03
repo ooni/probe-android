@@ -5,12 +5,31 @@ import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite
 import org.openobservatory.ooniprobe.test.test.*
 
 
-fun PreferenceManager.enableTest(name: String) {
-	this.setValue(name, true)
+private fun PreferenceManager.exclusionList(): MutableList<String> {
+	val exclusionList = mutableListOf<String>()
+	ExperimentalSuite().run {
+		exclusionList.addAll(getTestList(this@exclusionList).map { it.name })
+		exclusionList.addAll(longRunningTests().map { it.name })
+	}
+
+	return exclusionList
+
 }
 
-fun PreferenceManager.disableTest(name: String) {
-	this.setValue(name, false)
+fun PreferenceManager.enableTest(name: String): Boolean {
+	if (!exclusionList().contains(name)) {
+		this.setValue(name, true)
+		return true
+	}
+	return false
+}
+
+fun PreferenceManager.disableTest(name: String): Boolean {
+	if (!exclusionList().contains(name)) {
+		this.setValue(name, false)
+		return true
+	}
+	return false
 }
 
 fun PreferenceManager.setValue(name: String, value: Boolean) {

@@ -58,15 +58,11 @@ class RunTestsViewModel() : ViewModel() {
 	}
 
 	fun disableTest(name: String) {
-		if (!ExperimentalSuite().getTestList(preferenceManager).map { it.name }.contains(name)) {
-			preferenceManager.disableTest(name)
-		}
+		preferenceManager.disableTest(name)
 	}
 
 	fun enableTest(name: String) {
-		if (!ExperimentalSuite().getTestList(preferenceManager).map { it.name }.contains(name)) {
-			preferenceManager.enableTest(name)
-		}
+		preferenceManager.enableTest(name)
 	}
 
 	companion object {
