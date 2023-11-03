@@ -122,7 +122,7 @@ dependencies {
 
     implementation libs.xanscale.localhost.toolkit
     implementation libs.lottie
-    implementation libs.markwon
+    implementation libs.markwon.core
     implementation libs.commons.io
     //arcview to fragment_dashboard
     implementation libs.shapeofview
