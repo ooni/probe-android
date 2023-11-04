@@ -15,7 +15,8 @@
 			android:id="@+id/toolbar"
 			android:layout_width="match_parent"
 			android:layout_height="?attr/actionBarSize"
-			android:background="@color/color_gray0" />
+			android:background="@color/color_gray0"
+			app:menu="@menu/close"/>
 	</com.google.android.material.appbar.AppBarLayout>
 
 	<ScrollView
@@ -52,14 +53,13 @@
 	<com.google.android.material.appbar.AppBarLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.CustomWebsite">
+		android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
 
 		<androidx.appcompat.widget.Toolbar
 			android:id="@+id/bottomBar"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:background="@color/color_gray0"
-			app:titleTextColor="@color/color_black"
 			app:menu="@menu/run"
 			app:title="@string/OONIRun_URLs"
 			app:titleTextAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title.App" />

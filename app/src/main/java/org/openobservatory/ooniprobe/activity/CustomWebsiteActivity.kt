@@ -4,6 +4,8 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Patterns
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -47,9 +49,7 @@ class CustomWebsiteActivity : AbstractActivity(), ConfirmDialogFragment.OnClickL
             for (value in items) {
                 val sanitizedUrl = value.replace("\\r\\n|\\r|\\n".toRegex(), " ")
                 //https://support.microsoft.com/en-us/help/208427/maximum-url-length-is-2-083-characters-in-internet-explorer
-                if (Patterns.WEB_URL.matcher(sanitizedUrl)
-                        .matches() && sanitizedUrl.length < 2084
-                ) urls.add(
+                if (Patterns.WEB_URL.matcher(sanitizedUrl).matches() && sanitizedUrl.length < 2084) urls.add(
                     Url.checkExistingUrl(sanitizedUrl).toString()
                 )
             }
@@ -82,6 +82,23 @@ class CustomWebsiteActivity : AbstractActivity(), ConfirmDialogFragment.OnClickL
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.close, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.close_button -> {
+                onSupportNavigateUp()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     fun add() {

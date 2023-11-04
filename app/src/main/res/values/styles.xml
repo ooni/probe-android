@@ -12,18 +12,11 @@
 		<item name="colorOnSurface">@color/color_gray5</item>
 		<item name="android:colorForeground">@color/color_gray7</item>
 		<item name="alertDialogTheme">@style/AlertDialogCustom</item>
+		<item name="materialAlertDialogBodyTextStyle">@style/AlertDialogCustom</item>
 		<item name="android:alertDialogTheme">?alertDialogTheme</item>
 		<item name="dialogTheme">?alertDialogTheme</item>
 		<item name="android:dialogTheme">?alertDialogTheme</item>
 		<item name="snackbarStyle">@style/SnackBarStyle</item>
-	</style>
-
-	<style name="Theme.MaterialComponents.Light.NoActionBar.CustomWebsite">
-		<item name="colorPrimary">@color/color_base</item>
-		<item name="colorPrimaryDark">@color/color_blue6</item>
-		<item name="colorAccent">@color/color_blue4</item>
-		<item name="fontFamily">@font/firasans</item>
-		<item name="android:colorBackground">@color/color_white</item>
 	</style>
 
 	<style name="Theme.MaterialComponents.NoActionBar.App">
@@ -73,8 +66,23 @@
 		<item name="android:background">@color/color_white</item>
 		<item name="colorAccent">@color/color_blue4</item>
 	</style>
+    <style name="Theme.App.MaterialDialogAlert" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="android:background">@color/color_white</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/AppMaterialAlertDialog</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/AppBodyTextAppearance.MaterialComponents.Body2</item>
+    </style>
+    <style name="AppMaterialAlertDialog" parent="@style/MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:textColor">@color/color_black</item>
+        <item name="android:textAppearance">@style/AppTextAppearance.MaterialComponents.Subtitle1</item>
+    </style>
+    <style name="AppTextAppearance.MaterialComponents.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">@color/color_black</item>
+    </style>
+    <style name="AppBodyTextAppearance.MaterialComponents.Body2" parent="@style/MaterialAlertDialog.MaterialComponents.Body.Text">
+        <item name="android:textColor">@color/color_gray6</item>
+    </style>
 
-	<style name="SnackBarStyle" parent="Widget.MaterialComponents.Snackbar">
+    <style name="SnackBarStyle" parent="Widget.MaterialComponents.Snackbar">
 		<item name="android:background">@color/color_gray8</item>
 	</style>
 

@@ -7,6 +7,7 @@ import androidx.annotation.IntDef
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.openobservatory.ooniprobe.R
 import java.io.Serializable
 
 class ConfirmDialogFragment(
@@ -51,7 +52,7 @@ class ConfirmDialogFragment(
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?) =
-        MaterialAlertDialogBuilder(requireContext()).apply {
+        MaterialAlertDialogBuilder(requireContext(), R.style.Theme_App_MaterialDialogAlert).apply {
             setTitle(requireArguments().getString(TITLE))
             if (requireArguments().containsKey(MESSAGE)) setMessage(
                 HtmlCompat.fromHtml(

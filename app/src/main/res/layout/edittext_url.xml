@@ -16,7 +16,7 @@
 			android:id="@+id/editText"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:textColor="@android:color/black"
+			android:textColor="@color/color_black"
 			android:hint="@string/Settings_Websites_CustomURL_URL"
 			android:inputType="textUri"
 			android:paddingEnd="48dp"

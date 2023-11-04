@@ -100,7 +100,7 @@
 			android:exported="false"
 			android:parentActivityName=".activity.PreferenceActivity"
 			android:screenOrientation="userPortrait"
-			android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.CustomWebsite">
+			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
 			<intent-filter>
 				<action android:name="${applicationId}.activity.CustomWebsiteActivity" />
 
