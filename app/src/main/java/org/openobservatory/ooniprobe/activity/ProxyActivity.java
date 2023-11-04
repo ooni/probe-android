@@ -14,7 +14,7 @@ import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ProxyProtocol;
 import org.openobservatory.ooniprobe.common.ProxySettings;
 import org.openobservatory.ooniprobe.databinding.ActivityProxyBinding;
-import ru.noties.markwon.Markwon;
+import io.noties.markwon.Markwon;
 
 import javax.inject.Inject;
 import java.net.URISyntaxException;
@@ -119,7 +119,9 @@ public class ProxyActivity extends AbstractActivity {
         setContentView(binding.getRoot());
 
         // We fill the footer that helps users to understand this settings screen.
-        Markwon.setMarkdown(binding.proxyFooter, getString(R.string.Settings_Proxy_Footer));
+        Markwon.builder(this)
+                .build()
+                .setMarkdown(binding.proxyFooter, getString(R.string.Settings_Proxy_Footer));
 
         // We read settings and configure the initial view.
         loadSettingsAndConfigureInitialView();
