@@ -27,7 +27,7 @@ import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.test.*;
-import ru.noties.markwon.Markwon;
+import io.noties.markwon.Markwon;
 
 import javax.inject.Inject;
 import java.io.Serializable;
@@ -212,7 +212,9 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
             binding.log.setVisibility(View.GONE);
         if (!measurementsManager.hasReportId(measurement))
             binding.explorer.setVisibility(View.GONE);
-        Markwon.setMarkdown(binding.methodology, getString(R.string.TestResults_Details_Methodology_Paragraph, getString(measurement.getTest().getUrlResId())));
+        Markwon.builder(this)
+                .build()
+                .setMarkdown(binding.methodology, getString(R.string.TestResults_Details_Methodology_Paragraph, getString(measurement.getTest().getUrlResId())));
         load();
         binding.log.setOnClickListener(v -> logClick());
         binding.data.setOnClickListener(v -> dataClick());

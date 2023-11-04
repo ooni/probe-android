@@ -10,7 +10,8 @@ import androidx.fragment.app.Fragment;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.databinding.FragmentMeasurementPsiphonBinding;
 import org.openobservatory.ooniprobe.model.database.Measurement;
-import ru.noties.markwon.Markwon;
+
+import io.noties.markwon.Markwon;
 
 public class PsiphonFragment extends Fragment {
 	private static final String MEASUREMENT = "measurement";
@@ -28,7 +29,9 @@ public class PsiphonFragment extends Fragment {
 		Measurement measurement = (Measurement) getArguments().getSerializable(MEASUREMENT);
 		assert measurement != null;
 		FragmentMeasurementPsiphonBinding binding = FragmentMeasurementPsiphonBinding.inflate(inflater,container,false);
-		Markwon.setMarkdown(binding.desc,
+		Markwon.builder(getContext())
+				.build()
+				.setMarkdown(binding.desc,
 				measurement.is_anomaly ?
 						getString(R.string.TestResults_Details_Circumvention_Psiphon_Blocked_Content_Paragraph) :
 						getString(R.string.TestResults_Details_Circumvention_Psiphon_Reachable_Content_Paragraph)

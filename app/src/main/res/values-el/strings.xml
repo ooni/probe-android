@@ -72,7 +72,7 @@
   <string name="Dashboard_Experimental_Card_Description">Εκτέλεση νέων πειραματικών δοκιμών</string>
   <string name="Dashboard_Experimental_Overview_Paragraph">Εκτέλεσε τις παρακάτω νέες πειραματικές δοκιμές που αναπτύχθηκαν από την ομάδα του OONI:\n%1$s\n\nΤα αποτελέσματά σου θα δημοσιευθούν στο [OONI Explorer](https://explorer.ooni.org/) και στο [OONI API](https://api.ooni.io/).</string>
   <string name="Dashboard_Experimental_Overview_Paragraph_AutomatedTesting">Οι παρακάτω δοκιμές θα εκτελούνται μόνο ως μέρος των αυτοματοποιημένων δοκιμών:</string>
-  <string name="Dashboard_DisabledTests_Label">Disabled Tests</string>
+  <string name="Dashboard_DisabledTests_Label">Απενεργοποιημένες δοκιμές</string>
   <string name="TestResults_Gbps">Gbit/s</string>
   <string name="TestResults_Mbps">Mbit/s</string>
   <string name="TestResults_Kbps">kbit/s</string>
@@ -377,8 +377,8 @@
   <string name="Settings_Sharing_Footer">Δημοσιεύοντας αποτελέσματα, αυξάνεις τη διαφάνεια για τυχόν παρεμβολές στο Διαδικτύο, και υποστηρίζεις την κοινότητα του OONI.\n\nΓια την αναγνώριση των παρόχων δικτύου, απαιτούνται πληροφορίες δικτύου (όπως ο Αριθμός Αυτόνομου Συστήματος ASN).</string>
   <string name="Settings_TestOptions_Label">Επιλογές δοκιμής</string>
   <string name="Settings_TestOptions_Footer">Οι παραμετροποιήσεις που κάνετε μέσω των παραπάνω ρυθμίσεων δοκιμών (π.χ. απενεργοποίηση της δοκιμής WhatsApp) θα εφαρμόζονται τόσο σε δοκιμές που εκτελούνται χειροκίνητα, όσο και σε δοκιμές που εκτελούνται αυτόματα (όταν έχετε ενεργοποιημένες τις αυτοματοποιημένες δοκιμές).</string>
-  <string name="Settings_TestOptions_LongRunningTest">Long running test</string>
-  <string name="Settings_TestOptions_RunLongRunningTests">Run long running tests in foreground?</string>
+  <string name="Settings_TestOptions_LongRunningTest">Δοκιμή μεγάλης διάρκειας</string>
+  <string name="Settings_TestOptions_RunLongRunningTests">Να εκτελούνται οι δοκιμές μεγάλης διάρκειας στο προσκήνιο;</string>
   <string name="Settings_Privacy_Label">Απόρρητο</string>
   <string name="Settings_Privacy_SendCrashReports">Αποστολή αναφορών σφαλμάτων</string>
   <string name="Settings_Advanced_Label">Ρυθμίσεις για προχωρημένους/ες</string>
