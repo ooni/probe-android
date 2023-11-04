@@ -108,7 +108,7 @@ public class OoniRunActivity extends AbstractActivity {
 			if (versionCompare.compare(version_name, mv) >= 0) {
 				try {
 					Attribute attribute = gson.fromJson(ta, Attribute.class);
-					List<String> urls = (attribute!=null && attribute.urls != null) ? attribute.urls : Collections.emptyList();
+					List<String> urls = (attribute!=null && attribute.urls != null) ? attribute.urls : null;
 					AbstractSuite suite = getSuite.get(tn, urls);
 					if (suite != null) {
 						loadSuite(suite, urls);
