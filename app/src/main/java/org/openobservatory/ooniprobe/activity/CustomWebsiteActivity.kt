@@ -64,6 +64,7 @@ class CustomWebsiteActivity : AbstractActivity(), ConfirmDialogFragment.OnClickL
 
         binding.urlContainer.adapter = adapter
         add()
+        // TODO(aanorbel): Fix: Configuration change triggers loss of data.
     }
 
     override fun onBackPressed() {
