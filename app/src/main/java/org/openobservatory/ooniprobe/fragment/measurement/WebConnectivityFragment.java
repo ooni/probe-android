@@ -10,7 +10,8 @@ import androidx.fragment.app.Fragment;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.databinding.FragmentMeasurementWebconnectivityBinding;
 import org.openobservatory.ooniprobe.model.database.Measurement;
-import ru.noties.markwon.Markwon;
+
+import io.noties.markwon.Markwon;
 
 public class WebConnectivityFragment extends Fragment {
 	private static final String MEASUREMENT = "measurement";
@@ -30,10 +31,11 @@ public class WebConnectivityFragment extends Fragment {
 		Measurement measurement = (Measurement) getArguments().getSerializable(MEASUREMENT);
 		assert measurement != null;
 		FragmentMeasurementWebconnectivityBinding binding = FragmentMeasurementWebconnectivityBinding.inflate(inflater,container,false);
+		Markwon markwon = Markwon.builder(getContext()).build();
 		if (measurement.is_anomaly)
-			Markwon.setMarkdown(binding.desc, getString(R.string.TestResults_Details_Websites_LikelyBlocked_Content_Paragraph, measurement.url.url, getString(measurement.getTestKeys().getWebsiteBlocking())));
+			markwon.setMarkdown(binding.desc, getString(R.string.TestResults_Details_Websites_LikelyBlocked_Content_Paragraph, measurement.url.url, getString(measurement.getTestKeys().getWebsiteBlocking())));
 		else
-			Markwon.setMarkdown(binding.desc, getString(R.string.TestResults_Details_Websites_Reachable_Content_Paragraph, measurement.url.url));
+			markwon.setMarkdown(binding.desc, getString(R.string.TestResults_Details_Websites_Reachable_Content_Paragraph, measurement.url.url));
 		return binding.getRoot();
 	}
 }
