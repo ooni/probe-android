@@ -33,8 +33,10 @@ public class ProxySettings {
             settings.protocol = ProxyProtocol.NONE;
         } else if (protocol.equals(ProxyProtocol.PSIPHON.getProtocol())) {
             settings.protocol = ProxyProtocol.PSIPHON;
-        } else if (protocol.equals(ProxyProtocol.SOCKS5.getProtocol())) {
-            settings.protocol = ProxyProtocol.SOCKS5;
+        } else if (protocol.equals(ProxyProtocol.SOCKS5.getProtocol()) || protocol.equals(ProxyProtocol.HTTP.getProtocol()) || protocol.equals(ProxyProtocol.HTTPS.getProtocol())) {
+            // ProxyProtocol.valueOf will only accept one of the values in ProxyProtocol
+            // as in the enum definition(uppercase).
+            settings.protocol = ProxyProtocol.valueOf(protocol.toUpperCase());
         } else {
             // This is where we will extend the code to add support for
             // more proxies, e.g., HTTP proxies.
@@ -72,16 +74,18 @@ public class ProxySettings {
 
     /** getProxyString returns to you the proxy string you should pass to oonimkall. */
     public String getProxyString() throws URISyntaxException {
-        if (protocol == ProxyProtocol.NONE)
+        if (protocol == ProxyProtocol.NONE) {
             return "";
-        if (protocol == ProxyProtocol.PSIPHON)
+        }
+        if (protocol == ProxyProtocol.PSIPHON) {
             return "psiphon://";
-        if (protocol == ProxyProtocol.SOCKS5) {
+        }
+        if (protocol == ProxyProtocol.SOCKS5||protocol == ProxyProtocol.HTTP||protocol == ProxyProtocol.HTTPS) {
             // Alright, we now need to construct a new SOCKS5 URL. We are going to defer
             // doing that to the Java standard library (er, the Android stdlib).
-            String urlStr = "socks5://" + hostname + ":" + port + "/";
+            String urlStr = protocol.getProtocol()+"://" + hostname + ":" + port + "/";
             if (isIPv6(hostname)) {
-                urlStr = "socks5://[" + hostname + "]:" + port + "/"; // IPv6 must be quoted in URLs
+                urlStr = protocol.getProtocol()+"://[" + hostname + "]:" + port + "/"; // IPv6 must be quoted in URLs
             }
             URI url = new URI(urlStr);
             return url.toASCIIString();

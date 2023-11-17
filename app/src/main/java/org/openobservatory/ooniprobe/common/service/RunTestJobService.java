@@ -34,7 +34,7 @@ public class RunTestJobService extends JobService {
 
         @Override
         protected JobParameters doInBackground(JobParameters... params) {
-            ServiceUtil.callCheckInAPI(app);
+            ServiceUtil.startRunTestServiceUnattended(app);
             return params[0];
         }
 
