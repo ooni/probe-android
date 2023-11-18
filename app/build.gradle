@@ -71,7 +71,6 @@ android {
             versionNameSuffix "-beta.1"
             versionCode versionCodeDate()
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-dev"'
-            resValue "string", "APP_ID", "${applicationId}.dev"
             resValue "string", "APP_NAME", "OONI Dev"
             buildConfigField 'String', 'COUNTLY_KEY', '"e6c2cfe53e85951d50567467cef3f9fa2eab32c3"'
         }
@@ -81,7 +80,6 @@ android {
             versionNameSuffix "-experimental.1"
             versionCode versionCodeDate()
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-experimental"'
-            resValue "string", "APP_ID", "${applicationId}.experimental"
             resValue "string", "APP_NAME", "OONI Exp"
             buildConfigField 'String', 'COUNTLY_KEY', '"e6c2cfe53e85951d50567467cef3f9fa2eab32c3"'
         }
@@ -91,6 +89,10 @@ android {
         full {
             dimension 'license'
         }
+    }
+    applicationVariants.all { variant ->
+        variant.resValue "string", "APP_ID", "\"${applicationId}\""
+        // TODO(aanorbel): Use similar solution to set `APP_NAME` in the format `provider` `testing`.
     }
     variantFilter { variant ->
         def names = variant.flavors*.name
@@ -193,13 +195,4 @@ static def versionCodeDate() {
 if (!getGradle().getStartParameter().getTaskRequests()
   .toString().contains("Fdroid")){
     apply plugin: 'com.google.gms.google-services'
-}
-
-preBuild.doFirst {
-    // copy resources to right folders here
-    /*android.applicationVariants.all { variant ->
-        variant.productFlavors.each { flavor ->
-            println "Flavor: ${flavor.name}"
-        }
-    }*/
 }
