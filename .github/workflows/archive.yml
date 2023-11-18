@@ -11,7 +11,7 @@ jobs:
           distribution: 'temurin'
       - name: checkout
         uses: actions/checkout@v2
-      - run: ./gradlew clean assembleDevFullRelease
+      - run: ./gradlew clean assembleOoniDevFullRelease
       - name: uploads dev apk
         uses: actions/upload-artifact@v3
         with:

@@ -11,7 +11,7 @@ jobs:
           distribution: 'temurin'
       - name: checkout
         uses: actions/checkout@v2
-      - run: ./gradlew testStableFullRelease
+      - run: ./gradlew testOoniStableFullRelease
       - name: uploads test results
         uses: actions/upload-artifact@v2
         if: failure()

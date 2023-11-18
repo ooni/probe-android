@@ -7,8 +7,8 @@ jobs:
     strategy:
       matrix:
         version:
-            - "StableFullRelease"
-            - "StableFdroidRelease"
+            - "OoniStableFullRelease"
+            - "OoniStableFdroidRelease"
     steps:
     - uses: actions/setup-java@v2
       with:
