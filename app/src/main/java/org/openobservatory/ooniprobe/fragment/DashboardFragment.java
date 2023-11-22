@@ -111,7 +111,6 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
     public void runAll() {
 		ActivityCompat.startActivity(getContext(), RunTestsActivity.newIntent(getContext(), testSuites), null);
-		//RunningActivity.runAsForegroundService((AbstractActivity) getActivity(), testSuites, this::onTestServiceStartedListener, preferenceManager);
     }
 
     private void onTestServiceStartedListener() {
