@@ -58,7 +58,7 @@ class RunTestsActivity : AbstractActivity() {
 				return@map testSuite.runTestsGroupItem(preferenceManager)
 			}
 
-			mAdapter = RunTestsExpandableListViewAdapter(this, tsGroups, viewModel)
+			mAdapter = RunTestsExpandableListViewAdapter(tsGroups, viewModel)
 
 			binding.expandableListView.setAdapter(mAdapter)
 			for (i in 0 until mAdapter.groupCount) {
