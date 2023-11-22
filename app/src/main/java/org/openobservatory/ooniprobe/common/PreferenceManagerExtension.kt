@@ -13,7 +13,6 @@ private fun PreferenceManager.exclusionList(): MutableList<String> {
 	}
 
 	return exclusionList
-
 }
 
 fun PreferenceManager.enableTest(name: String): Boolean {
