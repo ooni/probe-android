@@ -13,7 +13,7 @@ import io.noties.markwon.AbstractMarkwonPlugin
  * Read more plugin based on text length.
  * @see <a href="https://github.com/noties/Markwon/blob/v4.6.2/app-sample/src/main/java/io/noties/markwon/app/samples/ReadMorePluginSample.java#L208C2-L208C2">ReadMorePluginSample</a>
  */
-class ReadMorePlugin(private val labelMore:String, private val labelLess:String) : AbstractMarkwonPlugin() {
+class ReadMorePlugin(private val labelMore: String, private val labelLess: String) : AbstractMarkwonPlugin() {
     private val maxLength = 150
 
     override fun afterSetText(textView: TextView) {
@@ -29,34 +29,23 @@ class ReadMorePlugin(private val labelMore:String, private val labelLess:String)
 
     private fun createCollapsedString(text: CharSequence, start: Int, end: Int): CharSequence {
         val builder = SpannableStringBuilder(text, start, end)
-
-        // NB! each table row is represented as a space character and new-line (so length=2) no
-        //  matter how many characters are inside table cells
-
-        // we can _clean_ this builder, for example remove all dynamic content (like images and tables,
-        //  but keep them in full/expanded version)
-        if (true) {
-            // it is an implementation detail but _mostly_ dynamic content is implemented as
-            //  ReplacementSpans
-            val spans = builder.getSpans(
+        val spans = builder.getSpans(
                 0, builder.length,
                 ReplacementSpan::class.java
-            )
-            if (spans != null) {
-                for (span in spans) {
-                    builder.removeSpan(span)
-                }
+        )
+        if (spans != null) {
+            for (span in spans) {
+                builder.removeSpan(span)
             }
-
-            // NB! if there will be a table in _preview_ (collapsed) then each row will be represented as a
-            // space and new-line
-            trim(builder)
         }
+
+
+        trim(builder)
         val fullText = createFullText(text, builder)
         builder.append(" ...")
         val length = builder.length
-		builder.append("\n\n")
-		builder.append(labelMore)
+        builder.append("\n\n")
+        builder.append(labelMore)
         builder.setSpan(object : ClickableSpan() {
             override fun onClick(widget: View) {
                 (widget as TextView).text = fullText
@@ -66,26 +55,19 @@ class ReadMorePlugin(private val labelMore:String, private val labelLess:String)
     }
 
     private fun createFullText(text: CharSequence, collapsedText: CharSequence): CharSequence {
-        // full/expanded text can also be different,
-        //  for example it can be kept as-is and have no `collapse` functionality (once expanded cannot collapse)
-        //  or can contain collapse feature
         val fullText: CharSequence
-        if (true) {
-            // for example, let's allow collapsing
-            val builder = SpannableStringBuilder(text)
-            builder.append(' ')
-            val length = builder.length
-            builder.append("\n\n")
-            builder.append(labelLess)
-            builder.setSpan(object : ClickableSpan() {
-                override fun onClick(widget: View) {
-                    (widget as TextView).text = collapsedText
-                }
-            }, length, builder.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-            fullText = builder
-        } else {
-            fullText = text
-        }
+        val builder = SpannableStringBuilder(text)
+        builder.append(' ')
+        val length = builder.length
+        builder.append("\n\n")
+        builder.append(labelLess)
+        builder.setSpan(object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                (widget as TextView).text = collapsedText
+            }
+        }, length, builder.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        fullText = builder
+
         return fullText
     }
 
