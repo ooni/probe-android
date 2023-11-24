@@ -216,7 +216,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     }
 
     private void testEnded(Context context) {
-        startActivity(MainActivity.newIntent(context, R.id.testResults));
+        startActivity(MainActivity.newIntent(context, R.id.testResults,"Probe Run complete"));
         finish();
     }
 

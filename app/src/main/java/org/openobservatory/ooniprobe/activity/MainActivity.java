@@ -41,6 +41,7 @@ import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 
 public class MainActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String RES_ITEM = "resItem";
+    private static final String RES_SNACKBAR_MESSAGE = "resSnackbarMessage";
     public static final String NOTIFICATION_DIALOG = "notification";
     public static final String AUTOTEST_DIALOG = "automatic_testing";
     public static final String BATTERY_DIALOG = "battery_optimization";
@@ -59,7 +60,14 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
         return new Intent(context, MainActivity.class).putExtra(RES_ITEM, resItem).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
     }
 
-    @Override
+	public static Intent newIntent(Context context, int resItem, String message) {
+		return new Intent(context, MainActivity.class)
+			.putExtra(RES_ITEM, resItem)
+			.putExtra(RES_SNACKBAR_MESSAGE, message)
+			.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+	}
+
+	@Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActivityComponent().inject(this);
@@ -85,7 +93,17 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                         return false;
                 }
             });
+			// TODO(aanorbel): Fix change in state(theme change from notification) changing the selected item.
             binding.bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
+			/* Check if we are restoring the activity from a saved state first.
+			 * If we have a message to show, show it as a snackbar.
+			 * This is used to show the message from test completion.
+			 */
+			if (savedInstanceState == null && getIntent().hasExtra(RES_SNACKBAR_MESSAGE)) {
+				Snackbar.make(binding.getRoot(), getIntent().getStringExtra(RES_SNACKBAR_MESSAGE), Snackbar.LENGTH_SHORT)
+					.setAnchorView(binding.bottomNavigation)
+					.show();
+			}
             if (notificationManager.shouldShowAutoTest()) {
                 new ConfirmDialogFragment.Builder()
                         .withTitle(getString(R.string.Modal_Autorun_Modal_Title))
