@@ -23,7 +23,7 @@ public class RiseupVPN extends AbstractTest {
 
     public RiseupVPN() {
         // NOTE: this test has been demoted to experimental and such the icon resource `R.drawable.test_riseupvpn` is not displayed anymore.
-        super(NAME, R.string.Test_RiseupVPN_Fullname, 0, R.string.urlTestRvpn, 15);
+        super(NAME, R.string.Test_Experimental_Fullname, 0, R.string.urlTestRvpn, 15);
     }
 
     @Override public void run(Context c, PreferenceManager pm, AppLogger logger, Gson gson, Result result, int index, AbstractTest.TestCallback testCallback) {
