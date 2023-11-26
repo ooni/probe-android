@@ -36,6 +36,7 @@
 		<item name="colorPrimary">@color/color_gray2</item>
 		<item name="colorPrimaryDark">@color/color_gray4</item>
 		<item name="colorAccent">@color/color_blue4</item>
+		<item name="android:colorBackground">@color/color_white</item>
 		<item name="android:textColor">@color/color_gray7</item>
 		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 		<item name="fontFamily">@font/firasans</item>

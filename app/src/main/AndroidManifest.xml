@@ -115,7 +115,7 @@
 		</activity>
 		<activity
 			android:name=".activity.OoniRunActivity"
-			android:label="@string/APP_NAME"
+			android:label=""
 			android:exported="true"
 			android:launchMode="singleTop"
 			android:parentActivityName=".activity.MainActivity"
