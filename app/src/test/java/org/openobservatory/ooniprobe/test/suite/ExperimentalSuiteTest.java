@@ -1,6 +1,9 @@
 package org.openobservatory.ooniprobe.test.suite;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.Experimental;
@@ -13,11 +16,16 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class ExperimentalSuiteTest {
+    private final Application app = mock(Application.class);
 
-    private final ExperimentalSuite suite = new ExperimentalSuite();
-    private final ExperimentalSuite autoRunSuite = ExperimentalSuite.initForAutoRun();
+    private final AbstractSuite suite = OONITests.EXPERIMENTAL.toOONIDescriptor(app).getTest(app);
+    private final AbstractSuite autoRunSuite = OONITests.EXPERIMENTAL.toOONIDescriptor(app).getTest(app);
     private final PreferenceManager pm = mock(PreferenceManager.class);
 
+    @BeforeClass
+    public  void setUp() {
+        autoRunSuite.setAutoRun(true);
+    }
     @Test
     public void getTestList_empty() {
 

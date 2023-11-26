@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.*
+import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
 import org.openobservatory.ooniprobe.activity.RunningActivity
@@ -14,6 +15,7 @@ import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel.Compani
 import org.openobservatory.ooniprobe.activity.runtests.adapter.RunTestsExpandableListViewAdapter
 import org.openobservatory.ooniprobe.activity.runtests.models.ChildItem
 import org.openobservatory.ooniprobe.activity.runtests.models.GroupItem
+import org.openobservatory.ooniprobe.common.OONIDescriptor
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.databinding.ActivityRunTestsBinding
 import org.openobservatory.ooniprobe.test.suite.*
@@ -34,12 +36,12 @@ class RunTestsActivity : AbstractActivity() {
 	companion object {
 		const val TESTS: String = "tests"
 
-		@JvmStatic
-		fun newIntent(context: Context, testSuites: List<AbstractSuite>): Intent {
-			return Intent(context, RunTestsActivity::class.java).putExtras(Bundle().apply {
-				putSerializable(TESTS, testSuites as Serializable)
-			})
-		}
+        @JvmStatic
+        fun newIntent(context: Context, testSuites: List<OONIDescriptor<BaseNettest>>): Intent {
+            return Intent(context, RunTestsActivity::class.java).putExtras(Bundle().apply {
+                putSerializable(TESTS, testSuites as Serializable)
+            })
+        }
 	}
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,14 +54,16 @@ class RunTestsActivity : AbstractActivity() {
 
 		activityComponent?.inject(this)
 
-		val testSuites: List<AbstractSuite>? = intent.extras?.getParcelableArrayList(TESTS)
-		testSuites?.let { ts ->
-			val tsGroups: List<GroupItem> = ts.map { testSuite ->
-				return@map testSuite.runTestsGroupItem(preferenceManager)
-			}
+		val descriptors: List<OONIDescriptor<BaseNettest>>? =
+			intent.extras?.getSerializable(TESTS) as List<OONIDescriptor<BaseNettest>>?
+		descriptors?.let { _descriptors ->
 
-			adapter = RunTestsExpandableListViewAdapter(tsGroups, viewModel)
-
+			adapter = RunTestsExpandableListViewAdapter(
+				_descriptors.map { descriptor ->
+					descriptor.toRunTestsGroupItem(preferenceManager = preferenceManager)
+				},
+				viewModel
+			)
 			binding.expandableListView.setAdapter(adapter)
 			for (i in 0 until adapter.groupCount) {
 				binding.expandableListView.expandGroup(i)
@@ -102,9 +106,7 @@ class RunTestsActivity : AbstractActivity() {
 				val selectedChildItems: List<String> = getChildItemsSelectedIdList()
 				if (selectedChildItems.isNotEmpty()) {
 					val testSuitesToRun = getGroupItemsAtLeastOneChildEnabled().map { groupItem ->
-						return@map AbstractSuite.getTestSuiteByName(groupItem.name).dynamicTestSuite(
-							nettests = groupItem.nettests.filter { nattest -> nattest.selected }
-						)
+						return@map groupItem.getTest(this)
 					}
 					RunningActivity.runAsForegroundService(
 						this@RunTestsActivity,

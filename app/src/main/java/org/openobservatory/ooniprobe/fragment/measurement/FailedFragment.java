@@ -54,7 +54,7 @@ public class FailedFragment extends Fragment {
 		abstractTest.setIsRerun(true);
 		if (failedMeasurement.url != null)
 			abstractTest.setInputs(Collections.singletonList(failedMeasurement.url.url));
-		AbstractSuite testSuite = failedMeasurement.result.getTestSuite();
+		AbstractSuite testSuite = failedMeasurement.result.getTestSuite(getContext());
 		testSuite.setTestList(abstractTest);
 		testSuite.setResult(failedMeasurement.result);
 

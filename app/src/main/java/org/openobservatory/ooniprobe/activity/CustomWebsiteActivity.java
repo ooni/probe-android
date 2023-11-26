@@ -7,17 +7,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
 import androidx.annotation.Nullable;
-import localhost.toolkit.app.fragment.ConfirmDialogFragment;
+
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.common.TestDescriptorManager;
 import org.openobservatory.ooniprobe.databinding.ActivityCustomwebsiteBinding;
 import org.openobservatory.ooniprobe.model.database.Url;
-import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
+import org.openobservatory.ooniprobe.test.suite.DynamicTestSuite;
 
-import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import javax.inject.Inject;
+
+import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 
 public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private ArrayList<EditText> editTexts;
@@ -25,6 +31,9 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
 
     @Inject
     PreferenceManager preferenceManager;
+
+    @Inject
+    TestDescriptorManager descriptorManager;
     private ActivityCustomwebsiteBinding binding;
 
     @Override
@@ -47,11 +56,14 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
                 if (Patterns.WEB_URL.matcher(sanitizedUrl).matches() && sanitizedUrl.length() < 2084)
                     urls.add(Url.checkExistingUrl(sanitizedUrl).toString());
             }
-            WebsitesSuite suite = new WebsitesSuite();
-            suite.getTestList(preferenceManager)[0].setInputs(urls);
+            DynamicTestSuite suite = descriptorManager.getTestByDescriptorName(OONITests.WEBSITES.getLabel());
+            if (suite != null) {
+                suite.getTestList(preferenceManager)[0].setInputs(urls);
 
-            RunningActivity.runAsForegroundService(CustomWebsiteActivity.this, suite.asArray(), this::finish, preferenceManager);
-            return true;
+                RunningActivity.runAsForegroundService(CustomWebsiteActivity.this, suite.asArray(), this::finish, preferenceManager);
+                return true;
+            }
+            return false;
         });
         binding.add.setOnClickListener(v -> add());
         add();
@@ -74,7 +86,7 @@ public class CustomWebsiteActivity extends AbstractActivity implements ConfirmDi
             super.onBackPressed();
     }
 
-    public boolean checkPrefix(){
+    public boolean checkPrefix() {
         boolean prefix = true;
         for (EditText editText : editTexts)
             if (!editText.getText().toString().contains("http://")

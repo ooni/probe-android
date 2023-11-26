@@ -16,12 +16,12 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.RunningActivity
 import org.openobservatory.ooniprobe.common.Application
+import org.openobservatory.ooniprobe.common.OONITests
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.common.TestProgressRepository
 import org.openobservatory.ooniprobe.common.service.RunTestService
 import org.openobservatory.ooniprobe.databinding.FragmentProgressBinding
 import org.openobservatory.ooniprobe.receiver.TestRunBroadRequestReceiver
-import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite
 import javax.inject.Inject
 
 /**
@@ -132,7 +132,7 @@ class ProgressFragment : Fragment() {
 							biding.testImage.visibility = View.GONE
 						}
 					}
-					biding.name.text = when (task.currentSuite is ExperimentalSuite) {
+					biding.name.text = when (task.currentSuite.name.equals(OONITests.EXPERIMENTAL.label)) {
 						true -> SpannableStringBuilder().bold { append(currentTest.name) }
 						false -> SpannableStringBuilder().bold { append(getString(currentTest.labelResId)) }
 					}.append(" ")

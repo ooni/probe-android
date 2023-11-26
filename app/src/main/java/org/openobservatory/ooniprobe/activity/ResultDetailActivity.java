@@ -21,6 +21,7 @@ import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerAdapter;
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.databinding.ActivityResultDetailBinding;
@@ -71,14 +72,14 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
         getActivityComponent().inject(this);
         result = getResults.get(getIntent().getIntExtra(ID, 0));
         assert result != null;
-        setTheme(result.getTestSuite().getThemeLight());
+        setTheme(result.getTestSuite(this).getThemeLight());
         ActivityResultDetailBinding binding = ActivityResultDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
         ActionBar bar = getSupportActionBar();
         if (bar != null) {
             bar.setDisplayHomeAsUpEnabled(true);
-            bar.setTitle(result.getTestSuite().getTitle());
+            bar.setTitle(result.getTestSuite(this).getTitle());
         }
         binding.pager.setAdapter(new ResultHeaderAdapter(this));
         new TabLayoutMediator(binding.tabLayout, binding.pager, (tab, position) ->
@@ -111,7 +112,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         invalidateOptionsMenu();
-        if (!result.test_group_name.equals(WebsitesSuite.NAME))
+        if (!result.test_group_name.equals(OONITests.WEBSITES.getLabel()))
             menu.findItem(R.id.reRun).setVisible(false);
         return super.onPrepareOptionsMenu(menu);
     }
@@ -142,7 +143,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
     private void load() {
         result = getResults.get(result.id);
         assert result != null;
-        boolean isPerf = result.test_group_name.equals(PerformanceSuite.NAME);
+        boolean isPerf = result.test_group_name.equals(OONITests.PERFORMANCE.getLabel());
         items.clear();
         List<Measurement> measurements = result.getMeasurementsSorted();
         for (Measurement measurement : measurements)
@@ -159,7 +160,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         Measurement measurement = (Measurement) v.getTag();
-        if (result.test_group_name.equals(ExperimentalSuite.NAME))
+        if (result.test_group_name.equals(OONITests.EXPERIMENTAL.getLabel()))
             startActivity(TextActivity.newIntent(this, TextActivity.TYPE_JSON, measurement));
         else
             ActivityCompat.startActivity(this, MeasurementDetailActivity.newIntent(this, measurement.id), null);
@@ -206,7 +207,7 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
 
         @Override
         public Fragment createFragment(int position) {
-            if (result.test_group_name.equals(ExperimentalSuite.NAME)){
+            if (result.test_group_name.equals(OONITests.EXPERIMENTAL.getLabel())){
                 if (position == 0)
                     return ResultHeaderDetailFragment.newInstance(false, result.getFormattedDataUsageUp(), result.getFormattedDataUsageDown(), result.start_time, result.getRuntime(), true, null, null);
                 else if (position == 1)
@@ -216,26 +217,22 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
                 return ResultHeaderDetailFragment.newInstance(false, result.getFormattedDataUsageUp(), result.getFormattedDataUsageDown(), result.start_time, result.getRuntime(), true, null, null);
             else if (position == 2)
                 return ResultHeaderDetailFragment.newInstance(false, null, null, null, null, null, Network.getCountry(ResultDetailActivity.this, result.network), result.network);
-            else switch (result.test_group_name) {
-                    default: //Default can no longer be null, so we have to default to something...
-                        // NOTE: Perhaps set up a test page?
-                    case WebsitesSuite.NAME:
-                        return ResultHeaderTBAFragment.newInstance(result);
-                    case InstantMessagingSuite.NAME:
-                        return ResultHeaderTBAFragment.newInstance(result);
-                    case MiddleBoxesSuite.NAME:
-                        return ResultHeaderMiddleboxFragment.newInstance(result.countAnomalousMeasurements() > 0);
-                    case PerformanceSuite.NAME:
-                        return ResultHeaderPerformanceFragment.newInstance(result);
-                    case CircumventionSuite.NAME:
-                        return ResultHeaderTBAFragment.newInstance(result);
+            else {
+                if (result.test_group_name.equals(OONITests.INSTANT_MESSAGING.getLabel())) {
+                    return ResultHeaderTBAFragment.newInstance(result);
+                } else if (result.test_group_name.equals(OONITests.PERFORMANCE.getLabel())) {
+                    return ResultHeaderPerformanceFragment.newInstance(result);
+                } else if (result.test_group_name.equals(OONITests.CIRCUMVENTION.getLabel())) {
+                    return ResultHeaderTBAFragment.newInstance(result);
                 }
+                return ResultHeaderTBAFragment.newInstance(result);
+            }
         }
 
 
         @Override
         public int getItemCount() {
-            if (result.test_group_name.equals(ExperimentalSuite.NAME))
+            if (result.test_group_name.equals(OONITests.EXPERIMENTAL.getLabel()))
                 return 2;
             return 3;
         }

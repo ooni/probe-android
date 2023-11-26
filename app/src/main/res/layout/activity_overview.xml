@@ -8,11 +8,13 @@
 	tools:context=".activity.OverviewActivity">
 
 	<com.google.android.material.appbar.AppBarLayout
+		android:id="@+id/appbar_layout"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
 		<com.google.android.material.appbar.CollapsingToolbarLayout
+			android:id="@+id/collapsing_toolbar"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			app:contentScrim="?attr/colorPrimary"

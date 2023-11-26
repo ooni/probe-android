@@ -12,14 +12,11 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.apache.commons.io.FileUtils;
+import org.openobservatory.engine.BaseNettest;
 import org.openobservatory.ooniprobe.common.AppDatabase;
+import org.openobservatory.ooniprobe.common.OONIDescriptor;
+import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
-import org.openobservatory.ooniprobe.test.suite.CircumventionSuite;
-import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
-import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
-import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
-import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
-import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.Dash;
 import org.openobservatory.ooniprobe.test.test.FacebookMessenger;
 import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
@@ -100,7 +97,7 @@ public class Result extends BaseModel implements Serializable {
 	 * Psiphon - Tor for Circumvention
 	 */
 	public List<Measurement> getMeasurementsSorted() {
-		if (WebsitesSuite.NAME.equals(test_group_name))
+		if (OONITests.WEBSITES.getLabel().equals(test_group_name))
 			return SQLite.select().from(Measurement.class)
 					.where(Measurement_Table.result_id.eq(id), Measurement_Table.is_rerun.eq(false), Measurement_Table.is_done.eq(true))
 					.orderBy(Measurement_Table.is_anomaly, false)
@@ -176,39 +173,20 @@ public class Result extends BaseModel implements Serializable {
 		return readableFileSize(this.data_usage_down);
 	}
 
-	public AbstractSuite getTestSuite() {
-		switch (test_group_name) {
-			case WebsitesSuite.NAME:
-				return new WebsitesSuite();
-			case InstantMessagingSuite.NAME:
-				return new InstantMessagingSuite();
-			case MiddleBoxesSuite.NAME:
-				return new MiddleBoxesSuite();
-			case PerformanceSuite.NAME:
-				return new PerformanceSuite();
-			case CircumventionSuite.NAME:
-				return new CircumventionSuite();
-			case ExperimentalSuite.NAME:
-				return new ExperimentalSuite();
-			default:
-				return null;
-		}
+	public AbstractSuite getTestSuite(Context context) {
+		return getDescriptor(context).getTest(context);
 	}
 
 	private String[] getTestOrder() {
-		switch (test_group_name) {
-			case WebsitesSuite.NAME:
-				return new String[]{WebConnectivity.NAME};
-			case InstantMessagingSuite.NAME:
-				return new String[]{Whatsapp.NAME, Telegram.NAME, FacebookMessenger.NAME, Signal.NAME};
-			case MiddleBoxesSuite.NAME:
-				return new String[]{HttpInvalidRequestLine.NAME, HttpHeaderFieldManipulation.NAME};
-			case PerformanceSuite.NAME:
-				return new String[]{Ndt.NAME, Dash.NAME, HttpInvalidRequestLine.NAME, HttpHeaderFieldManipulation.NAME};
-			default:
-				return null;
-		}
-	}
+        if (test_group_name.equals(OONITests.WEBSITES.getLabel())) {
+            return new String[]{WebConnectivity.NAME};
+        } else if (test_group_name.equals(OONITests.INSTANT_MESSAGING.getLabel())) {
+            return new String[]{Whatsapp.NAME, Telegram.NAME, FacebookMessenger.NAME, Signal.NAME};
+        } else if (test_group_name.equals(OONITests.PERFORMANCE.getLabel())) {
+            return new String[]{Ndt.NAME, Dash.NAME, HttpInvalidRequestLine.NAME, HttpHeaderFieldManipulation.NAME};
+        }
+        return null;
+    }
 
 	public void delete(Context c) {
 		for (Measurement measurement : getAllMeasurements()) {
@@ -220,5 +198,9 @@ public class Result extends BaseModel implements Serializable {
 		//Network object is deleted after the Result object to avoid constraint fail
 		if (this.network != null)
 			this.network.delete();
+	}
+
+	public OONIDescriptor<BaseNettest> getDescriptor(Context context) {
+		return OONITests.valueOf(test_group_name).toOONIDescriptor(context);
 	}
 }

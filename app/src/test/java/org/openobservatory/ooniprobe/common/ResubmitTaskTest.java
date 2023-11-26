@@ -14,7 +14,6 @@ import org.openobservatory.ooniprobe.factory.ResultFactory;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.EngineInterface;
 import org.openobservatory.ooniprobe.test.EngineProvider;
-import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.utils.DatabaseUtils;
 
 import static org.junit.Assert.assertEquals;
@@ -41,8 +40,8 @@ public class ResubmitTaskTest extends RobolectricAbstractTest {
     @Test
     public void notUploadedMeasurementsTest() {
         // Arrange
-        Result testResult = ResultFactory.createAndSaveWithEntryFiles(c, new WebsitesSuite(), 5, 0, false);
-        ResultFactory.createAndSaveWithEntryFiles(c, new WebsitesSuite(), 5, 0, false);
+        Result testResult = ResultFactory.createAndSaveWithEntryFiles(c, OONITests.WEBSITES.toOONIDescriptor(c).getTest(c), 5, 0, false);
+        ResultFactory.createAndSaveWithEntryFiles(c, OONITests.WEBSITES.toOONIDescriptor(c).getTest(c), 5, 0, false);
         ResubmitTask<ResultDetailActivity> resubmitTask = build(testResult.id);
 
         when(managerMock.reSubmit(any(), any())).thenReturn(true);
@@ -59,8 +58,8 @@ public class ResubmitTaskTest extends RobolectricAbstractTest {
     @Test
     public void notUploadedByResultIdMeasurementsTest() {
         // Arrange
-        Result testResult = ResultFactory.createAndSaveWithEntryFiles(c, new WebsitesSuite(), 5, 0, false);
-        ResultFactory.createAndSaveWithEntryFiles(c, new WebsitesSuite(), 5, 0, false);
+        Result testResult = ResultFactory.createAndSaveWithEntryFiles(c, OONITests.WEBSITES.toOONIDescriptor(c).getTest(c), 5, 0, false);
+        ResultFactory.createAndSaveWithEntryFiles(c, OONITests.WEBSITES.toOONIDescriptor(c).getTest(c), 5, 0, false);
         ResubmitTask<ResultDetailActivity> resubmitTask = build(testResult.id);
 
         when(managerMock.reSubmit(any(), any())).thenReturn(true);
@@ -77,7 +76,7 @@ public class ResubmitTaskTest extends RobolectricAbstractTest {
     @Test
     public void notUploadedByMeasurementIdMeasurementsTest() {
         // Arrange
-        Result testResult = ResultFactory.createAndSaveWithEntryFiles(c, new WebsitesSuite(), 5, 0, false);
+        Result testResult = ResultFactory.createAndSaveWithEntryFiles(c, OONITests.WEBSITES.toOONIDescriptor(c).getTest(c), 5, 0, false);
         ResubmitTask<ResultDetailActivity> resubmitTask = build(testResult.id);
 
         when(managerMock.reSubmit(any(), any())).thenReturn(true);

@@ -21,14 +21,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractSuite implements Serializable {
-	private final int title;
-	private final int cardDesc;
+	private final String title;
+	private final String cardDesc;
 	private final int icon;
 	private final int icon_24;
 	private final int color;
 	private final int themeLight;
 	private final int themeDark;
-	private final int desc1;
+	private final String desc1;
 	private final String anim;
 	private final String name;
 	private final int dataUsage;
@@ -36,7 +36,7 @@ public abstract class AbstractSuite implements Serializable {
 	private Result result;
 	private boolean autoRun;
 
-	AbstractSuite(String name, @StringRes int title, @StringRes int cardDesc, @DrawableRes int icon, @DrawableRes int icon_24, @ColorRes int color, @StyleRes int themeLight, @StyleRes int themeDark, @StringRes int desc1, String anim, int dataUsage) {
+	AbstractSuite(String name, String title, String cardDesc, @DrawableRes int icon, @DrawableRes int icon_24, @ColorRes int color, @StyleRes int themeLight, @StyleRes int themeDark, String desc1, String anim, int dataUsage) {
 		this.title = title;
 		this.cardDesc = cardDesc;
 		this.icon = icon;
@@ -68,11 +68,11 @@ public abstract class AbstractSuite implements Serializable {
 		this.result = result;
 	}
 
-	public int getTitle() {
+	public String getTitle() {
 		return title;
 	}
 
-	public int getCardDesc() {
+	public String getCardDesc() {
 		return cardDesc;
 	}
 
@@ -104,7 +104,7 @@ public abstract class AbstractSuite implements Serializable {
 		return themeDark;
 	}
 
-	public int getDesc1() {
+	public String getDesc1() {
 		return desc1;
 	}
 
@@ -144,39 +144,5 @@ public abstract class AbstractSuite implements Serializable {
 
 	public void setAutoRun(boolean autoRun) {
 		this.autoRun = autoRun;
-	}
-
-	public static AbstractSuite getSuite(Application app,
-										 String tn,
-										 @Nullable List<String> urls,
-										 String origin) {
-		for (AbstractSuite suite : TestAsyncTask.getSuites())
-			for (AbstractTest test : suite.getTestList(app.getPreferenceManager()))
-				if (test.getName().equals(tn)) {
-					if (urls != null)
-						for (String url : urls)
-							Url.checkExistingUrl(url);
-					test.setInputs(urls);
-					test.setOrigin(origin);
-					suite.setTestList(test);
-					return suite;
-				}
-		return null;
-	}
-	public static AbstractSuite getTestSuiteByName(String name){
-		switch (name){
-			case WebsitesSuite.NAME:
-				return new WebsitesSuite();
-			case InstantMessagingSuite.NAME:
-				return new InstantMessagingSuite();
-			case CircumventionSuite.NAME:
-				return new CircumventionSuite();
-			case PerformanceSuite.NAME:
-				return new PerformanceSuite();
-			case ExperimentalSuite.NAME:
-				return new ExperimentalSuite();
-			default:
-				return new ExperimentalSuite();
-		}
 	}
 }

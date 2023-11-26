@@ -1,15 +1,17 @@
 package org.openobservatory.ooniprobe.domain;
 
+import static org.openobservatory.ooniprobe.test.suite.AbstractSuiteExtensionsKt.getSuite;
+
 import androidx.annotation.Nullable;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
-import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
 import java.util.List;
@@ -27,13 +29,11 @@ public class GetTestSuite {
     }
 
     public AbstractSuite get(String testName, @Nullable List<String> urls) {
-        return AbstractSuite.getSuite(application, testName,
-                urls,
-                "ooni-run");
+        return getSuite(application, testName, urls, "ooni-run");
     }
 
     public AbstractSuite getFrom(Result result) {
-        AbstractSuite testSuite = result.getTestSuite();
+        AbstractSuite testSuite = result.getTestSuite(application);
         WebConnectivity test = new WebConnectivity();
 
         // possible NPE from measurements whose url's are null.
@@ -57,8 +57,8 @@ public class GetTestSuite {
     }
 
     public AbstractSuite getForWebConnectivityReRunFrom(Result result, List<String> inputs) {
-        if (Objects.equals(result.getTestSuite().getName(), WebsitesSuite.NAME)){
-            AbstractSuite testSuite = result.getTestSuite();
+        if (Objects.equals(result.getTestSuite(application).getName(), OONITests.WEBSITES.name())) {
+            AbstractSuite testSuite = result.getTestSuite(application);
             WebConnectivity test = new WebConnectivity();
 
             // possible NPE from measurements whose url's are null.

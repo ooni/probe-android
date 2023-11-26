@@ -2,13 +2,10 @@ package org.openobservatory.ooniprobe.factory;
 
 import android.content.Context;
 
+import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
-import org.openobservatory.ooniprobe.test.suite.CircumventionSuite;
-import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
-import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
-import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.Dash;
 import org.openobservatory.ooniprobe.test.test.FacebookMessenger;
@@ -107,7 +104,7 @@ public class ResultFactory {
 
         List<AbstractTest> measurementTestTypes = new ArrayList<>();
 
-        if (suite instanceof InstantMessagingSuite) {
+        if (suite.getName().equals(OONITests.INSTANT_MESSAGING.getLabel())) {
             measurementTestTypes = Arrays.asList(
                     new FacebookMessenger(),
                     new Telegram(),
@@ -116,7 +113,7 @@ public class ResultFactory {
             );
         }
 
-        if (suite instanceof CircumventionSuite) {
+        if (suite.getName().equals(OONITests.CIRCUMVENTION.getLabel())) {
             measurementTestTypes = Arrays.asList(
                     new Psiphon(),
                     new Tor(),
@@ -124,13 +121,13 @@ public class ResultFactory {
             );
         }
 
-        if (suite instanceof WebsitesSuite) {
+        if (suite.getName().equals(OONITests.WEBSITES.getLabel())) {
             for (int i = 0; i < accessibleMeasurements + blockedMeasurements; i++) {
                 measurementTestTypes.add(new WebConnectivity());
             }
         }
 
-        if (suite instanceof PerformanceSuite) {
+        if (suite.getName().equals(OONITests.PERFORMANCE.getLabel())) {
             measurementTestTypes = Arrays.asList(
                     new Ndt(),
                     new Dash(),
