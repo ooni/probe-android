@@ -18,13 +18,13 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17
     }
-    flavorDimensions = ['provider', 'testing', 'license']
+    flavorDimensions = ['brand', 'testing', 'license']
     productFlavors {
         ooni {
-            dimension 'provider'
+            dimension 'brand'
         }
         dw {
-            dimension 'provider'
+            dimension 'brand'
         }
         stable {
             dimension 'testing'
