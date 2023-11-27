@@ -89,9 +89,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                         .build().show(getSupportFragmentManager(), null);
             } else if (notificationManager.shouldShow()) {
                     registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-                        if (result.getResultCode() == Activity.RESULT_OK) {
-                            // TODO (aanorbel) Notify Users of successful completion
-                        }
+                        if (result.getResultCode() == Activity.RESULT_OK) {}
                     }).launch(PromptActivity.newIntent(this, PromptActivity.Prompt.CENSORSHIP_CONSENT));
             }
             ThirdPartyServices.checkUpdates(this);
