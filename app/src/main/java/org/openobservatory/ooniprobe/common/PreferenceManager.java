@@ -331,7 +331,7 @@ public class PreferenceManager {
 		if (language.equals("auto")) {
 			language = Locale.getDefault().getLanguage();
 		}
-		if (new ArrayList<>(Arrays.asList(r.getStringArray(R.array.language_sort_options_values))).contains(language)){
+		if (new ArrayList<>(Arrays.asList(r.getStringArray(R.array.language_sort_options_values))).contains(language)) {
 			return language;
 		}
 		return "en";
