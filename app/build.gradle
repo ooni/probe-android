@@ -93,7 +93,6 @@ android {
     }
     applicationVariants.all { variant ->
         variant.resValue "string", "APP_ID", "\"${applicationId}\""
-        // TODO(aanorbel): Use similar solution to set `APP_NAME` in the format `brand` `testing`.
     }
     variantFilter { variant ->
         def names = variant.flavors*.name
