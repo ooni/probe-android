@@ -6,6 +6,8 @@ import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel
 import org.openobservatory.ooniprobe.common.OONIDescriptor
 import org.openobservatory.ooniprobe.common.PreferenceManager
+import org.openobservatory.ooniprobe.common.disableTest
+import org.openobservatory.ooniprobe.common.enableTest
 import javax.inject.Inject
 
 class TestGroupItem(
@@ -33,14 +35,39 @@ class OverviewViewModel() : ViewModel() {
         selectedAllBtnStatus.postValue(selectedStatus)
         when (selectedStatus) {
             SELECT_ALL -> {
-                // enableTest(testName)
+                descriptor.value?.nettests?.forEach {
+                    enableTest(it.name)
+                }
             }
 
             SELECT_NONE -> {
-                // disableTest(testName)
+                descriptor.value?.nettests?.forEach {
+                    disableTest(it.name)
+                }
             }
         }
     }
+
+    fun disableTest(name: String) {
+        descriptor.value?.let {
+            preferenceManager.disableTest(
+                name = name,
+                prefix = it.preferencePrefix(),
+                autoRun = true
+            )
+        }
+    }
+
+    fun enableTest(name: String) {
+        descriptor.value?.let {
+            preferenceManager.enableTest(
+                name = name,
+                prefix = it.preferencePrefix(),
+                autoRun = true
+            )
+        }
+    }
+
 
     fun updateDescriptor(descriptor: OONIDescriptor<BaseNettest>) {
         this.descriptor.postValue(descriptor)

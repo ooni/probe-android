@@ -6,14 +6,15 @@ import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.widget.SwitchCompat
+import com.google.android.material.checkbox.MaterialCheckBox
 import org.openobservatory.ooniprobe.R
+import org.openobservatory.ooniprobe.common.OONITests
+import org.openobservatory.ooniprobe.test.test.AbstractTest
 
 class OverviewTestsExpandableListViewAdapter(
     private val items: List<TestGroupItem>,
+    private val viewModel: OverviewViewModel,
 ) : BaseExpandableListAdapter() {
-
-    private val selectedGroups = HashSet<Int>()
 
     override fun getGroupCount(): Int = items.size
 
@@ -39,21 +40,68 @@ class OverviewTestsExpandableListViewAdapter(
         val view = convertView ?: LayoutInflater.from(parent.context)
             .inflate(R.layout.overview_test_group_list_item, parent, false)
         val groupItem = getGroup(groupPosition)
-        val groupTextView: TextView = view.findViewById(R.id.group_name)
         val groupIndicator = view.findViewById<ImageView>(R.id.group_indicator)
 
-        groupTextView.text = groupItem.name
+        when (viewModel.descriptor.value?.name) {
+            OONITests.EXPERIMENTAL.label -> {
+                view.findViewById<TextView>(R.id.group_name).text = groupItem.name
+            }
 
-        val groupCheckBox: SwitchCompat = view.findViewById(R.id.groupCheckBox)
-        groupCheckBox.isChecked = selectedGroups.contains(groupPosition)
-
-        groupCheckBox.setOnClickListener {
-            if (groupCheckBox.isChecked) {
-                selectedGroups.add(groupPosition)
-            } else {
-                selectedGroups.remove(groupPosition)
+            else -> {
+                val testSuite = AbstractTest.getTestByName(groupItem.name)
+                view.findViewById<TextView>(R.id.group_name).text =
+                    parent.context.resources.getText(testSuite.labelResId)
+                when(testSuite.iconResId){
+                    0 -> view.findViewById<ImageView>(R.id.group_icon).visibility = View.GONE
+                    else -> {
+                        view.findViewById<ImageView>(R.id.group_icon).apply {
+                            visibility = View.VISIBLE
+                            setImageResource(testSuite.iconResId)
+                        }
+                    }
+                }
             }
         }
+
+        val groupCheckBox = view.findViewById<MaterialCheckBox>(R.id.groupCheckBox)
+
+        val selectedAllBtnStatus = viewModel.selectedAllBtnStatus.value
+        if (selectedAllBtnStatus == OverviewViewModel.SELECT_ALL) {
+            groupItem.selected = true
+        } else if (selectedAllBtnStatus == OverviewViewModel.SELECT_NONE) {
+            groupItem.selected = false
+        }
+
+        groupCheckBox.setOnClickListener {
+            if (groupItem.selected) {
+                groupItem.selected = false
+                viewModel.disableTest(groupItem.name)
+                notifyDataSetChanged()
+                if (isNotSelectedAnyGroupItem()) {
+                    viewModel.setSelectedAllBtnStatus(OverviewViewModel.SELECT_NONE)
+                } else {
+                    viewModel.setSelectedAllBtnStatus(OverviewViewModel.SELECT_SOME)
+                }
+            } else {
+                groupItem.selected = true
+                viewModel.enableTest(groupItem.name)
+                notifyDataSetChanged()
+
+                if (isSelectedAllItems()) {
+                    viewModel.setSelectedAllBtnStatus(OverviewViewModel.SELECT_ALL)
+                } else {
+                    viewModel.setSelectedAllBtnStatus(OverviewViewModel.SELECT_SOME)
+                }
+            }
+        }
+
+        groupCheckBox.isChecked = groupItem.selected
+        // Disable experimental or webconnectivity test
+        viewModel.descriptor.value?.run {
+            groupCheckBox.isEnabled = hasPreferencePrefix()
+        }
+
+
         if (groupItem.inputs?.isNotEmpty() == true) {
             if (isExpanded) {
                 groupIndicator.setImageResource(R.drawable.expand_less)
@@ -88,7 +136,21 @@ class OverviewTestsExpandableListViewAdapter(
         return true
     }
 
-    fun getSelectedGroups(): Set<Int> {
-        return selectedGroups
+    fun isNotSelectedAnyGroupItem(): Boolean {
+        for (groupItem in items) {
+            if (groupItem.selected) {
+                return false
+            }
+        }
+        return true
+    }
+
+    fun isSelectedAllItems(): Boolean {
+        for (groupItem in items) {
+            if (!groupItem.selected) {
+                return false
+            }
+        }
+        return true
     }
 }

@@ -38,7 +38,7 @@
             app:tint="@color/color_black" />
 
     </LinearLayout>
-    <androidx.appcompat.widget.SwitchCompat
+    <com.google.android.material.checkbox.MaterialCheckBox
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:id="@+id/groupCheckBox"
