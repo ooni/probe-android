@@ -14,6 +14,8 @@ import androidx.core.view.ViewCompat;
 
 import org.openobservatory.engine.BaseNettest;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.overview.OverviewTestsExpandableListViewAdapter;
+import org.openobservatory.ooniprobe.activity.overview.OverviewViewModel;
 import org.openobservatory.ooniprobe.common.OONIDescriptor;
 import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
@@ -34,6 +36,10 @@ public class OverviewActivity extends AbstractActivity {
 
     @Inject
     PreferenceManager preferenceManager;
+
+    @Inject
+    OverviewViewModel viewModel;
+
     private OONIDescriptor<BaseNettest> descriptor;
 
     public static Intent newIntent(Context context, OONIDescriptor<BaseNettest> descriptor) {
@@ -47,6 +53,7 @@ public class OverviewActivity extends AbstractActivity {
         descriptor = (OONIDescriptor) getIntent().getSerializableExtra(TEST);
         binding = ActivityOverviewBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        viewModel.updateDescriptor(descriptor);
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(descriptor.getTitle());
@@ -67,6 +74,13 @@ public class OverviewActivity extends AbstractActivity {
             binding.lastTime.setText(R.string.Dashboard_Overview_LastRun_Never);
         } else {
             binding.lastTime.setText(DateUtils.getRelativeTimeSpanString(lastResult.start_time.getTime()));
+        }
+
+        OverviewTestsExpandableListViewAdapter adapter = new OverviewTestsExpandableListViewAdapter(descriptor.getOverviewExpandableListViewData());
+        binding.expandableListView.setAdapter(adapter);
+        // Expand all groups
+        for (int i = 0; i < adapter.getGroupCount(); i++) {
+            binding.expandableListView.expandGroup(i);
         }
 
         setUpOnCLickListeners();

@@ -106,16 +106,66 @@
 
 		</com.google.android.material.appbar.CollapsingToolbarLayout>
 	</com.google.android.material.appbar.AppBarLayout>
-	<androidx.core.widget.NestedScrollView
+	<androidx.constraintlayout.widget.ConstraintLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		app:layout_behavior="@string/appbar_scrolling_view_behavior">
-		<TextView
-			android:id="@+id/desc"
+
+		<RelativeLayout
+			android:id="@+id/header"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			android:paddingHorizontal="16dp"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:padding="32dp" />
-	</androidx.core.widget.NestedScrollView>
+			android:layout_height="wrap_content">
+
+			<TextView
+				android:id="@+id/desc"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:paddingVertical="32dp" />
+
+			<TextView
+				android:id="@+id/run_automatically"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignBottom="@id/desc"
+				android:layout_alignEnd="@id/desc"
+				android:text="Run automatically" />
+
+			<LinearLayout
+				android:id="@+id/header_container"
+				android:layout_below="@+id/run_automatically"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Tests" />
+
+				<View
+					android:layout_width="0dp"
+					android:layout_height="0dp"
+					android:layout_weight="1" />
+
+				<androidx.appcompat.widget.SwitchCompat
+					android:id="@+id/switch_tests"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" />
+			</LinearLayout>
+		</RelativeLayout>
+
+		<ExpandableListView
+			app:layout_constraintTop_toBottomOf="@id/header"
+			android:id="@+id/expandable_list_view"
+			android:childDivider="@android:color/transparent"
+			android:divider="@android:color/transparent"
+			android:groupIndicator="@null"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content" />
+	</androidx.constraintlayout.widget.ConstraintLayout>
 
 	<androidx.fragment.app.FragmentContainerView
 		android:name="org.openobservatory.ooniprobe.fragment.ProgressFragment"

@@ -7,6 +7,7 @@ import androidx.annotation.StringRes
 import org.openobservatory.engine.BaseDescriptor
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.R
+import org.openobservatory.ooniprobe.activity.overview.TestGroupItem
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsActivity
 import org.openobservatory.ooniprobe.activity.runtests.models.ChildItem
 import org.openobservatory.ooniprobe.activity.runtests.models.GroupItem
@@ -27,6 +28,9 @@ open class OONIDescriptor<T : BaseNettest>(
     override var nettests: List<T>,
     var longRunningTests: List<T>? = null
 ) : Serializable, BaseDescriptor<T>(name = name, nettests = nettests) {
+
+    val overviewExpandableListViewData: MutableList<TestGroupItem> =
+        nettests.map { TestGroupItem(false, it.name, it.inputs) }.toMutableList()
 
     /**
      * Checks if any of the nettests are enabled based on the preferences stored in the provided [PreferenceManager].
