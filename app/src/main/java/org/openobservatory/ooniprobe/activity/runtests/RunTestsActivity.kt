@@ -121,7 +121,6 @@ class RunTestsActivity : AbstractActivity() {
 		}
 	}
 
-	// TODO(aanorbel) Update button color from theme
 	private fun selectAllBtnStatusObserver(selectAllBtnStatus: String?) {
 		if (!TextUtils.isEmpty(selectAllBtnStatus)) {
 			when (selectAllBtnStatus) {

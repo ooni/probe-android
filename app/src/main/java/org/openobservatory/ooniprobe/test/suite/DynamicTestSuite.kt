@@ -9,6 +9,11 @@ import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.test.test.AbstractTest
 
+/**
+ * This class is used to create [AbstractTest] dynamically for all instances where a Test Suite is required.
+ * It is used to create a test suite from a Descriptor.
+ * It acts as a bridge between the Descriptor format and the [AbstractSuite].
+ */
 class DynamicTestSuite(
 	name: String,
 	@StringRes title: Int,
