@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="item_padding_small">8dp</dimen>
+    <dimen name="item_padding_large">16dp</dimen>
     <dimen name="activity_ooni_run_v2_items_margin_bottom">140dp</dimen>
 </resources>

@@ -9,6 +9,7 @@ import android.widget.ExpandableListView
 import android.widget.ExpandableListView.OnGroupExpandListener
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
+import org.openobservatory.engine.OONIRunNettest
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.OoniRunActivity
 import org.openobservatory.ooniprobe.adapters.NettestRecyclerViewAdapter
@@ -23,7 +24,8 @@ class OoniRunListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_ooni_run_list, container, false)
-        val adapter = NettestRecyclerViewAdapter((activity as OoniRunActivity).items)
+
+        val adapter = NettestRecyclerViewAdapter(listOf()) /*(activity as OoniRunActivity).items*/
         // Set the adapter
         if (view is ExpandableListView) {
             view.setOnGroupExpandListener(object : OnGroupExpandListener {

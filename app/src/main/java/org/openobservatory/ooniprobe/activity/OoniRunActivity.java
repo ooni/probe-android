@@ -1,3 +1,4 @@
+/*
 package org.openobservatory.ooniprobe.activity;
 
 import android.content.Intent;
@@ -264,3 +265,4 @@ public class OoniRunActivity extends AbstractActivity {
 		return items;
 	}
 }
+*/
