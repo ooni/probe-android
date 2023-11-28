@@ -70,6 +70,7 @@ public class OverviewActivity extends AbstractActivity {
             setThemeColor(((OONIRunSuite) testSuite).getDescriptor().getParsedColor());
             binding.swipeRefresh.setOnRefreshListener(this::initiateRefresh);
         } else {
+            setThemeColor(getResources().getColor(testSuite.getColor()));
             binding.swipeRefresh.setEnabled(false);
         }
         setUpOnCLickListeners();
@@ -79,6 +80,7 @@ public class OverviewActivity extends AbstractActivity {
         Window window = getWindow();
         window.setStatusBarColor(color);
         binding.appbarLayout.setBackgroundColor(color);
+        binding.collapsingToolbar.setBackgroundColor(color);
     }
 
     private void onTestSuiteChanged() {
