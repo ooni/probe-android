@@ -8,12 +8,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
+
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
-import localhost.toolkit.app.fragment.ConfirmDialogFragment;
+
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
@@ -21,28 +24,59 @@ import org.openobservatory.ooniprobe.databinding.ActivityMeasurementDetailBindin
 import org.openobservatory.ooniprobe.domain.GetTestSuite;
 import org.openobservatory.ooniprobe.domain.MeasurementsManager;
 import org.openobservatory.ooniprobe.domain.callback.DomainCallback;
-import org.openobservatory.ooniprobe.fragment.measurement.*;
+import org.openobservatory.ooniprobe.fragment.measurement.DashFragment;
+import org.openobservatory.ooniprobe.fragment.measurement.FacebookMessengerFragment;
+import org.openobservatory.ooniprobe.fragment.measurement.FailedFragment;
+import org.openobservatory.ooniprobe.fragment.measurement.HeaderNdtFragment;
+import org.openobservatory.ooniprobe.fragment.measurement.HeaderOutcomeFragment;
+import org.openobservatory.ooniprobe.fragment.measurement.HttpHeaderFieldManipulationFragment;
+import org.openobservatory.ooniprobe.fragment.measurement.HttpInvalidRequestLineFragment;
+import org.openobservatory.ooniprobe.fragment.measurement.NdtFragment;
+import org.openobservatory.ooniprobe.fragment.measurement.PsiphonFragment;
+import org.openobservatory.ooniprobe.fragment.measurement.RiseupVPNFragment;
+import org.openobservatory.ooniprobe.fragment.measurement.SignalFragment;
+import org.openobservatory.ooniprobe.fragment.measurement.TelegramFragment;
+import org.openobservatory.ooniprobe.fragment.measurement.TorFragment;
+import org.openobservatory.ooniprobe.fragment.measurement.WebConnectivityFragment;
+import org.openobservatory.ooniprobe.fragment.measurement.WhatsappFragment;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
+import org.openobservatory.ooniprobe.test.suite.OONIRunSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
-import org.openobservatory.ooniprobe.test.test.*;
-import io.noties.markwon.Markwon;
+import org.openobservatory.ooniprobe.test.test.Dash;
+import org.openobservatory.ooniprobe.test.test.FacebookMessenger;
+import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
+import org.openobservatory.ooniprobe.test.test.HttpInvalidRequestLine;
+import org.openobservatory.ooniprobe.test.test.Ndt;
+import org.openobservatory.ooniprobe.test.test.Psiphon;
+import org.openobservatory.ooniprobe.test.test.RiseupVPN;
+import org.openobservatory.ooniprobe.test.test.Signal;
+import org.openobservatory.ooniprobe.test.test.Telegram;
+import org.openobservatory.ooniprobe.test.test.Tor;
+import org.openobservatory.ooniprobe.test.test.WebConnectivity;
+import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
-import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Objects;
+
+import javax.inject.Inject;
+
+import io.noties.markwon.Markwon;
+import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 
 public class MeasurementDetailActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String ID = "id";
     private static final String RERUN_KEY = "rerun";
 
-    private Boolean isInExplorer;
+
+	private ActivityMeasurementDetailBinding binding;
 
     private Measurement measurement;
 
     private Snackbar snackbar;
+    private Boolean isInExplorer;
 
     @Inject
     MeasurementsManager measurementsManager;
@@ -57,9 +91,16 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
     PreferenceManager preferenceManager;
 
 
-    public static Intent newIntent(Context context, int id) {
+	public static Intent newIntent(Context context, int id) {
         return new Intent(context, MeasurementDetailActivity.class).putExtra(ID, id);
     }
+
+	public void setThemeColor(int color) {
+		Window window = getWindow();
+		window.setStatusBarColor(color);
+		binding.appbarLayout.setBackgroundColor(color);
+		binding.appbarLayout.setBackgroundColor(color);
+	}
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,21 +109,32 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
         measurement = measurementsManager.get(getIntent().getIntExtra(ID, 0));
         assert measurement != null;
         measurement.result.load();
-        setTheme(measurement.is_failed ?
-                R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Failed :
-                measurement.result.test_group_name.equals(PerformanceSuite.NAME) ?
-                        measurement.result.getTestSuite().getThemeLight() :
-                        measurement.is_anomaly ?
-                                R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Failure :
-                                R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Success);
-        ActivityMeasurementDetailBinding binding = ActivityMeasurementDetailBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+		if (measurement.is_failed) {
+			setTheme(R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Failed);
+		} else {
+			if (!measurement.result.test_group_name.equals(PerformanceSuite.NAME)) {
+				if (measurement.is_anomaly) {
+					setTheme(R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Failure);
+				} else {
+					setTheme(R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Success);
+				}
+			}
+		}
+		binding = ActivityMeasurementDetailBinding.inflate(getLayoutInflater());
+		setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
+
+		// TODO(aanorbel) Handle performance suite
+		if (measurement.result.test_group_name.equals(OONIRunSuite.NAME)) {
+			setThemeColor(((OONIRunSuite)measurement.result.getTestSuite()).getDescriptor().getParsedColor());
+		}
+
         ActionBar bar = getSupportActionBar();
         if (bar != null) {
             bar.setDisplayHomeAsUpEnabled(true);
             bar.setTitle(measurement.getTest().getLabelResId());
         }
+		setUpClickListeners();
         Fragment detail = null;
         Fragment head = null;
         if (measurement.is_failed) {
@@ -221,7 +273,13 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
         binding.explorer.setOnClickListener(v -> explorerClick());
     }
 
-    private void runAsyncTask() {
+	private void setUpClickListeners() {
+		binding.log.setOnClickListener((view) -> logClick());
+		binding.data.setOnClickListener((view) -> dataClick());
+		binding.explorer.setOnClickListener((view) -> explorerClick());
+	}
+
+	private void runAsyncTask() {
         new ResubmitAsyncTask(this, pm.getProxyURL()).execute(null, measurement.id);
     }
 

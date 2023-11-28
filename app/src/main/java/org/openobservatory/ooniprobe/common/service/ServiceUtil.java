@@ -18,6 +18,7 @@ import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.domain.GenerateAutoRunServiceSuite;
+import org.openobservatory.ooniprobe.domain.TestDescriptorManager;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.CircumventionSuite;
 import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
@@ -82,10 +83,12 @@ public class ServiceUtil {
         AbstractSuite suite = d.generateAutoRunServiceSuite.generate();
         ArrayList<AbstractSuite> testSuites = new ArrayList<>();
         testSuites.add(suite);
-        testSuites.add(InstantMessagingSuite.initForAutoRun());
-        testSuites.add(CircumventionSuite.initForAutoRun());
-        testSuites.add(PerformanceSuite.initForAutoRun());
-        testSuites.add(ExperimentalSuite.initForAutoRun());
+        testSuites.add(InstantMessagingSuite.initForAutoRun(app.getResources()));
+        testSuites.add(CircumventionSuite.initForAutoRun(app.getResources()));
+        testSuites.add(PerformanceSuite.initForAutoRun(app.getResources()));
+        testSuites.add(ExperimentalSuite.initForAutoRun(app.getResources()));
+
+        testSuites.addAll(TestDescriptorManager.descriptorsWithAutoRunEnabled(app));
         ServiceUtil.startRunTestServiceCommon(app, testSuites, false, true);
         d.generateAutoRunServiceSuite.markAsRan();
 

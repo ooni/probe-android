@@ -146,6 +146,11 @@ Generate code coverage report (after all unit and instrumented tests successfull
 To manage translations check out our [translation repo](https://github.com/ooni/translations)
 and follow the instructions there.
 
+## Importing Icons
+
+```shell
+./scripts/import_icons.sh ~/Downloads/react-icons-xmls
+```
 ## Contributing
 
 * Write some code

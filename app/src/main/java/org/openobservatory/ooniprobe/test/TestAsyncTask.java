@@ -2,6 +2,7 @@ package org.openobservatory.ooniprobe.test;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.os.AsyncTask;
@@ -16,6 +17,8 @@ import org.openobservatory.engine.LoggerArray;
 import org.openobservatory.engine.OONICheckInConfig;
 import org.openobservatory.engine.OONICheckInResults;
 import org.openobservatory.engine.OONIContext;
+import org.openobservatory.engine.OONIRunFetchResponse;
+import org.openobservatory.engine.OONIRunNettest;
 import org.openobservatory.engine.OONISession;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
@@ -26,12 +29,15 @@ import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.common.service.ServiceUtil;
+import org.openobservatory.ooniprobe.domain.TestDescriptorManager;
 import org.openobservatory.ooniprobe.model.database.Result;
+import org.openobservatory.ooniprobe.model.database.TestDescriptor;
 import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.CircumventionSuite;
 import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
+import org.openobservatory.ooniprobe.test.suite.OONIRunSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
@@ -65,9 +71,18 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     private boolean store_db = true;
 
     private boolean unattended;
-    public static List<AbstractSuite> getSuites() {
-        return  Arrays.asList(new WebsitesSuite(),
-                new InstantMessagingSuite(), new CircumventionSuite(), new PerformanceSuite(), new ExperimentalSuite());
+    public static List<AbstractSuite> getSuites(Context context) {
+        ArrayList<AbstractSuite> testSuites = new ArrayList<>(Arrays.asList(new WebsitesSuite(context.getResources()),
+                new InstantMessagingSuite(context.getResources()), new CircumventionSuite(context.getResources()), new PerformanceSuite(context.getResources()), new ExperimentalSuite(context.getResources())));
+
+        List<TestDescriptor> testDescriptors = TestDescriptorManager.getAll();
+        testSuites.addAll(
+                Lists.transform(
+                        testDescriptors,
+                        descriptor -> descriptor.getTestSuite(context)
+                )
+        );
+        return testSuites;
     }
 
     public TestAsyncTask(Application app, ArrayList<AbstractSuite> testSuites) {

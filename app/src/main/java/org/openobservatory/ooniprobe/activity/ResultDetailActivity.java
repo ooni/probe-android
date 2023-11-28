@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.core.app.ActivityCompat;
@@ -15,6 +17,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
+
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayoutMediator;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
@@ -42,12 +45,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import localhost.toolkit.app.fragment.ConfirmDialogFragment;
+import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerAdapter;
+import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
+
 public class ResultDetailActivity extends AbstractActivity implements View.OnClickListener, ConfirmDialogFragment.OnConfirmedListener {
     private static final String ID = "id";
     private static final String UPLOAD_KEY = "upload";
     private static final String RERUN_KEY = "rerun";
+	private ActivityResultDetailBinding binding;
 
-    private ArrayList<HeterogeneousRecyclerItem> items;
+	private ArrayList<HeterogeneousRecyclerItem> items;
     private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
     private Result result;
     private Snackbar snackbar;
@@ -61,9 +71,15 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
     @Inject
     PreferenceManager preferenceManager;
 
-    public static Intent newIntent(Context context, int id) {
+	public static Intent newIntent(Context context, int id) {
         return new Intent(context, ResultDetailActivity.class).putExtra(ID, id);
     }
+	public void setThemeColor(int color) {
+		Window window = getWindow();
+		window.setStatusBarColor(color);
+		binding.appbarLayout.setBackgroundColor(color);
+		binding.tabLayout.setBackgroundColor(color);
+	}
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,10 +87,12 @@ public class ResultDetailActivity extends AbstractActivity implements View.OnCli
         getActivityComponent().inject(this);
         result = getResults.get(getIntent().getIntExtra(ID, 0));
         assert result != null;
-        setTheme(result.getTestSuite().getThemeLight());
-        ActivityResultDetailBinding binding = ActivityResultDetailBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+		binding = ActivityResultDetailBinding.inflate(getLayoutInflater());
+		setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
+		if (result.test_group_name.equals(OONIRunSuite.NAME)) {
+			setThemeColor(((OONIRunSuite)result.getTestSuite()).getDescriptor().getParsedColor());
+		}
         ActionBar bar = getSupportActionBar();
         if (bar != null) {
             bar.setDisplayHomeAsUpEnabled(true);

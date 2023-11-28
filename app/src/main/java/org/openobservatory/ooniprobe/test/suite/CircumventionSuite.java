@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.test.suite;
 
+import android.content.res.Resources;
+
 import androidx.annotation.Nullable;
 
 import com.google.common.collect.Lists;
@@ -15,23 +17,23 @@ import java.util.ArrayList;
 public class CircumventionSuite extends AbstractSuite {
     public static final String NAME = "circumvention";
 
-    public CircumventionSuite(){
+    public CircumventionSuite(Resources resources){
         super(NAME,
-                R.string.Test_Circumvention_Fullname,
-                R.string.Dashboard_Circumvention_Card_Description,
+                resources.getString(R.string.Test_Circumvention_Fullname),
+                resources.getString(R.string.Dashboard_Circumvention_Card_Description),
                 R.drawable.test_circumvention,
                 R.drawable.test_circumvention_24,
                 R.color.color_pink6,
                 R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Circumvention,
                 R.style.Theme_MaterialComponents_NoActionBar_App_Circumvention,
-                R.string.Dashboard_Circumvention_Overview_Paragraph,
+                resources.getString(R.string.Dashboard_Circumvention_Overview_Paragraph),
                 "anim/circumvention.json",
                 R.string.small_datausage);
     }
 
 
-    public static CircumventionSuite initForAutoRun() {
-        CircumventionSuite suite = new CircumventionSuite();
+    public static CircumventionSuite initForAutoRun(Resources resources) {
+        CircumventionSuite suite = new CircumventionSuite(resources);
         suite.setAutoRun(true);
         return suite;
     }

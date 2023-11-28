@@ -52,6 +52,7 @@ public abstract class AbstractTest implements Serializable {
     private final int urlResId;
     private final int runtime;
     private List<String> inputs;
+    private Long ooniRunLinkId;
     private Integer max_runtime;
     private Network network;
 
@@ -81,6 +82,9 @@ public abstract class AbstractTest implements Serializable {
         settings.inputs = inputs;
         settings.setMaxRuntime(max_runtime);
         settings.setOrigin(origin);
+        if (ooniRunLinkId != null && ooniRunLinkId > 0) {
+            settings.setOoniRunLinkId(ooniRunLinkId);
+        }
         measurements = new SparseArray<>();
 
         ThirdPartyServices.addLogExtra("settings", ((Application) c.getApplicationContext()).getGson().toJson(settings));
@@ -138,6 +142,7 @@ public abstract class AbstractTest implements Serializable {
                             Measurement measurement = new Measurement(result, name, reportId);
                             if (event.value.input.length() > 0)
                                 measurement.url = Url.getUrl(event.value.input);
+                            System.out.println(measurement.url);
                             measurements.put(event.value.idx, measurement);
                             measurement.save();
                         }
@@ -354,7 +359,11 @@ public abstract class AbstractTest implements Serializable {
         this.inputs = inputs;
     }
 
-    public Integer getMax_runtime() {
+	public void setOoniRunLinkId(Long ooniRunLinkId) {
+		this.ooniRunLinkId = ooniRunLinkId;
+	}
+
+	public Integer getMax_runtime() {
         return max_runtime;
     }
 
@@ -373,6 +382,37 @@ public abstract class AbstractTest implements Serializable {
     public boolean isAutoRun() {
         return Objects.equals(origin, AUTORUN);
     }
+
+	public static AbstractTest getTestByName(String name){
+		switch (name){
+			case Dash.NAME:
+				return new Dash();
+			case FacebookMessenger.NAME:
+				return new FacebookMessenger();
+			case HttpHeaderFieldManipulation.NAME:
+				return new HttpHeaderFieldManipulation();
+			case HttpInvalidRequestLine.NAME:
+				return new HttpInvalidRequestLine();
+			case Ndt.NAME:
+				return new Ndt();
+			case Psiphon.NAME:
+				return new Psiphon();
+			case RiseupVPN.NAME:
+				return new RiseupVPN();
+			case Signal.NAME:
+				return new Signal();
+			case Telegram.NAME:
+				return new Telegram();
+			case Tor.NAME:
+				return new Tor();
+			case WebConnectivity.NAME:
+				return new WebConnectivity();
+			case Whatsapp.NAME:
+				return new Whatsapp();
+			default:
+				return new Experimental(name);
+		}
+	}
 
     public interface TestCallback {
         void onStart(String name);

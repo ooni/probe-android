@@ -29,6 +29,7 @@ import org.openobservatory.ooniprobe.databinding.ActivityRunningBinding;
 import org.openobservatory.ooniprobe.receiver.TestRunBroadRequestReceiver;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
+import org.openobservatory.ooniprobe.test.suite.OONIRunSuite;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -173,11 +174,23 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
             binding.name.setText(service.task.currentTest.getName());
         else
             binding.name.setText(getString(service.task.currentTest.getLabelResId()));
-        getWindow().setBackgroundDrawableResource(service.task.currentSuite.getColor());
-        if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().setStatusBarColor(service.task.currentSuite.getColor());
+		if (service.task.currentSuite.getName().equals(OONIRunSuite.NAME)){
+			int color = ((OONIRunSuite)service.task.currentSuite).getDescriptor().getParsedColor();
+			getWindow().setStatusBarColor(color);
+			binding.getRoot().setBackgroundColor(color);
+		} else {
+			getWindow().setBackgroundDrawableResource(service.task.currentSuite.getColor());
+			if (Build.VERSION.SDK_INT >= 21) {
+				getWindow().setStatusBarColor(service.task.currentSuite.getColor());
+			}
+		}
+        if (service.task.currentSuite.getAnim() == null){
+            binding.animation.setImageResource(service.task.currentSuite.getIconGradient());
+            binding.animation.setColorFilter(getResources().getColor(R.color.color_gray2));
+            binding.animation.setPadding(0,100,0,100);
+        } else {
+            binding.animation.setAnimation(service.task.currentSuite.getAnim());
         }
-        binding.animation.setAnimation(service.task.currentSuite.getAnim());
         binding.progress.setMax(service.task.getMax(preferenceManager));
     }
 

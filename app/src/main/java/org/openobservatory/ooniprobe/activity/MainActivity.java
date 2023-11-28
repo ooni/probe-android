@@ -18,6 +18,11 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
+import androidx.work.Constraints;
+import androidx.work.ExistingPeriodicWorkPolicy;
+import androidx.work.NetworkType;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -27,6 +32,7 @@ import org.openobservatory.ooniprobe.common.NotificationUtility;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.service.ServiceUtil;
+import org.openobservatory.ooniprobe.common.worker.UpdateDescriptorsWorker;
 import org.openobservatory.ooniprobe.databinding.ActivityMainBinding;
 import org.openobservatory.ooniprobe.domain.UpdatesNotificationManager;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
@@ -34,6 +40,7 @@ import org.openobservatory.ooniprobe.fragment.PreferenceGlobalFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
 
 import java.io.Serializable;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -119,6 +126,8 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
             }
         }
         requestNotificationPermission();
+        // TODO: (aanorbel) add conditions to schedule workers.
+        scheduleWorkers();
     }
 
     private void requestNotificationPermission() {
@@ -253,5 +262,25 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 //We don't need to check the result for now
             }
         }
+    }
+
+    private void scheduleWorkers() {
+        WorkManager.getInstance(this)
+                .enqueueUniquePeriodicWork(
+                        UpdateDescriptorsWorker.UPDATED_DESCRIPTORS_WORK_NAME,
+                        ExistingPeriodicWorkPolicy.KEEP,
+                        new PeriodicWorkRequest.Builder(UpdateDescriptorsWorker.class, 24, TimeUnit.HOURS)
+                                .setConstraints(
+                                        new Constraints.Builder()
+                                                .setRequiredNetworkType(NetworkType.CONNECTED)
+                                                .build()
+                                ).build()
+                );
+		/*getInstance(this)
+				.beginUniqueWork(
+						UpdateDescriptorsWorker.UPDATED_DESCRIPTORS_WORK_NAME,
+						ExistingWorkPolicy.REPLACE,
+						OneTimeWorkRequest.from(UpdateDescriptorsWorker.class)
+				).enqueue();*/
     }
 }

@@ -8,19 +8,25 @@ import android.view.View;
 import android.webkit.URLUtil;
 import android.widget.Toast;
 
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 
+import org.openobservatory.engine.OONIRunNettest;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.common.TaskExecutor;
+import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.databinding.ActivityOonirunBinding;
 import org.openobservatory.ooniprobe.domain.GetTestSuite;
+import org.openobservatory.ooniprobe.domain.TestDescriptorManager;
+import org.openobservatory.ooniprobe.domain.TestDescriptorManager.FetchTestDescriptorResponse;
 import org.openobservatory.ooniprobe.domain.VersionCompare;
 import org.openobservatory.ooniprobe.domain.models.Attribute;
-import org.openobservatory.ooniprobe.item.TextItem;
+import org.openobservatory.ooniprobe.fragment.OoniRunListFragment;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
 import java.util.ArrayList;
@@ -29,13 +35,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerAdapter;
-import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
-
 public class OoniRunActivity extends AbstractActivity {
 	ActivityOonirunBinding binding;
-	private ArrayList<HeterogeneousRecyclerItem> items;
-	private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
+	private ArrayList<OONIRunNettest> items;
 
 	@Inject
 	PreferenceManager preferenceManager;
@@ -58,12 +60,6 @@ public class OoniRunActivity extends AbstractActivity {
 		setSupportActionBar(binding.toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setDisplayShowHomeEnabled(true);
-		LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-		binding.recycler.setLayoutManager(layoutManager);
-		binding.recycler.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
-		items = new ArrayList<>();
-		adapter = new HeterogeneousRecyclerAdapter<>(this, items);
-		binding.recycler.setAdapter(adapter);
 		manageIntent(getIntent());
 	}
 
@@ -74,16 +70,52 @@ public class OoniRunActivity extends AbstractActivity {
 	}
 
 	private void manageIntent(Intent intent) {
-		if (isTestRunning()) {
+		items = new ArrayList<>();
+
+		Uri uri = intent.getData();
+		if (uri == null) return;
+
+		String host = uri.getHost();
+
+		if ("runv2".equals(host) || "run.test.ooni.org".equals(host)) {
+
+				binding.progressIndicator.setVisibility(View.VISIBLE);
+				long runId = Long.parseLong(uri.getPathSegments().get(0));
+
+				TaskExecutor executor = new TaskExecutor();
+				executor.executeTask(
+						() -> {
+							try {
+								return TestDescriptorManager.fetchDataFromRunId(runId, this);
+							} catch (Exception exception) {
+								exception.printStackTrace();
+								ThirdPartyServices.logException(exception);
+								return null;
+							}
+						},
+						descriptorResponse -> {
+							if (descriptorResponse!=null) {
+								binding.progressIndicator.setVisibility(View.GONE);
+								loadV2Screen(descriptorResponse);
+							} else {
+								binding.progressIndicator.setVisibility(View.GONE);
+								loadInvalidAttributes();
+							}
+							return null;
+						});
+
+		} else if (isTestRunning()) {
 			Toast.makeText(this, getString(R.string.OONIRun_TestRunningError), Toast.LENGTH_LONG).show();
 			finish();
-		}
-		else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
-			Uri uri = intent.getData();
-			String mv = uri == null ? null : uri.getQueryParameter("mv");
-			String tn = uri == null ? null : uri.getQueryParameter("tn");
-			String ta = uri == null ? null : uri.getQueryParameter("ta");
-			loadScreen(mv, tn, ta);
+		} else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
+			if ("nettest".equals(host) || "run.ooni.io".equals(host)) {
+				String mv = uri.getQueryParameter("mv");
+				String tn = uri.getQueryParameter("tn");
+				String ta = uri.getQueryParameter("ta");
+				loadScreen(mv, tn, ta);
+			} else {
+				loadInvalidAttributes();
+			}
 		}
 		else if (Intent.ACTION_SEND.equals(intent.getAction())) {
 			String url = intent.getStringExtra(Intent.EXTRA_TEXT);
@@ -98,7 +130,55 @@ public class OoniRunActivity extends AbstractActivity {
 			} else {
 				loadInvalidAttributes();
 			}
+		} else {
+			loadInvalidAttributes();
 		}
+	}
+
+	private void loadV2Screen(FetchTestDescriptorResponse response) {
+
+		binding.v2Options.setVisibility(View.VISIBLE);
+		binding.items.setPadding(0, 0, 0, getResources().getDimensionPixelSize(R.dimen.activity_ooni_run_v2_items_margin_bottom));
+		binding.icon.setImageResource(response.suite.getIconGradient());
+		binding.icon.setColorFilter(getResources().getColor(R.color.color_gray7));
+
+		binding.author.setText(response.descriptor.getAuthor());
+		binding.author.setVisibility(View.VISIBLE);
+
+		binding.shortDesc.setText(response.descriptor.getShortDescription());
+		binding.shortDesc.setVisibility(View.VISIBLE);
+
+		binding.title.setText(response.descriptor.getName());
+		binding.desc.setText(response.descriptor.getDescription());
+
+
+		items.addAll(
+				Lists.transform(
+						Lists.newArrayList(response.suite.getTestList(null)),
+						test -> new OONIRunNettest(
+								test.getLabelResId() == (R.string.Test_Experimental_Fullname) ? test.getName() :getString(test.getLabelResId()),
+								test.getInputs()
+						)
+				)
+		);
+
+		FragmentTransaction mTransactiont = getSupportFragmentManager().beginTransaction();
+
+		mTransactiont.replace(R.id.items, OoniRunListFragment.newInstance(), OoniRunListFragment.class.getName());
+		mTransactiont.commit();
+
+		binding.iconBig.setVisibility(View.GONE);
+		// TODO: 18/07/2023 (aanorbel) Add translation
+		binding.run.setText("Install");
+		binding.run.setVisibility(View.VISIBLE);
+		binding.run.setOnClickListener(
+				v -> {
+					response.descriptor.setAutoUpdate(binding.autoUpdates.isChecked());
+					response.descriptor.setAutoRun(binding.autoRun.isChecked());
+					response.descriptor.save();
+					ActivityCompat.startActivity(this, OverviewActivity.newIntent(this, response.suite), null);
+				}
+		);
 	}
 
 	private void loadScreen(String mv, String tn, String ta){
@@ -130,6 +210,7 @@ public class OoniRunActivity extends AbstractActivity {
 		binding.title.setText(R.string.OONIRun_OONIProbeOutOfDate);
 		binding.desc.setText(R.string.OONIRun_OONIProbeNewerVersion);
 		binding.run.setText(R.string.OONIRun_Update);
+		binding.run.setVisibility(View.VISIBLE);
 		binding.icon.setImageResource(R.drawable.update);
 		binding.iconBig.setImageResource(R.drawable.update);
 		binding.iconBig.setVisibility(View.VISIBLE);
@@ -145,15 +226,22 @@ public class OoniRunActivity extends AbstractActivity {
 		binding.desc.setText(getString(R.string.OONIRun_YouAreAboutToRun));
 		if (urls != null) {
 			for (String url : urls) {
-				if (URLUtil.isValidUrl(url))
-					items.add(new TextItem(url));
+				if (URLUtil.isValidUrl(url)) {
+					items.add(new OONIRunNettest(url,new ArrayList<>()));
+				}
 			}
-			adapter.notifyTypesChanged();
 			binding.iconBig.setVisibility(View.GONE);
 		} else {
 			binding.iconBig.setImageResource(suite.getIcon());
 			binding.iconBig.setVisibility(View.VISIBLE);
 		}
+		FragmentTransaction mTransactiont = getSupportFragmentManager().beginTransaction();
+
+		mTransactiont.replace(R.id.items, OoniRunListFragment.newInstance(), OoniRunListFragment.class.getName());
+		mTransactiont.commit();
+
+		binding.run.setText(R.string.OONIRun_Close);
+		binding.run.setVisibility(View.VISIBLE);
 		binding.run.setOnClickListener(v -> {
 
 			RunningActivity.runAsForegroundService(OoniRunActivity.this, suite.asArray(),this::finish, preferenceManager);
@@ -165,9 +253,14 @@ public class OoniRunActivity extends AbstractActivity {
 		binding.title.setText(R.string.OONIRun_InvalidParameter);
 		binding.desc.setText(R.string.OONIRun_InvalidParameter_Msg);
 		binding.run.setText(R.string.OONIRun_Close);
+		binding.run.setVisibility(View.VISIBLE);
 		binding.icon.setImageResource(R.drawable.question_mark);
 		binding.iconBig.setImageResource(R.drawable.question_mark);
 		binding.iconBig.setVisibility(View.VISIBLE);
 		binding.run.setOnClickListener(v -> finish());
+	}
+
+	public ArrayList<OONIRunNettest> getItems() {
+		return items;
 	}
 }

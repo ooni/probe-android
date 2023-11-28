@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.databinding.ItemMeasurementBinding;
 import org.openobservatory.ooniprobe.model.database.Measurement;
+import org.openobservatory.ooniprobe.test.suite.OONIRunSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 

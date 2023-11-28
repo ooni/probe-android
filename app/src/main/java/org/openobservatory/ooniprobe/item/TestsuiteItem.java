@@ -12,6 +12,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.databinding.ItemTestsuiteBinding;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
+import org.openobservatory.ooniprobe.test.suite.OONIRunSuite;
 
 public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, TestsuiteItem.ViewHolderImpl> {
 	private final View.OnClickListener onClickListener;
@@ -31,7 +32,10 @@ public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, Test
 		holder.binding.title.setText(extra.getTitle());
 		holder.binding.desc.setText(extra.getCardDesc());
 		holder.binding.icon.setImageResource(extra.getIconGradient());
-		holder.itemView.setTag(extra);
+		if (extra.getName().equals(OONIRunSuite.NAME)){
+			holder.binding.icon.setColorFilter(holder.itemView.getResources().getColor(R.color.color_gray7));
+			holder.setIsRecyclable(false);
+		}holder.itemView.setTag(extra);
 		if(extra.isTestEmpty(preferenceManager)) {
 			((CardView)holder.itemView).setElevation(0);
 			Resources resources = holder.itemView.getContext().getResources();

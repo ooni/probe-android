@@ -6,9 +6,9 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
 
+import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -21,14 +21,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractSuite implements Serializable {
-	private final int title;
-	private final int cardDesc;
+	private final String title;
+	private final String cardDesc;
 	private final int icon;
 	private final int icon_24;
 	private final int color;
 	private final int themeLight;
 	private final int themeDark;
-	private final int desc1;
+	private final String desc1;
 	private final String anim;
 	private final String name;
 	private final int dataUsage;
@@ -36,7 +36,7 @@ public abstract class AbstractSuite implements Serializable {
 	private Result result;
 	private boolean autoRun;
 
-	AbstractSuite(String name, @StringRes int title, @StringRes int cardDesc, @DrawableRes int icon, @DrawableRes int icon_24, @ColorRes int color, @StyleRes int themeLight, @StyleRes int themeDark, @StringRes int desc1, String anim, int dataUsage) {
+	AbstractSuite(String name, String title, String cardDesc, @DrawableRes int icon, @DrawableRes int icon_24, @ColorRes int color, @StyleRes int themeLight, @StyleRes int themeDark, String desc1, String anim, int dataUsage) {
 		this.title = title;
 		this.cardDesc = cardDesc;
 		this.icon = icon;
@@ -68,23 +68,23 @@ public abstract class AbstractSuite implements Serializable {
 		this.result = result;
 	}
 
-	public int getTitle() {
+	public String getTitle() {
 		return title;
 	}
 
-	public int getCardDesc() {
+	public String getCardDesc() {
 		return cardDesc;
 	}
 
 	public int getIcon() {
-		return icon;
+		return (icon > 0) ? icon : R.drawable.ooni_empty_state;
 	}
 
 	public int getIconGradient() {
 		if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.M){
-			return icon;
+			return (icon > 0) ? icon : R.drawable.ooni_empty_state;
 		}else{
-			return icon_24;
+			return (icon_24 > 0) ? icon_24 : R.drawable.ooni_empty_state;
 		}
 	}
 
@@ -104,7 +104,7 @@ public abstract class AbstractSuite implements Serializable {
 		return themeDark;
 	}
 
-	public int getDesc1() {
+	public String getDesc1() {
 		return desc1;
 	}
 
@@ -150,7 +150,7 @@ public abstract class AbstractSuite implements Serializable {
 										 String tn,
 										 @Nullable List<String> urls,
 										 String origin) {
-		for (AbstractSuite suite : TestAsyncTask.getSuites())
+		for (AbstractSuite suite : TestAsyncTask.getSuites(app))
 			for (AbstractTest test : suite.getTestList(app.getPreferenceManager()))
 				if (test.getName().equals(tn)) {
 					if (urls != null)

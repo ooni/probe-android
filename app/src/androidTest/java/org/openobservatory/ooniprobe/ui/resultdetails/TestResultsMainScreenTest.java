@@ -9,6 +9,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.TestApplicationProvider;
 import org.openobservatory.ooniprobe.factory.ResultFactory;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
@@ -39,20 +40,23 @@ import static org.openobservatory.ooniprobe.ui.utils.RecyclerViewMatcher.withRec
 import static org.openobservatory.ooniprobe.ui.utils.ViewMatchers.waitId;
 import static org.openobservatory.ooniprobe.ui.utils.ViewMatchers.waitPartialText;
 
+import android.content.res.Resources;
+
 @RunWith(AndroidJUnit4.class)
 public class TestResultsMainScreenTest extends MeasurementAbstractTest {
 
     @Rule
     public FlakyTestRule flakyRule = new FlakyTestRule();
+    Resources resources = TestApplicationProvider.app().getResources();
 
     @Test
     @AllowFlaky(attempts = 3)
     public void testHeaderData() {
         // Arrange
-        Result websites = ResultFactory.createAndSave(new WebsitesSuite());
-        Result messaging = ResultFactory.createAndSave(new InstantMessagingSuite());
-        Result circumvention = ResultFactory.createAndSave(new CircumventionSuite(), 1, 2);
-        Result performance = ResultFactory.createAndSave(new PerformanceSuite());
+        Result websites = ResultFactory.createAndSave(new WebsitesSuite(resources));
+        Result messaging = ResultFactory.createAndSave(new InstantMessagingSuite(resources));
+        Result circumvention = ResultFactory.createAndSave(new CircumventionSuite(resources), 1, 2);
+        Result performance = ResultFactory.createAndSave(new PerformanceSuite(resources));
 
         long totalDownload = websites.data_usage_down +
                 messaging.data_usage_down +
@@ -78,19 +82,19 @@ public class TestResultsMainScreenTest extends MeasurementAbstractTest {
     @AllowFlaky(attempts = 3)
     public void testListOfResults() {
         // Arrange
-        Result websites = ResultFactory.createAndSave(new WebsitesSuite());
+        Result websites = ResultFactory.createAndSave(new WebsitesSuite(resources));
         websites.start_time = getDateFrom(1, Calendar.JANUARY, 2020);
         websites.save();
 
-        Result messaging = ResultFactory.createAndSave(new InstantMessagingSuite());
+        Result messaging = ResultFactory.createAndSave(new InstantMessagingSuite(resources));
         messaging.start_time = getDateFrom(1, Calendar.FEBRUARY, 2020);
         messaging.save();
 
-        Result circumvention = ResultFactory.createAndSave(new CircumventionSuite(), 1, 2);
+        Result circumvention = ResultFactory.createAndSave(new CircumventionSuite(resources), 1, 2);
         circumvention.start_time = getDateFrom(1, Calendar.MARCH, 2020);
         circumvention.save();
 
-        Result performance = ResultFactory.createAndSave(new PerformanceSuite());
+        Result performance = ResultFactory.createAndSave(new PerformanceSuite(resources));
         performance.start_time = getDateFrom(1, Calendar.APRIL, 2020);
         performance.save();
 
@@ -189,8 +193,8 @@ public class TestResultsMainScreenTest extends MeasurementAbstractTest {
     @AllowFlaky(attempts = 3)
     public void deleteResultsTest() {
         // Arrange
-        ResultFactory.createAndSave(new WebsitesSuite());
-        ResultFactory.createAndSave(new PerformanceSuite());
+        ResultFactory.createAndSave(new WebsitesSuite(resources));
+        ResultFactory.createAndSave(new PerformanceSuite(resources));
 
         // Act
         launchResults();
@@ -208,19 +212,19 @@ public class TestResultsMainScreenTest extends MeasurementAbstractTest {
     @AllowFlaky(attempts = 3)
     public void filterTest() {
         // Arrange
-        Result websites = ResultFactory.createAndSave(new WebsitesSuite());
+        Result websites = ResultFactory.createAndSave(new WebsitesSuite(resources));
         websites.start_time = getDateFrom(1, Calendar.JANUARY, 2020);
         websites.save();
 
-        Result messaging = ResultFactory.createAndSave(new InstantMessagingSuite());
+        Result messaging = ResultFactory.createAndSave(new InstantMessagingSuite(resources));
         messaging.start_time = getDateFrom(1, Calendar.FEBRUARY, 2020);
         messaging.save();
 
-        Result circumvention = ResultFactory.createAndSave(new CircumventionSuite(), 1, 2);
+        Result circumvention = ResultFactory.createAndSave(new CircumventionSuite(resources), 1, 2);
         circumvention.start_time = getDateFrom(1, Calendar.MARCH, 2020);
         circumvention.save();
 
-        Result performance = ResultFactory.createAndSave(new PerformanceSuite());
+        Result performance = ResultFactory.createAndSave(new PerformanceSuite(resources));
         performance.start_time = getDateFrom(1, Calendar.APRIL, 2020);
         performance.save();
 

@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.test.suite;
 
+import android.content.res.Resources;
+
 import androidx.annotation.Nullable;
 
 import org.openobservatory.ooniprobe.R;
@@ -10,16 +12,16 @@ import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 public class WebsitesSuite extends AbstractSuite {
 	public static final String NAME = "websites";
 
-	public WebsitesSuite() {
+	public WebsitesSuite(Resources resources) {
 		super(NAME,
-				R.string.Test_Websites_Fullname,
-				R.string.Dashboard_Websites_Card_Description,
+				resources.getString(R.string.Test_Websites_Fullname),
+				resources.getString(R.string.Dashboard_Websites_Card_Description),
 				R.drawable.test_websites,
 				R.drawable.test_websites_24,
 				R.color.color_indigo6,
 				R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Websites,
 				R.style.Theme_MaterialComponents_NoActionBar_App_Websites,
-				R.string.Dashboard_Websites_Overview_Paragraph,
+				resources.getString(R.string.Dashboard_Websites_Overview_Paragraph),
 				"anim/websites.json",
 				R.string.websites_datausage);
 	}

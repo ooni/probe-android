@@ -9,6 +9,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.TestApplicationProvider;
 import org.openobservatory.ooniprobe.factory.ResultFactory;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
@@ -20,17 +21,20 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
+import android.content.res.Resources;
+
 @RunWith(AndroidJUnit4.class)
 public class InstantMessagingTest extends MeasurementAbstractTest {
 
     @Rule
     public FlakyTestRule flakyRule = new FlakyTestRule();
+    Resources resources = TestApplicationProvider.app().getResources();
 
     @Test
     @AllowFlaky(attempts = 3)
     public void testHeaderData() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite());
+        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite(resources));
 
         // Act
         launchDetails(testResult.id);
@@ -43,7 +47,7 @@ public class InstantMessagingTest extends MeasurementAbstractTest {
     @AllowFlaky(attempts = 2)
     public void testSuccessWhatsApp() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite());
+        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite(resources));
 
         // Act
         launchDetails(testResult.id);
@@ -57,7 +61,7 @@ public class InstantMessagingTest extends MeasurementAbstractTest {
     @Test
     public void testBlockedWhatsApp() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite(), 0, 4);
+        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite(resources), 0, 4);
 
         // Act
         launchDetails(testResult.id);
@@ -72,7 +76,7 @@ public class InstantMessagingTest extends MeasurementAbstractTest {
     @Test
     public void testSuccessTelegram() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite());
+        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite(resources));
 
         // Act
         launchDetails(testResult.id);
@@ -87,7 +91,7 @@ public class InstantMessagingTest extends MeasurementAbstractTest {
     @Test
     public void testBlockedTelegram() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite(), 0, 4);
+        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite(resources), 0, 4);
 
         // Act
         launchDetails(testResult.id);
@@ -102,7 +106,7 @@ public class InstantMessagingTest extends MeasurementAbstractTest {
     @Test
     public void testSuccessFacebookMessenger() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite());
+        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite(resources));
 
         // Act
         launchDetails(testResult.id);
@@ -117,7 +121,7 @@ public class InstantMessagingTest extends MeasurementAbstractTest {
     @Test
     public void testBlockedFacebookMessenger() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite(), 0, 4);
+        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite(resources), 0, 4);
 
         // Act
         launchDetails(testResult.id);
@@ -132,7 +136,7 @@ public class InstantMessagingTest extends MeasurementAbstractTest {
     @Test
     public void testSuccessSignal() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite());
+        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite(resources));
 
         // Act
         launchDetails(testResult.id);
@@ -146,7 +150,7 @@ public class InstantMessagingTest extends MeasurementAbstractTest {
     @Test
     public void testBlockedSignal() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite(), 0, 4);
+        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite(resources), 0, 4);
 
         // Act
         launchDetails(testResult.id);

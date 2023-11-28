@@ -3,6 +3,7 @@ package org.openobservatory.ooniprobe.domain;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openobservatory.ooniprobe.RobolectricAbstractTest;
+import org.openobservatory.ooniprobe.TestApplicationProvider;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.domain.models.Attribute;
 import org.openobservatory.ooniprobe.factory.ResultFactory;
@@ -18,7 +19,11 @@ import io.bloco.faker.Faker;
 
 import static org.mockito.Mockito.mock;
 
+import android.content.res.Resources;
+
 public class GetTestSuiteTest extends RobolectricAbstractTest {
+
+    Resources resources = TestApplicationProvider.app().getResources();
 
     @Test
     public void testWithAttributes() {
@@ -64,7 +69,7 @@ public class GetTestSuiteTest extends RobolectricAbstractTest {
     public void testGetFromResult() {
         // Arrange
         GetTestSuite getTestSuite = build();
-        Result result = ResultFactory.createAndSave(new WebsitesSuite());
+        Result result = ResultFactory.createAndSave(new WebsitesSuite(resources));
         int measurementsUrls = result.getMeasurements().size();
         PreferenceManager pm = mock(PreferenceManager.class);
 

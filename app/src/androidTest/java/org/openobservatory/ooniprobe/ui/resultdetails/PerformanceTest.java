@@ -9,6 +9,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.TestApplicationProvider;
 import org.openobservatory.ooniprobe.factory.ResultFactory;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -33,17 +34,20 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.containsString;
 import static org.openobservatory.ooniprobe.ui.utils.RecyclerViewMatcher.withRecyclerView;
 
+import android.content.res.Resources;
+
 @RunWith(AndroidJUnit4.class)
 public class PerformanceTest extends MeasurementAbstractTest {
 
     @Rule
     public FlakyTestRule flakyRule = new FlakyTestRule();
+    Resources resources = TestApplicationProvider.app().getResources();
 
     @Test
     @AllowFlaky(attempts = 3)
     public void testHeaderData() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new PerformanceSuite());
+        Result testResult = ResultFactory.createAndSave(new PerformanceSuite(resources));
         Measurement dashMeasurement = testResult.getMeasurement(Dash.NAME);
         String videoQuality = getResourceString(dashMeasurement.getTestKeys().getVideoQuality(false));
 
@@ -90,7 +94,7 @@ public class PerformanceTest extends MeasurementAbstractTest {
     @Test
     public void testListOfMeasurements() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new PerformanceSuite());
+        Result testResult = ResultFactory.createAndSave(new PerformanceSuite(resources));
         Measurement dashMeasurement = testResult.getMeasurement(Dash.NAME);
         String videoQuality = getResourceString(dashMeasurement.getTestKeys().getVideoQuality(true));
         String notDetected = getResourceString(R.string.TestResults_Overview_MiddleBoxes_NotFound);
@@ -147,7 +151,7 @@ public class PerformanceTest extends MeasurementAbstractTest {
     @Test
     public void testNDT() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new PerformanceSuite());
+        Result testResult = ResultFactory.createAndSave(new PerformanceSuite(resources));
         Measurement ndtMeasurement = testResult.getMeasurement(Ndt.NAME);
         Integer ndtProtocol = ndtMeasurement.getTestKeys().protocol;
         TestKeys.Summary ndtSummary = ndtMeasurement.getTestKeys().summary;
@@ -193,7 +197,7 @@ public class PerformanceTest extends MeasurementAbstractTest {
     @Test
     public void testStreaming() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new PerformanceSuite());
+        Result testResult = ResultFactory.createAndSave(new PerformanceSuite(resources));
         Measurement dashMeasurement = testResult.getMeasurement(Dash.NAME);
         String videoQuality = getResourceString(dashMeasurement.getTestKeys().getVideoQuality(true));
         String bitrateUnit = getResourceString(dashMeasurement.getTestKeys().getMedianBitrateUnit());
@@ -214,7 +218,7 @@ public class PerformanceTest extends MeasurementAbstractTest {
     @Test
     public void testRequestLine() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new PerformanceSuite());
+        Result testResult = ResultFactory.createAndSave(new PerformanceSuite(resources));
         Measurement invalidRequest = testResult.getMeasurement(HttpInvalidRequestLine.NAME);
 
         // Act
@@ -229,7 +233,7 @@ public class PerformanceTest extends MeasurementAbstractTest {
     @Test
     public void testRequestLineDetection() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new PerformanceSuite(), 2, 2);
+        Result testResult = ResultFactory.createAndSave(new PerformanceSuite(resources), 2, 2);
         Measurement invalidRequest = testResult.getMeasurement(HttpInvalidRequestLine.NAME);
 
         // Act
@@ -244,7 +248,7 @@ public class PerformanceTest extends MeasurementAbstractTest {
     @Test
     public void testFieldManipulation() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new PerformanceSuite());
+        Result testResult = ResultFactory.createAndSave(new PerformanceSuite(resources));
         Measurement fieldManipulation = testResult.getMeasurement(HttpHeaderFieldManipulation.NAME);
 
         // Act
@@ -259,7 +263,7 @@ public class PerformanceTest extends MeasurementAbstractTest {
     @Test
     public void testFieldManipulationDetection() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new PerformanceSuite(), 2, 2);
+        Result testResult = ResultFactory.createAndSave(new PerformanceSuite(resources), 2, 2);
         Measurement fieldManipulation = testResult.getMeasurement(HttpHeaderFieldManipulation.NAME);
 
         // Act

@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
 }
 apply from: 'jacoco.gradle'
+apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
     compileSdk libs.versions.compileSdk.get().toInteger()
@@ -95,6 +96,10 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    dataBinding {
+        enabled = true
+        enabledForTests = true
+    }
     namespace 'org.openobservatory.ooniprobe'
 }
 
@@ -113,6 +118,10 @@ dependencies {
     implementation libs.google.material
     implementation libs.google.guava
     implementation libs.google.gson
+
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+// WorkManager dependency
+    implementation 'androidx.work:work-runtime:2.8.1'
 
 // Third-party
     kapt libs.dbflow.processor

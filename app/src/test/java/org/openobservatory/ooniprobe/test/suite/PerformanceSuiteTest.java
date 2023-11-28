@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.test.suite;
 
 import org.junit.Test;
+import org.openobservatory.ooniprobe.TestApplicationProvider;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.Dash;
@@ -18,7 +19,7 @@ import static org.mockito.Mockito.when;
 
 public class PerformanceSuiteTest {
 
-    private final PerformanceSuite suite = new PerformanceSuite();
+    private final PerformanceSuite suite = new PerformanceSuite(TestApplicationProvider.app().getResources());
     private final PreferenceManager pm = mock(PreferenceManager.class);
 
     @Test

@@ -8,6 +8,7 @@ import org.openobservatory.engine.OONIContext;
 import org.openobservatory.engine.OONISession;
 import org.openobservatory.engine.OONISubmitResults;
 import org.openobservatory.ooniprobe.RobolectricAbstractTest;
+import org.openobservatory.ooniprobe.TestApplicationProvider;
 import org.openobservatory.ooniprobe.client.OONIAPIClient;
 import org.openobservatory.ooniprobe.client.callback.CheckReportIdCallback;
 import org.openobservatory.ooniprobe.common.JsonPrinter;
@@ -47,6 +48,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import android.content.res.Resources;
+
 public class MeasurementsManagerTest extends RobolectricAbstractTest {
 
     Faker faker = new Faker();
@@ -54,6 +57,8 @@ public class MeasurementsManagerTest extends RobolectricAbstractTest {
     OkHttpClient httpClient = mock(OkHttpClient.class);
     JsonPrinter jsonPrinter = mock(JsonPrinter.class);
     MeasurementsManager manager;
+
+    Resources resources = TestApplicationProvider.app().getResources();
 
     @Override
     public void setUp() {
@@ -80,7 +85,7 @@ public class MeasurementsManagerTest extends RobolectricAbstractTest {
     public void testCanUpload() {
         // Arrange
         List<Measurement> measurements =
-                ResultFactory.createAndSave(new WebsitesSuite(), 1, 0, false)
+                ResultFactory.createAndSave(new WebsitesSuite(resources), 1, 0, false)
                         .getMeasurements();
 
         MeasurementFactory.addEntryFiles(c, measurements, false);
@@ -223,7 +228,7 @@ public class MeasurementsManagerTest extends RobolectricAbstractTest {
     @Test
     public void testUploadableReports() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new WebsitesSuite(), 5, 0, false);
+        Result testResult = ResultFactory.createAndSave(new WebsitesSuite(resources), 5, 0, false);
         MeasurementFactory.addEntryFiles(c, testResult.getMeasurements(), false);
         testResult.save();
 
@@ -237,7 +242,7 @@ public class MeasurementsManagerTest extends RobolectricAbstractTest {
     @Test
     public void testNoUploadableReports() {
         // Arrange
-        ResultFactory.createAndSave(new WebsitesSuite());
+        ResultFactory.createAndSave(new WebsitesSuite(resources));
 
         // Act
         boolean hasReports = manager.hasUploadables();
@@ -276,7 +281,7 @@ public class MeasurementsManagerTest extends RobolectricAbstractTest {
     public void getReadableEntry() throws IOException {
         // Arrange
         Measurement measurement =
-                ResultFactory.createAndSaveWithEntryFiles(c, new WebsitesSuite(), 1, 0, false)
+                ResultFactory.createAndSaveWithEntryFiles(c, new WebsitesSuite(resources), 1, 0, false)
                         .getMeasurements().get(0);
         when(jsonPrinter.prettyText("test")).thenReturn("pretty test");
 
@@ -336,7 +341,7 @@ public class MeasurementsManagerTest extends RobolectricAbstractTest {
     @Test
     public void downloadReportFailTest() {
         // Arrange
-        Measurement measurement = ResultFactory.createAndSave(new WebsitesSuite()).getMeasurements().get(0);
+        Measurement measurement = ResultFactory.createAndSave(new WebsitesSuite(resources)).getMeasurements().get(0);
         ApiMeasurement.Result result = new ApiMeasurement.Result();
         result.measurement_url = faker.internet.url();
         String failedCallbackResponse = "Something went wrong";
@@ -424,7 +429,7 @@ public class MeasurementsManagerTest extends RobolectricAbstractTest {
             String fileContent = "{}";
             Measurement measurement = ResultFactory.createAndSaveWithEntryFiles(
                     c,
-                    new WebsitesSuite(),
+                    new WebsitesSuite(resources),
                     5,
                     0,
                     false
@@ -462,7 +467,7 @@ public class MeasurementsManagerTest extends RobolectricAbstractTest {
     }
 
     private Measurement buildMeasurement() {
-        return ResultFactory.createAndSave(new WebsitesSuite())
+        return ResultFactory.createAndSave(new WebsitesSuite(resources))
                 .getMeasurements()
                 .get(0);
     }

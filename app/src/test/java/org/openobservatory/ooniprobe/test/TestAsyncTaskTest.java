@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.test;
 
 import android.app.Notification;
+import android.content.res.Resources;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -16,6 +17,7 @@ import org.openobservatory.engine.OONISession;
 import org.openobservatory.engine.OONIURLInfo;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.RobolectricAbstractTest;
+import org.openobservatory.ooniprobe.TestApplicationProvider;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.engine.TestEngineInterface;
@@ -56,6 +58,8 @@ public class TestAsyncTaskTest extends RobolectricAbstractTest {
     private final NotificationCompat.Builder builder = mock(NotificationCompat.Builder.class);
     private final NotificationManagerCompat notificationManager = mock(NotificationManagerCompat.class);
 
+    Resources resources = TestApplicationProvider.app().getResources();
+
     @Override
     @Before
     public void setUp() {
@@ -76,7 +80,7 @@ public class TestAsyncTaskTest extends RobolectricAbstractTest {
         AbstractSuite mockedSuite = mock(WebsitesSuite.class);
         suiteList.add(mockedSuite);
         TestAsyncTask task = new TestAsyncTask(a, suiteList);
-        Result testResult = ResultFactory.build(new WebsitesSuite(), true, true);
+        Result testResult = ResultFactory.build(new WebsitesSuite(resources), true, true);
 
         when(mockedSuite.getTestList(any())).thenReturn(new AbstractTest[0]);
 
@@ -103,7 +107,7 @@ public class TestAsyncTaskTest extends RobolectricAbstractTest {
         AbstractSuite mockedSuite = mock(WebsitesSuite.class);
         suiteList.add(mockedSuite);
         TestAsyncTask task = new TestAsyncTask(a, suiteList);
-        Result testResult = ResultFactory.build(new WebsitesSuite(), true, true);
+        Result testResult = ResultFactory.build(new WebsitesSuite(resources), true, true);
 
         WebConnectivity test = new WebConnectivity();
         test.setInputs(null);

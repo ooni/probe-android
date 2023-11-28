@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.openobservatory.engine.OONISession;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.RobolectricAbstractTest;
+import org.openobservatory.ooniprobe.TestApplicationProvider;
 import org.openobservatory.ooniprobe.common.AppLogger;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
@@ -45,6 +46,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.openobservatory.ooniprobe.test.test.AbstractTest.TestCallback;
 
+import android.content.res.Resources;
+
 public class AbstractTestTest extends RobolectricAbstractTest {
 
     Faker faker = new Faker();
@@ -61,6 +64,8 @@ public class AbstractTestTest extends RobolectricAbstractTest {
     Gson gson = new Gson();
 
     TestEngineInterface testEngine = new TestEngineInterface(mockedSession);
+
+    Resources resources = TestApplicationProvider.app().getResources();
 
     @Override
     public void setUp() {
@@ -79,7 +84,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
     public void testStartFinish() {
         // Arrange
         AbstractTest test = new WebConnectivity();
-        Result result = ResultFactory.createAndSave(new WebsitesSuite());
+        Result result = ResultFactory.createAndSave(new WebsitesSuite(resources));
 
         // Act
         testEngine.sendNextEvent(EventResultFactory.buildStarted());
@@ -96,7 +101,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
     public void testCreateNewMeasurement() {
         // Arrange
         AbstractTest test = new WebConnectivity();
-        Result result = ResultFactory.build(new WebsitesSuite(), true, false);
+        Result result = ResultFactory.build(new WebsitesSuite(resources), true, false);
         result.save();
 
         Url ulr = UrlFactory.createAndSave();
@@ -150,7 +155,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
     public void testNetworkEvent() {
         // Arrange
         AbstractTest test = new WebConnectivity();
-        Result result = ResultFactory.build(new WebsitesSuite(), true, false);
+        Result result = ResultFactory.build(new WebsitesSuite(resources), true, false);
         result.save();
 
         String networkName = faker.internet.domainName();
@@ -179,7 +184,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
     public void testLogEvent() throws IOException {
         // Arrange
         AbstractTest test = new WebConnectivity();
-        Result result = ResultFactory.build(new WebsitesSuite(), true, false);
+        Result result = ResultFactory.build(new WebsitesSuite(resources), true, false);
         result.save();
 
         String message = "Ipsum";
@@ -203,7 +208,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
     public void testProgressEvent() throws IOException {
         // Arrange
         AbstractTest test = new WebConnectivity();
-        Result result = ResultFactory.build(new WebsitesSuite(), true, false);
+        Result result = ResultFactory.build(new WebsitesSuite(resources), true, false);
         result.save();
 
         String message = "Ipsum";
@@ -228,7 +233,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
     public void testResolverFailureEvent() {
         // Arrange
         AbstractTest test = new WebConnectivity();
-        Result result = ResultFactory.build(new WebsitesSuite(), true, false);
+        Result result = ResultFactory.build(new WebsitesSuite(resources), true, false);
         result.save();
 
         String message = "Ipsum";
@@ -250,7 +255,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
     public void testTaskInterrupt() {
         // Arrange
         AbstractTest test = new WebConnectivity();
-        Result result = ResultFactory.build(new WebsitesSuite(), true, false);
+        Result result = ResultFactory.build(new WebsitesSuite(resources), true, false);
         result.save();
 
         TestEngineInterface.TestOONIMKTask task = mock(TestEngineInterface.TestOONIMKTask.class);
@@ -612,7 +617,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
     public void testExperimentalFail() {
         // Arrange
         AbstractTest test = new Experimental("");
-        Result result = ResultFactory.build(new WebsitesSuite(), true, false);
+        Result result = ResultFactory.build(new WebsitesSuite(resources), true, false);
         result.save();
 
         // Act
@@ -631,7 +636,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
     }
 
     private Result setupTestRun(AbstractTest test, boolean success) {
-        Result result = ResultFactory.build(new WebsitesSuite(), true, false);
+        Result result = ResultFactory.build(new WebsitesSuite(resources), true, false);
         result.save();
 
         JsonResult jsonResult = JsonResultFactory.build(test, success);
