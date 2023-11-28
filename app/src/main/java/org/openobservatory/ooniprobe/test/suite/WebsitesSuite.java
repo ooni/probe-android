@@ -7,6 +7,13 @@ import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
+/**
+ * Represents a suite of tests that can be run together.
+ *
+ * @deprecated Better represented by {@link DynamicTestSuite()} which acts as a wrapper for {@link AbstractTest}
+ * and more versatile for representing a suite of tests moving forward.
+ * To be replaced by {@link DynamicTestSuite()}
+ */
 public class WebsitesSuite extends AbstractSuite {
 	public static final String NAME = "websites";
 
