@@ -2,7 +2,6 @@ package org.openobservatory.ooniprobe.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -35,7 +34,7 @@ import java.util.Objects;
 
 import javax.inject.Inject;
 
-import ru.noties.markwon.Markwon;
+import io.noties.markwon.Markwon;
 
 public class OverviewActivity extends AbstractActivity {
 	private static final String TEST = "test";
@@ -157,12 +156,14 @@ public class OverviewActivity extends AbstractActivity {
 	@BindingAdapter(value = {"richText", "testSuiteName"})
 	public static void setRichText(TextView view, String richText,String testSuiteName) {
 		try {
+			Markwon markwon = Markwon.builder(view.getContext()).build();
+
 			if (Objects.equals(testSuiteName,ExperimentalSuite.NAME)) {
-				Markwon.setMarkdown(view, richText);
+				markwon.setMarkdown(view, richText);
 				if (TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL)
 					view.setTextDirection(View.TEXT_DIRECTION_RTL);
 			} else {
-				Markwon.setMarkdown(view, richText);
+				markwon.setMarkdown(view, richText);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

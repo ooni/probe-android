@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 apply from: 'jacoco.gradle'
 apply plugin: 'org.jetbrains.kotlin.android'
@@ -86,8 +87,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17
     }
     buildFeatures {
         viewBinding = true
@@ -120,7 +124,7 @@ dependencies {
     implementation 'androidx.work:work-runtime:2.8.1'
 
 // Third-party
-    annotationProcessor libs.dbflow.processor
+    kapt libs.dbflow.processor
     implementation libs.dbflow.core
     implementation libs.dbflow.lib
 
@@ -131,7 +135,7 @@ dependencies {
 
     implementation libs.xanscale.localhost.toolkit
     implementation libs.lottie
-    implementation libs.markwon
+    implementation libs.markwon.core
     implementation libs.commons.io
     //arcview to fragment_dashboard
     implementation libs.shapeofview
@@ -145,7 +149,7 @@ dependencies {
 
 // Dependency Injection
     implementation libs.google.dagger
-    annotationProcessor libs.google.dagger.compiler
+    kapt libs.google.dagger.compiler
 
 // Logger
     implementation project(':applogger')
@@ -162,7 +166,7 @@ dependencies {
     testImplementation libs.robolectric
     testImplementation libs.faker
     testImplementation libs.ooni.oonimkall
-    testAnnotationProcessor libs.google.dagger.compiler
+    kaptTest libs.google.dagger.compiler
 
     // Instrumentation Testing
 	androidTestImplementation project(':shared-test')
@@ -175,7 +179,7 @@ dependencies {
     androidTestImplementation libs.androidx.espresso.contrib
     androidTestImplementation libs.androidx.espresso.core
     androidTestImplementation libs.barista
-    androidTestAnnotationProcessor libs.google.dagger.compiler
+    kaptAndroidTest libs.google.dagger.compiler
 }
 
 static def versionCodeDate() {
