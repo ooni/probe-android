@@ -26,7 +26,7 @@ public class GetResultsTest extends RobolectricAbstractTest {
     @Test
     public void getterTest() {
         // Arrange
-        Result result = ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c).getTest(c));
+        Result result = ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c));
         GetResults getResults = build();
 
         // Act
@@ -60,7 +60,7 @@ public class GetResultsTest extends RobolectricAbstractTest {
         assertEquals(all.get(0).test_group_name, OONITests.PERFORMANCE.getLabel());
         assertEquals(all.get(1).test_group_name, OONITests.CIRCUMVENTION.getLabel());
         assertEquals(all.get(2).test_group_name, OONITests.INSTANT_MESSAGING.getLabel());
-        assertEquals(all.get(3).test_group_name, OONITests.INSTANT_MESSAGING.getLabel());
+        assertEquals(all.get(3).test_group_name, OONITests.WEBSITES.getLabel());
     }
 
     @Test public void groupedByMonth() {
@@ -100,19 +100,19 @@ public class GetResultsTest extends RobolectricAbstractTest {
 
 
     private void createDatedResults() {
-        Result websites = ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c).getTest(c));
+        Result websites = ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c));
         websites.start_time = getDateFrom(1, Calendar.JANUARY, 2020);
         websites.save();
 
-        Result messaging = ResultFactory.createAndSave(OONITests.INSTANT_MESSAGING.toOONIDescriptor(c).getTest(c));
+        Result messaging = ResultFactory.createAndSave(OONITests.INSTANT_MESSAGING.toOONIDescriptor(c));
         messaging.start_time = getDateFrom(1, Calendar.FEBRUARY, 2020);
         messaging.save();
 
-        Result circumvention = ResultFactory.createAndSave(OONITests.CIRCUMVENTION.toOONIDescriptor(c).getTest(c), 1, 2);
+        Result circumvention = ResultFactory.createAndSave(OONITests.CIRCUMVENTION.toOONIDescriptor(c), 1, 2);
         circumvention.start_time = getDateFrom(1, Calendar.MARCH, 2020);
         circumvention.save();
 
-        Result performance = ResultFactory.createAndSave(OONITests.PERFORMANCE.toOONIDescriptor(c).getTest(c));
+        Result performance = ResultFactory.createAndSave(OONITests.PERFORMANCE.toOONIDescriptor(c));
         performance.start_time = getDateFrom(1, Calendar.APRIL, 2020);
         performance.save();
     }

@@ -40,8 +40,8 @@ public class ResubmitTaskTest extends RobolectricAbstractTest {
     @Test
     public void notUploadedMeasurementsTest() {
         // Arrange
-        Result testResult = ResultFactory.createAndSaveWithEntryFiles(c, OONITests.WEBSITES.toOONIDescriptor(c).getTest(c), 5, 0, false);
-        ResultFactory.createAndSaveWithEntryFiles(c, OONITests.WEBSITES.toOONIDescriptor(c).getTest(c), 5, 0, false);
+        Result testResult = ResultFactory.createAndSaveWithEntryFiles(c, OONITests.WEBSITES.toOONIDescriptor(c), 5, 0, false);
+        ResultFactory.createAndSaveWithEntryFiles(c, OONITests.WEBSITES.toOONIDescriptor(c), 5, 0, false);
         ResubmitTask<ResultDetailActivity> resubmitTask = build(testResult.id);
 
         when(managerMock.reSubmit(any(), any())).thenReturn(true);
@@ -58,8 +58,8 @@ public class ResubmitTaskTest extends RobolectricAbstractTest {
     @Test
     public void notUploadedByResultIdMeasurementsTest() {
         // Arrange
-        Result testResult = ResultFactory.createAndSaveWithEntryFiles(c, OONITests.WEBSITES.toOONIDescriptor(c).getTest(c), 5, 0, false);
-        ResultFactory.createAndSaveWithEntryFiles(c, OONITests.WEBSITES.toOONIDescriptor(c).getTest(c), 5, 0, false);
+        Result testResult = ResultFactory.createAndSaveWithEntryFiles(c, OONITests.WEBSITES.toOONIDescriptor(c), 5, 0, false);
+        ResultFactory.createAndSaveWithEntryFiles(c, OONITests.WEBSITES.toOONIDescriptor(c), 5, 0, false);
         ResubmitTask<ResultDetailActivity> resubmitTask = build(testResult.id);
 
         when(managerMock.reSubmit(any(), any())).thenReturn(true);
@@ -76,7 +76,7 @@ public class ResubmitTaskTest extends RobolectricAbstractTest {
     @Test
     public void notUploadedByMeasurementIdMeasurementsTest() {
         // Arrange
-        Result testResult = ResultFactory.createAndSaveWithEntryFiles(c, OONITests.WEBSITES.toOONIDescriptor(c).getTest(c), 5, 0, false);
+        Result testResult = ResultFactory.createAndSaveWithEntryFiles(c, OONITests.WEBSITES.toOONIDescriptor(c), 5, 0, false);
         ResubmitTask<ResultDetailActivity> resubmitTask = build(testResult.id);
 
         when(managerMock.reSubmit(any(), any())).thenReturn(true);

@@ -13,10 +13,12 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.engine.BaseNettest;
+import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.AppDatabase;
 import org.openobservatory.ooniprobe.common.OONIDescriptor;
 import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
+import org.openobservatory.ooniprobe.test.suite.DynamicTestSuite;
 import org.openobservatory.ooniprobe.test.test.Dash;
 import org.openobservatory.ooniprobe.test.test.FacebookMessenger;
 import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
@@ -27,6 +29,7 @@ import org.openobservatory.ooniprobe.test.test.Telegram;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 import org.openobservatory.ooniprobe.test.test.Whatsapp;
 
+import javax.annotation.Nullable;
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -201,6 +204,21 @@ public class Result extends BaseModel implements Serializable {
 	}
 
 	public OONIDescriptor<BaseNettest> getDescriptor(Context context) {
-		return OONITests.valueOf(test_group_name).toOONIDescriptor(context);
+		try {
+			return OONITests.valueOf(test_group_name).toOONIDescriptor(context);
+		} catch (IllegalArgumentException e) {
+			return new OONIDescriptor<>(
+                    test_group_name,
+                    test_group_name,
+                    test_group_name,
+                    test_group_name,
+                    test_group_name,
+                    R.color.color_gray7_1,
+                    test_group_name,
+                    R.string.TestResults_NotAvailable,
+                    new ArrayList<>(),
+                    new ArrayList<>()
+            );
+		}
 	}
 }

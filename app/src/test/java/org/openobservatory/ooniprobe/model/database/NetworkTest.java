@@ -88,7 +88,7 @@ public class NetworkTest extends RobolectricAbstractTest {
         // Arrange
         Network noResultNetwork = NetworkFactory.build();
         noResultNetwork.save();
-        Network resultNetwork = ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c).getTest(c)).network;
+        Network resultNetwork = ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c)).network;
 
         // Act
         boolean noResultDelete = noResultNetwork.delete();

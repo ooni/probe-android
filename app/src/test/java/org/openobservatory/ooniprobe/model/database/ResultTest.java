@@ -129,24 +129,6 @@ public class ResultTest extends RobolectricAbstractTest {
         assertEquals(Signal.NAME, measurements.get(1).test_name);
     }
 
-    /*@Test
-    public void getMeasurementsSorted_middleBoxes() {
-        Result result = new Result(OONITests.MiddleBox.getLabel());
-        result.save();
-        Measurement httpHeader = new Measurement(result, HttpHeaderFieldManipulation.NAME);
-        httpHeader.is_done = true;
-        httpHeader.save();
-        Measurement httpInvalid = new Measurement(result, HttpInvalidRequestLine.NAME);
-        httpInvalid.is_done = true;
-        httpInvalid.save();
-
-        List<Measurement> measurements = result.getMeasurementsSorted();
-
-        assertEquals(2, measurements.size());
-        assertEquals(HttpInvalidRequestLine.NAME, measurements.get(0).test_name);
-        assertEquals(HttpHeaderFieldManipulation.NAME, measurements.get(1).test_name);
-    }*/
-
     @Test
     public void getMeasurementsSorted_performance() {
         Result result = new Result(OONITests.PERFORMANCE.getLabel());
@@ -232,7 +214,7 @@ public class ResultTest extends RobolectricAbstractTest {
         assertEquals(OONITests.PERFORMANCE.getLabel(), new Result(OONITests.PERFORMANCE.getLabel()).getTestSuite(c).getName());
         assertEquals(OONITests.CIRCUMVENTION.getLabel(), new Result(OONITests.CIRCUMVENTION.getLabel()).getTestSuite(c).getName());
         assertEquals(OONITests.EXPERIMENTAL.getLabel(), new Result(OONITests.EXPERIMENTAL.getLabel()).getTestSuite(c).getName());
-        assertNull(new Result("invalid").getTestSuite(c));
+        assertEquals(new Result("invalid").getTestSuite(c).getName(),"invalid");
     }
 
     @Test
