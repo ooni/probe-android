@@ -11,6 +11,7 @@ import androidx.core.text.TextUtilsCompat;
 import androidx.core.view.ViewCompat;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.customwebsites.CustomWebsiteActivity;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.databinding.ActivityOverviewBinding;
 import org.openobservatory.ooniprobe.model.database.Result;

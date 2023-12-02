@@ -1,7 +1,7 @@
 package org.openobservatory.ooniprobe.di;
 
 
-import org.openobservatory.ooniprobe.activity.CustomWebsiteActivity;
+import org.openobservatory.ooniprobe.activity.customwebsites.CustomWebsiteActivity;
 import org.openobservatory.ooniprobe.activity.LogActivity;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.MeasurementDetailActivity;

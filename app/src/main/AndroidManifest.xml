@@ -95,7 +95,7 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".activity.CustomWebsiteActivity"
+			android:name=".activity.customwebsites.CustomWebsiteActivity"
 			android:label="@string/Settings_Websites_CustomURL_Title"
 			android:exported="false"
 			android:parentActivityName=".activity.PreferenceActivity"

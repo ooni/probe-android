@@ -1,4 +1,4 @@
-package org.openobservatory.ooniprobe.activity
+package org.openobservatory.ooniprobe.activity.customwebsites
 
 import android.content.DialogInterface
 import android.os.Bundle
@@ -8,13 +8,16 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import org.openobservatory.ooniprobe.fragment.ConfirmDialogFragment
 import org.openobservatory.ooniprobe.R
-import org.openobservatory.ooniprobe.adapters.CustomWebsiteRecyclerViewAdapter
-import org.openobservatory.ooniprobe.adapters.ItemRemovedListener
+import org.openobservatory.ooniprobe.activity.AbstractActivity
+import org.openobservatory.ooniprobe.activity.RunningActivity
+import org.openobservatory.ooniprobe.activity.customwebsites.adapter.CustomWebsiteRecyclerViewAdapter
+import org.openobservatory.ooniprobe.activity.customwebsites.adapter.ItemRemovedListener
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.databinding.ActivityCustomwebsiteBinding
+import org.openobservatory.ooniprobe.fragment.ConfirmDialogFragment
 import org.openobservatory.ooniprobe.model.database.Url
 import org.openobservatory.ooniprobe.test.suite.WebsitesSuite
 import java.io.Serializable
@@ -23,6 +26,9 @@ import javax.inject.Inject
 class CustomWebsiteActivity : AbstractActivity(), ConfirmDialogFragment.OnClickListener {
     @Inject
     lateinit var preferenceManager: PreferenceManager
+
+    val viewModel: CustomWebsiteViewModel by viewModels()
+
     private lateinit var adapter: CustomWebsiteRecyclerViewAdapter
     private lateinit var binding: ActivityCustomwebsiteBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,40 +42,63 @@ class CustomWebsiteActivity : AbstractActivity(), ConfirmDialogFragment.OnClickL
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val layoutManager = LinearLayoutManager(this)
         binding.urlContainer.layoutManager = layoutManager
-        adapter = CustomWebsiteRecyclerViewAdapter(object : ItemRemovedListener {
-            override fun onItemRemoved(position: Int) {
-                binding.bottomBar.title = getString(
-                    R.string.OONIRun_URLs, adapter.itemCount.toString()
-                )
-            }
-        })
-        binding.bottomBar.setOnMenuItemClickListener { item: MenuItem? ->
-            val items = adapter.getItems()
-            val urls = ArrayList<String>(items.size)
-            for (value in items) {
-                val sanitizedUrl = value.replace("\\r\\n|\\r|\\n".toRegex(), " ")
-                //https://support.microsoft.com/en-us/help/208427/maximum-url-length-is-2-083-characters-in-internet-explorer
-                if (Patterns.WEB_URL.matcher(sanitizedUrl).matches() && sanitizedUrl.length < 2084) urls.add(
-                    Url.checkExistingUrl(sanitizedUrl).toString()
-                )
-            }
-            val suite = WebsitesSuite()
-            suite.getTestList(preferenceManager)[0].inputs = urls
-            RunningActivity.runAsForegroundService(
-                this@CustomWebsiteActivity, suite.asArray(), { finish() }, preferenceManager
+        adapter = CustomWebsiteRecyclerViewAdapter(
+            onItemRemovedListener = object : ItemRemovedListener {
+                override fun onItemRemoved(position: Int) {
+                    binding.bottomBar.title = getString(
+                        R.string.OONIRun_URLs, adapter.itemCount.toString()
+                    )
+                    viewModel.onItemRemoved(position)
+                }
+            },
+            viewModel = viewModel
+        )
+        viewModel.urls.observe(this) { urls ->
+            binding.bottomBar.title = getString(
+                R.string.OONIRun_URLs, urls.size.toString()
             )
-            true
         }
+
+        binding.bottomBar.setOnMenuItemClickListener { item: MenuItem? -> runTests() }
         binding.add.setOnClickListener { add() }
 
         binding.urlContainer.adapter = adapter
-        add()
-        // TODO(aanorbel): Fix: Configuration change triggers loss of data.
+        if (viewModel.urls.value == null) {
+            add()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.urls.value?.let { urls ->
+            adapter.items = urls
+            binding.urlContainer.post { adapter.notifyDataSetChanged() }
+        }
+    }
+
+    private fun runTests(): Boolean {
+        val items = viewModel.urls.value ?: listOf()
+        val urls = ArrayList<String>(items.size)
+        for (value in items) {
+            val sanitizedUrl = value.replace("\\r\\n|\\r|\\n".toRegex(), " ")
+            //https://support.microsoft.com/en-us/help/208427/maximum-url-length-is-2-083-characters-in-internet-explorer
+            if (Patterns.WEB_URL.matcher(sanitizedUrl)
+                    .matches() && sanitizedUrl.length < 2084
+            ) urls.add(
+                Url.checkExistingUrl(sanitizedUrl).toString()
+            )
+        }
+        val suite = WebsitesSuite()
+        suite.getTestList(preferenceManager)[0].inputs = urls
+        RunningActivity.runAsForegroundService(
+            this@CustomWebsiteActivity, suite.asArray(), { finish() }, preferenceManager
+        )
+        return true
     }
 
     override fun onBackPressed() {
         val base = getString(R.string.http)
-        val edited = adapter.itemCount > 0 && adapter.getItems()[0] != base
+        val edited = adapter.itemCount > 0 && adapter.items[0] != base
         if (edited) {
             ConfirmDialogFragment(
                 title = "Are you sure?",
@@ -103,11 +132,7 @@ class CustomWebsiteActivity : AbstractActivity(), ConfirmDialogFragment.OnClickL
     }
 
     fun add() {
-        adapter.addAll(listOf(getString(R.string.http)))
-        binding.bottomBar.title = getString(
-            R.string.OONIRun_URLs, adapter.itemCount.toString()
-        )
-        adapter.notifyDataSetChanged()
+        viewModel.addUrl(getString(R.string.http))
         scrollToBottom()
     }
 
