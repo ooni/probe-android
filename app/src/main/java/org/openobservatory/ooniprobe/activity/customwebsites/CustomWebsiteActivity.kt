@@ -7,13 +7,13 @@ import android.util.Patterns
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
 import org.openobservatory.ooniprobe.activity.RunningActivity
-import org.openobservatory.ooniprobe.activity.customwebsites.adapter.*
+import org.openobservatory.ooniprobe.activity.customwebsites.adapter.CustomWebsiteRecyclerViewAdapter
+import org.openobservatory.ooniprobe.activity.customwebsites.adapter.ItemChangedListener
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.databinding.ActivityCustomwebsiteBinding
 import org.openobservatory.ooniprobe.fragment.ConfirmDialogFragment
@@ -50,8 +50,8 @@ class CustomWebsiteActivity : AbstractActivity(), ConfirmDialogFragment.OnClickL
                     viewModel.onItemRemoved(position)
                 }
 
-                override fun onItemUpdated(position: Int, toString: String) {
-                    viewModel.updateUrlAt(position, toString)
+                override fun onItemUpdated(position: Int, item: String) {
+                    viewModel.updateUrlAt(position, item)
                 }
             },
         )
@@ -78,8 +78,18 @@ class CustomWebsiteActivity : AbstractActivity(), ConfirmDialogFragment.OnClickL
         }
     }
 
+    /**
+     * This function will run the tests if the list of urls is not empty.
+     * If the list is empty, it will not run the tests.
+     * This function will also sanitize the url and remove any new lines.
+     * It will also check if the url is valid and not too long.
+     * If the url is not valid or too long, it will not be added to the tests.
+     */
     private fun runTests(): Boolean {
         val items = viewModel.urls.value ?: listOf()
+        if (items.isEmpty()) {
+            return false
+        }
         val urls = ArrayList<String>(items.size)
         for (value in items) {
             val sanitizedUrl = value.replace("\\r\\n|\\r|\\n".toRegex(), " ")
@@ -98,6 +108,11 @@ class CustomWebsiteActivity : AbstractActivity(), ConfirmDialogFragment.OnClickL
         return true
     }
 
+    /**
+     * This function will show a dialog if the user has edited the list of urls.
+     * If the user has edited the list of urls, it will show a dialog asking if the user wants to save the changes.
+     * If the user has not edited the list of urls, it will just call super.onBackPressed()
+     */
     override fun onBackPressed() {
         val base = getString(R.string.http)
         val edited = adapter.itemCount > 0 && viewModel.urls.value?.get(0) != base
@@ -133,11 +148,19 @@ class CustomWebsiteActivity : AbstractActivity(), ConfirmDialogFragment.OnClickL
         }
     }
 
+    /**
+     * This function will add a new url to the list of urls.
+     * It will also scroll to the bottom of the list.
+     */
     fun add() {
         viewModel.addUrl(getString(R.string.http))
         binding.urlContainer.layoutManager?.scrollToPosition(adapter.itemCount - 1)
     }
 
+    /**
+     * This function will be called when the user clicks on a button in the dialog.
+     * If the user clicks on the positive button, it will call super.onBackPressed()
+     */
     override fun onConfirmDialogClick(
         serializable: Serializable?, parcelable: Parcelable?, buttonClicked: Int
     ) {
