@@ -13,8 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
 import org.openobservatory.ooniprobe.activity.RunningActivity
-import org.openobservatory.ooniprobe.activity.customwebsites.adapter.CustomWebsiteRecyclerViewAdapter
-import org.openobservatory.ooniprobe.activity.customwebsites.adapter.ItemRemovedListener
+import org.openobservatory.ooniprobe.activity.customwebsites.adapter.*
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.databinding.ActivityCustomwebsiteBinding
 import org.openobservatory.ooniprobe.fragment.ConfirmDialogFragment
@@ -43,15 +42,18 @@ class CustomWebsiteActivity : AbstractActivity(), ConfirmDialogFragment.OnClickL
         val layoutManager = LinearLayoutManager(this)
         binding.urlContainer.layoutManager = layoutManager
         adapter = CustomWebsiteRecyclerViewAdapter(
-            onItemRemovedListener = object : ItemRemovedListener {
+            onItemChangedListener = object : ItemChangedListener {
                 override fun onItemRemoved(position: Int) {
                     binding.bottomBar.title = getString(
                         R.string.OONIRun_URLs, adapter.itemCount.toString()
                     )
                     viewModel.onItemRemoved(position)
                 }
+
+                override fun onItemUpdated(position: Int, toString: String) {
+                    viewModel.updateUrlAt(position, toString)
+                }
             },
-            viewModel = viewModel
         )
         viewModel.urls.observe(this) { urls ->
             binding.bottomBar.title = getString(
@@ -71,7 +73,7 @@ class CustomWebsiteActivity : AbstractActivity(), ConfirmDialogFragment.OnClickL
     override fun onResume() {
         super.onResume()
         viewModel.urls.value?.let { urls ->
-            adapter.items = urls
+            adapter.submitList(urls)
             binding.urlContainer.post { adapter.notifyDataSetChanged() }
         }
     }
@@ -98,11 +100,11 @@ class CustomWebsiteActivity : AbstractActivity(), ConfirmDialogFragment.OnClickL
 
     override fun onBackPressed() {
         val base = getString(R.string.http)
-        val edited = adapter.itemCount > 0 && adapter.items[0] != base
+        val edited = adapter.itemCount > 0 && viewModel.urls.value?.get(0) != base
         if (edited) {
             ConfirmDialogFragment(
-                title = "Are you sure?",
-                message = "Your URLs will not be saved when you leave this screen. Are you sure you want to do that?",
+                title = getString(R.string.Modal_CustomURL_Title_NotSaved),
+                message = getString(R.string.Modal_CustomURL_NotSaved),
             ).show(supportFragmentManager, null)
         } else {
             super.onBackPressed()
@@ -133,12 +135,7 @@ class CustomWebsiteActivity : AbstractActivity(), ConfirmDialogFragment.OnClickL
 
     fun add() {
         viewModel.addUrl(getString(R.string.http))
-        scrollToBottom()
-    }
-
-    private fun scrollToBottom() {
-        binding.urlContainer.scrollToPosition(adapter.itemCount - 1)
-        binding.urlsList.post { binding.urlsList.fullScroll(View.FOCUS_DOWN) }
+        binding.urlContainer.layoutManager?.scrollToPosition(adapter.itemCount - 1)
     }
 
     override fun onConfirmDialogClick(

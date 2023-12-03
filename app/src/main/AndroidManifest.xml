@@ -99,7 +99,6 @@
 			android:label="@string/Settings_Websites_CustomURL_Title"
 			android:exported="false"
 			android:parentActivityName=".activity.PreferenceActivity"
-			android:screenOrientation="userPortrait"
 			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
 			<intent-filter>
 				<action android:name="${applicationId}.activity.CustomWebsiteActivity" />
