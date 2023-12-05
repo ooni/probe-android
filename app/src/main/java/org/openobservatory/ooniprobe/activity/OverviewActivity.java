@@ -23,7 +23,7 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
-import ru.noties.markwon.Markwon;
+import io.noties.markwon.Markwon;
 
 public class OverviewActivity extends AbstractActivity {
 	private static final String TEST = "test";
@@ -54,19 +54,21 @@ public class OverviewActivity extends AbstractActivity {
 			binding.run.setAlpha(0.5F);
 			binding.run.setEnabled(false);
 		}
+		Markwon markwon = Markwon.builder(this).build();
 		if (testSuite.getName().equals(ExperimentalSuite.NAME)) {
 			String experimentalLinks =
 					"\n\n* [STUN Reachability](https://github.com/ooni/spec/blob/master/nettests/ts-025-stun-reachability.md)" +
 					"\n\n* [DNS Check](https://github.com/ooni/spec/blob/master/nettests/ts-028-dnscheck.md)" +
+					"\n\n* [RiseupVPN](https://ooni.org/nettest/riseupvpn/)" +
 					"\n\n* [ECH Check](https://github.com/ooni/spec/blob/master/nettests/ts-039-echcheck.md)" +
 					"\n\n* [Tor Snowflake](https://ooni.org/nettest/tor-snowflake/) "+ String.format(" ( %s )",getString(R.string.Settings_TestOptions_LongRunningTest))+
 					"\n\n* [Vanilla Tor](https://github.com/ooni/spec/blob/master/nettests/ts-016-vanilla-tor.md) " + String.format(" ( %s )",getString(R.string.Settings_TestOptions_LongRunningTest));
-			Markwon.setMarkdown(binding.desc, getString(testSuite.getDesc1(), experimentalLinks));
+			markwon.setMarkdown(binding.desc, getString(testSuite.getDesc1(), experimentalLinks));
 			if (TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL)
 				binding.desc.setTextDirection(View.TEXT_DIRECTION_RTL);
 		}
 		else
-			Markwon.setMarkdown(binding.desc, getString(testSuite.getDesc1()));
+			markwon.setMarkdown(binding.desc, getString(testSuite.getDesc1()));
 		Result lastResult = Result.getLastResult(testSuite.getName());
 		if (lastResult == null)
 			binding.lastTime.setText(R.string.Dashboard_Overview_LastRun_Never);

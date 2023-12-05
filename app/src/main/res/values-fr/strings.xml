@@ -160,7 +160,7 @@
   <string name="TestResults_Details_CopyExplorerURL">Copier l’URL de l’explorateur</string>
   <string name="TestResults_Details_ShareExplorerURL">Partager l’URL de l’explorateur</string>
   <string name="TestResults_Details_CopyToClipboard">Copier dans le presse-papiers</string>
-  <string name="TestResults_Details_ShowInExplorer">Afficher dans l’Explorateur OONI</string>
+  <string name="TestResults_Details_ShowInExplorer"> Dans l’Explorateur OONI</string>
   <string name="TestResults_Details_Failed_Title">Échec</string>
   <string name="TestResults_Details_Failed_Paragraph">Vous pouvez essayer de relancer ce test</string>
   <string name="TestResults_Details_Failed_TryAgain">Réessayer</string>
