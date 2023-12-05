@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel
  * This class is used to store the data for the CustomWebsiteActivity.
  * The data is stored in a ViewModel so that it can survive configuration changes (like rotation).
  * This class shound not be injected to the activity using a DI framework.
+ * Dagger forces the recreation of the [ViewModel] on configuration
+ * as oposed to using `by viewModels()` which remembers the last state.
  */
 class CustomWebsiteViewModel : ViewModel() {
 
