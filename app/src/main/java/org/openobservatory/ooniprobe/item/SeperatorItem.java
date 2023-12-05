@@ -9,6 +9,7 @@ import org.openobservatory.ooniprobe.databinding.ItemSeperatorBinding;
 
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
+@Deprecated
 public class SeperatorItem extends HeterogeneousRecyclerItem<String, SeperatorItem.ViewHolderImpl> {
 
     public SeperatorItem() {
