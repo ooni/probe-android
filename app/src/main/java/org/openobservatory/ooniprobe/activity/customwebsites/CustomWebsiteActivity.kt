@@ -31,6 +31,7 @@ class CustomWebsiteActivity : AbstractActivity(), ConfirmDialogFragment.OnClickL
 
     private lateinit var adapter: CustomWebsiteRecyclerViewAdapter
     private lateinit var binding: ActivityCustomwebsiteBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityComponent.inject(this)
