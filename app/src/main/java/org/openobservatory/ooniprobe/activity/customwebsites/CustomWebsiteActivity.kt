@@ -22,6 +22,7 @@ import org.openobservatory.ooniprobe.test.suite.WebsitesSuite
 import java.io.Serializable
 import javax.inject.Inject
 
+/** This activity allows a user to test a custom website. */
 class CustomWebsiteActivity : AbstractActivity(), ConfirmDialogFragment.OnClickListener {
     @Inject
     lateinit var preferenceManager: PreferenceManager
