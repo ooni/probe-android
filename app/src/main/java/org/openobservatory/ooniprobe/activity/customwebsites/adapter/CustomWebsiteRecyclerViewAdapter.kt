@@ -12,7 +12,7 @@ import org.openobservatory.ooniprobe.activity.customwebsites.CustomWebsiteActivi
 
 
 /**
- * [RecyclerView.Adapter] that can display an editable  list of [String] on the [CustomWebsiteActivity].
+ * [RecyclerView.Adapter] that can display an editable list of [String] on the [CustomWebsiteActivity].
  */
 class CustomWebsiteRecyclerViewAdapter(
     private val onItemChangedListener: ItemChangedListener,
