@@ -40,7 +40,7 @@ markwon = "4.6.2"
 shapeofview = "1.3.2"
 targetSdk = "33"
 minSdk = "21"
-oonimkall = "2023.10.20-093834"
+oonimkall = "2023.11.21-145557"
 
 junit = "4.13.2"
 dbflow = "4.2.4"
@@ -78,7 +78,6 @@ dbflow-lib = { module = "com.github.Raizlabs.DBFlow:dbflow", version.ref = "dbfl
 dbflow-core = { module = "com.github.Raizlabs.DBFlow:dbflow-core", version.ref = "dbflow" }
 dbflow-processor = { module = "com.github.Raizlabs.DBFlow:dbflow-processor", version.ref = "dbflow" }
 
-# androidx-core = { group = "androidx.core", name = "core", version.ref = "androidxCore" }
 androidx-test-core = { module = "androidx.test:core", version.ref = "androidxCore" }
 androidx-rules = { module = "androidx.test:rules", version.ref = "androidxCore" }
 androidx-runner = { module = "androidx.test:runner", version.ref = "androidxRunner" }

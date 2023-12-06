@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat;
 
 import org.openobservatory.engine.BaseNettest;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.customwebsites.CustomWebsiteActivity;
 import org.openobservatory.ooniprobe.common.OONIDescriptor;
 import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;

@@ -72,7 +72,10 @@ class DashboardAdapter(
                         holder.binding.apply {
                             title.setTextColor(resources.getColor(R.color.disabled_test_text))
                             desc.setTextColor(resources.getColor(R.color.disabled_test_text))
-                            icon.setColorFilter(resources.getColor(R.color.disabled_test_text), PorterDuff.Mode.SRC_IN)
+                            icon.setColorFilter(
+                                resources.getColor(R.color.disabled_test_text),
+                                PorterDuff.Mode.SRC_IN
+                            )
                         }
                     } else {
                         holder.itemView.setOnClickListener(onClickListener)
@@ -94,13 +97,14 @@ class DashboardAdapter(
     }
 
     /**
-     * ViewHolder for dashboard item group
+     * ViewHolder for a dashboard item group.
      * @param binding
      */
-    class CardGroupTitleViewHolder(var binding: ItemSeperatorBinding) : RecyclerView.ViewHolder(binding.root)
+    class CardGroupTitleViewHolder(var binding: ItemSeperatorBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     /**
-     * ViewHolder for dashboard item
+     * ViewHolder for dashboard item.
      * @param binding
      */
     class CardViewHolder(var binding: ItemTestsuiteBinding) : RecyclerView.ViewHolder(binding.root)
