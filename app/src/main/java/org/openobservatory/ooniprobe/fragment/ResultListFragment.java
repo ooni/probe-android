@@ -3,31 +3,20 @@ package org.openobservatory.ooniprobe.fragment;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Spinner;
-import android.widget.TextView;
-
+import android.view.*;
+import android.widget.AdapterView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.material.snackbar.Snackbar;
 import com.raizlabs.android.dbflow.sql.language.Method;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
-
+import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
@@ -37,72 +26,62 @@ import org.openobservatory.ooniprobe.adapters.diff.ResultComparator;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
+import org.openobservatory.ooniprobe.databinding.FragmentResultListBinding;
 import org.openobservatory.ooniprobe.domain.GetResults;
 import org.openobservatory.ooniprobe.domain.MeasurementsManager;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
 
+import javax.inject.Inject;
 import java.io.Serializable;
 import java.lang.ref.WeakReference;
 
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnItemSelected;
-import localhost.toolkit.app.fragment.ConfirmDialogFragment;
-
 public class ResultListFragment extends Fragment implements View.OnClickListener, View.OnLongClickListener, ConfirmDialogFragment.OnConfirmedListener {
-    @BindView(R.id.coordinatorLayout)
-    CoordinatorLayout coordinatorLayout;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.tests)
-    TextView tests;
-    @BindView(R.id.networks)
-    TextView networks;
-    @BindView(R.id.upload)
-    TextView upload;
-    @BindView(R.id.download)
-    TextView download;
-    @BindView(R.id.filterTests)
-    Spinner filterTests;
-    @BindView(R.id.recycler)
-    RecyclerView recycler;
-    @BindView(R.id.emptyState)
-    TextView emptyState;
+    private FragmentResultListBinding binding;
+    private ResultListAdapter adapter;
+    private boolean refresh;
+    private Snackbar snackbar;
+
     @Inject
     MeasurementsManager measurementsManager;
     @Inject
     GetResults getResults;
     @Inject
     PreferenceManager pm;
-
-    private ResultListAdapter mAdapter;
-    private boolean refresh;
-    private Snackbar snackbar;
-    private ResultListViewModel mViewModel;
+    private ResultListViewModel viewModel;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_result_list, container, false);
-        ButterKnife.bind(this, v);
+        binding = FragmentResultListBinding.inflate(inflater, container, false);
         ((Application) getActivity().getApplication()).getFragmentComponent().inject(this);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        // Create ViewModel
-        mViewModel = new ViewModelProvider(this).get(ResultListViewModel.class);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(binding.toolbar);
+
+        viewModel = new ViewModelProvider(this).get(ResultListViewModel.class);
 
         setHasOptionsMenu(true);
         getActivity().setTitle(R.string.TestResults_Overview_Title);
         reloadHeader();
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recycler.setLayoutManager(layoutManager);
-        recycler.addItemDecoration(new DividerItemDecoration(getActivity(), layoutManager.getOrientation()));
-        mAdapter = new ResultListAdapter(new ResultComparator(), this, this);
-        recycler.setAdapter(mAdapter);
-        snackbar = Snackbar.make(coordinatorLayout, R.string.Snackbar_ResultsSomeNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
+        binding.recycler.setLayoutManager(layoutManager);
+        binding.recycler.addItemDecoration(new DividerItemDecoration(getActivity(), layoutManager.getOrientation()));
+        adapter = new ResultListAdapter(new ResultComparator(), this, this);
+        binding.recycler.setAdapter(adapter);
+
+        binding.filterTests.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                queryList();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                queryList();
+            }
+        });
+
+        snackbar = Snackbar.make(binding.coordinatorLayout, R.string.Snackbar_ResultsSomeNotUploaded_Text, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.Snackbar_ResultsSomeNotUploaded_UploadAll, v1 ->
                         new ConfirmDialogFragment.Builder()
                                 .withExtra(R.string.Modal_ResultsNotUploaded_Title)
@@ -111,14 +90,14 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
                                 .withPositiveButton(getString(R.string.Modal_ResultsNotUploaded_Button_Upload))
                                 .build().show(getChildFragmentManager(), null)
                 );
-        return v;
+        return binding.getRoot();
     }
 
     public void reloadHeader() {
-        tests.setText(getString(R.string.d, SQLite.selectCountOf().from(Result.class).longValue()));
-        networks.setText(getString(R.string.d, SQLite.selectCountOf().from(Network.class).longValue()));
-        upload.setText(Result.readableFileSize(SQLite.select(Method.sum(Result_Table.data_usage_up)).from(Result.class).longValue()));
-        download.setText(Result.readableFileSize(SQLite.select(Method.sum(Result_Table.data_usage_down)).from(Result.class).longValue()));
+        binding.tests.setText(getString(R.string.d, SQLite.selectCountOf().from(Result.class).longValue()));
+        binding.networks.setText(getString(R.string.d, SQLite.selectCountOf().from(Network.class).longValue()));
+        binding.upload.setText(Result.readableFileSize(SQLite.select(Method.sum(Result_Table.data_usage_up)).from(Result.class).longValue()));
+        binding.download.setText(Result.readableFileSize(SQLite.select(Method.sum(Result_Table.data_usage_down)).from(Result.class).longValue()));
     }
 
     @Override
@@ -157,7 +136,6 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         }
     }
 
-    @OnItemSelected(R.id.filterTests)
     void queryList() {
         if (measurementsManager.hasUploadables()) {
             snackbar.show();
@@ -165,10 +143,10 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
             snackbar.dismiss();
         }
 
-        String filter = getResources().getStringArray(R.array.filterTestValues)[filterTests.getSelectedItemPosition()];
-        mViewModel.init(filter);
-        mViewModel.pagingData.observe(getViewLifecycleOwner(), resultPagingData -> {
-            mAdapter.submitData(getLifecycle(), resultPagingData);
+        String filter = getResources().getStringArray(R.array.filterTestValues)[binding.filterTests.getSelectedItemPosition()];
+        viewModel.init(filter);
+        viewModel.pagingData.observe(getViewLifecycleOwner(), resultPagingData -> {
+            adapter.submitData(getLifecycle(), resultPagingData);
         });
     }
 

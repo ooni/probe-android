@@ -19,7 +19,9 @@
 	<string name="proxy_protocol" translatable="false">proxy_protocol</string>
 	<string name="proxy_hostname" translatable="false">proxy_hostname</string>
 	<string name="proxy_port" translatable="false">proxy_port</string>
-	<string name="SOCKS5" translatable="false">SOCKS5</string>
+	<string name="SOCKS5" translatable="false">socks5</string>
+	<string name="HTTP" translatable="false">http</string>
+	<string name="HTTPS" translatable="false">https</string>
 	<string name="middle_boxes" translatable="false">middle_boxes</string>
 	<string name="performance" translatable="false">performance</string>
 
@@ -282,6 +284,8 @@
 		<item>Kiswahili</item>
 		<item>ไทย</item>
 		<item>Türkçe</item>
+		<item>Tiếng Việt</item>
+		<item>မြန်မာ</item>
 	</string-array>
 	<string-array name="language_sort_options_values">
 		<item>auto</item>
@@ -308,6 +312,13 @@
 		<item>sw</item>
 		<item>th</item>
 		<item>tr</item>
+		<item>vi</item>
+		<item>my</item>
+	</string-array>
+	<string-array name="proxy_protocol_list">
+		<item>@string/SOCKS5</item>
+		<item>@string/HTTP</item>
+		<item>@string/HTTPS</item>
 	</string-array>
 	<string name="preference_intent_about_ooni" translatable="false">org.openobservatory.ooniprobe.activity.InfoActivity</string>
 	<string name="preference_intent_proxy_activity" translatable="false">org.openobservatory.ooniprobe.activity.ProxyActivity</string>

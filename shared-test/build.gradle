@@ -1,0 +1,72 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    namespace 'org.openobservatory.ooniprobe.shared.test'
+    compileSdk libs.versions.compileSdk.get().toInteger()
+
+    defaultConfig {
+        minSdk libs.versions.minSdk.get().toInteger()
+    }
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_17
+		targetCompatibility JavaVersion.VERSION_17
+	}
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17
+    }
+    flavorDimensions = ['testing', 'license']
+    productFlavors {
+        stable {
+            dimension 'testing'
+        }
+        experimental {
+            dimension 'testing'
+        }
+        dev {
+            dimension 'testing'
+        }
+
+        fdroid {
+            dimension 'license'
+        }
+        full {
+            dimension 'license'
+        }
+    }
+}
+
+dependencies {
+    implementation project(":engine")
+    implementation project(":app")
+
+    // Dependency Injection (https://dagger.dev/)
+	implementation libs.google.dagger
+    kapt libs.google.dagger.compiler
+
+    // Database Library (https://github.com/agrosner/DBFlow)
+	implementation libs.dbflow.core
+	implementation libs.dbflow.lib
+    kapt libs.dbflow.processor
+
+    // Gson Serialization Library (https://github.com/google/gson)
+	implementation libs.google.gson
+
+    implementation libs.faker
+    implementation libs.commons.io
+
+    // Networking Library (https://square.github.io/retrofit/)
+	implementation libs.retrofit.lib
+	implementation libs.retrofit.converter.gson
+	implementation libs.retrofit.logging.interceptor
+
+	implementation libs.androidx.appcompat
+	implementation libs.xanscale.localhost.toolkit
+
+    testImplementation libs.junit4
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+}

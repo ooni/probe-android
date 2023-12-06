@@ -9,28 +9,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-
-import com.airbnb.lottie.LottieAnimationView;
-
 import org.openobservatory.ooniprobe.R;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import org.openobservatory.ooniprobe.databinding.FragmentOnboardingDialogPopquizBinding;
 
 public class OnboardingDialogPopquizFragment extends DialogFragment {
 	private static final String TITLE_RES_ID = "titleResId";
 	private static final String QUESTION_RES_ID = "questionResId";
-	@BindView(R.id.title) @Nullable TextView title;
-	@BindView(R.id.question) TextView question;
-	@BindView(R.id.dialog) LinearLayout dialog;
-	@BindView(R.id.animation) LottieAnimationView animation;
+	private FragmentOnboardingDialogPopquizBinding binding;
 
 	public static OnboardingDialogPopquizFragment newInstance(int titleResId, int questionResId) {
 		Bundle args = new Bundle();
@@ -53,42 +41,45 @@ public class OnboardingDialogPopquizFragment extends DialogFragment {
 
 	@Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		assert getArguments() != null;
-		View v = inflater.inflate(R.layout.fragment_onboarding_dialog_popquiz, container, false);
-		ButterKnife.bind(this, v);
-		if (title != null)
-			title.setText(getArguments().getInt(TITLE_RES_ID));
-		question.setText(getArguments().getInt(QUESTION_RES_ID));
-		return v;
+		binding = FragmentOnboardingDialogPopquizBinding.inflate(inflater, container, false);
+		if (binding.title != null)
+			binding.title.setText(getArguments().getInt(TITLE_RES_ID));
+		binding.question.setText(getArguments().getInt(QUESTION_RES_ID));
+
+		binding.positive.setOnClickListener(v -> positiveClick());
+		binding.negative.setOnClickListener(v -> negativeClick());
+
+		return binding.getRoot();
 	}
 
-	@OnClick(R.id.positive) void positiveClick() {
-		animation.setBackgroundResource(R.drawable.dialog_green);
-		animation.setAnimation("anim/checkMark.json");
-		animation.setVisibility(View.VISIBLE);
-		dialog.setVisibility(View.INVISIBLE);
-		animation.addAnimatorListener(new AnimatorListenerAdapter() {
+	void positiveClick() {
+		binding.animation.setBackgroundResource(R.drawable.dialog_green);
+		binding.animation.setAnimation("anim/checkMark.json");
+		binding.animation.setVisibility(View.VISIBLE);
+		binding.dialog.setVisibility(View.INVISIBLE);
+		binding.animation.addAnimatorListener(new AnimatorListenerAdapter() {
 			@Override
 			public void onAnimationEnd(Animator animation) {
 				dismiss();
 				((OnboardingPopquizInterface) getParentFragment()).onPopquizResult(getArguments().getInt(QUESTION_RES_ID), true);
 			}
 		});
-		animation.playAnimation();
+		binding.animation.playAnimation();
 	}
 
-	@OnClick(R.id.negative) void negativeClick() {
-		animation.setBackgroundResource(R.drawable.dialog_red);
-		animation.setAnimation("anim/crossMark.json");
-		animation.setVisibility(View.VISIBLE);
-		dialog.setVisibility(View.INVISIBLE);
-		animation.addAnimatorListener(new AnimatorListenerAdapter() {
+	void negativeClick() {
+		binding.animation.setBackgroundResource(R.drawable.dialog_red);
+		binding.animation.setAnimation("anim/crossMark.json");
+		binding.animation.setVisibility(View.VISIBLE);
+		binding.dialog.setVisibility(View.INVISIBLE);
+		binding.animation.addAnimatorListener(new AnimatorListenerAdapter() {
 			@Override
 			public void onAnimationEnd(Animator animation) {
 				dismiss();
 				((OnboardingPopquizInterface) getParentFragment()).onPopquizResult(getArguments().getInt(QUESTION_RES_ID), false);
 			}
 		});
-		animation.playAnimation();
+		binding.animation.playAnimation();
 	}
 
 	public interface OnboardingPopquizInterface {

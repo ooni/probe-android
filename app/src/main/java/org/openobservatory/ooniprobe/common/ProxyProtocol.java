@@ -4,7 +4,9 @@ package org.openobservatory.ooniprobe.common;
 public enum ProxyProtocol {
     NONE("none"),
     PSIPHON("psiphon"),
-    SOCKS5("socks5");
+    SOCKS5("socks5"),
+    HTTP("http"),
+    HTTPS("https");
 
     private String protocol;
 

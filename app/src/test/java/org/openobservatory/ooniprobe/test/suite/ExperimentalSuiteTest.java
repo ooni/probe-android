@@ -34,11 +34,15 @@ public class ExperimentalSuiteTest {
 
         List<AbstractTest> tests = Arrays.asList(suite.getTestList(pm));
 
-        assertEquals(2, tests.size());
+        assertEquals(4, tests.size());
         assertEquals(Experimental.class, tests.get(0).getClass());
         assertEquals(Experimental.class, tests.get(1).getClass());
+        assertEquals(Experimental.class, tests.get(2).getClass());
+        assertEquals(Experimental.class, tests.get(3).getClass());
         assertEquals("stunreachability", tests.get(0).getName());
         assertEquals("dnscheck", tests.get(1).getName());
+        assertEquals("riseupvpn", tests.get(2).getName());
+        assertEquals("echcheck", tests.get(3).getName());
     }
 
     @Test
@@ -48,15 +52,19 @@ public class ExperimentalSuiteTest {
 
         List<AbstractTest> tests = Arrays.asList(autoRunSuite.getTestList(pm));
 
-        assertEquals(4, tests.size());
+        assertEquals(6, tests.size());
         assertEquals(Experimental.class, tests.get(0).getClass());
         assertEquals(Experimental.class, tests.get(1).getClass());
         assertEquals(Experimental.class, tests.get(2).getClass());
         assertEquals(Experimental.class, tests.get(3).getClass());
+        assertEquals(Experimental.class, tests.get(4).getClass());
+        assertEquals(Experimental.class, tests.get(5).getClass());
 
-        assertEquals("torsf", tests.get(0).getName());
-        assertEquals("vanilla_tor", tests.get(1).getName());
-        assertEquals("stunreachability", tests.get(2).getName());
-        assertEquals("dnscheck", tests.get(3).getName());
+        assertEquals("stunreachability", tests.get(0).getName());
+        assertEquals("dnscheck", tests.get(1).getName());
+        assertEquals("riseupvpn", tests.get(2).getName());
+        assertEquals("echcheck", tests.get(3).getName());
+        assertEquals("torsf", tests.get(4).getName());
+        assertEquals("vanilla_tor", tests.get(5).getName());
     }
 }
