@@ -75,7 +75,7 @@ public class TestAsyncTaskTest extends RobolectricAbstractTest {
         AbstractSuite mockedSuite = mock(AbstractSuite.class);
         suiteList.add(mockedSuite);
         TestAsyncTask task = new TestAsyncTask(a, suiteList);
-        Result testResult = ResultFactory.build(OONITests.WEBSITES.toOONIDescriptor(c).getTest(c), true, true);
+        Result testResult = ResultFactory.build(OONITests.WEBSITES.toOONIDescriptor(c), true, true);
 
         when(mockedSuite.getTestList(any())).thenReturn(new AbstractTest[0]);
 
@@ -102,7 +102,7 @@ public class TestAsyncTaskTest extends RobolectricAbstractTest {
         AbstractSuite mockedSuite = mock(AbstractSuite.class);
         suiteList.add(mockedSuite);
         TestAsyncTask task = new TestAsyncTask(a, suiteList);
-        Result testResult = ResultFactory.build(OONITests.WEBSITES.toOONIDescriptor(c).getTest(c), true, true);
+        Result testResult = ResultFactory.build(OONITests.WEBSITES.toOONIDescriptor(c), true, true);
 
         WebConnectivity test = new WebConnectivity();
         test.setInputs(null);

@@ -93,7 +93,8 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                         return false;
                 }
             });
-			// TODO(aanorbel): Fix change in state(theme change from notification) changing the selected item.
+            /* TODO(aanorbel): Fix change in state(theme change from notification) changes the selected item.
+                The proper fix would be to track the selected item as well as other properties in a `ViewModel`. */
             binding.bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
 			/* Check if we are restoring the activity from a saved state first.
 			 * If we have a message to show, show it as a snackbar.

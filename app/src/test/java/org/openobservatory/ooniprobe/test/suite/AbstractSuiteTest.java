@@ -1,7 +1,5 @@
 package org.openobservatory.ooniprobe.test.suite;
 
-import static org.openobservatory.ooniprobe.test.suite.AbstractSuiteExtensionsKt.getSuite;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.openobservatory.ooniprobe.R;
@@ -16,32 +14,29 @@ import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.openobservatory.ooniprobe.test.suite.AbstractSuiteExtensionsKt.getSuite;
 
 public class AbstractSuiteTest {
-
+    private final Application app = mock(Application.class);
     private AbstractSuite suite = new AbstractSuite(
             "test",
-            app.getResources().getString(R.string.Test_Middleboxes_Fullname),
-            app.getResources().getString(R.string.Dashboard_Middleboxes_Card_Description),
+            "",
+            "",
             R.drawable.test_middle_boxes,
             R.drawable.test_middle_boxes_24,
             R.color.color_violet8,
             R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_MiddleBoxes,
             R.style.Theme_MaterialComponents_NoActionBar_App_MiddleBoxes,
-            app.getResources().getString(R.string.Dashboard_Middleboxes_Overview_Paragraph),
+            "",
             "anim/middle_boxes.json",
             R.string.small_datausage
     ) {
     };
 
-    private final Application app = mock(Application.class);
     private final PreferenceManager pm = mock(PreferenceManager.class);
 
     @Before
@@ -52,13 +47,10 @@ public class AbstractSuiteTest {
     @Test
     public void fields() {
         assertEquals("test", suite.getName());
-        assertEquals(app.getResources().getString(R.string.Test_Middleboxes_Fullname), suite.getTitle());
-        assertEquals(app.getResources().getString(R.string.Dashboard_Middleboxes_Card_Description), suite.getCardDesc());
         assertEquals(R.drawable.test_middle_boxes, suite.getIcon());
         assertEquals(R.color.color_violet8, suite.getColor());
         assertEquals(R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_MiddleBoxes, suite.getThemeLight());
         assertEquals(R.style.Theme_MaterialComponents_NoActionBar_App_MiddleBoxes, suite.getThemeDark());
-        assertEquals(app.getResources().getString(R.string.Dashboard_Middleboxes_Overview_Paragraph), suite.getDesc1());
         assertEquals("anim/middle_boxes.json", suite.getAnim());
         assertEquals(R.string.small_datausage, suite.getDataUsage());
     }

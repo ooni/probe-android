@@ -43,7 +43,9 @@ class DynamicTestSuite(
             }
         }.toTypedArray()
 
-        super.setTestList(*tests)
+        if(super.getTestList(pm)?.isEmpty() == true){
+            super.setTestList(*tests)
+        }
         return super.getTestList(pm)
     }
 }

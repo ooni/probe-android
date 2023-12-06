@@ -262,6 +262,7 @@ enum class OONITests(
         nettests = listOf(
             BaseNettest(name = "stunreachability"),
             BaseNettest(name = "dnscheck"),
+            BaseNettest(name = "riseupvpn"),
             BaseNettest(name = "echcheck"),
         ),
         longRunningTests = listOf(
@@ -281,6 +282,8 @@ enum class OONITests(
         * [STUN Reachability](https://github.com/ooni/spec/blob/master/nettests/ts-025-stun-reachability.md)
 
         * [DNS Check](https://github.com/ooni/spec/blob/master/nettests/ts-028-dnscheck.md)
+        
+        * [RiseupVPN](https://ooni.org/nettest/riseupvpn/)
 
         * [ECH Check](https://github.com/ooni/spec/blob/master/nettests/ts-039-echcheck.md)
 

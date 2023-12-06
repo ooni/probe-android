@@ -21,6 +21,7 @@ import com.google.android.material.checkbox.MaterialCheckBox;
 
 import org.openobservatory.engine.BaseNettest;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.customwebsites.CustomWebsiteActivity;
 import org.openobservatory.ooniprobe.activity.overview.OverviewTestsExpandableListViewAdapter;
 import org.openobservatory.ooniprobe.activity.overview.OverviewViewModel;
 import org.openobservatory.ooniprobe.common.OONIDescriptor;

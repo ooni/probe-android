@@ -6,5 +6,5 @@
 		android:title="@string/OONIRun_Close"
 		android:icon="@drawable/close"
 		app:iconTint="@color/color_black"
-		app:showAsAction="ifRoom|withText" />
+		app:showAsAction="ifRoom" />
 </menu>

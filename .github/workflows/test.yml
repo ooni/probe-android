@@ -17,4 +17,4 @@ jobs:
         if: failure()
         with:
           name: test-results
-          path: app/build/test-results/testStableFullDebugUnitTest
+          path: app/build/reports/tests/testStableFullReleaseUnitTest

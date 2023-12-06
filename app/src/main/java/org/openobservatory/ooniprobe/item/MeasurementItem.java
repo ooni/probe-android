@@ -18,6 +18,7 @@ import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
+@Deprecated
 public class MeasurementItem extends HeterogeneousRecyclerItem<Measurement, MeasurementItem.ViewHolder> {
 	private final View.OnClickListener onClickListener;
 

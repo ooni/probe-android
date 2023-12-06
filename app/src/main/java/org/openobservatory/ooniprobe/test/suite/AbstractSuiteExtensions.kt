@@ -3,25 +3,30 @@ package org.openobservatory.ooniprobe.test.suite
 import org.openobservatory.ooniprobe.common.Application
 import org.openobservatory.ooniprobe.common.ooniDescriptors
 import org.openobservatory.ooniprobe.model.database.Url
+import org.openobservatory.ooniprobe.test.test.AbstractTest
 
 
 fun getSuite(
     app: Application,
     tn: String,
-    urls: List<String?>?,
+    urls: List<String>?,
     origin: String?
 ): AbstractSuite? {
-    for (suite in ooniDescriptors(app).map { return@map it.getTest(app) }) {
-        for (test in suite.getTestList(app.preferenceManager)) {
+    for (descriptor in ooniDescriptors(app)) {
+        for (test in descriptor.nettests) {
             if (test.name == tn) {
                 if (urls != null) {
                     for (url in urls) {
                         Url.checkExistingUrl(url)
                     }
                 }
-                test.inputs = urls
-                test.setOrigin(origin)
-                suite.setTestList(test)
+                val suite: DynamicTestSuite = descriptor.getTest(app)
+                suite.setTestList(
+                    AbstractTest.getTestByName(test.name).apply {
+                        setOrigin(origin)
+                        inputs = urls
+                    }
+                )
                 return suite
             }
         }

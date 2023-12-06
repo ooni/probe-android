@@ -2,6 +2,7 @@ package org.openobservatory.ooniprobe.factory;
 
 import android.content.Context;
 
+import org.openobservatory.ooniprobe.common.OONIDescriptor;
 import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -36,14 +37,14 @@ public class ResultFactory {
     private static final int DEFAULT_SUCCESS_MEASUREMENTS = 4;
     private static final int DEFAULT_FAILED_MEASUREMENTS = 0;
 
-    public static Result build(AbstractSuite suite) {
-        return build(suite, true, true);
+    public static Result build(OONIDescriptor descriptor) {
+        return build(descriptor, true, true);
     }
 
-    public static Result build(AbstractSuite suite, boolean wasViewed, boolean startNetworkData) {
+    public static Result build(OONIDescriptor descriptor, boolean wasViewed, boolean startNetworkData) {
         Result temp = new Result();
         temp.id = faker.number.positive();
-        temp.test_group_name = suite.getName();
+        temp.test_group_name = descriptor.getName();
         temp.data_usage_down = startNetworkData ? faker.number.positive() : 0;
         temp.data_usage_up = startNetworkData ? faker.number.positive() : 0;
         temp.start_time = faker.date.forward();
@@ -61,7 +62,7 @@ public class ResultFactory {
      * @param suite type of result (ex: Websites, Instant Messaging, Circumvention, Performance)
      * @return result with
      */
-    public static Result createAndSave(AbstractSuite suite) {
+    public static Result createAndSave(OONIDescriptor suite) {
         return createAndSave(suite, DEFAULT_SUCCESS_MEASUREMENTS, DEFAULT_FAILED_MEASUREMENTS, true);
     }
 
@@ -69,18 +70,18 @@ public class ResultFactory {
      * Saves a result in the DB and returns it with the given number of measurements, and
      * all related model objects in the DB.
      *
-     * @param suite                  type of result (ex: Websites, Instant Messaging, Circumvention, Performance)
+     * @param descriptor                  type of result (ex: Websites, Instant Messaging, Circumvention, Performance)
      * @param accessibleMeasurements number of accessible measurements
      * @param blockedMeasurements    number of blocked measurements
      * @return result with
      * @throws IllegalArgumentException for excess number of measurements
      */
     public static Result createAndSave(
-            AbstractSuite suite,
+            OONIDescriptor descriptor,
             int accessibleMeasurements,
             int blockedMeasurements
     ) throws IllegalArgumentException {
-        return createAndSave(suite, accessibleMeasurements, blockedMeasurements, true);
+        return createAndSave(descriptor, accessibleMeasurements, blockedMeasurements, true);
     }
 
 
@@ -88,7 +89,7 @@ public class ResultFactory {
      * Saves a result in the DB and returns it with the given number of measurements, and
      * all related model objects in the DB.
      *
-     * @param suite                  type of result (ex: Websites, Instant Messaging, Circumvention, Performance)
+     * @param descriptor                  type of result (ex: Websites, Instant Messaging, Circumvention, Performance)
      * @param accessibleMeasurements number of accessible measurements
      * @param blockedMeasurements    number of blocked measurements
      * @param measurementsUploaded   if the measurements are uploaded
@@ -96,7 +97,7 @@ public class ResultFactory {
      * @throws IllegalArgumentException for excess number of measurements
      */
     public static Result createAndSave(
-            AbstractSuite suite,
+            OONIDescriptor descriptor,
             int accessibleMeasurements,
             int blockedMeasurements,
             boolean measurementsUploaded
@@ -104,7 +105,7 @@ public class ResultFactory {
 
         List<AbstractTest> measurementTestTypes = new ArrayList<>();
 
-        if (suite.getName().equals(OONITests.INSTANT_MESSAGING.getLabel())) {
+        if (descriptor.getName().equals(OONITests.INSTANT_MESSAGING.getLabel())) {
             measurementTestTypes = Arrays.asList(
                     new FacebookMessenger(),
                     new Telegram(),
@@ -113,7 +114,7 @@ public class ResultFactory {
             );
         }
 
-        if (suite.getName().equals(OONITests.CIRCUMVENTION.getLabel())) {
+        if (descriptor.getName().equals(OONITests.CIRCUMVENTION.getLabel())) {
             measurementTestTypes = Arrays.asList(
                     new Psiphon(),
                     new Tor(),
@@ -121,13 +122,13 @@ public class ResultFactory {
             );
         }
 
-        if (suite.getName().equals(OONITests.WEBSITES.getLabel())) {
+        if (descriptor.getName().equals(OONITests.WEBSITES.getLabel())) {
             for (int i = 0; i < accessibleMeasurements + blockedMeasurements; i++) {
                 measurementTestTypes.add(new WebConnectivity());
             }
         }
 
-        if (suite.getName().equals(OONITests.PERFORMANCE.getLabel())) {
+        if (descriptor.getName().equals(OONITests.PERFORMANCE.getLabel())) {
             measurementTestTypes = Arrays.asList(
                     new Ndt(),
                     new Dash(),
@@ -143,7 +144,7 @@ public class ResultFactory {
         );
 
         return createAndSave(
-                suite,
+                descriptor,
                 measurements.getAccessibleTestTypes(),
                 measurements.getBlockedTestTypes(),
                 measurementsUploaded
@@ -151,12 +152,12 @@ public class ResultFactory {
     }
 
     private static Result createAndSave(
-            AbstractSuite suite,
+            OONIDescriptor descriptor,
             List<AbstractTest> successTestTypes,
             List<AbstractTest> failedTestTypes,
             boolean resultsUploaded
     ) {
-        Result tempResult = ResultFactory.build(suite);
+        Result tempResult = ResultFactory.build(descriptor);
 
         Network tempNetwork = NetworkFactory.createAndSave(tempResult);
         tempResult.network = tempNetwork;
@@ -189,7 +190,7 @@ public class ResultFactory {
      * all related model objects in the DB and files in storage.
      *
      * @param context                to save the entry files
-     * @param suite                  type of result (ex: Websites, Instant Messaging, Circumvention, Performance)
+     * @param descriptor                  type of result (ex: Websites, Instant Messaging, Circumvention, Performance)
      * @param accessibleMeasurements number of accessible measurements
      * @param blockedMeasurements    number of blocked measurements
      * @param measurementsUploaded   if the measurements are uploaded
@@ -198,12 +199,12 @@ public class ResultFactory {
      */
     public static Result createAndSaveWithEntryFiles(
             Context context,
-            AbstractSuite suite,
+            OONIDescriptor descriptor,
             int accessibleMeasurements,
             int blockedMeasurements,
             boolean measurementsUploaded
     ) throws IllegalArgumentException {
-        Result temp = createAndSave(suite, accessibleMeasurements, blockedMeasurements, measurementsUploaded);
+        Result temp = createAndSave(descriptor, accessibleMeasurements, blockedMeasurements, measurementsUploaded);
         MeasurementFactory.addEntryFiles(context, temp.getMeasurements(), false);
         temp.save();
 

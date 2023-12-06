@@ -64,7 +64,7 @@ public class GetTestSuiteTest extends RobolectricAbstractTest {
     public void testGetFromResult() {
         // Arrange
         GetTestSuite getTestSuite = build();
-        Result result = ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c).getTest(c));
+        Result result = ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c));
         int measurementsUrls = result.getMeasurements().size();
         PreferenceManager pm = mock(PreferenceManager.class);
 

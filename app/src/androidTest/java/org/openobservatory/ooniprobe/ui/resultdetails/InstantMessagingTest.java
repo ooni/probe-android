@@ -9,9 +9,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.factory.ResultFactory;
 import org.openobservatory.ooniprobe.model.database.Result;
-import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -30,7 +30,7 @@ public class InstantMessagingTest extends MeasurementAbstractTest {
     @AllowFlaky(attempts = 3)
     public void testHeaderData() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite());
+        Result testResult = ResultFactory.createAndSave(OONITests.INSTANT_MESSAGING.toOONIDescriptor(c));
 
         // Act
         launchDetails(testResult.id);
@@ -43,7 +43,7 @@ public class InstantMessagingTest extends MeasurementAbstractTest {
     @AllowFlaky(attempts = 2)
     public void testSuccessWhatsApp() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite());
+        Result testResult = ResultFactory.createAndSave(OONITests.INSTANT_MESSAGING.toOONIDescriptor(c));
 
         // Act
         launchDetails(testResult.id);
@@ -57,7 +57,7 @@ public class InstantMessagingTest extends MeasurementAbstractTest {
     @Test
     public void testBlockedWhatsApp() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite(), 0, 4);
+        Result testResult = ResultFactory.createAndSave(OONITests.INSTANT_MESSAGING.toOONIDescriptor(c), 0, 4);
 
         // Act
         launchDetails(testResult.id);
@@ -72,7 +72,7 @@ public class InstantMessagingTest extends MeasurementAbstractTest {
     @Test
     public void testSuccessTelegram() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite());
+        Result testResult = ResultFactory.createAndSave(OONITests.INSTANT_MESSAGING.toOONIDescriptor(c));
 
         // Act
         launchDetails(testResult.id);
@@ -87,7 +87,7 @@ public class InstantMessagingTest extends MeasurementAbstractTest {
     @Test
     public void testBlockedTelegram() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite(), 0, 4);
+        Result testResult = ResultFactory.createAndSave(OONITests.INSTANT_MESSAGING.toOONIDescriptor(c), 0, 4);
 
         // Act
         launchDetails(testResult.id);
@@ -102,7 +102,7 @@ public class InstantMessagingTest extends MeasurementAbstractTest {
     @Test
     public void testSuccessFacebookMessenger() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite());
+        Result testResult = ResultFactory.createAndSave(OONITests.INSTANT_MESSAGING.toOONIDescriptor(c));
 
         // Act
         launchDetails(testResult.id);
@@ -117,7 +117,7 @@ public class InstantMessagingTest extends MeasurementAbstractTest {
     @Test
     public void testBlockedFacebookMessenger() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite(), 0, 4);
+        Result testResult = ResultFactory.createAndSave(OONITests.INSTANT_MESSAGING.toOONIDescriptor(c), 0, 4);
 
         // Act
         launchDetails(testResult.id);
@@ -132,7 +132,7 @@ public class InstantMessagingTest extends MeasurementAbstractTest {
     @Test
     public void testSuccessSignal() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite());
+        Result testResult = ResultFactory.createAndSave(OONITests.INSTANT_MESSAGING.toOONIDescriptor(c));
 
         // Act
         launchDetails(testResult.id);
@@ -146,7 +146,7 @@ public class InstantMessagingTest extends MeasurementAbstractTest {
     @Test
     public void testBlockedSignal() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new InstantMessagingSuite(), 0, 4);
+        Result testResult = ResultFactory.createAndSave(OONITests.INSTANT_MESSAGING.toOONIDescriptor(c), 0, 4);
 
         // Act
         launchDetails(testResult.id);
