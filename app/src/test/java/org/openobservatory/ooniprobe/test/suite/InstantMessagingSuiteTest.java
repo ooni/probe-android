@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.test.suite;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
@@ -22,6 +23,7 @@ public class InstantMessagingSuiteTest {
     private final PreferenceManager pm = mock(PreferenceManager.class);
 
     @Test
+    @Ignore("Preference check if not used since the tests to run are determined by the #RunTestsActivity")
     public void getTestList_empty() {
         when(pm.isTestWhatsapp()).thenReturn(false);
         when(pm.isTestTelegram()).thenReturn(false);
@@ -34,6 +36,7 @@ public class InstantMessagingSuiteTest {
     }
 
     @Test
+    @Ignore("Preference check if not used since the tests to run are determined by the #RunTestsActivity")
     public void getTestList_full() {
         when(pm.isTestWhatsapp()).thenReturn(true);
         when(pm.isTestTelegram()).thenReturn(true);
