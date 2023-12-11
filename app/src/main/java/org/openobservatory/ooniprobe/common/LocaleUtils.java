@@ -10,7 +10,7 @@ import java.util.Locale;
 public class LocaleUtils {
 
 
-    private static Locale sLocale;
+    public static Locale sLocale;
 
     public static void setLocale(Locale locale) {
         sLocale = locale;

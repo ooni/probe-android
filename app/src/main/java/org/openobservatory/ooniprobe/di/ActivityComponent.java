@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.di;
 
 
+import org.openobservatory.ooniprobe.activity.add_descriptor.AddDescriptorActivity;
 import org.openobservatory.ooniprobe.activity.customwebsites.CustomWebsiteActivity;
 import org.openobservatory.ooniprobe.activity.LogActivity;
 import org.openobservatory.ooniprobe.activity.MainActivity;
@@ -19,6 +20,7 @@ import dagger.Subcomponent;
 @PerActivity
 @Subcomponent()
 public interface ActivityComponent {
+    void inject(AddDescriptorActivity activity);
     void inject(CustomWebsiteActivity activity);
     void inject(MainActivity activity);
     void inject(ProxyActivity activity);

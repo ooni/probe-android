@@ -2,8 +2,12 @@ package org.openobservatory.ooniprobe.common
 
 import android.content.Context
 import org.openobservatory.engine.BaseNettest
+import org.openobservatory.engine.LoggerArray
+import org.openobservatory.engine.OONIRunDescriptor
+import org.openobservatory.engine.OONIRunFetchResponse
+import org.openobservatory.ooniprobe.BuildConfig
+import org.openobservatory.ooniprobe.test.EngineProvider
 import org.openobservatory.ooniprobe.test.suite.DynamicTestSuite
-import org.openobservatory.ooniprobe.test.test.AbstractTest
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -21,5 +25,26 @@ class TestDescriptorManager @Inject constructor(private val context: Context) {
 
     fun getTestByDescriptorName(name: String): DynamicTestSuite? {
         return getDescriptorByName(name)?.getTest(context)
+    }
+
+    fun fetchDescriptorFromRunId(runId: Long, context: Context): OONIRunDescriptor {
+        val session = EngineProvider.get().newSession(
+            EngineProvider.get().getDefaultSessionConfig(
+                context,
+                BuildConfig.SOFTWARE_NAME,
+                BuildConfig.VERSION_NAME,
+                LoggerArray(),
+                (context.applicationContext as Application).preferenceManager.proxyURL
+            )
+        )
+        val ooniContext = session.newContextWithTimeout(300)
+
+        val response: OONIRunFetchResponse = session.ooniRunFetch(ooniContext, runId)
+        return response.descriptor
+    }
+
+    fun addDescriptor(descriptor: OONIRunDescriptor): Boolean {
+        // persist to database
+        return false
     }
 }

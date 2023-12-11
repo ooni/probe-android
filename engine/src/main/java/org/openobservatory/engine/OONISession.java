@@ -22,4 +22,7 @@ public interface OONISession {
 
     /** checkIn function is called by probes asking if there are tests to be run. */
     OONICheckInResults checkIn(OONIContext ctx, OONICheckInConfig config) throws Exception;
+
+    OONIRunFetchResponse ooniRunFetch(OONIContext ctx, long id) throws Exception;
+
 }

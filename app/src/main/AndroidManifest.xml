@@ -33,7 +33,36 @@
 
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <action android:name="${applicationId}.nettest" />
+
+                <data
+                    android:host="run.test.ooni.org"
+                    android:pathPrefix="/v2"
+                    android:scheme="https" />
+            </intent-filter>
+
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="runv2"
+                    android:scheme="ooni" />
+            </intent-filter>
 		</activity>
+        <activity
+            android:name=".activity.add_descriptor.AddDescriptorActivity"
+            android:exported="false"
+			android:parentActivityName=".activity.MainActivity"
+			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar" />
 		<activity
 			android:name=".activity.OnboardingActivity"
 			android:screenOrientation="userPortrait"
