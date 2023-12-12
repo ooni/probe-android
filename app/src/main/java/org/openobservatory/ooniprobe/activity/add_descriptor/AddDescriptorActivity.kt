@@ -15,6 +15,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.checkbox.MaterialCheckBox
 import io.noties.markwon.Markwon
 import org.openobservatory.engine.OONIRunDescriptor
 import org.openobservatory.ooniprobe.R
@@ -129,7 +130,10 @@ class AddDescriptorActivity : AbstractActivity() {
                 Toolbar.OnMenuItemClickListener { item ->
                     when (item.itemId) {
                         R.id.add_descriptor -> {
-                            viewModel.onAddButtonClicked(adapter.nettests.filter { it.selected })
+                            viewModel.onAddButtonClicked(
+                                selectedNettest = adapter.nettests.filter { it.selected },
+                                automatedUpdates = binding.automaticUpdatesSwitch.isChecked
+                            )
                             true
                         }
 
@@ -137,6 +141,15 @@ class AddDescriptorActivity : AbstractActivity() {
                     }
                 }
             binding.bottomBar.setOnMenuItemClickListener(bottomBarOnMenuItemClickListener)
+
+            viewModel.selectedAllBtnStatus.observe(this) { state ->
+                binding.testsCheckbox.checkedState = state;
+            }
+
+            binding.testsCheckbox.addOnCheckedStateChangedListener { checkBox, state ->
+                viewModel.setSelectedAllBtnStatus(state)
+                adapter.notifyDataSetChanged()
+            }
 
             viewModel.finishActivity.observe(this) { shouldFinish ->
                 if (shouldFinish) {

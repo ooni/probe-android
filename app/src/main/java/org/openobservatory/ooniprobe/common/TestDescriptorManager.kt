@@ -43,7 +43,7 @@ class TestDescriptorManager @Inject constructor(private val context: Context) {
         return response.descriptor
     }
 
-    fun addDescriptor(descriptor: OONIRunDescriptor): Boolean {
+    fun addDescriptor(descriptor: OONIRunDescriptor, automatedUpdates: Boolean): Boolean {
         // persist to database
         return false
     }

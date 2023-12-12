@@ -16,7 +16,7 @@ class AddDescriptorViewModel constructor(
 ) : ViewModel() {
     @CheckedState
     val selectedAllBtnStatus: MutableLiveData<Int> =
-        MutableLiveData(MaterialCheckBox.STATE_INDETERMINATE)
+        MutableLiveData(MaterialCheckBox.STATE_CHECKED)
     var descriptor: MutableLiveData<OONIRunDescriptor> = MutableLiveData()
     val finishActivity: MutableLiveData<Boolean> = MutableLiveData()
     fun onDescriptorChanged(descriptor: OONIRunDescriptor) {
@@ -46,11 +46,14 @@ class AddDescriptorViewModel constructor(
         selectedAllBtnStatus.postValue(selectedStatus)
     }
 
-    fun onAddButtonClicked(selectedNettest: List<GroupedItem>) {
+    fun onAddButtonClicked(selectedNettest: List<GroupedItem>, automatedUpdates: Boolean) {
         descriptor.value?.let { descriptor ->
-            descriptorManager.addDescriptor(descriptor.apply {
-                nettests = selectedNettest.filter { it.selected }
-            }).also {
+            descriptorManager.addDescriptor(
+                descriptor = descriptor.apply {
+                    nettests = selectedNettest.filter { it.selected }
+                },
+                automatedUpdates = automatedUpdates
+            ).also {
                 finishActivity()
             }
         } ?: throw IllegalStateException("Descriptor is null")
