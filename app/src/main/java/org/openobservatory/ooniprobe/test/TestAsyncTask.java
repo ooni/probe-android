@@ -204,8 +204,8 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 			 * while the unattended tests doesn't.
 			 */
             if (currentTest.getMax_runtime() == null && !unattended) {
-				currentTest.setMax_runtime(app.getPreferenceManager().getMaxRuntime());
-			}
+                currentTest.setMax_runtime(app.getPreferenceManager().getMaxRuntime());
+            }
             publishProgress(URL);
         } catch (Exception e) {
             e.printStackTrace();
