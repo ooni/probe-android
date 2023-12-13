@@ -3,9 +3,9 @@ package org.openobservatory.ooniprobe.common
 import android.content.Context
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.engine.LoggerArray
-import org.openobservatory.engine.OONIRunDescriptor
 import org.openobservatory.engine.OONIRunFetchResponse
 import org.openobservatory.ooniprobe.BuildConfig
+import org.openobservatory.ooniprobe.model.database.TestDescriptor
 import org.openobservatory.ooniprobe.test.EngineProvider
 import org.openobservatory.ooniprobe.test.suite.DynamicTestSuite
 import javax.inject.Inject
@@ -27,7 +27,7 @@ class TestDescriptorManager @Inject constructor(private val context: Context) {
         return getDescriptorByName(name)?.getTest(context)
     }
 
-    fun fetchDescriptorFromRunId(runId: Long, context: Context): OONIRunDescriptor {
+    fun fetchDescriptorFromRunId(runId: Long, context: Context): TestDescriptor {
         val session = EngineProvider.get().newSession(
             EngineProvider.get().getDefaultSessionConfig(
                 context,
@@ -40,11 +40,26 @@ class TestDescriptorManager @Inject constructor(private val context: Context) {
         val ooniContext = session.newContextWithTimeout(300)
 
         val response: OONIRunFetchResponse = session.ooniRunFetch(ooniContext, runId)
-        return response.descriptor
+        return TestDescriptor(
+            runId = runId,
+            name = response.descriptor.name,
+            nameIntl = response.descriptor.nameIntl,
+            author = response.descriptor.author,
+            shortDescription = response.descriptor.shortDescription,
+            shortDescriptionIntl = response.descriptor.shortDescriptionIntl,
+            description = response.descriptor.description,
+            descriptionIntl = response.descriptor.descriptionIntl,
+            icon = response.descriptor.icon,
+            color = response.descriptor.color,
+            animation = response.descriptor.animation,
+            isArchived = response.archived,
+            descriptorCreationTime = response.creationTime,
+            translationCreationTime = response.translationCreationTime,
+            nettests = response.descriptor.nettests
+        )
     }
 
-    fun addDescriptor(descriptor: OONIRunDescriptor, automatedUpdates: Boolean): Boolean {
-        // persist to database
-        return false
+    fun addDescriptor(descriptor: TestDescriptor): Boolean {
+        return descriptor.save()
     }
 }

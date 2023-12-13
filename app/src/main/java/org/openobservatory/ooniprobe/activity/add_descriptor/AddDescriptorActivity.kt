@@ -17,7 +17,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.checkbox.MaterialCheckBox
 import io.noties.markwon.Markwon
+import org.openobservatory.engine.BaseNettest
 import org.openobservatory.engine.OONIRunDescriptor
+import org.openobservatory.engine.OONIRunNettest
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
 import org.openobservatory.ooniprobe.activity.add_descriptor.adapter.AddDescriptorExpandableListAdapter
@@ -26,6 +28,8 @@ import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.common.ReadMorePlugin
 import org.openobservatory.ooniprobe.common.TestDescriptorManager
 import org.openobservatory.ooniprobe.databinding.ActivityAddDescriptorBinding
+import org.openobservatory.ooniprobe.model.database.TestDescriptor
+import org.openobservatory.ooniprobe.model.database.getNettests
 import javax.inject.Inject
 
 class AddDescriptorActivity : AbstractActivity() {
@@ -33,7 +37,7 @@ class AddDescriptorActivity : AbstractActivity() {
         private const val DESCRIPTOR = "descriptor"
 
         @JvmStatic
-        fun newIntent(context: Context, descriptor: OONIRunDescriptor): Intent {
+        fun newIntent(context: Context, descriptor: TestDescriptor): Intent {
             return Intent(context, AddDescriptorActivity::class.java).putExtra(
                 DESCRIPTOR,
                 descriptor
@@ -96,9 +100,9 @@ class AddDescriptorActivity : AbstractActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(false)
         supportActionBar?.title = "Add New Link"
         val descriptorExtra = if (VERSION.SDK_INT >= VERSION_CODES.TIRAMISU) {
-            intent.getParcelableExtra(DESCRIPTOR, OONIRunDescriptor::class.java)
+            intent.getParcelableExtra(DESCRIPTOR, TestDescriptor::class.java)
         } else {
-            intent.getSerializableExtra(DESCRIPTOR) as OONIRunDescriptor?
+            intent.getSerializableExtra(DESCRIPTOR) as TestDescriptor?
         }
         val viewModel: AddDescriptorViewModel by viewModels {
             object : ViewModelProvider.Factory {
@@ -113,7 +117,7 @@ class AddDescriptorActivity : AbstractActivity() {
         descriptorExtra?.let { descriptor ->
             viewModel.onDescriptorChanged(descriptor)
             val adapter = AddDescriptorExpandableListAdapter(
-                nettests = descriptor.nettests.map { nettest ->
+                nettests = descriptor.getNettests().map { nettest ->
                     GroupedItem(
                         name = nettest.name,
                         inputs = nettest.inputs,
