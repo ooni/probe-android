@@ -13,8 +13,8 @@ android {
         applicationId 'org.openobservatory.ooniprobe'
         minSdk libs.versions.minSdk.get().toInteger()
         targetSdk libs.versions.targetSdk.get().toInteger()
-        versionName '3.8.4'
-        versionCode 106
+        versionName '3.8.5'
+        versionCode 107
 		testInstrumentationRunner "org.openobservatory.ooniprobe.TestAndroidJUnitRunner"
 		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://countly.ooni.io"'
@@ -149,7 +149,7 @@ dependencies {
     // Unit Testing
 	testImplementation project(':shared-test')
 	testImplementation libs.junit4
-    testImplementation libs.androidx.core
+    testImplementation libs.androidx.test.core
     testImplementation libs.androidx.runner
     testImplementation libs.androidx.rules
     testImplementation libs.mockito.core

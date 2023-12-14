@@ -12,10 +12,17 @@ import org.openobservatory.ooniprobe.test.test.Tor;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a suite of tests that can be run together.
+ *
+ * @deprecated Better represented by {@link DynamicTestSuite()} which acts as a wrapper for {@link AbstractTest}
+ * and more versatile for representing a suite of tests moving forward.
+ * To be replaced by {@link DynamicTestSuite()}
+ */
 public class CircumventionSuite extends AbstractSuite {
     public static final String NAME = "circumvention";
 
-    public CircumventionSuite(){
+    public CircumventionSuite() {
         super(NAME,
                 R.string.Test_Circumvention_Fullname,
                 R.string.Dashboard_Circumvention_Card_Description,
@@ -36,13 +43,19 @@ public class CircumventionSuite extends AbstractSuite {
         return suite;
     }
 
-    @Override public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
+    /**
+     * NOTE: The checks to determine if a test is enabled before adding it to the list is removed to make way for
+     * more dynamic test suites. This is because the tests are now enabled/disabled in
+     * the {@link org.openobservatory.ooniprobe.activity.runtests.RunTestsActivity} and not statically in the code.
+     * @param pm
+     * @return The list of tests that are part of this suite
+     */
+    @Override
+    public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
         if (super.getTestList(pm) == null) {
             ArrayList<AbstractTest> list = new ArrayList<>();
-            // if (pm == null || pm.isTestPsiphon())
-                list.add(new Psiphon());
-            // if (pm == null || pm.isTestTor())
-                list.add(new Tor());
+            list.add(new Psiphon());
+            list.add(new Tor());
             super.setTestList(Lists.transform(list, test -> {
                 if (getAutoRun()) test.setOrigin(AbstractTest.AUTORUN);
                 return test;

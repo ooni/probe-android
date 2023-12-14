@@ -23,7 +23,7 @@ import javax.inject.Inject
 class RunTestsActivity : AbstractActivity() {
 	lateinit var binding: ActivityRunTestsBinding
 
-	private lateinit var mAdapter: RunTestsExpandableListViewAdapter
+	private lateinit var adapter: RunTestsExpandableListViewAdapter
 
 	@Inject
 	lateinit var preferenceManager: PreferenceManager
@@ -58,10 +58,10 @@ class RunTestsActivity : AbstractActivity() {
 				return@map testSuite.runTestsGroupItem(preferenceManager)
 			}
 
-			mAdapter = RunTestsExpandableListViewAdapter(this, tsGroups, viewModel)
+			adapter = RunTestsExpandableListViewAdapter(tsGroups, viewModel)
 
-			binding.expandableListView.setAdapter(mAdapter)
-			for (i in 0 until mAdapter.groupCount) {
+			binding.expandableListView.setAdapter(adapter)
+			for (i in 0 until adapter.groupCount) {
 				binding.expandableListView.expandGroup(i)
 			}
 			binding.selectAll.setOnClickListener { onSelectAllClickListener() }
@@ -121,7 +121,6 @@ class RunTestsActivity : AbstractActivity() {
 		}
 	}
 
-	// TODO(aanorbel) Update button color from theme
 	private fun selectAllBtnStatusObserver(selectAllBtnStatus: String?) {
 		if (!TextUtils.isEmpty(selectAllBtnStatus)) {
 			when (selectAllBtnStatus) {
@@ -140,20 +139,20 @@ class RunTestsActivity : AbstractActivity() {
 					binding.selectAll.isActivated = true
 				}
 			}
-			mAdapter.notifyDataSetChanged()
+			adapter.notifyDataSetChanged()
 			updateStatusIndicator()
 		}
 	}
 
 	private fun onSelectNoneClickListener() {
 		viewModel.setSelectedAllBtnStatus(SELECT_NONE)
-		mAdapter.notifyDataSetChanged()
+		adapter.notifyDataSetChanged()
 		updateStatusIndicator()
 	}
 
 	private fun onSelectAllClickListener() {
 		viewModel.setSelectedAllBtnStatus(SELECT_ALL)
-		mAdapter.notifyDataSetChanged()
+		adapter.notifyDataSetChanged()
 		updateStatusIndicator()
 	}
 
@@ -165,8 +164,8 @@ class RunTestsActivity : AbstractActivity() {
 
 	private fun getChildItemsSelectedIdList(): List<String> {
 		val childItemSelectedIdList: MutableList<String> = ArrayList()
-		for (i in 0 until mAdapter.groupCount) {
-			val secondLevelItemList: List<ChildItem> = mAdapter.getGroup(i).nettests
+		for (i in 0 until adapter.groupCount) {
+			val secondLevelItemList: List<ChildItem> = adapter.getGroup(i).nettests
 			secondLevelItemList
 				.asSequence()
 				.filter { it.selected }
@@ -177,9 +176,9 @@ class RunTestsActivity : AbstractActivity() {
 
 	private fun getGroupItemsAtLeastOneChildEnabled(): List<GroupItem> {
 		val items: MutableList<GroupItem> = ArrayList()
-		for (i in 0 until mAdapter.groupCount) {
-			if (mAdapter.getGroup(i).nettests.any { it.selected }) {
-				items.add(mAdapter.getGroup(i).apply {
+		for (i in 0 until adapter.groupCount) {
+			if (adapter.getGroup(i).nettests.any { it.selected }) {
+				items.add(adapter.getGroup(i).apply {
 					nettests = nettests.filter { it.selected }
 				})
 			}

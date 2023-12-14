@@ -11,7 +11,9 @@ import androidx.core.text.TextUtilsCompat;
 import androidx.core.view.ViewCompat;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.customwebsites.CustomWebsiteActivity;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.common.ReadMorePlugin;
 import org.openobservatory.ooniprobe.databinding.ActivityOverviewBinding;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
@@ -50,24 +52,27 @@ public class OverviewActivity extends AbstractActivity {
 		setTitle(testSuite.getTitle());
 		binding.icon.setImageResource(testSuite.getIcon());
 		binding.customUrl.setVisibility(testSuite.getName().equals(WebsitesSuite.NAME) ? View.VISIBLE : View.GONE);
-		if(testSuite.isTestEmpty(preferenceManager)){
-			binding.run.setAlpha(0.5F);
-			binding.run.setEnabled(false);
-		}
-		Markwon markwon = Markwon.builder(this).build();
+		Markwon markwon = Markwon.builder(this)
+				.usePlugin(new ReadMorePlugin(
+					getString(R.string.OONIRun_ReadMore),
+					getString(R.string.OONIRun_ReadLess))
+				).build();
 		if (testSuite.getName().equals(ExperimentalSuite.NAME)) {
 			String experimentalLinks =
 					"\n\n* [STUN Reachability](https://github.com/ooni/spec/blob/master/nettests/ts-025-stun-reachability.md)" +
 					"\n\n* [DNS Check](https://github.com/ooni/spec/blob/master/nettests/ts-028-dnscheck.md)" +
+					"\n\n* [RiseupVPN](https://ooni.org/nettest/riseupvpn/)" +
 					"\n\n* [ECH Check](https://github.com/ooni/spec/blob/master/nettests/ts-039-echcheck.md)" +
 					"\n\n* [Tor Snowflake](https://ooni.org/nettest/tor-snowflake/) "+ String.format(" ( %s )",getString(R.string.Settings_TestOptions_LongRunningTest))+
 					"\n\n* [Vanilla Tor](https://github.com/ooni/spec/blob/master/nettests/ts-016-vanilla-tor.md) " + String.format(" ( %s )",getString(R.string.Settings_TestOptions_LongRunningTest));
 			markwon.setMarkdown(binding.desc, getString(testSuite.getDesc1(), experimentalLinks));
-			if (TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL)
-				binding.desc.setTextDirection(View.TEXT_DIRECTION_RTL);
+			if (TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL) {
+                binding.desc.setTextDirection(View.TEXT_DIRECTION_RTL);
+            }
 		}
-		else
-			markwon.setMarkdown(binding.desc, getString(testSuite.getDesc1()));
+		else {
+            markwon.setMarkdown(binding.desc, getString(testSuite.getDesc1()));
+        }
 		Result lastResult = Result.getLastResult(testSuite.getName());
 		if (lastResult == null)
 			binding.lastTime.setText(R.string.Dashboard_Overview_LastRun_Never);
@@ -78,7 +83,6 @@ public class OverviewActivity extends AbstractActivity {
 	}
 
 	private void setUpOnCLickListeners() {
-		binding.run.setOnClickListener(view -> onRunClick());
 		binding.customUrl.setOnClickListener(view -> customUrlClick());
 	}
 
@@ -93,12 +97,6 @@ public class OverviewActivity extends AbstractActivity {
 	public boolean onSupportNavigateUp() {
 		onBackPressed();
 		return true;
-	}
-
-	void onRunClick() {
-		if(!testSuite.isTestEmpty(preferenceManager)){
-			RunningActivity.runAsForegroundService(this, testSuite.asArray(), this::bindTestService, preferenceManager);
-		}
 	}
 
 	void customUrlClick() {
