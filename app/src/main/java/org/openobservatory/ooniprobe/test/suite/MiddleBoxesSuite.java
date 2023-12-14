@@ -13,7 +13,8 @@ import org.openobservatory.ooniprobe.test.test.HttpInvalidRequestLine;
 import java.util.ArrayList;
 
 /**
- * @deprecated It is not possible to run a MiddleBoxesSuite anymore
+ * @deprecated
+ * It is not possible to run a MiddleBoxesSuite anymore
  * The HttpHeaderFieldManipulation and HttpInvalidRequestLine tests
  * are being ran inside the PerformanceSuite
  */
