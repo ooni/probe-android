@@ -90,11 +90,11 @@ public abstract class AbstractTest implements Serializable {
         } catch (Exception exc) {
             //TODO call setFailureMsg here and in other point of (non) return
             exc.printStackTrace();
-            logger.e(TAG,exc.getMessage());
+            logger.e(TAG, exc.getMessage());
             ThirdPartyServices.logException(exc);
             return;
         }
-        while (!task.isDone()){
+        while (!task.isDone()) {
             try {
                 File logFile = null;
                 if (result != null) {
@@ -126,7 +126,7 @@ public abstract class AbstractTest implements Serializable {
                             network.country_code = event.value.probe_cc;
                             network.network_type = ReachabilityManager.getNetworkType(c);
                         } else {
-                            this.network=null;
+                            this.network = null;
                         }
                         saveNetworkInfo(event.value, result, c);
                         break;
@@ -134,7 +134,7 @@ public abstract class AbstractTest implements Serializable {
                         reportId = event.value.report_id;
                         break;
                     case "status.measurement_start":
-                        if (result != null){
+                        if (result != null) {
                             Measurement measurement = new Measurement(result, name, reportId);
                             if (event.value.input.length() > 0)
                                 measurement.url = Url.getUrl(event.value.input);
@@ -182,7 +182,7 @@ public abstract class AbstractTest implements Serializable {
                                 m.is_failed = true;
                             else
                                 onEntry(c, pm, jr, m);
-                            if (network!=null ){
+                            if (network != null) {
                                 m.rerun_network = gson.toJson(network);
                             }
                             m.save();
@@ -233,7 +233,7 @@ public abstract class AbstractTest implements Serializable {
                         break;
                     default:
                         Log.w(UNUSED_KEY, event.key);
-                        logger.w(UNUSED_KEY,event.key);
+                        logger.w(UNUSED_KEY, event.key);
                         break;
                 }
             } catch (Exception e) {
@@ -250,12 +250,12 @@ public abstract class AbstractTest implements Serializable {
         }
     }
 
-    public boolean canInterrupt(){
-        return task == null ? false :  task.canInterrupt();
+    public boolean canInterrupt() {
+        return task == null ? false : task.canInterrupt();
     }
 
-    public void interrupt(){
-        if(task.canInterrupt()) {
+    public void interrupt() {
+        if (task.canInterrupt()) {
             task.interrupt();
         }
     }
@@ -302,10 +302,10 @@ public abstract class AbstractTest implements Serializable {
         }
     }
 
-    protected void onTaskTerminated(EventResult.Value value, Context context){
+    protected void onTaskTerminated(EventResult.Value value, Context context) {
         Measurement measurement = measurements.get(value.idx);
         if (measurement != null) {
-            if(measurement.is_uploaded){
+            if (measurement.is_uploaded) {
                 measurement.deleteReportFile(context);
             }
         }
@@ -320,13 +320,13 @@ public abstract class AbstractTest implements Serializable {
 
     private void setFailureMsg(EventResult.Value value, Result result) {
         if (result == null) {
-			return;
-		}
-		if (result.failure_msg == null) {
-			result.failure_msg = value.failure;
-		} else {
-			result.failure_msg = String.format("%s\n\n%s", result.failure_msg, value.failure);
-		}
+            return;
+        }
+        if (result.failure_msg == null) {
+            result.failure_msg = value.failure;
+        } else {
+            result.failure_msg = String.format("%s\n\n%s", result.failure_msg, value.failure);
+        }
         result.save();
     }
 
@@ -372,6 +372,25 @@ public abstract class AbstractTest implements Serializable {
 
     public boolean isAutoRun() {
         return Objects.equals(origin, AUTORUN);
+    }
+
+    public static AbstractTest getTestByName(String name) {
+        return switch (name) {
+            case Dash.NAME -> new Dash();
+            case FacebookMessenger.NAME -> new FacebookMessenger();
+            case HttpHeaderFieldManipulation.NAME -> new HttpHeaderFieldManipulation();
+            case HttpInvalidRequestLine.NAME -> new HttpInvalidRequestLine();
+            case Ndt.NAME -> new Ndt();
+            case Psiphon.NAME -> new Psiphon();
+            case RiseupVPN.NAME -> new RiseupVPN();
+            case Signal.NAME -> new Signal();
+            case Telegram.NAME -> new Telegram();
+            case Tor.NAME -> new Tor();
+            case WebConnectivity.NAME -> new WebConnectivity();
+            case Whatsapp.NAME -> new Whatsapp();
+            case Experimental.NAME -> new Experimental(name);
+            default -> new Experimental(name);
+        };
     }
 
     public interface TestCallback {

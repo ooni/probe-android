@@ -10,7 +10,15 @@ import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.Experimental;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
+/**
+ * Represents a suite of tests that can be run together.
+ *
+ * @deprecated Better represented by {@link DynamicTestSuite()} which acts as a wrapper for {@link AbstractTest}
+ * and more versatile for representing a suite of tests moving forward.
+ * To be replaced by {@link DynamicTestSuite()}
+ */
 public class ExperimentalSuite extends AbstractSuite {
     public static final String NAME = "experimental";
 
@@ -34,7 +42,13 @@ public class ExperimentalSuite extends AbstractSuite {
         return suite;
     }
 
-
+    /**
+     * NOTE: The checks to determine if a test is enabled before adding it to the list is removed to make way for
+     * more dynamic test suites. This is because the tests are now enabled/disabled in
+     * the {@link org.openobservatory.ooniprobe.activity.runtests.RunTestsActivity} and not statically in the code.
+     * @param pm
+     * @return The list of tests that are part of this suite
+     */
     @Override
     public AbstractTest[] getTestList(@Nullable PreferenceManager pm) {
         if (super.getTestList(pm) == null) {
@@ -45,8 +59,7 @@ public class ExperimentalSuite extends AbstractSuite {
                 list.add(new Experimental("riseupvpn"));
                 list.add(new Experimental("echcheck"));
 				if ((pm == null || pm.isLongRunningTestsInForeground()) || getAutoRun()){
-					list.add(new Experimental("torsf"));
-					list.add(new Experimental("vanilla_tor"));
+                    Collections.addAll(list, longRunningTests());
                 }
             }
             super.setTestList(Lists.transform(list, test -> {
@@ -55,6 +68,10 @@ public class ExperimentalSuite extends AbstractSuite {
             }).toArray(new AbstractTest[0]));
         }
         return super.getTestList(pm);
+    }
+
+    public AbstractTest[] longRunningTests() {
+        return new AbstractTest[]{new Experimental("torsf"), new Experimental("vanilla_tor")};
     }
 
 }

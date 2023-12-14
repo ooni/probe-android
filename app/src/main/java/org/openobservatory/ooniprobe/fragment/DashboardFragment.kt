@@ -13,6 +13,7 @@ import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
 import org.openobservatory.ooniprobe.activity.OverviewActivity
 import org.openobservatory.ooniprobe.activity.RunningActivity
+import org.openobservatory.ooniprobe.activity.runtests.RunTestsActivity
 import org.openobservatory.ooniprobe.adapters.DashboardAdapter
 import org.openobservatory.ooniprobe.common.Application
 import org.openobservatory.ooniprobe.common.PreferenceManager
@@ -86,12 +87,7 @@ class DashboardFragment : Fragment(), View.OnClickListener {
     }
 
     private fun runAll() {
-        RunningActivity.runAsForegroundService(
-            activity as AbstractActivity?,
-            testSuites,
-            { onTestServiceStartedListener() },
-            preferenceManager
-        )
+        ActivityCompat.startActivity(requireContext(), RunTestsActivity.newIntent(requireContext(), testSuites), null)
     }
 
     private fun onTestServiceStartedListener() = try {
