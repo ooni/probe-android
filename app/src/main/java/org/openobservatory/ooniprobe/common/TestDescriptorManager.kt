@@ -9,9 +9,9 @@ import javax.inject.Singleton
 
 @Singleton
 class TestDescriptorManager @Inject constructor(private val context: Context) {
-    private val descriptors: MutableList<OONIDescriptor<BaseNettest>> = ooniDescriptors(context)
+    private val descriptors: List<OONIDescriptor<BaseNettest>> = ooniDescriptors(context)
 
-    fun getDescriptors(): MutableList<OONIDescriptor<BaseNettest>> {
+    fun getDescriptors(): List<OONIDescriptor<BaseNettest>> {
         return descriptors
     }
 

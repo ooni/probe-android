@@ -103,7 +103,7 @@ class RunTestsExpandableListViewAdapter(
 		if (groupItem.selected) {
 			if (isSelectAllChildItems(groupItem.nettests)) {
 				groupSelectionIndicator.setImageResource(R.drawable.check_box)
-				// NOTE: This is the only place where ExperimentalSuite.NAME is used.
+				// NOTE: This is the only place where OONITests.EXPERIMENTAL.label is used.
 				// This doesn't follow the normal rule where the component tests make up the suite.
 				if (groupItem.name == OONITests.EXPERIMENTAL.label) {
 					viewModel.enableTest(OONITests.EXPERIMENTAL.label)
