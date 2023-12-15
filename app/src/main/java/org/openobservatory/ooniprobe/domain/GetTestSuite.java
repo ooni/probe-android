@@ -4,6 +4,7 @@ import static org.openobservatory.ooniprobe.test.suite.AbstractSuiteExtensionsKt
 
 import androidx.annotation.Nullable;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
@@ -34,32 +35,38 @@ public class GetTestSuite {
     }
 
     public AbstractSuite getFrom(Result result) {
-        AbstractSuite testSuite = result.getTestSuite(application);
-        WebConnectivity test = new WebConnectivity();
+        Optional<AbstractSuite> optionalSuite = result.getTestSuite(application);
+        if (optionalSuite.isPresent()) {
+            AbstractSuite testSuite = optionalSuite.get();
+            WebConnectivity test = new WebConnectivity();
 
-        // possible NPE from measurements whose url's are null.
-        List<Url> urls = Lists.transform(
-                Lists.newArrayList(
-                        Iterables.filter(result.getMeasurements(), input -> input.url != null)
-                ),
-                measurement -> new Url(
-                        measurement.url.url,
-                        measurement.url.category_code,
-                        measurement.url.country_code
-                )
-        );
+            // possible NPE from measurements whose url's are null.
+            List<Url> urls = Lists.transform(
+                    Lists.newArrayList(
+                            Iterables.filter(result.getMeasurements(), input -> input.url != null)
+                    ),
+                    measurement -> new Url(
+                            measurement.url.url,
+                            measurement.url.category_code,
+                            measurement.url.country_code
+                    )
+            );
 
-        List<String> inputs = Url.saveOrUpdate(urls);
+            List<String> inputs = Url.saveOrUpdate(urls);
 
-        test.setInputs(inputs);
-        testSuite.setTestList(test);
+            test.setInputs(inputs);
+            testSuite.setTestList(test);
 
-        return testSuite;
+            return testSuite;
+        } else {
+            return null;
+        }
     }
 
     public AbstractSuite getForWebConnectivityReRunFrom(Result result, List<String> inputs) {
-        if (Objects.equals(result.getTestSuite(application).getName(), OONITests.WEBSITES.name())) {
-            AbstractSuite testSuite = result.getTestSuite(application);
+        Optional<AbstractSuite> optionalSuite = result.getTestSuite(application);
+        if (optionalSuite.isPresent() && Objects.equals(optionalSuite.get().getName(), OONITests.WEBSITES.name())) {
+            AbstractSuite testSuite = optionalSuite.get();
             WebConnectivity test = new WebConnectivity();
 
             // possible NPE from measurements whose url's are null.

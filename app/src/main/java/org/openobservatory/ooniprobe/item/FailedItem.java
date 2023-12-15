@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.common.base.Optional;
+
 import org.openobservatory.engine.BaseNettest;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.OONIDescriptor;
@@ -42,9 +44,15 @@ public class FailedItem extends HeterogeneousRecyclerItem<Result, FailedItem.Vie
 		viewHolder.itemView.setOnLongClickListener(onLongClickListener);
 		viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(viewHolder.itemView.getContext(), R.color.color_gray2));
 		viewHolder.binding.testName.setTextColor(ContextCompat.getColor(viewHolder.itemView.getContext(), R.color.color_gray6));
-		OONIDescriptor<BaseNettest> descriptor = extra.getDescriptor(viewHolder.itemView.getContext());
-		viewHolder.binding.icon.setImageResource(descriptor.getDisplayIcon(viewHolder.itemView.getContext()));
-		viewHolder.binding.testName.setText(descriptor.getTitle());
+		Optional<OONIDescriptor<BaseNettest>> possibleDescriptor = extra.getDescriptor(viewHolder.itemView.getContext());
+		if (possibleDescriptor.isPresent()) {
+			OONIDescriptor<BaseNettest> descriptor = possibleDescriptor.get();
+			viewHolder.binding.icon.setImageResource(descriptor.getDisplayIcon(viewHolder.itemView.getContext()));
+			viewHolder.binding.testName.setText(descriptor.getTitle());
+		} else {
+			viewHolder.binding.testName.setText(extra.test_group_name);
+		}
+
 		String failure_msg = viewHolder.itemView.getContext().getString(R.string.TestResults_Overview_Error);
 		if (extra.failure_msg != null) {
 			failure_msg += " - " + extra.failure_msg;

@@ -2,6 +2,7 @@ package org.openobservatory.ooniprobe.model.database;
 
 import android.content.Context;
 
+import com.google.common.base.Optional;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.ForeignKey;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
@@ -13,7 +14,6 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.engine.BaseNettest;
-import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.AppDatabase;
 import org.openobservatory.ooniprobe.common.OONIDescriptor;
 import org.openobservatory.ooniprobe.common.OONITests;
@@ -183,8 +183,13 @@ public class Result extends BaseModel implements Serializable {
         return readableFileSize(this.data_usage_down);
     }
 
-    public AbstractSuite getTestSuite(Context context) {
-        return getDescriptor(context).getTest(context);
+    public Optional<AbstractSuite> getTestSuite(Context context) {
+        Optional<OONIDescriptor<BaseNettest>> descriptor = getDescriptor(context);
+        if (descriptor.isPresent()) {
+            return Optional.of(descriptor.get().getTest(context));
+        } else {
+            return Optional.absent();
+        }
     }
 
     private String[] getTestOrder() {
@@ -210,22 +215,11 @@ public class Result extends BaseModel implements Serializable {
             this.network.delete();
     }
 
-    public OONIDescriptor<BaseNettest> getDescriptor(Context context) {
+    public Optional<OONIDescriptor<BaseNettest>> getDescriptor(Context context) {
         try {
-            return OONITests.valueOf(test_group_name).toOONIDescriptor(context);
+            return Optional.of(OONITests.valueOf(test_group_name.toUpperCase()).toOONIDescriptor(context));
         } catch (IllegalArgumentException e) {
-            return new OONIDescriptor<>(
-                    test_group_name,
-                    test_group_name,
-                    test_group_name,
-                    test_group_name,
-                    test_group_name,
-                    R.color.color_gray7_1,
-                    test_group_name,
-                    R.string.TestResults_NotAvailable,
-                    new ArrayList<>(),
-                    new ArrayList<>()
-            );
+            return Optional.absent();
         }
     }
 }
