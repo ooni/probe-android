@@ -49,7 +49,7 @@ public class TestRunBroadRequestReceiver extends BroadcastReceiver implements Se
     public void onReceive(Context context, Intent intent) {
         String key = intent.getStringExtra("key");
         String value = intent.getStringExtra("value");
-        // If either key is null, do nothing
+        // If key is null, do nothing
         if (key == null) {
             return;
         }
