@@ -13,7 +13,8 @@ import io.noties.markwon.AbstractMarkwonPlugin
  * Read more plugin based on text length.
  * @see <a href="https://github.com/noties/Markwon/blob/v4.6.2/app-sample/src/main/java/io/noties/markwon/app/samples/ReadMorePluginSample.java#L208C2-L208C2">ReadMorePluginSample</a>
  */
-class ReadMorePlugin(private val labelMore: String, private val labelLess: String) : AbstractMarkwonPlugin() {
+class ReadMorePlugin(private val labelMore: String, private val labelLess: String) :
+    AbstractMarkwonPlugin() {
     private val maxLength = 150
 
     override fun afterSetText(textView: TextView) {
@@ -30,8 +31,8 @@ class ReadMorePlugin(private val labelMore: String, private val labelLess: Strin
     private fun createCollapsedString(text: CharSequence, start: Int, end: Int): CharSequence {
         val builder = SpannableStringBuilder(text, start, end)
         val spans = builder.getSpans(
-                0, builder.length,
-                ReplacementSpan::class.java
+            0, builder.length,
+            ReplacementSpan::class.java
         )
         if (spans != null) {
             for (span in spans) {
@@ -55,6 +56,9 @@ class ReadMorePlugin(private val labelMore: String, private val labelLess: Strin
     }
 
     private fun createFullText(text: CharSequence, collapsedText: CharSequence): CharSequence {
+        // full/expanded text can also be different,
+        //  for example it can be kept as-is and have no `collapse` functionality (once expanded cannot collapse)
+        //  or can contain collapse feature
         val fullText: CharSequence
         val builder = SpannableStringBuilder(text)
         builder.append(' ')

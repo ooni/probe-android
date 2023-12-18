@@ -1,125 +1,126 @@
 package org.openobservatory.ooniprobe.common
 
 import org.openobservatory.ooniprobe.R
-import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite
 import org.openobservatory.ooniprobe.test.test.*
 
 
-private fun PreferenceManager.exclusionList(): MutableList<String> {
-	val exclusionList = mutableListOf<String>()
-	ExperimentalSuite().run {
-		exclusionList.addAll(getTestList(this@exclusionList).map { it.name })
-		exclusionList.addAll(longRunningTests().map { it.name })
-	}
+private fun PreferenceManager.experimentalTestList(): MutableList<String> {
+    val exclusionList = mutableListOf<String>()
+    OONITests.EXPERIMENTAL.run {
+        exclusionList.addAll(nettests.map { it.name })
+        exclusionList.addAll(nettests.map { it.name })
+    }
 
-	return exclusionList
+    return exclusionList
 }
 
+/**
+ * This function is used to resolve the status of a given test.
+ * @param name The name of the test.
+ * @param prefix The **[OONIDescriptor.preferencePrefix]** of the descriptor.
+ * @return The status of the test.
+ */
+fun PreferenceManager.resolveStatus(name: String, prefix: String): Boolean {
+    if (name == WebConnectivity.NAME) {
+        return true
+    } else if (experimentalTestList().contains(name)) {
+        return isExperimentalOn
+    }
+    return sp.getBoolean(getPreferenceKey(name = name, prefix = prefix), false)
+}
+
+/**
+ * This function is used to resolve the preference key for a given test.
+ * The preference key is the name of the test prefixed with the **[OONIDescriptor.preferencePrefix]** of the
+ * descriptor.
+ *
+ * For example, the preference key for the test "web_connectivity" in the
+ * descriptor "websites" is "websites_web_connectivity".
+ *
+ * @param name The name of the test.
+ * @param prefix The **[OONIDescriptor.preferencePrefix]** of the descriptor.
+ * @return The preference key.
+ */
+fun PreferenceManager.getPreferenceKey(name: String, prefix: String): String {
+    return "$prefix${getPreferenceKey(name)}"
+}
+
+
+/**
+ * This function returns the name of the preference key for a given test name.
+ * @param name The name of the test.
+ * @return The base preference key.
+ */
+fun PreferenceManager.getPreferenceKey(name: String): String {
+    return when (name) {
+        Dash.NAME -> r.getString(R.string.run_dash)
+
+        FacebookMessenger.NAME -> r.getString(R.string.test_facebook_messenger)
+
+        HttpHeaderFieldManipulation.NAME -> r.getString(R.string.run_http_header_field_manipulation)
+
+        HttpInvalidRequestLine.NAME -> r.getString(R.string.run_http_invalid_request_line)
+
+        Ndt.NAME -> r.getString(R.string.run_ndt)
+
+        Psiphon.NAME -> r.getString(R.string.test_psiphon)
+
+        RiseupVPN.NAME -> r.getString(R.string.test_riseupvpn)
+
+        Signal.NAME -> r.getString(R.string.test_signal)
+
+        Telegram.NAME -> r.getString(R.string.test_telegram)
+
+        Tor.NAME -> r.getString(R.string.test_tor)
+
+        Whatsapp.NAME -> r.getString(R.string.test_whatsapp)
+
+        OONITests.EXPERIMENTAL.label -> r.getString(R.string.experimental)
+
+        else -> throw IllegalArgumentException("Unknown preference for: $name")
+    }
+}
+
+/**
+ * Enables a test in the [PreferenceManager].
+ *
+ * @param name The name of the test to enable.
+ * @return true if the test was successfully enabled, false otherwise.
+ */
 fun PreferenceManager.enableTest(name: String): Boolean {
-	if (!exclusionList().contains(name)) {
-		this.setValue(name, true)
-		return true
-	}
-	return false
+    if (!experimentalTestList().contains(name)) {
+        return this.setValue(name, true)
+    }
+    return false
 }
 
+
+/**
+ * Disables a test in the [PreferenceManager].
+ *
+ * @param name The name of the test to disable.
+ * @return true if the test was successfully disabled, false otherwise.
+ */
 fun PreferenceManager.disableTest(name: String): Boolean {
-	if (!exclusionList().contains(name)) {
-		this.setValue(name, false)
-		return true
-	}
-	return false
+    if (!experimentalTestList().contains(name)) {
+        return this.setValue(name, false)
+    }
+    return false
 }
 
-fun PreferenceManager.setValue(name: String, value: Boolean) {
-	when (name) {
-		WebConnectivity.NAME -> {}
-		Dash.NAME -> {
-			with(sp.edit()) {
-				putBoolean(r.getString(R.string.run_dash), value)
-				apply()
-			}
-		}
-
-		FacebookMessenger.NAME -> {
-			with(sp.edit()) {
-				putBoolean(r.getString(R.string.test_facebook_messenger), value)
-				apply()
-			}
-		}
-
-		HttpHeaderFieldManipulation.NAME -> {
-			with(sp.edit()) {
-				putBoolean(r.getString(R.string.run_http_header_field_manipulation), value)
-				apply()
-			}
-		}
-
-		HttpInvalidRequestLine.NAME -> {
-			with(sp.edit()) {
-				putBoolean(r.getString(R.string.run_http_invalid_request_line), value)
-				apply()
-			}
-		}
-
-		Ndt.NAME -> {
-			with(sp.edit()) {
-				putBoolean(r.getString(R.string.run_ndt), value)
-				apply()
-			}
-		}
-
-		Psiphon.NAME -> {
-			with(sp.edit()) {
-				putBoolean(r.getString(R.string.test_psiphon), value)
-				apply()
-			}
-		}
-
-		RiseupVPN.NAME -> {
-			with(sp.edit()) {
-				putBoolean(r.getString(R.string.test_riseupvpn), value)
-				apply()
-			}
-		}
-
-		Signal.NAME -> {
-			with(sp.edit()) {
-				putBoolean(r.getString(R.string.test_signal), value)
-				apply()
-			}
-		}
-
-		Telegram.NAME -> {
-			with(sp.edit()) {
-				putBoolean(r.getString(R.string.test_telegram), value)
-				apply()
-			}
-		}
-
-		Tor.NAME -> {
-			with(sp.edit()) {
-				putBoolean(r.getString(R.string.test_tor), value)
-				apply()
-			}
-		}
-
-		Whatsapp.NAME -> {
-			with(sp.edit()) {
-				putBoolean(r.getString(R.string.test_whatsapp), value)
-				apply()
-			}
-		}
-
-		ExperimentalSuite.NAME -> {
-			with(sp.edit()) {
-				putBoolean(r.getString(R.string.experimental), value)
-				apply()
-			}
-		}
-
-		else -> {
-			throw IllegalArgumentException("Unknown preference for: $name")
-		}
-	}
+/**
+ * Sets the value of a preference in the [PreferenceManager].
+ *
+ * @param name The name of the preference to set.
+ * @param value The value to set the preference to.
+ * @return true if the preference was successfully set, false otherwise.
+ */
+fun PreferenceManager.setValue(name: String, value: Boolean): Boolean {
+    if (name == WebConnectivity.NAME || experimentalTestList().contains(name)) {
+        return false
+    }
+    return with(sp.edit()) {
+        putBoolean(getPreferenceKey(name), value)
+        commit()
+    }
 }

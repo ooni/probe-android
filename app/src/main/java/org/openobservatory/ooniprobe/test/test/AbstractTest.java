@@ -18,9 +18,9 @@ import org.openobservatory.engine.OONIMKTask;
 import org.openobservatory.ooniprobe.common.AppLogger;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.MKException;
+import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
-import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
@@ -30,7 +30,6 @@ import org.openobservatory.ooniprobe.model.jsonresult.EventResult;
 import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
 import org.openobservatory.ooniprobe.model.settings.Settings;
 import org.openobservatory.ooniprobe.test.EngineProvider;
-import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 
 import java.io.File;
 import java.io.Serializable;
@@ -38,8 +37,6 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Objects;
-
-import javax.inject.Inject;
 
 public abstract class AbstractTest implements Serializable {
     private static final String UNUSED_KEY = "UNUSED_KEY";
@@ -111,7 +108,7 @@ public abstract class AbstractTest implements Serializable {
                 switch (event.key) {
                     case "status.started":
                         if (result != null &&
-                                result.test_group_name.equals(ExperimentalSuite.NAME))
+                                result.test_group_name.equals(OONITests.EXPERIMENTAL.getLabel()))
                             testCallback.onStart(name);
                         else
                             testCallback.onStart(c.getString(labelResId));

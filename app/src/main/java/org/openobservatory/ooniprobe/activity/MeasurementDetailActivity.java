@@ -12,9 +12,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.common.base.Optional;
 import com.google.gson.Gson;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.databinding.ActivityMeasurementDetailBinding;
@@ -25,7 +27,7 @@ import org.openobservatory.ooniprobe.fragment.measurement.*;
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
-import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
+import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.test.*;
 import io.noties.markwon.Markwon;
 
@@ -68,13 +70,24 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
         measurement = measurementsManager.get(getIntent().getIntExtra(ID, 0));
         assert measurement != null;
         measurement.result.load();
-        setTheme(measurement.is_failed ?
-                R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Failed :
-                measurement.result.test_group_name.equals(PerformanceSuite.NAME) ?
-                        measurement.result.getTestSuite().getThemeLight() :
-                        measurement.is_anomaly ?
-                                R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Failure :
-                                R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Success);
+        if (measurement.is_failed) {
+            setTheme((int) R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Failed);
+        } else {
+            if (measurement.result.test_group_name.equals(OONITests.PERFORMANCE.getLabel())) {
+                Optional<AbstractSuite> optionalSuite = measurement.result.getTestSuite(this);
+                if (optionalSuite.isPresent()){
+                    setTheme(optionalSuite.get().getThemeLight());
+                } else {
+                    setTheme(R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Experimental);
+                }
+            } else {
+                if (measurement.is_anomaly) {
+                    setTheme(R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Failure);
+                } else {
+                    setTheme(R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Success);
+                }
+            }
+        }
         ActivityMeasurementDetailBinding binding = ActivityMeasurementDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);

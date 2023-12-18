@@ -2,13 +2,10 @@ package org.openobservatory.ooniprobe.activity.runtests
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import org.openobservatory.ooniprobe.common.OONITests
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.common.disableTest
 import org.openobservatory.ooniprobe.common.enableTest
-import org.openobservatory.ooniprobe.test.suite.CircumventionSuite
-import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite
-import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite
-import org.openobservatory.ooniprobe.test.suite.PerformanceSuite
 import javax.inject.Inject
 
 
@@ -30,29 +27,29 @@ class RunTestsViewModel() : ViewModel() {
 		selectedAllBtnStatus.postValue(selectedStatus)
 		when (selectedStatus) {
 			SELECT_ALL -> {
-				InstantMessagingSuite().getTestList(preferenceManager).forEach {
+				OONITests.INSTANT_MESSAGING.nettests.forEach {
 					enableTest(it.name)
 				}
-				CircumventionSuite().getTestList(preferenceManager).forEach {
+				OONITests.CIRCUMVENTION.nettests.forEach {
 					enableTest(it.name)
 				}
-				PerformanceSuite().getTestList(preferenceManager).forEach {
+				OONITests.PERFORMANCE.nettests.forEach {
 					enableTest(it.name)
 				}
-				enableTest(ExperimentalSuite.NAME)
+				enableTest(OONITests.EXPERIMENTAL.label)
 			}
 
 			SELECT_NONE -> {
-				InstantMessagingSuite().getTestList(preferenceManager).forEach {
+				OONITests.INSTANT_MESSAGING.nettests.forEach {
 					disableTest(it.name)
 				}
-				CircumventionSuite().getTestList(preferenceManager).forEach {
+				OONITests.CIRCUMVENTION.nettests.forEach {
 					disableTest(it.name)
 				}
-				PerformanceSuite().getTestList(preferenceManager).forEach {
+				OONITests.PERFORMANCE.nettests.forEach {
 					disableTest(it.name)
 				}
-				disableTest(ExperimentalSuite.NAME)
+				disableTest(OONITests.EXPERIMENTAL.label)
 			}
 		}
 	}

@@ -13,8 +13,7 @@ import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel.Compani
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel.Companion.SELECT_SOME
 import org.openobservatory.ooniprobe.activity.runtests.models.ChildItem
 import org.openobservatory.ooniprobe.activity.runtests.models.GroupItem
-import org.openobservatory.ooniprobe.test.suite.AbstractSuite
-import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite
+import org.openobservatory.ooniprobe.common.OONITests
 import org.openobservatory.ooniprobe.test.test.AbstractTest
 
 
@@ -83,9 +82,8 @@ class RunTestsExpandableListViewAdapter(
 		var convertView =
 			convertView ?: LayoutInflater.from(parent.context).inflate(R.layout.run_tests_group_list_item, parent, false)
 		val groupItem = getGroup(groupPosition)
-		val testSuite = AbstractSuite.getTestSuiteByName(groupItem.name)
-		convertView.findViewById<TextView>(R.id.group_name).text = parent.context.resources.getText(testSuite.title)
-		convertView.findViewById<ImageView>(R.id.group_icon).setImageResource(testSuite.icon)
+		convertView.findViewById<TextView>(R.id.group_name).text = groupItem.title
+		convertView.findViewById<ImageView>(R.id.group_icon).setImageResource(groupItem.getDisplayIcon(parent.context))
 		val groupIndicator = convertView.findViewById<ImageView>(R.id.group_indicator)
 		val groupSelectionIndicator = convertView.findViewById<ImageView>(R.id.group_select_indicator)
 		val selectedAllBtnStatus = viewModel.selectedAllBtnStatus.getValue()
@@ -105,21 +103,21 @@ class RunTestsExpandableListViewAdapter(
 		if (groupItem.selected) {
 			if (isSelectAllChildItems(groupItem.nettests)) {
 				groupSelectionIndicator.setImageResource(R.drawable.check_box)
-				// NOTE: This is the only place where ExperimentalSuite.NAME is used.
+				// NOTE: This is the only place where OONITests.EXPERIMENTAL.label is used.
 				// This doesn't follow the normal rule where the component tests make up the suite.
-				if (groupItem.name == ExperimentalSuite.NAME) {
-					viewModel.enableTest(ExperimentalSuite.NAME)
+				if (groupItem.name == OONITests.EXPERIMENTAL.label) {
+					viewModel.enableTest(OONITests.EXPERIMENTAL.label)
 				}
 			} else {
 				groupSelectionIndicator.setImageResource(R.drawable.check_box_outline_blank)
-				if (groupItem.name == ExperimentalSuite.NAME) {
-					viewModel.disableTest(ExperimentalSuite.NAME)
+				if (groupItem.name == OONITests.EXPERIMENTAL.label) {
+					viewModel.disableTest(OONITests.EXPERIMENTAL.label)
 				}
 			}
 		} else {
 			groupSelectionIndicator.setImageResource(R.drawable.check_box_outline_blank)
-			if (groupItem.name == ExperimentalSuite.NAME) {
-				viewModel.disableTest(ExperimentalSuite.NAME)
+			if (groupItem.name == OONITests.EXPERIMENTAL.label) {
+				viewModel.disableTest(OONITests.EXPERIMENTAL.label)
 			}
 		}
 		groupSelectionIndicator.setOnClickListener {
@@ -176,7 +174,7 @@ class RunTestsExpandableListViewAdapter(
 		val nettest = AbstractTest.getTestByName(childItem.name)
 		convertView.findViewById<TextView>(R.id.child_name)?.apply {
 			text = when (groupItem.name) {
-				ExperimentalSuite.NAME -> {
+				OONITests.EXPERIMENTAL.label -> {
 					childItem.name
 				}
 

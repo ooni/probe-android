@@ -53,6 +53,7 @@
 			android:name=".activity.OverviewActivity"
 			android:launchMode="singleTop"
 			android:parentActivityName=".activity.MainActivity"
+			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar"
 			android:screenOrientation="userPortrait" />
 		<activity
 			android:name=".activity.ResultDetailActivity"

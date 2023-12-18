@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
 import org.openobservatory.ooniprobe.activity.OverviewActivity
@@ -16,6 +17,7 @@ import org.openobservatory.ooniprobe.activity.RunningActivity
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsActivity
 import org.openobservatory.ooniprobe.adapters.DashboardAdapter
 import org.openobservatory.ooniprobe.common.Application
+import org.openobservatory.ooniprobe.common.OONIDescriptor
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.common.ReachabilityManager
 import org.openobservatory.ooniprobe.common.ThirdPartyServices
@@ -31,7 +33,7 @@ class DashboardFragment : Fragment(), View.OnClickListener {
 
     @Inject
     lateinit var viewModel: DashboardViewModel
-    private var testSuites: ArrayList<AbstractSuite> = ArrayList()
+    private var descriptors: ArrayList<OONIDescriptor<BaseNettest>> = ArrayList()
     private lateinit var binding: FragmentDashboardBinding
 
     override fun onCreateView(
@@ -60,7 +62,7 @@ class DashboardFragment : Fragment(), View.OnClickListener {
         }
 
         viewModel.items.observe(viewLifecycleOwner) { items ->
-            testSuites.apply {
+            descriptors.apply {
                 clear()
                 addAll(items)
             }
@@ -87,7 +89,7 @@ class DashboardFragment : Fragment(), View.OnClickListener {
     }
 
     private fun runAll() {
-        ActivityCompat.startActivity(requireContext(), RunTestsActivity.newIntent(requireContext(), testSuites), null)
+        ActivityCompat.startActivity(requireContext(), RunTestsActivity.newIntent(requireContext(), descriptors), null)
     }
 
     private fun onTestServiceStartedListener() = try {
@@ -98,19 +100,11 @@ class DashboardFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        val testSuite = v.tag as AbstractSuite
-        when (v.id) {
-            R.id.run -> RunningActivity.runAsForegroundService(
-                activity as AbstractActivity?,
-                testSuite.asArray(), { onTestServiceStartedListener() },
-                preferenceManager
-            )
-
-            else -> ActivityCompat.startActivity(
-                requireActivity(),
-                OverviewActivity.newIntent(activity, testSuite),
-                null
-            )
-        }
+        val descriptor = v.tag as OONIDescriptor<BaseNettest>
+        ActivityCompat.startActivity(
+            requireActivity(),
+            OverviewActivity.newIntent(activity, descriptor),
+            null
+        )
     }
 }

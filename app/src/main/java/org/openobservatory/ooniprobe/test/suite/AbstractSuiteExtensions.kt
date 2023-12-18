@@ -1,56 +1,35 @@
 package org.openobservatory.ooniprobe.test.suite
 
-import org.openobservatory.ooniprobe.activity.runtests.models.ChildItem
-import org.openobservatory.ooniprobe.activity.runtests.models.GroupItem
-import org.openobservatory.ooniprobe.common.PreferenceManager
+import org.openobservatory.ooniprobe.common.Application
+import org.openobservatory.ooniprobe.common.ooniDescriptors
+import org.openobservatory.ooniprobe.model.database.Url
+import org.openobservatory.ooniprobe.test.test.AbstractTest
 
-fun AbstractSuite.runTestsGroupItem(preferenceManager: PreferenceManager): GroupItem {
-	if (this is ExperimentalSuite) {
-		return GroupItem(
-			selected = false,
-			name = this.name,
-			nettests = this.getTestList(preferenceManager).map { nettest ->
-				ChildItem(
-					selected = preferenceManager.isExperimentalOn,
-					name = nettest.name,
-					inputs = nettest.inputs
-				)
-			}.toMutableList().apply {
-				addAll(longRunningTests().map {
-					ChildItem(
-						selected = false,
-						name = it.name,
-						inputs = null
-					)
-				})
-			})
-	} else {
-		return GroupItem(
-			selected = false,
-			name = this.name,
-			nettests = this.getTestList(preferenceManager).map { nettest ->
-				ChildItem(
-					selected = preferenceManager.resolveStatus(nettest.name),
-					name = nettest.name,
-					inputs = nettest.inputs
-				)
-			})
-	}
-}
 
-fun AbstractSuite.dynamicTestSuite(nettests: List<ChildItem>): DynamicTestSuite {
-	return DynamicTestSuite(
-		name = this.name,
-		title = this.title,
-		cardDesc = this.cardDesc,
-		icon = this.icon,
-		icon_24 = this.iconGradient,
-		color = this.color,
-		themeLight = this.themeLight,
-		themeDark = this.themeDark,
-		desc1 = this.desc1,
-		anim = this.anim,
-		dataUsage = this.dataUsage,
-		nettest = nettests
-	)
+fun getSuite(
+    app: Application,
+    tn: String,
+    urls: List<String>?,
+    origin: String?
+): AbstractSuite? {
+    for (descriptor in ooniDescriptors(app)) {
+        for (test in descriptor.nettests) {
+            if (test.name == tn) {
+                if (urls != null) {
+                    for (url in urls) {
+                        Url.checkExistingUrl(url)
+                    }
+                }
+                val suite: DynamicTestSuite = descriptor.getTest(app)
+                suite.setTestList(
+                    AbstractTest.getTestByName(test.name).apply {
+                        setOrigin(origin)
+                        inputs = urls
+                    }
+                )
+                return suite
+            }
+        }
+    }
+    return null
 }
