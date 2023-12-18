@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.test.suite;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.OONITests;
@@ -25,6 +26,7 @@ public class PerformanceSuiteTest {
     private final PreferenceManager pm = mock(PreferenceManager.class);
 
     @Test
+    @Ignore("Preference check if not used since the tests to run are determined by the #RunTestsActivity")
     public void getTestList_empty() {
         when(pm.isRunNdt()).thenReturn(false);
         when(pm.isRunDash()).thenReturn(false);
@@ -37,6 +39,7 @@ public class PerformanceSuiteTest {
     }
 
     @Test
+    @Ignore("Preference check if not used since the tests to run are determined by the #RunTestsActivity")
     public void getTestList_full() {
         when(pm.isRunNdt()).thenReturn(true);
         when(pm.isRunDash()).thenReturn(true);

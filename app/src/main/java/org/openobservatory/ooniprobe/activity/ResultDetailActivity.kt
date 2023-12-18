@@ -83,13 +83,13 @@ class ResultDetailActivity : AbstractActivity(), View.OnClickListener, OnConfirm
 
             else -> {
                 result = iResult
-                setTheme(result.getTestSuite(this@ResultDetailActivity).themeLight)
+                result.getTestSuite(this@ResultDetailActivity).get()?.themeLight?.let { setTheme(it) }
                 binding = ActivityResultDetailBinding.inflate(layoutInflater)
                 setContentView(binding.root)
                 setSupportActionBar(binding.toolbar)
                 supportActionBar?.let { actionBar ->
                     actionBar.setDisplayHomeAsUpEnabled(true)
-                    actionBar.setTitle(result.getTestSuite(this@ResultDetailActivity).title)
+                    actionBar.setTitle(result.getTestSuite(this@ResultDetailActivity).get().title)
                 }
                 binding.pager.apply {
                     setAdapter(ResultHeaderAdapter(this@ResultDetailActivity))

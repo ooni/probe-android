@@ -13,12 +13,13 @@
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
-            app:titleEnabled="false">
+		<com.google.android.material.appbar.CollapsingToolbarLayout
+			android:id="@+id/collapsing_toolbar"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			app:contentScrim="?attr/colorPrimary"
+			app:titleEnabled="false"
+			app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
             <LinearLayout
                 android:layout_width="match_parent"

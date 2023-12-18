@@ -4,7 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
@@ -18,7 +20,6 @@ import org.openobservatory.ooniprobe.activity.runtests.models.GroupItem
 import org.openobservatory.ooniprobe.common.OONIDescriptor
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.databinding.ActivityRunTestsBinding
-import org.openobservatory.ooniprobe.test.suite.*
 import java.io.Serializable
 import javax.inject.Inject
 
@@ -123,7 +124,6 @@ class RunTestsActivity : AbstractActivity() {
 		}
 	}
 
-	// TODO(aanorbel) Update button color from theme
 	private fun selectAllBtnStatusObserver(selectAllBtnStatus: String?) {
 		if (!TextUtils.isEmpty(selectAllBtnStatus)) {
 			when (selectAllBtnStatus) {

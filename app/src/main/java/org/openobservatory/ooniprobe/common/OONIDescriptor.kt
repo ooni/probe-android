@@ -2,12 +2,14 @@ package org.openobservatory.ooniprobe.common
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.Resources
 import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import org.openobservatory.engine.BaseDescriptor
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.overview.TestGroupItem
+import org.openobservatory.ooniprobe.activity.runtests.RunTestsActivity
 import org.openobservatory.ooniprobe.activity.runtests.models.ChildItem
 import org.openobservatory.ooniprobe.activity.runtests.models.GroupItem
 import org.openobservatory.ooniprobe.test.suite.DynamicTestSuite
@@ -74,7 +76,7 @@ open class OONIDescriptor<T : BaseNettest>(
         }.toMutableList()
 
     /**
-     * Converts the current descriptor to a [GroupItem] to be used in the [].
+     * Converts the current descriptor to a [GroupItem] to be used in the [RunTestsActivity].
      *
      * @return [GroupItem] representing the current descriptor.
      */
@@ -278,7 +280,37 @@ enum class OONITests(
      */
     fun toOONIDescriptor(context: Context): OONIDescriptor<BaseNettest> {
         val r = context.resources
-        val experimentalLinks = """
+
+        this.run {
+            return OONIDescriptor(
+                name = label,
+                title = context.getString(title),
+                shortDescription = context.getString(shortDescription),
+                description = when (label) {
+                    EXPERIMENTAL.label -> context.getString(
+                        description,
+                        experimentalLinks(r)
+                    )
+
+                    else -> context.getString(description)
+                },
+                icon = icon,
+                color = color,
+                animation = animation,
+                dataUsage = dataUsage,
+                nettests = nettests,
+                longRunningTests = longRunningTests,
+            )
+        }
+    }
+
+    /**
+     * Returns the experimental links for the [EXPERIMENTAL] test.
+     *
+     * @return String representing the experimental links for the current OONI test.
+     */
+    private fun experimentalLinks(r: Resources): String {
+        return """
         * [STUN Reachability](https://github.com/ooni/spec/blob/master/nettests/ts-025-stun-reachability.md)
 
         * [DNS Check](https://github.com/ooni/spec/blob/master/nettests/ts-028-dnscheck.md)
@@ -299,27 +331,6 @@ enum class OONITests(
             )
         }
     """.trimIndent()
-        this.run {
-            return OONIDescriptor(
-                name = label,
-                title = context.getString(title),
-                shortDescription = context.getString(shortDescription),
-                description = when (label) {
-                    EXPERIMENTAL.label -> context.getString(
-                        description,
-                        experimentalLinks,
-                    )
-
-                    else -> context.getString(description)
-                },
-                icon = icon,
-                color = color,
-                animation = animation,
-                dataUsage = dataUsage,
-                nettests = nettests,
-                longRunningTests = longRunningTests,
-            )
-        }
     }
 
     override fun toString(): String {

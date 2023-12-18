@@ -3,15 +3,14 @@ package org.openobservatory.ooniprobe.common
 import android.content.Context
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.test.suite.DynamicTestSuite
-import org.openobservatory.ooniprobe.test.test.AbstractTest
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class TestDescriptorManager @Inject constructor(private val context: Context) {
-    private val descriptors: MutableList<OONIDescriptor<BaseNettest>> = ooniDescriptors(context)
+    private val descriptors: List<OONIDescriptor<BaseNettest>> = ooniDescriptors(context)
 
-    fun getDescriptors(): MutableList<OONIDescriptor<BaseNettest>> {
+    fun getDescriptors(): List<OONIDescriptor<BaseNettest>> {
         return descriptors
     }
 

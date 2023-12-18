@@ -5,7 +5,6 @@ import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.os.BatteryManager;
 
 import androidx.core.content.ContextCompat;
 
@@ -13,7 +12,6 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
 import org.openobservatory.engine.OONICheckInConfig;
-import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
@@ -55,7 +53,6 @@ public class ServiceUtil {
 
         //JobScheduler is specifically designed for inexact timing, so it can combine jobs from multiple apps, to try to reduce power consumption.
         JobScheduler jobScheduler = ContextCompat.getSystemService(context, JobScheduler.class);
-        ;
         if (jobScheduler != null) {
             jobScheduler.schedule(builder.build());
         }
@@ -82,11 +79,16 @@ public class ServiceUtil {
         AbstractSuite suite = d.generateAutoRunServiceSuite.generate();
         ArrayList<AbstractSuite> testSuites = new ArrayList<>();
         testSuites.add(suite);
-        testSuites.addAll(Lists.transform(List.of(OONITests.INSTANT_MESSAGING, OONITests.CIRCUMVENTION, OONITests.PERFORMANCE, OONITests.EXPERIMENTAL), item -> {
-            DynamicTestSuite testSuite = item.toOONIDescriptor(app).getTest(app);
-            testSuite.setAutoRun(true);
-            return testSuite;
-        }));
+        testSuites.addAll(
+                Lists.transform(
+                        List.of(OONITests.INSTANT_MESSAGING, OONITests.CIRCUMVENTION, OONITests.PERFORMANCE, OONITests.EXPERIMENTAL),
+                        item -> {
+                            DynamicTestSuite testSuite = item.toOONIDescriptor(app).getTest(app);
+                            testSuite.setAutoRun(true);
+                            return testSuite;
+                        }
+                )
+        );
         ServiceUtil.startRunTestServiceCommon(app, testSuites, false, true);
         d.generateAutoRunServiceSuite.markAsRan();
 
