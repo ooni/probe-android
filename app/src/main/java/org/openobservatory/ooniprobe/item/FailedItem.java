@@ -1,5 +1,8 @@
 package org.openobservatory.ooniprobe.item;
 
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
+import static java.util.concurrent.TimeUnit.MINUTES;
+
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,13 +11,16 @@ import android.view.ViewGroup;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.common.base.Optional;
+
+import org.openobservatory.engine.BaseNettest;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.OONIDescriptor;
 import org.openobservatory.ooniprobe.databinding.ItemFailedBinding;
 import org.openobservatory.ooniprobe.model.database.Result;
 
 import java.util.Date;
 import java.util.Locale;
-import static java.util.concurrent.TimeUnit.*;
 
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
@@ -38,8 +44,15 @@ public class FailedItem extends HeterogeneousRecyclerItem<Result, FailedItem.Vie
 		viewHolder.itemView.setOnLongClickListener(onLongClickListener);
 		viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(viewHolder.itemView.getContext(), R.color.color_gray2));
 		viewHolder.binding.testName.setTextColor(ContextCompat.getColor(viewHolder.itemView.getContext(), R.color.color_gray6));
-		viewHolder.binding.icon.setImageResource(extra.getTestSuite().getIcon());
-		viewHolder.binding.testName.setText(extra.getTestSuite().getTitle());
+		Optional<OONIDescriptor<BaseNettest>> possibleDescriptor = extra.getDescriptor(viewHolder.itemView.getContext());
+		if (possibleDescriptor.isPresent()) {
+			OONIDescriptor<BaseNettest> descriptor = possibleDescriptor.get();
+			viewHolder.binding.icon.setImageResource(descriptor.getDisplayIcon(viewHolder.itemView.getContext()));
+			viewHolder.binding.testName.setText(descriptor.getTitle());
+		} else {
+			viewHolder.binding.testName.setText(extra.test_group_name);
+		}
+
 		String failure_msg = viewHolder.itemView.getContext().getString(R.string.TestResults_Overview_Error);
 		if (extra.failure_msg != null) {
 			failure_msg += " - " + extra.failure_msg;

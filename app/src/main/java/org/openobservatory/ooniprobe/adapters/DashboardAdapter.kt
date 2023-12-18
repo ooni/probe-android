@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import org.openobservatory.ooniprobe.R
+import org.openobservatory.ooniprobe.common.OONIDescriptor
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.databinding.ItemSeperatorBinding
 import org.openobservatory.ooniprobe.databinding.ItemTestsuiteBinding
-import org.openobservatory.ooniprobe.test.suite.AbstractSuite
 
 class DashboardAdapter(
     private val items: List<Any>,
@@ -48,20 +48,20 @@ class DashboardAdapter(
         val item = items[position]
         when (holder.itemViewType) {
             VIEW_TYPE_TITLE -> {
-                val separator = holder as CardGroupTitleViewHolder
-                separator.binding.root.text = item as String
-            }
+				val separator = holder as CardGroupTitleViewHolder
+				separator.binding.root.text = item as String
+			}
 
             VIEW_TYPE_CARD -> {
                 val cardHolder = holder as CardViewHolder
-                if (item is AbstractSuite) {
+                if (item is OONIDescriptor<*>) {
                     cardHolder.binding.apply {
                         title.setText(item.title)
-                        desc.setText(item.cardDesc)
-                        icon.setImageResource(item.icon)
+                        desc.setText(item.shortDescription)
+                        icon.setImageResource(item.getDisplayIcon(holder.itemView.context))
                     }
                     holder.itemView.tag = item
-                    if (item.isTestEmpty(preferenceManager)) {
+                    if (!item.isEnabled(preferenceManager)) {
                         holder.setIsRecyclable(false)
                         holder.itemView.apply {
                             elevation = 0f

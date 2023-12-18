@@ -19,22 +19,29 @@ import localhost.toolkit.app.fragment.ConfirmDialogFragment.OnConfirmedListener
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.adapters.MeasurementGroup
 import org.openobservatory.ooniprobe.adapters.ResultDetailExpandableListAdapter
+import org.openobservatory.ooniprobe.common.OONITests
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.common.ResubmitTask
 import org.openobservatory.ooniprobe.databinding.ActivityResultDetailBinding
 import org.openobservatory.ooniprobe.domain.GetResults
 import org.openobservatory.ooniprobe.domain.GetTestSuite
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderDetailFragment
-import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderMiddleboxFragment
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderPerformanceFragment
 import org.openobservatory.ooniprobe.fragment.resultHeader.ResultHeaderTBAFragment
 import org.openobservatory.ooniprobe.model.database.Measurement
 import org.openobservatory.ooniprobe.model.database.Network
 import org.openobservatory.ooniprobe.model.database.Result
-import org.openobservatory.ooniprobe.test.suite.*
 import java.io.Serializable
+import java.util.*
 import javax.inject.Inject
 
+/**
+ * Activity that displays the details of a result.
+ * It is composed of a header [ResultHeaderDetailFragment] and a list of measurements [ResultDetailExpandableListAdapter].
+ * The header is composed of several fragments, each one handling a different test group.
+ * The list of measurements is composed of several sections, each one handling a different test name.
+ * @see [https://github.com/ooni/probe-android/blob/d2dd31b623229e975ee412125b89a4c7c33029c1/app/src/main/java/org/openobservatory/ooniprobe/activity/ResultDetailActivity.java] for the original Java code.
+ */
 class ResultDetailActivity : AbstractActivity(), View.OnClickListener, OnConfirmedListener {
 
     companion object {
@@ -76,13 +83,13 @@ class ResultDetailActivity : AbstractActivity(), View.OnClickListener, OnConfirm
 
             else -> {
                 result = iResult
-                setTheme(result.testSuite.themeLight)
+                result.getTestSuite(this@ResultDetailActivity).get()?.themeLight?.let { setTheme(it) }
                 binding = ActivityResultDetailBinding.inflate(layoutInflater)
                 setContentView(binding.root)
                 setSupportActionBar(binding.toolbar)
                 supportActionBar?.let { actionBar ->
                     actionBar.setDisplayHomeAsUpEnabled(true)
-                    actionBar.setTitle(result.testSuite.title)
+                    actionBar.setTitle(result.getTestSuite(this@ResultDetailActivity).get().title)
                 }
                 binding.pager.apply {
                     setAdapter(ResultHeaderAdapter(this@ResultDetailActivity))
@@ -111,7 +118,9 @@ class ResultDetailActivity : AbstractActivity(), View.OnClickListener, OnConfirm
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
         invalidateOptionsMenu()
-        if (result.test_group_name != WebsitesSuite.NAME) menu.findItem(R.id.reRun).setVisible(false)
+        if (!Objects.equals(result.test_group_name, OONITests.WEBSITES.label)) {
+            menu.findItem(R.id.reRun).setVisible(false)
+        }
         return super.onPrepareOptionsMenu(menu)
     }
 
@@ -160,7 +169,12 @@ class ResultDetailActivity : AbstractActivity(), View.OnClickListener, OnConfirm
                 if (groupedItems.size == 1) {
                     groupedItemList.addAll(itemList)
                 } else {
-                    groupedItemList.add(MeasurementGroup(title = itemList.first().test.name, measurements = itemList))
+                    groupedItemList.add(
+                        MeasurementGroup(
+                            title = itemList.first().test.name,
+                            measurements = itemList
+                        )
+                    )
                 }
 
             }
@@ -181,13 +195,17 @@ class ResultDetailActivity : AbstractActivity(), View.OnClickListener, OnConfirm
 
     override fun onClick(v: View) {
         val measurement = v.tag as Measurement
-        if (result.test_group_name == ExperimentalSuite.NAME) startActivity(
+        if (Objects.equals(result.test_group_name, OONITests.EXPERIMENTAL.label)) startActivity(
             TextActivity.newIntent(
                 this,
                 TextActivity.TYPE_JSON,
                 measurement
             )
-        ) else ActivityCompat.startActivity(this, MeasurementDetailActivity.newIntent(this, measurement.id), null)
+        ) else ActivityCompat.startActivity(
+            this,
+            MeasurementDetailActivity.newIntent(this, measurement.id),
+            null
+        )
     }
 
     override fun onConfirmation(extra: Serializable, buttonClicked: Int) {
@@ -230,7 +248,7 @@ class ResultDetailActivity : AbstractActivity(), View.OnClickListener, OnConfirm
     private inner class ResultHeaderAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
         override fun createFragment(position: Int): Fragment {
             when (result.test_group_name) {
-                ExperimentalSuite.NAME -> {
+                OONITests.EXPERIMENTAL.label -> {
                     when (position) {
                         0 -> return ResultHeaderDetailFragment.newInstance(
                             false,
@@ -280,18 +298,24 @@ class ResultDetailActivity : AbstractActivity(), View.OnClickListener, OnConfirm
                 )
 
                 else -> when (result.test_group_name) {
-                    WebsitesSuite.NAME -> ResultHeaderTBAFragment.newInstance(result)
-                    InstantMessagingSuite.NAME -> ResultHeaderTBAFragment.newInstance(result)
-                    MiddleBoxesSuite.NAME -> ResultHeaderMiddleboxFragment.newInstance(result.countAnomalousMeasurements() > 0)
-                    PerformanceSuite.NAME -> ResultHeaderPerformanceFragment.newInstance(result)
-                    CircumventionSuite.NAME -> ResultHeaderTBAFragment.newInstance(result)
+                    OONITests.WEBSITES.label -> ResultHeaderTBAFragment.newInstance(result)
+                    OONITests.INSTANT_MESSAGING.label -> ResultHeaderTBAFragment.newInstance(result)
+                    OONITests.PERFORMANCE.label -> ResultHeaderPerformanceFragment.newInstance(
+                        result
+                    )
+
+                    OONITests.CIRCUMVENTION.label -> ResultHeaderTBAFragment.newInstance(result)
                     else -> ResultHeaderTBAFragment.newInstance(result)
                 }
             }
         }
 
         override fun getItemCount(): Int {
-            return if (result.test_group_name == ExperimentalSuite.NAME) 2 else 3
+            return if (Objects.equals(
+                    result.test_group_name,
+                    OONITests.EXPERIMENTAL.label
+                )
+            ) 2 else 3
         }
     }
 

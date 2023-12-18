@@ -14,18 +14,28 @@ import org.openobservatory.ooniprobe.activity.AbstractActivity
 import org.openobservatory.ooniprobe.activity.RunningActivity
 import org.openobservatory.ooniprobe.activity.customwebsites.adapter.CustomWebsiteRecyclerViewAdapter
 import org.openobservatory.ooniprobe.activity.customwebsites.adapter.ItemChangedListener
+import org.openobservatory.ooniprobe.common.OONITests
 import org.openobservatory.ooniprobe.common.PreferenceManager
+import org.openobservatory.ooniprobe.common.TestDescriptorManager
 import org.openobservatory.ooniprobe.databinding.ActivityCustomwebsiteBinding
 import org.openobservatory.ooniprobe.fragment.ConfirmDialogFragment
 import org.openobservatory.ooniprobe.model.database.Url
-import org.openobservatory.ooniprobe.test.suite.WebsitesSuite
 import java.io.Serializable
 import javax.inject.Inject
 
-/** This activity allows a user to test a custom website. */
+
+/**
+ * This activity will allow the user to add custom urls to the list of urls.
+ * It will also allow the user to run the tests on the list of urls.
+ * It will also allow the user to edit the list of urls.
+ * @see [https://github.com/ooni/probe-android/blob/d2dd31b623229e975ee412125b89a4c7c33029c1/app/src/main/java/org/openobservatory/ooniprobe/activity/CustomWebsiteActivity.java] (Original)
+ */
 class CustomWebsiteActivity : AbstractActivity(), ConfirmDialogFragment.OnClickListener {
     @Inject
     lateinit var preferenceManager: PreferenceManager
+
+    @Inject
+    lateinit var descriptorManager: TestDescriptorManager
 
     val viewModel: CustomWebsiteViewModel by viewModels()
 
@@ -102,12 +112,16 @@ class CustomWebsiteActivity : AbstractActivity(), ConfirmDialogFragment.OnClickL
                 Url.checkExistingUrl(sanitizedUrl).toString()
             )
         }
-        val suite = WebsitesSuite()
-        suite.getTestList(preferenceManager)[0].inputs = urls
-        RunningActivity.runAsForegroundService(
-            this@CustomWebsiteActivity, suite.asArray(), { finish() }, preferenceManager
-        )
-        return true
+        val suite = descriptorManager.getTestByDescriptorName(OONITests.WEBSITES.label)
+        suite?.let {
+            suite.getTestList(preferenceManager)[0].inputs = urls
+            RunningActivity.runAsForegroundService(
+                this@CustomWebsiteActivity, suite.asArray(), { finish() }, preferenceManager
+            )
+            return true
+        }.run {
+            return false
+        }
     }
 
     /**

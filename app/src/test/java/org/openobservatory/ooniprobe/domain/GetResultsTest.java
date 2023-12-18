@@ -2,13 +2,10 @@ package org.openobservatory.ooniprobe.domain;
 
 import org.junit.Test;
 import org.openobservatory.ooniprobe.RobolectricAbstractTest;
+import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.domain.models.DatedResults;
 import org.openobservatory.ooniprobe.factory.ResultFactory;
 import org.openobservatory.ooniprobe.model.database.Result;
-import org.openobservatory.ooniprobe.test.suite.CircumventionSuite;
-import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
-import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
-import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.utils.DatabaseUtils;
 
 import java.util.Calendar;
@@ -29,7 +26,7 @@ public class GetResultsTest extends RobolectricAbstractTest {
     @Test
     public void getterTest() {
         // Arrange
-        Result result = ResultFactory.createAndSave(new WebsitesSuite());
+        Result result = ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c));
         GetResults getResults = build();
 
         // Act
@@ -49,10 +46,10 @@ public class GetResultsTest extends RobolectricAbstractTest {
 
         // Act
         List<Result> all = getResults.getOrderedByTime(null);
-        List<Result> web = getResults.getOrderedByTime(WebsitesSuite.NAME);
-        List<Result> messaging = getResults.getOrderedByTime(InstantMessagingSuite.NAME);
-        List<Result> circumvention = getResults.getOrderedByTime(CircumventionSuite.NAME);
-        List<Result> performance = getResults.getOrderedByTime(PerformanceSuite.NAME);
+        List<Result> web = getResults.getOrderedByTime(OONITests.WEBSITES.getLabel());
+        List<Result> messaging = getResults.getOrderedByTime(OONITests.INSTANT_MESSAGING.getLabel());
+        List<Result> circumvention = getResults.getOrderedByTime(OONITests.CIRCUMVENTION.getLabel());
+        List<Result> performance = getResults.getOrderedByTime(OONITests.PERFORMANCE.getLabel());
 
         // Assert
         assertEquals(all.size(), 4);
@@ -60,10 +57,10 @@ public class GetResultsTest extends RobolectricAbstractTest {
         assertEquals(messaging.size(), 1);
         assertEquals(circumvention.size(), 1);
         assertEquals(performance.size(), 1);
-        assertEquals(all.get(0).test_group_name, PerformanceSuite.NAME);
-        assertEquals(all.get(1).test_group_name, CircumventionSuite.NAME);
-        assertEquals(all.get(2).test_group_name, InstantMessagingSuite.NAME);
-        assertEquals(all.get(3).test_group_name, WebsitesSuite.NAME);
+        assertEquals(all.get(0).test_group_name, OONITests.PERFORMANCE.getLabel());
+        assertEquals(all.get(1).test_group_name, OONITests.CIRCUMVENTION.getLabel());
+        assertEquals(all.get(2).test_group_name, OONITests.INSTANT_MESSAGING.getLabel());
+        assertEquals(all.get(3).test_group_name, OONITests.WEBSITES.getLabel());
     }
 
     @Test public void groupedByMonth() {
@@ -73,10 +70,10 @@ public class GetResultsTest extends RobolectricAbstractTest {
 
         // Act
         List<DatedResults> all = getResults.getGroupedByMonth(null);
-        List<DatedResults> web = getResults.getGroupedByMonth(WebsitesSuite.NAME);
-        List<DatedResults> messaging = getResults.getGroupedByMonth(InstantMessagingSuite.NAME);
-        List<DatedResults> circumvention = getResults.getGroupedByMonth(CircumventionSuite.NAME);
-        List<DatedResults> performance = getResults.getGroupedByMonth(PerformanceSuite.NAME);
+        List<DatedResults> web = getResults.getGroupedByMonth(OONITests.WEBSITES.getLabel());
+        List<DatedResults> messaging = getResults.getGroupedByMonth(OONITests.INSTANT_MESSAGING.getLabel());
+        List<DatedResults> circumvention = getResults.getGroupedByMonth(OONITests.CIRCUMVENTION.getLabel());
+        List<DatedResults> performance = getResults.getGroupedByMonth(OONITests.PERFORMANCE.getLabel());
 
         // Assert
         assertEquals(all.size(), 4);
@@ -95,27 +92,27 @@ public class GetResultsTest extends RobolectricAbstractTest {
         assertEquals(all.get(2).getResultsList().size(), 1);
         assertEquals(all.get(3).getResultsList().size(), 1);
 
-        assertEquals(all.get(0).getResultsList().get(0).test_group_name, PerformanceSuite.NAME);
-        assertEquals(all.get(1).getResultsList().get(0).test_group_name, CircumventionSuite.NAME);
-        assertEquals(all.get(2).getResultsList().get(0).test_group_name, InstantMessagingSuite.NAME);
-        assertEquals(all.get(3).getResultsList().get(0).test_group_name, WebsitesSuite.NAME);
+        assertEquals(all.get(0).getResultsList().get(0).test_group_name, OONITests.PERFORMANCE.getLabel());
+        assertEquals(all.get(1).getResultsList().get(0).test_group_name, OONITests.CIRCUMVENTION.getLabel());
+        assertEquals(all.get(2).getResultsList().get(0).test_group_name, OONITests.INSTANT_MESSAGING.getLabel());
+        assertEquals(all.get(3).getResultsList().get(0).test_group_name, OONITests.WEBSITES.getLabel());
     }
 
 
     private void createDatedResults() {
-        Result websites = ResultFactory.createAndSave(new WebsitesSuite());
+        Result websites = ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c));
         websites.start_time = getDateFrom(1, Calendar.JANUARY, 2020);
         websites.save();
 
-        Result messaging = ResultFactory.createAndSave(new InstantMessagingSuite());
+        Result messaging = ResultFactory.createAndSave(OONITests.INSTANT_MESSAGING.toOONIDescriptor(c));
         messaging.start_time = getDateFrom(1, Calendar.FEBRUARY, 2020);
         messaging.save();
 
-        Result circumvention = ResultFactory.createAndSave(new CircumventionSuite(), 1, 2);
+        Result circumvention = ResultFactory.createAndSave(OONITests.CIRCUMVENTION.toOONIDescriptor(c), 1, 2);
         circumvention.start_time = getDateFrom(1, Calendar.MARCH, 2020);
         circumvention.save();
 
-        Result performance = ResultFactory.createAndSave(new PerformanceSuite());
+        Result performance = ResultFactory.createAndSave(OONITests.PERFORMANCE.toOONIDescriptor(c));
         performance.start_time = getDateFrom(1, Calendar.APRIL, 2020);
         performance.save();
     }
