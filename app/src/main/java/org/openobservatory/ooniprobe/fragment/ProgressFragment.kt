@@ -133,8 +133,7 @@ class ProgressFragment : Fragment() {
                             biding.testImage.visibility = View.GONE
                         }
                     }
-                    biding.name.text =
-                        when (task.currentSuite.name.equals(OONITests.EXPERIMENTAL.label)) {
+                    biding.name.text = when (task.currentSuite.name.equals(OONITests.EXPERIMENTAL.label)) {
                             true -> SpannableStringBuilder().bold { append(currentTest.name) }
                             false -> SpannableStringBuilder().bold { append(getString(currentTest.labelResId)) }
                         }.append(" ")

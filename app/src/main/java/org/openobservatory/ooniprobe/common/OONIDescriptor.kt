@@ -8,10 +8,10 @@ import androidx.annotation.StringRes
 import org.openobservatory.engine.BaseDescriptor
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.R
+import org.openobservatory.ooniprobe.activity.overview.TestGroupItem
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsActivity
 import org.openobservatory.ooniprobe.activity.runtests.models.ChildItem
 import org.openobservatory.ooniprobe.activity.runtests.models.GroupItem
-import org.openobservatory.ooniprobe.test.suite.AbstractSuite
 import org.openobservatory.ooniprobe.test.suite.DynamicTestSuite
 import org.openobservatory.ooniprobe.test.test.*
 import java.io.Serializable
@@ -39,7 +39,7 @@ open class OONIDescriptor<T : BaseNettest>(
         return nettests.any {
             preferenceManager.resolveStatus(
                 name = it.name,
-                prefix = preferencePrefix()
+                prefix = preferencePrefix(),
             )
         }
     }
@@ -52,6 +52,28 @@ open class OONIDescriptor<T : BaseNettest>(
     fun getDisplayIcon(context: Context): Int {
         return context.resources.getIdentifier(icon, "drawable", context.packageName)
     }
+
+    /**
+     * Converts the current [MutableList] of [TestGroupItem] representing `tests` to be used in the [OverviewActivity].
+     *
+     * @return [MutableList] of [TestGroupItem] representing `tests`.
+     */
+    fun overviewExpandableListViewData(preferenceManager: PreferenceManager): MutableList<TestGroupItem> =
+        (nettests + longRunningTests.orEmpty()).map {
+            TestGroupItem(
+                selected = when (name) {
+                    OONITests.EXPERIMENTAL.label -> preferenceManager.isExperimentalOn
+                    OONITests.WEBSITES.label -> preferenceManager.countEnabledCategory() > 0
+                    else -> preferenceManager.resolveStatus(
+                        name = it.name,
+                        prefix = preferencePrefix(),
+                        autoRun = true,
+                    )
+                },
+                name = it.name,
+                inputs = it.inputs,
+            )
+        }.toMutableList()
 
     /**
      * Converts the current descriptor to a [GroupItem] to be used in the [RunTestsActivity].
@@ -70,11 +92,23 @@ open class OONIDescriptor<T : BaseNettest>(
             dataUsage = this.dataUsage,
             nettests = this.nettests.map { nettest ->
                 ChildItem(
-                    selected = when (this.name == OONITests.EXPERIMENTAL.label) {
-                        true -> preferenceManager.isExperimentalOn
-                        false -> preferenceManager.resolveStatus(nettest.name)
+                    selected = when (name) {
+                        OONITests.EXPERIMENTAL.label -> preferenceManager.isExperimentalOn
+                        OONITests.WEBSITES.label -> preferenceManager.countEnabledCategory() > 0
+                        else -> preferenceManager.resolveStatus(
+                            name = nettest.name,
+                            prefix = preferencePrefix(),
+                        )
                     }, name = nettest.name, inputs = nettest.inputs
                 )
+            }.run {
+                this + (longRunningTests?.map { nettest ->
+                    ChildItem(
+                        selected = false,
+                        name = nettest.name,
+                        inputs = nettest.inputs,
+                    )
+                } ?: listOf())
             })
     }
 
@@ -116,8 +150,19 @@ open class OONIDescriptor<T : BaseNettest>(
      *
      * @return String representing the preference prefix.
      */
-    private fun preferencePrefix(): String {
+    fun preferencePrefix(): String {
         return OONITests.values().find { it.label == name }?.let { "" } ?: "descriptor_id_"
+    }
+
+    /**
+     * Checks if the current descriptor has a preference prefix.
+     * This is used to determine if the current descriptor is [OONITests.WEBSITES] which uses categories
+     * or [OONITests.EXPERIMENTAL] which doesn't support indivitual preferences for nettest.
+     *
+     * @return Boolean Returns true if the current descriptor has a preference prefix, false otherwise.
+     */
+    fun hasPreferencePrefix(): Boolean {
+        return !(name == OONITests.EXPERIMENTAL.label || name == OONITests.WEBSITES.label)
     }
 }
 

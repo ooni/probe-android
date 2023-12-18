@@ -20,13 +20,53 @@ private fun PreferenceManager.experimentalTestList(): MutableList<String> {
  * @param prefix The **[OONIDescriptor.preferencePrefix]** of the descriptor.
  * @return The status of the test.
  */
-fun PreferenceManager.resolveStatus(name: String, prefix: String): Boolean {
+fun PreferenceManager.resolveStatus(
+    name: String, prefix: String, autoRun: Boolean = false
+): Boolean {
     if (name == WebConnectivity.NAME) {
         return true
     } else if (experimentalTestList().contains(name)) {
         return isExperimentalOn
     }
-    return sp.getBoolean(getPreferenceKey(name = name, prefix = prefix), false)
+    return if (autoRun) {
+        sp.getBoolean(
+            getPreferenceKey(name = name, prefix = prefix, autoRun = autoRun),
+            resolveStatus(name = name, prefix = prefix)
+        )
+    } else {
+        return sp.getBoolean(getPreferenceKey(name = name, prefix = prefix), false)
+    }
+}
+
+fun PreferenceManager.enableTest(
+    name: String,
+    prefix: String,
+    autoRun: Boolean = false,
+): Boolean {
+    return setValue(name = name, value = true, prefix = prefix, autoRun = autoRun)
+}
+
+fun PreferenceManager.disableTest(
+    name: String,
+    prefix: String,
+    autoRun: Boolean = false,
+): Boolean {
+    return setValue(name = name, value = false, prefix = prefix, autoRun = autoRun)
+}
+
+private fun PreferenceManager.setValue(
+    name: String,
+    value: Boolean,
+    prefix: String,
+    autoRun: Boolean = false,
+): Boolean {
+    if (name == WebConnectivity.NAME || experimentalTestList().contains(name)) {
+        return false
+    }
+    return with(sp.edit()) {
+        putBoolean(getPreferenceKey(name = name, prefix = prefix, autoRun = autoRun), value)
+        commit()
+    }
 }
 
 /**
@@ -41,8 +81,13 @@ fun PreferenceManager.resolveStatus(name: String, prefix: String): Boolean {
  * @param prefix The **[OONIDescriptor.preferencePrefix]** of the descriptor.
  * @return The preference key.
  */
-fun PreferenceManager.getPreferenceKey(name: String, prefix: String): String {
-    return "$prefix${getPreferenceKey(name)}"
+fun PreferenceManager.getPreferenceKey(
+    name: String, prefix: String, autoRun: Boolean = false
+): String {
+    return when (autoRun) {
+        true -> "${prefix}autorun_${getPreferenceKey(name)}"
+        false -> "$prefix${getPreferenceKey(name)}"
+    }
 }
 
 
@@ -115,7 +160,7 @@ fun PreferenceManager.disableTest(name: String): Boolean {
  * @param value The value to set the preference to.
  * @return true if the preference was successfully set, false otherwise.
  */
-fun PreferenceManager.setValue(name: String, value: Boolean): Boolean {
+private fun PreferenceManager.setValue(name: String, value: Boolean): Boolean {
     if (name == WebConnectivity.NAME || experimentalTestList().contains(name)) {
         return false
     }

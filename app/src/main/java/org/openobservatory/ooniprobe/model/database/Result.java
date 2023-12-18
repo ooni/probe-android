@@ -211,8 +211,9 @@ public class Result extends BaseModel implements Serializable {
         }
         delete();
         //Network object is deleted after the Result object to avoid constraint fail
-        if (this.network != null)
+        if (this.network != null) {
             this.network.delete();
+        }
     }
 
     public Optional<OONIDescriptor<BaseNettest>> getDescriptor(Context context) {

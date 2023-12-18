@@ -3,7 +3,6 @@ package org.openobservatory.ooniprobe.common
 import android.content.Context
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.test.suite.DynamicTestSuite
-import org.openobservatory.ooniprobe.test.test.AbstractTest
 import javax.inject.Inject
 import javax.inject.Singleton
 
