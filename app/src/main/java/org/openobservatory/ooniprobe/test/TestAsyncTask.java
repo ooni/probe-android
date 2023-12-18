@@ -187,8 +187,18 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 
             currentTest.setInputs(inputs);
 
-            if (currentTest.getMax_runtime() == null)
+            /*
+             * Set the maximum runtime if the test doesn't yet have it. This is only done if the test is not unattended.
+             * Previously, this was not required, because the code path for unattended tests
+             * did not call this method. However, now that we are using the same code path as of https://github.com/ooni/probe-android/pull/572,
+             * This is now required to ensure the manual tests follow the preference set by the user,
+             * while the unattended tests doesn't.
+             *
+             * See https://github.com/ooni/probe/issues/2644.
+             */
+            if (currentTest.getMax_runtime() == null && !unattended) {
                 currentTest.setMax_runtime(app.getPreferenceManager().getMaxRuntime());
+            }
             publishProgress(URL);
         } catch (Exception e) {
             e.printStackTrace();

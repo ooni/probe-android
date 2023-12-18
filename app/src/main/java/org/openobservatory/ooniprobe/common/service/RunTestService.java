@@ -209,6 +209,9 @@ public class RunTestService extends Service {
             ) {
                 return;
             }
+            if (key == null) {
+                return;
+            }
             switch (key) {
                 case TestAsyncTask.RUN:
                     Log.d(TAG, "TestAsyncTask.RUN");

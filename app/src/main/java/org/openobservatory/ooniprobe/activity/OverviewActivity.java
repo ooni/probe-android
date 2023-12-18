@@ -69,7 +69,7 @@ public class OverviewActivity extends AbstractActivity {
         setTitle(descriptor.getTitle());
         setThemeColor(ContextCompat.getColor(this, descriptor.getColor()));
         binding.icon.setImageResource(descriptor.getDisplayIcon(this));
-        binding.customUrl.setVisibility(descriptor.getName().equals(OONITests.WEBSITES.name()) ? View.VISIBLE : View.GONE);
+        binding.customUrl.setVisibility(descriptor.getName().equals(OONITests.WEBSITES.getLabel()) ? View.VISIBLE : View.GONE);
         Markwon markwon = Markwon.builder(this).usePlugin(new ReadMorePlugin(getString(R.string.OONIRun_ReadMore), getString(R.string.OONIRun_ReadLess))).build();
         if (descriptor.getName().equals(OONITests.EXPERIMENTAL.name())) {
             markwon.setMarkdown(binding.desc, descriptor.getDescription());
