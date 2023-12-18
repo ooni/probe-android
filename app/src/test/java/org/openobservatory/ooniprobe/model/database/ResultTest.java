@@ -17,6 +17,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import com.google.common.base.Optional;
+
 public class ResultTest extends RobolectricAbstractTest {
 
     @Test
@@ -209,12 +211,12 @@ public class ResultTest extends RobolectricAbstractTest {
 
     @Test
     public void getTestSuite() {
-        assertEquals(OONITests.WEBSITES.getLabel(), new Result(OONITests.WEBSITES.getLabel()).getTestSuite(c).getName());
-        assertEquals(OONITests.INSTANT_MESSAGING.getLabel(), new Result(OONITests.INSTANT_MESSAGING.getLabel()).getTestSuite(c).getName());
-        assertEquals(OONITests.PERFORMANCE.getLabel(), new Result(OONITests.PERFORMANCE.getLabel()).getTestSuite(c).getName());
-        assertEquals(OONITests.CIRCUMVENTION.getLabel(), new Result(OONITests.CIRCUMVENTION.getLabel()).getTestSuite(c).getName());
-        assertEquals(OONITests.EXPERIMENTAL.getLabel(), new Result(OONITests.EXPERIMENTAL.getLabel()).getTestSuite(c).getName());
-        assertEquals(new Result("invalid").getTestSuite(c).getName(),"invalid");
+        assertEquals(OONITests.WEBSITES.getLabel(), new Result(OONITests.WEBSITES.getLabel()).getTestSuite(c).get().getName());
+        assertEquals(OONITests.INSTANT_MESSAGING.getLabel(), new Result(OONITests.INSTANT_MESSAGING.getLabel()).getTestSuite(c).get().getName());
+        assertEquals(OONITests.PERFORMANCE.getLabel(), new Result(OONITests.PERFORMANCE.getLabel()).getTestSuite(c).get().getName());
+        assertEquals(OONITests.CIRCUMVENTION.getLabel(), new Result(OONITests.CIRCUMVENTION.getLabel()).getTestSuite(c).get().getName());
+        assertEquals(OONITests.EXPERIMENTAL.getLabel(), new Result(OONITests.EXPERIMENTAL.getLabel()).getTestSuite(c).get().getName());
+        assertEquals(new Result("invalid").getTestSuite(c), Optional.absent());
     }
 
     @Test

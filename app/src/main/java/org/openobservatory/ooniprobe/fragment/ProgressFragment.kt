@@ -28,8 +28,8 @@ import javax.inject.Inject
  * Monitors and displays progress of [RunTestService].
  */
 class ProgressFragment : Fragment() {
-	private lateinit var receiver: TestRunBroadRequestReceiver
-	private lateinit var biding: FragmentProgressBinding
+    private lateinit var receiver: TestRunBroadRequestReceiver
+    private lateinit var biding: FragmentProgressBinding
 
     @Inject
     lateinit var preferenceManager: PreferenceManager
@@ -134,13 +134,13 @@ class ProgressFragment : Fragment() {
                         }
                     }
                     biding.name.text = when (task.currentSuite.name.equals(OONITests.EXPERIMENTAL.label)) {
-                        true -> SpannableStringBuilder().bold { append(currentTest.name) }
-                        false -> SpannableStringBuilder().bold { append(getString(currentTest.labelResId)) }
-                    }.append(" ")
-                        .append(
-                            getString(R.string.Dashboard_Running_Running)
-                                .replace(":", "").toLowerCase()
-                        )
+                            true -> SpannableStringBuilder().bold { append(currentTest.name) }
+                            false -> SpannableStringBuilder().bold { append(getString(currentTest.labelResId)) }
+                        }.append(" ")
+                            .append(
+                                getString(R.string.Dashboard_Running_Running)
+                                    .replace(":", "").toLowerCase()
+                            )
 
                 }
             }

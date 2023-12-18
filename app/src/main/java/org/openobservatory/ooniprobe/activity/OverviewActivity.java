@@ -1,8 +1,13 @@
 package org.openobservatory.ooniprobe.activity;
 
+import static org.openobservatory.ooniprobe.activity.overview.OverviewViewModel.SELECT_ALL;
+import static org.openobservatory.ooniprobe.activity.overview.OverviewViewModel.SELECT_NONE;
+import static org.openobservatory.ooniprobe.activity.overview.OverviewViewModel.SELECT_SOME;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.view.View;
 import android.view.Window;
@@ -12,9 +17,13 @@ import androidx.core.content.ContextCompat;
 import androidx.core.text.TextUtilsCompat;
 import androidx.core.view.ViewCompat;
 
+import com.google.android.material.checkbox.MaterialCheckBox;
+
 import org.openobservatory.engine.BaseNettest;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.customwebsites.CustomWebsiteActivity;
+import org.openobservatory.ooniprobe.activity.overview.OverviewTestsExpandableListViewAdapter;
+import org.openobservatory.ooniprobe.activity.overview.OverviewViewModel;
 import org.openobservatory.ooniprobe.common.OONIDescriptor;
 import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
@@ -35,6 +44,12 @@ public class OverviewActivity extends AbstractActivity {
 
     @Inject
     PreferenceManager preferenceManager;
+
+    @Inject
+    OverviewViewModel viewModel;
+
+    OverviewTestsExpandableListViewAdapter adapter;
+
     private OONIDescriptor<BaseNettest> descriptor;
 
     public static Intent newIntent(Context context, OONIDescriptor<BaseNettest> descriptor) {
@@ -48,6 +63,7 @@ public class OverviewActivity extends AbstractActivity {
         descriptor = (OONIDescriptor) getIntent().getSerializableExtra(TEST);
         binding = ActivityOverviewBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        viewModel.updateDescriptor(descriptor);
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(descriptor.getTitle());
@@ -70,7 +86,58 @@ public class OverviewActivity extends AbstractActivity {
             binding.lastTime.setText(DateUtils.getRelativeTimeSpanString(lastResult.start_time.getTime()));
         }
 
+        adapter = new OverviewTestsExpandableListViewAdapter(descriptor.overviewExpandableListViewData(preferenceManager), viewModel);
+        binding.expandableListView.setAdapter(adapter);
+
+        viewModel.getSelectedAllBtnStatus().observe(this, this::selectAllBtnStatusObserver);
+        binding.switchTests.addOnCheckedStateChangedListener((checkBox, state) -> {
+            switch (state) {
+                case MaterialCheckBox.STATE_CHECKED -> {
+                    viewModel.setSelectedAllBtnStatus(SELECT_ALL);
+                    adapter.notifyDataSetChanged();
+                }
+                case MaterialCheckBox.STATE_UNCHECKED -> {
+                    viewModel.setSelectedAllBtnStatus(SELECT_NONE);
+                    adapter.notifyDataSetChanged();
+                }
+                case MaterialCheckBox.STATE_INDETERMINATE -> {
+                    viewModel.setSelectedAllBtnStatus(SELECT_SOME);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
+
+        if (adapter.isSelectedAllItems()) {
+            binding.switchTests.setCheckedState(MaterialCheckBox.STATE_CHECKED);
+        } else if (adapter.isNotSelectedAnyGroupItem()) {
+            binding.switchTests.setCheckedState(MaterialCheckBox.STATE_UNCHECKED);
+        } else {
+            binding.switchTests.setCheckedState(MaterialCheckBox.STATE_INDETERMINATE);
+        }
+        binding.switchTests.setEnabled(descriptor.hasPreferencePrefix());
+        // Expand all groups
+        for (int i = 0; i < adapter.getGroupCount(); i++) {
+            binding.expandableListView.expandGroup(i);
+        }
+
         setUpOnCLickListeners();
+    }
+
+    private void selectAllBtnStatusObserver(String selectAllBtnStatus) {
+        if (!TextUtils.isEmpty(selectAllBtnStatus)) {
+            switch (selectAllBtnStatus) {
+                case SELECT_ALL -> {
+                    binding.switchTests.setCheckedState(MaterialCheckBox.STATE_CHECKED);
+                }
+                case SELECT_NONE -> {
+                    binding.switchTests.setCheckedState(MaterialCheckBox.STATE_UNCHECKED);
+                }
+                case SELECT_SOME -> {
+                    binding.switchTests.setCheckedState(MaterialCheckBox.STATE_INDETERMINATE);
+                }
+            }
+            adapter.notifyDataSetChanged();
+        }
     }
 
     public void setThemeColor(int color) {
