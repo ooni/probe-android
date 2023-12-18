@@ -56,10 +56,14 @@ public class TestRunBroadRequestReceiver extends BroadcastReceiver implements Se
         }
         switch (key) {
             case TestAsyncTask.START:
-                if (listener != null) listener.onStart(service);
+                if (listener != null && service != null) {
+                    listener.onStart(service);
+                }
                 break;
             case TestAsyncTask.RUN:
-                if (listener != null) listener.onRun(value);
+                if (listener != null) {
+                    listener.onRun(value);
+                }
                 break;
             case TestAsyncTask.PRG:
                 try {
