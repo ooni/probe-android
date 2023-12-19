@@ -152,13 +152,4 @@ and follow the instructions there.
 
 * Open a pull request
 
-This project is tested with BrowserStack.
-
-This project is tested with BrowserStack
-
-This project is sponsored by Browserstack.
-
-This project is sponsored by Browserstack
-
-
 * Have fun!
