@@ -17,6 +17,12 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content" />
 
+	<FrameLayout
+		android:id="@+id/dynamic_progress_fragment"
+		android:layout_width="match_parent"
+		android:layout_height="?attr/actionBarSize"
+		android:visibility="gone" />
+
 	<com.google.android.material.bottomnavigation.BottomNavigationView
 		android:id="@+id/bottomNavigation"
 		android:layout_width="match_parent"

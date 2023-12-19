@@ -19,6 +19,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -31,6 +32,9 @@ import org.openobservatory.ooniprobe.domain.UpdatesNotificationManager;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
 import org.openobservatory.ooniprobe.fragment.PreferenceGlobalFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
+import org.openobservatory.ooniprobe.fragment.dynamic_progress.DynamicProgressFragment;
+import org.openobservatory.ooniprobe.fragment.dynamic_progress.OnActionListener;
+import org.openobservatory.ooniprobe.fragment.dynamic_progress.ProgressType;
 
 import java.io.Serializable;
 
@@ -200,8 +204,26 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 e.printStackTrace();
             }
             if (runId == 0) return;
-            Snackbar.make(binding.getRoot(), getString(R.string.OONIBrowser_Loading), Snackbar.LENGTH_LONG).show();
             TaskExecutor executor = new TaskExecutor();
+
+            binding.dynamicProgressFragment.setVisibility(View.VISIBLE);
+            getSupportFragmentManager().beginTransaction()
+                    .add(
+                            R.id.dynamic_progress_fragment,
+                            DynamicProgressFragment.newInstance(ProgressType.ADD_LINK, new OnActionListener() {
+                                @Override
+                                public void onActionButtonCLicked() {
+                                    executor.cancelTask();
+                                    removeProgressFragment();
+                                }
+
+                                @Override
+                                public void onIconButtonClicked() {
+                                    removeProgressFragment();
+                                }
+                            }),
+                            DynamicProgressFragment.getTAG()
+                    ).commit();
             long finalRunId = runId;
             executor.executeTask(
                     () -> {
@@ -215,18 +237,16 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                     },
                     descriptorResponse -> {
                         if (descriptorResponse != null) {
-                            //binding.progressIndicator.setVisibility(View.GONE);
                             startActivity(AddDescriptorActivity.newIntent(this, descriptorResponse));
                         } else {
-                            //binding.progressIndicator.setVisibility(View.GONE);
-                            //loadInvalidAttributes();
+                            // TODO(aanorbel): Provide a better error message.
+                            Snackbar.make(binding.getRoot(), R.string.Modal_Error, Snackbar.LENGTH_LONG)
+                                    .setAnchorView(binding.bottomNavigation) // NOTE:To avoid the `snackbar` from covering the bottom navigation.
+                                    .show();
                         }
+                        removeProgressFragment();
                         return null;
                     });
-
-
-            System.out.println(host);
-            System.out.println(runId);
         } else {
             if (intent.getExtras() != null) {
                 if (intent.getExtras().containsKey(RES_ITEM))
@@ -241,6 +261,14 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 }
             }
         }
+    }
+
+    private void removeProgressFragment() {
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(DynamicProgressFragment.getTAG());
+        if (fragment != null && fragment.isAdded()) {
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+        }
+        binding.dynamicProgressFragment.setVisibility(View.GONE);
     }
 
     @Override
