@@ -191,6 +191,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         // Check if we are starting the activity from a link [Intent.ACTION_VIEW].
+        // This is invoked when a v2 link is opened.
         if (Intent.ACTION_VIEW.equals(intent.getAction())) {
             Uri uri = intent.getData();
             // If the intent does not contain a link, do nothing.
