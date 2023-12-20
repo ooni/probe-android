@@ -101,7 +101,6 @@ class AddDescriptorActivity : AbstractActivity() {
         }
         val viewModel: AddDescriptorViewModel by viewModels {
             object : ViewModelProvider.Factory {
-
                 override fun <T : ViewModel> create(modelClass: Class<T>): T {
                     return AddDescriptorViewModel(descriptorManager) as T
                 }
