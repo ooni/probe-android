@@ -15,12 +15,22 @@ import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.add_descriptor.AddDescriptorViewModel
 import org.openobservatory.ooniprobe.test.test.AbstractTest
 
+
+/**
+ * An extension of [OONIRunNettest] class
+ * used to track the selected state of nettests in the [ExpandableListView].
+ */
 class GroupedItem(
     override var name: String,
     override var inputs: List<String>?,
     var selected: Boolean = false
 ) : OONIRunNettest(name = name, inputs = inputs)
 
+/**
+ * Adapter class for the [ExpandableListView] in [AddDescriptorActivity].
+ * @param nettests List of GroupedItem objects.
+ * @param viewModel AddDescriptorViewModel object.
+ */
 class AddDescriptorExpandableListAdapter(
     val nettests: List<GroupedItem>,
     val viewModel: AddDescriptorViewModel

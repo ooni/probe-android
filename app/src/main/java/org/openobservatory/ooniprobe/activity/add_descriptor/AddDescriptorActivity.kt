@@ -28,10 +28,20 @@ import org.openobservatory.ooniprobe.common.TestDescriptorManager
 import org.openobservatory.ooniprobe.databinding.ActivityAddDescriptorBinding
 import javax.inject.Inject
 
+/**
+ * This activity is used to add a new descriptor to the application. The activity shows the tests that are included in the descriptor.
+ * The user can select which tests to include, and if the descriptor should be automatically updated.
+ */
 class AddDescriptorActivity : AbstractActivity() {
     companion object {
         private const val DESCRIPTOR = "descriptor"
 
+        /**
+         * This method is used to create an intent to start this activity.
+         * @param context is the context of the activity that calls this method
+         * @param descriptor is the descriptor to add
+         * @return an intent to start this activity
+         */
         @JvmStatic
         fun newIntent(context: Context, descriptor: OONIRunDescriptor): Intent {
             return Intent(context, AddDescriptorActivity::class.java).putExtra(
@@ -144,11 +154,13 @@ class AddDescriptorActivity : AbstractActivity() {
                 binding.testsCheckbox.checkedState = state;
             }
 
+            // This observer is used to change the state of the "Select All" button when a checkbox is clicked.
             binding.testsCheckbox.addOnCheckedStateChangedListener { checkBox, state ->
                 viewModel.setSelectedAllBtnStatus(state)
                 adapter.notifyDataSetChanged()
             }
 
+            // This observer is used to finish the activity when the descriptor is added.
             viewModel.finishActivity.observe(this) { shouldFinish ->
                 if (shouldFinish) {
                     finish()

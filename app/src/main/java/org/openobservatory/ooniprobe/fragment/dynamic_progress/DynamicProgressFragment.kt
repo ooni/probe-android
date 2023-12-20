@@ -36,7 +36,7 @@ class DynamicProgressFragment : Fragment() {
             onActionListener?.onActionButtonCLicked()
         }
         binding.iconButton.setOnClickListener {
-            onActionListener?.onIconButtonClicked()
+            onActionListener?.onCloseButtonClicked()
         }
         when (progressType) {
             ProgressType.ADD_LINK -> {
@@ -115,5 +115,5 @@ interface OnActionListener {
     /**
      * Called when the icon button is clicked.
      */
-    fun onIconButtonClicked()
+    fun onCloseButtonClicked()
 }
