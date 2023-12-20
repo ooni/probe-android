@@ -9,7 +9,6 @@ import java.util.Locale;
 
 public class LocaleUtils {
 
-
     public static Locale sLocale;
 
     public static void setLocale(Locale locale) {
