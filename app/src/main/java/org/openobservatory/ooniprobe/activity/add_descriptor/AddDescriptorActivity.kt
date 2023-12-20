@@ -85,7 +85,6 @@ class AddDescriptorActivity : AbstractActivity() {
     @Inject
     lateinit var descriptorManager: TestDescriptorManager
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityComponent.inject(this)
