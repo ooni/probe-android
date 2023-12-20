@@ -190,8 +190,10 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        // Check if we are starting the activity from a link [Intent.ACTION_VIEW].
-        // This is invoked when a v2 link is opened.
+        /**
+         * Check if we are starting the activity from a link [Intent.ACTION_VIEW].
+         * This is invoked when a v2 link is opened.
+         */
         if (Intent.ACTION_VIEW.equals(intent.getAction())) {
             Uri uri = intent.getData();
             // If the intent does not contain a link, do nothing.
@@ -220,10 +222,16 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 }
             }, this::fetchDescriptorComplete);
         } else {
+            /**
+             * Check if we are starting the activity with an intent extra.
+             * This is invoked when we are starting the activity from a notification or
+             * when the activity is launched from the onboarding fragment
+             * @see {@link org.openobservatory.ooniprobe.fragment.onboarding.Onboarding3Fragment#masterClick}.
+             */
             if (intent.getExtras() != null) {
-                if (intent.getExtras().containsKey(RES_ITEM))
+                if (intent.getExtras().containsKey(RES_ITEM)) {
                     binding.bottomNavigation.setSelectedItemId(intent.getIntExtra(RES_ITEM, R.id.dashboard));
-                else if (intent.getExtras().containsKey(NOTIFICATION_DIALOG)) {
+                } else if (intent.getExtras().containsKey(NOTIFICATION_DIALOG)) {
                     new ConfirmDialogFragment.Builder()
                             .withTitle(intent.getExtras().getString("title"))
                             .withMessage(intent.getExtras().getString("message"))
