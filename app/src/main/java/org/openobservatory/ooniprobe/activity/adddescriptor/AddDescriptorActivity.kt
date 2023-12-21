@@ -1,4 +1,4 @@
-package org.openobservatory.ooniprobe.activity.add_descriptor
+package org.openobservatory.ooniprobe.activity.adddescriptor
 
 import android.content.Context
 import android.content.Intent
@@ -15,13 +15,12 @@ import androidx.appcompat.widget.Toolbar
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.checkbox.MaterialCheckBox
 import io.noties.markwon.Markwon
 import org.openobservatory.engine.OONIRunDescriptor
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
-import org.openobservatory.ooniprobe.activity.add_descriptor.adapter.AddDescriptorExpandableListAdapter
-import org.openobservatory.ooniprobe.activity.add_descriptor.adapter.GroupedItem
+import org.openobservatory.ooniprobe.activity.adddescriptor.adapter.AddDescriptorExpandableListAdapter
+import org.openobservatory.ooniprobe.activity.adddescriptor.adapter.GroupedItem
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.common.ReadMorePlugin
 import org.openobservatory.ooniprobe.common.TestDescriptorManager

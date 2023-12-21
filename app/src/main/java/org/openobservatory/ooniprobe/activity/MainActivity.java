@@ -27,7 +27,7 @@ import com.google.common.base.Optional;
 
 import org.openobservatory.engine.OONIRunDescriptor;
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.activity.add_descriptor.AddDescriptorActivity;
+import org.openobservatory.ooniprobe.activity.adddescriptor.AddDescriptorActivity;
 import org.openobservatory.ooniprobe.common.*;
 import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.databinding.ActivityMainBinding;

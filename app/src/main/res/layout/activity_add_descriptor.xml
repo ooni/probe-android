@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activity.add_descriptor.AddDescriptorActivity">
+    tools:context=".activity.adddescriptor.AddDescriptorActivity">
 
     <data>
 
@@ -10,7 +10,7 @@
 
         <variable
             name="viewmodel"
-            type="org.openobservatory.ooniprobe.activity.add_descriptor.AddDescriptorViewModel" />
+            type="org.openobservatory.ooniprobe.activity.adddescriptor.AddDescriptorViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

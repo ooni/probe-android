@@ -1,4 +1,4 @@
-package org.openobservatory.ooniprobe.activity.add_descriptor.adapter
+package org.openobservatory.ooniprobe.activity.adddescriptor.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +12,7 @@ import com.google.android.material.checkbox.MaterialCheckBox.STATE_INDETERMINATE
 import com.google.android.material.checkbox.MaterialCheckBox.STATE_UNCHECKED
 import org.openobservatory.engine.OONIRunNettest
 import org.openobservatory.ooniprobe.R
-import org.openobservatory.ooniprobe.activity.add_descriptor.AddDescriptorViewModel
+import org.openobservatory.ooniprobe.activity.adddescriptor.AddDescriptorViewModel
 import org.openobservatory.ooniprobe.test.test.AbstractTest
 
 

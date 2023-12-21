@@ -1,15 +1,13 @@
-package org.openobservatory.ooniprobe.activity.add_descriptor
+package org.openobservatory.ooniprobe.activity.adddescriptor
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewmodel.ViewModelFactoryDsl
 import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.android.material.checkbox.MaterialCheckBox.CheckedState
 import org.openobservatory.engine.OONIRunDescriptor
-import org.openobservatory.ooniprobe.activity.add_descriptor.adapter.GroupedItem
+import org.openobservatory.ooniprobe.activity.adddescriptor.adapter.GroupedItem
 import org.openobservatory.ooniprobe.common.LocaleUtils
 import org.openobservatory.ooniprobe.common.TestDescriptorManager
-import javax.inject.Inject
 
 /**
  * ViewModel for the AddDescriptorActivity. This class is responsible for preparing and managing the data for the AddDescriptorActivity.

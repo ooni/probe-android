@@ -59,7 +59,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.add_descriptor.AddDescriptorActivity"
+            android:name=".activity.adddescriptor.AddDescriptorActivity"
             android:exported="false"
             android:parentActivityName=".activity.MainActivity"
             android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar" />
