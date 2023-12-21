@@ -82,8 +82,8 @@ class AddDescriptorActivity : AbstractActivity() {
         @JvmStatic
         @BindingAdapter(value = ["resource"])
         fun setImageViewResource(imageView: ImageView, iconName: String?) {
-            /*TODO(aanorbel): Update to parse the icon name and set the correct icon.
-            *  Remember to ignore icons generated when generated doing this.*/
+            /* TODO(aanorbel): Update to parse the icon name and set the correct icon.
+            * Remember to ignore icons generated when generated doing this.*/
             imageView.setImageResource(R.drawable.ooni_empty_state)
         }
 

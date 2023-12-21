@@ -116,7 +116,6 @@ class AddDescriptorExpandableListAdapter(
         groupCheckBox.setOnClickListener {
             if (groupItem.selected) {
                 groupItem.selected = false
-                //viewModel.disableTest(groupItem.name)
                 notifyDataSetChanged()
                 if (isNotSelectedAnyGroupItem()) {
                     viewModel.setSelectedAllBtnStatus(STATE_UNCHECKED)
@@ -125,7 +124,6 @@ class AddDescriptorExpandableListAdapter(
                 }
             } else {
                 groupItem.selected = true
-                //viewModel.enableTest(groupItem.name)
                 notifyDataSetChanged()
 
                 if (isSelectedAllItems()) {

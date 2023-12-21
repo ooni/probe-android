@@ -44,18 +44,18 @@ class AddDescriptorViewModel constructor(
      */
     fun getName(): String {
         return descriptor.value?.let { descriptor ->
-            descriptor.nameIntl[LocaleUtils.sLocale.language] ?: descriptor.name
+            descriptor.nameIntl[LocaleUtils.getLocale().language] ?: descriptor.name
         } ?: ""
     }
 
     /**
-     * This method is used to get the name of the descriptor.
+     * This method is used to get the description of the descriptor.
      * Used by the UI during data binding.
      * @return the name of the descriptor.
      */
     fun getDescription(): String {
         return descriptor.value?.let { descriptor ->
-            descriptor.descriptionIntl[LocaleUtils.sLocale.language] ?: descriptor.description
+            descriptor.descriptionIntl[LocaleUtils.getLocale().language] ?: descriptor.description
         } ?: ""
     }
 
@@ -66,7 +66,7 @@ class AddDescriptorViewModel constructor(
      */
     fun getShortDescription(): String {
         return descriptor.value?.let { descriptor ->
-            descriptor.shortDescriptionIntl[LocaleUtils.sLocale.language]
+            descriptor.shortDescriptionIntl[LocaleUtils.getLocale().language]
                 ?: descriptor.shortDescription
         } ?: ""
     }

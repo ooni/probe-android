@@ -1,4 +1,4 @@
-package org.openobservatory.ooniprobe.fragment.dynamic_progress
+package org.openobservatory.ooniprobe.fragment.dynamicprogressbar
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,16 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import org.openobservatory.ooniprobe.R
-import org.openobservatory.ooniprobe.databinding.FragmentDynamicProgressBinding
-
+import org.openobservatory.ooniprobe.databinding.RunDynamicProgressBarBinding
 
 /**
  * A [Fragment] subclass that displays a dynamic progress bar and handles user actions.
  * The progress bar can be in one of the following states: [ProgressType.ADD_LINK], [ProgressType.UPDATE_LINK], [ProgressType.REVIEW_LINK].
  * The user actions are handled through the OnActionListener interface.
- * Use the [DynamicProgressFragment.newInstance] factory method to create an instance of this fragment.
+ * Use the [OONIRunDynamicProgressBar.newInstance] factory method to create an instance of this fragment.
  */
-class DynamicProgressFragment : Fragment() {
+class OONIRunDynamicProgressBar : Fragment() {
     private var progressType: ProgressType? = null
     private var onActionListener: OnActionListener? = null
 
@@ -31,7 +30,7 @@ class DynamicProgressFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentDynamicProgressBinding.inflate(inflater, container, false)
+        val binding = RunDynamicProgressBarBinding.inflate(inflater, container, false)
         binding.actionButton.setOnClickListener {
             onActionListener?.onActionButtonCLicked()
         }
@@ -71,7 +70,7 @@ class DynamicProgressFragment : Fragment() {
         private const val PROGRESS_TYPE = "PROGRESS_TYPE"
 
         @JvmStatic
-        var TAG: String = DynamicProgressFragment::class.java.name
+        var TAG: String = OONIRunDynamicProgressBar::class.java.name
 
         /**
          * Use this factory method to create a new instance of
@@ -85,8 +84,8 @@ class DynamicProgressFragment : Fragment() {
         fun newInstance(
             progressType: ProgressType,
             onActionListener: OnActionListener?
-        ): DynamicProgressFragment {
-            return DynamicProgressFragment().apply {
+        ): OONIRunDynamicProgressBar {
+            return OONIRunDynamicProgressBar().apply {
                 arguments = Bundle().apply {
                     putString(PROGRESS_TYPE, progressType.name)
                 }

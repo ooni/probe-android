@@ -23,6 +23,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.common.base.Optional;
 
 import org.openobservatory.engine.OONIRunDescriptor;
 import org.openobservatory.ooniprobe.R;
@@ -34,9 +35,9 @@ import org.openobservatory.ooniprobe.domain.UpdatesNotificationManager;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
 import org.openobservatory.ooniprobe.fragment.PreferenceGlobalFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
-import org.openobservatory.ooniprobe.fragment.dynamic_progress.DynamicProgressFragment;
-import org.openobservatory.ooniprobe.fragment.dynamic_progress.OnActionListener;
-import org.openobservatory.ooniprobe.fragment.dynamic_progress.ProgressType;
+import org.openobservatory.ooniprobe.fragment.dynamicprogressbar.OONIRunDynamicProgressBar;
+import org.openobservatory.ooniprobe.fragment.dynamicprogressbar.OnActionListener;
+import org.openobservatory.ooniprobe.fragment.dynamicprogressbar.ProgressType;
 
 import java.io.Serializable;
 
@@ -193,6 +194,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
         /**
          * Check if we are starting the activity from a link [Intent.ACTION_VIEW].
          * This is invoked when a v2 link is opened.
+         * @see {@link org.openobservatory.ooniprobe.activity.OoniRunActivity#newIntent}. for v1 links.
          */
         if (Intent.ACTION_VIEW.equals(intent.getAction())) {
             Uri uri = intent.getData();
@@ -201,10 +203,15 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 return;
             }
 
-            long runId = getRunId(uri);
+            Optional<Long> possibleRunId = getRunId(uri);
 
-            // If the intent contains a link, but the `link_id` is zero, or the link is not supported, do nothing.
-            if (runId == 0) {
+            // If the intent contains a link, but it is not a supported link or has a non-numerical `link_id`.
+            if (!possibleRunId.isPresent()) {
+                return;
+            }
+
+            // If the intent contains a link, but the `link_id` is zero.
+            if (possibleRunId.get() == 0) {
                 return;
             }
 
@@ -214,7 +221,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
 
             executor.executeTask(() -> {
                 try {
-                    return descriptorManager.fetchDescriptorFromRunId(runId, this);
+                    return descriptorManager.fetchDescriptorFromRunId(possibleRunId.get(), this);
                 } catch (Exception exception) {
                     exception.printStackTrace();
                     ThirdPartyServices.logException(exception);
@@ -284,7 +291,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
         getSupportFragmentManager().beginTransaction()
                 .add(
                         R.id.dynamic_progress_fragment,
-                        DynamicProgressFragment.newInstance(ProgressType.ADD_LINK, new OnActionListener() {
+                        OONIRunDynamicProgressBar.newInstance(ProgressType.ADD_LINK, new OnActionListener() {
                             @Override
                             public void onActionButtonCLicked() {
                                 executor.cancelTask();
@@ -296,52 +303,61 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                                 removeProgressFragment();
                             }
                         }),
-                        DynamicProgressFragment.getTAG()
+                        OONIRunDynamicProgressBar.getTAG()
                 ).commit();
     }
 
     /**
-     * Get the run id from the intent.
-     * The run id can be in two different formats.
+     * Extracts the run id from the provided Uri.
+     * The run id can be in two different formats:
      * <p>
-     * 1. ooni://runv2/<link_id>
-     * 2. https://run.test.ooni.org/v2/<link_id>
+     * 1. ooni://runv2/#link_id
+     * 2. https://run.test.ooni.org/v2/#link_id
+     * <p>
      * The run id is the `link_id` in the link.
-     * If the intent contains a link, but the `link_id` is not a number, return zero.
-     * If the intent contains a link, but it is not a supported link, return zero.
+     * If the Uri contains a link, but the `link_id` is not a number, an empty Optional is returned.
+     * If the Uri contains a link, but it is not a supported link, an empty Optional is returned.
+     * <p>
      *
-     * @param uri The intent data.
-     * @return The run id if the intent contains a link with a valid `link_id`.
+     * @param uri The Uri data.
+     * @return An Optional containing the run id if the Uri contains a link with a valid `link_id`, or an empty Optional otherwise.
      */
-    private long getRunId(Uri uri) {
+    private Optional<Long> getRunId(Uri uri) {
         String host = uri.getHost();
-        long runId = 0;
 
         try {
             if ("runv2".equals(host)) {
                 /**
                  * The run id is the first segment of the path.
                  * Launched when `Open Link in OONI Probe` is clicked.
-                 * e.g. ooni://runv2/<link_id>
+                 * e.g. ooni://runv2/#link_id
                  */
-                runId = Long.parseLong(uri.getPathSegments().get(0));
+                return Optional.of(
+                        Long.parseLong(
+                                uri.getPathSegments().get(0)
+                        )
+                );
             } else if ("run.test.ooni.org".equals(host)) {
                 /**
                  * The run id is the second segment of the path.
                  * Launched when the system recognizes this app can open this link
                  * and launches the app when a link is clicked.
-                 * e.g. https://run.test.ooni.org/v2/<link_id>
+                 * e.g. https://run.test.ooni.org/v2/#link_id
                  */
-                runId = Long.parseLong(uri.getPathSegments().get(1));
+                return Optional.of(
+                        Long.parseLong(
+                                uri.getPathSegments().get(1)
+                        )
+                );
             } else {
-                // If the intent contains a link, but it is not a supported link, return zero.
-                return 0;
+                // If the intent contains a link, but it is not a supported link.
+                return Optional.absent();
             }
         } catch (Exception e) {
             // If the intent contains a link, but the `link_id` is not a number.
             e.printStackTrace();
+            return Optional.absent();
         }
-        return runId;
     }
 
     /**
@@ -350,7 +366,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
      * This method is called when the task is completed.
      */
     private void removeProgressFragment() {
-        Fragment fragment = getSupportFragmentManager().findFragmentByTag(DynamicProgressFragment.getTAG());
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(OONIRunDynamicProgressBar.getTAG());
         if (fragment != null && fragment.isAdded()) {
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }

@@ -16,7 +16,7 @@ abstract class ProgressTask<P, R> {
 }
 
 /**
- * Callable is an alias for the java.util.concurrent.Callable interface.
+ * Task is an alias for the java.util.concurrent.Callable interface.
  * @param R The type of the result.
  */
 typealias Task<R> = Callable<R>
