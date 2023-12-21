@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.test.suite
 
+import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -16,9 +17,9 @@ class DynamicTestSuite(
     shortDescription: String,
     @DrawableRes icon: Int,
     @DrawableRes icon_24: Int,
-    @ColorRes color: Int,
+    @ColorInt color: Int,
     description: String,
-    animation: String,
+    animation: String?,
     dataUsage: Int,
     var nettest: List<BaseNettest>
 ) : AbstractSuite(

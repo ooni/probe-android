@@ -1,7 +1,10 @@
 package org.openobservatory.ooniprobe.activity.runtests.models
 
 import org.openobservatory.engine.BaseNettest
+import org.openobservatory.ooniprobe.common.AbstractDescriptor
 import org.openobservatory.ooniprobe.common.OONIDescriptor
+import org.openobservatory.ooniprobe.common.PreferenceManager
+import org.openobservatory.ooniprobe.test.suite.DynamicTestSuite
 
 class ChildItem(
     var selected: Boolean,
@@ -17,7 +20,7 @@ class GroupItem(
     override var description: String,
     override var icon: String,
     override var color: Int,
-    override var animation: String,
+    override var animation: String?,
     override var dataUsage: Int,
     override var nettests: List<ChildItem>
 ) : OONIDescriptor<ChildItem>(

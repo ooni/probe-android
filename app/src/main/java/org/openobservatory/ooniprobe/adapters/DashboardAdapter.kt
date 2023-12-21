@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import org.openobservatory.ooniprobe.R
-import org.openobservatory.ooniprobe.common.OONIDescriptor
+import org.openobservatory.ooniprobe.common.AbstractDescriptor
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.databinding.ItemSeperatorBinding
 import org.openobservatory.ooniprobe.databinding.ItemTestsuiteBinding
@@ -54,7 +54,7 @@ class DashboardAdapter(
 
             VIEW_TYPE_CARD -> {
                 val cardHolder = holder as CardViewHolder
-                if (item is OONIDescriptor<*>) {
+                if (item is AbstractDescriptor<*>) {
                     cardHolder.binding.apply {
                         title.setText(item.title)
                         desc.setText(item.shortDescription)

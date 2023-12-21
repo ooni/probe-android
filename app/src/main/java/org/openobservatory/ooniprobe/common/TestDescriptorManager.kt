@@ -1,11 +1,13 @@
 package org.openobservatory.ooniprobe.common
 
 import android.content.Context
+import com.raizlabs.android.dbflow.sql.language.SQLite
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.engine.LoggerArray
 import org.openobservatory.engine.OONIRunFetchResponse
 import org.openobservatory.ooniprobe.BuildConfig
 import org.openobservatory.ooniprobe.model.database.TestDescriptor
+import org.openobservatory.ooniprobe.model.database.TestDescriptor_Table
 import org.openobservatory.ooniprobe.test.EngineProvider
 import org.openobservatory.ooniprobe.test.suite.DynamicTestSuite
 import javax.inject.Inject
@@ -61,5 +63,10 @@ class TestDescriptorManager @Inject constructor(private val context: Context) {
 
     fun addDescriptor(descriptor: TestDescriptor): Boolean {
         return descriptor.save()
+    }
+
+    fun getRunV2Descriptors(): List<TestDescriptor> {
+        return SQLite.select().from(TestDescriptor::class.java)
+            .where(TestDescriptor_Table.isArchived.eq(false)).queryList()
     }
 }

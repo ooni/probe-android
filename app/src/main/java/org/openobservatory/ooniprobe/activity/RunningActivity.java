@@ -173,11 +173,13 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
             binding.name.setText(service.task.currentTest.getName());
         else
             binding.name.setText(getString(service.task.currentTest.getLabelResId()));
-        getWindow().setBackgroundDrawableResource(service.task.currentSuite.getColor());
-        if (Build.VERSION.SDK_INT >= 21) {
+        try {
+            getWindow().setBackgroundDrawableResource(service.task.currentSuite.getColor());
             getWindow().setStatusBarColor(service.task.currentSuite.getColor());
+            binding.animation.setAnimation(service.task.currentSuite.getAnim());
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        binding.animation.setAnimation(service.task.currentSuite.getAnim());
         binding.progress.setMax(service.task.getMax(preferenceManager));
     }
 

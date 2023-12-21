@@ -3,6 +3,7 @@ package org.openobservatory.ooniprobe.test.suite;
 import android.os.Build;
 
 import androidx.annotation.CallSuper;
+import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
@@ -36,7 +37,7 @@ public abstract class AbstractSuite implements Serializable {
 	private Result result;
 	private boolean autoRun;
 
-	AbstractSuite(String name, String title, String cardDesc, @DrawableRes int icon, @DrawableRes int icon_24, @ColorRes int color, @StyleRes int themeLight, @StyleRes int themeDark, String desc1, String anim, int dataUsage) {
+	AbstractSuite(String name, String title, String cardDesc, @DrawableRes int icon, @DrawableRes int icon_24, @ColorInt int color, @StyleRes int themeLight, @StyleRes int themeDark, String desc1, String anim, int dataUsage) {
 		this.title = title;
 		this.cardDesc = cardDesc;
 		this.icon = icon;

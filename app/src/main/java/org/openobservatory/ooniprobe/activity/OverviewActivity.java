@@ -15,6 +15,7 @@ import androidx.core.view.ViewCompat;
 import org.openobservatory.engine.BaseNettest;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.customwebsites.CustomWebsiteActivity;
+import org.openobservatory.ooniprobe.common.AbstractDescriptor;
 import org.openobservatory.ooniprobe.common.OONIDescriptor;
 import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
@@ -35,9 +36,9 @@ public class OverviewActivity extends AbstractActivity {
 
     @Inject
     PreferenceManager preferenceManager;
-    private OONIDescriptor<BaseNettest> descriptor;
+    private AbstractDescriptor<BaseNettest> descriptor;
 
-    public static Intent newIntent(Context context, OONIDescriptor<BaseNettest> descriptor) {
+    public static Intent newIntent(Context context, AbstractDescriptor<BaseNettest> descriptor) {
         return new Intent(context, OverviewActivity.class).putExtra(TEST, descriptor);
     }
 
@@ -45,13 +46,13 @@ public class OverviewActivity extends AbstractActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActivityComponent().inject(this);
-        descriptor = (OONIDescriptor) getIntent().getSerializableExtra(TEST);
+        descriptor = (AbstractDescriptor) getIntent().getSerializableExtra(TEST);
         binding = ActivityOverviewBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(descriptor.getTitle());
-        setThemeColor(ContextCompat.getColor(this, descriptor.getColor()));
+        setThemeColor(descriptor.getColor());
         binding.icon.setImageResource(descriptor.getDisplayIcon(this));
         binding.customUrl.setVisibility(descriptor.getName().equals(OONITests.WEBSITES.name()) ? View.VISIBLE : View.GONE);
         Markwon markwon = Markwon.builder(this).usePlugin(new ReadMorePlugin(getString(R.string.OONIRun_ReadMore), getString(R.string.OONIRun_ReadLess))).build();

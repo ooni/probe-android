@@ -2,31 +2,31 @@ package org.openobservatory.ooniprobe.common
 
 import android.annotation.SuppressLint
 import android.content.Context
+import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
 import org.openobservatory.engine.BaseDescriptor
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsActivity
 import org.openobservatory.ooniprobe.activity.runtests.models.ChildItem
 import org.openobservatory.ooniprobe.activity.runtests.models.GroupItem
-import org.openobservatory.ooniprobe.test.suite.AbstractSuite
 import org.openobservatory.ooniprobe.test.suite.DynamicTestSuite
 import org.openobservatory.ooniprobe.test.test.*
 import java.io.Serializable
 
-open class OONIDescriptor<T : BaseNettest>(
+abstract class AbstractDescriptor<T : BaseNettest>(
     override var name: String,
     open var title: String,
     open var shortDescription: String,
     open var description: String,
     open var icon: String,
-    @ColorRes open var color: Int,
-    open var animation: String,
+    @ColorInt open var color: Int,
+    open var animation: String?,
     @StringRes open var dataUsage: Int,
     override var nettests: List<T>,
-    var longRunningTests: List<T>? = null
-) : Serializable, BaseDescriptor<T>(name = name, nettests = nettests) {
+) : BaseDescriptor<T>(name = name, nettests = nettests) {
 
     /**
      * Checks if any of the nettests are enabled based on the preferences stored in the provided [PreferenceManager].
@@ -34,7 +34,7 @@ open class OONIDescriptor<T : BaseNettest>(
      * @param preferenceManager The [PreferenceManager] instance used to resolve the status of each nettest.
      * @return Boolean Returns true if at least one nettest is enabled, false otherwise.
      */
-    fun isEnabled(preferenceManager: PreferenceManager): Boolean {
+    open fun isEnabled(preferenceManager: PreferenceManager): Boolean {
         return nettests.any {
             preferenceManager.resolveStatus(
                 name = it.name,
@@ -44,27 +44,39 @@ open class OONIDescriptor<T : BaseNettest>(
     }
 
     /**
+     * Returns the runtime of the current descriptor.
+     *
+     * @return Int representing the runtime of the current descriptor.
+     */
+    open fun getRuntime(context: Context, preferenceManager: PreferenceManager): Int {
+        return getTest(context).getRuntime(preferenceManager)
+    }
+
+    /**
      * Returns the display icon for the current descriptor.
      *
      * @return Int representing the display icon for the current descriptor.
      */
-    fun getDisplayIcon(context: Context): Int {
-        return context.resources.getIdentifier(icon, "drawable", context.packageName)
+    open fun getDisplayIcon(context: Context): Int {
+        return context.resources.getIdentifier(icon, "drawable", context.packageName).let {
+            if (it == 0) R.drawable.ooni_empty_state else it
+        }
     }
+
 
     /**
      * Converts the current descriptor to a [GroupItem] to be used in the [RunTestsActivity].
      *
      * @return [GroupItem] representing the current descriptor.
      */
-    fun toRunTestsGroupItem(preferenceManager: PreferenceManager): GroupItem {
+    open fun toRunTestsGroupItem(preferenceManager: PreferenceManager): GroupItem {
         return GroupItem(selected = false,
             name = this.name,
             title = this.title,
             shortDescription = this.shortDescription,
             description = this.description,
             icon = this.icon,
-            color = this.color,
+            color = color,
             animation = this.animation,
             dataUsage = this.dataUsage,
             nettests = this.nettests.map { nettest ->
@@ -78,20 +90,11 @@ open class OONIDescriptor<T : BaseNettest>(
     }
 
     /**
-     * Returns the runtime of the current descriptor.
-     *
-     * @return Int representing the runtime of the current descriptor.
-     */
-    fun getRuntime(context: Context, preferenceManager: PreferenceManager): Int {
-        return getTest(context).getRuntime(preferenceManager)
-    }
-
-    /**
      * Returns the test suite for the current descriptor.
      *
      * @return [DynamicTestSuite] representing the test suite for the current descriptor.
      */
-    fun getTest(context: Context): DynamicTestSuite {
+    open fun getTest(context: Context): DynamicTestSuite {
         return DynamicTestSuite(
             name = this.name,
             title = this.title,
@@ -106,6 +109,7 @@ open class OONIDescriptor<T : BaseNettest>(
         )
     }
 
+
     /**
      * Returns the preference prefix to be used for the current descriptor.
      *
@@ -119,6 +123,29 @@ open class OONIDescriptor<T : BaseNettest>(
         return OONITests.values().find { it.label == name }?.let { "" } ?: "descriptor_id_"
     }
 }
+
+open class OONIDescriptor<T : BaseNettest>(
+    override var name: String,
+    override var title: String,
+    override var shortDescription: String,
+    override var description: String,
+    override var icon: String,
+    @ColorInt override var color: Int,
+    override var animation: String?,
+    @StringRes override var dataUsage: Int,
+    override var nettests: List<T>,
+    var longRunningTests: List<T>? = null
+) : Serializable, AbstractDescriptor<T>(
+    name = name,
+    title = title,
+    shortDescription = shortDescription,
+    description = description,
+    icon = icon,
+    color = color,
+    animation = animation,
+    dataUsage = dataUsage,
+    nettests = nettests
+)
 
 /**
  * Enum class representing the OONI tests.
@@ -141,7 +168,7 @@ enum class OONITests(
     @StringRes val shortDescription: Int,
     @StringRes val description: Int,
     val icon: String,
-    val color: Int,
+    @ColorRes val color: Int,
     val animation: String,
     @StringRes val dataUsage: Int,
     var nettests: List<BaseNettest>,
@@ -269,7 +296,7 @@ enum class OONITests(
                     else -> context.getString(description)
                 },
                 icon = icon,
-                color = color,
+                color = ContextCompat.getColor(context, color),
                 animation = animation,
                 dataUsage = dataUsage,
                 nettests = nettests,
