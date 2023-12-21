@@ -50,7 +50,7 @@ public class TestRunBroadRequestReceiver extends BroadcastReceiver implements Se
     public void onReceive(Context context, Intent intent) {
         String key = intent.getStringExtra("key");
         String value = intent.getStringExtra("value");
-        // If either key is null, do nothing
+        // If key is null, do nothing
         if (key == null) {
             return;
         }
@@ -117,7 +117,9 @@ public class TestRunBroadRequestReceiver extends BroadcastReceiver implements Se
         RunTestService.TestBinder b = (RunTestService.TestBinder) binder;
         service = b.getService();
         isBound = true;
-        if (listener != null) listener.onStart(service);
+        if (listener != null) {
+            listener.onStart(service);
+        }
         runtime = ListUtility.sum(Lists.transform(service.task.testSuites, input -> input.getRuntime(preferenceManager)));
     }
 
