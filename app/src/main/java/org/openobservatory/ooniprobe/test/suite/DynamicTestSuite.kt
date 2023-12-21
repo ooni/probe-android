@@ -3,14 +3,16 @@ package org.openobservatory.ooniprobe.test.suite
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
-import androidx.annotation.StyleRes
-import com.google.common.collect.Lists
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.test.test.AbstractTest
 
+/**
+ * This class is used to create [AbstractTest] dynamically for all instances where a Test Suite is required.
+ * It is used to create a test suite from a Descriptor.
+ * It acts as a bridge between the Descriptor format and the [AbstractSuite].
+ */
 class DynamicTestSuite(
     name: String,
     title: String,

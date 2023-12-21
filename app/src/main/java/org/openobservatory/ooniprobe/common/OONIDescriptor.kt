@@ -2,6 +2,7 @@ package org.openobservatory.ooniprobe.common
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.Resources
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
@@ -9,6 +10,7 @@ import androidx.core.content.ContextCompat
 import org.openobservatory.engine.BaseDescriptor
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.R
+import org.openobservatory.ooniprobe.activity.overview.TestGroupItem
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsActivity
 import org.openobservatory.ooniprobe.activity.runtests.models.ChildItem
 import org.openobservatory.ooniprobe.activity.runtests.models.GroupItem
@@ -26,6 +28,7 @@ abstract class AbstractDescriptor<T : BaseNettest>(
     open var animation: String?,
     @StringRes open var dataUsage: Int,
     override var nettests: List<T>,
+    open var longRunningTests: List<T>? = null,
 ) : BaseDescriptor<T>(name = name, nettests = nettests) {
 
     /**
@@ -38,7 +41,7 @@ abstract class AbstractDescriptor<T : BaseNettest>(
         return nettests.any {
             preferenceManager.resolveStatus(
                 name = it.name,
-                prefix = preferencePrefix()
+                prefix = preferencePrefix(),
             )
         }
     }
@@ -63,6 +66,27 @@ abstract class AbstractDescriptor<T : BaseNettest>(
         }
     }
 
+    /**
+     * Converts the current [MutableList] of [TestGroupItem] representing `tests` to be used in the [OverviewActivity].
+     *
+     * @return [MutableList] of [TestGroupItem] representing `tests`.
+     */
+    fun overviewExpandableListViewData(preferenceManager: PreferenceManager): MutableList<TestGroupItem> =
+        (nettests + longRunningTests.orEmpty()).map {
+            TestGroupItem(
+                selected = when (name) {
+                    OONITests.EXPERIMENTAL.label -> preferenceManager.isExperimentalOn
+                    OONITests.WEBSITES.label -> preferenceManager.countEnabledCategory() > 0
+                    else -> preferenceManager.resolveStatus(
+                        name = it.name,
+                        prefix = preferencePrefix(),
+                        autoRun = true,
+                    )
+                },
+                name = it.name,
+                inputs = it.inputs,
+            )
+        }.toMutableList()
 
     /**
      * Converts the current descriptor to a [GroupItem] to be used in the [RunTestsActivity].
@@ -81,11 +105,23 @@ abstract class AbstractDescriptor<T : BaseNettest>(
             dataUsage = this.dataUsage,
             nettests = this.nettests.map { nettest ->
                 ChildItem(
-                    selected = when (this.name == OONITests.EXPERIMENTAL.label) {
-                        true -> preferenceManager.isExperimentalOn
-                        false -> preferenceManager.resolveStatus(nettest.name)
+                    selected = when (name) {
+                        OONITests.EXPERIMENTAL.label -> preferenceManager.isExperimentalOn
+                        OONITests.WEBSITES.label -> preferenceManager.countEnabledCategory() > 0
+                        else -> preferenceManager.resolveStatus(
+                            name = nettest.name,
+                            prefix = preferencePrefix(),
+                        )
                     }, name = nettest.name, inputs = nettest.inputs
                 )
+            }.run {
+                this + (longRunningTests?.map { nettest ->
+                    ChildItem(
+                        selected = false,
+                        name = nettest.name,
+                        inputs = nettest.inputs,
+                    )
+                } ?: listOf())
             })
     }
 
@@ -109,7 +145,6 @@ abstract class AbstractDescriptor<T : BaseNettest>(
         )
     }
 
-
     /**
      * Returns the preference prefix to be used for the current descriptor.
      *
@@ -119,8 +154,19 @@ abstract class AbstractDescriptor<T : BaseNettest>(
      *
      * @return String representing the preference prefix.
      */
-    private fun preferencePrefix(): String {
+    fun preferencePrefix(): String {
         return OONITests.values().find { it.label == name }?.let { "" } ?: "descriptor_id_"
+    }
+
+    /**
+     * Checks if the current descriptor has a preference prefix.
+     * This is used to determine if the current descriptor is [OONITests.WEBSITES] which uses categories
+     * or [OONITests.EXPERIMENTAL] which doesn't support indivitual preferences for nettest.
+     *
+     * @return Boolean Returns true if the current descriptor has a preference prefix, false otherwise.
+     */
+    fun hasPreferencePrefix(): Boolean {
+        return !(name == OONITests.EXPERIMENTAL.label || name == OONITests.WEBSITES.label)
     }
 }
 
@@ -134,7 +180,7 @@ open class OONIDescriptor<T : BaseNettest>(
     override var animation: String?,
     @StringRes override var dataUsage: Int,
     override var nettests: List<T>,
-    var longRunningTests: List<T>? = null
+    override var longRunningTests: List<T>? = null
 ) : Serializable, AbstractDescriptor<T>(
     name = name,
     title = title,
@@ -261,7 +307,37 @@ enum class OONITests(
      */
     fun toOONIDescriptor(context: Context): OONIDescriptor<BaseNettest> {
         val r = context.resources
-        val experimentalLinks = """
+
+        this.run {
+            return OONIDescriptor(
+                name = label,
+                title = context.getString(title),
+                shortDescription = context.getString(shortDescription),
+                description = when (label) {
+                    EXPERIMENTAL.label -> context.getString(
+                        description,
+                        experimentalLinks(r)
+                    )
+
+                    else -> context.getString(description)
+                },
+                icon = icon,
+                color = ContextCompat.getColor(context, color),
+                animation = animation,
+                dataUsage = dataUsage,
+                nettests = nettests,
+                longRunningTests = longRunningTests,
+            )
+        }
+    }
+
+    /**
+     * Returns the experimental links for the [EXPERIMENTAL] test.
+     *
+     * @return String representing the experimental links for the current OONI test.
+     */
+    private fun experimentalLinks(r: Resources): String {
+        return """
         * [STUN Reachability](https://github.com/ooni/spec/blob/master/nettests/ts-025-stun-reachability.md)
 
         * [DNS Check](https://github.com/ooni/spec/blob/master/nettests/ts-028-dnscheck.md)
@@ -282,27 +358,6 @@ enum class OONITests(
             )
         }
     """.trimIndent()
-        this.run {
-            return OONIDescriptor(
-                name = label,
-                title = context.getString(title),
-                shortDescription = context.getString(shortDescription),
-                description = when (label) {
-                    EXPERIMENTAL.label -> context.getString(
-                        description,
-                        experimentalLinks
-                    )
-
-                    else -> context.getString(description)
-                },
-                icon = icon,
-                color = ContextCompat.getColor(context, color),
-                animation = animation,
-                dataUsage = dataUsage,
-                nettests = nettests,
-                longRunningTests = longRunningTests,
-            )
-        }
     }
 
     override fun toString(): String {

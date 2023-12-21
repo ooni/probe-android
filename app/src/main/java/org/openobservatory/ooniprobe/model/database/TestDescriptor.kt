@@ -12,7 +12,7 @@ import com.raizlabs.android.dbflow.structure.BaseModel
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.engine.OONIRunNettest
 import org.openobservatory.ooniprobe.R
-import org.openobservatory.ooniprobe.activity.add_descriptor.adapter.GroupedItem
+import org.openobservatory.ooniprobe.activity.adddescriptor.adapter.GroupedItem
 import org.openobservatory.ooniprobe.activity.runtests.models.ChildItem
 import org.openobservatory.ooniprobe.activity.runtests.models.GroupItem
 import org.openobservatory.ooniprobe.common.AbstractDescriptor
@@ -101,7 +101,7 @@ class InstalledDescriptor(
             shortDescription = this.shortDescription,
             description = this.description,
             icon = this.icon,
-            color = this.testDescriptor.color?.toInt() ?: 0, // TODO(aanorbel): fix this
+            color = Color.parseColor(testDescriptor.color ?: "#495057"),
             animation = this.animation,
             dataUsage = this.dataUsage,
             nettests = this.nettests.map { nettest ->

@@ -1,4 +1,4 @@
-package org.openobservatory.ooniprobe.activity.add_descriptor
+package org.openobservatory.ooniprobe.activity.adddescriptor
 
 import android.content.Context
 import android.content.Intent
@@ -15,15 +15,14 @@ import androidx.appcompat.widget.Toolbar
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.checkbox.MaterialCheckBox
 import io.noties.markwon.Markwon
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.engine.OONIRunDescriptor
 import org.openobservatory.engine.OONIRunNettest
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
-import org.openobservatory.ooniprobe.activity.add_descriptor.adapter.AddDescriptorExpandableListAdapter
-import org.openobservatory.ooniprobe.activity.add_descriptor.adapter.GroupedItem
+import org.openobservatory.ooniprobe.activity.adddescriptor.adapter.AddDescriptorExpandableListAdapter
+import org.openobservatory.ooniprobe.activity.adddescriptor.adapter.GroupedItem
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.common.ReadMorePlugin
 import org.openobservatory.ooniprobe.common.TestDescriptorManager
@@ -32,10 +31,20 @@ import org.openobservatory.ooniprobe.model.database.TestDescriptor
 import org.openobservatory.ooniprobe.model.database.getNettests
 import javax.inject.Inject
 
+/**
+ * This activity is used to add a new descriptor to the application. The activity shows the tests that are included in the descriptor.
+ * The user can select which tests to include, and if the descriptor should be automatically updated.
+ */
 class AddDescriptorActivity : AbstractActivity() {
     companion object {
         private const val DESCRIPTOR = "descriptor"
 
+        /**
+         * This method is used to create an intent to start this activity.
+         * @param context is the context of the activity that calls this method
+         * @param descriptor is the descriptor to add
+         * @return an intent to start this activity
+         */
         @JvmStatic
         fun newIntent(context: Context, descriptor: TestDescriptor): Intent {
             return Intent(context, AddDescriptorActivity::class.java).putExtra(
@@ -76,8 +85,8 @@ class AddDescriptorActivity : AbstractActivity() {
         @JvmStatic
         @BindingAdapter(value = ["resource"])
         fun setImageViewResource(imageView: ImageView, iconName: String?) {
-            /*TODO: Update to parse the icon name and set the correct icon.
-            *  Remember to ignore icons generated when generated doing this.*/
+            /* TODO(aanorbel): Update to parse the icon name and set the correct icon.
+            * Remember to ignore icons generated when generated doing this.*/
             imageView.setImageResource(R.drawable.ooni_empty_state)
         }
 
@@ -88,7 +97,6 @@ class AddDescriptorActivity : AbstractActivity() {
 
     @Inject
     lateinit var descriptorManager: TestDescriptorManager
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,7 +114,6 @@ class AddDescriptorActivity : AbstractActivity() {
         }
         val viewModel: AddDescriptorViewModel by viewModels {
             object : ViewModelProvider.Factory {
-
                 override fun <T : ViewModel> create(modelClass: Class<T>): T {
                     return AddDescriptorViewModel(descriptorManager) as T
                 }
@@ -150,11 +157,13 @@ class AddDescriptorActivity : AbstractActivity() {
                 binding.testsCheckbox.checkedState = state;
             }
 
+            // This observer is used to change the state of the "Select All" button when a checkbox is clicked.
             binding.testsCheckbox.addOnCheckedStateChangedListener { checkBox, state ->
                 viewModel.setSelectedAllBtnStatus(state)
                 adapter.notifyDataSetChanged()
             }
 
+            // This observer is used to finish the activity when the descriptor is added.
             viewModel.finishActivity.observe(this) { shouldFinish ->
                 if (shouldFinish) {
                     finish()

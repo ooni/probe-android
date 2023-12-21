@@ -13,11 +13,14 @@ import org.openobservatory.ooniprobe.test.suite.DynamicTestSuite
 import javax.inject.Inject
 import javax.inject.Singleton
 
+/**
+ * This class is responsible for managing the test descriptors
+ */
 @Singleton
 class TestDescriptorManager @Inject constructor(private val context: Context) {
-    private val descriptors: MutableList<OONIDescriptor<BaseNettest>> = ooniDescriptors(context)
+    private val descriptors: List<OONIDescriptor<BaseNettest>> = ooniDescriptors(context)
 
-    fun getDescriptors(): MutableList<OONIDescriptor<BaseNettest>> {
+    fun getDescriptors(): List<OONIDescriptor<BaseNettest>> {
         return descriptors
     }
 
@@ -29,6 +32,11 @@ class TestDescriptorManager @Inject constructor(private val context: Context) {
         return getDescriptorByName(name)?.getTest(context)
     }
 
+    /**
+     * Fetches the descriptor from the ooni server using the run id.
+     * @param runId the run id of the descriptor to fetch
+     * @param context the context to use for the request
+     */
     fun fetchDescriptorFromRunId(runId: Long, context: Context): TestDescriptor {
         val session = EngineProvider.get().newSession(
             EngineProvider.get().getDefaultSessionConfig(

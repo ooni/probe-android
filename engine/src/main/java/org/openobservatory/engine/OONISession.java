@@ -23,6 +23,13 @@ public interface OONISession {
     /** checkIn function is called by probes asking if there are tests to be run. */
     OONICheckInResults checkIn(OONIContext ctx, OONICheckInConfig config) throws Exception;
 
+    /**
+     * Fetches a specific ooni run descriptor.
+     *
+     * @param ctx OONIContext instance
+     * @param id ooni run id
+     * @return [OONIRunFetchResponse] with the contents of the ooni run descriptor.
+     */
     OONIRunFetchResponse ooniRunFetch(OONIContext ctx, long id) throws Exception;
 
 }

@@ -1,4 +1,4 @@
-package org.openobservatory.ooniprobe.activity.add_descriptor.adapter
+package org.openobservatory.ooniprobe.activity.adddescriptor.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -12,15 +12,25 @@ import com.google.android.material.checkbox.MaterialCheckBox.STATE_INDETERMINATE
 import com.google.android.material.checkbox.MaterialCheckBox.STATE_UNCHECKED
 import org.openobservatory.engine.OONIRunNettest
 import org.openobservatory.ooniprobe.R
-import org.openobservatory.ooniprobe.activity.add_descriptor.AddDescriptorViewModel
+import org.openobservatory.ooniprobe.activity.adddescriptor.AddDescriptorViewModel
 import org.openobservatory.ooniprobe.test.test.AbstractTest
 
+
+/**
+ * An extension of [OONIRunNettest] class
+ * used to track the selected state of nettests in the [ExpandableListView].
+ */
 class GroupedItem(
     override var name: String,
     override var inputs: List<String>?,
     var selected: Boolean = false
 ) : OONIRunNettest(name = name, inputs = inputs)
 
+/**
+ * Adapter class for the [ExpandableListView] in [AddDescriptorActivity].
+ * @param nettests List of GroupedItem objects.
+ * @param viewModel AddDescriptorViewModel object.
+ */
 class AddDescriptorExpandableListAdapter(
     val nettests: List<GroupedItem>,
     val viewModel: AddDescriptorViewModel
@@ -106,7 +116,6 @@ class AddDescriptorExpandableListAdapter(
         groupCheckBox.setOnClickListener {
             if (groupItem.selected) {
                 groupItem.selected = false
-                //viewModel.disableTest(groupItem.name)
                 notifyDataSetChanged()
                 if (isNotSelectedAnyGroupItem()) {
                     viewModel.setSelectedAllBtnStatus(STATE_UNCHECKED)
@@ -115,7 +124,6 @@ class AddDescriptorExpandableListAdapter(
                 }
             } else {
                 groupItem.selected = true
-                //viewModel.enableTest(groupItem.name)
                 notifyDataSetChanged()
 
                 if (isSelectedAllItems()) {
