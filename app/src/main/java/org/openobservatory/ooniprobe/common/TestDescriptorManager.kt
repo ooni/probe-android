@@ -8,8 +8,11 @@ import org.openobservatory.engine.OONIRunFetchResponse
 import org.openobservatory.ooniprobe.BuildConfig
 import org.openobservatory.ooniprobe.model.database.TestDescriptor
 import org.openobservatory.ooniprobe.model.database.TestDescriptor_Table
+import org.openobservatory.ooniprobe.model.database.Url
+import org.openobservatory.ooniprobe.model.database.getNettests
 import org.openobservatory.ooniprobe.test.EngineProvider
 import org.openobservatory.ooniprobe.test.suite.DynamicTestSuite
+import org.openobservatory.ooniprobe.test.test.WebConnectivity
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -70,6 +73,11 @@ class TestDescriptorManager @Inject constructor(private val context: Context) {
     }
 
     fun addDescriptor(descriptor: TestDescriptor): Boolean {
+        descriptor.getNettests()
+            .filter { it.name == WebConnectivity.NAME }
+            .forEach {
+                it.inputs?.forEach { url -> Url.checkExistingUrl(url) }
+            }
         return descriptor.save()
     }
 

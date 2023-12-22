@@ -61,10 +61,11 @@ class TestDescriptor(
     var nettests: Any = emptyList<OONIRunNettest>()
 ) : BaseModel(), Serializable
 
+private const val DESCRIPTOR_TEST_NAME = "ooni_run"
 class InstalledDescriptor(
     var testDescriptor: TestDescriptor
 ) : AbstractDescriptor<BaseNettest>(
-    name = testDescriptor.name,
+    name = DESCRIPTOR_TEST_NAME,
     title = testDescriptor.name,
     shortDescription = testDescriptor.shortDescription,
     description = testDescriptor.description,
@@ -83,8 +84,9 @@ class InstalledDescriptor(
             }
 
         false -> emptyList()
-    }
-) {
+    },
+    descriptor = testDescriptor ) {
+
     override fun isEnabled(preferenceManager: PreferenceManager): Boolean {
         return !testDescriptor.isArchived
     }
@@ -95,7 +97,8 @@ class InstalledDescriptor(
 
 
     override fun toRunTestsGroupItem(preferenceManager: PreferenceManager): GroupItem {
-        return GroupItem(selected = false,
+        return GroupItem(
+            selected = false,
             name = this.name,
             title = this.title,
             shortDescription = this.shortDescription,
@@ -111,8 +114,11 @@ class InstalledDescriptor(
                         false -> preferenceManager.resolveStatus(nettest.name)
                     }, name = nettest.name, inputs = nettest.inputs
                 )
-            })
+            },
+            descriptor = testDescriptor
+        )
     }
+
 }
 
 fun TestDescriptor.getNettests(): List<OONIRunNettest> {

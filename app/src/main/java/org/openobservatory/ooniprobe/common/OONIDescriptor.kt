@@ -14,6 +14,7 @@ import org.openobservatory.ooniprobe.activity.overview.TestGroupItem
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsActivity
 import org.openobservatory.ooniprobe.activity.runtests.models.ChildItem
 import org.openobservatory.ooniprobe.activity.runtests.models.GroupItem
+import org.openobservatory.ooniprobe.model.database.TestDescriptor
 import org.openobservatory.ooniprobe.test.suite.DynamicTestSuite
 import org.openobservatory.ooniprobe.test.test.*
 import java.io.Serializable
@@ -29,6 +30,7 @@ abstract class AbstractDescriptor<T : BaseNettest>(
     @StringRes open var dataUsage: Int,
     override var nettests: List<T>,
     open var longRunningTests: List<T>? = null,
+    open var descriptor: TestDescriptor? = null
 ) : BaseDescriptor<T>(name = name, nettests = nettests) {
 
     /**
@@ -94,7 +96,8 @@ abstract class AbstractDescriptor<T : BaseNettest>(
      * @return [GroupItem] representing the current descriptor.
      */
     open fun toRunTestsGroupItem(preferenceManager: PreferenceManager): GroupItem {
-        return GroupItem(selected = false,
+        return GroupItem(
+            selected = false,
             name = this.name,
             title = this.title,
             shortDescription = this.shortDescription,
@@ -122,7 +125,9 @@ abstract class AbstractDescriptor<T : BaseNettest>(
                         inputs = nettest.inputs,
                     )
                 } ?: listOf())
-            })
+            },
+            descriptor = descriptor
+        )
     }
 
     /**
@@ -141,7 +146,8 @@ abstract class AbstractDescriptor<T : BaseNettest>(
             color = this.color,
             animation = this.animation,
             dataUsage = this.dataUsage,
-            nettest = this.nettests
+            nettest = this.nettests,
+            descriptor = descriptor
         )
     }
 

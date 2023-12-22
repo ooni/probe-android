@@ -54,9 +54,10 @@ class DashboardViewModel @Inject constructor(
             groupedItemList.add(status)
             groupedItemList.addAll(itemList)
         }
-        groupedItemList.add(oonRunLinksTitle)
-        groupedItemList.addAll(ooniRunDescriptors)
-
+        if (ooniRunDescriptors.isNotEmpty()) {
+            groupedItemList.add(oonRunLinksTitle)
+            groupedItemList.addAll(ooniRunDescriptors)
+        }
         this.groupedItemList.value = groupedItemList
     }
 }
