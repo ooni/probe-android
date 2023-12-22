@@ -42,6 +42,7 @@ import org.openobservatory.ooniprobe.item.ExperimentalItem;
 import org.openobservatory.ooniprobe.item.FailedItem;
 import org.openobservatory.ooniprobe.item.InstantMessagingItem;
 import org.openobservatory.ooniprobe.item.PerformanceItem;
+import org.openobservatory.ooniprobe.item.RunItem;
 import org.openobservatory.ooniprobe.item.WebsiteItem;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -195,6 +196,8 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
                             items.add(new CircumventionItem(result, this, this));
                         } else if (result.test_group_name.equals(OONITests.EXPERIMENTAL.toString())) {
                             items.add(new ExperimentalItem(result, this, this));
+                        } else if (result.descriptor!=null) {
+                            items.add(new RunItem(result, this, this));
                         } else {
                             items.add(new FailedItem(result, this, this));
                         }
