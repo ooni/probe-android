@@ -312,8 +312,8 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
      * Extracts the run id from the provided Uri.
      * The run id can be in two different formats:
      * <p>
-     * 1. ooni://runv2/#link_id
-     * 2. https://run.test.ooni.org/v2/#link_id
+     * 1. ooni://runv2/link_id
+     * 2. https://run.test.ooni.org/v2/link_id
      * <p>
      * The run id is the `link_id` in the link.
      * If the Uri contains a link, but the `link_id` is not a number, an empty Optional is returned.
@@ -331,7 +331,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 /**
                  * The run id is the first segment of the path.
                  * Launched when `Open Link in OONI Probe` is clicked.
-                 * e.g. ooni://runv2/#link_id
+                 * e.g. ooni://runv2/link_id
                  */
                 return Optional.of(
                         Long.parseLong(
@@ -343,7 +343,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                  * The run id is the second segment of the path.
                  * Launched when the system recognizes this app can open this link
                  * and launches the app when a link is clicked.
-                 * e.g. https://run.test.ooni.org/v2/#link_id
+                 * e.g. https://run.test.ooni.org/v2/link_id
                  */
                 return Optional.of(
                         Long.parseLong(
