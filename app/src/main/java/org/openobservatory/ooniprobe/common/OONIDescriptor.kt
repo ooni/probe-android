@@ -63,7 +63,11 @@ abstract class AbstractDescriptor<T : BaseNettest>(
      * @return Int representing the display icon for the current descriptor.
      */
     open fun getDisplayIcon(context: Context): Int {
-        return context.resources.getIdentifier(icon, "drawable", context.packageName).let {
+        return context.resources.getIdentifier(
+            StringUtils.camelToSnake(
+                icon
+            ), "drawable", context.packageName
+        ).let {
             if (it == 0) R.drawable.ooni_empty_state else it
         }
     }

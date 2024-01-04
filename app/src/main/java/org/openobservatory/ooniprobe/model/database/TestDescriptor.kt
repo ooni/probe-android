@@ -19,7 +19,6 @@ import org.openobservatory.ooniprobe.common.AbstractDescriptor
 import org.openobservatory.ooniprobe.common.AppDatabase
 import org.openobservatory.ooniprobe.common.OONITests
 import org.openobservatory.ooniprobe.common.PreferenceManager
-import org.openobservatory.ooniprobe.common.StringUtils
 import java.io.Serializable
 import java.util.Date
 import com.raizlabs.android.dbflow.annotation.TypeConverter as TypeConverterAnnotation
@@ -94,14 +93,6 @@ class InstalledDescriptor(
 
     override fun getRuntime(context: Context, preferenceManager: PreferenceManager): Int {
         return R.string.TestResults_NotAvailable
-    }
-
-    override fun getDisplayIcon(context: Context): Int {
-        return context.resources.getIdentifier(
-            StringUtils.camelToSnake(
-                icon
-            ), "drawable", context.packageName
-        )
     }
 
     override fun toRunTestsGroupItem(preferenceManager: PreferenceManager): GroupItem {
