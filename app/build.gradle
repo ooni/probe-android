@@ -185,3 +185,18 @@ if (!getGradle().getStartParameter().getTaskRequests()
   .toString().contains("Fdroid")){
     apply plugin: 'com.google.gms.google-services'
 }
+
+
+/**
+ * The following code is used to add the OONI Run V2 icons to the project.
+ * This is a workaround to avoid having to manually copy the icons to the
+ * project. The script is run before the preBuild task, which means that
+ * the icons will be copied before the build starts.
+ */
+task addOONIRunV2Icons(type: Exec) {
+    commandLine 'sh', 'mkdir' , '-p' , rootProject.buildDir
+    commandLine 'sh', "../scripts/prepare_icons.sh", "${rootProject.buildDir}" , "${rootProject.projectDir}/app/src/main/res/drawable"
+}
+
+// Make preBuild depend on addOONIRunV2Icons
+preBuild.dependsOn addOONIRunV2Icons

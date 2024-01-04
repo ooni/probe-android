@@ -25,6 +25,7 @@ import org.openobservatory.ooniprobe.activity.adddescriptor.adapter.AddDescripto
 import org.openobservatory.ooniprobe.activity.adddescriptor.adapter.GroupedItem
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.common.ReadMorePlugin
+import org.openobservatory.ooniprobe.common.StringUtils
 import org.openobservatory.ooniprobe.common.TestDescriptorManager
 import org.openobservatory.ooniprobe.databinding.ActivityAddDescriptorBinding
 import org.openobservatory.ooniprobe.model.database.TestDescriptor
@@ -87,7 +88,13 @@ class AddDescriptorActivity : AbstractActivity() {
         fun setImageViewResource(imageView: ImageView, iconName: String?) {
             /* TODO(aanorbel): Update to parse the icon name and set the correct icon.
             * Remember to ignore icons generated when generated doing this.*/
-            imageView.setImageResource(R.drawable.ooni_empty_state)
+            imageView.setImageResource(
+                imageView.context.resources.getIdentifier(
+                    StringUtils.camelToSnake(
+                        iconName
+                    ), "drawable", imageView.context.packageName
+                )
+            )
         }
 
     }

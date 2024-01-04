@@ -22,5 +22,8 @@ allprojects {
 }
 
 task clean(type: Delete) {
-	delete rootProject.buildDir
+    delete rootProject.buildDir
+    exec {
+        commandLine 'sh', "./scripts/clean_icons.sh", "${rootProject.projectDir}/app/src/main/res/drawable"
+    }
 }
