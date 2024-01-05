@@ -26,4 +26,4 @@ cp -v ./MOBILE/android/oonimkall.aar ../../engine-experimental/
 cp -v ./MOBILE/android/oonimkall-sources.jar ../../engine-experimental/
 
 
-echo "* Fetching geoip databases"
+echo "Done building engine archive."
