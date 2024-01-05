@@ -1,2 +1,12 @@
 configurations.maybeCreate("default")
 artifacts.add("default", file('oonimkall.aar'))
+
+task clean(type: Delete) {
+    delete 'oonimkall.aar'
+    delete 'oonimkall-sources.jar'
+}
+
+task buildExperimentalArchive(type: Exec) {
+    commandLine 'sh', 'mkdir' , '-p' , rootProject.buildDir
+    commandLine 'sh', "../scripts/build_experimental_archive.sh" , project.property('ooni.experimental.target') , rootProject.buildDir
+}

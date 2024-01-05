@@ -21,6 +21,10 @@ allprojects {
 	}
 }
 
-task clean(type: Delete) {
+task clean(type: Delete, dependsOn: ':engine-experimental:clean') {
 	delete rootProject.buildDir
+}
+
+task buildExperimentalArchive(dependsOn: ':engine-experimental:buildExperimentalArchive') {
+	println "main"
 }
