@@ -5,8 +5,12 @@ set -euxo pipefail
 gitTarget=${1:-"master"}
 buildDir=${2:-"./build"}
 
+if [ -d "$buildDir" ]; then rm -Rf $buildDir; fi
+
 # Create build directory and navigate into it
-mkdir -p "${buildDir}" && cd "${buildDir}"
+mkdir -p "${buildDir}"
+
+cd "${buildDir}"
 
 # Clone the repository
 git clone -v https://github.com/ooni/probe-cli.git
@@ -14,11 +18,8 @@ git clone -v https://github.com/ooni/probe-cli.git
 # Navigate into the repository
 cd probe-cli
 
-git checkout master
-
-git pull origin
 # Checkout the target branch
-git checkout -c "${gitTarget}"
+git checkout "${gitTarget}"
 
 # Build the probe-cli
 make android
