@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -173,11 +174,17 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
             binding.name.setText(service.task.currentTest.getName());
         else
             binding.name.setText(getString(service.task.currentTest.getLabelResId()));
-        getWindow().setBackgroundDrawableResource(service.task.currentSuite.getColor());
-        if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().setStatusBarColor(service.task.currentSuite.getColor());
+
+        getWindow().setBackgroundDrawable(new ColorDrawable(service.task.currentSuite.getColor()));
+        getWindow().setStatusBarColor(service.task.currentSuite.getColor());
+        if (service.task.currentSuite.getAnim() == null){
+            binding.animation.setImageResource(service.task.currentSuite.getIconGradient());
+            binding.animation.setColorFilter(getResources().getColor(R.color.color_gray2));
+            binding.animation.setPadding(0,100,0,100);
+        } else {
+            binding.animation.setAnimation(service.task.currentSuite.getAnim());
         }
-        binding.animation.setAnimation(service.task.currentSuite.getAnim());
+
         binding.progress.setMax(service.task.getMax(preferenceManager));
     }
 

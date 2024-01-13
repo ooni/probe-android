@@ -1,13 +1,18 @@
 package org.openobservatory.ooniprobe.common
 
 import android.content.Context
+import com.raizlabs.android.dbflow.sql.language.SQLite
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.engine.LoggerArray
-import org.openobservatory.engine.OONIRunDescriptor
 import org.openobservatory.engine.OONIRunFetchResponse
 import org.openobservatory.ooniprobe.BuildConfig
+import org.openobservatory.ooniprobe.model.database.TestDescriptor
+import org.openobservatory.ooniprobe.model.database.TestDescriptor_Table
+import org.openobservatory.ooniprobe.model.database.Url
+import org.openobservatory.ooniprobe.model.database.getNettests
 import org.openobservatory.ooniprobe.test.EngineProvider
 import org.openobservatory.ooniprobe.test.suite.DynamicTestSuite
+import org.openobservatory.ooniprobe.test.test.WebConnectivity
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -35,7 +40,7 @@ class TestDescriptorManager @Inject constructor(private val context: Context) {
      * @param runId the run id of the descriptor to fetch
      * @param context the context to use for the request
      */
-    fun fetchDescriptorFromRunId(runId: Long, context: Context): OONIRunDescriptor {
+    fun fetchDescriptorFromRunId(runId: Long, context: Context): TestDescriptor {
         val session = EngineProvider.get().newSession(
             EngineProvider.get().getDefaultSessionConfig(
                 context,
@@ -48,11 +53,36 @@ class TestDescriptorManager @Inject constructor(private val context: Context) {
         val ooniContext = session.newContextWithTimeout(300)
 
         val response: OONIRunFetchResponse = session.ooniRunFetch(ooniContext, runId)
-        return response.descriptor
+        return TestDescriptor(
+            runId = runId,
+            name = response.descriptor.name,
+            nameIntl = response.descriptor.nameIntl,
+            author = response.descriptor.author,
+            shortDescription = response.descriptor.shortDescription,
+            shortDescriptionIntl = response.descriptor.shortDescriptionIntl,
+            description = response.descriptor.description,
+            descriptionIntl = response.descriptor.descriptionIntl,
+            icon = response.descriptor.icon,
+            color = response.descriptor.color,
+            animation = response.descriptor.animation,
+            isArchived = response.archived,
+            descriptorCreationTime = response.creationTime,
+            translationCreationTime = response.translationCreationTime,
+            nettests = response.descriptor.nettests
+        )
     }
 
-    fun addDescriptor(descriptor: OONIRunDescriptor, automatedUpdates: Boolean): Boolean {
-        // TODO(aanorbel): persist to database
-        return false
+    fun addDescriptor(descriptor: TestDescriptor): Boolean {
+        descriptor.getNettests()
+            .filter { it.name == WebConnectivity.NAME }
+            .forEach {
+                it.inputs?.forEach { url -> Url.checkExistingUrl(url) }
+            }
+        return descriptor.save()
+    }
+
+    fun getRunV2Descriptors(): List<TestDescriptor> {
+        return SQLite.select().from(TestDescriptor::class.java)
+            .where(TestDescriptor_Table.isArchived.eq(false)).queryList()
     }
 }

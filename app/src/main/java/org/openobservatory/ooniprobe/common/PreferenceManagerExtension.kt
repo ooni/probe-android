@@ -8,7 +8,7 @@ private fun PreferenceManager.experimentalTestList(): MutableList<String> {
     val exclusionList = mutableListOf<String>()
     OONITests.EXPERIMENTAL.run {
         exclusionList.addAll(nettests.map { it.name })
-        exclusionList.addAll(nettests.map { it.name })
+        longRunningTests?.map { it.name }?.let { exclusionList.addAll(it) }
     }
 
     return exclusionList

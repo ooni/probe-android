@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.Window;
 
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.core.text.TextUtilsCompat;
 import androidx.core.view.ViewCompat;
 
@@ -24,7 +23,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.customwebsites.CustomWebsiteActivity;
 import org.openobservatory.ooniprobe.activity.overview.OverviewTestsExpandableListViewAdapter;
 import org.openobservatory.ooniprobe.activity.overview.OverviewViewModel;
-import org.openobservatory.ooniprobe.common.OONIDescriptor;
+import org.openobservatory.ooniprobe.common.AbstractDescriptor;
 import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReadMorePlugin;
@@ -50,9 +49,9 @@ public class OverviewActivity extends AbstractActivity {
 
     OverviewTestsExpandableListViewAdapter adapter;
 
-    private OONIDescriptor<BaseNettest> descriptor;
+    private AbstractDescriptor<BaseNettest> descriptor;
 
-    public static Intent newIntent(Context context, OONIDescriptor<BaseNettest> descriptor) {
+    public static Intent newIntent(Context context, AbstractDescriptor<BaseNettest> descriptor) {
         return new Intent(context, OverviewActivity.class).putExtra(TEST, descriptor);
     }
 
@@ -60,14 +59,14 @@ public class OverviewActivity extends AbstractActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActivityComponent().inject(this);
-        descriptor = (OONIDescriptor) getIntent().getSerializableExtra(TEST);
+        descriptor = (AbstractDescriptor) getIntent().getSerializableExtra(TEST);
         binding = ActivityOverviewBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         viewModel.updateDescriptor(descriptor);
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(descriptor.getTitle());
-        setThemeColor(ContextCompat.getColor(this, descriptor.getColor()));
+        setThemeColor(descriptor.getColor());
         binding.icon.setImageResource(descriptor.getDisplayIcon(this));
         binding.customUrl.setVisibility(descriptor.getName().equals(OONITests.WEBSITES.getLabel()) ? View.VISIBLE : View.GONE);
         Markwon markwon = Markwon.builder(this).usePlugin(new ReadMorePlugin(getString(R.string.OONIRun_ReadMore), getString(R.string.OONIRun_ReadLess))).build();

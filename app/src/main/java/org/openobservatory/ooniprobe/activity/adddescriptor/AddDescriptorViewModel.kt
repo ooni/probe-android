@@ -5,9 +5,12 @@ import androidx.lifecycle.ViewModel
 import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.android.material.checkbox.MaterialCheckBox.CheckedState
 import org.openobservatory.engine.OONIRunDescriptor
+import org.openobservatory.engine.OONIRunNettest
 import org.openobservatory.ooniprobe.activity.adddescriptor.adapter.GroupedItem
 import org.openobservatory.ooniprobe.common.LocaleUtils
 import org.openobservatory.ooniprobe.common.TestDescriptorManager
+import org.openobservatory.ooniprobe.model.database.TestDescriptor
+import org.openobservatory.ooniprobe.model.database.getValueForKey
 
 /**
  * ViewModel for the AddDescriptorActivity. This class is responsible for preparing and managing the data for the AddDescriptorActivity.
@@ -23,7 +26,7 @@ class AddDescriptorViewModel constructor(
     @CheckedState
     val selectedAllBtnStatus: MutableLiveData<Int> =
         MutableLiveData(MaterialCheckBox.STATE_CHECKED)
-    var descriptor: MutableLiveData<OONIRunDescriptor> = MutableLiveData()
+    var descriptor: MutableLiveData<TestDescriptor> = MutableLiveData()
     val finishActivity: MutableLiveData<Boolean> = MutableLiveData()
 
     /**
@@ -31,7 +34,7 @@ class AddDescriptorViewModel constructor(
      * It sets the descriptor value of this ViewModel.
      * @param descriptor is the new descriptor
      */
-    fun onDescriptorChanged(descriptor: OONIRunDescriptor) {
+    fun onDescriptorChanged(descriptor: TestDescriptor) {
         this.descriptor.value = descriptor
     }
 
@@ -42,7 +45,7 @@ class AddDescriptorViewModel constructor(
      */
     fun getName(): String {
         return descriptor.value?.let { descriptor ->
-            descriptor.nameIntl[LocaleUtils.getLocale().language] ?: descriptor.name
+            descriptor.nameIntl.getValueForKey(LocaleUtils.getLocale().language) ?: descriptor.name
         } ?: ""
     }
 
@@ -53,7 +56,8 @@ class AddDescriptorViewModel constructor(
      */
     fun getDescription(): String {
         return descriptor.value?.let { descriptor ->
-            descriptor.descriptionIntl[LocaleUtils.getLocale().language] ?: descriptor.description
+            descriptor.descriptionIntl.getValueForKey(LocaleUtils.getLocale().language)
+                ?: descriptor.description
         } ?: ""
     }
 
@@ -64,7 +68,7 @@ class AddDescriptorViewModel constructor(
      */
     fun getShortDescription(): String {
         return descriptor.value?.let { descriptor ->
-            descriptor.shortDescriptionIntl[LocaleUtils.getLocale().language]
+            descriptor.shortDescriptionIntl.getValueForKey(LocaleUtils.getLocale().language)
                 ?: descriptor.shortDescription
         } ?: ""
     }
@@ -88,9 +92,14 @@ class AddDescriptorViewModel constructor(
         descriptor.value?.let { descriptor ->
             descriptorManager.addDescriptor(
                 descriptor = descriptor.apply {
-                    nettests = selectedNettest.filter { it.selected }
+                    isAutoUpdate = automatedUpdates
+                    nettests = selectedNettest.filter { it.selected }.map { nettest ->
+                        OONIRunNettest(
+                            name = nettest.name,
+                            inputs = nettest.inputs
+                        )
+                    }
                 },
-                automatedUpdates = automatedUpdates
             ).also {
                 finishActivity()
             }

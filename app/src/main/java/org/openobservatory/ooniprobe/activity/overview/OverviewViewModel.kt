@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel
-import org.openobservatory.ooniprobe.common.OONIDescriptor
+import org.openobservatory.ooniprobe.common.AbstractDescriptor
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.common.disableTest
 import org.openobservatory.ooniprobe.common.enableTest
@@ -16,7 +16,7 @@ class TestGroupItem(
 
 
 class OverviewViewModel() : ViewModel() {
-    var descriptor: MutableLiveData<OONIDescriptor<BaseNettest>> = MutableLiveData()
+    var descriptor: MutableLiveData<AbstractDescriptor<BaseNettest>> = MutableLiveData()
     lateinit var preferenceManager: PreferenceManager
 
     @Inject
@@ -69,7 +69,7 @@ class OverviewViewModel() : ViewModel() {
     }
 
 
-    fun updateDescriptor(descriptor: OONIDescriptor<BaseNettest>) {
+    fun updateDescriptor(descriptor: AbstractDescriptor<BaseNettest>) {
         this.descriptor.postValue(descriptor)
     }
 

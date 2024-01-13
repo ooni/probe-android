@@ -16,6 +16,7 @@ import org.openobservatory.ooniprobe.activity.OverviewActivity
 import org.openobservatory.ooniprobe.activity.RunningActivity
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsActivity
 import org.openobservatory.ooniprobe.adapters.DashboardAdapter
+import org.openobservatory.ooniprobe.common.AbstractDescriptor
 import org.openobservatory.ooniprobe.common.Application
 import org.openobservatory.ooniprobe.common.OONIDescriptor
 import org.openobservatory.ooniprobe.common.PreferenceManager
@@ -33,7 +34,7 @@ class DashboardFragment : Fragment(), View.OnClickListener {
 
     @Inject
     lateinit var viewModel: DashboardViewModel
-    private var descriptors: ArrayList<OONIDescriptor<BaseNettest>> = ArrayList()
+    private var descriptors: ArrayList<AbstractDescriptor<BaseNettest>> = ArrayList()
     private lateinit var binding: FragmentDashboardBinding
 
     override fun onCreateView(
@@ -56,12 +57,13 @@ class DashboardFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        lifecycle.addObserver(viewModel)
         viewModel.getGroupedItemList().observe(viewLifecycleOwner) { items ->
             binding.recycler.layoutManager = LinearLayoutManager(requireContext())
             binding.recycler.adapter = DashboardAdapter(items, this, preferenceManager)
         }
 
-        viewModel.items.observe(viewLifecycleOwner) { items ->
+        viewModel.getItemList().observe(viewLifecycleOwner) { items ->
             descriptors.apply {
                 clear()
                 addAll(items)
@@ -100,7 +102,7 @@ class DashboardFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        val descriptor = v.tag as OONIDescriptor<BaseNettest>
+        val descriptor = v.tag as AbstractDescriptor<BaseNettest>
         ActivityCompat.startActivity(
             requireActivity(),
             OverviewActivity.newIntent(activity, descriptor),

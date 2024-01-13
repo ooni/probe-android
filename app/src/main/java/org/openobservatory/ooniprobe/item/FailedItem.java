@@ -15,7 +15,7 @@ import com.google.common.base.Optional;
 
 import org.openobservatory.engine.BaseNettest;
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.common.OONIDescriptor;
+import org.openobservatory.ooniprobe.common.AbstractDescriptor;
 import org.openobservatory.ooniprobe.databinding.ItemFailedBinding;
 import org.openobservatory.ooniprobe.model.database.Result;
 
@@ -44,9 +44,9 @@ public class FailedItem extends HeterogeneousRecyclerItem<Result, FailedItem.Vie
 		viewHolder.itemView.setOnLongClickListener(onLongClickListener);
 		viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(viewHolder.itemView.getContext(), R.color.color_gray2));
 		viewHolder.binding.testName.setTextColor(ContextCompat.getColor(viewHolder.itemView.getContext(), R.color.color_gray6));
-		Optional<OONIDescriptor<BaseNettest>> possibleDescriptor = extra.getDescriptor(viewHolder.itemView.getContext());
+		Optional<AbstractDescriptor<BaseNettest>> possibleDescriptor = extra.getDescriptor(viewHolder.itemView.getContext());
 		if (possibleDescriptor.isPresent()) {
-			OONIDescriptor<BaseNettest> descriptor = possibleDescriptor.get();
+			AbstractDescriptor<BaseNettest> descriptor = possibleDescriptor.get();
 			viewHolder.binding.icon.setImageResource(descriptor.getDisplayIcon(viewHolder.itemView.getContext()));
 			viewHolder.binding.testName.setText(descriptor.getTitle());
 		} else {

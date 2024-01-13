@@ -38,6 +38,7 @@ import org.openobservatory.ooniprobe.fragment.ResultListFragment;
 import org.openobservatory.ooniprobe.fragment.dynamicprogressbar.OONIRunDynamicProgressBar;
 import org.openobservatory.ooniprobe.fragment.dynamicprogressbar.OnActionListener;
 import org.openobservatory.ooniprobe.fragment.dynamicprogressbar.ProgressType;
+import org.openobservatory.ooniprobe.model.database.TestDescriptor;
 
 import java.io.Serializable;
 
@@ -264,7 +265,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
      * @param descriptorResponse The result of the task.
      * @return null.
      */
-    private Unit fetchDescriptorComplete(OONIRunDescriptor descriptorResponse) {
+    private Unit fetchDescriptorComplete(TestDescriptor descriptorResponse) {
         if (descriptorResponse != null) {
             startActivity(AddDescriptorActivity.newIntent(this, descriptorResponse));
         } else {
