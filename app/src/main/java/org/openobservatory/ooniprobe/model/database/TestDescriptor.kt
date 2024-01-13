@@ -95,7 +95,6 @@ class InstalledDescriptor(
         return R.string.TestResults_NotAvailable
     }
 
-
     override fun toRunTestsGroupItem(preferenceManager: PreferenceManager): GroupItem {
         return GroupItem(
             selected = false,
