@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.fragment.dashboard
 
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,7 +15,7 @@ import javax.inject.Inject
 class DashboardViewModel @Inject constructor(
     private val preferenceManager: PreferenceManager,
     private val descriptorManager: TestDescriptorManager
-) : ViewModel() {
+) : ViewModel(), DefaultLifecycleObserver {
     private var ooniRunDescriptors: List<InstalledDescriptor> = emptyList()
     private val oonTestsTitle: String = "OONI Tests"
     private val oonRunLinksTitle: String = "OONI RUN Links"
@@ -25,6 +27,14 @@ class DashboardViewModel @Inject constructor(
         ooniRunDescriptors = descriptorManager.getRunV2Descriptors().map {
             InstalledDescriptor(it)
         }
+    }
+
+    override fun onResume(owner: LifecycleOwner) {
+        super.onResume(owner)
+        ooniRunDescriptors = descriptorManager.getRunV2Descriptors().map {
+            InstalledDescriptor(it)
+        }
+        fetchItemList()
     }
 
     fun getGroupedItemList(): LiveData<List<Any>> {

@@ -57,6 +57,7 @@ class DashboardFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        lifecycle.addObserver(viewModel)
         viewModel.getGroupedItemList().observe(viewLifecycleOwner) { items ->
             binding.recycler.layoutManager = LinearLayoutManager(requireContext())
             binding.recycler.adapter = DashboardAdapter(items, this, preferenceManager)

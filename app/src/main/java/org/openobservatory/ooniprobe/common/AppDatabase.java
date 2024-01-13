@@ -11,7 +11,11 @@ import org.openobservatory.ooniprobe.model.database.Result;
 @Database(name = AppDatabase.NAME, version = AppDatabase.VERSION, foreignKeyConstraintsEnforced = true)
 public class AppDatabase {
     public static final String NAME = "v2";
-    public static final int VERSION = 3 + 2;
+    /**
+     * Version 4: Add `descriptor_runId` foreign key to Result
+     * Version 5: Add `TestDescriptor` model.
+     */
+    public static final int VERSION = 5;
 
     @Migration(version = 2, database = AppDatabase.class)
     public static class Migration2 extends AlterTableMigration<Result> {
