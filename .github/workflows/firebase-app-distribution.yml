@@ -17,7 +17,7 @@ jobs:
       - name: build release
         run: ./gradlew clean assembleDevFullDebug
         env:
-          PR_NUMBER: ${{ github.event.number }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
       - name: upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1.7.0
         with:
