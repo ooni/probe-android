@@ -209,6 +209,7 @@ public class RunTestService extends Service {
             ) {
                 return;
             }
+            // If key is null, do nothing
             if (key == null) {
                 return;
             }
