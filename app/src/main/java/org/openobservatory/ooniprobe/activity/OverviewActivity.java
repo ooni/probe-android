@@ -30,7 +30,9 @@ import org.openobservatory.ooniprobe.common.ReadMorePlugin;
 import org.openobservatory.ooniprobe.databinding.ActivityOverviewBinding;
 import org.openobservatory.ooniprobe.model.database.InstalledDescriptor;
 import org.openobservatory.ooniprobe.model.database.Result;
+import org.openobservatory.ooniprobe.model.database.TestDescriptor;
 
+import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import javax.inject.Inject;
@@ -77,7 +79,20 @@ public class OverviewActivity extends AbstractActivity {
                 binding.desc.setTextDirection(View.TEXT_DIRECTION_RTL);
             }
         } else {
-            markwon.setMarkdown(binding.desc, descriptor.getDescription());
+            if (descriptor instanceof InstalledDescriptor) {
+                TestDescriptor testDescriptor = ((InstalledDescriptor) descriptor).getTestDescriptor();
+                markwon.setMarkdown(
+                        binding.desc,
+                        String.format(
+                                "Created by %s on %s\n\n%s",
+                                testDescriptor.getAuthor(),
+                                new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH).format(testDescriptor.getDescriptorCreationTime()),
+                                descriptor.getDescription()
+                        )
+                );
+            } else {
+                markwon.setMarkdown(binding.desc, descriptor.getDescription());
+            }
         }
         Result lastResult = Result.getLastResult(descriptor.getName());
         if (lastResult == null) {
