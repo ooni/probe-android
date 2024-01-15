@@ -16,6 +16,8 @@ jobs:
           distribution: 'temurin'
       - name: build release
         run: ./gradlew clean assembleDevFullDebug
+        env:
+          PR_NUMBER: ${{ github.event.number }}
       - name: upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1.7.0
         with:
