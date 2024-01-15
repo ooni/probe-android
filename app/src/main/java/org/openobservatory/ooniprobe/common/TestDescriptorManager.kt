@@ -6,6 +6,10 @@ import org.openobservatory.engine.BaseNettest
 import org.openobservatory.engine.LoggerArray
 import org.openobservatory.engine.OONIRunFetchResponse
 import org.openobservatory.ooniprobe.BuildConfig
+import org.openobservatory.ooniprobe.activity.adddescriptor.adapter.GroupedItem
+import org.openobservatory.ooniprobe.model.database.InstalledDescriptor
+import org.openobservatory.ooniprobe.model.database.Result
+import org.openobservatory.ooniprobe.model.database.Result_Table
 import org.openobservatory.ooniprobe.model.database.TestDescriptor
 import org.openobservatory.ooniprobe.model.database.TestDescriptor_Table
 import org.openobservatory.ooniprobe.model.database.Url
@@ -20,7 +24,10 @@ import javax.inject.Singleton
  * This class is responsible for managing the test descriptors
  */
 @Singleton
-class TestDescriptorManager @Inject constructor(private val context: Context) {
+class TestDescriptorManager @Inject constructor(
+    private val context: Context,
+    private val preferenceManager: PreferenceManager
+) {
     private val descriptors: List<OONIDescriptor<BaseNettest>> = ooniDescriptors(context)
 
     fun getDescriptors(): List<OONIDescriptor<BaseNettest>> {
@@ -72,11 +79,23 @@ class TestDescriptorManager @Inject constructor(private val context: Context) {
         )
     }
 
-    fun addDescriptor(descriptor: TestDescriptor): Boolean {
+    fun addDescriptor(
+        descriptor: TestDescriptor,
+        disabledAutorunNettests: List<GroupedItem>
+    ): Boolean {
         descriptor.getNettests()
             .filter { it.name == WebConnectivity.NAME }
             .forEach {
                 it.inputs?.forEach { url -> Url.checkExistingUrl(url) }
+            }
+        descriptor.getNettests().map { it.name }
+            .filter { item -> disabledAutorunNettests.map { it.name }.contains(item) }
+            .forEach { item ->
+                preferenceManager.enableTest(
+                    name = item,
+                    prefix = descriptor.runId.toString(),
+                    autoRun = true
+                )
             }
         return descriptor.save()
     }
@@ -84,5 +103,13 @@ class TestDescriptorManager @Inject constructor(private val context: Context) {
     fun getRunV2Descriptors(): List<TestDescriptor> {
         return SQLite.select().from(TestDescriptor::class.java)
             .where(TestDescriptor_Table.isArchived.eq(false)).queryList()
+    }
+
+    fun delete(descriptor: InstalledDescriptor): Boolean {
+        return SQLite.select().from(Result::class.java)
+            .where(Result_Table.descriptor_runId.eq(descriptor.testDescriptor.runId))
+            .queryList().forEach { it.delete(context) }.run {
+                descriptor.testDescriptor.delete()
+            }
     }
 }

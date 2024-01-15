@@ -28,6 +28,7 @@ import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReadMorePlugin;
 import org.openobservatory.ooniprobe.databinding.ActivityOverviewBinding;
+import org.openobservatory.ooniprobe.model.database.InstalledDescriptor;
 import org.openobservatory.ooniprobe.model.database.Result;
 
 import java.util.Locale;
@@ -119,6 +120,18 @@ public class OverviewActivity extends AbstractActivity {
             binding.expandableListView.expandGroup(i);
         }
 
+        if (descriptor instanceof InstalledDescriptor) {
+            binding.uninstallLink.setVisibility(View.VISIBLE);
+            binding.automaticUpdatesContainer.setVisibility(View.VISIBLE);
+            binding.automaticUpdatesSwitch.setChecked(((InstalledDescriptor) descriptor).getTestDescriptor().isAutoUpdate());
+        } else {
+            binding.uninstallLink.setVisibility(View.GONE);
+            /**
+             * We need to set the height to 0 because the layout is broken when the view is gone
+             */
+            binding.automaticUpdatesContainer.getLayoutParams().height = 0;
+        }
+
         setUpOnCLickListeners();
     }
 
@@ -149,6 +162,8 @@ public class OverviewActivity extends AbstractActivity {
 
     private void setUpOnCLickListeners() {
         binding.customUrl.setOnClickListener(view -> customUrlClick());
+        binding.uninstallLink.setOnClickListener(view -> viewModel.uninstallLinkClicked(this, (InstalledDescriptor) descriptor));
+        binding.automaticUpdatesSwitch.setOnCheckedChangeListener((compoundButton, isChecked) -> viewModel.automaticUpdatesSwitchClicked(isChecked));
     }
 
     @Override
