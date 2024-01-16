@@ -14,9 +14,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Echo GITHUB_REF_NAME
-        run: |
-          echo $GITHUB_REF
+      - name: Get Pull Request Number
+        run: echo "PULL_NUMBER=$(gh pr view --json number -q .number || echo "")"
+        shell: bash
       - name: build release
         run: ./gradlew clean assembleDevFullDebug
       - name: upload artifact to Firebase App Distribution
