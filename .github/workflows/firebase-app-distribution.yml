@@ -9,16 +9,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - uses: jwalton/gh-find-current-pr@v1
+        id: findPr
+        with:
+          # Can be "open", "closed", or "all".  Defaults to "open".
+          state: open
+      # This will echo "Your PR is 7", or be skipped if there is no current PR.
       - name: set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Get Pull Request Number
-        run: echo "PULL_NUMBER=$(gh pr view --json number -q .number || echo "")"
-        shell: bash
       - name: build release
+        if: success() && steps.findPr.outputs.number
         run: ./gradlew clean assembleDevFullDebug
+        env:
+          PR_NUMBER: ${{ steps.findPr.outputs.pr }}
       - name: upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1.7.0
         with:
