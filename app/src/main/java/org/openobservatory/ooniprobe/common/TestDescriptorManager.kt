@@ -93,7 +93,7 @@ class TestDescriptorManager @Inject constructor(
             .forEach { item ->
                 preferenceManager.enableTest(
                     name = item,
-                    prefix = descriptor.runId.toString(),
+                    prefix = descriptor.preferencePrefix(),
                     autoRun = true
                 )
             }
@@ -106,6 +106,11 @@ class TestDescriptorManager @Inject constructor(
     }
 
     fun delete(descriptor: InstalledDescriptor): Boolean {
+        preferenceManager.sp.all.entries.forEach {entry ->
+            if (entry.key.contains(descriptor.testDescriptor.runId.toString())) {
+                preferenceManager.sp.edit().remove(entry.key).apply()
+            }
+        }
         return SQLite.select().from(Result::class.java)
             .where(Result_Table.descriptor_runId.eq(descriptor.testDescriptor.runId))
             .queryList().forEach { it.delete(context) }.run {

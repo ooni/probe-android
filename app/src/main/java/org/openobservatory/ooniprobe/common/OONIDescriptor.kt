@@ -161,7 +161,10 @@ abstract class AbstractDescriptor<T : BaseNettest>(
      * @return String representing the preference prefix.
      */
     fun preferencePrefix(): String {
-        return descriptor?.runId?.toString() ?: run { "" }
+        return when (descriptor?.runId != null) {
+            true -> descriptor?.preferencePrefix() ?: ""
+            else -> ""
+        }
     }
 
     /**
