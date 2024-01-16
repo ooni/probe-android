@@ -14,6 +14,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+      - name: Echo GITHUB_REF_NAME
+        run: |
+          echo $GITHUB_REF_NAME
       - name: build release
         run: ./gradlew clean assembleDevFullDebug
       - name: upload artifact to Firebase App Distribution
