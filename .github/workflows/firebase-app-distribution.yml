@@ -14,8 +14,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - run: |
-          echo "::set-env name=PR_NUMBER::$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")"
       - name: build release
         run: ./gradlew clean assembleDevFullDebug
       - name: upload artifact to Firebase App Distribution
