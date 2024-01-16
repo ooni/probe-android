@@ -16,7 +16,7 @@ jobs:
           distribution: 'temurin'
       - name: Echo GITHUB_REF_NAME
         run: |
-          echo $GITHUB_REF_NAME
+          echo $GITHUB_REF
       - name: build release
         run: ./gradlew clean assembleDevFullDebug
       - name: upload artifact to Firebase App Distribution
