@@ -34,7 +34,20 @@ fun PreferenceManager.resolveStatus(
             resolveStatus(name = name, prefix = prefix)
         )
     } else {
-        return sp.getBoolean(getPreferenceKey(name = name, prefix = prefix), false)
+        /**
+         * If the preference key does not exist, we return the default value for the test.
+         * This is needed because ooni provided tests will not be explicitly enabled by default.
+         *
+         * However, we want to show them as enabled in the UI.
+         *
+         * Using the **[OONIDescriptor.preferencePrefix]** as an identifier, we can determine if the test is an ooni test(prefix is blank)
+         * and set the default value accordingly.
+         *
+         * The prefix is blank for ooni tests because they do not have a descriptor id.
+         * Additionally, for backward compatibility, the preference key for ooni tests
+         * is a lookup from **[PreferenceManager.getPreferenceKey]** with the test name.
+         */
+        return sp.getBoolean(getPreferenceKey(name = name, prefix = prefix), prefix.isBlank())
     }
 }
 
