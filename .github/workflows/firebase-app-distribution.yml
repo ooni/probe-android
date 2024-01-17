@@ -27,8 +27,12 @@ jobs:
           PR_NUMBER: ${{ steps.findPr.outputs.pr }}
       - name: Upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1.7.0
+        id: uploadArtifact
         with:
           appId: ${{secrets.FIREBASE_APP_ID}}
           serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
           groups: testers
           file: app/build/outputs/apk/devFull/debug/app-dev-full-debug.apk
+      - name: Write Summary
+        run: |
+          echo "View this release in the Firebase console: ${{ steps.uploadArtifact.outputs.FIREBASE_CONSOLE_URI }}" >> $GITHUB_STEP_SUMMARY
