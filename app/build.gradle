@@ -55,8 +55,8 @@ android {
         dev {
             dimension 'testing'
             applicationIdSuffix '.dev'
-            versionNameSuffix "-beta.1"
-            versionCode versionCodeDate()
+            versionNameSuffix resolveVersionSuffix('beta')
+            versionCode resolveVersionCode()
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-dev"'
             resValue "string", "APP_ID", 'org.openobservatory.ooniprobe.dev'
             resValue "string", "APP_NAME", "OONI Dev"
@@ -65,8 +65,8 @@ android {
         experimental {
             dimension 'testing'
             applicationIdSuffix '.experimental'
-            versionNameSuffix "-experimental.1"
-            versionCode versionCodeDate()
+            versionNameSuffix resolveVersionSuffix('experimental')
+            versionCode resolveVersionCode()
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-experimental"'
             resValue "string", "APP_ID", 'org.openobservatory.ooniprobe.experimental'
             resValue "string", "APP_NAME", "OONI Exp"
@@ -173,11 +173,18 @@ dependencies {
     kaptAndroidTest libs.google.dagger.compiler
 }
 
-static def versionCodeDate() {
+static def resolveVersionCode() {
     if(System.getenv("PR_NUMBER") != null){
         return System.getenv("PR_NUMBER").toInteger()
     }
     return new Date().format("yyyyMMdd").toInteger()
+}
+
+static def resolveVersionSuffix(String variant) {
+    if(System.getenv("PR_NUMBER") != null){
+        return "-${variant}.${System.getenv("PR_NUMBER")}"
+    }
+    return "-${variant}.1"
 }
 
 if (!getGradle().getStartParameter().getTaskRequests()
