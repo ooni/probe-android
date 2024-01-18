@@ -61,7 +61,13 @@ class TestDescriptor(
     var nettests: Any = emptyList<OONIRunNettest>()
 ) : BaseModel(), Serializable
 
+fun TestDescriptor.shouldUpdate(updatedDescriptor: TestDescriptor): Boolean {
+    return (updatedDescriptor.descriptorCreationTime?.after(descriptorCreationTime) ?: true
+            || updatedDescriptor.translationCreationTime?.after(translationCreationTime) ?: true)
+}
+
 private const val DESCRIPTOR_TEST_NAME = "ooni_run"
+
 class InstalledDescriptor(
     var testDescriptor: TestDescriptor
 ) : AbstractDescriptor<BaseNettest>(
@@ -85,7 +91,7 @@ class InstalledDescriptor(
 
         false -> emptyList()
     },
-    descriptor = testDescriptor ) {
+    descriptor = testDescriptor) {
 
     override fun isEnabled(preferenceManager: PreferenceManager): Boolean {
         return !testDescriptor.isArchived

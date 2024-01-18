@@ -21,6 +21,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.work.Constraints;
+import androidx.work.ExistingPeriodicWorkPolicy;
+import androidx.work.ExistingWorkPolicy;
+import androidx.work.NetworkType;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkInfo;
+import androidx.work.WorkManager;
+import androidx.work.WorkRequest;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.common.base.Optional;
@@ -30,6 +40,8 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.adddescriptor.AddDescriptorActivity;
 import org.openobservatory.ooniprobe.common.*;
 import org.openobservatory.ooniprobe.common.service.ServiceUtil;
+import org.openobservatory.ooniprobe.common.worker.AutoUpdateDescriptorsWorker;
+import org.openobservatory.ooniprobe.common.worker.ManualUpdateDescriptorsWorker;
 import org.openobservatory.ooniprobe.databinding.ActivityMainBinding;
 import org.openobservatory.ooniprobe.domain.UpdatesNotificationManager;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
@@ -41,6 +53,7 @@ import org.openobservatory.ooniprobe.fragment.dynamicprogressbar.ProgressType;
 import org.openobservatory.ooniprobe.model.database.TestDescriptor;
 
 import java.io.Serializable;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -148,7 +161,48 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
             }
         }
         requestNotificationPermission();
+        scheduleWorkers();
         onNewIntent(getIntent());
+    }
+
+    private void scheduleWorkers() {
+        WorkManager.getInstance(this)
+                .enqueueUniquePeriodicWork(
+                AutoUpdateDescriptorsWorker.UPDATED_DESCRIPTORS_WORK_NAME,
+                ExistingPeriodicWorkPolicy.KEEP,
+                new PeriodicWorkRequest.Builder(AutoUpdateDescriptorsWorker.class, 24, TimeUnit.HOURS)
+                        .setConstraints(
+                                new Constraints.Builder()
+                                        .setRequiredNetworkType(NetworkType.CONNECTED)
+                                        .build()
+                        ).build()
+        );
+
+        OneTimeWorkRequest manualWorkRequest = new OneTimeWorkRequest.Builder(ManualUpdateDescriptorsWorker.class)
+                .setConstraints(
+                        new Constraints.Builder()
+                                .setRequiredNetworkType(NetworkType.CONNECTED)
+                                .build()
+                ).build();
+
+        WorkManager.getInstance(this)
+                .beginUniqueWork(
+                        ManualUpdateDescriptorsWorker.UPDATED_DESCRIPTORS_WORK_NAME,
+                        ExistingWorkPolicy.REPLACE,
+                        manualWorkRequest
+                ).enqueue();
+
+        WorkManager.getInstance(this)
+                .getWorkInfoByIdLiveData(manualWorkRequest.getId())
+                .observe(this, workInfo -> {
+                    if (workInfo.getState().isFinished()) {
+                        if (workInfo.getState() == WorkInfo.State.SUCCEEDED) {
+                            System.out.println(workInfo.getOutputData());
+                        } else {
+                            System.out.println("Failed");
+                        }
+                    }
+                });
     }
 
     private void requestNotificationPermission() {

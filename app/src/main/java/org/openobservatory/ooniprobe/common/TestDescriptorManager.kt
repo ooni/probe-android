@@ -85,4 +85,14 @@ class TestDescriptorManager @Inject constructor(private val context: Context) {
         return SQLite.select().from(TestDescriptor::class.java)
             .where(TestDescriptor_Table.isArchived.eq(false)).queryList()
     }
+
+    fun getDescriptorWithAutoUpdateEnabled(): List<TestDescriptor> {
+        return SQLite.select().from(TestDescriptor::class.java)
+            .where(TestDescriptor_Table.auto_update.eq(true)).queryList()
+    }
+
+    fun getDescriptorWithAutoUpdateDisabled(): List<TestDescriptor> {
+        return SQLite.select().from(TestDescriptor::class.java)
+            .where(TestDescriptor_Table.auto_update.eq(false)).queryList()
+    }
 }
