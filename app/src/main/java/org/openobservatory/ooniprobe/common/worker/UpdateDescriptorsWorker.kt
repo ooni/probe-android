@@ -184,8 +184,8 @@ class ManualUpdateDescriptorsWorker(
 
         private val UPDATE_DESCRIPTOR_CHANNEL: String =
             AutoUpdateDescriptorsWorker::class.java.simpleName
-
-        private val KEY_UPDATED_DESCRIPTORS =
+        @JvmField
+        var KEY_UPDATED_DESCRIPTORS =
             "${AutoUpdateDescriptorsWorker::class.java.name}.KEY_UPDATED_DESCRIPTORS"
     }
 }

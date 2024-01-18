@@ -38,6 +38,7 @@ import com.google.common.base.Optional;
 import org.openobservatory.engine.OONIRunDescriptor;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.adddescriptor.AddDescriptorActivity;
+import org.openobservatory.ooniprobe.activity.reviewdescriptorupdates.ReviewDescriptorUpdatesActivity;
 import org.openobservatory.ooniprobe.common.*;
 import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.common.worker.AutoUpdateDescriptorsWorker;
@@ -168,15 +169,15 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     private void scheduleWorkers() {
         WorkManager.getInstance(this)
                 .enqueueUniquePeriodicWork(
-                AutoUpdateDescriptorsWorker.UPDATED_DESCRIPTORS_WORK_NAME,
-                ExistingPeriodicWorkPolicy.KEEP,
-                new PeriodicWorkRequest.Builder(AutoUpdateDescriptorsWorker.class, 24, TimeUnit.HOURS)
-                        .setConstraints(
-                                new Constraints.Builder()
-                                        .setRequiredNetworkType(NetworkType.CONNECTED)
-                                        .build()
-                        ).build()
-        );
+                        AutoUpdateDescriptorsWorker.UPDATED_DESCRIPTORS_WORK_NAME,
+                        ExistingPeriodicWorkPolicy.KEEP,
+                        new PeriodicWorkRequest.Builder(AutoUpdateDescriptorsWorker.class, 24, TimeUnit.HOURS)
+                                .setConstraints(
+                                        new Constraints.Builder()
+                                                .setRequiredNetworkType(NetworkType.CONNECTED)
+                                                .build()
+                                ).build()
+                );
 
         OneTimeWorkRequest manualWorkRequest = new OneTimeWorkRequest.Builder(ManualUpdateDescriptorsWorker.class)
                 .setConstraints(
@@ -198,6 +199,12 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                     if (workInfo.getState().isFinished()) {
                         if (workInfo.getState() == WorkInfo.State.SUCCEEDED) {
                             System.out.println(workInfo.getOutputData());
+                            startActivity(
+                                    ReviewDescriptorUpdatesActivity.newIntent(
+                                            this,
+                                            workInfo.getOutputData().getString(ManualUpdateDescriptorsWorker.KEY_UPDATED_DESCRIPTORS)
+                                    )
+                            );
                         } else {
                             System.out.println("Failed");
                         }
