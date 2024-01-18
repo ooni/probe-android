@@ -59,7 +59,11 @@ class TestDescriptor(
     var translationCreationTime: Date? = null,
     @Column(typeConverter = NettestConverter::class)
     var nettests: Any = emptyList<OONIRunNettest>()
-) : BaseModel(), Serializable
+) : BaseModel(), Serializable {
+    fun preferencePrefix(): String {
+        return "${runId}_"
+    }
+}
 
 fun TestDescriptor.shouldUpdate(updatedDescriptor: TestDescriptor): Boolean {
     return (updatedDescriptor.descriptorCreationTime?.after(descriptorCreationTime) ?: true

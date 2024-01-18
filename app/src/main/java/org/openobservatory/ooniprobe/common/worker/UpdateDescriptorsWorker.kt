@@ -15,10 +15,14 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.common.Application
+import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.common.TestDescriptorManager
 import org.openobservatory.ooniprobe.common.ThirdPartyServices
 import org.openobservatory.ooniprobe.model.database.TestDescriptor
 import org.openobservatory.ooniprobe.model.database.shouldUpdate
+import javax.inject.Inject
+
+var d: UpdateDescriptorsWorkerDependencies = UpdateDescriptorsWorkerDependencies()
 
 class AutoUpdateDescriptorsWorker(
     context: Context,
@@ -26,7 +30,8 @@ class AutoUpdateDescriptorsWorker(
 ) : Worker(context, workerParams) {
 
     override fun doWork(): Result {
-
+        val app = applicationContext.applicationContext as Application
+        app.serviceComponent.inject(d)
         return try {
             Log.d(TAG, "Fetching descriptors from input")
 
@@ -37,9 +42,7 @@ class AutoUpdateDescriptorsWorker(
             )
             val updatedDescriptors: ArrayList<TestDescriptor> = ArrayList()
 
-            val testDescriptorManager = TestDescriptorManager(applicationContext)
-
-            for (descriptor in testDescriptorManager.getDescriptorWithAutoUpdateEnabled()) {
+            for (descriptor in d.testDescriptorManager.getDescriptorWithAutoUpdateEnabled()) {
                 Log.d(TAG, "Fetching updates for ${descriptor.runId}")
 
                 makeStatusNotification(
@@ -49,7 +52,7 @@ class AutoUpdateDescriptorsWorker(
                 )
 
                 val updatedDescriptor: TestDescriptor =
-                    testDescriptorManager.fetchDescriptorFromRunId(
+                    d.testDescriptorManager.fetchDescriptorFromRunId(
                         descriptor.runId,
                         applicationContext
                     )
@@ -118,6 +121,8 @@ class ManualUpdateDescriptorsWorker(
 ) : Worker(context, workerParams) {
 
     override fun doWork(): Result {
+        val app = applicationContext.applicationContext as Application
+        app.serviceComponent.inject(d)
 
         return try {
             Log.d(TAG, "Fetching descriptors from input")
@@ -129,9 +134,7 @@ class ManualUpdateDescriptorsWorker(
 
             val updatedDescriptors: ArrayList<TestDescriptor> = ArrayList()
 
-            val testDescriptorManager = TestDescriptorManager(applicationContext)
-
-            for (descriptor in testDescriptorManager.getDescriptorWithAutoUpdateDisabled()) {
+            for (descriptor in d.testDescriptorManager.getDescriptorWithAutoUpdateDisabled()) {
                 Log.d(TAG, "Fetching updates for ${descriptor.runId}")
                 makeStatusNotification(
                     applicationContext = applicationContext,
@@ -140,7 +143,7 @@ class ManualUpdateDescriptorsWorker(
                 )
 
                 val updatedDescriptor: TestDescriptor =
-                    testDescriptorManager.fetchDescriptorFromRunId(
+                    d.testDescriptorManager.fetchDescriptorFromRunId(
                         descriptor.runId,
                         applicationContext
                     )
@@ -185,6 +188,14 @@ class ManualUpdateDescriptorsWorker(
         private val KEY_UPDATED_DESCRIPTORS =
             "${AutoUpdateDescriptorsWorker::class.java.name}.KEY_UPDATED_DESCRIPTORS"
     }
+}
+
+class UpdateDescriptorsWorkerDependencies {
+    @Inject
+    lateinit var testDescriptorManager: TestDescriptorManager
+
+    @Inject
+    lateinit var preferenceManager: PreferenceManager
 }
 
 private fun makeStatusNotification(

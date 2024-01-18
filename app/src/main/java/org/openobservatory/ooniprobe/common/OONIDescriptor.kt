@@ -161,7 +161,10 @@ abstract class AbstractDescriptor<T : BaseNettest>(
      * @return String representing the preference prefix.
      */
     fun preferencePrefix(): String {
-        return OONITests.values().find { it.label == name }?.let { "" } ?: "descriptor_id_"
+        return when (descriptor?.runId != null) {
+            true -> descriptor?.preferencePrefix() ?: ""
+            else -> ""
+        }
     }
 
     /**

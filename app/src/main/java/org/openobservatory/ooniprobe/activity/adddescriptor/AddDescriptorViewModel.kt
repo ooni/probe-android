@@ -85,21 +85,16 @@ class AddDescriptorViewModel constructor(
     /**
      * This method is called when the "Add Link" button is clicked.
      * It adds the descriptor to the descriptor manager and signals that the activity should finish.
-     * @param selectedNettest is the list of selected nettests.
+     * @param disabledAutorunNettests is the list of disabled nettests for autorun.
      * @param automatedUpdates is a boolean indicating whether automated updates should be enabled.
      */
-    fun onAddButtonClicked(selectedNettest: List<GroupedItem>, automatedUpdates: Boolean) {
+    fun onAddButtonClicked(disabledAutorunNettests: List<GroupedItem>, automatedUpdates: Boolean) {
         descriptor.value?.let { descriptor ->
             descriptorManager.addDescriptor(
                 descriptor = descriptor.apply {
                     isAutoUpdate = automatedUpdates
-                    nettests = selectedNettest.filter { it.selected }.map { nettest ->
-                        OONIRunNettest(
-                            name = nettest.name,
-                            inputs = nettest.inputs
-                        )
-                    }
                 },
+                disabledAutorunNettests = disabledAutorunNettests
             ).also {
                 finishActivity()
             }
