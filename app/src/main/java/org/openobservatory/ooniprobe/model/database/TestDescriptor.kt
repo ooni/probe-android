@@ -178,3 +178,61 @@ class NettestConverter : TypeConverter<String, Any>() {
     ).toList()
 }
 
+class ITestDescriptor(
+
+    var runId: Long = 0,
+
+    var name: String = "",
+
+    var nameIntl: HashMap<String, String>? = null,
+
+    var author: String = "",
+
+    var shortDescription: String = "",
+
+    var shortDescriptionIntl: HashMap<String, String>? = null,
+
+    var description: String = "",
+
+    var descriptionIntl: HashMap<String, String>? = null,
+
+    var icon: String? = null,
+
+    var color: String? = null,
+
+    var animation: String? = null,
+
+    var isArchived: Boolean = false,
+
+    var isAutoRun: Boolean = true,
+
+    var isAutoUpdate: Boolean = false,
+
+    var descriptorCreationTime: Date? = null,
+
+    var translationCreationTime: Date? = null,
+
+    var nettests: List<OONIRunNettest>? = emptyList()
+): Serializable {
+    fun toTestDescriptor(): TestDescriptor {
+        return TestDescriptor(
+            runId = runId,
+            name = name,
+            nameIntl = nameIntl,
+            author = author,
+            shortDescription = shortDescription,
+            shortDescriptionIntl = shortDescriptionIntl,
+            description = description,
+            descriptionIntl = descriptionIntl,
+            icon = icon,
+            color = color,
+            animation = animation,
+            isArchived = isArchived,
+            isAutoRun = isAutoRun,
+            isAutoUpdate = isAutoUpdate,
+            descriptorCreationTime = descriptorCreationTime,
+            translationCreationTime = translationCreationTime,
+            nettests = nettests ?: emptyList<OONIRunNettest>()
+        )
+    }
+}
