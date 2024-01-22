@@ -133,6 +133,7 @@ class ReviewDescriptorUpdatesActivity : AbstractActivity() {
                         ?.let {
                             val countString =
                                 "(${position + 1} of ${binding.viewpager.adapter?.itemCount})"
+                            supportActionBar?.title = "Link Update $countString"
                             it.title = if ((position + 1) != binding.viewpager.adapter?.itemCount) {
                                 "UPDATE $countString"
                             } else {
