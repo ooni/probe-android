@@ -65,6 +65,12 @@ class TestDescriptor(
     }
 }
 
+/**
+ * Check if the descriptor should be updated based on the creation time of the descriptor and the creation time of the translations.
+ *
+ * @param updatedDescriptor The updated descriptor
+ * @return True if the descriptor should be updated based on the creation time of the descriptor and the creation time of the translations.
+ */
 fun TestDescriptor.shouldUpdate(updatedDescriptor: TestDescriptor): Boolean {
     return (updatedDescriptor.descriptorCreationTime?.after(descriptorCreationTime) ?: true
             || updatedDescriptor.translationCreationTime?.after(translationCreationTime) ?: true)
@@ -213,7 +219,7 @@ class ITestDescriptor(
     var translationCreationTime: Date? = null,
 
     var nettests: List<OONIRunNettest>? = emptyList()
-): Serializable {
+) : Serializable {
     fun toTestDescriptor(): TestDescriptor {
         return TestDescriptor(
             runId = runId,

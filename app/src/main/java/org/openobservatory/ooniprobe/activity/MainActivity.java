@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.activity;
 
 import static org.openobservatory.ooniprobe.common.service.RunTestService.CHANNEL_ID;
+import static org.openobservatory.ooniprobe.common.worker.UpdateDescriptorsWorkerKt.PROGRESS;
 
 import android.Manifest;
 import android.content.Context;
@@ -17,12 +18,13 @@ import android.view.View;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.IdRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.work.Constraints;
+import androidx.work.Data;
 import androidx.work.ExistingPeriodicWorkPolicy;
 import androidx.work.ExistingWorkPolicy;
 import androidx.work.NetworkType;
@@ -30,12 +32,10 @@ import androidx.work.OneTimeWorkRequest;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkInfo;
 import androidx.work.WorkManager;
-import androidx.work.WorkRequest;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.common.base.Optional;
 
-import org.openobservatory.engine.OONIRunDescriptor;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.adddescriptor.AddDescriptorActivity;
 import org.openobservatory.ooniprobe.activity.reviewdescriptorupdates.ReviewDescriptorUpdatesActivity;
@@ -195,21 +195,65 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
 
         WorkManager.getInstance(this)
                 .getWorkInfoByIdLiveData(manualWorkRequest.getId())
-                .observe(this, workInfo -> {
-                    if (workInfo.getState().isFinished()) {
-                        if (workInfo.getState() == WorkInfo.State.SUCCEEDED) {
-                            System.out.println(workInfo.getOutputData());
-                            startActivity(
-                                    ReviewDescriptorUpdatesActivity.newIntent(
-                                            this,
-                                            workInfo.getOutputData().getString(ManualUpdateDescriptorsWorker.KEY_UPDATED_DESCRIPTORS)
-                                    )
-                            );
-                        } else {
-                            System.out.println("Failed");
-                        }
-                    }
-                });
+                .observe(this, this::onManualUpdatesFetchComplete);
+    }
+
+
+    /**
+     * Listens to updates from the {@link ManualUpdateDescriptorsWorker}.
+     * <p>
+     * This method is called after the {@link ManualUpdateDescriptorsWorker} is enqueued.
+     * The {@link ManualUpdateDescriptorsWorker} task is to fetch updates for the descriptors.
+     * <p>
+     * If the task is successful, the {@link WorkInfo} object will contain the updated descriptors.
+     * Otherwise, the {@link WorkInfo} object will be null.
+     *
+     * @param workInfo The {@link WorkInfo} of the task.
+     */
+    private void onManualUpdatesFetchComplete(WorkInfo workInfo) {
+        if (workInfo != null) {
+            binding.reviewUpdateNotificationFragment.setVisibility(View.VISIBLE);
+            switch (workInfo.getState()) {
+                case SUCCEEDED -> getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(
+                                R.id.review_update_notification_fragment,
+                                OONIRunDynamicProgressBar.newInstance(ProgressType.REVIEW_LINK, new OnActionListener() {
+                                    @Override
+                                    public void onActionButtonCLicked() {
+
+                                        startActivity(
+                                                ReviewDescriptorUpdatesActivity.newIntent(
+                                                        MainActivity.this,
+                                                        workInfo.getOutputData().getString(ManualUpdateDescriptorsWorker.KEY_UPDATED_DESCRIPTORS)
+                                                )
+                                        );
+                                        removeProgressFragment(R.id.review_update_notification_fragment);
+                                    }
+
+                                    @Override
+                                    public void onCloseButtonClicked() {
+                                        removeProgressFragment(R.id.review_update_notification_fragment);
+                                    }
+                                }),
+                                OONIRunDynamicProgressBar.getTAG() + "_review_update_success_notification"
+                        ).commit();
+                case ENQUEUED -> getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(
+                                R.id.review_update_notification_fragment,
+                                OONIRunDynamicProgressBar.newInstance(ProgressType.UPDATE_LINK, null),
+                                OONIRunDynamicProgressBar.getTAG() + "_review_update_enqueued_notification"
+                        ).commit();
+                case FAILED -> Snackbar.make(
+                        binding.getRoot(),
+                        R.string.Modal_Error,
+                        Snackbar.LENGTH_LONG
+                ).setAnchorView(binding.bottomNavigation).show();
+                default -> {
+                }
+            }
+        }
     }
 
     private void requestNotificationPermission() {
@@ -335,7 +379,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                     .setAnchorView(binding.bottomNavigation) // NOTE:To avoid the `snackbar` from covering the bottom navigation.
                     .show();
         }
-        removeProgressFragment();
+        removeProgressFragment(R.id.dynamic_progress_fragment);
         return Unit.INSTANCE;
 
     }
@@ -357,12 +401,12 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                             @Override
                             public void onActionButtonCLicked() {
                                 executor.cancelTask();
-                                removeProgressFragment();
+                                removeProgressFragment(R.id.dynamic_progress_fragment);
                             }
 
                             @Override
                             public void onCloseButtonClicked() {
-                                removeProgressFragment();
+                                removeProgressFragment(R.id.dynamic_progress_fragment);
                             }
                         }),
                         OONIRunDynamicProgressBar.getTAG()
@@ -427,12 +471,12 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
      * <p>
      * This method is called when the task is completed.
      */
-    private void removeProgressFragment() {
-        Fragment fragment = getSupportFragmentManager().findFragmentByTag(OONIRunDynamicProgressBar.getTAG());
+    private void removeProgressFragment(@IdRes int id) {
+        Fragment fragment = getSupportFragmentManager().findFragmentById(id);
         if (fragment != null && fragment.isAdded()) {
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }
-        binding.dynamicProgressFragment.setVisibility(View.GONE);
+        findViewById(id).setVisibility(View.GONE);
     }
 
     @Override
