@@ -98,6 +98,18 @@
                         app:cornerRadius="24dp"
                         app:rippleColor="@color/ripple_material_dark"
                         app:strokeColor="@android:color/white" />
+                    <Button
+                        android:id="@+id/review_updates"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Review Updates"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        app:cornerRadius="24dp"
+                        app:rippleColor="@color/ripple_material_dark"
+                        app:strokeColor="@android:color/white"
+                        android:visibility="gone"/>
                 </LinearLayout>
 
                 <androidx.appcompat.widget.Toolbar
@@ -226,14 +238,6 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.core.widget.NestedScrollView>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-        <FrameLayout
-            android:id="@+id/review_update_notification_fragment"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_gravity="bottom"
-            android:visibility="gone"
-            app:layout_anchorGravity="bottom" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/progress_fragment"

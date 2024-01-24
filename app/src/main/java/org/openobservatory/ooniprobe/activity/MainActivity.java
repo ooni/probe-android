@@ -3,7 +3,6 @@ package org.openobservatory.ooniprobe.activity;
 import static org.openobservatory.ooniprobe.common.service.RunTestService.CHANNEL_ID;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,7 +12,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.provider.Settings;
-
 import android.view.View;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -36,7 +34,12 @@ import com.google.common.base.Optional;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.adddescriptor.AddDescriptorActivity;
 import org.openobservatory.ooniprobe.activity.reviewdescriptorupdates.ReviewDescriptorUpdatesActivity;
-import org.openobservatory.ooniprobe.common.*;
+import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.NotificationUtility;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.common.TaskExecutor;
+import org.openobservatory.ooniprobe.common.TestDescriptorManager;
+import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.common.worker.AutoUpdateDescriptorsWorker;
 import org.openobservatory.ooniprobe.common.worker.ManualUpdateDescriptorsWorker;
@@ -177,7 +180,7 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
                 );
         // TODO(aanorbel): add rules before checking updates
         fetchManualUpdate();
-        registerReviewLauncher(binding.bottomNavigation);
+        registerReviewLauncher(binding.bottomNavigation, () -> null);
     }
 
     public void fetchManualUpdate() {

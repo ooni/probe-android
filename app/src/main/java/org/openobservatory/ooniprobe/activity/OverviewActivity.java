@@ -38,9 +38,6 @@ import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReadMorePlugin;
 import org.openobservatory.ooniprobe.common.worker.ManualUpdateDescriptorsWorker;
 import org.openobservatory.ooniprobe.databinding.ActivityOverviewBinding;
-import org.openobservatory.ooniprobe.fragment.dynamicprogressbar.OONIRunDynamicProgressBar;
-import org.openobservatory.ooniprobe.fragment.dynamicprogressbar.OnActionListener;
-import org.openobservatory.ooniprobe.fragment.dynamicprogressbar.ProgressType;
 import org.openobservatory.ooniprobe.model.database.InstalledDescriptor;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.TestDescriptor;
@@ -162,7 +159,10 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity {
         }
 
         setUpOnCLickListeners();
-        registerReviewLauncher(binding.progressFragment);
+        registerReviewLauncher(binding.progressFragment, () -> {
+            binding.reviewUpdates.setVisibility(View.GONE);
+            return null;
+        });
     }
 
     private void selectAllBtnStatusObserver(String selectAllBtnStatus) {
@@ -196,8 +196,6 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity {
         binding.automaticUpdatesSwitch.setOnCheckedChangeListener((compoundButton, isChecked) -> viewModel.automaticUpdatesSwitchClicked(isChecked));
         if (descriptor instanceof InstalledDescriptor) {
             binding.swipeRefresh.setOnRefreshListener(() -> {
-                binding.swipeRefresh.setRefreshing(false);
-
                 Data.Builder data = new Data.Builder();
                 data.putLongArray(ManualUpdateDescriptorsWorker.KEY_DESCRIPTOR_IDS, new long[]{Objects.requireNonNull(descriptor.getDescriptor()).getRunId()});
                 OneTimeWorkRequest manualWorkRequest = new OneTimeWorkRequest.Builder(ManualUpdateDescriptorsWorker.class)
@@ -239,44 +237,25 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity {
      */
     private void onManualUpdatesFetchComplete(WorkInfo workInfo) {
         if (workInfo != null) {
-            binding.reviewUpdateNotificationFragment.setVisibility(View.VISIBLE);
             switch (workInfo.getState()) {
-                case SUCCEEDED -> getSupportFragmentManager()
-                        .beginTransaction()
-                        .add(
-                                R.id.review_update_notification_fragment,
-                                OONIRunDynamicProgressBar.newInstance(ProgressType.REVIEW_LINK, new OnActionListener() {
-                                    @Override
-                                    public void onActionButtonCLicked() {
-
-                                        getReviewUpdatesLauncher().launch(
-                                                ReviewDescriptorUpdatesActivity.newIntent(
-                                                        OverviewActivity.this,
-                                                        workInfo.getOutputData().getString(ManualUpdateDescriptorsWorker.KEY_UPDATED_DESCRIPTORS)
-                                                )
-                                        );
-                                        removeProgressFragment(R.id.review_update_notification_fragment);
-                                    }
-
-                                    @Override
-                                    public void onCloseButtonClicked() {
-                                        removeProgressFragment(R.id.review_update_notification_fragment);
-                                    }
-                                }),
-                                OONIRunDynamicProgressBar.getTAG() + "_review_update_success_notification"
-                        ).commit();
-                case ENQUEUED -> getSupportFragmentManager()
-                        .beginTransaction()
-                        .add(
-                                R.id.review_update_notification_fragment,
-                                OONIRunDynamicProgressBar.newInstance(ProgressType.UPDATE_LINK, null),
-                                OONIRunDynamicProgressBar.getTAG() + "_review_update_enqueued_notification"
-                        ).commit();
-                case FAILED -> Snackbar.make(
-                        binding.getRoot(),
-                        R.string.Modal_Error,
-                        Snackbar.LENGTH_LONG
-                ).show();
+                case SUCCEEDED -> {
+                    binding.reviewUpdates.setVisibility(View.VISIBLE);
+                    binding.reviewUpdates.setOnClickListener(view -> getReviewUpdatesLauncher().launch(
+                            ReviewDescriptorUpdatesActivity.newIntent(
+                                    OverviewActivity.this,
+                                    workInfo.getOutputData().getString(ManualUpdateDescriptorsWorker.KEY_UPDATED_DESCRIPTORS)
+                            )
+                    ));
+                    binding.swipeRefresh.setRefreshing(false);
+                }
+                case FAILED -> {
+                    binding.swipeRefresh.setRefreshing(false);
+                    Snackbar.make(
+                            binding.getRoot(),
+                            R.string.Modal_Error,
+                            Snackbar.LENGTH_LONG
+                    ).show();
+                }
                 default -> {
                 }
             }
