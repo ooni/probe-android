@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.google.android.material.checkbox.MaterialCheckBox
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.internal.LinkedTreeMap
 import org.openobservatory.engine.BaseNettest
@@ -44,6 +45,9 @@ class ReviewDescriptorUpdatesActivity : AbstractActivity() {
 
     companion object {
         private const val DESCRIPTORS = "descriptors"
+
+        @JvmField
+        var RESULT_MESSAGE = "result"
 
         /**
          * This method is used to create an intent to start this activity.
@@ -113,6 +117,7 @@ class ReviewDescriptorUpdatesActivity : AbstractActivity() {
                             if ((currPos + 1) != binding.viewpager.adapter?.itemCount) {
                                 binding.viewpager.currentItem = currPos + 1
                             } else {
+                                setResult(RESULT_OK, Intent().putExtra(RESULT_MESSAGE, "Link(s) updated"))
                                 finish()
                             }
                             true

@@ -53,7 +53,7 @@ import javax.inject.Inject;
 
 import io.noties.markwon.Markwon;
 
-public class OverviewActivity extends AbstractActivity {
+public class OverviewActivity extends ReviewUpdatesAbstractActivity {
     private static final String TEST = "test";
 
     ActivityOverviewBinding binding;
@@ -162,6 +162,7 @@ public class OverviewActivity extends AbstractActivity {
         }
 
         setUpOnCLickListeners();
+        registerReviewLauncher(binding.progressFragment);
     }
 
     private void selectAllBtnStatusObserver(String selectAllBtnStatus) {
@@ -248,7 +249,7 @@ public class OverviewActivity extends AbstractActivity {
                                     @Override
                                     public void onActionButtonCLicked() {
 
-                                        startActivity(
+                                        getReviewUpdatesLauncher().launch(
                                                 ReviewDescriptorUpdatesActivity.newIntent(
                                                         OverviewActivity.this,
                                                         workInfo.getOutputData().getString(ManualUpdateDescriptorsWorker.KEY_UPDATED_DESCRIPTORS)

@@ -1,9 +1,9 @@
 package org.openobservatory.ooniprobe.activity;
 
 import static org.openobservatory.ooniprobe.common.service.RunTestService.CHANNEL_ID;
-import static org.openobservatory.ooniprobe.common.worker.UpdateDescriptorsWorkerKt.PROGRESS;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,13 +18,10 @@ import android.view.View;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.IdRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 import androidx.work.Constraints;
-import androidx.work.Data;
 import androidx.work.ExistingPeriodicWorkPolicy;
 import androidx.work.ExistingWorkPolicy;
 import androidx.work.NetworkType;
@@ -61,7 +58,7 @@ import javax.inject.Inject;
 import kotlin.Unit;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 
-public class MainActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
+public class MainActivity extends ReviewUpdatesAbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String RES_ITEM = "resItem";
     private static final String RES_SNACKBAR_MESSAGE = "resSnackbarMessage";
     public static final String NOTIFICATION_DIALOG = "notification";
@@ -180,6 +177,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 );
         // TODO(aanorbel): add rules before checking updates
         fetchManualUpdate();
+        registerReviewLauncher(binding.bottomNavigation);
     }
 
     public void fetchManualUpdate() {
@@ -226,7 +224,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                                     @Override
                                     public void onActionButtonCLicked() {
 
-                                        startActivity(
+                                        getReviewUpdatesLauncher().launch(
                                                 ReviewDescriptorUpdatesActivity.newIntent(
                                                         MainActivity.this,
                                                         workInfo.getOutputData().getString(ManualUpdateDescriptorsWorker.KEY_UPDATED_DESCRIPTORS)
