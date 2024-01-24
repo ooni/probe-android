@@ -178,7 +178,11 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                                                 .build()
                                 ).build()
                 );
+        // TODO(aanorbel): add rules before checking updates
+        fetchManualUpdate();
+    }
 
+    public void fetchManualUpdate() {
         OneTimeWorkRequest manualWorkRequest = new OneTimeWorkRequest.Builder(ManualUpdateDescriptorsWorker.class)
                 .setConstraints(
                         new Constraints.Builder()
@@ -464,19 +468,6 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
             e.printStackTrace();
             return Optional.absent();
         }
-    }
-
-    /**
-     * Remove the progress fragment.
-     * <p>
-     * This method is called when the task is completed.
-     */
-    private void removeProgressFragment(@IdRes int id) {
-        Fragment fragment = getSupportFragmentManager().findFragmentById(id);
-        if (fragment != null && fragment.isAdded()) {
-            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
-        }
-        findViewById(id).setVisibility(View.GONE);
     }
 
     @Override

@@ -100,7 +100,13 @@ class ManualUpdateDescriptorsWorker(
 
             val updatedDescriptors: ArrayList<TestDescriptor> = ArrayList()
 
-            for (descriptor in d.testDescriptorManager.getDescriptorWithAutoUpdateDisabled()) {
+            val descriptors = inputData.getLongArray(KEY_DESCRIPTOR_IDS)?.let {
+                d.testDescriptorManager.getDescriptorsFromIds(it.toTypedArray())
+            }.run {
+                d.testDescriptorManager.getDescriptorWithAutoUpdateDisabled()
+            }
+
+            for (descriptor in descriptors) {
                 Log.d(TAG, "Fetching updates for ${descriptor.runId}")
 
                 val updatedDescriptor: TestDescriptor =
@@ -148,6 +154,9 @@ class ManualUpdateDescriptorsWorker(
         @JvmField
         var KEY_UPDATED_DESCRIPTORS =
             "${AutoUpdateDescriptorsWorker::class.java.name}.KEY_UPDATED_DESCRIPTORS"
+        @JvmField
+        var KEY_DESCRIPTOR_IDS =
+            "${AutoUpdateDescriptorsWorker::class.java.name}.KEY_DESCRIPTOR_IDS"
     }
 }
 

@@ -141,4 +141,10 @@ class TestDescriptorManager @Inject constructor(
             return false
         }
     }
+
+    fun getDescriptorsFromIds(ids: Array<Long>): List<TestDescriptor> {
+        return SQLite.select().from(TestDescriptor::class.java)
+            .where(TestDescriptor_Table.runId.`in`(ids.toList()))
+            .queryList()
+    }
 }

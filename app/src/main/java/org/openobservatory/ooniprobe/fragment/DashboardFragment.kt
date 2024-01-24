@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
+import org.openobservatory.ooniprobe.activity.MainActivity
 import org.openobservatory.ooniprobe.activity.OverviewActivity
 import org.openobservatory.ooniprobe.activity.RunningActivity
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsActivity
@@ -68,6 +69,11 @@ class DashboardFragment : Fragment(), View.OnClickListener {
                 clear()
                 addAll(items)
             }
+        }
+
+        binding.swipeRefresh.setOnRefreshListener {
+            (requireActivity() as MainActivity).fetchManualUpdate()
+            binding.swipeRefresh.isRefreshing = false
         }
     }
 
