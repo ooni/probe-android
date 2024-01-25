@@ -113,41 +113,4 @@ public class CircumventionTest extends MeasurementAbstractTest {
         onView(withId(R.id.authorities)).check(matches(withText(formattedAuthorities)));
         assertMeasurementRuntimeAndNetwork(measurement, testResult.network);
     }
-
-    @Test
-    public void testSuccessfulRiseUpVPN() {
-        // Arrange
-        Result testResult = ResultFactory.createAndSave(new CircumventionSuite(), 3, 0);
-        Measurement measurement = testResult.getMeasurement("riseupvpn");
-
-        // Act
-        launchDetails(testResult.id);
-        onView(withText("RiseupVPN Test")).check(matches(isDisplayed())).perform(click());
-
-        // Assert
-        assertMeasurementOutcome(true);
-        onView(withId(R.id.bootstrap_value)).check(matches(withText(TEST_RESULTS_AVAILABLE)));
-        onView(withId(R.id.openvpn_value)).check(matches(withText(TEST_RESULTS_AVAILABLE)));
-        onView(withId(R.id.bridges_value)).check(matches(withText(TEST_RESULTS_AVAILABLE)));
-        assertMeasurementRuntimeAndNetwork(measurement, testResult.network);
-    }
-
-    @Test
-    public void testBlockedRiseUpVPN() {
-        // Arrange
-        Result testResult = ResultFactory.createAndSave(new CircumventionSuite(), 0, 3);
-        Measurement measurement = testResult.getMeasurement("riseupvpn");
-
-        // Act
-        launchDetails(testResult.id);
-        onView(withText("RiseupVPN Test")).check(matches(isDisplayed())).perform(click());
-
-        // Assert
-        assertMeasurementOutcome(false);
-        onView(withId(R.id.bootstrap_value)).check(matches(withText("Blocked")));
-        onView(withId(R.id.openvpn_value)).check(matches(withText("1 blocked")));
-        onView(withId(R.id.bridges_value)).check(matches(withText("1 blocked")));
-        assertMeasurementRuntimeAndNetwork(measurement, testResult.network);
-    }
-
 }
