@@ -13,38 +13,30 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.provider.Settings;
 
-import android.view.View;
-
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.google.common.base.Optional;
 
-import org.openobservatory.engine.OONIRunDescriptor;
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.activity.adddescriptor.AddDescriptorActivity;
-import org.openobservatory.ooniprobe.common.*;
+import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.NotificationUtility;
+import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.databinding.ActivityMainBinding;
 import org.openobservatory.ooniprobe.domain.UpdatesNotificationManager;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
 import org.openobservatory.ooniprobe.fragment.PreferenceGlobalFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
-import org.openobservatory.ooniprobe.fragment.dynamicprogressbar.OONIRunDynamicProgressBar;
-import org.openobservatory.ooniprobe.fragment.dynamicprogressbar.OnActionListener;
-import org.openobservatory.ooniprobe.fragment.dynamicprogressbar.ProgressType;
-import org.openobservatory.ooniprobe.model.database.TestDescriptor;
 
 import java.io.Serializable;
 
 import javax.inject.Inject;
 
-import kotlin.Unit;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 
 public class MainActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
@@ -61,9 +53,6 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
 
     @Inject
     PreferenceManager preferenceManager;
-
-    @Inject
-    TestDescriptorManager descriptorManager;
 
     private ActivityResultLauncher<String> requestPermissionLauncher;
 
@@ -148,7 +137,6 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
             }
         }
         requestNotificationPermission();
-        onNewIntent(getIntent());
     }
 
     private void requestNotificationPermission() {
@@ -193,185 +181,23 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         /**
-         * Check if we are starting the activity from a link [Intent.ACTION_VIEW].
-         * This is invoked when a v2 link is opened.
-         * @see {@link org.openobservatory.ooniprobe.activity.OoniRunActivity#newIntent}. for v1 links.
+         * Check if we are starting the activity with an intent extra.
+         * This is invoked when we are starting the activity from a notification or
+         * when the activity is launched from the onboarding fragment
+         * @see {@link org.openobservatory.ooniprobe.fragment.onboarding.Onboarding3Fragment#masterClick}.
          */
-        if (Intent.ACTION_VIEW.equals(intent.getAction())) {
-            Uri uri = intent.getData();
-            // If the intent does not contain a link, do nothing.
-            if (uri == null) {
-                return;
-            }
-
-            Optional<Long> possibleRunId = getRunId(uri);
-
-            // If the intent contains a link, but it is not a supported link or has a non-numerical `link_id`.
-            if (!possibleRunId.isPresent()) {
-                return;
-            }
-
-            // If the intent contains a link, but the `link_id` is zero.
-            if (possibleRunId.get() == 0) {
-                return;
-            }
-
-            TaskExecutor executor = new TaskExecutor();
-
-            displayAddLinkProgressFragment(executor);
-
-            executor.executeTask(() -> {
-                try {
-                    return descriptorManager.fetchDescriptorFromRunId(possibleRunId.get(), this);
-                } catch (Exception exception) {
-                    exception.printStackTrace();
-                    ThirdPartyServices.logException(exception);
-                    return null;
-                }
-            }, this::fetchDescriptorComplete);
-        } else {
-            /**
-             * Check if we are starting the activity with an intent extra.
-             * This is invoked when we are starting the activity from a notification or
-             * when the activity is launched from the onboarding fragment
-             * @see {@link org.openobservatory.ooniprobe.fragment.onboarding.Onboarding3Fragment#masterClick}.
-             */
-            if (intent.getExtras() != null) {
-                if (intent.getExtras().containsKey(RES_ITEM)) {
-                    binding.bottomNavigation.setSelectedItemId(intent.getIntExtra(RES_ITEM, R.id.dashboard));
-                } else if (intent.getExtras().containsKey(NOTIFICATION_DIALOG)) {
-                    new ConfirmDialogFragment.Builder()
-                            .withTitle(intent.getExtras().getString("title"))
-                            .withMessage(intent.getExtras().getString("message"))
-                            .withNegativeButton("")
-                            .withPositiveButton(getString(R.string.Modal_OK))
-                            .build().show(getSupportFragmentManager(), null);
-                }
+        if (intent.getExtras() != null) {
+            if (intent.getExtras().containsKey(RES_ITEM)) {
+                binding.bottomNavigation.setSelectedItemId(intent.getIntExtra(RES_ITEM, R.id.dashboard));
+            } else if (intent.getExtras().containsKey(NOTIFICATION_DIALOG)) {
+                new ConfirmDialogFragment.Builder()
+                        .withTitle(intent.getExtras().getString("title"))
+                        .withMessage(intent.getExtras().getString("message"))
+                        .withNegativeButton("")
+                        .withPositiveButton(getString(R.string.Modal_OK))
+                        .build().show(getSupportFragmentManager(), null);
             }
         }
-    }
-
-    /**
-     * The task to fetch the descriptor from the link is completed.
-     * <p>
-     * This method is called when the `fetchDescriptorFromRunId` task is completed.
-     * The `descriptorResponse` is the result of the task.
-     * If the task is successful, the `descriptorResponse` is the descriptor.
-     * Otherwise, the `descriptorResponse` is null.
-     * <p>
-     * If the `descriptorResponse` is not null, start the `AddDescriptorActivity`.
-     * Otherwise, show an error message.
-     *
-     * @param descriptorResponse The result of the task.
-     * @return null.
-     */
-    private Unit fetchDescriptorComplete(TestDescriptor descriptorResponse) {
-        if (descriptorResponse != null) {
-            startActivity(AddDescriptorActivity.newIntent(this, descriptorResponse));
-        } else {
-            // TODO(aanorbel): Provide a better error message.
-            Snackbar.make(binding.getRoot(), R.string.Modal_Error, Snackbar.LENGTH_LONG)
-                    .setAnchorView(binding.bottomNavigation) // NOTE:To avoid the `snackbar` from covering the bottom navigation.
-                    .show();
-        }
-        removeProgressFragment();
-        return Unit.INSTANCE;
-
-    }
-
-    /**
-     * Display the progress fragment.
-     * <p>
-     * The progress fragment is used to display the progress of the task.
-     * e.g. Fetching the descriptor from the link.
-     *
-     * @param executor The executor that will be used to execute the task.
-     */
-    private void displayAddLinkProgressFragment(TaskExecutor executor) {
-        binding.dynamicProgressFragment.setVisibility(View.VISIBLE);
-        getSupportFragmentManager().beginTransaction()
-                .add(
-                        R.id.dynamic_progress_fragment,
-                        OONIRunDynamicProgressBar.newInstance(ProgressType.ADD_LINK, new OnActionListener() {
-                            @Override
-                            public void onActionButtonCLicked() {
-                                executor.cancelTask();
-                                removeProgressFragment();
-                            }
-
-                            @Override
-                            public void onCloseButtonClicked() {
-                                removeProgressFragment();
-                            }
-                        }),
-                        OONIRunDynamicProgressBar.getTAG()
-                ).commit();
-    }
-
-    /**
-     * Extracts the run id from the provided Uri.
-     * The run id can be in two different formats:
-     * <p>
-     * 1. ooni://runv2/link_id
-     * 2. https://run.test.ooni.org/v2/link_id
-     * <p>
-     * The run id is the `link_id` in the link.
-     * If the Uri contains a link, but the `link_id` is not a number, an empty Optional is returned.
-     * If the Uri contains a link, but it is not a supported link, an empty Optional is returned.
-     * <p>
-     *
-     * @param uri The Uri data.
-     * @return An Optional containing the run id if the Uri contains a link with a valid `link_id`, or an empty Optional otherwise.
-     */
-    private Optional<Long> getRunId(Uri uri) {
-        String host = uri.getHost();
-
-        try {
-            if ("runv2".equals(host)) {
-                /**
-                 * The run id is the first segment of the path.
-                 * Launched when `Open Link in OONI Probe` is clicked.
-                 * e.g. ooni://runv2/link_id
-                 */
-                return Optional.of(
-                        Long.parseLong(
-                                uri.getPathSegments().get(0)
-                        )
-                );
-            } else if ("run.test.ooni.org".equals(host)) {
-                /**
-                 * The run id is the second segment of the path.
-                 * Launched when the system recognizes this app can open this link
-                 * and launches the app when a link is clicked.
-                 * e.g. https://run.test.ooni.org/v2/link_id
-                 */
-                return Optional.of(
-                        Long.parseLong(
-                                uri.getPathSegments().get(1)
-                        )
-                );
-            } else {
-                // If the intent contains a link, but it is not a supported link.
-                return Optional.absent();
-            }
-        } catch (Exception e) {
-            // If the intent contains a link, but the `link_id` is not a number.
-            e.printStackTrace();
-            return Optional.absent();
-        }
-    }
-
-    /**
-     * Remove the progress fragment.
-     * <p>
-     * This method is called when the task is completed.
-     */
-    private void removeProgressFragment() {
-        Fragment fragment = getSupportFragmentManager().findFragmentByTag(OONIRunDynamicProgressBar.getTAG());
-        if (fragment != null && fragment.isAdded()) {
-            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
-        }
-        binding.dynamicProgressFragment.setVisibility(View.GONE);
     }
 
     @Override
