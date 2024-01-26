@@ -174,7 +174,7 @@ dependencies {
 }
 
 static def resolveVersionCode() {
-    if(System.getenv("PR_NUMBER") != null){
+    if(System.getenv("PR_NUMBER") != null) {
         return System.getenv("PR_NUMBER").toInteger()
     }
     return new Date().format("yyyyMMdd").toInteger()
