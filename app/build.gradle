@@ -139,7 +139,7 @@ dependencies {
     fullImplementation libs.google.play.core
 
 // Dependency Injection
-    implementation libs.google.dagger
+    implementation libs.google.dagger.lib
     kapt libs.google.dagger.compiler
 
 // Logger

@@ -44,7 +44,7 @@ dependencies {
     implementation project(":app")
 
     // Dependency Injection (https://dagger.dev/)
-	implementation libs.google.dagger
+	implementation libs.google.dagger.lib
     kapt libs.google.dagger.compiler
 
     // Database Library (https://github.com/agrosner/DBFlow)
