@@ -30,17 +30,24 @@ open class OONIDescriptor<T : BaseNettest>(
 ) : Serializable, BaseDescriptor<T>(name = name, nettests = nettests) {
 
     /**
-     * Checks if any of the nettests are enabled based on the preferences stored in the provided [PreferenceManager].
+     * This function is used to determine if the current descriptor is enabled.
+     * If the descriptor is [OONITests.EXPERIMENTAL], this function returns the preference value stored for the `experimental` preference key.
+     * If the descriptor is [OONITests.WEBSITES], this function returns true if at least one category is enabled in the preferences.
+     * Otherwise, it checks if any of the nettests are enabled based on the preferences stored in the provided [PreferenceManager].
      *
      * @param preferenceManager The [PreferenceManager] instance used to resolve the status of each nettest.
      * @return Boolean Returns true if at least one nettest is enabled, false otherwise.
      */
     fun isEnabled(preferenceManager: PreferenceManager): Boolean {
-        return nettests.any {
-            preferenceManager.resolveStatus(
-                name = it.name,
-                prefix = preferencePrefix(),
-            )
+        return when (name) {
+            OONITests.EXPERIMENTAL.label -> preferenceManager.isExperimentalOn
+            OONITests.WEBSITES.label -> preferenceManager.countEnabledCategory() > 0
+            else -> nettests.any {
+                preferenceManager.resolveStatus(
+                    name = it.name,
+                    prefix = preferencePrefix(),
+                )
+            }
         }
     }
 
