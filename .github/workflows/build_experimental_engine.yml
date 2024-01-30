@@ -1,0 +1,32 @@
+name: build_experimental_engine
+
+on: [push]
+
+jobs:
+  build_android:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Get GOVERSION content
+        id: goversion
+        run: echo "version=$(cat GOVERSION)" >> "$GITHUB_OUTPUT"
+        shell: bash
+
+      - uses: magnetikonline/action-golang-cache@v4
+        with:
+          go-version: "${{ steps.goversion.outputs.version }}"
+          cache-key-suffix: "-coverage-${{ steps.goversion.outputs.version }}"
+
+      - name: Build Experimental Archive from `ooni/probe-cli`
+        run: ./gradlew buildExperimentalArchive
