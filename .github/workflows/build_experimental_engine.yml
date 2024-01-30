@@ -1,9 +1,15 @@
-name: build_experimental_engine
+name: Build Experimental Engine
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  schedule:
+    - cron: "0 2 * * */2"
 
 jobs:
-  build_android:
+  build_experimental_engine:
     runs-on: ubuntu-22.04
 
     steps:
@@ -30,3 +36,12 @@ jobs:
 
       - name: Build Experimental Archive from `ooni/probe-cli`
         run: ./gradlew buildExperimentalArchive
+
+      - name: Build Experimental App
+        run: ./gradlew assembleExperimentalFullDebug
+
+      - name: Archive Experimental APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-experimental-full-debug
+          path: app/build/outputs/apk/experimentalFull/debug/app-experimental-full-debug.apk
