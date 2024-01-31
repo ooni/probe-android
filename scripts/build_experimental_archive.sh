@@ -1,5 +1,5 @@
 #!/bin/sh
-set -euxo pipefail
+set -eux
 
 # Define build and output directories
 gitTarget=${1:-"master"}
