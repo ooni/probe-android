@@ -26,7 +26,7 @@ jobs:
 
       - name: Get GOVERSION content
         id: goversion
-        run: echo "version=$(cat GOVERSION)" >> "$GITHUB_OUTPUT"
+        run: echo "version=$(curl https://raw.githubusercontent.com/ooni/probe-cli/master/GOVERSION && cat GOVERSION)" >> "$GITHUB_OUTPUT"
         shell: bash
 
       - uses: magnetikonline/action-golang-cache@v4
