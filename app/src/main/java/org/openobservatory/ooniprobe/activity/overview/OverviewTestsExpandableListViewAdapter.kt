@@ -96,11 +96,6 @@ class OverviewTestsExpandableListViewAdapter(
         }
 
         groupCheckBox.isChecked = groupItem.selected
-        // Disable experimental or webconnectivity test
-        viewModel.descriptor.value?.run {
-            groupCheckBox.isEnabled = hasPreferencePrefix()
-        }
-
 
         if (groupItem.inputs?.isNotEmpty() == true) {
             if (isExpanded) {

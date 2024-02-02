@@ -13,9 +13,22 @@ import io.noties.markwon.AbstractMarkwonPlugin
  * Read more plugin based on text length.
  * @see <a href="https://github.com/noties/Markwon/blob/v4.6.2/app-sample/src/main/java/io/noties/markwon/app/samples/ReadMorePluginSample.java#L208C2-L208C2">ReadMorePluginSample</a>
  */
-class ReadMorePlugin(private val labelMore: String, private val labelLess: String) :
-    AbstractMarkwonPlugin() {
-    private val maxLength = 150
+class ReadMorePlugin private constructor(
+    private val labelMore: String,
+    private val labelLess: String,
+    private val maxLength: Int
+) : AbstractMarkwonPlugin() {
+
+    constructor(
+        labelMore: String,
+        labelLess: String,
+        maxLength: Int?
+    ) : this(labelMore, labelLess, maxLength ?: 150)
+
+    constructor(
+        labelMore: String,
+        labelLess: String,
+    ) : this(labelMore, labelLess, 150)
 
     override fun afterSetText(textView: TextView) {
         val text = textView.text
@@ -76,6 +89,7 @@ class ReadMorePlugin(private val labelMore: String, private val labelLess: Strin
     }
 
     companion object {
+
         private fun trim(builder: SpannableStringBuilder) {
 
             // NB! tables use `\u00a0` (non breaking space) which is not reported as white-space
