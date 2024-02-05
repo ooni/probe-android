@@ -25,41 +25,6 @@ class RunTestsViewModel() : ViewModel() {
 
 	fun setSelectedAllBtnStatus(selectedStatus: String) {
 		selectedAllBtnStatus.postValue(selectedStatus)
-		when (selectedStatus) {
-			SELECT_ALL -> {
-				OONITests.INSTANT_MESSAGING.nettests.forEach {
-					enableTest(it.name)
-				}
-				OONITests.CIRCUMVENTION.nettests.forEach {
-					enableTest(it.name)
-				}
-				OONITests.PERFORMANCE.nettests.forEach {
-					enableTest(it.name)
-				}
-				enableTest(OONITests.EXPERIMENTAL.label)
-			}
-
-			SELECT_NONE -> {
-				OONITests.INSTANT_MESSAGING.nettests.forEach {
-					disableTest(it.name)
-				}
-				OONITests.CIRCUMVENTION.nettests.forEach {
-					disableTest(it.name)
-				}
-				OONITests.PERFORMANCE.nettests.forEach {
-					disableTest(it.name)
-				}
-				disableTest(OONITests.EXPERIMENTAL.label)
-			}
-		}
-	}
-
-	fun disableTest(name: String) {
-		preferenceManager.disableTest(name)
-	}
-
-	fun enableTest(name: String) {
-		preferenceManager.enableTest(name)
 	}
 
 	companion object {
