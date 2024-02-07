@@ -347,41 +347,74 @@ enum class OONITests(
 fun autoRunTests(context: Context, preferenceManager: PreferenceManager): List<DynamicTestSuite> {
 
     return ooniDescriptors(context).filter { ooniDescriptor ->
-        ooniDescriptor.nettests.any { nettest ->
-            preferenceManager.resolveStatus(
-                name = nettest.name,
+        when (ooniDescriptor.name) {
+            OONITests.EXPERIMENTAL.label -> preferenceManager.resolveStatus(
+                name = ooniDescriptor.name,
                 prefix = ooniDescriptor.preferencePrefix(),
                 autoRun = true
             )
-        }
-    }.map { ooniDescriptor ->
-        DynamicTestSuite(
-            name = ooniDescriptor.name,
-            title = ooniDescriptor.title,
-            shortDescription = ooniDescriptor.shortDescription,
-            description = ooniDescriptor.description,
-            icon = ooniDescriptor.getDisplayIcon(context),
-            icon_24 = ooniDescriptor.getDisplayIcon(context),
-            color = ooniDescriptor.color,
-            animation = ooniDescriptor.animation,
-            dataUsage = ooniDescriptor.dataUsage,
-            nettest = (ooniDescriptor.nettests).filter { nettest ->
+
+            else -> ooniDescriptor.nettests.any { nettest ->
                 preferenceManager.resolveStatus(
                     name = nettest.name,
                     prefix = ooniDescriptor.preferencePrefix(),
                     autoRun = true
                 )
-            }.run {
-                this + (ooniDescriptor.longRunningTests?.filter { nettest ->
+            }
+        }
+    }.map { ooniDescriptor ->
+        when (ooniDescriptor.name) {
+            OONITests.EXPERIMENTAL.label -> DynamicTestSuite(
+                name = ooniDescriptor.name,
+                title = ooniDescriptor.title,
+                shortDescription = ooniDescriptor.shortDescription,
+                description = ooniDescriptor.description,
+                icon = ooniDescriptor.getDisplayIcon(context),
+                icon_24 = ooniDescriptor.getDisplayIcon(context),
+                color = ooniDescriptor.color,
+                animation = ooniDescriptor.animation,
+                dataUsage = ooniDescriptor.dataUsage,
+                nettest = (ooniDescriptor.nettests).run {
+                    this + (ooniDescriptor.longRunningTests?.filter { nettest ->
+                        preferenceManager.resolveStatus(
+                            name = nettest.name,
+                            prefix = ooniDescriptor.preferencePrefix(),
+                            autoRun = true
+                        )
+                    } ?: listOf())
+                }
+            ).apply {
+                autoRun = true
+            }
+
+            else -> DynamicTestSuite(
+                name = ooniDescriptor.name,
+                title = ooniDescriptor.title,
+                shortDescription = ooniDescriptor.shortDescription,
+                description = ooniDescriptor.description,
+                icon = ooniDescriptor.getDisplayIcon(context),
+                icon_24 = ooniDescriptor.getDisplayIcon(context),
+                color = ooniDescriptor.color,
+                animation = ooniDescriptor.animation,
+                dataUsage = ooniDescriptor.dataUsage,
+                nettest = (ooniDescriptor.nettests).filter { nettest ->
                     preferenceManager.resolveStatus(
                         name = nettest.name,
                         prefix = ooniDescriptor.preferencePrefix(),
                         autoRun = true
                     )
-                } ?: listOf())
+                }.run {
+                    this + (ooniDescriptor.longRunningTests?.filter { nettest ->
+                        preferenceManager.resolveStatus(
+                            name = nettest.name,
+                            prefix = ooniDescriptor.preferencePrefix(),
+                            autoRun = true
+                        )
+                    } ?: listOf())
+                }
+            ).apply {
+                autoRun = true
             }
-        ).apply {
-            autoRun = true
         }
     }
 }

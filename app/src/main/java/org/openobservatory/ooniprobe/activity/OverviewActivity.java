@@ -3,6 +3,7 @@ package org.openobservatory.ooniprobe.activity;
 import static org.openobservatory.ooniprobe.activity.overview.OverviewViewModel.SELECT_ALL;
 import static org.openobservatory.ooniprobe.activity.overview.OverviewViewModel.SELECT_NONE;
 import static org.openobservatory.ooniprobe.activity.overview.OverviewViewModel.SELECT_SOME;
+import static org.openobservatory.ooniprobe.common.PreferenceManagerExtensionKt.resolveStatus;
 
 import android.content.Context;
 import android.content.Intent;
@@ -110,12 +111,16 @@ public class OverviewActivity extends AbstractActivity {
             }
         });
 
-        if (adapter.isSelectedAllItems()) {
-            binding.switchTests.setCheckedState(MaterialCheckBox.STATE_CHECKED);
-        } else if (adapter.isNotSelectedAnyGroupItem()) {
-            binding.switchTests.setCheckedState(MaterialCheckBox.STATE_UNCHECKED);
+        if (descriptor.getName().equals(OONITests.EXPERIMENTAL.getLabel())) {
+            binding.switchTests.setChecked(resolveStatus(preferenceManager, descriptor.getName(), descriptor.preferencePrefix(), true));
         } else {
-            binding.switchTests.setCheckedState(MaterialCheckBox.STATE_INDETERMINATE);
+            if (adapter.isSelectedAllItems()) {
+                binding.switchTests.setCheckedState(MaterialCheckBox.STATE_CHECKED);
+            } else if (adapter.isNotSelectedAnyGroupItem()) {
+                binding.switchTests.setCheckedState(MaterialCheckBox.STATE_UNCHECKED);
+            } else {
+                binding.switchTests.setCheckedState(MaterialCheckBox.STATE_INDETERMINATE);
+            }
         }
         // Expand all groups
         for (int i = 0; i < adapter.getGroupCount(); i++) {

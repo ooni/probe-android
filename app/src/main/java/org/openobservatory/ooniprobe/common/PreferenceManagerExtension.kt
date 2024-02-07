@@ -30,6 +30,7 @@ fun PreferenceManager.resolveStatus(
             return isExperimentalOn
         }
     }
+    val key = getPreferenceKey(name = name, prefix = prefix, autoRun = autoRun)
     return if (autoRun) {
         sp.getBoolean(
             getPreferenceKey(name = name, prefix = prefix, autoRun = autoRun),
@@ -78,6 +79,8 @@ private fun PreferenceManager.setValue(
     if (experimentalTestList().contains(name) && !autoRun) {
         return false
     }
+    val key = getPreferenceKey(name = name, prefix = prefix, autoRun = autoRun)
+
     return with(sp.edit()) {
         putBoolean(getPreferenceKey(name = name, prefix = prefix, autoRun = autoRun), value)
         commit()
