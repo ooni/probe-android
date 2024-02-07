@@ -8,7 +8,7 @@ private fun PreferenceManager.experimentalTestList(): MutableList<String> {
     val exclusionList = mutableListOf<String>()
     OONITests.EXPERIMENTAL.run {
         exclusionList.addAll(nettests.map { it.name })
-        exclusionList.addAll(nettests.map { it.name })
+        longRunningTests?.map { it.name }?.let { exclusionList.addAll(it) }
     }
 
     return exclusionList
@@ -23,10 +23,12 @@ private fun PreferenceManager.experimentalTestList(): MutableList<String> {
 fun PreferenceManager.resolveStatus(
     name: String, prefix: String, autoRun: Boolean = false
 ): Boolean {
-    if (name == WebConnectivity.NAME) {
-        return true
-    } else if (experimentalTestList().contains(name)) {
-        return isExperimentalOn
+    if (!autoRun) {
+        if (name == WebConnectivity.NAME) {
+            return true
+        } else if (experimentalTestList().contains(name)) {
+            return isExperimentalOn
+        }
     }
     return if (autoRun) {
         sp.getBoolean(
@@ -73,7 +75,7 @@ private fun PreferenceManager.setValue(
     prefix: String,
     autoRun: Boolean = false,
 ): Boolean {
-    if (name == WebConnectivity.NAME || experimentalTestList().contains(name)) {
+    if (experimentalTestList().contains(name) && !autoRun) {
         return false
     }
     return with(sp.edit()) {
@@ -135,7 +137,7 @@ fun PreferenceManager.getPreferenceKey(name: String): String {
 
         OONITests.EXPERIMENTAL.label -> r.getString(R.string.experimental)
 
-        else -> throw IllegalArgumentException("Unknown preference for: $name")
+        else -> name
     }
 }
 
@@ -174,7 +176,7 @@ fun PreferenceManager.disableTest(name: String): Boolean {
  * @return true if the preference was successfully set, false otherwise.
  */
 private fun PreferenceManager.setValue(name: String, value: Boolean): Boolean {
-    if (name == WebConnectivity.NAME || experimentalTestList().contains(name)) {
+    if (experimentalTestList().contains(name)) {
         return false
     }
     return with(sp.edit()) {
