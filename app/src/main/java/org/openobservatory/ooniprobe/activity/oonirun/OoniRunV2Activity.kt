@@ -124,7 +124,6 @@ class OoniRunV2Activity : AbstractActivity() {
      * If the task is successful, the `descriptorResponse` is the descriptor.
      * Otherwise, the `descriptorResponse` is null.
      *
-     *
      * If the `descriptorResponse` is not null, start the `AddDescriptorActivity`.
      * Otherwise, show an error message.
      *
