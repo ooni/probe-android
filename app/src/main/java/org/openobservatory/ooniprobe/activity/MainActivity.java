@@ -243,6 +243,7 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
                                 }),
                                 OONIRunDynamicProgressBar.getTAG() + "_review_update_success_notification"
                         ).commit();
+
                 case ENQUEUED -> getSupportFragmentManager()
                         .beginTransaction()
                         .add(
