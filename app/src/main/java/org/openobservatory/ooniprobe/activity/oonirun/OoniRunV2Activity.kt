@@ -49,7 +49,7 @@ class OoniRunV2Activity : AbstractActivity() {
         /**
          * Check if we are starting the activity from a link [Intent.ACTION_VIEW].
          * This is invoked when a v2 link is opened.
-         * @see {@link org.openobservatory.ooniprobe.activity.OoniRunActivity.newIntent}. for v1 links.
+         * @see {@link org.openobservatory.ooniprobe.activity.OoniRunActivity.newIntent} for v1 links.
          */
         if (Intent.ACTION_VIEW == intent.action) {
             manageIntent(intent)
