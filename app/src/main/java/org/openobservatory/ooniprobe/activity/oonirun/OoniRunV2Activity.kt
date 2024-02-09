@@ -145,7 +145,6 @@ class OoniRunV2Activity : AbstractActivity() {
      * 1. ooni://runv2/link_id
      * 2. https://run.test.ooni.org/v2/link_id
      *
-     *
      * The run id is the `link_id` in the link.
      * If the Uri contains a link, but the `link_id` is not a number, null is returned.
      * If the Uri contains a link, but it is not a supported link, null is returned.
