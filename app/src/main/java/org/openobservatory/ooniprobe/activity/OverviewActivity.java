@@ -257,6 +257,7 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity {
                             Snackbar.LENGTH_LONG
                     ).show();
                 }
+
                 default -> {
                 }
             }
