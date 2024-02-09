@@ -75,7 +75,7 @@ class OoniRunV2Activity : AbstractActivity() {
     private fun manageIntent(intent: Intent) {
         // If the intent does not contain a link, do nothing.
         val uri = intent.data ?: finishWithError().run { return }
-        // If the §intent contains a link, but it is not a supported link or has a non-numerical `link_id`.
+        // If the intent contains a link, but it is not a supported link or has a non-numerical `link_id`.
         val possibleRunId: Long = getRunId(uri) ?: finishWithError().run { return }
 
 
