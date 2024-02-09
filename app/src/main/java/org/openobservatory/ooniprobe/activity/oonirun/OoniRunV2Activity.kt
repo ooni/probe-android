@@ -115,7 +115,6 @@ class OoniRunV2Activity : AbstractActivity() {
         finish()
     }
 
-
     /**
      * The task to fetch the descriptor from the link is completed.
      *
