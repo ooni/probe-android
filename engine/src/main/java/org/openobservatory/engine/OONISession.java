@@ -7,6 +7,10 @@ package org.openobservatory.engine;
  * session, use it immediately, and then forget about it.
  */
 public interface OONISession {
+
+    /** geolocate returns the probe geolocation. */
+    OONIGeolocateResults geolocate(OONIContext ctx) throws Exception;
+
     /** newContext creates a new OONIContext instance. */
     OONIContext newContext();
 

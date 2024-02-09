@@ -23,6 +23,7 @@ import org.openobservatory.ooniprobe.test.suite.CircumventionSuite;
 import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
+import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
 import java.util.ArrayList;
 
@@ -91,6 +92,25 @@ public class ServiceUtil {
 
     }
 
+	/**
+	 * Start Tests on Network Changed event.
+	 * @param app
+	 * Application context used to start `RunTestService`.
+	 */
+    public static void startRunTestServiceNetworkChanged(Application app) {
+
+		// TODO: (aanorbel) - Enforce constraints required before tests are run.
+		//  Tag tests with identifier required to set Settings$Options#software_name
+        ArrayList<AbstractSuite> testSuites = new ArrayList<>();
+        testSuites.add(new WebsitesSuite());
+        testSuites.add(new InstantMessagingSuite());
+        testSuites.add(new CircumventionSuite());
+        testSuites.add(new PerformanceSuite());
+        testSuites.add(new ExperimentalSuite());
+        ServiceUtil.startRunTestService(app, testSuites, false);
+
+    }
+
 
     public static void startRunTestServiceManual(Context context, ArrayList<AbstractSuite> iTestSuites, boolean storeDB) {
         startRunTestServiceCommon(context, iTestSuites, storeDB, false);
@@ -106,6 +126,16 @@ public class ServiceUtil {
         serviceIntent.putExtra("storeDB", storeDB);
         serviceIntent.putExtra("unattended", unattended);
         ContextCompat.startForegroundService(context, serviceIntent);
+    }
+
+    public static void scheduleConnectivityChangeService(Context context) {
+        Intent backgroundService = new Intent(context.getApplicationContext(), ConnectivityChangeService.class);
+        context.startService(backgroundService);
+    }
+
+    public static void stopConnectivityChangeService(Context context) {
+        Intent myService = new Intent(context, ConnectivityChangeService.class);
+        context.stopService(myService);
     }
 
     public static class Dependencies {
