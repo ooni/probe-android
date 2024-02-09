@@ -257,6 +257,7 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
                         R.string.Modal_Error,
                         Snackbar.LENGTH_LONG
                 ).setAnchorView(binding.bottomNavigation).show();
+
                 default -> {
                 }
             }
