@@ -59,5 +59,4 @@ public abstract class AbstractActivity extends AppCompatActivity {
         }
         findViewById(id).setVisibility(View.GONE);
     }
-
 }
