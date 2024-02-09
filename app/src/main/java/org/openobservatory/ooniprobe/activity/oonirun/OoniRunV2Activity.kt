@@ -142,7 +142,6 @@ class OoniRunV2Activity : AbstractActivity() {
      * Extracts the run id from the provided Uri.
      * The run id can be in two different formats:
      *
-     *
      * 1. ooni://runv2/link_id
      * 2. https://run.test.ooni.org/v2/link_id
      *
