@@ -251,6 +251,7 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
                                 OONIRunDynamicProgressBar.newInstance(ProgressType.UPDATE_LINK, null),
                                 OONIRunDynamicProgressBar.getTAG() + "_review_update_enqueued_notification"
                         ).commit();
+
                 case FAILED -> Snackbar.make(
                         binding.getRoot(),
                         R.string.Modal_Error,
