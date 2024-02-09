@@ -157,39 +157,16 @@ class OoniRunV2Activity : AbstractActivity() {
         try {
             when (host) {
                 "runv2" -> {
-                    /**
+                    /*
                      * The run id is the first segment of the path.
                      * Launched when `Open Link in OONI Probe` is clicked.
                      * e.g. ooni://runv2/link_id
                      */
-                    /**
-                     * The run id is the first segment of the path.
-                     * Launched when `Open Link in OONI Probe` is clicked.
-                     * e.g. ooni://runv2/link_id
-                     */
-                    /**
-                     * The run id is the first segment of the path.
-                     * Launched when `Open Link in OONI Probe` is clicked.
-                     * e.g. ooni://runv2/link_id
-                     */
-
                     return uri.pathSegments[0].toLong()
                 }
 
                 "run.test.ooni.org" -> {
-                    /**
-                     * The run id is the second segment of the path.
-                     * Launched when the system recognizes this app can open this link
-                     * and launches the app when a link is clicked.
-                     * e.g. https://run.test.ooni.org/v2/link_id
-                     */
-                    /**
-                     * The run id is the second segment of the path.
-                     * Launched when the system recognizes this app can open this link
-                     * and launches the app when a link is clicked.
-                     * e.g. https://run.test.ooni.org/v2/link_id
-                     */
-                    /**
+                    /*
                      * The run id is the second segment of the path.
                      * Launched when the system recognizes this app can open this link
                      * and launches the app when a link is clicked.
