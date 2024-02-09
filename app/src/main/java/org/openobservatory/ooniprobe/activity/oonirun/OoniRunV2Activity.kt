@@ -149,8 +149,6 @@ class OoniRunV2Activity : AbstractActivity() {
      * If the Uri contains a link, but the `link_id` is not a number, null is returned.
      * If the Uri contains a link, but it is not a supported link, null is returned.
      *
-     *
-     *
      * @param uri The Uri data.
      * @return The run id if the Uri contains a link with a valid `link_id`, or null otherwise.
      */
