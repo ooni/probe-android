@@ -248,6 +248,7 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity {
                     ));
                     binding.swipeRefresh.setRefreshing(false);
                 }
+
                 case FAILED -> {
                     binding.swipeRefresh.setRefreshing(false);
                     Snackbar.make(
