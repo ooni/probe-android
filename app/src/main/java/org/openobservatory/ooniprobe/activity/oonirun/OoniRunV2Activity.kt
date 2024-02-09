@@ -78,7 +78,6 @@ class OoniRunV2Activity : AbstractActivity() {
         // If the intent contains a link, but it is not a supported link or has a non-numerical `link_id`.
         val possibleRunId: Long = getRunId(uri) ?: finishWithError().run { return }
 
-
         // If the intent contains a link, but the `link_id` is zero.
         if (possibleRunId == 0L) {
             finishWithError().run { return }
