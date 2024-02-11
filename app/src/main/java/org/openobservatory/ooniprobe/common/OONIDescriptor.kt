@@ -70,7 +70,6 @@ open class OONIDescriptor<T : BaseNettest>(
             TestGroupItem(
                 selected = when (name) {
                     OONITests.EXPERIMENTAL.label -> preferenceManager.isExperimentalOn
-                    OONITests.WEBSITES.label -> preferenceManager.countEnabledCategory() > 0
                     else -> preferenceManager.resolveStatus(
                         name = it.name,
                         prefix = preferencePrefix(),
@@ -342,6 +341,81 @@ enum class OONITests(
 
     override fun toString(): String {
         return label
+    }
+}
+
+fun autoRunTests(context: Context, preferenceManager: PreferenceManager): List<DynamicTestSuite> {
+
+    return ooniDescriptors(context).filter { ooniDescriptor ->
+        when (ooniDescriptor.name) {
+            OONITests.EXPERIMENTAL.label -> preferenceManager.resolveStatus(
+                name = ooniDescriptor.name,
+                prefix = ooniDescriptor.preferencePrefix(),
+                autoRun = true
+            )
+
+            else -> ooniDescriptor.nettests.any { nettest ->
+                preferenceManager.resolveStatus(
+                    name = nettest.name,
+                    prefix = ooniDescriptor.preferencePrefix(),
+                    autoRun = true
+                )
+            }
+        }
+    }.map { ooniDescriptor ->
+        when (ooniDescriptor.name) {
+            OONITests.EXPERIMENTAL.label -> DynamicTestSuite(
+                name = ooniDescriptor.name,
+                title = ooniDescriptor.title,
+                shortDescription = ooniDescriptor.shortDescription,
+                description = ooniDescriptor.description,
+                icon = ooniDescriptor.getDisplayIcon(context),
+                icon_24 = ooniDescriptor.getDisplayIcon(context),
+                color = ooniDescriptor.color,
+                animation = ooniDescriptor.animation,
+                dataUsage = ooniDescriptor.dataUsage,
+                nettest = (ooniDescriptor.nettests).run {
+                    this + (ooniDescriptor.longRunningTests?.filter { nettest ->
+                        preferenceManager.resolveStatus(
+                            name = nettest.name,
+                            prefix = ooniDescriptor.preferencePrefix(),
+                            autoRun = true
+                        )
+                    } ?: listOf())
+                }
+            ).apply {
+                autoRun = true
+            }
+
+            else -> DynamicTestSuite(
+                name = ooniDescriptor.name,
+                title = ooniDescriptor.title,
+                shortDescription = ooniDescriptor.shortDescription,
+                description = ooniDescriptor.description,
+                icon = ooniDescriptor.getDisplayIcon(context),
+                icon_24 = ooniDescriptor.getDisplayIcon(context),
+                color = ooniDescriptor.color,
+                animation = ooniDescriptor.animation,
+                dataUsage = ooniDescriptor.dataUsage,
+                nettest = (ooniDescriptor.nettests).filter { nettest ->
+                    preferenceManager.resolveStatus(
+                        name = nettest.name,
+                        prefix = ooniDescriptor.preferencePrefix(),
+                        autoRun = true
+                    )
+                }.run {
+                    this + (ooniDescriptor.longRunningTests?.filter { nettest ->
+                        preferenceManager.resolveStatus(
+                            name = nettest.name,
+                            prefix = ooniDescriptor.preferencePrefix(),
+                            autoRun = true
+                        )
+                    } ?: listOf())
+                }
+            ).apply {
+                autoRun = true
+            }
+        }
     }
 }
 

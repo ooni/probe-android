@@ -33,8 +33,12 @@ class DashboardFragment : Fragment(), View.OnClickListener {
 
     @Inject
     lateinit var viewModel: DashboardViewModel
+
     private var descriptors: ArrayList<OONIDescriptor<BaseNettest>> = ArrayList()
+
     private lateinit var binding: FragmentDashboardBinding
+
+    private lateinit var adapter: DashboardAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,7 +62,8 @@ class DashboardFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getGroupedItemList().observe(viewLifecycleOwner) { items ->
             binding.recycler.layoutManager = LinearLayoutManager(requireContext())
-            binding.recycler.adapter = DashboardAdapter(items, this, preferenceManager)
+            adapter = DashboardAdapter(items, this, preferenceManager)
+            binding.recycler.adapter = adapter
         }
 
         viewModel.items.observe(viewLifecycleOwner) { items ->
@@ -71,6 +76,11 @@ class DashboardFragment : Fragment(), View.OnClickListener {
 
     override fun onResume() {
         super.onResume()
+        /**
+         * Updates the list of tests when the user changes the default configuration
+         * after starting a test from [RunTestsActivity]
+         */
+        binding.recycler.post { adapter.notifyDataSetChanged() }
         setLastTest()
         if (ReachabilityManager.isVPNinUse(this.context)
             && preferenceManager.isWarnVPNInUse

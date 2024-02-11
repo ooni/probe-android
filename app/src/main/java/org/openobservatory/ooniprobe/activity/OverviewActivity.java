@@ -3,6 +3,7 @@ package org.openobservatory.ooniprobe.activity;
 import static org.openobservatory.ooniprobe.activity.overview.OverviewViewModel.SELECT_ALL;
 import static org.openobservatory.ooniprobe.activity.overview.OverviewViewModel.SELECT_NONE;
 import static org.openobservatory.ooniprobe.activity.overview.OverviewViewModel.SELECT_SOME;
+import static org.openobservatory.ooniprobe.common.PreferenceManagerExtensionKt.resolveStatus;
 
 import android.content.Context;
 import android.content.Intent;
@@ -32,6 +33,7 @@ import org.openobservatory.ooniprobe.databinding.ActivityOverviewBinding;
 import org.openobservatory.ooniprobe.model.database.Result;
 
 import java.util.Locale;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -70,8 +72,10 @@ public class OverviewActivity extends AbstractActivity {
         setThemeColor(ContextCompat.getColor(this, descriptor.getColor()));
         binding.icon.setImageResource(descriptor.getDisplayIcon(this));
         binding.customUrl.setVisibility(descriptor.getName().equals(OONITests.WEBSITES.getLabel()) ? View.VISIBLE : View.GONE);
-        Markwon markwon = Markwon.builder(this).usePlugin(new ReadMorePlugin(getString(R.string.OONIRun_ReadMore), getString(R.string.OONIRun_ReadLess))).build();
-        if (descriptor.getName().equals(OONITests.EXPERIMENTAL.name())) {
+        Markwon markwon = Markwon.builder(this)
+                .usePlugin(new ReadMorePlugin(getString(R.string.OONIRun_ReadMore), getString(R.string.OONIRun_ReadLess), 400))
+                .build();
+        if (Objects.equals(descriptor.getName(), OONITests.EXPERIMENTAL.name())) {
             markwon.setMarkdown(binding.desc, descriptor.getDescription());
             if (TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL) {
                 binding.desc.setTextDirection(View.TEXT_DIRECTION_RTL);
@@ -107,14 +111,17 @@ public class OverviewActivity extends AbstractActivity {
             }
         });
 
-        if (adapter.isSelectedAllItems()) {
-            binding.switchTests.setCheckedState(MaterialCheckBox.STATE_CHECKED);
-        } else if (adapter.isNotSelectedAnyGroupItem()) {
-            binding.switchTests.setCheckedState(MaterialCheckBox.STATE_UNCHECKED);
+        if (descriptor.getName().equals(OONITests.EXPERIMENTAL.getLabel())) {
+            binding.switchTests.setChecked(resolveStatus(preferenceManager, descriptor.getName(), descriptor.preferencePrefix(), true));
         } else {
-            binding.switchTests.setCheckedState(MaterialCheckBox.STATE_INDETERMINATE);
+            if (adapter.isSelectedAllItems()) {
+                binding.switchTests.setCheckedState(MaterialCheckBox.STATE_CHECKED);
+            } else if (adapter.isNotSelectedAnyGroupItem()) {
+                binding.switchTests.setCheckedState(MaterialCheckBox.STATE_UNCHECKED);
+            } else {
+                binding.switchTests.setCheckedState(MaterialCheckBox.STATE_INDETERMINATE);
+            }
         }
-        binding.switchTests.setEnabled(descriptor.hasPreferencePrefix());
         // Expand all groups
         for (int i = 0; i < adapter.getGroupCount(); i++) {
             binding.expandableListView.expandGroup(i);
