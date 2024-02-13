@@ -3,11 +3,15 @@ package org.openobservatory.ooniprobe.activity.overview
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.openobservatory.engine.BaseNettest
+import org.openobservatory.ooniprobe.activity.AbstractActivity
+import org.openobservatory.ooniprobe.activity.OverviewActivity
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel
 import org.openobservatory.ooniprobe.common.AbstractDescriptor
 import org.openobservatory.ooniprobe.common.PreferenceManager
+import org.openobservatory.ooniprobe.common.TestDescriptorManager
 import org.openobservatory.ooniprobe.common.disableTest
 import org.openobservatory.ooniprobe.common.enableTest
+import org.openobservatory.ooniprobe.model.database.InstalledDescriptor
 import javax.inject.Inject
 
 class TestGroupItem(
@@ -18,10 +22,12 @@ class TestGroupItem(
 class OverviewViewModel() : ViewModel() {
     var descriptor: MutableLiveData<AbstractDescriptor<BaseNettest>> = MutableLiveData()
     lateinit var preferenceManager: PreferenceManager
+    lateinit var descriptorManager: TestDescriptorManager
 
     @Inject
-    constructor(preferenceManager: PreferenceManager) : this() {
+    constructor(preferenceManager: PreferenceManager, descriptorManager: TestDescriptorManager) : this() {
         this.preferenceManager = preferenceManager
+        this.descriptorManager = descriptorManager
     }
 
 
@@ -71,6 +77,18 @@ class OverviewViewModel() : ViewModel() {
 
     fun updateDescriptor(descriptor: AbstractDescriptor<BaseNettest>) {
         this.descriptor.postValue(descriptor)
+    }
+
+    fun uninstallLinkClicked(activity: AbstractActivity, descriptor: InstalledDescriptor) {
+        descriptorManager.delete(descriptor)
+        activity.finish()
+    }
+
+    fun automaticUpdatesSwitchClicked(isChecked: Boolean) {
+        descriptor.value?.let {
+            it.descriptor?.isAutoUpdate = isChecked
+            it.descriptor?.save()
+        }
     }
 
     companion object {

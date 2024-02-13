@@ -59,7 +59,11 @@ class TestDescriptor(
     var translationCreationTime: Date? = null,
     @Column(typeConverter = NettestConverter::class)
     var nettests: Any = emptyList<OONIRunNettest>()
-) : BaseModel(), Serializable
+) : BaseModel(), Serializable {
+    fun preferencePrefix(): String {
+        return "${runId}_"
+    }
+}
 
 private const val DESCRIPTOR_TEST_NAME = "ooni_run"
 class InstalledDescriptor(

@@ -149,7 +149,7 @@ class AddDescriptorActivity : AbstractActivity() {
                     when (item.itemId) {
                         R.id.add_descriptor -> {
                             viewModel.onAddButtonClicked(
-                                selectedNettest = adapter.nettests.filter { it.selected },
+                                disabledAutorunNettests = adapter.nettests.filter { it.selected },
                                 automatedUpdates = binding.automaticUpdatesSwitch.isChecked
                             )
                             true

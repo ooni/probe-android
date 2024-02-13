@@ -132,12 +132,34 @@
                     android:layout_height="wrap_content"
                     android:paddingVertical="32dp" />
 
+                <LinearLayout
+                    android:id="@+id/automatic_updates_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp"
+                    android:layout_below="@+id/desc">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Install updates automatically" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/automatic_updates_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
                 <TextView
                     android:id="@+id/run_automatically"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignEnd="@id/desc"
-                    android:layout_alignBottom="@id/desc"
+                    android:layout_alignEnd="@id/automatic_updates_container"
+                    android:layout_alignBottom="@id/automatic_updates_container"
                     android:text="Run automatically" />
 
                 <LinearLayout
@@ -165,7 +187,7 @@
                 </LinearLayout>
             </RelativeLayout>
 
-            <ExpandableListView
+            <org.openobservatory.ooniprobe.common.views.CustomExpandableListView
                 android:id="@+id/expandable_list_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -175,6 +197,23 @@
                 android:paddingHorizontal="16dp"
                 tools:listitem="@layout/overview_test_group_list_item"
                 app:layout_constraintTop_toBottomOf="@id/header" />
+            <Button
+                android:id="@+id/uninstall_link"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Uninstall Link"
+                android:textAllCaps="false"
+                android:textColor="@color/color_red9"
+                app:layout_constraintTop_toBottomOf="@id/expandable_list_view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:cornerRadius="24dp"
+                app:rippleColor="@color/ripple_material_dark"
+                app:strokeColor="@color/color_red9"
+                android:layout_marginVertical="16dp"
+                android:layout_marginStart="16dp"
+                android:visibility="gone"
+                tools:visibility="visible"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
