@@ -33,6 +33,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.oonirun.OoniRunV2Activity"
+            android:exported="true"
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 

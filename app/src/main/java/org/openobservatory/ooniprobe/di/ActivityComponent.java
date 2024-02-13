@@ -11,6 +11,7 @@ import org.openobservatory.ooniprobe.activity.OverviewActivity;
 import org.openobservatory.ooniprobe.activity.ProxyActivity;
 import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
 import org.openobservatory.ooniprobe.activity.reviewdescriptorupdates.ReviewDescriptorUpdatesActivity;
+import org.openobservatory.ooniprobe.activity.oonirun.OoniRunV2Activity;
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.activity.TextActivity;
@@ -22,6 +23,7 @@ import dagger.Subcomponent;
 @Subcomponent()
 public interface ActivityComponent {
     void inject(ReviewDescriptorUpdatesActivity activity);
+    void inject(OoniRunV2Activity activity);
     void inject(AddDescriptorActivity activity);
     void inject(CustomWebsiteActivity activity);
     void inject(MainActivity activity);

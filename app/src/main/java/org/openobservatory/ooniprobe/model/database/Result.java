@@ -251,7 +251,7 @@ public class Result extends BaseModel implements Serializable {
              * If there is an {@link IllegalArgumentException}
              * This should only happen when the test_group_name is not a valid {@link OONITests} value,
              * Which means the `test_group_name` is not an OONI provided test or an installed `Descriptor`.
-             * Orphan results for an uninstalled OONI Run v2 descriptor would fall into this category and thus should not exist.
+             * Orphan resulta for an uninstalled OONI Run v2 descriptor would fall into this category and thus should not exist.
              * We return an {@link Optional#absent()} object.
              */
             return Optional.absent();
