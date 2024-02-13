@@ -1,5 +1,5 @@
 [versions]
-androidGradlePlugin = "8.1.2"
+androidGradlePlugin = "8.2.2"
 barista = "3.9.0"
 countlySdk = "23.6.0"
 faker = "1.2.8"
@@ -18,19 +18,19 @@ androidxCore = "1.5.0"
 androidxRunner = "1.5.2"
 androidxAppCompat = "1.6.1"
 androidxConstraintlayout = "2.1.4"
-androidxLifecycleProcess = "2.5.1"
-androidxPreference = "1.2.0"
+androidxLifecycleProcess = "2.7.0"
+androidxPreference = "1.2.1"
 androidxLocalbroadcastmanager = "1.1.0"
 androidxLegacySupportV4 = "1.0.0"
 androidxJunit = "1.1.5"
 androidxEspressoCore = "3.5.1"
 
 # Google
-googleGson = "2.8.9"
+googleGson = "2.10"
 googleGuava = "30.1.1-android"
-googleMaterial = "1.10.0"
+googleMaterial = "1.11.0"
 googleDagger = "2.45"
-googleFirebaseBon = "26.3.0"
+googleFirebaseBon = "32.7.1"
 googlePlaycore = "1.10.3"
 
 # OONI
@@ -46,11 +46,10 @@ junit = "4.13.2"
 dbflow = "4.2.4"
 retrofitCore = "2.9.0"
 retrofitLoggingInterceptor = "4.9.1"
-butterknifeCore = "10.2.3"
 
 # Firebase Services
 # https://firebase.google.com/support/release-notes/android
-gms-googleServices = "4.3.15"
+gms-googleServices = "4.4.0"
 
 [libraries]
 # Dependencies of the included build-logic
@@ -97,7 +96,7 @@ google-gson = { module = "com.google.code.gson:gson", version.ref = "googleGson"
 google-guava = { module = "com.google.guava:guava", version.ref = "googleGuava" }
 google-material = { module = "com.google.android.material:material", version.ref = "googleMaterial" }
 google-dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "googleDagger" }
-google-dagger = { module = "com.google.dagger:dagger", version.ref = "googleDagger" }
+google-dagger-lib = { module = "com.google.dagger:dagger", version.ref = "googleDagger" }
 google-firebase-messaging = { module = "com.google.firebase:firebase-messaging"}
 google-firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "googleFirebaseBon" }
 

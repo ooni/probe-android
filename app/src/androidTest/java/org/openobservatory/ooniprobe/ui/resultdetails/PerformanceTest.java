@@ -1,5 +1,18 @@
 package org.openobservatory.ooniprobe.ui.resultdetails;
 
+import static androidx.test.espresso.Espresso.onData;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.swipeLeft;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.anything;
+import static org.hamcrest.Matchers.containsString;
+
+import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.schibsted.spain.barista.rule.flaky.AllowFlaky;
@@ -19,19 +32,6 @@ import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
 import org.openobservatory.ooniprobe.test.test.HttpInvalidRequestLine;
 import org.openobservatory.ooniprobe.test.test.Ndt;
 import org.openobservatory.ooniprobe.utils.FormattingUtils;
-
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.swipeLeft;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
-import static androidx.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.containsString;
-import static org.openobservatory.ooniprobe.ui.utils.RecyclerViewMatcher.withRecyclerView;
 
 @RunWith(AndroidJUnit4.class)
 public class PerformanceTest extends MeasurementAbstractTest {
@@ -112,35 +112,34 @@ public class PerformanceTest extends MeasurementAbstractTest {
         launchDetails(testResult.id);
 
         // Assert
-        onView(withId(R.id.recyclerView))
-                .perform(scrollToPosition(0));
+        onData(anything())
+            .inAdapterView(withId(R.id.recyclerView))
+            .atPosition(0)
+            .onChildView(withId(R.id.data1))
+            .check(ViewAssertions.matches(withText(download + " " + downloadUnity)));
 
-        onView(withRecyclerView(R.id.recyclerView)
-                .atPositionOnView(0, R.id.data1))
-                .check(matches(withText(download + " " + downloadUnity)));
-        onView(withRecyclerView(R.id.recyclerView)
-                .atPositionOnView(0, R.id.data2))
-                .check(matches(withText(upload + " " + uploadUnity)));
+        onData(anything())
+            .inAdapterView(withId(R.id.recyclerView))
+            .atPosition(0)
+            .onChildView(withId(R.id.data2))
+            .check(matches(withText(upload + " " + uploadUnity)));
 
-        onView(withId(R.id.recyclerView))
-                .perform(scrollToPosition(1));
-
-        onView(withRecyclerView(R.id.recyclerView)
-                .atPositionOnView(1, R.id.data1))
+        onData(anything())
+            .inAdapterView(withId(R.id.recyclerView))
+            .atPosition(1)
+            .onChildView(withId(R.id.data1))
                 .check(matches(withText(videoQuality)));
 
-        onView(withId(R.id.recyclerView))
-                .perform(scrollToPosition(2));
-
-        onView(withRecyclerView(R.id.recyclerView)
-                .atPositionOnView(2, R.id.data1))
+        onData(anything())
+            .inAdapterView(withId(R.id.recyclerView))
+            .atPosition(2)
+            .onChildView(withId(R.id.data1))
                 .check(matches(withText(notDetected)));
 
-        onView(withId(R.id.recyclerView))
-                .perform(scrollToPosition(3));
-
-        onView(withRecyclerView(R.id.recyclerView)
-                .atPositionOnView(3, R.id.data1))
+        onData(anything())
+            .inAdapterView(withId(R.id.recyclerView))
+            .atPosition(3)
+            .onChildView(withId(R.id.data1))
                 .check(matches(withText(notDetected)));
     }
 
@@ -174,7 +173,7 @@ public class PerformanceTest extends MeasurementAbstractTest {
 
         // Act
         launchDetails(testResult.id);
-        onView(withId(R.id.recyclerView)).perform(actionOnItemAtPosition(0, click()));
+        onData(anything()).inAdapterView(withId(R.id.recyclerView)).atPosition(0).perform(click());
 
         // Assert
         onView(withText(download + downloadUnity)).check(matches(isDisplayed()));
@@ -202,7 +201,7 @@ public class PerformanceTest extends MeasurementAbstractTest {
 
         // Act
         launchDetails(testResult.id);
-        onView(withId(R.id.recyclerView)).perform(actionOnItemAtPosition(1, click()));
+        onData(anything()).inAdapterView(withId(R.id.recyclerView)).atPosition(1).perform(click());
 
         // Assert
         onView(withText(containsString(videoQuality))).check(matches(isDisplayed()));
@@ -219,7 +218,7 @@ public class PerformanceTest extends MeasurementAbstractTest {
 
         // Act
         launchDetails(testResult.id);
-        onView(withId(R.id.recyclerView)).perform(actionOnItemAtPosition(2, click()));
+        onData(anything()).inAdapterView(withId(R.id.recyclerView)).atPosition(2).perform(click());
 
         // Assert
         onView(withText(getResourceString(R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_NotFound_Hero_Title))).check(matches(isDisplayed()));
@@ -234,7 +233,7 @@ public class PerformanceTest extends MeasurementAbstractTest {
 
         // Act
         launchDetails(testResult.id);
-        onView(withId(R.id.recyclerView)).perform(actionOnItemAtPosition(2, click()));
+        onData(anything()).inAdapterView(withId(R.id.recyclerView)).atPosition(2).perform(click());
 
         // Assert
         onView(withText(getResourceString(R.string.TestResults_Details_Middleboxes_HTTPInvalidRequestLine_Found_Hero_Title))).check(matches(isDisplayed()));
@@ -249,7 +248,7 @@ public class PerformanceTest extends MeasurementAbstractTest {
 
         // Act
         launchDetails(testResult.id);
-        onView(withId(R.id.recyclerView)).perform(actionOnItemAtPosition(3, click()));
+        onData(anything()).inAdapterView(withId(R.id.recyclerView)).atPosition(3).perform(click());
 
         // Assert
         onView(withText(getResourceString(R.string.TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_NotFound_Hero_Title))).check(matches(isDisplayed()));
@@ -264,7 +263,7 @@ public class PerformanceTest extends MeasurementAbstractTest {
 
         // Act
         launchDetails(testResult.id);
-        onView(withId(R.id.recyclerView)).perform(actionOnItemAtPosition(3, click()));
+        onData(anything()).inAdapterView(withId(R.id.recyclerView)).atPosition(3).perform(click());
 
         // Assert
         onView(withText(getResourceString(R.string.TestResults_Details_Middleboxes_HTTPHeaderFieldManipulation_Found_Hero_Title))).check(matches(isDisplayed()));
