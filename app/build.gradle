@@ -13,8 +13,8 @@ android {
         applicationId 'org.openobservatory.ooniprobe'
         minSdk libs.versions.minSdk.get().toInteger()
         targetSdk libs.versions.targetSdk.get().toInteger()
-        versionName '3.8.5'
-        versionCode 107
+        versionName '3.8.6'
+        versionCode 110
 		testInstrumentationRunner "org.openobservatory.ooniprobe.TestAndroidJUnitRunner"
 		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://countly.ooni.io"'
@@ -69,8 +69,8 @@ android {
         dev {
             dimension 'testing'
             applicationIdSuffix '.dev'
-            versionNameSuffix "-beta.1"
-            versionCode versionCodeDate()
+            versionNameSuffix resolveVersionSuffix('beta')
+            versionCode resolveVersionCode()
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-dev"'
             resValue "string", "APP_NAME", "OONI Dev"
             buildConfigField 'String', 'COUNTLY_KEY', '"e6c2cfe53e85951d50567467cef3f9fa2eab32c3"'
@@ -78,8 +78,8 @@ android {
         experimental {
             dimension 'testing'
             applicationIdSuffix '.experimental'
-            versionNameSuffix "-experimental.1"
-            versionCode versionCodeDate()
+            versionNameSuffix resolveVersionSuffix('experimental')
+            versionCode resolveVersionCode()
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-experimental"'
             resValue "string", "APP_NAME", "OONI Exp"
             buildConfigField 'String', 'COUNTLY_KEY', '"e6c2cfe53e85951d50567467cef3f9fa2eab32c3"'
@@ -154,7 +154,7 @@ dependencies {
     fullImplementation libs.google.play.core
 
 // Dependency Injection
-    implementation libs.google.dagger
+    implementation libs.google.dagger.lib
     kapt libs.google.dagger.compiler
 
 // Logger
@@ -188,8 +188,18 @@ dependencies {
     kaptAndroidTest libs.google.dagger.compiler
 }
 
-static def versionCodeDate() {
+static def resolveVersionCode() {
+    if(System.getenv("PR_NUMBER") != null) {
+        return System.getenv("PR_NUMBER").toInteger()
+    }
     return new Date().format("yyyyMMdd").toInteger()
+}
+
+static def resolveVersionSuffix(String variant) {
+    if(System.getenv("PR_NUMBER") != null){
+        return "-${variant}.${System.getenv("PR_NUMBER")}"
+    }
+    return "-${variant}.1"
 }
 
 if (!getGradle().getStartParameter().getTaskRequests()

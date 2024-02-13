@@ -1,9 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/text"
-	android:layout_width="match_parent"
-	android:layout_height="68dp"
-	android:drawablePadding="16dp"
-	android:foreground="?attr/selectableItemBackground"
-	android:gravity="center_vertical"
-	android:paddingHorizontal="16dp" />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="68dp"
+              android:foreground="?attr/selectableItemBackground"
+              android:gravity="center_vertical"
+              android:orientation="horizontal">
+
+    <TextView
+            android:id="@+id/text"
+            android:layout_width="0dp"
+            android:layout_height="68dp"
+            android:gravity="center_vertical"
+            android:layout_weight="2"
+            android:textColor="@color/color_gray9"
+            android:drawablePadding="16dp"
+            android:paddingHorizontal="16dp"/>
+    <LinearLayout
+            android:id="@+id/pref_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/data1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_gray9"
+                android:drawablePadding="4dp"/>
+
+        <TextView
+                android:id="@+id/data2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_gray9"
+                android:drawablePadding="4dp"/>
+    </LinearLayout>
+	<TextView
+		android:id="@+id/indicator"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textColor="@color/color_gray9"
+		android:visibility="gone"
+		android:drawablePadding="16dp"
+		android:paddingHorizontal="16dp"/>
+</LinearLayout>
+
