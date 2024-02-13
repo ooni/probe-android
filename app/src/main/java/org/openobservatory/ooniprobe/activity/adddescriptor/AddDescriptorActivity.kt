@@ -21,6 +21,7 @@ import org.openobservatory.engine.OONIRunDescriptor
 import org.openobservatory.engine.OONIRunNettest
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
+import org.openobservatory.ooniprobe.activity.MainActivity
 import org.openobservatory.ooniprobe.activity.adddescriptor.adapter.AddDescriptorExpandableListAdapter
 import org.openobservatory.ooniprobe.activity.adddescriptor.adapter.GroupedItem
 import org.openobservatory.ooniprobe.common.PreferenceManager
@@ -197,5 +198,15 @@ class AddDescriptorActivity : AbstractActivity() {
 
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onBackPressed() {
+        startActivity(MainActivity.newIntent(applicationContext, R.id.dashboard))
+        super.onBackPressed()
+    }
+
+    override fun finish() {
+        startActivity(MainActivity.newIntent(applicationContext, R.id.dashboard))
+        super.finish()
     }
 }
