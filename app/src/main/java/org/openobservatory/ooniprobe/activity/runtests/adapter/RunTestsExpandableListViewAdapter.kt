@@ -103,22 +103,11 @@ class RunTestsExpandableListViewAdapter(
 		if (groupItem.selected) {
 			if (isSelectAllChildItems(groupItem.nettests)) {
 				groupSelectionIndicator.setImageResource(R.drawable.check_box)
-				// NOTE: This is the only place where OONITests.EXPERIMENTAL.label is used.
-				// This doesn't follow the normal rule where the component tests make up the suite.
-				if (groupItem.name == OONITests.EXPERIMENTAL.label) {
-					viewModel.enableTest(OONITests.EXPERIMENTAL.label)
-				}
 			} else {
 				groupSelectionIndicator.setImageResource(R.drawable.check_box_outline_blank)
-				if (groupItem.name == OONITests.EXPERIMENTAL.label) {
-					viewModel.disableTest(OONITests.EXPERIMENTAL.label)
-				}
 			}
 		} else {
 			groupSelectionIndicator.setImageResource(R.drawable.check_box_outline_blank)
-			if (groupItem.name == OONITests.EXPERIMENTAL.label) {
-				viewModel.disableTest(OONITests.EXPERIMENTAL.label)
-			}
 		}
 		groupSelectionIndicator.setOnClickListener {
 			if (groupItem.selected && isSelectAllChildItems(groupItem.nettests)) {
@@ -193,7 +182,6 @@ class RunTestsExpandableListViewAdapter(
 			setOnClickListener {
 				if (childItem.selected) {
 					childItem.selected = false
-					viewModel.disableTest(childItem.name)
 					if (isNotSelectedAnyChildItems(groupItem.nettests)) {
 						groupItem.selected = false
 					}
@@ -204,7 +192,6 @@ class RunTestsExpandableListViewAdapter(
 					}
 				} else {
 					childItem.selected = true
-					viewModel.enableTest(childItem.name)
 					groupItem.selected = true
 					if (isSelectedAllItems(groupedListData)) {
 						viewModel.setSelectedAllBtnStatus(SELECT_ALL)

@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.common.service;
 
+import static org.openobservatory.ooniprobe.common.OONIDescriptorKt.autoRunTests;
+
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
@@ -75,21 +77,7 @@ public class ServiceUtil {
         if (!d.generateAutoRunServiceSuite.shouldStart(config.isOnWiFi(), config.isCharging(), isVPNInUse)) {
             return;
         }
-
-        AbstractSuite suite = d.generateAutoRunServiceSuite.generate();
-        ArrayList<AbstractSuite> testSuites = new ArrayList<>();
-        testSuites.add(suite);
-        testSuites.addAll(
-                Lists.transform(
-                        List.of(OONITests.INSTANT_MESSAGING, OONITests.CIRCUMVENTION, OONITests.PERFORMANCE, OONITests.EXPERIMENTAL),
-                        item -> {
-                            DynamicTestSuite testSuite = item.toOONIDescriptor(app).getTest(app);
-                            testSuite.setAutoRun(true);
-                            return testSuite;
-                        }
-                )
-        );
-        ServiceUtil.startRunTestServiceCommon(app, testSuites, false, true);
+        ServiceUtil.startRunTestServiceCommon(app, new ArrayList<>(autoRunTests(app, d.preferenceManager)), false, true);
         d.generateAutoRunServiceSuite.markAsRan();
 
     }

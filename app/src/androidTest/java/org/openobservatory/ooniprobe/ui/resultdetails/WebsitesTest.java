@@ -19,6 +19,7 @@ import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -28,6 +29,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.containsString;
 import static org.openobservatory.ooniprobe.ui.utils.RecyclerViewMatcher.withRecyclerView;
 import static org.openobservatory.ooniprobe.ui.utils.ViewMatchers.waitPartialText;
@@ -65,12 +67,11 @@ public class WebsitesTest extends MeasurementAbstractTest {
 
         // Assert
         for (int i = 0; i < measurements.size(); i++) {
-            onView(withId(R.id.recyclerView))
-                    .perform(scrollToPosition(i));
-
-            onView(withRecyclerView(R.id.recyclerView)
-                    .atPositionOnView(i, R.id.text))
-                    .check(matches(withText(containsString(measurements.get(i).getUrlString()))));
+            onData(anything())
+                .inAdapterView(withId(R.id.recyclerView))
+                .atPosition(i)
+                .onChildView(withId(R.id.text))
+                .check(matches(withText(containsString(measurements.get(i).getUrlString()))));
         }
 
     }
@@ -84,7 +85,7 @@ public class WebsitesTest extends MeasurementAbstractTest {
 
         // Act
         launchDetails(testResult.id);
-        onView(withId(R.id.recyclerView)).perform(actionOnItemAtPosition(0, click()));
+        onData(anything()).inAdapterView(withId(R.id.recyclerView)).atPosition(0).perform(click());
 
         // Assert
         onView(withText(headerOutcome)).check(matches(isDisplayed()));
@@ -100,7 +101,7 @@ public class WebsitesTest extends MeasurementAbstractTest {
 
         // Act
         launchDetails(testResult.id);
-        onView(withId(R.id.recyclerView)).perform(actionOnItemAtPosition(0, click()));
+        onData(anything()).inAdapterView(withId(R.id.recyclerView)).atPosition(0).perform(click());
 
         // Assert
         onView(withText(headerOutcome)).check(matches(isDisplayed()));

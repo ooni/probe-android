@@ -23,18 +23,34 @@ private fun PreferenceManager.experimentalTestList(): MutableList<String> {
 fun PreferenceManager.resolveStatus(
     name: String, prefix: String, autoRun: Boolean = false
 ): Boolean {
-    if (name == WebConnectivity.NAME) {
-        return true
-    } else if (experimentalTestList().contains(name)) {
-        return isExperimentalOn
+    if (!autoRun) {
+        if (name == WebConnectivity.NAME) {
+            return true
+        } else if (experimentalTestList().contains(name)) {
+            return isExperimentalOn
+        }
     }
+    val key = getPreferenceKey(name = name, prefix = prefix, autoRun = autoRun)
     return if (autoRun) {
         sp.getBoolean(
             getPreferenceKey(name = name, prefix = prefix, autoRun = autoRun),
             resolveStatus(name = name, prefix = prefix)
         )
     } else {
-        return sp.getBoolean(getPreferenceKey(name = name, prefix = prefix), false)
+        /**
+         * If the preference key does not exist, we return the default value for the test.
+         * This is needed because ooni provided tests will not be explicitly enabled by default.
+         *
+         * However, we want to show them as enabled in the UI.
+         *
+         * Using the **[OONIDescriptor.preferencePrefix]** as an identifier, we can determine if the test is an ooni test(prefix is blank)
+         * and set the default value accordingly.
+         *
+         * The prefix is blank for ooni tests because they do not have a descriptor id.
+         * Additionally, for backward compatibility, the preference key for ooni tests
+         * is a lookup from **[PreferenceManager.getPreferenceKey]** with the test name.
+         */
+        return sp.getBoolean(getPreferenceKey(name = name, prefix = prefix), prefix.isBlank())
     }
 }
 
@@ -60,9 +76,11 @@ private fun PreferenceManager.setValue(
     prefix: String,
     autoRun: Boolean = false,
 ): Boolean {
-    if (name == WebConnectivity.NAME || experimentalTestList().contains(name)) {
+    if (experimentalTestList().contains(name) && !autoRun) {
         return false
     }
+    val key = getPreferenceKey(name = name, prefix = prefix, autoRun = autoRun)
+
     return with(sp.edit()) {
         putBoolean(getPreferenceKey(name = name, prefix = prefix, autoRun = autoRun), value)
         commit()
@@ -122,7 +140,7 @@ fun PreferenceManager.getPreferenceKey(name: String): String {
 
         OONITests.EXPERIMENTAL.label -> r.getString(R.string.experimental)
 
-        else -> throw IllegalArgumentException("Unknown preference for: $name")
+        else -> name
     }
 }
 
@@ -161,7 +179,7 @@ fun PreferenceManager.disableTest(name: String): Boolean {
  * @return true if the preference was successfully set, false otherwise.
  */
 private fun PreferenceManager.setValue(name: String, value: Boolean): Boolean {
-    if (name == WebConnectivity.NAME || experimentalTestList().contains(name)) {
+    if (experimentalTestList().contains(name)) {
         return false
     }
     return with(sp.edit()) {

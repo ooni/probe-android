@@ -46,6 +46,7 @@ class OverviewTestsExpandableListViewAdapter(
         when (viewModel.descriptor.value?.name) {
             OONITests.EXPERIMENTAL.label -> {
                 view.findViewById<TextView>(R.id.group_name).text = groupItem.name
+                view.findViewById<ImageView>(R.id.group_icon).visibility = View.GONE
             }
 
             else -> {
@@ -99,11 +100,20 @@ class OverviewTestsExpandableListViewAdapter(
         }
 
         groupCheckBox.isChecked = groupItem.selected
-        // Disable experimental or webconnectivity test
-        viewModel.descriptor.value?.run {
-            groupCheckBox.isEnabled = hasPreferencePrefix()
-        }
 
+        /**
+         * Hide checkbox for experimental tests.
+         * Experimental tests are not configurable in the settings.
+         * Tests in this category are not permanent and are subject to change.
+         * The checkbox is hidden to prevent the user from mistakenly thinking they can be configured.
+         */
+        viewModel.descriptor.value?.run {
+            if (name == OONITests.EXPERIMENTAL.label) {
+                groupCheckBox.visibility = View.GONE
+            } else {
+                groupCheckBox.visibility = View.VISIBLE
+            }
+        }
 
         if (groupItem.inputs?.isNotEmpty() == true) {
             if (isExpanded) {
