@@ -106,6 +106,11 @@ class ManualUpdateDescriptorsWorker(
                 d.testDescriptorManager.getDescriptorWithAutoUpdateDisabled()
             }
 
+            if(descriptors.isEmpty()) {
+                Log.e(TAG, "No descriptors to update")
+                return Result.success()
+            }
+
             for (descriptor in descriptors) {
                 Log.d(TAG, "Fetching updates for ${descriptor.runId}")
 

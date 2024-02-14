@@ -6,5 +6,5 @@
         android:id="@+id/add_descriptor"
         app:showAsAction="ifRoom|withText"
         tools:title="Add Link"
-        android:title="Update Descriptor" />
+        android:title="Add Link" />
 </menu>

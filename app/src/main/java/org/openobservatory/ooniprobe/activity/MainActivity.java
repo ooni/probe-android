@@ -219,30 +219,37 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
         if (workInfo != null) {
             binding.reviewUpdateNotificationFragment.setVisibility(View.VISIBLE);
             switch (workInfo.getState()) {
-                case SUCCEEDED -> getSupportFragmentManager()
+                case SUCCEEDED -> {
+                    String descriptor = workInfo.getOutputData().getString(ManualUpdateDescriptorsWorker.KEY_UPDATED_DESCRIPTORS);
+                    if (descriptor == null) {
+                        removeProgressFragment(R.id.review_update_notification_fragment);
+                        return;
+                    }
+                    getSupportFragmentManager()
                         .beginTransaction()
                         .add(
-                                R.id.review_update_notification_fragment,
-                                OONIRunDynamicProgressBar.newInstance(ProgressType.REVIEW_LINK, new OnActionListener() {
-                                    @Override
-                                    public void onActionButtonCLicked() {
+                            R.id.review_update_notification_fragment,
+                            OONIRunDynamicProgressBar.newInstance(ProgressType.REVIEW_LINK, new OnActionListener() {
+                                @Override
+                                public void onActionButtonCLicked() {
 
-                                        getReviewUpdatesLauncher().launch(
-                                                ReviewDescriptorUpdatesActivity.newIntent(
-                                                        MainActivity.this,
-                                                        workInfo.getOutputData().getString(ManualUpdateDescriptorsWorker.KEY_UPDATED_DESCRIPTORS)
-                                                )
-                                        );
-                                        removeProgressFragment(R.id.review_update_notification_fragment);
-                                    }
+                                    getReviewUpdatesLauncher().launch(
+                                        ReviewDescriptorUpdatesActivity.newIntent(
+                                            MainActivity.this,
+                                            descriptor
+                                        )
+                                    );
+                                    removeProgressFragment(R.id.review_update_notification_fragment);
+                                }
 
-                                    @Override
-                                    public void onCloseButtonClicked() {
-                                        removeProgressFragment(R.id.review_update_notification_fragment);
-                                    }
-                                }),
-                                OONIRunDynamicProgressBar.getTAG() + "_review_update_success_notification"
+                                @Override
+                                public void onCloseButtonClicked() {
+                                    removeProgressFragment(R.id.review_update_notification_fragment);
+                                }
+                            }),
+                            OONIRunDynamicProgressBar.getTAG() + "_review_update_success_notification"
                         ).commit();
+                }
 
                 case ENQUEUED -> getSupportFragmentManager()
                         .beginTransaction()
