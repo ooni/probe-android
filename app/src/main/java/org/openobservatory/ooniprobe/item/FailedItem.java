@@ -18,6 +18,7 @@ import static java.util.concurrent.TimeUnit.*;
 
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
+@Deprecated
 public class FailedItem extends HeterogeneousRecyclerItem<Result, FailedItem.ViewHolder> {
 	private final View.OnClickListener onClickListener;
 	private final View.OnLongClickListener onLongClickListener;

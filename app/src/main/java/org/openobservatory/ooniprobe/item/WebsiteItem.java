@@ -16,6 +16,7 @@ import org.openobservatory.ooniprobe.model.database.Result;
 
 import java.util.Locale;
 
+@Deprecated
 public class WebsiteItem extends HeterogeneousRecyclerItem<Result, WebsiteItem.ViewHolder> {
 	private final View.OnClickListener onClickListener;
 	private final View.OnLongClickListener onLongClickListener;

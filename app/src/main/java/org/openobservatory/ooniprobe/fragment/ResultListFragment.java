@@ -10,53 +10,46 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.google.android.material.snackbar.Snackbar;
 import com.raizlabs.android.dbflow.sql.language.Method;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
-import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerAdapter;
-import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
 import org.openobservatory.ooniprobe.activity.TextActivity;
+import org.openobservatory.ooniprobe.adapters.ResultListAdapter;
+import org.openobservatory.ooniprobe.adapters.diff.ResultComparator;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.databinding.FragmentResultListBinding;
 import org.openobservatory.ooniprobe.domain.GetResults;
 import org.openobservatory.ooniprobe.domain.MeasurementsManager;
-import org.openobservatory.ooniprobe.domain.models.DatedResults;
-import org.openobservatory.ooniprobe.item.*;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
-import org.openobservatory.ooniprobe.test.suite.*;
 
 import javax.inject.Inject;
 import java.io.Serializable;
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ResultListFragment extends Fragment implements View.OnClickListener, View.OnLongClickListener, ConfirmDialogFragment.OnConfirmedListener {
     private FragmentResultListBinding binding;
-
-    private ArrayList<HeterogeneousRecyclerItem> items;
-    private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
+    private ResultListAdapter adapter;
     private boolean refresh;
     private Snackbar snackbar;
 
     @Inject
     MeasurementsManager measurementsManager;
-
     @Inject
     GetResults getResults;
-
     @Inject
     PreferenceManager pm;
+    private ResultListViewModel viewModel;
 
     @Nullable
     @Override
@@ -64,14 +57,16 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         binding = FragmentResultListBinding.inflate(inflater, container, false);
         ((Application) getActivity().getApplication()).getFragmentComponent().inject(this);
         ((AppCompatActivity) getActivity()).setSupportActionBar(binding.toolbar);
+
+        viewModel = new ViewModelProvider(this).get(ResultListViewModel.class);
+
         setHasOptionsMenu(true);
         getActivity().setTitle(R.string.TestResults_Overview_Title);
         reloadHeader();
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         binding.recycler.setLayoutManager(layoutManager);
         binding.recycler.addItemDecoration(new DividerItemDecoration(getActivity(), layoutManager.getOrientation()));
-        items = new ArrayList<>();
-        adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
+        adapter = new ResultListAdapter(new ResultComparator(), this, this);
         binding.recycler.setAdapter(adapter);
 
         binding.filterTests.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -148,48 +143,11 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
             snackbar.dismiss();
         }
 
-        items.clear();
-
         String filter = getResources().getStringArray(R.array.filterTestValues)[binding.filterTests.getSelectedItemPosition()];
-        List<DatedResults> list = getResults.getGroupedByMonth(filter);
-
-        if (list.isEmpty()) {
-            binding.emptyState.setVisibility(View.VISIBLE);
-            binding.recycler.setVisibility(View.GONE);
-        } else {
-            binding.emptyState.setVisibility(View.GONE);
-            binding.recycler.setVisibility(View.VISIBLE);
-            for (DatedResults group : list) {
-                items.add(new DateItem(group.getGroupedDate()));
-                for (Result result : group.getResultsList()) {
-                    if (result.countTotalMeasurements() == 0)
-                        items.add(new FailedItem(result, this, this));
-                    else {
-                        switch (result.test_group_name) {
-                            case WebsitesSuite.NAME:
-                                items.add(new WebsiteItem(result, this, this));
-                                break;
-                            case InstantMessagingSuite.NAME:
-                                items.add(new InstantMessagingItem(result, this, this));
-                                break;
-                            case MiddleBoxesSuite.NAME:
-                                items.add(new MiddleboxesItem(result, this, this));
-                                break;
-                            case PerformanceSuite.NAME:
-                                items.add(new PerformanceItem(result, this, this));
-                                break;
-                            case CircumventionSuite.NAME:
-                                items.add(new CircumventionItem(result, this, this));
-                                break;
-                            case ExperimentalSuite.NAME:
-                                items.add(new ExperimentalItem(result, this, this));
-                                break;
-                        }
-                    }
-                }
-            }
-            adapter.notifyTypesChanged();
-        }
+        viewModel.init(filter);
+        viewModel.pagingData.observe(getViewLifecycleOwner(), resultPagingData -> {
+            adapter.submitData(getLifecycle(), resultPagingData);
+        });
     }
 
     @Override
@@ -215,11 +173,9 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         if (serializable.equals(R.string.Modal_ResultsNotUploaded_Title)) {
             if (i == DialogInterface.BUTTON_POSITIVE) {
                 new ResubmitAsyncTask(this, pm.getProxyURL()).execute(null, null);
-            }
-            else if (i == DialogInterface.BUTTON_NEUTRAL) {
+            } else if (i == DialogInterface.BUTTON_NEUTRAL) {
                 startActivity(TextActivity.newIntent(getActivity(), TextActivity.TYPE_UPLOAD_LOG, (String) serializable));
-            }
-            else
+            } else
                 snackbar.show();
         } else if (i == DialogInterface.BUTTON_POSITIVE) {
             if (serializable instanceof Result) {
@@ -238,7 +194,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     }
 
     private static class ResubmitAsyncTask extends ResubmitTask<AbstractActivity> {
-        private WeakReference<ResultListFragment> wf;
+        private final WeakReference<ResultListFragment> wf;
 
         ResubmitAsyncTask(ResultListFragment f, String proxy) {
             super((AbstractActivity) f.getActivity(), proxy);

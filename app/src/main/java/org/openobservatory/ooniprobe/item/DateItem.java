@@ -14,6 +14,7 @@ import java.util.Locale;
 
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
+@Deprecated
 public class DateItem extends HeterogeneousRecyclerItem<Date, DateItem.ViewHolder> {
 	private final SimpleDateFormat SDF;
 

@@ -16,6 +16,7 @@ import org.openobservatory.ooniprobe.model.database.Result;
 
 import java.util.Locale;
 
+@Deprecated
 public class CircumventionItem extends HeterogeneousRecyclerItem<Result, CircumventionItem.ViewHolder> {
     private final View.OnClickListener onClickListener;
     private final View.OnLongClickListener onLongClickListener;

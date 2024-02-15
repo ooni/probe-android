@@ -5,6 +5,7 @@ countlySdk = "24.1.0"
 faker = "1.2.8"
 mockitoCore = "5.3.1"
 mockitoInline = "4.6.1"
+pagingRuntimeKtx = "3.2.1"
 robolectric = "4.10.3"
 fastlaneScreengrab = "2.0.0"
 sentryAndroid = "7.3.0"
@@ -54,6 +55,7 @@ gms-googleServices = "4.4.0"
 [libraries]
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
+androidx-paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "pagingRuntimeKtx" }
 barista = { module = "com.schibsted.spain:barista", version.ref = "barista" }
 countly-sdk = { module = "ly.count.android:sdk", version.ref = "countlySdk" }
 faker = { module = "com.github.blocoio:faker", version.ref = "faker" }

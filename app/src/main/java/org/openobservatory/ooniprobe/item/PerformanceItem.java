@@ -19,6 +19,7 @@ import org.openobservatory.ooniprobe.test.test.Ndt;
 
 import java.util.Locale;
 
+@Deprecated
 public class PerformanceItem extends HeterogeneousRecyclerItem<Result, PerformanceItem.ViewHolder> {
 	private final View.OnClickListener onClickListener;
 	private final View.OnLongClickListener onLongClickListener;
