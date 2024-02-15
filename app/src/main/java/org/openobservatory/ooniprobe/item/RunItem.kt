@@ -14,7 +14,9 @@ class RunItem(
         viewHolder?.itemView?.context?.let { context ->
             extra.getDescriptor(context).get().let { descriptor ->
                 viewHolder.binding?.icon?.setImageResource(descriptor.getDisplayIcon(context))
+                viewHolder.binding?.icon?.setColorFilter(descriptor.color)
                 viewHolder.binding?.name?.text = descriptor.title
+                viewHolder.binding?.name?.setTextColor(descriptor.color)
             }
         }
     }

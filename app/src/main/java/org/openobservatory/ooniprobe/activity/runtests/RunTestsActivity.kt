@@ -146,8 +146,8 @@ class RunTestsActivity : AbstractActivity() {
                 }
                 else -> group.nettests.forEach { nettest ->
                     when(nettest.selected) {
-                        true -> preferenceManager.enableTest(nettest.name)
-                        false -> preferenceManager.disableTest(nettest.name)
+                        true -> preferenceManager.enableTest(nettest.name, group.preferencePrefix())
+                        false -> preferenceManager.disableTest(nettest.name, group.preferencePrefix())
                     }
                 }
             }
