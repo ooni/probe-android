@@ -4,10 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.activity.AbstractActivity
-import org.openobservatory.ooniprobe.activity.OverviewActivity
-import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel
 import org.openobservatory.ooniprobe.common.AbstractDescriptor
-import org.openobservatory.ooniprobe.common.OONIDescriptor
 import org.openobservatory.ooniprobe.common.OONITests
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.common.TestDescriptorManager
