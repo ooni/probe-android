@@ -18,7 +18,10 @@ import org.openobservatory.ooniprobe.activity.runtests.adapter.RunTestsExpandabl
 import org.openobservatory.ooniprobe.activity.runtests.models.ChildItem
 import org.openobservatory.ooniprobe.activity.runtests.models.GroupItem
 import org.openobservatory.ooniprobe.common.AbstractDescriptor
+import org.openobservatory.ooniprobe.common.OONITests
 import org.openobservatory.ooniprobe.common.PreferenceManager
+import org.openobservatory.ooniprobe.common.disableTest
+import org.openobservatory.ooniprobe.common.enableTest
 import org.openobservatory.ooniprobe.databinding.ActivityRunTestsBinding
 import java.io.Serializable
 import javax.inject.Inject
@@ -104,6 +107,7 @@ class RunTestsActivity : AbstractActivity() {
 	private fun onMenuItemClickListener(menuItem: MenuItem): Boolean {
 		return when (menuItem.itemId) {
 			R.id.runButton -> {
+				updatePreferences()
 				val selectedChildItems: List<String> = getChildItemsSelectedIdList()
 				if (selectedChildItems.isNotEmpty()) {
 					val testSuitesToRun = getGroupItemsAtLeastOneChildEnabled().map { groupItem ->
@@ -123,6 +127,31 @@ class RunTestsActivity : AbstractActivity() {
 			else -> false
 		}
 	}
+
+    /**
+     * Update the preferences based on the selected tests.
+     * This method is used to update the preferences when the user has selected the tests that they want to run.
+     */
+    private fun updatePreferences() {
+        for (i in 0 until adapter.groupCount) {
+            val group = adapter.getGroup(i)
+            when (group.name) {
+                OONITests.EXPERIMENTAL.label -> {
+                    val testNames = OONITests.EXPERIMENTAL.nettests.map { it.name };
+                    when(group.nettests.filter { testNames.contains(it.name) }.map { it.selected }.all { it }) {
+                        true -> preferenceManager.enableTest(OONITests.EXPERIMENTAL.label)
+                        false -> preferenceManager.disableTest(OONITests.EXPERIMENTAL.label)
+                    }
+                }
+                else -> group.nettests.forEach { nettest ->
+                    when(nettest.selected) {
+                        true -> preferenceManager.enableTest(nettest.name)
+                        false -> preferenceManager.disableTest(nettest.name)
+                    }
+                }
+            }
+        }
+    }
 
 	private fun selectAllBtnStatusObserver(selectAllBtnStatus: String?) {
 		if (!TextUtils.isEmpty(selectAllBtnStatus)) {
