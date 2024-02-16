@@ -1,171 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-	<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-	<uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
-	<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-	<uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
 
-	<permission
-		android:name="${applicationId}.permission.C2D_MESSAGE"
-		android:protectionLevel="signature" />
+    <permission
+        android:name="${applicationId}.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
 
-	<uses-permission android:name="${applicationId}.permission.C2D_MESSAGE" />
+    <uses-permission android:name="${applicationId}.permission.C2D_MESSAGE" />
 
-	<application
-		android:name=".common.Application"
-		android:allowBackup="false"
-		android:icon="@mipmap/ic_launcher"
-		android:label="@string/APP_NAME"
-		android:supportsRtl="true"
-		android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App">
-		<activity
-			android:name=".activity.MainActivity"
-			android:launchMode="singleTop"
-			android:exported="true"
-			android:screenOrientation="userPortrait"
-			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
+    <application
+        android:name=".common.Application"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/APP_NAME"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App">
+        <activity
+            android:name=".activity.MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="userPortrait"
+            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-				<category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
-		</activity>
-		<activity
-			android:name=".activity.OnboardingActivity"
-			android:screenOrientation="userPortrait"
-			android:theme="@style/Theme.MaterialComponents.NoActionBar.Onboarding" />
-		<activity
-			android:label="Run tests"
-			android:name=".activity.runtests.RunTestsActivity"
-			android:parentActivityName=".activity.MainActivity"
-			android:exported="false"
-			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar"/>
-		<activity
-			android:name=".activity.PreferenceActivity"
-			android:launchMode="singleTop"
-			android:parentActivityName=".activity.MainActivity"
-			android:screenOrientation="userPortrait" />
-		<activity
-			android:name=".activity.OverviewActivity"
-			android:launchMode="singleTop"
-			android:parentActivityName=".activity.MainActivity"
-			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar"
-			android:screenOrientation="userPortrait" />
-		<activity
-			android:name=".activity.ResultDetailActivity"
-			android:launchMode="singleTop"
-			android:parentActivityName=".activity.MainActivity"
-			android:screenOrientation="userPortrait" />
-		<activity
-			android:name=".activity.MeasurementDetailActivity"
-			android:launchMode="singleTop"
-			android:parentActivityName=".activity.ResultDetailActivity"
-			android:screenOrientation="userPortrait" />
-		<activity
-			android:name=".activity.TextActivity"
-			android:hardwareAccelerated="false"
-			android:parentActivityName=".activity.MeasurementDetailActivity"
-			android:screenOrientation="userPortrait" />
-		<activity
-			android:name=".activity.RunningActivity"
-			android:launchMode="singleTop"
-			android:parentActivityName=".activity.MainActivity"
-			android:screenOrientation="userPortrait" />
-		<activity
-			android:name=".activity.InfoActivity"
-			android:label="@string/Settings_About_Label"
-			android:exported="false"
-			android:parentActivityName=".activity.PreferenceActivity"
-			android:screenOrientation="userPortrait"
-			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
-			<intent-filter>
-				<action android:name="${applicationId}.activity.InfoActivity" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.oonirun.OoniRunV2Activity"
+            android:exported="true"
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
 
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-		</activity>
-		<activity
-			android:name=".activity.ProxyActivity"
-			android:label="Proxy"
-			android:exported="false"
-			android:parentActivityName=".activity.PreferenceActivity"
-			android:screenOrientation="userPortrait"
-			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App">
-			<intent-filter>
-				<action android:name="${applicationId}.activity.ProxyActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-		</activity>
-		<activity
-			android:name=".activity.customwebsites.CustomWebsiteActivity"
-			android:label="@string/Settings_Websites_CustomURL_Title"
-			android:exported="false"
-			android:parentActivityName=".activity.PreferenceActivity"
-			android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
-			<intent-filter>
-				<action android:name="${applicationId}.activity.CustomWebsiteActivity" />
+                <action android:name="${applicationId}.nettest" />
 
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-		</activity>
-		<activity
-			android:name=".activity.OoniRunActivity"
-			android:label=""
-			android:exported="true"
-			android:launchMode="singleTop"
-			android:parentActivityName=".activity.MainActivity"
-			android:screenOrientation="userPortrait"
-			android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.App">
-			<intent-filter>
-				<action android:name="android.intent.action.SEND" />
-				<category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="run.test.ooni.org"
+                    android:pathPrefix="/v2"
+                    android:scheme="https" />
+            </intent-filter>
 
-				<action android:name="${applicationId}.nettest" />
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
 
-				<data android:mimeType="text/plain" />
-			</intent-filter>
-			<intent-filter android:autoVerify="true">
-				<action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
-				<category android:name="android.intent.category.DEFAULT" />
-				<category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="runv2"
+                    android:scheme="ooni" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.adddescriptor.AddDescriptorActivity"
+            android:exported="false"
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar" />
+        <activity
+            android:name=".activity.OnboardingActivity"
+            android:screenOrientation="userPortrait"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar.Onboarding" />
+        <activity
+            android:name=".activity.runtests.RunTestsActivity"
+            android:exported="false"
+            android:label="Run tests"
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar" />
+        <activity
+            android:name=".activity.PreferenceActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".activity.MainActivity"
+            android:screenOrientation="userPortrait" />
+        <activity
+            android:name=".activity.OverviewActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".activity.MainActivity"
+            android:screenOrientation="userPortrait"
+            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar" />
+        <activity
+            android:name=".activity.ResultDetailActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".activity.MainActivity"
+            android:screenOrientation="userPortrait" />
+        <activity
+            android:name=".activity.MeasurementDetailActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".activity.ResultDetailActivity"
+            android:screenOrientation="userPortrait" />
+        <activity
+            android:name=".activity.TextActivity"
+            android:hardwareAccelerated="false"
+            android:parentActivityName=".activity.MeasurementDetailActivity"
+            android:screenOrientation="userPortrait" />
+        <activity
+            android:name=".activity.RunningActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".activity.MainActivity"
+            android:screenOrientation="userPortrait" />
+        <activity
+            android:name=".activity.InfoActivity"
+            android:exported="false"
+            android:label="@string/Settings_About_Label"
+            android:parentActivityName=".activity.PreferenceActivity"
+            android:screenOrientation="userPortrait"
+            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
+            <intent-filter>
+                <action android:name="${applicationId}.activity.InfoActivity" />
 
-				<action android:name="${applicationId}.nettest" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.ProxyActivity"
+            android:exported="false"
+            android:label="Proxy"
+            android:parentActivityName=".activity.PreferenceActivity"
+            android:screenOrientation="userPortrait"
+            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App">
+            <intent-filter>
+                <action android:name="${applicationId}.activity.ProxyActivity" />
 
-				<data
-					android:host="run.ooni.io"
-					android:pathPrefix="/nettest"
-					android:scheme="https" />
-			</intent-filter>
-			<intent-filter android:autoVerify="true">
-				<action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.customwebsites.CustomWebsiteActivity"
+            android:exported="false"
+            android:label="@string/Settings_Websites_CustomURL_Title"
+            android:parentActivityName=".activity.PreferenceActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
+            <intent-filter>
+                <action android:name="${applicationId}.activity.CustomWebsiteActivity" />
 
-				<category android:name="android.intent.category.DEFAULT" />
-				<category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.OoniRunActivity"
+            android:exported="true"
+            android:label=""
+            android:launchMode="singleTop"
+            android:parentActivityName=".activity.MainActivity"
+            android:screenOrientation="userPortrait"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.App">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
 
-				<action android:name="${applicationId}.nettest" />
+                <action android:name="${applicationId}.nettest" />
 
-				<data
-					android:host="run.ooni.io"
-					android:pathPrefix="/nettest"
-					android:scheme="http" />
-			</intent-filter>
-			<intent-filter android:autoVerify="true">
-				<action android:name="android.intent.action.VIEW" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
 
-				<category android:name="android.intent.category.DEFAULT" />
-				<category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
-				<data
-					android:host="nettest"
-					android:scheme="ooni" />
-			</intent-filter>
-		</activity>
+                <action android:name="${applicationId}.nettest" />
+
+                <data
+                    android:host="run.ooni.io"
+                    android:pathPrefix="/nettest"
+                    android:scheme="https" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <action android:name="${applicationId}.nettest" />
+
+                <data
+                    android:host="run.ooni.io"
+                    android:pathPrefix="/nettest"
+                    android:scheme="http" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="nettest"
+                    android:scheme="ooni" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name=".activity.LogActivity"
@@ -179,27 +214,27 @@
             </intent-filter>
         </activity>
 
-		<service
-			android:name=".common.service.RunTestService"
-			android:icon="@drawable/notification_icon"
-			android:foregroundServiceType="dataSync"
-			android:label="@string/Dashboard_Card_Run"/>
-		<service
-			android:name=".common.service.RunTestJobService"
-			android:label="Run Test Service"
-			android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service
+            android:name=".common.service.RunTestService"
+            android:foregroundServiceType="dataSync"
+            android:icon="@drawable/notification_icon"
+            android:label="@string/Dashboard_Card_Run" />
+        <service
+            android:name=".common.service.RunTestJobService"
+            android:label="Run Test Service"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
 
-		<provider
-			android:name="androidx.core.content.FileProvider"
-			android:authorities="${applicationId}.provider"
-			android:exported="false"
-			android:grantUriPermissions="true">
-			<!-- resource file to create -->
-			<meta-data
-				android:name="android.support.FILE_PROVIDER_PATHS"
-				android:resource="@xml/file_paths">
-			</meta-data>
-		</provider>
-	</application>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <!-- resource file to create -->
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths">
+            </meta-data>
+        </provider>
+    </application>
 
 </manifest>

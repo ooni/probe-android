@@ -3,8 +3,10 @@ package org.openobservatory.ooniprobe.common
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Resources
+import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
 import org.openobservatory.engine.BaseDescriptor
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.R
@@ -12,22 +14,24 @@ import org.openobservatory.ooniprobe.activity.overview.TestGroupItem
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsActivity
 import org.openobservatory.ooniprobe.activity.runtests.models.ChildItem
 import org.openobservatory.ooniprobe.activity.runtests.models.GroupItem
+import org.openobservatory.ooniprobe.model.database.TestDescriptor
 import org.openobservatory.ooniprobe.test.suite.DynamicTestSuite
 import org.openobservatory.ooniprobe.test.test.*
 import java.io.Serializable
 
-open class OONIDescriptor<T : BaseNettest>(
+abstract class AbstractDescriptor<T : BaseNettest>(
     override var name: String,
     open var title: String,
     open var shortDescription: String,
     open var description: String,
     open var icon: String,
-    @ColorRes open var color: Int,
-    open var animation: String,
+    @ColorInt open var color: Int,
+    open var animation: String?,
     @StringRes open var dataUsage: Int,
     override var nettests: List<T>,
-    var longRunningTests: List<T>? = null
-) : Serializable, BaseDescriptor<T>(name = name, nettests = nettests) {
+    open var longRunningTests: List<T>? = null,
+    open var descriptor: TestDescriptor? = null
+) : BaseDescriptor<T>(name = name, nettests = nettests) {
 
     /**
      * This function is used to determine if the current descriptor is enabled.
@@ -38,7 +42,7 @@ open class OONIDescriptor<T : BaseNettest>(
      * @param preferenceManager The [PreferenceManager] instance used to resolve the status of each nettest.
      * @return Boolean Returns true if at least one nettest is enabled, false otherwise.
      */
-    fun isEnabled(preferenceManager: PreferenceManager): Boolean {
+    open fun isEnabled(preferenceManager: PreferenceManager): Boolean {
         return when (name) {
             OONITests.EXPERIMENTAL.label -> preferenceManager.isExperimentalOn
             OONITests.WEBSITES.label -> preferenceManager.countEnabledCategory() > 0
@@ -52,12 +56,27 @@ open class OONIDescriptor<T : BaseNettest>(
     }
 
     /**
+     * Returns the runtime of the current descriptor.
+     *
+     * @return Int representing the runtime of the current descriptor.
+     */
+    open fun getRuntime(context: Context, preferenceManager: PreferenceManager): Int {
+        return getTest(context).getRuntime(preferenceManager)
+    }
+
+    /**
      * Returns the display icon for the current descriptor.
      *
      * @return Int representing the display icon for the current descriptor.
      */
-    fun getDisplayIcon(context: Context): Int {
-        return context.resources.getIdentifier(icon, "drawable", context.packageName)
+    open fun getDisplayIcon(context: Context): Int {
+        return context.resources.getIdentifier(
+            StringUtils.camelToSnake(
+                icon
+            ), "drawable", context.packageName
+        ).let {
+            if (it == 0) R.drawable.ooni_empty_state else it
+        }
     }
 
     /**
@@ -86,14 +105,15 @@ open class OONIDescriptor<T : BaseNettest>(
      *
      * @return [GroupItem] representing the current descriptor.
      */
-    fun toRunTestsGroupItem(preferenceManager: PreferenceManager): GroupItem {
-        return GroupItem(selected = false,
+    open fun toRunTestsGroupItem(preferenceManager: PreferenceManager): GroupItem {
+        return GroupItem(
+            selected = false,
             name = this.name,
             title = this.title,
             shortDescription = this.shortDescription,
             description = this.description,
             icon = this.icon,
-            color = this.color,
+            color = color,
             animation = this.animation,
             dataUsage = this.dataUsage,
             nettests = this.nettests.map { nettest ->
@@ -115,16 +135,9 @@ open class OONIDescriptor<T : BaseNettest>(
                         inputs = nettest.inputs,
                     )
                 } ?: listOf())
-            })
-    }
-
-    /**
-     * Returns the runtime of the current descriptor.
-     *
-     * @return Int representing the runtime of the current descriptor.
-     */
-    fun getRuntime(context: Context, preferenceManager: PreferenceManager): Int {
-        return getTest(context).getRuntime(preferenceManager)
+            },
+            descriptor = descriptor
+        )
     }
 
     /**
@@ -132,7 +145,7 @@ open class OONIDescriptor<T : BaseNettest>(
      *
      * @return [DynamicTestSuite] representing the test suite for the current descriptor.
      */
-    fun getTest(context: Context): DynamicTestSuite {
+    open fun getTest(context: Context): DynamicTestSuite {
         return DynamicTestSuite(
             name = this.name,
             title = this.title,
@@ -143,7 +156,8 @@ open class OONIDescriptor<T : BaseNettest>(
             color = this.color,
             animation = this.animation,
             dataUsage = this.dataUsage,
-            nettest = this.nettests
+            nettest = this.nettests,
+            descriptor = descriptor
         )
     }
 
@@ -157,7 +171,10 @@ open class OONIDescriptor<T : BaseNettest>(
      * @return String representing the preference prefix.
      */
     fun preferencePrefix(): String {
-        return OONITests.values().find { it.label == name }?.let { "" } ?: "descriptor_id_"
+        return when (descriptor?.runId != null) {
+            true -> descriptor?.preferencePrefix() ?: ""
+            else -> ""
+        }
     }
 
     /**
@@ -171,6 +188,29 @@ open class OONIDescriptor<T : BaseNettest>(
         return !(name == OONITests.EXPERIMENTAL.label || name == OONITests.WEBSITES.label)
     }
 }
+
+open class OONIDescriptor<T : BaseNettest>(
+    override var name: String,
+    override var title: String,
+    override var shortDescription: String,
+    override var description: String,
+    override var icon: String,
+    @ColorInt override var color: Int,
+    override var animation: String?,
+    @StringRes override var dataUsage: Int,
+    override var nettests: List<T>,
+    override var longRunningTests: List<T>? = null
+) : Serializable, AbstractDescriptor<T>(
+    name = name,
+    title = title,
+    shortDescription = shortDescription,
+    description = description,
+    icon = icon,
+    color = color,
+    animation = animation,
+    dataUsage = dataUsage,
+    nettests = nettests
+)
 
 /**
  * Enum class representing the OONI tests.
@@ -193,7 +233,7 @@ enum class OONITests(
     @StringRes val shortDescription: Int,
     @StringRes val description: Int,
     val icon: String,
-    val color: Int,
+    @ColorRes val color: Int,
     val animation: String,
     @StringRes val dataUsage: Int,
     var nettests: List<BaseNettest>,
@@ -301,7 +341,7 @@ enum class OONITests(
                     else -> context.getString(description)
                 },
                 icon = icon,
-                color = color,
+                color = ContextCompat.getColor(context, color),
                 animation = animation,
                 dataUsage = dataUsage,
                 nettests = nettests,
@@ -320,7 +360,7 @@ enum class OONITests(
         * [STUN Reachability](https://github.com/ooni/spec/blob/master/nettests/ts-025-stun-reachability.md)
 
         * [DNS Check](https://github.com/ooni/spec/blob/master/nettests/ts-028-dnscheck.md)
-        
+
         * [RiseupVPN](https://ooni.org/nettest/riseupvpn/)
 
         * [ECH Check](https://github.com/ooni/spec/blob/master/nettests/ts-039-echcheck.md)

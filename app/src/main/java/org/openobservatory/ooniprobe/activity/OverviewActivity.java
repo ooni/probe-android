@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.Window;
 
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.core.text.TextUtilsCompat;
 import androidx.core.view.ViewCompat;
 
@@ -25,13 +24,16 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.customwebsites.CustomWebsiteActivity;
 import org.openobservatory.ooniprobe.activity.overview.OverviewTestsExpandableListViewAdapter;
 import org.openobservatory.ooniprobe.activity.overview.OverviewViewModel;
-import org.openobservatory.ooniprobe.common.OONIDescriptor;
+import org.openobservatory.ooniprobe.common.AbstractDescriptor;
 import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReadMorePlugin;
 import org.openobservatory.ooniprobe.databinding.ActivityOverviewBinding;
+import org.openobservatory.ooniprobe.model.database.InstalledDescriptor;
 import org.openobservatory.ooniprobe.model.database.Result;
+import org.openobservatory.ooniprobe.model.database.TestDescriptor;
 
+import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -52,9 +54,9 @@ public class OverviewActivity extends AbstractActivity {
 
     OverviewTestsExpandableListViewAdapter adapter;
 
-    private OONIDescriptor<BaseNettest> descriptor;
+    private AbstractDescriptor<BaseNettest> descriptor;
 
-    public static Intent newIntent(Context context, OONIDescriptor<BaseNettest> descriptor) {
+    public static Intent newIntent(Context context, AbstractDescriptor<BaseNettest> descriptor) {
         return new Intent(context, OverviewActivity.class).putExtra(TEST, descriptor);
     }
 
@@ -62,14 +64,14 @@ public class OverviewActivity extends AbstractActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActivityComponent().inject(this);
-        descriptor = (OONIDescriptor) getIntent().getSerializableExtra(TEST);
+        descriptor = (AbstractDescriptor) getIntent().getSerializableExtra(TEST);
         binding = ActivityOverviewBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         viewModel.updateDescriptor(descriptor);
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(descriptor.getTitle());
-        setThemeColor(ContextCompat.getColor(this, descriptor.getColor()));
+        setThemeColor(descriptor.getColor());
         binding.icon.setImageResource(descriptor.getDisplayIcon(this));
         binding.customUrl.setVisibility(descriptor.getName().equals(OONITests.WEBSITES.getLabel()) ? View.VISIBLE : View.GONE);
         Markwon markwon = Markwon.builder(this)
@@ -81,7 +83,20 @@ public class OverviewActivity extends AbstractActivity {
                 binding.desc.setTextDirection(View.TEXT_DIRECTION_RTL);
             }
         } else {
-            markwon.setMarkdown(binding.desc, descriptor.getDescription());
+            if (descriptor instanceof InstalledDescriptor) {
+                TestDescriptor testDescriptor = ((InstalledDescriptor) descriptor).getTestDescriptor();
+                markwon.setMarkdown(
+                        binding.desc,
+                        String.format(
+                                "Created by %s on %s\n\n%s",
+                                testDescriptor.getAuthor(),
+                                new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH).format(testDescriptor.getDescriptorCreationTime()),
+                                descriptor.getDescription()
+                        )
+                );
+            } else {
+                markwon.setMarkdown(binding.desc, descriptor.getDescription());
+            }
         }
         Result lastResult = Result.getLastResult(descriptor.getName());
         if (lastResult == null) {
@@ -127,6 +142,18 @@ public class OverviewActivity extends AbstractActivity {
             binding.expandableListView.expandGroup(i);
         }
 
+        if (descriptor instanceof InstalledDescriptor) {
+            binding.uninstallLink.setVisibility(View.VISIBLE);
+            binding.automaticUpdatesContainer.setVisibility(View.VISIBLE);
+            binding.automaticUpdatesSwitch.setChecked(((InstalledDescriptor) descriptor).getTestDescriptor().isAutoUpdate());
+        } else {
+            binding.uninstallLink.setVisibility(View.GONE);
+            /**
+             * We need to set the height to 0 because the layout is broken when the view is gone
+             */
+            binding.automaticUpdatesContainer.getLayoutParams().height = 0;
+        }
+
         setUpOnCLickListeners();
     }
 
@@ -157,6 +184,8 @@ public class OverviewActivity extends AbstractActivity {
 
     private void setUpOnCLickListeners() {
         binding.customUrl.setOnClickListener(view -> customUrlClick());
+        binding.uninstallLink.setOnClickListener(view -> viewModel.uninstallLinkClicked(this, (InstalledDescriptor) descriptor));
+        binding.automaticUpdatesSwitch.setOnCheckedChangeListener((compoundButton, isChecked) -> viewModel.automaticUpdatesSwitchClicked(isChecked));
     }
 
     @Override

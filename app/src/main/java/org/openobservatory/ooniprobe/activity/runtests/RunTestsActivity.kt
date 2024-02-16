@@ -17,11 +17,11 @@ import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel.Compani
 import org.openobservatory.ooniprobe.activity.runtests.adapter.RunTestsExpandableListViewAdapter
 import org.openobservatory.ooniprobe.activity.runtests.models.ChildItem
 import org.openobservatory.ooniprobe.activity.runtests.models.GroupItem
-import org.openobservatory.ooniprobe.common.OONIDescriptor
+import org.openobservatory.ooniprobe.common.AbstractDescriptor
 import org.openobservatory.ooniprobe.common.OONITests
 import org.openobservatory.ooniprobe.common.PreferenceManager
-import org.openobservatory.ooniprobe.common.enableTest
 import org.openobservatory.ooniprobe.common.disableTest
+import org.openobservatory.ooniprobe.common.enableTest
 import org.openobservatory.ooniprobe.databinding.ActivityRunTestsBinding
 import java.io.Serializable
 import javax.inject.Inject
@@ -41,7 +41,7 @@ class RunTestsActivity : AbstractActivity() {
 		const val TESTS: String = "tests"
 
         @JvmStatic
-        fun newIntent(context: Context, testSuites: List<OONIDescriptor<BaseNettest>>): Intent {
+        fun newIntent(context: Context, testSuites: List<AbstractDescriptor<BaseNettest>>): Intent {
             return Intent(context, RunTestsActivity::class.java).putExtras(Bundle().apply {
                 putSerializable(TESTS, testSuites as Serializable)
             })
@@ -58,8 +58,8 @@ class RunTestsActivity : AbstractActivity() {
 
 		activityComponent?.inject(this)
 
-		val descriptors: List<OONIDescriptor<BaseNettest>>? =
-			intent.extras?.getSerializable(TESTS) as List<OONIDescriptor<BaseNettest>>?
+		val descriptors: List<AbstractDescriptor<BaseNettest>>? =
+			intent.extras?.getSerializable(TESTS) as List<AbstractDescriptor<BaseNettest>>?
 		descriptors?.let { _descriptors ->
 
 			adapter = RunTestsExpandableListViewAdapter(

@@ -60,22 +60,21 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
         return new Intent(context, MainActivity.class).putExtra(RES_ITEM, resItem).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
     }
 
-	public static Intent newIntent(Context context, int resItem, String message) {
-		return new Intent(context, MainActivity.class)
-			.putExtra(RES_ITEM, resItem)
-			.putExtra(RES_SNACKBAR_MESSAGE, message)
-			.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-	}
+    public static Intent newIntent(Context context, int resItem, String message) {
+        return new Intent(context, MainActivity.class)
+                .putExtra(RES_ITEM, resItem)
+                .putExtra(RES_SNACKBAR_MESSAGE, message)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    }
 
-	@Override
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActivityComponent().inject(this);
         if (preferenceManager.isShowOnboarding()) {
             startActivity(new Intent(MainActivity.this, OnboardingActivity.class));
             finish();
-        }
-        else {
+        } else {
             binding = ActivityMainBinding.inflate(getLayoutInflater());
             setContentView(binding.getRoot());
             binding.bottomNavigation.setOnItemSelectedListener(item -> {
@@ -96,15 +95,15 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
             /* TODO(aanorbel): Fix change in state(theme change from notification) changes the selected item.
                 The proper fix would be to track the selected item as well as other properties in a `ViewModel`. */
             binding.bottomNavigation.setSelectedItemId(getIntent().getIntExtra(RES_ITEM, R.id.dashboard));
-			/* Check if we are restoring the activity from a saved state first.
-			 * If we have a message to show, show it as a snackbar.
-			 * This is used to show the message from test completion.
-			 */
-			if (savedInstanceState == null && getIntent().hasExtra(RES_SNACKBAR_MESSAGE)) {
-				Snackbar.make(binding.getRoot(), getIntent().getStringExtra(RES_SNACKBAR_MESSAGE), Snackbar.LENGTH_SHORT)
-					.setAnchorView(binding.bottomNavigation)
-					.show();
-			}
+            /* Check if we are restoring the activity from a saved state first.
+             * If we have a message to show, show it as a snackbar.
+             * This is used to show the message from test completion.
+             */
+            if (savedInstanceState == null && getIntent().hasExtra(RES_SNACKBAR_MESSAGE)) {
+                Snackbar.make(binding.getRoot(), getIntent().getStringExtra(RES_SNACKBAR_MESSAGE), Snackbar.LENGTH_SHORT)
+                        .setAnchorView(binding.bottomNavigation)
+                        .show();
+            }
             if (notificationManager.shouldShowAutoTest()) {
                 new ConfirmDialogFragment.Builder()
                         .withTitle(getString(R.string.Modal_Autorun_Modal_Title))
@@ -128,9 +127,9 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
             ThirdPartyServices.checkUpdates(this);
         }
 
-        if (android.os.Build.VERSION.SDK_INT >= 29){
+        if (android.os.Build.VERSION.SDK_INT >= 29) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-        } else{
+        } else {
             if (preferenceManager.isDarkTheme()) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             } else {
@@ -150,20 +149,20 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                                 binding.getRoot(),
                                 "Please grant Notification permission from App Settings",
                                 Snackbar.LENGTH_LONG
-                                ).setAction(R.string.Settings_Title, view -> {
-                                    Intent intent = new Intent();
-                                    intent.setAction("android.settings.APP_NOTIFICATION_SETTINGS");
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        ).setAction(R.string.Settings_Title, view -> {
+                            Intent intent = new Intent();
+                            intent.setAction("android.settings.APP_NOTIFICATION_SETTINGS");
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                                    //for Android 5-7
-                                    intent.putExtra("app_package", getPackageName());
-                                    intent.putExtra("app_uid", getApplicationInfo().uid);
+                            //for Android 5-7
+                            intent.putExtra("app_package", getPackageName());
+                            intent.putExtra("app_uid", getApplicationInfo().uid);
 
-                                    // for Android 8 and above
-                                    intent.putExtra("android.provider.extra.APP_PACKAGE", getPackageName());
+                            // for Android 8 and above
+                            intent.putExtra("android.provider.extra.APP_PACKAGE", getPackageName());
 
-                                    startActivity(intent);
-                                }).show();
+                            startActivity(intent);
+                        }).show();
                     }
                 }
         );
@@ -181,10 +180,16 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        if (intent.getExtras() != null){
-            if (intent.getExtras().containsKey(RES_ITEM))
+        /**
+         * Check if we are starting the activity with an intent extra.
+         * This is invoked when we are starting the activity from a notification or
+         * when the activity is launched from the onboarding fragment
+         * @see {@link org.openobservatory.ooniprobe.fragment.onboarding.Onboarding3Fragment#masterClick}.
+         */
+        if (intent.getExtras() != null) {
+            if (intent.getExtras().containsKey(RES_ITEM)) {
                 binding.bottomNavigation.setSelectedItemId(intent.getIntExtra(RES_ITEM, R.id.dashboard));
-            else if (intent.getExtras().containsKey(NOTIFICATION_DIALOG)){
+            } else if (intent.getExtras().containsKey(NOTIFICATION_DIALOG)) {
                 new ConfirmDialogFragment.Builder()
                         .withTitle(intent.getExtras().getString("title"))
                         .withMessage(intent.getExtras().getString("message"))
@@ -202,34 +207,31 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
             notificationManager.getUpdates(i == DialogInterface.BUTTON_POSITIVE);
 
             //If positive answer reload consents and init notification
-            if (i == DialogInterface.BUTTON_POSITIVE){
+            if (i == DialogInterface.BUTTON_POSITIVE) {
                 ThirdPartyServices.reloadConsents((Application) getApplication());
-            }
-            else if (i == DialogInterface.BUTTON_NEUTRAL){
+            } else if (i == DialogInterface.BUTTON_NEUTRAL) {
                 notificationManager.disableAskNotificationDialog();
             }
         }
         if (extra.equals(AUTOTEST_DIALOG)) {
             preferenceManager.setNotificationsFromDialog(i == DialogInterface.BUTTON_POSITIVE);
-            if (i == DialogInterface.BUTTON_POSITIVE){
+            if (i == DialogInterface.BUTTON_POSITIVE) {
                 //For API < 23 we ignore battery optimization
                 boolean isIgnoringBatteryOptimizations = true;
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
                     PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
                     isIgnoringBatteryOptimizations = pm.isIgnoringBatteryOptimizations(getPackageName());
                 }
-                if(!isIgnoringBatteryOptimizations){
+                if (!isIgnoringBatteryOptimizations) {
                     Intent intent = new Intent();
                     intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
                     intent.setData(Uri.parse("package:" + getPackageName()));
                     startActivityForResult(intent, PreferenceManager.IGNORE_OPTIMIZATION_REQUEST);
-                }
-                else {
+                } else {
                     preferenceManager.enableAutomatedTesting();
                     ServiceUtil.scheduleJob(this);
                 }
-            }
-            else if (i == DialogInterface.BUTTON_NEUTRAL){
+            } else if (i == DialogInterface.BUTTON_NEUTRAL) {
                 preferenceManager.disableAskAutomaticTestDialog();
             }
         }
@@ -257,8 +259,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
             if (isIgnoringBatteryOptimizations) {
                 preferenceManager.enableAutomatedTesting();
                 ServiceUtil.scheduleJob(this);
-            }
-            else {
+            } else {
                 new ConfirmDialogFragment.Builder()
                         .withMessage(getString(R.string.Modal_Autorun_BatteryOptimization))
                         .withPositiveButton(getString(R.string.Modal_OK))
@@ -266,8 +267,7 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                         .withExtra(BATTERY_DIALOG)
                         .build().show(getSupportFragmentManager(), null);
             }
-        }
-        else if (requestCode == PreferenceManager.ASK_UPDATE_APP) {
+        } else if (requestCode == PreferenceManager.ASK_UPDATE_APP) {
             if (resultCode != RESULT_OK) {
                 //We don't need to check the result for now
             }
