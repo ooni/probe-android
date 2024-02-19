@@ -103,7 +103,7 @@ google-firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref
 junit4 = { module = "junit:junit", version.ref = "junit" }
 gms-googleServices = { module = "com.google.gms:google-services", version.ref = "gms-googleServices" }
 ooni-oonimkall = { module = "org.ooni:oonimkall", version.ref = "oonimkall" }
-shapeofview = { module = "com.github.florent37:shapeofview", version.ref = "shapeofview" }
+shapeofview = { module = "io.github.florent37:shapeofview", version.ref = "shapeofview" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
