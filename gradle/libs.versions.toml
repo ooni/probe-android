@@ -30,7 +30,7 @@ googleGson = "2.10"
 googleGuava = "30.1.1-android"
 googleMaterial = "1.11.0"
 googleDagger = "2.50"
-googleFirebaseBon = "32.7.1"
+googleFirebaseBon = "32.7.2"
 googlePlaycore = "1.10.3"
 
 # OONI
