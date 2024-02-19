@@ -37,7 +37,7 @@ googlePlaycore = "1.10.3"
 compileSdk = "34"
 lottie = "3.0.7"
 markwon = "4.6.2"
-shapeofview = "1.3.2"
+shapeofview = "1.4.7"
 targetSdk = "33"
 minSdk = "21"
 oonimkall = "2023.12.13-200325"
@@ -103,7 +103,7 @@ google-firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref
 junit4 = { module = "junit:junit", version.ref = "junit" }
 gms-googleServices = { module = "com.google.gms:google-services", version.ref = "gms-googleServices" }
 ooni-oonimkall = { module = "org.ooni:oonimkall", version.ref = "oonimkall" }
-shapeofview = { module = "com.github.florent37:shapeofview", version.ref = "shapeofview" }
+shapeofview = { module = "io.github.florent37:shapeofview", version.ref = "shapeofview" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
