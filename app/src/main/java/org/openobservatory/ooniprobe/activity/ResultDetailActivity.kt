@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -19,6 +20,7 @@ import localhost.toolkit.app.fragment.ConfirmDialogFragment.OnConfirmedListener
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.adapters.MeasurementGroup
 import org.openobservatory.ooniprobe.adapters.ResultDetailExpandableListAdapter
+import org.openobservatory.ooniprobe.common.OONIDescriptor
 import org.openobservatory.ooniprobe.common.OONITests
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.common.ResubmitTask
@@ -160,6 +162,8 @@ class ResultDetailActivity : AbstractActivity(), View.OnClickListener, OnConfirm
     private fun load() {
         result = getResults[result.id]
 
+        setThemeFromDescriptor()
+
         val groupedItemList = mutableListOf<Any>()
         val groupedItems = result.getMeasurementsSorted().groupBy { it.test_name }
         for ((_, itemList) in groupedItems) {
@@ -193,19 +197,51 @@ class ResultDetailActivity : AbstractActivity(), View.OnClickListener, OnConfirm
         ) snackbar.show() else snackbar.dismiss()
     }
 
+    /**
+     * Set the theme of the activity from the descriptor of the test suite.
+     * The color of the toolbar, the app bar, the tab layout and the status bar will be set to the color of the descriptor.
+     */
+    private fun setThemeFromDescriptor() {
+        result.getDescriptor(this).get().let { desriptor ->
+            if (desriptor is OONIDescriptor<*>) {
+                val color = ContextCompat.getColor(this@ResultDetailActivity, desriptor.color)
+                binding.toolbar.setBackgroundColor(color)
+                binding.appBar.setBackgroundColor(color)
+                binding.tabLayout.setBackgroundColor(color)
+                window.statusBarColor = color
+            }
+        }
+    }
+
+    /**
+     * Open the [TextActivity] or the [MeasurementDetailActivity] based on the test name of the measurement test name.
+     * If the test name is in the list of [OONITests.EXPERIMENTAL.nettests] or [OONITests.EXPERIMENTAL.longRunningTests],
+     * the [TextActivity] will be opened otherwise, the [MeasurementDetailActivity] will be opened.
+     *
+     * @param v The view that was clicked.
+     */
     override fun onClick(v: View) {
         val measurement = v.tag as Measurement
-        if (Objects.equals(result.test_group_name, OONITests.EXPERIMENTAL.label)) startActivity(
-            TextActivity.newIntent(
-                this,
-                TextActivity.TYPE_JSON,
-                measurement
+
+        val textActivityItems = (OONITests.EXPERIMENTAL.nettests).map { it.name }.toMutableList()
+        (OONITests.EXPERIMENTAL.longRunningTests)?.map { it.name }
+            ?.let { textActivityItems.addAll(it) }
+
+        if (textActivityItems.contains(measurement.test_name)) {
+            startActivity(
+                TextActivity.newIntent(
+                    this,
+                    TextActivity.TYPE_JSON,
+                    measurement
+                )
             )
-        ) else ActivityCompat.startActivity(
-            this,
-            MeasurementDetailActivity.newIntent(this, measurement.id),
-            null
-        )
+        } else {
+            ActivityCompat.startActivity(
+                this,
+                MeasurementDetailActivity.newIntent(this, measurement.id),
+                null
+            )
+        }
     }
 
     override fun onConfirmation(extra: Serializable, buttonClicked: Int) {
