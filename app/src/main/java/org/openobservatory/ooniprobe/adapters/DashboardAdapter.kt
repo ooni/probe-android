@@ -12,6 +12,7 @@ import org.openobservatory.ooniprobe.common.AbstractDescriptor
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.databinding.ItemSeperatorBinding
 import org.openobservatory.ooniprobe.databinding.ItemTestsuiteBinding
+import org.openobservatory.ooniprobe.model.database.InstalledDescriptor
 
 class DashboardAdapter(
     private val items: List<Any>,
@@ -58,8 +59,11 @@ class DashboardAdapter(
                     cardHolder.binding.apply {
                         title.setText(item.title)
                         desc.setText(item.shortDescription)
-                        icon.setImageResource(item.getDisplayIcon(holder.itemView.context))
-                    }
+                        icon.setImageResource(item.getDisplayIcon(holder.itemView.context)).also {
+                            if (item is InstalledDescriptor){
+                                icon.setColorFilter(item.color)
+                            }
+                        }                    }
                     holder.itemView.tag = item
                     if (!item.isEnabled(preferenceManager)) {
                         holder.setIsRecyclable(false)
