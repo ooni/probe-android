@@ -162,8 +162,8 @@ class RunTestsExpandableListViewAdapter(
 		val groupItem = getGroup(groupPosition)
 		val nettest = AbstractTest.getTestByName(childItem.name)
 		convertView.findViewById<TextView>(R.id.child_name)?.apply {
-			text = when (groupItem.name) {
-				OONITests.EXPERIMENTAL.label -> {
+			text = when (nettest.labelResId) {
+				R.string.Test_Experimental_Fullname -> {
 					childItem.name
 				}
 
