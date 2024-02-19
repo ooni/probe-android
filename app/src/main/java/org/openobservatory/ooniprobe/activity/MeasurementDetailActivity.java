@@ -13,8 +13,11 @@ import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.common.base.Optional;
+import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
+
+import org.openobservatory.engine.BaseNettest;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
@@ -71,15 +74,10 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
         assert measurement != null;
         measurement.result.load();
         if (measurement.is_failed) {
-            setTheme((int) R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Failed);
+            setTheme(R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Failed);
         } else {
-            if (measurement.result.test_group_name.equals(OONITests.PERFORMANCE.getLabel())) {
-                Optional<AbstractSuite> optionalSuite = measurement.result.getTestSuite(this);
-                if (optionalSuite.isPresent()){
-                    setTheme(optionalSuite.get().getThemeLight());
-                } else {
-                    setTheme(R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Experimental);
-                }
+            if (Lists.transform(OONITests.PERFORMANCE.getNettests(), BaseNettest::getName).contains(measurement.test_name)) {
+                setTheme(R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Performance);
             } else {
                 if (measurement.is_anomaly) {
                     setTheme(R.style.Theme_MaterialComponents_Light_DarkActionBar_App_NoActionBar_Failure);

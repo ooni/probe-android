@@ -32,6 +32,7 @@ import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -169,10 +170,11 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
             binding.eta.setText(R.string.Dashboard_Running_CalculatingETA);
         }
 
-        if (service.task.currentSuite.getName().equals(OONITests.EXPERIMENTAL.name()))
+        if (Objects.equals(service.task.currentTest.getLabelResId(),R.string.Test_Experimental_Fullname)) {
             binding.name.setText(service.task.currentTest.getName());
-        else
+        } else {
             binding.name.setText(getString(service.task.currentTest.getLabelResId()));
+        }
         getWindow().setBackgroundDrawableResource(service.task.currentSuite.getColor());
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(service.task.currentSuite.getColor());
