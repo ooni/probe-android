@@ -32,6 +32,7 @@ import org.openobservatory.ooniprobe.domain.models.DatedResults;
 import org.openobservatory.ooniprobe.item.*;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
+import org.openobservatory.ooniprobe.model.database.ResultExtensions;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
 import org.openobservatory.ooniprobe.test.suite.*;
 
@@ -162,9 +163,11 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
             for (DatedResults group : list) {
                 items.add(new DateItem(group.getGroupedDate()));
                 for (Result result : group.getResultsList()) {
-                    if (result.countTotalMeasurements() == 0)
+                    if (ResultExtensions.getStatus(result) == -1){
+                        items.add(new ProgressItem(result, this, this));
+                    } else if (result.countTotalMeasurements() == 0) {
                         items.add(new FailedItem(result, this, this));
-                    else {
+                    } else {
                         switch (result.test_group_name) {
                             case WebsitesSuite.NAME:
                                 items.add(new WebsiteItem(result, this, this));

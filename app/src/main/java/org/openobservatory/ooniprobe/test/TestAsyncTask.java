@@ -151,6 +151,10 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                     currentTest.run(app, app.getPreferenceManager(),app.getLogger(), app.getGson(), result, i, this);
                 }
             }
+            if (result.countTotalMeasurements() == tests.length) {
+                result.is_done = true;
+                result.save();
+            }
         } catch (Exception e) {
             publishProgress(ERR, app.getString(R.string.Modal_Error_CantDownloadURLs));
             e.printStackTrace();
