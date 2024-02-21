@@ -128,7 +128,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                     }
 
                     AbstractTest[] tests = currentSuite.getTestList(app.getPreferenceManager());
-                    if (tests.length > 0){
+                    if (tests.length > 0) {
                         publishProgress(START, String.valueOf(suiteIdx));
                         runTest(currentSuite.getTestList(app.getPreferenceManager()));
                     }
@@ -151,7 +151,19 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                     currentTest.run(app, app.getPreferenceManager(),app.getLogger(), app.getGson(), result, i, this);
                 }
             }
-            if (result.countTotalMeasurements() == tests.length) {
+            /*
+             * If the result has the more measurements as the number of `nettests`, then the result is done.
+             * All `nettest` without inputs will produce a singele measurement.
+             * In this case, the total number of measurements will be equal to the number of `nettests`.
+             *
+             * In cases where the `nettest` has inputs, the number of measurements will be equal to or less than the number of inputs.
+             *
+             * In the case of `webconnectivity`, the number of measurements will be less than or equal to the number of inputs.
+             * This is because not all inputs(urls) are run since there is a time limit.
+             *
+             * In the case of `stunreachability` and `dnscheck`, the inputs are non-existent, but the total measurement count exceeds the test count.
+             */
+            if (result.countTotalMeasurements() >= tests.length) {
                 result.is_done = true;
                 result.save();
             }
@@ -193,8 +205,8 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
             }
 
             List<Url> urls = Lists.transform(
-                webConnectivity.getUrls(),
-                url -> new Url(url.getUrl(), url.getCategoryCode(), url.getCountryCode())
+                    webConnectivity.getUrls(),
+                    url -> new Url(url.getUrl(), url.getCategoryCode(), url.getCountryCode())
             );
             List<String> inputs = Url.saveOrUpdate(urls);
 
