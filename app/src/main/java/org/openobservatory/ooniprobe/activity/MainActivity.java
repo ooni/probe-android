@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.activity;
 
 import static org.openobservatory.ooniprobe.common.service.RunTestService.CHANNEL_ID;
+import static org.openobservatory.ooniprobe.common.worker.UpdateDescriptorsWorkerKt.PROGRESS;
 
 import android.Manifest;
 import android.content.Context;
@@ -29,15 +30,12 @@ import androidx.work.WorkInfo;
 import androidx.work.WorkManager;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.google.common.base.Optional;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.activity.adddescriptor.AddDescriptorActivity;
 import org.openobservatory.ooniprobe.activity.reviewdescriptorupdates.ReviewDescriptorUpdatesActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.NotificationUtility;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
-import org.openobservatory.ooniprobe.common.TaskExecutor;
 import org.openobservatory.ooniprobe.common.TestDescriptorManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.service.ServiceUtil;
@@ -51,14 +49,12 @@ import org.openobservatory.ooniprobe.fragment.ResultListFragment;
 import org.openobservatory.ooniprobe.fragment.dynamicprogressbar.OONIRunDynamicProgressBar;
 import org.openobservatory.ooniprobe.fragment.dynamicprogressbar.OnActionListener;
 import org.openobservatory.ooniprobe.fragment.dynamicprogressbar.ProgressType;
-import org.openobservatory.ooniprobe.model.database.TestDescriptor;
 
 import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
-import kotlin.Unit;
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 
 public class MainActivity extends ReviewUpdatesAbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
@@ -217,7 +213,9 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
      */
     private void onManualUpdatesFetchComplete(WorkInfo workInfo) {
         if (workInfo != null) {
-            binding.reviewUpdateNotificationFragment.setVisibility(View.VISIBLE);
+            if (workInfo.getProgress().getInt(PROGRESS,-1) >= 0) {
+                binding.reviewUpdateNotificationFragment.setVisibility(View.VISIBLE);
+            }
             switch (workInfo.getState()) {
                 case SUCCEEDED -> {
                     String descriptor = workInfo.getOutputData().getString(ManualUpdateDescriptorsWorker.KEY_UPDATED_DESCRIPTORS);

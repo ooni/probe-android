@@ -62,6 +62,7 @@ class DashboardAdapter(
                         icon.setImageResource(item.getDisplayIcon(holder.itemView.context)).also {
                             if (item is InstalledDescriptor){
                                 icon.setColorFilter(item.color)
+                                holder.setIsRecyclable(false)
                             }
                         }
                     }

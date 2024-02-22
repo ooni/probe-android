@@ -17,8 +17,8 @@ import org.openobservatory.ooniprobe.activity.runtests.models.ChildItem
 import org.openobservatory.ooniprobe.activity.runtests.models.GroupItem
 import org.openobservatory.ooniprobe.common.AbstractDescriptor
 import org.openobservatory.ooniprobe.common.AppDatabase
-import org.openobservatory.ooniprobe.common.OONITests
 import org.openobservatory.ooniprobe.common.PreferenceManager
+import org.openobservatory.ooniprobe.common.resolveStatus
 import java.io.Serializable
 import java.util.Date
 import com.raizlabs.android.dbflow.annotation.TypeConverter as TypeConverterAnnotation
@@ -124,13 +124,13 @@ class InstalledDescriptor(
             dataUsage = this.dataUsage,
             nettests = this.nettests.map { nettest ->
                 ChildItem(
-                    selected = when (this.name == OONITests.EXPERIMENTAL.label) {
-                        true -> preferenceManager.isExperimentalOn
-                        false -> preferenceManager.resolveStatus(nettest.name)
-                    }, name = nettest.name, inputs = nettest.inputs
+                    selected = preferenceManager.resolveStatus(
+                        name = nettest.name,
+                        prefix = preferencePrefix(),
+                    ), name = nettest.name, inputs = nettest.inputs
                 )
             },
-            descriptor = testDescriptor
+            descriptor = this.testDescriptor
         )
     }
 
