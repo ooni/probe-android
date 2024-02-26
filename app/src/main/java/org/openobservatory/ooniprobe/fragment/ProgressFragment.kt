@@ -149,16 +149,20 @@ class ProgressFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        if (receiver.isBound) {
-            requireContext().unbindService(receiver)
-            receiver.isBound = false
+        if (::receiver.isInitialized) {
+            if (receiver.isBound) {
+                requireContext().unbindService(receiver)
+                receiver.isBound = false
+            }
+            LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(receiver)
         }
-        LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(receiver)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(receiver)
+        if (::receiver.isInitialized) {
+            LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(receiver)
+        }
     }
 
     private inner class TestRunnerEventListener : TestRunBroadRequestReceiver.EventListener {
