@@ -1,7 +1,7 @@
 [versions]
 androidGradlePlugin = "8.2.2"
 barista = "3.9.0"
-countlySdk = "24.1.0"
+countlySdk = "24.1.1"
 faker = "2.0.4"
 mockitoCore = "5.10.0"
 mockitoInline = "5.2.0"
