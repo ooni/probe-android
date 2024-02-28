@@ -11,12 +11,6 @@
 		android:layout_height="0dp"
 		android:layout_weight="1"/>
 
-	<fragment
-		android:name="org.openobservatory.ooniprobe.fragment.ProgressFragment"
-		android:id="@+id/progress_fragment"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content" />
-
 	<com.google.android.material.bottomnavigation.BottomNavigationView
 		android:id="@+id/bottomNavigation"
 		android:layout_width="match_parent"

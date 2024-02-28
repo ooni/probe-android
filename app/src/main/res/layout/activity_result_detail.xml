@@ -70,11 +70,4 @@
 		android:id="@+id/snackbarAnchor"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"/>
-	<fragment
-		android:name="org.openobservatory.ooniprobe.fragment.ProgressFragment"
-		android:id="@+id/progress_fragment"
-		android:layout_gravity="bottom"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>    <!-- app:layout_scrollFlags="scroll|exitUntilCollapsed|snap" -->

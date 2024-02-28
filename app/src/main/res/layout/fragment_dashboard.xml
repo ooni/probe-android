@@ -46,37 +46,53 @@
 
 	</com.github.florent37.shapeofview.shapes.ArcView>
 
-	<Button
-		android:id="@+id/run_all"
-		android:textAppearance="?attr/textAppearanceHeadline6"
-		android:layout_width="wrap_content"
-		android:layout_height="56dp"
+	<LinearLayout
+		android:id="@+id/idle_layout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
 		android:layout_marginTop="24dp"
-		android:stateListAnimator="@null"
-		android:elevation="5dp"
-		android:translationZ="5dp"
-		android:text="@string/Dashboard_Card_Run"
-		android:textAllCaps="false"
-		android:transitionName="@string/transitionNameRun"
-		android:drawableEnd="@drawable/outline_timer"
-		android:drawableTint="@android:color/white"
+		android:paddingStart="14dp"
+		android:paddingEnd="14dp"
+		android:gravity="center"
+		android:orientation="vertical"
 		app:layout_constraintTop_toTopOf="@id/arc_view"
 		app:layout_constraintEnd_toEndOf="@id/arc_view"
-		app:layout_constraintStart_toStartOf="@id/arc_view"
-		app:layout_constraintBottom_toBottomOf="@id/arc_view"
-		app:cornerRadius="24dp"
-		app:rippleColor="@color/ripple_material_light" />
+		app:layout_constraintStart_toStartOf="@id/arc_view">
 
-	<TextView
-		android:id="@+id/last_tested"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="@string/Dashboard_Overview_LatestTest"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintTop_toBottomOf="@id/run_all"
-		android:textAppearance="?attr/textAppearanceCaption"
-		android:textColor="@color/color_black"/>
+		<Button
+			android:id="@+id/run_all"
+			android:textAppearance="?attr/textAppearanceHeadline6"
+			android:layout_width="wrap_content"
+			android:layout_height="56dp"
+			android:stateListAnimator="@null"
+			android:elevation="5dp"
+			android:translationZ="5dp"
+			android:text="@string/Dashboard_Card_Run"
+			android:textAllCaps="false"
+			android:transitionName="@string/transitionNameRun"
+			android:drawableEnd="@drawable/outline_timer"
+			android:drawableTint="@android:color/white"
+			app:layout_constraintBottom_toBottomOf="@id/arc_view"
+			app:cornerRadius="24dp"
+			app:rippleColor="@color/ripple_material_light"
+			android:visibility="gone"/>
+
+		<TextView
+			android:id="@+id/last_tested"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/Dashboard_Overview_LatestTest"
+			android:textAppearance="?attr/textAppearanceCaption"
+			android:textColor="@color/color_black"
+			android:visibility="gone"/>
+
+		<fragment
+			android:name="org.openobservatory.ooniprobe.fragment.ProgressFragment"
+			android:id="@+id/progress_fragment"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="18dp"/>
+	</LinearLayout>
 
 	<RelativeLayout
 		android:id="@+id/vpnLayout"
@@ -85,8 +101,7 @@
 		android:layout_margin="8dp"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintTop_toBottomOf="@id/last_tested">
-
+		app:layout_constraintTop_toBottomOf="@id/idle_layout">
 		<TextView
 			android:id="@+id/vpn"
 			app:drawableStartCompat="@android:drawable/ic_dialog_alert"
