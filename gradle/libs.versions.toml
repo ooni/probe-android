@@ -29,7 +29,7 @@ androidxEspressoCore = "3.5.1"
 googleGson = "2.10.1"
 googleGuava = "33.0.0-android"
 googleMaterial = "1.11.0"
-googleDagger = "2.50"
+googleDagger = "2.51"
 googleFirebaseBon = "32.7.2"
 googlePlaycore = "1.10.3"
 
