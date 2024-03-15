@@ -35,7 +35,7 @@ googlePlaycore = "1.10.3"
 
 # OONI
 compileSdk = "34"
-lottie = "6.3.0"
+lottie = "6.4.0"
 markwon = "4.6.2"
 shapeofview = "1.4.7"
 targetSdk = "33"
