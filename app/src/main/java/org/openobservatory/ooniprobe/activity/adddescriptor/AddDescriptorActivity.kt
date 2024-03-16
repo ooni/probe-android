@@ -12,7 +12,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.widget.Toolbar
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -114,7 +113,7 @@ class AddDescriptorActivity : AbstractActivity() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         supportActionBar?.setDisplayShowHomeEnabled(false)
-        supportActionBar?.title = "Add New Link"
+        supportActionBar?.title = "Install New Link"
         val descriptorExtra = if (VERSION.SDK_INT >= VERSION_CODES.TIRAMISU) {
             intent.getParcelableExtra(DESCRIPTOR, TestDescriptor::class.java)
         } else {
@@ -145,21 +144,17 @@ class AddDescriptorActivity : AbstractActivity() {
             for (i in 0 until adapter.groupCount) {
                 binding.expandableListView.expandGroup(i)
             }
-            val bottomBarOnMenuItemClickListener: Toolbar.OnMenuItemClickListener =
-                Toolbar.OnMenuItemClickListener { item ->
-                    when (item.itemId) {
-                        R.id.add_descriptor -> {
-                            viewModel.onAddButtonClicked(
-                                disabledAutorunNettests = adapter.nettests.filter { it.selected },
-                                automatedUpdates = binding.automaticUpdatesSwitch.isChecked
-                            )
-                            true
-                        }
 
-                        else -> false
-                    }
-                }
-            binding.bottomBar.setOnMenuItemClickListener(bottomBarOnMenuItemClickListener)
+            binding.btnInstallLink.setOnClickListener {
+                viewModel.onAddButtonClicked(
+                    disabledAutorunNettests = adapter.nettests.filter { it.selected },
+                    automatedUpdates = binding.automaticUpdatesSwitch.isChecked
+                )
+            }
+
+            binding.btnCancel.setOnClickListener {
+                finish()
+            }
 
             viewModel.selectedAllBtnStatus.observe(this) { state ->
                 binding.testsCheckbox.checkedState = state;
