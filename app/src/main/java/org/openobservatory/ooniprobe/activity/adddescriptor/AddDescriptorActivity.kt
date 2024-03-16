@@ -10,6 +10,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.BindingAdapter
@@ -173,6 +174,7 @@ class AddDescriptorActivity : AbstractActivity() {
             // This observer is used to finish the activity when the descriptor is added.
             viewModel.finishActivity.observe(this) { shouldFinish ->
                 if (shouldFinish) {
+                    Toast.makeText(this@AddDescriptorActivity, "Link installed", Toast.LENGTH_LONG).show()
                     finish()
                 }
             }
