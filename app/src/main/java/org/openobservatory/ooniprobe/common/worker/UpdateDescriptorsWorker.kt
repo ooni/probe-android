@@ -87,11 +87,10 @@ class ManualUpdateDescriptorsWorker(
     workerParams: WorkerParameters
 ) : Worker(context, workerParams) {
 
-    init {
-        setProgressAsync(Data.Builder().putInt(PROGRESS, 0).build())
-    }
-
     override fun doWork(): Result {
+
+        setProgressAsync(Data.Builder().putInt(PROGRESS, 0).build())
+
         val app = applicationContext.applicationContext as Application
         app.serviceComponent.inject(d)
 
