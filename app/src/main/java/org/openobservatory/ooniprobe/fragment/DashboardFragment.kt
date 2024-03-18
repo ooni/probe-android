@@ -13,19 +13,18 @@ import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
 import org.openobservatory.ooniprobe.activity.OverviewActivity
-import org.openobservatory.ooniprobe.activity.RunningActivity
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsActivity
 import org.openobservatory.ooniprobe.adapters.DashboardAdapter
 import org.openobservatory.ooniprobe.common.AbstractDescriptor
 import org.openobservatory.ooniprobe.common.Application
-import org.openobservatory.ooniprobe.common.OONIDescriptor
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.common.ReachabilityManager
+import org.openobservatory.ooniprobe.common.TestGroupStatus
+import org.openobservatory.ooniprobe.common.TestStateRepository
 import org.openobservatory.ooniprobe.common.ThirdPartyServices
 import org.openobservatory.ooniprobe.databinding.FragmentDashboardBinding
 import org.openobservatory.ooniprobe.fragment.dashboard.DashboardViewModel
 import org.openobservatory.ooniprobe.model.database.Result
-import org.openobservatory.ooniprobe.test.suite.AbstractSuite
 import javax.inject.Inject
 
 class DashboardFragment : Fragment(), View.OnClickListener {
@@ -36,6 +35,8 @@ class DashboardFragment : Fragment(), View.OnClickListener {
     lateinit var viewModel: DashboardViewModel
 
     private var descriptors: ArrayList<AbstractDescriptor<BaseNettest>> = ArrayList()
+    @Inject
+    lateinit var testStateRepository: TestStateRepository
 
     private lateinit var binding: FragmentDashboardBinding
 
@@ -72,6 +73,16 @@ class DashboardFragment : Fragment(), View.OnClickListener {
             descriptors.apply {
                 clear()
                 addAll(items)
+            }
+        }
+
+        testStateRepository.testGroupStatus.observe(viewLifecycleOwner) { status ->
+            if (status == TestGroupStatus.RUNNING) {
+                binding.runAll.visibility = View.GONE
+                binding.lastTested.visibility = View.GONE
+            } else {
+                binding.runAll.visibility = View.VISIBLE
+                binding.lastTested.visibility = View.VISIBLE
             }
         }
     }
