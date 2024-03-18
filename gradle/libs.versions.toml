@@ -1,17 +1,17 @@
 [versions]
-androidGradlePlugin = "8.2.2"
+androidGradlePlugin = "8.3.0"
 barista = "3.9.0"
-countlySdk = "23.6.0"
-faker = "1.2.8"
-mockitoCore = "5.3.1"
-mockitoInline = "4.6.1"
-robolectric = "4.10.3"
-fastlaneScreengrab = "2.0.0"
-sentryAndroid = "6.3.0"
+countlySdk = "24.1.1"
+faker = "2.0.4"
+mockitoCore = "5.11.0"
+mockitoInline = "5.2.0"
+robolectric = "4.11.1"
+fastlaneScreengrab = "2.1.1"
+sentryAndroid = "7.6.0"
 xanscaleLocalhostToolkit = "19.05.01"
-commonsIo = "2.6"
+commonsIo = "2.15.1"
 jacoco = "0.8.7"
-kotlin = "1.8.0"
+kotlin = "1.9.23"
 
 # Android X
 androidxCore = "1.5.0"
@@ -26,18 +26,18 @@ androidxJunit = "1.1.5"
 androidxEspressoCore = "3.5.1"
 
 # Google
-googleGson = "2.10"
-googleGuava = "30.1.1-android"
+googleGson = "2.10.1"
+googleGuava = "33.0.0-android"
 googleMaterial = "1.11.0"
-googleDagger = "2.45"
-googleFirebaseBon = "32.7.1"
+googleDagger = "2.51"
+googleFirebaseBon = "32.7.4"
 googlePlaycore = "1.10.3"
 
 # OONI
 compileSdk = "34"
-lottie = "3.0.7"
+lottie = "6.4.0"
 markwon = "4.6.2"
-shapeofview = "1.3.2"
+shapeofview = "1.4.7"
 targetSdk = "33"
 minSdk = "21"
 oonimkall = "2023.12.13-200325"
@@ -45,11 +45,11 @@ oonimkall = "2023.12.13-200325"
 junit = "4.13.2"
 dbflow = "4.2.4"
 retrofitCore = "2.9.0"
-retrofitLoggingInterceptor = "4.9.1"
+retrofitLoggingInterceptor = "4.12.0"
 
 # Firebase Services
 # https://firebase.google.com/support/release-notes/android
-gms-googleServices = "4.4.0"
+gms-googleServices = "4.4.1"
 
 [libraries]
 # Dependencies of the included build-logic
@@ -103,7 +103,7 @@ google-firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref
 junit4 = { module = "junit:junit", version.ref = "junit" }
 gms-googleServices = { module = "com.google.gms:google-services", version.ref = "gms-googleServices" }
 ooni-oonimkall = { module = "org.ooni:oonimkall", version.ref = "oonimkall" }
-shapeofview = { module = "com.github.florent37:shapeofview", version.ref = "shapeofview" }
+shapeofview = { module = "io.github.florent37:shapeofview", version.ref = "shapeofview" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
