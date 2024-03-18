@@ -20,6 +20,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.TestProgressRepository;
@@ -28,10 +29,10 @@ import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.databinding.ActivityRunningBinding;
 import org.openobservatory.ooniprobe.receiver.TestRunBroadRequestReceiver;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
-import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -169,10 +170,11 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
             binding.eta.setText(R.string.Dashboard_Running_CalculatingETA);
         }
 
-        if (service.task.currentSuite.getName().equals(ExperimentalSuite.NAME))
+        if (Objects.equals(service.task.currentTest.getLabelResId(),R.string.Test_Experimental_Fullname)) {
             binding.name.setText(service.task.currentTest.getName());
-        else
+        } else {
             binding.name.setText(getString(service.task.currentTest.getLabelResId()));
+        }
         getWindow().setBackgroundDrawableResource(service.task.currentSuite.getColor());
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(service.task.currentSuite.getColor());
@@ -216,7 +218,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     }
 
     private void testEnded(Context context) {
-        startActivity(MainActivity.newIntent(context, R.id.testResults));
+        startActivity(MainActivity.newIntent(context, R.id.testResults,"Probe Run complete"));
         finish();
     }
 

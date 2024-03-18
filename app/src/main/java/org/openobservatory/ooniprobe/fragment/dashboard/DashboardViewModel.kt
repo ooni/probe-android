@@ -3,15 +3,20 @@ package org.openobservatory.ooniprobe.fragment.dashboard
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import org.openobservatory.engine.BaseNettest
+import org.openobservatory.ooniprobe.common.OONIDescriptor
 import org.openobservatory.ooniprobe.common.PreferenceManager
-import org.openobservatory.ooniprobe.test.TestAsyncTask
-import org.openobservatory.ooniprobe.test.suite.AbstractSuite
+import org.openobservatory.ooniprobe.common.TestDescriptorManager
 import javax.inject.Inject
 
-class DashboardViewModel @Inject constructor(private val preferenceManager: PreferenceManager) : ViewModel() {
-    private val enabledTitle: String =  "Enabled"
+class DashboardViewModel @Inject constructor(
+    private val preferenceManager: PreferenceManager,
+    private val descriptorManager: TestDescriptorManager
+) : ViewModel() {
+    private val oonTestsTitle: String = "OONI Tests"
+    private val oonTests = descriptorManager.getDescriptors()
     private val groupedItemList = MutableLiveData<List<Any>>()
-    val items = MutableLiveData<List<AbstractSuite>>(TestAsyncTask.getSuites())
+    val items = MutableLiveData<List<OONIDescriptor<BaseNettest>>>(oonTests)
 
     fun getGroupedItemList(): LiveData<List<Any>> {
         if (groupedItemList.value == null) {
@@ -22,10 +27,10 @@ class DashboardViewModel @Inject constructor(private val preferenceManager: Pref
 
     private fun fetchItemList() {
 
-        val groupedItems = items.value!!.sortedBy { it.getTestList(preferenceManager).isEmpty() }
+        val groupedItems = items.value!!.sortedBy { !it.isEnabled(preferenceManager) }
             .groupBy {
-                return@groupBy if ((it.getTestList(preferenceManager).isNotEmpty())) {
-                   enabledTitle
+                return@groupBy if (oonTests.contains(it)) {
+					oonTestsTitle
                 } else {
                     ""
                 }
@@ -33,9 +38,7 @@ class DashboardViewModel @Inject constructor(private val preferenceManager: Pref
 
         val groupedItemList = mutableListOf<Any>()
         groupedItems.forEach { (status, itemList) ->
-            if (status != enabledTitle){
-                groupedItemList.add(status)
-            }
+			groupedItemList.add(status)
             groupedItemList.addAll(itemList)
         }
 

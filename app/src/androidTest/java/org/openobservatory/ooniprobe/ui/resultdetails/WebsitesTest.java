@@ -10,6 +10,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.factory.ResultFactory;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Result;
@@ -43,7 +44,7 @@ public class WebsitesTest extends MeasurementAbstractTest {
     @AllowFlaky(attempts = 3)
     public void testHeaderData() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new WebsitesSuite(), 10, 2);
+        Result testResult = ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c), 10, 2);
 
         // Act
         launchDetails(testResult.id);
@@ -58,7 +59,7 @@ public class WebsitesTest extends MeasurementAbstractTest {
         int successfulMeasurements = 10;
         int failedMeasurement = 2;
 
-        Result testResult = ResultFactory.createAndSave(new WebsitesSuite(), successfulMeasurements, failedMeasurement);
+        Result testResult = ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c), successfulMeasurements, failedMeasurement);
         List<Measurement> measurements = testResult.getMeasurementsSorted();
 
         // Act
@@ -78,7 +79,7 @@ public class WebsitesTest extends MeasurementAbstractTest {
     @Test
     public void testSucceed() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new WebsitesSuite());
+        Result testResult = ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c));
         Measurement measurement = testResult.getMeasurementsSorted().get(0);
         String headerOutcome = measurement.getUrlString() + "\n" + getResourceString(R.string.TestResults_Details_Websites_Reachable_Hero_Title);
 
@@ -94,7 +95,7 @@ public class WebsitesTest extends MeasurementAbstractTest {
     @Test
     public void testBlocked() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new WebsitesSuite(), 0, 3);
+        Result testResult = ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c), 0, 3);
         Measurement measurement = testResult.getMeasurementsSorted().get(0);
         String headerOutcome = measurement.getUrlString() + "\n" + BLOCKED_OUTCOME;
 
@@ -115,7 +116,7 @@ public class WebsitesTest extends MeasurementAbstractTest {
         int failedMeasurement = 2;
         int totalNumberOfMeasurements = successfulMeasurements + failedMeasurement;
 
-        Result testResult = ResultFactory.createAndSave(new WebsitesSuite(), successfulMeasurements, failedMeasurement);
+        Result testResult = ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c), successfulMeasurements, failedMeasurement);
         String websites = totalNumberOfMeasurements + " " + getResourceString(R.string.websites);
         List<Measurement> measurements = testResult.getMeasurementsSorted();
 

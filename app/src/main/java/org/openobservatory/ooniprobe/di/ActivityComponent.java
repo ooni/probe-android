@@ -1,7 +1,7 @@
 package org.openobservatory.ooniprobe.di;
 
 
-import org.openobservatory.ooniprobe.activity.CustomWebsiteActivity;
+import org.openobservatory.ooniprobe.activity.customwebsites.CustomWebsiteActivity;
 import org.openobservatory.ooniprobe.activity.LogActivity;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.MeasurementDetailActivity;
@@ -9,6 +9,7 @@ import org.openobservatory.ooniprobe.activity.OoniRunActivity;
 import org.openobservatory.ooniprobe.activity.OverviewActivity;
 import org.openobservatory.ooniprobe.activity.ProxyActivity;
 import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
+import org.openobservatory.ooniprobe.activity.runtests.RunTestsActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.activity.TextActivity;
 import org.openobservatory.ooniprobe.di.annotations.PerActivity;
@@ -28,4 +29,6 @@ public interface ActivityComponent {
     void inject(RunningActivity activity);
     void inject(TextActivity activity);
     void inject(LogActivity activity);
+
+    void inject(RunTestsActivity activity);
 }

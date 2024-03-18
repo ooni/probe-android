@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:attr="http://schemas.android.com/aapt">
+    <item android:drawable="@drawable/check_box" android:state_checked="true" />
+    <item android:drawable="@drawable/check_box_indeterminate" app:state_indeterminate="true" />
+    <item android:drawable="@drawable/check_box_outline_blank" />
+</selector>
+<!--NOTE Docs: https://github.com/material-components/material-components-android/blob/1.10.0/docs/components/Checkbox.md
+Check libs.versions.toml for current version -->

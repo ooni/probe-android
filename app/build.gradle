@@ -149,7 +149,7 @@ dependencies {
     // Unit Testing
 	testImplementation project(':shared-test')
 	testImplementation libs.junit4
-    testImplementation libs.androidx.core
+    testImplementation libs.androidx.test.core
     testImplementation libs.androidx.runner
     testImplementation libs.androidx.rules
     testImplementation libs.mockito.core
