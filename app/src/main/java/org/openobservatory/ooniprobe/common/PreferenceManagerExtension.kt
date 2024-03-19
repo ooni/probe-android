@@ -24,9 +24,7 @@ fun PreferenceManager.resolveStatus(
     name: String, prefix: String, autoRun: Boolean = false
 ): Boolean {
     if (!autoRun) {
-        if (name == WebConnectivity.NAME) {
-            return true
-        } else if (experimentalTestList().contains(name)) {
+        if (experimentalTestList().contains(name)) {
             return isExperimentalOn
         }
     }
@@ -79,7 +77,6 @@ private fun PreferenceManager.setValue(
     if (experimentalTestList().contains(name) && !autoRun) {
         return false
     }
-    val key = getPreferenceKey(name = name, prefix = prefix, autoRun = autoRun)
 
     return with(sp.edit()) {
         putBoolean(getPreferenceKey(name = name, prefix = prefix, autoRun = autoRun), value)
