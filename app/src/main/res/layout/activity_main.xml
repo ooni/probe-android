@@ -11,17 +11,11 @@
 		android:layout_height="0dp"
 		android:layout_weight="1"/>
 
-	<fragment
-		android:name="org.openobservatory.ooniprobe.fragment.ProgressFragment"
-		android:id="@+id/progress_fragment"
+	<FrameLayout
+		android:id="@+id/review_update_notification_fragment"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content" />
-
-    <FrameLayout
-        android:id="@+id/review_update_notification_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:visibility="gone" />
+		android:layout_height="?attr/actionBarSize"
+		android:visibility="gone" />
 
 	<com.google.android.material.bottomnavigation.BottomNavigationView
 		android:id="@+id/bottomNavigation"

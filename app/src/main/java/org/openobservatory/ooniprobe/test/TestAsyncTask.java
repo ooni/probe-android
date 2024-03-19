@@ -23,6 +23,7 @@ import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.ListUtility;
 import org.openobservatory.ooniprobe.common.MKException;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.common.TestGroupStatus;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.common.service.ServiceUtil;
@@ -107,6 +108,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
 
     @Override
     protected Void doInBackground(Void... voids) {
+        app.getTestStateRepository().getTestGroupStatus().postValue(TestGroupStatus.RUNNING);
         if (app != null && testSuites != null) {
             registerConnChange();
             for (int suiteIdx = 0; suiteIdx < testSuites.size(); suiteIdx++) {
@@ -125,6 +127,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                     }
                 }
             }
+            app.getTestStateRepository().getTestGroupStatus().postValue(TestGroupStatus.FINISHED);
         }
         return null;
     }

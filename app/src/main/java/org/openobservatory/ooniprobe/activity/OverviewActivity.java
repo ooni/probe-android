@@ -165,7 +165,7 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity {
         }
 
         setUpOnCLickListeners();
-        registerReviewLauncher(binding.progressFragment, () -> {
+        registerReviewLauncher(binding.getRoot(), () -> {
             binding.reviewUpdates.setVisibility(View.GONE);
             return null;
         });
