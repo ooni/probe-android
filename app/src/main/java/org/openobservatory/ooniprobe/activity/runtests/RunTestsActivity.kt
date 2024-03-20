@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import org.openobservatory.engine.BaseNettest
@@ -103,6 +104,8 @@ class RunTestsActivity : AbstractActivity() {
                 { finish() },
                 preferenceManager
             )
+        } else {
+			Toast.makeText(this@RunTestsActivity, "Please select test to run", Toast.LENGTH_LONG).show()
         }
     }
 
