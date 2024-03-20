@@ -27,6 +27,49 @@ class ConfirmDialogFragment(
         private const val NEUTRAL_BUTTON = "NEUTRAL_BUTTON"
         private const val SERIALIZABLE = "SERIALIZABLE"
         private const val PARCELABLE = "PARCELABLE"
+
+        @JvmStatic
+        fun newInstance(
+            title: String,
+            message: String,
+        ) = ConfirmDialogFragment(
+            title = title,
+            message = message,
+        )
+
+        @JvmStatic
+        fun newInstance(
+            title: String,
+            message: String,
+            positiveButton: String? = null,
+            negativeButton: String? = null,
+            neutralButton: String? = null
+        ) = ConfirmDialogFragment(
+            title = title,
+            message = message,
+            positiveButton = positiveButton,
+            negativeButton = negativeButton,
+            neutralButton = neutralButton
+        )
+
+        @JvmStatic
+        fun newInstance(
+            serializable: Serializable? = null,
+            parcelable: Parcelable? = null,
+            title: String,
+            message: String,
+            positiveButton: String? = null,
+            negativeButton: String? = null,
+            neutralButton: String? = null
+        ) = ConfirmDialogFragment(
+            serializable,
+            parcelable,
+            title,
+            message,
+            positiveButton,
+            negativeButton,
+            neutralButton
+        )
     }
 
     private val listener: OnClickListener
