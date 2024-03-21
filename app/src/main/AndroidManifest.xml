@@ -70,11 +70,6 @@
             android:parentActivityName=".activity.MainActivity"
             android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar" />
         <activity
-            android:name=".activity.reviewdescriptorupdates.ReviewDescriptorUpdatesActivity"
-            android:exported="false"
-            android:parentActivityName=".activity.MainActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar" />
-        <activity
             android:name=".activity.OnboardingActivity"
             android:screenOrientation="userPortrait"
             android:theme="@style/Theme.MaterialComponents.NoActionBar.Onboarding" />

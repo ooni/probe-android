@@ -3,7 +3,6 @@ package org.openobservatory.ooniprobe.di;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.common.service.RunTestJobService;
 import org.openobservatory.ooniprobe.common.service.ServiceUtil;
-import org.openobservatory.ooniprobe.common.worker.UpdateDescriptorsWorkerDependencies;
 import org.openobservatory.ooniprobe.di.annotations.PerService;
 
 import dagger.Subcomponent;
@@ -14,5 +13,4 @@ public interface ServiceComponent {
     void inject(ResubmitTask.Dependencies dependencies);
     void inject(RunTestJobService service);
     void inject(ServiceUtil.Dependencies dependencies);
-    void inject(UpdateDescriptorsWorkerDependencies dependencies);
 }

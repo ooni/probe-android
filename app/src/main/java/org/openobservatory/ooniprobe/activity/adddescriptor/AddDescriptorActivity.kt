@@ -16,6 +16,9 @@ import androidx.databinding.BindingAdapter
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.noties.markwon.Markwon
+import org.openobservatory.engine.BaseNettest
+import org.openobservatory.engine.OONIRunDescriptor
+import org.openobservatory.engine.OONIRunNettest
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
 import org.openobservatory.ooniprobe.activity.MainActivity
@@ -82,19 +85,17 @@ class AddDescriptorActivity : AbstractActivity() {
          * @param iconName is the name of the drawable resource
          */
         @JvmStatic
-        @BindingAdapter(value = ["resource","color"])
-        fun setImageViewResource(imageView: ImageView, iconName: String?, color: Int?) {
+        @BindingAdapter(value = ["resource"])
+        fun setImageViewResource(imageView: ImageView, iconName: String?) {
+            /* TODO(aanorbel): Update to parse the icon name and set the correct icon.
+            * Remember to ignore icons generated when generated doing this.*/
             imageView.setImageResource(
                 imageView.context.resources.getIdentifier(
                     StringUtils.camelToSnake(
                         iconName
                     ), "drawable", imageView.context.packageName
                 )
-            ).apply {
-                color?.let {
-                    imageView.setColorFilter(it)
-                }
-            }
+            )
         }
 
     }

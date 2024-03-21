@@ -1,11 +1,11 @@
 package org.openobservatory.ooniprobe.activity.adddescriptor
 
-import android.graphics.Color
-import androidx.annotation.ColorInt
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.android.material.checkbox.MaterialCheckBox.CheckedState
+import org.openobservatory.engine.OONIRunDescriptor
+import org.openobservatory.engine.OONIRunNettest
 import org.openobservatory.ooniprobe.activity.adddescriptor.adapter.GroupedItem
 import org.openobservatory.ooniprobe.common.LocaleUtils
 import org.openobservatory.ooniprobe.common.TestDescriptorManager
@@ -38,10 +38,6 @@ class AddDescriptorViewModel constructor(
         this.descriptor.value = descriptor
     }
 
-    @ColorInt
-    fun getColor(): Int {
-        return Color.parseColor( descriptor.value?.color ?: "#495057")
-    }
     /**
      * This method is used to get the name of the descriptor.
      * Used by the UI during data binding.

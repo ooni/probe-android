@@ -17,8 +17,8 @@ import org.openobservatory.ooniprobe.activity.runtests.models.ChildItem
 import org.openobservatory.ooniprobe.activity.runtests.models.GroupItem
 import org.openobservatory.ooniprobe.common.AbstractDescriptor
 import org.openobservatory.ooniprobe.common.AppDatabase
+import org.openobservatory.ooniprobe.common.OONITests
 import org.openobservatory.ooniprobe.common.PreferenceManager
-import org.openobservatory.ooniprobe.common.resolveStatus
 import java.io.Serializable
 import java.util.Date
 import com.raizlabs.android.dbflow.annotation.TypeConverter as TypeConverterAnnotation
@@ -65,19 +65,7 @@ class TestDescriptor(
     }
 }
 
-/**
- * Check if the descriptor should be updated based on the creation time of the descriptor and the creation time of the translations.
- *
- * @param updatedDescriptor The updated descriptor
- * @return True if the descriptor should be updated based on the creation time of the descriptor and the creation time of the translations.
- */
-fun TestDescriptor.shouldUpdate(updatedDescriptor: TestDescriptor): Boolean {
-    return (updatedDescriptor.descriptorCreationTime?.after(descriptorCreationTime) ?: true
-            || updatedDescriptor.translationCreationTime?.after(translationCreationTime) ?: true)
-}
-
 private const val DESCRIPTOR_TEST_NAME = "ooni_run"
-
 class InstalledDescriptor(
     var testDescriptor: TestDescriptor
 ) : AbstractDescriptor<BaseNettest>(
@@ -101,7 +89,7 @@ class InstalledDescriptor(
 
         false -> emptyList()
     },
-    descriptor = testDescriptor) {
+    descriptor = testDescriptor ) {
 
     override fun isEnabled(preferenceManager: PreferenceManager): Boolean {
         return !testDescriptor.isArchived
@@ -124,13 +112,13 @@ class InstalledDescriptor(
             dataUsage = this.dataUsage,
             nettests = this.nettests.map { nettest ->
                 ChildItem(
-                    selected = preferenceManager.resolveStatus(
-                        name = nettest.name,
-                        prefix = preferencePrefix(),
-                    ), name = nettest.name, inputs = nettest.inputs
+                    selected = when (this.name == OONITests.EXPERIMENTAL.label) {
+                        true -> preferenceManager.isExperimentalOn
+                        false -> preferenceManager.resolveStatus(nettest.name)
+                    }, name = nettest.name, inputs = nettest.inputs
                 )
             },
-            descriptor = this.testDescriptor
+            descriptor = testDescriptor
         )
     }
 
@@ -184,61 +172,3 @@ class NettestConverter : TypeConverter<String, Any>() {
     ).toList()
 }
 
-class ITestDescriptor(
-
-    var runId: Long = 0,
-
-    var name: String = "",
-
-    var nameIntl: HashMap<String, String>? = null,
-
-    var author: String = "",
-
-    var shortDescription: String = "",
-
-    var shortDescriptionIntl: HashMap<String, String>? = null,
-
-    var description: String = "",
-
-    var descriptionIntl: HashMap<String, String>? = null,
-
-    var icon: String? = null,
-
-    var color: String? = null,
-
-    var animation: String? = null,
-
-    var isArchived: Boolean = false,
-
-    var isAutoRun: Boolean = true,
-
-    var isAutoUpdate: Boolean = false,
-
-    var descriptorCreationTime: Date? = null,
-
-    var translationCreationTime: Date? = null,
-
-    var nettests: List<OONIRunNettest>? = emptyList()
-) : Serializable {
-    fun toTestDescriptor(): TestDescriptor {
-        return TestDescriptor(
-            runId = runId,
-            name = name,
-            nameIntl = nameIntl,
-            author = author,
-            shortDescription = shortDescription,
-            shortDescriptionIntl = shortDescriptionIntl,
-            description = description,
-            descriptionIntl = descriptionIntl,
-            icon = icon,
-            color = color,
-            animation = animation,
-            isArchived = isArchived,
-            isAutoRun = isAutoRun,
-            isAutoUpdate = isAutoUpdate,
-            descriptorCreationTime = descriptorCreationTime,
-            translationCreationTime = translationCreationTime,
-            nettests = nettests ?: emptyList<OONIRunNettest>()
-        )
-    }
-}

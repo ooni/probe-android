@@ -1,242 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".activity.OverviewActivity">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/coordinatorLayout"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+		<com.google.android.material.appbar.CollapsingToolbarLayout
+			android:id="@+id/collapsing_toolbar"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			app:contentScrim="?attr/colorPrimary"
+			app:titleEnabled="false"
+			app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:id="@+id/collapsing_toolbar"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:contentScrim="?attr/colorPrimary"
-                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
-                app:titleEnabled="false">
+                android:layout_marginTop="?attr/actionBarSize"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingBottom="16dp"
+                app:layout_collapseMode="parallax">
+
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:transitionName="@string/transitionNameIcon"
+                    app:tint="@android:color/white" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="?attr/actionBarSize"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical"
-                    android:paddingBottom="16dp"
-                    app:layout_collapseMode="parallax">
-
-                    <ImageView
-                        android:id="@+id/icon"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
-                        android:transitionName="@string/transitionNameIcon"
-                        app:tint="@android:color/white" />
+                    android:layout_margin="8dp"
+                    android:orientation="horizontal"
+                    android:transitionName="@string/transitionNameRuntime">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:orientation="horizontal"
-                        android:transitionName="@string/transitionNameRuntime">
+                        android:orientation="vertical">
 
-                        <LinearLayout
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:text="@string/Dashboard_Overview_Estimated"
+                            android:textColor="@android:color/white" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/Dashboard_Overview_Estimated"
-                                android:textColor="@android:color/white" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/Dashboard_Overview_LatestTest"
-                                android:textColor="@android:color/white" />
-                        </LinearLayout>
-
-                        <LinearLayout
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/runtime"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:textColor="@android:color/white"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/lastTime"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@android:color/white"
-                                android:textStyle="bold" />
-                        </LinearLayout>
+                            android:text="@string/Dashboard_Overview_LatestTest"
+                            android:textColor="@android:color/white" />
                     </LinearLayout>
 
-                    <Button
-                        android:id="@+id/customUrl"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/Dashboard_Overview_ChooseWebsites"
-                        android:textAllCaps="false"
-                        android:textColor="@android:color/white"
-                        app:cornerRadius="24dp"
-                        app:rippleColor="@color/ripple_material_dark"
-                        app:strokeColor="@android:color/white" />
-                    <Button
-                        android:id="@+id/review_updates"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Review Updates"
-                        android:textAllCaps="false"
-                        android:textColor="@android:color/white"
-                        app:cornerRadius="24dp"
-                        app:rippleColor="@color/ripple_material_dark"
-                        app:strokeColor="@android:color/white"
-                        android:visibility="gone"/>
-                </LinearLayout>
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="pin" />
-
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swipe_refresh"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-            <androidx.core.widget.NestedScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fillViewport="true">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <RelativeLayout
-                        android:id="@+id/header"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingHorizontal="16dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        android:layout_marginStart="16dp"
+                        android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/desc"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingVertical="32dp" />
-
-                        <LinearLayout
-                            android:id="@+id/automatic_updates_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/desc"
-                            android:paddingBottom="16dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Install updates automatically" />
-
-                            <View
-                                android:layout_width="0dp"
-                                android:layout_height="0dp"
-                                android:layout_weight="1" />
-
-                            <androidx.appcompat.widget.SwitchCompat
-                                android:id="@+id/automatic_updates_switch"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/run_automatically"
+                            android:id="@+id/runtime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignEnd="@id/automatic_updates_container"
-                            android:layout_alignBottom="@id/automatic_updates_container"
-                            android:text="Run automatically" />
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold" />
 
-                        <LinearLayout
-                            android:id="@+id/header_container"
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/lastTime"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/run_automatically">
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Tests" />
+                <Button
+                    android:id="@+id/customUrl"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Dashboard_Overview_ChooseWebsites"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    app:cornerRadius="24dp"
+                    app:rippleColor="@color/ripple_material_dark"
+                    app:strokeColor="@android:color/white" />
+            </LinearLayout>
 
-                            <View
-                                android:layout_width="0dp"
-                                android:layout_height="0dp"
-                                android:layout_weight="1" />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin" />
 
-                            <com.google.android.material.checkbox.MaterialCheckBox
-                                android:id="@+id/switch_tests"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:button="@drawable/check_box_custom_button"
-                                app:checkedState="indeterminate" />
-                        </LinearLayout>
-                    </RelativeLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-                    <org.openobservatory.ooniprobe.common.views.CustomExpandableListView
-                        android:id="@+id/expandable_list_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:childDivider="@android:color/transparent"
-                        android:divider="@android:color/transparent"
-                        android:groupIndicator="@null"
-                        android:paddingHorizontal="16dp"
-                        app:layout_constraintTop_toBottomOf="@id/header"
-                        tools:listitem="@layout/overview_test_group_list_item" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-                    <Button
-                        android:id="@+id/uninstall_link"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="32dp" />
+
+                <LinearLayout
+                    android:id="@+id/automatic_updates_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp"
+                    android:layout_below="@+id/desc">
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="16dp"
-                        android:layout_marginStart="16dp"
-                        android:text="Uninstall Link"
-                        android:textAllCaps="false"
-                        android:textColor="@color/color_red9"
-                        android:visibility="gone"
-                        app:cornerRadius="24dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/expandable_list_view"
-                        app:rippleColor="@color/ripple_material_dark"
-                        app:strokeColor="@color/color_red9"
-                        tools:visibility="visible" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.core.widget.NestedScrollView>
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-</layout>
+                        android:text="Install updates automatically" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/automatic_updates_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/run_automatically"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@id/automatic_updates_container"
+                    android:layout_alignBottom="@id/automatic_updates_container"
+                    android:text="Run automatically" />
+
+                <LinearLayout
+                    android:id="@+id/header_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/run_automatically">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tests" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/switch_tests"
+                        android:button="@drawable/check_box_custom_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:checkedState="indeterminate" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <org.openobservatory.ooniprobe.common.views.CustomExpandableListView
+                android:id="@+id/expandable_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:childDivider="@android:color/transparent"
+                android:divider="@android:color/transparent"
+                android:groupIndicator="@null"
+                android:paddingHorizontal="16dp"
+                tools:listitem="@layout/overview_test_group_list_item"
+                app:layout_constraintTop_toBottomOf="@id/header" />
+            <Button
+                android:id="@+id/uninstall_link"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Uninstall Link"
+                android:textAllCaps="false"
+                android:textColor="@color/color_red9"
+                app:layout_constraintTop_toBottomOf="@id/expandable_list_view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:cornerRadius="24dp"
+                app:rippleColor="@color/ripple_material_dark"
+                app:strokeColor="@color/color_red9"
+                android:layout_marginVertical="16dp"
+                android:layout_marginStart="16dp"
+                android:visibility="gone"
+                tools:visibility="visible"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
