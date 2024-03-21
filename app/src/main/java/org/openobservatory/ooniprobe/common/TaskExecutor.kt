@@ -44,8 +44,7 @@ typealias OnTaskComplete<R> = (R) -> Unit
 class TaskExecutor {
     private val executor = Executors.newSingleThreadExecutor()
     private val handler = Handler(Looper.getMainLooper())
-    private var future: Future<*>? = null
-
+    private lateinit var future: Future<*>
     /**
      * Executes a task in a separate thread and posts the result on the main thread.
      * @param task The task to be executed.
@@ -54,8 +53,10 @@ class TaskExecutor {
     fun <R> executeTask(task: Task<R>, onComplete: OnTaskComplete<R>) {
         future = executor.submit {
             val result = task.call()
-            handler.post {
-                onComplete(result)
+            if (!future.isCancelled) {
+                handler.post {
+                    onComplete(result)
+                }
             }
         }
     }
@@ -90,6 +91,6 @@ class TaskExecutor {
      * Cancels the currently running task.
      */
     fun cancelTask() {
-        future?.cancel(true)
+        this.future.cancel(true)
     }
 }
