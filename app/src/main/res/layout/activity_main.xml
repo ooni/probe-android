@@ -12,7 +12,7 @@
 		android:layout_weight="1"/>
 
 	<FrameLayout
-		android:id="@+id/dynamic_progress_fragment"
+		android:id="@+id/review_update_notification_fragment"
 		android:layout_width="match_parent"
 		android:layout_height="?attr/actionBarSize"
 		android:visibility="gone" />

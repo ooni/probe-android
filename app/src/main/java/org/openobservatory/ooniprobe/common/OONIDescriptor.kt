@@ -42,7 +42,7 @@ abstract class AbstractDescriptor<T : BaseNettest>(
      * @param preferenceManager The [PreferenceManager] instance used to resolve the status of each nettest.
      * @return Boolean Returns true if at least one nettest is enabled, false otherwise.
      */
-    open fun isEnabled(preferenceManager: PreferenceManager): Boolean {
+   open fun isEnabled(preferenceManager: PreferenceManager): Boolean {
         return when (name) {
             OONITests.EXPERIMENTAL.label -> preferenceManager.isExperimentalOn
             OONITests.WEBSITES.label -> preferenceManager.countEnabledCategory() > 0
@@ -136,7 +136,7 @@ abstract class AbstractDescriptor<T : BaseNettest>(
                     )
                 } ?: listOf())
             },
-            descriptor = descriptor
+            descriptor = this.descriptor
         )
     }
 
@@ -171,8 +171,8 @@ abstract class AbstractDescriptor<T : BaseNettest>(
      * @return String representing the preference prefix.
      */
     fun preferencePrefix(): String {
-        return when (descriptor?.runId != null) {
-            true -> descriptor?.preferencePrefix() ?: ""
+        return when (this.descriptor?.runId != null) {
+            true -> this.descriptor?.preferencePrefix() ?: ""
             else -> ""
         }
     }

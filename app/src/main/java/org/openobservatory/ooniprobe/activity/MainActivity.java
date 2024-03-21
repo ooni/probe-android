@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.activity;
 
 import static org.openobservatory.ooniprobe.common.service.RunTestService.CHANNEL_ID;
+import static org.openobservatory.ooniprobe.common.worker.UpdateDescriptorsWorkerKt.PROGRESS;
 
 import android.Manifest;
 import android.content.Context;
@@ -12,34 +13,51 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.provider.Settings;
+import android.view.View;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
+import androidx.work.Constraints;
+import androidx.work.ExistingPeriodicWorkPolicy;
+import androidx.work.ExistingWorkPolicy;
+import androidx.work.NetworkType;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkInfo;
+import androidx.work.WorkManager;
 
 import com.google.android.material.snackbar.Snackbar;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.reviewdescriptorupdates.ReviewDescriptorUpdatesActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.NotificationUtility;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
+import org.openobservatory.ooniprobe.common.TestDescriptorManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.service.ServiceUtil;
+import org.openobservatory.ooniprobe.common.worker.AutoUpdateDescriptorsWorker;
+import org.openobservatory.ooniprobe.common.worker.ManualUpdateDescriptorsWorker;
 import org.openobservatory.ooniprobe.databinding.ActivityMainBinding;
 import org.openobservatory.ooniprobe.domain.UpdatesNotificationManager;
 import org.openobservatory.ooniprobe.fragment.DashboardFragment;
 import org.openobservatory.ooniprobe.fragment.PreferenceGlobalFragment;
 import org.openobservatory.ooniprobe.fragment.ResultListFragment;
+import org.openobservatory.ooniprobe.fragment.dynamicprogressbar.OONIRunDynamicProgressBar;
+import org.openobservatory.ooniprobe.fragment.dynamicprogressbar.OnActionListener;
+import org.openobservatory.ooniprobe.fragment.dynamicprogressbar.ProgressType;
 
 import java.io.Serializable;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
 
-public class MainActivity extends AbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
+public class MainActivity extends ReviewUpdatesAbstractActivity implements ConfirmDialogFragment.OnConfirmedListener {
     private static final String RES_ITEM = "resItem";
     private static final String RES_SNACKBAR_MESSAGE = "resSnackbarMessage";
     public static final String NOTIFICATION_DIALOG = "notification";
@@ -53,6 +71,9 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
 
     @Inject
     PreferenceManager preferenceManager;
+
+    @Inject
+    TestDescriptorManager descriptorManager;
 
     private ActivityResultLauncher<String> requestPermissionLauncher;
 
@@ -137,6 +158,115 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
             }
         }
         requestNotificationPermission();
+        scheduleWorkers();
+        onNewIntent(getIntent());
+    }
+
+    private void scheduleWorkers() {
+        WorkManager.getInstance(this)
+                .enqueueUniquePeriodicWork(
+                        AutoUpdateDescriptorsWorker.UPDATED_DESCRIPTORS_WORK_NAME,
+                        ExistingPeriodicWorkPolicy.KEEP,
+                        new PeriodicWorkRequest.Builder(AutoUpdateDescriptorsWorker.class, 24, TimeUnit.HOURS)
+                                .setConstraints(
+                                        new Constraints.Builder()
+                                                .setRequiredNetworkType(NetworkType.CONNECTED)
+                                                .build()
+                                ).build()
+                );
+        // TODO(aanorbel): add rules before checking updates
+        fetchManualUpdate();
+        registerReviewLauncher(binding.bottomNavigation, () -> null);
+    }
+
+    public void fetchManualUpdate() {
+        OneTimeWorkRequest manualWorkRequest = new OneTimeWorkRequest.Builder(ManualUpdateDescriptorsWorker.class)
+                .setConstraints(
+                        new Constraints.Builder()
+                                .setRequiredNetworkType(NetworkType.CONNECTED)
+                                .build()
+                ).build();
+
+        WorkManager.getInstance(this)
+                .beginUniqueWork(
+                        ManualUpdateDescriptorsWorker.UPDATED_DESCRIPTORS_WORK_NAME,
+                        ExistingWorkPolicy.REPLACE,
+                        manualWorkRequest
+                ).enqueue();
+
+        WorkManager.getInstance(this)
+                .getWorkInfoByIdLiveData(manualWorkRequest.getId())
+                .observe(this, this::onManualUpdatesFetchComplete);
+    }
+
+
+    /**
+     * Listens to updates from the {@link ManualUpdateDescriptorsWorker}.
+     * <p>
+     * This method is called after the {@link ManualUpdateDescriptorsWorker} is enqueued.
+     * The {@link ManualUpdateDescriptorsWorker} task is to fetch updates for the descriptors.
+     * <p>
+     * If the task is successful, the {@link WorkInfo} object will contain the updated descriptors.
+     * Otherwise, the {@link WorkInfo} object will be null.
+     *
+     * @param workInfo The {@link WorkInfo} of the task.
+     */
+    private void onManualUpdatesFetchComplete(WorkInfo workInfo) {
+        if (workInfo != null) {
+            if (workInfo.getProgress().getInt(PROGRESS,-1) >= 0) {
+                binding.reviewUpdateNotificationFragment.setVisibility(View.VISIBLE);
+            }
+            switch (workInfo.getState()) {
+                case SUCCEEDED -> {
+                    String descriptor = workInfo.getOutputData().getString(ManualUpdateDescriptorsWorker.KEY_UPDATED_DESCRIPTORS);
+                    if (descriptor == null) {
+                        removeProgressFragment(R.id.review_update_notification_fragment);
+                        return;
+                    }
+                    getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(
+                            R.id.review_update_notification_fragment,
+                            OONIRunDynamicProgressBar.newInstance(ProgressType.REVIEW_LINK, new OnActionListener() {
+                                @Override
+                                public void onActionButtonCLicked() {
+
+                                    getReviewUpdatesLauncher().launch(
+                                        ReviewDescriptorUpdatesActivity.newIntent(
+                                            MainActivity.this,
+                                            descriptor
+                                        )
+                                    );
+                                    removeProgressFragment(R.id.review_update_notification_fragment);
+                                }
+
+                                @Override
+                                public void onCloseButtonClicked() {
+                                    removeProgressFragment(R.id.review_update_notification_fragment);
+                                }
+                            }),
+                            OONIRunDynamicProgressBar.getTAG() + "_review_update_success_notification"
+                        ).commit();
+                }
+
+                case ENQUEUED -> getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(
+                                R.id.review_update_notification_fragment,
+                                OONIRunDynamicProgressBar.newInstance(ProgressType.UPDATE_LINK, null),
+                                OONIRunDynamicProgressBar.getTAG() + "_review_update_enqueued_notification"
+                        ).commit();
+
+                case FAILED -> Snackbar.make(
+                        binding.getRoot(),
+                        R.string.Modal_Error,
+                        Snackbar.LENGTH_LONG
+                ).setAnchorView(binding.bottomNavigation).show();
+
+                default -> {
+                }
+            }
+        }
     }
 
     private void requestNotificationPermission() {
@@ -191,11 +321,11 @@ public class MainActivity extends AbstractActivity implements ConfirmDialogFragm
                 binding.bottomNavigation.setSelectedItemId(intent.getIntExtra(RES_ITEM, R.id.dashboard));
             } else if (intent.getExtras().containsKey(NOTIFICATION_DIALOG)) {
                 new ConfirmDialogFragment.Builder()
-                        .withTitle(intent.getExtras().getString("title"))
-                        .withMessage(intent.getExtras().getString("message"))
-                        .withNegativeButton("")
-                        .withPositiveButton(getString(R.string.Modal_OK))
-                        .build().show(getSupportFragmentManager(), null);
+                    .withTitle(intent.getExtras().getString("title"))
+                    .withMessage(intent.getExtras().getString("message"))
+                    .withNegativeButton("")
+                    .withPositiveButton(getString(R.string.Modal_OK))
+                    .build().show(getSupportFragmentManager(), null);
             }
         }
     }
