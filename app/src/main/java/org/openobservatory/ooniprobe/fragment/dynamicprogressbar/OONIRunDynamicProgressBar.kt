@@ -54,7 +54,6 @@ class OONIRunDynamicProgressBar : Fragment() {
             ProgressType.REVIEW_LINK -> {
                 binding.progressBar.visibility = View.GONE
                 binding.iconButton.visibility = View.VISIBLE
-                binding.actionButton.text = "Review"
                 binding.progressText.text = "Link updates ready"
             }
 

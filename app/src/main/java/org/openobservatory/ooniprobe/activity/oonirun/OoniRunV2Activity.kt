@@ -134,7 +134,7 @@ class OoniRunV2Activity : AbstractActivity() {
         descriptorResponse?.let {
             startActivity(AddDescriptorActivity.newIntent(this, descriptorResponse))
         } ?: run {
-            finishWithError()
+            Toast.makeText(this, getString(R.string.Modal_Error), Toast.LENGTH_LONG).show()
         }
     }
 

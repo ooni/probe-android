@@ -51,8 +51,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:resource="@{viewmodel.descriptor.icon}"
-                    tools:src="@drawable/settings_icon"
-                    app:color="@{viewmodel.color}" />
+                    tools:src="@drawable/settings_icon" />
 
                 <TextView
                     android:id="@+id/title"
