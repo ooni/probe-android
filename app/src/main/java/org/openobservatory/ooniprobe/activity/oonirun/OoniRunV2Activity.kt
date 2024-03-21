@@ -85,7 +85,7 @@ class OoniRunV2Activity : AbstractActivity() {
         val executor = TaskExecutor()
         binding.cancelButton.setOnClickListener {
             executor.cancelTask()
-            finishWithError(message = getString(R.string.Modal_Cancel))
+            finishWithError(message = "Link installation cancelled")
         }
         executor.executeTask({
             try {
@@ -134,7 +134,7 @@ class OoniRunV2Activity : AbstractActivity() {
         descriptorResponse?.let {
             startActivity(AddDescriptorActivity.newIntent(this, descriptorResponse))
         } ?: run {
-            Toast.makeText(this, getString(R.string.Modal_Error), Toast.LENGTH_LONG).show()
+            finishWithError()
         }
     }
 

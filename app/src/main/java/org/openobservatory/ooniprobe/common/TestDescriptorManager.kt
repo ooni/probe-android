@@ -100,6 +100,11 @@ class TestDescriptorManager @Inject constructor(
         return descriptor.save()
     }
 
+    fun getById(runId: Long): TestDescriptor? {
+        return SQLite.select().from(TestDescriptor::class.java)
+            .where(TestDescriptor_Table.runId.eq(runId)).querySingle()
+    }
+
     fun getRunV2Descriptors(): List<TestDescriptor> {
         return SQLite.select().from(TestDescriptor::class.java)
             .where(TestDescriptor_Table.isArchived.eq(false)).queryList()
@@ -116,5 +121,30 @@ class TestDescriptorManager @Inject constructor(
             .queryList().forEach { it.delete(context) }.run {
                 descriptor.testDescriptor.delete()
             }
+    }
+
+    fun getDescriptorWithAutoUpdateEnabled(): List<TestDescriptor> {
+        return SQLite.select().from(TestDescriptor::class.java)
+            .where(TestDescriptor_Table.auto_update.eq(true)).queryList()
+    }
+
+    fun getDescriptorWithAutoUpdateDisabled(): List<TestDescriptor> {
+        return SQLite.select().from(TestDescriptor::class.java)
+            .where(TestDescriptor_Table.auto_update.eq(false)).queryList()
+    }
+
+    fun updateFromNetwork(testDescriptor: TestDescriptor): Boolean {
+        getById(testDescriptor.runId)?.let { descriptor ->
+            testDescriptor.isAutoUpdate = descriptor.isAutoUpdate
+            return testDescriptor.save()
+        } ?: run {
+            return false
+        }
+    }
+
+    fun getDescriptorsFromIds(ids: Array<Long>): List<TestDescriptor> {
+        return SQLite.select().from(TestDescriptor::class.java)
+            .where(TestDescriptor_Table.runId.`in`(ids.toList()))
+            .queryList()
     }
 }

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
+import org.openobservatory.ooniprobe.activity.MainActivity
 import org.openobservatory.ooniprobe.activity.OverviewActivity
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsActivity
 import org.openobservatory.ooniprobe.adapters.DashboardAdapter
@@ -84,6 +85,11 @@ class DashboardFragment : Fragment(), View.OnClickListener {
                 binding.runAll.visibility = View.VISIBLE
                 binding.lastTested.visibility = View.VISIBLE
             }
+        }
+
+        binding.swipeRefresh.setOnRefreshListener {
+            (requireActivity() as MainActivity).fetchManualUpdate()
+            binding.swipeRefresh.isRefreshing = false
         }
     }
 

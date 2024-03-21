@@ -8,12 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel
-import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel.Companion.SELECT_NONE
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel.Companion.SELECT_ALL
+import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel.Companion.SELECT_NONE
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel.Companion.SELECT_SOME
 import org.openobservatory.ooniprobe.activity.runtests.models.ChildItem
 import org.openobservatory.ooniprobe.activity.runtests.models.GroupItem
-import org.openobservatory.ooniprobe.common.OONITests
 import org.openobservatory.ooniprobe.test.test.AbstractTest
 
 
@@ -83,7 +82,9 @@ class RunTestsExpandableListViewAdapter(
 			convertView ?: LayoutInflater.from(parent.context).inflate(R.layout.run_tests_group_list_item, parent, false)
 		val groupItem = getGroup(groupPosition)
 		convertView.findViewById<TextView>(R.id.group_name).text = groupItem.title
-		convertView.findViewById<ImageView>(R.id.group_icon).setImageResource(groupItem.getDisplayIcon(parent.context))
+		val icon = convertView.findViewById<ImageView>(R.id.group_icon)
+		icon.setImageResource(groupItem.getDisplayIcon(parent.context))
+		icon.setColorFilter(groupItem.color)
 		val groupIndicator = convertView.findViewById<ImageView>(R.id.group_indicator)
 		val groupSelectionIndicator = convertView.findViewById<ImageView>(R.id.group_select_indicator)
 		val selectedAllBtnStatus = viewModel.selectedAllBtnStatus.getValue()

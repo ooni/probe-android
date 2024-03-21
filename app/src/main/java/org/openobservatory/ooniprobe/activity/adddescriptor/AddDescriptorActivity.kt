@@ -10,15 +10,12 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.widget.Toolbar
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.noties.markwon.Markwon
-import org.openobservatory.engine.BaseNettest
-import org.openobservatory.engine.OONIRunDescriptor
-import org.openobservatory.engine.OONIRunNettest
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
 import org.openobservatory.ooniprobe.activity.MainActivity
@@ -85,17 +82,19 @@ class AddDescriptorActivity : AbstractActivity() {
          * @param iconName is the name of the drawable resource
          */
         @JvmStatic
-        @BindingAdapter(value = ["resource"])
-        fun setImageViewResource(imageView: ImageView, iconName: String?) {
-            /* TODO(aanorbel): Update to parse the icon name and set the correct icon.
-            * Remember to ignore icons generated when generated doing this.*/
+        @BindingAdapter(value = ["resource","color"])
+        fun setImageViewResource(imageView: ImageView, iconName: String?, color: Int?) {
             imageView.setImageResource(
                 imageView.context.resources.getIdentifier(
                     StringUtils.camelToSnake(
                         iconName
                     ), "drawable", imageView.context.packageName
                 )
-            )
+            ).apply {
+                color?.let {
+                    imageView.setColorFilter(it)
+                }
+            }
         }
 
     }
@@ -114,7 +113,7 @@ class AddDescriptorActivity : AbstractActivity() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         supportActionBar?.setDisplayShowHomeEnabled(false)
-        supportActionBar?.title = "Add New Link"
+        supportActionBar?.title = "Install New Link"
         val descriptorExtra = if (VERSION.SDK_INT >= VERSION_CODES.TIRAMISU) {
             intent.getParcelableExtra(DESCRIPTOR, TestDescriptor::class.java)
         } else {
@@ -145,21 +144,17 @@ class AddDescriptorActivity : AbstractActivity() {
             for (i in 0 until adapter.groupCount) {
                 binding.expandableListView.expandGroup(i)
             }
-            val bottomBarOnMenuItemClickListener: Toolbar.OnMenuItemClickListener =
-                Toolbar.OnMenuItemClickListener { item ->
-                    when (item.itemId) {
-                        R.id.add_descriptor -> {
-                            viewModel.onAddButtonClicked(
-                                disabledAutorunNettests = adapter.nettests.filter { it.selected },
-                                automatedUpdates = binding.automaticUpdatesSwitch.isChecked
-                            )
-                            true
-                        }
 
-                        else -> false
-                    }
-                }
-            binding.bottomBar.setOnMenuItemClickListener(bottomBarOnMenuItemClickListener)
+            binding.btnInstallLink.setOnClickListener {
+                viewModel.onAddButtonClicked(
+                    disabledAutorunNettests = adapter.nettests.filter { it.selected },
+                    automatedUpdates = binding.automaticUpdatesSwitch.isChecked
+                )
+            }
+
+            binding.btnCancel.setOnClickListener {
+                finish()
+            }
 
             viewModel.selectedAllBtnStatus.observe(this) { state ->
                 binding.testsCheckbox.checkedState = state;
@@ -174,6 +169,7 @@ class AddDescriptorActivity : AbstractActivity() {
             // This observer is used to finish the activity when the descriptor is added.
             viewModel.finishActivity.observe(this) { shouldFinish ->
                 if (shouldFinish) {
+                    Toast.makeText(this@AddDescriptorActivity, "Link installed", Toast.LENGTH_LONG).show()
                     finish()
                 }
             }

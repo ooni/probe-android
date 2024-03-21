@@ -51,7 +51,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:resource="@{viewmodel.descriptor.icon}"
-                    tools:src="@drawable/settings_icon" />
+                    tools:src="@drawable/settings_icon"
+                    app:color="@{viewmodel.color}" />
 
                 <TextView
                     android:id="@+id/title"
@@ -161,13 +162,37 @@
             android:layout_gravity="bottom"
             android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/bottomBar"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="?attr/actionBarSize"
                 android:background="@color/color_gray0"
-                app:menu="@menu/add_descriptor"
-                app:titleTextAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title.App" />
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/btn_cancel"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/Modal_Cancel"
+                    android:textColor="@color/color_base" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2" />
+
+                <Button
+                    android:id="@+id/btn_install_link"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:elevation="0dp"
+                    android:text="Install Link"
+                    android:textColor="@color/color_base" />
+
+            </LinearLayout>
         </com.google.android.material.appbar.AppBarLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
