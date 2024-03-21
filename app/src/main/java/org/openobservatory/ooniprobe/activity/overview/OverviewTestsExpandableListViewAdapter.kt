@@ -140,7 +140,6 @@ class OverviewTestsExpandableListViewAdapter(
 
         view.findViewById<TextView>(R.id.text).apply {
             text = getChild(groupPosition, childPosition)
-            setBackgroundColor(parent.context.resources.getColor(R.color.color_gray1))
         }
         return view
     }

@@ -45,7 +45,6 @@ abstract class AbstractDescriptor<T : BaseNettest>(
    open fun isEnabled(preferenceManager: PreferenceManager): Boolean {
         return when (name) {
             OONITests.EXPERIMENTAL.label -> preferenceManager.isExperimentalOn
-            OONITests.WEBSITES.label -> preferenceManager.countEnabledCategory() > 0
             else -> nettests.any {
                 preferenceManager.resolveStatus(
                     name = it.name,
@@ -120,7 +119,6 @@ abstract class AbstractDescriptor<T : BaseNettest>(
                 ChildItem(
                     selected = when (name) {
                         OONITests.EXPERIMENTAL.label -> preferenceManager.isExperimentalOn
-                        OONITests.WEBSITES.label -> preferenceManager.countEnabledCategory() > 0
                         else -> preferenceManager.resolveStatus(
                             name = nettest.name,
                             prefix = preferencePrefix(),

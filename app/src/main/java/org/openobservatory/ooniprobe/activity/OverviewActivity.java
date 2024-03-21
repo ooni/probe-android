@@ -6,8 +6,10 @@ import static org.openobservatory.ooniprobe.activity.overview.OverviewViewModel.
 import static org.openobservatory.ooniprobe.common.PreferenceManagerExtensionKt.resolveStatus;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.view.View;
@@ -39,10 +41,12 @@ import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReadMorePlugin;
 import org.openobservatory.ooniprobe.common.worker.ManualUpdateDescriptorsWorker;
 import org.openobservatory.ooniprobe.databinding.ActivityOverviewBinding;
+import org.openobservatory.ooniprobe.fragment.ConfirmDialogFragment;
 import org.openobservatory.ooniprobe.model.database.InstalledDescriptor;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.TestDescriptor;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.Objects;
@@ -51,7 +55,7 @@ import javax.inject.Inject;
 
 import io.noties.markwon.Markwon;
 
-public class OverviewActivity extends ReviewUpdatesAbstractActivity {
+public class OverviewActivity extends ReviewUpdatesAbstractActivity implements ConfirmDialogFragment.OnClickListener  {
     private static final String TEST = "test";
 
     ActivityOverviewBinding binding;
@@ -198,7 +202,16 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity {
 
     private void setUpOnCLickListeners() {
         binding.customUrl.setOnClickListener(view -> customUrlClick());
-        binding.uninstallLink.setOnClickListener(view -> viewModel.uninstallLinkClicked(this, (InstalledDescriptor) descriptor));
+        binding.uninstallLink.setOnClickListener(view -> {
+            ConfirmDialogFragment.newInstance(
+                            "Are you sure?",
+                            "You will be able to install this link again only from the original link sent by the creator.",
+                            "UNINSTALL LINK",
+                            getString(android.R.string.cancel),
+                            null
+                    )
+                    .show(getSupportFragmentManager(), null);
+        });
         binding.automaticUpdatesSwitch.setOnCheckedChangeListener((compoundButton, isChecked) -> viewModel.automaticUpdatesSwitchClicked(isChecked));
         if (descriptor instanceof InstalledDescriptor) {
             binding.swipeRefresh.setOnRefreshListener(() -> {
@@ -284,5 +297,12 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity {
 
     void customUrlClick() {
         startActivity(new Intent(this, CustomWebsiteActivity.class));
+    }
+
+    @Override
+    public void onConfirmDialogClick(@Nullable Serializable serializable, @Nullable Parcelable parcelable, int buttonClicked) {
+        if (buttonClicked == DialogInterface.BUTTON_POSITIVE) {
+            viewModel.uninstallLinkClicked(this, (InstalledDescriptor) descriptor);
+        }
     }
 }

@@ -67,28 +67,11 @@ class DashboardAdapter(
                         }
                     }
                     holder.itemView.tag = item
-                    if (!item.isEnabled(preferenceManager)) {
-                        holder.setIsRecyclable(false)
-                        holder.itemView.apply {
-                            elevation = 0f
-                            isClickable = false
-                        }
-                        val resources: Resources = holder.itemView.context.resources
-                        (holder.itemView as CardView).setCardBackgroundColor(resources.getColor(R.color.disabled_test_background))
-                        holder.binding.apply {
-                            title.setTextColor(resources.getColor(R.color.disabled_test_text))
-                            desc.setTextColor(resources.getColor(R.color.disabled_test_text))
-                            icon.setColorFilter(
-                                resources.getColor(R.color.disabled_test_text),
-                                PorterDuff.Mode.SRC_IN
-                            )
-                        }
-                    } else {
-                        holder.itemView.setOnClickListener(onClickListener)
-                    }
+                    holder.itemView.setOnClickListener(onClickListener)
                 }
             }
         }
+        holder.setIsRecyclable(false)
     }
 
     override fun getItemCount(): Int {

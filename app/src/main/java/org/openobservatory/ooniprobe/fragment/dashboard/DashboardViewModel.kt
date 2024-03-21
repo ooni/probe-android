@@ -50,8 +50,7 @@ class DashboardViewModel @Inject constructor(
 
     private fun fetchItemList() {
 
-        val groupedItems = items.value!!.sortedBy { !it.isEnabled(preferenceManager) }
-            .groupBy {
+        val groupedItems = items.value!!.groupBy {
                 return@groupBy if (oonTests.contains(it)) {
                     oonTestsTitle
                 } else {
