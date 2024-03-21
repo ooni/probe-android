@@ -1,5 +1,19 @@
 package org.openobservatory.ooniprobe.ui.resultdetails;
 
+import static androidx.test.espresso.Espresso.onData;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.anything;
+import static org.hamcrest.Matchers.containsString;
+import static org.openobservatory.ooniprobe.ui.utils.RecyclerViewMatcher.withRecyclerView;
+import static org.openobservatory.ooniprobe.ui.utils.ViewMatchers.waitPartialText;
+
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.schibsted.spain.barista.rule.flaky.AllowFlaky;
@@ -14,25 +28,9 @@ import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.factory.ResultFactory;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Result;
-import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import static androidx.test.espresso.Espresso.onData;
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
-import static androidx.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.anything;
-import static org.hamcrest.Matchers.containsString;
-import static org.openobservatory.ooniprobe.ui.utils.RecyclerViewMatcher.withRecyclerView;
-import static org.openobservatory.ooniprobe.ui.utils.ViewMatchers.waitPartialText;
 
 @RunWith(AndroidJUnit4.class)
 public class WebsitesTest extends MeasurementAbstractTest {
