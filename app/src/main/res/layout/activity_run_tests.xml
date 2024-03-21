@@ -11,7 +11,6 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:background="@color/color_white"
-		app:menu="@menu/close"
 		app:layout_constraintTop_toTopOf="parent"
 		app:contentInsetEnd="0dp"
 		app:contentInsetStart="0dp" />
@@ -21,17 +20,26 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="vertical"
-		android:layout_marginStart="16dp"
+		android:layout_marginStart="@dimen/item_padding_large"
+		android:paddingTop="@dimen/item_padding_small"
+		android:paddingBottom="@dimen/item_padding_large"
 		app:layout_constraintTop_toBottomOf="@id/toolbar"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintEnd_toEndOf="parent">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Select the tests to run"
+			android:paddingBottom="@dimen/item_padding_small"
+			style="?attr/textAppearanceHeadline6"/>
 
 		<Button
 			android:id="@+id/select_all"
 			style="@style/Widget.MaterialComponents.Button.OutlinedButton"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="@string/Settings_Websites_Categories_Selection_All"
+			android:text="Select all tests"
 			android:textAllCaps="false"
 			app:cornerRadius="24dp"
 			app:rippleColor="@color/ripple_material_dark"
@@ -42,7 +50,7 @@
 			style="@style/Widget.MaterialComponents.Button.OutlinedButton"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="@string/Settings_Websites_Categories_Selection_None"
+			android:text="Deselect all tests"
 			android:textAllCaps="false"
 			app:cornerRadius="24dp"
 			app:rippleColor="@color/ripple_material_dark"
@@ -61,25 +69,22 @@
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintTop_toBottomOf="@id/control_layout"
-		app:layout_constraintBottom_toTopOf="@+id/bottom_appbar_layout"
+		app:layout_constraintBottom_toBottomOf="parent"
 		tools:listitem="@layout/run_tests_group_list_item" />
 
-	<com.google.android.material.appbar.AppBarLayout
-		android:id="@+id/bottom_appbar_layout"
-		android:layout_width="match_parent"
+	<com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+		android:id="@+id/fab_run_tests"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
+		android:text="Run Tests"
+		android:layout_marginBottom="@dimen/item_padding_large"
+		android:backgroundTint="@color/color_base"
+		android:textColor="@android:color/white"
+		android:textAllCaps="false"
+		app:icon="@drawable/outline_timer"
 		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
-		android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
+		app:layout_constraintStart_toStartOf="parent"
+		app:iconTint="@android:color/white"/>
 
-		<androidx.appcompat.widget.Toolbar
-			android:id="@+id/bottomBar"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:background="@color/color_white"
-			app:menu="@menu/run"
-			app:title="@string/OONIRun_URLs"
-			app:titleTextAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title.App" />
-	</com.google.android.material.appbar.AppBarLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

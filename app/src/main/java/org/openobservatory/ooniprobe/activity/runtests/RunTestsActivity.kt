@@ -4,9 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
+import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
@@ -54,7 +54,14 @@ class RunTestsActivity : AbstractActivity() {
 		setContentView(binding.getRoot())
 
 		setSupportActionBar(binding.toolbar)
-		supportActionBar?.setDisplayHomeAsUpEnabled(true)
+		supportActionBar?.apply {
+			setDisplayHomeAsUpEnabled(true)
+			setHomeAsUpIndicator(
+				ContextCompat.getDrawable(this@RunTestsActivity, R.drawable.close)
+					?.apply { DrawableCompat.setTint(this, ContextCompat.getColor(this@RunTestsActivity, R.color.color_black)) }
+			)
+			title = "Run tests".uppercase()
+		}
 
 		activityComponent?.inject(this)
 
@@ -78,55 +85,29 @@ class RunTestsActivity : AbstractActivity() {
 
 			viewModel.selectedAllBtnStatus.observe(this, this::selectAllBtnStatusObserver)
 
-			binding.bottomBar.setOnMenuItemClickListener { menuItem ->
-				onMenuItemClickListener(menuItem)
-			}
+			binding.fabRunTests.setOnClickListener { onRunTestsClickListener() }
 		} ?: run {
 			finish()
 		}
 
 	}
-
-	override fun onCreateOptionsMenu(menu: Menu): Boolean {
-		val inflater: MenuInflater = menuInflater
-		inflater.inflate(R.menu.close, menu)
-		return true
-	}
-
-	override fun onOptionsItemSelected(item: MenuItem): Boolean {
-		return when (item.itemId) {
-			R.id.close_button -> {
-				finish()
-				true
-			}
-
-			else -> super.onOptionsItemSelected(item)
-		}
-	}
-
-	private fun onMenuItemClickListener(menuItem: MenuItem): Boolean {
-		return when (menuItem.itemId) {
-			R.id.runButton -> {
-				updatePreferences()
-				val selectedChildItems: List<String> = getChildItemsSelectedIdList()
-				if (selectedChildItems.isNotEmpty()) {
-					val testSuitesToRun = getGroupItemsAtLeastOneChildEnabled().map { groupItem ->
-						return@map groupItem.getTest(this)
-					}
-					RunningActivity.runAsForegroundService(
-						this@RunTestsActivity,
-						java.util.ArrayList(testSuitesToRun),
-						{ finish() },
-						preferenceManager
-					)
-
-				}
-				true
-			}
-
-			else -> false
-		}
-	}
+    private fun onRunTestsClickListener() {
+        updatePreferences()
+        val selectedChildItems: List<String> = getChildItemsSelectedIdList()
+        if (selectedChildItems.isNotEmpty()) {
+            val testSuitesToRun = getGroupItemsAtLeastOneChildEnabled().map { groupItem ->
+                return@map groupItem.getTest(this)
+            }
+            RunningActivity.runAsForegroundService(
+                this@RunTestsActivity,
+                java.util.ArrayList(testSuitesToRun),
+                { finish() },
+                preferenceManager
+            )
+        } else {
+			Toast.makeText(this@RunTestsActivity, "Please select test to run", Toast.LENGTH_LONG).show()
+        }
+    }
 
     /**
      * Update the preferences based on the selected tests.
@@ -189,10 +170,10 @@ class RunTestsActivity : AbstractActivity() {
 	}
 
 
-	private fun updateStatusIndicator() {
-		//TODO(aanorbel): translate status indicator
-		binding.bottomBar.setTitle("${getChildItemsSelectedIdList().size} Tests")
-	}
+    private fun updateStatusIndicator() {
+        //TODO(aanorbel): translate status indicator
+        binding.fabRunTests.text = "Run ${getChildItemsSelectedIdList().size} test"
+    }
 
 	private fun getChildItemsSelectedIdList(): List<String> {
 		val childItemSelectedIdList: MutableList<String> = ArrayList()
