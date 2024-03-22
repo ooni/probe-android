@@ -146,6 +146,7 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
                         .build().show(getSupportFragmentManager(), null);
             }
             ThirdPartyServices.checkUpdates(this);
+            scheduleWorkers();
         }
 
         if (android.os.Build.VERSION.SDK_INT >= 29) {
@@ -158,7 +159,6 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
             }
         }
         requestNotificationPermission();
-        scheduleWorkers();
         onNewIntent(getIntent());
     }
 
