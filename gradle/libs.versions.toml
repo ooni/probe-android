@@ -44,7 +44,7 @@ oonimkall = "2023.12.13-200325"
 
 junit = "4.13.2"
 dbflow = "4.2.4"
-retrofitCore = "2.9.0"
+retrofitCore = "2.10.0"
 retrofitLoggingInterceptor = "4.12.0"
 
 # Firebase Services
