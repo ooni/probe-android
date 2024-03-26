@@ -10,6 +10,7 @@ import com.google.android.material.checkbox.MaterialCheckBox
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.common.OONITests
 import org.openobservatory.ooniprobe.test.test.AbstractTest
+import org.openobservatory.ooniprobe.test.test.Experimental
 
 class OverviewTestsExpandableListViewAdapter(
     private val items: List<TestGroupItem>,
@@ -50,8 +51,10 @@ class OverviewTestsExpandableListViewAdapter(
 
             else -> {
                 val testSuite = AbstractTest.getTestByName(groupItem.name)
-                view.findViewById<TextView>(R.id.group_name).text =
-                    parent.context.resources.getText(testSuite.labelResId)
+                view.findViewById<TextView>(R.id.group_name).text = when (testSuite is Experimental) {
+                    true -> testSuite.name
+                    false -> parent.context.resources.getText(testSuite.labelResId)
+                }
                 when(testSuite.iconResId){
                     0 -> view.findViewById<ImageView>(R.id.group_icon).visibility = View.GONE
                     else -> {
@@ -137,7 +140,6 @@ class OverviewTestsExpandableListViewAdapter(
 
         view.findViewById<TextView>(R.id.text).apply {
             text = getChild(groupPosition, childPosition)
-            setBackgroundColor(parent.context.resources.getColor(R.color.color_gray1))
         }
         return view
     }

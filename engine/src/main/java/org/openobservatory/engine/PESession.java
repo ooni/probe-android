@@ -1,5 +1,7 @@
 package org.openobservatory.engine;
 
+import android.util.Log;
+import com.google.gson.Gson;
 import oonimkall.Oonimkall;
 import oonimkall.Session;
 
@@ -24,5 +26,12 @@ public final class PESession implements OONISession {
 
     public OONICheckInResults checkIn(OONIContext ctx, OONICheckInConfig config) throws Exception {
         return new OONICheckInResults(session.checkIn(ctx.ctx, config.toOonimkallCheckInConfig()));
+    }
+
+    @Override
+    public OONIRunFetchResponse ooniRunFetch(OONIContext ctx, long id) throws Exception {
+        String response = session.ooniRunFetch(ctx.ctx,id);
+        Log.d(PESession.class.getName(), response);
+        return new Gson().fromJson(response, OONIRunFetchResponse.class);
     }
 }

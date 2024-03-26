@@ -4,10 +4,9 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Patterns
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
@@ -50,15 +49,23 @@ class CustomWebsiteActivity : AbstractActivity(), ConfirmDialogFragment.OnClickL
         )
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeAsUpIndicator(
+                ContextCompat.getDrawable(this@CustomWebsiteActivity, R.drawable.close)
+                    ?.apply { DrawableCompat.setTint(this, ContextCompat.getColor(this@CustomWebsiteActivity, R.color.color_black)) }
+            )
+            title = getString(R.string.Settings_Websites_CustomURL_Title).uppercase()
+        }
+
         val layoutManager = LinearLayoutManager(this)
+        binding.urlContainer.isNestedScrollingEnabled = false
         binding.urlContainer.layoutManager = layoutManager
+        val fatTextTemplate = "Test %s URLs"
         adapter = CustomWebsiteRecyclerViewAdapter(
             onItemChangedListener = object : ItemChangedListener {
                 override fun onItemRemoved(position: Int) {
-                    binding.bottomBar.title = getString(
-                        R.string.OONIRun_URLs, adapter.itemCount.toString()
-                    )
+                    binding.fabTestUrls.text = fatTextTemplate.format(adapter.itemCount)
                     viewModel.onItemRemoved(position)
                 }
 
@@ -68,12 +75,10 @@ class CustomWebsiteActivity : AbstractActivity(), ConfirmDialogFragment.OnClickL
             },
         )
         viewModel.urls.observe(this) { urls ->
-            binding.bottomBar.title = getString(
-                R.string.OONIRun_URLs, urls.size.toString()
-            )
+            binding.fabTestUrls.text = fatTextTemplate.format(urls.size)
         }
 
-        binding.bottomBar.setOnMenuItemClickListener { item: MenuItem? -> runTests() }
+        binding.fabTestUrls.setOnClickListener { runTests() }
         binding.add.setOnClickListener { add() }
 
         binding.urlContainer.adapter = adapter
@@ -145,23 +150,6 @@ class CustomWebsiteActivity : AbstractActivity(), ConfirmDialogFragment.OnClickL
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.close, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.close_button -> {
-                onSupportNavigateUp()
-                true
-            }
-
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 
     /**

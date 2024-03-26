@@ -1,10 +1,12 @@
 package org.openobservatory.ooniprobe.test.suite
 
-import androidx.annotation.ColorRes
+import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.common.PreferenceManager
+import org.openobservatory.ooniprobe.model.database.Result
+import org.openobservatory.ooniprobe.model.database.TestDescriptor
 import org.openobservatory.ooniprobe.test.test.AbstractTest
 
 /**
@@ -18,11 +20,12 @@ class DynamicTestSuite(
     shortDescription: String,
     @DrawableRes icon: Int,
     @DrawableRes icon_24: Int,
-    @ColorRes color: Int,
+    @ColorInt color: Int,
     description: String,
-    animation: String,
+    animation: String?,
     dataUsage: Int,
-    var nettest: List<BaseNettest>
+    var nettest: List<BaseNettest>,
+    var descriptor: TestDescriptor? = null
 ) : AbstractSuite(
     name,
     title,
@@ -42,6 +45,7 @@ class DynamicTestSuite(
                 if (autoRun) {
                     setOrigin(AbstractTest.AUTORUN)
                 }
+                inputs = it.inputs
             }
         }.toTypedArray()
 
@@ -49,5 +53,11 @@ class DynamicTestSuite(
             super.setTestList(*tests)
         }
         return super.getTestList(pm)
+    }
+
+    override fun getResult(): Result? {
+        val result = super.getResult()
+        result.descriptor = descriptor
+        return result
     }
 }

@@ -13,7 +13,6 @@ import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Url;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
-import org.openobservatory.ooniprobe.test.suite.DynamicTestSuite;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
 import java.util.List;

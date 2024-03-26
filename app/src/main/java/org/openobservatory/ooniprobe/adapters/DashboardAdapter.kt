@@ -8,10 +8,11 @@ import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import org.openobservatory.ooniprobe.R
-import org.openobservatory.ooniprobe.common.OONIDescriptor
+import org.openobservatory.ooniprobe.common.AbstractDescriptor
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.databinding.ItemSeperatorBinding
 import org.openobservatory.ooniprobe.databinding.ItemTestsuiteBinding
+import org.openobservatory.ooniprobe.model.database.InstalledDescriptor
 
 class DashboardAdapter(
     private val items: List<Any>,
@@ -54,35 +55,23 @@ class DashboardAdapter(
 
             VIEW_TYPE_CARD -> {
                 val cardHolder = holder as CardViewHolder
-                if (item is OONIDescriptor<*>) {
+                if (item is AbstractDescriptor<*>) {
                     cardHolder.binding.apply {
                         title.setText(item.title)
                         desc.setText(item.shortDescription)
-                        icon.setImageResource(item.getDisplayIcon(holder.itemView.context))
+                        icon.setImageResource(item.getDisplayIcon(holder.itemView.context)).also {
+                            if (item is InstalledDescriptor){
+                                icon.setColorFilter(item.color)
+                                holder.setIsRecyclable(false)
+                            }
+                        }
                     }
                     holder.itemView.tag = item
-                    if (!item.isEnabled(preferenceManager)) {
-                        holder.setIsRecyclable(false)
-                        holder.itemView.apply {
-                            elevation = 0f
-                            isClickable = false
-                        }
-                        val resources: Resources = holder.itemView.context.resources
-                        (holder.itemView as CardView).setCardBackgroundColor(resources.getColor(R.color.disabled_test_background))
-                        holder.binding.apply {
-                            title.setTextColor(resources.getColor(R.color.disabled_test_text))
-                            desc.setTextColor(resources.getColor(R.color.disabled_test_text))
-                            icon.setColorFilter(
-                                resources.getColor(R.color.disabled_test_text),
-                                PorterDuff.Mode.SRC_IN
-                            )
-                        }
-                    } else {
-                        holder.itemView.setOnClickListener(onClickListener)
-                    }
+                    holder.itemView.setOnClickListener(onClickListener)
                 }
             }
         }
+        holder.setIsRecyclable(false)
     }
 
     override fun getItemCount(): Int {

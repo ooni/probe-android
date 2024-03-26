@@ -7,6 +7,7 @@ import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.ForeignKey;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.config.DatabaseDefinition;
 import com.raizlabs.android.dbflow.config.FlowManager;
 import com.raizlabs.android.dbflow.sql.language.Delete;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
@@ -14,6 +15,7 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.engine.BaseNettest;
+import org.openobservatory.ooniprobe.common.AbstractDescriptor;
 import org.openobservatory.ooniprobe.common.AppDatabase;
 import org.openobservatory.ooniprobe.common.OONIDescriptor;
 import org.openobservatory.ooniprobe.common.OONITests;
@@ -56,6 +58,10 @@ public class Result extends BaseModel implements Serializable {
 
     @ForeignKey(saveForeignKeyModel = true)
     public Network network;
+
+    @ForeignKey(saveForeignKeyModel = true)
+    public TestDescriptor descriptor;
+
     private List<Measurement> measurements;
 
     public Result() {
@@ -82,6 +88,17 @@ public class Result extends BaseModel implements Serializable {
         return SQLite.select().from(Result.class).where(Result_Table.test_group_name.eq(test_group_name)).orderBy(Result_Table.start_time, false).limit(1).querySingle();
     }
 
+    /**
+     * Delete all results and related files.
+     * Previously had a call to {@link DatabaseDefinition#reset} which was removed
+     * because it reset the database to the initial state.
+     * <p>
+     * This meant that the user would lose all the installed descriptors.
+     * <p>
+     * Previously, this was not a problem because the descriptors were not installed.
+     *
+     * @param c Context
+     */
     public static void deleteAll(Context c) {
         try {
             FileUtils.cleanDirectory(Measurement.getMeasurementDir(c));
@@ -90,7 +107,6 @@ public class Result extends BaseModel implements Serializable {
         }
         Delete.tables(Measurement.class, Result.class, Network.class);
         FlowManager.getDatabase(AppDatabase.class).close();
-        FlowManager.getDatabase(AppDatabase.class).reset();
     }
 
     public List<Measurement> getMeasurements() {
@@ -184,7 +200,7 @@ public class Result extends BaseModel implements Serializable {
     }
 
     public Optional<AbstractSuite> getTestSuite(Context context) {
-        Optional<OONIDescriptor<BaseNettest>> descriptor = getDescriptor(context);
+        Optional<AbstractDescriptor<BaseNettest>> descriptor = getDescriptor(context);
         if (descriptor.isPresent()) {
             return Optional.of(descriptor.get().getTest(context));
         } else {
@@ -216,10 +232,28 @@ public class Result extends BaseModel implements Serializable {
         }
     }
 
-    public Optional<OONIDescriptor<BaseNettest>> getDescriptor(Context context) {
+    public Optional<AbstractDescriptor<BaseNettest>> getDescriptor(Context context) {
         try {
+            /**
+             * If the descriptor exists, then this is an OONI Run v2 measurement result.
+             * We return an {@link InstalledDescriptor} object which implements {@link AbstractDescriptor}.
+             */
+            if (descriptor != null) {
+                return Optional.of(new InstalledDescriptor(descriptor));
+            }
+            /**
+             * If the descriptor does not exist, then this is an OONI Provided test or an OONI Run v1 measurement result.
+             * We return an {@link OONIDescriptor} object which implements {@link AbstractDescriptor}.
+             */
             return Optional.of(OONITests.valueOf(test_group_name.toUpperCase()).toOONIDescriptor(context));
         } catch (IllegalArgumentException e) {
+            /**
+             * If there is an {@link IllegalArgumentException}
+             * This should only happen when the test_group_name is not a valid {@link OONITests} value,
+             * Which means the `test_group_name` is not an OONI provided test or an installed `Descriptor`.
+             * Orphan resulta for an uninstalled OONI Run v2 descriptor would fall into this category and thus should not exist.
+             * We return an {@link Optional#absent()} object.
+             */
             return Optional.absent();
         }
     }

@@ -12,11 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
+import org.openobservatory.ooniprobe.activity.MainActivity
 import org.openobservatory.ooniprobe.activity.OverviewActivity
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsActivity
 import org.openobservatory.ooniprobe.adapters.DashboardAdapter
+import org.openobservatory.ooniprobe.common.AbstractDescriptor
 import org.openobservatory.ooniprobe.common.Application
-import org.openobservatory.ooniprobe.common.OONIDescriptor
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.common.ReachabilityManager
 import org.openobservatory.ooniprobe.common.TestGroupStatus
@@ -34,10 +35,9 @@ class DashboardFragment : Fragment(), View.OnClickListener {
     @Inject
     lateinit var viewModel: DashboardViewModel
 
+    private var descriptors: ArrayList<AbstractDescriptor<BaseNettest>> = ArrayList()
     @Inject
     lateinit var testStateRepository: TestStateRepository
-
-    private var descriptors: ArrayList<OONIDescriptor<BaseNettest>> = ArrayList()
 
     private lateinit var binding: FragmentDashboardBinding
 
@@ -63,13 +63,14 @@ class DashboardFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        lifecycle.addObserver(viewModel)
         viewModel.getGroupedItemList().observe(viewLifecycleOwner) { items ->
             binding.recycler.layoutManager = LinearLayoutManager(requireContext())
             adapter = DashboardAdapter(items, this, preferenceManager)
             binding.recycler.adapter = adapter
         }
 
-        viewModel.items.observe(viewLifecycleOwner) { items ->
+        viewModel.getItemList().observe(viewLifecycleOwner) { items ->
             descriptors.apply {
                 clear()
                 addAll(items)
@@ -84,6 +85,11 @@ class DashboardFragment : Fragment(), View.OnClickListener {
                 binding.runAll.visibility = View.VISIBLE
                 binding.lastTested.visibility = View.VISIBLE
             }
+        }
+
+        binding.swipeRefresh.setOnRefreshListener {
+            (requireActivity() as MainActivity).fetchManualUpdate()
+            binding.swipeRefresh.isRefreshing = false
         }
     }
 
@@ -123,7 +129,7 @@ class DashboardFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        val descriptor = v.tag as OONIDescriptor<BaseNettest>
+        val descriptor = v.tag as AbstractDescriptor<BaseNettest>
         ActivityCompat.startActivity(
             requireActivity(),
             OverviewActivity.newIntent(activity, descriptor),

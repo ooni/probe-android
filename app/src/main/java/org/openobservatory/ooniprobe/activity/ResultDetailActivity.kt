@@ -203,13 +203,10 @@ class ResultDetailActivity : AbstractActivity(), View.OnClickListener, OnConfirm
      */
     private fun setThemeFromDescriptor() {
         result.getDescriptor(this).get().let { desriptor ->
-            if (desriptor is OONIDescriptor<*>) {
-                val color = ContextCompat.getColor(this@ResultDetailActivity, desriptor.color)
-                binding.toolbar.setBackgroundColor(color)
-                binding.appBar.setBackgroundColor(color)
-                binding.tabLayout.setBackgroundColor(color)
-                window.statusBarColor = color
-            }
+            binding.toolbar.setBackgroundColor(desriptor.color)
+            binding.appBar.setBackgroundColor(desriptor.color)
+            binding.tabLayout.setBackgroundColor(desriptor.color)
+            window.statusBarColor = desriptor.color
         }
     }
 
