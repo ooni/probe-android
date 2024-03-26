@@ -25,13 +25,12 @@
 
 		</androidx.appcompat.widget.Toolbar>
 
-	<com.github.florent37.shapeofview.shapes.ArcView
+	<io.github.florent37.shapeofview.shapes.ArcView
 		android:layout_width="match_parent"
 		android:layout_height="56dp"
 		android:id="@+id/arc_view"
 		app:layout_constraintTop_toBottomOf="@id/toolbar"
-		app:shape_arc_cropDirection="inside"
-		app:shape_arc_height="16dp"
+		app:shape_arc_height="-16dp"
 		app:shape_arc_position="bottom">
 
 		<View
@@ -39,7 +38,7 @@
 			android:layout_height="match_parent"
 			android:background="@color/color_base"/>
 
-	</com.github.florent37.shapeofview.shapes.ArcView>
+	</io.github.florent37.shapeofview.shapes.ArcView>
 
 	<Button
 		android:id="@+id/run_all"
