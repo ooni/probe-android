@@ -1,0 +1,20 @@
+<resources>
+    <string-array name="language_sort_options">
+        <item>Automatic</item>
+        <item>English</item>
+        <item>Français</item>
+        <item>Português</item>
+        <item>Pусский</item>
+        <item>Español</item>
+        <item>Türkçe</item>
+    </string-array>
+    <string-array name="language_sort_options_values">
+        <item>auto</item>
+        <item>en</item>
+        <item>fr</item>
+        <item>pt_rBR</item>
+        <item>ru</item>
+        <item>es</item>
+        <item>tr</item>
+    </string-array>
+</resources>
