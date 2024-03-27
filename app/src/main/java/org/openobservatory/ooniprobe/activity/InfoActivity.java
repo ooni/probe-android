@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.databinding.ActivityInfoBinding;
+import io.noties.markwon.Markwon;
 
 public class InfoActivity extends AbstractActivity {
 
@@ -18,6 +19,9 @@ public class InfoActivity extends AbstractActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		binding.version.setText(getString(R.string.version, BuildConfig.SOFTWARE_NAME, BuildConfig.VERSION_NAME));
 
+		Markwon.builder(this)
+				.build()
+				.setMarkdown(binding.desc, getString(R.string.Settings_About_Content_Paragraph));
 		binding.blog.setOnClickListener(v -> onBlogClick());
 		binding.reports.setOnClickListener(v -> onReportsClick());
 		binding.learnMore.setOnClickListener(v -> onLearnMoreClick());
