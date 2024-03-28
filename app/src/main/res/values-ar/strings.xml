@@ -164,7 +164,7 @@
   <string name="TestResults_Details_Failed_Title">فشل</string>
   <string name="TestResults_Details_Failed_Paragraph">باستطاعتك إجراء هذا الاختبار من جديد </string>
   <string name="TestResults_Details_Failed_TryAgain">الرجاء المحاولة مجددًا</string>
-  <string name="TestResults_Details_Methodology_Paragraph">التعرف على كيفية عمل هذا الاختبار [هنا]([رابط]).</string>
+  <string name="TestResults_Details_Methodology_Paragraph">التعرف على كيفية عمل هذا الاختبار [هنا](%1$s).</string>
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">مُتاح</string>
   <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s مُتاح.</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">محجوب على الأرجح</string>
