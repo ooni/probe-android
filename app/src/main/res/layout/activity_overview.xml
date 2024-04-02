@@ -87,6 +87,11 @@
                         </LinearLayout>
                     </LinearLayout>
 
+                    <include
+                        android:id="@+id/expired_tag"
+                        layout="@layout/expired_tag"
+                        android:visibility="gone"/>
+
                     <Button
                         android:id="@+id/customUrl"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"

@@ -1,72 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:layout_marginVertical="4dp"
-	android:clickable="true"
-	android:transitionName="@string/transitionNameCard"
-	app:cardCornerRadius="6dp"
-	app:cardElevation="0dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="4dp"
+    android:clickable="true"
+    android:transitionName="@string/transitionNameCard"
+    app:cardCornerRadius="6dp"
+    app:cardElevation="0dp">
 
-	<FrameLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:background="@drawable/card_boarder" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/card_boarder" />
 
-	<androidx.constraintlayout.widget.ConstraintLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_marginHorizontal="12dp"
-		android:layout_marginVertical="8dp"
-		android:orientation="vertical">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginVertical="8dp"
+        android:orientation="vertical">
 
-		<ImageView
-			android:id="@+id/icon"
-			android:layout_width="25dp"
-			android:layout_height="25dp"
-			android:src="@drawable/test_websites"
-			app:layout_constraintBottom_toTopOf="@+id/desc"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/test_websites"
+            app:layout_constraintBottom_toTopOf="@+id/desc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-		<TextView
-			android:id="@+id/title"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="8dp"
-			android:maxLines="1"
-			android:text="@string/Test_Websites_Fullname"
-			android:textAppearance="?attr/textAppearanceHeadline6"
-			android:textColor="@color/color_black"
-			android:textStyle="bold"
-			android:transitionName="@string/transitionNameTitle"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toEndOf="@id/icon"
-			app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/Test_Websites_Fullname"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@color/color_black"
+            android:textStyle="bold"
+            android:transitionName="@string/transitionNameTitle"
+            app:layout_constraintEnd_toStartOf="@id/end_layout"
+            app:layout_constraintStart_toEndOf="@id/icon"
+            app:layout_constraintTop_toTopOf="parent" />
 
-		<TextView
-			android:id="@+id/desc"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:maxLines="2"
-			android:text="@string/Dashboard_Websites_Card_Description"
-			android:textAppearance="?attr/textAppearanceBody2"
-			android:textColor="@color/color_gray6"
-			android:lines="1"
-			android:ellipsize="end"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toEndOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/title" />
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:maxLines="2"
+            android:text="@string/Dashboard_Websites_Card_Description"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/color_gray6"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintEnd_toStartOf="@id/end_layout"
+            app:layout_constraintStart_toStartOf="parent"/>
 
-		<ImageView
-			android:layout_width="20dp"
-			android:layout_height="20dp"
-			android:src="@drawable/chevron_right"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintTop_toTopOf="parent" />
-	</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:id="@+id/end_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/item_padding_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include
+                android:id="@+id/expired_tag"
+                layout="@layout/expired_tag"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/item_padding_large"/>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="@dimen/item_padding_small"
+                android:src="@drawable/chevron_right" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

@@ -226,7 +226,7 @@ class DescriptorUpdateFragment : Fragment() {
                     SimpleDateFormat(
                         "MMM dd, yyyy",
                         Locale.getDefault()
-                    ).format(descriptor.descriptorCreationTime)
+                    ).format(descriptor.dateCreated)
                 }"
                 description.text = absDescriptor.description // Use markdown
                 icon.setImageResource(absDescriptor.getDisplayIcon(requireContext()))
