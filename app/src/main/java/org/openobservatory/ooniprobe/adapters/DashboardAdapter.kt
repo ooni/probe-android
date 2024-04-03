@@ -59,10 +59,8 @@ class DashboardAdapter(
                         icon.setImageResource(item.getDisplayIcon(holder.itemView.context)).also {
                             if (item is InstalledDescriptor){
                                 icon.setColorFilter(item.color)
-                                item.descriptor?.expirationDate?.let {
-                                    if (it.before(Date())){
-                                        expiredTag.root.visibility = View.VISIBLE
-                                    }
+                                if (item.descriptor?.isExpired ==true ) {
+                                    expiredTag.root.visibility = View.VISIBLE
                                 }
                                 holder.setIsRecyclable(false)
                             }

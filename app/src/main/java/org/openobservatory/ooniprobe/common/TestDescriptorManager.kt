@@ -109,7 +109,8 @@ class TestDescriptorManager @Inject constructor(
     }
 
     fun getRunV2Descriptors(): List<TestDescriptor> {
-        return SQLite.select().from(TestDescriptor::class.java).queryList()
+        return SQLite.select().from(TestDescriptor::class.java)
+            .orderBy(TestDescriptor_Table.is_expired.asc()).queryList()
     }
 
     fun delete(descriptor: InstalledDescriptor): Boolean {

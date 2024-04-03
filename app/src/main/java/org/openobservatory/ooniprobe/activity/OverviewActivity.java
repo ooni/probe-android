@@ -109,7 +109,7 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
                                 descriptor.getDescription()
                         )
                 );
-                if (testDescriptor.getExpirationDate() != null && testDescriptor.getExpirationDate().before(new Date())) {
+                if (Boolean.TRUE.equals(testDescriptor.isExpired())) {
                     binding.expiredTag.getRoot().setVisibility(View.VISIBLE);
                 }
             } else {
