@@ -59,7 +59,8 @@ class TestDescriptorManager @Inject constructor(
         )
         val ooniContext = session.newContextWithTimeout(300)
 
-        val response: OONIRunDescriptor = session.ooniRunFetch(ooniContext, runId)
+        val response: OONIRunDescriptor =
+            session.ooniRunFetch(ooniContext, BuildConfig.OONI_API_BASE_URL, runId)
         return TestDescriptor(
             runId = runId,
             name = response.name,
@@ -112,7 +113,7 @@ class TestDescriptorManager @Inject constructor(
     }
 
     fun delete(descriptor: InstalledDescriptor): Boolean {
-        preferenceManager.sp.all.entries.forEach {entry ->
+        preferenceManager.sp.all.entries.forEach { entry ->
             if (entry.key.contains(descriptor.testDescriptor.runId.toString())) {
                 preferenceManager.sp.edit().remove(entry.key).apply()
             }
