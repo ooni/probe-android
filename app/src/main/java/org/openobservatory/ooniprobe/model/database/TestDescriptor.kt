@@ -76,6 +76,8 @@ class TestDescriptor(
 
     @Column(name = "is_expired")
     var isExpired: Boolean? = false,
+
+    // TODO(aanorbel): figure out whether we should remove this field.
     //@Column
     //var isArchived: Boolean = false,
 
