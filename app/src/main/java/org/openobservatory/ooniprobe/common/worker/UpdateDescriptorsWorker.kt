@@ -136,7 +136,7 @@ class ManualUpdateDescriptorsWorker(
 
             setProgressAsync(Data.Builder().putInt(PROGRESS, 100).build())
             if (updatedDescriptors.isEmpty()) {
-                Log.e(TAG, "No were updated")
+                Log.e(TAG, "No descriptors were updated")
                 Result.success()
             } else {
                 Result.success(outputData)
