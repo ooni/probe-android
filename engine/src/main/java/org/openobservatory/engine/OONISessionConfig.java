@@ -39,7 +39,7 @@ public final class OONISessionConfig {
      * usage of an alternative probe services. This setting
      * should only be used to implement integration tests.
      */
-    public String probeServicesURL;
+    String probeServicesURL;
 
     /**
      * softwareName is a mandatory setting specifying the name of
