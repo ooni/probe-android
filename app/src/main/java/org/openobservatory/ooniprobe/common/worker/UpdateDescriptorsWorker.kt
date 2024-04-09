@@ -101,11 +101,11 @@ class ManualUpdateDescriptorsWorker(
 
             val descriptors = inputData.getLongArray(KEY_DESCRIPTOR_IDS)?.let {
                 d.testDescriptorManager.getDescriptorsFromIds(it.toTypedArray())
-            }.run {
+            } ?: run {
                 d.testDescriptorManager.getDescriptorWithAutoUpdateDisabled()
             }
 
-            if(descriptors.isEmpty()) {
+            if (descriptors.isEmpty()) {
                 Log.e(TAG, "No descriptors to update")
                 return Result.success()
             }
@@ -135,7 +135,12 @@ class ManualUpdateDescriptorsWorker(
             Log.e(TAG, "fetching updates complete")
 
             setProgressAsync(Data.Builder().putInt(PROGRESS, 100).build())
-            Result.success(outputData)
+            if (updatedDescriptors.isEmpty()) {
+                Log.e(TAG, "No descriptors were updated")
+                Result.success()
+            } else {
+                Result.success(outputData)
+            }
 
         } catch (exception: Exception) {
             Log.e(TAG, "Error Updating")

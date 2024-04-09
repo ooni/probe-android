@@ -48,6 +48,7 @@ import org.openobservatory.ooniprobe.model.database.TestDescriptor;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -55,7 +56,7 @@ import javax.inject.Inject;
 
 import io.noties.markwon.Markwon;
 
-public class OverviewActivity extends ReviewUpdatesAbstractActivity implements ConfirmDialogFragment.OnClickListener  {
+public class OverviewActivity extends ReviewUpdatesAbstractActivity implements ConfirmDialogFragment.OnClickListener {
     private static final String TEST = "test";
 
     ActivityOverviewBinding binding;
@@ -104,10 +105,13 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
                         String.format(
                                 "Created by %s on %s\n\n%s",
                                 testDescriptor.getAuthor(),
-                                new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH).format(testDescriptor.getDescriptorCreationTime()),
+                                new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH).format(testDescriptor.getDateCreated()),
                                 descriptor.getDescription()
                         )
                 );
+                if (Boolean.TRUE.equals(testDescriptor.isExpired())) {
+                    binding.expiredTag.getRoot().setVisibility(View.VISIBLE);
+                }
             } else {
                 markwon.setMarkdown(binding.desc, descriptor.getDescription());
             }
@@ -258,13 +262,17 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
         if (workInfo != null) {
             switch (workInfo.getState()) {
                 case SUCCEEDED -> {
-                    binding.reviewUpdates.setVisibility(View.VISIBLE);
-                    binding.reviewUpdates.setOnClickListener(view -> getReviewUpdatesLauncher().launch(
-                            ReviewDescriptorUpdatesActivity.newIntent(
-                                    OverviewActivity.this,
-                                    workInfo.getOutputData().getString(ManualUpdateDescriptorsWorker.KEY_UPDATED_DESCRIPTORS)
-                            )
-                    ));
+
+                    String descriptor = workInfo.getOutputData().getString(ManualUpdateDescriptorsWorker.KEY_UPDATED_DESCRIPTORS);
+                    if (descriptor != null && !descriptor.isEmpty()) {
+                        binding.reviewUpdates.setVisibility(View.VISIBLE);
+                        binding.reviewUpdates.setOnClickListener(view -> getReviewUpdatesLauncher().launch(
+                                ReviewDescriptorUpdatesActivity.newIntent(
+                                        OverviewActivity.this,
+                                        descriptor
+                                )
+                        ));
+                    }
                     binding.swipeRefresh.setRefreshing(false);
                 }
 

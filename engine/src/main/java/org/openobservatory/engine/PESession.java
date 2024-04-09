@@ -1,7 +1,10 @@
 package org.openobservatory.engine;
 
 import android.util.Log;
+
 import com.google.gson.Gson;
+
+import oonimkall.HTTPRequest;
 import oonimkall.Oonimkall;
 import oonimkall.Session;
 
@@ -29,9 +32,12 @@ public final class PESession implements OONISession {
     }
 
     @Override
-    public OONIRunFetchResponse ooniRunFetch(OONIContext ctx, long id) throws Exception {
-        String response = session.ooniRunFetch(ctx.ctx,id);
+    public OONIRunDescriptor ooniRunFetch(OONIContext ctx, String probeServicesURL, long id) throws Exception {
+        HTTPRequest request = new HTTPRequest();
+        request.setMethod("GET");
+        request.setURL(probeServicesURL + "/api/v2/oonirun/links/" + id);
+        String response = session.httpDo(ctx.ctx, request).getBody();
         Log.d(PESession.class.getName(), response);
-        return new Gson().fromJson(response, OONIRunFetchResponse.class);
+        return new Gson().fromJson(response, OONIRunDescriptor.class);
     }
 }

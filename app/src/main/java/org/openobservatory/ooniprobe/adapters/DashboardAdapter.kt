@@ -1,18 +1,15 @@
 package org.openobservatory.ooniprobe.adapters
 
-import android.content.res.Resources
-import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.common.AbstractDescriptor
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.databinding.ItemSeperatorBinding
 import org.openobservatory.ooniprobe.databinding.ItemTestsuiteBinding
 import org.openobservatory.ooniprobe.model.database.InstalledDescriptor
+import java.util.Date
 
 class DashboardAdapter(
     private val items: List<Any>,
@@ -62,6 +59,9 @@ class DashboardAdapter(
                         icon.setImageResource(item.getDisplayIcon(holder.itemView.context)).also {
                             if (item is InstalledDescriptor){
                                 icon.setColorFilter(item.color)
+                                if (item.descriptor?.isExpired == true) {
+                                    expiredTag.root.visibility = View.VISIBLE
+                                }
                                 holder.setIsRecyclable(false)
                             }
                         }

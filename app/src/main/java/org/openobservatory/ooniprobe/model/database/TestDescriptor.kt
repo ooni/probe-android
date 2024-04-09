@@ -25,40 +25,68 @@ import com.raizlabs.android.dbflow.annotation.TypeConverter as TypeConverterAnno
 
 @Table(database = AppDatabase::class)
 class TestDescriptor(
+
     @PrimaryKey
     var runId: Long = 0,
+
     @Column
     var name: String = "",
-    @Column(name = "name_intl", typeConverter = MapConverter::class)
-    var nameIntl: Any? = null,
-    @Column
-    var author: String = "",
+
     @Column(name = "short_description")
     var shortDescription: String = "",
-    @Column(name = "short_description_intl", typeConverter = MapConverter::class)
-    var shortDescriptionIntl: Any? = null,
+
     @Column
     var description: String = "",
+
+    @Column
+    var author: String = "",
+
+    @Column(typeConverter = NettestConverter::class)
+    var nettests: Any = emptyList<OONIRunNettest>(),
+
+    @Column(name = "name_intl", typeConverter = MapConverter::class)
+    var nameIntl: Any? = null,
+
+    @Column(name = "short_description_intl", typeConverter = MapConverter::class)
+    var shortDescriptionIntl: Any? = null,
+
     @Column(name = "description_intl", typeConverter = MapConverter::class)
     var descriptionIntl: Any? = null,
+
     @Column
     var icon: String? = null,
+
     @Column
     var color: String? = null,
+
     @Column
     var animation: String? = null,
+
+    @Column(name = "expiration_date")
+    var expirationDate: Date? = null,
+
+    @Column(name = "date_created")
+    var dateCreated: Date? = null,
+
+    @Column(name = "date_updated")
+    var dateUpdated: Date? = null,
+
     @Column
-    var isArchived: Boolean = false,
+    var revision: String? = null,
+
+    @Column(name = "is_expired")
+    var isExpired: Boolean? = false,
+
+    // TODO(aanorbel): figure out whether we should remove this field.
+    //@Column
+    //var isArchived: Boolean = false,
+
     @Column(name = "auto_run")
     var isAutoRun: Boolean = true,
+
     @Column(name = "auto_update")
     var isAutoUpdate: Boolean = false,
-    @Column(name = "descriptor_creation_time")
-    var descriptorCreationTime: Date? = null,
-    @Column(name = "translation_creation_time")
-    var translationCreationTime: Date? = null,
-    @Column(typeConverter = NettestConverter::class)
-    var nettests: Any = emptyList<OONIRunNettest>()
+
 ) : BaseModel(), Serializable {
     fun preferencePrefix(): String {
         return "${runId}_"
@@ -66,14 +94,12 @@ class TestDescriptor(
 }
 
 /**
- * Check if the descriptor should be updated based on the creation time of the descriptor and the creation time of the translations.
- *
- * @param updatedDescriptor The updated descriptor
- * @return True if the descriptor should be updated based on the creation time of the descriptor and the creation time of the translations.
+ * Check if the test descriptor should be updated
+ * @param updatedDescriptor The new descriptor
+ * @return True if the descriptor should be updated, False otherwise
  */
 fun TestDescriptor.shouldUpdate(updatedDescriptor: TestDescriptor): Boolean {
-    return (updatedDescriptor.descriptorCreationTime?.after(descriptorCreationTime) ?: true
-            || updatedDescriptor.translationCreationTime?.after(translationCreationTime) ?: true)
+    return (updatedDescriptor.dateUpdated?.after(dateUpdated) ?: true)
 }
 
 private const val DESCRIPTOR_TEST_NAME = "ooni_run"
@@ -102,10 +128,6 @@ class InstalledDescriptor(
         false -> emptyList()
     },
     descriptor = testDescriptor) {
-
-    override fun isEnabled(preferenceManager: PreferenceManager): Boolean {
-        return !testDescriptor.isArchived
-    }
 
     override fun getRuntime(context: Context, preferenceManager: PreferenceManager): Int {
         return R.string.TestResults_NotAvailable
@@ -190,15 +212,18 @@ class ITestDescriptor(
 
     var name: String = "",
 
-    var nameIntl: HashMap<String, String>? = null,
+    var shortDescription: String = "",
+
+    var description: String = "",
 
     var author: String = "",
 
-    var shortDescription: String = "",
+
+    var nettests: List<OONIRunNettest>? = emptyList(),
+
+    var nameIntl: HashMap<String, String>? = null,
 
     var shortDescriptionIntl: HashMap<String, String>? = null,
-
-    var description: String = "",
 
     var descriptionIntl: HashMap<String, String>? = null,
 
@@ -208,37 +233,39 @@ class ITestDescriptor(
 
     var animation: String? = null,
 
-    var isArchived: Boolean = false,
+    val expirationDate: Date? = null,
 
-    var isAutoRun: Boolean = true,
+    val dateCreated: Date? = null,
+
+    val dateUpdated: Date? = null,
+
+    val revision: String? = null,
+
+    val isExpired: Boolean? = false,
 
     var isAutoUpdate: Boolean = false,
 
-    var descriptorCreationTime: Date? = null,
-
-    var translationCreationTime: Date? = null,
-
-    var nettests: List<OONIRunNettest>? = emptyList()
 ) : Serializable {
     fun toTestDescriptor(): TestDescriptor {
         return TestDescriptor(
             runId = runId,
             name = name,
-            nameIntl = nameIntl,
-            author = author,
             shortDescription = shortDescription,
-            shortDescriptionIntl = shortDescriptionIntl,
             description = description,
+            author = author,
+            nettests = nettests?: emptyList<OONIRunNettest>(),
+            nameIntl = nameIntl,
+            shortDescriptionIntl = shortDescriptionIntl,
             descriptionIntl = descriptionIntl,
             icon = icon,
             color = color,
             animation = animation,
-            isArchived = isArchived,
-            isAutoRun = isAutoRun,
-            isAutoUpdate = isAutoUpdate,
-            descriptorCreationTime = descriptorCreationTime,
-            translationCreationTime = translationCreationTime,
-            nettests = nettests ?: emptyList<OONIRunNettest>()
+            expirationDate = expirationDate,
+            dateCreated = dateCreated,
+            dateUpdated = dateUpdated,
+            revision = revision,
+            isExpired = isExpired,
+            isAutoUpdate = isAutoUpdate
         )
     }
 }

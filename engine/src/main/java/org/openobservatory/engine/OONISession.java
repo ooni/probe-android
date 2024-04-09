@@ -30,6 +30,6 @@ public interface OONISession {
      * @param id ooni run id
      * @return [OONIRunFetchResponse] with the contents of the ooni run descriptor.
      */
-    OONIRunFetchResponse ooniRunFetch(OONIContext ctx, long id) throws Exception;
+    OONIRunDescriptor ooniRunFetch(OONIContext ctx, String probeServicesURL, long id) throws Exception;
 
 }

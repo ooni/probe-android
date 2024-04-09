@@ -4,7 +4,7 @@ import android.content.Context
 import com.raizlabs.android.dbflow.sql.language.SQLite
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.engine.LoggerArray
-import org.openobservatory.engine.OONIRunFetchResponse
+import org.openobservatory.engine.OONIRunDescriptor
 import org.openobservatory.ooniprobe.BuildConfig
 import org.openobservatory.ooniprobe.activity.adddescriptor.adapter.GroupedItem
 import org.openobservatory.ooniprobe.model.database.InstalledDescriptor
@@ -59,23 +59,26 @@ class TestDescriptorManager @Inject constructor(
         )
         val ooniContext = session.newContextWithTimeout(300)
 
-        val response: OONIRunFetchResponse = session.ooniRunFetch(ooniContext, runId)
+        val response: OONIRunDescriptor =
+            session.ooniRunFetch(ooniContext, BuildConfig.OONI_API_BASE_URL, runId)
         return TestDescriptor(
             runId = runId,
-            name = response.descriptor.name,
-            nameIntl = response.descriptor.nameIntl,
-            author = response.descriptor.author,
-            shortDescription = response.descriptor.shortDescription,
-            shortDescriptionIntl = response.descriptor.shortDescriptionIntl,
-            description = response.descriptor.description,
-            descriptionIntl = response.descriptor.descriptionIntl,
-            icon = response.descriptor.icon,
-            color = response.descriptor.color,
-            animation = response.descriptor.animation,
-            isArchived = response.archived,
-            descriptorCreationTime = response.creationTime,
-            translationCreationTime = response.translationCreationTime,
-            nettests = response.descriptor.nettests
+            name = response.name,
+            shortDescription = response.shortDescription,
+            description = response.description,
+            author = response.author,
+            nettests = response.nettests,
+            nameIntl = response.nameIntl,
+            shortDescriptionIntl = response.shortDescriptionIntl,
+            descriptionIntl = response.descriptionIntl,
+            icon = response.icon,
+            color = response.color,
+            animation = response.animation,
+            expirationDate = response.expirationDate,
+            dateCreated = response.dateCreated,
+            dateUpdated = response.dateUpdated,
+            revision = response.revision,
+            isExpired = response.isExpired
         )
     }
 
@@ -107,11 +110,11 @@ class TestDescriptorManager @Inject constructor(
 
     fun getRunV2Descriptors(): List<TestDescriptor> {
         return SQLite.select().from(TestDescriptor::class.java)
-            .where(TestDescriptor_Table.isArchived.eq(false)).queryList()
+            .orderBy(TestDescriptor_Table.is_expired.asc()).queryList()
     }
 
     fun delete(descriptor: InstalledDescriptor): Boolean {
-        preferenceManager.sp.all.entries.forEach {entry ->
+        preferenceManager.sp.all.entries.forEach { entry ->
             if (entry.key.contains(descriptor.testDescriptor.runId.toString())) {
                 preferenceManager.sp.edit().remove(entry.key).apply()
             }
