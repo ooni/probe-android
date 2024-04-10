@@ -4,6 +4,11 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import oonimkall.HTTPRequest;
 import oonimkall.Oonimkall;
 import oonimkall.Session;
@@ -32,12 +37,32 @@ public final class PESession implements OONISession {
     }
 
     @Override
-    public OONIRunDescriptor ooniRunFetch(OONIContext ctx, String probeServicesURL, long id) throws Exception {
+    public OONIRunDescriptor getLatestOONIRunLink(OONIContext ctx, String probeServicesURL, long id) throws Exception {
         HTTPRequest request = new HTTPRequest();
         request.setMethod("GET");
         request.setURL(probeServicesURL + "/api/v2/oonirun/links/" + id);
         String response = session.httpDo(ctx.ctx, request).getBody();
-        Log.d(PESession.class.getName(), response);
         return new Gson().fromJson(response, OONIRunDescriptor.class);
+    }
+
+    @Override
+    public List<OONIRunDescriptor> getOONIRunLinkRevisions(OONIContext ooniContext, @NotNull String probeServicesURL, long runId) throws Exception {
+        HTTPRequest request = new HTTPRequest();
+        request.setMethod("GET");
+        request.setURL(probeServicesURL + "/api/v2/oonirun/links/" + runId + "/revisions");
+        String response = session.httpDo(ooniContext.ctx, request).getBody();
+        OONIRunRevisions revisions = new Gson().fromJson(response, OONIRunRevisions.class);
+
+        //remove the first element of the list, which is the latest revision
+        revisions.getRevisions().remove(0);
+        List<OONIRunDescriptor> descriptors = new ArrayList<>();
+        for (String revision : revisions.getRevisions()) {
+            request.setURL(probeServicesURL + "/api/v2/oonirun/links/" + runId + "/full-descriptor/" + revision);
+            response = session.httpDo(ooniContext.ctx, request).getBody();
+            OONIRunDescriptor descriptor = new Gson().fromJson(response, OONIRunDescriptor.class);
+            Log.d("OONI", "Revision: " + descriptor.getRevision());
+            descriptors.add(descriptor);
+        }
+        return descriptors;
     }
 }

@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.common
 
 import android.content.Context
+import com.google.gson.Gson
 import com.raizlabs.android.dbflow.sql.language.SQLite
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.engine.LoggerArray
@@ -60,26 +61,24 @@ class TestDescriptorManager @Inject constructor(
         val ooniContext = session.newContextWithTimeout(300)
 
         val response: OONIRunDescriptor =
-            session.ooniRunFetch(ooniContext, BuildConfig.OONI_API_BASE_URL, runId)
-        return TestDescriptor(
-            runId = runId,
-            name = response.name,
-            shortDescription = response.shortDescription,
-            description = response.description,
-            author = response.author,
-            nettests = response.nettests,
-            nameIntl = response.nameIntl,
-            shortDescriptionIntl = response.shortDescriptionIntl,
-            descriptionIntl = response.descriptionIntl,
-            icon = response.icon,
-            color = response.color,
-            animation = response.animation,
-            expirationDate = response.expirationDate,
-            dateCreated = response.dateCreated,
-            dateUpdated = response.dateUpdated,
-            revision = response.revision,
-            isExpired = response.isExpired
-        )
+            session.getLatestOONIRunLink(ooniContext, BuildConfig.OONI_API_BASE_URL, runId)
+
+        var revisions: List<OONIRunDescriptor> = emptyList()
+
+        try {
+            if (Integer.parseInt(response.revision) > 1) {
+                revisions = session.getOONIRunLinkRevisions(
+                    ooniContext,
+                    BuildConfig.OONI_API_BASE_URL,
+                    runId
+                )
+            }
+        } catch (e: Exception) {
+            ThirdPartyServices.logException(e)
+        }
+        return response.toTestDescriptor().apply {
+            previousRevision = Gson().toJson(revisions)
+        }
     }
 
     fun addDescriptor(
@@ -150,4 +149,26 @@ class TestDescriptorManager @Inject constructor(
             .where(TestDescriptor_Table.runId.`in`(ids.toList()))
             .queryList()
     }
+}
+
+fun OONIRunDescriptor.toTestDescriptor(): TestDescriptor {
+    return TestDescriptor(
+        runId = oonirunLinkId.toLong(),
+        name = name,
+        shortDescription = shortDescription,
+        description = description,
+        author = author,
+        nettests = nettests,
+        nameIntl = nameIntl,
+        shortDescriptionIntl = shortDescriptionIntl,
+        descriptionIntl = descriptionIntl,
+        icon = icon,
+        color = color,
+        animation = animation,
+        expirationDate = expirationDate,
+        dateCreated = dateCreated,
+        dateUpdated = dateUpdated,
+        revision = revision,
+        isExpired = isExpired
+    )
 }

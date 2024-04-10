@@ -117,7 +117,10 @@ class ReviewDescriptorUpdatesActivity : AbstractActivity() {
                             if ((currPos + 1) != binding.viewpager.adapter?.itemCount) {
                                 binding.viewpager.currentItem = currPos + 1
                             } else {
-                                setResult(RESULT_OK, Intent().putExtra(RESULT_MESSAGE, "Link(s) updated"))
+                                setResult(
+                                    RESULT_OK,
+                                    Intent().putExtra(RESULT_MESSAGE, "Link(s) updated")
+                                )
                                 finish()
                             }
                             true
@@ -201,7 +204,35 @@ private const val DESCRIPTOR = "descriptor"
  */
 class DescriptorUpdateFragment : Fragment() {
 
+    companion object {
+
+        @JvmStatic
+        fun bindData(context: Context, descriptor: TestDescriptor, binding: FragmentDescriptorUpdateBinding): InstalledDescriptor {
+            val absDescriptor = InstalledDescriptor(descriptor)
+            binding.apply {
+                title.text = absDescriptor.title
+                author.text = "Created by ${descriptor.author} on ${
+                    SimpleDateFormat(
+                        "MMM dd, yyyy",
+                        Locale.getDefault()
+                    ).format(descriptor.dateCreated)
+                }"
+                description.text = absDescriptor.description // Use markdown
+                icon.setImageResource(absDescriptor.getDisplayIcon(context))
+                val adapter =
+                    ReviewDescriptorExpandableListAdapter(nettests = absDescriptor.nettests)
+                expandableListView.setAdapter(adapter)
+                // Expand all groups
+                for (i in 0 until adapter.groupCount) {
+                    expandableListView.expandGroup(i)
+                }
+            }
+            return absDescriptor
+        }
+    }
+
     private lateinit var binding: FragmentDescriptorUpdateBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -219,25 +250,7 @@ class DescriptorUpdateFragment : Fragment() {
                 } else {
                     getSerializable(DESCRIPTOR) as TestDescriptor
                 }
-            val absDescriptor = InstalledDescriptor(descriptor)
-            binding.apply {
-                title.text = absDescriptor.title
-                author.text = "Created by ${descriptor.author} on ${
-                    SimpleDateFormat(
-                        "MMM dd, yyyy",
-                        Locale.getDefault()
-                    ).format(descriptor.dateCreated)
-                }"
-                description.text = absDescriptor.description // Use markdown
-                icon.setImageResource(absDescriptor.getDisplayIcon(requireContext()))
-                val adapter =
-                    ReviewDescriptorExpandableListAdapter(nettests = absDescriptor.nettests)
-                expandableListView.setAdapter(adapter)
-                // Expand all groups
-                for (i in 0 until adapter.groupCount) {
-                    expandableListView.expandGroup(i)
-                }
-            }
+            bindData(requireContext(), descriptor, binding)
         }
     }
 }
