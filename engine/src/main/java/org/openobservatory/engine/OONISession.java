@@ -37,5 +37,5 @@ public interface OONISession {
      */
     OONIRunDescriptor getLatestOONIRunLink(OONIContext ctx, String probeServicesURL, long id) throws Exception;
 
-    List<OONIRunDescriptor> getOONIRunLinkRevisions(@Nullable OONIContext ooniContext, @NotNull String probeServicesURL, long runId) throws Exception ;
+    OONIRunRevisions getOONIRunLinkRevisions(@Nullable OONIContext ooniContext, @NotNull String probeServicesURL, long runId) throws Exception ;
 }

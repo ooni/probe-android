@@ -13,6 +13,7 @@
         style="?attr/textAppearanceHeadline6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:text="Previous revisions" />
 
     <androidx.recyclerview.widget.RecyclerView

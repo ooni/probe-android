@@ -95,12 +95,6 @@
             android:parentActivityName=".activity.MainActivity"
             android:screenOrientation="userPortrait"
             android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar" />
-
-        <activity
-            android:name=".activity.overview.RevisionsViewActivity"
-            android:launchMode="singleTop"
-            android:parentActivityName=".activity.OverviewActivity"
-            android:screenOrientation="userPortrait"/>
         <activity
             android:name=".activity.ResultDetailActivity"
             android:launchMode="singleTop"

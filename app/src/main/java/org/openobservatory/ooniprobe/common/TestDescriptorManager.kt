@@ -6,6 +6,7 @@ import com.raizlabs.android.dbflow.sql.language.SQLite
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.engine.LoggerArray
 import org.openobservatory.engine.OONIRunDescriptor
+import org.openobservatory.engine.OONIRunRevisions
 import org.openobservatory.ooniprobe.BuildConfig
 import org.openobservatory.ooniprobe.activity.adddescriptor.adapter.GroupedItem
 import org.openobservatory.ooniprobe.model.database.InstalledDescriptor
@@ -63,7 +64,7 @@ class TestDescriptorManager @Inject constructor(
         val response: OONIRunDescriptor =
             session.getLatestOONIRunLink(ooniContext, BuildConfig.OONI_API_BASE_URL, runId)
 
-        var revisions: List<OONIRunDescriptor> = emptyList()
+        var revisions: OONIRunRevisions? = null
 
         try {
             if (Integer.parseInt(response.revision) > 1) {

@@ -168,7 +168,13 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
 
             try {
                 if (Integer.parseInt(installedDescriptor.getTestDescriptor().getRevision()) > 1) {
-                    getSupportFragmentManager().beginTransaction().add(binding.revisionsContainer.getId(), RevisionsFragment.newInstance(installedDescriptor.getDescriptor().getPreviousRevision())).commit();
+                    getSupportFragmentManager().beginTransaction().add(
+                            binding.revisionsContainer.getId(),
+                            RevisionsFragment.newInstance(
+                                    installedDescriptor.getDescriptor().getRunId(),
+                                    installedDescriptor.getDescriptor().getPreviousRevision()
+                            )
+                    ).commit();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
