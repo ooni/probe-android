@@ -23,6 +23,7 @@ import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.common.disableTest
 import org.openobservatory.ooniprobe.common.enableTest
 import org.openobservatory.ooniprobe.databinding.ActivityRunTestsBinding
+import org.openobservatory.ooniprobe.model.database.InstalledDescriptor
 import java.io.Serializable
 import javax.inject.Inject
 
@@ -40,13 +41,25 @@ class RunTestsActivity : AbstractActivity() {
 	companion object {
 		const val TESTS: String = "tests"
 
+        /**
+         * Create a new intent to start the [RunTestsActivity].
+         * @param context The context from which the activity is started.
+         * @param testSuites The list of test suites to run.
+         * @return The intent to start the [RunTestsActivity] with unexpired descriptors.
+         */
         @JvmStatic
         fun newIntent(context: Context, testSuites: List<AbstractDescriptor<BaseNettest>>): Intent {
             return Intent(context, RunTestsActivity::class.java).putExtras(Bundle().apply {
-                putSerializable(TESTS, testSuites as Serializable)
+                putSerializable(TESTS, testSuites.filter {
+                    if (it is InstalledDescriptor) {
+                        return@filter it.descriptor?.isExpired == false
+                    } else {
+                        return@filter true
+                    }
+                } as Serializable)
             })
         }
-	}
+    }
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
