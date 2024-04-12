@@ -223,6 +223,13 @@
                         app:layout_constraintTop_toBottomOf="@id/header"
                         tools:listitem="@layout/overview_test_group_list_item" />
 
+                    <FrameLayout
+                        android:id="@+id/revisions_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/expandable_list_view"/>
+
                     <Button
                         android:id="@+id/uninstall_link"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
@@ -236,7 +243,7 @@
                         android:visibility="gone"
                         app:cornerRadius="24dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/expandable_list_view"
+                        app:layout_constraintTop_toBottomOf="@id/revisions_container"
                         app:rippleColor="@color/ripple_material_dark"
                         app:strokeColor="@color/color_red9"
                         tools:visibility="visible" />

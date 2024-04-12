@@ -34,6 +34,7 @@ import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.customwebsites.CustomWebsiteActivity;
 import org.openobservatory.ooniprobe.activity.overview.OverviewTestsExpandableListViewAdapter;
 import org.openobservatory.ooniprobe.activity.overview.OverviewViewModel;
+import org.openobservatory.ooniprobe.activity.overview.RevisionsFragment;
 import org.openobservatory.ooniprobe.activity.reviewdescriptorupdates.ReviewDescriptorUpdatesActivity;
 import org.openobservatory.ooniprobe.common.AbstractDescriptor;
 import org.openobservatory.ooniprobe.common.OONITests;
@@ -48,7 +49,6 @@ import org.openobservatory.ooniprobe.model.database.TestDescriptor;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -163,7 +163,22 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
         if (descriptor instanceof InstalledDescriptor) {
             binding.uninstallLink.setVisibility(View.VISIBLE);
             binding.automaticUpdatesContainer.setVisibility(View.VISIBLE);
-            binding.automaticUpdatesSwitch.setChecked(((InstalledDescriptor) descriptor).getTestDescriptor().isAutoUpdate());
+            InstalledDescriptor installedDescriptor = (InstalledDescriptor) descriptor;
+            binding.automaticUpdatesSwitch.setChecked(installedDescriptor.getTestDescriptor().isAutoUpdate());
+
+            try {
+                if (Integer.parseInt(installedDescriptor.getTestDescriptor().getRevision()) > 1) {
+                    getSupportFragmentManager().beginTransaction().add(
+                            binding.revisionsContainer.getId(),
+                            RevisionsFragment.newInstance(
+                                    installedDescriptor.getDescriptor().getRunId(),
+                                    installedDescriptor.getDescriptor().getPreviousRevision()
+                            )
+                    ).commit();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else {
             binding.uninstallLink.setVisibility(View.GONE);
             /**

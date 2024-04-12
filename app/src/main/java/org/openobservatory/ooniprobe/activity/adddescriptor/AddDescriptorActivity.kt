@@ -153,6 +153,7 @@ class AddDescriptorActivity : AbstractActivity() {
             }
 
             binding.btnCancel.setOnClickListener {
+                Toast.makeText(this@AddDescriptorActivity, "Link installation cancelled", Toast.LENGTH_LONG).show()
                 finish()
             }
 

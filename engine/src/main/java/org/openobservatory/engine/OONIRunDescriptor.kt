@@ -69,3 +69,8 @@ open class OONIRunNettest(
 
     open var inputs: List<String>?
 ) : Serializable
+
+
+class OONIRunRevisions(
+    val revisions: List<String>
+) : Serializable

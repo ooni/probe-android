@@ -74,12 +74,12 @@ class TestDescriptor(
     @Column
     var revision: String? = null,
 
+
+    @Column(name = "previous_revision")
+    var previousRevision: String? = null,
+
     @Column(name = "is_expired")
     var isExpired: Boolean? = false,
-
-    // TODO(aanorbel): figure out whether we should remove this field.
-    //@Column
-    //var isArchived: Boolean = false,
 
     @Column(name = "auto_run")
     var isAutoRun: Boolean = true,
@@ -241,6 +241,8 @@ class ITestDescriptor(
 
     val revision: String? = null,
 
+    var previousRevision: String? = null,
+
     val isExpired: Boolean? = false,
 
     var isAutoUpdate: Boolean = false,
@@ -264,6 +266,7 @@ class ITestDescriptor(
             dateCreated = dateCreated,
             dateUpdated = dateUpdated,
             revision = revision,
+            previousRevision = previousRevision,
             isExpired = isExpired,
             isAutoUpdate = isAutoUpdate
         )
