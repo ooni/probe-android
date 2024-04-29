@@ -14,7 +14,7 @@ android {
         minSdk libs.versions.minSdk.get().toInteger()
         targetSdk libs.versions.targetSdk.get().toInteger()
         versionName '3.8.7'
-        versionCode 112
+        versionCode 113
 		testInstrumentationRunner "org.openobservatory.ooniprobe.TestAndroidJUnitRunner"
 		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://countly.ooni.io"'
@@ -91,6 +91,13 @@ android {
             dimension 'license'
         }
     }
+
+    bundle {
+        language {
+            enableSplit = false
+        }
+    }
+
     applicationVariants.all { variant ->
         variant.resValue "string", "APP_ID", "\"${applicationId}\""
     }
