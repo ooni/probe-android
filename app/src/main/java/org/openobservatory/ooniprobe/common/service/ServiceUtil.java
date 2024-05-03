@@ -107,7 +107,7 @@ public class ServiceUtil {
         testSuites.add(new CircumventionSuite());
         testSuites.add(new PerformanceSuite());
         testSuites.add(new ExperimentalSuite());
-        ServiceUtil.startRunTestService(app, testSuites, false);
+        startRunTestServiceCommon(app, testSuites, false, true);
 
     }
 
