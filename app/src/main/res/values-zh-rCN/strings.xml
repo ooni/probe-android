@@ -58,7 +58,7 @@
   <string name="Dashboard_Card_Subtitle">触击选项卡以查看详情</string>
   <string name="Dashboard_Card_Seconds">~%1$ss</string>
   <string name="Dashboard_Websites_Card_Description">测试网站是否被屏蔽</string>
-  <string name="Dashboard_Websites_Overview_Paragraph">使用 OONI 的[网络连接测试](https://ooni.org/nettest/web-connectivity/)检查网站是否被屏蔽。\n\n每次你点击 \"运行\"，你都会从公民实验室的[全球](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv)和[特定国家](https://github.com/citizenlab/test-lists/tree/master/lists)测试列表中测试不同的网站。\n\n要测试您选择的网站，请点击选择网站按钮或通过此卡的设置选择网站类别。\n\n该测试测量网站是否被 DNS 篡改、TCP/IP 封锁或透明的 HTTP 代理所屏蔽。\n\n您的结果将被发布在 [OONI Explorer](https://explorer.ooni.org/world/)和[OONI API](https://api.ooni.io/)。</string>
+  <string name="Dashboard_Websites_Overview_Paragraph">使用 OONI 的[网页连通性测试](https://ooni.org/nettest/web-connectivity/)检查网站是否被屏蔽。\n\n每次您点击“运行”时，都会测试公民实验室的[全球](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv)和[特定国家](https://github.com/citizenlab/test-lists/tree/master/lists)列表中的一些网站。\n\n如要测试您自选的网站，点击“选择网站”按钮或通过本卡片的设置选择网站类别。\n\n此测试测量网站是否遭受 DNS 篡改、TCP/IP 封锁或透明 HTTP 代理的屏蔽。\n\n您的测试结果会被发布在 [OONI Explorer](https://explorer.ooni.org/world/) 和 [OONI API](https://api.ooni.io/)。</string>
   <string name="Dashboard_Websites_Overview_Paragraph_Desktop">使用 OONI 的[网络连接测试](https://ooni.org/nettest/web-connectivity/)检查网站是否被屏蔽。\n\n你将测试公民实验室的[全球](https://github.com/citizenlab/test-lists/blob/master/lists/global.csv)和[特定国家](https://github.com/citizenlab/test-lists/tree/master/lists)测试列表中的网站。\n\n这项测试测量网站是否被 DNS 篡改、TCP/IP 封锁或透明的 HTTP 代理所屏蔽。\n\n你的结果将被发布在 [OONI Explorer](https://explorer.ooni.org/)和[OONI API](https://api.ooni.io/)。</string>
   <string name="Dashboard_Performance_Card_Description">测试您的网速和性能</string>
   <string name="Dashboard_Performance_Overview_Paragraph">使用 [NDT](https://ooni.org/nettest/ndt/) 测试测量你的网络速度和性能。\n\n使用 [DASH](https://ooni.org/nettest/dash/) 测试测量视频流性能。\n\n这些测试消耗的数据取决于你的网络速度。\n\n您的结果将被发布在 [OONI Explorer](https://explorer.ooni.org/world/)和[OONI API](https://api.ooni.io/)。\n\n免责声明：这些测试依赖于第三方服务器。因此，我们不能保证你的 IP 地址不会被收集。</string>
@@ -306,7 +306,7 @@
   <string name="Modal_OnlyDigits">此字段只能输入数字。</string>
   <string name="Modal_ReRun_Title">重新运行测试</string>
   <string name="Modal_ReRun_Paragraph">此测试已失败。重新运行此测试？</string>
-  <string name="Modal_ReRun_Websites_Title">你正准备重新测试 %1$s 家网站。</string>
+  <string name="Modal_ReRun_Websites_Title">您即将重新测试 %1$s 个网站。</string>
   <string name="Modal_ReRun_Websites_Run">运行</string>
   <string name="Modal_CustomURL_NotSaved">离开此屏幕将不会保存您的 URL。确定离开吗？</string>
   <string name="Modal_ManualUpload_Title">启用手动上传？</string>
@@ -337,7 +337,7 @@
   <string name="Test_Experimental_Fullname">试验性</string>
   <string name="Test_HTTPInvalidRequestLine_Fullname">HTTP Invalid Request Line 测试</string>
   <string name="Test_HTTPHeaderFieldManipulation_Fullname">HTTP Header Field Manipulation 测试</string>
-  <string name="Test_WebConnectivity_Fullname">Web Connectivity 测试</string>
+  <string name="Test_WebConnectivity_Fullname">网页连通性测试</string>
   <string name="Test_NDT_Fullname">NDT 网速测试</string>
   <string name="Test_Dash_Fullname">DASH 流测试</string>
   <string name="Test_WhatsApp_Fullname">WhatsApp 测试</string>
@@ -496,7 +496,7 @@
   <string name="CategoryCode_ECON_Name">经济</string>
   <string name="CategoryCode_GOVT_Name">政府</string>
   <string name="CategoryCode_COMM_Name">电子商务</string>
-  <string name="CategoryCode_CTRL_Name">控制内容</string>
+  <string name="CategoryCode_CTRL_Name">质控内容</string>
   <string name="CategoryCode_IGO_Name">政府间组织</string>
   <string name="CategoryCode_MISC_Name">其他内容</string>
   <string name="CategoryCode_ALDR_Description">毒品和酒精的使用和销售</string>
@@ -527,7 +527,7 @@
   <string name="CategoryCode_ECON_Description">一般性经济发展与贫困</string>
   <string name="CategoryCode_GOVT_Description">政府运营的网站，包括军方</string>
   <string name="CategoryCode_COMM_Description">商业服务和产品</string>
-  <string name="CategoryCode_CTRL_Description">用于控制的良性或无害内容</string>
+  <string name="CategoryCode_CTRL_Description">用于品质控制的良性或无害内容</string>
   <string name="CategoryCode_IGO_Description">政府间组织，例如联合国</string>
   <string name="CategoryCode_MISC_Description">尚未分类的网站</string>
 </resources>

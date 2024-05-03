@@ -11,14 +11,14 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.databinding.ItemMeasurementBinding;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
+@Deprecated
 public class MeasurementItem extends HeterogeneousRecyclerItem<Measurement, MeasurementItem.ViewHolder> {
 	private final View.OnClickListener onClickListener;
 
@@ -28,7 +28,7 @@ public class MeasurementItem extends HeterogeneousRecyclerItem<Measurement, Meas
 	}
 
 	@Override public ViewHolder onCreateViewHolder(LayoutInflater layoutInflater, ViewGroup viewGroup) {
-		return new ViewHolder(layoutInflater.inflate(R.layout.item_measurement, viewGroup, false));
+		return new ViewHolder(ItemMeasurementBinding.inflate(layoutInflater, viewGroup, false));
 	}
 
 	@Override public void onBindViewHolder(ViewHolder viewHolder) {
@@ -65,12 +65,12 @@ public class MeasurementItem extends HeterogeneousRecyclerItem<Measurement, Meas
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {
-		@BindView(R.id.text) TextView text;
+		TextView text;
 
-		ViewHolder(View itemView) {
-			super(itemView);
-			ButterKnife.bind(this, itemView);
-			text.setOnClickListener(onClickListener);
+		ViewHolder(ItemMeasurementBinding binding) {
+			super(binding.getRoot());
+			this.text = binding.text;
+			this.text.setOnClickListener(onClickListener);
 		}
 	}
 }
