@@ -98,8 +98,16 @@ public class ServiceUtil {
 	 * Application context used to start `RunTestService`.
 	 */
     public static void startRunTestServiceNetworkChanged(Application app) {
+        app.getServiceComponent().inject(d);
 
-		// TODO: (aanorbel) - Enforce constraints required before tests are run.
+        boolean isVPNInUse = ReachabilityManager.isVPNinUse(app);
+
+        OONICheckInConfig config = app.getOONICheckInConfig();
+
+        if (!d.generateAutoRunServiceSuite.shouldStart(config.isOnWiFi(),config.isCharging(), isVPNInUse)) {
+            return;
+        }
+
 		//  Tag tests with identifier required to set Settings$Options#software_name
         ArrayList<AbstractSuite> testSuites = new ArrayList<>();
         testSuites.add(new WebsitesSuite());
