@@ -35,8 +35,9 @@ public class TestRunBroadRequestReceiver extends BroadcastReceiver implements Se
 
     /**
      * Instantiates a new Test run broad request receiver.
-     *  @param preferenceManager the preference manager
-     * @param listener          the listener
+     *
+     * @param preferenceManager      the preference manager
+     * @param listener               the listener
      * @param testProgressRepository
      */
     public TestRunBroadRequestReceiver(PreferenceManager preferenceManager, EventListener listener, TestProgressRepository testProgressRepository) {
@@ -55,10 +56,14 @@ public class TestRunBroadRequestReceiver extends BroadcastReceiver implements Se
         }
         switch (key) {
             case TestAsyncTask.START:
-                listener.onStart(service);
+                if (listener != null && service != null) {
+                    listener.onStart(service);
+                }
                 break;
             case TestAsyncTask.RUN:
-                listener.onRun(value);
+                if (listener != null) {
+                    listener.onRun(value);
+                }
                 break;
             case TestAsyncTask.PRG:
                 try {
@@ -112,7 +117,9 @@ public class TestRunBroadRequestReceiver extends BroadcastReceiver implements Se
         RunTestService.TestBinder b = (RunTestService.TestBinder) binder;
         service = b.getService();
         isBound = true;
-        listener.onStart(service);
+        if (listener != null) {
+            listener.onStart(service);
+        }
         runtime = ListUtility.sum(Lists.transform(service.task.testSuites, input -> input.getRuntime(preferenceManager)));
     }
 

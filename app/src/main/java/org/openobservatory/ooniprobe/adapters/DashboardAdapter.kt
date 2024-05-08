@@ -1,17 +1,15 @@
 package org.openobservatory.ooniprobe.adapters
 
-import android.content.res.Resources
-import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import org.openobservatory.ooniprobe.R
+import org.openobservatory.ooniprobe.common.AbstractDescriptor
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.databinding.ItemSeperatorBinding
 import org.openobservatory.ooniprobe.databinding.ItemTestsuiteBinding
-import org.openobservatory.ooniprobe.test.suite.AbstractSuite
+import org.openobservatory.ooniprobe.model.database.InstalledDescriptor
+import java.util.Date
 
 class DashboardAdapter(
     private val items: List<Any>,
@@ -48,36 +46,32 @@ class DashboardAdapter(
         val item = items[position]
         when (holder.itemViewType) {
             VIEW_TYPE_TITLE -> {
-            }
+				val separator = holder as CardGroupTitleViewHolder
+				separator.binding.root.text = item as String
+			}
 
             VIEW_TYPE_CARD -> {
                 val cardHolder = holder as CardViewHolder
-                if (item is AbstractSuite) {
+                if (item is AbstractDescriptor<*>) {
                     cardHolder.binding.apply {
                         title.setText(item.title)
-                        desc.setText(item.cardDesc)
-                        icon.setImageResource(item.iconGradient)
+                        desc.setText(item.shortDescription)
+                        icon.setImageResource(item.getDisplayIcon(holder.itemView.context)).also {
+                            if (item is InstalledDescriptor){
+                                icon.setColorFilter(item.color)
+                                if (item.descriptor?.isExpired == true) {
+                                    expiredTag.root.visibility = View.VISIBLE
+                                }
+                                holder.setIsRecyclable(false)
+                            }
+                        }
                     }
                     holder.itemView.tag = item
-                    if (item.isTestEmpty(preferenceManager)) {
-                        holder.setIsRecyclable(false)
-                        holder.itemView.apply {
-                            elevation = 0f
-                            isClickable = false
-                        }
-                        val resources: Resources = holder.itemView.context.resources
-                        (holder.itemView as CardView).setCardBackgroundColor(resources.getColor(R.color.disabled_test_background))
-                        holder.binding.apply {
-                            title.setTextColor(resources.getColor(R.color.disabled_test_text))
-                            desc.setTextColor(resources.getColor(R.color.disabled_test_text))
-                            icon.setColorFilter(resources.getColor(R.color.disabled_test_text), PorterDuff.Mode.SRC_IN)
-                        }
-                    } else {
-                        holder.itemView.setOnClickListener(onClickListener)
-                    }
+                    holder.itemView.setOnClickListener(onClickListener)
                 }
             }
         }
+        holder.setIsRecyclable(false)
     }
 
     override fun getItemCount(): Int {
@@ -92,13 +86,14 @@ class DashboardAdapter(
     }
 
     /**
-     * ViewHolder for dashboard item group
+     * ViewHolder for a dashboard item group.
      * @param binding
      */
-    class CardGroupTitleViewHolder(var binding: ItemSeperatorBinding) : RecyclerView.ViewHolder(binding.root)
+    class CardGroupTitleViewHolder(var binding: ItemSeperatorBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     /**
-     * ViewHolder for dashboard item
+     * ViewHolder for dashboard item.
      * @param binding
      */
     class CardViewHolder(var binding: ItemTestsuiteBinding) : RecyclerView.ViewHolder(binding.root)

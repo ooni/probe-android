@@ -3,5 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="@string/Dashboard_DisabledTests_Label"
-    android:textStyle="italic"
+    android:textStyle="bold"
+	android:textAllCaps="true"
     android:layout_marginTop="16dp"/>

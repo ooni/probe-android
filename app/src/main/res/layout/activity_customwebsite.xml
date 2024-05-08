@@ -1,15 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:orientation="vertical">
+	android:orientation="vertical"
+	tools:context=".activity.customwebsites.CustomWebsiteActivity">
+
+	<com.google.android.material.appbar.AppBarLayout
+		android:id="@+id/appbar_layout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:elevation="0dp">
+
+		<androidx.appcompat.widget.Toolbar
+			android:id="@+id/toolbar"
+			android:layout_width="match_parent"
+			android:layout_height="?attr/actionBarSize"
+			android:background="@color/color_gray0"
+			app:menu="@menu/close"/>
+	</com.google.android.material.appbar.AppBarLayout>
 
 	<ScrollView
 		android:id="@+id/urlsList"
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
-		android:layout_weight="1">
+		app:layout_constraintTop_toBottomOf="@id/appbar_layout"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="parent">
 
 		<LinearLayout
 			android:layout_width="match_parent"
@@ -17,12 +38,11 @@
 			android:orientation="vertical"
 			android:padding="8dp">
 
-			<LinearLayout
+			<androidx.recyclerview.widget.RecyclerView
 				android:id="@+id/urlContainer"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:animateLayoutChanges="true"
-				android:orientation="vertical" />
+				tools:listitem="@layout/edittext_url"/>
 
 			<Button
 				android:id="@+id/add"
@@ -33,21 +53,24 @@
 				android:textAllCaps="false"
 				android:textColor="@color/color_black"
 				app:icon="@drawable/ic_baseline_add_36"
-				app:iconTint="@color/color_black" />
+				app:iconTint="@color/color_black"
+				android:layout_marginBottom="150dp"/>
 		</LinearLayout>
 	</ScrollView>
 
-	<com.google.android.material.appbar.AppBarLayout
-		android:layout_width="match_parent"
+	<com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+		android:id="@+id/fab_test_urls"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:theme="@style/Theme.MaterialComponents.NoActionBar.App">
+		android:text="Test Urls"
+		android:layout_marginBottom="@dimen/item_padding_large"
+		android:backgroundTint="@color/color_base"
+		android:textColor="@android:color/white"
+		android:textAllCaps="false"
+		app:icon="@drawable/outline_timer"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:iconTint="@android:color/white"/>
 
-		<androidx.appcompat.widget.Toolbar
-			android:id="@+id/bottomBar"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:background="@color/color_base"
-			app:title="@string/OONIRun_URLs"
-			app:titleTextAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title.App" />
-	</com.google.android.material.appbar.AppBarLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

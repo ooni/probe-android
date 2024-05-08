@@ -1,61 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="6dp"
-    android:layout_marginTop="16dp"
-    app:cardBackgroundColor="@color/color_gray0"
-    app:cardElevation="5dp"
-    android:foreground="?android:attr/selectableItemBackground"
+    android:layout_marginVertical="4dp"
     android:clickable="true"
     android:transitionName="@string/transitionNameCard"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    app:cardCornerRadius="6dp"
+    app:cardElevation="0dp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/card_boarder" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginVertical="8dp"
+        android:orientation="vertical">
 
         <ImageView
-            android:layout_width="72dp"
-            android:layout_height="72dp"
             android:id="@+id/icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src="@drawable/test_websites"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/desc"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_margin="8dp"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/title"
+            android:layout_marginStart="8dp"
+            android:ellipsize="end"
             android:maxLines="1"
             android:text="@string/Test_Websites_Fullname"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-            android:transitionName="@string/transitionNameTitle"
-            android:layout_margin="8dp"
+            android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/color_black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/icon"/>
+            android:textStyle="bold"
+            android:transitionName="@string/transitionNameTitle"
+            app:layout_constraintEnd_toStartOf="@id/end_layout"
+            app:layout_constraintStart_toEndOf="@id/icon"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
             android:id="@+id/desc"
-            android:layout_margin="8dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
             android:maxLines="2"
             android:text="@string/Dashboard_Websites_Card_Description"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-            android:textColor="@color/color_black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/icon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title"/>
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/color_gray6"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintEnd_toStartOf="@id/end_layout"
+            app:layout_constraintStart_toStartOf="parent"/>
 
+        <LinearLayout
+            android:id="@+id/end_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/item_padding_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include
+                android:id="@+id/expired_tag"
+                layout="@layout/expired_tag"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/item_padding_large"/>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="@dimen/item_padding_small"
+                android:src="@drawable/chevron_right" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

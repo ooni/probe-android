@@ -1,18 +1,41 @@
 package org.openobservatory.ooniprobe.fragment.dashboard
 
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import org.openobservatory.ooniprobe.BuildConfig
+import org.openobservatory.engine.BaseNettest
+import org.openobservatory.ooniprobe.common.AbstractDescriptor
 import org.openobservatory.ooniprobe.common.PreferenceManager
-import org.openobservatory.ooniprobe.test.TestAsyncTask
-import org.openobservatory.ooniprobe.test.suite.AbstractSuite
+import org.openobservatory.ooniprobe.common.TestDescriptorManager
+import org.openobservatory.ooniprobe.model.database.InstalledDescriptor
 import javax.inject.Inject
 
-class DashboardViewModel @Inject constructor(private val preferenceManager: PreferenceManager) : ViewModel() {
-    private val enabledTitle: String = "Enabled"
+class DashboardViewModel @Inject constructor(
+    private val preferenceManager: PreferenceManager,
+    private val descriptorManager: TestDescriptorManager
+) : ViewModel(), DefaultLifecycleObserver {
+    private var ooniRunDescriptors: List<InstalledDescriptor> = emptyList()
+    private val oonTestsTitle: String = "OONI Tests"
+    private val oonRunLinksTitle: String = "OONI RUN Links"
+    private val oonTests = descriptorManager.getDescriptors()
     private val groupedItemList = MutableLiveData<List<Any>>()
-    val items = MutableLiveData<List<AbstractSuite>>(TestAsyncTask.getSuites())
+    private val items = MutableLiveData<List<AbstractDescriptor<BaseNettest>>>(oonTests)
+
+    init {
+        ooniRunDescriptors = descriptorManager.getRunV2Descriptors().map {
+            InstalledDescriptor(it)
+        }
+    }
+
+    override fun onResume(owner: LifecycleOwner) {
+        super.onResume(owner)
+        ooniRunDescriptors = descriptorManager.getRunV2Descriptors().map {
+            InstalledDescriptor(it)
+        }
+        fetchItemList()
+    }
 
     fun getGroupedItemList(): LiveData<List<Any>> {
         if (groupedItemList.value == null) {
@@ -21,14 +44,15 @@ class DashboardViewModel @Inject constructor(private val preferenceManager: Pref
         return groupedItemList
     }
 
+    fun getItemList(): LiveData<List<AbstractDescriptor<BaseNettest>>> {
+        return items.value?.let { MutableLiveData(it + ooniRunDescriptors) } ?: MutableLiveData()
+    }
+
     private fun fetchItemList() {
 
-        val groupedItems = items.value!!.filter {testSuite ->
-            return@filter testSuite.getTestList(preferenceManager).isNotEmpty() || BuildConfig.SHOW_DISABLED_CARDS
-        }.sortedBy { it.getTestList(preferenceManager).isEmpty() }
-            .groupBy {
-                return@groupBy if ((it.getTestList(preferenceManager).isNotEmpty())) {
-                    enabledTitle
+        val groupedItems = items.value!!.groupBy {
+                return@groupBy if (oonTests.contains(it)) {
+                    oonTestsTitle
                 } else {
                     ""
                 }
@@ -36,12 +60,13 @@ class DashboardViewModel @Inject constructor(private val preferenceManager: Pref
 
         val groupedItemList = mutableListOf<Any>()
         groupedItems.forEach { (status, itemList) ->
-            if (status != enabledTitle) {
-                groupedItemList.add(status)
-            }
+            groupedItemList.add(status)
             groupedItemList.addAll(itemList)
         }
-
+        if (ooniRunDescriptors.isNotEmpty()) {
+            groupedItemList.add(oonRunLinksTitle)
+            groupedItemList.addAll(ooniRunDescriptors)
+        }
         this.groupedItemList.value = groupedItemList
     }
 }

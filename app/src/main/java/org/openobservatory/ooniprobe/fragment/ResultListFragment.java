@@ -3,8 +3,14 @@ package org.openobservatory.ooniprobe.fragment;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.*;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,34 +18,46 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.google.android.material.snackbar.Snackbar;
 import com.raizlabs.android.dbflow.sql.language.Method;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
-import localhost.toolkit.app.fragment.ConfirmDialogFragment;
-import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerAdapter;
-import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
+
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
 import org.openobservatory.ooniprobe.activity.TextActivity;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
+import org.openobservatory.ooniprobe.common.TestDescriptorManager;
 import org.openobservatory.ooniprobe.databinding.FragmentResultListBinding;
 import org.openobservatory.ooniprobe.domain.GetResults;
 import org.openobservatory.ooniprobe.domain.MeasurementsManager;
 import org.openobservatory.ooniprobe.domain.models.DatedResults;
-import org.openobservatory.ooniprobe.item.*;
+import org.openobservatory.ooniprobe.item.CircumventionItem;
+import org.openobservatory.ooniprobe.item.DateItem;
+import org.openobservatory.ooniprobe.item.ExperimentalItem;
+import org.openobservatory.ooniprobe.item.FailedItem;
+import org.openobservatory.ooniprobe.item.InstantMessagingItem;
+import org.openobservatory.ooniprobe.item.PerformanceItem;
+import org.openobservatory.ooniprobe.item.RunItem;
+import org.openobservatory.ooniprobe.item.WebsiteItem;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
-import org.openobservatory.ooniprobe.test.suite.*;
 
-import javax.inject.Inject;
 import java.io.Serializable;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
+
+import localhost.toolkit.app.fragment.ConfirmDialogFragment;
+import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerAdapter;
+import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
 public class ResultListFragment extends Fragment implements View.OnClickListener, View.OnLongClickListener, ConfirmDialogFragment.OnConfirmedListener {
     private FragmentResultListBinding binding;
@@ -57,6 +75,9 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 
     @Inject
     PreferenceManager pm;
+
+    @Inject
+    TestDescriptorManager descriptorManager;
 
     @Nullable
     @Override
@@ -165,25 +186,20 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
                     if (result.countTotalMeasurements() == 0)
                         items.add(new FailedItem(result, this, this));
                     else {
-                        switch (result.test_group_name) {
-                            case WebsitesSuite.NAME:
-                                items.add(new WebsiteItem(result, this, this));
-                                break;
-                            case InstantMessagingSuite.NAME:
-                                items.add(new InstantMessagingItem(result, this, this));
-                                break;
-                            case MiddleBoxesSuite.NAME:
-                                items.add(new MiddleboxesItem(result, this, this));
-                                break;
-                            case PerformanceSuite.NAME:
-                                items.add(new PerformanceItem(result, this, this));
-                                break;
-                            case CircumventionSuite.NAME:
-                                items.add(new CircumventionItem(result, this, this));
-                                break;
-                            case ExperimentalSuite.NAME:
-                                items.add(new ExperimentalItem(result, this, this));
-                                break;
+                        if (result.test_group_name.equals(OONITests.WEBSITES.toString())) {
+                            items.add(new WebsiteItem(result, this, this));
+                        } else if (result.test_group_name.equals(OONITests.INSTANT_MESSAGING.toString())) {
+                            items.add(new InstantMessagingItem(result, this, this));
+                        } else if (result.test_group_name.equals(OONITests.PERFORMANCE.toString())) {
+                            items.add(new PerformanceItem(result, this, this));
+                        } else if (result.test_group_name.equals(OONITests.CIRCUMVENTION.toString())) {
+                            items.add(new CircumventionItem(result, this, this));
+                        } else if (result.test_group_name.equals(OONITests.EXPERIMENTAL.toString())) {
+                            items.add(new ExperimentalItem(result, this, this));
+                        } else if (result.descriptor!=null) {
+                            items.add(new RunItem(result, this, this));
+                        } else {
+                            items.add(new FailedItem(result, this, this));
                         }
                     }
                 }

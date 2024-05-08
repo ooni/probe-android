@@ -9,19 +9,23 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
+import org.openobservatory.ooniprobe.activity.MainActivity
 import org.openobservatory.ooniprobe.activity.OverviewActivity
-import org.openobservatory.ooniprobe.activity.RunningActivity
+import org.openobservatory.ooniprobe.activity.runtests.RunTestsActivity
 import org.openobservatory.ooniprobe.adapters.DashboardAdapter
+import org.openobservatory.ooniprobe.common.AbstractDescriptor
 import org.openobservatory.ooniprobe.common.Application
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.common.ReachabilityManager
+import org.openobservatory.ooniprobe.common.TestGroupStatus
+import org.openobservatory.ooniprobe.common.TestStateRepository
 import org.openobservatory.ooniprobe.common.ThirdPartyServices
 import org.openobservatory.ooniprobe.databinding.FragmentDashboardBinding
 import org.openobservatory.ooniprobe.fragment.dashboard.DashboardViewModel
 import org.openobservatory.ooniprobe.model.database.Result
-import org.openobservatory.ooniprobe.test.suite.AbstractSuite
 import javax.inject.Inject
 
 class DashboardFragment : Fragment(), View.OnClickListener {
@@ -30,8 +34,14 @@ class DashboardFragment : Fragment(), View.OnClickListener {
 
     @Inject
     lateinit var viewModel: DashboardViewModel
-    private var testSuites: ArrayList<AbstractSuite> = ArrayList()
+
+    private var descriptors: ArrayList<AbstractDescriptor<BaseNettest>> = ArrayList()
+    @Inject
+    lateinit var testStateRepository: TestStateRepository
+
     private lateinit var binding: FragmentDashboardBinding
+
+    private lateinit var adapter: DashboardAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,21 +63,43 @@ class DashboardFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        lifecycle.addObserver(viewModel)
         viewModel.getGroupedItemList().observe(viewLifecycleOwner) { items ->
             binding.recycler.layoutManager = LinearLayoutManager(requireContext())
-            binding.recycler.adapter = DashboardAdapter(items, this, preferenceManager)
+            adapter = DashboardAdapter(items, this, preferenceManager)
+            binding.recycler.adapter = adapter
         }
 
-        viewModel.items.observe(viewLifecycleOwner) { items ->
-            testSuites.apply {
+        viewModel.getItemList().observe(viewLifecycleOwner) { items ->
+            descriptors.apply {
                 clear()
                 addAll(items)
             }
+        }
+
+        testStateRepository.testGroupStatus.observe(viewLifecycleOwner) { status ->
+            if (status == TestGroupStatus.RUNNING) {
+                binding.runAll.visibility = View.GONE
+                binding.lastTested.visibility = View.GONE
+            } else {
+                binding.runAll.visibility = View.VISIBLE
+                binding.lastTested.visibility = View.VISIBLE
+            }
+        }
+
+        binding.swipeRefresh.setOnRefreshListener {
+            (requireActivity() as MainActivity).fetchManualUpdate()
+            binding.swipeRefresh.isRefreshing = false
         }
     }
 
     override fun onResume() {
         super.onResume()
+        /**
+         * Updates the list of tests when the user changes the default configuration
+         * after starting a test from [RunTestsActivity]
+         */
+        binding.recycler.post { adapter.notifyDataSetChanged() }
         setLastTest()
         if (ReachabilityManager.isVPNinUse(this.context)
             && preferenceManager.isWarnVPNInUse
@@ -86,12 +118,7 @@ class DashboardFragment : Fragment(), View.OnClickListener {
     }
 
     private fun runAll() {
-        RunningActivity.runAsForegroundService(
-            activity as AbstractActivity?,
-            testSuites,
-            { onTestServiceStartedListener() },
-            preferenceManager
-        )
+        ActivityCompat.startActivity(requireContext(), RunTestsActivity.newIntent(requireContext(), descriptors), null)
     }
 
     private fun onTestServiceStartedListener() = try {
@@ -102,19 +129,11 @@ class DashboardFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        val testSuite = v.tag as AbstractSuite
-        when (v.id) {
-            R.id.run -> RunningActivity.runAsForegroundService(
-                activity as AbstractActivity?,
-                testSuite.asArray(), { onTestServiceStartedListener() },
-                preferenceManager
-            )
-
-            else -> ActivityCompat.startActivity(
-                requireActivity(),
-                OverviewActivity.newIntent(activity, testSuite),
-                null
-            )
-        }
+        val descriptor = v.tag as AbstractDescriptor<BaseNettest>
+        ActivityCompat.startActivity(
+            requireActivity(),
+            OverviewActivity.newIntent(activity, descriptor),
+            null
+        )
     }
 }
