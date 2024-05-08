@@ -35,6 +35,7 @@ import org.openobservatory.ooniprobe.activity.customwebsites.CustomWebsiteActivi
 import org.openobservatory.ooniprobe.activity.overview.OverviewTestsExpandableListViewAdapter;
 import org.openobservatory.ooniprobe.activity.overview.OverviewViewModel;
 import org.openobservatory.ooniprobe.activity.overview.RevisionsFragment;
+import org.openobservatory.ooniprobe.activity.reviewdescriptorupdates.AvailableUpdatesViewModel;
 import org.openobservatory.ooniprobe.activity.reviewdescriptorupdates.ReviewDescriptorUpdatesActivity;
 import org.openobservatory.ooniprobe.common.AbstractDescriptor;
 import org.openobservatory.ooniprobe.common.OONITests;
@@ -66,6 +67,10 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
 
     @Inject
     OverviewViewModel viewModel;
+
+
+    @Inject
+    AvailableUpdatesViewModel updatesViewModel;
 
     OverviewTestsExpandableListViewAdapter adapter;
 
@@ -111,6 +116,22 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
                 );
                 if (Boolean.TRUE.equals(testDescriptor.isExpired())) {
                     binding.expiredTag.getRoot().setVisibility(View.VISIBLE);
+                }
+
+                InstalledDescriptor installedDescriptor = ((InstalledDescriptor) descriptor);
+                if (installedDescriptor.isUpdateAvailable()) {
+                    binding.updatedTag.getRoot().setVisibility(View.VISIBLE);
+
+
+                    binding.reviewUpdates.setVisibility(View.VISIBLE);
+                    binding.reviewUpdates.setOnClickListener(view -> getReviewUpdatesLauncher().launch(
+                            ReviewDescriptorUpdatesActivity.newIntent(
+                                    OverviewActivity.this,
+                                    updatesViewModel.getUpdatedDescriptor(testDescriptor.getRunId())
+                            )
+                    ));
+
+
                 }
             } else {
                 markwon.setMarkdown(binding.desc, descriptor.getDescription());

@@ -89,7 +89,9 @@ class AddDescriptorActivity : AbstractActivity() {
                     StringUtils.camelToSnake(
                         iconName
                     ), "drawable", imageView.context.packageName
-                )
+                ).let {
+                    if (it == 0) R.drawable.ooni_empty_state else it
+                }
             ).apply {
                 color?.let {
                     imageView.setColorFilter(it)
