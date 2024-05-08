@@ -17,6 +17,7 @@ import org.openobservatory.ooniprobe.activity.runtests.models.ChildItem
 import org.openobservatory.ooniprobe.activity.runtests.models.GroupItem
 import org.openobservatory.ooniprobe.common.AbstractDescriptor
 import org.openobservatory.ooniprobe.common.AppDatabase
+import org.openobservatory.ooniprobe.common.LocaleUtils
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.common.resolveStatus
 import java.io.Serializable
@@ -91,6 +92,18 @@ class TestDescriptor(
     fun preferencePrefix(): String {
         return "${runId}_"
     }
+
+    fun localizedName() :String {
+        return nameIntl.getValueForKey(LocaleUtils.getLocale().language) ?: name
+    }
+
+    fun localizedShortDescription() :String {
+        return shortDescriptionIntl.getValueForKey(LocaleUtils.getLocale().language) ?: shortDescription
+    }
+
+    fun localizedDescription() :String {
+        return descriptionIntl.getValueForKey(LocaleUtils.getLocale().language) ?: description
+    }
 }
 
 /**
@@ -108,9 +121,9 @@ class InstalledDescriptor(
     var testDescriptor: TestDescriptor
 ) : AbstractDescriptor<BaseNettest>(
     name = DESCRIPTOR_TEST_NAME,
-    title = testDescriptor.name,
-    shortDescription = testDescriptor.shortDescription,
-    description = testDescriptor.description,
+    title = testDescriptor.localizedName(),
+    shortDescription = testDescriptor.localizedShortDescription(),
+    description = testDescriptor.localizedDescription(),
     icon = testDescriptor.icon ?: "settings_icon",
     color = Color.parseColor(testDescriptor.color ?: "#495057"),
     animation = testDescriptor.animation,
