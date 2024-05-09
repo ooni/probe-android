@@ -2,6 +2,8 @@ package org.openobservatory.ooniprobe.common
 
 import android.content.Context
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.google.gson.stream.JsonReader
 import com.raizlabs.android.dbflow.sql.language.SQLite
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.engine.LoggerArray
@@ -30,13 +32,14 @@ class TestDescriptorManager @Inject constructor(
     private val context: Context,
     private val preferenceManager: PreferenceManager
 ) {
-    private val descriptors: List<OONIDescriptor<BaseNettest>> = ooniDescriptors(context)
 
-    fun getDescriptors(): List<OONIDescriptor<BaseNettest>> {
+    private val descriptors: List<AbstractDescriptor<BaseNettest>> = DefaultDescriptors.getAll(context)
+
+    fun getDescriptors(): List<AbstractDescriptor<BaseNettest>> {
         return descriptors
     }
 
-    fun getDescriptorByName(name: String): OONIDescriptor<BaseNettest>? {
+    fun getDescriptorByName(name: String): AbstractDescriptor<BaseNettest>? {
         return descriptors.find { it.name == name }
     }
 

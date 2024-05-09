@@ -164,6 +164,9 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
             binding.uninstallLink.setVisibility(View.VISIBLE);
             binding.automaticUpdatesContainer.setVisibility(View.VISIBLE);
             InstalledDescriptor installedDescriptor = (InstalledDescriptor) descriptor;
+            if (Objects.equals("@dw.com", installedDescriptor.getTestDescriptor().getAuthor())) {
+                binding.uninstallLink.setVisibility(View.GONE);
+            }
             binding.automaticUpdatesSwitch.setChecked(installedDescriptor.getTestDescriptor().isAutoUpdate());
 
             try {

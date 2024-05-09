@@ -1,6 +1,5 @@
 package org.openobservatory.ooniprobe.common
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Resources
 import androidx.annotation.ColorInt
@@ -152,17 +151,6 @@ abstract class AbstractDescriptor<T : BaseNettest>(
             true -> this.descriptor?.preferencePrefix() ?: ""
             else -> ""
         }
-    }
-
-    /**
-     * Checks if the current descriptor has a preference prefix.
-     * This is used to determine if the current descriptor is [OONITests.WEBSITES] which uses categories
-     * or [OONITests.EXPERIMENTAL] which doesn't support indivitual preferences for nettest.
-     *
-     * @return Boolean Returns true if the current descriptor has a preference prefix, false otherwise.
-     */
-    fun hasPreferencePrefix(): Boolean {
-        return !(name == OONITests.EXPERIMENTAL.label || name == OONITests.WEBSITES.label)
     }
 }
 
@@ -359,95 +347,4 @@ enum class OONITests(
     override fun toString(): String {
         return label
     }
-}
-
-fun autoRunTests(context: Context, preferenceManager: PreferenceManager): List<DynamicTestSuite> {
-
-    return ooniDescriptors(context).filter { ooniDescriptor ->
-        when (ooniDescriptor.name) {
-            OONITests.EXPERIMENTAL.label -> preferenceManager.resolveStatus(
-                name = ooniDescriptor.name,
-                prefix = ooniDescriptor.preferencePrefix(),
-                autoRun = true
-            )
-
-            else -> ooniDescriptor.nettests.any { nettest ->
-                preferenceManager.resolveStatus(
-                    name = nettest.name,
-                    prefix = ooniDescriptor.preferencePrefix(),
-                    autoRun = true
-                )
-            }
-        }
-    }.map { ooniDescriptor ->
-        when (ooniDescriptor.name) {
-            OONITests.EXPERIMENTAL.label -> DynamicTestSuite(
-                name = ooniDescriptor.name,
-                title = ooniDescriptor.title,
-                shortDescription = ooniDescriptor.shortDescription,
-                description = ooniDescriptor.description,
-                icon = ooniDescriptor.getDisplayIcon(context),
-                icon_24 = ooniDescriptor.getDisplayIcon(context),
-                color = ooniDescriptor.color,
-                animation = ooniDescriptor.animation,
-                dataUsage = ooniDescriptor.dataUsage,
-                nettest = (ooniDescriptor.nettests).run {
-                    this + (ooniDescriptor.longRunningTests?.filter { nettest ->
-                        preferenceManager.resolveStatus(
-                            name = nettest.name,
-                            prefix = ooniDescriptor.preferencePrefix(),
-                            autoRun = true
-                        )
-                    } ?: listOf())
-                }
-            ).apply {
-                autoRun = true
-            }
-
-            else -> DynamicTestSuite(
-                name = ooniDescriptor.name,
-                title = ooniDescriptor.title,
-                shortDescription = ooniDescriptor.shortDescription,
-                description = ooniDescriptor.description,
-                icon = ooniDescriptor.getDisplayIcon(context),
-                icon_24 = ooniDescriptor.getDisplayIcon(context),
-                color = ooniDescriptor.color,
-                animation = ooniDescriptor.animation,
-                dataUsage = ooniDescriptor.dataUsage,
-                nettest = (ooniDescriptor.nettests).filter { nettest ->
-                    preferenceManager.resolveStatus(
-                        name = nettest.name,
-                        prefix = ooniDescriptor.preferencePrefix(),
-                        autoRun = true
-                    )
-                }.run {
-                    this + (ooniDescriptor.longRunningTests?.filter { nettest ->
-                        preferenceManager.resolveStatus(
-                            name = nettest.name,
-                            prefix = ooniDescriptor.preferencePrefix(),
-                            autoRun = true
-                        )
-                    } ?: listOf())
-                }
-            ).apply {
-                autoRun = true
-            }
-        }
-    }
-}
-
-/**
- * Creates a list of [OONIDescriptor] representing the OONI tests.
- *
- * @return List of [OONIDescriptor] representing the OONI tests.
- */
-@SuppressLint("StringFormatInvalid")
-fun ooniDescriptors(context: Context): MutableList<OONIDescriptor<BaseNettest>> {
-    return mutableListOf(
-        OONITests.WEBSITES.toOONIDescriptor(context),
-        OONITests.INSTANT_MESSAGING.toOONIDescriptor(context),
-        OONITests.CIRCUMVENTION.toOONIDescriptor(context),
-        OONITests.PERFORMANCE.toOONIDescriptor(context),
-        OONITests.EXPERIMENTAL.toOONIDescriptor(context)
-    )
 }

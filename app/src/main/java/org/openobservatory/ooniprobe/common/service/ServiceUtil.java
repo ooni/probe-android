@@ -1,7 +1,5 @@
 package org.openobservatory.ooniprobe.common.service;
 
-import static org.openobservatory.ooniprobe.common.OONIDescriptorKt.autoRunTests;
-
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
@@ -15,6 +13,7 @@ import com.google.common.collect.Lists;
 
 import org.openobservatory.engine.OONICheckInConfig;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.DefaultDescriptors;
 import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
@@ -77,7 +76,7 @@ public class ServiceUtil {
         if (!d.generateAutoRunServiceSuite.shouldStart(config.isOnWiFi(), config.isCharging(), isVPNInUse)) {
             return;
         }
-        ServiceUtil.startRunTestServiceCommon(app, new ArrayList<>(autoRunTests(app, d.preferenceManager)), false, true);
+        ServiceUtil.startRunTestServiceCommon(app, new ArrayList<>(DefaultDescriptors.autoRunTests(app, d.preferenceManager)), false, true);
         d.generateAutoRunServiceSuite.markAsRan();
 
     }
