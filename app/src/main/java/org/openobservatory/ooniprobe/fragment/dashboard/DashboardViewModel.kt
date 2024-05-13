@@ -64,7 +64,9 @@ class DashboardViewModel @Inject constructor(
             groupedItemList.addAll(itemList)
         }
         if (ooniRunDescriptors.isNotEmpty()) {
-            groupedItemList.add(oonRunLinksTitle)
+            if (groupedItems.isNotEmpty()) {
+                groupedItemList.add(oonRunLinksTitle)
+            }
             groupedItemList.addAll(ooniRunDescriptors)
         }
         this.groupedItemList.value = groupedItemList
