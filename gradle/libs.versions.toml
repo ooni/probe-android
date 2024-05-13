@@ -11,7 +11,7 @@ sentryAndroid = "7.8.0"
 xanscaleLocalhostToolkit = "19.05.01"
 commonsIo = "2.16.1"
 jacoco = "0.8.7"
-kotlin = "1.9.23"
+kotlin = "1.9.24"
 
 # Android X
 androidxCore = "1.5.0"
