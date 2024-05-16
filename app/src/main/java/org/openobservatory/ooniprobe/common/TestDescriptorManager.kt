@@ -52,37 +52,47 @@ class TestDescriptorManager @Inject constructor(
      * @param runId the run id of the descriptor to fetch
      * @param context the context to use for the request
      */
-    fun fetchDescriptorFromRunId(runId: Long, context: Context): TestDescriptor {
+    fun fetchDescriptorFromRunId(runId: Long, context: Context): TestDescriptor? {
         val session = EngineProvider.get().newSession(
-            EngineProvider.get().getDefaultSessionConfig(
-                context,
-                BuildConfig.SOFTWARE_NAME,
-                BuildConfig.VERSION_NAME,
-                LoggerArray(),
-                (context.applicationContext as Application).preferenceManager.proxyURL
-            )
+                EngineProvider.get().getDefaultSessionConfig(
+                        context,
+                        BuildConfig.SOFTWARE_NAME,
+                        BuildConfig.VERSION_NAME,
+                        LoggerArray(),
+                        (context.applicationContext as Application).preferenceManager.proxyURL
+                )
         )
         val ooniContext = session.newContextWithTimeout(300)
 
-        val response: OONIRunDescriptor =
+        runCatching {
+            // Fetch the descriptor from the ooni server
             session.getLatestOONIRunLink(ooniContext, BuildConfig.OONI_API_BASE_URL, runId)
+        }.fold(
+            onSuccess = { ooniRunDescriptor ->
 
-        var revisions: OONIRunRevisions? = null
+                var revisions: OONIRunRevisions? = null
 
-        try {
-            if (Integer.parseInt(response.revision) > 1) {
-                revisions = session.getOONIRunLinkRevisions(
-                    ooniContext,
-                    BuildConfig.OONI_API_BASE_URL,
-                    runId
-                )
+                try {
+                    if (ooniRunDescriptor.revision.toInt() > 1) {
+                        revisions = session.getOONIRunLinkRevisions(
+                                ooniContext,
+                                BuildConfig.OONI_API_BASE_URL,
+                                runId
+                        )
+                    }
+                } catch (e: Exception) {
+                    ThirdPartyServices.logException(e)
+                }
+                return ooniRunDescriptor.toTestDescriptor().apply {
+                    previousRevision = Gson().toJson(revisions)
+                }
+            },
+            onFailure = { throwable ->
+                // Log the error or handle it appropriately
+                ThirdPartyServices.logException(Exception(throwable))
+                return null
             }
-        } catch (e: Exception) {
-            ThirdPartyServices.logException(e)
-        }
-        return response.toTestDescriptor().apply {
-            previousRevision = Gson().toJson(revisions)
-        }
+        )
     }
 
     fun addDescriptor(

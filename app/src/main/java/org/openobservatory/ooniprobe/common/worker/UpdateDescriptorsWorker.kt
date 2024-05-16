@@ -17,8 +17,8 @@ var d: UpdateDescriptorsWorkerDependencies = UpdateDescriptorsWorkerDependencies
 const val PROGRESS = "PROGRESS"
 
 class AutoUpdateDescriptorsWorker(
-    context: Context,
-    workerParams: WorkerParameters
+        context: Context,
+        workerParams: WorkerParameters
 ) : Worker(context, workerParams) {
 
     override fun doWork(): Result {
@@ -30,22 +30,22 @@ class AutoUpdateDescriptorsWorker(
             val updatedDescriptors: ArrayList<TestDescriptor> = ArrayList()
 
             for (descriptor in d.testDescriptorManager.getDescriptorWithAutoUpdateEnabled()) {
+
                 Log.d(TAG, "Fetching updates for ${descriptor.runId}")
 
-                val updatedDescriptor: TestDescriptor =
-                    d.testDescriptorManager.fetchDescriptorFromRunId(
+                d.testDescriptorManager.fetchDescriptorFromRunId(
                         descriptor.runId,
                         applicationContext
-                    )
+                )?.let { updatedDescriptor ->
+                    if (descriptor.shouldUpdate(updatedDescriptor)) {
+                        updatedDescriptor.isAutoUpdate = descriptor.isAutoUpdate
+                        updatedDescriptor.isAutoRun = descriptor.isAutoRun
 
-                if (descriptor.shouldUpdate(updatedDescriptor)) {
-                    updatedDescriptor.isAutoUpdate = descriptor.isAutoUpdate
-                    updatedDescriptor.isAutoRun = descriptor.isAutoRun
+                        Log.d(TAG, "Saving updates for ${descriptor.runId}")
 
-                    Log.d(TAG, "Saving updates for ${descriptor.runId}")
-
-                    updatedDescriptor.save()
-                    updatedDescriptors.add(updatedDescriptor)
+                        updatedDescriptor.save()
+                        updatedDescriptors.add(updatedDescriptor)
+                    }
                 }
             }
 
@@ -70,21 +70,21 @@ class AutoUpdateDescriptorsWorker(
     companion object {
         @JvmField
         var UPDATED_DESCRIPTORS_WORK_NAME =
-            "${AutoUpdateDescriptorsWorker::class.java.name}.UPDATED_DESCRIPTORS_WORK_NAME"
+                "${AutoUpdateDescriptorsWorker::class.java.name}.UPDATED_DESCRIPTORS_WORK_NAME"
 
         private val TAG = AutoUpdateDescriptorsWorker::class.java.simpleName
 
         private val UPDATE_DESCRIPTOR_CHANNEL: String =
-            AutoUpdateDescriptorsWorker::class.java.simpleName
+                AutoUpdateDescriptorsWorker::class.java.simpleName
 
         private val KEY_UPDATED_DESCRIPTORS =
-            "${AutoUpdateDescriptorsWorker::class.java.name}.KEY_UPDATED_DESCRIPTORS"
+                "${AutoUpdateDescriptorsWorker::class.java.name}.KEY_UPDATED_DESCRIPTORS"
     }
 }
 
 class ManualUpdateDescriptorsWorker(
-    context: Context,
-    workerParams: WorkerParameters
+        context: Context,
+        workerParams: WorkerParameters
 ) : Worker(context, workerParams) {
 
     override fun doWork(): Result {
@@ -113,17 +113,18 @@ class ManualUpdateDescriptorsWorker(
             for (descriptor in descriptors) {
                 Log.d(TAG, "Fetching updates for ${descriptor.runId}")
 
-                val updatedDescriptor: TestDescriptor =
-                    d.testDescriptorManager.fetchDescriptorFromRunId(
+                d.testDescriptorManager.fetchDescriptorFromRunId(
                         descriptor.runId,
                         applicationContext
-                    )
-                /**
-                 * NOTE(aanorbel): Refine this logic to only update if the descriptor has changed.
-                 * Consider explicit version compare.
-                 */
-                if (descriptor.shouldUpdate(updatedDescriptor)) {
-                    updatedDescriptors.add(updatedDescriptor)
+                )?.let { updatedDescriptor ->
+
+                    /**
+                     * NOTE(aanorbel): Refine this logic to only update if the descriptor has changed.
+                     * Consider explicit version compare.
+                     */
+                    if (descriptor.shouldUpdate(updatedDescriptor)) {
+                        updatedDescriptors.add(updatedDescriptor)
+                    }
                 }
             }
             val outputData = Data.Builder()
@@ -153,19 +154,20 @@ class ManualUpdateDescriptorsWorker(
     companion object {
         @JvmField
         var UPDATED_DESCRIPTORS_WORK_NAME =
-            "${AutoUpdateDescriptorsWorker::class.java.name}.UPDATED_DESCRIPTORS_WORK_NAME"
+                "${AutoUpdateDescriptorsWorker::class.java.name}.UPDATED_DESCRIPTORS_WORK_NAME"
 
         private val TAG = AutoUpdateDescriptorsWorker::class.java.simpleName
 
         private val UPDATE_DESCRIPTOR_CHANNEL: String =
-            AutoUpdateDescriptorsWorker::class.java.simpleName
+                AutoUpdateDescriptorsWorker::class.java.simpleName
 
         @JvmField
         var KEY_UPDATED_DESCRIPTORS =
-            "${AutoUpdateDescriptorsWorker::class.java.name}.KEY_UPDATED_DESCRIPTORS"
+                "${AutoUpdateDescriptorsWorker::class.java.name}.KEY_UPDATED_DESCRIPTORS"
+
         @JvmField
         var KEY_DESCRIPTOR_IDS =
-            "${AutoUpdateDescriptorsWorker::class.java.name}.KEY_DESCRIPTOR_IDS"
+                "${AutoUpdateDescriptorsWorker::class.java.name}.KEY_DESCRIPTOR_IDS"
     }
 }
 
