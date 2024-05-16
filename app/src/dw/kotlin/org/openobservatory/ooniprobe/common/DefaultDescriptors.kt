@@ -41,7 +41,10 @@ class DefaultDescriptors {
                                 .querySingle()
                         // Save the descriptor if it is not in the database.
                         if (testDescriptor == null) {
-                            it.toTestDescriptor().save()
+                            it.toTestDescriptor().apply {
+                                isAutoUpdate = true
+                                isAutoRun = true
+                            }.save()
                         }
                     }
                     return emptyList()
