@@ -118,7 +118,8 @@ fun TestDescriptor.shouldUpdate(updatedDescriptor: TestDescriptor): Boolean {
 private const val DESCRIPTOR_TEST_NAME = "ooni_run"
 
 class InstalledDescriptor(
-    var testDescriptor: TestDescriptor
+    var testDescriptor: TestDescriptor,
+    var tags: List<String>? = null
 ) : AbstractDescriptor<BaseNettest>(
     name = DESCRIPTOR_TEST_NAME,
     title = testDescriptor.localizedName(),
@@ -144,6 +145,10 @@ class InstalledDescriptor(
 
     override fun getRuntime(context: Context, preferenceManager: PreferenceManager): Int {
         return R.string.TestResults_NotAvailable
+    }
+
+    fun isUpdateAvailable(): Boolean {
+        return tags?.contains("updated") ?: false
     }
 
     override fun toRunTestsGroupItem(preferenceManager: PreferenceManager): GroupItem {

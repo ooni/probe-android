@@ -14,6 +14,7 @@ import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
 import org.openobservatory.ooniprobe.activity.MainActivity
 import org.openobservatory.ooniprobe.activity.OverviewActivity
+import org.openobservatory.ooniprobe.activity.reviewdescriptorupdates.AvailableUpdatesViewModel
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsActivity
 import org.openobservatory.ooniprobe.adapters.DashboardAdapter
 import org.openobservatory.ooniprobe.common.AbstractDescriptor
@@ -36,8 +37,12 @@ class DashboardFragment : Fragment(), View.OnClickListener {
     lateinit var viewModel: DashboardViewModel
 
     private var descriptors: ArrayList<AbstractDescriptor<BaseNettest>> = ArrayList()
+
     @Inject
     lateinit var testStateRepository: TestStateRepository
+
+    @Inject
+    lateinit var updatesViewModel: AvailableUpdatesViewModel
 
     private lateinit var binding: FragmentDashboardBinding
 
@@ -90,6 +95,10 @@ class DashboardFragment : Fragment(), View.OnClickListener {
         binding.swipeRefresh.setOnRefreshListener {
             (requireActivity() as MainActivity).fetchManualUpdate()
             binding.swipeRefresh.isRefreshing = false
+        }
+
+        updatesViewModel.descriptors.observe(viewLifecycleOwner) { descriptors ->
+            descriptors.let { viewModel.updateDescriptorWith(it) }
         }
     }
 

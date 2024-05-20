@@ -9,7 +9,6 @@ import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.databinding.ItemSeperatorBinding
 import org.openobservatory.ooniprobe.databinding.ItemTestsuiteBinding
 import org.openobservatory.ooniprobe.model.database.InstalledDescriptor
-import java.util.Date
 
 class DashboardAdapter(
     private val items: List<Any>,
@@ -46,9 +45,9 @@ class DashboardAdapter(
         val item = items[position]
         when (holder.itemViewType) {
             VIEW_TYPE_TITLE -> {
-				val separator = holder as CardGroupTitleViewHolder
-				separator.binding.root.text = item as String
-			}
+                val separator = holder as CardGroupTitleViewHolder
+                separator.binding.root.text = item as String
+            }
 
             VIEW_TYPE_CARD -> {
                 val cardHolder = holder as CardViewHolder
@@ -57,10 +56,14 @@ class DashboardAdapter(
                         title.setText(item.title)
                         desc.setText(item.shortDescription)
                         icon.setImageResource(item.getDisplayIcon(holder.itemView.context)).also {
-                            if (item is InstalledDescriptor){
+                            if (item is InstalledDescriptor) {
                                 icon.setColorFilter(item.color)
                                 if (item.descriptor?.isExpired == true) {
                                     expiredTag.root.visibility = View.VISIBLE
+                                } else if (item.tags?.isNotEmpty() == true && item.tags?.get(0) == "updated") {
+                                    updatedTag.root.visibility = View.VISIBLE
+                                } else {
+                                    expiredTag.root.visibility = View.GONE
                                 }
                                 holder.setIsRecyclable(false)
                             }

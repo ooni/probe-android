@@ -19,7 +19,6 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.google.android.material.checkbox.MaterialCheckBox
-import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.internal.LinkedTreeMap
 import org.openobservatory.engine.BaseNettest
@@ -45,6 +44,7 @@ class ReviewDescriptorUpdatesActivity : AbstractActivity() {
 
     companion object {
         private const val DESCRIPTORS = "descriptors"
+        private const val PERSISTENT = "persistent"
 
         @JvmField
         var RESULT_MESSAGE = "result"
@@ -58,9 +58,17 @@ class ReviewDescriptorUpdatesActivity : AbstractActivity() {
         @JvmStatic
         fun newIntent(context: Context, descriptors: String?): Intent {
             return Intent(context, ReviewDescriptorUpdatesActivity::class.java).putExtra(
-                DESCRIPTORS,
-                descriptors
+                    DESCRIPTORS,
+                    descriptors
             )
+        }
+
+        @JvmStatic
+        fun newIntent(context: Context, descriptors: String?, persistent: Boolean): Intent {
+            return Intent(context, ReviewDescriptorUpdatesActivity::class.java).apply {
+                putExtra(DESCRIPTORS, descriptors)
+                putExtra(PERSISTENT, persistent)
+            }
         }
     }
 
@@ -69,6 +77,9 @@ class ReviewDescriptorUpdatesActivity : AbstractActivity() {
 
     @Inject
     lateinit var gson: Gson
+
+    @Inject
+    lateinit var updatesViewModel: AvailableUpdatesViewModel
 
     private lateinit var reviewUpdatesPagingAdapter: ReviewUpdatesPagingAdapter
 
@@ -89,8 +100,8 @@ class ReviewDescriptorUpdatesActivity : AbstractActivity() {
              * Because [TestDescriptor.nettests] is of type [Any], the gson library converts it to a [LinkedTreeMap].
              */
             val descriptors: List<TestDescriptor> =
-                gson.fromJson(descriptorJson, Array<ITestDescriptor>::class.java)
-                    .map { it.toTestDescriptor() }
+                    gson.fromJson(descriptorJson, Array<ITestDescriptor>::class.java)
+                            .map { it.toTestDescriptor() }
 
             // Disable swipe behavior of viewpager
             binding.viewpager.isUserInputEnabled = false
@@ -104,31 +115,31 @@ class ReviewDescriptorUpdatesActivity : AbstractActivity() {
              * When the user clicks on the last update, the activity is finished.
              */
             val bottomBarOnMenuItemClickListener: Toolbar.OnMenuItemClickListener =
-                Toolbar.OnMenuItemClickListener { item ->
-                    when (item.itemId) {
-                        R.id.update_descriptor -> {
-                            descriptorManager.updateFromNetwork(descriptors[binding.viewpager.currentItem])
-                            /**
-                             * **[currPos]** is the current position of the viewpager.
-                             * If the current position is not the last position, the viewpager is swiped to the next page.
-                             * If the current position is the last position, the last update is saved in the shared preferences and the activity is finished.
-                             */
-                            val currPos: Int = binding.viewpager.currentItem
-                            if ((currPos + 1) != binding.viewpager.adapter?.itemCount) {
-                                binding.viewpager.currentItem = currPos + 1
-                            } else {
-                                setResult(
-                                    RESULT_OK,
-                                    Intent().putExtra(RESULT_MESSAGE, "Link(s) updated")
-                                )
-                                finish()
+                    Toolbar.OnMenuItemClickListener { item ->
+                        when (item.itemId) {
+                            R.id.update_descriptor -> {
+                                descriptorManager.updateFromNetwork(descriptors[binding.viewpager.currentItem])
+                                /**
+                                 * **[currPos]** is the current position of the viewpager.
+                                 * If the current position is not the last position, the viewpager is swiped to the next page.
+                                 * If the current position is the last position, the last update is saved in the shared preferences and the activity is finished.
+                                 */
+                                val currPos: Int = binding.viewpager.currentItem
+                                if ((currPos + 1) != binding.viewpager.adapter?.itemCount) {
+                                    binding.viewpager.currentItem = currPos + 1
+                                } else {
+                                    setResult(
+                                            RESULT_OK,
+                                            Intent().putExtra(RESULT_MESSAGE, "Link(s) updated")
+                                    )
+                                    finish()
+                                }
+                                true
                             }
-                            true
-                        }
 
-                        else -> false
+                            else -> false
+                        }
                     }
-                }
             binding.bottomBar.setOnMenuItemClickListener(bottomBarOnMenuItemClickListener)
 
             /**
@@ -138,16 +149,16 @@ class ReviewDescriptorUpdatesActivity : AbstractActivity() {
             binding.viewpager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     binding.bottomBar.menu.findItem(R.id.update_descriptor)
-                        ?.let {
-                            val countString =
-                                "(${position + 1} of ${binding.viewpager.adapter?.itemCount})"
-                            supportActionBar?.title = "Link Update $countString"
-                            it.title = if ((position + 1) != binding.viewpager.adapter?.itemCount) {
-                                "UPDATE $countString"
-                            } else {
-                                "UPDATE AND FINISH $countString"
+                            ?.let {
+                                val countString =
+                                        "(${position + 1} of ${binding.viewpager.adapter?.itemCount})"
+                                supportActionBar?.title = "Link Update $countString"
+                                it.title = if ((position + 1) != binding.viewpager.adapter?.itemCount) {
+                                    "UPDATE $countString"
+                                } else {
+                                    "UPDATE AND FINISH $countString"
+                                }
                             }
-                        }
 
                 }
             })
@@ -166,12 +177,20 @@ class ReviewDescriptorUpdatesActivity : AbstractActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.close_button -> {
-                finish()
+                if (intent.getBooleanExtra(PERSISTENT, false)) {
+                    intent.getStringExtra(DESCRIPTORS)?.let { updatesViewModel.setDescriptorsWith(it) }
+                }
+                onSupportNavigateUp()
                 true
             }
 
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
 
@@ -181,8 +200,8 @@ class ReviewDescriptorUpdatesActivity : AbstractActivity() {
  * @param descriptors is the list of descriptors to display.
  */
 class ReviewUpdatesPagingAdapter(
-    fragmentActivity: FragmentActivity,
-    private val descriptors: List<TestDescriptor>
+        fragmentActivity: FragmentActivity,
+        private val descriptors: List<TestDescriptor>
 ) : FragmentStateAdapter(fragmentActivity) {
     override fun getItemCount(): Int = descriptors.size
 
@@ -213,14 +232,14 @@ class DescriptorUpdateFragment : Fragment() {
                 title.text = absDescriptor.title
                 author.text = "Created by ${descriptor.author} on ${
                     SimpleDateFormat(
-                        "MMM dd, yyyy",
-                        Locale.getDefault()
+                            "MMM dd, yyyy",
+                            Locale.getDefault()
                     ).format(descriptor.dateCreated)
                 }"
                 description.text = absDescriptor.description // Use markdown
                 icon.setImageResource(absDescriptor.getDisplayIcon(context))
                 val adapter =
-                    ReviewDescriptorExpandableListAdapter(nettests = absDescriptor.nettests)
+                        ReviewDescriptorExpandableListAdapter(nettests = absDescriptor.nettests)
                 expandableListView.setAdapter(adapter)
                 // Expand all groups
                 for (i in 0 until adapter.groupCount) {
@@ -234,9 +253,9 @@ class DescriptorUpdateFragment : Fragment() {
     private lateinit var binding: FragmentDescriptorUpdateBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
         binding = FragmentDescriptorUpdateBinding.inflate(inflater, container, false)
         return binding.root
@@ -245,11 +264,11 @@ class DescriptorUpdateFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         arguments?.takeIf { it.containsKey(DESCRIPTOR) }?.apply {
             val descriptor: TestDescriptor =
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    getSerializable(DESCRIPTOR, TestDescriptor::class.java)!!
-                } else {
-                    getSerializable(DESCRIPTOR) as TestDescriptor
-                }
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        getSerializable(DESCRIPTOR, TestDescriptor::class.java)!!
+                    } else {
+                        getSerializable(DESCRIPTOR) as TestDescriptor
+                    }
             bindData(requireContext(), descriptor, binding)
         }
     }
@@ -261,7 +280,7 @@ class DescriptorUpdateFragment : Fragment() {
  * @param nettests is the list of nettests to display.
  */
 class ReviewDescriptorExpandableListAdapter(
-    val nettests: List<BaseNettest>,
+        val nettests: List<BaseNettest>,
 ) : BaseExpandableListAdapter() {
 
     /**
@@ -274,7 +293,7 @@ class ReviewDescriptorExpandableListAdapter(
      * @return Number of children in the group.
      */
     override fun getChildrenCount(groupPosition: Int): Int =
-        nettests[groupPosition].inputs?.size ?: 0
+            nettests[groupPosition].inputs?.size ?: 0
 
     /**
      * @param groupPosition Position of the group in the list.
@@ -288,7 +307,7 @@ class ReviewDescriptorExpandableListAdapter(
      * @return string item at position.
      */
     override fun getChild(groupPosition: Int, childPosition: Int): String? =
-        nettests[groupPosition].inputs?.get(childPosition)
+            nettests[groupPosition].inputs?.get(childPosition)
 
     /**
      * @param groupPosition Position of the group in the list.
@@ -316,22 +335,22 @@ class ReviewDescriptorExpandableListAdapter(
      * @return View of the group.
      */
     override fun getGroupView(
-        groupPosition: Int,
-        isExpanded: Boolean,
-        convertView: View?,
-        parent: ViewGroup,
+            groupPosition: Int,
+            isExpanded: Boolean,
+            convertView: View?,
+            parent: ViewGroup,
     ): View {
         val view = convertView ?: LayoutInflater.from(parent.context)
-            .inflate(R.layout.nettest_group_list_item, parent, false)
+                .inflate(R.layout.nettest_group_list_item, parent, false)
         val groupItem = getGroup(groupPosition)
         val groupIndicator = view.findViewById<ImageView>(R.id.group_indicator)
 
         val abstractNettest = AbstractTest.getTestByName(groupItem.name)
         view.findViewById<TextView>(R.id.group_name).text =
-            when (abstractNettest.labelResId == R.string.Test_Experimental_Fullname) {
-                true -> groupItem.name
-                false -> parent.context.resources.getText(abstractNettest.labelResId)
-            }
+                when (abstractNettest.labelResId == R.string.Test_Experimental_Fullname) {
+                    true -> groupItem.name
+                    false -> parent.context.resources.getText(abstractNettest.labelResId)
+                }
 
         val groupCheckBox = view.findViewById<MaterialCheckBox>(R.id.groupCheckBox)
         groupCheckBox.visibility = View.GONE
@@ -357,14 +376,14 @@ class ReviewDescriptorExpandableListAdapter(
      * @return View object.
      */
     override fun getChildView(
-        groupPosition: Int,
-        childPosition: Int,
-        isLastChild: Boolean,
-        convertView: View?,
-        parent: ViewGroup
+            groupPosition: Int,
+            childPosition: Int,
+            isLastChild: Boolean,
+            convertView: View?,
+            parent: ViewGroup
     ): View {
         val view = convertView ?: LayoutInflater.from(parent.context)
-            .inflate(R.layout.nettest_child_list_item, parent, false)
+                .inflate(R.layout.nettest_child_list_item, parent, false)
 
         view.findViewById<TextView>(R.id.text).apply {
             text = getChild(groupPosition, childPosition)

@@ -239,7 +239,7 @@ public class Result extends BaseModel implements Serializable {
              * We return an {@link InstalledDescriptor} object which implements {@link AbstractDescriptor}.
              */
             if (descriptor != null) {
-                return Optional.of(new InstalledDescriptor(descriptor));
+                return Optional.of(new InstalledDescriptor(descriptor, null));
             }
             /**
              * If the descriptor does not exist, then this is an OONI Provided test or an OONI Run v1 measurement result.
