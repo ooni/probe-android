@@ -32,6 +32,7 @@ import androidx.work.WorkManager;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.activity.reviewdescriptorupdates.AvailableUpdatesViewModel;
 import org.openobservatory.ooniprobe.activity.reviewdescriptorupdates.ReviewDescriptorUpdatesActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.NotificationUtility;
@@ -74,6 +75,9 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
 
     @Inject
     TestDescriptorManager descriptorManager;
+
+    @Inject
+    AvailableUpdatesViewModel updatesViewModel;
 
     private ActivityResultLauncher<String> requestPermissionLauncher;
 
@@ -213,7 +217,7 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
      */
     private void onManualUpdatesFetchComplete(WorkInfo workInfo) {
         if (workInfo != null) {
-            if (workInfo.getProgress().getInt(PROGRESS,-1) >= 0) {
+            if (workInfo.getProgress().getInt(PROGRESS, -1) >= 0) {
                 binding.reviewUpdateNotificationFragment.setVisibility(View.VISIBLE);
             }
             switch (workInfo.getState()) {
@@ -224,29 +228,32 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
                         return;
                     }
                     getSupportFragmentManager()
-                        .beginTransaction()
-                        .add(
-                            R.id.review_update_notification_fragment,
-                            OONIRunDynamicProgressBar.newInstance(ProgressType.REVIEW_LINK, new OnActionListener() {
-                                @Override
-                                public void onActionButtonCLicked() {
+                            .beginTransaction()
+                            .add(
+                                    R.id.review_update_notification_fragment,
+                                    OONIRunDynamicProgressBar.newInstance(ProgressType.REVIEW_LINK, new OnActionListener() {
+                                        @Override
+                                        public void onActionButtonCLicked() {
 
-                                    getReviewUpdatesLauncher().launch(
-                                        ReviewDescriptorUpdatesActivity.newIntent(
-                                            MainActivity.this,
-                                            descriptor
-                                        )
-                                    );
-                                    removeProgressFragment(R.id.review_update_notification_fragment);
-                                }
+                                            getReviewUpdatesLauncher().launch(
+                                                    ReviewDescriptorUpdatesActivity.newIntent(
+                                                            MainActivity.this,
+                                                            descriptor,
+                                                            true
+                                                    )
+                                            );
+                                            removeProgressFragment(R.id.review_update_notification_fragment);
+                                        }
 
-                                @Override
-                                public void onCloseButtonClicked() {
-                                    removeProgressFragment(R.id.review_update_notification_fragment);
-                                }
-                            }),
-                            OONIRunDynamicProgressBar.getTAG() + "_review_update_success_notification"
-                        ).commit();
+                                        @Override
+                                        public void onCloseButtonClicked() {
+                                            updatesViewModel.setDescriptorsWith(descriptor);
+                                            //TODO: Add a method to reload the list of descriptors.
+                                            removeProgressFragment(R.id.review_update_notification_fragment);
+                                        }
+                                    }),
+                                    OONIRunDynamicProgressBar.getTAG() + "_review_update_success_notification"
+                            ).commit();
                 }
 
                 case ENQUEUED -> getSupportFragmentManager()
@@ -321,11 +328,11 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
                 binding.bottomNavigation.setSelectedItemId(intent.getIntExtra(RES_ITEM, R.id.dashboard));
             } else if (intent.getExtras().containsKey(NOTIFICATION_DIALOG)) {
                 new ConfirmDialogFragment.Builder()
-                    .withTitle(intent.getExtras().getString("title"))
-                    .withMessage(intent.getExtras().getString("message"))
-                    .withNegativeButton("")
-                    .withPositiveButton(getString(R.string.Modal_OK))
-                    .build().show(getSupportFragmentManager(), null);
+                        .withTitle(intent.getExtras().getString("title"))
+                        .withMessage(intent.getExtras().getString("message"))
+                        .withNegativeButton("")
+                        .withPositiveButton(getString(R.string.Modal_OK))
+                        .build().show(getSupportFragmentManager(), null);
             }
         }
     }

@@ -9,13 +9,16 @@ import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.common.AbstractDescriptor
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.common.TestDescriptorManager
+import org.openobservatory.ooniprobe.model.database.ITestDescriptor
 import org.openobservatory.ooniprobe.model.database.InstalledDescriptor
+import org.openobservatory.ooniprobe.model.database.TestDescriptor
 import javax.inject.Inject
 
 class DashboardViewModel @Inject constructor(
-    private val preferenceManager: PreferenceManager,
-    private val descriptorManager: TestDescriptorManager
+        private val preferenceManager: PreferenceManager,
+        private val descriptorManager: TestDescriptorManager
 ) : ViewModel(), DefaultLifecycleObserver {
+    private var pendingUpdates: MutableLiveData<List<ITestDescriptor>> = MutableLiveData()
     private var ooniRunDescriptors: List<InstalledDescriptor> = emptyList()
     private val oonTestsTitle: String = "OONI Tests"
     private val oonRunLinksTitle: String = "OONI RUN Links"
@@ -25,14 +28,24 @@ class DashboardViewModel @Inject constructor(
 
     init {
         ooniRunDescriptors = descriptorManager.getRunV2Descriptors().map {
-            InstalledDescriptor(it)
+            InstalledDescriptor(it, getTags(it))
+        }
+    }
+
+    private fun getTags(descriptor: TestDescriptor): List<String> {
+        pendingUpdates.value.let { updates ->
+            return if (updates?.any { it.runId == descriptor.runId } == true) {
+                listOf("updated")
+            } else {
+                emptyList()
+            }
         }
     }
 
     override fun onResume(owner: LifecycleOwner) {
         super.onResume(owner)
         ooniRunDescriptors = descriptorManager.getRunV2Descriptors().map {
-            InstalledDescriptor(it)
+            InstalledDescriptor(it, getTags(it))
         }
         fetchItemList()
     }
@@ -51,12 +64,12 @@ class DashboardViewModel @Inject constructor(
     private fun fetchItemList() {
 
         val groupedItems = items.value!!.groupBy {
-                return@groupBy if (oonTests.contains(it)) {
-                    oonTestsTitle
-                } else {
-                    ""
-                }
+            return@groupBy if (oonTests.contains(it)) {
+                oonTestsTitle
+            } else {
+                ""
             }
+        }
 
         val groupedItemList = mutableListOf<Any>()
         groupedItems.forEach { (status, itemList) ->
@@ -70,5 +83,13 @@ class DashboardViewModel @Inject constructor(
             groupedItemList.addAll(ooniRunDescriptors)
         }
         this.groupedItemList.value = groupedItemList
+    }
+
+    fun updateDescriptorWith(descriptors: List<ITestDescriptor>) {
+        pendingUpdates.value = descriptors
+        ooniRunDescriptors = descriptorManager.getRunV2Descriptors().map {
+            InstalledDescriptor(it, getTags(it))
+        }
+        fetchItemList()
     }
 }

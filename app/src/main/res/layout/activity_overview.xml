@@ -32,6 +32,16 @@
                     android:paddingBottom="16dp"
                     app:layout_collapseMode="parallax">
 
+
+                    <include
+                        android:id="@+id/updated_tag"
+                        layout="@layout/updated_tag"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/item_padding_large"
+                        android:layout_marginBottom="@dimen/item_padding_large" />
+
                     <ImageView
                         android:id="@+id/icon"
                         android:layout_width="96dp"
