@@ -16,6 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -28,22 +30,14 @@ import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
 import org.openobservatory.ooniprobe.activity.TextActivity;
 import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.common.TestDescriptorManager;
 import org.openobservatory.ooniprobe.databinding.FragmentResultListBinding;
 import org.openobservatory.ooniprobe.domain.GetResults;
 import org.openobservatory.ooniprobe.domain.MeasurementsManager;
-import org.openobservatory.ooniprobe.domain.models.DatedResults;
-import org.openobservatory.ooniprobe.item.CircumventionItem;
-import org.openobservatory.ooniprobe.item.DateItem;
-import org.openobservatory.ooniprobe.item.ExperimentalItem;
-import org.openobservatory.ooniprobe.item.FailedItem;
-import org.openobservatory.ooniprobe.item.InstantMessagingItem;
-import org.openobservatory.ooniprobe.item.PerformanceItem;
-import org.openobservatory.ooniprobe.item.RunItem;
-import org.openobservatory.ooniprobe.item.WebsiteItem;
+import org.openobservatory.ooniprobe.fragment.resultList.ResultListAdapter;
+import org.openobservatory.ooniprobe.fragment.resultList.ResultListViewModel;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
@@ -51,19 +45,17 @@ import org.openobservatory.ooniprobe.model.database.Result_Table;
 import java.io.Serializable;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
-import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerAdapter;
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
 public class ResultListFragment extends Fragment implements View.OnClickListener, View.OnLongClickListener, ConfirmDialogFragment.OnConfirmedListener {
     private FragmentResultListBinding binding;
 
     private ArrayList<HeterogeneousRecyclerItem> items;
-    private HeterogeneousRecyclerAdapter<HeterogeneousRecyclerItem> adapter;
+    private ResultListAdapter adapter;
     private boolean refresh;
     private Snackbar snackbar;
 
@@ -79,12 +71,24 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     @Inject
     TestDescriptorManager descriptorManager;
 
+    private ResultListViewModel viewModel;
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentResultListBinding.inflate(inflater, container, false);
         ((Application) getActivity().getApplication()).getFragmentComponent().inject(this);
         ((AppCompatActivity) getActivity()).setSupportActionBar(binding.toolbar);
+
+        viewModel = new ViewModelProvider.Factory() {
+            @NonNull
+            @Override
+            public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+                return (T) new ResultListViewModel(getResults);
+            }
+        }.create(ResultListViewModel.class);
+
         setHasOptionsMenu(true);
         getActivity().setTitle(R.string.TestResults_Overview_Title);
         reloadHeader();
@@ -92,7 +96,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         binding.recycler.setLayoutManager(layoutManager);
         binding.recycler.addItemDecoration(new DividerItemDecoration(getActivity(), layoutManager.getOrientation()));
         items = new ArrayList<>();
-        adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
+        adapter = new ResultListAdapter(this, this);
         binding.recycler.setAdapter(adapter);
 
         binding.filterTests.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -169,43 +173,14 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
             snackbar.dismiss();
         }
 
-        items.clear();
-
         String filter = getResources().getStringArray(R.array.filterTestValues)[binding.filterTests.getSelectedItemPosition()];
-        List<DatedResults> list = getResults.getGroupedByMonth(filter);
-
-        if (list.isEmpty()) {
-            binding.emptyState.setVisibility(View.VISIBLE);
-            binding.recycler.setVisibility(View.GONE);
-        } else {
-            binding.emptyState.setVisibility(View.GONE);
-            binding.recycler.setVisibility(View.VISIBLE);
-            for (DatedResults group : list) {
-                items.add(new DateItem(group.getGroupedDate()));
-                for (Result result : group.getResultsList()) {
-                    if (result.countTotalMeasurements() == 0)
-                        items.add(new FailedItem(result, this, this));
-                    else {
-                        if (result.test_group_name.equals(OONITests.WEBSITES.toString())) {
-                            items.add(new WebsiteItem(result, this, this));
-                        } else if (result.test_group_name.equals(OONITests.INSTANT_MESSAGING.toString())) {
-                            items.add(new InstantMessagingItem(result, this, this));
-                        } else if (result.test_group_name.equals(OONITests.PERFORMANCE.toString())) {
-                            items.add(new PerformanceItem(result, this, this));
-                        } else if (result.test_group_name.equals(OONITests.CIRCUMVENTION.toString())) {
-                            items.add(new CircumventionItem(result, this, this));
-                        } else if (result.test_group_name.equals(OONITests.EXPERIMENTAL.toString())) {
-                            items.add(new ExperimentalItem(result, this, this));
-                        } else if (result.descriptor!=null) {
-                            items.add(new RunItem(result, this, this));
-                        } else {
-                            items.add(new FailedItem(result, this, this));
-                        }
-                    }
-                }
-            }
-            adapter.notifyTypesChanged();
-        }
+        viewModel.init(filter);
+        viewModel.getResults().observe(getViewLifecycleOwner(), resultPagingData -> {
+            binding.recycler.post(() -> {
+                adapter.submitList(resultPagingData);
+                adapter.notifyDataSetChanged();
+            });
+        });
     }
 
     @Override
@@ -231,11 +206,9 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         if (serializable.equals(R.string.Modal_ResultsNotUploaded_Title)) {
             if (i == DialogInterface.BUTTON_POSITIVE) {
                 new ResubmitAsyncTask(this, pm.getProxyURL()).execute(null, null);
-            }
-            else if (i == DialogInterface.BUTTON_NEUTRAL) {
+            } else if (i == DialogInterface.BUTTON_NEUTRAL) {
                 startActivity(TextActivity.newIntent(getActivity(), TextActivity.TYPE_UPLOAD_LOG, (String) serializable));
-            }
-            else
+            } else
                 snackbar.show();
         } else if (i == DialogInterface.BUTTON_POSITIVE) {
             if (serializable instanceof Result) {
