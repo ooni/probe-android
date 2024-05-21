@@ -44,17 +44,14 @@ import org.openobservatory.ooniprobe.model.database.Result_Table;
 
 import java.io.Serializable;
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 
 import javax.inject.Inject;
 
 import localhost.toolkit.app.fragment.ConfirmDialogFragment;
-import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
 public class ResultListFragment extends Fragment implements View.OnClickListener, View.OnLongClickListener, ConfirmDialogFragment.OnConfirmedListener {
     private FragmentResultListBinding binding;
 
-    private ArrayList<HeterogeneousRecyclerItem> items;
     private ResultListAdapter adapter;
     private boolean refresh;
     private Snackbar snackbar;
@@ -95,7 +92,6 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         binding.recycler.setLayoutManager(layoutManager);
         binding.recycler.addItemDecoration(new DividerItemDecoration(getActivity(), layoutManager.getOrientation()));
-        items = new ArrayList<>();
         adapter = new ResultListAdapter(this, this);
         binding.recycler.setAdapter(adapter);
 
