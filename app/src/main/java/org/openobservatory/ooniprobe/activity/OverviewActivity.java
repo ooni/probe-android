@@ -41,6 +41,7 @@ import org.openobservatory.ooniprobe.common.AbstractDescriptor;
 import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReadMorePlugin;
+import org.openobservatory.ooniprobe.common.TestDescriptorManager;
 import org.openobservatory.ooniprobe.common.worker.ManualUpdateDescriptorsWorker;
 import org.openobservatory.ooniprobe.databinding.ActivityOverviewBinding;
 import org.openobservatory.ooniprobe.fragment.ConfirmDialogFragment;
@@ -71,6 +72,9 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
 
     @Inject
     AvailableUpdatesViewModel updatesViewModel;
+
+    @Inject
+    TestDescriptorManager testDescriptorManager;
 
     OverviewTestsExpandableListViewAdapter adapter;
 
@@ -299,15 +303,19 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
             switch (workInfo.getState()) {
                 case SUCCEEDED -> {
 
-                    String descriptor = workInfo.getOutputData().getString(ManualUpdateDescriptorsWorker.KEY_UPDATED_DESCRIPTORS);
-                    if (descriptor != null && !descriptor.isEmpty()) {
-                        binding.reviewUpdates.setVisibility(View.VISIBLE);
-                        binding.reviewUpdates.setOnClickListener(view -> getReviewUpdatesLauncher().launch(
-                                ReviewDescriptorUpdatesActivity.newIntent(
-                                        OverviewActivity.this,
-                                        descriptor
-                                )
-                        ));
+                    String descriptorString = workInfo.getOutputData().getString(ManualUpdateDescriptorsWorker.KEY_UPDATED_DESCRIPTORS);
+                    if (descriptorString != null && !descriptorString.isEmpty()) {
+                        if (descriptor.getDescriptor().isAutoUpdate()){
+                            testDescriptorManager.updateFromNetwork(descriptorString);
+                        } else {
+                            binding.reviewUpdates.setVisibility(View.VISIBLE);
+                            binding.reviewUpdates.setOnClickListener(view -> getReviewUpdatesLauncher().launch(
+                                    ReviewDescriptorUpdatesActivity.newIntent(
+                                            OverviewActivity.this,
+                                            descriptorString
+                                    )
+                            ));
+                        }
                     }
                     binding.swipeRefresh.setRefreshing(false);
                 }
