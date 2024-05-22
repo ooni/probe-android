@@ -113,6 +113,13 @@ class DashboardFragment : Fragment(), View.OnClickListener {
         if (ReachabilityManager.isVPNinUse(this.context)
             && preferenceManager.isWarnVPNInUse
         ) binding.vpn.visibility = View.VISIBLE else binding.vpn.visibility = View.GONE
+
+        viewModel.getItemList().observe(viewLifecycleOwner) { items ->
+            descriptors.apply {
+                clear()
+                addAll(items)
+            }
+        }
     }
 
     private fun setLastTest() {

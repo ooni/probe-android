@@ -22,14 +22,21 @@ class AutoUpdateDescriptorsWorker(
 ) : Worker(context, workerParams) {
 
     override fun doWork(): Result {
+
+        setProgressAsync(Data.Builder().putInt(PROGRESS, 0).build())
+
         val app = applicationContext.applicationContext as Application
         app.serviceComponent.inject(d)
+
         return try {
             Log.d(TAG, "Fetching descriptors from input")
 
             val updatedDescriptors: ArrayList<TestDescriptor> = ArrayList()
 
-            for (descriptor in d.testDescriptorManager.getDescriptorWithAutoUpdateEnabled()) {
+            for (descriptor in d.testDescriptorManager.getRunV2Descriptors(
+                    autoUpdate = true,
+                    expired = false
+            )) {
 
                 Log.d(TAG, "Fetching updates for ${descriptor.runId}")
 
@@ -102,7 +109,7 @@ class ManualUpdateDescriptorsWorker(
             val descriptors = inputData.getLongArray(KEY_DESCRIPTOR_IDS)?.let {
                 d.testDescriptorManager.getDescriptorsFromIds(it.toTypedArray())
             } ?: run {
-                d.testDescriptorManager.getDescriptorWithAutoUpdateDisabled()
+                d.testDescriptorManager.getRunV2Descriptors(expired = false)
             }
 
             if (descriptors.isEmpty()) {
