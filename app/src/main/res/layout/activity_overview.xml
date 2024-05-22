@@ -3,7 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activity.OverviewActivity">
+    <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="viewmodel"
+            type="org.openobservatory.ooniprobe.activity.overview.OverviewViewModel" />
+    </data>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
@@ -47,7 +54,8 @@
                         android:layout_width="96dp"
                         android:layout_height="96dp"
                         android:transitionName="@string/transitionNameIcon"
-                        app:tint="@android:color/white" />
+                        app:tint="@android:color/white"
+                        app:resource="@{viewmodel.icon}" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -57,7 +65,7 @@
                         android:transitionName="@string/transitionNameRuntime">
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
@@ -86,14 +94,17 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:textColor="@android:color/white"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                app:dataUsage="@{viewmodel.descriptor.dataUsage}"
+                                app:runTime="@{viewmodel.runTime}"/>
 
                             <TextView
                                 android:id="@+id/lastTime"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@android:color/white"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:text="@{viewmodel.lastTime , default = @string/Dashboard_Overview_LastRun_Never}" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -164,7 +175,9 @@
                             android:id="@+id/desc"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingVertical="32dp" />
+                            android:paddingVertical="32dp"
+                            app:richText="@{viewmodel.description}"
+                            app:testName="@{viewmodel.descriptor.name}"/>
 
                         <LinearLayout
                             android:id="@+id/automatic_updates_container"

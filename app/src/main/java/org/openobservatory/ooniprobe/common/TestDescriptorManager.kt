@@ -156,6 +156,11 @@ class TestDescriptorManager @Inject constructor(
     fun updateFromNetwork(testDescriptor: TestDescriptor): Boolean {
         getById(testDescriptor.runId)?.let { descriptor ->
             testDescriptor.isAutoUpdate = descriptor.isAutoUpdate
+            descriptor.getNettests().forEach { nettest ->
+                nettest.inputs?.forEach { input ->
+                    Url.checkExistingUrl(input)
+                }
+            }
             return testDescriptor.save()
         } ?: run {
             return false
