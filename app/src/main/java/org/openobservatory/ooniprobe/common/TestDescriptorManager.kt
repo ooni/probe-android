@@ -9,6 +9,7 @@ import org.openobservatory.engine.OONIRunDescriptor
 import org.openobservatory.engine.OONIRunRevisions
 import org.openobservatory.ooniprobe.BuildConfig
 import org.openobservatory.ooniprobe.activity.adddescriptor.adapter.GroupedItem
+import org.openobservatory.ooniprobe.model.database.ITestDescriptor
 import org.openobservatory.ooniprobe.model.database.InstalledDescriptor
 import org.openobservatory.ooniprobe.model.database.Result
 import org.openobservatory.ooniprobe.model.database.Result_Table
@@ -28,7 +29,8 @@ import javax.inject.Singleton
 @Singleton
 class TestDescriptorManager @Inject constructor(
     private val context: Context,
-    private val preferenceManager: PreferenceManager
+    private val preferenceManager: PreferenceManager,
+    private val gson: Gson
 ) {
     private val descriptors: List<OONIDescriptor<BaseNettest>> = ooniDescriptors(context)
 
@@ -118,11 +120,6 @@ class TestDescriptorManager @Inject constructor(
             .where(TestDescriptor_Table.runId.eq(runId)).querySingle()
     }
 
-    fun getRunV2Descriptors(): List<TestDescriptor> {
-        return SQLite.select().from(TestDescriptor::class.java)
-            .orderBy(TestDescriptor_Table.is_expired.asc()).queryList()
-    }
-
     fun delete(descriptor: InstalledDescriptor): Boolean {
         preferenceManager.sp.all.entries.forEach { entry ->
             if (entry.key.contains(descriptor.testDescriptor.runId.toString())) {
@@ -136,19 +133,34 @@ class TestDescriptorManager @Inject constructor(
             }
     }
 
-    fun getDescriptorWithAutoUpdateEnabled(): List<TestDescriptor> {
+    fun getRunV2Descriptors(autoUpdate: Boolean? = null, expired: Boolean? = null): List<TestDescriptor> {
         return SQLite.select().from(TestDescriptor::class.java)
-            .where(TestDescriptor_Table.auto_update.eq(true)).queryList()
+                .where(
+                        autoUpdate?.let { TestDescriptor_Table.auto_update.eq(it) },
+                        expired?.let { TestDescriptor_Table.is_expired.eq(it) }
+                )
+                .orderBy(TestDescriptor_Table.is_expired.asc())
+                .queryList()
     }
 
-    fun getDescriptorWithAutoUpdateDisabled(): List<TestDescriptor> {
-        return SQLite.select().from(TestDescriptor::class.java)
-            .where(TestDescriptor_Table.auto_update.eq(false)).queryList()
+    fun updateFromNetwork(descriptorJson: String): Boolean {
+        return runCatching {
+            gson.fromJson(descriptorJson, Array<ITestDescriptor>::class.java)
+                    .map { it.toTestDescriptor() }.map { updateFromNetwork(it) }.all { it }
+        }.fold(
+            onSuccess = { response -> response },
+            onFailure = { false }
+        )
     }
 
     fun updateFromNetwork(testDescriptor: TestDescriptor): Boolean {
         getById(testDescriptor.runId)?.let { descriptor ->
             testDescriptor.isAutoUpdate = descriptor.isAutoUpdate
+            descriptor.getNettests().forEach { nettest ->
+                nettest.inputs?.forEach { input ->
+                    Url.checkExistingUrl(input)
+                }
+            }
             return testDescriptor.save()
         } ?: run {
             return false

@@ -27,9 +27,7 @@ class DashboardViewModel @Inject constructor(
     private val items = MutableLiveData<List<AbstractDescriptor<BaseNettest>>>(oonTests)
 
     init {
-        ooniRunDescriptors = descriptorManager.getRunV2Descriptors().map {
-            InstalledDescriptor(it, getTags(it))
-        }
+        fetchRunV2Descriptors()
     }
 
     private fun getTags(descriptor: TestDescriptor): List<String> {
@@ -44,9 +42,7 @@ class DashboardViewModel @Inject constructor(
 
     override fun onResume(owner: LifecycleOwner) {
         super.onResume(owner)
-        ooniRunDescriptors = descriptorManager.getRunV2Descriptors().map {
-            InstalledDescriptor(it, getTags(it))
-        }
+        fetchRunV2Descriptors()
         fetchItemList()
     }
 
@@ -58,6 +54,7 @@ class DashboardViewModel @Inject constructor(
     }
 
     fun getItemList(): LiveData<List<AbstractDescriptor<BaseNettest>>> {
+        fetchRunV2Descriptors()
         return items.value?.let { MutableLiveData(it + ooniRunDescriptors) } ?: MutableLiveData()
     }
 
@@ -85,9 +82,13 @@ class DashboardViewModel @Inject constructor(
 
     fun updateDescriptorWith(descriptors: List<ITestDescriptor>) {
         pendingUpdates.value = descriptors
+        fetchRunV2Descriptors()
+        fetchItemList()
+    }
+
+    private fun fetchRunV2Descriptors() {
         ooniRunDescriptors = descriptorManager.getRunV2Descriptors().map {
             InstalledDescriptor(it, getTags(it))
         }
-        fetchItemList()
     }
 }

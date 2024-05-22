@@ -11,13 +11,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import android.text.format.DateUtils;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.core.text.TextUtilsCompat;
 import androidx.core.view.ViewCompat;
+import androidx.databinding.BindingAdapter;
 import androidx.work.Constraints;
 import androidx.work.Data;
 import androidx.work.ExistingWorkPolicy;
@@ -41,15 +43,15 @@ import org.openobservatory.ooniprobe.common.AbstractDescriptor;
 import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReadMorePlugin;
+import org.openobservatory.ooniprobe.common.TestDescriptorManager;
+import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.worker.ManualUpdateDescriptorsWorker;
 import org.openobservatory.ooniprobe.databinding.ActivityOverviewBinding;
 import org.openobservatory.ooniprobe.fragment.ConfirmDialogFragment;
 import org.openobservatory.ooniprobe.model.database.InstalledDescriptor;
-import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.TestDescriptor;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -68,9 +70,11 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
     @Inject
     OverviewViewModel viewModel;
 
-
     @Inject
     AvailableUpdatesViewModel updatesViewModel;
+
+    @Inject
+    TestDescriptorManager testDescriptorManager;
 
     OverviewTestsExpandableListViewAdapter adapter;
 
@@ -87,65 +91,15 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
         descriptor = (AbstractDescriptor) getIntent().getSerializableExtra(TEST);
         binding = ActivityOverviewBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        viewModel.updateDescriptor(descriptor);
+        binding.setViewmodel(viewModel);
+        binding.setLifecycleOwner(this);
+
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle(descriptor.getTitle());
-        setThemeColor(descriptor.getColor());
-        binding.icon.setImageResource(descriptor.getDisplayIcon(this));
+
+        onDescriptorLoaded(descriptor);
+
         binding.customUrl.setVisibility(descriptor.getName().equals(OONITests.WEBSITES.getLabel()) ? View.VISIBLE : View.GONE);
-        Markwon markwon = Markwon.builder(this)
-                .usePlugin(new ReadMorePlugin(getString(R.string.OONIRun_ReadMore), getString(R.string.OONIRun_ReadLess), 400))
-                .build();
-        if (Objects.equals(descriptor.getName(), OONITests.EXPERIMENTAL.name())) {
-            markwon.setMarkdown(binding.desc, descriptor.getDescription());
-            if (TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL) {
-                binding.desc.setTextDirection(View.TEXT_DIRECTION_RTL);
-            }
-        } else {
-            if (descriptor instanceof InstalledDescriptor) {
-                TestDescriptor testDescriptor = ((InstalledDescriptor) descriptor).getTestDescriptor();
-                markwon.setMarkdown(
-                        binding.desc,
-                        String.format(
-                                "Created by %s on %s\n\n%s",
-                                testDescriptor.getAuthor(),
-                                new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH).format(testDescriptor.getDateCreated()),
-                                descriptor.getDescription()
-                        )
-                );
-                if (Boolean.TRUE.equals(testDescriptor.isExpired())) {
-                    binding.expiredTag.getRoot().setVisibility(View.VISIBLE);
-                }
-
-                InstalledDescriptor installedDescriptor = ((InstalledDescriptor) descriptor);
-                if (installedDescriptor.isUpdateAvailable()) {
-                    binding.updatedTag.getRoot().setVisibility(View.VISIBLE);
-
-
-                    binding.reviewUpdates.setVisibility(View.VISIBLE);
-                    binding.reviewUpdates.setOnClickListener(view -> getReviewUpdatesLauncher().launch(
-                            ReviewDescriptorUpdatesActivity.newIntent(
-                                    OverviewActivity.this,
-                                    updatesViewModel.getUpdatedDescriptor(testDescriptor.getRunId())
-                            )
-                    ));
-
-
-                }
-            } else {
-                markwon.setMarkdown(binding.desc, descriptor.getDescription());
-            }
-        }
-        Result lastResult = Result.getLastResult(descriptor.getName());
-        if (lastResult == null) {
-            binding.lastTime.setText(R.string.Dashboard_Overview_LastRun_Never);
-        } else {
-            binding.lastTime.setText(DateUtils.getRelativeTimeSpanString(lastResult.start_time.getTime()));
-        }
-
-        adapter = new OverviewTestsExpandableListViewAdapter(descriptor.overviewExpandableListViewData(preferenceManager), viewModel);
-        binding.expandableListView.setAdapter(adapter);
 
         viewModel.getSelectedAllBtnStatus().observe(this, this::selectAllBtnStatusObserver);
         binding.switchTests.addOnCheckedStateChangedListener((checkBox, state) -> {
@@ -176,30 +130,32 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
                 binding.switchTests.setCheckedState(MaterialCheckBox.STATE_INDETERMINATE);
             }
         }
-        // Expand all groups
-        for (int i = 0; i < adapter.getGroupCount(); i++) {
-            binding.expandableListView.expandGroup(i);
-        }
 
-        if (descriptor instanceof InstalledDescriptor) {
+        if (descriptor instanceof InstalledDescriptor installedDescriptor) {
+
+            TestDescriptor testDescriptor = installedDescriptor.getTestDescriptor();
+
+            if (Boolean.TRUE.equals(testDescriptor.isExpired())) {
+                binding.expiredTag.getRoot().setVisibility(View.VISIBLE);
+            }
+
+            if (installedDescriptor.isUpdateAvailable()) {
+                binding.updatedTag.getRoot().setVisibility(View.VISIBLE);
+
+                binding.reviewUpdates.setVisibility(View.VISIBLE);
+                binding.reviewUpdates.setOnClickListener(view -> getReviewUpdatesLauncher().launch(
+                        ReviewDescriptorUpdatesActivity.newIntent(
+                                OverviewActivity.this,
+                                updatesViewModel.getUpdatedDescriptor(testDescriptor.getRunId())
+                        )
+                ));
+
+            }
+
             binding.uninstallLink.setVisibility(View.VISIBLE);
             binding.automaticUpdatesContainer.setVisibility(View.VISIBLE);
-            InstalledDescriptor installedDescriptor = (InstalledDescriptor) descriptor;
             binding.automaticUpdatesSwitch.setChecked(installedDescriptor.getTestDescriptor().isAutoUpdate());
 
-            try {
-                if (Integer.parseInt(installedDescriptor.getTestDescriptor().getRevision()) > 1) {
-                    getSupportFragmentManager().beginTransaction().add(
-                            binding.revisionsContainer.getId(),
-                            RevisionsFragment.newInstance(
-                                    installedDescriptor.getDescriptor().getRunId(),
-                                    installedDescriptor.getDescriptor().getPreviousRevision()
-                            )
-                    ).commit();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         } else {
             binding.uninstallLink.setVisibility(View.GONE);
             /**
@@ -211,8 +167,46 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
         setUpOnCLickListeners();
         registerReviewLauncher(binding.getRoot(), () -> {
             binding.reviewUpdates.setVisibility(View.GONE);
+            try {
+                onDescriptorLoaded(
+                        new InstalledDescriptor(testDescriptorManager.getById(viewModel.getDescriptor().getValue().getDescriptor().getRunId()), null)
+                );
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return null;
         });
+    }
+
+    private void onDescriptorLoaded(AbstractDescriptor<BaseNettest> descriptor) {
+        setTitle(descriptor.getTitle());
+        setThemeColor(descriptor.getColor());
+        viewModel.updateDescriptor(descriptor);
+        binding.executePendingBindings();
+
+        adapter = new OverviewTestsExpandableListViewAdapter(descriptor.overviewExpandableListViewData(preferenceManager), viewModel);
+        binding.expandableListView.setAdapter(adapter);
+        // Expand all groups
+        for (int i = 0; i < adapter.getGroupCount(); i++) {
+            binding.expandableListView.expandGroup(i);
+        }
+
+        if (descriptor instanceof InstalledDescriptor installedDescriptor) {
+            try {
+                if (Integer.parseInt(installedDescriptor.getTestDescriptor().getRevision()) > 1) {
+                    getSupportFragmentManager().beginTransaction().replace(
+                            binding.revisionsContainer.getId(),
+                            RevisionsFragment.newInstance(
+                                    installedDescriptor.getDescriptor().getRunId(),
+                                    installedDescriptor.getDescriptor().getPreviousRevision()
+                            )
+                    ).commit();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     private void selectAllBtnStatusObserver(String selectAllBtnStatus) {
@@ -299,15 +293,26 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
             switch (workInfo.getState()) {
                 case SUCCEEDED -> {
 
-                    String descriptor = workInfo.getOutputData().getString(ManualUpdateDescriptorsWorker.KEY_UPDATED_DESCRIPTORS);
-                    if (descriptor != null && !descriptor.isEmpty()) {
-                        binding.reviewUpdates.setVisibility(View.VISIBLE);
-                        binding.reviewUpdates.setOnClickListener(view -> getReviewUpdatesLauncher().launch(
-                                ReviewDescriptorUpdatesActivity.newIntent(
-                                        OverviewActivity.this,
-                                        descriptor
-                                )
-                        ));
+                    String descriptorString = workInfo.getOutputData().getString(ManualUpdateDescriptorsWorker.KEY_UPDATED_DESCRIPTORS);
+                    if (descriptorString != null && !descriptorString.isEmpty()) {
+                        if (descriptor.getDescriptor().isAutoUpdate()) {
+                            testDescriptorManager.updateFromNetwork(descriptorString);
+                            try {
+                                onDescriptorLoaded(
+                                        new InstalledDescriptor(testDescriptorManager.getById(viewModel.getDescriptor().getValue().getDescriptor().getRunId()), null)
+                                );
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            binding.reviewUpdates.setVisibility(View.VISIBLE);
+                            binding.reviewUpdates.setOnClickListener(view -> getReviewUpdatesLauncher().launch(
+                                    ReviewDescriptorUpdatesActivity.newIntent(
+                                            OverviewActivity.this,
+                                            descriptorString
+                                    )
+                            ));
+                        }
                     }
                     binding.swipeRefresh.setRefreshing(false);
                 }
@@ -327,10 +332,43 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        binding.runtime.setText(getString(R.string.twoParam, getString(descriptor.getDataUsage()), getString(R.string.Dashboard_Card_Seconds, String.valueOf(descriptor.getRuntime(this, preferenceManager)))));
+    @BindingAdapter({"resource"})
+    public static void setImageViewResource(ImageView imageView, int resource) {
+        imageView.setImageResource(resource);
+    }
+
+
+    @BindingAdapter({"dataUsage", "runTime"})
+    public static void setDataUsage(TextView view, int dataUsage, String runTime) {
+        Context context = view.getContext();
+        view.setText(
+                context.getString(
+                        R.string.twoParam,
+                        context.getString(dataUsage),
+                        context.getString(R.string.Dashboard_Card_Seconds, runTime)
+                )
+        );
+    }
+
+    @BindingAdapter(value = {"richText", "testName"})
+    public static void setRichText(TextView view, String richText, String testName) {
+        try {
+            Context context = view.getContext();
+            Markwon markwon = Markwon.builder(context)
+                    .usePlugin(new ReadMorePlugin(context.getString(R.string.OONIRun_ReadMore), context.getString(R.string.OONIRun_ReadLess), 400))
+                    .build();
+            if (Objects.equals(testName, OONITests.EXPERIMENTAL.name())) {
+                markwon.setMarkdown(view, richText);
+                if (TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL) {
+                    view.setTextDirection(View.TEXT_DIRECTION_RTL);
+                }
+            } else {
+                markwon.setMarkdown(view, richText);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            ThirdPartyServices.logException(e);
+        }
     }
 
     @Override

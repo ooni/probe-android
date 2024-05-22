@@ -171,7 +171,7 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
                 .enqueueUniquePeriodicWork(
                         AutoUpdateDescriptorsWorker.UPDATED_DESCRIPTORS_WORK_NAME,
                         ExistingPeriodicWorkPolicy.KEEP,
-                        new PeriodicWorkRequest.Builder(AutoUpdateDescriptorsWorker.class, 24, TimeUnit.HOURS)
+                        new PeriodicWorkRequest.Builder(AutoUpdateDescriptorsWorker.class, 60, TimeUnit.MINUTES)
                                 .setConstraints(
                                         new Constraints.Builder()
                                                 .setRequiredNetworkType(NetworkType.CONNECTED)
