@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import android.text.format.DateUtils;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -50,11 +49,9 @@ import org.openobservatory.ooniprobe.common.worker.ManualUpdateDescriptorsWorker
 import org.openobservatory.ooniprobe.databinding.ActivityOverviewBinding;
 import org.openobservatory.ooniprobe.fragment.ConfirmDialogFragment;
 import org.openobservatory.ooniprobe.model.database.InstalledDescriptor;
-import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.TestDescriptor;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -72,7 +69,6 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
 
     @Inject
     OverviewViewModel viewModel;
-
 
     @Inject
     AvailableUpdatesViewModel updatesViewModel;
@@ -173,7 +169,7 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
             binding.reviewUpdates.setVisibility(View.GONE);
             try {
                 onDescriptorLoaded(
-                        new InstalledDescriptor(testDescriptorManager.getById(viewModel.getDescriptor().getValue().getDescriptor().getRunId()),null)
+                        new InstalledDescriptor(testDescriptorManager.getById(viewModel.getDescriptor().getValue().getDescriptor().getRunId()), null)
                 );
             } catch (Exception e) {
                 e.printStackTrace();
@@ -299,11 +295,11 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
 
                     String descriptorString = workInfo.getOutputData().getString(ManualUpdateDescriptorsWorker.KEY_UPDATED_DESCRIPTORS);
                     if (descriptorString != null && !descriptorString.isEmpty()) {
-                        if (descriptor.getDescriptor().isAutoUpdate()){
+                        if (descriptor.getDescriptor().isAutoUpdate()) {
                             testDescriptorManager.updateFromNetwork(descriptorString);
                             try {
                                 onDescriptorLoaded(
-                                        new InstalledDescriptor(testDescriptorManager.getById(viewModel.getDescriptor().getValue().getDescriptor().getRunId()),null)
+                                        new InstalledDescriptor(testDescriptorManager.getById(viewModel.getDescriptor().getValue().getDescriptor().getRunId()), null)
                                 );
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -355,7 +351,7 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
     }
 
     @BindingAdapter(value = {"richText", "testName"})
-    public static void setRichText(TextView view, String richText,String testName) {
+    public static void setRichText(TextView view, String richText, String testName) {
         try {
             Context context = view.getContext();
             Markwon markwon = Markwon.builder(context)
@@ -374,6 +370,7 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
             ThirdPartyServices.logException(e);
         }
     }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
