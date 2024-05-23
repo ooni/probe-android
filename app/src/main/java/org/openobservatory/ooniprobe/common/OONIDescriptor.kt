@@ -15,6 +15,7 @@ import org.openobservatory.ooniprobe.activity.runtests.RunTestsActivity
 import org.openobservatory.ooniprobe.activity.runtests.models.ChildItem
 import org.openobservatory.ooniprobe.activity.runtests.models.GroupItem
 import org.openobservatory.ooniprobe.model.database.TestDescriptor
+import org.openobservatory.ooniprobe.model.database.Url
 import org.openobservatory.ooniprobe.test.suite.DynamicTestSuite
 import org.openobservatory.ooniprobe.test.test.*
 import java.io.Serializable
@@ -123,6 +124,11 @@ abstract class AbstractDescriptor<T : BaseNettest>(
      * @return [DynamicTestSuite] representing the test suite for the current descriptor.
      */
     open fun getTest(context: Context): DynamicTestSuite {
+        this.nettests.forEach { nettest ->
+            nettest.inputs?.forEach { input ->
+                Url.checkExistingUrl(input)
+            }
+        }
         return DynamicTestSuite(
             name = this.name,
             title = this.title,

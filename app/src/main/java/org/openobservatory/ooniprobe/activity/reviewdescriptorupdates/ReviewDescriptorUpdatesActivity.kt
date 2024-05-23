@@ -109,57 +109,48 @@ class ReviewDescriptorUpdatesActivity : AbstractActivity() {
             reviewUpdatesPagingAdapter = ReviewUpdatesPagingAdapter(this, descriptors)
             binding.viewpager.adapter = reviewUpdatesPagingAdapter
 
-            /**
-             * The bottom bar menu item click listener.
-             * When the user clicks on the update button, the viewpager is swiped to the next page.
-             * When the user clicks on the last update, the activity is finished.
-             */
-            val bottomBarOnMenuItemClickListener: Toolbar.OnMenuItemClickListener =
-                    Toolbar.OnMenuItemClickListener { item ->
-                        when (item.itemId) {
-                            R.id.update_descriptor -> {
-                                descriptorManager.updateFromNetwork(descriptors[binding.viewpager.currentItem])
-                                /**
-                                 * **[currPos]** is the current position of the viewpager.
-                                 * If the current position is not the last position, the viewpager is swiped to the next page.
-                                 * If the current position is the last position, the last update is saved in the shared preferences and the activity is finished.
-                                 */
-                                val currPos: Int = binding.viewpager.currentItem
-                                if ((currPos + 1) != binding.viewpager.adapter?.itemCount) {
-                                    binding.viewpager.currentItem = currPos + 1
-                                } else {
-                                    setResult(
-                                            RESULT_OK,
-                                            Intent().putExtra(RESULT_MESSAGE, "Link(s) updated")
-                                    )
-                                    finish()
-                                }
-                                true
-                            }
+            binding.btnUpdate.setOnClickListener {
+                /*
+                 * When the user clicks the update button, the descriptor is updated.
+                 * If the current item is the last item in the viewpager, the result is set to "Link(s) updated" and the activity is finished.
+                 * If the current item is not the last item in the viewpager, the viewpager is swiped to the next item.
+                 */
+                with(binding.viewpager) {
+                    descriptorManager.updateFromNetwork(descriptors[currentItem])
+                    when (currentItem) {
+                        adapter?.itemCount?.minus(1) -> {
+                            // Last update
+                            setResult(
+                                    RESULT_OK,
+                                    Intent().putExtra(RESULT_MESSAGE, "Link(s) updated")
+                            )
+                            finish()
+                        }
 
-                            else -> false
+                        else -> {
+                            // Not the last update
+                            currentItem += 1
                         }
                     }
-            binding.bottomBar.setOnMenuItemClickListener(bottomBarOnMenuItemClickListener)
+                }
+            }
 
-            /**
-             * The viewpager page change callback.
-             * When the user swipes to the next page, the bottom bar menu item title is updated.
-             */
             binding.viewpager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
-                    binding.bottomBar.menu.findItem(R.id.update_descriptor)
-                            ?.let {
-                                val countString =
-                                        "(${position + 1} of ${binding.viewpager.adapter?.itemCount})"
-                                supportActionBar?.title = "Link Update $countString"
-                                it.title = if ((position + 1) != binding.viewpager.adapter?.itemCount) {
-                                    "UPDATE $countString"
-                                } else {
-                                    "UPDATE AND FINISH $countString"
-                                }
-                            }
+                    /*
+                     * When the user swipes to the next item in the viewpager, the title of the action bar is updated.
+                     * If the current item is the last item in the viewpager, the text of the button is updated to "UPDATE AND FINISH".
+                     * If the current item is not the last item in the viewpager, the text of the button is updated to "UPDATE".
+                     */
+                    val countString = "(%d of %d)".format(position + 1, binding.viewpager.adapter?.itemCount)
 
+                    supportActionBar?.title = "Link Update $countString"
+
+                    binding.btnUpdate.text = when (position + 1) {
+                        binding.viewpager.adapter?.itemCount -> "UPDATE AND FINISH $countString"
+
+                        else -> "UPDATE $countString"
+                    }
                 }
             })
 
