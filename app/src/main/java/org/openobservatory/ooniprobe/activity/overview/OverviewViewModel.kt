@@ -5,6 +5,7 @@ import android.view.View
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import org.openobservatory.engine.BaseNettest
+import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
 import org.openobservatory.ooniprobe.common.AbstractDescriptor
 import org.openobservatory.ooniprobe.common.Application
@@ -124,9 +125,11 @@ class OverviewViewModel @Inject constructor(var application: Application, var pr
 
     fun getLastTime(): String? {
         return descriptor.value?.let {
-            DateUtils.getRelativeTimeSpanString(
-                    Result.getLastResult(it.name).start_time.time
-            ).toString()
+            Result.getLastResult(it.name)?.start_time?.time?.let { time ->
+                DateUtils.getRelativeTimeSpanString(
+                        time
+                ).toString()
+            }?: application.getString(R.string.Dashboard_Overview_LastRun_Never)
         }
     }
 
