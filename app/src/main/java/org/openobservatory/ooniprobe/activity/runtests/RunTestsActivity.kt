@@ -88,10 +88,19 @@ class RunTestsActivity : AbstractActivity() {
 				},
 				viewModel
 			)
-			binding.expandableListView.setAdapter(adapter)
-			for (i in 0 until adapter.groupCount) {
-				binding.expandableListView.expandGroup(i)
+
+			binding.expandableListView.let {
+				it.setAdapter(adapter)
+				for (i in 0 until adapter.groupCount) {
+					it.expandGroup(i)
+				}
+
+				// NOTE: This listener is used to update the status indicator when the view is fully drawn.
+				it.viewTreeObserver.addOnGlobalLayoutListener {
+					updateStatusIndicator()
+				}
 			}
+
 			binding.selectAll.setOnClickListener { onSelectAllClickListener() }
 
 			binding.selectNone.setOnClickListener { onSelectNoneClickListener() }
@@ -166,20 +175,17 @@ class RunTestsActivity : AbstractActivity() {
 				}
 			}
 			adapter.notifyDataSetChanged()
-			updateStatusIndicator()
 		}
 	}
 
 	private fun onSelectNoneClickListener() {
 		viewModel.setSelectedAllBtnStatus(SELECT_NONE)
 		adapter.notifyDataSetChanged()
-		updateStatusIndicator()
 	}
 
 	private fun onSelectAllClickListener() {
 		viewModel.setSelectedAllBtnStatus(SELECT_ALL)
 		adapter.notifyDataSetChanged()
-		updateStatusIndicator()
 	}
 
 
