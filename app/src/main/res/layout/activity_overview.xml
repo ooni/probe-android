@@ -185,8 +185,7 @@
                             android:layout_height="wrap_content"
                             android:text="Test Settings"
                             android:layout_below="@+id/desc"
-                            style="?attr/textAppearanceHeadline6"
-                            android:paddingBottom="@dimen/item_padding_large"/>
+                            style="?attr/textAppearanceHeadline6"/>
 
                         <LinearLayout
                             android:id="@+id/automatic_updates_container"
