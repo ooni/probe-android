@@ -75,12 +75,7 @@ class DashboardFragment : Fragment(), View.OnClickListener {
             binding.recycler.adapter = adapter
         }
 
-        viewModel.getItemList().observe(viewLifecycleOwner) { items ->
-            descriptors.apply {
-                clear()
-                addAll(items)
-            }
-        }
+        updateDescriptors()
 
         testStateRepository.testGroupStatus.observe(viewLifecycleOwner) { status ->
             if (status == TestGroupStatus.RUNNING) {
@@ -114,6 +109,10 @@ class DashboardFragment : Fragment(), View.OnClickListener {
             && preferenceManager.isWarnVPNInUse
         ) binding.vpn.visibility = View.VISIBLE else binding.vpn.visibility = View.GONE
 
+        updateDescriptors()
+    }
+
+    fun updateDescriptors() {
         viewModel.getItemList().observe(viewLifecycleOwner) { items ->
             descriptors.apply {
                 clear()
