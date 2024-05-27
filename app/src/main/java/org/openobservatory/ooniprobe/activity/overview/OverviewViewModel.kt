@@ -16,12 +16,13 @@ import org.openobservatory.ooniprobe.common.disableTest
 import org.openobservatory.ooniprobe.common.enableTest
 import org.openobservatory.ooniprobe.model.database.InstalledDescriptor
 import org.openobservatory.ooniprobe.model.database.Result
+import org.openobservatory.ooniprobe.model.database.getNettests
 import java.text.SimpleDateFormat
 import java.util.Locale
 import javax.inject.Inject
 
 class TestGroupItem(
-    var selected: Boolean, override var name: String, override var inputs: List<String>?,
+        var selected: Boolean, override var name: String, override var inputs: List<String>?,
 ) : BaseNettest(name = name, inputs = inputs)
 
 
@@ -82,9 +83,9 @@ class OverviewViewModel @Inject constructor(var application: Application, var pr
     fun disableTest(name: String) {
         descriptor.value?.let {
             preferenceManager.disableTest(
-                name = name,
-                prefix = it.preferencePrefix(),
-                autoRun = true
+                    name = name,
+                    prefix = it.preferencePrefix(),
+                    autoRun = true
             )
         }
     }
@@ -92,9 +93,9 @@ class OverviewViewModel @Inject constructor(var application: Application, var pr
     fun enableTest(name: String) {
         descriptor.value?.let {
             preferenceManager.enableTest(
-                name = name,
-                prefix = it.preferencePrefix(),
-                autoRun = true
+                    name = name,
+                    prefix = it.preferencePrefix(),
+                    autoRun = true
             )
         }
     }
@@ -119,6 +120,7 @@ class OverviewViewModel @Inject constructor(var application: Application, var pr
     fun getIcon(): Int {
         return descriptor.value?.getDisplayIcon(application) ?: 0
     }
+
     fun getRunTime(): String? {
         return descriptor.value?.getRuntime(application, preferenceManager)?.toString()
     }
@@ -129,13 +131,13 @@ class OverviewViewModel @Inject constructor(var application: Application, var pr
                 DateUtils.getRelativeTimeSpanString(
                         time
                 ).toString()
-            }?: application.getString(R.string.Dashboard_Overview_LastRun_Never)
+            } ?: application.getString(R.string.Dashboard_Overview_LastRun_Never)
         }
     }
 
     fun getDescription(): String? {
         return descriptor.value?.let {
-            if (it is InstalledDescriptor){
+            if (it is InstalledDescriptor) {
                 return String.format(
                         "Created by %s on %s\n\n%s",
                         it.descriptor?.author,
@@ -146,6 +148,18 @@ class OverviewViewModel @Inject constructor(var application: Application, var pr
                 return it.description
             }
         }
+    }
+
+    fun getAutomaticRunSwitchVisibility(): Int {
+        return descriptor.value?.let {
+            it.descriptor?.getNettests()?.let { nettests ->
+                if (nettests.count() > 1) {
+                    View.VISIBLE // if there are multiple tests, the switch should be visible.
+                } else {
+                    View.GONE // if there is only one test, the switch should be gone.
+                }
+            } ?: View.VISIBLE // if descriptor is not installed, it should be visible.
+        } ?: View.GONE // if descriptor is null, it should be gone
     }
 
     companion object {
