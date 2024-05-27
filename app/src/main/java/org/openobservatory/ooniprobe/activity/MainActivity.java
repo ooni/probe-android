@@ -20,6 +20,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.work.Constraints;
 import androidx.work.ExistingPeriodicWorkPolicy;
 import androidx.work.ExistingWorkPolicy;
@@ -167,20 +168,37 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
     }
 
     private void scheduleWorkers() {
+
+        PeriodicWorkRequest periodicWorkRequest = new PeriodicWorkRequest.Builder(AutoUpdateDescriptorsWorker.class, 60, TimeUnit.MINUTES)
+                .setConstraints(
+                        new Constraints.Builder()
+                                .setRequiredNetworkType(NetworkType.CONNECTED)
+                                .build()
+                ).build();
+
         WorkManager.getInstance(this)
                 .enqueueUniquePeriodicWork(
                         AutoUpdateDescriptorsWorker.UPDATED_DESCRIPTORS_WORK_NAME,
                         ExistingPeriodicWorkPolicy.KEEP,
-                        new PeriodicWorkRequest.Builder(AutoUpdateDescriptorsWorker.class, 60, TimeUnit.MINUTES)
-                                .setConstraints(
-                                        new Constraints.Builder()
-                                                .setRequiredNetworkType(NetworkType.CONNECTED)
-                                                .build()
-                                ).build()
+                        periodicWorkRequest
                 );
+
+        WorkManager.getInstance(this)
+                .getWorkInfoByIdLiveData(periodicWorkRequest.getId())
+                .observe(this, this::onPeriodicWorkComplete);
         // TODO(aanorbel): add rules before checking updates
         fetchManualUpdate();
         registerReviewLauncher(binding.bottomNavigation, () -> null);
+    }
+
+    private void onPeriodicWorkComplete(WorkInfo workInfo) {
+        if (workInfo!=null && workInfo.getState() == WorkInfo.State.SUCCEEDED) {
+            for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                if (fragment instanceof DashboardFragment) {
+                    ((DashboardFragment) fragment).updateDescriptors();
+                }
+            }
+        }
     }
 
     public void fetchManualUpdate() {

@@ -161,20 +161,20 @@ class ManualUpdateDescriptorsWorker(
     companion object {
         @JvmField
         var UPDATED_DESCRIPTORS_WORK_NAME =
-                "${AutoUpdateDescriptorsWorker::class.java.name}.UPDATED_DESCRIPTORS_WORK_NAME"
+                "${ManualUpdateDescriptorsWorker::class.java.name}.UPDATED_DESCRIPTORS_WORK_NAME"
 
-        private val TAG = AutoUpdateDescriptorsWorker::class.java.simpleName
+        private val TAG = ManualUpdateDescriptorsWorker::class.java.simpleName
 
         private val UPDATE_DESCRIPTOR_CHANNEL: String =
-                AutoUpdateDescriptorsWorker::class.java.simpleName
+                ManualUpdateDescriptorsWorker::class.java.simpleName
 
         @JvmField
         var KEY_UPDATED_DESCRIPTORS =
-                "${AutoUpdateDescriptorsWorker::class.java.name}.KEY_UPDATED_DESCRIPTORS"
+                "${ManualUpdateDescriptorsWorker::class.java.name}.KEY_UPDATED_DESCRIPTORS"
 
         @JvmField
         var KEY_DESCRIPTOR_IDS =
-                "${AutoUpdateDescriptorsWorker::class.java.name}.KEY_DESCRIPTOR_IDS"
+                "${ManualUpdateDescriptorsWorker::class.java.name}.KEY_DESCRIPTOR_IDS"
     }
 }
 
