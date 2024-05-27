@@ -40,7 +40,7 @@ markwon = "4.6.2"
 shapeofview = "1.4.7"
 targetSdk = "33"
 minSdk = "21"
-oonimkall = "2024.03.27-124004"
+oonimkall = "2024.05.22-092559"
 
 junit = "4.13.2"
 dbflow = "4.2.4"
