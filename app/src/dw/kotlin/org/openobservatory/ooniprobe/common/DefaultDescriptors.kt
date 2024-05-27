@@ -27,21 +27,26 @@ class DefaultDescriptors {
                     val descriptorList: List<OONIRunDescriptor> =
                             Gson().fromJson(jsonReader, descriptorType)
                     // Save the descriptors to the database.
-                    descriptorList.forEach {
+                    descriptorList.forEach { ooniRunDescriptor ->
 
                         // Check if the descriptor is already in the database.
-                        it.nettests.forEach { nettest ->
+                        ooniRunDescriptor.nettests.forEach { nettest ->
                             nettest.inputs?.forEach { input ->
                                 Url.checkExistingUrl(input)
                             }
                         }
                         // Check if the descriptor is already in the database.
                         val testDescriptor = SQLite.select().from(TestDescriptor::class.java)
-                                .where(TestDescriptor_Table.runId.eq(it.oonirunLinkId.toLong()))
+                                .where(TestDescriptor_Table.runId.eq(ooniRunDescriptor.oonirunLinkId.toLong()))
                                 .querySingle()
                         // Save the descriptor if it is not in the database.
                         if (testDescriptor == null) {
-                            it.toTestDescriptor().apply {
+                            ooniRunDescriptor.toTestDescriptor().apply {
+
+                                ooniRunDescriptor.nettests.forEach { nettest ->
+                                    (context as? Application)?.preferenceManager?.enableTest(nettest.name, preferencePrefix())
+                                }
+
                                 isAutoUpdate = true
                                 isAutoRun = true
                             }.save()
