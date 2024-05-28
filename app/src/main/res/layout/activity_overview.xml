@@ -197,7 +197,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Install updates automatically" />
+                                android:text="Install test updates automatically" />
 
                             <View
                                 android:layout_width="0dp"
