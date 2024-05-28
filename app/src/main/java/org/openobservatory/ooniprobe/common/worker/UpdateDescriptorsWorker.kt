@@ -130,7 +130,17 @@ class ManualUpdateDescriptorsWorker(
                      * Consider explicit version compare.
                      */
                     if (descriptor.shouldUpdate(updatedDescriptor)) {
-                        updatedDescriptors.add(updatedDescriptor)
+                        if (descriptor.isAutoUpdate) {
+                            updatedDescriptor.isAutoUpdate = true
+                            updatedDescriptor.isAutoRun = descriptor.isAutoRun
+
+                            Log.d(TAG, "Saving updates for ${descriptor.runId}")
+
+                            updatedDescriptor.save()
+                        } else {
+                            Log.d(TAG, "Not saving updates for ${descriptor.runId}")
+                            updatedDescriptors.add(updatedDescriptor)
+                        }
                     }
                 }
             }
