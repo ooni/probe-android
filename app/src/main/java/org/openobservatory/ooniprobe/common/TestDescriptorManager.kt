@@ -1,6 +1,7 @@
 package org.openobservatory.ooniprobe.common
 
 import android.content.Context
+import android.content.res.Resources
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
@@ -10,7 +11,10 @@ import org.openobservatory.engine.LoggerArray
 import org.openobservatory.engine.OONIRunDescriptor
 import org.openobservatory.engine.OONIRunRevisions
 import org.openobservatory.ooniprobe.BuildConfig
+import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.adddescriptor.adapter.GroupedItem
+import org.openobservatory.ooniprobe.fragment.resultList.ResultItemType
+import org.openobservatory.ooniprobe.fragment.resultList.ResultListSpinnerItem
 import org.openobservatory.ooniprobe.model.database.ITestDescriptor
 import org.openobservatory.ooniprobe.model.database.InstalledDescriptor
 import org.openobservatory.ooniprobe.model.database.Result
@@ -174,6 +178,21 @@ class TestDescriptorManager @Inject constructor(
         return SQLite.select().from(TestDescriptor::class.java)
             .where(TestDescriptor_Table.runId.`in`(ids.toList()))
             .queryList()
+    }
+
+    fun getFilterItems(resources: Resources): List<ResultListSpinnerItem> {
+        val values = resources.getStringArray(R.array.filterTestValues)
+        resources.getStringArray(R.array.filterTests).also { labels ->
+            return labels.mapIndexed { index, label ->
+                ResultListSpinnerItem(values[index], label)
+            }.toMutableList().apply {
+                addAll(
+                        getRunV2Descriptors().map {
+                            return@map ResultListSpinnerItem(it.runId.toString(), it.name, ResultItemType.RUN_V2_ITEM)
+                        }
+                )
+            }
+        }
     }
 }
 

@@ -5,6 +5,8 @@ import org.openobservatory.ooniprobe.RobolectricAbstractTest;
 import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.domain.models.DatedResults;
 import org.openobservatory.ooniprobe.factory.ResultFactory;
+import org.openobservatory.ooniprobe.fragment.resultList.ResultItemType;
+import org.openobservatory.ooniprobe.fragment.resultList.ResultListSpinnerItem;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.utils.DatabaseUtils;
 
@@ -69,11 +71,11 @@ public class GetResultsTest extends RobolectricAbstractTest {
         GetResults getResults = build();
 
         // Act
-        List<DatedResults> all = getResults.getGroupedByMonth(null);
-        List<DatedResults> web = getResults.getGroupedByMonth(OONITests.WEBSITES.getLabel());
-        List<DatedResults> messaging = getResults.getGroupedByMonth(OONITests.INSTANT_MESSAGING.getLabel());
-        List<DatedResults> circumvention = getResults.getGroupedByMonth(OONITests.CIRCUMVENTION.getLabel());
-        List<DatedResults> performance = getResults.getGroupedByMonth(OONITests.PERFORMANCE.getLabel());
+        List<DatedResults> all = getResults.getGroupedByMonth(new ResultListSpinnerItem("", "", ResultItemType.DEFAULT));
+        List<DatedResults> web = getResults.getGroupedByMonth(new ResultListSpinnerItem(OONITests.WEBSITES.getLabel(), OONITests.WEBSITES.getLabel(), ResultItemType.DEFAULT));
+        List<DatedResults> messaging = getResults.getGroupedByMonth(new ResultListSpinnerItem(OONITests.INSTANT_MESSAGING.getLabel(), OONITests.INSTANT_MESSAGING.getLabel(), ResultItemType.DEFAULT));
+        List<DatedResults> circumvention = getResults.getGroupedByMonth(new ResultListSpinnerItem(OONITests.CIRCUMVENTION.getLabel(), OONITests.CIRCUMVENTION.getLabel(), ResultItemType.DEFAULT));
+        List<DatedResults> performance = getResults.getGroupedByMonth(new ResultListSpinnerItem(OONITests.PERFORMANCE.getLabel(), OONITests.PERFORMANCE.getLabel(), ResultItemType.DEFAULT));
 
         // Assert
         assertEquals(all.size(), 4);
