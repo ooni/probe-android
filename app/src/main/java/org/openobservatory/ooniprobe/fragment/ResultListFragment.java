@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,6 +37,8 @@ import org.openobservatory.ooniprobe.databinding.FragmentResultListBinding;
 import org.openobservatory.ooniprobe.domain.GetResults;
 import org.openobservatory.ooniprobe.domain.MeasurementsManager;
 import org.openobservatory.ooniprobe.domain.models.DatedResults;
+import org.openobservatory.ooniprobe.fragment.resultList.ResultListAdapter;
+import org.openobservatory.ooniprobe.fragment.resultList.ResultListSpinnerItem;
 import org.openobservatory.ooniprobe.item.CircumventionItem;
 import org.openobservatory.ooniprobe.item.DateItem;
 import org.openobservatory.ooniprobe.item.ExperimentalItem;
@@ -95,10 +98,11 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
         binding.recycler.setAdapter(adapter);
 
+        binding.filterTests.setAdapter(new ResultListAdapter(descriptorManager.getFilterItems(getResources())));
         binding.filterTests.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                queryList();
+                queryList((ResultListSpinnerItem)parent.getItemAtPosition(position));
             }
 
             @Override
@@ -163,6 +167,10 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     }
 
     void queryList() {
+        queryList((ResultListSpinnerItem) binding.filterTests.getSelectedItem());
+    }
+
+    void queryList(ResultListSpinnerItem filterItem) {
         if (measurementsManager.hasUploadables()) {
             snackbar.show();
         } else {
@@ -171,8 +179,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 
         items.clear();
 
-        String filter = getResources().getStringArray(R.array.filterTestValues)[binding.filterTests.getSelectedItemPosition()];
-        List<DatedResults> list = getResults.getGroupedByMonth(filter);
+        List<DatedResults> list = getResults.getGroupedByMonth(filterItem);
 
         if (list.isEmpty()) {
             binding.emptyState.setVisibility(View.VISIBLE);
