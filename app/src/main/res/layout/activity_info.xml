@@ -46,6 +46,7 @@
 		app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 		<TextView
+			android:id="@+id/desc"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/Settings_About_Content_Paragraph" />

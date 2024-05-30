@@ -3,14 +3,15 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="#0F3E74"
+	android:background="@color/onboarding_background_2"
 	android:orientation="vertical">
 
 	<ImageView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:adjustViewBounds="true"
-		android:src="@drawable/onboarding_2" />
+		android:src="@drawable/onboarding_2"
+		android:layout_marginBottom="@dimen/onboarding_image_margin_bottom"/>
 
 	<TextView
 		android:id="@+id/heads_up"
@@ -64,7 +65,7 @@
 		android:layout_marginHorizontal="64dp"
 		android:text="@string/Onboarding_ThingsToKnow_Button"
 		android:textAllCaps="false"
-		android:textColor="#002B54"
+		android:textColor="@color/onboarding_background"
 		app:backgroundTint="@android:color/white"
 		app:cornerRadius="32dp" />
 
