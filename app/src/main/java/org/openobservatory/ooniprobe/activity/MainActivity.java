@@ -237,6 +237,13 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
         if (workInfo != null) {
             if (workInfo.getProgress().getInt(PROGRESS, -1) >= 0) {
                 binding.reviewUpdateNotificationFragment.setVisibility(View.VISIBLE);
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(
+                                R.id.review_update_notification_fragment,
+                                OONIRunDynamicProgressBar.newInstance(ProgressType.UPDATE_LINK, null),
+                                OONIRunDynamicProgressBar.getTAG() + "_review_update_enqueued_notification"
+                        ).commit();
             }
             switch (workInfo.getState()) {
                 case SUCCEEDED -> {
@@ -273,14 +280,6 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
                                     OONIRunDynamicProgressBar.getTAG() + "_review_update_success_notification"
                             ).commit();
                 }
-
-                case ENQUEUED -> getSupportFragmentManager()
-                        .beginTransaction()
-                        .add(
-                                R.id.review_update_notification_fragment,
-                                OONIRunDynamicProgressBar.newInstance(ProgressType.UPDATE_LINK, null),
-                                OONIRunDynamicProgressBar.getTAG() + "_review_update_enqueued_notification"
-                        ).commit();
 
                 case FAILED -> Snackbar.make(
                         binding.getRoot(),
