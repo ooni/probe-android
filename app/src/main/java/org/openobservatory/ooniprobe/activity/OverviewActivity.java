@@ -161,6 +161,7 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
                 binding.uninstallLink.setVisibility(View.GONE);
                 binding.revisionsContainer.setVisibility(View.GONE);
                 binding.headerContainer.setVisibility(View.GONE);
+                binding.automaticUpdatesContainer.setVisibility(View.GONE);
             }
 
         } else {
@@ -168,6 +169,7 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
             /**
              * We need to set the height to 0 because the layout is broken when the view is gone
              */
+            binding.automaticUpdatesContainer.setVisibility(View.GONE);
             binding.automaticUpdatesContainer.getLayoutParams().height = 0;
         }
 
