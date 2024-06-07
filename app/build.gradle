@@ -65,7 +65,7 @@ android {
         stable {
             dimension 'testing'
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android"'
-            buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.dev.ooni.io"'
+            buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.prod.ooni.io"'
         }
         dev {
             dimension 'testing'
