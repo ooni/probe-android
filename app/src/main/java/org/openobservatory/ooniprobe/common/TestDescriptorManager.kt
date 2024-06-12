@@ -137,10 +137,11 @@ class TestDescriptorManager @Inject constructor(
             }
     }
 
-    fun getRunV2Descriptors(autoUpdate: Boolean? = null, expired: Boolean? = null): List<TestDescriptor> {
+    fun getRunV2Descriptors(autoUpdate: Boolean? = null, autoRun: Boolean? = null, expired: Boolean? = null): List<TestDescriptor> {
         return SQLite.select().from(TestDescriptor::class.java)
                 .where(
                         autoUpdate?.let { TestDescriptor_Table.auto_update.eq(it) },
+                        autoRun?.let { TestDescriptor_Table.auto_run.eq(it) },
                         expired?.let { TestDescriptor_Table.is_expired.eq(it) }
                 )
                 .orderBy(TestDescriptor_Table.is_expired.asc())
