@@ -365,7 +365,7 @@
   <string name="Settings_AutomatedTesting_RunAutomatically_DateLast">Último teste automatizado: %1$s.</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_WiFiOnly">Somente com Wi-Fi</string>
   <string name="Settings_AutomatedTesting_RunAutomatically_ChargingOnly">Somente durante o carregamento</string>
-  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">Ao permitir testes automáticos, os testes OONI Probe serão executados automaticamente várias vezes por dia. Os resultados de seus testes serão publicados automaticamente no OONI Explorer: https://explorer.ooni.org/ \n\nIImportante: Se você tiver uma VPN habilitada, a OONI Probe não executará testes automaticamente. Por favor, desligue sua VPN para testes automatizados da OONI Probe. Saiba mais: https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn</string>
+  <string name="Settings_AutomatedTesting_RunAutomatically_Footer">Ao permitir testes automáticos, os testes OONI Probe serão executados automaticamente várias vezes por dia. Os resultados de seus testes serão publicados automaticamente no OONI Explorer: https://explorer.ooni.org/ \n\nImportante: Se você tiver uma VPN habilitada, a OONI Probe não executará testes automaticamente. Por favor, desligue sua VPN para testes automatizados da OONI Probe. Saiba mais: https://ooni.org/support/faq/#can-i-run-ooni-probe-over-a-vpn</string>
   <string name="Settings_Sharing_Label">Compartilhando</string>
   <string name="Settings_Sharing_UploadResults">Publicar os resultados automaticamente</string>
   <string name="Settings_Sharing_UploadResultsManually">Carregamento manual dos resultados</string>
