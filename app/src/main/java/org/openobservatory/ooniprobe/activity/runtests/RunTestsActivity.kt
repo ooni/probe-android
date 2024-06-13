@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import org.openobservatory.engine.BaseNettest
+import org.openobservatory.ooniprobe.BuildConfig
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
 import org.openobservatory.ooniprobe.activity.RunningActivity
@@ -91,8 +92,18 @@ class RunTestsActivity : AbstractActivity() {
 
 			binding.expandableListView.let {
 				it.setAdapter(adapter)
-				for (i in 0 until adapter.groupCount) {
-					it.expandGroup(i)
+				when (BuildConfig.FLAVOR_brand) {
+					"dw" -> {
+						it.expandGroup(0)
+						for (i in 1 until adapter.groupCount) {
+							it.collapseGroup(i)
+						}
+					}
+					else -> {
+						for (i in 0 until adapter.groupCount) {
+							it.expandGroup(i)
+						}
+					}
 				}
 
 				// NOTE: This listener is used to update the status indicator when the view is fully drawn.
