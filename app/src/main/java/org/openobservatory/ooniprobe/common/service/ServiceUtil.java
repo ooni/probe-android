@@ -18,6 +18,7 @@ import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
+import org.openobservatory.ooniprobe.common.TestDescriptorManager;
 import org.openobservatory.ooniprobe.domain.GenerateAutoRunServiceSuite;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 import org.openobservatory.ooniprobe.test.suite.DynamicTestSuite;
@@ -77,7 +78,7 @@ public class ServiceUtil {
         if (!d.generateAutoRunServiceSuite.shouldStart(config.isOnWiFi(), config.isCharging(), isVPNInUse)) {
             return;
         }
-        ServiceUtil.startRunTestServiceCommon(app, new ArrayList<>(autoRunTests(app, d.preferenceManager)), false, true);
+        ServiceUtil.startRunTestServiceCommon(app, new ArrayList<>(autoRunTests(app, d.preferenceManager, d.testDescriptorManager)), false, true);
         d.generateAutoRunServiceSuite.markAsRan();
 
     }
@@ -105,5 +106,8 @@ public class ServiceUtil {
 
         @Inject
         PreferenceManager preferenceManager;
+
+        @Inject
+        TestDescriptorManager testDescriptorManager;
     }
 }

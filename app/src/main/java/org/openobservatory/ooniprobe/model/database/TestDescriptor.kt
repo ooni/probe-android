@@ -20,6 +20,7 @@ import org.openobservatory.ooniprobe.common.AppDatabase
 import org.openobservatory.ooniprobe.common.LocaleUtils
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.common.resolveStatus
+import org.openobservatory.ooniprobe.test.suite.DynamicTestSuite
 import java.io.Serializable
 import java.util.Date
 import com.raizlabs.android.dbflow.annotation.TypeConverter as TypeConverterAnnotation
@@ -103,6 +104,10 @@ class TestDescriptor(
 
     fun localizedDescription() :String {
         return descriptionIntl.getValueForKey(LocaleUtils.getLocale().language) ?: description
+    }
+
+    fun toDynamicTestSuite(context: Context) : DynamicTestSuite {
+        return InstalledDescriptor(this).getTest(context)
     }
 }
 

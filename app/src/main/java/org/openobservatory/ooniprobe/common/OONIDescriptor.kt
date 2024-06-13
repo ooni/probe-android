@@ -367,7 +367,7 @@ enum class OONITests(
     }
 }
 
-fun autoRunTests(context: Context, preferenceManager: PreferenceManager): List<DynamicTestSuite> {
+fun autoRunTests(context: Context, preferenceManager: PreferenceManager, testDescriptorManager: TestDescriptorManager): List<DynamicTestSuite> {
 
     return ooniDescriptors(context).filter { ooniDescriptor ->
         when (ooniDescriptor.name) {
@@ -439,6 +439,15 @@ fun autoRunTests(context: Context, preferenceManager: PreferenceManager): List<D
                 autoRun = true
             }
         }
+    }.toMutableList().also { descriptors ->
+        val runV2AtoRunTests: List<DynamicTestSuite> =
+            testDescriptorManager.getRunV2Descriptors(expired = false, autoRun = true)
+                .map { testDescriptor ->
+                    testDescriptor.toDynamicTestSuite(context).apply {
+                        autoRun = true
+                    }
+                }
+        descriptors.addAll(runV2AtoRunTests)
     }
 }
 
