@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<color name="android_color_background">#343A40</color>
+	<color name="bottom_navigation_background">#495057</color>
+	<color name="card_boarder">#868e96</color>
+	<color name="bottom_navigation_state_checked">@color/color_black</color>
+	<color name="bottom_navigation_state_unchecked">#DEE2E6</color>
+	<color name="progress_background">#E9ECEF</color>
+
 	<color name="color_black">#fff</color>
 	<color name="color_white">#1b1b1b</color>
 	<color name="color_base">#056aa6</color>  <!-- color_blue7 -->

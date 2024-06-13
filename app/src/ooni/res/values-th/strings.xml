@@ -166,7 +166,7 @@
   <string name="TestResults_Details_Failed_TryAgain">ลองอีกครั้ง</string>
   <string name="TestResults_Details_Methodology_Paragraph">เรียนรู้ว่าการทดสอบนี้ทำงานอย่างไร [ที่นี่](%1$s)</string>
   <string name="TestResults_Details_Websites_Reachable_Hero_Title">เข้าถึงได้</string>
-  <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s สามารถเข้าถึงได้</string>
+  <string name="TestResults_Details_Websites_Reachable_Content_Paragraph">%1$s เข้าถึงได้</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Hero_Title">น่าจะถูกปิดกั้น</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Content_Paragraph">%1$s น่าจะถูกปิดกั้น ด้วยวิธี %2$s\n\nหมายเหตุ : การตรวจพบที่ผิดพลาดเกิดขึ้นได้ เรียนรู้เพิ่ม[ที่นี่](https://ooni.org/support/faq/#what-are-false-positives)</string>
   <string name="TestResults_Details_Websites_LikelyBlocked_Content_LearnToCircumvent">การหลบเลี่ยงการปิดกั้น</string>

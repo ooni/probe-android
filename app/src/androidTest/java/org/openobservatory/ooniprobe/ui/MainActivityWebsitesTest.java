@@ -142,13 +142,6 @@ public class MainActivityWebsitesTest extends AbstractTest {
                 new Instrumentation.ActivityResult(Activity.RESULT_OK, emptyIntent);
         intending(anyIntent()).respondWith(result);
 
-
-        onView(withId(R.id.runButton)).perform(click());
-        // TODO(aanorbel): resolve issue. Running activity no longer available.
-        //   ```intended(hasComponent(hasClassName(RunningActivity.class.getName())));```
-        //   progress display is dismissed before its availability is checked
-        //   ```onView(withId(R.id.progress_layout)).check(matches(isDisplayed()));```
-
         Intents.release();
     }
 

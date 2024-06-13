@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/textView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:maxLines="1"
+    android:ellipsize="end"
+    android:paddingStart="@dimen/item_padding_large"
+    android:paddingTop="@dimen/item_padding_small"
+    android:paddingEnd="@dimen/item_padding_small"
+    android:paddingBottom="@dimen/item_padding_small" />

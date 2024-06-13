@@ -9,6 +9,7 @@ import org.openobservatory.engine.OONISession;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.RobolectricAbstractTest;
 import org.openobservatory.ooniprobe.common.AppLogger;
+import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.engine.TestEngineInterface;
@@ -25,7 +26,6 @@ import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
 import org.openobservatory.ooniprobe.model.settings.Settings;
 import org.openobservatory.ooniprobe.test.EngineProvider;
-import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
 import java.io.File;
 import java.io.IOException;
@@ -79,7 +79,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
     public void testStartFinish() {
         // Arrange
         AbstractTest test = new WebConnectivity();
-        Result result = ResultFactory.createAndSave(new WebsitesSuite());
+        Result result = ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c));
 
         // Act
         testEngine.sendNextEvent(EventResultFactory.buildStarted());
@@ -96,7 +96,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
     public void testCreateNewMeasurement() {
         // Arrange
         AbstractTest test = new WebConnectivity();
-        Result result = ResultFactory.build(new WebsitesSuite(), true, false);
+        Result result = ResultFactory.build(OONITests.WEBSITES.toOONIDescriptor(c), true, false);
         result.save();
 
         Url ulr = UrlFactory.createAndSave();
@@ -150,7 +150,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
     public void testNetworkEvent() {
         // Arrange
         AbstractTest test = new WebConnectivity();
-        Result result = ResultFactory.build(new WebsitesSuite(), true, false);
+        Result result = ResultFactory.build(OONITests.WEBSITES.toOONIDescriptor(c), true, false);
         result.save();
 
         String networkName = faker.internet.domainName();
@@ -179,7 +179,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
     public void testLogEvent() throws IOException {
         // Arrange
         AbstractTest test = new WebConnectivity();
-        Result result = ResultFactory.build(new WebsitesSuite(), true, false);
+        Result result = ResultFactory.build(OONITests.WEBSITES.toOONIDescriptor(c), true, false);
         result.save();
 
         String message = "Ipsum";
@@ -203,7 +203,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
     public void testProgressEvent() throws IOException {
         // Arrange
         AbstractTest test = new WebConnectivity();
-        Result result = ResultFactory.build(new WebsitesSuite(), true, false);
+        Result result = ResultFactory.build(OONITests.WEBSITES.toOONIDescriptor(c), true, false);
         result.save();
 
         String message = "Ipsum";
@@ -228,7 +228,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
     public void testResolverFailureEvent() {
         // Arrange
         AbstractTest test = new WebConnectivity();
-        Result result = ResultFactory.build(new WebsitesSuite(), true, false);
+        Result result = ResultFactory.build(OONITests.WEBSITES.toOONIDescriptor(c), true, false);
         result.save();
 
         String message = "Ipsum";
@@ -250,7 +250,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
     public void testTaskInterrupt() {
         // Arrange
         AbstractTest test = new WebConnectivity();
-        Result result = ResultFactory.build(new WebsitesSuite(), true, false);
+        Result result = ResultFactory.build(OONITests.WEBSITES.toOONIDescriptor(c), true, false);
         result.save();
 
         TestEngineInterface.TestOONIMKTask task = mock(TestEngineInterface.TestOONIMKTask.class);
@@ -612,7 +612,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
     public void testExperimentalFail() {
         // Arrange
         AbstractTest test = new Experimental("");
-        Result result = ResultFactory.build(new WebsitesSuite(), true, false);
+        Result result = ResultFactory.build(OONITests.WEBSITES.toOONIDescriptor(c), true, false);
         result.save();
 
         // Act
@@ -631,7 +631,7 @@ public class AbstractTestTest extends RobolectricAbstractTest {
     }
 
     private Result setupTestRun(AbstractTest test, boolean success) {
-        Result result = ResultFactory.build(new WebsitesSuite(), true, false);
+        Result result = ResultFactory.build(OONITests.WEBSITES.toOONIDescriptor(c), true, false);
         result.save();
 
         JsonResult jsonResult = JsonResultFactory.build(test, success);
