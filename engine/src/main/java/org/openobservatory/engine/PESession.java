@@ -40,7 +40,7 @@ public final class PESession implements OONISession {
     public OONIRunDescriptor getLatestOONIRunLink(OONIContext ctx, String probeServicesURL, long id) throws Exception {
         HTTPRequest request = new HTTPRequest();
         request.setMethod("GET");
-        request.setURL(probeServicesURL + "/api/v2/oonirun/links/" + id);
+        request.setUrl(probeServicesURL + "/api/v2/oonirun/links/" + id);
         String response = session.httpDo(ctx.ctx, request).getBody();
         return new Gson().fromJson(response, OONIRunDescriptor.class);
     }
@@ -49,7 +49,7 @@ public final class PESession implements OONISession {
     public OONIRunRevisions getOONIRunLinkRevisions(OONIContext ooniContext, @NotNull String probeServicesURL, long runId) throws Exception {
         HTTPRequest request = new HTTPRequest();
         request.setMethod("GET");
-        request.setURL(probeServicesURL + "/api/v2/oonirun/links/" + runId + "/revisions");
+        request.setUrl(probeServicesURL + "/api/v2/oonirun/links/" + runId + "/revisions");
         String response = session.httpDo(ooniContext.ctx, request).getBody();
         OONIRunRevisions revisions = new Gson().fromJson(response, OONIRunRevisions.class);
 
