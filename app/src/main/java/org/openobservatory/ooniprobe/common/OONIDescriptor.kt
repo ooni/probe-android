@@ -158,6 +158,17 @@ abstract class AbstractDescriptor<T : BaseNettest>(
             else -> ""
         }
     }
+
+    /**
+     * Checks if the current descriptor has a preference prefix.
+     * This is used to determine if the current descriptor is [OONITests.WEBSITES] which uses categories
+     * or [OONITests.EXPERIMENTAL] which doesn't support indivitual preferences for nettest.
+     *
+     * @return Boolean Returns true if the current descriptor has a preference prefix, false otherwise.
+     */
+    fun hasPreferencePrefix(): Boolean {
+        return !(name == OONITests.EXPERIMENTAL.label || name == OONITests.WEBSITES.label)
+    }
 }
 
 open class OONIDescriptor<T : BaseNettest>(

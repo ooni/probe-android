@@ -27,7 +27,11 @@ class DefaultDescriptors {
 
 
         @JvmStatic
-        fun autoRunTests(context: Context, preferenceManager: PreferenceManager): List<DynamicTestSuite> {
+        fun autoRunTests(
+            context: Context,
+            preferenceManager: PreferenceManager,
+            testDescriptorManager: TestDescriptorManager
+        ): MutableList<DynamicTestSuite> {
 
             return getAll(context).filter { ooniDescriptor ->
                 when (ooniDescriptor.name) {
@@ -99,6 +103,15 @@ class DefaultDescriptors {
                         autoRun = true
                     }
                 }
+            }.toMutableList().also { descriptors ->
+                val runV2AtoRunTests: List<DynamicTestSuite> =
+                    testDescriptorManager.getRunV2Descriptors(expired = false, autoRun = true)
+                        .map { testDescriptor ->
+                            testDescriptor.toDynamicTestSuite(context).apply {
+                                autoRun = true
+                            }
+                        }
+                descriptors.addAll(runV2AtoRunTests)
             }
         }
 
