@@ -5,6 +5,7 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.webkit.URLUtil
 import android.widget.Toast
@@ -23,6 +24,11 @@ import org.openobservatory.ooniprobe.test.suite.AbstractSuite
 import javax.inject.Inject
 
 class OoniRunActivity : AbstractActivity() {
+
+    companion object{
+        var TAG = OoniRunActivity::class.java.simpleName
+    }
+
     lateinit var binding: ActivityOonirunBinding
 
     @Inject
@@ -99,6 +105,7 @@ class OoniRunActivity : AbstractActivity() {
                         loadInvalidAttributes()
                     }
                 } catch (e: Exception) {
+                    Log.e(TAG, "Error Displaying Test Suite", e)
                     loadInvalidAttributes()
                 }
             } else {
@@ -141,7 +148,7 @@ class OoniRunActivity : AbstractActivity() {
                 adapter = StringListRecyclerViewAdapter(items)
             }
         }
-        setThemeColor(resources.getColor(suite.color))
+        setThemeColor(suite.color)
         binding.run.setOnClickListener {
             RunningActivity.runAsForegroundService(
                 this@OoniRunActivity, suite.asArray(), { finish() }, preferenceManager
