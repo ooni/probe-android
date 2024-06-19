@@ -31,14 +31,14 @@ googleGuava = "33.2.0-android"
 googleMaterial = "1.12.0"
 googleDagger = "2.51.1"
 googleFirebaseBon = "33.0.0"
-googlePlaycore = "1.10.3"
+googlePlayAppUpdate = "2.1.0"
 
 # OONI
 compileSdk = "34"
 lottie = "6.4.1"
 markwon = "4.6.2"
 shapeofview = "1.4.7"
-targetSdk = "33"
+targetSdk = "34"
 minSdk = "21"
 oonimkall = "2024.05.22-092559"
 
@@ -91,7 +91,7 @@ androidx-espresso-contrib = { module = "androidx.test.espresso:espresso-contrib"
 androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidxEspressoCore" }
 androidx-espresso-intents = { module = "androidx.test.espresso:espresso-intents", version.ref = "androidxEspressoCore" }
 
-google-play-core = { module = "com.google.android.play:core", version.ref = "googlePlaycore" }
+google-play-appUpdate = { module = "com.google.android.play:app-update", version.ref = "googlePlayAppUpdate" }
 google-gson = { module = "com.google.code.gson:gson", version.ref = "googleGson" }
 google-guava = { module = "com.google.guava:guava", version.ref = "googleGuava" }
 google-material = { module = "com.google.android.material:material", version.ref = "googleMaterial" }

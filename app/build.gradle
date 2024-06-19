@@ -136,7 +136,7 @@ dependencies {
     fullImplementation libs.google.firebase.messaging
     fullImplementation libs.countly.sdk
     fullImplementation libs.sentry.android
-    fullImplementation libs.google.play.core
+    fullImplementation libs.google.play.appUpdate
 
 // Dependency Injection
     implementation libs.google.dagger.lib
