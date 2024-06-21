@@ -163,5 +163,4 @@ public abstract class AbstractSuite implements Serializable {
 				}
 		return null;
 	}
-
 }
