@@ -88,7 +88,6 @@ public class Url extends BaseModel implements Serializable {
 	 * @return list of url strings.
 	 */
 	public static List<String> saveOrUpdate(List<Url> urls) {
-
 		Map<String, Url> resultUrlsMap = Maps.uniqueIndex(
 				urls,
 				input -> input.url
@@ -131,7 +130,6 @@ public class Url extends BaseModel implements Serializable {
 			List<Url> urlsToSave = Lists.transform(Lists.newArrayList(newUrlSet), resultUrlsMap::get);
 
 			Url.saveAll(urlsToSave);
-
 		}
 
 		return new ArrayList<>(resultUrlsMap.keySet());

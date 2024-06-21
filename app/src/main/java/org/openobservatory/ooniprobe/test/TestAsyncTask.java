@@ -147,7 +147,6 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                 }
                 if (!interrupt) {
                     Log.d(TAG, "run next suite: " + currentSuite.getName() + " test:" + currentTest.getName());
-
                     currentTest.run(app, app.getPreferenceManager(),app.getLogger(), app.getGson(), result, i, this);
                 }
             }
@@ -159,6 +158,7 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
     }
 
     //This uses the wrapper
+    // TODO(bassosimone): I am not sure of the meaning of the comment above.
     private void downloadURLs() {
         try {
             OONISession session = EngineProvider.get().newSession(
@@ -192,7 +192,16 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                 webConnectivity.getUrls(),
                 url -> new Url(url.getUrl(), url.getCategoryCode(), url.getCountryCode())
             );
-            List<String> inputs = Url.saveOrUpdate(urls);
+
+            // TODO(bassosimone): we obviously need to refactor/rename this function
+            // and modify the code more extensively than we're doing right now.
+            //
+            // The next step is to take advantage of the probe engine fetching the URLs
+            // however for now oonimkall does not do that yet.
+            List<String> inputs = new ArrayList<>();
+            for (var url : urls) {
+                inputs.add(url.url);
+            }
 
             currentTest.setInputs(inputs);
 
