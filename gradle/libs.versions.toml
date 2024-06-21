@@ -49,7 +49,7 @@ retrofitLoggingInterceptor = "4.12.0"
 
 # Firebase Services
 # https://firebase.google.com/support/release-notes/android
-gms-googleServices = "4.4.1"
+gms-googleServices = "4.4.2"
 
 [libraries]
 # Dependencies of the included build-logic
