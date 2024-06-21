@@ -10,6 +10,10 @@ public final class PESession implements OONISession {
         session = Oonimkall.newSession(config.toOonimkallSessionConfig());
     }
 
+    public OONIGeolocateResults geolocate(OONIContext ctx) throws Exception {
+        return new OONIGeolocateResults(session.geolocate(ctx.ctx));
+    }
+
     public OONIContext newContext() {
         return newContextWithTimeout(-1);
     }

@@ -181,7 +181,10 @@
 			android:name=".common.service.RunTestJobService"
 			android:label="Run Test Service"
 			android:permission="android.permission.BIND_JOB_SERVICE"/>
-
+		<service
+			android:name=".common.service.ConnectivityChangeService"
+			android:enabled="true"
+			android:exported="true"/>
 		<provider
 			android:name="androidx.core.content.FileProvider"
 			android:authorities="${applicationId}.provider"

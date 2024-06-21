@@ -17,7 +17,10 @@ import com.raizlabs.android.dbflow.config.FlowManager;
 import org.openobservatory.engine.OONICheckInConfig;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.client.OONIAPIClient;
+import org.openobservatory.ooniprobe.common.service.ConnectivityChangeService;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
+import org.openobservatory.ooniprobe.common.service.ServiceUtil;
+import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.di.ActivityComponent;
 import org.openobservatory.ooniprobe.di.AppComponent;
 import org.openobservatory.ooniprobe.di.ApplicationModule;
@@ -64,6 +67,9 @@ public class Application extends android.app.Application {
 			Measurement.deleteOldLogs(Application.this);
 		});
 		ThirdPartyServices.reloadConsents(Application.this);
+		if (_preferenceManager.isAutomaticallyRunTestOnNetworkChange()){
+			ServiceUtil.scheduleConnectivityChangeService(this);
+		}
 		LocaleUtils.setLocale(new Locale(_preferenceManager.getSettingsLanguage()));
 		LocaleUtils.updateConfig(this, getBaseContext().getResources().getConfiguration());
 	}
