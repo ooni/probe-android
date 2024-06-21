@@ -78,8 +78,11 @@ public class ServiceUtil {
         if (!d.generateAutoRunServiceSuite.shouldStart(config.isOnWiFi(), config.isCharging(), isVPNInUse)) {
             return;
         }
-        ServiceUtil.startRunTestServiceCommon(app, new ArrayList<>(autoRunTests(app, d.preferenceManager, d.testDescriptorManager)), false, true);
-        d.generateAutoRunServiceSuite.markAsRan();
+        List<DynamicTestSuite> testSuites = autoRunTests(app, d.preferenceManager, d.testDescriptorManager);
+        if (!testSuites.isEmpty()){
+            ServiceUtil.startRunTestServiceCommon(app, new ArrayList<>(testSuites), false, true);
+            d.generateAutoRunServiceSuite.markAsRan();
+        }
 
     }
 

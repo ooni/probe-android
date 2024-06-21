@@ -46,7 +46,6 @@ class AutoUpdateDescriptorsWorker(
                 )?.let { updatedDescriptor ->
                     if (descriptor.shouldUpdate(updatedDescriptor)) {
                         updatedDescriptor.isAutoUpdate = descriptor.isAutoUpdate
-                        updatedDescriptor.isAutoRun = descriptor.isAutoRun
 
                         Log.d(TAG, "Saving updates for ${descriptor.runId}")
 
@@ -132,7 +131,6 @@ class ManualUpdateDescriptorsWorker(
                     if (descriptor.shouldUpdate(updatedDescriptor)) {
                         if (descriptor.isAutoUpdate) {
                             updatedDescriptor.isAutoUpdate = true
-                            updatedDescriptor.isAutoRun = descriptor.isAutoRun
 
                             Log.d(TAG, "Saving updates for ${descriptor.runId}")
 

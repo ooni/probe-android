@@ -16,6 +16,7 @@ import org.openobservatory.ooniprobe.activity.runtests.models.ChildItem
 import org.openobservatory.ooniprobe.activity.runtests.models.GroupItem
 import org.openobservatory.ooniprobe.model.database.TestDescriptor
 import org.openobservatory.ooniprobe.model.database.Url
+import org.openobservatory.ooniprobe.model.database.getNettests
 import org.openobservatory.ooniprobe.test.suite.DynamicTestSuite
 import org.openobservatory.ooniprobe.test.test.*
 import java.io.Serializable
@@ -441,7 +442,16 @@ fun autoRunTests(context: Context, preferenceManager: PreferenceManager, testDes
         }
     }.toMutableList().also { descriptors ->
         val runV2AtoRunTests: List<DynamicTestSuite> =
-            testDescriptorManager.getRunV2Descriptors(expired = false, autoRun = true)
+            testDescriptorManager.getRunV2Descriptors(expired = false)
+                .filter { descriptor ->
+                    descriptor.getNettests().any { nettest ->
+                        preferenceManager.resolveStatus(
+                            name = nettest.name,
+                            prefix = descriptor.preferencePrefix(),
+                            autoRun = true
+                        )
+                    }
+                }
                 .map { testDescriptor ->
                     testDescriptor.toDynamicTestSuite(context).apply {
                         autoRun = true

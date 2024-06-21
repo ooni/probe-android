@@ -83,9 +83,6 @@ class TestDescriptor(
     @Column(name = "is_expired")
     var isExpired: Boolean? = false,
 
-    @Column(name = "auto_run")
-    var isAutoRun: Boolean = true,
-
     @Column(name = "auto_update")
     var isAutoUpdate: Boolean = false,
 
@@ -147,10 +144,6 @@ class InstalledDescriptor(
         false -> emptyList()
     },
     descriptor = testDescriptor) {
-
-    override fun getRuntime(context: Context, preferenceManager: PreferenceManager): Int {
-        return R.string.TestResults_NotAvailable
-    }
 
     fun isUpdateAvailable(): Boolean {
         return tags?.contains("updated") ?: false
