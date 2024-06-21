@@ -202,6 +202,7 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
     }
 
     public void fetchManualUpdate() {
+        updatesViewModel.clearDescriptors();
         OneTimeWorkRequest manualWorkRequest = new OneTimeWorkRequest.Builder(ManualUpdateDescriptorsWorker.class)
                 .setConstraints(
                         new Constraints.Builder()
