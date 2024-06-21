@@ -32,7 +32,7 @@ jobs:
       - uses: magnetikonline/action-golang-cache@v4
         with:
           go-version: "${{ steps.goversion.outputs.version }}"
-          cache-key-suffix: "-coverage-${{ steps.goversion.outputs.version }}"
+          cache-key-suffix: "-build-experimental-engine-${{ steps.goversion.outputs.version }}"
 
       - name: Build Experimental Archive from `ooni/probe-cli`
         run: ./gradlew buildExperimentalArchive
