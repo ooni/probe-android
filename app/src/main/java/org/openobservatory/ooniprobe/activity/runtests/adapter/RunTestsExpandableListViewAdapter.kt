@@ -85,7 +85,6 @@ class RunTestsExpandableListViewAdapter(
 		val icon = convertView.findViewById<ImageView>(R.id.group_icon)
 		icon.setImageResource(groupItem.getDisplayIcon(parent.context))
 		icon.setColorFilter(groupItem.color)
-		val groupIndicator = convertView.findViewById<ImageView>(R.id.group_indicator)
 		val groupSelectionIndicator = convertView.findViewById<ImageView>(R.id.group_select_indicator)
 		val selectedAllBtnStatus = viewModel.selectedAllBtnStatus.getValue()
 		if (selectedAllBtnStatus == SELECT_ALL) {
@@ -134,10 +133,12 @@ class RunTestsExpandableListViewAdapter(
 			}
 			notifyDataSetChanged()
 		}
-		if (isExpanded) {
-			groupIndicator.setImageResource(R.drawable.expand_less)
-		} else {
-			groupIndicator.setImageResource(R.drawable.expand_more)
+		convertView.findViewById<ImageView>(R.id.group_indicator)?.let { groupIndicator ->
+			if (isExpanded) {
+				groupIndicator.setImageResource(R.drawable.expand_less)
+			} else {
+				groupIndicator.setImageResource(R.drawable.expand_more)
+			}
 		}
 		return convertView
 	}

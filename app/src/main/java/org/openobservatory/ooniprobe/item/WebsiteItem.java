@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.item;
 
+import android.content.Context;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,8 +8,14 @@ import android.view.ViewGroup;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.common.base.Optional;
+
 import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
+
+import org.openobservatory.engine.BaseNettest;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.AbstractDescriptor;
 import org.openobservatory.ooniprobe.databinding.ItemWebsitesBinding;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
@@ -49,6 +56,14 @@ public class WebsiteItem extends HeterogeneousRecyclerItem<Result, WebsiteItem.V
 		for (Measurement m : extra.getMeasurements())
 			allUploaded = allUploaded && (m.isUploaded() || m.is_failed);
 		viewHolder.binding.startTime.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, allUploaded ? 0 : R.drawable.cloudoff, 0);
+		Context context = viewHolder.itemView.getContext();
+		Optional<AbstractDescriptor<BaseNettest>> optionalDescriptor = extra.getDescriptor(context);
+		if (optionalDescriptor.isPresent()){
+			viewHolder.binding.icon.setImageResource(optionalDescriptor.get().getDisplayIcon(context));
+			viewHolder.binding.icon.setColorFilter(optionalDescriptor.get().getColor());
+			viewHolder.binding.name.setText(optionalDescriptor.get().getTitle());
+			viewHolder.binding.name.setTextColor(optionalDescriptor.get().getColor());
+		}
 	}
 
 	public static class ViewHolder extends RecyclerView.ViewHolder {
