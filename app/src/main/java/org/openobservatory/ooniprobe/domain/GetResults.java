@@ -6,6 +6,7 @@ import com.raizlabs.android.dbflow.sql.language.SQLOperator;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import org.openobservatory.ooniprobe.domain.models.DatedResults;
+import org.openobservatory.ooniprobe.fragment.resultList.ResultListSpinnerItem;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
 
@@ -38,8 +39,23 @@ public class GetResults {
                 .queryList();
     }
 
-    public List<DatedResults> getGroupedByMonth(@Nullable String testGroupNameFilter) {
-        List<Result> results = getOrderedByTime(testGroupNameFilter);
+    public List<Result> getOrderedByTimeWithRunId(String runId) {
+        return  SQLite.select().from(Result.class)
+                .where(Result_Table.descriptor_runId.eq(Long.valueOf(runId)))
+                .orderBy(Result_Table.start_time, false)
+                .queryList();
+    }
+
+    public List<DatedResults> getGroupedByMonth(ResultListSpinnerItem testGroupNameFilter) {
+        List<Result> results = new ArrayList<>();
+        switch (testGroupNameFilter.type) {
+            case DEFAULT -> {
+                results = getOrderedByTime(testGroupNameFilter.id);
+            }
+            case RUN_V2_ITEM -> {
+                results = getOrderedByTimeWithRunId(testGroupNameFilter.id);
+            }
+        }
         List<DatedResults> datedResults = new ArrayList<>();
 
         List<Result> sameDateResults = new ArrayList<>();

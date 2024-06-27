@@ -17,12 +17,12 @@ import org.junit.runner.RunWith;
 import org.openobservatory.ooniprobe.AbstractTest;
 import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
+import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.engine.TestEngineInterface;
 import org.openobservatory.ooniprobe.model.jsonresult.EventResult;
 import org.openobservatory.ooniprobe.test.EngineProvider;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
-import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
 import org.openobservatory.ooniprobe.utils.DatabaseUtils;
 
 import java.util.ArrayList;
@@ -87,7 +87,7 @@ public class RunningActivityTest extends AbstractTest {
             serviceRule.startService(
                     new Intent(c, RunTestService.class)
                             .putExtra("testSuites", new ArrayList<AbstractSuite>() {{
-                                add(new InstantMessagingSuite());
+                                add(OONITests.WEBSITES.toOONIDescriptor(c).getTest(c));
                             }})
             );
         } catch (TimeoutException e) {

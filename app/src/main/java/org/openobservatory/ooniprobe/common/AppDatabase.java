@@ -11,7 +11,11 @@ import org.openobservatory.ooniprobe.model.database.Result;
 @Database(name = AppDatabase.NAME, version = AppDatabase.VERSION, foreignKeyConstraintsEnforced = true)
 public class AppDatabase {
     public static final String NAME = "v2";
-    public static final int VERSION = 3;
+    /**
+     * Version 4: Add `descriptor_runId` foreign key to Result
+     * Version 5: Add `TestDescriptor` model.
+     */
+    public static final int VERSION = 5;
 
     @Migration(version = 2, database = AppDatabase.class)
     public static class Migration2 extends AlterTableMigration<Result> {
@@ -40,5 +44,20 @@ public class AppDatabase {
         }
 
     }
+
+    @Migration(version = 4, database = AppDatabase.class)
+    public static class Migration4 extends AlterTableMigration<Result> {
+
+        public Migration4(Class<Result> table) {
+            super(table);
+        }
+
+        @Override
+        public void onPreMigrate() {
+            addForeignKeyColumn(SQLiteType.INTEGER, "descriptor_runId", "TestDescriptor (`runId`)");
+        }
+
+    }
+
 
 }
