@@ -18,6 +18,7 @@ import org.openobservatory.ooniprobe.activity.runtests.adapter.RunTestsExpandabl
 import org.openobservatory.ooniprobe.activity.runtests.models.ChildItem
 import org.openobservatory.ooniprobe.activity.runtests.models.GroupItem
 import org.openobservatory.ooniprobe.common.AbstractDescriptor
+import org.openobservatory.ooniprobe.common.OONIDescriptor
 import org.openobservatory.ooniprobe.common.OONITests
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.common.disableTest
@@ -82,10 +83,20 @@ class RunTestsActivity : AbstractActivity() {
 			intent.extras?.getSerializable(TESTS) as List<AbstractDescriptor<BaseNettest>>?
 		descriptors?.let { _descriptors ->
 
-			adapter = RunTestsExpandableListViewAdapter(
-				_descriptors.map { descriptor ->
+			val groupedItemList = mutableListOf<Any>()
+
+			_descriptors.groupBy { it.javaClass }.forEach { (type, itemList) ->
+				if (type == OONIDescriptor::class.java){
+					groupedItemList.add("OONI Tests".uppercase())
+				} else {
+					groupedItemList.add("OONI RUN Links".uppercase())
+				}
+				groupedItemList.addAll(itemList.map { descriptor ->
 					descriptor.toRunTestsGroupItem(preferenceManager = preferenceManager)
-				},
+				})
+			}
+			adapter = RunTestsExpandableListViewAdapter(
+				groupedItemList,
 				viewModel
 			)
 
@@ -137,22 +148,25 @@ class RunTestsActivity : AbstractActivity() {
      */
     private fun updatePreferences() {
         for (i in 0 until adapter.groupCount) {
-            val group = adapter.getGroup(i)
-            when (group.name) {
-                OONITests.EXPERIMENTAL.label -> {
-                    val testNames = OONITests.EXPERIMENTAL.nettests.map { it.name };
-                    when(group.nettests.filter { testNames.contains(it.name) }.map { it.selected }.all { it }) {
-                        true -> preferenceManager.enableTest(OONITests.EXPERIMENTAL.label)
-                        false -> preferenceManager.disableTest(OONITests.EXPERIMENTAL.label)
-                    }
-                }
-                else -> group.nettests.forEach { nettest ->
-                    when(nettest.selected) {
-                        true -> preferenceManager.enableTest(nettest.name, group.preferencePrefix())
-                        false -> preferenceManager.disableTest(nettest.name, group.preferencePrefix())
-                    }
-                }
-            }
+            when(val group = adapter.getGroup(i)) {
+				is GroupItem ->{
+					when (group.name) {
+						OONITests.EXPERIMENTAL.label -> {
+							val testNames = OONITests.EXPERIMENTAL.nettests.map { it.name };
+							when(group.nettests.filter { testNames.contains(it.name) }.map { it.selected }.all { it }) {
+								true -> preferenceManager.enableTest(OONITests.EXPERIMENTAL.label)
+								false -> preferenceManager.disableTest(OONITests.EXPERIMENTAL.label)
+							}
+						}
+						else -> group.nettests.forEach { nettest ->
+							when(nettest.selected) {
+								true -> preferenceManager.enableTest(nettest.name, group.preferencePrefix())
+								false -> preferenceManager.disableTest(nettest.name, group.preferencePrefix())
+							}
+						}
+					}
+				}
+			}
         }
     }
 
@@ -197,11 +211,15 @@ class RunTestsActivity : AbstractActivity() {
 	private fun getChildItemsSelectedIdList(): List<String> {
 		val childItemSelectedIdList: MutableList<String> = ArrayList()
 		for (i in 0 until adapter.groupCount) {
-			val secondLevelItemList: List<ChildItem> = adapter.getGroup(i).nettests
-			secondLevelItemList
-				.asSequence()
-				.filter { it.selected }
-				.mapTo(childItemSelectedIdList) { it.name }
+			when(val group = adapter.getGroup(i)) {
+				is GroupItem ->{
+					val secondLevelItemList: List<ChildItem> = group.nettests
+					secondLevelItemList
+						.asSequence()
+						.filter { it.selected }
+						.mapTo(childItemSelectedIdList) { it.name }
+				}
+			}
 		}
 		return childItemSelectedIdList
 	}
@@ -209,10 +227,14 @@ class RunTestsActivity : AbstractActivity() {
 	private fun getGroupItemsAtLeastOneChildEnabled(): List<GroupItem> {
 		val items: MutableList<GroupItem> = ArrayList()
 		for (i in 0 until adapter.groupCount) {
-			if (adapter.getGroup(i).nettests.any { it.selected }) {
-				items.add(adapter.getGroup(i).apply {
-					nettests = nettests.filter { it.selected }
-				})
+			when(val group = adapter.getGroup(i)) {
+				is GroupItem ->{
+					if (group.nettests.any { it.selected }) {
+						items.add(group.apply {
+							nettests = nettests.filter { it.selected }
+						})
+					}
+				}
 			}
 		}
 		return items
