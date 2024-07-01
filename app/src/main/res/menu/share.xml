@@ -4,8 +4,8 @@
     <item
         android:id="@+id/shareExplorerUrl"
         android:title="@string/TestResults_Details_ShareExplorerURL"
-        android:icon="@android:drawable/ic_menu_share"
-        android:iconTint="@android:color/white"
+        android:icon="@drawable/ic_menu_share"
+        app:iconTint="@android:color/white"
         app:showAsAction="ifRoom|withText" />
     <item
         android:id="@+id/reRun"

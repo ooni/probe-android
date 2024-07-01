@@ -159,8 +159,8 @@ class AddDescriptorActivity : AbstractActivity() {
                 finish()
             }
 
-            viewModel.selectedAllBtnStatus.observe(this) { state ->
-                binding.testsCheckbox.checkedState = state;
+            binding.expandableListView.viewTreeObserver.addOnGlobalLayoutListener {
+                binding.testsCheckbox.checkedState = viewModel.selectedAllBtnStatus.value!!
             }
 
             // This observer is used to change the state of the "Select All" button when a checkbox is clicked.

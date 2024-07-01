@@ -133,6 +133,7 @@ class OoniRunV2Activity : AbstractActivity() {
     private fun fetchDescriptorComplete(descriptorResponse: TestDescriptor?) {
         descriptorResponse?.let {
             startActivity(AddDescriptorActivity.newIntent(this, descriptorResponse))
+            finish()
         } ?: run {
             finishWithError()
         }

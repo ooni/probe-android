@@ -24,6 +24,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.raizlabs.android.dbflow.sql.language.Method;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
+import org.openobservatory.engine.OONIRunNettest;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
@@ -50,11 +51,14 @@ import org.openobservatory.ooniprobe.item.WebsiteItem;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
+import org.openobservatory.ooniprobe.model.database.TestDescriptorKt;
+import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
 import java.io.Serializable;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -204,7 +208,12 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
                         } else if (result.test_group_name.equals(OONITests.EXPERIMENTAL.toString())) {
                             items.add(new ExperimentalItem(result, this, this));
                         } else if (result.descriptor!=null) {
-                            items.add(new RunItem(result, this, this));
+                            List<OONIRunNettest> nettests = TestDescriptorKt.getNettests(result.descriptor);
+                            if (nettests.size()==1 && Objects.equals(nettests.get(0).getName(), WebConnectivity.NAME)){
+                                items.add(new WebsiteItem(result, this, this));
+                            } else {
+                                items.add(new RunItem(result, this, this));
+                            }
                         } else {
                             items.add(new FailedItem(result, this, this));
                         }

@@ -79,6 +79,8 @@
                 android:divider="@android:color/transparent"
                 android:groupIndicator="@null"
                 android:nestedScrollingEnabled="true"
+                android:listSelector="@android:color/transparent"
+                android:cacheColorHint="@android:color/transparent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="parent"

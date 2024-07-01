@@ -38,5 +38,5 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:paddingEnd="16dp" />
+        android:padding="@dimen/item_padding_small"/>
 </RelativeLayout>

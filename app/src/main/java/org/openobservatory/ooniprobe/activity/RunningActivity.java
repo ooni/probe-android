@@ -171,7 +171,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
             binding.eta.setText(R.string.Dashboard_Running_CalculatingETA);
         }
 
-        if (Objects.equals(service.task.currentTest.getLabelResId(),R.string.Test_Experimental_Fullname)) {
+        if (Objects.equals(service.task.currentSuite.getName(),OONITests.EXPERIMENTAL.getLabel())) {
             binding.name.setText(service.task.currentTest.getName());
         } else {
             binding.name.setText(getString(service.task.currentTest.getLabelResId()));

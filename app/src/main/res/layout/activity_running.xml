@@ -21,8 +21,8 @@
 			android:layout_margin="8dp"
 			android:minWidth="0dp"
 			android:src="@drawable/chevron_right"
-			android:rotation="90"
-			android:tint="@android:color/white" />
+			android:rotation="180"
+			app:tint="@android:color/white" />
 
 		<TextView
 			android:id="@+id/running"
