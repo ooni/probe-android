@@ -14,7 +14,7 @@ import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.databinding.FragmentOnboarding3Binding;
-import ru.noties.markwon.Markwon;
+import io.noties.markwon.Markwon;
 
 import javax.inject.Inject;
 
@@ -31,7 +31,9 @@ public class Onboarding3Fragment extends Fragment {
 		binding.bullet1.setText(getString(R.string.bullet, getString(R.string.Onboarding_DefaultSettings_Bullet_1)));
 		binding.bullet2.setText(getString(R.string.bullet, getString(R.string.Onboarding_DefaultSettings_Bullet_2)));
 		binding.bullet3.setText(getString(R.string.bullet, getString(R.string.Onboarding_DefaultSettings_Bullet_3)));
-		Markwon.setMarkdown(binding.paragraph, getString(R.string.Onboarding_DefaultSettings_Paragraph));
+		Markwon.builder(getContext())
+				.build()
+				.setMarkdown(binding.paragraph, getString(R.string.Onboarding_DefaultSettings_Paragraph));
 
 		binding.master.setOnClickListener(v -> masterClick());
 		binding.slave.setOnClickListener(v -> slaveClick());

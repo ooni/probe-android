@@ -1,0 +1,180 @@
+# This workflow is triggered on push events to the repository
+# It runs the following jobs:
+# - build: Ensure the code builds
+# - unit-test: Run unit tests
+# - instrumented-test: Run instrumented tests
+# - assemble-archive: Archive APKs
+# - distribute: Upload artifact to Firebase App Distribution
+name: Validate
+on: [ push ]
+jobs:
+  build:
+    name: Ensure the code builds
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        version:
+          - "StableFullRelease"
+          - "StableFdroidRelease"
+
+    steps:
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: Build `StableFullRelease` and `StableFdroidRelease` variants
+        run: ./gradlew build${{ matrix.version }} && ./gradlew clean
+
+  unit-test:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+    needs: [ build ]
+
+    steps:
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: Run unit tests
+        run: ./gradlew testStableFullRelease
+
+      - name: Uploads test reports
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: test-report
+          path: app/build/test-results/testStableFullDebugUnitTest
+
+  instrumented-test:
+    name: Run instrumented tests
+    runs-on: ubuntu-latest
+    needs: [ build ]
+
+    strategy:
+      matrix:
+        api-level: [ 29 ]
+        target: [ google_apis ]
+
+    steps:
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: Run instrumented tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api-level }}
+          target: ${{ matrix.target }}
+          arch: x86_64
+          profile: pixel_3_xl
+          ram-size: 4096M
+          disable-animations: true
+          script: ./gradlew connectedStableFullDebugAndroidTest
+
+      - name: uploads test reports
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: emulator-test-reports
+          path: app/build/reports/androidTests/connected/debug/flavors/stableFull/
+
+  assemble-archive:
+    name: Archive APKs
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        version:
+          - "StableFullDebug"
+          - "StableFdroidDebug"
+          - "DevFullDebug"
+          - "DevFullDebugAndroidTest"
+    needs: [ build ]
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: Get issue number
+        uses: actions/github-script@v6
+        id: get_issue_number
+        with:
+          script: |
+            if (context.issue.number) {
+              // Return issue number if present
+              return context.issue.number;
+            } else {
+              // Otherwise return issue number from commit
+              return (
+                await github.rest.repos.listPullRequestsAssociatedWithCommit({
+                  commit_sha: context.sha,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                })
+              ).data[0].number;
+            }
+          result-encoding: string
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Assemble APKs
+        if: success() && steps.get_issue_number.outputs.result
+        run: ./gradlew assemble${{ matrix.version }}
+        env:
+          PR_NUMBER: ${{ steps.get_issue_number.outputs.result }}
+
+      - name: uploads dev apk
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.version }}Apk
+          path: |
+            app/build/outputs/apk/devFull/debug/app-dev-full-debug.apk
+            app/build/outputs/apk/androidTest/devFull/debug/app-dev-full-debug-androidTest.apk
+            app/build/outputs/apk/stableFull/debug/app-stable-full-debug.apk
+            app/build/outputs/apk/stableFdroid/debug/app-stable-fdroid-debug.apk
+
+  distribute:
+    name: Upload artifact to Firebase App Distribution
+    runs-on: ubuntu-latest
+    needs: [ assemble-archive ]
+    steps:
+
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: Download app APK
+        uses: actions/download-artifact@v4
+        with:
+          name: DevFullDebugApk
+
+      - name: Upload artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.7.0
+        id: uploadArtifact
+        with:
+          appId: ${{secrets.FIREBASE_APP_ID}}
+          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+          groups: testers
+          file: devFull/debug/app-dev-full-debug.apk
+      - name: Write Summary
+        run: |
+          echo "View this release in the Firebase console: ${{ steps.uploadArtifact.outputs.FIREBASE_CONSOLE_URI }}" >> $GITHUB_STEP_SUMMARY

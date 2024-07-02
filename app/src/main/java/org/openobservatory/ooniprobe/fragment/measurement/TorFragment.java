@@ -10,7 +10,8 @@ import androidx.fragment.app.Fragment;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.databinding.FragmentMeasurementTorBinding;
 import org.openobservatory.ooniprobe.model.database.Measurement;
-import ru.noties.markwon.Markwon;
+
+import io.noties.markwon.Markwon;
 
 public class TorFragment extends Fragment {
 	private static final String MEASUREMENT = "measurement";
@@ -30,7 +31,9 @@ public class TorFragment extends Fragment {
 		Measurement measurement = (Measurement) getArguments().getSerializable(MEASUREMENT);
 		assert measurement != null;
 		FragmentMeasurementTorBinding binding = FragmentMeasurementTorBinding.inflate(inflater,container,false);
-		Markwon.setMarkdown(binding.desc,
+		Markwon.builder(getContext())
+				.build()
+				.setMarkdown(binding.desc,
 				measurement.is_anomaly ?
 						getString(R.string.TestResults_Details_Circumvention_Tor_Blocked_Content_Paragraph) :
 						getString(R.string.TestResults_Details_Circumvention_Tor_Reachable_Content_Paragraph)

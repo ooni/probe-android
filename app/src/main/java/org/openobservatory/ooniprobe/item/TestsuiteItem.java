@@ -13,6 +13,7 @@ import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.databinding.ItemTestsuiteBinding;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
 
+@Deprecated
 public class TestsuiteItem extends HeterogeneousRecyclerItem<AbstractSuite, TestsuiteItem.ViewHolderImpl> {
 	private final View.OnClickListener onClickListener;
 	private final PreferenceManager preferenceManager;
