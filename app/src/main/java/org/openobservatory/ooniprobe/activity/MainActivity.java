@@ -428,4 +428,8 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
             }
         }
     }
+
+    public void showResults() {
+        binding.bottomNavigation.setSelectedItemId(R.id.testResults);
+    }
 }

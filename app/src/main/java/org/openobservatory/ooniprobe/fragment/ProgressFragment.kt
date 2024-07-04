@@ -13,7 +13,9 @@ import androidx.core.content.ContextCompat
 import androidx.core.text.bold
 import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.google.android.material.snackbar.Snackbar
 import org.openobservatory.ooniprobe.R
+import org.openobservatory.ooniprobe.activity.MainActivity
 import org.openobservatory.ooniprobe.activity.RunningActivity
 import org.openobservatory.ooniprobe.common.Application
 import org.openobservatory.ooniprobe.common.OONITests
@@ -47,8 +49,14 @@ class ProgressFragment : Fragment() {
             ActivityCompat.startActivity(requireContext(), intent, null)
         }
         testProgressRepository.progress.observe(viewLifecycleOwner) { progressValue: Int? ->
-            if (progressValue != null) {
-                biding.progress.progress = progressValue
+            progressValue?.let { progress ->
+                biding.progress.progress = progress
+            }
+        }
+        testProgressRepository.eta.observe(viewLifecycleOwner) { etaValue: Double? ->
+            etaValue?.let { eta ->
+                biding.etaLayout.visibility = View.VISIBLE
+                biding.eta.text = RunningActivity.readableTimeRemaining(eta)
             }
         }
         return biding.root
@@ -133,7 +141,8 @@ class ProgressFragment : Fragment() {
                             biding.testImage.visibility = View.GONE
                         }
                     }
-                    biding.name.text = when (task.currentSuite.name.equals(OONITests.EXPERIMENTAL.label)) {
+                    biding.name.text =
+                        when (task.currentSuite.name.equals(OONITests.EXPERIMENTAL.label)) {
                             true -> SpannableStringBuilder().bold { append(currentTest.name) }
                             false -> SpannableStringBuilder().bold { append(getString(currentTest.labelResId)) }
                         }.append(" ")
@@ -201,6 +210,17 @@ class ProgressFragment : Fragment() {
 
         override fun onEnd(context: Context) {
             biding.progressLayout.visibility = View.GONE
+            Snackbar.make(
+                requireView(),
+                "Run finished. Tap to view results.",
+                Snackbar.LENGTH_LONG
+            ).setAnchorView(R.id.run_all)
+                .setAction("Results") {
+                    if(requireActivity() is MainActivity) {
+                        (requireActivity() as MainActivity).showResults()
+                    }
+                }
+                .show()
         }
     }
 }

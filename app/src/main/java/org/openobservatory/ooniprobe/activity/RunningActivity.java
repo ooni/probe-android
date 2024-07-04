@@ -288,8 +288,8 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     }
 
     @NonNull
-    private static String readableTimeRemaining(double timeLeft) {
+    public static String readableTimeRemaining(double timeLeft) {
         long letaValue = Math.round(timeLeft);
-        return String.format(ENGLISH,"%dm %02ds", letaValue/60, letaValue%60);
+        return String.format(ENGLISH," %dm %02ds", letaValue/60, letaValue%60);
     }
 }
