@@ -23,7 +23,7 @@ androidxPreference = "1.2.1"
 androidxLocalbroadcastmanager = "1.1.0"
 androidxLegacySupportV4 = "1.0.0"
 androidxJunit = "1.1.5"
-androidxEspressoCore = "3.5.1"
+androidxEspressoCore = "3.6.1"
 
 # Google
 googleGson = "2.11.0"
