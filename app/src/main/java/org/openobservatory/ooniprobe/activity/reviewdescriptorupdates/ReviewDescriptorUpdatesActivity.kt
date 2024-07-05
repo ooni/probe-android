@@ -13,7 +13,6 @@ import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -24,6 +23,7 @@ import com.google.gson.internal.LinkedTreeMap
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
+import org.openobservatory.ooniprobe.common.AppUpdatesViewModel
 import org.openobservatory.ooniprobe.common.TestDescriptorManager
 import org.openobservatory.ooniprobe.databinding.ActivityReviewDescriptorUpdatesBinding
 import org.openobservatory.ooniprobe.databinding.FragmentDescriptorUpdateBinding
@@ -79,7 +79,7 @@ class ReviewDescriptorUpdatesActivity : AbstractActivity() {
     lateinit var gson: Gson
 
     @Inject
-    lateinit var updatesViewModel: AvailableUpdatesViewModel
+    lateinit var updatesViewModel: AppUpdatesViewModel
 
     private lateinit var reviewUpdatesPagingAdapter: ReviewUpdatesPagingAdapter
 

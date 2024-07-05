@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.openobservatory.engine.BaseNettest
@@ -14,7 +15,7 @@ import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
 import org.openobservatory.ooniprobe.activity.MainActivity
 import org.openobservatory.ooniprobe.activity.OverviewActivity
-import org.openobservatory.ooniprobe.activity.reviewdescriptorupdates.AvailableUpdatesViewModel
+import org.openobservatory.ooniprobe.common.AppUpdatesViewModel
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsActivity
 import org.openobservatory.ooniprobe.adapters.DashboardAdapter
 import org.openobservatory.ooniprobe.common.AbstractDescriptor
@@ -42,7 +43,7 @@ class DashboardFragment : Fragment(), View.OnClickListener {
     lateinit var testStateRepository: TestStateRepository
 
     @Inject
-    lateinit var updatesViewModel: AvailableUpdatesViewModel
+    lateinit var updatesViewModel: AppUpdatesViewModel
 
     private lateinit var binding: FragmentDashboardBinding
 
@@ -92,6 +93,13 @@ class DashboardFragment : Fragment(), View.OnClickListener {
             binding.swipeRefresh.isRefreshing = false
         }
 
+        binding.testsCompleted.setOnClickListener{
+            (requireActivity() as MainActivity).showResults()
+        }
+
+        updatesViewModel.testRunComplete.observe(viewLifecycleOwner) { testRunComplete ->
+            binding.testsCompleted.isVisible = testRunComplete ?: false
+        }
         updatesViewModel.descriptors.observe(viewLifecycleOwner) { descriptors ->
             descriptors.let { viewModel.updateDescriptorWith(it) }
         }
@@ -110,6 +118,9 @@ class DashboardFragment : Fragment(), View.OnClickListener {
         ) binding.vpn.visibility = View.VISIBLE else binding.vpn.visibility = View.GONE
 
         updateDescriptors()
+
+        binding.testsCompleted.isVisible = updatesViewModel.testRunComplete.value ?: false
+
     }
 
     fun updateDescriptors() {

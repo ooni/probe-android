@@ -1,4 +1,4 @@
-package org.openobservatory.ooniprobe.activity.reviewdescriptorupdates
+package org.openobservatory.ooniprobe.common
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,8 +8,9 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class AvailableUpdatesViewModel @Inject() constructor(var gson: Gson) : ViewModel() {
+class AppUpdatesViewModel @Inject() constructor(var gson: Gson) : ViewModel() {
     var descriptors: MutableLiveData<List<ITestDescriptor>> = MutableLiveData()
+    var testRunComplete: MutableLiveData<Boolean> = MutableLiveData()
 
     fun setDescriptorsWith(descriptorJson: String) {
         descriptors.value = gson.fromJson(descriptorJson, Array<ITestDescriptor>::class.java).toList()

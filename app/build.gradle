@@ -18,6 +18,7 @@ android {
 		testInstrumentationRunner "org.openobservatory.ooniprobe.TestAndroidJUnitRunner"
 		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://countly.ooni.io"'
+        buildConfigField 'String', 'OONI_RUN_DASHBOARD_URL', '"https://run.test.ooni.org"'
         resValue "string", "APP_ID", 'org.openobservatory.ooniprobe'
 		resValue "string", "APP_NAME", "OONI Probe"
 		buildConfigField 'String', 'SOFTWARE_NAME', 'BASE_SOFTWARE_NAME+IS_DEBUG'
@@ -51,7 +52,8 @@ android {
         stable {
             dimension 'testing'
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android"'
-            buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.dev.ooni.io"'
+            buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.prod.ooni.io/"'
+            buildConfigField 'String', 'OONI_RUN_DASHBOARD_URL', '"https://run-v2.ooni.org"'
         }
         dev {
             dimension 'testing'

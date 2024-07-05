@@ -28,7 +28,7 @@ import androidx.work.WorkManager;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.activity.reviewdescriptorupdates.AvailableUpdatesViewModel;
+import org.openobservatory.ooniprobe.common.AppUpdatesViewModel;
 import org.openobservatory.ooniprobe.activity.reviewdescriptorupdates.ReviewDescriptorUpdatesActivity;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.TestDescriptorManager;
@@ -71,7 +71,7 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
     TestDescriptorManager descriptorManager;
 
     @Inject
-    AvailableUpdatesViewModel updatesViewModel;
+    AppUpdatesViewModel updatesViewModel;
 
 
     public static Intent newIntent(Context context, int resItem) {
@@ -101,6 +101,7 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
                         getSupportFragmentManager().beginTransaction().replace(R.id.content, new DashboardFragment()).commit();
                         return true;
                     case R.id.testResults:
+                        updatesViewModel.getTestRunComplete().setValue(false);
                         getSupportFragmentManager().beginTransaction().replace(R.id.content, new ResultListFragment()).commit();
                         return true;
                     case R.id.settings:
@@ -365,5 +366,9 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
                 //We don't need to check the result for now
             }
         }
+    }
+
+    public void showResults() {
+        binding.bottomNavigation.setSelectedItemId(R.id.testResults);
     }
 }

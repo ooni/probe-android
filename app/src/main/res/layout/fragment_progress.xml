@@ -8,13 +8,12 @@
     android:orientation="vertical"
     tools:context=".fragment.ProgressFragment">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
@@ -36,6 +35,7 @@
             android:gravity="center_vertical"
             android:text="@string/Dashboard_Running_PreparingTest"
             android:textColor="@color/color_gray9" />
+
     </LinearLayout>
 
     <ProgressBar
@@ -47,5 +47,30 @@
         android:maxHeight="8dp"
         android:minHeight="8dp"
         android:progressDrawable="@drawable/progress_blue" />
+
+    <LinearLayout
+        android:id="@+id/eta_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="@dimen/item_padding_extra_small"
+        android:gravity="center_horizontal"
+        android:visibility="invisible"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/Dashboard_Running_EstimatedTimeLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/Dashboard_Running_EstimatedTimeLeft" />
+
+        <TextView
+            android:id="@+id/eta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
 </LinearLayout>

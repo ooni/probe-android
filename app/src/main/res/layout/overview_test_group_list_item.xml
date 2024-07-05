@@ -5,7 +5,8 @@
     tools:context=".activity.overview.OverviewTestsExpandableListViewAdapter"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:paddingEnd="16dp" >
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,5 +45,5 @@
         android:id="@+id/groupCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingEnd="16dp" />
+        android:padding="@dimen/item_padding_small" />
 </RelativeLayout>
