@@ -1,45 +1,45 @@
 [versions]
 androidGradlePlugin = "8.4.0"
 barista = "3.9.0"
-countlySdk = "24.4.1"
+countlySdk = "24.7.0"
 faker = "2.0.4"
 mockitoCore = "5.12.0"
 mockitoInline = "5.2.0"
 robolectric = "4.12.2"
 fastlaneScreengrab = "2.1.1"
-sentryAndroid = "7.9.0"
+sentryAndroid = "7.10.0"
 xanscaleLocalhostToolkit = "19.05.01"
 commonsIo = "2.16.1"
 jacoco = "0.8.7"
 kotlin = "1.9.24"
 
 # Android X
-androidxCore = "1.5.0"
-androidxRunner = "1.5.2"
-androidxAppCompat = "1.6.1"
+androidxCore = "1.6.1"
+androidxRunner = "1.6.1"
+androidxAppCompat = "1.7.0"
 androidxConstraintlayout = "2.1.4"
-androidxLifecycleProcess = "2.8.0"
+androidxLifecycleProcess = "2.8.2"
 androidxPreference = "1.2.1"
 workRuntime = "2.9.0"
 androidxLocalbroadcastmanager = "1.1.0"
 androidxLegacySupportV4 = "1.0.0"
-androidxJunit = "1.1.5"
-androidxEspressoCore = "3.5.1"
+androidxJunit = "1.2.1"
+androidxEspressoCore = "3.6.1"
 
 # Google
 googleGson = "2.11.0"
-googleGuava = "33.2.0-android"
+googleGuava = "33.2.1-android"
 googleMaterial = "1.12.0"
 googleDagger = "2.51.1"
-googleFirebaseBon = "33.0.0"
-googlePlaycore = "1.10.3"
+googleFirebaseBon = "33.1.0"
+googlePlayAppUpdate = "2.1.0"
 
 # OONI
 compileSdk = "34"
 lottie = "6.4.1"
 markwon = "4.6.2"
 shapeofview = "1.4.7"
-targetSdk = "33"
+targetSdk = "34"
 minSdk = "21"
 oonimkall = "2024.05.22-092559"
 
@@ -93,7 +93,7 @@ androidx-espresso-contrib = { module = "androidx.test.espresso:espresso-contrib"
 androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidxEspressoCore" }
 androidx-espresso-intents = { module = "androidx.test.espresso:espresso-intents", version.ref = "androidxEspressoCore" }
 
-google-play-core = { module = "com.google.android.play:core", version.ref = "googlePlaycore" }
+google-play-appUpdate = { module = "com.google.android.play:app-update", version.ref = "googlePlayAppUpdate" }
 google-gson = { module = "com.google.code.gson:gson", version.ref = "googleGson" }
 google-guava = { module = "com.google.guava:guava", version.ref = "googleGuava" }
 google-material = { module = "com.google.android.material:material", version.ref = "googleMaterial" }

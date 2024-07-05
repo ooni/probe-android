@@ -1,25 +1,20 @@
 package org.openobservatory.ooniprobe.activity;
 
-import static org.openobservatory.ooniprobe.common.service.RunTestService.CHANNEL_ID;
 import static org.openobservatory.ooniprobe.common.worker.UpdateDescriptorsWorkerKt.PROGRESS;
 
-import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.provider.Settings;
 import android.view.View;
 
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.work.Constraints;
 import androidx.work.ExistingPeriodicWorkPolicy;
@@ -35,8 +30,6 @@ import com.google.android.material.snackbar.Snackbar;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.reviewdescriptorupdates.AvailableUpdatesViewModel;
 import org.openobservatory.ooniprobe.activity.reviewdescriptorupdates.ReviewDescriptorUpdatesActivity;
-import org.openobservatory.ooniprobe.common.Application;
-import org.openobservatory.ooniprobe.common.NotificationUtility;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.TestDescriptorManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
@@ -80,7 +73,6 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
     @Inject
     AvailableUpdatesViewModel updatesViewModel;
 
-    private ActivityResultLauncher<String> requestPermissionLauncher;
 
     public static Intent newIntent(Context context, int resItem) {
         return new Intent(context, MainActivity.class).putExtra(RES_ITEM, resItem).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -141,14 +133,9 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
                         .withExtra(AUTOTEST_DIALOG)
                         .build().show(getSupportFragmentManager(), null);
             } else if (notificationManager.shouldShow()) {
-                new ConfirmDialogFragment.Builder()
-                        .withTitle(getString(R.string.Modal_EnableNotifications_Title))
-                        .withMessage(getString(R.string.Modal_EnableNotifications_Paragraph))
-                        .withPositiveButton(getString(R.string.Modal_SoundsGreat))
-                        .withNegativeButton(getString(R.string.Modal_NotNow))
-                        .withNeutralButton(getString(R.string.Modal_DontAskAgain))
-                        .withExtra(NOTIFICATION_DIALOG)
-                        .build().show(getSupportFragmentManager(), null);
+                    registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+                        if (result.getResultCode() == Activity.RESULT_OK) {}
+                    }).launch(PromptActivity.newIntent(this, PromptActivity.Prompt.CENSORSHIP_CONSENT));
             }
             ThirdPartyServices.checkUpdates(this);
             scheduleWorkers();
@@ -163,7 +150,6 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             }
         }
-        requestNotificationPermission();
         onNewIntent(getIntent());
     }
 
@@ -294,44 +280,6 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
         }
     }
 
-    private void requestNotificationPermission() {
-
-        requestPermissionLauncher = registerForActivityResult(
-                new ActivityResultContracts.RequestPermission(),
-                (result) -> {
-                    if (!result) {
-                        Snackbar.make(
-                                binding.getRoot(),
-                                "Please grant Notification permission from App Settings",
-                                Snackbar.LENGTH_LONG
-                        ).setAction(R.string.Settings_Title, view -> {
-                            Intent intent = new Intent();
-                            intent.setAction("android.settings.APP_NOTIFICATION_SETTINGS");
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                            //for Android 5-7
-                            intent.putExtra("app_package", getPackageName());
-                            intent.putExtra("app_uid", getApplicationInfo().uid);
-
-                            // for Android 8 and above
-                            intent.putExtra("android.provider.extra.APP_PACKAGE", getPackageName());
-
-                            startActivity(intent);
-                        }).show();
-                    }
-                }
-        );
-        NotificationUtility.setChannel(getApplicationContext(), CHANNEL_ID, getString(R.string.Settings_AutomatedTesting_Label), false, false, false);
-        if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
-        ) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
-            }
-        }
-    }
-
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
@@ -358,16 +306,6 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
     @Override
     public void onConfirmation(Serializable extra, int i) {
         if (extra == null) return;
-        if (extra.equals(NOTIFICATION_DIALOG)) {
-            notificationManager.getUpdates(i == DialogInterface.BUTTON_POSITIVE);
-
-            //If positive answer reload consents and init notification
-            if (i == DialogInterface.BUTTON_POSITIVE) {
-                ThirdPartyServices.reloadConsents((Application) getApplication());
-            } else if (i == DialogInterface.BUTTON_NEUTRAL) {
-                notificationManager.disableAskNotificationDialog();
-            }
-        }
         if (extra.equals(AUTOTEST_DIALOG)) {
             preferenceManager.setNotificationsFromDialog(i == DialogInterface.BUTTON_POSITIVE);
             if (i == DialogInterface.BUTTON_POSITIVE) {
