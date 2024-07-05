@@ -10,7 +10,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -37,7 +36,7 @@ import org.openobservatory.ooniprobe.activity.customwebsites.CustomWebsiteActivi
 import org.openobservatory.ooniprobe.activity.overview.OverviewTestsExpandableListViewAdapter;
 import org.openobservatory.ooniprobe.activity.overview.OverviewViewModel;
 import org.openobservatory.ooniprobe.activity.overview.RevisionsFragment;
-import org.openobservatory.ooniprobe.activity.reviewdescriptorupdates.AvailableUpdatesViewModel;
+import org.openobservatory.ooniprobe.common.AppUpdatesViewModel;
 import org.openobservatory.ooniprobe.activity.reviewdescriptorupdates.ReviewDescriptorUpdatesActivity;
 import org.openobservatory.ooniprobe.common.AbstractDescriptor;
 import org.openobservatory.ooniprobe.common.OONITests;
@@ -71,7 +70,7 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
     OverviewViewModel viewModel;
 
     @Inject
-    AvailableUpdatesViewModel updatesViewModel;
+    AppUpdatesViewModel updatesViewModel;
 
     @Inject
     TestDescriptorManager testDescriptorManager;

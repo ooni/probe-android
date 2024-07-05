@@ -99,10 +99,12 @@
                     android:layout_marginTop="18dp" />
             </LinearLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/vpnLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
                 android:layout_margin="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -121,7 +123,22 @@
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                     android:textColor="@color/color_white"
                     app:drawableStartCompat="@android:drawable/ic_dialog_alert" />
-            </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tests_completed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/laoyout_rounded_corners"
+                    android:backgroundTint="@color/color_green6"
+                    android:drawablePadding="8dp"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:padding="8dp"
+                    android:text="Run finished. Tap to view results."
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    android:textColor="@color/color_white"/>
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler"

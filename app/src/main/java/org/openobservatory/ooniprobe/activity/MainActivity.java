@@ -33,7 +33,7 @@ import androidx.work.WorkManager;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.openobservatory.ooniprobe.R;
-import org.openobservatory.ooniprobe.activity.reviewdescriptorupdates.AvailableUpdatesViewModel;
+import org.openobservatory.ooniprobe.common.AppUpdatesViewModel;
 import org.openobservatory.ooniprobe.activity.reviewdescriptorupdates.ReviewDescriptorUpdatesActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.NotificationUtility;
@@ -78,7 +78,7 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
     TestDescriptorManager descriptorManager;
 
     @Inject
-    AvailableUpdatesViewModel updatesViewModel;
+    AppUpdatesViewModel updatesViewModel;
 
     private ActivityResultLauncher<String> requestPermissionLauncher;
 
@@ -109,6 +109,7 @@ public class MainActivity extends ReviewUpdatesAbstractActivity implements Confi
                         getSupportFragmentManager().beginTransaction().replace(R.id.content, new DashboardFragment()).commit();
                         return true;
                     case R.id.testResults:
+                        updatesViewModel.getTestRunComplete().setValue(false);
                         getSupportFragmentManager().beginTransaction().replace(R.id.content, new ResultListFragment()).commit();
                         return true;
                     case R.id.settings:

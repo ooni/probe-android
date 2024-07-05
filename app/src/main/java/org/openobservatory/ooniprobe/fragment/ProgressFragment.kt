@@ -17,6 +17,7 @@ import com.google.android.material.snackbar.Snackbar
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.MainActivity
 import org.openobservatory.ooniprobe.activity.RunningActivity
+import org.openobservatory.ooniprobe.common.AppUpdatesViewModel
 import org.openobservatory.ooniprobe.common.Application
 import org.openobservatory.ooniprobe.common.OONITests
 import org.openobservatory.ooniprobe.common.PreferenceManager
@@ -38,6 +39,9 @@ class ProgressFragment : Fragment() {
 
     @Inject
     lateinit var testProgressRepository: TestProgressRepository
+
+    @Inject
+    lateinit var appUpdatesViewModel: AppUpdatesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -210,17 +214,7 @@ class ProgressFragment : Fragment() {
 
         override fun onEnd(context: Context) {
             biding.progressLayout.visibility = View.GONE
-            Snackbar.make(
-                requireView(),
-                "Run finished. Tap to view results.",
-                Snackbar.LENGTH_LONG
-            ).setAnchorView(R.id.run_all)
-                .setAction("Results") {
-                    if(requireActivity() is MainActivity) {
-                        (requireActivity() as MainActivity).showResults()
-                    }
-                }
-                .show()
+            appUpdatesViewModel.testRunComplete.postValue(true)
         }
     }
 }
