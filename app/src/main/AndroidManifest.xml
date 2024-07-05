@@ -173,6 +173,11 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".activity.PromptActivity"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar.Onboarding"
+            android:exported="false" />
+
 		<service
 			android:name=".common.service.RunTestService"
 			android:icon="@drawable/notification_icon"
