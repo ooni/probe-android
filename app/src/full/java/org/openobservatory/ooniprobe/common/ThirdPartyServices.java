@@ -4,12 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.IntentSender;
 
+import com.google.android.gms.tasks.Task;
 import com.google.android.play.core.appupdate.AppUpdateInfo;
 import com.google.android.play.core.appupdate.AppUpdateManager;
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
+import com.google.android.play.core.appupdate.AppUpdateOptions;
 import com.google.android.play.core.install.model.AppUpdateType;
 import com.google.android.play.core.install.model.UpdateAvailability;
-import com.google.android.play.core.tasks.Task;
 import com.google.firebase.FirebaseApp;
 
 import org.jetbrains.annotations.NotNull;
@@ -128,10 +129,10 @@ public class ThirdPartyServices {
                     appUpdateManager.startUpdateFlowForResult(
                             // Pass the intent that is returned by 'getAppUpdateInfo()'.
                             appUpdateInfo,
-                            // Or 'AppUpdateType.FLEXIBLE' for flexible updates.
-                            AppUpdateType.IMMEDIATE,
                             // The current activity making the update request.
                             activity,
+                            // Or 'AppUpdateType.FLEXIBLE' for flexible updates.
+                            AppUpdateOptions.defaultOptions(AppUpdateType.IMMEDIATE),
                             // Include a request code to later monitor this update request.
                             PreferenceManager.ASK_UPDATE_APP);
                 } catch (IntentSender.SendIntentException e) {
