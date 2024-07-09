@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
-import org.apache.commons.io.FileUtils;
+import org.openobservatory.ooniprobe.kt.FileUtils;
 import org.openobservatory.engine.OONIContext;
 import org.openobservatory.engine.OONISession;
 import org.openobservatory.engine.OONISubmitResults;
@@ -95,12 +95,12 @@ public class MeasurementsManager {
 
     public String getReadableLog(Measurement measurement) throws IOException {
         File logFile = Measurement.getLogFile(context, measurement.result.id, measurement.test_name);
-        return FileUtils.readFileToString(logFile, StandardCharsets.UTF_8);
+        return FileUtils.Companion.readFileToString(logFile, StandardCharsets.UTF_8);
     }
 
     public String getReadableEntry(Measurement measurement) throws IOException {
         File entryFile = Measurement.getReportFile(context, measurement.id, measurement.test_name);
-        return jsonPrinter.prettyText(FileUtils.readFileToString(entryFile, StandardCharsets.UTF_8));
+        return jsonPrinter.prettyText(FileUtils.Companion.readFileToString(entryFile, StandardCharsets.UTF_8));
     }
 
     public void downloadReport(Measurement measurement, DomainCallback<String> callback) {
@@ -124,9 +124,9 @@ public class MeasurementsManager {
         long uploadTimeout = getTimeout(file.length());
         OONIContext ooniContext = session.newContextWithTimeout(uploadTimeout);
         try {
-            input = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+            input = FileUtils.Companion.readFileToString(file, StandardCharsets.UTF_8);
             OONISubmitResults results = session.submit(ooniContext, input);
-            FileUtils.writeStringToFile(file, results.getUpdatedMeasurement(), StandardCharsets.UTF_8);
+            FileUtils.Companion.writeStringToFile(file, results.getUpdatedMeasurement(), StandardCharsets.UTF_8,/*append*/false);
             m.report_id = results.getUpdatedReportID();
             m.is_uploaded = true;
             m.is_upload_failed = false;

@@ -10,7 +10,7 @@ import androidx.annotation.VisibleForTesting;
 
 import com.raizlabs.android.dbflow.sql.language.Where;
 
-import org.apache.commons.io.FileUtils;
+import org.openobservatory.ooniprobe.kt.FileUtils;
 import org.openobservatory.engine.LoggerArray;
 import org.openobservatory.engine.OONIContext;
 import org.openobservatory.engine.OONISession;
@@ -74,9 +74,9 @@ public class ResubmitTask<A extends AbstractActivity> extends NetworkProgressAsy
         long uploadTimeout = getTimeout(file.length());
         OONIContext ooniContext = session.newContextWithTimeout(uploadTimeout);
         try {
-            input = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+            input = FileUtils.Companion.readFileToString(file, StandardCharsets.UTF_8);
             OONISubmitResults results = session.submit(ooniContext, input);
-            FileUtils.writeStringToFile(file, results.getUpdatedMeasurement(), StandardCharsets.UTF_8);
+            FileUtils.Companion.writeStringToFile(file, results.getUpdatedMeasurement(), StandardCharsets.UTF_8 , /*append*/ false);
             m.report_id = results.getUpdatedReportID();
             m.deleteReportFile(c);
             m.is_uploaded = true;

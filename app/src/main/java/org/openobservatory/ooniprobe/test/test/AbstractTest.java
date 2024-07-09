@@ -13,7 +13,7 @@ import androidx.annotation.StringRes;
 
 import com.google.gson.Gson;
 
-import org.apache.commons.io.FileUtils;
+import org.openobservatory.ooniprobe.kt.FileUtils;
 import org.openobservatory.engine.OONIMKTask;
 import org.openobservatory.ooniprobe.common.AppLogger;
 import org.openobservatory.ooniprobe.common.Application;
@@ -155,7 +155,7 @@ public abstract class AbstractTest implements Serializable {
                                 break;
                         }
                         if (logFile == null) break;
-                        FileUtils.writeStringToFile(
+                        FileUtils.Companion.writeStringToFile(
                                 logFile,
                                 event.value.message + "\n",
                                 Charset.forName("UTF-8"),
@@ -166,7 +166,7 @@ public abstract class AbstractTest implements Serializable {
                     case "status.progress":
                         testCallback.onProgress(Double.valueOf((index + event.value.percentage) * 100).intValue());
                         if (logFile == null) break;
-                        FileUtils.writeStringToFile(
+                        FileUtils.Companion.writeStringToFile(
                                 logFile,
                                 event.value.message + "\n",
                                 StandardCharsets.UTF_8,
@@ -188,10 +188,11 @@ public abstract class AbstractTest implements Serializable {
                             m.save();
                             File entryFile = Measurement.getReportFile(c, m.id, m.test_name);
                             entryFile.getParentFile().mkdirs();
-                            FileUtils.writeStringToFile(
+                            FileUtils.Companion.writeStringToFile(
                                     entryFile,
                                     event.value.json_str,
-                                    Charset.forName("UTF-8")
+                                    Charset.forName("UTF-8"),
+                                    /*append*/false
                             );
                         }
                         break;
