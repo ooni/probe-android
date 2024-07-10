@@ -32,11 +32,16 @@
 
     </LinearLayout>
 
-    <com.google.android.material.checkbox.MaterialCheckBox
+
+    <ImageView
         android:id="@+id/groupCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="@dimen/item_padding_small"
+        android:paddingEnd="10dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:padding="@dimen/item_padding_small"/>
+        android:src="@drawable/check_box_outline_blank"
+        app:tint="@color/color_blue4"
+        android:contentDescription="checkbox"/>
 </RelativeLayout>

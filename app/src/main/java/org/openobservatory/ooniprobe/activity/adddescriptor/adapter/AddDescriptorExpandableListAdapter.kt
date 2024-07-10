@@ -105,7 +105,7 @@ class AddDescriptorExpandableListAdapter(
                 false -> parent.context.resources.getText(abstractNettest.labelResId)
             }
 
-        val groupCheckBox = view.findViewById<MaterialCheckBox>(R.id.groupCheckBox)
+        val groupCheckBox = view.findViewById<ImageView>(R.id.groupCheckBox)
         val selectedAllBtnStatus = viewModel.selectedAllBtnStatus.value
         if (selectedAllBtnStatus == STATE_CHECKED) {
             groupItem.selected = true
@@ -134,7 +134,12 @@ class AddDescriptorExpandableListAdapter(
             }
         }
 
-        groupCheckBox.isChecked = groupItem.selected
+        groupCheckBox.setImageResource(
+            when (groupItem.selected) {
+                true -> R.drawable.check_box
+                false -> R.drawable.check_box_outline_blank
+            }
+        )
 
         if (groupItem.inputs?.isNotEmpty() == true) {
             if (isExpanded) {
