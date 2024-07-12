@@ -34,12 +34,4 @@ public class UpdatesNotificationManager {
     public void disableAskNotificationDialog() {
         pm.disableAskNotificationDialog();
     }
-
-    public void disableAskTestProgressNotificationConsent() {
-        pm.disableAskTestProgressNotificationConsent();
-    }
-
-    public void setTestProgressNotificationConsent(boolean enabled) {
-        pm.setTestProgressNotificationConsent(enabled);
-    }
 }
