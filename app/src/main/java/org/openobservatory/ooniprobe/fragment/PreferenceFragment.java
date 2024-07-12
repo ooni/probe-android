@@ -2,12 +2,10 @@ package org.openobservatory.ooniprobe.fragment;
 
 import static org.openobservatory.ooniprobe.common.PreferenceManager.COUNT_WEBSITE_CATEGORIES;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,14 +17,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultCallerLauncher;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.XmlRes;
-import androidx.core.content.ContextCompat;
 import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
@@ -54,7 +48,6 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
     public static final String ARG_PREFERENCES_RES_ID = "org.openobservatory.ooniprobe.fragment.PreferenceFragment.PREF_RES_ID";
     private static final String ARG_CONTAINER_RES_ID = "org.openobservatory.ooniprobe.fragment.PreferenceFragment.CONTAINER_VIEW_ID";
     private String rootKey;
-    private ActivityResultLauncher<String> requestPermissionLauncher;
 
     public static PreferenceFragment newInstance(@XmlRes int preferencesResId, @IdRes int preferencesContainerResId, String rootKey) {
         PreferenceFragment fragment = new PreferenceFragment();
@@ -64,12 +57,6 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
         fragment.getArguments().putString(ARG_PREFERENCE_ROOT, rootKey);
 
         return fragment;
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), (result) -> {});
-        super.onAttach(context);
     }
 
     @Override
@@ -184,18 +171,8 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
         if (key.equals(getString(R.string.automated_testing_charging)) ||
                 key.equals(getString(R.string.automated_testing_wifionly))){
             //stop and re-enable scheduler in case of wifi charging option changed
-
             ServiceUtil.stopJob(getContext());
             ServiceUtil.scheduleJob(getContext());
-        }
-        if (key.equals(getString(R.string.test_progress_notifications_enabled))){
-            if (ContextCompat.checkSelfPermission(
-                    getContext(), Manifest.permission.POST_NOTIFICATIONS)
-                    != PackageManager.PERMISSION_GRANTED) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
-                }
-            }
         }
         if (key.equals(getString(R.string.send_crash)) ||
                 key.equals(getString(R.string.notifications_enabled))){
