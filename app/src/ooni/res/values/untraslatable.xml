@@ -1,0 +1,58 @@
+<resources>
+    <string-array name="language_sort_options">
+        <item>Automatic</item>
+        <item>Albanian</item>
+        <item>العربية</item>
+        <item>Català</item>
+        <item>中文 (S)</item>
+        <item>中文 (T)</item>
+        <item>Nederlands</item>
+        <item>English</item>
+        <item>فارسی</item>
+        <item>Français</item>
+        <item>Deutsch</item>
+        <item>Ελληνικά</item>
+        <item>हिन्दी</item>
+        <item>Icelandic</item>
+        <item>Indonesia</item>
+        <item>Italiano</item>
+        <item>Português</item>
+        <item>Română</item>
+        <item>Pусский</item>
+        <item>Slovenčina</item>
+        <item>Español</item>
+        <item>Kiswahili</item>
+        <item>ไทย</item>
+        <item>Türkçe</item>
+        <item>Tiếng Việt</item>
+        <item>မြန်မာ</item>
+    </string-array>
+    <string-array name="language_sort_options_values">
+        <item>auto</item>
+        <item>sq</item>
+        <item>ar</item>
+        <item>ca</item>
+        <item>zh_CN</item>
+        <item>zh_TW</item>
+        <item>nl</item>
+        <item>en</item>
+        <item>fa</item>
+        <item>fr</item>
+        <item>de</item>
+        <item>el</item>
+        <item>hi</item>
+        <item>is</item>
+        <item>id</item>
+        <item>it</item>
+        <item>pt_BR</item>
+        <item>ro</item>
+        <item>ru</item>
+        <item>sk</item>
+        <item>es</item>
+        <item>sw</item>
+        <item>th</item>
+        <item>tr</item>
+        <item>vi</item>
+        <item>my</item>
+    </string-array>
+</resources>

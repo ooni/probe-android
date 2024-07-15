@@ -61,6 +61,8 @@ implement the following flavours:
 
 - `full` and `fdroid` (dimension: `license`).
 
+- `ooni` and `dw` (dimension: `brand`).
+
 The `testing` dimension controls whether we're building a release
 or a more unstable version. We build releases using the `stable`
 flavour. The `dev` flavour builds the version of the app that should
@@ -68,78 +70,75 @@ be released on the store as the beta channel. The `experimental`
 flavour, instead, allows a developer to build a one-off version of
 the app that uses a custom build of the `oonimkall` library.
 
-For `stable` and `dev`, we fetch `oonimkall` from the
-[Maven central](https://search.maven.org/artifact/org.ooni/oonimkall)
-repository. The `experimental` flavour, instead, requires you to
-put the `oonimkall.aar` you built inside `engine-experimental`.
-
 The `license` dimension controls which proprietary libraries to include
 into the build. The `full` flavour includes all such dependencies,
 while the `fdroid` flavour does not include any of them.
 
+The `brand` dimension controls the branding of the application. The `ooni` flavour is the default branding, while the `dw` flavour is for the "News Media Scan" branding.
+
 The variant names are therefore:
 
-- `experimentalFullDebug`
-- `experimentalFullRelease`
-- `devFullDebug`
-- `devFullRelease`
-- `stableFullDebug`
-- `stableFullRelease`
+- `ooniExperimentalFullDebug`
+- `ooniExperimentalFullRelease`
+- `ooniDevFullDebug`
+- `ooniDevFullRelease`
+- `ooniStableFullDebug`
+- `ooniStableFullRelease`
+- `dwExperimentalFullDebug`
+- `dwExperimentalFullRelease`
+- `dwDevFullDebug`
+- `dwDevFullRelease`
+- `dwStableFullDebug`
+- `dwStableFullRelease`
 
-We additionally have `stableFdroidDebug` and `stableFdroidRelease`.
+We additionally have `ooniStableFdroidDebug`, `ooniStableFdroidRelease`, `dwStableFdroidDebug` and `dwStableFdroidRelease`.
 
 All of this is controlled by [app/build.gradle](app/build.gradle).
 
 ## Gradle modules
 
 - [app](app) contains the mobile app;
-- [engine](engine) contains wrappers for `oonimkall`, the
-measurement engine library;
-- [engine-experimental](engine-experimental) allows us
-to implement the `experimental` build flavour where you
-put the `oonimkall.aar` file you built inside `engine-experimental`
-rather than downloading it from Maven Central.
+- [engine](engine) contains wrappers for `oonimkall`, the measurement engine library;
+- [engine-experimental](engine-experimental) allows us to implement the `experimental` build flavour where you put the `oonimkall.aar` file you built inside `engine-experimental` rather than downloading it from Maven Central.
 
 ## Building an apk
 
-Ensure you have Android Studio and Android SDK installed. Build the `devFullRelease`
+Ensure you have Android Studio and Android SDK installed. Build the `ooniDevFullRelease`
 variant using Android Studio or this command line:
 
-```
-./gradlew assembleDevFullRelease
+```sh
+./gradlew assembleOoniDevFullRelease
 ```
 
 ## Building the app for f-droid
 
-Instead to build the app to stay compliant to F-Droid use `fdroid`, which
-contains small tweaks required to have the app accepted by [f-droid](https://f-droid.org/).
+Instead to build the app to stay compliant to F-Droid use `fdroid`, which contains small tweaks required to have the app accepted by [f-droid](https://f-droid.org/).
 
-```
-./gradlew assembleFdroid
+```sh
+./gradlew assembleOoniDevFullRelease
 ```
 
 ## Testing
 
-Run unit tests 
+Run unit tests/
 
-```
-./gradlew testStableFullDebug
+```sh
+./gradlew testOoniStableFullDebug
 ```
 
 Run instrumented tests
 
-_Note: To also run the automation tests (to generate screenshots), set the Build Config flag 
-`RUN_AUTOMATION` as true._
+_Note: To also run the automation tests (to generate screenshots), set the Build Config flag `RUN_AUTOMATION` as true._
 
-```
-./gradlew connectedStableFullDebugAndroidTest
+```sh
+./gradlew connectedOoniStableFullDebugAndroidTest
 ```
 
 Generate code coverage report (after all unit and instrumented tests successfully passed)
 
-```
+```sh
 ./gradlew jacocoAndroidTestReport
-``` 
+```
 
 ## Managing translations
 
