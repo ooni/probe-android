@@ -27,6 +27,9 @@ android {
         dev {
             dimension 'testing'
         }
+        dw {
+            dimension 'testing'
+        }
     }
     namespace 'org.openobservatory.engine'
 }
@@ -37,7 +40,7 @@ dependencies {
     // build published at Maven Central.
     stableImplementation libs.ooni.oonimkall
     devImplementation libs.ooni.oonimkall
-
+    dwImplementation libs.ooni.oonimkall
     // For the experimental flavour, you need to compile your own
     // oonimkall.aar and put it into the ../engine-experimental dir
     experimentalImplementation project(":engine-experimental")

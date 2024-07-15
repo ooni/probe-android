@@ -67,7 +67,7 @@ public class Application extends android.app.Application {
 			Measurement.deleteOldLogs(Application.this);
 		});
 		ThirdPartyServices.reloadConsents(Application.this);
-		LocaleUtils.setLocale(new Locale(_preferenceManager.getSettingsLanguage()));
+		LocaleUtils.setLocale(_preferenceManager.getSettingsLanguage());
 		LocaleUtils.updateConfig(this, getBaseContext().getResources().getConfiguration());
 	}
 

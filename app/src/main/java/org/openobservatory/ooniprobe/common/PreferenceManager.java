@@ -14,6 +14,7 @@ import org.openobservatory.ooniprobe.test.test.*;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 
@@ -329,9 +330,12 @@ public class PreferenceManager {
 	public String getSettingsLanguage() {
 		String language = sp.getString(r.getString(R.string.language_setting), Locale.getDefault().getLanguage());
 		if (language.equals("auto")) {
-			return Locale.getDefault().getLanguage();
+			language = Locale.getDefault().getLanguage();
 		}
-		return language;
+		if (Arrays.asList(r.getStringArray(R.array.language_sort_options_values)).contains(language)) {
+			return language;
+		}
+		return "en";
 	}
 
 	public void enableAutomatedTesting() {
