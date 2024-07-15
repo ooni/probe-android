@@ -83,6 +83,24 @@ class RevisionsFragment : Fragment() {
                 })
             }
         }
+        if ((revisions?.revisions?.size ?: 0) > 5) {
+            binding.seeMore.apply {
+                visibility = View.VISIBLE
+                setOnClickListener {
+                    startActivity(
+                        Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse(
+                                "%s/revisions/%s".format(
+                                    BuildConfig.OONI_RUN_DASHBOARD_URL,
+                                    runId
+                                )
+                            )
+                        )
+                    )
+                }
+            }
+        }
 
         return binding.root
     }
