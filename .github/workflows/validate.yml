@@ -6,7 +6,13 @@
 # - assemble-archive: Archive APKs
 # - distribute: Upload artifact to Firebase App Distribution
 name: Validate
-on: [ push ]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  schedule:
+    - cron: "0 2 * * */2"
 jobs:
   build:
     name: Ensure the code builds
