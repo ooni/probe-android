@@ -14,7 +14,6 @@ import com.google.common.collect.Lists;
 import org.openobservatory.engine.OONICheckInConfig;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.DefaultDescriptors;
-import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.TestDescriptorManager;
@@ -77,8 +76,11 @@ public class ServiceUtil {
         if (!d.generateAutoRunServiceSuite.shouldStart(config.isOnWiFi(), config.isCharging(), isVPNInUse)) {
             return;
         }
-        ServiceUtil.startRunTestServiceCommon(app, new ArrayList<>(DefaultDescriptors.autoRunTests(app, d.preferenceManager, d.testDescriptorManager)), false, true);
-        d.generateAutoRunServiceSuite.markAsRan();
+        List<DynamicTestSuite> testSuites = DefaultDescriptors.autoRunTests(app, d.preferenceManager, d.testDescriptorManager);
+        if (!testSuites.isEmpty()){
+            ServiceUtil.startRunTestServiceCommon(app, new ArrayList<>(testSuites), false, true);
+            d.generateAutoRunServiceSuite.markAsRan();
+        }
 
     }
 

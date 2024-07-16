@@ -10,6 +10,6 @@ import org.openobservatory.ooniprobe.activity.runtests.models.GroupItem
  * @param viewModel RunTestsViewModel object.
  */
 class RunTestsExpandableListViewAdapter(
-        private val groupedListData: List<GroupItem>,
+        private val groupedListData: List<Any>,
         private val viewModel: RunTestsViewModel
 ) : AbstractRunTestsExpandableListViewAdapter(groupedListData, viewModel)

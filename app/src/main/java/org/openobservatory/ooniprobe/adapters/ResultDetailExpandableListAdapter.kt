@@ -92,10 +92,15 @@ class ResultDetailExpandableListAdapter(
             else -> {
                 val groupMeasurement = (items[groupPosition] as MeasurementGroup)
 
+                val groupTitle = root.findViewById<TextView>(R.id.text)
+
                 groupMeasurement.measurements.firstOrNull()?.let {
-                    root.findViewById<TextView>(R.id.text).setText(it.getTest().labelResId)
+                    when (it.getTest().labelResId){
+                        R.string.Test_Experimental_Fullname -> groupTitle.text = groupMeasurement.title
+                        else -> groupTitle.setText(it.getTest().labelResId)
+                    }
                 } ?: run {
-                    root.findViewById<TextView>(R.id.text).text = groupMeasurement.title
+                    groupTitle.text = groupMeasurement.title
                 }
                 root.findViewById<TextView>(R.id.indicator).apply {
                     visibility = View.VISIBLE

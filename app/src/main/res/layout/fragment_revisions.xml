@@ -22,4 +22,14 @@
         android:layout_height="match_parent"
         app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/item_text" />
+
+    <TextView
+        android:id="@+id/see_more"
+        style="?attr/textAppearanceBody2"
+        android:visibility="gone"
+        android:text="See More"
+        android:textColor="@color/color_blue6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/item_padding_small"/>
 </LinearLayout>

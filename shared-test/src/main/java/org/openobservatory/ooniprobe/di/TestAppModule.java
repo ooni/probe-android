@@ -8,7 +8,7 @@ import dagger.Module;
 @Module
 public class TestAppModule extends ApplicationModule {
 
-    private static final String CLIENT_URL = "https://ams-pg.ooni.org";
+    private static final String CLIENT_URL = "https://backend-hel.ooni.org";
 
     public TestAppModule(Application application) {
         super(application);

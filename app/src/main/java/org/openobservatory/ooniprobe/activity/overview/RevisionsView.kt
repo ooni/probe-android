@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import org.openobservatory.engine.OONIRunRevisions
+import org.openobservatory.ooniprobe.BuildConfig
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.databinding.FragmentRevisionsBinding
 import org.openobservatory.ooniprobe.databinding.ItemTextBinding
@@ -63,14 +64,15 @@ class RevisionsFragment : Fragment() {
 
         with(binding.list) {
             layoutManager = LinearLayoutManager(context)
-            adapter = revisions?.revisions?.let {
+            adapter = revisions?.revisions?.take(5)?.let {
                 RevisionsRecyclerViewAdapter(it, object : OnItemClickListener {
                     override fun onItemClick(position: Int) {
                         startActivity(
                             Intent(
                                 Intent.ACTION_VIEW,
                                 Uri.parse(
-                                    "https://run.test.ooni.org/revisions/%s?revision=%s".format(
+                                    "%s/revisions/%s?revision=%s".format(
+                                        BuildConfig.OONI_RUN_DASHBOARD_URL,
                                         runId,
                                         it[position]
                                     )
@@ -79,6 +81,24 @@ class RevisionsFragment : Fragment() {
                         )
                     }
                 })
+            }
+        }
+        if ((revisions?.revisions?.size ?: 0) > 5) {
+            binding.seeMore.apply {
+                visibility = View.VISIBLE
+                setOnClickListener {
+                    startActivity(
+                        Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse(
+                                "%s/revisions/%s".format(
+                                    BuildConfig.OONI_RUN_DASHBOARD_URL,
+                                    runId
+                                )
+                            )
+                        )
+                    )
+                }
             }
         }
 

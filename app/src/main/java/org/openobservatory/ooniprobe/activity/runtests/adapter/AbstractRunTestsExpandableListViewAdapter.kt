@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsViewModel.Companion.SELECT_ALL
@@ -22,7 +23,7 @@ import org.openobservatory.ooniprobe.test.test.AbstractTest
  * @param viewModel RunTestsViewModel object.
  */
 open class AbstractRunTestsExpandableListViewAdapter(
-	private val groupedListData: List<GroupItem>,
+	private val groupedListData: List<Any>,
 	private val viewModel: RunTestsViewModel
 ) : BaseExpandableListAdapter() {
 	/**
@@ -36,21 +37,26 @@ open class AbstractRunTestsExpandableListViewAdapter(
 	 * @param groupPosition Position of the group in the list.
 	 * @return Number of children in the group.
 	 */
-	override fun getChildrenCount(groupPosition: Int): Int = groupedListData[groupPosition].nettests.size
+	override fun getChildrenCount(groupPosition: Int): Int = when (val group = groupedListData[groupPosition]) {
+		is GroupItem -> group.nettests.size
+		else -> 0
+	}
 
 	/**
 	 * @param groupPosition Position of the group in the list.
 	 * @return GroupItem object.
 	 */
-	override fun getGroup(groupPosition: Int): GroupItem = groupedListData[groupPosition]
+	override fun getGroup(groupPosition: Int): Any = groupedListData[groupPosition]
 
 	/**
 	 * @param groupPosition Position of the group in the list.
 	 * @param childPosition Position of the child in the group.
 	 * @return ChildItem object.
 	 */
-	override fun getChild(groupPosition: Int, childPosition: Int): ChildItem =
-		groupedListData[groupPosition].nettests[childPosition]
+	override fun getChild(groupPosition: Int, childPosition: Int): ChildItem = when (val group = groupedListData[groupPosition]) {
+		is GroupItem -> group.nettests[childPosition]
+		else -> throw IllegalArgumentException("GroupItem expected")
+	}
 
 	/**
 	 * @param groupPosition Position of the group in the list.
@@ -78,68 +84,79 @@ open class AbstractRunTestsExpandableListViewAdapter(
 	 * @return View object.
 	 */
 	override fun getGroupView(groupPosition: Int, isExpanded: Boolean, convertView: View?, parent: ViewGroup): View? {
-		var convertView =
-			convertView ?: LayoutInflater.from(parent.context).inflate(R.layout.run_tests_group_list_item, parent, false)
+
 		val groupItem = getGroup(groupPosition)
-		convertView.findViewById<TextView>(R.id.group_name).text = groupItem.title
-		val icon = convertView.findViewById<ImageView>(R.id.group_icon)
-		icon.setImageResource(groupItem.getDisplayIcon(parent.context))
-		icon.setColorFilter(groupItem.color)
-		val groupIndicator = convertView.findViewById<ImageView>(R.id.group_indicator)
-		val groupSelectionIndicator = convertView.findViewById<ImageView>(R.id.group_select_indicator)
-		val selectedAllBtnStatus = viewModel.selectedAllBtnStatus.getValue()
-		if (selectedAllBtnStatus == SELECT_ALL) {
-			groupItem.selected = true
-			for (childItem in groupItem.nettests) {
-				childItem.selected = true
-			}
-		} else if (selectedAllBtnStatus == SELECT_NONE) {
-			groupItem.selected = false
-			for (childItem in groupItem.nettests) {
-				childItem.selected = false
-			}
-		} else if (isSelectAllChildItems(groupItem.nettests)) {
-			groupItem.selected = true
-		}
-		if (groupItem.selected) {
-			if (isSelectAllChildItems(groupItem.nettests)) {
-				groupSelectionIndicator.setImageResource(R.drawable.check_box)
-			} else {
-				groupSelectionIndicator.setImageResource(R.drawable.check_box_outline_blank)
-			}
-		} else {
-			groupSelectionIndicator.setImageResource(R.drawable.check_box_outline_blank)
-		}
-		groupSelectionIndicator.setOnClickListener {
-			if (groupItem.selected && isSelectAllChildItems(groupItem.nettests)) {
-				groupItem.selected = false
-				for (childItem in groupItem.nettests) {
-					childItem.selected = false
+
+		when(groupItem){
+			is GroupItem -> {
+				var convertView = LayoutInflater.from(parent.context).inflate(R.layout.run_tests_group_list_item, parent, false)
+				convertView.findViewById<TextView>(R.id.group_name).text = groupItem.title
+				val icon = convertView.findViewById<ImageView>(R.id.group_icon)
+				icon.setImageResource(groupItem.getDisplayIcon(parent.context))
+				icon.setColorFilter(groupItem.color)
+				val groupSelectionIndicator = convertView.findViewById<ImageView>(R.id.group_select_indicator)
+				val selectedAllBtnStatus = viewModel.selectedAllBtnStatus.getValue()
+				if (selectedAllBtnStatus == SELECT_ALL) {
+					groupItem.selected = true
+					for (childItem in groupItem.nettests) {
+						childItem.selected = true
+					}
+				} else if (selectedAllBtnStatus == SELECT_NONE) {
+					groupItem.selected = false
+					for (childItem in groupItem.nettests) {
+						childItem.selected = false
+					}
+				} else if (isSelectAllChildItems(groupItem.nettests)) {
+					groupItem.selected = true
 				}
-				if (isNotSelectedAnyGroupItem(groupedListData)) {
-					viewModel.setSelectedAllBtnStatus(SELECT_NONE)
+				if (groupItem.selected) {
+					if (isSelectAllChildItems(groupItem.nettests)) {
+						groupSelectionIndicator.setImageResource(R.drawable.check_box)
+					} else {
+						groupSelectionIndicator.setImageResource(R.drawable.check_box_outline_blank)
+					}
 				} else {
-					viewModel.setSelectedAllBtnStatus(SELECT_SOME)
+					groupSelectionIndicator.setImageResource(R.drawable.check_box_outline_blank)
 				}
-			} else {
-				groupItem.selected = true
-				for (childItem in groupItem.nettests) {
-					childItem.selected = true
+				groupSelectionIndicator.setOnClickListener {
+					if (groupItem.selected && isSelectAllChildItems(groupItem.nettests)) {
+						groupItem.selected = false
+						for (childItem in groupItem.nettests) {
+							childItem.selected = false
+						}
+						if (isNotSelectedAnyGroupItem(groupedListData)) {
+							viewModel.setSelectedAllBtnStatus(SELECT_NONE)
+						} else {
+							viewModel.setSelectedAllBtnStatus(SELECT_SOME)
+						}
+					} else {
+						groupItem.selected = true
+						for (childItem in groupItem.nettests) {
+							childItem.selected = true
+						}
+						if (isSelectedAllItems(groupedListData)) {
+							viewModel.setSelectedAllBtnStatus(SELECT_ALL)
+						} else {
+							viewModel.setSelectedAllBtnStatus(SELECT_SOME)
+						}
+					}
+					notifyDataSetChanged()
 				}
-				if (isSelectedAllItems(groupedListData)) {
-					viewModel.setSelectedAllBtnStatus(SELECT_ALL)
-				} else {
-					viewModel.setSelectedAllBtnStatus(SELECT_SOME)
+				convertView.findViewById<ImageView>(R.id.group_indicator)?.let { groupIndicator ->
+					if (isExpanded) {
+						groupIndicator.setImageResource(R.drawable.expand_less)
+					} else {
+						groupIndicator.setImageResource(R.drawable.expand_more)
+					}
+				}
+				return convertView
+			}
+			else -> {
+				return LayoutInflater.from(parent.context).inflate(R.layout.run_tests_group_divider, parent, false).apply {
+					findViewById<TextView>(R.id.name).text = groupItem.toString()
 				}
 			}
-			notifyDataSetChanged()
 		}
-		if (isExpanded) {
-			groupIndicator.setImageResource(R.drawable.expand_less)
-		} else {
-			groupIndicator.setImageResource(R.drawable.expand_more)
-		}
-		return convertView
 	}
 
 	/**
@@ -180,27 +197,31 @@ open class AbstractRunTestsExpandableListViewAdapter(
 					false -> R.drawable.check_box_outline_blank
 				}
 			)
-			setOnClickListener {
-				if (childItem.selected) {
-					childItem.selected = false
-					if (isNotSelectedAnyChildItems(groupItem.nettests)) {
-						groupItem.selected = false
-					}
-					if (isNotSelectedAnyItems(groupedListData)) {
-						viewModel.setSelectedAllBtnStatus(SELECT_NONE)
-					} else {
-						viewModel.setSelectedAllBtnStatus(SELECT_SOME)
-					}
-				} else {
-					childItem.selected = true
-					groupItem.selected = true
-					if (isSelectedAllItems(groupedListData)) {
-						viewModel.setSelectedAllBtnStatus(SELECT_ALL)
-					} else {
-						viewModel.setSelectedAllBtnStatus(SELECT_SOME)
+			when (groupItem) {
+				is GroupItem -> {
+					setOnClickListener {
+						if (childItem.selected) {
+							childItem.selected = false
+							if (isNotSelectedAnyChildItems(groupItem.nettests)) {
+								groupItem.selected = false
+							}
+							if (isNotSelectedAnyItems(groupedListData)) {
+								viewModel.setSelectedAllBtnStatus(SELECT_NONE)
+							} else {
+								viewModel.setSelectedAllBtnStatus(SELECT_SOME)
+							}
+						} else {
+							childItem.selected = true
+							groupItem.selected = true
+							if (isSelectedAllItems(groupedListData)) {
+								viewModel.setSelectedAllBtnStatus(SELECT_ALL)
+							} else {
+								viewModel.setSelectedAllBtnStatus(SELECT_SOME)
+							}
+						}
+						notifyDataSetChanged()
 					}
 				}
-				notifyDataSetChanged()
 			}
 		}
 		return convertView
@@ -217,8 +238,8 @@ open class AbstractRunTestsExpandableListViewAdapter(
 	 * @param groupItemsList List of GroupItem objects.
 	 * @return True if no group item in the list is selected.
 	 */
-	private fun isNotSelectedAnyGroupItem(groupItemsList: List<GroupItem>): Boolean {
-		for (groupItem in groupItemsList) {
+	private fun isNotSelectedAnyGroupItem(groupItemsList: List<Any>): Boolean {
+		for (groupItem in groupItemsList.filterIsInstance<GroupItem>()) {
 			if (groupItem.selected) {
 				return false
 			}
@@ -256,8 +277,8 @@ open class AbstractRunTestsExpandableListViewAdapter(
 	 * @param groupItemList List of GroupItem objects.
 	 * @return True if all group items in the list are selected.
 	 */
-	private fun isSelectedAllItems(groupItemList: List<GroupItem>?): Boolean {
-		for (groupItem in groupItemList!!) {
+	private fun isSelectedAllItems(groupItemList: List<Any>): Boolean {
+		for (groupItem in groupItemList.filterIsInstance<GroupItem>()) {
 			if (!groupItem.selected) {
 				return false
 			}
@@ -272,8 +293,8 @@ open class AbstractRunTestsExpandableListViewAdapter(
 	 * @param groupItemList List of GroupItem objects.
 	 * @return True if no group item in the list is selected.
 	 */
-	private fun isNotSelectedAnyItems(groupItemList: List<GroupItem>?): Boolean {
-		for (groupItem in groupItemList!!) {
+	private fun isNotSelectedAnyItems(groupItemList: List<Any>): Boolean {
+		for (groupItem in groupItemList.filterIsInstance<GroupItem>()) {
 			if (groupItem.selected) {
 				return false
 			}

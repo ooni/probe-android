@@ -35,6 +35,5 @@ public interface ActivityComponent {
     void inject(RunningActivity activity);
     void inject(TextActivity activity);
     void inject(LogActivity activity);
-
     void inject(RunTestsActivity activity);
 }

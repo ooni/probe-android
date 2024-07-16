@@ -10,7 +10,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -38,7 +37,7 @@ import org.openobservatory.ooniprobe.activity.customwebsites.CustomWebsiteActivi
 import org.openobservatory.ooniprobe.activity.overview.OverviewTestsExpandableListViewAdapter;
 import org.openobservatory.ooniprobe.activity.overview.OverviewViewModel;
 import org.openobservatory.ooniprobe.activity.overview.RevisionsFragment;
-import org.openobservatory.ooniprobe.activity.reviewdescriptorupdates.AvailableUpdatesViewModel;
+import org.openobservatory.ooniprobe.common.AppUpdatesViewModel;
 import org.openobservatory.ooniprobe.activity.reviewdescriptorupdates.ReviewDescriptorUpdatesActivity;
 import org.openobservatory.ooniprobe.common.AbstractDescriptor;
 import org.openobservatory.ooniprobe.common.OONITests;
@@ -72,7 +71,7 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
     OverviewViewModel viewModel;
 
     @Inject
-    AvailableUpdatesViewModel updatesViewModel;
+    AppUpdatesViewModel updatesViewModel;
 
     @Inject
     TestDescriptorManager testDescriptorManager;
@@ -102,7 +101,18 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
 
         binding.customUrl.setVisibility(descriptor.getName().equals(OONITests.WEBSITES.getLabel()) ? View.VISIBLE : View.GONE);
 
-        viewModel.getSelectedAllBtnStatus().observe(this, this::selectAllBtnStatusObserver);
+        binding.expandableListView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+            if (binding.expandableListView.getChildCount() > 0) {
+                if (adapter.isSelectedAllItems()) {
+                    binding.switchTests.setCheckedState(MaterialCheckBox.STATE_CHECKED);
+                } else if (adapter.isNotSelectedAnyGroupItem()) {
+                    binding.switchTests.setCheckedState(MaterialCheckBox.STATE_UNCHECKED);
+                } else {
+                    binding.switchTests.setCheckedState(MaterialCheckBox.STATE_INDETERMINATE);
+                }
+            }
+        });
+
         binding.switchTests.addOnCheckedStateChangedListener((checkBox, state) -> {
             switch (state) {
                 case MaterialCheckBox.STATE_CHECKED -> {
@@ -216,23 +226,6 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
             }
         }
 
-    }
-
-    private void selectAllBtnStatusObserver(String selectAllBtnStatus) {
-        if (!TextUtils.isEmpty(selectAllBtnStatus)) {
-            switch (selectAllBtnStatus) {
-                case SELECT_ALL -> {
-                    binding.switchTests.setCheckedState(MaterialCheckBox.STATE_CHECKED);
-                }
-                case SELECT_NONE -> {
-                    binding.switchTests.setCheckedState(MaterialCheckBox.STATE_UNCHECKED);
-                }
-                case SELECT_SOME -> {
-                    binding.switchTests.setCheckedState(MaterialCheckBox.STATE_INDETERMINATE);
-                }
-            }
-            adapter.notifyDataSetChanged();
-        }
     }
 
     public void setThemeColor(int color) {

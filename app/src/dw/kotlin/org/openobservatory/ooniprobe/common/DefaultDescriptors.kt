@@ -48,7 +48,6 @@ class DefaultDescriptors {
                                 }
 
                                 isAutoUpdate = true
-                                isAutoRun = true
                             }.save()
                         }
                     }
@@ -63,7 +62,7 @@ class DefaultDescriptors {
             preferenceManager: PreferenceManager,
             testDescriptorManager: TestDescriptorManager
         ): MutableList<DynamicTestSuite> {
-            return testDescriptorManager.getRunV2Descriptors(expired = false, autoRun = true)
+            return testDescriptorManager.getRunV2Descriptors(expired = false)
                 .map { testDescriptor ->
                     testDescriptor.toDynamicTestSuite(context).apply {
                         autoRun = true
