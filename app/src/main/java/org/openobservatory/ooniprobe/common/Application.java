@@ -100,10 +100,6 @@ public class Application extends android.app.Application {
 
 	public ActivityComponent getActivityComponent() { return component.activityComponent(); }
 
-	public OkHttpClient getOkHttpClient() {
-		return _okHttpClient;
-	}
-
 	public OONIAPIClient getApiClient() {
 		return _apiClient;
 	}

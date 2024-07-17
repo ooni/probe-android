@@ -6,7 +6,13 @@
 # - assemble-archive: Archive APKs
 # - distribute: Upload artifact to Firebase App Distribution
 name: Validate
-on: [ push ]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  schedule:
+    - cron: "0 2 * * */2"
 jobs:
   build:
     name: Ensure the code builds
@@ -78,15 +84,20 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
       - name: Run instrumented tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
           target: ${{ matrix.target }}
           arch: x86_64
-          profile: pixel_3_xl
+          profile: Nexus 6
           ram-size: 4096M
-          disable-animations: true
           script: ./gradlew connectedOoniStableFullDebugAndroidTest
 
       - name: uploads test reports
