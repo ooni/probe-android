@@ -58,8 +58,9 @@ public class RunTestService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        @SuppressWarnings("unchecked")
         ArrayList<AbstractSuite> testSuites = (ArrayList<AbstractSuite>) intent.getSerializableExtra("testSuites");
-        if (testSuites == null || testSuites.size() == 0)
+        if (testSuites == null || testSuites.isEmpty())
             return START_STICKY_COMPATIBILITY;
         boolean store_db = intent.getBooleanExtra("storeDB", true);
         boolean unattended = intent.getBooleanExtra("unattended", false);
