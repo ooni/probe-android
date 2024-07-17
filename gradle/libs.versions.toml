@@ -1,5 +1,5 @@
 [versions]
-androidGradlePlugin = "8.4.0"
+androidGradlePlugin = "8.5.1"
 barista = "3.9.0"
 countlySdk = "24.7.0"
 faker = "2.0.4"
