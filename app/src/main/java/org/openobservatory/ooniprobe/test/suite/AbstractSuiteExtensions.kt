@@ -1,7 +1,7 @@
 package org.openobservatory.ooniprobe.test.suite
 
 import org.openobservatory.ooniprobe.common.Application
-import org.openobservatory.ooniprobe.common.ooniDescriptors
+import org.openobservatory.ooniprobe.common.DefaultDescriptors
 import org.openobservatory.ooniprobe.model.database.Url
 import org.openobservatory.ooniprobe.test.test.AbstractTest
 
@@ -12,7 +12,7 @@ fun getSuite(
     urls: List<String>?,
     origin: String?
 ): AbstractSuite? {
-    for (descriptor in ooniDescriptors(app)) {
+    for (descriptor in DefaultDescriptors.getAll(app)) {
         for (test in descriptor.nettests) {
             if (test.name == tn) {
                 if (urls != null) {

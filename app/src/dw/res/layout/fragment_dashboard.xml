@@ -14,40 +14,37 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/color_white"
-                android:paddingTop="16dp"
-                app:contentInsetEnd="0dp"
-                app:contentInsetStart="0dp"
-                app:layout_constraintTop_toTopOf="parent">
+		<androidx.appcompat.widget.Toolbar
+			android:id="@+id/toolbar"
+			android:layout_width="match_parent"
+			android:layout_height="?attr/actionBarSize"
+			android:background="@color/color_base"
+			app:contentInsetEnd="0dp"
+			app:contentInsetStart="0dp"
+			app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/ooniprobe_logo"
-                    app:tint="@color/color_gray6" />
+			<ImageView
+				android:paddingTop="10dp"
+				android:paddingStart="10dp"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:scaleType="fitStart"
+				android:src="@drawable/ooniprobe_logo" />
 
             </androidx.appcompat.widget.Toolbar>
 
-            <io.github.florent37.shapeofview.shapes.ArcView
-                android:id="@+id/arc_view"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                app:layout_constraintTop_toBottomOf="@id/toolbar"
-                app:shape_arc_height="-16dp"
-                app:shape_arc_position="bottom">
+	<io.github.florent37.shapeofview.shapes.ArcView
+		android:layout_width="match_parent"
+		android:layout_height="56dp"
+		android:id="@+id/arc_view"
+		app:layout_constraintTop_toBottomOf="@id/toolbar"
+		app:shape_arc_height="-16dp"
+		app:shape_arc_position="bottom">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/color_white" />
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:background="@color/color_base"/>
 
             </io.github.florent37.shapeofview.shapes.ArcView>
 
@@ -69,8 +66,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="56dp"
                     android:drawableEnd="@drawable/outline_timer"
-                    android:drawableTint="@android:color/white"
-                    android:elevation="5dp"
+                    app:drawableTint="@color/color_base"
+					android:textColor="@color/color_base"
+					android:backgroundTint="@color/color_white"
+					app:strokeColor="@color/color_base"
+					android:elevation="5dp"
                     android:stateListAnimator="@null"
                     android:text="@string/Dashboard_Card_Run"
                     android:textAllCaps="false"
@@ -78,7 +78,8 @@
                     android:transitionName="@string/transitionNameRun"
                     android:translationZ="5dp"
                     android:visibility="gone"
-                    app:cornerRadius="24dp"
+					style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+					app:cornerRadius="24dp"
                     app:layout_constraintBottom_toBottomOf="@id/arc_view"
                     app:rippleColor="@color/ripple_material_light" />
 

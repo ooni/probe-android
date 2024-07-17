@@ -22,7 +22,7 @@ import org.openobservatory.ooniprobe.test.test.AbstractTest
  * @param groupedListData List of GroupItem objects.
  * @param viewModel RunTestsViewModel object.
  */
-class RunTestsExpandableListViewAdapter(
+open class AbstractRunTestsExpandableListViewAdapter(
 	private val groupedListData: List<Any>,
 	private val viewModel: RunTestsViewModel
 ) : BaseExpandableListAdapter() {

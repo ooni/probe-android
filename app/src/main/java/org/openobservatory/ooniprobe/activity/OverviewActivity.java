@@ -31,6 +31,7 @@ import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.openobservatory.engine.BaseNettest;
+import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.customwebsites.CustomWebsiteActivity;
 import org.openobservatory.ooniprobe.activity.overview.OverviewTestsExpandableListViewAdapter;
@@ -166,11 +167,19 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
             binding.automaticUpdatesContainer.setVisibility(View.VISIBLE);
             binding.automaticUpdatesSwitch.setChecked(installedDescriptor.getTestDescriptor().isAutoUpdate());
 
+            if (BuildConfig.FLAVOR_brand.equals("dw")) {
+                binding.uninstallLink.setVisibility(View.GONE);
+                binding.revisionsContainer.setVisibility(View.GONE);
+                binding.headerContainer.setVisibility(View.GONE);
+                binding.automaticUpdatesContainer.setVisibility(View.GONE);
+            }
+
         } else {
             binding.uninstallLink.setVisibility(View.GONE);
             /**
              * We need to set the height to 0 because the layout is broken when the view is gone
              */
+            binding.automaticUpdatesContainer.setVisibility(View.GONE);
             binding.automaticUpdatesContainer.getLayoutParams().height = 0;
         }
 
