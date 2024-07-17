@@ -32,10 +32,12 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: 'gradle'
 
       - name: checkout
         uses: actions/checkout@v4
+
+      - name: Gradle cache
+        uses: gradle/actions/setup-gradle@v3
 
       - name: Build `StableFullRelease` and `StableFdroidRelease` variants
         run: ./gradlew build${{ matrix.version }} && ./gradlew clean
@@ -51,10 +53,12 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: 'gradle'
 
       - name: checkout
         uses: actions/checkout@v4
+
+      - name: Gradle cache
+        uses: gradle/actions/setup-gradle@v3
 
       - name: Run unit tests
         run: ./gradlew testOoniStableFullRelease
@@ -82,7 +86,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: 'gradle'
 
       - name: checkout
         uses: actions/checkout@v4
@@ -184,7 +187,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: 'gradle'
+
+      - name: Gradle cache
+        uses: gradle/actions/setup-gradle@v3
 
       - name: Assemble APKs
         if: success() && steps.get_issue_number.outputs.result
