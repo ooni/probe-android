@@ -314,15 +314,15 @@ enum class OONITests(
         this.run {
             return OONIDescriptor(
                 name = label,
-                title = context.getString(title),
-                shortDescription = context.getString(shortDescription),
+                title = r.getString(title),
+                shortDescription = r.getString(shortDescription),
                 description = when (label) {
-                    EXPERIMENTAL.label -> context.getString(
+                    EXPERIMENTAL.label -> r.getString(
                         description,
                         experimentalLinks(r)
                     )
 
-                    else -> context.getString(description)
+                    else -> r.getString(description)
                 },
                 icon = icon,
                 color = ContextCompat.getColor(context, color),

@@ -1,5 +1,6 @@
 package org.openobservatory.ooniprobe.test.suite;
 
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openobservatory.ooniprobe.common.Application;
@@ -22,8 +23,8 @@ public class ExperimentalSuiteTest {
     private final AbstractSuite autoRunSuite = OONITests.EXPERIMENTAL.toOONIDescriptor(app).getTest(app);
     private final PreferenceManager pm = mock(PreferenceManager.class);
 
-    @BeforeClass
-    public  void setUp() {
+    @Before
+    public void setUp() {
         autoRunSuite.setAutoRun(true);
     }
     @Test

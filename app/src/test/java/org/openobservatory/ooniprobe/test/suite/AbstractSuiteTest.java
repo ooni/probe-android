@@ -16,12 +16,18 @@ import java.util.Collections;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.openobservatory.ooniprobe.test.suite.AbstractSuiteExtensionsKt.getSuite;
 
+import android.content.res.Resources;
+
 public class AbstractSuiteTest {
     private final Application app = mock(Application.class);
+
+    private final Resources mockContextResources = mock(Resources.class);
+
     private AbstractSuite suite = new AbstractSuite(
             "test",
             "",
@@ -42,6 +48,10 @@ public class AbstractSuiteTest {
     @Before
     public void setUp() {
         when(app.getPreferenceManager()).thenReturn(pm);
+        when(app.getResources()).thenReturn(mockContextResources);
+        when(mockContextResources.getString(anyInt())).thenReturn("mocked string");
+        when(mockContextResources.getString(anyInt(),any())).thenReturn("mocked string");
+
     }
 
     @Test
