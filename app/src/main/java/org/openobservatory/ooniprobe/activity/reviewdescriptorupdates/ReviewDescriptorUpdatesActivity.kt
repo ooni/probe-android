@@ -343,7 +343,7 @@ class ReviewDescriptorExpandableListAdapter(
                     false -> parent.context.resources.getText(abstractNettest.labelResId)
                 }
 
-        val groupCheckBox = view.findViewById<MaterialCheckBox>(R.id.groupCheckBox)
+        val groupCheckBox = view.findViewById<ImageView>(R.id.groupCheckBox)
         groupCheckBox.visibility = View.GONE
         if (groupItem.inputs?.isNotEmpty() == true) {
             if (isExpanded) {
