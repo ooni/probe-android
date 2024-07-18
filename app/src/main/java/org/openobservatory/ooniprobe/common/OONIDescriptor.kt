@@ -139,6 +139,7 @@ abstract class AbstractDescriptor<T : BaseNettest>(
             animation = this.animation,
             dataUsage = this.dataUsage,
             nettest = this.nettests,
+            longRunningTests = this.longRunningTests,
             descriptor = descriptor
         )
     }
@@ -191,7 +192,8 @@ open class OONIDescriptor<T : BaseNettest>(
     color = color,
     animation = animation,
     dataUsage = dataUsage,
-    nettests = nettests
+    nettests = nettests,
+    longRunningTests = longRunningTests
 )
 
 /**

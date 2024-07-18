@@ -63,10 +63,10 @@ public class MainActivityWebsitesTest extends AbstractTest {
         // Act
         launchDashboard();
         onView(withId(R.id.recycler))
-                .perform(scrollToPosition(0));
+                .perform(scrollToPosition(1));
 
         onView(withRecyclerView(R.id.recycler)
-                .atPositionOnView(0, R.id.title))
+                .atPositionOnView(1, R.id.title))
                 .perform(click());
 
         onView(withId(R.id.customUrl)).perform(click());
@@ -95,10 +95,10 @@ public class MainActivityWebsitesTest extends AbstractTest {
         // Act
         launchDashboard();
         onView(withId(R.id.recycler))
-                .perform(scrollToPosition(0));
+                .perform(scrollToPosition(1));
 
         onView(withRecyclerView(R.id.recycler)
-                .atPositionOnView(0, R.id.title))
+                .atPositionOnView(1, R.id.title))
                 .perform(click());
 
         onView(withId(R.id.customUrl)).perform(click());
@@ -127,10 +127,10 @@ public class MainActivityWebsitesTest extends AbstractTest {
         // Act
         launchDashboard();
         onView(withId(R.id.recycler))
-                .perform(scrollToPosition(0));
+                .perform(scrollToPosition(1));
 
         onView(withRecyclerView(R.id.recycler)
-                .atPositionOnView(0, R.id.title))
+                .atPositionOnView(1, R.id.title))
                 .perform(click());
 
         onView(withId(R.id.customUrl)).perform(click());

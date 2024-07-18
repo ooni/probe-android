@@ -4,6 +4,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import org.openobservatory.engine.BaseNettest
 import org.openobservatory.ooniprobe.R
+import org.openobservatory.ooniprobe.activity.runtests.models.ChildItem
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.model.database.Result
 import org.openobservatory.ooniprobe.model.database.TestDescriptor
@@ -25,6 +26,7 @@ class DynamicTestSuite(
     animation: String?,
     dataUsage: Int,
     var nettest: List<BaseNettest>,
+    var longRunningTests: List<BaseNettest>? = null,
     var descriptor: TestDescriptor? = null
 ) : AbstractSuite(
     name,
@@ -46,6 +48,18 @@ class DynamicTestSuite(
                     setOrigin(AbstractTest.AUTORUN)
                 }
                 inputs = it.inputs
+            }
+        }.run {
+            // check if autoRun is enabled before adding longRunningTests
+            if (autoRun) {
+                this + (longRunningTests?.map {
+                    AbstractTest.getTestByName(it.name).apply {
+                        setOrigin(AbstractTest.AUTORUN)
+                        inputs = it.inputs
+                    }
+                }.orEmpty())
+            } else {
+                this
             }
         }.toTypedArray()
 

@@ -8,37 +8,39 @@ import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.Experimental;
+import org.openobservatory.ooniprobe.test.test.RiseupVPN;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import android.content.res.Resources;
+
 public class ExperimentalSuiteTest {
     private final Application app = mock(Application.class);
+    private final Resources mockContextResources = mock(Resources.class);
 
-    private final AbstractSuite suite = OONITests.EXPERIMENTAL.toOONIDescriptor(app).getTest(app);
-    private final AbstractSuite autoRunSuite = OONITests.EXPERIMENTAL.toOONIDescriptor(app).getTest(app);
+    private AbstractSuite suite;
+    private AbstractSuite autoRunSuite;
     private final PreferenceManager pm = mock(PreferenceManager.class);
 
     @Before
     public void setUp() {
-        autoRunSuite.setAutoRun(true);
-    }
-    @Test
-    public void getTestList_empty() {
+        when(app.getPreferenceManager()).thenReturn(pm);
+        when(app.getResources()).thenReturn(mockContextResources);
+        when(mockContextResources.getString(anyInt())).thenReturn("mocked string");
+        when(mockContextResources.getString(anyInt(),any())).thenReturn("mocked string");
 
-        when(pm.isExperimentalOn()).thenReturn(false);
-
-        AbstractTest[] tests = suite.getTestList(pm);
-
-        assertEquals(0, tests.length);
+        suite =  OONITests.EXPERIMENTAL.toOONIDescriptor(app).getTest(app);
     }
 
     @Test
-    public void getTestList_experimental_on() {
+    public void getTestList_experimental_foreground() {
         when(pm.isExperimentalOn()).thenReturn(true);
 
         List<AbstractTest> tests = Arrays.asList(suite.getTestList(pm));
@@ -46,7 +48,7 @@ public class ExperimentalSuiteTest {
         assertEquals(4, tests.size());
         assertEquals(Experimental.class, tests.get(0).getClass());
         assertEquals(Experimental.class, tests.get(1).getClass());
-        assertEquals(Experimental.class, tests.get(2).getClass());
+        assertEquals(RiseupVPN.class, tests.get(2).getClass());
         assertEquals(Experimental.class, tests.get(3).getClass());
         assertEquals("stunreachability", tests.get(0).getName());
         assertEquals("dnscheck", tests.get(1).getName());
@@ -57,6 +59,7 @@ public class ExperimentalSuiteTest {
     @Test
     public void getTestList_experimental_on_autorun_on() {
         when(pm.isExperimentalOn()).thenReturn(true);
+        autoRunSuite = OONITests.EXPERIMENTAL.toOONIDescriptor(app).getTest(app);
         autoRunSuite.setAutoRun(true);
 
         List<AbstractTest> tests = Arrays.asList(autoRunSuite.getTestList(pm));
@@ -64,7 +67,7 @@ public class ExperimentalSuiteTest {
         assertEquals(6, tests.size());
         assertEquals(Experimental.class, tests.get(0).getClass());
         assertEquals(Experimental.class, tests.get(1).getClass());
-        assertEquals(Experimental.class, tests.get(2).getClass());
+        assertEquals(RiseupVPN.class, tests.get(2).getClass());
         assertEquals(Experimental.class, tests.get(3).getClass());
         assertEquals(Experimental.class, tests.get(4).getClass());
         assertEquals(Experimental.class, tests.get(5).getClass());

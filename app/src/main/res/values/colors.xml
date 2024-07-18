@@ -3,7 +3,7 @@
 	<color name="android_color_background">@color/color_gray1</color>
 	<color name="bottom_navigation_background">@color/color_gray0</color>
 	<color name="card_boarder">@color/color_gray3</color>
-	<color name="bottom_navigation_state_checked">@color/color_black</color>
+	<color name="bottom_navigation_state_checked">@color/color_base</color>
 	<color name="bottom_navigation_state_unchecked">@color/color_gray9</color>
 	<color name="progress_background">@color/color_gray7</color>
 
