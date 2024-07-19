@@ -289,16 +289,21 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
 
     @Override
     public void onConfirmation(Serializable extra, int buttonClicked) {
-        if (buttonClicked == DialogInterface.BUTTON_POSITIVE && extra.equals(RERUN_KEY))
+        if (buttonClicked == DialogInterface.BUTTON_POSITIVE && extra.equals(RERUN_KEY)) {
+            AbstractSuite testSuite = getTestSuite.getForWebConnectivityReRunFrom(measurement.result, Collections.singletonList(measurement.url.url));
+            if (testSuite == null) {
+                return;
+            }
             RunningActivity.runAsForegroundService(
                     this,
-                    getTestSuite.getForWebConnectivityReRunFrom(measurement.result, Collections.singletonList(measurement.url.url)).asArray(),
+                    testSuite.asArray(),
                     this::finish,
                     preferenceManager);
-        else if (buttonClicked == DialogInterface.BUTTON_POSITIVE)
+        } else if (buttonClicked == DialogInterface.BUTTON_POSITIVE) {
             runAsyncTask();
-        else if (buttonClicked == DialogInterface.BUTTON_NEUTRAL)
+        } else if (buttonClicked == DialogInterface.BUTTON_NEUTRAL) {
             startActivity(TextActivity.newIntent(this, TextActivity.TYPE_UPLOAD_LOG, (String) extra));
+        }
     }
 
     public static class ResubmitAsyncTask extends ResubmitTask<MeasurementDetailActivity> {
