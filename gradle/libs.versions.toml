@@ -2,6 +2,7 @@
 androidGradlePlugin = "8.5.1"
 barista = "3.9.0"
 countlySdk = "24.7.0"
+desugar_jdk_libs_nio = "2.0.4"
 faker = "2.0.4"
 mockito = "5.12.0"
 robolectric = "4.13"
@@ -55,6 +56,7 @@ gms-googleServices = "4.4.1"
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
 barista = { module = "com.schibsted.spain:barista", version.ref = "barista" }
 countly-sdk = { module = "ly.count.android:sdk", version.ref = "countlySdk" }
+desugar_jdk_libs_nio = { module = "com.android.tools:desugar_jdk_libs_nio", version.ref = "desugar_jdk_libs_nio" }
 faker = { module = "com.github.blocoio:faker", version.ref = "faker" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 fastlane-screengrab = { module = "tools.fastlane:screengrab", version.ref = "fastlaneScreengrab" }

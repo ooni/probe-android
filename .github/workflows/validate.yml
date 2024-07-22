@@ -71,8 +71,8 @@ jobs:
 
     strategy:
       matrix:
-        api-level: [ 29 ]
-        target: [ google_apis ]
+        api-level: [25, 29] # Bug in API 21-24
+        target: [default, google_apis]
 
     steps:
       - name: Set up JDK 17
