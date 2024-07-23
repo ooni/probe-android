@@ -111,6 +111,7 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
+        coreLibraryDesugaringEnabled = true
     }
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17
@@ -124,6 +125,9 @@ android {
 
 dependencies {
     implementation project(path: ':engine')
+
+    // Desugaring
+    coreLibraryDesugaring(libs.desugar.jdk.libs.nio)
 
 // AndroidX
     implementation libs.androidx.appcompat
