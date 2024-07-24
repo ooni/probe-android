@@ -29,9 +29,10 @@ android {
 
     buildTypes {
         debug {
-            testCoverageEnabled true
             buildConfigField 'String', 'IS_DEBUG', '"-debug"'
             buildConfigField 'String', 'COUNTLY_KEY', '"e6c2cfe53e85951d50567467cef3f9fa2eab32c3"'
+            enableUnitTestCoverage true
+            enableAndroidTestCoverage true
         }
 
         release {
@@ -115,12 +116,14 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
+        coreLibraryDesugaringEnabled = true
     }
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
     dataBinding {
         enabled = true
@@ -131,6 +134,9 @@ android {
 
 dependencies {
     implementation project(path: ':engine')
+
+    // Desugaring
+    coreLibraryDesugaring(libs.desugar.jdk.libs.nio)
 
 // AndroidX
     implementation libs.androidx.appcompat
@@ -185,7 +191,6 @@ dependencies {
     testImplementation libs.androidx.runner
     testImplementation libs.androidx.rules
     testImplementation libs.mockito.core
-    testImplementation libs.mockito.inline
     testImplementation libs.robolectric
     testImplementation libs.faker
     testImplementation libs.ooni.oonimkall

@@ -1,13 +1,13 @@
 [versions]
-androidGradlePlugin = "8.4.0"
+androidGradlePlugin = "8.5.1"
 barista = "3.9.0"
 countlySdk = "24.7.0"
+desugar_jdk_libs_nio = "2.0.4"
 faker = "2.0.4"
-mockitoCore = "5.12.0"
-mockitoInline = "5.2.0"
+mockito = "5.12.0"
 robolectric = "4.13"
 fastlaneScreengrab = "2.1.1"
-sentryAndroid = "7.11.0"
+sentryAndroid = "7.12.0"
 xanscaleLocalhostToolkit = "19.05.01"
 commonsIo = "2.16.1"
 jacoco = "0.8.7"
@@ -31,7 +31,7 @@ googleGson = "2.11.0"
 googleGuava = "33.2.1-android"
 googleMaterial = "1.12.0"
 googleDagger = "2.51.1"
-googleFirebaseBon = "33.1.0"
+googleFirebaseBon = "33.1.2"
 googlePlayAppUpdate = "2.1.0"
 
 # OONI
@@ -57,6 +57,7 @@ gms-googleServices = "4.4.1"
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
 barista = { module = "com.schibsted.spain:barista", version.ref = "barista" }
 countly-sdk = { module = "ly.count.android:sdk", version.ref = "countlySdk" }
+desugar_jdk_libs_nio = { module = "com.android.tools:desugar_jdk_libs_nio", version.ref = "desugar_jdk_libs_nio" }
 faker = { module = "com.github.blocoio:faker", version.ref = "faker" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 fastlane-screengrab = { module = "tools.fastlane:screengrab", version.ref = "fastlaneScreengrab" }
@@ -65,8 +66,7 @@ xanscale-localhost-toolkit = { module = "com.github.xanscale.LocalhostToolkit:ap
 commons-io = { module = "commons-io:commons-io", version.ref = "commonsIo" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 
-mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
-mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockitoInline" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
 
 lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
 markwon-core = { module = "io.noties.markwon:core", version.ref = "markwon" }

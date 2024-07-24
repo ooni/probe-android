@@ -40,6 +40,7 @@ public class ResultTest extends RobolectricAbstractTest {
     @Test
     public void getLastResult() {
         Result first = new Result("");
+        first.start_time = new Date(System.currentTimeMillis() - 1000);
         first.save();
         Result second = new Result("");
         second.save();
