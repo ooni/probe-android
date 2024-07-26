@@ -36,6 +36,7 @@ import java.io.File;
 import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -117,6 +118,7 @@ public abstract class AbstractTest implements Serializable {
                             testCallback.onStart(c.getString(labelResId));
                         testCallback.onProgress(Double.valueOf(index * 100).intValue());
                         break;
+
                     case "status.geoip_lookup":
                         if (is_rerun) {
                             this.network = new Network();
@@ -130,18 +132,41 @@ public abstract class AbstractTest implements Serializable {
                         }
                         saveNetworkInfo(event.value, result, c);
                         break;
+
                     case "status.report_create":
                         reportId = event.value.report_id;
                         break;
+
                     case "status.measurement_start":
-                        if (result != null){
+                        if (result != null) {
                             Measurement measurement = new Measurement(result, name, reportId);
-                            if (event.value.input.length() > 0)
+                            if (!event.value.input.isEmpty()) {
+                                var url = new Url();
+                                // TODO(bassosimone): we need to load category_code and country_code here
+                                // but for now we are just happy trying to understand if it could work
+                                url.url = event.value.input;
+                                url.category_code = "MISC";
+                                url.country_code = "XX";
+                                // TODO(bassosimone): the saveOrUpdate method is doing lots of work, which
+                                // makes sense in the context of disambiguating URLs but could probably suggest
+                                // we can denormalize the schema and just keep the URL as it was back when we
+                                // tested along with its category code and country code, maybe?
+                                //
+                                // Well, I guess we should probably measure/understand whether this is a
+                                // problem or not. My main concerns are (1) too many commits to the database
+                                // and whether this could have I/O performance implications and/or lead to
+                                // wear leveling and (2) we're going to have URLs from multiple sources and
+                                // maybe multiple tests, so denormalising maybe is better anyway.
+                                var list = new ArrayList<Url>();
+                                list.add(url);
+                                Url.saveOrUpdate(list);
                                 measurement.url = Url.getUrl(event.value.input);
+                            }
                             measurements.put(event.value.idx, measurement);
                             measurement.save();
                         }
                         break;
+
                     case "log":
                         switch (event.value.log_level) {
                             case "WARNING":
@@ -163,6 +188,7 @@ public abstract class AbstractTest implements Serializable {
                         );
                         testCallback.onLog(event.value.message);
                         break;
+
                     case "status.progress":
                         testCallback.onProgress(Double.valueOf((index + event.value.percentage) * 100).intValue());
                         if (logFile == null) break;
@@ -174,6 +200,7 @@ public abstract class AbstractTest implements Serializable {
                         );
                         testCallback.onLog(event.value.message);
                         break;
+
                     case "measurement":
                         Measurement m = measurements.get(event.value.idx);
                         if (m != null) {
@@ -195,33 +222,39 @@ public abstract class AbstractTest implements Serializable {
                             );
                         }
                         break;
+
                     case "failure.report_create":
-					   /* //TODO FUTURE
-						every measure should be resubmitted
-						int mk_submit_report(const char *report_as_json);
-						"value": {"failure": "<failure_string>"}
-						*/
+                        // TODO(bassosimone,aanorbel): what should we do here?
                         break;
+
                     case "status.measurement_submission":
                         setUploaded(true, event.value);
                         break;
+
                     case "failure.measurement_submission":
                         setUploaded(false, event.value);
                         break;
+
                     case "status.measurement_done":
                         setDone(event.value);
                         break;
+
                     case "status.end":
                         setDataUsage(event.value, result);
                         break;
+
                     case "failure.startup":
+                        // NOTHING
+
                     case "failure.resolver_lookup":
                         setFailureMsg(event.value, result);
                         ThirdPartyServices.logException(new MKException(event));
                         break;
+
                     case "bug.json_dump":
                         ThirdPartyServices.logException(new MKException(event));
                         break;
+
                     case "task_terminated":
                         onTaskTerminated(event.value, c);
                         /*
@@ -231,6 +264,7 @@ public abstract class AbstractTest implements Serializable {
                          * TODO to be tested when web_connectivity will be implemented
                          */
                         break;
+
                     default:
                         Log.w(UNUSED_KEY, event.key);
                         logger.w(UNUSED_KEY,event.key);
