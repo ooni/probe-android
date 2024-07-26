@@ -28,6 +28,7 @@ public class PreferenceManager {
 	public static final int NOTIFICATION_DIALOG_COUNT = 7;
 	public static final int AUTOTEST_DIALOG_COUNT = 5;
 	static final String NOTIFICATION_DIALOG_DISABLE = "isNotificationDialogDisabled";
+	static final String TEST_PROGRESS_NOTIFICATION_DISABLE = "isTestProgressNotificationDisabled";
 	private static final String AUTOTEST_DIALOG_DISABLE = "isAutomaticTestDialogDisabled";
 	private static final String TOKEN = "token";
 	static final String SHOW_ONBOARDING = "first_run";
@@ -114,6 +115,31 @@ public class PreferenceManager {
 
 	public boolean isNotifications() {
 		return sp.getBoolean(r.getString(R.string.notifications_enabled), false);
+	}
+
+	public boolean isTestProgressNotifications() {
+		return sp.getBoolean(r.getString(R.string.test_progress_notifications_enabled), false);
+	}
+
+	public boolean isAskTestProgressNotificationConsent() {
+		return sp.getBoolean(TEST_PROGRESS_NOTIFICATION_DISABLE, false);
+	}
+
+	public void disableAskTestProgressNotificationConsent() {
+		sp.edit().putBoolean(TEST_PROGRESS_NOTIFICATION_DISABLE, true)
+				.apply();
+	}
+
+	public void setTestProgressNotificationConsent(boolean enabled) {
+		//set notification value and increment app open
+		sp.edit()
+				.putBoolean(r.getString(R.string.test_progress_notifications_enabled), enabled)
+				.apply();
+	}
+
+	public boolean shouldShowTestProgressConsent() {
+		return !isTestProgressNotifications()
+				&& !isAskTestProgressNotificationConsent();
 	}
 
 	public boolean isDarkTheme() {
