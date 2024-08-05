@@ -35,7 +35,7 @@ googlePlayAppUpdate = "2.1.0"
 
 # OONI
 compileSdk = "34"
-lottie = "6.4.1"
+lottie = "6.5.0"
 markwon = "4.6.2"
 shapeofview = "1.4.7"
 targetSdk = "34"
