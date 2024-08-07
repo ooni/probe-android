@@ -3,7 +3,7 @@
   <string name="LoadingScreen_Runv2_Message">Link Loading</string>
   <string name="LoadingScreen_Runv2_Failure">Error?</string>
   <string name="LoadingScreen_Runv2_Canceled">Link installation cancelled</string>
-  <string name="Dashboard_Runv2_Overview_Description">Created by %s on %s\n\n%s</string>
+  <string name="Dashboard_Runv2_Overview_Description">Created by %1$s on %2$s\n\n %3$s</string>
   <string name="Dashboard_Runv2_Overview_UninstallLink">Uninstall Link</string>
   <string name="Dashboard_Runv2_Overview_ReviewUpdates">Review Updates</string>
   <string name="Dashboard_Runv2_Overview_PreviousRevisions">Previous revisions</string>
@@ -28,10 +28,9 @@
   <string name="CustomWebsites_Fab_Default">Test URLs</string>
   <string name="Dashboard_ReviewDescriptor_Title">Link Update</string>
   <string name="Dashboard_ReviewDescriptor_Success">Link(s) updated</string>
-  <string name="Dashboard_ReviewDescriptor_Canceled">?</string>
-  <string name="Dashboard_ReviewDescriptor_Label">Link Update (%d of %d)</string>
-  <string name="Dashboard_ReviewDescriptor_Button_Last">UPDATE AND FINISH (%d of %d)</string>
-  <string name="Dashboard_ReviewDescriptor_Button_Default">UPDATE (%d of %d)</string>
+  <string name="Dashboard_ReviewDescriptor_Label">Link Update (%1$s of %2$s)</string>
+  <string name="Dashboard_ReviewDescriptor_Button_Last">UPDATE AND FINISH (%1$s of %2$s)</string>
+  <string name="Dashboard_ReviewDescriptor_Button_Default">UPDATE (%1$s of %2$s)</string>
   <string name="Dashboard_ReviewDescriptor_Update">Update</string>
   <string name="Dashboard_RunTests_Title">Run tests</string>
   <string name="Dashboard_RunTests_RunButton_Default">Run Tests</string>

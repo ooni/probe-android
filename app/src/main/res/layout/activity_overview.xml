@@ -243,7 +243,7 @@
                         android:childDivider="@android:color/transparent"
                         android:divider="@android:color/transparent"
                         android:groupIndicator="@null"
-                        app:paddingStart="16dp"
+                        android:paddingStart="16dp"
                         app:layout_constraintTop_toBottomOf="@id/header"
                         tools:listitem="@layout/overview_test_group_list_item" />
 
