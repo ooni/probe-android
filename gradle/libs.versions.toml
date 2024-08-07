@@ -1,6 +1,6 @@
 [versions]
 androidGradlePlugin = "8.5.1"
-barista = "3.9.0"
+barista = "4.0.0"
 countlySdk = "24.7.0"
 desugar_jdk_libs_nio = "2.0.4"
 faker = "2.0.4"
@@ -55,7 +55,7 @@ gms-googleServices = "4.4.1"
 [libraries]
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
-barista = { module = "com.schibsted.spain:barista", version.ref = "barista" }
+barista = { module = "com.adevinta.android:barista", version.ref = "barista" }
 countly-sdk = { module = "ly.count.android:sdk", version.ref = "countlySdk" }
 desugar_jdk_libs_nio = { module = "com.android.tools:desugar_jdk_libs_nio", version.ref = "desugar_jdk_libs_nio" }
 faker = { module = "com.github.blocoio:faker", version.ref = "faker" }

@@ -3,6 +3,6 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 	<item
 		android:id="@+id/update_descriptor"
-		android:title="Update"
+		android:title="@string/Dashboard_ReviewDescriptor_Update"
 		app:showAsAction="ifRoom|withText" />
 </menu>

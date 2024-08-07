@@ -234,8 +234,8 @@ class RunTestsActivity : AbstractActivity() {
 
 
     private fun updateStatusIndicator() {
-        //TODO(aanorbel): translate status indicator
-        binding.fabRunTests.text = "Run ${getChildItemsSelectedIdList().size} test"
+        val childCount = getChildItemsSelectedIdList().size
+        binding.fabRunTests.text = getString(R.string.Dashboard_RunTests_RunButton_Label, childCount.toString())
     }
 
     private fun getChildItemsSelectedIdList(): List<String> {

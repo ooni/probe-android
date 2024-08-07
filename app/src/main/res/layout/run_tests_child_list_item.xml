@@ -26,7 +26,6 @@
 		android:layout_marginEnd="16dp"
 		android:padding="@dimen/item_padding_small"
 		android:src="@drawable/check_box_outline_blank"
-		app:tint="@color/color_base"
-		android:contentDescription="checkbox" />
+		app:tint="@color/color_base" />
 
 </RelativeLayout>

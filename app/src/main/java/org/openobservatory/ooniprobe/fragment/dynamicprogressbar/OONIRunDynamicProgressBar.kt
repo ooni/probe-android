@@ -42,20 +42,20 @@ class OONIRunDynamicProgressBar : Fragment() {
                 binding.progressBar.visibility = View.VISIBLE
                 binding.iconButton.visibility = View.GONE
                 binding.actionButton.text = getString(R.string.Modal_Cancel)
-                binding.progressText.text = "Link Loading"
+                binding.progressText.text = getString(R.string.Dashboard_Progress_AddLink_Label)
             }
 
             ProgressType.UPDATE_LINK -> {
                 binding.progressBar.visibility = View.VISIBLE
                 binding.iconButton.visibility = View.GONE
-                binding.progressText.text = "Link updates Loading"
+                binding.progressText.text = getString(R.string.Dashboard_Progress_UpdateLink_Label)
             }
 
             ProgressType.REVIEW_LINK -> {
                 binding.progressBar.visibility = View.GONE
                 binding.iconButton.visibility = View.VISIBLE
-                binding.actionButton.text = "Review"
-                binding.progressText.text = "Link updates ready"
+                binding.actionButton.text = getString(R.string.Dashboard_Progress_ReviewLink_Action)
+                binding.progressText.text = getString(R.string.Dashboard_Progress_ReviewLink_Label)
             }
 
             else -> {

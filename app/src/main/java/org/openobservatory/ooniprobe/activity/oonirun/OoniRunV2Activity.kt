@@ -85,7 +85,7 @@ class OoniRunV2Activity : AbstractActivity() {
         val executor = TaskExecutor()
         binding.cancelButton.setOnClickListener {
             executor.cancelTask()
-            finishWithError(message = "Link installation cancelled")
+            finishWithError(message = getString(R.string.LoadingScreen_Runv2_Canceled))
         }
         executor.executeTask({
             try {

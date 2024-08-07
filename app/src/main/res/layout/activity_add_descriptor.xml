@@ -81,7 +81,7 @@
                     android:id="@+id/author_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Author:  "
+                    android:text="@string/AddDescriptor_Author"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/divider" />
 
@@ -109,7 +109,7 @@
                     android:id="@+id/settings"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Test Settings"
+                    android:text="@string/AddDescriptor_Settings"
                     style="?attr/textAppearanceHeadline6"
                     app:layout_constraintTop_toBottomOf="@id/description"
                     app:layout_constraintStart_toStartOf="parent"/>
@@ -117,7 +117,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Install test updates automatically"
+                    android:text="@string/AddDescriptor_AutoUpdate"
                     app:layout_constraintBottom_toBottomOf="@id/automatic_updates_switch"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/automatic_updates_switch" />
@@ -133,7 +133,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Run Tests automatically"
+                    android:text="@string/AddDescriptor_AutoRun"
                     app:layout_constraintBottom_toBottomOf="@id/tests_checkbox"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tests_checkbox" />
@@ -190,7 +190,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
                     android:elevation="0dp"
-                    android:text="Install Link"
+                    android:text="@string/AddDescriptor_Action"
                     android:textColor="@color/color_base" />
 
             </LinearLayout>

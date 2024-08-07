@@ -48,7 +48,6 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:src="@drawable/check_box_outline_blank"
-        app:tint="@color/color_blue4"
-        android:contentDescription="checkbox"/>
+        app:tint="@color/color_blue4"/>
 
 </RelativeLayout>

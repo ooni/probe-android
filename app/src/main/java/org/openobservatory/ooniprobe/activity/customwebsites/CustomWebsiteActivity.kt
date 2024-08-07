@@ -61,7 +61,7 @@ class CustomWebsiteActivity : AbstractActivity(), ConfirmDialogFragment.OnClickL
         val layoutManager = LinearLayoutManager(this)
         binding.urlContainer.isNestedScrollingEnabled = false
         binding.urlContainer.layoutManager = layoutManager
-        val fatTextTemplate = "Test %s URLs"
+        val fatTextTemplate = getString(R.string.CustomWebsites_Fab_Text)
         adapter = CustomWebsiteRecyclerViewAdapter(
             onItemChangedListener = object : ItemChangedListener {
                 override fun onItemRemoved(position: Int) {

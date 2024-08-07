@@ -6,9 +6,6 @@ import androidx.test.core.app.ActivityScenario;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ServiceTestRule;
 
-import com.schibsted.spain.barista.rule.flaky.AllowFlaky;
-import com.schibsted.spain.barista.rule.flaky.FlakyTestRule;
-
 import org.junit.After;
 import org.junit.Rule;
 import org.junit.Test;
@@ -30,6 +27,9 @@ import java.util.concurrent.TimeoutException;
 
 import static org.openobservatory.ooniprobe.testing.ActivityAssertions.assertCurrentActivity;
 import static org.openobservatory.ooniprobe.testing.ActivityAssertions.waitForCurrentActivity;
+
+import com.adevinta.android.barista.rule.flaky.AllowFlaky;
+import com.adevinta.android.barista.rule.flaky.FlakyTestRule;
 
 @RunWith(AndroidJUnit4.class)
 public class RunningActivityTest extends AbstractTest {

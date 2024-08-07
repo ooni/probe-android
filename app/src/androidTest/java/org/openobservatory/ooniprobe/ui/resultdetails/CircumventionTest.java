@@ -1,8 +1,6 @@
 package org.openobservatory.ooniprobe.ui.resultdetails;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import com.schibsted.spain.barista.rule.flaky.AllowFlaky;
-import com.schibsted.spain.barista.rule.flaky.FlakyTestRule;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +15,9 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.*;
+
+import com.adevinta.android.barista.rule.flaky.AllowFlaky;
+import com.adevinta.android.barista.rule.flaky.FlakyTestRule;
 
 @RunWith(AndroidJUnit4.class)
 public class CircumventionTest extends MeasurementAbstractTest {

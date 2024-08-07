@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:text="Previous revisions" />
+        android:text="@string/Dashboard_Runv2_Overview_PreviousRevisions" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
@@ -27,7 +27,7 @@
         android:id="@+id/see_more"
         style="?attr/textAppearanceBody2"
         android:visibility="gone"
-        android:text="See More"
+        android:text="@string/Dashboard_Runv2_Overview_SeeMore"
         android:textColor="@color/color_blue6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
