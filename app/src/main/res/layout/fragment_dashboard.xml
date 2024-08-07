@@ -135,7 +135,7 @@
                     android:gravity="center"
                     android:visibility="gone"
                     android:padding="8dp"
-                    android:text="Run finished. Tap to view results."
+                    android:text="@string/Dashboard_RunV2_RunFinished"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                     android:textColor="@color/color_white"/>
             </LinearLayout>

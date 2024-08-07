@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/item_padding_large"
         android:backgroundTint="@color/color_base"
-        android:text="Test Urls"
+        android:text="@string/CustomWebsites_Fab_Default"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         app:icon="@drawable/outline_timer"

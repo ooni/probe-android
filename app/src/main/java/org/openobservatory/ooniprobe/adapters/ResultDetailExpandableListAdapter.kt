@@ -104,7 +104,7 @@ class ResultDetailExpandableListAdapter(
                 }
                 root.findViewById<TextView>(R.id.indicator).apply {
                     visibility = View.VISIBLE
-                    text = "${groupMeasurement.measurements.size} Inputs"
+                    text = root.context.getString(R.string.TestResults_TestCount,groupMeasurement.measurements.size)
                     setCompoundDrawablesRelativeWithIntrinsicBounds(
                         null,
                         null,

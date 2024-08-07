@@ -32,14 +32,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/item_padding_small"
-            android:text="Select the tests to run" />
+            android:text="@string/Dashboard_RunTests_Description" />
 
         <Button
             android:id="@+id/select_all"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select all tests"
+            android:text="@string/Dashboard_RunTests_SelectAll"
             android:textAllCaps="false"
             app:cornerRadius="24dp"
             app:rippleColor="@color/ripple_material_dark"
@@ -50,7 +50,7 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Deselect all tests"
+            android:text="@string/Dashboard_RunTests_SelectNone"
             android:textAllCaps="false"
             app:cornerRadius="24dp"
             app:rippleColor="@color/ripple_material_dark"
@@ -103,7 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/item_padding_large"
         android:backgroundTint="@color/color_base"
-        android:text="Run Tests"
+        android:text="@string/Dashboard_RunTests_Title"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         app:icon="@drawable/outline_timer"

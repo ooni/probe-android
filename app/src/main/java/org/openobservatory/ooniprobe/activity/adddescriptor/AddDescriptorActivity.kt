@@ -115,7 +115,7 @@ class AddDescriptorActivity : AbstractActivity() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         supportActionBar?.setDisplayShowHomeEnabled(false)
-        supportActionBar?.title = "Install New Link"
+        supportActionBar?.title = getString(R.string.AddDescriptor_Title)
         val descriptorExtra = if (VERSION.SDK_INT >= VERSION_CODES.TIRAMISU) {
             intent.getParcelableExtra(DESCRIPTOR, TestDescriptor::class.java)
         } else {
@@ -155,7 +155,7 @@ class AddDescriptorActivity : AbstractActivity() {
             }
 
             binding.btnCancel.setOnClickListener {
-                Toast.makeText(this@AddDescriptorActivity, "Link installation cancelled", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@AddDescriptorActivity, R.string.LoadingScreen_Runv2_Canceled, Toast.LENGTH_LONG).show()
                 finish()
             }
 
@@ -172,7 +172,7 @@ class AddDescriptorActivity : AbstractActivity() {
             // This observer is used to finish the activity when the descriptor is added.
             viewModel.finishActivity.observe(this) { shouldFinish ->
                 if (shouldFinish) {
-                    Toast.makeText(this@AddDescriptorActivity, "Link installed", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@AddDescriptorActivity, R.string.AddDescriptor_Toasts_Installed, Toast.LENGTH_LONG).show()
                     finish()
                 }
             }

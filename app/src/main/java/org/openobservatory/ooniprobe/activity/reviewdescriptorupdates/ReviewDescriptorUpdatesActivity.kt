@@ -91,7 +91,7 @@ class ReviewDescriptorUpdatesActivity : AbstractActivity() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         supportActionBar?.setDisplayShowHomeEnabled(false)
-        supportActionBar?.title = "Link Update"
+        supportActionBar?.title = getString(R.string.Dashboard_ReviewDescriptor_Title)
         val descriptorJson = intent.getStringExtra(DESCRIPTORS)
         try {
             /**
@@ -122,7 +122,7 @@ class ReviewDescriptorUpdatesActivity : AbstractActivity() {
                             // Last update
                             setResult(
                                     RESULT_OK,
-                                    Intent().putExtra(RESULT_MESSAGE, "Link(s) updated")
+                                    Intent().putExtra(RESULT_MESSAGE, getString(R.string.Dashboard_ReviewDescriptor_Success))
                             )
                             finish()
                         }
@@ -142,14 +142,15 @@ class ReviewDescriptorUpdatesActivity : AbstractActivity() {
                      * If the current item is the last item in the viewpager, the text of the button is updated to "UPDATE AND FINISH".
                      * If the current item is not the last item in the viewpager, the text of the button is updated to "UPDATE".
                      */
-                    val countString = "(%d of %d)".format(position + 1, binding.viewpager.adapter?.itemCount)
 
-                    supportActionBar?.title = "Link Update $countString"
+                    val total = position + 1
+                    val itemCount = binding.viewpager.adapter?.itemCount
+                    supportActionBar?.title = getString(R.string.Dashboard_ReviewDescriptor_Label, total, itemCount)
 
                     binding.btnUpdate.text = when (position + 1) {
-                        binding.viewpager.adapter?.itemCount -> "UPDATE AND FINISH $countString"
+                        binding.viewpager.adapter?.itemCount -> getString(R.string.Dashboard_ReviewDescriptor_Button_Last, total, itemCount)
 
-                        else -> "UPDATE $countString"
+                        else -> getString(R.string.Dashboard_ReviewDescriptor_Button_Default, total, itemCount)
                     }
                 }
             })
@@ -221,12 +222,10 @@ class DescriptorUpdateFragment : Fragment() {
             val absDescriptor = InstalledDescriptor(descriptor)
             binding.apply {
                 title.text = absDescriptor.title
-                author.text = "Created by ${descriptor.author} on ${
-                    SimpleDateFormat(
-                            "MMM dd, yyyy",
-                            Locale.getDefault()
-                    ).format(descriptor.dateCreated)
-                }"
+                author.text = context.getString(R.string.Dashboard_Runv2_Overview_Description,descriptor.author,SimpleDateFormat(
+                    "MMM dd, yyyy",
+                    Locale.getDefault()
+                ).format(descriptor.dateCreated),"")
                 description.text = absDescriptor.description // Use markdown
                 icon.setImageResource(absDescriptor.getDisplayIcon(context))
                 val adapter =

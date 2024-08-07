@@ -240,9 +240,9 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
         binding.customUrl.setOnClickListener(view -> customUrlClick());
         binding.uninstallLink.setOnClickListener(view -> {
             ConfirmDialogFragment.newInstance(
-                            "Are you sure?",
-                            "You will be able to install this link again only from the original link sent by the creator.",
-                            "UNINSTALL LINK",
+                            getString(R.string.Modal_CustomURL_Title_NotSaved),
+                            getString(R.string.Dashboard_Runv2_Overview_Uninstall_Prompt),
+                            getString(R.string.Dashboard_Runv2_Overview_UninstallLink),
                             getString(android.R.string.cancel),
                             null
                     )
