@@ -143,8 +143,8 @@ class ReviewDescriptorUpdatesActivity : AbstractActivity() {
                      * If the current item is not the last item in the viewpager, the text of the button is updated to "UPDATE".
                      */
 
-                    val total = position + 1
-                    val itemCount = binding.viewpager.adapter?.itemCount
+                    val total = (position + 1).toString()
+                    val itemCount = (binding.viewpager.adapter?.itemCount).toString()
                     supportActionBar?.title = getString(R.string.Dashboard_ReviewDescriptor_Label, total, itemCount)
 
                     binding.btnUpdate.text = when (position + 1) {

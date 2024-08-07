@@ -220,6 +220,11 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
                                     installedDescriptor.getDescriptor().getPreviousRevision()
                             )
                     ).commit();
+                    if (!installedDescriptor.isUpdateAvailable()) {
+                        binding.updatedTag.getRoot().setVisibility(View.GONE);
+                        binding.reviewUpdates.setVisibility(View.GONE);
+                        updatesViewModel.clearDescriptors();
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
