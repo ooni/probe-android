@@ -308,6 +308,7 @@
   <string name="Modal_ReRun_Paragraph">This test has failed. Re-run the test?</string>
   <string name="Modal_ReRun_Websites_Title">You are about to re-test %1$s websites.</string>
   <string name="Modal_ReRun_Websites_Run">Run</string>
+  <string name="Modal_CustomURL_Title_NotSaved">Are you sure?</string>
   <string name="Modal_CustomURL_NotSaved">Your URLs will not be saved when you leave this screen. Are you sure you want to leave this screen?</string>
   <string name="Modal_ManualUpload_Title">Enable Manual Upload?</string>
   <string name="Modal_ManualUpload_Paragraph">This setting allows you to manually re-upload unpublished measurements.</string>
@@ -468,6 +469,8 @@
   <string name="OONIRun_InvalidParameter_Msg">The OONI Run link is either malformed or your app is out of date.</string>
   <string name="OONIRun_RandomSamplingOfURLs">You will test a random sample of websites.</string>
   <string name="OONIRun_TestRunningError">Please wait for the test to finish running before tapping on an OONI Run link.</string>
+  <string name="OONIRun_ReadMore">Read more ></string>
+  <string name="OONIRun_ReadLess">Read less ></string>
   <string name="CategoryCode_ALDR_Name">Drugs &amp; Alcohol</string>
   <string name="CategoryCode_REL_Name">Religion</string>
   <string name="CategoryCode_PORN_Name">Pornography</string>

@@ -1,6 +1,9 @@
 package org.openobservatory.ooniprobe.test.suite;
 
+import org.junit.Ignore;
 import org.junit.Test;
+import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.Psiphon;
@@ -15,11 +18,11 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class CircumventionSuiteTest {
-
-    private final CircumventionSuite suite = new CircumventionSuite();
+    private final Application app = mock(Application.class);
+    private final AbstractSuite suite = OONITests.CIRCUMVENTION.toOONIDescriptor(app).getTest(app);
     private final PreferenceManager pm = mock(PreferenceManager.class);
-
     @Test
+    @Ignore("Preference check if not used since the tests to run are determined by the #RunTestsActivity")
     public void getTestList_empty() {
         when(pm.isTestPsiphon()).thenReturn(false);
         when(pm.isTestTor()).thenReturn(false);
@@ -30,6 +33,7 @@ public class CircumventionSuiteTest {
     }
 
     @Test
+    @Ignore("Preference check if not used since the tests to run are determined by the #RunTestsActivity")
     public void getTestList_full() {
         when(pm.isTestPsiphon()).thenReturn(true);
         when(pm.isTestTor()).thenReturn(true);

@@ -18,6 +18,7 @@ android {
 		testInstrumentationRunner "org.openobservatory.ooniprobe.TestAndroidJUnitRunner"
 		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://countly.ooni.io"'
+        buildConfigField 'String', 'OONI_RUN_DASHBOARD_URL', '"https://run.test.ooni.org"'
         resValue "string", "APP_ID", 'org.openobservatory.ooniprobe'
 		resValue "string", "APP_NAME", "OONI Probe"
 		buildConfigField 'String', 'SOFTWARE_NAME', 'BASE_SOFTWARE_NAME+IS_DEBUG'
@@ -66,6 +67,8 @@ android {
         stable {
             dimension 'testing'
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android"'
+            buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.prod.ooni.io"'
+            buildConfigField 'String', 'OONI_RUN_DASHBOARD_URL', '"https://run-v2.ooni.org"'
         }
         dev {
             dimension 'testing'
@@ -74,6 +77,7 @@ android {
             versionCode resolveVersionCode()
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-dev"'
             resValue "string", "APP_NAME", "OONI Dev"
+            buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.dev.ooni.io"'
             buildConfigField 'String', 'COUNTLY_KEY', '"e6c2cfe53e85951d50567467cef3f9fa2eab32c3"'
         }
         experimental {
@@ -83,6 +87,7 @@ android {
             versionCode resolveVersionCode()
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-experimental"'
             resValue "string", "APP_NAME", "OONI Exp"
+            buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.dev.ooni.io"'
             buildConfigField 'String', 'COUNTLY_KEY', '"e6c2cfe53e85951d50567467cef3f9fa2eab32c3"'
         }
         fdroid {
@@ -120,6 +125,10 @@ android {
         viewBinding = true
         buildConfig = true
     }
+    dataBinding {
+        enabled = true
+        enabledForTests = true
+    }
     namespace 'org.openobservatory.ooniprobe'
 }
 
@@ -136,6 +145,7 @@ dependencies {
     implementation libs.androidx.preference
     implementation libs.androidx.localbroadcastmanager
     implementation libs.androidx.legacy.support.v4
+    implementation libs.androidx.work.runtime
 
 // Google
     implementation libs.google.material
@@ -177,7 +187,7 @@ dependencies {
     // Unit Testing
 	testImplementation project(':shared-test')
 	testImplementation libs.junit4
-    testImplementation libs.androidx.core
+    testImplementation libs.androidx.test.core
     testImplementation libs.androidx.runner
     testImplementation libs.androidx.rules
     testImplementation libs.mockito.core

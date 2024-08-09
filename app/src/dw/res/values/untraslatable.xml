@@ -19,4 +19,10 @@
         <item>es</item>
         <item>tr</item>
     </string-array>
+    <string-array name="filterTests" translatable="false">
+        <item>@string/TestResults_Overview_FilterTests_AllTests</item>
+    </string-array>
+    <string-array name="filterTestValues" translatable="false">
+        <item></item>
+    </string-array>
 </resources>

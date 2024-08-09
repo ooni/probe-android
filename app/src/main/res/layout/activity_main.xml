@@ -11,18 +11,20 @@
 		android:layout_height="0dp"
 		android:layout_weight="1"/>
 
-	<fragment
-		android:name="org.openobservatory.ooniprobe.fragment.ProgressFragment"
-		android:id="@+id/progress_fragment"
+	<FrameLayout
+		android:id="@+id/review_update_notification_fragment"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content" />
+		android:layout_height="?attr/actionBarSize"
+		android:visibility="gone" />
 
 	<com.google.android.material.bottomnavigation.BottomNavigationView
 		android:id="@+id/bottomNavigation"
 		android:layout_width="match_parent"
 		app:itemRippleColor="?attr/colorOnSurface"
 		android:layout_height="wrap_content"
-		android:background="?android:attr/colorBackground"
+		android:background="@color/bottom_navigation_background"
+		app:itemTextColor="@drawable/bottom_nav_color"
+		app:itemIconTint="@drawable/bottom_nav_color"
 		app:elevation="8dp"
 		app:menu="@menu/bottom_navigation"/>
 </LinearLayout>
