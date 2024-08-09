@@ -106,6 +106,10 @@ class TestDescriptor(
     fun toDynamicTestSuite(context: Context) : DynamicTestSuite {
         return InstalledDescriptor(this).getTest(context)
     }
+
+    fun expired() : Boolean {
+        return expirationDate?.before(Date()) ?: false
+    }
 }
 
 /**

@@ -54,7 +54,7 @@ class RunTestsActivity : AbstractActivity() {
             return Intent(context, RunTestsActivity::class.java).putExtras(Bundle().apply {
                 putSerializable(TESTS, testSuites.filter {
                     if (it is InstalledDescriptor) {
-                        return@filter it.descriptor?.isExpired == false
+                        return@filter it.descriptor?.expired() == false
                     } else {
                         return@filter true
                     }

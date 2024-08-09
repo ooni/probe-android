@@ -146,7 +146,7 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
 
             TestDescriptor testDescriptor = installedDescriptor.getTestDescriptor();
 
-            if (Boolean.TRUE.equals(testDescriptor.isExpired())) {
+            if (Boolean.TRUE.equals(testDescriptor.expired())) {
                 binding.expiredTag.getRoot().setVisibility(View.VISIBLE);
             }
 
