@@ -36,6 +36,9 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
+      - name: Gradle cache
+        uses: gradle/actions/setup-gradle@v3
+
       - name: Build `StableFullRelease` and `StableFdroidRelease` variants
         run: ./gradlew build${{ matrix.version }} && ./gradlew clean
 
@@ -53,6 +56,9 @@ jobs:
 
       - name: checkout
         uses: actions/checkout@v4
+
+      - name: Gradle cache
+        uses: gradle/actions/setup-gradle@v3
 
       - name: Run unit tests
         run: ./gradlew testOoniStableFullRelease
@@ -90,6 +96,32 @@ jobs:
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
 
+      - name: Gradle cache
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: AVD cache
+        uses: actions/cache@v4
+        id: avd-cache
+        with:
+          path: |
+            ~/.android/avd/*
+            ~/.android/adb*
+          key: avd-${{ matrix.api-level }}-${{ matrix.target }}
+
+      - name: create AVD and generate snapshot for caching
+        if: steps.avd-cache.outputs.cache-hit != 'true'
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api-level }}
+          target: ${{ matrix.target }}
+          arch: x86_64
+          profile: Nexus 6
+          ram-size: 4096M
+          force-avd-creation: false
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: false
+          script: echo "Generated AVD snapshot for caching."
+
       - name: Run instrumented tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
@@ -98,6 +130,9 @@ jobs:
           arch: x86_64
           profile: Nexus 6
           ram-size: 4096M
+          force-avd-creation: false
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: true
           script: ./gradlew connectedOoniStableFullDebugAndroidTest
 
       - name: uploads test reports
@@ -152,6 +187,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+
+      - name: Gradle cache
+        uses: gradle/actions/setup-gradle@v3
 
       - name: Assemble APKs
         if: success() && steps.get_issue_number.outputs.result

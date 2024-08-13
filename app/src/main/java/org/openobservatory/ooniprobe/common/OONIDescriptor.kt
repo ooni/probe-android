@@ -294,7 +294,6 @@ enum class OONITests(
         nettests = listOf(
             BaseNettest(name = "stunreachability"),
             BaseNettest(name = "dnscheck"),
-            BaseNettest(name = "riseupvpn"),
             BaseNettest(name = "echcheck"),
         ),
         longRunningTests = listOf(
