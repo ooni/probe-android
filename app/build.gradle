@@ -62,6 +62,8 @@ android {
             resValue "string", "APP_ID", 'com.dw.ooniprobe'
             resValue "string", "APP_NAME", "News Media Scan"
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"news-media-scan-android"'
+            buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.prod.ooni.io"'
+            buildConfigField 'String', 'OONI_RUN_DASHBOARD_URL', '"https://run-v2.ooni.org"'
             buildConfigField "boolean", "SHOW_DISABLED_CARDS", "false"
         }
         stable {
