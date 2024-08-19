@@ -15,7 +15,7 @@ kotlin = "1.9.24"
 
 # Android X
 androidxCore = "1.6.1"
-androidxRunner = "1.6.1"
+androidxRunner = "1.6.2"
 androidxAppCompat = "1.7.0"
 androidxConstraintlayout = "2.1.4"
 androidxLifecycleProcess = "2.8.3"
