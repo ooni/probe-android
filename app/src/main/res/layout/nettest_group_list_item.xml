@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
+    <ImageView
+        android:id="@+id/groupCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/item_padding_small"
+        app:paddingEnd="10dp"
+        android:src="@drawable/check_box_outline_blank"
+        app:tint="@color/color_blue4"/>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="@dimen/item_padding_small"
         android:layout_marginBottom="4dp">
 
         <TextView
@@ -32,15 +41,4 @@
 
     </LinearLayout>
 
-
-    <ImageView
-        android:id="@+id/groupCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/item_padding_small"
-        app:paddingEnd="10dp"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/check_box_outline_blank"
-        app:tint="@color/color_blue4"/>
-</RelativeLayout>
+</LinearLayout>

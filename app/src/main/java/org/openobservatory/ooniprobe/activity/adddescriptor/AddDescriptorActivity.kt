@@ -15,6 +15,7 @@ import androidx.activity.viewModels
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.checkbox.MaterialCheckBox
 import io.noties.markwon.Markwon
 import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
@@ -160,13 +161,26 @@ class AddDescriptorActivity : AbstractActivity() {
             }
 
             binding.expandableListView.viewTreeObserver.addOnGlobalLayoutListener {
-                binding.testsCheckbox.checkedState = viewModel.selectedAllBtnStatus.value!!
+                if (binding.expandableListView.childCount > 0) {
+                    if (adapter.isSelectedAllItems()) {
+                        binding.testsCheckbox.setImageResource(R.drawable.check_box)
+                    } else if (adapter.isNotSelectedAnyGroupItem()) {
+                        binding.testsCheckbox.setImageResource(R.drawable.check_box_outline_blank)
+                    } else {
+                        binding.testsCheckbox.setImageResource(R.drawable.check_box_indeterminate)
+                    }
+                }
             }
 
             // This observer is used to change the state of the "Select All" button when a checkbox is clicked.
-            binding.testsCheckbox.addOnCheckedStateChangedListener { checkBox, state ->
-                viewModel.setSelectedAllBtnStatus(state)
-                adapter.notifyDataSetChanged()
+            binding.testsCheckbox.setOnClickListener { _ ->
+                if (adapter.isSelectedAllItems()) {
+                    viewModel.setSelectedAllBtnStatus(MaterialCheckBox.STATE_UNCHECKED)
+                    adapter.notifyDataSetChanged()
+                } else {
+                    viewModel.setSelectedAllBtnStatus(MaterialCheckBox.STATE_CHECKED)
+                    adapter.notifyDataSetChanged()
+                }
             }
 
             // This observer is used to finish the activity when the descriptor is added.
