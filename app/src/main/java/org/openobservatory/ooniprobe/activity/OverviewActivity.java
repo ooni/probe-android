@@ -27,7 +27,6 @@ import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkInfo;
 import androidx.work.WorkManager;
 
-import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.openobservatory.engine.BaseNettest;
@@ -104,41 +103,37 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
         binding.expandableListView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
             if (binding.expandableListView.getChildCount() > 0) {
                 if (adapter.isSelectedAllItems()) {
-                    binding.switchTests.setCheckedState(MaterialCheckBox.STATE_CHECKED);
+                    binding.switchTests.setImageResource(R.drawable.check_box);
                 } else if (adapter.isNotSelectedAnyGroupItem()) {
-                    binding.switchTests.setCheckedState(MaterialCheckBox.STATE_UNCHECKED);
+                    binding.switchTests.setImageResource(R.drawable.check_box_outline_blank);
                 } else {
-                    binding.switchTests.setCheckedState(MaterialCheckBox.STATE_INDETERMINATE);
+                    binding.switchTests.setImageResource(R.drawable.check_box_indeterminate);
                 }
             }
         });
 
-        binding.switchTests.addOnCheckedStateChangedListener((checkBox, state) -> {
-            switch (state) {
-                case MaterialCheckBox.STATE_CHECKED -> {
-                    viewModel.setSelectedAllBtnStatus(SELECT_ALL);
-                    adapter.notifyDataSetChanged();
-                }
-                case MaterialCheckBox.STATE_UNCHECKED -> {
-                    viewModel.setSelectedAllBtnStatus(SELECT_NONE);
-                    adapter.notifyDataSetChanged();
-                }
-                case MaterialCheckBox.STATE_INDETERMINATE -> {
-                    viewModel.setSelectedAllBtnStatus(SELECT_SOME);
-                    adapter.notifyDataSetChanged();
-                }
+        binding.switchTests.setOnClickListener( view -> {
+            if (adapter.isSelectedAllItems()){
+                viewModel.setSelectedAllBtnStatus(SELECT_NONE);
+                adapter.notifyDataSetChanged();
+            } else{
+                viewModel.setSelectedAllBtnStatus(SELECT_ALL);
+                adapter.notifyDataSetChanged();
             }
         });
 
         if (descriptor.getName().equals(OONITests.EXPERIMENTAL.getLabel())) {
-            binding.switchTests.setChecked(resolveStatus(preferenceManager, descriptor.getName(), descriptor.preferencePrefix(), true));
+            binding.switchTests.setImageResource(
+                    resolveStatus(preferenceManager, descriptor.getName(), descriptor.preferencePrefix(), true)?
+                            R.drawable.check_box : R.drawable.check_box_outline_blank
+            );
         } else {
             if (adapter.isSelectedAllItems()) {
-                binding.switchTests.setCheckedState(MaterialCheckBox.STATE_CHECKED);
+                binding.switchTests.setImageResource(R.drawable.check_box);
             } else if (adapter.isNotSelectedAnyGroupItem()) {
-                binding.switchTests.setCheckedState(MaterialCheckBox.STATE_UNCHECKED);
+                binding.switchTests.setImageResource(R.drawable.check_box_outline_blank);
             } else {
-                binding.switchTests.setCheckedState(MaterialCheckBox.STATE_INDETERMINATE);
+                binding.switchTests.setImageResource(R.drawable.check_box_indeterminate);
             }
         }
 

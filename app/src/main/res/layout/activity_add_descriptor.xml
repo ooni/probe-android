@@ -130,26 +130,32 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/settings" />
 
+
+                <ImageView
+                    android:id="@+id/tests_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/check_box_outline_blank"
+                    app:tint="@color/color_blue4"
+                    android:padding="@dimen/item_padding_small"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/automatic_updates_switch" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/AddDescriptor_AutoRun"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@id/tests_checkbox"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tests_checkbox"
                     app:layout_constraintTop_toTopOf="@id/tests_checkbox" />
-
-                <com.google.android.material.checkbox.MaterialCheckBox
-                    android:id="@+id/tests_checkbox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/automatic_updates_switch" />
 
                 <org.openobservatory.ooniprobe.common.views.CustomExpandableListView
                     android:id="@+id/expandable_list_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:groupIndicator="@null"
+                    android:paddingStart="32dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tests_checkbox"

@@ -78,6 +78,7 @@
                 android:childDivider="@android:color/transparent"
                 android:divider="@android:color/transparent"
                 android:groupIndicator="@null"
+                android:paddingHorizontal="@dimen/item_padding_small"
                 android:nestedScrollingEnabled="true"
                 android:listSelector="@android:color/transparent"
                 android:cacheColorHint="@android:color/transparent"
