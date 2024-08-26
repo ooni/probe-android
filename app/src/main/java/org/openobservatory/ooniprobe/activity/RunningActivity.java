@@ -2,14 +2,15 @@ package org.openobservatory.ooniprobe.activity;
 
 import static java.util.Locale.ENGLISH;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import org.openobservatory.ooniprobe.R;
@@ -73,7 +75,10 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                                               OnTestServiceStartedListener onTestServiceStartedListener,
                                               PreferenceManager iPreferenceManager) {
 
-        if (iPreferenceManager.shouldShowTestProgressConsent()){
+        if (iPreferenceManager.shouldShowTestProgressConsent() || ActivityCompat.checkSelfPermission(
+                context,
+                Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
+        ){
             context.startActivity(PromptActivity.newIntent(context, PromptActivity.Prompt.TEST_PROGRESS_CONSENT));
         }
 

@@ -54,20 +54,18 @@ public class PromptActivity extends AbstractActivity {
     private void registerPermissionRequest() {
         requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), (result) -> {
             if (!result) {
-                Snackbar.make(binding.getRoot(), "Please grant Notification permission from App Settings", Snackbar.LENGTH_LONG).setAction(R.string.Settings_Title, view -> {
-                    Intent intent = new Intent();
-                    intent.setAction("android.settings.APP_NOTIFICATION_SETTINGS");
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Intent intent = new Intent();
+                intent.setAction("android.settings.APP_NOTIFICATION_SETTINGS");
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                    //for Android 5-7
-                    intent.putExtra("app_package", getPackageName());
-                    intent.putExtra("app_uid", getApplicationInfo().uid);
+                //for Android 5-7
+                intent.putExtra("app_package", getPackageName());
+                intent.putExtra("app_uid", getApplicationInfo().uid);
 
-                    // for Android 8 and above
-                    intent.putExtra("android.provider.extra.APP_PACKAGE", getPackageName());
+                // for Android 8 and above
+                intent.putExtra("android.provider.extra.APP_PACKAGE", getPackageName());
 
-                    startActivity(intent);
-                }).show();
+                startActivity(intent);
             }
             setResult(result ? Activity.RESULT_OK : Activity.RESULT_CANCELED);
             finish();
