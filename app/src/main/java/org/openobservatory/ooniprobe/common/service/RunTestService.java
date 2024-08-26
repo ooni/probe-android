@@ -201,6 +201,9 @@ public class RunTestService extends Service {
      */
     public synchronized void interrupt() {
         task.interrupt();
+        if (task.isInterrupted()) {
+            ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE);
+        }
     }
 
     private class ProgressBroadcastReceiver extends BroadcastReceiver {
