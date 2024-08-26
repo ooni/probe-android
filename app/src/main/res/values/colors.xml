@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<color name="android_color_background">@color/color_gray1</color>
+	<color name="bottom_navigation_background">@color/color_gray0</color>
+	<color name="card_boarder">@color/color_gray3</color>
+	<color name="bottom_navigation_state_checked">@color/color_base</color>
+	<color name="bottom_navigation_state_unchecked">@color/color_gray9</color>
+	<color name="progress_background">@color/color_gray7</color>
+
 	<color name="color_black">#000000</color>
 	<color name="color_white">#ffffff</color>
 	<color name="color_base">#0588cb</color> <!-- color_blue5 -->
@@ -24,6 +31,9 @@
 	<color name="color_blue7">#056aa6</color>
 	<color name="color_blue8">#005f9c</color>   <!-- not_used -->
 	<color name="color_blue9">#005a99</color>   <!-- not_used -->
+	<color name="onboarding_background">#002B54</color>
+	<color name="onboarding_background_3">#001A33</color>
+	<color name="onboarding_background_2">#0F3E74</color>
 	<color name="color_indigo0">#edf2ff</color>   <!-- not_used -->
 	<color name="color_indigo1">#dbe4ff</color>   <!-- not_used -->
 	<color name="color_indigo2">#bac8ff</color>   <!-- not_used -->

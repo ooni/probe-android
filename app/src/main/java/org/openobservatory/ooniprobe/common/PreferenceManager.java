@@ -10,9 +10,11 @@ import androidx.annotation.VisibleForTesting;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.test.EngineProvider;
+import org.openobservatory.ooniprobe.test.test.*;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 
@@ -43,8 +45,8 @@ public class PreferenceManager {
 	public static final int COUNT_WEBSITE_CATEGORIES = 31;
 	public static final int ASK_UPDATE_APP = 16;
 
-	private final SharedPreferences sp;
-	private final Resources r;
+	final SharedPreferences sp;
+	final Resources r;
 
 	@Inject PreferenceManager(Context context) {
 		androidx.preference.PreferenceManager.setDefaultValues(context, R.xml.preferences_global, true);
@@ -354,9 +356,12 @@ public class PreferenceManager {
 	public String getSettingsLanguage() {
 		String language = sp.getString(r.getString(R.string.language_setting), Locale.getDefault().getLanguage());
 		if (language.equals("auto")) {
-			return Locale.getDefault().getLanguage();
+			language = Locale.getDefault().getLanguage();
 		}
-		return language;
+		if (Arrays.asList(r.getStringArray(R.array.language_sort_options_values)).contains(language)) {
+			return language;
+		}
+		return "en";
 	}
 
 	public void enableAutomatedTesting() {
@@ -407,4 +412,22 @@ public class PreferenceManager {
 		return sp.getBoolean(r.getString(R.string.long_running_tests_in_foreground), true);
 	}
 
+	public boolean resolveStatus(String name) {
+		return switch (name) {
+			case Dash.NAME -> isRunDash();
+			case FacebookMessenger.NAME -> isTestFacebookMessenger();
+			case HttpHeaderFieldManipulation.NAME ->isRunHttpHeaderFieldManipulation();
+			case HttpInvalidRequestLine.NAME -> isRunHttpInvalidRequestLine();
+			case Ndt.NAME -> isRunNdt();
+			case Psiphon.NAME -> isTestPsiphon();
+			case RiseupVPN.NAME -> isTestRiseupVPN();
+			case Signal.NAME -> isTestSignal();
+			case Telegram.NAME -> isTestTelegram();
+			case Tor.NAME -> isTestTor();
+			case WebConnectivity.NAME -> countEnabledCategory()>0;
+			case Whatsapp.NAME -> isTestWhatsapp();
+			case Experimental.NAME -> isExperimentalOn();
+			default -> false;
+		};
+	}
 }

@@ -43,7 +43,10 @@ public class Application extends android.app.Application {
 	ExecutorService executorService = Executors.newFixedThreadPool(4);
 
 	public AppComponent component;
-	@Inject AppLogger logger;
+    @Inject AppLogger logger;
+
+    @Inject
+    TestStateRepository testStateRepository;
 
 	@Override public void onCreate() {
 		super.onCreate();
@@ -64,7 +67,7 @@ public class Application extends android.app.Application {
 			Measurement.deleteOldLogs(Application.this);
 		});
 		ThirdPartyServices.reloadConsents(Application.this);
-		LocaleUtils.setLocale(new Locale(_preferenceManager.getSettingsLanguage()));
+		LocaleUtils.setLocale(_preferenceManager.getSettingsLanguage());
 		LocaleUtils.updateConfig(this, getBaseContext().getResources().getConfiguration());
 	}
 
@@ -100,10 +103,6 @@ public class Application extends android.app.Application {
 
 	public ActivityComponent getActivityComponent() { return component.activityComponent(); }
 
-	public OkHttpClient getOkHttpClient() {
-		return _okHttpClient;
-	}
-
 	public OONIAPIClient getApiClient() {
 		return _apiClient;
 	}
@@ -116,6 +115,9 @@ public class Application extends android.app.Application {
 		return logger;
 	}
 
+    public TestStateRepository getTestStateRepository() {
+        return testStateRepository;
+    }
 	public Gson getGson() {
 		return _gson;
 	}

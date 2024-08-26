@@ -8,10 +8,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.RobolectricAbstractTest;
+import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.factory.NetworkFactory;
 import org.openobservatory.ooniprobe.factory.ResultFactory;
-import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -88,7 +88,7 @@ public class NetworkTest extends RobolectricAbstractTest {
         // Arrange
         Network noResultNetwork = NetworkFactory.build();
         noResultNetwork.save();
-        Network resultNetwork = ResultFactory.createAndSave(new WebsitesSuite()).network;
+        Network resultNetwork = ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c)).network;
 
         // Act
         boolean noResultDelete = noResultNetwork.delete();

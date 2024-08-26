@@ -15,18 +15,18 @@ import static org.hamcrest.Matchers.containsString;
 import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.schibsted.spain.barista.rule.flaky.AllowFlaky;
-import com.schibsted.spain.barista.rule.flaky.FlakyTestRule;
+import com.adevinta.android.barista.rule.flaky.AllowFlaky;
+import com.adevinta.android.barista.rule.flaky.FlakyTestRule;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.factory.ResultFactory;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
-import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
 import org.openobservatory.ooniprobe.test.test.Dash;
 import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
 import org.openobservatory.ooniprobe.test.test.HttpInvalidRequestLine;
@@ -43,7 +43,7 @@ public class PerformanceTest extends MeasurementAbstractTest {
     @AllowFlaky(attempts = 3)
     public void testHeaderData() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new PerformanceSuite());
+        Result testResult = ResultFactory.createAndSave(OONITests.PERFORMANCE.toOONIDescriptor(c));
         Measurement dashMeasurement = testResult.getMeasurement(Dash.NAME);
         String videoQuality = getResourceString(dashMeasurement.getTestKeys().getVideoQuality(false));
 
@@ -90,7 +90,7 @@ public class PerformanceTest extends MeasurementAbstractTest {
     @Test
     public void testListOfMeasurements() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new PerformanceSuite());
+        Result testResult = ResultFactory.createAndSave(OONITests.PERFORMANCE.toOONIDescriptor(c));
         Measurement dashMeasurement = testResult.getMeasurement(Dash.NAME);
         String videoQuality = getResourceString(dashMeasurement.getTestKeys().getVideoQuality(true));
         String notDetected = getResourceString(R.string.TestResults_Overview_MiddleBoxes_NotFound);
@@ -146,7 +146,7 @@ public class PerformanceTest extends MeasurementAbstractTest {
     @Test
     public void testNDT() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new PerformanceSuite());
+        Result testResult = ResultFactory.createAndSave(OONITests.PERFORMANCE.toOONIDescriptor(c));
         Measurement ndtMeasurement = testResult.getMeasurement(Ndt.NAME);
         Integer ndtProtocol = ndtMeasurement.getTestKeys().protocol;
         TestKeys.Summary ndtSummary = ndtMeasurement.getTestKeys().summary;
@@ -192,7 +192,7 @@ public class PerformanceTest extends MeasurementAbstractTest {
     @Test
     public void testStreaming() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new PerformanceSuite());
+        Result testResult = ResultFactory.createAndSave(OONITests.PERFORMANCE.toOONIDescriptor(c));
         Measurement dashMeasurement = testResult.getMeasurement(Dash.NAME);
         String videoQuality = getResourceString(dashMeasurement.getTestKeys().getVideoQuality(true));
         String bitrateUnit = getResourceString(dashMeasurement.getTestKeys().getMedianBitrateUnit());
@@ -213,7 +213,7 @@ public class PerformanceTest extends MeasurementAbstractTest {
     @Test
     public void testRequestLine() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new PerformanceSuite());
+        Result testResult = ResultFactory.createAndSave(OONITests.PERFORMANCE.toOONIDescriptor(c));
         Measurement invalidRequest = testResult.getMeasurement(HttpInvalidRequestLine.NAME);
 
         // Act
@@ -228,7 +228,7 @@ public class PerformanceTest extends MeasurementAbstractTest {
     @Test
     public void testRequestLineDetection() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new PerformanceSuite(), 2, 2);
+        Result testResult = ResultFactory.createAndSave(OONITests.PERFORMANCE.toOONIDescriptor(c), 2, 2);
         Measurement invalidRequest = testResult.getMeasurement(HttpInvalidRequestLine.NAME);
 
         // Act
@@ -243,7 +243,7 @@ public class PerformanceTest extends MeasurementAbstractTest {
     @Test
     public void testFieldManipulation() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new PerformanceSuite());
+        Result testResult = ResultFactory.createAndSave(OONITests.PERFORMANCE.toOONIDescriptor(c));
         Measurement fieldManipulation = testResult.getMeasurement(HttpHeaderFieldManipulation.NAME);
 
         // Act
@@ -258,7 +258,7 @@ public class PerformanceTest extends MeasurementAbstractTest {
     @Test
     public void testFieldManipulationDetection() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new PerformanceSuite(), 2, 2);
+        Result testResult = ResultFactory.createAndSave(OONITests.PERFORMANCE.toOONIDescriptor(c), 2, 2);
         Measurement fieldManipulation = testResult.getMeasurement(HttpHeaderFieldManipulation.NAME);
 
         // Act

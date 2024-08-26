@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/onboarding_background_3"
+	android:orientation="vertical">
+
+	<include
+		android:layout_width="match_parent"
+		android:layout_height="180dp"
+		layout="@layout/banner"
+		android:layout_marginBottom="@dimen/onboarding_image_margin_bottom"/>
+
+	<TextView
+		android:id="@+id/crash_title"
+		style="@style/TextAppearance.MaterialComponents.Headline6"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center_horizontal"
+		android:text="@string/Onboarding_AutomatedTesting_Title"
+		android:textColor="@android:color/white" />
+
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_marginHorizontal="16dp"
+		android:layout_marginVertical="8dp"
+		android:layout_weight="1">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/Onboarding_AutomatedTesting_Paragraph"
+				android:textColor="@android:color/white" />
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/Modal_Autorun_Modal_Text_Android"
+				android:textColor="@android:color/white" />
+		</LinearLayout>
+	</ScrollView>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="16dp"
+		android:weightSum="1"
+		android:orientation="horizontal">
+
+		<Button
+			android:id="@+id/slave"
+			style="@style/TextAppearance.MaterialComponents.Body1"
+			android:layout_weight="0.5"
+			android:layout_width="0dp"
+			android:layout_height="64dp"
+			android:layout_marginHorizontal="16dp"
+			android:text="@string/Onboarding_Crash_Button_No"
+			android:textAllCaps="false"
+			android:textColor="@android:color/white"
+			app:strokeColor="@android:color/white"
+			app:strokeWidth="3dp"
+			app:backgroundTint="@color/onboarding_background_3"
+			app:cornerRadius="32dp" />
+
+		<Button
+			android:id="@+id/master"
+			style="@style/TextAppearance.MaterialComponents.Body1"
+			android:layout_weight="0.5"
+			android:layout_width="0dp"
+			android:layout_height="64dp"
+			android:layout_marginHorizontal="16dp"
+			android:text="@string/Onboarding_Crash_Button_Yes"
+			android:textAllCaps="false"
+			android:textColor="@color/onboarding_background"
+			app:backgroundTint="@android:color/white"
+			app:cornerRadius="32dp" />
+
+	</LinearLayout>
+
+
+	<ImageView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:layout_marginBottom="16dp"
+		android:src="@drawable/dots_3" />
+</LinearLayout>

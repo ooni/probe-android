@@ -13,23 +13,26 @@ android {
         applicationId 'org.openobservatory.ooniprobe'
         minSdk libs.versions.minSdk.get().toInteger()
         targetSdk libs.versions.targetSdk.get().toInteger()
-        versionName '3.8.8'
-        versionCode 116
+        versionName '3.8.9'
+        versionCode 117
 		testInstrumentationRunner "org.openobservatory.ooniprobe.TestAndroidJUnitRunner"
 		buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.io/"'
 		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://countly.ooni.io"'
+        buildConfigField 'String', 'OONI_RUN_DASHBOARD_URL', '"https://run.test.ooni.org"'
         resValue "string", "APP_ID", 'org.openobservatory.ooniprobe'
 		resValue "string", "APP_NAME", "OONI Probe"
 		buildConfigField 'String', 'SOFTWARE_NAME', 'BASE_SOFTWARE_NAME+IS_DEBUG'
 		buildConfigField 'String', 'COUNTLY_KEY', '"146836f41172f9e3287cab6f2cc347de3f5ddf3b"'
 		buildConfigField "boolean", "RUN_AUTOMATION", "false"
+		buildConfigField "boolean", "SHOW_DISABLED_CARDS", "true"
 	}
 
     buildTypes {
         debug {
-            testCoverageEnabled true
             buildConfigField 'String', 'IS_DEBUG', '"-debug"'
             buildConfigField 'String', 'COUNTLY_KEY', '"e6c2cfe53e85951d50567467cef3f9fa2eab32c3"'
+            enableUnitTestCoverage true
+            enableAndroidTestCoverage true
         }
 
         release {
@@ -46,11 +49,28 @@ android {
         }
     }
 
-    flavorDimensions 'testing', 'license'
+    flavorDimensions = ['brand', 'testing', 'license']
+
     productFlavors {
+        ooni {
+            getIsDefault().set(true)
+            dimension 'brand'
+        }
+        dw {
+            dimension 'brand'
+            applicationId 'com.dw.ooniprobe'
+            resValue "string", "APP_ID", 'com.dw.ooniprobe'
+            resValue "string", "APP_NAME", "News Media Scan"
+            buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"news-media-scan-android"'
+            buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.prod.ooni.io"'
+            buildConfigField 'String', 'OONI_RUN_DASHBOARD_URL', '"https://run-v2.ooni.org"'
+            buildConfigField "boolean", "SHOW_DISABLED_CARDS", "false"
+        }
         stable {
             dimension 'testing'
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android"'
+            buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.prod.ooni.io"'
+            buildConfigField 'String', 'OONI_RUN_DASHBOARD_URL', '"https://run-v2.ooni.org"'
         }
         dev {
             dimension 'testing'
@@ -58,8 +78,8 @@ android {
             versionNameSuffix resolveVersionSuffix('beta')
             versionCode resolveVersionCode()
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-dev"'
-            resValue "string", "APP_ID", 'org.openobservatory.ooniprobe.dev'
             resValue "string", "APP_NAME", "OONI Dev"
+            buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.dev.ooni.io"'
             buildConfigField 'String', 'COUNTLY_KEY', '"e6c2cfe53e85951d50567467cef3f9fa2eab32c3"'
         }
         experimental {
@@ -68,8 +88,8 @@ android {
             versionNameSuffix resolveVersionSuffix('experimental')
             versionCode resolveVersionCode()
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android-experimental"'
-            resValue "string", "APP_ID", 'org.openobservatory.ooniprobe.experimental'
             resValue "string", "APP_NAME", "OONI Exp"
+            buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.dev.ooni.io"'
             buildConfigField 'String', 'COUNTLY_KEY', '"e6c2cfe53e85951d50567467cef3f9fa2eab32c3"'
         }
         fdroid {
@@ -78,6 +98,16 @@ android {
         full {
             dimension 'license'
         }
+    }
+
+    bundle {
+        language {
+            enableSplit = false
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.resValue "string", "APP_ID", "\"${applicationId}\""
     }
     variantFilter { variant ->
         def names = variant.flavors*.name
@@ -88,18 +118,27 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
+        coreLibraryDesugaringEnabled = true
     }
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
+    }
+    dataBinding {
+        enabled = true
+        enabledForTests = true
     }
     namespace 'org.openobservatory.ooniprobe'
 }
 
 dependencies {
     implementation project(path: ':engine')
+
+    // Desugaring
+    coreLibraryDesugaring(libs.desugar.jdk.libs.nio)
 
 // AndroidX
     implementation libs.androidx.appcompat
@@ -108,6 +147,7 @@ dependencies {
     implementation libs.androidx.preference
     implementation libs.androidx.localbroadcastmanager
     implementation libs.androidx.legacy.support.v4
+    implementation libs.androidx.work.runtime
 
 // Google
     implementation libs.google.material
@@ -136,7 +176,7 @@ dependencies {
     fullImplementation libs.google.firebase.messaging
     fullImplementation libs.countly.sdk
     fullImplementation libs.sentry.android
-    fullImplementation libs.google.play.core
+    fullImplementation libs.google.play.appUpdate
 
 // Dependency Injection
     implementation libs.google.dagger.lib
@@ -149,11 +189,10 @@ dependencies {
     // Unit Testing
 	testImplementation project(':shared-test')
 	testImplementation libs.junit4
-    testImplementation libs.androidx.core
+    testImplementation libs.androidx.test.core
     testImplementation libs.androidx.runner
     testImplementation libs.androidx.rules
     testImplementation libs.mockito.core
-    testImplementation libs.mockito.inline
     testImplementation libs.robolectric
     testImplementation libs.faker
     testImplementation libs.ooni.oonimkall
