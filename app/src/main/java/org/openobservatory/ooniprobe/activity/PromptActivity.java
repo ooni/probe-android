@@ -54,6 +54,14 @@ public class PromptActivity extends AbstractActivity {
     private void registerPermissionRequest() {
         requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), (result) -> {
             if (!result) {
+                switch (prompt) {
+                    case CENSORSHIP_CONSENT:
+                        notificationManager.getUpdates(false);
+                        break;
+                    case TEST_PROGRESS_CONSENT:
+                        notificationManager.setTestProgressNotificationConsent(false);
+                        break;
+                }
                 Snackbar.make(binding.getRoot(), "Please grant Notification permission from App Settings", Snackbar.LENGTH_LONG).setAction(R.string.Settings_Title, view -> {
                     launchAppNotificationSettings();
                 }).show();

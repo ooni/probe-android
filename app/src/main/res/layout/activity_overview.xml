@@ -225,6 +225,7 @@
                                 android:id="@+id/switch_tests"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="-8dp"
                                 android:padding="@dimen/item_padding_small"
                                 android:src="@drawable/check_box_outline_blank"
                                 app:tint="@color/color_blue4"

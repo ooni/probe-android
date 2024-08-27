@@ -22,7 +22,7 @@
                 <action android:name="${applicationId}.nettest" />
 
                 <data
-                    android:host="run.test.ooni.org"
+                    android:host="@string/RUN_V2_DOMAIN"
                     android:pathPrefix="/v2"
                     android:scheme="https" />
             </intent-filter>

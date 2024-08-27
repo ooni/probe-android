@@ -144,7 +144,7 @@ class OoniRunV2Activity : AbstractActivity() {
      * The run id can be in two different formats:
      *
      * 1. ooni://runv2/link_id
-     * 2. https://run.test.ooni.org/v2/link_id
+     * 2. https://[run.ooni.org||run.test.ooni.org]/v2/link_id
      *
      * The run id is the `link_id` in the link.
      * If the Uri contains a link, but the `link_id` is not a number, null is returned.
@@ -166,12 +166,12 @@ class OoniRunV2Activity : AbstractActivity() {
                     return uri.pathSegments[0].toLong()
                 }
 
-                "run.test.ooni.org" -> {
+                getString(R.string.RUN_V2_DOMAIN) -> {
                     /*
                      * The run id is the second segment of the path.
                      * Launched when the system recognizes this app can open this link
                      * and launches the app when a link is clicked.
-                     * e.g. https://run.test.ooni.org/v2/link_id
+                     * e.g. https://[run.ooni.org||run.test.ooni.org]/v2/link_id
                      */
                     return uri.pathSegments[1].toLong()
                 }
