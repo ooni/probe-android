@@ -346,7 +346,7 @@ enum class OONITests(
         return """
         * [STUN Reachability](https://github.com/ooni/spec/blob/master/nettests/ts-025-stun-reachability.md)
 
-        * [Open VPN](https://github.com/ooni/spec/blob/master/nettests/ts-040-openvpn.md)
+        * [OpenVPN](https://github.com/ooni/spec/blob/master/nettests/ts-040-openvpn.md)
 
         * [RiseupVPN](https://ooni.org/nettest/riseupvpn/)
 
