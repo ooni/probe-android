@@ -63,16 +63,13 @@ abstract class AbstractDescriptor<T : BaseNettest>(
      * @return [MutableList] of [TestGroupItem] representing `tests`.
      */
     fun overviewExpandableListViewData(preferenceManager: PreferenceManager): MutableList<TestGroupItem> =
-        (nettests + longRunningTests.orEmpty()).map {
+        allTests().map {
             TestGroupItem(
-                selected = when (name) {
-                    OONITests.EXPERIMENTAL.label -> preferenceManager.isExperimentalOn
-                    else -> preferenceManager.resolveStatus(
-                        name = it.name,
-                        prefix = preferencePrefix(),
-                        autoRun = true,
-                    )
-                },
+                selected = preferenceManager.resolveStatus(
+                    name = it.name,
+                    prefix = preferencePrefix(),
+                    autoRun = true,
+                ),
                 name = it.name,
                 inputs = it.inputs,
             )
@@ -172,7 +169,7 @@ abstract class AbstractDescriptor<T : BaseNettest>(
     }
 
     fun allTests(): List<BaseNettest> {
-        return nettests + (longRunningTests ?: listOf())
+        return nettests + longRunningTests.orEmpty()
     }
 }
 

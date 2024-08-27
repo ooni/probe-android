@@ -23,16 +23,17 @@ private fun PreferenceManager.experimentalTestList(): MutableList<String> {
 fun PreferenceManager.resolveStatus(
     name: String, prefix: String, autoRun: Boolean = false
 ): Boolean {
-    if (!autoRun) {
-        if (experimentalTestList().contains(name)) {
-            return isExperimentalOn
-        }
+    if (prefix.isEmpty() && experimentalTestList().contains(name) && !autoRun) {
+        return isExperimentalOn
     }
-    val key = getPreferenceKey(name = name, prefix = prefix, autoRun = autoRun)
+    println(getPreferenceKey(name = name, prefix = prefix, autoRun = true))
     return if (autoRun) {
         sp.getBoolean(
-            getPreferenceKey(name = name, prefix = prefix, autoRun = autoRun),
-            resolveStatus(name = name, prefix = prefix)
+            getPreferenceKey(name = name, prefix = prefix, autoRun = true),
+            when(prefix.isEmpty()) {
+                true -> true
+                false -> false
+            }
         )
     } else {
         /**
