@@ -297,7 +297,7 @@ enum class OONITests(
         dataUsage = R.string.TestResults_NotAvailable,
         nettests = listOf(
             BaseNettest(name = "stunreachability"),
-            BaseNettest(name = "dnscheck"),
+            BaseNettest(name = "openvpn"),
             BaseNettest(name = "echcheck"),
         ),
         longRunningTests = listOf(
@@ -346,7 +346,7 @@ enum class OONITests(
         return """
         * [STUN Reachability](https://github.com/ooni/spec/blob/master/nettests/ts-025-stun-reachability.md)
 
-        * [DNS Check](https://github.com/ooni/spec/blob/master/nettests/ts-028-dnscheck.md)
+        * [Open VPN](https://github.com/ooni/spec/blob/master/nettests/ts-040-openvpn.md)
 
         * [RiseupVPN](https://ooni.org/nettest/riseupvpn/)
 

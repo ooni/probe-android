@@ -48,7 +48,7 @@ public class ExperimentalSuiteTest {
         assertEquals(Experimental.class, tests.get(1).getClass());
         assertEquals(Experimental.class, tests.get(2).getClass());
         assertEquals("stunreachability", tests.get(0).getName());
-        assertEquals("dnscheck", tests.get(1).getName());
+        assertEquals("openvpn", tests.get(1).getName());
         assertEquals("echcheck", tests.get(2).getName());
     }
 
@@ -68,7 +68,7 @@ public class ExperimentalSuiteTest {
         assertEquals(Experimental.class, tests.get(4).getClass());
 
         assertEquals("stunreachability", tests.get(0).getName());
-        assertEquals("dnscheck", tests.get(1).getName());
+        assertEquals("openvpn", tests.get(1).getName());
         assertEquals("echcheck", tests.get(2).getName());
         assertEquals("torsf", tests.get(3).getName());
         assertEquals("vanilla_tor", tests.get(4).getName());
