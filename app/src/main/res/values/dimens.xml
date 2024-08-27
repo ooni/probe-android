@@ -4,4 +4,6 @@
     <dimen name="item_padding_small">8dp</dimen>
     <dimen name="item_padding_large">16dp</dimen>
     <dimen name="onboarding_image_margin_bottom">0dp</dimen>
+    <dimen name="overview_test_group_list_padding">38dp</dimen>
+    <dimen name="overview_test_group_list_padding_small">8dp</dimen>
 </resources>

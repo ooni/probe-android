@@ -9,7 +9,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -72,6 +71,11 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                                               ArrayList<AbstractSuite> testSuites,
                                               OnTestServiceStartedListener onTestServiceStartedListener,
                                               PreferenceManager iPreferenceManager) {
+
+        if (iPreferenceManager.shouldShowTestProgressConsent()){
+            context.startActivity(PromptActivity.newIntent(context, PromptActivity.Prompt.TEST_PROGRESS_CONSENT));
+        }
+
         if (ReachabilityManager.getNetworkType(context).equals(ReachabilityManager.NO_INTERNET)) {
             new MessageDialogFragment.Builder()
                     .withTitle(context.getString(R.string.Modal_Error))

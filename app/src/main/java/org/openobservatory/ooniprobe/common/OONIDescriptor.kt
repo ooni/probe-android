@@ -170,6 +170,10 @@ abstract class AbstractDescriptor<T : BaseNettest>(
     fun hasPreferencePrefix(): Boolean {
         return !(name == OONITests.EXPERIMENTAL.label || name == OONITests.WEBSITES.label)
     }
+
+    fun allTests(): List<BaseNettest> {
+        return nettests + (longRunningTests ?: listOf())
+    }
 }
 
 open class OONIDescriptor<T : BaseNettest>(

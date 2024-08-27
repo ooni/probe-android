@@ -49,6 +49,7 @@ import org.openobservatory.ooniprobe.databinding.ActivityOverviewBinding;
 import org.openobservatory.ooniprobe.fragment.ConfirmDialogFragment;
 import org.openobservatory.ooniprobe.model.database.InstalledDescriptor;
 import org.openobservatory.ooniprobe.model.database.TestDescriptor;
+import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
 import java.io.Serializable;
 import java.util.Locale;
@@ -207,6 +208,10 @@ public class OverviewActivity extends ReviewUpdatesAbstractActivity implements C
 
         if (descriptor instanceof InstalledDescriptor installedDescriptor) {
             try {
+
+                if (installedDescriptor.allTests().size() == 1 && installedDescriptor.allTests().get(0).getName().equals(WebConnectivity.NAME)) {
+                    binding.expandableListView.setPadding(getResources().getDimensionPixelOffset(R.dimen.overview_test_group_list_padding_small),0,0,0);
+                }
                 if (Integer.parseInt(installedDescriptor.getTestDescriptor().getRevision()) > 1) {
                     getSupportFragmentManager().beginTransaction().replace(
                             binding.revisionsContainer.getId(),

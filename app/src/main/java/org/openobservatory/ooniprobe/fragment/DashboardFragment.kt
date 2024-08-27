@@ -121,6 +121,11 @@ class DashboardFragment : Fragment(), View.OnClickListener {
 
         binding.testsCompleted.isVisible = updatesViewModel.testRunComplete.value ?: false
 
+        if ((requireActivity().application as Application).isTestRunning) {
+            binding.runAll.visibility = View.GONE
+            binding.lastTested.visibility = View.GONE
+        }
+
     }
 
     fun updateDescriptors() {

@@ -21,6 +21,7 @@ android {
         buildConfigField 'String', 'OONI_RUN_DASHBOARD_URL', '"https://run.test.ooni.org"'
         resValue "string", "APP_ID", 'org.openobservatory.ooniprobe'
 		resValue "string", "APP_NAME", "OONI Probe"
+		resValue "string", "RUN_V2_DOMAIN", "run.test.ooni.org"
 		buildConfigField 'String', 'SOFTWARE_NAME', 'BASE_SOFTWARE_NAME+IS_DEBUG'
 		buildConfigField 'String', 'COUNTLY_KEY', '"146836f41172f9e3287cab6f2cc347de3f5ddf3b"'
 		buildConfigField "boolean", "RUN_AUTOMATION", "false"
@@ -71,6 +72,7 @@ android {
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android"'
             buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.prod.ooni.io"'
             buildConfigField 'String', 'OONI_RUN_DASHBOARD_URL', '"https://run-v2.ooni.org"'
+            resValue "string", "RUN_V2_DOMAIN", "run.ooni.org"
         }
         dev {
             dimension 'testing'
