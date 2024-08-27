@@ -61,6 +61,7 @@ class RunTestsExpandableListViewAdapter(
         convertView.findViewById<ImageView>(R.id.child_select).apply {
             visibility = View.GONE
         }
+        convertView.setPadding(parent.context.resources.getDimensionPixelOffset(R.dimen.item_padding_prefix), 0, 0, 0)
         return convertView
     }
 }

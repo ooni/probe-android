@@ -14,7 +14,7 @@
         android:layout_height="250dp"
         android:paddingTop="50dp"
         android:paddingBottom="50dp"
-        android:src="@drawable/ooni_phone"
+        android:src="@drawable/logo"
         android:contentDescription="@string/APP_NAME"
         app:layout_constraintBaseline_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

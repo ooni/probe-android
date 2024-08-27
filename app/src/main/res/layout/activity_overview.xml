@@ -217,8 +217,8 @@
                             android:id="@+id/header_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/item_padding_small"
-                            android:layout_marginEnd="@dimen/item_padding_small"
+                            android:layout_marginStart="@dimen/item_padding_large"
+                            android:layout_marginEnd="@dimen/item_padding_large"
                             android:layout_below="@+id/automatic_updates_container">
 
                             <ImageView
@@ -246,7 +246,7 @@
                         android:childDivider="@android:color/transparent"
                         android:divider="@android:color/transparent"
                         android:groupIndicator="@null"
-                        android:paddingStart="38dp"
+                        android:paddingStart="@dimen/overview_test_group_list_padding"
                         app:layout_constraintTop_toBottomOf="@id/header"
                         tools:listitem="@layout/overview_test_group_list_item" />
 
