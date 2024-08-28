@@ -1,7 +1,7 @@
 [versions]
 androidGradlePlugin = "8.5.1"
 barista = "4.0.0"
-countlySdk = "24.7.0"
+countlySdk = "24.7.2"
 desugar_jdk_libs_nio = "2.0.4"
 faker = "2.0.4"
 mockito = "5.12.0"
