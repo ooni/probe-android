@@ -6,8 +6,8 @@ import androidx.test.core.app.ActivityScenario;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ServiceTestRule;
 
-import com.schibsted.spain.barista.rule.flaky.AllowFlaky;
-import com.schibsted.spain.barista.rule.flaky.FlakyTestRule;
+import com.adevinta.android.barista.rule.flaky.AllowFlaky;
+import com.adevinta.android.barista.rule.flaky.FlakyTestRule;
 
 import org.junit.After;
 import org.junit.Rule;

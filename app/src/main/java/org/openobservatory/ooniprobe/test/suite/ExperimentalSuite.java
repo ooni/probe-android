@@ -41,7 +41,7 @@ public class ExperimentalSuite extends AbstractSuite {
             ArrayList<AbstractTest> list = new ArrayList<>();
             if (pm == null || pm.isExperimentalOn()){
                 list.add(new Experimental("stunreachability"));
-                list.add(new Experimental("dnscheck"));
+                list.add(new Experimental("openvpn"));
                 list.add(new Experimental("echcheck"));
 				if ((pm == null || pm.isLongRunningTestsInForeground()) || getAutoRun()){
 					list.add(new Experimental("torsf"));
