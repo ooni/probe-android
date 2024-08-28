@@ -5,15 +5,14 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.StringRes;
-import androidx.core.content.ContextCompat;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -114,12 +113,15 @@ public class PromptActivity extends AbstractActivity {
     }
 
     public void requestNotificationPermission() {
-        if (ContextCompat.checkSelfPermission(
-                this, Manifest.permission.POST_NOTIFICATIONS)
-                != PackageManager.PERMISSION_GRANTED) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
-            }
+        boolean showRationale = ActivityCompat.shouldShowRequestPermissionRationale(PromptActivity.this, Manifest.permission.POST_NOTIFICATIONS);
+
+        if (showRationale){
+            requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+        } else {
+            launchAppNotificationSettings();
+
+            setResult(Activity.RESULT_OK);
+            finish();
         }
     }
 
@@ -164,9 +166,7 @@ public class PromptActivity extends AbstractActivity {
         @Override
         public void onClickPositive(View view) {
             notificationManager.getUpdates(true);
-            if (ContextCompat.checkSelfPermission(
-                    PromptActivity.this,
-                    Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED){
+            if (NotificationManagerCompat.from(PromptActivity.this).areNotificationsEnabled()){
                 PromptActivity.this.requestNotificationPermission();
             } else {
                 setResult(Activity.RESULT_OK);
@@ -192,9 +192,7 @@ public class PromptActivity extends AbstractActivity {
         @Override
         public void onClickPositive(View view) {
             notificationManager.setTestProgressNotificationConsent(true);
-            if (ContextCompat.checkSelfPermission(
-                    PromptActivity.this,
-                    Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED){
+            if (!NotificationManagerCompat.from(PromptActivity.this).areNotificationsEnabled()){
                 PromptActivity.this.requestNotificationPermission();
             } else {
                 setResult(Activity.RESULT_OK);
