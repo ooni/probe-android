@@ -46,15 +46,19 @@ class DashboardAdapter(
         when (holder.itemViewType) {
             VIEW_TYPE_TITLE -> {
                 val separator = holder as CardGroupTitleViewHolder
-                separator.binding.root.text = item as String
+                separator.binding.root.text = when(item) {
+                    is String -> item
+                    is Int -> holder.itemView.context.getString(item)
+                    else -> ""
+                }
             }
 
             VIEW_TYPE_CARD -> {
                 val cardHolder = holder as CardViewHolder
                 if (item is AbstractDescriptor<*>) {
                     cardHolder.binding.apply {
-                        title.setText(item.title)
-                        desc.setText(item.shortDescription)
+                        title.text = item.title
+                        desc.text = item.shortDescription
                         icon.setImageResource(item.getDisplayIcon(holder.itemView.context)).also {
                             if (item is InstalledDescriptor) {
                                 icon.setColorFilter(item.color)
@@ -84,6 +88,7 @@ class DashboardAdapter(
     override fun getItemViewType(position: Int): Int {
         return when (items[position]) {
             is String -> VIEW_TYPE_TITLE
+            is Int -> VIEW_TYPE_TITLE
             else -> VIEW_TYPE_CARD
         }
     }

@@ -44,7 +44,10 @@ class DefaultDescriptors {
                             ooniRunDescriptor.toTestDescriptor().apply {
 
                                 ooniRunDescriptor.nettests.forEach { nettest ->
-                                    (context as? Application)?.preferenceManager?.enableTest(nettest.name, preferencePrefix())
+                                    (context as? Application)?.preferenceManager?.let {
+                                        it.enableTest(nettest.name, preferencePrefix())
+                                        it.enableTest(nettest.name, preferencePrefix(),true)
+                                    }
                                 }
 
                                 isAutoUpdate = true

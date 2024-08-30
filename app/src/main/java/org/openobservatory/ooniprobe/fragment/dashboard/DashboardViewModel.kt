@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.openobservatory.engine.BaseNettest
+import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.common.AbstractDescriptor
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.common.TestDescriptorManager
@@ -20,8 +21,6 @@ class DashboardViewModel @Inject constructor(
 ) : ViewModel(), DefaultLifecycleObserver {
     private var pendingUpdates: MutableLiveData<List<ITestDescriptor>> = MutableLiveData()
     private var ooniRunDescriptors: List<InstalledDescriptor> = emptyList()
-    private val oonTestsTitle: String = "OONI Tests"
-    private val oonRunLinksTitle: String = "OONI RUN Links"
     private val oonTests = descriptorManager.getDescriptors()
     private val groupedItemList = MutableLiveData<List<Any>>()
     private val items = MutableLiveData<List<AbstractDescriptor<BaseNettest>>>(oonTests)
@@ -62,7 +61,7 @@ class DashboardViewModel @Inject constructor(
 
         val groupedItems = items.value!!.groupBy {
             return@groupBy if (oonTests.contains(it)) {
-                oonTestsTitle
+                R.string.Dashboard_RunV2_Ooni_Title
             } else {
                 ""
             }
@@ -75,7 +74,7 @@ class DashboardViewModel @Inject constructor(
         }
         if (ooniRunDescriptors.isNotEmpty()) {
             if (groupedItems.isNotEmpty()) {
-                groupedItemList.add(oonRunLinksTitle)
+                groupedItemList.add(R.string.Dashboard_RunV2_Title)
             }
             groupedItemList.addAll(ooniRunDescriptors)
         }

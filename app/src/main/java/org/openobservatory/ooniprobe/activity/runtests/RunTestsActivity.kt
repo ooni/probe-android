@@ -94,9 +94,9 @@ class RunTestsActivity : AbstractActivity() {
             _descriptors.groupBy { it.javaClass }.forEach { (type, itemList) ->
                 if (BuildConfig.FLAVOR_brand != "dw") {
                     if (type == OONIDescriptor::class.java) {
-                        groupedItemList.add("OONI Tests".uppercase())
+                        groupedItemList.add(getString(R.string.Dashboard_RunV2_Ooni_Title).uppercase())
                     } else {
-                        groupedItemList.add("OONI RUN Links".uppercase())
+                        groupedItemList.add(getString(R.string.Dashboard_RunV2_Title).uppercase())
                     }
                 }
                 groupedItemList.addAll(itemList.map { descriptor ->
@@ -158,7 +158,7 @@ class RunTestsActivity : AbstractActivity() {
                 preferenceManager
             )
         } else {
-            Toast.makeText(this@RunTestsActivity, "Please select test to run", Toast.LENGTH_LONG)
+            Toast.makeText(this@RunTestsActivity, R.string.Dashboard_RunTests_RunButton_Empty, Toast.LENGTH_LONG)
                 .show()
         }
     }

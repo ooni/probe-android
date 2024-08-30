@@ -56,7 +56,7 @@ class OverviewTestsExpandableListViewAdapter(
                 view.findViewById<TextView>(R.id.group_name).text = when (testSuite) {
                     is Experimental -> testSuite.name
                     is WebConnectivity -> when (BuildConfig.FLAVOR_brand == "dw") {
-                        true -> "Test websites automatically"
+                        true -> parent.context.getString(R.string.Dashboard_Runv2_Overview_TestWebsites)
                         else -> parent.context.resources.getText(testSuite.labelResId)
                     }
                     else -> parent.context.resources.getText(testSuite.labelResId)
