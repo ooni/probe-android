@@ -1,5 +1,7 @@
 package org.openobservatory.ooniprobe.fragment
 
+import android.Manifest
+import android.app.Activity
 import android.os.Bundle
 import android.text.format.DateUtils
 import android.view.LayoutInflater
@@ -7,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,16 +18,17 @@ import org.openobservatory.ooniprobe.R
 import org.openobservatory.ooniprobe.activity.AbstractActivity
 import org.openobservatory.ooniprobe.activity.MainActivity
 import org.openobservatory.ooniprobe.activity.OverviewActivity
-import org.openobservatory.ooniprobe.common.AppUpdatesViewModel
 import org.openobservatory.ooniprobe.activity.runtests.RunTestsActivity
 import org.openobservatory.ooniprobe.adapters.DashboardAdapter
 import org.openobservatory.ooniprobe.common.AbstractDescriptor
+import org.openobservatory.ooniprobe.common.AppUpdatesViewModel
 import org.openobservatory.ooniprobe.common.Application
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.common.ReachabilityManager
 import org.openobservatory.ooniprobe.common.TestGroupStatus
 import org.openobservatory.ooniprobe.common.TestStateRepository
 import org.openobservatory.ooniprobe.common.ThirdPartyServices
+import org.openobservatory.ooniprobe.common.service.ServiceUtil
 import org.openobservatory.ooniprobe.databinding.FragmentDashboardBinding
 import org.openobservatory.ooniprobe.fragment.dashboard.DashboardViewModel
 import org.openobservatory.ooniprobe.model.database.Result
@@ -149,7 +153,20 @@ class DashboardFragment : Fragment(), View.OnClickListener {
     }
 
     private fun runAll() {
-        ActivityCompat.startActivity(requireContext(), RunTestsActivity.newIntent(requireContext(), descriptors), null)
+        if (NotificationManagerCompat.from(requireContext()).areNotificationsEnabled()){
+            ActivityCompat.startActivity(requireContext(), RunTestsActivity.newIntent(requireContext(), descriptors), null)
+        } else {
+            val showRationale = ActivityCompat.shouldShowRequestPermissionRationale(
+                requireActivity(),
+                Manifest.permission.POST_NOTIFICATIONS
+            )
+
+            if (showRationale) {
+                (requireActivity() as MainActivity).requestNotificationPermission()
+            } else {
+                ServiceUtil.launchNotificationSettings(requireContext())
+            }
+        }
     }
 
     private fun onTestServiceStartedListener() = try {

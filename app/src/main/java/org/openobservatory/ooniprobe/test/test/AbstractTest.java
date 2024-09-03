@@ -49,6 +49,7 @@ public abstract class AbstractTest implements Serializable {
     private final int urlResId;
     private final int runtime;
     private List<String> inputs;
+    private Long ooniRunLinkId;
     private Integer max_runtime;
     private Network network;
 
@@ -78,6 +79,9 @@ public abstract class AbstractTest implements Serializable {
         settings.inputs = inputs;
         settings.setMaxRuntime(max_runtime);
         settings.setOrigin(origin);
+        if (ooniRunLinkId != null && ooniRunLinkId > 0) {
+            settings.setOoniRunLinkId(ooniRunLinkId);
+        }
         measurements = new SparseArray<>();
 
         ThirdPartyServices.addLogExtra("settings", ((Application) c.getApplicationContext()).getGson().toJson(settings));
@@ -349,6 +353,10 @@ public abstract class AbstractTest implements Serializable {
 
     public void setInputs(List<String> inputs) {
         this.inputs = inputs;
+    }
+
+    public void setOoniRunLinkId(Long ooniRunLinkId) {
+        this.ooniRunLinkId = ooniRunLinkId;
     }
 
     public Integer getMax_runtime() {

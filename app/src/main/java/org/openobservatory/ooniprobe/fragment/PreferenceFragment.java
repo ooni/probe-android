@@ -3,11 +3,9 @@ package org.openobservatory.ooniprobe.fragment;
 import static org.openobservatory.ooniprobe.common.PreferenceManager.COUNT_WEBSITE_CATEGORIES;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,19 +17,19 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultCallerLauncher;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.XmlRes;
-import androidx.core.content.ContextCompat;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceScreen;
-import androidx.preference.SwitchPreferenceCompat;
+
 import org.apache.commons.io.FileUtils;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.R;
@@ -42,10 +40,6 @@ import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.model.database.Measurement;
-
-import java.util.Arrays;
-
-import javax.inject.Inject;
 
 import localhost.toolkit.app.fragment.MessageDialogFragment;
 import localhost.toolkit.preference.ExtendedPreferenceFragment;
@@ -162,6 +156,19 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
         Preference preference = findPreference(key);
         if (key.equals(getString(R.string.automated_testing_enabled))) {
             if (sharedPreferences.getBoolean(key, false)) {
+                if (!NotificationManagerCompat.from(requireContext()).areNotificationsEnabled()) {
+
+                    boolean showRationale = ActivityCompat.shouldShowRequestPermissionRationale(
+                            requireActivity(),
+                            Manifest.permission.POST_NOTIFICATIONS
+                    );
+
+                    if (showRationale) {
+                        requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+                    } else {
+                        ServiceUtil.launchNotificationSettings(getContext());
+                    }
+                }
                 //For API < 23 we ignore battery optimization
                 boolean isIgnoringBatteryOptimizations = true;
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
@@ -174,8 +181,9 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
                     intent.setData(Uri.parse("package:" + getActivity().getPackageName()));
                     startActivityForResult(intent, PreferenceManager.IGNORE_OPTIMIZATION_REQUEST);
                 }
-                else
+                else {
                     ServiceUtil.scheduleJob(getContext());
+                }
             }
             else {
                 ServiceUtil.stopJob(getContext());
@@ -187,15 +195,6 @@ public class PreferenceFragment extends ExtendedPreferenceFragment<PreferenceFra
 
             ServiceUtil.stopJob(getContext());
             ServiceUtil.scheduleJob(getContext());
-        }
-        if (key.equals(getString(R.string.test_progress_notifications_enabled))){
-            if (ContextCompat.checkSelfPermission(
-                    getContext(), Manifest.permission.POST_NOTIFICATIONS)
-                    != PackageManager.PERMISSION_GRANTED) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
-                }
-            }
         }
         if (key.equals(getString(R.string.send_crash)) ||
                 key.equals(getString(R.string.notifications_enabled))){

@@ -2,14 +2,12 @@ package org.openobservatory.ooniprobe.activity;
 
 import static java.util.Locale.ENGLISH;
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
@@ -18,8 +16,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import org.openobservatory.ooniprobe.R;
@@ -75,10 +71,6 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                                               ArrayList<AbstractSuite> testSuites,
                                               OnTestServiceStartedListener onTestServiceStartedListener,
                                               PreferenceManager iPreferenceManager) {
-
-        if (iPreferenceManager.shouldShowTestProgressConsent() || ! NotificationManagerCompat.from(context).areNotificationsEnabled()){
-            context.startActivity(PromptActivity.newIntent(context, PromptActivity.Prompt.TEST_PROGRESS_CONSENT));
-        }
 
         if (ReachabilityManager.getNetworkType(context).equals(ReachabilityManager.NO_INTERNET)) {
             new MessageDialogFragment.Builder()
