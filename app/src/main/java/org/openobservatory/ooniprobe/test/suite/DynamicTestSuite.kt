@@ -47,6 +47,9 @@ class DynamicTestSuite(
                 if (autoRun) {
                     setOrigin(AbstractTest.AUTORUN)
                 }
+                descriptor?.let { descriptor ->
+                    setOoniRunLinkId(descriptor.runId)
+                }
                 inputs = it.inputs
             }
         }.run {
@@ -55,6 +58,9 @@ class DynamicTestSuite(
                 this + (longRunningTests?.map {
                     AbstractTest.getTestByName(it.name).apply {
                         setOrigin(AbstractTest.AUTORUN)
+                        descriptor?.let { descriptor ->
+                            setOoniRunLinkId(descriptor.runId)
+                        }
                         inputs = it.inputs
                     }
                 }.orEmpty())
