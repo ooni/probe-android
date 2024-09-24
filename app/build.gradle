@@ -16,7 +16,7 @@ android {
         versionName '3.9.0-beta'
         versionCode 119
 		testInstrumentationRunner "org.openobservatory.ooniprobe.TestAndroidJUnitRunner"
-        buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.prod.ooni.io"'
+        buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.ooni.org"'
 		buildConfigField 'String', 'NOTIFICATION_SERVER', '"https://countly.ooni.io"'
         buildConfigField 'String', 'OONI_RUN_DASHBOARD_URL', '"https://run.ooni.org"'
         resValue "string", "APP_ID", 'org.openobservatory.ooniprobe'
@@ -63,14 +63,11 @@ android {
             resValue "string", "APP_ID", 'com.dw.ooniprobe'
             resValue "string", "APP_NAME", "News Media Scan"
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"news-media-scan-android"'
-            buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.prod.ooni.io"'
             buildConfigField "boolean", "SHOW_DISABLED_CARDS", "false"
         }
         stable {
             dimension 'testing'
             buildConfigField 'String', 'BASE_SOFTWARE_NAME', '"ooniprobe-android"'
-            buildConfigField 'String', 'OONI_API_BASE_URL', '"https://api.prod.ooni.io"'
-            buildConfigField 'String', 'OONI_RUN_DASHBOARD_URL', '"https://run.ooni.org"'
         }
         dev {
             dimension 'testing'

@@ -58,7 +58,7 @@ public class MeasurementsManager {
     }
 
     public String getExplorerUrl(Measurement measurement) {
-        String url = "https://explorer.ooni.io/measurement/" + measurement.report_id;
+        String url = "https://explorer.ooni.org/measurement/" + measurement.report_id;
         if (measurement.test_name.equals("web_connectivity"))
             url = url + "?input=" + measurement.url.url;
         return url;
