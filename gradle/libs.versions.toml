@@ -39,7 +39,7 @@ compileSdk = "34"
 lottie = "6.5.2"
 markwon = "4.6.2"
 shapeofview = "1.4.7"
-targetSdk = "34"
+targetSdk = "35"
 minSdk = "21"
 oonimkall = "2024.08.08-091959"
 
