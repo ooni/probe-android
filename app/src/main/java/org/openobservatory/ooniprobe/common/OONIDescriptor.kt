@@ -345,8 +345,6 @@ enum class OONITests(
 
         * [OpenVPN](https://github.com/ooni/spec/blob/master/nettests/ts-040-openvpn.md)
 
-        * [RiseupVPN](https://ooni.org/nettest/riseupvpn/)
-
         * [ECH Check](https://github.com/ooni/spec/blob/master/nettests/ts-039-echcheck.md)
 
         * [Tor Snowflake](https://ooni.org/nettest/tor-snowflake/) ${

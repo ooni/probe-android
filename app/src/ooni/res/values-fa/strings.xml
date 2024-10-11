@@ -542,7 +542,7 @@
   <string name="Dashboard_Runv2_Overview_Description">Created by %s on %s\n\n%s</string>
   <string name="Dashboard_Runv2_Overview_UninstallLink">Uninstall Link</string>
   <string name="Dashboard_Runv2_Overview_ReviewUpdates">Review Updates</string>
-  <string name="Dashboard_Runv2_Overview_PreviousRevisions">Previous revisions</string>
+  <string name="Dashboard_Runv2_Overview_PreviousRevisions">بازنگری‌های قبلی</string>
   <string name="Dashboard_Runv2_Overview_Uninstall_Prompt">You will be able to install this link again only from the original link sent by the creator.</string>
   <string name="Dashboard_Runv2_Overview_SeeMore">See More</string>
   <string name="Dashboard_Runv2_Overview_TestWebsites">Test websites automatically</string>
@@ -550,7 +550,7 @@
   <string name="Dashboard_RunV2_Ooni_Title">OONI Tests</string>
   <string name="Dashboard_RunV2_Title">OONI Run Links</string>
   <string name="Dashboard_RunV2_RunFinished">Run finished. Tap to view results.</string>
-  <string name="Dashboard_RunV2_ExpiredTag">EXPIRED</string>
+  <string name="Dashboard_RunV2_ExpiredTag">منقضی شد</string>
   <string name="Dashboard_RunV2_UpdatedTag">UPDATED</string>
   <string name="AddDescriptor_Title">Install New Link</string>
   <string name="AddDescriptor_Author">نویسنده:</string>
