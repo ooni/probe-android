@@ -9,7 +9,6 @@ import java.util.Locale;
 
 public class LocaleUtils {
 
-
     private static Locale sLocale;
 
     /**
@@ -49,5 +48,9 @@ public class LocaleUtils {
             Resources res = app.getBaseContext().getResources();
             res.updateConfiguration(config, res.getDisplayMetrics());
         }
+    }
+
+    public static Locale getLocale() {
+        return sLocale;
     }
 }

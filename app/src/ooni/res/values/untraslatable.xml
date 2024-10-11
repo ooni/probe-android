@@ -26,6 +26,7 @@
         <item>Türkçe</item>
         <item>Tiếng Việt</item>
         <item>မြန်မာ</item>
+        <item>ខ្មែរ</item>
     </string-array>
     <string-array name="language_sort_options_values">
         <item>auto</item>
@@ -54,5 +55,6 @@
         <item>tr</item>
         <item>vi</item>
         <item>my</item>
+        <item>km</item>
     </string-array>
 </resources>

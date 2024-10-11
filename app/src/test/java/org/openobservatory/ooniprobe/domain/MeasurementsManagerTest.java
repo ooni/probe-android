@@ -11,6 +11,7 @@ import org.openobservatory.ooniprobe.RobolectricAbstractTest;
 import org.openobservatory.ooniprobe.client.OONIAPIClient;
 import org.openobservatory.ooniprobe.client.callback.CheckReportIdCallback;
 import org.openobservatory.ooniprobe.common.JsonPrinter;
+import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.domain.callback.DomainCallback;
 import org.openobservatory.ooniprobe.domain.callback.GetMeasurementsCallback;
 import org.openobservatory.ooniprobe.factory.MeasurementFactory;
@@ -20,7 +21,6 @@ import org.openobservatory.ooniprobe.model.api.ApiMeasurement;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Measurement_Table;
 import org.openobservatory.ooniprobe.model.database.Result;
-import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 
 import java.io.File;
 import java.io.IOException;
@@ -80,7 +80,7 @@ public class MeasurementsManagerTest extends RobolectricAbstractTest {
     public void testCanUpload() {
         // Arrange
         List<Measurement> measurements =
-                ResultFactory.createAndSave(new WebsitesSuite(), 1, 0, false)
+                ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c), 1, 0, false)
                         .getMeasurements();
 
         MeasurementFactory.addEntryFiles(c, measurements, false);
@@ -223,7 +223,7 @@ public class MeasurementsManagerTest extends RobolectricAbstractTest {
     @Test
     public void testUploadableReports() {
         // Arrange
-        Result testResult = ResultFactory.createAndSave(new WebsitesSuite(), 5, 0, false);
+        Result testResult = ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c), 5, 0, false);
         MeasurementFactory.addEntryFiles(c, testResult.getMeasurements(), false);
         testResult.save();
 
@@ -237,7 +237,7 @@ public class MeasurementsManagerTest extends RobolectricAbstractTest {
     @Test
     public void testNoUploadableReports() {
         // Arrange
-        ResultFactory.createAndSave(new WebsitesSuite());
+        ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c));
 
         // Act
         boolean hasReports = manager.hasUploadables();
@@ -276,7 +276,7 @@ public class MeasurementsManagerTest extends RobolectricAbstractTest {
     public void getReadableEntry() throws IOException {
         // Arrange
         Measurement measurement =
-                ResultFactory.createAndSaveWithEntryFiles(c, new WebsitesSuite(), 1, 0, false)
+                ResultFactory.createAndSaveWithEntryFiles(c, OONITests.WEBSITES.toOONIDescriptor(c), 1, 0, false)
                         .getMeasurements().get(0);
         when(jsonPrinter.prettyText("test")).thenReturn("pretty test");
 
@@ -336,7 +336,7 @@ public class MeasurementsManagerTest extends RobolectricAbstractTest {
     @Test
     public void downloadReportFailTest() {
         // Arrange
-        Measurement measurement = ResultFactory.createAndSave(new WebsitesSuite()).getMeasurements().get(0);
+        Measurement measurement = ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c)).getMeasurements().get(0);
         ApiMeasurement.Result result = new ApiMeasurement.Result();
         result.measurement_url = faker.internet.url();
         String failedCallbackResponse = "Something went wrong";
@@ -424,7 +424,7 @@ public class MeasurementsManagerTest extends RobolectricAbstractTest {
             String fileContent = "{}";
             Measurement measurement = ResultFactory.createAndSaveWithEntryFiles(
                     c,
-                    new WebsitesSuite(),
+                    OONITests.WEBSITES.toOONIDescriptor(c),
                     5,
                     0,
                     false
@@ -462,7 +462,7 @@ public class MeasurementsManagerTest extends RobolectricAbstractTest {
     }
 
     private Measurement buildMeasurement() {
-        return ResultFactory.createAndSave(new WebsitesSuite())
+        return ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c))
                 .getMeasurements()
                 .get(0);
     }

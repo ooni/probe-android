@@ -77,6 +77,10 @@ public class Settings {
 		annotations.origin = origin;
 	}
 
+	public void setOoniRunLinkId(Long ooniRunLinkId) {
+		annotations.ooniRunLinkId = String.valueOf(ooniRunLinkId);
+	}
+
 	private class OONIMKTaskConfigAdapter implements OONIMKTaskConfig {
 		private String serialized;
 		private Settings settings;
@@ -102,6 +106,8 @@ public class Settings {
 		public final String flavor;
 		@SerializedName("origin")
 		public String origin;
+		@SerializedName("ooni_run_link_id")
+		public String ooniRunLinkId;
 
 		public Annotations(Context c) {
 			this.network_type = ReachabilityManager.getNetworkType(c);

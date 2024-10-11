@@ -18,9 +18,9 @@ import org.openobservatory.engine.OONIMKTask;
 import org.openobservatory.ooniprobe.common.AppLogger;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.MKException;
+import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
-import org.openobservatory.ooniprobe.common.ResubmitTask;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.model.database.Measurement;
 import org.openobservatory.ooniprobe.model.database.Network;
@@ -30,7 +30,6 @@ import org.openobservatory.ooniprobe.model.jsonresult.EventResult;
 import org.openobservatory.ooniprobe.model.jsonresult.JsonResult;
 import org.openobservatory.ooniprobe.model.settings.Settings;
 import org.openobservatory.ooniprobe.test.EngineProvider;
-import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 
 import java.io.File;
 import java.io.Serializable;
@@ -38,8 +37,6 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Objects;
-
-import javax.inject.Inject;
 
 public abstract class AbstractTest implements Serializable {
     private static final String UNUSED_KEY = "UNUSED_KEY";
@@ -52,6 +49,7 @@ public abstract class AbstractTest implements Serializable {
     private final int urlResId;
     private final int runtime;
     private List<String> inputs;
+    private Long ooniRunLinkId;
     private Integer max_runtime;
     private Network network;
 
@@ -81,6 +79,9 @@ public abstract class AbstractTest implements Serializable {
         settings.inputs = inputs;
         settings.setMaxRuntime(max_runtime);
         settings.setOrigin(origin);
+        if (ooniRunLinkId != null && ooniRunLinkId > 0) {
+            settings.setOoniRunLinkId(ooniRunLinkId);
+        }
         measurements = new SparseArray<>();
 
         ThirdPartyServices.addLogExtra("settings", ((Application) c.getApplicationContext()).getGson().toJson(settings));
@@ -90,11 +91,11 @@ public abstract class AbstractTest implements Serializable {
         } catch (Exception exc) {
             //TODO call setFailureMsg here and in other point of (non) return
             exc.printStackTrace();
-            logger.e(TAG,exc.getMessage());
+            logger.e(TAG, exc.getMessage());
             ThirdPartyServices.logException(exc);
             return;
         }
-        while (!task.isDone()){
+        while (!task.isDone()) {
             try {
                 File logFile = null;
                 if (result != null) {
@@ -111,7 +112,7 @@ public abstract class AbstractTest implements Serializable {
                 switch (event.key) {
                     case "status.started":
                         if (result != null &&
-                                result.test_group_name.equals(ExperimentalSuite.NAME))
+                                result.test_group_name.equals(OONITests.EXPERIMENTAL.getLabel()))
                             testCallback.onStart(name);
                         else
                             testCallback.onStart(c.getString(labelResId));
@@ -126,7 +127,7 @@ public abstract class AbstractTest implements Serializable {
                             network.country_code = event.value.probe_cc;
                             network.network_type = ReachabilityManager.getNetworkType(c);
                         } else {
-                            this.network=null;
+                            this.network = null;
                         }
                         saveNetworkInfo(event.value, result, c);
                         break;
@@ -134,7 +135,7 @@ public abstract class AbstractTest implements Serializable {
                         reportId = event.value.report_id;
                         break;
                     case "status.measurement_start":
-                        if (result != null){
+                        if (result != null) {
                             Measurement measurement = new Measurement(result, name, reportId);
                             if (event.value.input.length() > 0)
                                 measurement.url = Url.getUrl(event.value.input);
@@ -182,7 +183,7 @@ public abstract class AbstractTest implements Serializable {
                                 m.is_failed = true;
                             else
                                 onEntry(c, pm, jr, m);
-                            if (network!=null ){
+                            if (network != null) {
                                 m.rerun_network = gson.toJson(network);
                             }
                             m.save();
@@ -233,7 +234,7 @@ public abstract class AbstractTest implements Serializable {
                         break;
                     default:
                         Log.w(UNUSED_KEY, event.key);
-                        logger.w(UNUSED_KEY,event.key);
+                        logger.w(UNUSED_KEY, event.key);
                         break;
                 }
             } catch (Exception e) {
@@ -250,12 +251,12 @@ public abstract class AbstractTest implements Serializable {
         }
     }
 
-    public boolean canInterrupt(){
-        return task == null ? false :  task.canInterrupt();
+    public boolean canInterrupt() {
+        return task == null ? false : task.canInterrupt();
     }
 
-    public void interrupt(){
-        if(task.canInterrupt()) {
+    public void interrupt() {
+        if (task.canInterrupt()) {
             task.interrupt();
         }
     }
@@ -302,10 +303,10 @@ public abstract class AbstractTest implements Serializable {
         }
     }
 
-    protected void onTaskTerminated(EventResult.Value value, Context context){
+    protected void onTaskTerminated(EventResult.Value value, Context context) {
         Measurement measurement = measurements.get(value.idx);
         if (measurement != null) {
-            if(measurement.is_uploaded){
+            if (measurement.is_uploaded) {
                 measurement.deleteReportFile(context);
             }
         }
@@ -320,13 +321,13 @@ public abstract class AbstractTest implements Serializable {
 
     private void setFailureMsg(EventResult.Value value, Result result) {
         if (result == null) {
-			return;
-		}
-		if (result.failure_msg == null) {
-			result.failure_msg = value.failure;
-		} else {
-			result.failure_msg = String.format("%s\n\n%s", result.failure_msg, value.failure);
-		}
+            return;
+        }
+        if (result.failure_msg == null) {
+            result.failure_msg = value.failure;
+        } else {
+            result.failure_msg = String.format("%s\n\n%s", result.failure_msg, value.failure);
+        }
         result.save();
     }
 
@@ -354,6 +355,10 @@ public abstract class AbstractTest implements Serializable {
         this.inputs = inputs;
     }
 
+    public void setOoniRunLinkId(Long ooniRunLinkId) {
+        this.ooniRunLinkId = ooniRunLinkId;
+    }
+
     public Integer getMax_runtime() {
         return max_runtime;
     }
@@ -372,6 +377,25 @@ public abstract class AbstractTest implements Serializable {
 
     public boolean isAutoRun() {
         return Objects.equals(origin, AUTORUN);
+    }
+
+    public static AbstractTest getTestByName(String name) {
+        return switch (name) {
+            case Dash.NAME -> new Dash();
+            case FacebookMessenger.NAME -> new FacebookMessenger();
+            case HttpHeaderFieldManipulation.NAME -> new HttpHeaderFieldManipulation();
+            case HttpInvalidRequestLine.NAME -> new HttpInvalidRequestLine();
+            case Ndt.NAME -> new Ndt();
+            case Psiphon.NAME -> new Psiphon();
+            case RiseupVPN.NAME -> new RiseupVPN();
+            case Signal.NAME -> new Signal();
+            case Telegram.NAME -> new Telegram();
+            case Tor.NAME -> new Tor();
+            case WebConnectivity.NAME -> new WebConnectivity();
+            case Whatsapp.NAME -> new Whatsapp();
+            case Experimental.NAME -> new Experimental(name);
+            default -> new Experimental(name);
+        };
     }
 
     public interface TestCallback {
