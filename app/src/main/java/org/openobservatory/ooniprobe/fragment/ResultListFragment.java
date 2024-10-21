@@ -3,8 +3,15 @@ package org.openobservatory.ooniprobe.fragment;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.*;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,34 +19,52 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.google.android.material.snackbar.Snackbar;
 import com.raizlabs.android.dbflow.sql.language.Method;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
-import localhost.toolkit.app.fragment.ConfirmDialogFragment;
-import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerAdapter;
-import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
+
+import org.openobservatory.engine.OONIRunNettest;
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.activity.AbstractActivity;
 import org.openobservatory.ooniprobe.activity.ResultDetailActivity;
 import org.openobservatory.ooniprobe.activity.TextActivity;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ResubmitTask;
+import org.openobservatory.ooniprobe.common.TestDescriptorManager;
 import org.openobservatory.ooniprobe.databinding.FragmentResultListBinding;
 import org.openobservatory.ooniprobe.domain.GetResults;
 import org.openobservatory.ooniprobe.domain.MeasurementsManager;
 import org.openobservatory.ooniprobe.domain.models.DatedResults;
-import org.openobservatory.ooniprobe.item.*;
+import org.openobservatory.ooniprobe.fragment.resultList.ResultListAdapter;
+import org.openobservatory.ooniprobe.fragment.resultList.ResultListSpinnerItem;
+import org.openobservatory.ooniprobe.item.CircumventionItem;
+import org.openobservatory.ooniprobe.item.DateItem;
+import org.openobservatory.ooniprobe.item.ExperimentalItem;
+import org.openobservatory.ooniprobe.item.FailedItem;
+import org.openobservatory.ooniprobe.item.InstantMessagingItem;
+import org.openobservatory.ooniprobe.item.PerformanceItem;
+import org.openobservatory.ooniprobe.item.RunItem;
+import org.openobservatory.ooniprobe.item.WebsiteItem;
 import org.openobservatory.ooniprobe.model.database.Network;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.database.Result_Table;
-import org.openobservatory.ooniprobe.test.suite.*;
+import org.openobservatory.ooniprobe.model.database.TestDescriptorKt;
+import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 
-import javax.inject.Inject;
 import java.io.Serializable;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import javax.inject.Inject;
+
+import localhost.toolkit.app.fragment.ConfirmDialogFragment;
+import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerAdapter;
+import localhost.toolkit.widget.recyclerview.HeterogeneousRecyclerItem;
 
 public class ResultListFragment extends Fragment implements View.OnClickListener, View.OnLongClickListener, ConfirmDialogFragment.OnConfirmedListener {
     private FragmentResultListBinding binding;
@@ -58,6 +83,9 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     @Inject
     PreferenceManager pm;
 
+    @Inject
+    TestDescriptorManager descriptorManager;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -74,10 +102,11 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
         adapter = new HeterogeneousRecyclerAdapter<>(getActivity(), items);
         binding.recycler.setAdapter(adapter);
 
+        binding.filterTests.setAdapter(new ResultListAdapter(descriptorManager.getFilterItems(getResources())));
         binding.filterTests.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                queryList();
+                queryList((ResultListSpinnerItem)parent.getItemAtPosition(position));
             }
 
             @Override
@@ -142,6 +171,10 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
     }
 
     void queryList() {
+        queryList((ResultListSpinnerItem) binding.filterTests.getSelectedItem());
+    }
+
+    void queryList(ResultListSpinnerItem filterItem) {
         if (measurementsManager.hasUploadables()) {
             snackbar.show();
         } else {
@@ -150,8 +183,7 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
 
         items.clear();
 
-        String filter = getResources().getStringArray(R.array.filterTestValues)[binding.filterTests.getSelectedItemPosition()];
-        List<DatedResults> list = getResults.getGroupedByMonth(filter);
+        List<DatedResults> list = getResults.getGroupedByMonth(filterItem);
 
         if (list.isEmpty()) {
             binding.emptyState.setVisibility(View.VISIBLE);
@@ -165,25 +197,25 @@ public class ResultListFragment extends Fragment implements View.OnClickListener
                     if (result.countTotalMeasurements() == 0)
                         items.add(new FailedItem(result, this, this));
                     else {
-                        switch (result.test_group_name) {
-                            case WebsitesSuite.NAME:
+                        if (result.test_group_name.equals(OONITests.WEBSITES.toString())) {
+                            items.add(new WebsiteItem(result, this, this));
+                        } else if (result.test_group_name.equals(OONITests.INSTANT_MESSAGING.toString())) {
+                            items.add(new InstantMessagingItem(result, this, this));
+                        } else if (result.test_group_name.equals(OONITests.PERFORMANCE.toString())) {
+                            items.add(new PerformanceItem(result, this, this));
+                        } else if (result.test_group_name.equals(OONITests.CIRCUMVENTION.toString())) {
+                            items.add(new CircumventionItem(result, this, this));
+                        } else if (result.test_group_name.equals(OONITests.EXPERIMENTAL.toString())) {
+                            items.add(new ExperimentalItem(result, this, this));
+                        } else if (result.descriptor!=null) {
+                            List<OONIRunNettest> nettests = TestDescriptorKt.getNettests(result.descriptor);
+                            if (nettests.size()==1 && Objects.equals(nettests.get(0).getName(), WebConnectivity.NAME)){
                                 items.add(new WebsiteItem(result, this, this));
-                                break;
-                            case InstantMessagingSuite.NAME:
-                                items.add(new InstantMessagingItem(result, this, this));
-                                break;
-                            case MiddleBoxesSuite.NAME:
-                                items.add(new MiddleboxesItem(result, this, this));
-                                break;
-                            case PerformanceSuite.NAME:
-                                items.add(new PerformanceItem(result, this, this));
-                                break;
-                            case CircumventionSuite.NAME:
-                                items.add(new CircumventionItem(result, this, this));
-                                break;
-                            case ExperimentalSuite.NAME:
-                                items.add(new ExperimentalItem(result, this, this));
-                                break;
+                            } else {
+                                items.add(new RunItem(result, this, this));
+                            }
+                        } else {
+                            items.add(new FailedItem(result, this, this));
                         }
                     }
                 }

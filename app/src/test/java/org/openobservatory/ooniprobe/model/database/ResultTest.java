@@ -2,12 +2,7 @@ package org.openobservatory.ooniprobe.model.database;
 
 import org.junit.Test;
 import org.openobservatory.ooniprobe.RobolectricAbstractTest;
-import org.openobservatory.ooniprobe.test.suite.CircumventionSuite;
-import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
-import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
-import org.openobservatory.ooniprobe.test.suite.MiddleBoxesSuite;
-import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
-import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
+import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.test.test.HttpHeaderFieldManipulation;
 import org.openobservatory.ooniprobe.test.test.HttpInvalidRequestLine;
 import org.openobservatory.ooniprobe.test.test.Ndt;
@@ -21,6 +16,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+
+import com.google.common.base.Optional;
 
 public class ResultTest extends RobolectricAbstractTest {
 
@@ -100,7 +97,7 @@ public class ResultTest extends RobolectricAbstractTest {
 
     @Test
     public void getMeasurementsSorted_websites() {
-        Result result = new Result(WebsitesSuite.NAME);
+        Result result = new Result(OONITests.WEBSITES.getLabel());
         result.save();
         Measurement measurementAnomaly = new Measurement(result, "a");
         measurementAnomaly.is_done = true;
@@ -119,7 +116,7 @@ public class ResultTest extends RobolectricAbstractTest {
 
     @Test
     public void getMeasurementsSorted_instantMessaging() {
-        Result result = new Result(InstantMessagingSuite.NAME);
+        Result result = new Result(OONITests.INSTANT_MESSAGING.getLabel());
         result.save();
         Measurement signal = new Measurement(result, Signal.NAME);
         signal.is_done = true;
@@ -136,26 +133,8 @@ public class ResultTest extends RobolectricAbstractTest {
     }
 
     @Test
-    public void getMeasurementsSorted_middleBoxes() {
-        Result result = new Result(MiddleBoxesSuite.NAME);
-        result.save();
-        Measurement httpHeader = new Measurement(result, HttpHeaderFieldManipulation.NAME);
-        httpHeader.is_done = true;
-        httpHeader.save();
-        Measurement httpInvalid = new Measurement(result, HttpInvalidRequestLine.NAME);
-        httpInvalid.is_done = true;
-        httpInvalid.save();
-
-        List<Measurement> measurements = result.getMeasurementsSorted();
-
-        assertEquals(2, measurements.size());
-        assertEquals(HttpInvalidRequestLine.NAME, measurements.get(0).test_name);
-        assertEquals(HttpHeaderFieldManipulation.NAME, measurements.get(1).test_name);
-    }
-
-    @Test
     public void getMeasurementsSorted_performance() {
-        Result result = new Result(PerformanceSuite.NAME);
+        Result result = new Result(OONITests.PERFORMANCE.getLabel());
         result.save();
         Measurement httpHeader = new Measurement(result, HttpHeaderFieldManipulation.NAME);
         httpHeader.is_done = true;
@@ -233,13 +212,12 @@ public class ResultTest extends RobolectricAbstractTest {
 
     @Test
     public void getTestSuite() {
-        assertEquals(WebsitesSuite.class, new Result(WebsitesSuite.NAME).getTestSuite().getClass());
-        assertEquals(InstantMessagingSuite.class, new Result(InstantMessagingSuite.NAME).getTestSuite().getClass());
-        assertEquals(MiddleBoxesSuite.class, new Result(MiddleBoxesSuite.NAME).getTestSuite().getClass());
-        assertEquals(PerformanceSuite.class, new Result(PerformanceSuite.NAME).getTestSuite().getClass());
-        assertEquals(CircumventionSuite.class, new Result(CircumventionSuite.NAME).getTestSuite().getClass());
-        assertEquals(ExperimentalSuite.class, new Result(ExperimentalSuite.NAME).getTestSuite().getClass());
-        assertNull(new Result("invalid").getTestSuite());
+        assertEquals(OONITests.WEBSITES.getLabel(), new Result(OONITests.WEBSITES.getLabel()).getTestSuite(c).get().getName());
+        assertEquals(OONITests.INSTANT_MESSAGING.getLabel(), new Result(OONITests.INSTANT_MESSAGING.getLabel()).getTestSuite(c).get().getName());
+        assertEquals(OONITests.PERFORMANCE.getLabel(), new Result(OONITests.PERFORMANCE.getLabel()).getTestSuite(c).get().getName());
+        assertEquals(OONITests.CIRCUMVENTION.getLabel(), new Result(OONITests.CIRCUMVENTION.getLabel()).getTestSuite(c).get().getName());
+        assertEquals(OONITests.EXPERIMENTAL.getLabel(), new Result(OONITests.EXPERIMENTAL.getLabel()).getTestSuite(c).get().getName());
+        assertEquals(new Result("invalid").getTestSuite(c), Optional.absent());
     }
 
     @Test

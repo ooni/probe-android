@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools">
+    <application
+        android:name=".common.Application"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/APP_NAME"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App">
+        <activity
+            android:name=".activity.oonirun.OoniRunV2Activity"
+            android:exported="true"
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.App.NoActionBar">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <action android:name="${applicationId}.nettest" />
+
+                <data
+                    android:host="@string/RUN_V2_DOMAIN"
+                    android:pathPrefix="/v2"
+                    android:scheme="https" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="runv2"
+                    android:scheme="ooni" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.OoniRunActivity"
+            android:exported="true"
+            android:label=""
+            android:launchMode="singleTop"
+            android:parentActivityName=".activity.MainActivity"
+            android:screenOrientation="userPortrait"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.App">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <action android:name="${applicationId}.nettest" />
+
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <action android:name="${applicationId}.nettest" />
+
+                <data
+                    android:host="run.ooni.io"
+                    android:pathPrefix="/nettest"
+                    android:scheme="https" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <action android:name="${applicationId}.nettest" />
+
+                <data
+                    android:host="run.ooni.io"
+                    android:pathPrefix="/nettest"
+                    android:scheme="http" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="nettest"
+                    android:scheme="ooni" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

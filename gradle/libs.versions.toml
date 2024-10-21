@@ -20,6 +20,7 @@ androidxAppCompat = "1.7.0"
 androidxConstraintlayout = "2.1.4"
 androidxLifecycleProcess = "2.8.5"
 androidxPreference = "1.2.1"
+workRuntime = "2.9.0"
 androidxLocalbroadcastmanager = "1.1.0"
 androidxLegacySupportV4 = "1.0.0"
 androidxJunit = "1.2.1"
@@ -38,7 +39,7 @@ compileSdk = "34"
 lottie = "6.5.2"
 markwon = "4.6.2"
 shapeofview = "1.4.7"
-targetSdk = "34"
+targetSdk = "35"
 minSdk = "21"
 oonimkall = "2024.08.08-091959"
 
@@ -77,7 +78,7 @@ dbflow-lib = { module = "com.github.Raizlabs.DBFlow:dbflow", version.ref = "dbfl
 dbflow-core = { module = "com.github.Raizlabs.DBFlow:dbflow-core", version.ref = "dbflow" }
 dbflow-processor = { module = "com.github.Raizlabs.DBFlow:dbflow-processor", version.ref = "dbflow" }
 
-androidx-core = { module = "androidx.test:core", version.ref = "androidxCore" }
+androidx-test-core = { module = "androidx.test:core", version.ref = "androidxCore" }
 androidx-rules = { module = "androidx.test:rules", version.ref = "androidxCore" }
 androidx-runner = { module = "androidx.test:runner", version.ref = "androidxRunner" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppCompat" }
@@ -86,6 +87,7 @@ androidx-legacy-support-v4 = { module = "androidx.legacy:legacy-support-v4", ver
 androidx-lifecycle-process = { module = "androidx.lifecycle:lifecycle-process", version.ref = "androidxLifecycleProcess" }
 androidx-localbroadcastmanager = { module = "androidx.localbroadcastmanager:localbroadcastmanager", version.ref = "androidxLocalbroadcastmanager" }
 androidx-preference = { module = "androidx.preference:preference", version.ref = "androidxPreference" }
+androidx-work-runtime = { module = "androidx.work:work-runtime", version.ref = "workRuntime" }
 androidx-junit = { module = "androidx.test.ext:junit", version.ref = "androidxJunit" }
 androidx-espresso-contrib = { module = "androidx.test.espresso:espresso-contrib", version.ref = "androidxEspressoCore" }
 androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidxEspressoCore" }

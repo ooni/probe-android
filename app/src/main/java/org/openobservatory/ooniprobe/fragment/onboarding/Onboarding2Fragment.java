@@ -31,7 +31,7 @@ public class Onboarding2Fragment extends Fragment implements OnboardingDialogPop
 	}
 
 	void slaveClick() {
-		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://ooni.io/about/risks/")));
+		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://ooni.org/about/risks/")));
 	}
 
 	@Override

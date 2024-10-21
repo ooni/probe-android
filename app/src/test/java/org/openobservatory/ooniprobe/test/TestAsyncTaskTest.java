@@ -16,14 +16,13 @@ import org.openobservatory.engine.OONISession;
 import org.openobservatory.engine.OONIURLInfo;
 import org.openobservatory.ooniprobe.BuildConfig;
 import org.openobservatory.ooniprobe.RobolectricAbstractTest;
+import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.service.RunTestService;
 import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.engine.TestEngineInterface;
 import org.openobservatory.ooniprobe.factory.ResultFactory;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
-import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
-import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.AbstractTest;
 import org.openobservatory.ooniprobe.test.test.WebConnectivity;
 import org.openobservatory.ooniprobe.utils.DatabaseUtils;
@@ -73,10 +72,10 @@ public class TestAsyncTaskTest extends RobolectricAbstractTest {
     public void storesTestSuitInDb() {
         // Arrange
         ArrayList<AbstractSuite> suiteList = new ArrayList<>();
-        AbstractSuite mockedSuite = mock(WebsitesSuite.class);
+        AbstractSuite mockedSuite = mock(AbstractSuite.class);
         suiteList.add(mockedSuite);
         TestAsyncTask task = new TestAsyncTask(a, suiteList);
-        Result testResult = ResultFactory.build(new WebsitesSuite(), true, true);
+        Result testResult = ResultFactory.build(OONITests.WEBSITES.toOONIDescriptor(c), true, true);
 
         when(mockedSuite.getTestList(any())).thenReturn(new AbstractTest[0]);
 
@@ -100,10 +99,10 @@ public class TestAsyncTaskTest extends RobolectricAbstractTest {
         // Arrange
         Faker faker = new Faker();
         ArrayList<AbstractSuite> suiteList = new ArrayList<>();
-        AbstractSuite mockedSuite = mock(WebsitesSuite.class);
+        AbstractSuite mockedSuite = mock(AbstractSuite.class);
         suiteList.add(mockedSuite);
         TestAsyncTask task = new TestAsyncTask(a, suiteList);
-        Result testResult = ResultFactory.build(new WebsitesSuite(), true, true);
+        Result testResult = ResultFactory.build(OONITests.WEBSITES.toOONIDescriptor(c), true, true);
 
         WebConnectivity test = new WebConnectivity();
         test.setInputs(null);
@@ -156,7 +155,7 @@ public class TestAsyncTaskTest extends RobolectricAbstractTest {
     public void runTest_withProgress() {
         // Arrange
         ArrayList<AbstractSuite> suiteList = new ArrayList<>();
-        AbstractSuite mockedSuite = mock(ExperimentalSuite.class);
+        AbstractSuite mockedSuite = mock(AbstractSuite.class);
         suiteList.add(mockedSuite);
         AbstractTest test = mock(AbstractTest.class);
         when(mockedSuite.getTestList(any())).thenReturn(new AbstractTest[]{test});
@@ -183,7 +182,7 @@ public class TestAsyncTaskTest extends RobolectricAbstractTest {
     public void runTest_withError() {
         // Arrange
         ArrayList<AbstractSuite> suiteList = new ArrayList<>();
-        AbstractSuite mockedSuite = mock(ExperimentalSuite.class);
+        AbstractSuite mockedSuite = mock(AbstractSuite.class);
         suiteList.add(mockedSuite);
         AbstractTest test = mock(AbstractTest.class);
         when(mockedSuite.getTestList(any())).thenReturn(new AbstractTest[]{test});
@@ -203,7 +202,7 @@ public class TestAsyncTaskTest extends RobolectricAbstractTest {
     public void runTest_interrupt() {
         // Arrange
         ArrayList<AbstractSuite> suiteList = new ArrayList<>();
-        AbstractSuite mockedSuite = mock(ExperimentalSuite.class);
+        AbstractSuite mockedSuite = mock(AbstractSuite.class);
         suiteList.add(mockedSuite);
         AbstractTest test = mock(AbstractTest.class);
         when(mockedSuite.getTestList(any())).thenReturn(new AbstractTest[]{test});
