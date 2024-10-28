@@ -91,7 +91,7 @@ class ProgressFragment : Fragment() {
     }
 
     private fun updateUI(service: RunTestService?) {
-        if ((requireActivity().application as Application).isTestRunning) {
+        if (isAdded && (requireActivity().application as Application).isTestRunning) {
             val progressLevel = testProgressRepository.progress.value
             when {
                 progressLevel != null -> {
