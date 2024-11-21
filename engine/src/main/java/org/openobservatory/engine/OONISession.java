@@ -1,5 +1,10 @@
 package org.openobservatory.engine;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+
 /**
  * OONISession contains shared state for running experiments and/or other
  * related task (e.g. geolocation). Note that a OONISession is not meant to
@@ -23,6 +28,17 @@ public interface OONISession {
     /** checkIn function is called by probes asking if there are tests to be run. */
     OONICheckInResults checkIn(OONIContext ctx, OONICheckInConfig config) throws Exception;
 
+    /**
+     * Fetches a specific ooni run descriptor.
+     *
+     * @param ctx OONIContext instance
+     * @param id ooni run id
+     * @return [OONIRunFetchResponse] with the contents of the ooni run descriptor.
+     */
+    OONIRunDescriptor getLatestOONIRunLink(OONIContext ctx, String probeServicesURL, long id) throws Exception;
+
+    OONIRunRevisions getOONIRunLinkRevisions(@Nullable OONIContext ooniContext, @NotNull String probeServicesURL, long runId) throws Exception ;
+    
     /** close closes the session along with any running circumvention tunnels */
     void close() throws Exception;
 }

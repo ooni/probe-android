@@ -8,7 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Build;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -20,6 +20,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import org.openobservatory.ooniprobe.R;
 import org.openobservatory.ooniprobe.common.Application;
+import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.common.PreferenceManager;
 import org.openobservatory.ooniprobe.common.ReachabilityManager;
 import org.openobservatory.ooniprobe.common.TestProgressRepository;
@@ -28,10 +29,10 @@ import org.openobservatory.ooniprobe.common.service.ServiceUtil;
 import org.openobservatory.ooniprobe.databinding.ActivityRunningBinding;
 import org.openobservatory.ooniprobe.receiver.TestRunBroadRequestReceiver;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
-import org.openobservatory.ooniprobe.test.suite.ExperimentalSuite;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -70,6 +71,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
                                               ArrayList<AbstractSuite> testSuites,
                                               OnTestServiceStartedListener onTestServiceStartedListener,
                                               PreferenceManager iPreferenceManager) {
+
         if (ReachabilityManager.getNetworkType(context).equals(ReachabilityManager.NO_INTERNET)) {
             new MessageDialogFragment.Builder()
                     .withTitle(context.getString(R.string.Modal_Error))
@@ -169,15 +171,22 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
             binding.eta.setText(R.string.Dashboard_Running_CalculatingETA);
         }
 
-        if (service.task.currentSuite.getName().equals(ExperimentalSuite.NAME))
+        if (Objects.equals(service.task.currentSuite.getName(),OONITests.EXPERIMENTAL.getLabel())) {
             binding.name.setText(service.task.currentTest.getName());
-        else
+        } else {
             binding.name.setText(getString(service.task.currentTest.getLabelResId()));
-        getWindow().setBackgroundDrawableResource(service.task.currentSuite.getColor());
-        if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().setStatusBarColor(service.task.currentSuite.getColor());
         }
-        binding.animation.setAnimation(service.task.currentSuite.getAnim());
+
+        getWindow().setBackgroundDrawable(new ColorDrawable(service.task.currentSuite.getColor()));
+        getWindow().setStatusBarColor(service.task.currentSuite.getColor());
+        if (service.task.currentSuite.getAnim() == null){
+            binding.animation.setImageResource(service.task.currentSuite.getIconGradient());
+            binding.animation.setColorFilter(getResources().getColor(R.color.color_gray2));
+            binding.animation.setPadding(0,100,0,100);
+        } else {
+            binding.animation.setAnimation(service.task.currentSuite.getAnim());
+        }
+
         binding.progress.setMax(service.task.getMax(preferenceManager));
     }
 
@@ -216,7 +225,7 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     }
 
     private void testEnded(Context context) {
-        startActivity(MainActivity.newIntent(context, R.id.testResults));
+        startActivity(MainActivity.newIntent(context, R.id.testResults,context.getString(R.string.Dashboard_RunV2_RunFinished)));
         finish();
     }
 
@@ -279,8 +288,8 @@ public class RunningActivity extends AbstractActivity implements ConfirmDialogFr
     }
 
     @NonNull
-    private static String readableTimeRemaining(double timeLeft) {
+    public static String readableTimeRemaining(double timeLeft) {
         long letaValue = Math.round(timeLeft);
-        return String.format(ENGLISH,"%dm %02ds", letaValue/60, letaValue%60);
+        return String.format(ENGLISH," %dm %02ds", letaValue/60, letaValue%60);
     }
 }

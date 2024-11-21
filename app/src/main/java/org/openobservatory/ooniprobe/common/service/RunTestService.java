@@ -18,6 +18,7 @@ import android.util.Log;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.app.ServiceCompat;
 import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -26,6 +27,7 @@ import org.openobservatory.ooniprobe.activity.MainActivity;
 import org.openobservatory.ooniprobe.activity.RunningActivity;
 import org.openobservatory.ooniprobe.common.Application;
 import org.openobservatory.ooniprobe.common.NotificationUtility;
+import org.openobservatory.ooniprobe.common.TestGroupStatus;
 import org.openobservatory.ooniprobe.common.ThirdPartyServices;
 import org.openobservatory.ooniprobe.test.TestAsyncTask;
 import org.openobservatory.ooniprobe.test.suite.AbstractSuite;
@@ -65,6 +67,7 @@ public class RunTestService extends Service {
         boolean store_db = intent.getBooleanExtra("storeDB", true);
         boolean unattended = intent.getBooleanExtra("unattended", false);
         Application app = ((Application) getApplication());
+        app.getTestStateRepository().getTestGroupStatus().postValue(TestGroupStatus.RUNNING);
         NotificationUtility.setChannel(getApplicationContext(), CHANNEL_ID, app.getString(R.string.Settings_AutomatedTesting_Label), false, false, false);
         Intent notificationIntent = new Intent(this, RunningActivity.class);
         notificationIntent.setPackage("org.openobservatory.ooniprobe");
@@ -103,26 +106,27 @@ public class RunTestService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (shouldShowNotification(this)) {
-            PendingIntent pendingIntent = pendingIntentGetActivity(
-                    getApplicationContext(), 0,
-                    MainActivity.newIntent(getApplicationContext(), R.id.testResults)
-            );
-            builder.mActions.clear();
-            builder.setContentTitle(getApplicationContext().getString(R.string.Notification_FinishedRunning))
-                    .setContentIntent(pendingIntent)
-                    .setAutoCancel(true)
-                    .setProgress(100, 100, false);
-            if (ActivityCompat.checkSelfPermission(
-                    RunTestService.this,
-                    Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
-            ) {
-                return;
-            }
-            notificationManager.notify(1, builder.build());
-        } else if (notificationManager != null)
-            notificationManager.cancel(NOTIFICATION_ID);
         this.unregisterReceiver(receiver);
+
+        if (ActivityCompat.checkSelfPermission(
+                RunTestService.this,
+                Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
+        ) {
+            if (shouldShowNotification(this)) {
+                PendingIntent pendingIntent = pendingIntentGetActivity(
+                        getApplicationContext(), 0,
+                        MainActivity.newIntent(getApplicationContext(), R.id.testResults)
+                );
+                builder.mActions.clear();
+                builder.setContentTitle(getApplicationContext().getString(R.string.Notification_FinishedRunning))
+                        .setContentIntent(pendingIntent)
+                        .setAutoCancel(true)
+                        .setProgress(100, 100, false);
+                notificationManager.notify(1, builder.build());
+            } else if (notificationManager != null) {
+                notificationManager.cancel(NOTIFICATION_ID);
+            }
+        }
     }
 
     // pendingIntentGetActivity is a factory to correctly call PendingIntent.getActivity
@@ -197,6 +201,9 @@ public class RunTestService extends Service {
      */
     public synchronized void interrupt() {
         task.interrupt();
+        if (task.isInterrupted()) {
+            ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE);
+        }
     }
 
     private class ProgressBroadcastReceiver extends BroadcastReceiver {
@@ -204,57 +211,84 @@ public class RunTestService extends Service {
         public void onReceive(Context context, Intent intent) {
             String key = intent.getStringExtra("key");
             String value = intent.getStringExtra("value");
-            if (ActivityCompat.checkSelfPermission(
-                    RunTestService.this,
-                    Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
-            ) {
-                return;
-            }
-            // If key is null, do nothing
-            if (key == null) {
-                return;
-            }
+
+            // Early exit if key is null, no need for an explicit 'if' block
+            if (key == null) return;
+
             switch (key) {
                 case TestAsyncTask.RUN:
-                    Log.d(TAG, "TestAsyncTask.RUN");
-                    try {
-                        builder.setContentText(value);
-                        if (task.currentSuite!=null)
-                            builder.setProgress(task.currentSuite.getTestList(((Application) getApplication()).getPreferenceManager()).length * 100, 0, false);
-                        notificationManager.notify(RunTestService.NOTIFICATION_ID, builder.build());
-                    } catch (Exception e) {
-                        ThirdPartyServices.logException(e);
-                    }
+                    handleTestRun(value);
                     break;
                 case TestAsyncTask.PRG:
-                    Log.d(TAG, "TestAsyncTask.PRG " + value);
-                    try {
-                        int prgs = Integer.parseInt(value);
-                        if (task.currentSuite!=null)
-                            builder.setProgress(task.currentSuite.getTestList(((Application) getApplication()).getPreferenceManager()).length * 100, prgs, false);
-                        notificationManager.notify(RunTestService.NOTIFICATION_ID, builder.build());
-                    } catch (Exception e) {
-                        ThirdPartyServices.logException(e);
-                    }
+                    handleTestProgress(value);
                     break;
                 case TestAsyncTask.INT:
-                    Log.d(TAG, "TestAsyncTask.INT");
-                    try {
-                        builder.setContentText(getString(R.string.Dashboard_Running_Stopping_Title))
-                                .setProgress(0, 0, true);
-                        notificationManager.notify(RunTestService.NOTIFICATION_ID, builder.build());
-                    } catch (Exception e) {
-                        ThirdPartyServices.logException(e);
-                    }
+                    handleTestInterrupt();
                     break;
                 case TestAsyncTask.END:
-                    Log.d(TAG, "TestAsyncTask.END");
-                    try {
-                        stopSelf();
-                    } catch (Exception e) {
-                        ThirdPartyServices.logException(e);
-                    }
+                    handleTestEnd();
                     break;
+            }
+        }
+
+        // Extract logic into separate methods for better readability and maintainability
+        private void handleTestRun(String value) {
+            Log.d(TAG, "TestAsyncTask.RUN");
+            try {
+                builder.setContentText(value);
+                if (task.currentSuite != null) {
+                    int maxProgress = task.currentSuite.getTestList(((Application) getApplicationContext()).getPreferenceManager()).length * 100;
+                    builder.setProgress(maxProgress, 0, false);
+                }
+                postNotificationIfAllowed(getApplicationContext());
+            } catch (Exception e) {
+                ThirdPartyServices.logException(e);
+            }
+        }
+
+        private void handleTestProgress(String value) {
+            Log.d(TAG, "TestAsyncTask.PRG " + value);
+            try {
+                int progress = Integer.parseInt(value);
+                if (task.currentSuite != null) {
+                    int maxProgress = task.currentSuite.getTestList(((Application) getApplicationContext()).getPreferenceManager()).length * 100;
+                    builder.setProgress(maxProgress, progress, false);
+                }
+                postNotificationIfAllowed(getApplicationContext());
+            } catch (Exception e) {
+                ThirdPartyServices.logException(e);
+            }
+        }
+
+        private void handleTestInterrupt() {
+            Log.d(TAG, "TestAsyncTask.INT");
+            try {
+                builder.setContentText(getApplicationContext().getString(R.string.Dashboard_Running_Stopping_Title))
+                        .setProgress(0, 0, true);
+                postNotificationIfAllowed(getApplicationContext());
+            } catch (Exception e) {
+                ThirdPartyServices.logException(e);
+            }
+        }
+
+        private void handleTestEnd() {
+            Log.d(TAG, "TestAsyncTask.END");
+            ((Application) getApplicationContext()).getTestStateRepository().getTestGroupStatus().postValue(TestGroupStatus.FINISHED);
+            try {
+                ServiceCompat.stopForeground(RunTestService.this, ServiceCompat.STOP_FOREGROUND_REMOVE);
+                stopSelf();
+            } catch (Exception e) {
+                ThirdPartyServices.logException(e);
+            }
+        }
+
+        // Extract notification posting logic to avoid repetition
+        private void postNotificationIfAllowed(Context context) {
+            if (ActivityCompat.checkSelfPermission(
+                    context,
+                    Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
+            ) {
+                notificationManager.notify(RunTestService.NOTIFICATION_ID, builder.build());
             }
         }
     }

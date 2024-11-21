@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/item_padding_large"
+    android:layout_marginTop="12dp"
+    android:layout_marginBottom="4dp"
+    tools:context=".activity.runtests.adapter.RunTestsExpandableListViewAdapter">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="4dp"
+        android:paddingStart="@dimen/item_padding_large"
+        android:textSize="16sp"
+        tools:text="@string/Test_Circumvention_Fullname" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_margin="@dimen/item_padding_large"
+        android:layout_marginTop="@dimen/item_padding_large"
+        android:paddingEnd="@dimen/item_padding_large"
+        android:background="@color/color_gray7_1" />
+
+</LinearLayout>
+

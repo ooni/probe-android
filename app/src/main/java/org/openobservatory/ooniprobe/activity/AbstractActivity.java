@@ -1,6 +1,10 @@
 package org.openobservatory.ooniprobe.activity;
 
+import android.view.View;
+
+import androidx.annotation.IdRes;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.google.gson.Gson;
 
@@ -42,4 +46,17 @@ public abstract class AbstractActivity extends AppCompatActivity {
         }
     }
 
+
+    /**
+     * Remove the progress fragment.
+     * <p>
+     * This method is called when the task is completed.
+     */
+    protected void removeProgressFragment(@IdRes int id) {
+        Fragment fragment = getSupportFragmentManager().findFragmentById(id);
+        if (fragment != null && fragment.isAdded()) {
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+        }
+        findViewById(id).setVisibility(View.GONE);
+    }
 }

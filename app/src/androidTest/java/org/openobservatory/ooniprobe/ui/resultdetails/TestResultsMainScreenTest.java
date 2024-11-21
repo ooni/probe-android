@@ -2,20 +2,17 @@ package org.openobservatory.ooniprobe.ui.resultdetails;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.schibsted.spain.barista.rule.flaky.AllowFlaky;
-import com.schibsted.spain.barista.rule.flaky.FlakyTestRule;
+import com.adevinta.android.barista.rule.flaky.AllowFlaky;
+import com.adevinta.android.barista.rule.flaky.FlakyTestRule;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openobservatory.ooniprobe.R;
+import org.openobservatory.ooniprobe.common.OONITests;
 import org.openobservatory.ooniprobe.factory.ResultFactory;
 import org.openobservatory.ooniprobe.model.database.Result;
 import org.openobservatory.ooniprobe.model.jsonresult.TestKeys;
-import org.openobservatory.ooniprobe.test.suite.CircumventionSuite;
-import org.openobservatory.ooniprobe.test.suite.InstantMessagingSuite;
-import org.openobservatory.ooniprobe.test.suite.PerformanceSuite;
-import org.openobservatory.ooniprobe.test.suite.WebsitesSuite;
 import org.openobservatory.ooniprobe.test.test.Dash;
 import org.openobservatory.ooniprobe.test.test.Ndt;
 import org.openobservatory.ooniprobe.utils.FormattingUtils;
@@ -49,10 +46,10 @@ public class TestResultsMainScreenTest extends MeasurementAbstractTest {
     @AllowFlaky(attempts = 3)
     public void testHeaderData() {
         // Arrange
-        Result websites = ResultFactory.createAndSave(new WebsitesSuite());
-        Result messaging = ResultFactory.createAndSave(new InstantMessagingSuite());
-        Result circumvention = ResultFactory.createAndSave(new CircumventionSuite(), 1, 2);
-        Result performance = ResultFactory.createAndSave(new PerformanceSuite());
+        Result websites = ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c));
+        Result messaging = ResultFactory.createAndSave(OONITests.INSTANT_MESSAGING.toOONIDescriptor(c));
+        Result circumvention = ResultFactory.createAndSave(OONITests.CIRCUMVENTION.toOONIDescriptor(c), 1, 2);
+        Result performance = ResultFactory.createAndSave(OONITests.PERFORMANCE.toOONIDescriptor(c));
 
         long totalDownload = websites.data_usage_down +
                 messaging.data_usage_down +
@@ -78,19 +75,19 @@ public class TestResultsMainScreenTest extends MeasurementAbstractTest {
     @AllowFlaky(attempts = 3)
     public void testListOfResults() {
         // Arrange
-        Result websites = ResultFactory.createAndSave(new WebsitesSuite());
+        Result websites = ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c));
         websites.start_time = getDateFrom(1, Calendar.JANUARY, 2020);
         websites.save();
 
-        Result messaging = ResultFactory.createAndSave(new InstantMessagingSuite());
+        Result messaging = ResultFactory.createAndSave(OONITests.INSTANT_MESSAGING.toOONIDescriptor(c));
         messaging.start_time = getDateFrom(1, Calendar.FEBRUARY, 2020);
         messaging.save();
 
-        Result circumvention = ResultFactory.createAndSave(new CircumventionSuite(), 1, 2);
+        Result circumvention = ResultFactory.createAndSave(OONITests.CIRCUMVENTION.toOONIDescriptor(c), 1, 2);
         circumvention.start_time = getDateFrom(1, Calendar.MARCH, 2020);
         circumvention.save();
 
-        Result performance = ResultFactory.createAndSave(new PerformanceSuite());
+        Result performance = ResultFactory.createAndSave(OONITests.PERFORMANCE.toOONIDescriptor(c));
         performance.start_time = getDateFrom(1, Calendar.APRIL, 2020);
         performance.save();
 
@@ -189,8 +186,8 @@ public class TestResultsMainScreenTest extends MeasurementAbstractTest {
     @AllowFlaky(attempts = 3)
     public void deleteResultsTest() {
         // Arrange
-        ResultFactory.createAndSave(new WebsitesSuite());
-        ResultFactory.createAndSave(new PerformanceSuite());
+        ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c));
+        ResultFactory.createAndSave(OONITests.PERFORMANCE.toOONIDescriptor(c));
 
         // Act
         launchResults();
@@ -208,19 +205,19 @@ public class TestResultsMainScreenTest extends MeasurementAbstractTest {
     @AllowFlaky(attempts = 3)
     public void filterTest() {
         // Arrange
-        Result websites = ResultFactory.createAndSave(new WebsitesSuite());
+        Result websites = ResultFactory.createAndSave(OONITests.WEBSITES.toOONIDescriptor(c));
         websites.start_time = getDateFrom(1, Calendar.JANUARY, 2020);
         websites.save();
 
-        Result messaging = ResultFactory.createAndSave(new InstantMessagingSuite());
+        Result messaging = ResultFactory.createAndSave(OONITests.INSTANT_MESSAGING.toOONIDescriptor(c));
         messaging.start_time = getDateFrom(1, Calendar.FEBRUARY, 2020);
         messaging.save();
 
-        Result circumvention = ResultFactory.createAndSave(new CircumventionSuite(), 1, 2);
+        Result circumvention = ResultFactory.createAndSave(OONITests.CIRCUMVENTION.toOONIDescriptor(c), 1, 2);
         circumvention.start_time = getDateFrom(1, Calendar.MARCH, 2020);
         circumvention.save();
 
-        Result performance = ResultFactory.createAndSave(new PerformanceSuite());
+        Result performance = ResultFactory.createAndSave(OONITests.PERFORMANCE.toOONIDescriptor(c));
         performance.start_time = getDateFrom(1, Calendar.APRIL, 2020);
         performance.save();
 

@@ -90,10 +90,21 @@ class ResultDetailExpandableListAdapter(
             is Measurement -> bindMeasurement(groupItem, root)
 
             else -> {
-                root.findViewById<TextView>(R.id.text).text = groupItem.toString()
+                val groupMeasurement = (items[groupPosition] as MeasurementGroup)
+
+                val groupTitle = root.findViewById<TextView>(R.id.text)
+
+                groupMeasurement.measurements.firstOrNull()?.let {
+                    when (it.getTest().labelResId){
+                        R.string.Test_Experimental_Fullname -> groupTitle.text = groupMeasurement.title
+                        else -> groupTitle.setText(it.getTest().labelResId)
+                    }
+                } ?: run {
+                    groupTitle.text = groupMeasurement.title
+                }
                 root.findViewById<TextView>(R.id.indicator).apply {
                     visibility = View.VISIBLE
-                    text = "${(items[groupPosition] as MeasurementGroup).measurements.size} Inputs"
+                    text = root.context.getString(R.string.TestResults_TestCount,groupMeasurement.measurements.size)
                     setCompoundDrawablesRelativeWithIntrinsicBounds(
                         null,
                         null,
@@ -115,6 +126,7 @@ class ResultDetailExpandableListAdapter(
     ) {
         view.tag = measurement
         view.setOnClickListener(onClickListener)
+        view.findViewById<TextView>(R.id.indicator).visibility = View.GONE
         view.findViewById<TextView>(R.id.text).also { textView ->
 
             val test: AbstractTest = measurement.getTest()

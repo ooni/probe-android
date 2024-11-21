@@ -1,15 +1,15 @@
 [versions]
-androidGradlePlugin = "8.5.1"
-barista = "3.9.0"
-countlySdk = "24.7.0"
-desugar_jdk_libs_nio = "2.0.4"
+androidGradlePlugin = "8.6.1"
+barista = "4.3.0"
+countlySdk = "24.7.4"
+desugar_jdk_libs_nio = "2.1.2"
 faker = "2.0.4"
-mockito = "5.12.0"
+mockito = "5.14.2"
 robolectric = "4.13"
 fastlaneScreengrab = "2.1.1"
-sentryAndroid = "7.12.0"
+sentryAndroid = "7.16.0"
 xanscaleLocalhostToolkit = "19.05.01"
-commonsIo = "2.16.1"
+commonsIo = "2.17.0"
 jacoco = "0.8.7"
 kotlin = "1.9.24"
 
@@ -18,8 +18,9 @@ androidxCore = "1.6.1"
 androidxRunner = "1.6.1"
 androidxAppCompat = "1.7.0"
 androidxConstraintlayout = "2.1.4"
-androidxLifecycleProcess = "2.8.3"
+androidxLifecycleProcess = "2.8.6"
 androidxPreference = "1.2.1"
+workRuntime = "2.9.1"
 androidxLocalbroadcastmanager = "1.1.0"
 androidxLegacySupportV4 = "1.0.0"
 androidxJunit = "1.2.1"
@@ -27,20 +28,20 @@ androidxEspressoCore = "3.6.1"
 
 # Google
 googleGson = "2.11.0"
-googleGuava = "33.2.1-android"
+googleGuava = "33.3.1-android"
 googleMaterial = "1.12.0"
-googleDagger = "2.51.1"
-googleFirebaseBon = "33.1.2"
+googleDagger = "2.52"
+googleFirebaseBon = "33.5.1"
 googlePlayAppUpdate = "2.1.0"
 
 # OONI
 compileSdk = "34"
-lottie = "6.4.1"
+lottie = "6.6.0"
 markwon = "4.6.2"
 shapeofview = "1.4.7"
-targetSdk = "34"
+targetSdk = "35"
 minSdk = "21"
-oonimkall = "2024.05.22-092559"
+oonimkall = "2024.08.08-091959"
 
 junit = "4.13.2"
 dbflow = "4.2.4"
@@ -54,7 +55,7 @@ gms-googleServices = "4.4.1"
 [libraries]
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
-barista = { module = "com.schibsted.spain:barista", version.ref = "barista" }
+barista = { module = "com.adevinta.android:barista", version.ref = "barista" }
 countly-sdk = { module = "ly.count.android:sdk", version.ref = "countlySdk" }
 desugar_jdk_libs_nio = { module = "com.android.tools:desugar_jdk_libs_nio", version.ref = "desugar_jdk_libs_nio" }
 faker = { module = "com.github.blocoio:faker", version.ref = "faker" }
@@ -77,7 +78,7 @@ dbflow-lib = { module = "com.github.Raizlabs.DBFlow:dbflow", version.ref = "dbfl
 dbflow-core = { module = "com.github.Raizlabs.DBFlow:dbflow-core", version.ref = "dbflow" }
 dbflow-processor = { module = "com.github.Raizlabs.DBFlow:dbflow-processor", version.ref = "dbflow" }
 
-androidx-core = { module = "androidx.test:core", version.ref = "androidxCore" }
+androidx-test-core = { module = "androidx.test:core", version.ref = "androidxCore" }
 androidx-rules = { module = "androidx.test:rules", version.ref = "androidxCore" }
 androidx-runner = { module = "androidx.test:runner", version.ref = "androidxRunner" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppCompat" }
@@ -86,6 +87,7 @@ androidx-legacy-support-v4 = { module = "androidx.legacy:legacy-support-v4", ver
 androidx-lifecycle-process = { module = "androidx.lifecycle:lifecycle-process", version.ref = "androidxLifecycleProcess" }
 androidx-localbroadcastmanager = { module = "androidx.localbroadcastmanager:localbroadcastmanager", version.ref = "androidxLocalbroadcastmanager" }
 androidx-preference = { module = "androidx.preference:preference", version.ref = "androidxPreference" }
+androidx-work-runtime = { module = "androidx.work:work-runtime", version.ref = "workRuntime" }
 androidx-junit = { module = "androidx.test.ext:junit", version.ref = "androidxJunit" }
 androidx-espresso-contrib = { module = "androidx.test.espresso:espresso-contrib", version.ref = "androidxEspressoCore" }
 androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidxEspressoCore" }

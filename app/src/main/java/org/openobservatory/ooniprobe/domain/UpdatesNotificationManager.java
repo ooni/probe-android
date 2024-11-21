@@ -34,4 +34,5 @@ public class UpdatesNotificationManager {
     public void disableAskNotificationDialog() {
         pm.disableAskNotificationDialog();
     }
+
 }
