@@ -25,4 +25,8 @@ public final class PESession implements OONISession {
     public OONICheckInResults checkIn(OONIContext ctx, OONICheckInConfig config) throws Exception {
         return new OONICheckInResults(session.checkIn(ctx.ctx, config.toOonimkallCheckInConfig()));
     }
+
+    public void close() throws Exception {
+        session.close();
+    }
 }
