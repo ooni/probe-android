@@ -84,13 +84,14 @@ public class RunTestService extends Service {
                 .setProgress(100, 0, false)
                 .build();
 
-        task = (TestAsyncTask) new TestAsyncTask(app, testSuites, store_db, unattended).execute();
         //This intent is used to manage the stop test button in the notification
         Intent broadcastIntent = new Intent();
         broadcastIntent.setAction(RunTestService.ACTION_INTERRUPT);
         PendingIntent pIntent = pendingIntentGetBroadcast(this, 1, broadcastIntent);
         builder.addAction(0, getApplicationContext().getString(R.string.Notification_StopTest), pIntent);
         startForeground(NOTIFICATION_ID, builder.build());
+
+        task = (TestAsyncTask) new TestAsyncTask(app, testSuites, store_db, unattended).execute();
         /*
         START_NOT_STICKY says that, after returning from onStartCreated(),
         if the process is killed with no remaining start commands to deliver,
@@ -202,7 +203,12 @@ public class RunTestService extends Service {
     public synchronized void interrupt() {
         task.interrupt();
         if (task.isInterrupted()) {
-            ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE);
+            try {
+                ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE);
+                stopSelf();
+            } catch (Exception e) {
+                ThirdPartyServices.logException(e);
+            }
         }
     }
 

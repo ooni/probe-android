@@ -24,6 +24,7 @@ import org.openobservatory.ooniprobe.common.OONIDescriptor
 import org.openobservatory.ooniprobe.common.OONITests
 import org.openobservatory.ooniprobe.common.PreferenceManager
 import org.openobservatory.ooniprobe.common.ResubmitTask
+import org.openobservatory.ooniprobe.common.ThirdPartyServices
 import org.openobservatory.ooniprobe.databinding.ActivityResultDetailBinding
 import org.openobservatory.ooniprobe.domain.GetResults
 import org.openobservatory.ooniprobe.domain.GetTestSuite
@@ -85,7 +86,14 @@ class ResultDetailActivity : AbstractActivity(), View.OnClickListener, OnConfirm
 
             else -> {
                 result = iResult
-                result.getTestSuite(this@ResultDetailActivity).get()?.themeLight?.let { setTheme(it) }
+                val optionalSuite = result.getTestSuite(this@ResultDetailActivity)
+                if (optionalSuite.isPresent){
+                    try {
+                        setTheme(optionalSuite.get().themeLight)
+                    } catch (e: Exception) {
+                        ThirdPartyServices.logException(e)
+                    }
+                }
                 binding = ActivityResultDetailBinding.inflate(layoutInflater)
                 setContentView(binding.root)
                 setSupportActionBar(binding.toolbar)
