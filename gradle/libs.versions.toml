@@ -9,7 +9,7 @@ robolectric = "4.13"
 fastlaneScreengrab = "2.1.1"
 sentryAndroid = "7.16.0"
 xanscaleLocalhostToolkit = "19.05.01"
-commonsIo = "2.17.0"
+commonsIo = "2.18.0"
 jacoco = "0.8.7"
 kotlin = "1.9.24"
 
