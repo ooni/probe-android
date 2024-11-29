@@ -58,4 +58,8 @@ public final class PESession implements OONISession {
 
         return revisions;
     }
+    
+    public void close() throws Exception {
+        session.close();
+    }
 }

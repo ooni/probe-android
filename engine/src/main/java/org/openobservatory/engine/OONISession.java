@@ -38,4 +38,7 @@ public interface OONISession {
     OONIRunDescriptor getLatestOONIRunLink(OONIContext ctx, String probeServicesURL, long id) throws Exception;
 
     OONIRunRevisions getOONIRunLinkRevisions(@Nullable OONIContext ooniContext, @NotNull String probeServicesURL, long runId) throws Exception ;
+    
+    /** close closes the session along with any running circumvention tunnels */
+    void close() throws Exception;
 }

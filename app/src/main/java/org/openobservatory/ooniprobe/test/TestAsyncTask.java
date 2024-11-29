@@ -197,6 +197,9 @@ public class TestAsyncTask extends AsyncTask<Void, String, Void> implements Abst
                 currentTest.setMax_runtime(app.getPreferenceManager().getMaxRuntime());
             }
             publishProgress(URL);
+
+            // we close the session to ensure that we have no running circumvention tunnels
+            session.close();
         } catch (Exception e) {
             e.printStackTrace();
             ThirdPartyServices.logException(e);
