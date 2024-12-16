@@ -31,7 +31,7 @@ fun PreferenceManager.resolveStatus(
         sp.getBoolean(
             getPreferenceKey(name = name, prefix = prefix, autoRun = true),
             when(prefix.isEmpty()) {
-                true -> true
+                true -> autorunDefault(name = name)
                 false -> false
             }
         )
@@ -183,5 +183,13 @@ private fun PreferenceManager.setValue(name: String, value: Boolean): Boolean {
     return with(sp.edit()) {
         putBoolean(getPreferenceKey(name), value)
         commit()
+    }
+}
+
+fun autorunDefault(name: String): Boolean {
+    return when (name) {
+        Ndt.NAME,
+        Dash.NAME -> false
+        else -> true
     }
 }
