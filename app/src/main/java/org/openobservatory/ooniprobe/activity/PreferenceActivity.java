@@ -28,8 +28,9 @@ public class PreferenceActivity extends AbstractActivity implements ConfirmDialo
 
 	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		fragment = PreferenceFragment.newInstance(getIntent().getIntExtra(PreferenceFragment.ARG_PREFERENCES_RES_ID, 0), android.R.id.content, getIntent().getStringExtra(PreferenceFragment.ARG_PREFERENCE_ROOT));
-		getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fragment).commit();
+		setContentView(R.layout.activity_blank);
+		fragment = PreferenceFragment.newInstance(getIntent().getIntExtra(PreferenceFragment.ARG_PREFERENCES_RES_ID, 0), R.id.content, getIntent().getStringExtra(PreferenceFragment.ARG_PREFERENCE_ROOT));
+		getSupportFragmentManager().beginTransaction().replace(R.id.content, fragment).commit();
 	}
 
 	@Override
