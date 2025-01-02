@@ -1,3 +1,4 @@
+
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<style name="Theme.MaterialComponents.Light.DarkActionBar.App">
@@ -16,6 +17,7 @@
 		<item name="android:alertDialogTheme">?alertDialogTheme</item>
 		<item name="dialogTheme">?alertDialogTheme</item>
 		<item name="android:dialogTheme">?alertDialogTheme</item>
+		<item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
 		<item name="snackbarStyle">@style/SnackBarStyle</item>
 	</style>
 
@@ -31,6 +33,7 @@
 		<item name="android:alertDialogTheme">?alertDialogTheme</item>
 		<item name="dialogTheme">?alertDialogTheme</item>
 		<item name="android:dialogTheme">?alertDialogTheme</item>
+		<item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
 	</style>
 
 	<style name="Theme.MaterialComponents.Light.NoActionBar.App">
@@ -46,6 +49,7 @@
 		<item name="android:alertDialogTheme">?alertDialogTheme</item>
 		<item name="dialogTheme">?alertDialogTheme</item>
 		<item name="android:dialogTheme">?alertDialogTheme</item>
+		<item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
 	</style>
 
 	<style name="AlertDialogCustom" parent="android:Theme.Material.Light.Dialog.Alert">
