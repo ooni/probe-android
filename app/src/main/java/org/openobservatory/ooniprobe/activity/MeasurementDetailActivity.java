@@ -143,7 +143,7 @@ public class MeasurementDetailActivity extends AbstractActivity implements Confi
                     detail = TelegramFragment.newInstance(measurement);
                     break;
                 case WebConnectivity.NAME:
-                    head = HeaderOutcomeFragment.newInstance(iconRes, getString(R.string.outcomeHeader, measurement.url.url,
+                    head = HeaderOutcomeFragment.newInstance(iconRes, getString(R.string.outcomeHeader, measurement.url != null ? measurement.url.url : "",
                             getString(measurement.is_anomaly ?
                                     R.string.TestResults_Details_Websites_LikelyBlocked_Hero_Title :
                                     R.string.TestResults_Details_Websites_Reachable_Hero_Title)));
