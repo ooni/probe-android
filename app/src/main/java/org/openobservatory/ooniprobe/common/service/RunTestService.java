@@ -11,7 +11,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.content.pm.ServiceInfo;
 import android.os.Binder;
+import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -48,18 +50,6 @@ public class RunTestService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        IntentFilter filter = new IntentFilter(ACTION_INTERRUPT);
-        receiver = new ActionReceiver();
-        ContextCompat.registerReceiver(this, receiver, filter, ContextCompat.RECEIVER_NOT_EXPORTED);
-
-        LocalBroadcastManager.getInstance(this).registerReceiver(
-                new ProgressBroadcastReceiver(),
-                new IntentFilter("org.openobservatory.ooniprobe.activity.RunningActivity")
-        );
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
         Application app = ((Application) getApplication());
         NotificationUtility.setChannel(getApplicationContext(), CHANNEL_ID, app.getString(R.string.Settings_AutomatedTesting_Label), false, false, false);
         Intent notificationIntent = new Intent(this, RunningActivity.class);
@@ -82,7 +72,30 @@ public class RunTestService extends Service {
         broadcastIntent.setAction(RunTestService.ACTION_INTERRUPT);
         PendingIntent pIntent = pendingIntentGetBroadcast(this, 1, broadcastIntent);
         builder.addAction(0, getApplicationContext().getString(R.string.Notification_StopTest), pIntent);
-        startForeground(NOTIFICATION_ID, builder.build());
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            startForeground(
+                    NOTIFICATION_ID,
+                    builder.build(),
+                    ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC
+            );
+        } else {
+            startForeground(NOTIFICATION_ID, builder.build());
+        }
+
+        IntentFilter filter = new IntentFilter(ACTION_INTERRUPT);
+        receiver = new ActionReceiver();
+        ContextCompat.registerReceiver(this, receiver, filter, ContextCompat.RECEIVER_NOT_EXPORTED);
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+                new ProgressBroadcastReceiver(),
+                new IntentFilter("org.openobservatory.ooniprobe.activity.RunningActivity")
+        );
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Application app = ((Application) getApplication());
 
         app.getTestStateRepository().getTestGroupStatus().postValue(TestGroupStatus.RUNNING);
 
