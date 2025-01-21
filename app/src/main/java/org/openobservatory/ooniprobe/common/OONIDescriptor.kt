@@ -298,7 +298,7 @@ enum class OONITests(
             BaseNettest(name = "echcheck"),
         ),
         longRunningTests = listOf(
-            BaseNettest(name = "torsf"),
+            // BaseNettest(name = "torsf"),
             BaseNettest(name = "vanilla_tor"),
         )
     );

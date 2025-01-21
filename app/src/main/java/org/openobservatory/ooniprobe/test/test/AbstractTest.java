@@ -218,10 +218,20 @@ public abstract class AbstractTest implements Serializable {
                     case "failure.startup":
                     case "failure.resolver_lookup":
                         setFailureMsg(event.value, result);
-                        ThirdPartyServices.logException(new MKException(event));
+                        String failure = event.value.failure;
+                        if (failure != null) {
+                            ThirdPartyServices.logException(new MKException(failure));
+                        } else {
+                            ThirdPartyServices.logException(new MKException(event));
+                        }
                         break;
                     case "bug.json_dump":
-                        ThirdPartyServices.logException(new MKException(event));
+                        String failureMsg = event.value.failure;
+                        if (failureMsg != null) {
+                            ThirdPartyServices.logException(new MKException(failureMsg));
+                        } else {
+                            ThirdPartyServices.logException(new MKException(event));
+                        }
                         break;
                     case "task_terminated":
                         onTaskTerminated(event.value, c);
