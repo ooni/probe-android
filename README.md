@@ -1,3 +1,14 @@
+# MIGRATION NOTICE ⚠️ ⚠️
+
+Active development has moved—this repository is archived and no longer maintained.
+
+## This repository is retained for historical reference only (archival snapshots, past issues, and prior releases). New features, bug fixes, and all ongoing work are happening in the new project repository. Please do not open pull requests here; they will not be reviewed.
+
+Development, issue tracking, and contributions are now handled at the link below.
+
+## **Continue development here:**  https://github.com/ooni/probe-multiplatform
+
+---
 # OONI Probe Android
 
 [![OONI Probe Android](assets/OONIProbeLogo.png)](https://ooni.org)
